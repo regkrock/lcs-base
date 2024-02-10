@@ -25,8 +25,8 @@ BaselineOfLcsBase >> baseline: spec [
 		^ spec for: #common do: [
 			spec package: 'LcsBase'.
 			spec package: 'LcsSystem' with: [ spec requires: #('LcsBase') ].
-			spec package: 'Lcs-DomainBase'with: [ spec requires: #('Lcs-System') ].
+			"spec package: 'Lcs-DomainBase'with: [ spec requires: #('LcsSystem') ].
 			spec package: 'Lcs-LegalEntities'with: [ spec requires: #('Lcs-DomainBase') ].
-			spec package: 'Lcs-SystemTests' with: [ spec requires: #('Lcs-LegalEntities')].
+			spec package: 'Lcs-SystemTests' with: [ spec requires: #('Lcs-LegalEntities')]."
 		]
 ]

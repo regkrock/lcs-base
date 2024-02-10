@@ -15,3 +15,9 @@ LcsObject >> currentSystem [
 
 	^self class currentSystem
 ]
+
+{ #category : #accessing }
+LcsObject >> readMe [
+
+	^'Hello'
+]
