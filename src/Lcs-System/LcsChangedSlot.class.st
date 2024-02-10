@@ -1,0 +1,61 @@
+Class {
+	#name : #LcsChangedSlot,
+	#superclass : #LcsObject,
+	#instVars : [
+		'slotName',
+		'newValue',
+		'parent'
+	],
+	#category : #'Lcs-System'
+}
+
+{ #category : #'instance creation' }
+LcsChangedSlot class >> newFor: aSlotName parent: aChangedObjectRecord [
+
+	^self new
+		initailzeFor: aSlotName parent: aChangedObjectRecord;
+		yourself	
+]
+
+{ #category : #api }
+LcsChangedSlot >> applyChange [
+
+	self parent domainObject instVarAt: self slotName put: self newValue
+]
+
+{ #category : #'initialize \t' }
+LcsChangedSlot >> initailzeFor: aSlotName parent: aChangedObjectRecord [ 
+	self
+		slotName: aSlotName;
+		parent: aChangedObjectRecord
+]
+
+{ #category : #accessing }
+LcsChangedSlot >> newValue [
+	^ newValue
+]
+
+{ #category : #accessing }
+LcsChangedSlot >> newValue: anObject [
+	newValue := anObject
+]
+
+{ #category : #accessing }
+LcsChangedSlot >> parent [
+	^ parent
+]
+
+{ #category : #accessing }
+LcsChangedSlot >> parent: anObject [
+	parent := anObject
+]
+
+{ #category : #accessing }
+LcsChangedSlot >> slotName [
+	^ slotName
+]
+
+{ #category : #accessing }
+LcsChangedSlot >> slotName: anObject [
+	slotName := anObject
+]
