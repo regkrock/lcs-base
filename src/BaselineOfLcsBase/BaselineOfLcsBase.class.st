@@ -23,11 +23,10 @@ BaselineOfLcsBase class >> loadLepiter [
 BaselineOfLcsBase >> baseline: spec [
 	<baseline>
 		^ spec for: #common do: [
-			spec 
-				package: 'Lcs-Base';
-				package: 'Lcs-System' with: [ spec requires: #('Lcs-Base')];
-				package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-System')];
-				package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase')];
-				package: 'Lcs-SystemTests' with: [ spec requires: #('Lcs-LegalEntities')]
+			spec package: 'Lcs-Base'.
+			spec package: 'Lcs-System' .
+			spec package: 'Lcs-DomainBase'.
+			spec package: 'Lcs-LegalEntities'.
+			spec package: 'Lcs-SystemTests'.
 		]
 ]
