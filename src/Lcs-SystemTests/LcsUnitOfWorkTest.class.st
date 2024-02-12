@@ -25,13 +25,14 @@ LcsUnitOfWorkTest >> testChangedSlotInDomainObject [
 	| domainObject |
 	LcsSystem createNewSingleton.
 	domainObject := LcsPerson new dateOfBirth: Date today.
-	"LcsSystem currentUnitOfWork applyChanges."
+	LcsSystem currentUnitOfWork applyChanges.
 	LcsSystem createNewSingleton.
 	self assert: domainObject dateOfBirth = Date today.
 	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: LcsSystem currentUnitOfWork changedObjects isEmpty.
 	domainObject dateOfBirth: Date yesterday.
+	LcsSystem currentUnitOfWork applyChanges.
 	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: LcsSystem currentUnitOfWork changedObjects size = 1.

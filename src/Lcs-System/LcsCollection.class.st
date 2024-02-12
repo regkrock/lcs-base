@@ -16,3 +16,15 @@ LcsCollection >> collection [
 LcsCollection >> collection: anObject [
 	collection := anObject
 ]
+
+{ #category : #'defaults ' }
+LcsCollection >> collectionClass [
+	self subclassResponsibility
+]
+
+{ #category : #accessing }
+LcsCollection >> initialize [ 
+
+	super initialize.
+	self collection: self collectionClass new
+]

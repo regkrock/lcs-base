@@ -14,6 +14,12 @@ LcsSlotDefinition >> addSlotType: aClass [
 	self slotTypes add: aClass
 ]
 
+{ #category : #accessing }
+LcsSlotDefinition >> getValueIn: aDomainObject [
+
+	^ aDomainObject instVarNamed: self slotName asString
+]
+
 { #category : #initialize }
 LcsSlotDefinition >> initialize [
 	super initialize.
@@ -28,6 +34,13 @@ LcsSlotDefinition >> parent [
 { #category : #accessing }
 LcsSlotDefinition >> parent: anObject [
 	parent := anObject
+]
+
+{ #category : #accessing }
+LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
+
+	LcsSystem currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+
 ]
 
 { #category : #accessing }

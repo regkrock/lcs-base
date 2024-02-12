@@ -8,27 +8,11 @@ Class {
 }
 
 { #category : #accessing }
-LcsLegalEntity class >> slotDefinitionFor: aSlotName [ 
-	^self slotDefinitions slotDefinitionFor: aSlotName 
-]
-
-{ #category : #accessing }
 LcsLegalEntity >> entityName [
-	^entityName
+	^ self getValueOfSlotNamed: #entityName  
 ]
 
 { #category : #accessing }
 LcsLegalEntity >> entityName: aString [ 
-	entityName := aString
-]
-
-{ #category : #accessing }
-LcsLegalEntity >> inSlotFor: aSlotName put: anObject [
-	(self slotDefinitionFor: aSlotName) setSlotValueTo: anObject
-	
-]
-
-{ #category : #accessing }
-LcsLegalEntity >> slotDefinitionFor: aSlotName [ 
-	^self class slotDefinitionFor: aSlotName
+	self setValueOfSlotNamed: #entityName to: aString
 ]

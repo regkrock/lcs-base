@@ -17,7 +17,7 @@ LcsSystemTest >> testCreation [
 	currentUnitOfWork := system currentUnitOfWork.
 	self assert: system unitsOfWork notEmpty. 
 	self assert: currentUnitOfWork notNil.
-	self assert: currentUnitOfWork system == system.
+	self assert: currentUnitOfWork system identicalTo: system.
 	self assert: LcsSystem basicSingleton notNil.
-	self assert: (LcsPerson slotDefinitionFor: #dateOfBirth) slotName = #dateOfBirth
+	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth
 ]

@@ -10,14 +10,14 @@ Class {
 	#category : #'Lcs-System'
 }
 
-{ #category : #'instance c' }
+{ #category : #'instance creation' }
 LcsUnitOfWork class >> newOn: aSystem [ 
 	^self new
 		initializeOn: aSystem;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsUnitOfWork >> addObject: aDomainObject [
 
 	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self)
@@ -33,6 +33,12 @@ LcsUnitOfWork >> addedObjects: anObject [
 	addedObjects := anObject
 ]
 
+{ #category : #api }
+LcsUnitOfWork >> applyChanges [
+
+	self changedObjects do: [:each | each applyChanges ]
+]
+
 { #category : #accessing }
 LcsUnitOfWork >> changedObjects [
 	^ changedObjects
@@ -46,8 +52,8 @@ LcsUnitOfWork >> changedObjects: anObject [
 { #category : #api }
 LcsUnitOfWork >> changedSlot: aSlotName valueTo: anObject in: aDomainObject [
 
-	(self addedObjects keys includes: aDomainObject) ifTrue: [^self].
-	(self changedObjects at: anObject ifAbsentPut: [LcsChangedObjectRecord newFor: aDomainObject parent: self])
+	(self addedObjects keys includes: aDomainObject) ifTrue: [ ^ self ].
+	(self changedObjects at: anObject ifAbsentPut: [ LcsChangedObjectRecord newFor: aDomainObject parent: self ])
 		changedSlot: aSlotName valueTo: anObject
 		
 ]
@@ -67,7 +73,7 @@ LcsUnitOfWork >> deletedObjects: anObject [
 	deletedObjects := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsUnitOfWork >> initialize [
 	super initialize.
 	self addedObjects: LcsSmalltalkConfiguration dictionaryClass new.
@@ -75,9 +81,20 @@ LcsUnitOfWork >> initialize [
 	self deletedObjects: LcsSmalltalkConfiguration dictionaryClass new.
 ]
 
-{ #category : #accessing }
+{ #category : #initiailize }
 LcsUnitOfWork >> initializeOn: aSystem [ 
 	self system: aSystem
+]
+
+{ #category : #api }
+LcsUnitOfWork >> setValueTo: anObject in: aDomainObject forSlot: aSlotDefiniton [ 
+
+	(self addedObjects keys includes: aDomainObject) ifTrue: [ 
+	aDomainObject instVarNamed: aSlotDefiniton slotName asString put: anObject.
+	^ self ].
+	(self changedObjects at: anObject ifAbsentPut: [ LcsChangedObjectRecord newFor: aDomainObject parent: self ])
+		changedSlot: aSlotDefiniton slotName valueTo: anObject
+		
 ]
 
 { #category : #accessing }
@@ -88,12 +105,4 @@ LcsUnitOfWork >> system [
 { #category : #accessing }
 LcsUnitOfWork >> system: aSystem [ 
 	system := aSystem	
-]
-
-{ #category : #accessing }
-LcsUnitOfWork >> valueOf: aSlotName in: aDomainObject [
-
-	(self addedObjects keys includes: aDomainObject) ifTrue: [].
-	 (self deletedObjects keys includes: aDomainObject) ifTrue: [].
-	 (self changedObjects keys includes: aDomainObject) ifTrue: [].
 ]

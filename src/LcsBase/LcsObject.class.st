@@ -4,20 +4,14 @@ Class {
 	#category : #LcsBase
 }
 
-{ #category : #accessing }
+{ #category : #system }
 LcsObject class >> currentSystem [
 
 	^LcsSystem singleton
 ]
 
-{ #category : #accessing }
+{ #category : #system }
 LcsObject >> currentSystem [
 
 	^self class currentSystem
-]
-
-{ #category : #accessing }
-LcsObject >> readMe [
-
-	^'Hello'
 ]

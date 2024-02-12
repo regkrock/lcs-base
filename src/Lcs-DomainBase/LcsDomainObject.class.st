@@ -10,6 +10,12 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
+{ #category : #'slot definitions' }
+LcsDomainObject class >> addSlotDefinitions [
+	(Pragma allNamed: 'slotDefinition' in: self class)
+		do: [ :each | self class perform: each methodName asSymbol ]
+]
+
 { #category : #'unit of work' }
 LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
@@ -18,8 +24,7 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 { #category : #'slot definitions' }
 LcsDomainObject class >> buildSlotDefinitions [
 
-	self allSubclasses do: [:each |
-		each initializeSlotDefinitions]
+	self withAllSubclasses do: [ :each | each initializeSlotDefinitions ]
 ]
 
 { #category : #'unit of work' }
@@ -29,7 +34,8 @@ LcsDomainObject class >> currentUnitOfWork [
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> initializeSlotDefinitions [
-		self slotDefinitions: (LcsSlotDefinitions newOn: self)
+	self slotDefinitions: (LcsSlotDefinitions newOn: self).
+	self addSlotDefinitions
 ]
 
 { #category : #'instance creation\t' }
@@ -38,6 +44,11 @@ LcsDomainObject class >> new [
 	newObject := self basicNew initialize.
 	self addToUnitOfWork: newObject.
 	^ newObject
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> slotDefinitionNamed: aString [ 
+	^self slotDefinitions slotDefinitionNamed: aString
 ]
 
 { #category : #accessing }
@@ -51,6 +62,11 @@ LcsDomainObject class >> slotDefinitions: anObject [
 ]
 
 { #category : #accessing }
+LcsDomainObject class >> slotDefintionNamed: aSymbol [
+	^self slotDefinitions slotDefintionNamed: aSymbol
+]
+
+{ #category : #'unit of work' }
 LcsDomainObject >> addToUnitOfWork: aDomainObject [
 
 	self currentUnitOfWork addObject: aDomainObject
@@ -68,8 +84,9 @@ LcsDomainObject >> delete [
 	self currentUnitOfWork deleteObject: self
 ]
 
-{ #category : #accessing }
-LcsDomainObject >> new [
+{ #category : #'slot definitions' }
+LcsDomainObject >> getValueOfSlotNamed: aSlotName [
+	^ (self slotDefinitionNamed: aSlotName) getValueIn: self
 ]
 
 { #category : #accessing }
@@ -80,4 +97,14 @@ LcsDomainObject >> parent [
 { #category : #accessing }
 LcsDomainObject >> parent: anObject [
 	parent := anObject
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject >> setValueOfSlotNamed: aSlotName to: onObject [
+	(self slotDefinitionNamed: aSlotName) setValueTo: onObject in: self
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject >> slotDefinitionNamed: aString [
+	^self class slotDefinitionNamed: aString
 ]
