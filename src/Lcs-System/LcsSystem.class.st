@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSystem,
-	#superclass : #LcsObject,
+	#superclass : #LcsSystemComponent,
 	#instVars : [
 		'currentUnitOfWork',
 		'unitsOfWork'
