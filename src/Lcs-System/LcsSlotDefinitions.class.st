@@ -36,7 +36,7 @@ LcsSlotDefinitions >> domainClass: anObject [
 { #category : #accessing }
 LcsSlotDefinitions >> initialize [
 	super initialize.
-	self slotDefinitions: LcsSmalltalkConfiguration dictionaryClass new
+	self slotDefinitions: LcsSmalltalkConfiguration symbolDictionaryClass new
 ]
 
 { #category : #'instance creation' }

@@ -1,0 +1,252 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T12:47:20.583453-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T12:58:15.301955-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "TSGnxV3ODQCOZFZrA9JQPg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Modify this method to support generation of domain slot accessors"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T12:47:42.860602-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T12:57:40.606136-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "x/r6xl3ODQCOdW00A9JQPg=="
+				},
+				"code" : "\rGtClassCreationForm>>createSlotsContextMenuContentFor: aSlotName editor: anElement\r\t| theContextMenu items |\r\ttheContextMenu := GtFormContextMenuContent new editorElement: anElement.\r\titems := OrderedCollection new.\r\titems\r\t\taddAll: {GtCoderContextMenuAction new\r\t\t\t\t\taction: [ :form :elem | self browseReferencesToSlot: aSlotName in: elem ];\r\t\t\t\t\ttitle: (self createLabelTextFor: 'Browse references' description: aSlotName).\r\t\t\t\tGtCoderContextMenuAction new\r\t\t\t\t\taction: [ self executeRefactoring: (self pushUpSlotRefactoringFor: aSlotName) ];\r\t\t\t\t\ttitle: (self createLabelTextFor: 'Push up' description: aSlotName).\r\t\t\t\tGtCoderContextMenuAction new\r\t\t\t\t\taction: [ self executeRefactoring: (self pushDownSlotRefactoringFor: aSlotName) ];\r\t\t\t\t\ttitle: (self createLabelTextFor: 'Push down' description: aSlotName).\r\t\t\t\tGtCoderContextMenuAction new\r\t\t\t\t\taction: [ self\r\t\t\t\t\t\t\texecuteRefactoring: (self generateAccessorsFor: aSlotName asClassVar: false) ];\r\t\t\t\t\ttitle: (self createLabelTextFor: 'Create accessors' description: aSlotName).\r\t\t\t\tGtCoderContextMenuAction new\r\t\t\t\t\taction: [ self\r\t\t\t\t\t\t\texecuteRefactoring: (self generateDomainSlotAccessorsFor: aSlotName asClassVar: false) ];\r\t\t\t\t\ttitle: (self createLabelTextFor: 'Create domain slot accessors' description: aSlotName).\r\t\t\t\tGtCoderContextMenuAction new\r\t\t\t\t\taction: [ self executeRefactoring: (self abstractVariable: aSlotName) ];\r\t\t\t\t\ttitle: (self createLabelTextFor: 'Abstract' description: aSlotName).\r\t\t\t\tGtCoderContextMenuAction new\r\t\t\t\t\taction: [ self executeRefactoring: (self protectVariable: aSlotName) ];\r\t\t\t\t\ttitle: (self createLabelTextFor: 'Protect' description: aSlotName)}.\r\ttheContextMenu items: items.\r\t^ theContextMenu"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T12:56:26.295326-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T12:57:32.920183-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "AgIu5l3ODQCRiU+lA9JQPg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Add method"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T12:56:54.757093-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T13:02:22.662382-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "hkjg513ODQCR0faQA9JQPg=="
+				},
+				"code" : "GtClassCreationForm>>generateDomainSlotAccessorsFor: varName asClassVar: aBoolean\r\t| aModel aClass |\r\taModel := self createRefactoringModel.\r\taClass := self modelClassFrom: aModel.\r\r\t^ RBCreateDomainSlotAcccessorsForVariableRefactoring\r\t\tmodel: aModel\r\t\tvariable: varName\r\t\tclass: aClass\r\t\tclassVariable: aBoolean"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T13:03:50.85413-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T13:04:03.195948-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "tm+tAF7ODQCSkce2A9JQPg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Ensure class is loaded: "
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T13:13:51.126915-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-22T13:14:41.086565-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ztx0JF7ODQCTMqW+A9JQPg=="
+				},
+				"code" : "RBCreateDomainSlotAcccessorsForVariableRefactoring.\r\rdefineGetterMethod\r\r\tself definingClass \r\t\tcompile: ('<1s><r><t>^ self getValueOfSlotNamed: ''<2s>''' \r\t\t\texpandMacrosWith: self selector \r\t\t\twith: variableName)\r\t\tclassified: #(#accessing).\r\t^selector.\r\t\rdefineSetterMethod\r\r\t| definingClass string |\r\tdefiningClass := self definingClass.\r\tstring := self needsReturnForSetter \r\t\t\t\tifTrue: ['<1s> anObject<r><t>^ self setValueOfSlotNamed: ''<2s>'' to: anObject']\r\t\t\t\tifFalse: ['<1s> anObject<r><t>self setValueOfSlotNamed: ''<2s>'' to: anObject'].\r\t\t\t\t\r\tselector := self safeMethodNameFor: definingClass\r\t\t\t\tbasedOn: variableName asString , ':'.\r\tdefiningClass \r\t\tcompile: (string expandMacrosWith: selector with: variableName)\r\t\tclassified: #accessing.\r\t^selector"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-02-22T12:47:20.550053-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-02-22T13:09:33.085456-05:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Lcs Tools - Generate Domain Slots"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "4a9da6c5-5dce-0d00-8e63-785203d2503e"
+	}
+}

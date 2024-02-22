@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsUnitOfWorkTest,
-	#superclass : #TestCase,
+	#superclass : #LcsTestCase,
 	#category : #'Lcs-SystemTests'
 }
 

@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-02-10T05:09:26.922329-05:00"
+						"dateAndTimeString" : "2024-02-21T08:14:36.615605-05:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-02-10T05:10:37.216954-05:00"
+						"dateAndTimeString" : "2024-02-21T08:14:36.615605-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "dNT/+WXNDQCRjHJkCVwQEQ=="
+					"uidString" : "msGm10XODQCKLHguA9JQPg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This is a place holder page"
+				"string" : ""
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-02-20T09:07:37.590534-05:00"
+						"dateAndTimeString" : "2024-02-21T08:14:40.613836-05:00"
 					}
 				},
 				"editEmail" : {
@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-02-20T09:07:49.161397-05:00"
+						"dateAndTimeString" : "2024-02-21T08:15:33.584068-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "RdYzeDLODQCBtT7OAILh9Q=="
+					"uidString" : "m2iu2EXODQCKTIEoA9JQPg=="
 				},
-				"code" : "LcsSstem "
+				"code" : "canada := LcsCountry new\r\tisoCode: 'CA'';\r\tcountryName: 'Canada';\r\tyourself\r\t"
 			}
 		]
 	},
@@ -85,7 +85,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-02-10T05:09:26.877989-05:00"
+			"dateAndTimeString" : "2024-02-21T08:14:23.278783-05:00"
 		}
 	},
 	"editEmail" : {
@@ -96,15 +96,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-02-10T05:09:40.903527-05:00"
+			"dateAndTimeString" : "2024-02-21T08:14:32.41741-05:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "LcsBase Page"
+		"title" : "Geograpahy"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "9f23fff9-65cd-0d00-918b-1d8a095c1011"
+		"uuid" : "f3e8a5d7-45ce-0d00-8a2b-436403d2503e"
 	}
 }

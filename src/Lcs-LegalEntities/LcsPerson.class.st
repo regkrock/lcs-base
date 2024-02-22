@@ -18,11 +18,10 @@ LcsPerson class >> dateOfBirthSlotDefinition [
 
 { #category : #accessing }
 LcsPerson >> dateOfBirth [
-	^ self getValueOfSlotNamed: #dateOfBirth 
+	^ self getValueOfSlotNamed: 'dateOfBirth'
 ]
 
 { #category : #accessing }
-LcsPerson >> dateOfBirth: aDate [
-	self setValueOfSlotNamed: #dateOfBirth to: aDate 
-
+LcsPerson >> dateOfBirth: anObject [
+	self setValueOfSlotNamed: 'dateOfBirth' to: anObject
 ]

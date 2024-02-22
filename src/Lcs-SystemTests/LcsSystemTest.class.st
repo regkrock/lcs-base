@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSystemTest,
-	#superclass : #TestCase,
+	#superclass : #LcsTestCase,
 	#category : #'Lcs-SystemTests'
 }
 
@@ -19,5 +19,6 @@ LcsSystemTest >> testCreation [
 	self assert: currentUnitOfWork notNil.
 	self assert: currentUnitOfWork system identicalTo: system.
 	self assert: LcsSystem basicSingleton notNil.
-	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth
+	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth.
+	self assert: (LcsSystem singleton moduleNamed: LcsGeographyModule moduleName) notNil
 ]

@@ -34,5 +34,5 @@ LcsChangedObjectRecord >> changedSlots: anObject [
 LcsChangedObjectRecord >> initialize [
 
 	super initialize.
-	self changedSlots: LcsSmalltalkConfiguration dictionaryClass new
+	self changedSlots: LcsSmalltalkConfiguration symbolDictionaryClass new
 ]

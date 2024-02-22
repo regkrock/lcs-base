@@ -40,6 +40,40 @@
 					"__type" : "textStyle"
 				},
 				"string" : "This is a place holder page"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-20T09:07:37.590534-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-20T09:08:10.215265-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "RdYzeDLODQCBtT7OAILh9Q=="
+				},
+				"code" : "LcsSystem"
 			}
 		]
 	},

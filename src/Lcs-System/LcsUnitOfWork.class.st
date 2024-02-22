@@ -76,9 +76,9 @@ LcsUnitOfWork >> deletedObjects: anObject [
 { #category : #initialize }
 LcsUnitOfWork >> initialize [
 	super initialize.
-	self addedObjects: LcsSmalltalkConfiguration dictionaryClass new.
-	self changedObjects: LcsSmalltalkConfiguration dictionaryClass new.
-	self deletedObjects: LcsSmalltalkConfiguration dictionaryClass new.
+	self addedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
+	self changedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
+	self deletedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
 ]
 
 { #category : #initiailize }

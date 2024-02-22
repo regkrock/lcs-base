@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSlotDefinitionTest,
-	#superclass : #TestCase,
+	#superclass : #LcsTestCase,
 	#category : #'Lcs-SystemTests'
 }
 

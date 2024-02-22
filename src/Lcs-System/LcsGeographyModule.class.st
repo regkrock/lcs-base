@@ -1,5 +1,10 @@
 Class {
 	#name : #LcsGeographyModule,
-	#superclass : #LcsSystemModule,
+	#superclass : #LcsModule,
 	#category : #'Lcs-System'
 }
+
+{ #category : #accessing }
+LcsGeographyModule class >> moduleName [
+	^'Geography Module'
+]

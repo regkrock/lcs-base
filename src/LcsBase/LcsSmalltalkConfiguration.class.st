@@ -5,8 +5,22 @@ Class {
 }
 
 { #category : #accessing }
-LcsSmalltalkConfiguration class >> dictionaryClass [
+LcsSmalltalkConfiguration class >> booleanClass [
+	^Boolean
+]
 
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> dateClass [
+	^Date
+]
+
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> integerClass [
+	^Integer
+]
+
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> objectKeyDictionaryClass [
 	^Dictionary
 ]
 
@@ -14,4 +28,25 @@ LcsSmalltalkConfiguration class >> dictionaryClass [
 LcsSmalltalkConfiguration class >> setClass [
 
 	^IdentitySet
+]
+
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> stringClass [
+	^String
+]
+
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> stringDictionaryClass [
+	^Dictionary
+]
+
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> symbolDictionaryClass [
+
+	^Dictionary
+]
+
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> timeClass [
+	^Time
 ]

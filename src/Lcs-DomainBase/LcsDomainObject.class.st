@@ -13,7 +13,7 @@ Class {
 { #category : #'slot definitions' }
 LcsDomainObject class >> addSlotDefinitions [
 	(Pragma allNamed: 'slotDefinition' in: self class)
-		do: [ :each | self class perform: each methodName asSymbol ]
+		do: [ :eachPragma | self slotDefinitions addSlotDefinition: (self perform: eachPragma methodSelector)]
 ]
 
 { #category : #'unit of work' }
@@ -24,7 +24,7 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 { #category : #'slot definitions' }
 LcsDomainObject class >> buildSlotDefinitions [
 
-	self withAllSubclasses do: [ :each | each initializeSlotDefinitions ]
+	self withAllSubclasses do: [ :eachDomainClass | eachDomainClass initializeSlotDefinitions ]
 ]
 
 { #category : #'unit of work' }
@@ -42,7 +42,7 @@ LcsDomainObject class >> initializeSlotDefinitions [
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew initialize.
-	self addToUnitOfWork: newObject.
+	LcsSystem basicSingleton ifNotNil: [self addToUnitOfWork: newObject].
 	^ newObject
 ]
 

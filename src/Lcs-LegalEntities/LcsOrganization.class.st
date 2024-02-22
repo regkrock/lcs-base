@@ -8,5 +8,11 @@ Class {
 }
 
 { #category : #accessing }
-LcsOrganization >> location: anObject [ 
+LcsOrganization >> location [
+	^ self getValueOfSlotNamed: 'location'
+]
+
+{ #category : #accessing }
+LcsOrganization >> location: anObject [
+	self setValueOfSlotNamed: 'location' to: anObject
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSystem,
-	#superclass : #LcsSystemComponent,
+	#superclass : #LcsBaseModule,
 	#instVars : [
 		'currentUnitOfWork',
 		'unitsOfWork'
@@ -78,11 +78,18 @@ LcsSystem >> currentUnitOfWork: anObject [
 
 { #category : #ini }
 LcsSystem >> initialize [
-
 	super initialize.
 	self unitsOfWork: OrderedCollection new.
 	self addNewUnitOfWork.
-	LcsDomainObject buildSlotDefinitions
+	LcsDomainObject buildSlotDefinitions.
+	self buildModules
+]
+
+{ #category : #ini }
+LcsSystem >> moduleClasses [
+	^ OrderedCollection new
+		add: LcsGeographyModule;
+		yourself
 ]
 
 { #category : #accessing }
