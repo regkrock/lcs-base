@@ -7,7 +7,7 @@ Class {
 { #category : #system }
 LcsObject class >> currentSystem [
 
-	^LcsSystem singleton
+	^#LcsSystem asClass singleton
 ]
 
 { #category : #system }
