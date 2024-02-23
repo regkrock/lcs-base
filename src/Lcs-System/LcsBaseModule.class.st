@@ -68,7 +68,7 @@ LcsBaseModule >> initializeDomainCollections [
 { #category : #accessing }
 LcsBaseModule >> initializeModules [
 	self
-		modules: (LcsModules new
+		modules: (#LcsModules asClass new
 				parent: self;
 				yourself)
 ]
