@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsModules,
-	#superclass : LcsObject, 
+	#superclass : #LcsObject, 
 	#category : #'Lcs-System'
 }
 
