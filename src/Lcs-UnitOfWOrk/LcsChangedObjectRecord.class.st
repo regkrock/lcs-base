@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'changedSlots'
 	],
-	#category : #'Lcs-System'
+	#category : #'Lcs-UnitOfWOrk'
 }
 
 { #category : #ap }

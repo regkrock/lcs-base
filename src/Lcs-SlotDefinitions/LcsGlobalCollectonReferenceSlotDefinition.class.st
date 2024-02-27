@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'moduleName'
 	],
-	#category : #'Lcs-System'
+	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #accessing }

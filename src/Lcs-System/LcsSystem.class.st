@@ -76,7 +76,7 @@ LcsSystem >> currentUnitOfWork: anObject [
 	currentUnitOfWork := anObject
 ]
 
-{ #category : #ini }
+{ #category : #'initialize  ' }
 LcsSystem >> initialize [
 	super initialize.
 	self unitsOfWork: OrderedCollection new.
@@ -85,7 +85,7 @@ LcsSystem >> initialize [
 	self buildModules
 ]
 
-{ #category : #ini }
+{ #category : #'modules ' }
 LcsSystem >> moduleClasses [
 	^ OrderedCollection new
 		add: #LcsGeographyModule asClass;

@@ -6,7 +6,7 @@ Class {
 		'newValue',
 		'parent'
 	],
-	#category : #'Lcs-System'
+	#category : #'Lcs-UnitOfWOrk'
 }
 
 { #category : #'instance creation' }

@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsModule,
 	#superclass : #LcsBaseModule,
-	#category : #'Lcs-System'
+	#category : #'Lcs-DomainBase'
 }

@@ -7,7 +7,7 @@ Class {
 		'deletedObjects',
 		'system'
 	],
-	#category : #'Lcs-System'
+	#category : #'Lcs-UnitOfWOrk'
 }
 
 { #category : #'instance creation' }

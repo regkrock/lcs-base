@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsDeletedObjectRecord,
+	#name : #LcsAddedObjectRecord,
 	#superclass : #LcsObjectChangeRecord,
-	#category : #'Lcs-System'
+	#category : #'Lcs-UnitOfWOrk'
 }
 
 { #category : #accessing }
-LcsDeletedObjectRecord >> applyChanges [
+LcsAddedObjectRecord >> applyChanges [
 
 	self error: 'Needs to be implemented'
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsPrimitiveSlotDefinition,
 	#superclass : #LcsSlotDefinition,
-	#category : #'Lcs-System'
+	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #accessing }

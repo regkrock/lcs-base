@@ -5,7 +5,7 @@ Class {
 		'parent',
 		'collection'
 	],
-	#category : #'Lcs-System'
+	#category : #LcsBase
 }
 
 { #category : #accessing }
