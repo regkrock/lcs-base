@@ -88,7 +88,7 @@ LcsSystem >> initialize [
 { #category : #'modules ' }
 LcsSystem >> moduleClasses [
 	^ OrderedCollection new
-		add: #LcsGeographyModule asClass;
+		add: LcsGeographyModule;
 		yourself
 ]
 
