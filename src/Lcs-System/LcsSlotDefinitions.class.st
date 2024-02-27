@@ -34,6 +34,11 @@ LcsSlotDefinitions >> domainClass: anObject [
 ]
 
 { #category : #accessing }
+LcsSlotDefinitions >> hasElements [
+	^self slotDefinitions size > 0
+]
+
+{ #category : #accessing }
 LcsSlotDefinitions >> initialize [
 	super initialize.
 	self slotDefinitions: LcsSmalltalkConfiguration symbolDictionaryClass new

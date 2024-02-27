@@ -9,6 +9,26 @@ Class {
 }
 
 { #category : #accessing }
+LcsCountry class >> countryNameSlotDefintion [
+	<slotDefinition>
+	^LcsStringSlotDefinition new
+		slotName: #'countryName';
+		beRequired;
+		validator: [:string | string size > 2];
+		yourself
+]
+
+{ #category : #accessing }
+LcsCountry class >> isoCodeSlotDefintion [
+	<slotDefinition>
+	^LcsStringSlotDefinition new
+		slotName: #'isoCode';
+		beRequired;
+		validator: [:string | string size = 2];
+		yourself
+]
+
+{ #category : #accessing }
 LcsCountry >> countryName [
 	^ self getValueOfSlotNamed: 'countryName'
 ]
@@ -16,16 +36,6 @@ LcsCountry >> countryName [
 { #category : #accessing }
 LcsCountry >> countryName: anObject [
 	self setValueOfSlotNamed: 'countryName' to: anObject
-]
-
-{ #category : #accessing }
-LcsCountry >> countryNameSlotDefintion [
-	<slotDefinition>
-	^LcsStringSlotDefinition new
-		slotName: #'countryName';
-		beRequired;
-		validator: [:string | string size > 2];
-		yourself
 ]
 
 { #category : #accessing }
@@ -39,11 +49,10 @@ LcsCountry >> isoCode: anObject [
 ]
 
 { #category : #accessing }
-LcsCountry >> isoCodeSlotDefintion [
-	<slotDefinition>
-	^LcsStringSlotDefinition new
-		slotName: #'isoCode';
-		beRequired;
-		validator: [:string | string size = 2];
-		yourself
+LcsCountry >> parentSlotDefinition [
+	^LcsGlobalCollectonReferenceSlotDefinition new
+		moduleName: LcsGeographyModule moduleName;
+		slotName: 'countries';
+		yourself 
+		
 ]

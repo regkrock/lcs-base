@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-02-21T08:15:33.584068-05:00"
+						"dateAndTimeString" : "2024-02-27T10:07:45.589133-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "m2iu2EXODQCKTIEoA9JQPg=="
 				},
-				"code" : "canada := LcsCountry new\r\tisoCode: 'CA'';\r\tcountryName: 'Canada';\r\tyourself\r\t"
+				"code" : "canada := LcsCountry new\r\r\r\tisoCode: 'CA';\r\tcountryName: 'Canada';\r\tyourself\r\t"
 			}
 		]
 	},
