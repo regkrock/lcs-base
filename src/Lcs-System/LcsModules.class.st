@@ -1,6 +1,10 @@
 Class {
 	#name : #LcsModules,
-	#superclass : #LcsObject, 
+	#superclass : #LcsObject,
+	#instVars : [
+		'parent',
+		'collection'
+	],
 	#category : #'Lcs-System'
 }
 
@@ -19,6 +23,32 @@ LcsModules >> buildModuleFor: eachModuleClass [
 ]
 
 { #category : #accessing }
+LcsModules >> collection [
+	^ collection
+]
+
+{ #category : #accessing }
+LcsModules >> collection: anObject [
+	collection := anObject
+]
+
+{ #category : #accessing }
+LcsModules >> hasElements [
+	^self collection notEmpty
+]
+
+{ #category : #accessing }
+LcsModules >> hasNoElements [
+	^self collection isEmpty
+]
+
+{ #category : #accessing }
+LcsModules >> initialize [ 
+	super initialize.
+	self collection: Dictionary new
+]
+
+{ #category : #accessing }
 LcsModules >> moduleNamed: aString [
 	^self moduleNamed: aString ifAbsent: [self error: 'Module not found: ' , aString asString]
 ]
@@ -26,4 +56,14 @@ LcsModules >> moduleNamed: aString [
 { #category : #accessing }
 LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 	^self collection at: aString ifAbsent: aBlock
+]
+
+{ #category : #accessing }
+LcsModules >> parent [
+	^ parent
+]
+
+{ #category : #accessing }
+LcsModules >> parent: anObject [
+	parent := anObject
 ]
