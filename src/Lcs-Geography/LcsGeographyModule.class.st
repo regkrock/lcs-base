@@ -1,8 +1,20 @@
 Class {
 	#name : #LcsGeographyModule,
 	#superclass : #LcsModule,
+	#instVars : [
+		'countries'
+	],
 	#category : #'Lcs-Geography'
 }
+
+{ #category : #'slot definitions' }
+LcsGeographyModule class >> countriesSlotDefinition [
+	<slotDefinition>
+	^LcsGlobalCollectionSlotDefinition new
+		slotName: 'countries';
+		addSlotType: LcsSmalltalkConfiguration identitySetClass
+		yourself
+]
 
 { #category : #accessing }
 LcsGeographyModule class >> moduleName [
@@ -10,10 +22,11 @@ LcsGeographyModule class >> moduleName [
 ]
 
 { #category : #accessing }
-LcsGeographyModule >> countriesSlotDefinition [
-	<slotDefinition>
-	^LcsGlobalCollectionSlotDefinition new
-		slotName: 'countries';
-		collectionClass: LcsSmalltalkConfiguration identitySetClass
-		yourself
+LcsGeographyModule >> countries [
+	^ countries
+]
+
+{ #category : #accessing }
+LcsGeographyModule >> countries: anObject [
+	countries := anObject
 ]

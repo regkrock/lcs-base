@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LcsCountry class >> countryNameSlotDefintion [
 	<slotDefinition>
 	^LcsStringSlotDefinition new
@@ -25,6 +25,16 @@ LcsCountry class >> isoCodeSlotDefintion [
 		slotName: #'isoCode';
 		beRequired;
 		validator: [:string | string size = 2];
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsCountry class >> parentSlotDefinition [
+	<slotDefinition>
+	^LcsGlobalCollectonReferenceSlotDefinition new
+		slotName: 'parent';
+		moduleName: LcsGeographyModule moduleName;
+		collectionSlotName: 'countries';
 		yourself
 ]
 
@@ -46,13 +56,4 @@ LcsCountry >> isoCode [
 { #category : #accessing }
 LcsCountry >> isoCode: anObject [
 	self setValueOfSlotNamed: 'isoCode' to: anObject
-]
-
-{ #category : #accessing }
-LcsCountry >> parentSlotDefinition [
-	^LcsGlobalCollectonReferenceSlotDefinition new
-		moduleName: LcsGeographyModule moduleName;
-		slotName: 'countries';
-		yourself 
-		
 ]

@@ -1,9 +1,8 @@
 Class {
 	#name : #LcsBaseModule,
-	#superclass : #LcsObject,
+	#superclass : #LcsDomainObject,
 	#instVars : [
 		'modules',
-		'parent',
 		'domainCollections'
 	],
 	#category : #'Lcs-DomainBase'
@@ -34,18 +33,18 @@ LcsBaseModule >> domainCollections: anObject [
 	domainCollections := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'modules\t' }
 LcsBaseModule >> geographyModule [
 
-	^self modules at: 'Geography'
+	^self modules at: 'Geography Module'
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsBaseModule >> hasModules [
 	^self modules hasElements
 ]
 
-{ #category : #accessing }
+{ #category : #'testing\t' }
 LcsBaseModule >> hasNoModules [
 	^self modules hasNoElements
 ]
@@ -54,7 +53,8 @@ LcsBaseModule >> hasNoModules [
 LcsBaseModule >> initialize [
 	super initialize.
 	self initializeModules.
-	self initializeDomainCollections
+	self initializeDomainCollections.
+	self class slotDefinitions initializeModel: self
 ]
 
 { #category : #accessing }
@@ -67,13 +67,19 @@ LcsBaseModule >> initializeDomainCollections [
 
 { #category : #accessing }
 LcsBaseModule >> initializeModules [
-	self
-		modules: (#LcsModules asClass new
+	self modules:(
+			LcsModules new
 				parent: self;
 				yourself)
 ]
 
-{ #category : #accessing }
+{ #category : #'modules\t' }
+LcsBaseModule >> legalEntitiesModule [
+
+	^self modules at: 'Legal Entities Module'
+]
+
+{ #category : #'configuration\t' }
 LcsBaseModule >> moduleClasses [
 	^OrderedCollection new
 ]
@@ -83,7 +89,7 @@ LcsBaseModule >> moduleName [
 	^self class moduleName
 ]
 
-{ #category : #accessing }
+{ #category : #modules }
 LcsBaseModule >> moduleNamed: aString [
 	^self modules moduleNamed: aString
 ]

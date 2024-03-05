@@ -7,5 +7,6 @@ Class {
 { #category : #accessing }
 LcsAddedObjectRecord >> applyChanges [
 
-	self error: 'Needs to be implemented'
+	self domainObject parent isNil ifTrue: [
+		(self domainObject slotDefinitionNamed: 'parent') persistValue: self domainObject ]
 ]

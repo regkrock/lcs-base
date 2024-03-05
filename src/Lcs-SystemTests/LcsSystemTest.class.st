@@ -9,16 +9,16 @@ LcsSystemTest >> testCreation [
 
 	| currentUnitOfWork system |
 
-	LcsSystem clearSingleton.
-	self assert: LcsSystem basicSingleton isNil. 
-	system := LcsSystem singleton.
-	self assert: system notNil.
+	LcsBaseSystem clearCurrentSystem.
+	self assert: self currentSystem isNil. 
+	system := LcsSystemManager createNewSystem.
+	self assert: self currentSystem notNil.
 
-	currentUnitOfWork := system currentUnitOfWork.
-	self assert: system unitsOfWork notEmpty. 
+	currentUnitOfWork := self currentSystem currentUnitOfWork.
+	self assert: self currentSystem unitsOfWork notEmpty. 
 	self assert: currentUnitOfWork notNil.
-	self assert: currentUnitOfWork system identicalTo: system.
-	self assert: LcsSystem basicSingleton notNil.
+	self assert: currentUnitOfWork system identicalTo: self currentSystem.
+	self assert: self currentSystem notNil.
 	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth.
-	self assert: (LcsSystem singleton moduleNamed: LcsGeographyModule moduleName) notNil
+	self assert: (self currentSystem moduleNamed: LcsGeographyModule moduleName) notNil
 ]

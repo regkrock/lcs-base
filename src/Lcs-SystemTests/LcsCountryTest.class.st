@@ -15,4 +15,8 @@ LcsCountryTest >> testCreation [
 		
 	self assert: country countryName = 'Canada'.
 	self assert: country isoCode = 'CA'.
+
+	self currentSystem currentUnitOfWork applyChanges.
+	
+	self assert: (self currentSystem geographyModule countries includes: country).
 ]

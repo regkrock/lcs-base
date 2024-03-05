@@ -1,87 +1,48 @@
 Class {
 	#name : #LcsSystem,
-	#superclass : #LcsBaseModule,
-	#instVars : [
-		'currentUnitOfWork',
-		'unitsOfWork'
-	],
+	#superclass : #LcsBaseSystem,
 	#classVars : [
 		'Singleton'
 	],
 	#category : #'Lcs-System'
 }
 
-{ #category : #accessing }
-LcsSystem class >> basicSingleton [
-
-	^Singleton
+{ #category : #'initialize  ' }
+LcsSystem >> domainClasses [
+	^ LcsDomainObject withAllSubclasses
 ]
 
-{ #category : #accessing }
-LcsSystem class >> basicSingleton: anObject [
-
-	Singleton := anObject
-]
-
-{ #category : #accessing }
-LcsSystem class >> clearSingleton [
-	self basicSingleton: nil
-]
-
-{ #category : #accessing }
-LcsSystem class >> createNewSingleton [
-	self basicSingleton: nil.
-	self singleton
-]
-
-{ #category : #accessing }
-LcsSystem class >> currentUnitOfWork [
-	^self singleton currentUnitOfWork
-]
-
-{ #category : #accessing }
-LcsSystem class >> singelton: anUndefinedObject [ 
-
-	self basicSingleton: anUndefinedObject
-]
-
-{ #category : #accessing }
-LcsSystem class >> singleton [
-
-	^self basicSingleton ifNil: [
-		self basicSingleton: LcsSystem new.
-		self basicSingleton]
-]
-
-{ #category : #'unit of work' }
-LcsSystem >> addNewUnitOfWork [
-
-	| newUnitOfWork |
-	
-	newUnitOfWork := LcsUnitOfWork newOn: self.
-	self assert: newUnitOfWork system == self.
-	self unitsOfWork add: newUnitOfWork.
-	self currentUnitOfWork: newUnitOfWork.
-	^newUnitOfWork
-]
-
-{ #category : #accessing }
-LcsSystem >> currentUnitOfWork [
-
-	^currentUnitOfWork
-]
-
-{ #category : #accessing }
-LcsSystem >> currentUnitOfWork: anObject [
-	currentUnitOfWork := anObject
+{ #category : #'ui \t' }
+LcsSystem >> gtViewSystemOn: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'System Information' translated;
+		priority: 5;
+		items: [ self unitsOfWork ];
+		column: 'Current'
+			text: [ :eachItem :eachIndex | (eachItem == self currentUnitOfWork) displayString asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Index'
+			text: [ :eachItem :eachIndex | eachIndex asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Unit Of Work Name'
+			text: [ :eachItem :eachIndex | eachItem unitOfWorkName asString asRopedText foreground: Color gray ]
+			width: 140;
+		column: 'Added'
+			text: [ :eachItem :eachIndex | eachItem addedObjects size printString asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Changed'
+			text: [ :eachItem :eachIndex | eachItem changedObjects size printString asRopedText foreground: Color gray ]
+			width: 45;
+column: 'Deleted'
+			text: [ :eachItem :eachIndex | eachItem deletedObjects size printString asRopedText foreground: Color gray ]
+			width: 45
 ]
 
 { #category : #'initialize  ' }
 LcsSystem >> initialize [
 	super initialize.
-	self unitsOfWork: OrderedCollection new.
-	self addNewUnitOfWork.
-	LcsDomainObject buildSlotDefinitions.
+	self buildSlotDefinitions.
 	self buildModules
 ]
 
@@ -89,15 +50,6 @@ LcsSystem >> initialize [
 LcsSystem >> moduleClasses [
 	^ OrderedCollection new
 		add: LcsGeographyModule;
+		add: LcsLegalEntitiesModule;
 		yourself
-]
-
-{ #category : #accessing }
-LcsSystem >> unitsOfWork [
-	^ unitsOfWork
-]
-
-{ #category : #accessing }
-LcsSystem >> unitsOfWork: anObject [
-	unitsOfWork := anObject
 ]

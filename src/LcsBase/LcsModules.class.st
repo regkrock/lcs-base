@@ -10,7 +10,12 @@ Class {
 
 { #category : #accessing }
 LcsModules class >> collectionClass [
-	^LcsSmalltalkConfiguration stringDictionaryClass
+	^ LcsSmalltalkConfiguration stringDictionaryClass
+]
+
+{ #category : #accessing }
+LcsModules >> at: aKey [
+	^ self collection at: aKey
 ]
 
 { #category : #accessing }
@@ -34,12 +39,12 @@ LcsModules >> collection: anObject [
 
 { #category : #accessing }
 LcsModules >> hasElements [
-	^self collection notEmpty
+	^ self collection notEmpty
 ]
 
 { #category : #accessing }
 LcsModules >> hasNoElements [
-	^self collection isEmpty
+	^ self collection isEmpty
 ]
 
 { #category : #accessing }
@@ -50,12 +55,12 @@ LcsModules >> initialize [
 
 { #category : #accessing }
 LcsModules >> moduleNamed: aString [
-	^self moduleNamed: aString ifAbsent: [self error: 'Module not found: ' , aString asString]
+	^ self moduleNamed: aString ifAbsent: [self error: 'Module not found: ' , aString asString]
 ]
 
 { #category : #accessing }
 LcsModules >> moduleNamed: aString ifAbsent: aBlock [
-	^self collection at: aString ifAbsent: aBlock
+	^ self collection at: aString ifAbsent: aBlock
 ]
 
 { #category : #accessing }

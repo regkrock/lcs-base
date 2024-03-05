@@ -43,6 +43,11 @@ LcsSlotDefinition >> initialize [
 	self slotTypes: OrderedCollection new
 ]
 
+{ #category : #model }
+LcsSlotDefinition >> initializeModel: aDomainObject [
+	self setValueTo: self newSlotValue in: aDomainObject
+]
+
 { #category : #accessing }
 LcsSlotDefinition >> isOptional [
 	^self required ~~ true
@@ -51,6 +56,11 @@ LcsSlotDefinition >> isOptional [
 { #category : #accessing }
 LcsSlotDefinition >> isRequired [
 	^self required: true.
+]
+
+{ #category : #accessing }
+LcsSlotDefinition >> newSlotValue [
+	^ self slotTypes any new
 ]
 
 { #category : #accessing }
@@ -73,7 +83,7 @@ LcsSlotDefinition >> required: anObject [
 	required := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'model\t' }
 LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
 	LcsSystem currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
 

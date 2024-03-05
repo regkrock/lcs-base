@@ -7,7 +7,6 @@ Class {
 { #category : #accessing }
 LcsUnitOfWorkTest >> testAddDomainObject [
 	| domainObject |
-	LcsSystem createNewSingleton.
 	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: LcsSystem currentUnitOfWork changedObjects isEmpty.
@@ -23,22 +22,28 @@ LcsUnitOfWorkTest >> testAddDomainObject [
 { #category : #accessing }
 LcsUnitOfWorkTest >> testChangedSlotInDomainObject [
 	| domainObject |
-	LcsSystem createNewSingleton.
+
 	domainObject := LcsPerson new dateOfBirth: Date today.
-	LcsSystem currentUnitOfWork applyChanges.
-	LcsSystem createNewSingleton.
+	self currentSystem currentUnitOfWork applyChanges.
 	self assert: domainObject dateOfBirth = Date today.
-	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork changedObjects isEmpty.
+	self assert: ((self currentSystem  legalEntitiesModule persons) includes: domainObject).
+	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
+
 	domainObject dateOfBirth: Date yesterday.
-	LcsSystem currentUnitOfWork applyChanges.
-	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork changedObjects size = 1.
-	self assert: (LcsSystem currentUnitOfWork changedObjects any isKindOf: LcsChangedObjectRecord).
-	self assert: LcsSystem currentUnitOfWork changedObjects any domainObject == domainObject.
-	self assert: domainObject dateOfBirth = Date yesterday
+	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects size = 1.
+	self assert: (self currentSystem currentUnitOfWork changedObjects any isKindOf: LcsChangedObjectRecord).
+	self assert: self currentSystem currentUnitOfWork changedObjects any domainObject == domainObject.
+	self currentSystem currentUnitOfWork applyChanges.
+
+	self assert: domainObject dateOfBirth = Date yesterday.
+	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
+
 ]
 
 { #category : #test }
@@ -57,20 +62,19 @@ LcsUnitOfWorkTest >> testCreation [
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	| domainObject |
 	domainObject := LcsDomainObject new.
-	LcsSystem createNewSingleton.
-	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork changedObjects isEmpty.
+	LcsSystem newSystem.
+	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	domainObject delete.
-	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork deletedObjects size = 1.
-	self assert: LcsSystem currentUnitOfWork changedObjects isEmpty.
-	self assert: (LcsSystem currentUnitOfWork deletedObjects any isKindOf: LcsDeletedObjectRecord).
-	self assert: LcsSystem currentUnitOfWork deletedObjects any domainObject == domainObject
+	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork deletedObjects size = 1.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
+	self assert: (self currentSystem currentUnitOfWork deletedObjects any isKindOf: LcsDeletedObjectRecord).
+	self assert: self currentSystem currentUnitOfWork deletedObjects any domainObject == domainObject
 ]
 
 { #category : #test }
 LcsUnitOfWorkTest >> testNewUnitOfWorkInSystem [
-	LcsSystem createNewSingleton.
-	self assert: (LcsSystem singleton currentUnitOfWork system == LcsSystem singleton)
+	self assert: (self currentSystem currentUnitOfWork system == self  currentSystem)
 ]

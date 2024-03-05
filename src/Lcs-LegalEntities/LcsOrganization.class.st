@@ -7,6 +7,16 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
+{ #category : #'slot definitions' }
+LcsOrganization class >> parentSlotDefinition [
+	<slotDefinition>
+	^LcsGlobalCollectonReferenceSlotDefinition new
+		slotName: 'parent';
+		moduleName: LcsLegalEntitiesModule moduleName;
+		collectionSlotName: 'organizations';
+		yourself
+]
+
 { #category : #accessing }
 LcsOrganization >> location [
 	^ self getValueOfSlotNamed: 'location'

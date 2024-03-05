@@ -6,52 +6,57 @@ Class {
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> booleanClass [
-	^Boolean
+	^ Boolean
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> dateClass [
-	^Date
+	^ Date
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> identitySetClass [
-	^IdentitySet
+	^ IdentitySet
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> integerClass [
-	^Integer
+	^ Integer
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> objectKeyDictionaryClass [
-	^Dictionary
+	^ Dictionary
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> setClass [
 
-	^IdentitySet
+	^ IdentitySet
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> stringClass [
-	^String
+	^ String
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> stringDictionaryClass [
-	^Dictionary
+	^ Dictionary
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> symbolDictionaryClass [
 
-	^Dictionary
+	^ Dictionary
+]
+
+{ #category : #accessing }
+LcsSmalltalkConfiguration class >> systemDictionary [
+	^ SmalltalkImage current globals
 ]
 
 { #category : #accessing }
 LcsSmalltalkConfiguration class >> timeClass [
-	^Time
+	^ Time
 ]

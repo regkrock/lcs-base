@@ -21,12 +21,6 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
-{ #category : #'slot definitions' }
-LcsDomainObject class >> buildSlotDefinitions [
-
-	self withAllSubclasses do: [ :eachDomainClass | eachDomainClass initializeSlotDefinitions ]
-]
-
 { #category : #'unit of work' }
 LcsDomainObject class >> currentUnitOfWork [
 	^self currentSystem currentUnitOfWork
@@ -42,7 +36,7 @@ LcsDomainObject class >> initializeSlotDefinitions [
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew initialize.
-	LcsSystem basicSingleton ifNotNil: [self addToUnitOfWork: newObject].
+	self currentSystem ifNotNil: [self addToUnitOfWork: newObject].
 	^ newObject
 ]
 
