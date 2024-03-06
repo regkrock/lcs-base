@@ -12,8 +12,8 @@ Class {
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> addSlotDefinitions [
-	(Pragma allNamed: 'slotDefinition' in: self class)
-		do: [ :eachPragma | self slotDefinitions addSlotDefinition: (self perform: eachPragma methodSelector)]
+	( Pragma allNamed: 'slotDefinition' in: self class)
+		do: [ :eachPragma | self slotDefinitions addSlotDefinition: (self perform: eachPragma methodSelector) ]
 ]
 
 { #category : #'unit of work' }
@@ -55,17 +55,6 @@ LcsDomainObject class >> slotDefinitions: anObject [
 	SlotDefinitions := anObject
 ]
 
-{ #category : #accessing }
-LcsDomainObject class >> slotDefintionNamed: aSymbol [
-	^self slotDefinitions slotDefintionNamed: aSymbol
-]
-
-{ #category : #'unit of work' }
-LcsDomainObject >> addToUnitOfWork: aDomainObject [
-
-	self currentUnitOfWork addObject: aDomainObject
-]
-
 { #category : #'unit of work' }
 LcsDomainObject >> currentUnitOfWork [
 
@@ -101,4 +90,9 @@ LcsDomainObject >> setValueOfSlotNamed: aSlotName to: onObject [
 { #category : #'slot definitions' }
 LcsDomainObject >> slotDefinitionNamed: aString [
 	^self class slotDefinitionNamed: aString
+]
+
+{ #category : #accessing }
+LcsDomainObject >> slotDefintions [
+	^self class slotDefinitions
 ]

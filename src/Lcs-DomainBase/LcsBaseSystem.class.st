@@ -9,12 +9,6 @@ Class {
 }
 
 { #category : #accessing }
-LcsBaseSystem class >> basicSingleton: anObject [
-
-	Singleton := anObject
-]
-
-{ #category : #accessing }
 LcsBaseSystem class >> clearCurrentSystem [
 	self currentSystem: nil
 ]
@@ -25,26 +19,19 @@ LcsBaseSystem class >> currentUnitOfWork [
 ]
 
 { #category : #accessing }
+LcsBaseSystem class >> moduleName [
+	^'System'
+]
+
+{ #category : #accessing }
 LcsBaseSystem class >> newSystem [
 	self clearCurrentSystem.
 	self currentSystem: self basicNew.
 	self currentSystem initializeUnitOfWork.
 	self currentSystem initialize.
+	self currentSystem initializeModel.
 	self currentSystem currentUnitOfWork applyChanges.
-	self currentUnitOfWork applyChanges.
 	^ self currentSystem
-]
-
-{ #category : #accessing }
-LcsBaseSystem class >> singleton [
-
-	^self basicSingleton ifNil: [
-		self basicSingleton: self basicNew.
-		self basicSingleton initializeUnitOfWork.
-		self basicSingleton initialize.
-		self basicSingleton currentUnitOfWork applyChanges.
-		self basicSingleton.
-		]
 ]
 
 { #category : #'unit of work' }
@@ -83,6 +70,11 @@ LcsBaseSystem >> initialize [
 	super initialize.
 	self buildSlotDefinitions.
 	self buildModules
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> initializeModel [
+	self slotDefintions initializeModel: self
 ]
 
 { #category : #'initialize  ' }

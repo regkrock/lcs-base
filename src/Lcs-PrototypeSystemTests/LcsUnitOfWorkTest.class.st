@@ -1,29 +1,30 @@
 Class {
 	#name : #LcsUnitOfWorkTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-SystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #accessing }
 LcsUnitOfWorkTest >> testAddDomainObject [
 	| domainObject |
-	self assert: LcsSystem currentUnitOfWork addedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork changedObjects isEmpty.
+	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
+	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	domainObject := LcsDomainObject new.
-	self assert: LcsSystem currentUnitOfWork addedObjects size = 1.
-	self assert: LcsSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: LcsSystem currentUnitOfWork changedObjects isEmpty.
-	self assert: (LcsSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
-	self assert: LcsSystem currentUnitOfWork addedObjects any domainObject == domainObject
+	self assert: self currentSystem currentUnitOfWork addedObjects size = 1.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
+	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
+	self assert: self currentSystem currentUnitOfWork addedObjects any domainObject == domainObject
 	
 ]
 
 { #category : #accessing }
 LcsUnitOfWorkTest >> testChangedSlotInDomainObject [
 	| domainObject |
-
-	domainObject := LcsPerson new dateOfBirth: Date today.
+	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
+	domainObject := LxxPerson new dateOfBirth: Date today.
 	self currentSystem currentUnitOfWork applyChanges.
 	self assert: domainObject dateOfBirth = Date today.
 	self assert: ((self currentSystem  legalEntitiesModule persons) includes: domainObject).
@@ -62,7 +63,7 @@ LcsUnitOfWorkTest >> testCreation [
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	| domainObject |
 	domainObject := LcsDomainObject new.
-	LcsSystem newSystem.
+	LcsSystemManager createNewPrototypeSystem. 
 	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
@@ -76,5 +77,6 @@ LcsUnitOfWorkTest >> testDeleteDomainObject [
 
 { #category : #test }
 LcsUnitOfWorkTest >> testNewUnitOfWorkInSystem [
+	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
 	self assert: (self currentSystem currentUnitOfWork system == self  currentSystem)
 ]

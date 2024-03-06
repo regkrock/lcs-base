@@ -31,7 +31,7 @@ LcsCountry class >> isoCodeSlotDefintion [
 { #category : #'slot definitions' }
 LcsCountry class >> parentSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectonReferenceSlotDefinition new
+	^LcsGlobalCollectionReferenceSlotDefinition new
 		slotName: 'parent';
 		moduleName: LcsGeographyModule moduleName;
 		collectionSlotName: 'countries';

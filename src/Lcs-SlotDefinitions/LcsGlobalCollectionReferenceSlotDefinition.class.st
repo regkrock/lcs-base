@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsGlobalCollectonReferenceSlotDefinition,
+	#name : #LcsGlobalCollectionReferenceSlotDefinition,
 	#superclass : #LcsSlotDefinition,
 	#instVars : [
 		'moduleName',
@@ -9,42 +9,42 @@ Class {
 }
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> collectionSlotName [
+LcsGlobalCollectionReferenceSlotDefinition >> collectionSlotName [
 	^ collectionSlotName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> collectionSlotName: anObject [
+LcsGlobalCollectionReferenceSlotDefinition >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> globalCollectionSlotDefinition [
+LcsGlobalCollectionReferenceSlotDefinition >> globalCollectionSlotDefinition [
 	^ self module slotDefinitionNamed: self collectionSlotName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> initializeModel: aDomainObject [
+LcsGlobalCollectionReferenceSlotDefinition >> initializeModel: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 ]
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> module [
+LcsGlobalCollectionReferenceSlotDefinition >> module [
 	^ self currentSystem moduleNamed: self moduleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> moduleName [
+LcsGlobalCollectionReferenceSlotDefinition >> moduleName [
 	^ moduleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> moduleName: aString [ 
+LcsGlobalCollectionReferenceSlotDefinition >> moduleName: aString [ 
 	moduleName := aString
 ]
 
 { #category : #accessing }
-LcsGlobalCollectonReferenceSlotDefinition >> persistValue: aDomainObject [
+LcsGlobalCollectionReferenceSlotDefinition >> persistValue: aDomainObject [
 	(self module slotDefinitionNamed: self collectionSlotName) persistValue: aDomainObject in: self module
 
 ]

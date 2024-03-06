@@ -12,7 +12,7 @@ LcsGeographyModule class >> countriesSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlotDefinition new
 		slotName: 'countries';
-		addSlotType: LcsSmalltalkConfiguration identitySetClass
+		beIdentitySetCollection;
 		yourself
 ]
 

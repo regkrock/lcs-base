@@ -53,8 +53,7 @@ LcsBaseModule >> hasNoModules [
 LcsBaseModule >> initialize [
 	super initialize.
 	self initializeModules.
-	self initializeDomainCollections.
-	self class slotDefinitions initializeModel: self
+	self initializeDomainCollections
 ]
 
 { #category : #accessing }

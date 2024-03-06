@@ -21,6 +21,11 @@ LcsChangedObjectRecord >> changedSlot: aSlotName valueTo: anObject [
 ]
 
 { #category : #accessing }
+LcsChangedObjectRecord >> changedSlotRecordFor: aSlotName [
+	^self changedSlots at: aSlotName ifAbsent: [nil]
+]
+
+{ #category : #accessing }
 LcsChangedObjectRecord >> changedSlots [
 	^ changedSlots
 ]
@@ -35,4 +40,9 @@ LcsChangedObjectRecord >> initialize [
 
 	super initialize.
 	self changedSlots: LcsSmalltalkConfiguration symbolDictionaryClass new
+]
+
+{ #category : #accessing }
+LcsChangedObjectRecord >> valueOfSlot: aSlotName [
+	^ (self changedSlots at: aSlotName ifAbsent: [nil]) newValue
 ]

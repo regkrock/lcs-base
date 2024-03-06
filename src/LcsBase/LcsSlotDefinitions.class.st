@@ -68,7 +68,7 @@ LcsSlotDefinitions >> slotDefinitionFor: aSlotName [
 
 { #category : #accessing }
 LcsSlotDefinitions >> slotDefinitionNamed: aSlotName [
-	^ self slotDefinitions at: aSlotName ifAbsent: [self error: 'no slot defined']
+	^ self slotDefinitions at: aSlotName ifAbsent: [LcsSlotDoesNotExistError signal: 'Slot not defined: ' , aSlotName asString]
 ]
 
 { #category : #accessing }

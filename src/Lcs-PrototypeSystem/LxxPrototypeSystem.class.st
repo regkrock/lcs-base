@@ -8,6 +8,6 @@ Class {
 LxxPrototypeSystem >> moduleClasses [
 	^ OrderedCollection new
 		add: LxxPrototype1Module;
-		add: LxxTest2Module;
+		add: LxxPrototype2Module;
 		yourself
 ]

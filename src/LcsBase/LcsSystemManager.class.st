@@ -5,13 +5,18 @@ Class {
 }
 
 { #category : #accessing }
-LcsSystemManager class >> createNewSystem [
-	self currentSystem: LcsSystem newSystem
+LcsSystemManager class >> clearCurrentSystem [
+	self currentSystem: nil
 ]
 
 { #category : #accessing }
-LcsSystemManager class >> createNewTestSystem [
-	self currentSystem: LcsTestSystem newSystem
+LcsSystemManager class >> createNewPrototypeSystem [
+	self currentSystem: LxxPrototypeSystem newSystem
+]
+
+{ #category : #accessing }
+LcsSystemManager class >> createNewSystem [
+	^ LcsSystem newSystem
 ]
 
 { #category : #accessing }

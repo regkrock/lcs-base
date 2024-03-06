@@ -25,6 +25,11 @@ LcsBaseUnitOfWork >> addObject: aDomainObject [
 ]
 
 { #category : #accessing }
+LcsBaseUnitOfWork >> addRecordFor: aDomainObject [
+	^ self addedObjects at: aDomainObject
+]
+
+{ #category : #accessing }
 LcsBaseUnitOfWork >> addedObjects [
 	^ addedObjects
 ]
@@ -48,6 +53,11 @@ LcsBaseUnitOfWork >> changedObjects [
 { #category : #accessing }
 LcsBaseUnitOfWork >> changedObjects: anObject [
 	changedObjects := anObject
+]
+
+{ #category : #accessing }
+LcsBaseUnitOfWork >> changedRecordFor: aDomainObject [
+	^ (self changedObjects at: aDomainObject ifAbsent: [nil])
 ]
 
 { #category : #api }

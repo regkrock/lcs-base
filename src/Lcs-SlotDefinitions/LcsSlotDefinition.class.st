@@ -34,18 +34,25 @@ LcsSlotDefinition >> beRequired [
 { #category : #accessing }
 LcsSlotDefinition >> getValueIn: aDomainObject [
 
-	^ aDomainObject instVarNamed: self slotName asString
+	^(self currentSystem currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
+		ifNil: [aDomainObject instVarNamed: self slotName asString]
+		ifNotNil: [:changedSlotRecord | changedSlotRecord newValue]
 ]
 
 { #category : #initialize }
 LcsSlotDefinition >> initialize [
 	super initialize.
-	self slotTypes: OrderedCollection new
+	self initializeSlotTypes
 ]
 
 { #category : #model }
 LcsSlotDefinition >> initializeModel: aDomainObject [
 	self setValueTo: self newSlotValue in: aDomainObject
+]
+
+{ #category : #initialize }
+LcsSlotDefinition >> initializeSlotTypes [
+	self slotTypes: OrderedCollection new
 ]
 
 { #category : #accessing }

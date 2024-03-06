@@ -1,10 +1,10 @@
 Class {
-	#name : #LxxTest2Module,
+	#name : #LxxPrototype2Module,
 	#superclass : #LcsModule,
 	#category : #'Lcs-PrototypeSystem'
 }
 
 { #category : #accessing }
-LxxTest2Module class >> moduleName [
+LxxPrototype2Module class >> moduleName [
 	^'Prototype 2 Module'
 ]
