@@ -24,7 +24,6 @@ BaselineOfLcsBase >> baseline: spec [
 	<baseline>
 		^ spec for: #common do: [
 			spec package: 'LcsBase'.
-<<<<<<< HEAD
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-UnitOfWOrk' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-DomainBase' with: [spec requires: #('LcsBase')].
@@ -38,7 +37,5 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-SystemTests' with: [spec requires: #('Lcs-System')].  
 			spec package: 'Lcs-PrototypeSystemTests' with: [spec requires: #('Lcs-PrototypeSystem')].  
 			spec package: 'Lcs-Tools' with: [ spec requires: #('LcsBase') ].
-=======
->>>>>>> refs/remotes/origin/main
 					]
 ]
