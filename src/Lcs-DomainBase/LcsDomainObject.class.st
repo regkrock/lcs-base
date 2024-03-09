@@ -12,8 +12,8 @@ Class {
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> addSlotDefinitions [
-	( Pragma allNamed: 'slotDefinition' in: self class)
-		do: [ :eachPragma | self slotDefinitions addSlotDefinition: (self perform: eachPragma methodSelector) ]
+	self slotDefinitionMethods do: [ :eachPragma | 
+			self slotDefinitions addSlotDefinition: (self perform: eachPragma methodSelector) ]
 ]
 
 { #category : #'unit of work' }
@@ -38,6 +38,11 @@ LcsDomainObject class >> new [
 	newObject := self basicNew initialize.
 	self currentSystem ifNotNil: [self addToUnitOfWork: newObject].
 	^ newObject
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> slotDefinitionMethods [
+	^ Pragma allNamed: 'slotDefinition' in: self class
 ]
 
 { #category : #'slot definitions' }

@@ -55,7 +55,7 @@ LcsModules >> initialize [
 
 { #category : #accessing }
 LcsModules >> moduleNamed: aString [
-	^ self moduleNamed: aString ifAbsent: [self error: 'Module not found: ' , aString asString]
+	^ self moduleNamed: aString ifAbsent: [LcsModuleNotFoundError signal: 'Module not found: ' , aString asString]
 ]
 
 { #category : #accessing }

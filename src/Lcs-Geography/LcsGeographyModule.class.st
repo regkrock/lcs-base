@@ -10,7 +10,7 @@ Class {
 { #category : #'slot definitions' }
 LcsGeographyModule class >> countriesSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlotDefinition new
 		slotName: 'countries';
 		beIdentitySetCollection;
 		yourself

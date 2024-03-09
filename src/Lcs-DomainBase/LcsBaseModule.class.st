@@ -90,6 +90,7 @@ LcsBaseModule >> moduleName [
 
 { #category : #modules }
 LcsBaseModule >> moduleNamed: aString [
+	self moduleName = aString ifTrue: [^self].
 	^self modules moduleNamed: aString
 ]
 

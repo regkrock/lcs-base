@@ -14,6 +14,16 @@ LxxPerson class >> dateOfBirthSlotDefinition [
 ]
 
 { #category : #accessing }
+LxxPerson class >> parentSlotDefinition [
+	<slotDefinition>
+	^LcsGlobalCollectionReferenceSlotDefinition new
+		slotName: 'parent';
+		moduleName: LxxBarebonesSystem moduleName;
+		collectionSlotName: 'persons';
+		yourself
+]
+
+{ #category : #accessing }
 LxxPerson >> dateOfBirth [
 	^ self getValueOfSlotNamed: 'dateOfBirth'
 ]
@@ -21,14 +31,4 @@ LxxPerson >> dateOfBirth [
 { #category : #accessing }
 LxxPerson >> dateOfBirth: anObject [
 	self setValueOfSlotNamed: 'dateOfBirth' to: anObject
-]
-
-{ #category : #accessing }
-LxxPerson >> parentSlotDefinition [
-	<slotDefinition>
-	^LcsGlobalCollectionReferenceSlotDefinition new
-		slotName: 'parent';
-		moduleName: LxxPrototype1Module moduleName;
-		collectionSlotName: 'persons';
-		yourself
 ]

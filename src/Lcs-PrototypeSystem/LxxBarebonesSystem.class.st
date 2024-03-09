@@ -11,22 +11,22 @@ Class {
 }
 
 { #category : #accessing }
-LxxBarebonesSystem class >> personsSlotDefinition [
-	<slotDefinition>
-	^LcsGlobalCollectionSlotDefinition new
-		slotName: 'persons';
-		beIdentitySetCollection;
-		yourself
-]
-
-{ #category : #accessing }
-LxxBarebonesSystem >> domainClasses [
+LxxBarebonesSystem class >> domainClasses [
 	^OrderedCollection new
 		add: LcsDomainObject;
 		add: LcsBaseSystem;
 		add: LcsModule;
 		add: LxxBarebonesSystem;
 		add: LxxPerson;
+		yourself
+]
+
+{ #category : #accessing }
+LxxBarebonesSystem class >> personsSlotDefinition [
+	<slotDefinition>
+	^LcsGlobalCollectionSlotDefinition new
+		slotName: 'persons';
+		beIdentitySetCollection;
 		yourself
 ]
 

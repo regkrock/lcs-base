@@ -27,7 +27,7 @@ LcsUnitOfWorkTest >> testChangedSlotInDomainObject [
 	domainObject := LxxPerson new dateOfBirth: Date today.
 	self currentSystem currentUnitOfWork applyChanges.
 	self assert: domainObject dateOfBirth = Date today.
-	self assert: ((self currentSystem  legalEntitiesModule persons) includes: domainObject).
+	self assert: ((self currentSystem persons) includes: domainObject).
 	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
