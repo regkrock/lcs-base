@@ -54,6 +54,11 @@ LcsModules >> initialize [
 ]
 
 { #category : #accessing }
+LcsModules >> initializeModel [
+	self collection values do: [:eachModule | eachModule initializeModel]
+]
+
+{ #category : #accessing }
 LcsModules >> moduleNamed: aString [
 	^ self moduleNamed: aString ifAbsent: [LcsModuleNotFoundError signal: 'Module not found: ' , aString asString]
 ]

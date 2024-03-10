@@ -53,7 +53,7 @@ LcsBaseModule >> hasNoModules [
 LcsBaseModule >> initialize [
 	super initialize.
 	self initializeModules.
-	self initializeDomainCollections
+	self initializeDomainCollections.
 ]
 
 { #category : #accessing }
@@ -62,6 +62,12 @@ LcsBaseModule >> initializeDomainCollections [
 			LcsDomainCollections new
 				parent: self;
 				yourself)
+]
+
+{ #category : #accessing }
+LcsBaseModule >> initializeModel [
+	self slotDefintions initializeModel: self.
+	self modules initializeModel
 ]
 
 { #category : #accessing }

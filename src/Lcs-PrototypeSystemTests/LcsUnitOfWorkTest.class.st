@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-PrototypeSystemTests'
 }
 
-{ #category : #accessing }
+{ #category : #test }
 LcsUnitOfWorkTest >> testAddDomainObject [
 	| domainObject |
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
@@ -20,11 +20,11 @@ LcsUnitOfWorkTest >> testAddDomainObject [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #test }
 LcsUnitOfWorkTest >> testChangedSlotInDomainObject [
 	| domainObject |
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
-	domainObject := LxxPerson new dateOfBirth: Date today.
+	domainObject := LxxBarebonesPerson new dateOfBirth: Date today.
 	self currentSystem currentUnitOfWork applyChanges.
 	self assert: domainObject dateOfBirth = Date today.
 	self assert: ((self currentSystem persons) includes: domainObject).
@@ -59,7 +59,7 @@ LcsUnitOfWorkTest >> testCreation [
 	self assert: unitOfWork changedObjects isEmpty.
 ]
 
-{ #category : #accessing }
+{ #category : #test }
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	| domainObject |
 	domainObject := LcsDomainObject new.

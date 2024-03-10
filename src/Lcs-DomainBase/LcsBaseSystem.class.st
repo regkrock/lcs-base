@@ -27,9 +27,7 @@ LcsBaseSystem class >> moduleName [
 LcsBaseSystem class >> newSystem [
 	self clearCurrentSystem.
 	self currentSystem: self basicNew.
-	self currentSystem initializeUnitOfWork.
 	self currentSystem initialize.
-	self currentSystem initializeModel.
 	self currentSystem currentUnitOfWork applyChanges.
 	^ self currentSystem
 ]
@@ -68,13 +66,11 @@ LcsBaseSystem >> domainClasses [
 { #category : #accessing }
 LcsBaseSystem >> initialize [
 	super initialize.
-	self buildSlotDefinitions.
-	self buildModules
-]
-
-{ #category : #accessing }
-LcsBaseSystem >> initializeModel [
-	self slotDefintions initializeModel: self
+	self 
+		initializeUnitOfWork;
+		buildSlotDefinitions;
+		buildModules;
+		initializeModel
 ]
 
 { #category : #'initialize  ' }

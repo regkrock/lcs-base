@@ -39,13 +39,6 @@ column: 'Deleted'
 			width: 45
 ]
 
-{ #category : #'initialize  ' }
-LcsSystem >> initialize [
-	super initialize.
-	self buildSlotDefinitions.
-	self buildModules
-]
-
 { #category : #'modules ' }
 LcsSystem >> moduleClasses [
 	^ OrderedCollection new

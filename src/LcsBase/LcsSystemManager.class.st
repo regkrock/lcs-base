@@ -25,6 +25,6 @@ LcsSystemManager class >> currentSystem [
 ]
 
 { #category : #accessing }
-LcsSystemManager class >> currentSystem: anLcsBaseSystem [
-	LcsSmalltalkConfiguration systemDictionary at: #LcsCurrentSystemInstance put: anLcsBaseSystem
+LcsSystemManager class >> currentSystem: aSystem [
+	LcsSmalltalkConfiguration systemDictionary at: #LcsCurrentSystemInstance put: aSystem
 ]
