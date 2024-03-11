@@ -8,17 +8,12 @@ Class {
 	#category : #LcsBase
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsModules class >> collectionClass [
 	^ LcsSmalltalkConfiguration stringDictionaryClass
 ]
 
-{ #category : #accessing }
-LcsModules >> at: aKey [
-	^ self collection at: aKey
-]
-
-{ #category : #accessing }
+{ #category : #build }
 LcsModules >> buildModuleFor: eachModuleClass [
 
 	| module |
@@ -37,7 +32,7 @@ LcsModules >> collection: anObject [
 	collection := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #collection }
 LcsModules >> contentsDo: aBlock [
 	self collection do: [ :eachElement | aBlock value: eachElement ]
 ]

@@ -9,7 +9,7 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsBaseModule class >> moduleName [
 	^ self class name
 ]
@@ -98,7 +98,7 @@ LcsBaseModule >> moduleClasses [
 	^ OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsBaseModule >> moduleName [
 	^ self class moduleName
 ]

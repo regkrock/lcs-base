@@ -8,22 +8,22 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #accessing }
+{ #category : #system }
 LcsBaseSystem class >> clearCurrentSystem [
 	self currentSystem: nil
 ]
 
-{ #category : #accessing }
+{ #category : #'unit of work' }
 LcsBaseSystem class >> currentUnitOfWork [
-	^self currentSystem currentUnitOfWork
+	^ self currentSystem currentUnitOfWork
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsBaseSystem class >> moduleName [
 	^ 'System'
 ]
 
-{ #category : #accessing }
+{ #category : #'instance creation' }
 LcsBaseSystem class >> newSystem [
 	self clearCurrentSystem.
 	self currentSystem: self basicNew.

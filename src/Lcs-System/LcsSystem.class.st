@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-System'
 }
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LcsSystem class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsDomainClassSlotDefinition new
