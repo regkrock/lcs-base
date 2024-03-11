@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsDateSlotDefinition >> typeClass [
 	^ LcsSmalltalkConfiguration dateClass
 ]

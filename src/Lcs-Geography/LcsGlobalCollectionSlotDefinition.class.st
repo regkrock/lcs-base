@@ -4,28 +4,28 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsGlobalCollectionSlotDefinition >> beIdentitySetCollection [
 	self slotTypes isEmpty ifTrue: [
 		self addSlotType: LcsSmalltalkConfiguration identitySetClass.
-		^self].
+		^ self ].
 	self slotTypes size = 1 ifFalse: [
-		(self slotTypes includes: LcsSmalltalkConfiguration identitySetClass) ifTrue: [^self]].
+		(self slotTypes includes: LcsSmalltalkConfiguration identitySetClass) ifTrue: [ ^ self ] ].
 	self initializeSlotTypes.
 	self addSlotType: LcsSmalltalkConfiguration identitySetClass
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsGlobalCollectionSlotDefinition >> clearSlotTypes [
 	self initializeSlotTypes.
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsGlobalCollectionSlotDefinition >> persistValue: anObject [
 	(self getValueIn: self slotName asString) persistValue: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsGlobalCollectionSlotDefinition >> persistValue: anObject in: aModule [
 	(self getValueIn: aModule) add: anObject
 ]

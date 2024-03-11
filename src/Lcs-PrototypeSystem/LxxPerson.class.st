@@ -13,10 +13,10 @@ LxxPerson class >> dateOfBirthSlotDefinition [
 	^ LcsDateOfBirthSlotDefinition new
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LxxPerson class >> parentSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlotDefinition new
 		slotName: 'parent';
 		moduleName: LxxPrototype1Module moduleName;
 		collectionSlotName: 'persons';

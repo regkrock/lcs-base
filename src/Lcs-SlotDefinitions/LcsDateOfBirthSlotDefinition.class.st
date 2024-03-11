@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsDateOfBirthSlotDefinition >> initialize [
 	super initialize.
 	self slotName: 'dateOfBirth'

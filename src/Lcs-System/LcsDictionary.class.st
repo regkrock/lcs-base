@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-System'
 }
 
-{ #category : #accessing }
+{ #category : #defaults }
 LcsDictionary >> collectionClass [
-	^LcsSmalltalkConfiguration stringDictionaryClass
+	^ LcsSmalltalkConfiguration stringDictionaryClass
 ]

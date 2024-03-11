@@ -11,27 +11,27 @@ Class {
 { #category : #'slot definitions' }
 LcsCountry class >> countryNameSlotDefintion [
 	<slotDefinition>
-	^LcsStringSlotDefinition new
+	^ LcsStringSlotDefinition new
 		slotName: #'countryName';
 		beRequired;
-		validator: [:string | string size > 2];
+		validator: [ :string | string size > 2 ];
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LcsCountry class >> isoCodeSlotDefintion [
 	<slotDefinition>
-	^LcsStringSlotDefinition new
+	^ LcsStringSlotDefinition new
 		slotName: #'isoCode';
 		beRequired;
-		validator: [:string | string size = 2];
+		validator: [ :string | string size = 2 ];
 		yourself
 ]
 
 { #category : #'slot definitions' }
 LcsCountry class >> parentSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlotDefinition new
 		slotName: 'parent';
 		moduleName: LcsGeographyModule moduleName;
 		collectionSlotName: 'countries';

@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-PrototypeSystemTests'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxBarebonesSystemTest >> testCreation [
 	LxxBarebonesSystem newSystem.
 	self assert: self currentUnitOfWork hasNoChanges.

@@ -3,24 +3,35 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'modules',
-		'domainCollections'
+		'domainCollections',
+		'configuration'
 	],
 	#category : #'Lcs-DomainBase'
 }
 
 { #category : #accessing }
 LcsBaseModule class >> moduleName [
-	^self class name
+	^ self class name
 ]
 
-{ #category : #ini }
+{ #category : #building }
 LcsBaseModule >> buildModule: eachModuleClass [ 
 	self modules buildModuleFor: eachModuleClass
 ]
 
-{ #category : #ini }
+{ #category : #building }
 LcsBaseModule >> buildModules [
 	self moduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
+]
+
+{ #category : #accessing }
+LcsBaseModule >> configuration [
+	^ self getValueOfSlotNamed: 'configuration'
+]
+
+{ #category : #accessing }
+LcsBaseModule >> configuration: anObject [
+	self setValueOfSlotNamed: 'configuration' to: anObject
 ]
 
 { #category : #accessing }
@@ -33,71 +44,69 @@ LcsBaseModule >> domainCollections: anObject [
 	domainCollections := anObject
 ]
 
-{ #category : #'modules\t' }
+{ #category : #modules }
 LcsBaseModule >> geographyModule [
 
-	^self modules at: 'Geography Module'
+	^ self modules at: 'Geography Module'
 ]
 
 { #category : #testing }
 LcsBaseModule >> hasModules [
-	^self modules hasElements
+	^ self modules hasElements
 ]
 
-{ #category : #'testing\t' }
+{ #category : #testing }
 LcsBaseModule >> hasNoModules [
-	^self modules hasNoElements
+	^ self modules hasNoElements
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsBaseModule >> initialize [
 	super initialize.
 	self initializeModules.
 	self initializeDomainCollections.
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsBaseModule >> initializeDomainCollections [
-	self domainCollections: (
-			LcsDomainCollections new
-				parent: self;
-				yourself)
+	self domainCollections: (LcsDomainCollections new
+										parent: self;
+										yourself)
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsBaseModule >> initializeModel [
 	self slotDefintions initializeModel: self.
 	self modules initializeModel
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsBaseModule >> initializeModules [
-	self modules:(
-			LcsModules new
-				parent: self;
-				yourself)
+	self modules:(LcsModules new
+						parent: self;
+						yourself)
 ]
 
-{ #category : #'modules\t' }
+{ #category : #modules }
 LcsBaseModule >> legalEntitiesModule [
 
-	^self modules at: 'Legal Entities Module'
+	^ self modules at: 'Legal Entities Module'
 ]
 
-{ #category : #'configuration\t' }
+{ #category : #modules }
 LcsBaseModule >> moduleClasses [
-	^OrderedCollection new
+	^ OrderedCollection new
 ]
 
 { #category : #accessing }
 LcsBaseModule >> moduleName [
-	^self class moduleName
+	^ self class moduleName
 ]
 
 { #category : #modules }
 LcsBaseModule >> moduleNamed: aString [
-	self moduleName = aString ifTrue: [^self].
-	^self modules moduleNamed: aString
+	self moduleName = aString ifTrue: [ ^ self ].
+	^ self modules moduleNamed: aString
 ]
 
 { #category : #accessing }
@@ -111,11 +120,18 @@ LcsBaseModule >> modules: anObject [
 ]
 
 { #category : #accessing }
-LcsBaseModule >> parent [
-	^ parent
+LcsBaseModule >> modulesDo: aBlock [ 
+	self modules contentsDo: aBlock
 ]
 
 { #category : #accessing }
-LcsBaseModule >> parent: anObject [
-	parent := anObject
+LcsBaseModule >> numberOfChildModules [
+	^ self modules numberOfModules
+]
+
+{ #category : #validation }
+LcsBaseModule >> validateConfiguration [
+	super validateConfiguration.
+
+	self modulesDo: [ :eachModule | eachModule validateConfiguration	 ]
 ]

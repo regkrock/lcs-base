@@ -20,7 +20,7 @@ LcsBaseSystem class >> currentUnitOfWork [
 
 { #category : #accessing }
 LcsBaseSystem class >> moduleName [
-	^'System'
+	^ 'System'
 ]
 
 { #category : #accessing }
@@ -39,10 +39,10 @@ LcsBaseSystem >> addNewUnitOfWork [
 	self assert: newUnitOfWork system == self.
 	self unitsOfWork add: newUnitOfWork.
 	self currentUnitOfWork: newUnitOfWork.
-	^newUnitOfWork
+	^ newUnitOfWork
 ]
 
-{ #category : #'initialize  ' }
+{ #category : #'building - model' }
 LcsBaseSystem >> buildSlotDefinitions [
 	self domainClasses do: [ :eachDomainClass | eachDomainClass initializeSlotDefinitions ]
 ]
@@ -50,20 +50,20 @@ LcsBaseSystem >> buildSlotDefinitions [
 { #category : #accessing }
 LcsBaseSystem >> currentUnitOfWork [
 
-	^currentUnitOfWork
+	^ currentUnitOfWork
 ]
 
-{ #category : #'unit of work' }
+{ #category : #accessing }
 LcsBaseSystem >> currentUnitOfWork: aUnitOfWork [ 
 	currentUnitOfWork := aUnitOfWork
 ]
 
-{ #category : #'initialize  ' }
+{ #category : #initialization }
 LcsBaseSystem >> domainClasses [
-	^OrderedCollection new
+	^ OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsBaseSystem >> initialize [
 	super initialize.
 	self 
@@ -73,7 +73,7 @@ LcsBaseSystem >> initialize [
 		initializeModel
 ]
 
-{ #category : #'initialize  ' }
+{ #category : #initialization }
 LcsBaseSystem >> initializeUnitOfWork [
 	self unitsOfWork: OrderedCollection new.
 	self addNewUnitOfWork

@@ -18,7 +18,7 @@ LcsDomainCollections >> collection: anObject [
 	collection := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsDomainCollections >> initialize [
 	super initialize.
 	self collection: LcsSmalltalkConfiguration stringDictionaryClass new

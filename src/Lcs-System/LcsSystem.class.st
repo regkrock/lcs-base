@@ -7,7 +7,16 @@ Class {
 	#category : #'Lcs-System'
 }
 
-{ #category : #'initialize  ' }
+{ #category : #accessing }
+LcsSystem class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsDomainClassSlotDefinition new
+		slotName: 'configuration';
+		addSlotType: LcsSystemConfiguration;
+		yourself
+]
+
+{ #category : #initialization }
 LcsSystem >> domainClasses [
 	^ LcsDomainObject withAllSubclasses
 ]

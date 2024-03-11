@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 LcsDomainObjectTest >> testCreationWithBareBonesSystem [
 	| domainObject |
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
@@ -16,14 +16,14 @@ LcsDomainObjectTest >> testCreationWithBareBonesSystem [
 
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LcsDomainObjectTest >> testCreationWithNilCurrentSystem [
 	| domainObject |
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem isNil.
 	self assert: (domainObject slotDefintions isKindOf: LcsSlotDefinitions).
-	self should: [domainObject slotDefinitionNamed: 'slotDoesNotExist'] raise: LcsSlotDoesNotExistError.
-	self should: [domainObject setValueOfSlotNamed: 'slotDoesNotExist' to: 1] raise: LcsSlotDoesNotExistError.
-	self should: [domainObject getValueOfSlotNamed: 'slotDoesNotExist'] raise: LcsSlotDoesNotExistError.
+	self should: [ domainObject slotDefinitionNamed: 'slotDoesNotExist' ] raise: LcsSlotDoesNotExistError.
+	self should: [ domainObject setValueOfSlotNamed: 'slotDoesNotExist' to: 1 ] raise: LcsSlotDoesNotExistError.
+	self should: [ domainObject getValueOfSlotNamed: 'slotDoesNotExist' ] raise: LcsSlotDoesNotExistError.
 ]

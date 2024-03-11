@@ -4,30 +4,30 @@ Class {
 	#category : #'Lcs-UnitOfWOrk'
 }
 
-{ #category : #accessing }
+{ #category : #api }
 LcsUnitOfWork >> applyChanges [
-	self addedObjects values do: [:each | each applyChanges].
-	self changedObjects do: [:each | each applyChanges ].
+	self addedObjects valuesDo: [ :each | each applyChanges ].
+	self changedObjects do: [ :each | each applyChanges ].
 	self clearUnitOfWork
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsUnitOfWork >> changedSlotRecordFor: aDomainObject slotNamed: aSlotName [
 	^ (self changedRecordFor: aDomainObject)
-		ifNil: [nil]
-		ifNotNil: [:changedObjectRecord | changedObjectRecord changedSlotRecordFor: aSlotName]
+		ifNil: [ nil ]
+		ifNotNil: [ :changedObjectRecord | changedObjectRecord changedSlotRecordFor: aSlotName ]
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsUnitOfWork >> hasChanges [
-	self changedObjects notEmpty ifTrue: [^true].
-	self deletedObjects notEmpty ifTrue: [^true].
-	^self addedObjects notEmpty
+	self changedObjects notEmpty ifTrue: [ ^ true ].
+	self deletedObjects notEmpty ifTrue: [ ^ true ].
+	^ self addedObjects notEmpty
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsUnitOfWork >> hasNoChanges [
-	self changedObjects isEmpty ifTrue: [^true].
-	self deletedObjects isEmpty ifTrue: [^true].
-	^self addedObjects isEmpty
+	self changedObjects isEmpty ifTrue: [ ^ true ].
+	self deletedObjects isEmpty ifTrue: [ ^ true ].
+	^ self addedObjects isEmpty
 ]

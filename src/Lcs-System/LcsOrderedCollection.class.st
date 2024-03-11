@@ -6,5 +6,5 @@ Class {
 
 { #category : #defaults }
 LcsOrderedCollection >> collectionClass [
-	^OrderedCollection
+	^ OrderedCollection
 ]

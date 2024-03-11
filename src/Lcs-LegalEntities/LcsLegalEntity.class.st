@@ -7,6 +7,14 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
+{ #category : #'slot definitions' }
+LcsLegalEntity class >> entityNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlotDefinition new
+		slotName: 'entityName';
+		yourself
+]
+
 { #category : #accessing }
 LcsLegalEntity >> entityName [
 	^ self getValueOfSlotNamed: 'entityName'
@@ -18,7 +26,7 @@ LcsLegalEntity >> entityName: anObject [
 ]
 
 { #category : #accessing }
-LcsLegalEntity >> entityNamelotDefinition [
+LcsLegalEntity >> entityNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlotDefinition new
 		slotName: 'entityName';

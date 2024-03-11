@@ -4,19 +4,20 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
-{ #category : #accessing }
+{ #category : #intialization }
 LxxPrototypeSystem >> domainClasses [
-	^OrderedCollection new
+	^ OrderedCollection new
 		add: LcsDomainObject;
 		add: LcsBaseSystem;
 		add: LcsModule;
 		add: LcsBaseModule;
 		add: self class;
 		addAll: self moduleClasses;
+		add: LxxPerson;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #modules }
 LxxPrototypeSystem >> moduleClasses [
 	^ OrderedCollection new
 		add: LxxPrototype1Module;

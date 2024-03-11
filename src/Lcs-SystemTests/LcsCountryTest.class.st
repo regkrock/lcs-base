@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemTests'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 LcsCountryTest >> testCreation [
 	| country |
 	self assert: LcsCountry slotDefinitions hasElements.
@@ -13,8 +13,8 @@ LcsCountryTest >> testCreation [
 		countryName: 'Canada';
 		isoCode: 'CA'.
 		
-	self assert: country countryName = 'Canada'.
-	self assert: country isoCode = 'CA'.
+	self assert: country countryName equals: 'Canada'.
+	self assert: country isoCode equals: 'CA'.
 
 	self currentSystem currentUnitOfWork applyChanges.
 	

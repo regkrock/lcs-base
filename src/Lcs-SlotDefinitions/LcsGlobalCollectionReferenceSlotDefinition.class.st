@@ -18,17 +18,17 @@ LcsGlobalCollectionReferenceSlotDefinition >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsGlobalCollectionReferenceSlotDefinition >> globalCollectionSlotDefinition [
 	^ self module slotDefinitionNamed: self collectionSlotName
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsGlobalCollectionReferenceSlotDefinition >> initializeModel: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsGlobalCollectionReferenceSlotDefinition >> module [
 	^ self currentSystem moduleNamed: self moduleName
 ]
@@ -43,7 +43,7 @@ LcsGlobalCollectionReferenceSlotDefinition >> moduleName: aString [
 	moduleName := aString
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsGlobalCollectionReferenceSlotDefinition >> persistValue: aDomainObject [
 	(self module slotDefinitionNamed: self collectionSlotName) persistValue: aDomainObject in: self module
 

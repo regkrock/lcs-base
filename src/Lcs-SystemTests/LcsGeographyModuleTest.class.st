@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemTests'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 LcsGeographyModuleTest >> testCreation [
 	| module |
 	module := self currentSystem geographyModule.

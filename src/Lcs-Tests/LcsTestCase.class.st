@@ -9,12 +9,12 @@ Class {
 
 { #category : #accessing }
 LcsTestCase >> currentSystem [
-	^LcsSystemManager currentSystem
+	^ LcsSystemManager currentSystem
 ]
 
 { #category : #accessing }
 LcsTestCase >> currentUnitOfWork [
-	^self currentSystem currentUnitOfWork
+	^ self currentSystem currentUnitOfWork
 ]
 
 { #category : #accessing }
@@ -27,14 +27,14 @@ LcsTestCase >> savedSystem: anObject [
 	savedSystem := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsTestCase >> setUp [
 	super setUp.
 	self savedSystem: LcsSystemManager currentSystem.
 	LcsSystemManager clearCurrentSystem.
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsTestCase >> tearDown [
 	super tearDown.
 	LcsSystemManager currentSystem: self savedSystem

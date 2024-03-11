@@ -2,7 +2,7 @@ Class {
 	#name : #LcsSlotDefinitions,
 	#superclass : #LcsObject,
 	#instVars : [
-		'slotDefinitions',
+		'elements',
 		'domainClass'
 	],
 	#category : #LcsBase
@@ -20,7 +20,7 @@ LcsSlotDefinitions class >> newOn: aDomainClass [
 LcsSlotDefinitions >> addSlotDefinition: anLcsSlotDefinition [
 
 	anLcsSlotDefinition parent: self.
-	self slotDefinitions at: anLcsSlotDefinition slotName put: anLcsSlotDefinition
+	self elements at: anLcsSlotDefinition slotName put: anLcsSlotDefinition
 ]
 
 { #category : #accessing }
@@ -33,50 +33,48 @@ LcsSlotDefinitions >> domainClass: anObject [
 	domainClass := anObject
 ]
 
-{ #category : #testing }
-LcsSlotDefinitions >> hasElements [
-	^ self slotDefinitions size > 0
-]
-
-{ #category : #'testing\t' }
-LcsSlotDefinitions >> hasNoElements [
-	^self hasElements not
+{ #category : #accessing }
+LcsSlotDefinitions >> elements [
+	^ elements
 ]
 
 { #category : #accessing }
+LcsSlotDefinitions >> elements: anObject [
+	elements := anObject
+]
+
+{ #category : #testing }
+LcsSlotDefinitions >> hasElements [
+	^ self elements isNotEmpty
+]
+
+{ #category : #testing }
+LcsSlotDefinitions >> hasNoElements [
+	^ self hasElements not
+]
+
+{ #category : #initialization }
 LcsSlotDefinitions >> initialize [
 	super initialize.
-	self slotDefinitions: LcsSmalltalkConfiguration symbolDictionaryClass new
+	self elements: LcsSmalltalkConfiguration symbolDictionaryClass new
 ]
 
-{ #category : #'model  ' }
+{ #category : #model }
 LcsSlotDefinitions >> initializeModel: aDomainObject [
-	self slotDefinitions values do: [:eachDefintion | eachDefintion initializeModel: aDomainObject]
+	self elements valuesDo: [ :eachDefintion | eachDefintion initializeModel: aDomainObject ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : #initialization }
 LcsSlotDefinitions >> initializeOn: aDomainClass [ 
-
 	self domainClass: aDomainClass
 ]
 
-{ #category : #accessing }
-LcsSlotDefinitions >> slotDefinitionFor: aSlotName [
-
-	^ self slotDefinitions at: aSlotName ifAbsent: [self error: 'no slot defined']
-]
-
-{ #category : #accessing }
+{ #category : #slots }
 LcsSlotDefinitions >> slotDefinitionNamed: aSlotName [
-	^ self slotDefinitions at: aSlotName ifAbsent: [LcsSlotDoesNotExistError signal: 'Slot not defined: ' , aSlotName asString]
+	^ self elements at: aSlotName ifAbsent: [ LcsSlotDoesNotExistError signal: 'Slot not defined: ' , aSlotName asString ]
 ]
 
-{ #category : #accessing }
-LcsSlotDefinitions >> slotDefinitions [
-	^ slotDefinitions
-]
-
-{ #category : #accessing }
-LcsSlotDefinitions >> slotDefinitions: anObject [
-	slotDefinitions := anObject
+{ #category : #validation }
+LcsSlotDefinitions >> validateConfiguration [
+	self elements valuesDo: [ :eachSlotDefintion | eachSlotDefintion halt validateConfiguration ]
 ]

@@ -4,13 +4,8 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsPrimitiveSlotDefinition >> initialize [
 	super initialize.
 	self addSlotType: self typeClass
-]
-
-{ #category : #accessing }
-LcsPrimitiveSlotDefinition >> typeClass [
-	^ self subclassResponsibility
 ]

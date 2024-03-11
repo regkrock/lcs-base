@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-UnitOfWOrk'
 }
 
-{ #category : #accessing }
+{ #category : #api }
 LcsDeletedObjectRecord >> applyChanges [
 
 	self error: 'Needs to be implemented'

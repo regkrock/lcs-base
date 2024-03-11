@@ -38,16 +38,21 @@ LcsModules >> collection: anObject [
 ]
 
 { #category : #accessing }
+LcsModules >> contentsDo: aBlock [
+	self collection do: [ :eachElement | aBlock value: eachElement ]
+]
+
+{ #category : #testing }
 LcsModules >> hasElements [
 	^ self collection notEmpty
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsModules >> hasNoElements [
 	^ self collection isEmpty
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsModules >> initialize [ 
 	super initialize.
 	self collection: Dictionary new
@@ -55,17 +60,22 @@ LcsModules >> initialize [
 
 { #category : #accessing }
 LcsModules >> initializeModel [
-	self collection values do: [:eachModule | eachModule initializeModel]
+	self collection valuesDo: [ :eachModule | eachModule initializeModel ]
 ]
 
-{ #category : #accessing }
+{ #category : #modules }
 LcsModules >> moduleNamed: aString [
-	^ self moduleNamed: aString ifAbsent: [LcsModuleNotFoundError signal: 'Module not found: ' , aString asString]
+	^ self moduleNamed: aString ifAbsent: [ LcsModuleNotFoundError signal: 'Module not found: ' , aString asString ]
 ]
 
-{ #category : #accessing }
+{ #category : #modules }
 LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 	^ self collection at: aString ifAbsent: aBlock
+]
+
+{ #category : #modules }
+LcsModules >> numberOfModules [
+	^ self collection size
 ]
 
 { #category : #accessing }

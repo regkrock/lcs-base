@@ -63,7 +63,7 @@ LcsDomainObject class >> slotDefinitions: anObject [
 { #category : #'unit of work' }
 LcsDomainObject >> currentUnitOfWork [
 
-	^self class currentUnitOfWork
+	^ self class currentUnitOfWork
 ]
 
 { #category : #'unit of work' }
@@ -94,10 +94,21 @@ LcsDomainObject >> setValueOfSlotNamed: aSlotName to: onObject [
 
 { #category : #'slot definitions' }
 LcsDomainObject >> slotDefinitionNamed: aString [
-	^self class slotDefinitionNamed: aString
+	^ self class slotDefinitionNamed: aString
+]
+
+{ #category : #accessing }
+LcsDomainObject >> slotDefinitions [
+	^ self class slotDefinitions
 ]
 
 { #category : #accessing }
 LcsDomainObject >> slotDefintions [
-	^self class slotDefinitions
+	^ self class slotDefinitions
+]
+
+{ #category : #validation }
+LcsDomainObject >> validateConfiguration [
+	self assert: self slotDefintions class name equals: #LcsSlotDefinitions.
+	self slotDefintions validateConfiguration
 ]

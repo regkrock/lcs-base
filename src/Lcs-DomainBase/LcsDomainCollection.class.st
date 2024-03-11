@@ -24,20 +24,20 @@ LcsDomainCollection >> collection: anObject [
 
 { #category : #accessing }
 LcsDomainCollection >> collectionClass [
-	^self class collectionClass
+	^ self class collectionClass
 ]
 
 { #category : #accessing }
 LcsDomainCollection >> hasElements [
-	^self collection isEmpty not
+	^ self collection notEmpty
 ]
 
 { #category : #accessing }
 LcsDomainCollection >> hasNoElements [
-	^self collection isEmpty
+	^ self collection isEmpty
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsDomainCollection >> initialize [
 	super initialize.
 	self collection: self collectionClass new

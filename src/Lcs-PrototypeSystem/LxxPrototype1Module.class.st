@@ -9,13 +9,13 @@ Class {
 
 { #category : #accessing }
 LxxPrototype1Module class >> moduleName [
-	^'Prototype 1 Module'
+	^ 'Prototype 1 Module'
 ]
 
-{ #category : #accessing }
-LxxPrototype1Module >> personsSlotDefinition [
+{ #category : #'slot definitions' }
+LxxPrototype1Module class >> personsSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlotDefinition new
 		slotName: 'persons';
 		beIdentitySetCollection;
 		yourself

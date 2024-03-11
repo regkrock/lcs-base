@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-TestSystem'
 }
 
-{ #category : #accessing }
+{ #category : #modules }
 LcsTestSystem >> moduleClasses [
 	^ OrderedCollection new
 		add: LcsTest1Module;

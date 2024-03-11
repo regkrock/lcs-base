@@ -24,7 +24,7 @@ LcsBaseUnitOfWork >> addObject: aDomainObject [
 	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self)
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsBaseUnitOfWork >> addRecordFor: aDomainObject [
 	^ self addedObjects at: aDomainObject
 ]
@@ -41,8 +41,8 @@ LcsBaseUnitOfWork >> addedObjects: anObject [
 
 { #category : #api }
 LcsBaseUnitOfWork >> applyChanges [
-	self addedObjects values do: [:each | each applyChanges].
-	self changedObjects do: [:each | each applyChanges ]
+	self addedObjects valuesDo: [ :each | each applyChanges ].
+	self changedObjects do: [ :each | each applyChanges ]
 ]
 
 { #category : #accessing }
@@ -55,9 +55,9 @@ LcsBaseUnitOfWork >> changedObjects: anObject [
 	changedObjects := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsBaseUnitOfWork >> changedRecordFor: aDomainObject [
-	^ (self changedObjects at: aDomainObject ifAbsent: [nil])
+	^ (self changedObjects at: aDomainObject ifAbsent: [ nil ])
 ]
 
 { #category : #api }
@@ -69,7 +69,7 @@ LcsBaseUnitOfWork >> changedSlot: aSlotName valueTo: anObject in: aDomainObject 
 		
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 LcsBaseUnitOfWork >> clearUnitOfWork [
 	self addedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
 	self changedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
@@ -91,13 +91,13 @@ LcsBaseUnitOfWork >> deletedObjects: anObject [
 	deletedObjects := anObject
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 LcsBaseUnitOfWork >> initialize [
 	super initialize.
 	self clearUnitOfWork
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 LcsBaseUnitOfWork >> initializeOn: aSystem [ 
 	self system: aSystem
 ]
@@ -106,8 +106,8 @@ LcsBaseUnitOfWork >> initializeOn: aSystem [
 LcsBaseUnitOfWork >> setValueTo: anObject in: aDomainObject forSlot: aSlotDefiniton [ 
 
 	(self addedObjects keys includes: aDomainObject) ifTrue: [ 
-	aDomainObject instVarNamed: aSlotDefiniton slotName asString put: anObject.
-	^ self ].
+		aDomainObject instVarNamed: aSlotDefiniton slotName asString put: anObject.
+		^ self ].
 	(self changedObjects at: aDomainObject ifAbsentPut: [ LcsChangedObjectRecord newFor: aDomainObject parent: self ])
 		changedSlot: aSlotDefiniton slotName valueTo: anObject
 		

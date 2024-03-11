@@ -10,22 +10,22 @@ Class {
 
 { #category : #accessing }
 LcsLegalEntitiesModule class >> moduleName [
-	^'Legal Entities Module'
+	^ 'Legal Entities Module'
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlotDefinition new
 		slotName: 'organizations';
 		addSlotType: LcsSmalltalkConfiguration identitySetClass
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> personsSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlotDefinition new
 		slotName: 'persons';
 		addSlotType: LcsSmalltalkConfiguration identitySetClass
 		yourself

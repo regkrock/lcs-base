@@ -18,7 +18,7 @@ LcsGeographyModule class >> countriesSlotDefinition [
 
 { #category : #accessing }
 LcsGeographyModule class >> moduleName [
-	^'Geography Module'
+	^ 'Geography Module'
 ]
 
 { #category : #accessing }

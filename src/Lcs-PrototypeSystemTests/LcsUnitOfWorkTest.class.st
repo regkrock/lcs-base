@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-PrototypeSystemTests'
 }
 
-{ #category : #test }
+{ #category : #tests }
 LcsUnitOfWorkTest >> testAddDomainObject [
 	| domainObject |
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
@@ -12,11 +12,11 @@ LcsUnitOfWorkTest >> testAddDomainObject [
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	domainObject := LcsDomainObject new.
-	self assert: self currentSystem currentUnitOfWork addedObjects size = 1.
+	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
-	self assert: self currentSystem currentUnitOfWork addedObjects any domainObject == domainObject
+	self assert: self currentSystem currentUnitOfWork addedObjects any domainObject identicalTo: domainObject
 	
 ]
 
@@ -26,7 +26,7 @@ LcsUnitOfWorkTest >> testChangedSlotInDomainObject [
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
 	domainObject := LxxBarebonesPerson new dateOfBirth: Date today.
 	self currentSystem currentUnitOfWork applyChanges.
-	self assert: domainObject dateOfBirth = Date today.
+	self assert: domainObject dateOfBirth equals: Date today.
 	self assert: ((self currentSystem persons) includes: domainObject).
 	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
@@ -35,9 +35,9 @@ LcsUnitOfWorkTest >> testChangedSlotInDomainObject [
 	domainObject dateOfBirth: Date yesterday.
 	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork changedObjects size = 1.
+	self assert: self currentSystem currentUnitOfWork changedObjects size equals: 1.
 	self assert: (self currentSystem currentUnitOfWork changedObjects any isKindOf: LcsChangedObjectRecord).
-	self assert: self currentSystem currentUnitOfWork changedObjects any domainObject == domainObject.
+	self assert: self currentSystem currentUnitOfWork changedObjects any domainObject identicalTo: domainObject.
 	self currentSystem currentUnitOfWork applyChanges.
 
 	self assert: domainObject dateOfBirth = Date yesterday.

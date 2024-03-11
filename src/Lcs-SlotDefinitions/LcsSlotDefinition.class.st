@@ -16,30 +16,30 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsSlotDefinition >> addSlotType: aClass [ 
 	self slotTypes add: aClass
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsSlotDefinition >> beOptional [
 	self required: false
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsSlotDefinition >> beRequired [
 	self required: true
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsSlotDefinition >> getValueIn: aDomainObject [
 
-	^(self currentSystem currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
-		ifNil: [aDomainObject instVarNamed: self slotName asString]
-		ifNotNil: [:changedSlotRecord | changedSlotRecord newValue]
+	^ (self currentSystem currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
+		ifNil: [ aDomainObject instVarNamed: self slotName asString ]
+		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 LcsSlotDefinition >> initialize [
 	super initialize.
 	self initializeSlotTypes
@@ -50,22 +50,22 @@ LcsSlotDefinition >> initializeModel: aDomainObject [
 	self setValueTo: self newSlotValue in: aDomainObject
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 LcsSlotDefinition >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsSlotDefinition >> isOptional [
-	^self required ~~ true
+	^ self required ~~ true
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsSlotDefinition >> isRequired [
-	^self required: true.
+	^ self required: true.
 ]
 
-{ #category : #accessing }
+{ #category : #model }
 LcsSlotDefinition >> newSlotValue [
 	^ self slotTypes any new
 ]
@@ -90,7 +90,7 @@ LcsSlotDefinition >> required: anObject [
 	required := anObject
 ]
 
-{ #category : #'model\t' }
+{ #category : #model }
 LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
 	LcsSystem currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
 
@@ -114,6 +114,11 @@ LcsSlotDefinition >> slotTypes [
 { #category : #accessing }
 LcsSlotDefinition >> slotTypes: anObject [
 	slotTypes := anObject
+]
+
+{ #category : #validation }
+LcsSlotDefinition >> validateConfiguration [
+	self parent halt.
 ]
 
 { #category : #accessing }

@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-UnitOfWOrk'
 }
 
-{ #category : #accessing }
+{ #category : #api }
 LcsAddedObjectRecord >> applyChanges [
 
 	self domainObject parent isNil ifTrue: [

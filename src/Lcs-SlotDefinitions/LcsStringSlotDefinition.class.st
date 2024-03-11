@@ -4,13 +4,13 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsStringSlotDefinition >> initialize [
 	super initialize.
 	self addSlotType: self typeClass
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsStringSlotDefinition >> typeClass [
 	^ LcsSmalltalkConfiguration stringClass
 ]

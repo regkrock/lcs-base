@@ -10,7 +10,7 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LxxBarebonesSystem class >> personsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlotDefinition new
@@ -19,7 +19,7 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LxxBarebonesSystem >> domainClasses [
 	^OrderedCollection new
 		add: LcsDomainObject;
@@ -31,10 +31,10 @@ LxxBarebonesSystem >> domainClasses [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #modules }
 LxxBarebonesSystem >> moduleClasses [
 	"This System has no modules"
-	^super moduleClasses
+	^ super moduleClasses
 ]
 
 { #category : #accessing }

@@ -16,7 +16,7 @@ LcsPerson class >> dateOfBirthSlotDefinition [
 { #category : #'slot definitions' }
 LcsPerson class >> parentSlotDefinition [
 	<slotDefinition>
-	^LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlotDefinition new
 		slotName: 'parent';
 		moduleName: LcsLegalEntitiesModule moduleName;
 		collectionSlotName: 'persons';

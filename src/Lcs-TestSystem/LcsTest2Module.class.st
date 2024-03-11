@@ -6,5 +6,5 @@ Class {
 
 { #category : #accessing }
 LcsTest2Module class >> moduleName [
-	^'Test 2 Module'
+	^ 'Test 2 Module'
 ]

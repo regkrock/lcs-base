@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 LcsBaseModuleTest >> testAddingAModule [
 	| module |
 	module := LcsBaseModule new.
@@ -14,12 +14,12 @@ LcsBaseModuleTest >> testAddingAModule [
 	self assert: ((module moduleNamed: LcsDemonstrationModule moduleName) isKindOf: LcsDemonstrationModule) 
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LcsBaseModuleTest >> testCreation [
 	| module |
 	module := LcsBaseModule new.
 	self assert: module parent isNil.
-	self assert: module modules class = LcsModules.
+	self assert: module modules class equals: LcsModules.
 	self assert: module hasNoModules.
 	self assert: module parent isNil
 ]

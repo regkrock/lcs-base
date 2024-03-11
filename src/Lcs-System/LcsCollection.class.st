@@ -22,7 +22,7 @@ LcsCollection >> collectionClass [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsCollection >> initialize [ 
 
 	super initialize.

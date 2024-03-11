@@ -19,11 +19,10 @@ LcsChangedSlot class >> newFor: aSlotName parent: aChangedObjectRecord [
 
 { #category : #api }
 LcsChangedSlot >> applyChange [
-
 	self parent domainObject instVarNamed: self slotName asString put: self newValue
 ]
 
-{ #category : #'initialize \t' }
+{ #category : #initialization }
 LcsChangedSlot >> initailzeFor: aSlotName parent: aChangedObjectRecord [ 
 	self
 		slotName: aSlotName;

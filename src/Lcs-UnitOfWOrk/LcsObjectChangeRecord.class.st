@@ -30,7 +30,7 @@ LcsObjectChangeRecord >> domainObject: anObject [
 	domainObject := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsObjectChangeRecord >> initializeFor: aDomainObject parent: anObject [
 	self 
 		domainObject: aDomainObject;

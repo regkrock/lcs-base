@@ -7,20 +7,20 @@ Class {
 	#category : #'Lcs-UnitOfWOrk'
 }
 
-{ #category : #ap }
+{ #category : #api }
 LcsChangedObjectRecord >> applyChanges [
 
-	self changedSlots do: [:each | each applyChange]
+	self changedSlots do: [ :each | each applyChange ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsChangedObjectRecord >> changedSlot: aSlotName valueTo: anObject [
 
 	(self changedSlots at: aSlotName ifAbsentPut: [LcsChangedSlot newFor: aSlotName parent: self]) 
 		newValue: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsChangedObjectRecord >> changedSlotRecordFor: aSlotName [
 	^self changedSlots at: aSlotName ifAbsent: [nil]
 ]
@@ -35,14 +35,14 @@ LcsChangedObjectRecord >> changedSlots: anObject [
 	changedSlots := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LcsChangedObjectRecord >> initialize [
 
 	super initialize.
 	self changedSlots: LcsSmalltalkConfiguration symbolDictionaryClass new
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsChangedObjectRecord >> valueOfSlot: aSlotName [
 	^ (self changedSlots at: aSlotName ifAbsent: [nil]) newValue
 ]
