@@ -10,10 +10,7 @@ Class {
 { #category : #'slot definitions' }
 LcsSystem class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsDomainClassSlotDefinition new
-		slotName: 'configuration';
-		addSlotType: LcsSystemConfiguration;
-		yourself
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsSystemConfiguration
 ]
 
 { #category : #initialization }

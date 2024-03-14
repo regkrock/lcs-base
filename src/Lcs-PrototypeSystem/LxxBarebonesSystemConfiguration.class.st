@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsGeographyModuleConfiguration,
+	#name : #LxxBarebonesSystemConfiguration,
 	#superclass : #LcsBaseConfiguration,
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-PrototypeSystem'
 }
 
 { #category : #accessing }
-LcsGeographyModuleConfiguration >> parentSlotDefinition [
+LxxBarebonesSystemConfiguration >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsSlotDefinition new
 		slotName: 'parent';

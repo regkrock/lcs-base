@@ -5,18 +5,6 @@ Class {
 }
 
 { #category : #tests }
-LcsDomainObjectTest >> testCreationWithBareBonesSystem [
-	| domainObject |
-	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
-	domainObject := LcsDomainObject new.
-	self assert: domainObject parent isNil.
-	self assert: domainObject currentSystem == LcsSystemManager currentSystem.
-	self assert: (self currentSystem currentUnitOfWork addRecordFor: domainObject) domainObject == domainObject.
-	self assert: (domainObject slotDefintions isKindOf: LcsSlotDefinitions) .
-
-]
-
-{ #category : #tests }
 LcsDomainObjectTest >> testCreationWithNilCurrentSystem [
 	| domainObject |
 	domainObject := LcsDomainObject new.

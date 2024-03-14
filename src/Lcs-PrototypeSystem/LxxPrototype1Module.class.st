@@ -8,6 +8,12 @@ Class {
 }
 
 { #category : #accessing }
+LxxPrototype1Module class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+]
+
+{ #category : #accessing }
 LxxPrototype1Module class >> moduleName [
 	^ 'Prototype 1 Module'
 ]

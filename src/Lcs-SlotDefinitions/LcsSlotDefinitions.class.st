@@ -5,7 +5,7 @@ Class {
 		'elements',
 		'domainClass'
 	],
-	#category : #LcsBase
+	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #'instance creation' }

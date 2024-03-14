@@ -32,6 +32,12 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 ]
 
 { #category : #accessing }
+LcsLegalEntitiesModule >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsLegalEntitiesModuleConfiguration
+]
+
+{ #category : #accessing }
 LcsLegalEntitiesModule >> organizations [
 	^ organizations
 ]

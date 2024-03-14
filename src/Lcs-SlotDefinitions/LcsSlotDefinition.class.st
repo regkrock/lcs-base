@@ -92,7 +92,7 @@ LcsSlotDefinition >> required: anObject [
 
 { #category : #model }
 LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
-	LcsSystem currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+	LcsSystemManager currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
 
 ]
 

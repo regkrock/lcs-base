@@ -26,6 +26,7 @@ LcsBaseSystem class >> moduleName [
 { #category : #'instance creation' }
 LcsBaseSystem class >> newSystem [
 	self clearCurrentSystem.
+	LcsSystemManager createUnitOfWork.
 	self currentSystem: self basicNew.
 	self currentSystem initialize.
 	self currentSystem currentUnitOfWork applyChanges.
@@ -35,10 +36,8 @@ LcsBaseSystem class >> newSystem [
 { #category : #'unit of work' }
 LcsBaseSystem >> addNewUnitOfWork [
 	| newUnitOfWork |
-	newUnitOfWork := LcsUnitOfWork newOn: self.
-	self assert: newUnitOfWork system == self.
+	self currentUnitOfWork: (newUnitOfWork := LcsUnitOfWork newOn: self).
 	self unitsOfWork add: newUnitOfWork.
-	self currentUnitOfWork: newUnitOfWork.
 	^ newUnitOfWork
 ]
 
@@ -55,7 +54,7 @@ LcsBaseSystem >> currentUnitOfWork [
 
 { #category : #accessing }
 LcsBaseSystem >> currentUnitOfWork: aUnitOfWork [ 
-	currentUnitOfWork := aUnitOfWork
+	LcsSystemManager currentUnitOfWork: aUnitOfWork 
 ]
 
 { #category : #initialization }

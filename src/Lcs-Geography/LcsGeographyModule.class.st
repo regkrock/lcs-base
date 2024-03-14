@@ -22,6 +22,12 @@ LcsGeographyModule class >> moduleName [
 ]
 
 { #category : #accessing }
+LcsGeographyModule >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsGeographyModuleConfiguration
+]
+
+{ #category : #accessing }
 LcsGeographyModule >> countries [
 	^ countries
 ]

@@ -4,6 +4,12 @@ Class {
 	#category : #'Lcs-TestSystem'
 }
 
+{ #category : #accessing }
+LcsTestSystem class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+]
+
 { #category : #modules }
 LcsTestSystem >> moduleClasses [
 	^ OrderedCollection new

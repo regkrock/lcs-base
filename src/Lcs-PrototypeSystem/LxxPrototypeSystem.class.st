@@ -4,6 +4,12 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
+{ #category : #accessing }
+LxxPrototypeSystem class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+]
+
 { #category : #intialization }
 LxxPrototypeSystem >> domainClasses [
 	^ OrderedCollection new

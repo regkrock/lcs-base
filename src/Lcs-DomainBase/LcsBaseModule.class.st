@@ -35,6 +35,12 @@ LcsBaseModule >> configuration: anObject [
 ]
 
 { #category : #accessing }
+LcsBaseModule >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+]
+
+{ #category : #accessing }
 LcsBaseModule >> domainCollections [
 	^ domainCollections
 ]

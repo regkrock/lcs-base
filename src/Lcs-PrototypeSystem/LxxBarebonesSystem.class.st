@@ -10,6 +10,12 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
+{ #category : #accessing }
+LxxBarebonesSystem class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+]
+
 { #category : #'slot definitions' }
 LxxBarebonesSystem class >> personsSlotDefinition [
 	<slotDefinition>
@@ -27,6 +33,7 @@ LxxBarebonesSystem >> domainClasses [
 		add: LcsModule;
 		add: LxxBarebonesSystem;
 		add: LxxBarebonesPerson;
+		add: LxxBarebonesSystemConfiguration;
 		add: self class;
 		yourself
 ]

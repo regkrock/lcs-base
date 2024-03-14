@@ -114,74 +114,6 @@
 					"__type" : "textStyle"
 				},
 				"string" : " "
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-02-27T14:54:22.955481-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-05T11:21:13.692759-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "RiIwIcTODQCL+mftAQ/WgQ=="
-				},
-				"code" : "self assert: LcsSmalltalkConfiguration currentSystem isNil"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-05T10:53:08.689606-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-05T10:54:06.257136-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "cvtXk03PDQCjq8bTDX3pMQ=="
-				},
-				"code" : " \r\rSmalltalk "
 			}
 		]
 	},
@@ -204,12 +136,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-02-27T15:50:10.543511-05:00"
+			"dateAndTimeString" : "2024-03-13T08:47:55.841784-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "A System"
+		"title" : "Target System"
 	},
 	"uid" : {
 		"__type" : "uuid",

@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsGlobalCollectionSlotDefinition,
 	#superclass : #LcsSlotDefinition,
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #configuration }
