@@ -7,12 +7,12 @@ Class {
 { #category : #system }
 LcsObject class >> currentSystem [
 
-	^ LcsSystemManager currentSystem
+	^ #LcsSystemManager asClass currentSystem
 ]
 
 { #category : #system }
 LcsObject class >> currentSystem: anObject [
-	LcsSystemManager currentSystem: anObject
+	#LcsSystemManager asClass addNewSystem: anObject
 ]
 
 { #category : #system }
@@ -23,5 +23,5 @@ LcsObject >> currentSystem [
 
 { #category : #system }
 LcsObject >> currentSystem: anObject [
-	self class currentSystem: anObject
+	self currentSystem: anObject
 ]

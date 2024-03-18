@@ -1,8 +1,29 @@
 Class {
 	#name : #LcsUnitOfWork,
 	#superclass : #LcsBaseUnitOfWork,
+	#classVars : [
+		'Singleton'
+	],
 	#category : #'Lcs-UnitOfWOrk'
 }
+
+{ #category : #initialize }
+LcsUnitOfWork class >> releaseEnvironment [
+	#LcsUnitOfWorkManager asClass releaseEnvironment.
+	self singleton ifNil: [ ^ self ].
+	self singleton releaseEnvironment.
+	self singleton: nil
+]
+
+{ #category : #initialize }
+LcsUnitOfWork class >> singleton [
+	^ Singleton
+]
+
+{ #category : #initialize }
+LcsUnitOfWork class >> singleton: anUndefinedObject [ 
+	Singleton := anUndefinedObject
+]
 
 { #category : #api }
 LcsUnitOfWork >> applyChanges [

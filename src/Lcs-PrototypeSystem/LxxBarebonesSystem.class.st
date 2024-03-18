@@ -13,7 +13,7 @@ Class {
 { #category : #accessing }
 LxxBarebonesSystem class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+	^ LcsModuleConfigurationSlotDefinition newOn: LxxBarebonesSystemConfiguration
 ]
 
 { #category : #'slot definitions' }

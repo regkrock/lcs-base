@@ -5,7 +5,7 @@ Class {
 		'parent',
 		'collection'
 	],
-	#category : #LcsBase
+	#category : #'Lcs-SystemManagement'
 }
 
 { #category : #configuration }

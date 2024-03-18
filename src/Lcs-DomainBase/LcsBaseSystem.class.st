@@ -10,7 +10,7 @@ Class {
 
 { #category : #system }
 LcsBaseSystem class >> clearCurrentSystem [
-	self currentSystem: nil
+	LcsSystemManager clearCurrentSystem
 ]
 
 { #category : #'unit of work' }
@@ -24,21 +24,18 @@ LcsBaseSystem class >> moduleName [
 ]
 
 { #category : #'instance creation' }
-LcsBaseSystem class >> newSystem [
-	self clearCurrentSystem.
-	LcsSystemManager createUnitOfWork.
+LcsBaseSystem class >> newInUnitOfWorK: aUnitOfWork [ 
 	self currentSystem: self basicNew.
-	self currentSystem initialize.
-	self currentSystem currentUnitOfWork applyChanges.
+	self currentSystem initializeInUnitOfWork: aUnitOfWork.
 	^ self currentSystem
+
 ]
 
-{ #category : #'unit of work' }
-LcsBaseSystem >> addNewUnitOfWork [
-	| newUnitOfWork |
-	self currentUnitOfWork: (newUnitOfWork := LcsUnitOfWork newOn: self).
-	self unitsOfWork add: newUnitOfWork.
-	^ newUnitOfWork
+{ #category : #'instance creation' }
+LcsBaseSystem class >> newSystem [
+	self clearCurrentSystem.
+	(self newInUnitOfWorK: LcsUnitOfWorkManager createUnitOfWork) .
+	^ self currentSystem
 ]
 
 { #category : #'building - model' }
@@ -49,12 +46,7 @@ LcsBaseSystem >> buildSlotDefinitions [
 { #category : #accessing }
 LcsBaseSystem >> currentUnitOfWork [
 
-	^ currentUnitOfWork
-]
-
-{ #category : #accessing }
-LcsBaseSystem >> currentUnitOfWork: aUnitOfWork [ 
-	LcsSystemManager currentUnitOfWork: aUnitOfWork 
+	^ LcsUnitOfWorkManager currentUnitOfWork
 ]
 
 { #category : #initialization }
@@ -66,16 +58,18 @@ LcsBaseSystem >> domainClasses [
 LcsBaseSystem >> initialize [
 	super initialize.
 	self 
-		initializeUnitOfWork;
 		buildSlotDefinitions;
 		buildModules;
 		initializeModel
 ]
 
-{ #category : #initialization }
-LcsBaseSystem >> initializeUnitOfWork [
-	self unitsOfWork: OrderedCollection new.
-	self addNewUnitOfWork
+{ #category : #accessing }
+LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
+	aUnitOfWork system: self currentSystem.
+	aUnitOfWork addObject: self currentSystem. "Need to add to unit of work"
+	self currentSystem initialize.
+	self currentSystem currentUnitOfWork applyChanges.
+
 ]
 
 { #category : #accessing }

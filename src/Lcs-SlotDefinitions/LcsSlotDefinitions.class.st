@@ -76,5 +76,5 @@ LcsSlotDefinitions >> slotDefinitionNamed: aSlotName [
 
 { #category : #validation }
 LcsSlotDefinitions >> validateConfiguration [
-	self elements valuesDo: [ :eachSlotDefintion | eachSlotDefintion halt validateConfiguration ]
+	self elements valuesDo: [ :eachSlotDefintion | eachSlotDefintion validateConfiguration ]
 ]

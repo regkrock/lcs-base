@@ -92,7 +92,7 @@ LcsSlotDefinition >> required: anObject [
 
 { #category : #model }
 LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
-	LcsSystemManager currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+	#LcsSystemManager asClass currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
 
 ]
 
@@ -118,7 +118,7 @@ LcsSlotDefinition >> slotTypes: anObject [
 
 { #category : #validation }
 LcsSlotDefinition >> validateConfiguration [
-	self parent halt.
+	self parent.
 ]
 
 { #category : #accessing }

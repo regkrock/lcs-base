@@ -18,6 +18,8 @@ LxxBarebonesSystemTest >> testCreation [
 { #category : #accessing }
 LxxBarebonesSystemTest >> testCreationWithBareBonesSystem [
 	| domainObject |
+	LcsSystemManager releaseEnvironment.
+	LcsSystemManager initializeEnvironment.
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
