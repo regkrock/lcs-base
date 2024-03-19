@@ -21,6 +21,17 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
+{ #category : #accessing }
+LcsDomainObject class >> currentSystem [
+
+	^ LcsSystemManager currentSystem
+]
+
+{ #category : #accessing }
+LcsDomainObject class >> currentSystem: aSystem [
+	LcsSystemManager addNewSystem: aSystem
+]
+
 { #category : #'unit of work' }
 LcsDomainObject class >> currentUnitOfWork [
 	^self currentSystem currentUnitOfWork
@@ -58,6 +69,11 @@ LcsDomainObject class >> slotDefinitions [
 { #category : #accessing }
 LcsDomainObject class >> slotDefinitions: anObject [
 	SlotDefinitions := anObject
+]
+
+{ #category : #accessing }
+LcsDomainObject >> currentSystem [
+	^ self class currentSystem
 ]
 
 { #category : #'unit of work' }

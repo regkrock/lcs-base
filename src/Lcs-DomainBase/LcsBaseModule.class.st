@@ -53,7 +53,7 @@ LcsBaseModule >> domainCollections: anObject [
 { #category : #modules }
 LcsBaseModule >> geographyModule [
 
-	^ self modules at: 'Geography Module'
+	^ self modules moduleNamed: 'Geography Module'
 ]
 
 { #category : #testing }

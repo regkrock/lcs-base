@@ -14,5 +14,5 @@ ManifestLcsTests class >> ruleAssertEqualSignIntoAssertEqualsV1FalsePositive [
 
 { #category : #'code-critics' }
 ManifestLcsTests class >> ruleReShouldSendSuperTearDownAsLastMessageV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#LcsTestCase #tearDown #false)) #'2024-03-11T12:43:41.167671-04:00') )
+	^ #(#(#(#RGMethodDefinition #(#LcsDomainTestCase #tearDown #false)) #'2024-03-11T12:43:41.167671-04:00') )
 ]

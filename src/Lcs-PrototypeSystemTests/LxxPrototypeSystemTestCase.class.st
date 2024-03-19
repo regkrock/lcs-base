@@ -1,6 +1,6 @@
 Class {
 	#name : #LxxPrototypeSystemTestCase,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsDomainTestCase,
 	#category : #'Lcs-PrototypeSystemTests'
 }
 

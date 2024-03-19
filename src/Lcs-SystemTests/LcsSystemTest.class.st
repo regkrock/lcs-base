@@ -15,7 +15,7 @@ LcsSystemTest >> testCreation [
 	self assert: self currentSystem notNil.
 
 	currentUnitOfWork := self currentSystem currentUnitOfWork.
-	self assert: self currentSystem unitsOfWork notEmpty. 
+	self assert: LcsUnitOfWorkManager singleton  unitsOfWork notEmpty. 
 	self assert: currentUnitOfWork notNil.
 	self assert: currentUnitOfWork system identicalTo: self currentSystem.
 	self assert: self currentSystem notNil.

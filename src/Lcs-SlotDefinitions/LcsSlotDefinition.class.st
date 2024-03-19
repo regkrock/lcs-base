@@ -31,10 +31,20 @@ LcsSlotDefinition >> beRequired [
 	self required: true
 ]
 
+{ #category : #accessing }
+LcsSlotDefinition >> currentSystem [
+	^ #LcsSystemManager asClass currentSystem
+]
+
+{ #category : #'model \t' }
+LcsSlotDefinition >> currentUnitOfWork [
+	^ #LcsSystemManager asClass currentUnitOfWork
+]
+
 { #category : #model }
 LcsSlotDefinition >> getValueIn: aDomainObject [
 
-	^ (self currentSystem currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
+	^ (self currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
 		ifNil: [ aDomainObject instVarNamed: self slotName asString ]
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
@@ -92,7 +102,7 @@ LcsSlotDefinition >> required: anObject [
 
 { #category : #model }
 LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
-	#LcsSystemManager asClass currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
 
 ]
 
