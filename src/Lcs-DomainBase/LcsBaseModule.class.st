@@ -1,3 +1,6 @@
+"
+This application is composed of a System and zero to many mdoules. This is the super class of all system and module classes.
+"
 Class {
 	#name : #LcsBaseModule,
 	#superclass : #LcsDomainObject,

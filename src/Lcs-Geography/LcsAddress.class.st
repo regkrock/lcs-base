@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsAddress,
 	#superclass : #LcsDomainObject,
-	#category : #'Lcs-LegalEntities'
+	#category : #'Lcs-Geography'
 }
 
 { #category : #accessing }

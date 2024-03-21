@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'isoCode',
-		'countryName'
+		'countryName',
+		'politicalUnitName'
 	],
 	#category : #'Lcs-Geography'
 }
@@ -38,6 +39,16 @@ LcsCountry class >> parentSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LcsCountry class >> politicalUnitNameSlotDefintion [
+	<slotDefinition>
+	^ LcsStringSlotDefinition new
+		slotName: #'politicalUnitName';
+		beRequired;
+		validator: [ :string | string size = 2 ];
+		yourself
+]
+
 { #category : #accessing }
 LcsCountry >> countryName [
 	^ self getValueOfSlotNamed: 'countryName'
@@ -56,4 +67,14 @@ LcsCountry >> isoCode [
 { #category : #accessing }
 LcsCountry >> isoCode: anObject [
 	self setValueOfSlotNamed: 'isoCode' to: anObject
+]
+
+{ #category : #accessing }
+LcsCountry >> politicalUnitName [
+	^ self getValueOfSlotNamed: 'politicalUnitName'
+]
+
+{ #category : #accessing }
+LcsCountry >> politicalUnitName: anObject [
+	self setValueOfSlotNamed: 'politicalUnitName' to: anObject
 ]

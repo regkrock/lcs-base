@@ -37,6 +37,37 @@ LcsDomainObject class >> currentUnitOfWork [
 	^self currentSystem currentUnitOfWork
 ]
 
+{ #category : #accessing }
+LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView columnedList
+		title: 'Slot Definitions';
+		priority: 99;
+		"items: [ self slotDefinitions  sorted: #yourself ascending ];
+		column: 'Slot Name' text: [ :id | id ];
+		send: [ :id | self newForEncoding: id ];
+		actionStencil: [ :aButton | 
+				GtSpotterDropdownButtonStencil new
+					object: self;
+					tooltip: 'Search character encoders by identifier';
+					id: GtPharoSearchCodeButtonId;
+					objectActOn: [ :anActOnEvent :anItem :theButton | 
+						
+						(anItem isKindOf: ZnCharacterEncoder) ifTrue: [ 
+							| columnedList |
+							columnedList := theButton phlow viewContent 
+								allChildrenBreadthFirstDetect: [ :child | 
+									child isKindOf:  BrColumnedList ] 
+								ifFound: [ :child | child ].
+							columnedList scrollToItem: anItem identifier.
+							columnedList selectOne: (columnedList items indexOf: anItem identifier).
+							
+							anActOnEvent beActed ] ];
+					asElement ]"
+			tooltip: 'Search character encoders by identifier'
+]
+
 { #category : #'slot definitions' }
 LcsDomainObject class >> initializeSlotDefinitions [
 	self slotDefinitions: (LcsSlotDefinitions newOn: self).

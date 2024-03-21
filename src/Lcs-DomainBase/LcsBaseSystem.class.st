@@ -1,3 +1,6 @@
+"
+This is the base class for defining systems. A system class can have zero to many module components.
+"
 Class {
 	#name : #LcsBaseSystem,
 	#superclass : #LcsBaseModule,
