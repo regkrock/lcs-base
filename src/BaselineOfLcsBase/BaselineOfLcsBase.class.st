@@ -36,7 +36,7 @@ BaselineOfLcsBase >> baseline: spec [
 			
 			spec package: 'Lcs-BaseTests' with: [spec requires: #('LcsBase')].
 			
-			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
+			"spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ]."
 			spec package: 'Lcs-Tests' with: [spec requires: #('Lcs-DomainBase' 'Lcs-BaseTests')].  
 			spec package: 'Lcs-TestSystemTests' with: [spec requires: #('Lcs-DomainBase' 'Lcs-BaseTests')].  
 			spec package: 'Lcs-SystemTests' with: [spec requires: #('Lcs-System' 'Lcs-Tests')].  
