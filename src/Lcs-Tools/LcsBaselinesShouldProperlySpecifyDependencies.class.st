@@ -20,7 +20,7 @@ LcsBaselinesShouldProperlySpecifyDependencies class >> blocSpartaPackageAnalysis
 { #category : #accessing }
 LcsBaselinesShouldProperlySpecifyDependencies >> issues [
 	| gtProject allDependencies analyzers |
-	gtProject := BaselineOfLcsBase gtRlProjectWithRepository: 'github//regkrock/lcs-base:main.src'.
+	gtProject := #BaselineOfLcsBase asClass gtRlProjectWithRepository: 'github//regkrock/lcs-base:main.src'.
 	"'https://github.com/regkrock/lcs-base/src'"
 	"github://feenkcom/gtoolkit:main/src'"
 	allDependencies := gtProject withAllChildProjects.
