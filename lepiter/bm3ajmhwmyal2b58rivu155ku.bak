@@ -100,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:54:29.108405-04:00"
+						"dateAndTimeString" : "2024-03-23T12:54:27.86079-04:00"
 					}
 				},
 				"uid" : {
@@ -110,7 +110,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Inspect the LcsBase Github repository"
+				"string" : "####Inspect the LcsGithub repository"
 			},
 			{
 				"__type" : "pharoSnippet",

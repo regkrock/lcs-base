@@ -208,14 +208,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-02-22T13:14:14.790951-05:00"
+						"dateAndTimeString" : "2024-02-22T13:14:41.086565-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ztx0JF7ODQCTMqW+A9JQPg=="
 				},
-				"code" : "RBCreateDomainSlotAcccessorsForVariableRefactoring\r\rdefineGetterMethod\r\r\tself definingClass \r\t\tcompile: ('<1s><r><t>^ self getValueOfSlotNamed: ''<2s>''' \r\t\t\texpandMacrosWith: self selector \r\t\t\twith: variableName)\r\t\tclassified: #(#accessing).\r\t^selector"
+				"code" : "RBCreateDomainSlotAcccessorsForVariableRefactoring.\r\rdefineGetterMethod\r\r\tself definingClass \r\t\tcompile: ('<1s><r><t>^ self getValueOfSlotNamed: ''<2s>''' \r\t\t\texpandMacrosWith: self selector \r\t\t\twith: variableName)\r\t\tclassified: #(#accessing).\r\t^selector.\r\t\rdefineSetterMethod\r\r\t| definingClass string |\r\tdefiningClass := self definingClass.\r\tstring := self needsReturnForSetter \r\t\t\t\tifTrue: ['<1s> anObject<r><t>^ self setValueOfSlotNamed: ''<2s>'' to: anObject']\r\t\t\t\tifFalse: ['<1s> anObject<r><t>self setValueOfSlotNamed: ''<2s>'' to: anObject'].\r\t\t\t\t\r\tselector := self safeMethodNameFor: definingClass\r\t\t\t\tbasedOn: variableName asString , ':'.\r\tdefiningClass \r\t\tcompile: (string expandMacrosWith: selector with: variableName)\r\t\tclassified: #accessing.\r\t^selector"
 			}
 		]
 	},
