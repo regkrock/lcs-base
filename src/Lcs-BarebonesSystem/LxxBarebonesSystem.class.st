@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'persons'
 	],
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-BarebonesSystem'
 }
 
 { #category : #accessing }

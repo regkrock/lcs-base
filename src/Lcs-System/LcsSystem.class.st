@@ -15,7 +15,7 @@ LcsSystem class >> configurationSlotDefinition [
 
 { #category : #initialization }
 LcsSystem >> domainClasses [
-	^ LcsDomainObject withAllSubclasses
+	^ (LcsDomainObject withAllSubclasses) reject: [ :each | each name beginsWith: 'Lxx' ]
 ]
 
 { #category : #'ui \t' }

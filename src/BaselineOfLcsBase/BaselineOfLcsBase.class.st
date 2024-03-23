@@ -31,16 +31,22 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-LegalEntities' with: [spec requires: #('Lcs-DomainBase')].
 			spec package: 'Lcs-Geography' with: [spec requires: #('Lcs-DomainBase')].
 			spec package: 'Lcs-System' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography') ].
+
+			" Systems for experimentation "
 			spec package: 'Lcs-PrototypeSystem' with: [spec requires: #('Lcs-DomainBase')].  
-			spec package: 'Lcs-TestSystem' with: [spec requires: #('Lcs-DomainBase')].  
-			
+			spec package: 'Lcs-BarebonesSystem' with: [spec requires: #('Lcs-DomainBase')].  
+
+			" Tests on main code "			
 			spec package: 'Lcs-BaseTests' with: [spec requires: #('LcsBase')].
-			
 			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
 			spec package: 'Lcs-Tests' with: [spec requires: #('Lcs-DomainBase' 'Lcs-BaseTests')].  
-			spec package: 'Lcs-TestSystemTests' with: [spec requires: #('Lcs-DomainBase' 'Lcs-BaseTests')].  
 			spec package: 'Lcs-SystemTests' with: [spec requires: #('Lcs-System' 'Lcs-Tests')].  
+
+			" Tests on experimentation systems "			
 			spec package: 'Lcs-PrototypeSystemTests' with: [spec requires: #('Lcs-PrototypeSystem' 'Lcs-Tests')].  
+			spec package: 'Lcs-BarebonesSystemTests' with: [spec requires: #('Lcs-BarebonesSystem' 'Lcs-Tests')].  
+
+			" Tools "
 			spec package: 'Lcs-Tools' with: [ spec requires: #('LcsBase') ].
 					]
 ]

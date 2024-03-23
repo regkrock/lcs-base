@@ -1,5 +1,5 @@
 Class {
-	#name : #LxxBarebonesPerson,
+	#name : #LxxPrototypePerson,
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'dateOfBirth'
@@ -8,27 +8,27 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LxxBarebonesPerson class >> dateOfBirthSlotDefinition [
+LxxPrototypePerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
 	^ LcsDateOfBirthSlotDefinition new
 ]
 
 { #category : #'slot definitions' }
-LxxBarebonesPerson class >> parentSlotDefinition [
+LxxPrototypePerson class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlotDefinition new
 		slotName: 'parent';
-		moduleName: LxxBarebonesSystem moduleName;
+		moduleName: LxxPrototype1Module moduleName;
 		collectionSlotName: 'persons';
 		yourself
 ]
 
 { #category : #accessing }
-LxxBarebonesPerson >> dateOfBirth [
+LxxPrototypePerson >> dateOfBirth [
 	^ self getValueOfSlotNamed: 'dateOfBirth'
 ]
 
 { #category : #accessing }
-LxxBarebonesPerson >> dateOfBirth: anObject [
+LxxPrototypePerson >> dateOfBirth: anObject [
 	self setValueOfSlotNamed: 'dateOfBirth' to: anObject
 ]

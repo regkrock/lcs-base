@@ -1,7 +1,7 @@
 Class {
 	#name : #LxxBarebonesSystemConfiguration,
 	#superclass : #LcsBaseConfiguration,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-BarebonesSystem'
 }
 
 { #category : #accessing }

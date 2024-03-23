@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 LxxPrototypeSystem class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+	^ LcsModuleConfigurationSlotDefinition newOn: LxxPrototypeSystemConfiguration
 ]
 
 { #category : #intialization }
@@ -19,7 +19,7 @@ LxxPrototypeSystem >> domainClasses [
 		add: LcsBaseModule;
 		add: self class;
 		addAll: self moduleClasses;
-		add: LxxPerson;
+		add: LxxPrototypePerson;
 		yourself
 ]
 

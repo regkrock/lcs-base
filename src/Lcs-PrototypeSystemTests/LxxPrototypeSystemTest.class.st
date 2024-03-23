@@ -1,11 +1,11 @@
 Class {
-	#name : #LxxPrototypeSystemTestCase,
+	#name : #LxxPrototypeSystemTest,
 	#superclass : #LcsDomainTestCase,
 	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #tests }
-LxxPrototypeSystemTestCase >> testCreation [
+LxxPrototypeSystemTest >> testCreation [
 	| system |
 	system := LxxPrototypeSystem newSystem.
 	self assert: self currentSystem == system.
