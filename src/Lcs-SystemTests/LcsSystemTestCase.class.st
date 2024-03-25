@@ -7,5 +7,5 @@ Class {
 { #category : #accessing }
 LcsSystemTestCase >> setUp [
 	super setUp.
-	LcsSystemManager createNewSystem
+	LcsSystemManager createMainSystem
 ]

@@ -89,6 +89,7 @@ LcsDomainObject class >> slotDefinitionMethods [
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> slotDefinitionNamed: aString [ 
+	self slotDefinitions isNil ifTrue: [ ^ LcsSlotDefinitionsNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
 	^self slotDefinitions slotDefinitionNamed: aString
 ]
 

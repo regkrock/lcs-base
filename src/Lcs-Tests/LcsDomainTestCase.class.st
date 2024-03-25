@@ -10,6 +10,21 @@ Class {
 	#category : #'Lcs-Tests'
 }
 
+{ #category : #running }
+LcsDomainTestCase >> abortTransaction [
+	LcsSmalltalkConfiguration gsSystemClass abortTransaction
+]
+
+{ #category : #running }
+LcsDomainTestCase >> beginTransaction [
+	LcsSmalltalkConfiguration gsSystemClass beginTransaction
+]
+
+{ #category : #running }
+LcsDomainTestCase >> commitTransaction [
+	LcsSmalltalkConfiguration gsSystemClass commitTransaction
+]
+
 { #category : #accessing }
 LcsDomainTestCase >> currentSystem [
 	^ LcsSystemManager currentSystem
@@ -33,14 +48,25 @@ LcsDomainTestCase >> savedSystem: anObject [
 { #category : #running }
 LcsDomainTestCase >> setUp [
 	super setUp.
+	self abortTransaction	.
 	LcsSystemManager singleton isNil ifTrue: [LcsSystemManager initializeEnvironment].
-	LcsUnitOfWorkManager singleton isNil ifTrue: [LcsUnitOfWorkManager initializeEnvironment].
 	self savedSystem: LcsSystemManager currentSystem.
 	LcsSystemManager clearCurrentSystem.
+	self setupSunitSystem.
+	self commitTransaction.
+
+]
+
+{ #category : #accessing }
+LcsDomainTestCase >> setupSunitSystem [
+	"subclasses can override this method to create the system required for testing"
 ]
 
 { #category : #running }
 LcsDomainTestCase >> tearDown [
 	super tearDown.
-	LcsSystemManager currentSystem: self savedSystem
+	self abortTransaction.
+	LcsSystemManager currentSystem: self savedSystem.
+	self commitTransaction.
+
 ]

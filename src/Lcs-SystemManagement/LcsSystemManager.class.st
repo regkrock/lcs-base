@@ -25,16 +25,6 @@ LcsSystemManager class >> clearCurrentUnitOfWork [
 	LcsUnitOfWorkManager clearCurrentUnitOfWork
 ]
 
-{ #category : #accessing }
-LcsSystemManager class >> createNewPrototypeSystem [
-	self currentSystem: #LxxPrototypeSystem asClass newSystem
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> createNewSystem [
-	^ #LcsSystem asClass newSystem
-]
-
 { #category : #'instance creation' }
 LcsSystemManager class >> createUnitOfWork [
 	LcsUnitOfWorkManager createUnitOfWork
@@ -57,19 +47,23 @@ LcsSystemManager class >> currentUnitOfWork [
 
 { #category : #initialize }
 LcsSystemManager class >> initializeEnvironment [
+	LcsSmalltalkConfiguration gsSystemClass abortTransaction.
 	self singleton ifNotNil: [self releaseEnvironment].
 	LcsUnitOfWorkManager initializeEnvironment.
 	self singleton ifNil: [ Singleton := self new ].
+	LcsSmalltalkConfiguration gsSystemClass commitTransaction.
 	^self singleton
 
 ]
 
 { #category : #accessing }
 LcsSystemManager class >> releaseEnvironment [
+	self abortTransaction.
 	LcsUnitOfWorkManager releaseEnvironment.
-	self singleton ifNil: [^self].
+	self singleton ifNil: [ ^ self ].
 	self singleton releaseEnvironment.
-	self singleton: nil
+	self singleton: nil.
+	self commitTransaction
 ]
 
 { #category : #accessing }

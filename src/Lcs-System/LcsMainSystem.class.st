@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsSystem,
+	#name : #LcsMainSystem,
 	#superclass : #LcsBaseSystem,
 	#classVars : [
 		'Singleton'
@@ -8,18 +8,18 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LcsSystem class >> configurationSlotDefinition [
+LcsMainSystem class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlotDefinition newOn: LcsSystemConfiguration
 ]
 
 { #category : #initialization }
-LcsSystem >> domainClasses [
+LcsMainSystem >> domainClasses [
 	^ (LcsDomainObject withAllSubclasses) reject: [ :each | each name beginsWith: 'Lxx' ]
 ]
 
 { #category : #'ui \t' }
-LcsSystem >> gtViewSystemOn: aView [
+LcsMainSystem >> gtViewSystemOn: aView [
 	<gtView>
 	^ aView columnedList
 		title: 'System Information' translated;
@@ -46,7 +46,7 @@ column: 'Deleted'
 ]
 
 { #category : #'modules ' }
-LcsSystem >> moduleClasses [
+LcsMainSystem >> moduleClasses [
 	^ OrderedCollection new
 		add: LcsGeographyModule;
 		add: LcsLegalEntitiesModule;

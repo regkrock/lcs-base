@@ -10,8 +10,8 @@ LcsDomainObjectTest >> testCreationWithNilCurrentSystem [
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem isNil.
-	self assert: (domainObject slotDefintions isKindOf: LcsSlotDefinitions).
-	self should: [ domainObject slotDefinitionNamed: 'slotDoesNotExist' ] raise: LcsSlotDoesNotExistError.
-	self should: [ domainObject setValueOfSlotNamed: 'slotDoesNotExist' to: 1 ] raise: LcsSlotDoesNotExistError.
-	self should: [ domainObject getValueOfSlotNamed: 'slotDoesNotExist' ] raise: LcsSlotDoesNotExistError.
+	self assert: (domainObject slotDefintions isNil).
+	self should: [ domainObject slotDefinitionNamed: 'slotDoesNotExist' ] raise: LcsSlotDefinitionsNotInitializedError.
+	self should: [ domainObject setValueOfSlotNamed: 'slotDoesNotExist' to: 1 ] raise: LcsSlotDefinitionsNotInitializedError.
+	self should: [ domainObject getValueOfSlotNamed: 'slotDoesNotExist' ] raise: LcsSlotDefinitionsNotInitializedError.
 ]

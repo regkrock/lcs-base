@@ -15,6 +15,11 @@ LcsSmalltalkConfiguration class >> dateClass [
 ]
 
 { #category : #accessing }
+LcsSmalltalkConfiguration class >> gsSystemClass [
+	^ GsSystem
+]
+
+{ #category : #accessing }
 LcsSmalltalkConfiguration class >> identitySetClass [
 	^ IdentitySet
 ]

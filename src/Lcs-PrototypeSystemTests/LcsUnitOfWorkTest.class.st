@@ -20,7 +20,7 @@ LcsUnitOfWorkTest >> testCreation [
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	| domainObject |
 	domainObject := LcsDomainObject new.
-	LcsSystemManager createNewPrototypeSystem. 
+	LcsSystemManager createPrototypeSystem. 
 	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.

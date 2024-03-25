@@ -11,7 +11,7 @@ LcsSystemTest >> testCreation [
 
 	LcsSystemManager clearCurrentSystem.
 	self assert: self currentSystem isNil. 
-	system := LcsSystemManager createNewSystem.
+	system := LcsSystemManager createMainSystem.
 	self assert: self currentSystem notNil.
 
 	currentUnitOfWork := self currentSystem currentUnitOfWork.

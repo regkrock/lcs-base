@@ -18,6 +18,43 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-25T13:54:04.560862-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-25T13:55:06.806525-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "IFanmOHQDQCOaY/pAvWGSA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The application can have many systems, but only one can be active at a time. The system manger manages the creation and removal of systems and which system is the current system."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-03-13T07:44:10.757017-04:00"
 					}
 				},
@@ -197,6 +234,80 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-25T13:55:35.93011-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-25T13:56:00.941369-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Tn4ZnuHQDQCSr3chAvWGSA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Create A System"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-25T13:56:11.229223-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-25T13:56:26.517866-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "SBg0oOHQDQCTKFEAAvWGSA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "All systems should be created from within the system manager, "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-03-12T10:19:22.622681-04:00"
 					}
 				},
@@ -208,7 +319,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-12T10:28:32.315407-04:00"
+						"dateAndTimeString" : "2024-03-25T11:32:02.828117-04:00"
 					}
 				},
 				"uid" : {
@@ -218,7 +329,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "To create a new system, exeicute the code below. Note: This action clears the current system.  Execute the code below and one will have created a new system.  Use the first code snippet to inspect the current system."
+				"string" : "To create a new system, exeicute the code below. Note: This action clears the current system.  Execute The system manager is responsible for managing all systems that exist in the environment."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -279,7 +390,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T07:43:59.505461-04:00"
+						"dateAndTimeString" : "2024-03-25T10:56:20.903376-04:00"
 					}
 				},
 				"uid" : {
@@ -289,7 +400,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "###Currnet Unit Of Work"
+				"string" : "###Current Unit Of Work"
 			},
 			{
 				"__type" : "textSnippet",

@@ -23,7 +23,8 @@ BaselineOfLcsBase class >> loadLepiter [
 BaselineOfLcsBase >> baseline: spec [
 	<baseline>
 		^ spec for: #common do: [
-			spec package: 'LcsBase'.
+			spec package: 'Lcs-GemStoneMocks'.
+			spec package: 'LcsBase'  with: [ spec requires: #('Lcs-GemStoneMocks' ) ].
 			spec package: 'Lcs-UnitOfWOrk' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase' 'Lcs-UnitOfWOrk' 'Lcs-SlotDefinitions') ].
