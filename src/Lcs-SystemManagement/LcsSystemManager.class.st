@@ -60,6 +60,7 @@ LcsSystemManager class >> initializeEnvironment [
 	self singleton ifNotNil: [self releaseEnvironment].
 	LcsUnitOfWorkManager initializeEnvironment.
 	self singleton ifNil: [ Singleton := self new ].
+	^self singleton
 
 ]
 
