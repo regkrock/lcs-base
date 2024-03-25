@@ -16,11 +16,6 @@ LcsSystemManager class >> addNewSystem: aSystem [
 ]
 
 { #category : #accessing }
-LcsSystemManager class >> clearCurrentSystem [
-	(self singleton ifNil: [ ^ self ]) clearCurrentSystem
-]
-
-{ #category : #accessing }
 LcsSystemManager class >> clearCurrentUnitOfWork [
 	LcsUnitOfWorkManager clearCurrentUnitOfWork
 ]
@@ -67,6 +62,11 @@ LcsSystemManager class >> releaseEnvironment [
 ]
 
 { #category : #accessing }
+LcsSystemManager class >> removeCurrentSystem [
+	(self singleton ifNil: [ ^ self ]) removeCurrentSystem
+]
+
+{ #category : #accessing }
 LcsSystemManager class >> singleton [
 	^ Singleton
 ]
@@ -83,12 +83,6 @@ LcsSystemManager >> addNewSystem: aSystem [
 ]
 
 { #category : #accessing }
-LcsSystemManager >> clearCurrentSystem [
-	LcsUnitOfWorkManager clearUnitOfWorkFor: self currentSystem.
-	self currentSystem: nil
-]
-
-{ #category : #accessing }
 LcsSystemManager >> currentSystem [
 	^ currentSystem
 ]
@@ -100,5 +94,11 @@ LcsSystemManager >> currentSystem: anObject [
 
 { #category : #accessing }
 LcsSystemManager >> releaseEnvironment [
-	self clearCurrentSystem
+	self removeCurrentSystem
+]
+
+{ #category : #accessing }
+LcsSystemManager >> removeCurrentSystem [
+	LcsUnitOfWorkManager clearUnitOfWorkFor: self currentSystem.
+	self currentSystem: nil.
 ]

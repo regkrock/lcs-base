@@ -193,6 +193,43 @@
 								"__type" : "textStyle"
 							},
 							"string" : "[[System Manager]]"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-03-25T14:17:32.934076-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-03-25T14:17:44.670154-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "4FyZ7OHQDQC492S9BGvZTg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "[[Unit of Work Manager]]"
 						}
 					]
 				},

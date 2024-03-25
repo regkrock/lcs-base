@@ -11,11 +11,6 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #system }
-LcsBaseSystem class >> clearCurrentSystem [
-	LcsSystemManager clearCurrentSystem
-]
-
 { #category : #'unit of work' }
 LcsBaseSystem class >> currentUnitOfWork [
 	^ self currentSystem currentUnitOfWork
@@ -36,9 +31,14 @@ LcsBaseSystem class >> newInUnitOfWorK: aUnitOfWork [
 
 { #category : #'instance creation' }
 LcsBaseSystem class >> newSystem [
-	self clearCurrentSystem.
+	self removeCurrentSystem.
 	(self newInUnitOfWorK: LcsUnitOfWorkManager createUnitOfWork) .
 	^ self currentSystem
+]
+
+{ #category : #system }
+LcsBaseSystem class >> removeCurrentSystem [
+	LcsSystemManager removeCurrentSystem
 ]
 
 { #category : #'building - model' }

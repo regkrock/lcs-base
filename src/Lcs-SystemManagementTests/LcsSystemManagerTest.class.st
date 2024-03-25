@@ -13,7 +13,7 @@ LcsSystemManagerTest >> testClearCurrentSystem [
 	LcsSystemManager currentSystem: 'example'.
 	self assert: LcsSystemManager currentSystem = 'example'.
 	
-	LcsSystemManager clearCurrentSystem.
+	LcsSystemManager removeCurrentSystem.
 	self assert: LcsSystemManager currentSystem isNil.
 	self assert: LcsSystemManager currentUnitOfWork isNil.
 

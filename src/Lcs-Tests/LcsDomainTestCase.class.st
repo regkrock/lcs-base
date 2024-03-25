@@ -51,7 +51,7 @@ LcsDomainTestCase >> setUp [
 	self abortTransaction	.
 	LcsSystemManager singleton isNil ifTrue: [LcsSystemManager initializeEnvironment].
 	self savedSystem: LcsSystemManager currentSystem.
-	LcsSystemManager clearCurrentSystem.
+	LcsSystemManager removeCurrentSystem.
 	self setupSunitSystem.
 	self commitTransaction.
 
