@@ -69,6 +69,11 @@ LcsSlotDefinitions >> initializeOn: aDomainClass [
 	self domainClass: aDomainClass
 ]
 
+{ #category : #accessing }
+LcsSlotDefinitions >> parent [
+	^self domainClass
+]
+
 { #category : #slots }
 LcsSlotDefinitions >> slotDefinitionNamed: aSlotName [
 	^ self elements at: aSlotName ifAbsent: [ LcsSlotDoesNotExistError signal: 'Slot not defined: ' , aSlotName asString ]

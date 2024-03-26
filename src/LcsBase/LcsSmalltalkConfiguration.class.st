@@ -20,6 +20,11 @@ LcsSmalltalkConfiguration class >> gsSystemClass [
 ]
 
 { #category : #accessing }
+LcsSmalltalkConfiguration class >> identityDictionaryClass [
+	^ Dictionary
+]
+
+{ #category : #accessing }
 LcsSmalltalkConfiguration class >> identitySetClass [
 	^ IdentitySet
 ]

@@ -68,9 +68,29 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 			tooltip: 'Search character encoders by identifier'
 ]
 
+{ #category : #accessing }
+LcsDomainObject class >> hasInitializedEnvironment [
+	self withAllSubclasses detect: [ :each | each slotDefinitions isNil ] ifNone: [ ^ true ].
+	^ false
+]
+
+{ #category : #accessing }
+LcsDomainObject class >> hasNoninitializedEnvironment [
+	self withAllSubclasses do: [ :each | 
+		each slotDefinitions notNil ifTrue: [ self halt. ^ false ] ].
+	^ true
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> initializeEnvironment [
+	"self slotDefinitions: (LcsSlotDefinitions newOn: self).
+	self subclassesDo: [ :each | each initializeEnvironment]"
+]
+
 { #category : #'slot definitions' }
 LcsDomainObject class >> initializeSlotDefinitions [
 	self slotDefinitions: (LcsSlotDefinitions newOn: self).
+	self currentSystem addToSlotModel: self slotDefinitions.
 	self addSlotDefinitions
 ]
 
@@ -80,6 +100,12 @@ LcsDomainObject class >> new [
 	newObject := self basicNew initialize.
 	self currentSystem ifNotNil: [self addToUnitOfWork: newObject].
 	^ newObject
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> releaseEnvironment [
+	self slotDefinitions: nil.
+	self subclassesDo: [ :each | each releaseEnvironment]
 ]
 
 { #category : #'slot definitions' }

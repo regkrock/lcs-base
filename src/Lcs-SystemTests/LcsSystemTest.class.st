@@ -9,13 +9,13 @@ LcsSystemTest >> testCreation [
 
 	| currentUnitOfWork system |
 
-	LcsSystemManager removeCurrentSystem.
+	LcsApplicationEnvironment removeCurrentSystem.
 	self assert: self currentSystem isNil. 
 	system := LcsSystemManager createMainSystem.
 	self assert: self currentSystem notNil.
 
 	currentUnitOfWork := self currentSystem currentUnitOfWork.
-	self assert: LcsUnitOfWorkManager singleton  unitsOfWork notEmpty. 
+	self assert: LcsApplicationEnvironment unitOfWorkManager  unitsOfWork notEmpty. 
 	self assert: currentUnitOfWork notNil.
 	self assert: currentUnitOfWork system identicalTo: self currentSystem.
 	self assert: self currentSystem notNil.

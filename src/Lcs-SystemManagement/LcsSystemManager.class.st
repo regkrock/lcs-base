@@ -2,7 +2,7 @@ Class {
 	#name : #LcsSystemManager,
 	#superclass : #LcsObject,
 	#instVars : [
-		'currentSystem'
+		'parent'
 	],
 	#classInstVars : [
 		'Singleton'
@@ -12,7 +12,7 @@ Class {
 
 { #category : #system }
 LcsSystemManager class >> addNewSystem: aSystem [
-	self singleton addNewSystem: aSystem 
+	LcsApplicationEnvironment currentApplicationEnvironment addNewSystem: aSystem 
 ]
 
 { #category : #accessing }
@@ -22,48 +22,44 @@ LcsSystemManager class >> clearCurrentUnitOfWork [
 
 { #category : #'instance creation' }
 LcsSystemManager class >> createUnitOfWork [
-	LcsUnitOfWorkManager createUnitOfWork
+	LcsApplicationEnvironment createUnitOfWork
 ]
 
 { #category : #accessing }
 LcsSystemManager class >> currentSystem [
-	^ (self singleton ifNil: [ ^ nil ] ) currentSystem
+	^ LcsApplicationEnvironment currentSystem
 ]
 
 { #category : #accessing }
 LcsSystemManager class >> currentSystem: aSystem [
-	self singleton currentSystem: aSystem
+	LcsApplicationEnvironment currentSystem: aSystem
 ]
 
 { #category : #accessing }
 LcsSystemManager class >> currentUnitOfWork [
-	^ LcsUnitOfWorkManager currentUnitOfWork
-]
-
-{ #category : #initialize }
-LcsSystemManager class >> initializeEnvironment [
-	LcsSmalltalkConfiguration gsSystemClass abortTransaction.
-	self singleton ifNotNil: [self releaseEnvironment].
-	LcsUnitOfWorkManager initializeEnvironment.
-	self singleton ifNil: [ Singleton := self new ].
-	LcsSmalltalkConfiguration gsSystemClass commitTransaction.
-	^self singleton
-
+	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
 { #category : #accessing }
-LcsSystemManager class >> releaseEnvironment [
-	self abortTransaction.
-	LcsUnitOfWorkManager releaseEnvironment.
-	self singleton ifNil: [ ^ self ].
-	self singleton releaseEnvironment.
-	self singleton: nil.
-	self commitTransaction
+LcsSystemManager class >> hasCurrentSystem [
+	^ self singleton notNil and: [ self singleton hasCurrentSystem ]
+]
+
+{ #category : #accessing }
+LcsSystemManager class >> hasNoCurrentSystem [
+	^ self singleton isNil or: [ self singleton hasNoCurrentSystem ]
+]
+
+{ #category : #accessing }
+LcsSystemManager class >> newOn: anAppicaltionEnvironment [
+	^ self new
+		initializeOn: anAppicaltionEnvironment;
+		yourself
 ]
 
 { #category : #accessing }
 LcsSystemManager class >> removeCurrentSystem [
-	(self singleton ifNil: [ ^ self ]) removeCurrentSystem
+	LcsApplicationEnvironment removeCurrentSystem
 ]
 
 { #category : #accessing }
@@ -90,6 +86,31 @@ LcsSystemManager >> currentSystem [
 { #category : #accessing }
 LcsSystemManager >> currentSystem: anObject [
 	currentSystem := anObject
+]
+
+{ #category : #accessing }
+LcsSystemManager >> hasCurrentSystem [
+	^self currentSystem notNil
+]
+
+{ #category : #accessing }
+LcsSystemManager >> hasNoCurrentSystem [
+	^self currentSystem isNil
+]
+
+{ #category : #accessing }
+LcsSystemManager >> initializeOn: anAppicaltionEnvironment [ 
+	self parent: anAppicaltionEnvironment 
+]
+
+{ #category : #accessing }
+LcsSystemManager >> parent [
+	^ parent
+]
+
+{ #category : #accessing }
+LcsSystemManager >> parent: anObject [
+	parent := anObject
 ]
 
 { #category : #accessing }

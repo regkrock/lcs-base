@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-BarebonesSystemTests'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxBarebonesSystemTest >> testAddDomainObject [
 	| domainObject |
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
@@ -19,10 +19,10 @@ LxxBarebonesSystemTest >> testAddDomainObject [
 	self assert: self currentSystem currentUnitOfWork addedObjects any domainObject identicalTo: domainObject
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxBarebonesSystemTest >> testBarebonesCreation [
-	LcsSystemManager releaseEnvironment.
-	LcsSystemManager initializeEnvironment.
+	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment initializeEnvironment.
 
 	LxxBarebonesSystem newSystem.
 	self assert: LcsUnitOfWorkManager currentUnitOfWork hasNoChanges.
@@ -33,7 +33,7 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 	self assert: LcsSystemManager currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxBarebonesSystemTest >> testChangedSlotInDomainObject [
 	| domainObject |
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
@@ -64,14 +64,14 @@ LxxBarebonesSystemTest >> testChangedSlotInDomainObject [
 LxxBarebonesSystemTest >> testCreation [
 	LxxBarebonesSystem newSystem.
 	self assert: self currentUnitOfWork hasNoChanges.
-	self assert: (self currentSystem slotDefinitionNamed: 'persons' ) notNil.
-	self assert: self currentSystem persons class == LcsSmalltalkConfiguration identitySetClass.
+	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
+	self assert: self currentSystem persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
 	self assert: LxxBarebonesPerson slotDefinitions hasElements.
 	self assert: self currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxBarebonesSystemTest >> testCreationOfNewSystem [
 	LxxBarebonesSystem newSystem.
 	self assert: LcsSystemManager currentSystem class identicalTo: LxxBarebonesSystem.
@@ -82,11 +82,11 @@ LxxBarebonesSystemTest >> testCreationOfNewSystem [
 	self assert: LcsSystemManager currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxBarebonesSystemTest >> testCreationWithBareBonesSystem [
 	| domainObject |
-	LcsSystemManager releaseEnvironment.
-	LcsSystemManager initializeEnvironment.
+	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment initializeEnvironment.
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
@@ -95,7 +95,7 @@ LxxBarebonesSystemTest >> testCreationWithBareBonesSystem [
 	self assert: (domainObject slotDefintions isKindOf: LcsSlotDefinitions) .
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxBarebonesSystemTest >> testNewUnitOfWorkInSystem [
 	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
 	self assert: (self currentSystem currentUnitOfWork system == self  currentSystem)

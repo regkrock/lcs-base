@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsObject,
 	#instVars : [
 		'currentUnitOfWork',
-		'unitsOfWork'
+		'unitsOfWork',
+		'parent'
 	],
 	#classInstVars : [
 		'Singleton'
@@ -18,7 +19,7 @@ LcsUnitOfWorkManager class >> clearAllUnitsOfWork [
 
 { #category : #accessing }
 LcsUnitOfWorkManager class >> clearCurrentUnitOfWork [
-	self singleton clearCurrentUnitOfWork
+	LcsApplicationEnvironment clearCurrentUnitOfWork
 ]
 
 { #category : #accessing }
@@ -33,7 +34,7 @@ LcsUnitOfWorkManager class >> clearUnitOfWorkFor: aSystem [
 
 { #category : #api }
 LcsUnitOfWorkManager class >> createUnitOfWork [
-	^ self singleton createUnitOfWork
+	^ LcsApplicationEnvironment createUnitOfWork
 ]
 
 { #category : #api }
@@ -43,7 +44,27 @@ LcsUnitOfWorkManager class >> createUnitOfWorkFor: aSystem [
 
 { #category : #accessing }
 LcsUnitOfWorkManager class >> currentUnitOfWork [
-	^ (self singleton ifNil: [ ^ nil ]) currentUnitOfWork
+	^ LcsApplicationEnvironment currentApplicationEnvironment currentUnitOfWork
+]
+
+{ #category : #accessing }
+LcsUnitOfWorkManager class >> hasCurrentUnitOfWork [
+	^ (self singleton ifNil: [ ^false ]) hasCurrentUnitOfWork
+]
+
+{ #category : #accessing }
+LcsUnitOfWorkManager class >> hasInitializedEnvironment [
+	^ self singleton notNil
+]
+
+{ #category : #accessing }
+LcsUnitOfWorkManager class >> hasNoCurrentUnitOfWork [
+	^self currentUnitOfWork isNil
+]
+
+{ #category : #accessing }
+LcsUnitOfWorkManager class >> hasNoninitializedEnvironment [
+	^ self singleton isNil
 ]
 
 { #category : #initialize }
@@ -55,15 +76,15 @@ LcsUnitOfWorkManager class >> initializeEnvironment [
 
 { #category : #accessing }
 LcsUnitOfWorkManager class >> new [
-	Singleton ifNil: [self singleton: self basicNew initialize].
-	^self singleton
+	^LcsApplicationEnvironment unitOfWorkManager
+
 ]
 
-{ #category : #release }
-LcsUnitOfWorkManager class >> releaseEnvironment [
-	self singleton ifNil: [^self].
-	self singleton releaseEnvironment.
-	self singleton: nil
+{ #category : #accessing }
+LcsUnitOfWorkManager class >> newOn: anApplicationEnvironment [
+	^ self basicNew initialize
+		initializeOn: anApplicationEnvironment;
+		yourself
 ]
 
 { #category : #accessing }
@@ -119,10 +140,25 @@ LcsUnitOfWorkManager >> currentUnitOfWork: anObject [
 	currentUnitOfWork := anObject
 ]
 
+{ #category : #accessing }
+LcsUnitOfWorkManager >> hasCurrentUnitOfWork [
+	^self currentUnitOfWork notNil
+]
+
 { #category : #initialize }
 LcsUnitOfWorkManager >> initialize [
 	super initialize.
 	self unitsOfWork: OrderedCollection new
+]
+
+{ #category : #accessing }
+LcsUnitOfWorkManager >> initializeOn: anApplicationEnvironment [ 
+	self parent: anApplicationEnvironment
+]
+
+{ #category : #accessing }
+LcsUnitOfWorkManager >> parent: anApplicationEnvironment [ 
+	parent := anApplicationEnvironment
 ]
 
 { #category : #'release ' }

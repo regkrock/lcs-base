@@ -6,7 +6,8 @@ Class {
 	#superclass : #LcsBaseModule,
 	#instVars : [
 		'currentUnitOfWork',
-		'unitsOfWork'
+		'unitsOfWork',
+		'slotModel'
 	],
 	#category : #'Lcs-DomainBase'
 }
@@ -31,14 +32,20 @@ LcsBaseSystem class >> newInUnitOfWorK: aUnitOfWork [
 
 { #category : #'instance creation' }
 LcsBaseSystem class >> newSystem [
+	LcsApplicationEnvironment hasInitializedEnvironment ifFalse: [ LcsApplicationEnivronmentNotInitializedError signal: 'Unable to create a system because application environment is not initialized' ].
 	self removeCurrentSystem.
-	(self newInUnitOfWorK: LcsUnitOfWorkManager createUnitOfWork) .
+	self newInUnitOfWorK: LcsUnitOfWorkManager createUnitOfWork.
 	^ self currentSystem
 ]
 
 { #category : #system }
 LcsBaseSystem class >> removeCurrentSystem [
-	LcsSystemManager removeCurrentSystem
+	LcsApplicationEnvironment removeCurrentSystem
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
+	self slotModel addSlotDefinitions: aSlotDefinitions
 ]
 
 { #category : #'building - model' }
@@ -61,6 +68,7 @@ LcsBaseSystem >> domainClasses [
 LcsBaseSystem >> initialize [
 	super initialize.
 	self 
+		slotModel: (LcsSlotModel newOn: self);
 		buildSlotDefinitions;
 		buildModules;
 		initializeModel
@@ -73,6 +81,16 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 	self currentSystem initialize.
 	self currentSystem currentUnitOfWork applyChanges.
 
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> slotModel [
+	^ slotModel
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> slotModel: anObject [
+	slotModel := anObject
 ]
 
 { #category : #accessing }

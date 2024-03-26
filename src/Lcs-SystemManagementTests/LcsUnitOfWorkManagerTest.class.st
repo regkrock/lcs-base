@@ -7,44 +7,26 @@ Class {
 { #category : #accessing }
 LcsUnitOfWorkManagerTest >> testClearCurrentUnitOfWork [
 	| unitOfWork |
-	LcsUnitOfWorkManager releaseEnvironment.
-	LcsUnitOfWorkManager initializeEnvironment.
+	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment initializeEnvironment.
 	
 	unitOfWork := LcsUnitOfWorkManager createUnitOfWork.
 	self assert: LcsUnitOfWorkManager currentUnitOfWork identicalTo: unitOfWork.
-	self assert: LcsUnitOfWorkManager singleton unitsOfWork size = 1.
+	self assert: LcsApplicationEnvironment unitOfWorkManager unitsOfWork size = 1.
 	
 	LcsUnitOfWorkManager clearCurrentUnitOfWork.
 	self assert: LcsUnitOfWorkManager currentUnitOfWork identicalTo:nil.
-	self assert: LcsUnitOfWorkManager singleton unitsOfWork isEmpty
+	self assert: LcsApplicationEnvironment unitOfWorkManager unitsOfWork isEmpty
 ]
 
 { #category : #accessing }
 LcsUnitOfWorkManagerTest >> testCreation [
 	| unitOfWorkManager |
-	LcsUnitOfWorkManager releaseEnvironment.
-	unitOfWorkManager := LcsUnitOfWorkManager initializeEnvironment.
-	self assert: LcsUnitOfWorkManager new identicalTo: LcsUnitOfWorkManager singleton.
-	self assert: unitOfWorkManager identicalTo: LcsUnitOfWorkManager singleton.
-	self assert: unitOfWorkManager notNil
-
-]
-
-{ #category : #accessing }
-LcsUnitOfWorkManagerTest >> testInitializeAndReleaseEnvironment [
-	| unitOfWorkManager |
-	LcsUnitOfWorkManager releaseEnvironment.
-	unitOfWorkManager := LcsUnitOfWorkManager initializeEnvironment.
-	self assert: unitOfWorkManager notNil.
-	self assert: unitOfWorkManager class name equals: #LcsUnitOfWorkManager.
-	self assert: unitOfWorkManager equals: LcsUnitOfWorkManager singleton.
-	self assert: LcsUnitOfWorkManager singleton unitsOfWork isEmpty.
-	self assert: LcsUnitOfWorkManager singleton currentUnitOfWork isNil.
+	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment initializeEnvironment.
 	
-	LcsUnitOfWorkManager releaseEnvironment.
-	self assert: unitOfWorkManager class name equals: #LcsUnitOfWorkManager.
-	self assert: unitOfWorkManager currentUnitOfWork isNil.
-	self assert: unitOfWorkManager unitsOfWork isEmpty.
-
+	unitOfWorkManager := LcsUnitOfWorkManager new.
+	self assert: unitOfWorkManager identicalTo: LcsApplicationEnvironment currentApplicationEnvironment unitOfWorkManager.
+	self assert: unitOfWorkManager notNil
 
 ]

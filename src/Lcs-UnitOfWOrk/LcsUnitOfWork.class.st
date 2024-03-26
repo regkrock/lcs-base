@@ -8,14 +8,6 @@ Class {
 }
 
 { #category : #initialize }
-LcsUnitOfWork class >> releaseEnvironment [
-	#LcsUnitOfWorkManager asClass releaseEnvironment.
-	self singleton ifNil: [ ^ self ].
-	self singleton releaseEnvironment.
-	self singleton: nil
-]
-
-{ #category : #initialize }
 LcsUnitOfWork class >> singleton [
 	^ Singleton
 ]

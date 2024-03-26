@@ -27,7 +27,7 @@ LcsDomainTestCase >> commitTransaction [
 
 { #category : #accessing }
 LcsDomainTestCase >> currentSystem [
-	^ LcsSystemManager currentSystem
+	^ LcsApplicationEnvironment currentSystem
 ]
 
 { #category : #accessing }
@@ -48,13 +48,13 @@ LcsDomainTestCase >> savedSystem: anObject [
 { #category : #running }
 LcsDomainTestCase >> setUp [
 	super setUp.
-	self abortTransaction	.
-	LcsSystemManager singleton isNil ifTrue: [LcsSystemManager initializeEnvironment].
+	self abortTransaction.
+	LcsApplicationEnvironment hasInitializedEnvironment
+		ifFalse: [ LcsApplicationEnvironment initializeEnvironment ].
 	self savedSystem: LcsSystemManager currentSystem.
 	LcsSystemManager removeCurrentSystem.
 	self setupSunitSystem.
-	self commitTransaction.
-
+	self commitTransaction
 ]
 
 { #category : #accessing }

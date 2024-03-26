@@ -211,14 +211,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-12T10:19:09.699324-04:00"
+						"dateAndTimeString" : "2024-03-26T11:35:32.090493-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "O1GLE9nPDQCMo0gMBRXooQ=="
 				},
-				"code" : "LcsSystemManager clearCurrentSystem"
+				"code" : "LcsSystemManager removeCurrentSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -256,6 +256,77 @@
 					"__type" : "textStyle"
 				},
 				"string" : "####Create A System"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T12:44:54.155186-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T12:45:51.595162-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "cZ3VvvTQDQCpsvHFBex25w=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "To create a system, the application environment must be initialized. Execute the following code snippet to ensure the application is initialized."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T12:45:57.277671-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T13:37:09.091971-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "p6ffwvTQDQCtGY5eBex25w=="
+				},
+				"code" : "LcsApplicationEnvironment hasInitializedEnvironment ifFalse: [ LcsSystemManager initializeEnvironment ]"
 			},
 			{
 				"__type" : "textSnippet",
@@ -356,14 +427,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-25T14:00:18.456721-04:00"
+						"dateAndTimeString" : "2024-03-26T12:47:38.466161-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "LHUMHtnPDQCU2sD8BRXooQ=="
 				},
-				"code" : "\rLcsSystemManager createMainSystem"
+				"code" : "\rLcsSystemManager createMainSystem inspect"
 			},
 			{
 				"__type" : "textSnippet",
@@ -406,40 +477,6 @@
 								"__type" : "textStyle"
 							},
 							"string" : "The code snippet below removes the current system.  Removing a system also removes its corresponding unit(s) of work"
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-25T14:10:55.984014-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-25T14:11:06.130409-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "hmbw1OHQDQC06lwvBGvZTg=="
-							},
-							"code" : "LcsSystemManager clearCurrentSystem"
 						}
 					]
 				},
@@ -473,186 +510,6 @@
 					"__type" : "textStyle"
 				},
 				"string" : "###Remove Current System"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-25T14:21:15.283452-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-25T14:21:25.817209-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "iCTa+eHQDQC5pqVpBGvZTg=="
-							},
-							"code" : "thisSnippet moveFollowingSnippetsToPage: 'Unit o'."
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-12T10:32:18.557908-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-12T10:41:55.906495-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "7VL5QtnPDQCgW1IhBRXooQ=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "The Unif of Work class,  {{gtClass:name=LcsUnitOfWork}}, keeps track of the changes made to the system. When all of the changes have been made they are applied by applyinng the changes {{gtMethod:name=LcsUnitOfWork>>applyChanges}}"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-12T10:42:37.199986-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-25T14:16:38.703555-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "7DcEaNnPDQC54fyrBRXooQ=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "The current unit ow work is also accessed view the System Manager. "
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-12T10:44:08.363269-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-13T07:38:15.8609-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "1UNzbdnPDQC8dFUfBRXooQ=="
-							},
-							"code" : "LcsSystemManager currentUnitOfWork"
-						}
-					]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-12T10:27:08.553561-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-25T10:56:20.903376-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "S+EgJ9nPDQCZbQ35BRXooQ=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "###Current Unit Of Work"
 			}
 		]
 	},

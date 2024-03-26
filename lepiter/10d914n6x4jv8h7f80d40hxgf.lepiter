@@ -211,14 +211,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-12T10:19:09.699324-04:00"
+						"dateAndTimeString" : "2024-03-26T11:35:32.090493-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "O1GLE9nPDQCMo0gMBRXooQ=="
 				},
-				"code" : "LcsSystemManager clearCurrentSystem"
+				"code" : "LcsSystemManager removeCurrentSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -256,6 +256,77 @@
 					"__type" : "textStyle"
 				},
 				"string" : "####Create A System"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T12:44:54.155186-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T12:45:51.595162-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "cZ3VvvTQDQCpsvHFBex25w=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "To create a system, the application environment must be initialized. Execute the following code snippet to ensure the application is initialized."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T12:45:57.277671-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T13:37:28.516752-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "p6ffwvTQDQCtGY5eBex25w=="
+				},
+				"code" : "LcsApplicationEnvironment hasInitializedEnvironment ifFalse: [ LcsApplicationEnvironment initializeEnvironment ]"
 			},
 			{
 				"__type" : "textSnippet",
@@ -356,14 +427,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-25T14:00:18.456721-04:00"
+						"dateAndTimeString" : "2024-03-26T12:47:38.466161-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "LHUMHtnPDQCU2sD8BRXooQ=="
 				},
-				"code" : "\rLcsSystemManager createMainSystem"
+				"code" : "\rLcsSystemManager createMainSystem inspect"
 			},
 			{
 				"__type" : "textSnippet",
