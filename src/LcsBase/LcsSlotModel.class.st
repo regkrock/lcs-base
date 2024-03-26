@@ -2,7 +2,7 @@ Class {
 	#name : #LcsSlotModel,
 	#superclass : #LcsObject,
 	#instVars : [
-		'slotDefintions',
+		'slotDefinitions',
 		'parent'
 	],
 	#category : #LcsBase
@@ -17,13 +17,18 @@ LcsSlotModel class >> newOn: aSystem [
 
 { #category : #accessing }
 LcsSlotModel >> addSlotDefinitions: aSlotDefinitions [
-	self slotDefintions at: aSlotDefinitions parent put: aSlotDefinitions
+	self slotDefinitions at: aSlotDefinitions parent put: aSlotDefinitions
+]
+
+{ #category : #accessing }
+LcsSlotModel >> hasSlotDefinitions [
+	^ self slotDefinitions notEmpty
 ]
 
 { #category : #accessing }
 LcsSlotModel >> initialize [
 	super initialize.
-	self slotDefintions: LcsSmalltalkConfiguration identityDictionaryClass new
+	self slotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new
 ]
 
 { #category : #initialization }
@@ -32,16 +37,23 @@ LcsSlotModel >> parent: aSystem [
 ]
 
 { #category : #accessing }
+LcsSlotModel >> restore [
+	LcsDomainObject releaseEnvironment.
+	self slotDefinitions keysAndValuesDo: [ :eachKey :eachValue | eachKey slotDefinitions: eachValue ]
+
+]
+
+{ #category : #accessing }
 LcsSlotModel >> restoreSlotDefinitions [
-	self slotDefintions keysAndValuesDo: [ :eachClass :eachSlotDefinitions | eachClass slotDefinitions: eachSlotDefinitions]
+	self slotDefinitions keysAndValuesDo: [ :eachClass :eachSlotDefinitions | eachClass slotDefinitions: eachSlotDefinitions] 
 ]
 
 { #category : #accessing }
-LcsSlotModel >> slotDefintions [
-	^ slotDefintions
+LcsSlotModel >> slotDefinitions [
+	^ slotDefinitions
 ]
 
 { #category : #accessing }
-LcsSlotModel >> slotDefintions: anObject [
-	slotDefintions := anObject
+LcsSlotModel >> slotDefinitions: anObject [
+	slotDefinitions := anObject
 ]

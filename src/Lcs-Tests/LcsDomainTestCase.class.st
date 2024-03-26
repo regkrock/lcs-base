@@ -66,7 +66,7 @@ LcsDomainTestCase >> setupSunitSystem [
 LcsDomainTestCase >> tearDown [
 	super tearDown.
 	self abortTransaction.
-	LcsSystemManager currentSystem: self savedSystem.
+	LcsApplicationEnvironment makeCurrentSystem: self savedSystem. 
 	self commitTransaction.
 
 ]

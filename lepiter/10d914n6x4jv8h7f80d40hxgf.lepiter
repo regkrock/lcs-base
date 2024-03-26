@@ -92,6 +92,80 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T16:40:23.161306-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T16:40:43.947326-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "KgpECfjQDQChrgfjAhyzpQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The purpose of this class is to manage the system(s). There is normally only one system {{gtClass:LcsMainSystem}}. But there are other system that can be used for development work. The purpose of the System Manager is to manage the systems - creation, access, deletion."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T16:40:40.25687-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-26T16:40:40.25687-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Nl1XCfjQDQChtlsWAhyzpQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-03-12T10:15:32.445907-04:00"
 					}
 				},
@@ -103,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-12T10:26:24.973464-04:00"
+						"dateAndTimeString" : "2024-03-26T16:40:23.169076-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The purpose of this class is to manage the system(s). There is normally only one system (LcsSystem). But there are other system that can be used for development work. The purpose of the System Manager is to manage the systems - creation, access, deletion.\n\nTo access the current system. If not system exists, this will return nil."
+				"string" : "To access the current system. If not system exists, this will return nil."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -427,14 +501,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-26T12:47:38.466161-04:00"
+						"dateAndTimeString" : "2024-03-26T16:41:57.901891-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "LHUMHtnPDQCU2sD8BRXooQ=="
 				},
-				"code" : "\rLcsSystemManager createMainSystem inspect"
+				"code" : "\rLcsSystemManager createMainSystem"
 			},
 			{
 				"__type" : "textSnippet",

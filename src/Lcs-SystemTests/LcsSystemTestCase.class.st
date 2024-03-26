@@ -5,7 +5,6 @@ Class {
 }
 
 { #category : #accessing }
-LcsSystemTestCase >> setUp [
-	super setUp.
+LcsSystemTestCase >> setupSunitSystem [
 	LcsSystemManager createMainSystem
 ]

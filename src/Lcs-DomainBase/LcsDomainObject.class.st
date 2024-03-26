@@ -69,16 +69,8 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 ]
 
 { #category : #accessing }
-LcsDomainObject class >> hasInitializedEnvironment [
-	self withAllSubclasses detect: [ :each | each slotDefinitions isNil ] ifNone: [ ^ true ].
-	^ false
-]
-
-{ #category : #accessing }
 LcsDomainObject class >> hasNoninitializedEnvironment [
-	self withAllSubclasses do: [ :each | 
-		each slotDefinitions notNil ifTrue: [ self halt. ^ false ] ].
-	^ true
+	^ self withAllSubclasses allSatisfy: [ :each | each slotDefinitions isNil ]
 ]
 
 { #category : #'slot definitions' }
@@ -183,6 +175,6 @@ LcsDomainObject >> slotDefintions [
 
 { #category : #validation }
 LcsDomainObject >> validateConfiguration [
-	self assert: self slotDefintions class name equals: #LcsSlotDefinitions.
-	self slotDefintions validateConfiguration
+	self assert: self slotDefinitions class name equals: #LcsSlotDefinitions.
+	self slotDefinitions validateConfiguration
 ]

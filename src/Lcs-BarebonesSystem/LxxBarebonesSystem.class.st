@@ -34,7 +34,6 @@ LxxBarebonesSystem >> domainClasses [
 		add: LxxBarebonesSystem;
 		add: LxxBarebonesPerson;
 		add: LxxBarebonesSystemConfiguration;
-		add: self class;
 		yourself
 ]
 

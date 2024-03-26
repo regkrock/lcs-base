@@ -50,6 +50,11 @@ LcsSystemManager class >> hasNoCurrentSystem [
 	^ self singleton isNil or: [ self singleton hasNoCurrentSystem ]
 ]
 
+{ #category : #running }
+LcsSystemManager class >> makeCurrentSystem: aSystem [ 
+	LcsApplicationEnvironment currentApplicationEnvironment makeCurrentSystem: aSystem
+]
+
 { #category : #accessing }
 LcsSystemManager class >> newOn: anAppicaltionEnvironment [
 	^ self new
@@ -101,6 +106,12 @@ LcsSystemManager >> hasNoCurrentSystem [
 { #category : #accessing }
 LcsSystemManager >> initializeOn: anAppicaltionEnvironment [ 
 	self parent: anAppicaltionEnvironment 
+]
+
+{ #category : #accessing }
+LcsSystemManager >> makeCurrentSystem: aSystem [
+	self currentSystem: aSystem.
+	self currentSystem restoreSlotModel
 ]
 
 { #category : #accessing }

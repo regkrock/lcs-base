@@ -64,6 +64,11 @@ LcsBaseSystem >> domainClasses [
 	^ OrderedCollection new
 ]
 
+{ #category : #accessing }
+LcsBaseSystem >> hasSlotDefinitions [
+	^ self slotModel hasSlotDefinitions
+]
+
 { #category : #initialization }
 LcsBaseSystem >> initialize [
 	super initialize.
@@ -81,6 +86,11 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 	self currentSystem initialize.
 	self currentSystem currentUnitOfWork applyChanges.
 
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> restoreSlotModel [
+	self slotModel restore
 ]
 
 { #category : #accessing }

@@ -85,7 +85,7 @@ LcsBaseModule >> initializeDomainCollections [
 
 { #category : #initialization }
 LcsBaseModule >> initializeModel [
-	self slotDefintions initializeModel: self.
+	self slotDefinitions initializeModel: self.
 	self modules initializeModel
 ]
 

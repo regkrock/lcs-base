@@ -46,12 +46,32 @@ LcsApplicationEnvironment class >> hasInitializedEnvironment [
 	^ self currentApplicationEnvironment notNil
 ]
 
+{ #category : #accessing }
+LcsApplicationEnvironment class >> hasNoCurrentSystem [
+	self currentApplicationEnvironment ifNil: [ ^ true ] ifNotNil: [ self currentApplicationEnvironment currentSystem isNil ]
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment class >> hasNoCurrentUnitOfWork [
+	self currentApplicationEnvironment ifNil: [ ^ true ] ifNotNil: [ self currentApplicationEnvironment currentUnitOfWork isNil ]
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment class >> hasNoninitializedEnvironment [
+	^ self currentApplicationEnvironment isNil
+]
+
 { #category : #initiailize }
 LcsApplicationEnvironment class >> initializeEnvironment [
 	self singleton notNil ifTrue: [self error: 'Environment is already initialized'].
 	LcsSmalltalkConfiguration gsSystemClass abortTransaction.
 	self singleton: self basicNew initialize.
 	LcsSmalltalkConfiguration gsSystemClass commitTransaction.
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment class >> makeCurrentSystem: aSystem [
+	self currentApplicationEnvironment makeCurrentSystem: aSystem
 ]
 
 { #category : #'instace creation' }
@@ -71,6 +91,11 @@ LcsApplicationEnvironment class >> releaseEnvironment [
 { #category : #accessing }
 LcsApplicationEnvironment class >> removeCurrentSystem [
 	self currentApplicationEnvironment ifNotNil: [ self currentApplicationEnvironment removeCurrentSystem ]
+]
+
+{ #category : #running }
+LcsApplicationEnvironment class >> restoreSystem: aSystem [
+	self currentApplicationEnvironment restoreSystem: aSystem 
 ]
 
 { #category : #accessing }
@@ -123,6 +148,11 @@ LcsApplicationEnvironment >> initialize [
 	super initialize.
 	self systemManager: (LcsSystemManager newOn: self).
 	self unitOfWorkManager: (LcsUnitOfWorkManager newOn: self).
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment >> makeCurrentSystem: aSystem [
+	self systemManager makeCurrentSystem: aSystem
 ]
 
 { #category : #accessing }

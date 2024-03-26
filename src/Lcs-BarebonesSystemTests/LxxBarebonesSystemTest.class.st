@@ -21,6 +21,7 @@ LxxBarebonesSystemTest >> testAddDomainObject [
 
 { #category : #tests }
 LxxBarebonesSystemTest >> testBarebonesCreation [
+	| domainClassesNotUsedInTheSystem allDomainClasses |
 	LcsApplicationEnvironment releaseEnvironment.
 	LcsApplicationEnvironment initializeEnvironment.
 
@@ -30,7 +31,12 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 	self assert: LcsSystemManager currentSystem persons class == LcsSmalltalkConfiguration identitySetClass.
 	
 	self assert: LxxBarebonesPerson slotDefinitions hasElements.
-	self assert: LcsSystemManager currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration
+	self assert: LcsSystemManager currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration.
+	self assert: LcsSystemManager currentSystem hasSlotDefinitions .
+	self assert: LcsSystemManager currentSystem slotModel slotDefinitions size = LcsSystemManager currentSystem domainClasses size.
+	allDomainClasses := LcsDomainObject withAllSubclasses asOrderedCollection.
+	LcsSystemManager currentSystem slotModel slotDefinitions keys do: [:each | allDomainClasses remove: each ifAbsent: [ ] ].
+	self assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotDefinitions isNil ])
 ]
 
 { #category : #tests }
@@ -92,7 +98,7 @@ LxxBarebonesSystemTest >> testCreationWithBareBonesSystem [
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem == LcsSystemManager currentSystem.
 	self assert: (self currentSystem currentUnitOfWork addRecordFor: domainObject) domainObject == domainObject.
-	self assert: (domainObject slotDefintions isKindOf: LcsSlotDefinitions) .
+	self assert: (domainObject slotDefinitions isKindOf: LcsSlotDefinitions) .
 ]
 
 { #category : #tests }
