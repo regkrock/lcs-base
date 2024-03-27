@@ -90,7 +90,7 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 
 { #category : #accessing }
 LcsBaseSystem >> restoreSlotModel [
-	self slotModel restore
+	self slotModel restoreSlotModel
 ]
 
 { #category : #accessing }

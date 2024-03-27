@@ -37,15 +37,15 @@ LcsSlotModel >> parent: aSystem [
 ]
 
 { #category : #accessing }
-LcsSlotModel >> restore [
-	LcsDomainObject releaseEnvironment.
-	self slotDefinitions keysAndValuesDo: [ :eachKey :eachValue | eachKey slotDefinitions: eachValue ]
-
+LcsSlotModel >> restoreSlotDefinitions [
+	self slotDefinitions keysAndValuesDo: [ :eachClass :eachSlotDefinitions | eachClass slotDefinitions: eachSlotDefinitions] 
 ]
 
 { #category : #accessing }
-LcsSlotModel >> restoreSlotDefinitions [
-	self slotDefinitions keysAndValuesDo: [ :eachClass :eachSlotDefinitions | eachClass slotDefinitions: eachSlotDefinitions] 
+LcsSlotModel >> restoreSlotModel [
+	#LcsDomainObject asClass releaseEnvironment.
+	self slotDefinitions keysAndValuesDo: [ :eachKey :eachValue | eachKey slotDefinitions: eachValue ]
+
 ]
 
 { #category : #accessing }
