@@ -2,10 +2,9 @@ Class {
 	#name : #LcsSystemManager,
 	#superclass : #LcsObject,
 	#instVars : [
-		'parent'
-	],
-	#classInstVars : [
-		'Singleton'
+		'parent',
+		'systems',
+		'currentSystem'
 	],
 	#category : #'Lcs-SystemManagement'
 }
@@ -104,6 +103,11 @@ LcsSystemManager >> hasNoCurrentSystem [
 ]
 
 { #category : #accessing }
+LcsSystemManager >> initialize [
+	self systems: OrderedCollection new
+]
+
+{ #category : #accessing }
 LcsSystemManager >> initializeOn: anAppicaltionEnvironment [ 
 	self parent: anAppicaltionEnvironment 
 ]
@@ -111,7 +115,7 @@ LcsSystemManager >> initializeOn: anAppicaltionEnvironment [
 { #category : #accessing }
 LcsSystemManager >> makeCurrentSystem: aSystem [
 	self currentSystem: aSystem.
-	self currentSystem restoreSlotModel
+	self currentSystem ifNotNil: [ self currentSystem restoreSlotModel ]
 ]
 
 { #category : #accessing }
@@ -126,11 +130,23 @@ LcsSystemManager >> parent: anObject [
 
 { #category : #accessing }
 LcsSystemManager >> releaseEnvironment [
-	self removeCurrentSystem
+	self removeCurrentSystem.
+	self systems: OrderedCollection new
 ]
 
 { #category : #accessing }
 LcsSystemManager >> removeCurrentSystem [
-	LcsUnitOfWorkManager clearUnitOfWorkFor: self currentSystem.
+	self parent unitOfWorkManager clearUnitOfWorkFor: self currentSystem.
+	self systems remove: self currentSystem ifAbsent: [ ].
 	self currentSystem: nil.
+]
+
+{ #category : #accessing }
+LcsSystemManager >> systems [
+	^ systems
+]
+
+{ #category : #accessing }
+LcsSystemManager >> systems: anObject [
+	systems := anObject
 ]

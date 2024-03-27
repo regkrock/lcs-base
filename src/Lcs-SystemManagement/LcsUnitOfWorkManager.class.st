@@ -44,34 +44,17 @@ LcsUnitOfWorkManager class >> createUnitOfWorkFor: aSystem [
 
 { #category : #accessing }
 LcsUnitOfWorkManager class >> currentUnitOfWork [
-	^ LcsApplicationEnvironment currentApplicationEnvironment currentUnitOfWork
+	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
 { #category : #accessing }
 LcsUnitOfWorkManager class >> hasCurrentUnitOfWork [
-	^ (self singleton ifNil: [ ^false ]) hasCurrentUnitOfWork
-]
-
-{ #category : #accessing }
-LcsUnitOfWorkManager class >> hasInitializedEnvironment [
-	^ self singleton notNil
+	^ LcsApplicationEnvironment  hasCurrentUnitOfWork
 ]
 
 { #category : #accessing }
 LcsUnitOfWorkManager class >> hasNoCurrentUnitOfWork [
-	^self currentUnitOfWork isNil
-]
-
-{ #category : #accessing }
-LcsUnitOfWorkManager class >> hasNoninitializedEnvironment [
-	^ self singleton isNil
-]
-
-{ #category : #initialize }
-LcsUnitOfWorkManager class >> initializeEnvironment [
-	self singleton ifNotNil: [self releaseEnvironment].
-	self singleton ifNil: [ self singleton: self new].
-	^ self singleton
+	^ self currentUnitOfWork isNil
 ]
 
 { #category : #accessing }
@@ -88,16 +71,6 @@ LcsUnitOfWorkManager class >> newOn: anApplicationEnvironment [
 ]
 
 { #category : #accessing }
-LcsUnitOfWorkManager class >> singleton [
-	^ Singleton
-]
-
-{ #category : #accessing }
-LcsUnitOfWorkManager class >> singleton: anObject [
-	Singleton := anObject
-]
-
-{ #category : #accessing }
 LcsUnitOfWorkManager >> clearAllUnitsOfWork [
 	self clearCurrentUnitOfWork.
 	self unitsOfWork: OrderedCollection new
@@ -109,7 +82,7 @@ LcsUnitOfWorkManager >> clearCurrentUnitOfWork [
 	self currentUnitOfWork: nil
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsUnitOfWorkManager >> clearUnitOfWorkFor: aSystem [
 	self unitsOfWork copy
 		do: [ :each | each system == aSystem ifTrue: [ self unitsOfWork remove: each ] ].
@@ -140,7 +113,7 @@ LcsUnitOfWorkManager >> currentUnitOfWork: anObject [
 	currentUnitOfWork := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsUnitOfWorkManager >> hasCurrentUnitOfWork [
 	^self currentUnitOfWork notNil
 ]
@@ -154,6 +127,11 @@ LcsUnitOfWorkManager >> initialize [
 { #category : #accessing }
 LcsUnitOfWorkManager >> initializeOn: anApplicationEnvironment [ 
 	self parent: anApplicationEnvironment
+]
+
+{ #category : #accessing }
+LcsUnitOfWorkManager >> parent [
+	^ parent
 ]
 
 { #category : #accessing }

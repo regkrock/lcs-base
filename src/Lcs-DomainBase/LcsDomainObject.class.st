@@ -68,7 +68,7 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 			tooltip: 'Search character encoders by identifier'
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsDomainObject class >> hasNoninitializedEnvironment [
 	^ self withAllSubclasses allSatisfy: [ :each | each slotDefinitions isNil ]
 ]

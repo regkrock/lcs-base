@@ -29,14 +29,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T10:59:13.089078-04:00"
+						"dateAndTimeString" : "2024-03-27T12:23:10.733074-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "WDwk4mXQDQCH/k4kAKwlPw=="
 				},
-				"code" : "| failures errors testResult  |\rfailures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed add: each] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors]].\rresults \r\tadd: 'Passed (' , passed size printString , ' test classes)';\r\tadd: passed;\r\tadd: 'Failed (' , failures size printString , ' failed tests)'.\rfailures isNotEmpty ifTrue: [ results add: failures].\rresults add: 'Errors (' , errors size printString , ' error tests)'.\rerrors isNotEmpty ifTrue: [ results add: errors].\rresults."
+				"code" : "| failures errors testResult  |\rfailures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\rs\t\t\tpassed add: eachs] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors]].\rresults \r\tadd: 'Passed (' , passed size printString , ' test classes)';\r\tadd: passed;\r\tadd: 'Failed (' , failures size printString , ' failed tests)'.\rfailures isNotEmpty ifTrue: [ results add: failures].\rresults add: 'Errors (' , errors size printString , ' error tests)'.\rerrors isNotEmpty ifTrue: [ results add: errors].\rresults."
 			}
 		]
 	},
@@ -59,12 +59,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-19T10:41:48.416314-04:00"
+			"dateAndTimeString" : "2024-03-23T10:59:48.496731-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Test Cases"
+		"title" : "Run All Lcs Test Cases"
 	},
 	"uid" : {
 		"__type" : "uuid",

@@ -41,6 +41,11 @@ LcsApplicationEnvironment class >> currentUnitOfWork [
 	^ self currentApplicationEnvironment ifNotNil: [ self currentApplicationEnvironment currentUnitOfWork ]
 ]
 
+{ #category : #'testing ' }
+LcsApplicationEnvironment class >> hasCurrentUnitOfWork [
+	^ self currentApplicationEnvironment ifNil: [ false ] ifNotNil: [ self currentApplicationEnvironment hasCurrentUnitOfWork]
+]
+
 { #category : #accessing }
 LcsApplicationEnvironment class >> hasInitializedEnvironment [
 	^ self currentApplicationEnvironment notNil
@@ -48,17 +53,27 @@ LcsApplicationEnvironment class >> hasInitializedEnvironment [
 
 { #category : #accessing }
 LcsApplicationEnvironment class >> hasNoCurrentSystem [
-	self currentApplicationEnvironment ifNil: [ ^ true ] ifNotNil: [ self currentApplicationEnvironment currentSystem isNil ]
+	^ self currentApplicationEnvironment ifNil: [ true ] ifNotNil: [ self currentApplicationEnvironment currentSystem isNil ]
 ]
 
 { #category : #accessing }
 LcsApplicationEnvironment class >> hasNoCurrentUnitOfWork [
-	self currentApplicationEnvironment ifNil: [ ^ true ] ifNotNil: [ self currentApplicationEnvironment currentUnitOfWork isNil ]
+	^ self currentApplicationEnvironment ifNil: [ true ] ifNotNil: [ self currentApplicationEnvironment currentUnitOfWork isNil ]
+]
+
+{ #category : #testing }
+LcsApplicationEnvironment class >> hasNoninitializedEnvironment [
+	^ self currentApplicationEnvironment isNil
 ]
 
 { #category : #accessing }
-LcsApplicationEnvironment class >> hasNoninitializedEnvironment [
-	^ self currentApplicationEnvironment isNil
+LcsApplicationEnvironment class >> hasSystemManager [
+	^ self currentApplicationEnvironment ifNil: [ false ] ifNotNil: [ self currentApplicationEnvironment hasSystemManager ]
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment class >> hasUnitOfWorkManager [
+	^ self currentApplicationEnvironment ifNil: [ false ] ifNotNil: [ self currentApplicationEnvironment hasUnitOfWorkManager ]
 ]
 
 { #category : #initiailize }
@@ -71,7 +86,7 @@ LcsApplicationEnvironment class >> initializeEnvironment [
 
 { #category : #accessing }
 LcsApplicationEnvironment class >> makeCurrentSystem: aSystem [
-	self currentApplicationEnvironment makeCurrentSystem: aSystem
+	self currentApplicationEnvironment ifNotNil: [ self currentApplicationEnvironment makeCurrentSystem: aSystem ]
 ]
 
 { #category : #'instace creation' }
@@ -143,6 +158,26 @@ LcsApplicationEnvironment >> currentUnitOfWork [
 	^ self unitOfWorkManager currentUnitOfWork
 ]
 
+{ #category : #testing }
+LcsApplicationEnvironment >> hasCurrentUnitOfWork [
+	^self unitOfWorkManager hasCurrentUnitOfWork
+]
+
+{ #category : #testing }
+LcsApplicationEnvironment >> hasNoCurrentUnitOfWork [
+	^ self unitOfWorkManager hasNoCurrentUnitOfWork
+]
+
+{ #category : #testing }
+LcsApplicationEnvironment >> hasSystemManager [
+	^ self systemManager notNil
+]
+
+{ #category : #testing }
+LcsApplicationEnvironment >> hasUnitOfWorkManager [
+	^self unitOfWorkManager notNil
+]
+
 { #category : #accessing }
 LcsApplicationEnvironment >> initialize [
 	super initialize.
@@ -155,7 +190,7 @@ LcsApplicationEnvironment >> makeCurrentSystem: aSystem [
 	self systemManager makeCurrentSystem: aSystem
 ]
 
-{ #category : #accessing }
+{ #category : #'release\t' }
 LcsApplicationEnvironment >> releaseEnvironment [
 	self systemManager ifNotNil: [ :manager | manager releaseEnvironment ].
 	self unitOfWorkManager ifNotNil: [:manager | manager releaseEnvironment ].
