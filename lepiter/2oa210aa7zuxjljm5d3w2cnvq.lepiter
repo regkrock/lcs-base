@@ -145,7 +145,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-26T09:45:10.241293-04:00"
+									"dateAndTimeString" : "2024-03-27T13:36:48.745313-04:00"
 								}
 							},
 							"uid" : {
@@ -155,7 +155,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "When starting with a pristine environment, the frst step is to initialize the environment. This is done by executing the method below.  This method is responsible for inititializing everything in the environment."
+							"string" : "When starting with a pristine environment, the frst step is to initialize the environment. This is done by executing the method below.  This method is responsible for inititializing everything in the environment.  \n\nIf this fails becuase the system is already initialized, then see the release section below for the code to do the release. Then execute this code again.\n\nUse the inspect button on the code snippet below to insoect and initialized appleication environment."
 						},
 						{
 							"__type" : "pharoSnippet",

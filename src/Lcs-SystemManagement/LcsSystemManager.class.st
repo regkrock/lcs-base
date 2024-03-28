@@ -9,77 +9,34 @@ Class {
 	#category : #'Lcs-SystemManagement'
 }
 
-{ #category : #system }
-LcsSystemManager class >> addNewSystem: aSystem [
-	LcsApplicationEnvironment currentApplicationEnvironment addNewSystem: aSystem 
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> clearCurrentUnitOfWork [
-	LcsUnitOfWorkManager clearCurrentUnitOfWork
+{ #category : #'instance creation' }
+LcsSystemManager class >> new [
+	"Use the #newOn: method"
+	self shouldNotImplement
 ]
 
 { #category : #'instance creation' }
-LcsSystemManager class >> createUnitOfWork [
-	LcsApplicationEnvironment createUnitOfWork
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> currentSystem [
-	^ LcsApplicationEnvironment currentSystem
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> currentSystem: aSystem [
-	LcsApplicationEnvironment currentSystem: aSystem
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> currentUnitOfWork [
-	^ LcsApplicationEnvironment currentUnitOfWork
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> hasCurrentSystem [
-	^ self singleton notNil and: [ self singleton hasCurrentSystem ]
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> hasNoCurrentSystem [
-	^ self singleton isNil or: [ self singleton hasNoCurrentSystem ]
-]
-
-{ #category : #running }
-LcsSystemManager class >> makeCurrentSystem: aSystem [ 
-	LcsApplicationEnvironment currentApplicationEnvironment makeCurrentSystem: aSystem
-]
-
-{ #category : #accessing }
 LcsSystemManager class >> newOn: anAppicaltionEnvironment [
-	^ self new
+	^ self basicNew 
+		initialize;
 		initializeOn: anAppicaltionEnvironment;
 		yourself
 ]
 
-{ #category : #accessing }
-LcsSystemManager class >> removeCurrentSystem [
-	LcsApplicationEnvironment removeCurrentSystem
+{ #category : #api }
+LcsSystemManager >> clearSlotModel [
+	#LcsDomainObject asClass clearSlotModel
 ]
 
 { #category : #accessing }
-LcsSystemManager class >> singleton [
-	^ Singleton
-]
-
-{ #category : #accessing }
-LcsSystemManager class >> singleton: anObject [
-	Singleton := anObject
-]
-
-{ #category : #accessing }
-LcsSystemManager >> addNewSystem: aSystem [
-	aSystem parent: self.
-	self currentSystem: aSystem
+LcsSystemManager >> createCurrentSystemFor: aSystemClass [
+	self suspendCurrentSystem.
+	self currentSystem: (aSystemClass basicNew
+							parent: self;
+							yourself).
+	self currentSystem initializeInUnitOfWork: self unitsOfWorkManager createUnitOfWork.
+	self systems add: self currentSystem.
+	^ self currentSystem
 ]
 
 { #category : #accessing }
@@ -92,30 +49,44 @@ LcsSystemManager >> currentSystem: anObject [
 	currentSystem := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #querry }
+LcsSystemManager >> currentUnitOfWork [
+	^ self unitsOfWorkManager currentUnitOfWork
+]
+
+{ #category : #'testing ' }
 LcsSystemManager >> hasCurrentSystem [
-	^self currentSystem notNil
+	^ self currentSystem notNil
 ]
 
-{ #category : #accessing }
+{ #category : #'testing ' }
 LcsSystemManager >> hasNoCurrentSystem [
-	^self currentSystem isNil
+	^ self currentSystem isNil
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsSystemManager >> initialize [
+	super initialize.
 	self systems: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsSystemManager >> initializeOn: anAppicaltionEnvironment [ 
 	self parent: anAppicaltionEnvironment 
 ]
 
-{ #category : #accessing }
-LcsSystemManager >> makeCurrentSystem: aSystem [
+{ #category : #api }
+LcsSystemManager >> makeSystemCurrent: aSystem [
 	self currentSystem: aSystem.
-	self currentSystem ifNotNil: [ self currentSystem restoreSlotModel ]
+	self unitsOfWorkManager makeSystemCurrent: aSystem.
+	self currentSystem 
+		ifNil: [ self clearSlotModel] 
+		ifNotNil: [ self currentSystem restoreSlotModel ]
+]
+
+{ #category : #querry }
+LcsSystemManager >> numberOfSystems [
+	^ self systems size
 ]
 
 { #category : #accessing }
@@ -128,17 +99,31 @@ LcsSystemManager >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsSystemManager >> releaseEnvironment [
 	self removeCurrentSystem.
 	self systems: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsSystemManager >> removeCurrentSystem [
-	self parent unitOfWorkManager clearUnitOfWorkFor: self currentSystem.
-	self systems remove: self currentSystem ifAbsent: [ ].
+	self removeSystem: self currentSystem
+]
+
+{ #category : #api }
+LcsSystemManager >> removeSystem: aSystem [
+	self parent unitsOfWorkManager removeUnitsOfWorkFor: aSystem.
+	self systems remove: aSystem ifAbsent: [ ].
+	aSystem == self currentSystem ifTrue: [ self currentSystem: nil ]
+]
+
+{ #category : #api }
+LcsSystemManager >> suspendCurrentSystem [
+	| suspendedSystem |
+	suspendedSystem := self currentSystem.
+	self unitsOfWorkManager suspendUnitOfWorkFor: self currentSystem.
 	self currentSystem: nil.
+	^ suspendedSystem
 ]
 
 { #category : #accessing }
@@ -149,4 +134,9 @@ LcsSystemManager >> systems [
 { #category : #accessing }
 LcsSystemManager >> systems: anObject [
 	systems := anObject
+]
+
+{ #category : #accessing }
+LcsSystemManager >> unitsOfWorkManager [
+	^ self parent unitsOfWorkManager
 ]

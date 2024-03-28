@@ -15,8 +15,8 @@ LcsApplicationEnvironmentTest >> testInitializeAndReleaseApplicationEnvironment 
 	self assert: LcsApplicationEnvironment singleton notNil.
 	self assert: (LcsApplicationEnvironment currentApplicationEnvironment systemManager
 						isKindOf: LcsSystemManager).
-	self assert: (LcsApplicationEnvironment currentApplicationEnvironment unitOfWorkManager
-						isKindOf: LcsUnitOfWorkManager).
+	self assert: (LcsApplicationEnvironment currentApplicationEnvironment unitsOfWorkManager
+						isKindOf: LcsUnitsOfWorkManager).
 	self assert: #LcsDomainObject asClass hasNoninitializedEnvironment.
 
 	LcsApplicationEnvironment releaseEnvironment.

@@ -13,3 +13,13 @@ LcsObject class >> abortTransaction [
 LcsObject class >> commitTransaction [
 	LcsSmalltalkConfiguration gsSystemClass commitTransaction
 ]
+
+{ #category : #accessing }
+LcsObject >> printOn: aStream [
+	super printOn: aStream.
+	aStream 
+		nextPutAll: '( id: ';
+		nextPutAll: self hash printString;
+		nextPutAll: ')'
+
+]

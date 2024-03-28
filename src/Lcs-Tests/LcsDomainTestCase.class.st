@@ -25,14 +25,14 @@ LcsDomainTestCase >> commitTransaction [
 	LcsSmalltalkConfiguration gsSystemClass commitTransaction
 ]
 
-{ #category : #accessing }
+{ #category : #'application environment' }
 LcsDomainTestCase >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #accessing }
+{ #category : #'application environment' }
 LcsDomainTestCase >> currentUnitOfWork [
-	^ self currentSystem currentUnitOfWork
+	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
 { #category : #accessing }
@@ -41,32 +41,40 @@ LcsDomainTestCase >> savedSystem [
 ]
 
 { #category : #accessing }
-LcsDomainTestCase >> savedSystem: anObject [
-	savedSystem := anObject
+LcsDomainTestCase >> savedSystem: aSystem [
+	savedSystem := aSystem
 ]
 
 { #category : #running }
 LcsDomainTestCase >> setUp [
 	super setUp.
 	self abortTransaction.
-	LcsApplicationEnvironment hasInitializedEnvironment
-		ifFalse: [ LcsApplicationEnvironment initializeEnvironment ].
-	self savedSystem: LcsSystemManager currentSystem.
-	LcsSystemManager removeCurrentSystem.
+	LcsApplicationEnvironment ensureInitialized.
+	self savedSystem: LcsApplicationEnvironment suspendCurrentSystem.
 	self setupSunitSystem.
 	self commitTransaction
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsDomainTestCase >> setupSunitSystem [
 	"subclasses can override this method to create the system required for testing"
+]
+
+{ #category : #'application environment' }
+LcsDomainTestCase >> systemManager [
+	^ LcsApplicationEnvironment systemManager
 ]
 
 { #category : #running }
 LcsDomainTestCase >> tearDown [
 	super tearDown.
 	self abortTransaction.
-	LcsApplicationEnvironment makeCurrentSystem: self savedSystem. 
+	LcsApplicationEnvironment makeSystemCurrent: self savedSystem. 
 	self commitTransaction.
 
+]
+
+{ #category : #'application environment' }
+LcsDomainTestCase >> unitsOfWorkManager [
+	^ LcsApplicationEnvironment unitsOfWorkManager
 ]

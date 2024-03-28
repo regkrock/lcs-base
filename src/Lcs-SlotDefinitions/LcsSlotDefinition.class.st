@@ -33,12 +33,12 @@ LcsSlotDefinition >> beRequired [
 
 { #category : #accessing }
 LcsSlotDefinition >> currentSystem [
-	^ #LcsSystemManager asClass currentSystem
+	^ #LcsApplicationEnvironment asClass currentSystem
 ]
 
 { #category : #'model \t' }
 LcsSlotDefinition >> currentUnitOfWork [
-	^ #LcsSystemManager asClass currentUnitOfWork
+	^ #LcsApplicationEnvironment asClass currentUnitOfWork
 ]
 
 { #category : #model }

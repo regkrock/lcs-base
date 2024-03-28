@@ -21,15 +21,16 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
-{ #category : #accessing }
-LcsDomainObject class >> currentSystem [
-
-	^ LcsSystemManager currentSystem
+{ #category : #'slot definitions' }
+LcsDomainObject class >> clearSlotModel [
+	self slotDefinitions: nil.
+	self subclassesDo: [ :each | each releaseEnvironment ]
 ]
 
 { #category : #accessing }
-LcsDomainObject class >> currentSystem: aSystem [
-	LcsSystemManager addNewSystem: aSystem
+LcsDomainObject class >> currentSystem [
+
+	^ LcsApplicationEnvironment currentSystem
 ]
 
 { #category : #'unit of work' }
@@ -96,8 +97,7 @@ LcsDomainObject class >> new [
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> releaseEnvironment [
-	self slotDefinitions: nil.
-	self subclassesDo: [ :each | each releaseEnvironment]
+	self clearSlotModel
 ]
 
 { #category : #'slot definitions' }

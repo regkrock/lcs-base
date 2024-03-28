@@ -5,8 +5,6 @@ Class {
 	#name : #LcsBaseSystem,
 	#superclass : #LcsBaseModule,
 	#instVars : [
-		'currentUnitOfWork',
-		'unitsOfWork',
 		'slotModel'
 	],
 	#category : #'Lcs-DomainBase'
@@ -14,7 +12,7 @@ Class {
 
 { #category : #'unit of work' }
 LcsBaseSystem class >> currentUnitOfWork [
-	^ self currentSystem currentUnitOfWork
+	^ self parent currentUnitOfWork
 ]
 
 { #category : #configuration }
@@ -23,19 +21,9 @@ LcsBaseSystem class >> moduleName [
 ]
 
 { #category : #'instance creation' }
-LcsBaseSystem class >> newInUnitOfWorK: aUnitOfWork [ 
-	self currentSystem: self basicNew.
-	self currentSystem initializeInUnitOfWork: aUnitOfWork.
-	^ self currentSystem
-
-]
-
-{ #category : #'instance creation' }
-LcsBaseSystem class >> newSystem [
-	LcsApplicationEnvironment hasInitializedEnvironment ifFalse: [ LcsApplicationEnivronmentNotInitializedError signal: 'Unable to create a system because application environment is not initialized' ].
-	self removeCurrentSystem.
-	self newInUnitOfWorK: LcsUnitOfWorkManager createUnitOfWork.
-	^ self currentSystem
+LcsBaseSystem class >> new [
+	"A factory pattern is used here. The creation of the system is delegated to the system manager"
+	^ LcsApplicationEnvironment createCurrentSystemFor: self
 ]
 
 { #category : #system }
@@ -56,7 +44,7 @@ LcsBaseSystem >> buildSlotDefinitions [
 { #category : #accessing }
 LcsBaseSystem >> currentUnitOfWork [
 
-	^ LcsUnitOfWorkManager currentUnitOfWork
+	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
 { #category : #initialization }
@@ -81,11 +69,21 @@ LcsBaseSystem >> initialize [
 
 { #category : #accessing }
 LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
-	aUnitOfWork system: self currentSystem.
-	aUnitOfWork addObject: self currentSystem. "Need to add to unit of work"
-	self currentSystem initialize.
-	self currentSystem currentUnitOfWork applyChanges.
+	aUnitOfWork system: self.
+	aUnitOfWork addObject: self. "Need to add to unit of work"
+	self initialize.
+	self currentUnitOfWork applyChanges.
 
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> relatedUnitOfWork [
+	^ self parent unitsOfWorkManager unitOfWorkFor: self
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> remove [ 
+	self parent removeSystem: self
 ]
 
 { #category : #accessing }
@@ -101,14 +99,4 @@ LcsBaseSystem >> slotModel [
 { #category : #accessing }
 LcsBaseSystem >> slotModel: anObject [
 	slotModel := anObject
-]
-
-{ #category : #accessing }
-LcsBaseSystem >> unitsOfWork [
-	^ unitsOfWork
-]
-
-{ #category : #accessing }
-LcsBaseSystem >> unitsOfWork: anObject [
-	unitsOfWork := anObject
 ]

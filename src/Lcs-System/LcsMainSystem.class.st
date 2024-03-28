@@ -24,7 +24,7 @@ LcsMainSystem >> gtViewSystemOn: aView [
 	^ aView columnedList
 		title: 'System Information' translated;
 		priority: 5;
-		items: [ self unitsOfWork ];
+		items: [ self relatedUnitOfWork ];
 		column: 'Current'
 			text: [ :eachItem :eachIndex | (eachItem == self currentUnitOfWork) displayString asRopedText foreground: Color gray ]
 			width: 45;

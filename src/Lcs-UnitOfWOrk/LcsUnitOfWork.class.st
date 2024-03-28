@@ -7,16 +7,6 @@ Class {
 	#category : #'Lcs-UnitOfWOrk'
 }
 
-{ #category : #initialize }
-LcsUnitOfWork class >> singleton [
-	^ Singleton
-]
-
-{ #category : #initialize }
-LcsUnitOfWork class >> singleton: anUndefinedObject [ 
-	Singleton := anUndefinedObject
-]
-
 { #category : #api }
 LcsUnitOfWork >> applyChanges [
 	self addedObjects valuesDo: [ :each | each applyChanges ].
