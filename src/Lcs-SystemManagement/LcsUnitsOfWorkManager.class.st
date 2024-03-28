@@ -118,7 +118,8 @@ LcsUnitsOfWorkManager >> removeUnitsOfWorkFor: aSystem [
 
 { #category : #api }
 LcsUnitsOfWorkManager >> suspendUnitOfWorkFor: aSystem [
-	self assert: (self unitOfWorkFor: aSystem) notNil.
+	aSystem ifNotNil: [
+		self assert: (self unitOfWorkFor: aSystem) notNil].
 	self currentUnitOfWork: nil
 ]
 

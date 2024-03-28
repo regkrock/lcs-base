@@ -8,14 +8,34 @@ Class {
 	#category : #'Lcs-BarebonesSystemTests'
 }
 
+{ #category : #accessing }
+LxxBarebonesSystemTest >> system1 [
+	^ system1
+]
+
+{ #category : #accessing }
+LxxBarebonesSystemTest >> system1: anObject [
+	^ system1 := anObject
+]
+
+{ #category : #accessing }
+LxxBarebonesSystemTest >> system2 [
+	^ system2
+]
+
+{ #category : #accessing }
+LxxBarebonesSystemTest >> system2: anObject [
+	^ system2 := anObject
+]
+
 { #category : #running }
 LxxBarebonesSystemTest >> tearDown [
-	system1 ifNotNil: [ 
-		system1 remove.
-		system1 := nil ].
-	system2 ifNotNil: [ 
-		system2 remove.
-		system2 := nil ].
+	self system1 ifNotNil: [ 
+		self system1 remove.
+		self system1: nil ].
+	self system2 ifNotNil: [ 
+		self system2 remove.
+		self system2: nil ].
 	super tearDown
 
 ]
@@ -23,7 +43,7 @@ LxxBarebonesSystemTest >> tearDown [
 { #category : #tests }
 LxxBarebonesSystemTest >> testAddDomainObject [
 	| domainObject |
-	system1 := LxxBarebonesSystem new.
+	self system1: LxxBarebonesSystem new.
 	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
@@ -37,11 +57,9 @@ LxxBarebonesSystemTest >> testAddDomainObject [
 
 { #category : #tests }
 LxxBarebonesSystemTest >> testBarebonesCreation [
-	| domainClassesNotUsedInTheSystem allDomainClasses |
-	LcsApplicationEnvironment releaseEnvironment.
-	LcsApplicationEnvironment initializeEnvironment.
+	| allDomainClasses |
 
-	system1 := LxxBarebonesSystem new.
+	self system1: LxxBarebonesSystem new.
 	self assert: system1 currentUnitOfWork hasNoChanges.
 	self assert: (system1 slotDefinitionNamed: 'persons' ) notNil.
 	self assert: system1 persons class == LcsSmalltalkConfiguration identitySetClass.
@@ -49,7 +67,7 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 	self assert: LxxBarebonesPerson slotDefinitions hasElements.
 	self assert: system1 configuration class name equals: #LxxBarebonesSystemConfiguration.
 	self assert: system1 hasSlotDefinitions .
-	self assert: system1 slotModel slotDefinitions size = LcsSystemManager currentSystem domainClasses size.
+	self assert: system1 slotModel slotDefinitions size = LcsApplicationEnvironment currentSystem domainClasses size.
 	allDomainClasses := LcsDomainObject withAllSubclasses asOrderedCollection.
 	system1 slotModel slotDefinitions keys do: [:each | allDomainClasses remove: each ifAbsent: [ ] ].
 	self assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotDefinitions isNil ])
@@ -58,7 +76,7 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 { #category : #tests }
 LxxBarebonesSystemTest >> testChangedSlotInDomainObject [
 	| domainObject |
-	LcsSystemManager currentSystem: LxxBarebonesSystem newSystem.
+	self system1: LxxBarebonesSystem new.
 	domainObject := LxxBarebonesPerson new dateOfBirth: Date today.
 	self currentSystem currentUnitOfWork applyChanges.
 	self assert: domainObject dateOfBirth equals: Date today.
@@ -86,7 +104,7 @@ LxxBarebonesSystemTest >> testChangedSlotInDomainObject [
 LxxBarebonesSystemTest >> testCreation [
 	| numberOfSystems |
 	numberOfSystems := self systemManager numberOfSystems.
-	system1 := LxxBarebonesSystem new. 
+	self system1: LxxBarebonesSystem new. 
 	self assert: self currentUnitOfWork hasNoChanges.
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
 	self assert: self currentSystem persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
@@ -98,7 +116,7 @@ LxxBarebonesSystemTest >> testCreation [
 
 { #category : #tests }
 LxxBarebonesSystemTest >> testCreationOfNewSystem [
-	system1 := LxxBarebonesSystem new.
+	self system1: LxxBarebonesSystem new.
 	self assert: self currentSystem class identicalTo: LxxBarebonesSystem.
 	self assert: (self currentSystem slotDefinitionNamed: 'persons' ) notNil.
 	self assert: self currentSystem persons class == LcsSmalltalkConfiguration identitySetClass.
@@ -110,17 +128,17 @@ LxxBarebonesSystemTest >> testCreationOfNewSystem [
 { #category : #tests }
 LxxBarebonesSystemTest >> testCreationWithBareBonesSystem [
 	| domainObject |
-	system1 := LxxBarebonesSystem new.
+	self system1: LxxBarebonesSystem new.
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
-	self assert: domainObject currentSystem == system1.
+	self assert: domainObject currentSystem identicalTo:self system1.
 	self assert: (self currentSystem currentUnitOfWork addRecordFor: domainObject) domainObject == domainObject.
 	self assert: (domainObject slotDefinitions isKindOf: LcsSlotDefinitions) .
 ]
 
 { #category : #tests }
 LxxBarebonesSystemTest >> testNewUnitOfWorkInSystem [
-	system1 := LxxBarebonesSystem new.
+	self system1: LxxBarebonesSystem new.
 	self assert: self currentSystem currentUnitOfWork system identicalTo: self  currentSystem
 ]
 
@@ -130,8 +148,8 @@ LxxBarebonesSystemTest >> testSystemRemoval [
 	
 	numberOfSystems := self systemManager numberOfSystems.
 	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
-	system1 := LxxBarebonesSystem new.
-	system2 := LxxBarebonesSystem new.
+	self system1: LxxBarebonesSystem new.
+	self system2:LxxBarebonesSystem new.
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 2.
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 2. 
 	self assert: (self unitsOfWorkManager unitOfWorkFor: system1) system identicalTo: system1.
