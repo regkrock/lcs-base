@@ -36,7 +36,7 @@ LcsSlotDefinition >> currentSystem [
 	^ #LcsApplicationEnvironment asClass currentSystem
 ]
 
-{ #category : #'model \t' }
+{ #category : #'application environment' }
 LcsSlotDefinition >> currentUnitOfWork [
 	^ #LcsApplicationEnvironment asClass currentUnitOfWork
 ]

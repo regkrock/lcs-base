@@ -10,8 +10,16 @@ LxxPrototypeSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlotDefinition newOn: LxxPrototypeSystemConfiguration
 ]
 
+{ #category : #modules }
+LxxPrototypeSystem >> moduleClasses [
+	^ OrderedCollection new
+		add: LxxPrototype1Module;
+		add: LxxPrototype2Module;
+		yourself
+]
+
 { #category : #intialization }
-LxxPrototypeSystem >> domainClasses [
+LxxPrototypeSystem >> systemDomainClasses [
 	^ OrderedCollection new
 		add: LcsDomainObject;
 		add: LcsBaseSystem;
@@ -20,13 +28,5 @@ LxxPrototypeSystem >> domainClasses [
 		add: self class;
 		addAll: self moduleClasses;
 		add: LxxPrototypePerson;
-		yourself
-]
-
-{ #category : #modules }
-LxxPrototypeSystem >> moduleClasses [
-	^ OrderedCollection new
-		add: LxxPrototype1Module;
-		add: LxxPrototype2Module;
 		yourself
 ]

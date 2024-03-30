@@ -37,7 +37,7 @@ LcsBaseModule >> configuration: anObject [
 	self setValueOfSlotNamed: 'configuration' to: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LcsBaseModule >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
@@ -79,8 +79,8 @@ LcsBaseModule >> initialize [
 { #category : #initialization }
 LcsBaseModule >> initializeDomainCollections [
 	self domainCollections: (LcsDomainCollections new
-										parent: self;
-										yourself)
+				parent: self;
+				yourself)
 ]
 
 { #category : #initialization }
@@ -128,12 +128,12 @@ LcsBaseModule >> modules: anObject [
 	modules := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #modules }
 LcsBaseModule >> modulesDo: aBlock [ 
 	self modules contentsDo: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #modules }
 LcsBaseModule >> numberOfChildModules [
 	^ self modules numberOfModules
 ]

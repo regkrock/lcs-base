@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-26T09:17:56.200124-04:00"
+						"dateAndTimeString" : "2024-03-29T10:41:42.7749-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This application has three roots: \n1) The system manager root {{gtClass:name=LcsSystemManager}} ;\n2) The unit of work root  {{gtClass:LcsUnitOfWorkManager}};\n3) The domain object model which is in store in LcsDomainObject and its subclasses."
+				"string" : "This application has three roots: \n1) The system manager root {{gtClass:name=LcsSystemManager}} ;\n2) The unit of work root  {{gtClass:LcsUnitsOfWorkManager}};\n3) The domain object model which is in store in LcsDomainObject and its subclasses."
 			},
 			{
 				"__type" : "textSnippet",
@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-26T09:16:56.836101-04:00"
+						"dateAndTimeString" : "2024-03-29T10:46:41.380433-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,41 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The system can have multiple \"systems\" defined. The system manager keeps track of the systems. It also know which system is the current system. All permenantly persisted objects belong to a system.\n\nExamples of permanently persisted objects would be name, person, country, general ledger, etc.\n\nThe  unit of work manager manages the units of work. There can be one or more units of work per system.  The unit of work manager knows which unit of work is current.\n\nObjects stored in the unit of work manager are persistent through Seaside related transactions. The contents of the unit of work are applied only when an application commit is issued.  If the unit of work is aborted, then the objects related to the unit of work are garbage collected.\n"
+				"string" : "The system can have multiple \"systems\" defined. The system manager keeps track of the systems. It also know which system is the current system. All permenantly persisted objects belong to a system.\n\nExamples of permanently persisted objects would be name, person, country, general ledger, etc.\n\nThe  unit of work manager manages the units of work. There can be one or more units of work per system.  The unit of work manager knows which unit of work is current.\n\nObjects stored in the unit of work manager are persistent through Seaside related transactions. The contents of the unit of work are applied only when an application commit is issued.  If the unit of work is aborted, then the objects related to the unit of work are garbage collected.\n\nWhen inspecting the {{gtClass:name=LcsApplicationEnvironment}} if the environment is initialized, an 'Application Evnironment' tab will appear in the class inspector.\n"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-29T10:43:42.036905-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-29T10:43:47.696043-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ZekuZy/RDQCeklz5AA6ITA=="
+				},
+				"code" : "LcsApplicationEnvironment"
 			},
 			{
 				"__type" : "textSnippet",
@@ -196,6 +230,43 @@
 							"children" : {
 								"__type" : "snippets",
 								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-03-29T09:16:56.004777-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-03-29T09:17:08.103946-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "5S7hMC7RDQCX9JNFAA6ITA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "The Application is initialized."
+									},
 									{
 										"__type" : "pharoSnippet",
 										"children" : {
@@ -371,6 +442,77 @@
 											"uidString" : "he/8VwfRDQCMQ6b1DPbC6w=="
 										},
 										"code" : "LcsApplicationEnvironment hasNoCurrentSystem"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-03-29T09:19:57.540639-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-03-29T09:20:09.373992-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "ejGzOy7RDQCYm7bnAA6ITA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "There is no systems definted."
+									},
+									{
+										"__type" : "pharoSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-03-29T09:20:16.067702-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-03-29T09:22:30.050696-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "id/NPC7RDQCZMOKSAA6ITA=="
+										},
+										"code" : "LcsApplicationEnvironment numberOfSystems "
 									},
 									{
 										"__type" : "textSnippet",

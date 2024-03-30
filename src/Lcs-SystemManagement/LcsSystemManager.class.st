@@ -23,11 +23,6 @@ LcsSystemManager class >> newOn: anAppicaltionEnvironment [
 		yourself
 ]
 
-{ #category : #api }
-LcsSystemManager >> clearSlotModel [
-	#LcsDomainObject asClass clearSlotModel
-]
-
 { #category : #accessing }
 LcsSystemManager >> createCurrentSystemFor: aSystemClass [
 	self suspendCurrentSystem.
@@ -80,7 +75,7 @@ LcsSystemManager >> makeSystemCurrent: aSystem [
 	self currentSystem: aSystem.
 	self unitsOfWorkManager makeSystemCurrent: aSystem.
 	self currentSystem 
-		ifNil: [ self clearSlotModel] 
+		ifNil: [ self releaseSlotModel] 
 		ifNotNil: [ self currentSystem restoreSlotModel ]
 ]
 
@@ -103,6 +98,11 @@ LcsSystemManager >> parent: anObject [
 LcsSystemManager >> releaseEnvironment [
 	self removeCurrentSystem.
 	self systems: OrderedCollection new
+]
+
+{ #category : #api }
+LcsSystemManager >> releaseSlotModel [
+	#LcsDomainObject asClass releaseSlotModel
 ]
 
 { #category : #api }

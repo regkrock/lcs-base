@@ -10,21 +10,6 @@ Class {
 	#category : #'Lcs-Tests'
 }
 
-{ #category : #running }
-LcsDomainTestCase >> abortTransaction [
-	LcsSmalltalkConfiguration gsSystemClass abortTransaction
-]
-
-{ #category : #running }
-LcsDomainTestCase >> beginTransaction [
-	LcsSmalltalkConfiguration gsSystemClass beginTransaction
-]
-
-{ #category : #running }
-LcsDomainTestCase >> commitTransaction [
-	LcsSmalltalkConfiguration gsSystemClass commitTransaction
-]
-
 { #category : #'application environment' }
 LcsDomainTestCase >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem

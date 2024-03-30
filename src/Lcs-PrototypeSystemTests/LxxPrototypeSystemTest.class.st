@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LxxPrototypeSystemTest >> testCreation [
 	| system |
-	system := LxxPrototypeSystem newSystem.
+	system := LxxPrototypeSystem new.
 	self assert: self currentSystem == system.
 	self assert: (system moduleNamed: LxxPrototype1Module moduleName) class name equals: #LxxPrototype1Module.
 	self assert: (system moduleNamed: LxxPrototype2Module moduleName) class name equals: #LxxPrototype2Module.

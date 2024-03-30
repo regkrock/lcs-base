@@ -31,10 +31,10 @@ LxxBarebonesSystemTest >> system2: anObject [
 { #category : #running }
 LxxBarebonesSystemTest >> tearDown [
 	self system1 ifNotNil: [ 
-		self system1 remove.
+		self system1 removeSystem.
 		self system1: nil ].
 	self system2 ifNotNil: [ 
-		self system2 remove.
+		self system2 removeSystem.
 		self system2: nil ].
 	super tearDown
 
@@ -60,16 +60,16 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 	| allDomainClasses |
 
 	self system1: LxxBarebonesSystem new.
-	self assert: system1 currentUnitOfWork hasNoChanges.
-	self assert: (system1 slotDefinitionNamed: 'persons' ) notNil.
-	self assert: system1 persons class == LcsSmalltalkConfiguration identitySetClass.
+	self assert: self system1 currentUnitOfWork hasNoChanges.
+	self assert: (self system1 slotDefinitionNamed: 'persons') notNil.
+	self assert: self system1 persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
 	self assert: LxxBarebonesPerson slotDefinitions hasElements.
-	self assert: system1 configuration class name equals: #LxxBarebonesSystemConfiguration.
-	self assert: system1 hasSlotDefinitions .
-	self assert: system1 slotModel slotDefinitions size = LcsApplicationEnvironment currentSystem domainClasses size.
+	self assert: self system1 configuration class name equals: #LxxBarebonesSystemConfiguration.
+	self assert: self system1 hasSlotDefinitions .
+	self assert: self system1 slotModel slotDefinitions size equals: LcsApplicationEnvironment currentSystem systemDomainClasses size.
 	allDomainClasses := LcsDomainObject withAllSubclasses asOrderedCollection.
-	system1 slotModel slotDefinitions keys do: [:each | allDomainClasses remove: each ifAbsent: [ ] ].
+	self system1 slotModel slotDefinitions keysDo: [:each | allDomainClasses remove: each ifAbsent: [ ] ].
 	self assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotDefinitions isNil ])
 ]
 
@@ -152,20 +152,48 @@ LxxBarebonesSystemTest >> testSystemRemoval [
 	self system2:LxxBarebonesSystem new.
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 2.
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 2. 
-	self assert: (self unitsOfWorkManager unitOfWorkFor: system1) system identicalTo: system1.
-	self assert: (self unitsOfWorkManager unitOfWorkFor: system2) system identicalTo: system2.
+	self assert: (self unitsOfWorkManager unitOfWorkFor: self system1) system identicalTo: self system1.
+	self assert: (self unitsOfWorkManager unitOfWorkFor: self system2) system identicalTo: self system2.
 
-	self assert: LcsApplicationEnvironment currentSystem identicalTo: system2.
+	self assert: LcsApplicationEnvironment currentSystem identicalTo: self system2.
 	LcsApplicationEnvironment removeCurrentSystem.
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
 	self assert: self systemManager hasNoCurrentSystem.
-	self assert: (self systemManager systems includes: system1).
+	self assert: (self systemManager systems includes: self system1).
 	self assert: self systemManager currentUnitOfWork isNil.
 	
-	LcsApplicationEnvironment makeSystemCurrent: system1.
-	self assert: self systemManager currentSystem identicalTo: system1.
-	self assert: self systemManager currentUnitOfWork system identicalTo: system1.
+	LcsApplicationEnvironment makeSystemCurrent: self system1.
+	self assert: self systemManager currentSystem identicalTo: self system1.
+	self assert: self systemManager currentUnitOfWork system identicalTo: self system1.
+
+
+]
+
+{ #category : #tests }
+LxxBarebonesSystemTest >> testSystemSuspend [
+	| numberOfSystems numberOfUnitsOfWork |
+	
+	numberOfSystems := self systemManager numberOfSystems.
+	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
+	self system1: LxxBarebonesSystem new.
+	self system2: LxxBarebonesSystem new.
+	self assert: self systemManager numberOfSystems equals: numberOfSystems + 2.
+	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 2. 
+	self assert: (self unitsOfWorkManager unitOfWorkFor: self system1) system identicalTo: self system1.
+	self assert: (self unitsOfWorkManager unitOfWorkFor: self system2) system identicalTo: self system2.
+
+	self assert: LcsApplicationEnvironment currentSystem identicalTo: self system2.
+	LcsApplicationEnvironment removeCurrentSystem.
+	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
+	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
+	self assert: self systemManager hasNoCurrentSystem.
+	self assert: (self systemManager systems includes: self system1).
+	self assert: self systemManager currentUnitOfWork isNil.
+	
+	LcsApplicationEnvironment makeSystemCurrent: self system1.
+	self assert: self systemManager currentSystem identicalTo: self system1.
+	self assert: self systemManager currentUnitOfWork system identicalTo: self system1.
 
 
 ]

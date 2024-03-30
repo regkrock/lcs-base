@@ -13,11 +13,6 @@ LcsMainSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlotDefinition newOn: LcsSystemConfiguration
 ]
 
-{ #category : #initialization }
-LcsMainSystem >> domainClasses [
-	^ (LcsDomainObject withAllSubclasses) reject: [ :each | each name beginsWith: 'Lxx' ]
-]
-
 { #category : #'ui \t' }
 LcsMainSystem >> gtViewSystemOn: aView [
 	<gtView>
@@ -51,4 +46,9 @@ LcsMainSystem >> moduleClasses [
 		add: LcsGeographyModule;
 		add: LcsLegalEntitiesModule;
 		yourself
+]
+
+{ #category : #initialization }
+LcsMainSystem >> systemDomainClasses [
+	^ (LcsDomainObject withAllSubclasses) reject: [ :each | each name beginsWith: 'Lxx' ]
 ]

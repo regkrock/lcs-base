@@ -10,7 +10,7 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #'slot definitions' }
+{ #category : #'slot model' }
 LcsDomainObject class >> addSlotDefinitions [
 	self slotDefinitionMethods do: [ :eachPragma | 
 			self slotDefinitions addSlotDefinition: (self perform: eachPragma methodSelector) ]
@@ -21,24 +21,18 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
-{ #category : #'slot definitions' }
-LcsDomainObject class >> clearSlotModel [
-	self slotDefinitions: nil.
-	self subclassesDo: [ :each | each releaseEnvironment ]
-]
-
-{ #category : #accessing }
+{ #category : #environment }
 LcsDomainObject class >> currentSystem [
 
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #'unit of work' }
+{ #category : #'application environment' }
 LcsDomainObject class >> currentUnitOfWork [
-	^self currentSystem currentUnitOfWork
+	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
@@ -71,44 +65,55 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 
 { #category : #testing }
 LcsDomainObject class >> hasNoninitializedEnvironment [
-	^ self withAllSubclasses allSatisfy: [ :each | each slotDefinitions isNil ]
+	^ self isSlotModelReleased
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #environment }
 LcsDomainObject class >> initializeEnvironment [
-	"self slotDefinitions: (LcsSlotDefinitions newOn: self).
-	self subclassesDo: [ :each | each initializeEnvironment]"
 ]
 
-{ #category : #'slot definitions' }
-LcsDomainObject class >> initializeSlotDefinitions [
+{ #category : #'slot model' }
+LcsDomainObject class >> initializeSlotModel [
 	self slotDefinitions: (LcsSlotDefinitions newOn: self).
 	self currentSystem addToSlotModel: self slotDefinitions.
 	self addSlotDefinitions
+]
+
+{ #category : #testing }
+LcsDomainObject class >> isSlotModelReleased [
+	self slotDefinitions notNil ifTrue: [ ^ false ].
+	self subclasses do: [ :each | each isSlotModelReleased ].
+	^ true
 ]
 
 { #category : #'instance creation\t' }
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew initialize.
-	self currentSystem ifNotNil: [self addToUnitOfWork: newObject].
+	self currentSystem ifNotNil: [ self addToUnitOfWork: newObject ].
 	^ newObject
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #environment }
 LcsDomainObject class >> releaseEnvironment [
-	self clearSlotModel
+	self releaseSlotModel
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #'slot model' }
+LcsDomainObject class >> releaseSlotModel [
+	self slotDefinitions: nil.
+	self subclassesDo: [ :each | each releaseSlotModel ]
+]
+
+{ #category : #'slot model' }
 LcsDomainObject class >> slotDefinitionMethods [
 	^ Pragma allNamed: 'slotDefinition' in: self class
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #'slot model' }
 LcsDomainObject class >> slotDefinitionNamed: aString [ 
-	self slotDefinitions isNil ifTrue: [ ^ LcsSlotDefinitionsNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
-	^self slotDefinitions slotDefinitionNamed: aString
+	self slotDefinitions ifNil: [ ^ LcsSlotDefinitionsNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
+	^ self slotDefinitions slotDefinitionNamed: aString
 ]
 
 { #category : #accessing }
@@ -121,15 +126,14 @@ LcsDomainObject class >> slotDefinitions: anObject [
 	SlotDefinitions := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #system }
 LcsDomainObject >> currentSystem [
 	^ self class currentSystem
 ]
 
 { #category : #'unit of work' }
 LcsDomainObject >> currentUnitOfWork [
-
-	^ self class currentUnitOfWork
+	^ self parent currentUnitOfWork
 ]
 
 { #category : #'unit of work' }

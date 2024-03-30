@@ -1,8 +1,4 @@
-Class {
-	#name : #LcsUnitOfWorkTest,
-	#superclass : #LcsDomainTestCase,
-	#category : #'Lcs-PrototypeSystemTests'
-}
+Extension { #name : #LcsUnitOfWorkTest }
 
 { #category : #'*Lcs-PrototypeSystemTests' }
 LcsUnitOfWorkTest >> testDeleteDomainObject [

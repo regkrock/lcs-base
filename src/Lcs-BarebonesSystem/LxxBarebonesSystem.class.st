@@ -10,7 +10,7 @@ Class {
 	#category : #'Lcs-BarebonesSystem'
 }
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LxxBarebonesSystem class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlotDefinition newOn: LxxBarebonesSystemConfiguration
@@ -22,18 +22,6 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 	^LcsGlobalCollectionSlotDefinition new
 		slotName: 'persons';
 		beIdentitySetCollection;
-		yourself
-]
-
-{ #category : #initialization }
-LxxBarebonesSystem >> domainClasses [
-	^OrderedCollection new
-		add: LcsDomainObject;
-		add: LcsBaseSystem;
-		add: LcsModule;
-		add: LxxBarebonesSystem;
-		add: LxxBarebonesPerson;
-		add: LxxBarebonesSystemConfiguration;
 		yourself
 ]
 
@@ -51,4 +39,16 @@ LxxBarebonesSystem >> persons [
 { #category : #accessing }
 LxxBarebonesSystem >> persons: anObject [
 	self setValueOfSlotNamed: 'presons' to: anObject
+]
+
+{ #category : #initialization }
+LxxBarebonesSystem >> systemDomainClasses [
+	^OrderedCollection new
+		add: LcsDomainObject;
+		add: LcsBaseSystem;
+		add: LcsModule;
+		add: LxxBarebonesSystem;
+		add: LxxBarebonesPerson;
+		add: LxxBarebonesSystemConfiguration;
+		yourself
 ]
