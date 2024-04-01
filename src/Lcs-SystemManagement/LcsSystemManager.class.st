@@ -131,6 +131,7 @@ LcsSystemManager >> removeCurrentSystem [
 
 { #category : #api }
 LcsSystemManager >> removeSystem: aSystem [
+	self releaseSlotModel.
 	self unitsOfWorkManager removeUnitsOfWorkFor: aSystem.
 	self systems remove: aSystem ifAbsent: [ ].
 	aSystem == self currentSystem ifTrue: [ self currentSystem: nil ]

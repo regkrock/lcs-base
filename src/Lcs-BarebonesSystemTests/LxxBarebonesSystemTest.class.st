@@ -161,12 +161,14 @@ LxxBarebonesSystemTest >> testSystemRemoval [
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
 	self assert: self systemManager hasNoCurrentSystem.
+	self assert: LcsDomainObject isSlotModelReleased.
 	self assert: (self systemManager systems includes: self system1).
 	self assert: self systemManager currentUnitOfWork isNil.
 	
 	LcsApplicationEnvironment makeSystemCurrent: self system1.
 	self assert: self systemManager currentSystem identicalTo: self system1.
 	self assert: self systemManager currentUnitOfWork system identicalTo: self system1.
+	self assert: LcsDomainObject isSlotModelReleased not.
 
 
 ]
@@ -178,6 +180,7 @@ LxxBarebonesSystemTest >> testSystemSuspend [
 	numberOfSystems := self systemManager numberOfSystems.
 	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
 	self system1: LxxBarebonesSystem new.
+	self assert: LcsDomainObject isSlotModelReleased not.
 	self system2: LxxBarebonesSystem new.
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 2.
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 2. 
@@ -185,9 +188,10 @@ LxxBarebonesSystemTest >> testSystemSuspend [
 	self assert: (self unitsOfWorkManager unitOfWorkFor: self system2) system identicalTo: self system2.
 
 	self assert: LcsApplicationEnvironment currentSystem identicalTo: self system2.
-	LcsApplicationEnvironment removeCurrentSystem.
-	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
-	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
+	LcsApplicationEnvironment suspendCurrentSystem.
+	self assert: self systemManager numberOfSystems equals: numberOfSystems + 2.
+	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 2.
+	self assert: LcsDomainObject isSlotModelReleased.
 	self assert: self systemManager hasNoCurrentSystem.
 	self assert: (self systemManager systems includes: self system1).
 	self assert: self systemManager currentUnitOfWork isNil.
@@ -195,6 +199,8 @@ LxxBarebonesSystemTest >> testSystemSuspend [
 	LcsApplicationEnvironment makeSystemCurrent: self system1.
 	self assert: self systemManager currentSystem identicalTo: self system1.
 	self assert: self systemManager currentUnitOfWork system identicalTo: self system1.
+	self assert: LcsDomainObject isSlotModelReleased not.
+
 
 
 ]
