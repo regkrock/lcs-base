@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 LcsSystemManagerTest >> testCreateUnitOfWork [
-	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment releaseApplicationEnvironment.
 	LcsApplicationEnvironment initializeEnvironment.
 
 	self assert: LcsApplicationEnvironment currentUnitOfWork isNil.
@@ -16,7 +16,7 @@ LcsSystemManagerTest >> testCreateUnitOfWork [
 
 { #category : #tests }
 LcsSystemManagerTest >> testRemoveCurrentSystem [
-	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment releaseApplicationEnvironment.
 	LcsApplicationEnvironment initializeEnvironment.
 
 	self assert: LcsApplicationEnvironment currentSystem isNil.
@@ -33,7 +33,7 @@ LcsSystemManagerTest >> testRemoveCurrentSystem [
 
 { #category : #accessing }
 LcsSystemManagerTest >> testRemoveCurrentUnitOfWork [
-	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment releaseApplicationEnvironment.
 	LcsApplicationEnvironment initializeEnvironment.
 
 	LcsApplicationEnvironment removeCurrentUnitOfWork.

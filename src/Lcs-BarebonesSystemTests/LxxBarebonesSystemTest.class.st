@@ -148,6 +148,7 @@ LxxBarebonesSystemTest >> testSystemRemoval [
 	
 	numberOfSystems := self systemManager numberOfSystems.
 	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
+
 	self system1: LxxBarebonesSystem new.
 	self system2:LxxBarebonesSystem new.
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 2.

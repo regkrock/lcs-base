@@ -65,12 +65,6 @@ LcsUnitsOfWorkManager >> initializeOn: anApplicationEnvironment [
 ]
 
 { #category : #accessing }
-LcsUnitsOfWorkManager >> makeSystemCurrent: aSystem [
-	self
-		currentUnitOfWork: (aSystem ifNil: [  ] ifNotNil: [ self unitOfWorkFor: aSystem ])
-]
-
-{ #category : #accessing }
 LcsUnitsOfWorkManager >> numberOfUnitsOfWork [
 	^ self unitsOfWork size
 ]
@@ -86,7 +80,7 @@ LcsUnitsOfWorkManager >> parent: anApplicationEnvironment [
 ]
 
 { #category : #'release ' }
-LcsUnitsOfWorkManager >> releaseEnvironment [
+LcsUnitsOfWorkManager >> releaseApplicationEnvironment [
 	self currentUnitOfWork: nil.
 	self unitsOfWork: OrderedCollection new
 ]
@@ -116,10 +110,14 @@ LcsUnitsOfWorkManager >> removeUnitsOfWorkFor: aSystem [
 	self currentUnitOfWork system == aSystem ifTrue: [ self removeCurrentUnitOfWork ]
 ]
 
+{ #category : #accessing }
+LcsUnitsOfWorkManager >> restoreUnitOfWorkFor: aSystem [
+	self
+		currentUnitOfWork: (aSystem ifNil: [  ] ifNotNil: [ self unitOfWorkFor: aSystem ])
+]
+
 { #category : #api }
 LcsUnitsOfWorkManager >> suspendUnitOfWorkFor: aSystem [
-	aSystem ifNotNil: [
-		self assert: (self unitOfWorkFor: aSystem) notNil].
 	self currentUnitOfWork: nil
 ]
 

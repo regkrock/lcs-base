@@ -49,6 +49,26 @@ LcsSystemManager >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
 ]
 
+{ #category : #accessing }
+LcsSystemManager >> gtSystemManagerFor: aView [
+		<gtView>
+	^ aView columnedList
+		title: 'System Manager';
+		priority: 10;
+		items: [ { 
+					'Initialized' -> true.
+					'Has Current System' -> self systemManager hasCurrentSystem displayString.
+					'Number Of Systems' -> self systemManager numberOfSystems displayString.
+					'Systems' -> self systemManager systems.
+					'Has Current Unit Of Work' -> self unitsOfWorkManager hasCurrentUnitOfWork displayString.
+					'Number Of Units Of Work' -> self unitsOfWorkManager numberOfUnitsOfWork displayString.
+					'Status' -> self status statusName } ];
+		column: 'Option' text: #key width: 200;
+		column: 'Value' text: #value width: 120;
+		yourself
+		
+]
+
 { #category : #'testing ' }
 LcsSystemManager >> hasCurrentSystem [
 	^ self currentSystem notNil
@@ -73,10 +93,9 @@ LcsSystemManager >> initializeOn: anAppicaltionEnvironment [
 { #category : #api }
 LcsSystemManager >> makeSystemCurrent: aSystem [
 	self currentSystem: aSystem.
-	self unitsOfWorkManager makeSystemCurrent: aSystem.
 	self currentSystem 
-		ifNil: [ self releaseSlotModel] 
-		ifNotNil: [ self currentSystem restoreSlotModel ]
+		ifNil: [  self releaseSlotModel ]
+		ifNotNil: [ self currentSystem restoreSystem ]
 ]
 
 { #category : #querry }
@@ -95,7 +114,7 @@ LcsSystemManager >> parent: anObject [
 ]
 
 { #category : #api }
-LcsSystemManager >> releaseEnvironment [
+LcsSystemManager >> releaseApplicationEnvironment [
 	self removeCurrentSystem.
 	self systems: OrderedCollection new
 ]
@@ -112,18 +131,33 @@ LcsSystemManager >> removeCurrentSystem [
 
 { #category : #api }
 LcsSystemManager >> removeSystem: aSystem [
-	self parent unitsOfWorkManager removeUnitsOfWorkFor: aSystem.
+	self unitsOfWorkManager removeUnitsOfWorkFor: aSystem.
 	self systems remove: aSystem ifAbsent: [ ].
 	aSystem == self currentSystem ifTrue: [ self currentSystem: nil ]
+]
+
+{ #category : #api }
+LcsSystemManager >> restoreSlotModel [
+	#LcsDomainObject asClass restoreSlotModel
+]
+
+{ #category : #api }
+LcsSystemManager >> restoreUnitOfWorkFor: suspendedSystem [
+	^ self unitsOfWorkManager restoreUnitOfWorkFor: suspendedSystem
 ]
 
 { #category : #api }
 LcsSystemManager >> suspendCurrentSystem [
 	| suspendedSystem |
 	suspendedSystem := self currentSystem.
-	self unitsOfWorkManager suspendUnitOfWorkFor: self currentSystem.
+	suspendedSystem ifNotNil: [ suspendedSystem suspendSystem ].
 	self currentSystem: nil.
 	^ suspendedSystem
+]
+
+{ #category : #api }
+LcsSystemManager >> suspendUnitOfWorkFor: suspendedSystem [
+	^ self unitsOfWorkManager suspendUnitOfWorkFor: suspendedSystem
 ]
 
 { #category : #accessing }

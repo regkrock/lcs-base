@@ -40,9 +40,9 @@ LcsBaseApplicationEnvironmentStatus >> parent: anApplicationEnvironment [
 ]
 
 { #category : #api }
-LcsBaseApplicationEnvironmentStatus >> restoreEnvironment [
+LcsBaseApplicationEnvironmentStatus >> restoreApplicationEnvironment [
 ]
 
 { #category : #api }
-LcsBaseApplicationEnvironmentStatus >> suspendEnvironment [
+LcsBaseApplicationEnvironmentStatus >> suspendApplicationEnvironment [
 ]

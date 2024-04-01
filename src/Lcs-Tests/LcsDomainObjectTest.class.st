@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsDomainObjectTest >> testCreationWithNilCurrentSystem [
 	| domainObject |
-	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment releaseApplicationEnvironment.
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem isNil.

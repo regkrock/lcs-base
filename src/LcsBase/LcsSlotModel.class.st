@@ -43,7 +43,7 @@ LcsSlotModel >> restoreSlotDefinitions [
 
 { #category : #accessing }
 LcsSlotModel >> restoreSlotModel [
-	#LcsDomainObject asClass releaseEnvironment.
+	#LcsDomainObject asClass releaseApplicationEnvironment.
 	self slotDefinitions keysAndValuesDo: [ :eachKey :eachValue | eachKey slotDefinitions: eachValue ]
 
 ]

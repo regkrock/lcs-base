@@ -5,7 +5,8 @@ Class {
 	#name : #LcsBaseSystem,
 	#superclass : #LcsBaseModule,
 	#instVars : [
-		'slotModel'
+		'slotModel',
+		'status'
 	],
 	#category : #'Lcs-DomainBase'
 }
@@ -45,6 +46,7 @@ LcsBaseSystem >> hasSlotDefinitions [
 LcsBaseSystem >> initialize [
 	super initialize.
 	self 
+		status: (LcsSystemActiveStatus newOn: self);
 		slotModel: (LcsSlotModel newOn: self);
 		buildSlotDefinitions;
 		buildModules;
@@ -60,19 +62,34 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsBaseSystem >> relatedUnitOfWork [
 	^ self parent unitsOfWorkManager unitOfWorkFor: self
 ]
 
 { #category : #accessing }
+LcsBaseSystem >> releaseSlotModel [
+	self parent releaseSlotModel
+]
+
+{ #category : #remove }
 LcsBaseSystem >> removeSystem [ 
 	self parent removeSystem: self
 ]
 
-{ #category : #'slot model' }
+{ #category : #restore }
 LcsBaseSystem >> restoreSlotModel [
 	self slotModel restoreSlotModel
+]
+
+{ #category : #restore }
+LcsBaseSystem >> restoreSystem [
+	self status restoreSystem
+]
+
+{ #category : #'restore\t' }
+LcsBaseSystem >> restoreUnitOfWork [
+	self parent restoreUnitOfWorkFor: self
 ]
 
 { #category : #accessing }
@@ -83,6 +100,26 @@ LcsBaseSystem >> slotModel [
 { #category : #accessing }
 LcsBaseSystem >> slotModel: anObject [
 	slotModel := anObject
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> status [
+	^ status
+]
+
+{ #category : #initialization }
+LcsBaseSystem >> status: aSystemStatus [ 
+	status := aSystemStatus
+]
+
+{ #category : #suspend }
+LcsBaseSystem >> suspendSystem [
+	self status suspendSystem
+]
+
+{ #category : #suspend }
+LcsBaseSystem >> suspendUnitOfWork [
+	self parent suspendUnitOfWorkFor: self
 ]
 
 { #category : #'slot model' }

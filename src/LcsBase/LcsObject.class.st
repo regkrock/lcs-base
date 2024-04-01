@@ -39,9 +39,9 @@ LcsObject class >> initializeEnvironment [
 ]
 
 { #category : #testing }
-LcsObject class >> releaseEnvironment [
+LcsObject class >> releaseApplicationEnvironment [
 	self domainObjectClass
-		ifNotNil: [ :domainObjectClass | domainObjectClass releaseEnvironment ]
+		ifNotNil: [ :domainObjectClass | domainObjectClass releaseApplicationEnvironment ]
 ]
 
 { #category : #printing }

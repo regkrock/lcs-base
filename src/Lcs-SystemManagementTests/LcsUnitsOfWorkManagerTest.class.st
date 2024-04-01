@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 LcsUnitsOfWorkManagerTest >> testCreation [
 	| unitsOfWorkManager |
-	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment releaseApplicationEnvironment.
 	LcsApplicationEnvironment initializeEnvironment.
 	
 	unitsOfWorkManager := LcsApplicationEnvironment unitsOfWorkManager.
@@ -19,7 +19,7 @@ LcsUnitsOfWorkManagerTest >> testCreation [
 { #category : #accessing }
 LcsUnitsOfWorkManagerTest >> testRemoveCurrentUnitOfWork [
 	| unitOfWork |
-	LcsApplicationEnvironment releaseEnvironment.
+	LcsApplicationEnvironment releaseApplicationEnvironment.
 	LcsApplicationEnvironment initializeEnvironment.
 	
 	unitOfWork := LcsApplicationEnvironment createUnitOfWork.

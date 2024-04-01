@@ -4,6 +4,18 @@ Class {
 	#category : #'Lcs-PrototypeSystemTests'
 }
 
+{ #category : #test }
+LcsUnitOfWorkTest >> testCreation [
+
+	| unitOfWork |
+
+	unitOfWork := LcsUnitOfWork new.
+	self assert: unitOfWork system isNil.
+	self assert: unitOfWork addedObjects isEmpty.
+	self assert: unitOfWork deletedObjects isEmpty.
+	self assert: unitOfWork changedObjects isEmpty.
+]
+
 { #category : #'*Lcs-PrototypeSystemTests' }
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	"| domainObject |

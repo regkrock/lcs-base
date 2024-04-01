@@ -9,8 +9,13 @@ LcsApplicationEnvironmentActiveStatus >> isInActiveStatus [
 	^ true
 ]
 
+{ #category : #accessing }
+LcsApplicationEnvironmentActiveStatus >> statusName [
+	^ 'Active' translated
+]
+
 { #category : #api }
-LcsApplicationEnvironmentActiveStatus >> suspendEnvironment [
+LcsApplicationEnvironmentActiveStatus >> suspendApplicationEnvironment [
 	self parent status: (
 		(LcsApplicationEnvironmentSuspendedStatus newOn: self parent)
 			suspendedSystem: self parent systemManager suspendCurrentSystem;

@@ -95,7 +95,7 @@ LcsDomainObject class >> new [
 ]
 
 { #category : #environment }
-LcsDomainObject class >> releaseEnvironment [
+LcsDomainObject class >> releaseApplicationEnvironment [
 	self releaseSlotModel
 ]
 
@@ -103,6 +103,11 @@ LcsDomainObject class >> releaseEnvironment [
 LcsDomainObject class >> releaseSlotModel [
 	self slotDefinitions: nil.
 	self subclassesDo: [ :each | each releaseSlotModel ]
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> restorelotModel [
+	self initializeSlotModel
 ]
 
 { #category : #'slot model' }

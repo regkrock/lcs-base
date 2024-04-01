@@ -13,9 +13,14 @@ LcsApplicationEnvironmentSuspendedStatus >> isInSuspendedStatus [
 ]
 
 { #category : #'api\t\t' }
-LcsApplicationEnvironmentSuspendedStatus >> restoreEnvironment [
+LcsApplicationEnvironmentSuspendedStatus >> restoreApplicationEnvironment [
 	self parent makeSystemCurrent: self suspendedSystem.
 	self parent status: (LcsApplicationEnvironmentActiveStatus newOn: self parent)
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironmentSuspendedStatus >> statusName [
+	^ 'Suspended' translated
 ]
 
 { #category : #accessing }
