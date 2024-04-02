@@ -31,14 +31,19 @@ LcsSlotDefinition >> beRequired [
 	self required: true
 ]
 
-{ #category : #accessing }
+{ #category : #'application environment' }
 LcsSlotDefinition >> currentSystem [
-	^ #LcsApplicationEnvironment asClass currentSystem
+	^ LcsApplicationEnvironment currentSystem
 ]
 
 { #category : #'application environment' }
 LcsSlotDefinition >> currentUnitOfWork [
 	^ #LcsApplicationEnvironment asClass currentUnitOfWork
+]
+
+{ #category : #accessing }
+LcsSlotDefinition >> domainClass [
+	^ self parent ifNil: [ nil class ] ifNotNil: [ self parent domainClass ]
 ]
 
 { #category : #model }
@@ -47,6 +52,30 @@ LcsSlotDefinition >> getValueIn: aDomainObject [
 	^ (self currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
 		ifNil: [ aDomainObject instVarNamed: self slotName asString ]
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
+]
+
+{ #category : #accessing }
+LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Attributes';
+		priority: 10;
+		items: [ { 
+					'domainClass' -> self domainClass displayString.
+					'slotName' -> self slotName.
+					'slotTypes' -> self slotTypeClassNames.
+					'required' -> self isRequired displayString } ];
+		column: 'Option' text: #key width: 200;
+		column: 'Value' text: #value width: 120;
+		yourself
+
+]
+
+{ #category : #'gt view' }
+LcsSlotDefinition >> gtViewSlotModelChildren [
+	^{
+		{'slotName' -> self slotName}}
+
 ]
 
 { #category : #initialization }
@@ -72,7 +101,7 @@ LcsSlotDefinition >> isOptional [
 
 { #category : #testing }
 LcsSlotDefinition >> isRequired [
-	^ self required: true.
+	^ self required == true
 ]
 
 { #category : #model }
@@ -114,6 +143,15 @@ LcsSlotDefinition >> slotName [
 { #category : #accessing }
 LcsSlotDefinition >> slotName: anObject [
 	slotName := anObject
+]
+
+{ #category : #'gt view' }
+LcsSlotDefinition >> slotTypeClassNames [
+	| stream |
+	stream := WriteStream on: String new.
+	self slotTypes do: [ :eachClass |
+		stream nextPutAll: eachClass name displayString] separatedBy: [ stream nextPutAll: ', '].
+	^stream contents
 ]
 
 { #category : #accessing }

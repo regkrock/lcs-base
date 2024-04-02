@@ -166,6 +166,77 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-01T17:51:26.389358-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-01T17:52:11.508997-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "JPlrunHRDQCp5Lk9A/lPLg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "To access current application environment, inspect LcsApplicationEvnironemnt"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-01T17:51:41.184072-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-01T17:51:51.666879-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Er9Nu3HRDQCq3QMSA/lPLg=="
+				},
+				"code" : "LcsApplicationEnvironment"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-03-12T10:15:32.445907-04:00"
 					}
 				},
@@ -214,14 +285,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-12T10:17:32.330353-04:00"
+						"dateAndTimeString" : "2024-04-01T17:49:30.400125-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "RdYzeDLODQCBtT7OAILh9Q=="
 				},
-				"code" : "LcsSystemManager currentSystem"
+				"code" : "LcsApplicationEnvironment currentSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -285,14 +356,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-26T11:35:32.090493-04:00"
+						"dateAndTimeString" : "2024-04-01T17:49:36.892673-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "O1GLE9nPDQCMo0gMBRXooQ=="
 				},
-				"code" : "LcsSystemManager removeCurrentSystem"
+				"code" : "LcsApplicationEnvironment removeCurrentSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -393,14 +464,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-26T13:37:28.516752-04:00"
+						"dateAndTimeString" : "2024-04-01T17:52:51.917855-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "p6ffwvTQDQCtGY5eBex25w=="
 				},
-				"code" : "LcsApplicationEnvironment hasInitializedEnvironment ifFalse: [ LcsApplicationEnvironment initializeEnvironment ]"
+				"code" : "LcsApplicationEnvironment verifyApplicationEnvironment"
 			},
 			{
 				"__type" : "textSnippet",
@@ -501,14 +572,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-27T13:40:20.144999-04:00"
+						"dateAndTimeString" : "2024-04-01T17:50:09.119624-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "LHUMHtnPDQCU2sD8BRXooQ=="
 				},
-				"code" : "\rLcsSystemManager createBarebonesSystem"
+				"code" : "\rLxxBarebonesSystem new"
 			},
 			{
 				"__type" : "textSnippet",

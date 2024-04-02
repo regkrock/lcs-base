@@ -11,11 +11,6 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #'unit of work' }
-LcsBaseSystem class >> currentUnitOfWork [
-	^ self parent currentUnitOfWork
-]
-
 { #category : #configuration }
 LcsBaseSystem class >> moduleName [
 	^ 'System'
@@ -35,6 +30,11 @@ LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
 { #category : #'slot model' }
 LcsBaseSystem >> buildSlotDefinitions [
 	self systemDomainClasses do: [ :eachDomainClass | eachDomainClass initializeSlotModel ]
+]
+
+{ #category : #'unit of work' }
+LcsBaseSystem >> currentUnitOfWork [
+	^ self parent currentUnitOfWork
 ]
 
 { #category : #testing }

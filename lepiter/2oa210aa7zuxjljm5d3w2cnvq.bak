@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-29T10:46:31.942231-04:00"
+						"dateAndTimeString" : "2024-03-29T10:46:41.380433-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The system can have multiple \"systems\" defined. The system manager keeps track of the systems. It also know which system is the current system. All permenantly persisted objects belong to a system.\n\nExamples of permanently persisted objects would be name, person, country, general ledger, etc.\n\nThe  unit of work manager manages the units of work. There can be one or more units of work per system.  The unit of work manager knows which unit of work is current.\n\nObjects stored in the unit of work manager are persistent through Seaside related transactions. The contents of the unit of work are applied only when an application commit is issued.  If the unit of work is aborted, then the objects related to the unit of work are garbage collected.\n\nWhen inspecting the {{gtClass:name=LcsApplicationEnvironment}} if the environment is initialized, an ''Application Evnironment tab will appear in the class inspector.\n"
+				"string" : "The system can have multiple \"systems\" defined. The system manager keeps track of the systems. It also know which system is the current system. All permenantly persisted objects belong to a system.\n\nExamples of permanently persisted objects would be name, person, country, general ledger, etc.\n\nThe  unit of work manager manages the units of work. There can be one or more units of work per system.  The unit of work manager knows which unit of work is current.\n\nObjects stored in the unit of work manager are persistent through Seaside related transactions. The contents of the unit of work are applied only when an application commit is issued.  If the unit of work is aborted, then the objects related to the unit of work are garbage collected.\n\nWhen inspecting the {{gtClass:name=LcsApplicationEnvironment}} if the environment is initialized, an 'Application Evnironment' tab will appear in the class inspector.\n"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -148,6 +148,77 @@
 					"uidString" : "ZekuZy/RDQCeklz5AA6ITA=="
 				},
 				"code" : "LcsApplicationEnvironment"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-02T11:24:47.564531-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-02T11:28:13.754599-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "V12BcYDRDQCemnxmAy32gQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Reset Application Environment"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-02T11:25:12.391346-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-02T11:28:05.335898-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4yz8coDRDQCfdiJwAy32gQ=="
+				},
+				"code" : "LcsApplicationEnvironment resetApplicationEnvironment\r"
 			},
 			{
 				"__type" : "textSnippet",
@@ -823,7 +894,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-26T16:37:57.879145-04:00"
+									"dateAndTimeString" : "2024-04-02T11:29:02.566155-04:00"
 								}
 							},
 							"uid" : {
@@ -833,7 +904,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "To release everything, use the method {{gtMethod:LcsApplicationEnvironment class>>releaseEnvironment}}. It will remove the LcsApplicationEnvironment singleton which will allow everything to be garbage collected and return the environment to a pristine state."
+							"string" : "To release everything, use the method {{gtMethod:LcsApplicationEnvironment class>>releaseApplicationEnvironment}}. It will remove the LcsApplicationEnvironment singleton which will allow everything to be garbage collected and return the environment to a pristine state."
 						},
 						{
 							"__type" : "pharoSnippet",

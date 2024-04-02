@@ -43,6 +43,11 @@ LcsSlotDefinitions >> elements: anObject [
 	elements := anObject
 ]
 
+{ #category : #'gt view' }
+LcsSlotDefinitions >> gtViewSlotModelChildren [
+	^ self elements associations
+]
+
 { #category : #testing }
 LcsSlotDefinitions >> hasElements [
 	^ self elements isNotEmpty

@@ -21,6 +21,32 @@ LcsSlotModel >> addSlotDefinitions: aSlotDefinitions [
 ]
 
 { #category : #accessing }
+LcsSlotModel >> gtSlotModelFor: aView [
+	<gtView>
+	self slotDefinitions ifEmpty: [ ^ aView empty ].
+	^ aView columnedTree 
+		title: 'Slot Model';
+		priority: 2.5;
+		expandUpTo: 3;
+		items: [ self gtViewSlotModelChildren ];
+		children: [ :each | each value gtViewSlotModelChildren ];
+		column: 'Key' translated
+			text: [ :each | each key displayString ];
+		column: 'Value' translated 
+			text: [ :each | 
+				Transcript show: each printString; cr.
+				(each value isKindOf: LcsSlotDefinitions)
+					ifTrue: [ '' ]
+					ifFalse: [ each value displayString ] ];				
+		yourself
+]
+
+{ #category : #accessing }
+LcsSlotModel >> gtViewSlotModelChildren [
+	^ self slotDefinitions associations  
+]
+
+{ #category : #accessing }
 LcsSlotModel >> hasSlotDefinitions [
 	^ self slotDefinitions notEmpty
 ]

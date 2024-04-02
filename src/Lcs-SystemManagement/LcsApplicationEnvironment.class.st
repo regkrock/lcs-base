@@ -181,6 +181,13 @@ LcsApplicationEnvironment class >> removeCurrentUnitOfWork [
 	self applicationEnvironmentDo: [ :env | env  removeCurrentUnitOfWork ]
 ]
 
+{ #category : #accessing }
+LcsApplicationEnvironment class >> resetApplicationEnvironment [
+	self releaseApplicationEnvironment.
+	self initializeEnvironment.
+	^ self currentApplicationEnvironment
+]
+
 { #category : #'application environment' }
 LcsApplicationEnvironment class >> restoreToCurrentApplicationEnvironment: anApplicationEnvironment [
 	self singleton: anApplicationEnvironment.
@@ -234,7 +241,8 @@ LcsApplicationEnvironment class >> unitsOfWorkManager [
 LcsApplicationEnvironment class >> verifyApplicationEnvironment [
 	self hasInitializedEnvironment
 		ifFalse: [ LcsApplicationEnivronmentNotInitializedError
-				signal: 'Unable to create a system because application environment is not initialized' ]
+				signal: 'Unable to create a system because application environment is not initialized' ].
+	^ true
 ]
 
 { #category : #system }
@@ -264,7 +272,7 @@ LcsApplicationEnvironment >> currentUnitOfWork [
 
 { #category : #'gt view' }
 LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
-		<gtView>
+	<gtView>
 	^ aView columnedList
 		title: 'Application Environment';
 		priority: 10;
