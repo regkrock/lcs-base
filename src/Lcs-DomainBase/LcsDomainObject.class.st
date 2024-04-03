@@ -36,31 +36,14 @@ LcsDomainObject class >> currentUnitOfWork [
 LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
-	^ aView columnedList
+	self slotDefinitions ifNil: [ ^ aView emptyList ].
+	^ aView forward
 		title: 'Slot Definitions';
 		priority: 99;
-		"items: [ self slotDefinitions  sorted: #yourself ascending ];
-		column: 'Slot Name' text: [ :id | id ];
-		send: [ :id | self newForEncoding: id ];
-		actionStencil: [ :aButton | 
-				GtSpotterDropdownButtonStencil new
-					object: self;
-					tooltip: 'Search character encoders by identifier';
-					id: GtPharoSearchCodeButtonId;
-					objectActOn: [ :anActOnEvent :anItem :theButton | 
-						
-						(anItem isKindOf: ZnCharacterEncoder) ifTrue: [ 
-							| columnedList |
-							columnedList := theButton phlow viewContent 
-								allChildrenBreadthFirstDetect: [ :child | 
-									child isKindOf:  BrColumnedList ] 
-								ifFound: [ :child | child ].
-							columnedList scrollToItem: anItem identifier.
-							columnedList selectOne: (columnedList items indexOf: anItem identifier).
-							
-							anActOnEvent beActed ] ];
-					asElement ]"
-			tooltip: 'Search character encoders by identifier'
+		object: [ self slotDefinitions ];
+		view: #gtViewSlotDefinitionsFor:;
+		yourself
+		
 ]
 
 { #category : #testing }
@@ -131,6 +114,11 @@ LcsDomainObject class >> slotDefinitions: anObject [
 	SlotDefinitions := anObject
 ]
 
+{ #category : #accessing }
+LcsDomainObject >> applicationEnvironment [
+	^ self parent applicationEnvironment
+]
+
 { #category : #system }
 LcsDomainObject >> currentSystem [
 	^ self class currentSystem
@@ -150,6 +138,13 @@ LcsDomainObject >> delete [
 { #category : #'slot definitions' }
 LcsDomainObject >> getValueOfSlotNamed: aSlotName [
 	^ (self slotDefinitionNamed: aSlotName) getValueIn: self
+]
+
+{ #category : #accessing }
+LcsDomainObject >> gtViewSlotDefinitionsFor: aView [
+	<gtView>
+	<gtClassView>
+	^ self class gtViewSlotDefinitionsFor: aView
 ]
 
 { #category : #accessing }
@@ -174,11 +169,6 @@ LcsDomainObject >> slotDefinitionNamed: aString [
 
 { #category : #accessing }
 LcsDomainObject >> slotDefinitions [
-	^ self class slotDefinitions
-]
-
-{ #category : #accessing }
-LcsDomainObject >> slotDefintions [
 	^ self class slotDefinitions
 ]
 

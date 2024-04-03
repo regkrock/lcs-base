@@ -34,7 +34,6 @@ LcsSlotModel >> gtSlotModelFor: aView [
 			text: [ :each | each key displayString ];
 		column: 'Value' translated 
 			text: [ :each | 
-				Transcript show: each printString; cr.
 				(each value isKindOf: LcsSlotDefinitions)
 					ifTrue: [ '' ]
 					ifFalse: [ each value displayString ] ];				

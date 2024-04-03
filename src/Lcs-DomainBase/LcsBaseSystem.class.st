@@ -46,19 +46,6 @@ LcsBaseSystem >> currentUnitOfWork [
 ]
 
 { #category : #accessing }
-LcsBaseSystem >> gtModulesFor: aView [
-	<gtView>
-	(self modules isNil or: [self modules isEmpty])
-		ifTrue: [ ^ aView empty ].
-	^ aView forward
-		title: 'Modules';
-		priority: 1;
-		object: [ self modules ];
-		view: #gtModulesFor:;
-		yourself
-]
-
-{ #category : #accessing }
 LcsBaseSystem >> gtSlotModelFor: aView [
 	<gtView>
 	(self slotModel isNil or: [self slotModel hasSlotDefinitions not])

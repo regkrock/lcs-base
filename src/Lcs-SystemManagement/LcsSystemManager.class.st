@@ -24,6 +24,11 @@ LcsSystemManager class >> newOn: anAppicaltionEnvironment [
 ]
 
 { #category : #accessing }
+LcsSystemManager >> applicationEnvironment [
+	^self parent applicationEnvironment
+]
+
+{ #category : #accessing }
 LcsSystemManager >> createCurrentSystemFor: aSystemClass [
 	self suspendCurrentSystem.
 	self currentSystem: (aSystemClass basicNew

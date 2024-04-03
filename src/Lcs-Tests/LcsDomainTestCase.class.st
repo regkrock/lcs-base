@@ -54,7 +54,7 @@ LcsDomainTestCase >> systemManager [
 LcsDomainTestCase >> tearDown [
 	super tearDown.
 	self abortTransaction.
-	LcsApplicationEnvironment removeCurrentSystemAndRevertTo: self savedSystem. 
+	LcsApplicationEnvironment restoreToCurrent: self savedSystem. 
 	self commitTransaction.
 
 ]

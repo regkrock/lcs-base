@@ -171,11 +171,6 @@ LcsApplicationEnvironment class >> removeCurrentSystem [
 	self applicationEnvironmentDo: [  :env  | env removeCurrentSystem ]
 ]
 
-{ #category : #accessing }
-LcsApplicationEnvironment class >> removeCurrentSystemAndRevertTo: aSystem [
-	self applicationEnvironmentDo: [ :env | env removeCurrentSystemAndRevertTo: aSystem ]
-]
-
 { #category : #'application environment - modify' }
 LcsApplicationEnvironment class >> removeCurrentUnitOfWork [
 	self applicationEnvironmentDo: [ :env | env  removeCurrentUnitOfWork ]
@@ -186,6 +181,11 @@ LcsApplicationEnvironment class >> resetApplicationEnvironment [
 	self releaseApplicationEnvironment.
 	self initializeEnvironment.
 	^ self currentApplicationEnvironment
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment class >> restoreToCurrent: aSystem [
+	self applicationEnvironmentDo: [ :env | env restoreToCurrent: aSystem ]
 ]
 
 { #category : #'application environment' }
@@ -243,6 +243,11 @@ LcsApplicationEnvironment class >> verifyApplicationEnvironment [
 		ifFalse: [ LcsApplicationEnivronmentNotInitializedError
 				signal: 'Unable to create a system because application environment is not initialized' ].
 	^ true
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment >> applicationEnvironment [
+	^ self
 ]
 
 { #category : #system }
@@ -352,13 +357,6 @@ LcsApplicationEnvironment >> removeCurrentSystem [
 	^ self systemManager removeCurrentSystem
 ]
 
-{ #category : #accessing }
-LcsApplicationEnvironment >> removeCurrentSystemAndRevertTo: aSystem [
-	self 
-		removeCurrentSystem;
-		makeSystemCurrent: aSystem
-]
-
 { #category : #'unit of work' }
 LcsApplicationEnvironment >> removeCurrentUnitOfWork [
 	^ self unitsOfWorkManager removeCurrentUnitOfWork
@@ -367,6 +365,13 @@ LcsApplicationEnvironment >> removeCurrentUnitOfWork [
 { #category : #accessing }
 LcsApplicationEnvironment >> restoreApplicationEnvironment [
 	self status restoreApplicationEnvironment
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment >> restoreToCurrent: aSystem [
+	self 
+		removeCurrentSystem;
+		makeSystemCurrent: aSystem
 ]
 
 { #category : #accessing }

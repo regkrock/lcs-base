@@ -13,6 +13,11 @@ LcsModules class >> collectionClass [
 	^ LcsSmalltalkConfiguration stringDictionaryClass
 ]
 
+{ #category : #accessing }
+LcsModules >> applicationEnvironment [
+	^ self parent applicationEnvironment
+]
+
 { #category : #build }
 LcsModules >> buildModuleFor: eachModuleClass [
 

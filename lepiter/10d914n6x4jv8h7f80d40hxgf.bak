@@ -907,6 +907,40 @@
 				"code" : "LxxPrototypeSystem new"
 			},
 			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-03T11:41:05.178105-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-03T11:41:17.910415-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "R/WdyZTRDQCt3YCFAefk3w=="
+				},
+				"code" : "LcsMainSystem nwew"
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -931,7 +965,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-03T09:32:13.088315-04:00"
+						"dateAndTimeString" : "2024-04-03T09:32:38.476673-04:00"
 					}
 				},
 				"uid" : {
@@ -941,7 +975,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Tests for the LxxPrototypeSystem are "
+				"string" : "Tests for the LxxPrototypeSystem are in {{gtClass:name=LxxPrototypeSystemTest}}"
 			}
 		]
 	},

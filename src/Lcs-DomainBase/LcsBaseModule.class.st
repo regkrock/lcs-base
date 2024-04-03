@@ -71,6 +71,19 @@ LcsBaseModule >> geographyModule [
 	^ self moduleNamed: 'Geography Module'
 ]
 
+{ #category : #accessing }
+LcsBaseModule >> gtModulesFor: aView [
+	<gtView>
+	(self modules isNil or: [self modules isEmpty])
+		ifTrue: [ ^ aView empty ].
+	^ aView forward
+		title: 'Modules';
+		priority: 1;
+		object: [ self modules ];
+		view: #gtModulesFor:;
+		yourself
+]
+
 { #category : #testing }
 LcsBaseModule >> hasModules [
 	^ self modules hasElements

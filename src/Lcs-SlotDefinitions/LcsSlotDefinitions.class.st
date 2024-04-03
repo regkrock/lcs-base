@@ -43,6 +43,21 @@ LcsSlotDefinitions >> elements: anObject [
 	elements := anObject
 ]
 
+{ #category : #accessing }
+LcsSlotDefinitions >> gtViewSlotDefinitionsFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView columnedList
+		title: 'Slot Definitions';
+		priority: 10;
+		items: [ self elements values ];
+		"children: [ :each | (each isAssociation ifTrue: [ each value ] ifFalse: [ each ]) moduleViewChildren ];"
+		column: 'Name' text: [ :each | each slotName ];
+		column: 'Class' text: [ :each | each class name ];
+		yourself
+
+]
+
 { #category : #'gt view' }
 LcsSlotDefinitions >> gtViewSlotModelChildren [
 	^ self elements associations
