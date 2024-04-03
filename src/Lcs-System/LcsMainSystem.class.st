@@ -13,6 +13,14 @@ LcsMainSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlotDefinition newOn: LcsSystemConfiguration
 ]
 
+{ #category : #'modules ' }
+LcsMainSystem class >> moduleClasses [
+	^ OrderedCollection new
+		add: LcsGeographyModule;
+		add: LcsLegalEntitiesModule;
+		yourself
+]
+
 { #category : #'ui \t' }
 LcsMainSystem >> gtViewSystemOn: aView [
 	<gtView>
@@ -38,14 +46,6 @@ LcsMainSystem >> gtViewSystemOn: aView [
 column: 'Deleted'
 			text: [ :eachItem :eachIndex | eachItem deletedObjects size printString asRopedText foreground: Color gray ]
 			width: 45
-]
-
-{ #category : #'modules ' }
-LcsMainSystem >> moduleClasses [
-	^ OrderedCollection new
-		add: LcsGeographyModule;
-		add: LcsLegalEntitiesModule;
-		yourself
 ]
 
 { #category : #initialization }

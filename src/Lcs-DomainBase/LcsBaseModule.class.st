@@ -12,9 +12,21 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
+{ #category : #modules }
+LcsBaseModule class >> addModuleClassesTo: moduleClasses [ 
+	moduleClasses add: self.
+	self moduleClasses do: [ :each |
+		each addModuleClassesTo: moduleClasses ]
+]
+
+{ #category : #modules }
+LcsBaseModule class >> moduleClasses [
+	^ OrderedCollection new
+]
+
 { #category : #configuration }
 LcsBaseModule class >> moduleName [
-	^ self class name
+	^ self name
 ]
 
 { #category : #building }
@@ -56,7 +68,7 @@ LcsBaseModule >> domainCollections: anObject [
 { #category : #modules }
 LcsBaseModule >> geographyModule [
 
-	^ self modules moduleNamed: 'Geography Module'
+	^ self moduleNamed: 'Geography Module'
 ]
 
 { #category : #testing }
@@ -102,9 +114,9 @@ LcsBaseModule >> legalEntitiesModule [
 	^ self modules at: 'Legal Entities Module'
 ]
 
-{ #category : #modules }
+{ #category : #accessing }
 LcsBaseModule >> moduleClasses [
-	^ OrderedCollection new
+	^ self class moduleClasses
 ]
 
 { #category : #configuration }
@@ -114,8 +126,17 @@ LcsBaseModule >> moduleName [
 
 { #category : #modules }
 LcsBaseModule >> moduleNamed: aString [
+	| foundModule |
 	self moduleName = aString ifTrue: [ ^ self ].
-	^ self modules moduleNamed: aString
+	foundModule := self modules findModuleNamed: aString.
+	foundModule
+		ifNil: [ LcsModuleNotFoundError signal: 'Module not found: ' , aString asString ]
+		ifNotNil: [ ^ foundModule ]
+]
+
+{ #category : #accessing }
+LcsBaseModule >> moduleViewChildren [
+	^ self modules moduleViewChildren
 ]
 
 { #category : #accessing }

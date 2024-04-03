@@ -55,26 +55,34 @@ LcsSlotDefinition >> getValueIn: aDomainObject [
 ]
 
 { #category : #accessing }
+LcsSlotDefinition >> gtSlotDefinitionAttributes [
+	^ OrderedCollection new
+		add: 'domainClass' -> self domainClass displayString;
+		add: 'slotName' -> self slotName;
+		add: 'slotTypes' -> self slotTypeClassNames;
+		add: 'required' -> self isRequired displayString;
+		yourself
+]
+
+{ #category : #accessing }
 LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 	<gtView>
 	^ aView columnedList
 		title: 'Attributes';
 		priority: 10;
-		items: [ { 
-					'domainClass' -> self domainClass displayString.
-					'slotName' -> self slotName.
-					'slotTypes' -> self slotTypeClassNames.
-					'required' -> self isRequired displayString } ];
-		column: 'Option' text: #key width: 200;
-		column: 'Value' text: #value width: 120;
+		items: [ self gtSlotDefinitionAttributes ];
+		column: 'Option'
+			text: #key
+			width: 200;
+		column: 'Value'
+			text: #value
+			width: 120;
 		yourself
-
 ]
 
 { #category : #'gt view' }
 LcsSlotDefinition >> gtViewSlotModelChildren [
-	^{
-		{'slotName' -> self slotName}}
+	^#()
 
 ]
 

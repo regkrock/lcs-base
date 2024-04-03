@@ -23,6 +23,14 @@ LcsGlobalCollectionReferenceSlotDefinition >> globalCollectionSlotDefinition [
 	^ self module slotDefinitionNamed: self collectionSlotName
 ]
 
+{ #category : #accessing }
+LcsGlobalCollectionReferenceSlotDefinition >> gtSlotDefinitionAttributes [
+	^ super gtSlotDefinitionAttributes
+		add: 'moduleName' -> self moduleName;
+		add: 'collectionSlotName' -> self collectionSlotName;
+		yourself
+]
+
 { #category : #model }
 LcsGlobalCollectionReferenceSlotDefinition >> initializeModel: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"

@@ -27,6 +27,14 @@ LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
 	self slotModel addSlotDefinitions: aSlotDefinitions
 ]
 
+{ #category : #intialization }
+LcsBaseSystem >> allModuleClasses [
+	| moduleClasses |
+	moduleClasses := OrderedCollection new.
+	self class addModuleClassesTo: moduleClasses.
+	^moduleClasses
+]
+
 { #category : #'slot model' }
 LcsBaseSystem >> buildSlotDefinitions [
 	self systemDomainClasses do: [ :eachDomainClass | eachDomainClass initializeSlotModel ]
@@ -35,6 +43,32 @@ LcsBaseSystem >> buildSlotDefinitions [
 { #category : #'unit of work' }
 LcsBaseSystem >> currentUnitOfWork [
 	^ self parent currentUnitOfWork
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> gtModulesFor: aView [
+	<gtView>
+	(self modules isNil or: [self modules isEmpty])
+		ifTrue: [ ^ aView empty ].
+	^ aView forward
+		title: 'Modules';
+		priority: 1;
+		object: [ self modules ];
+		view: #gtModulesFor:;
+		yourself
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> gtSlotModelFor: aView [
+	<gtView>
+	(self slotModel isNil or: [self slotModel hasSlotDefinitions not])
+		ifTrue: [ ^ aView empty ].
+	^ aView forward
+		title: 'Slot Model';
+		priority: 1;
+		object: [ self slotModel ];
+		view: #gtSlotModelFor:;
+		yourself
 ]
 
 { #category : #testing }

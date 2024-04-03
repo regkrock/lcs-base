@@ -16,6 +16,12 @@ LxxBarebonesSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlotDefinition newOn: LxxBarebonesSystemConfiguration
 ]
 
+{ #category : #modules }
+LxxBarebonesSystem class >> moduleClasses [
+	"This System has no modules"
+	^ super moduleClasses
+]
+
 { #category : #'slot definitions' }
 LxxBarebonesSystem class >> personsSlotDefinition [
 	<slotDefinition>
@@ -23,12 +29,6 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 		slotName: 'persons';
 		beIdentitySetCollection;
 		yourself
-]
-
-{ #category : #modules }
-LxxBarebonesSystem >> moduleClasses [
-	"This System has no modules"
-	^ super moduleClasses
 ]
 
 { #category : #accessing }
