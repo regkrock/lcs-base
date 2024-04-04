@@ -9,6 +9,12 @@ Class {
 }
 
 { #category : #accessing }
+LcsLegalEntitiesModule class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsLegalEntitiesModuleConfiguration
+]
+
+{ #category : #configuration }
 LcsLegalEntitiesModule class >> moduleName [
 	^ 'Legal Entities Module'
 ]
@@ -29,12 +35,6 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 		slotName: 'persons';
 		addSlotType: LcsSmalltalkConfiguration identitySetClass
 		yourself
-]
-
-{ #category : #accessing }
-LcsLegalEntitiesModule >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsLegalEntitiesModuleConfiguration
 ]
 
 { #category : #accessing }

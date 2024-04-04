@@ -21,7 +21,7 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
-{ #category : #environment }
+{ #category : #'application environment' }
 LcsDomainObject class >> currentSystem [
 
 	^ LcsApplicationEnvironment currentSystem
@@ -56,7 +56,7 @@ LcsDomainObject class >> hasNoninitializedEnvironment [
 	^ self isSlotModelReleased
 ]
 
-{ #category : #environment }
+{ #category : #'application environment' }
 LcsDomainObject class >> initializeEnvironment [
 ]
 
@@ -82,7 +82,7 @@ LcsDomainObject class >> new [
 	^ newObject
 ]
 
-{ #category : #environment }
+{ #category : #'application environment' }
 LcsDomainObject class >> releaseApplicationEnvironment [
 	self releaseSlotModel
 ]
@@ -119,7 +119,7 @@ LcsDomainObject class >> slotDefinitions: anObject [
 	SlotDefinitions := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'application environment' }
 LcsDomainObject >> applicationEnvironment [
 	^ self parent applicationEnvironment
 ]
@@ -145,7 +145,7 @@ LcsDomainObject >> getValueOfSlotNamed: aSlotName [
 	^ (self slotDefinitionNamed: aSlotName) getValueIn: self
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsDomainObject >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
@@ -172,7 +172,7 @@ LcsDomainObject >> slotDefinitionNamed: aString [
 	^ self class slotDefinitionNamed: aString
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LcsDomainObject >> slotDefinitions [
 	^ self class slotDefinitions
 ]

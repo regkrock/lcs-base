@@ -19,6 +19,12 @@ LcsBaseModule class >> addModuleClassesTo: moduleClasses [
 		each addModuleClassesTo: moduleClasses ]
 ]
 
+{ #category : #'slot definitions' }
+LcsBaseModule class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+]
+
 { #category : #modules }
 LcsBaseModule class >> moduleClasses [
 	^ OrderedCollection new
@@ -49,12 +55,6 @@ LcsBaseModule >> configuration: anObject [
 	self setValueOfSlotNamed: 'configuration' to: anObject
 ]
 
-{ #category : #'slot definitions' }
-LcsBaseModule >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
-]
-
 { #category : #accessing }
 LcsBaseModule >> domainCollections [
 	^ domainCollections
@@ -71,10 +71,10 @@ LcsBaseModule >> geographyModule [
 	^ self moduleNamed: 'Geography Module'
 ]
 
-{ #category : #accessing }
+{ #category : #'gt views' }
 LcsBaseModule >> gtApplicationModulesFor: aView [
 	<gtView>
-	(self modules isNil or: [self modules isEmpty])
+	(self modules isNil or: [ self modules isEmpty ])
 		ifTrue: [ 
 			^ aView list
 				title: 'Modules';
@@ -99,27 +99,27 @@ LcsBaseModule >> hasNoModules [
 	^ self modules hasNoElements
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseModule >> initialize [
 	super initialize.
 	self initializeModules.
 	self initializeDomainCollections.
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseModule >> initializeDomainCollections [
 	self domainCollections: (LcsDomainCollections new
 				parent: self;
 				yourself)
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseModule >> initializeModel [
 	self slotDefinitions initializeModel: self.
 	self modules initializeModel
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseModule >> initializeModules [
 	self modules:(LcsModules new
 						parent: self;
@@ -129,10 +129,10 @@ LcsBaseModule >> initializeModules [
 { #category : #modules }
 LcsBaseModule >> legalEntitiesModule [
 
-	^ self modules at: 'Legal Entities Module'
+	^ self moduleNamed: 'Legal Entities Module'
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsBaseModule >> moduleClasses [
 	^ self class moduleClasses
 ]
@@ -169,7 +169,7 @@ LcsBaseModule >> modules: anObject [
 
 { #category : #modules }
 LcsBaseModule >> modulesDo: aBlock [ 
-	self modules contentsDo: aBlock
+	self modules do: aBlock
 ]
 
 { #category : #modules }

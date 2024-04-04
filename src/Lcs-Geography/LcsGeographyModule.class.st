@@ -7,6 +7,12 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
+{ #category : #accessing }
+LcsGeographyModule class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlotDefinition newOn: LcsGeographyModuleConfiguration
+]
+
 { #category : #'slot definitions' }
 LcsGeographyModule class >> countriesSlotDefinition [
 	<slotDefinition>
@@ -16,15 +22,9 @@ LcsGeographyModule class >> countriesSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsGeographyModule class >> moduleName [
 	^ 'Geography Module'
-]
-
-{ #category : #accessing }
-LcsGeographyModule >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsGeographyModuleConfiguration
 ]
 
 { #category : #accessing }

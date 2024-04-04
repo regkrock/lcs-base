@@ -72,6 +72,7 @@ LcsApplicationEnvironment class >> ensureInitialized [
 { #category : #'gt views' }
 LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 	<gtView>
+	<gtClassView>
 	self hasInitializedEnvironment
 		ifFalse: [ ^ aView columnedList
 				title: 'Application Environment';
@@ -286,9 +287,9 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 					'Current' -> self.
 					'Current System' -> self currentSystem.
 					'Number Of Systems' -> self systemManager numberOfSystems.
-					'Systems' -> self systemManager systems.
+					'Systems' -> self systemManager systems collection.
 					'Current Unit Of Work' -> self unitsOfWorkManager currentUnitOfWork.
-					'Units Of Work' -> self unitsOfWorkManager unitsOfWork.
+					'Units Of Work' -> self unitsOfWorkManager unitsOfWork collection.
 					'Status' -> self status } ];
 		column: 'Option' text: #key width: 200;
 		column: 'Value' text: [ :each | each value displayString ];

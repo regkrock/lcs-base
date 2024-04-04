@@ -4,20 +4,20 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LxxPrototype2Module class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : #'modules ' }
 LxxPrototype2Module class >> moduleClasses [
 	^ OrderedCollection new
 		add: LxxPrototype2Submodule;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LxxPrototype2Module class >> moduleName [
 	^ 'Prototype 2 Module'
 ]

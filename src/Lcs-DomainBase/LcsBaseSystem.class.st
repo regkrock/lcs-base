@@ -27,7 +27,7 @@ LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
 	self slotModel addSlotDefinitions: aSlotDefinitions
 ]
 
-{ #category : #intialization }
+{ #category : #initialize }
 LcsBaseSystem >> allModuleClasses [
 	| moduleClasses |
 	moduleClasses := OrderedCollection new.
@@ -45,7 +45,7 @@ LcsBaseSystem >> currentUnitOfWork [
 	^ self parent currentUnitOfWork
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsBaseSystem >> gtSlotModelFor: aView [
 	<gtView>
 	(self slotModel isNil or: [self slotModel hasSlotDefinitions not])
@@ -63,7 +63,7 @@ LcsBaseSystem >> hasSlotDefinitions [
 	^ self slotModel hasSlotDefinitions
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseSystem >> initialize [
 	super initialize.
 	self 
@@ -74,7 +74,7 @@ LcsBaseSystem >> initialize [
 		initializeModel
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 	aUnitOfWork system: self.
 	aUnitOfWork addObject: self. "Need to add to unit of work"
@@ -83,7 +83,7 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 LcsBaseSystem >> printOn: aStream [
 	super printOn: aStream.
 	aStream
@@ -92,12 +92,12 @@ LcsBaseSystem >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #asking }
+{ #category : #'unit of work' }
 LcsBaseSystem >> relatedUnitOfWork [
 	^ self parent unitsOfWorkManager unitOfWorkFor: self
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsBaseSystem >> releaseSlotModel [
 	self parent releaseSlotModel
 ]
@@ -117,7 +117,7 @@ LcsBaseSystem >> restoreSystem [
 	self status restoreSystem
 ]
 
-{ #category : #'restore\t' }
+{ #category : #restore }
 LcsBaseSystem >> restoreUnitOfWork [
 	self parent restoreUnitOfWorkFor: self
 ]
@@ -137,12 +137,12 @@ LcsBaseSystem >> status [
 	^ status
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 LcsBaseSystem >> status: aSystemStatus [ 
 	status := aSystemStatus
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 LcsBaseSystem >> statusNameString [
 	^ self status ifNil: [ 'no status' ] ifNotNil: [ self status statusName ]
 ]

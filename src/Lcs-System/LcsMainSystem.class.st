@@ -21,7 +21,7 @@ LcsMainSystem class >> moduleClasses [
 		yourself
 ]
 
-{ #category : #'ui \t' }
+{ #category : #'gt view' }
 LcsMainSystem >> gtUnitOfWorkOn: aView [
 	<gtView>
 	^ aView forward
@@ -32,7 +32,7 @@ LcsMainSystem >> gtUnitOfWorkOn: aView [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : #'slot model' }
 LcsMainSystem >> systemDomainClasses [
 	^ (LcsDomainObject withAllSubclasses) reject: [ :each | each name beginsWith: 'Lxx' ]
 ]

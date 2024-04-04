@@ -41,7 +41,7 @@ LxxBarebonesSystem >> persons: anObject [
 	self setValueOfSlotNamed: 'presons' to: anObject
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LxxBarebonesSystem >> systemDomainClasses [
 	^OrderedCollection new
 		add: LcsDomainObject;

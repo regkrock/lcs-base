@@ -58,7 +58,7 @@ LcsUnitsOfWorkManager >> gtUnitsOfWorkManagerFor: aView [
 					'Current Unit Of Work' -> self currentUnitOfWork.
 					'Current Systen' -> (self currentUnitOfWork ifNotNil: [ :obj | self currentUnitOfWork system ]).
 					'Number Of Units Of Work' -> self numberOfUnitsOfWork.
-					'Units Of Work' -> self unitsOfWork} ];
+					'Units Of Work' -> self unitsOfWork collection} ];
 		column: 'Option' text: #key width: 200;
 		column: 'Value' text: #value;
 		send: #value;
@@ -74,7 +74,7 @@ LcsUnitsOfWorkManager >> hasCurrentUnitOfWork [
 { #category : #initialize }
 LcsUnitsOfWorkManager >> initialize [
 	super initialize.
-	self unitsOfWork: OrderedCollection new
+	self unitsOfWork: (LcsUnitsOfWork newOn: self)
 ]
 
 { #category : #accessing }
@@ -100,13 +100,13 @@ LcsUnitsOfWorkManager >> parent: anApplicationEnvironment [
 { #category : #'release ' }
 LcsUnitsOfWorkManager >> releaseApplicationEnvironment [
 	self currentUnitOfWork: nil.
-	self unitsOfWork: OrderedCollection new
+	self unitsOfWork removeAll
 ]
 
 { #category : #accessing }
 LcsUnitsOfWorkManager >> removeAllUnitsOfWork [
 	self removeCurrentUnitOfWork.
-	self unitsOfWork: OrderedCollection new
+	self unitsOfWork removeAll
 ]
 
 { #category : #api }
@@ -117,9 +117,7 @@ LcsUnitsOfWorkManager >> removeCurrentUnitOfWork [
 
 { #category : #api }
 LcsUnitsOfWorkManager >> removeUnitsOfWorkFor: aSystem [
-	self unitsOfWork copy
-		do: [ :each | each system == aSystem ifTrue: [ self unitsOfWork remove: each ] ].
-
+	self unitsOfWork removeUnitsOfWorkFor: aSystem.
 	self currentUnitOfWork ifNil: [ ^ self ].	
 	(self currentUnitOfWork isKindOf: LcsBaseUnitOfWork)
 		ifFalse: [ 
@@ -141,10 +139,7 @@ LcsUnitsOfWorkManager >> suspendUnitOfWorkFor: aSystem [
 
 { #category : #accessing }
 LcsUnitsOfWorkManager >> unitOfWorkFor: aSystem [
-	^ self unitsOfWork
-		detect: [ :each | each system == aSystem ]
-		ifNone: [ LcsSystemHasNoUnitOfWorkError
-				signal: 'No unit of work found for requested system' ]
+	^ self unitsOfWork unitOfWorkFor: aSystem
 ]
 
 { #category : #accessing }

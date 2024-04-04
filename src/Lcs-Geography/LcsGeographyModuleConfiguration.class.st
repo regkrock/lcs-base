@@ -11,8 +11,8 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
-{ #category : #accessing }
-LcsGeographyModuleConfiguration >> defaultPoliticalUnitNameSlotDefintion [
+{ #category : #'slot definitions' }
+LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefintion [
 	<slotDefinition>
 	^ LcsStringSlotDefinition new
 		slotName: #'defaultPoliticalUnitName';
@@ -21,8 +21,8 @@ LcsGeographyModuleConfiguration >> defaultPoliticalUnitNameSlotDefintion [
 		yourself
 ]
 
-{ #category : #accessing }
-LcsGeographyModuleConfiguration >> defaultPostalCodeNameSlotDefintion [
+{ #category : #'slot definitions' }
+LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefintion [
 	<slotDefinition>
 	^ LcsStringSlotDefinition new
 		slotName: #'defaultPostalCodeName';
@@ -31,8 +31,8 @@ LcsGeographyModuleConfiguration >> defaultPostalCodeNameSlotDefintion [
 		yourself
 ]
 
-{ #category : #accessing }
-LcsGeographyModuleConfiguration >> parentSlotDefinition [
+{ #category : #'slot definitions' }
+LcsGeographyModuleConfiguration class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsSlotDefinition new
 		slotName: 'parent';

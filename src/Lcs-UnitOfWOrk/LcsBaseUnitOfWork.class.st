@@ -69,7 +69,7 @@ LcsBaseUnitOfWork >> changedSlot: aSlotName valueTo: anObject in: aDomainObject 
 		
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseUnitOfWork >> clearUnitOfWork [
 	self addedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
 	self changedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
@@ -93,7 +93,7 @@ LcsBaseUnitOfWork >> deletedObjects: anObject [
 
 { #category : #accessing }
 LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
-	^ aView
+	^ aView empty
 	"	column: 'Current'
 			text: [ :eachItem :eachIndex | (eachItem == self currentUnitOfWork) displayString asRopedText foreground: Color gray ]
 			width: 45;
@@ -114,13 +114,13 @@ column: 'Deleted'
 			width: 45"
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseUnitOfWork >> initialize [
 	super initialize.
 	self clearUnitOfWork
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsBaseUnitOfWork >> initializeOn: aSystem [ 
 	self system: aSystem
 ]

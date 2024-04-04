@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-Tests'
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsDemonstrationModule class >> moduleName [
 	^ 'Demonstration Module'
 ]

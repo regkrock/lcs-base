@@ -1,10 +1,6 @@
 Class {
 	#name : #LcsModules,
-	#superclass : #LcsObject,
-	#instVars : [
-		'parent',
-		'collection'
-	],
+	#superclass : #LcsCollection,
 	#category : #'Lcs-SystemManagement'
 }
 
@@ -13,7 +9,7 @@ LcsModules class >> collectionClass [
 	^ LcsSmalltalkConfiguration stringDictionaryClass
 ]
 
-{ #category : #accessing }
+{ #category : #'application environment' }
 LcsModules >> applicationEnvironment [
 	^ self parent applicationEnvironment
 ]
@@ -28,33 +24,18 @@ LcsModules >> buildModuleFor: eachModuleClass [
 	module buildModules
 ]
 
-{ #category : #accessing }
-LcsModules >> collection [
-	^ collection
-]
-
-{ #category : #accessing }
-LcsModules >> collection: anObject [
-	collection := anObject
-]
-
-{ #category : #collection }
-LcsModules >> contentsDo: aBlock [
-	self collection do: [ :eachElement | aBlock value: eachElement ]
-]
-
 { #category : #modules }
 LcsModules >> findModuleNamed: aString [
 	| foundModule |
 	foundModule := self collection at: aString ifAbsent: [ nil ].
 	foundModule ifNotNil: [ ^ foundModule ].
-	self collection values do: [ :eachModule | 
+	self collection valuesDo: [ :eachModule | 
 		foundModule :=  eachModule modules findModuleNamed: aString.
 		foundModule ifNotNil: [ ^ foundModule ] ].
-	^nil
+	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsModules >> gtApplicationModulesFor: aView [
 	<gtView>
 	self hasNoElements ifTrue: [ ^ aView empty ].
@@ -73,35 +54,9 @@ LcsModules >> gtApplicationModulesFor: aView [
 		yourself
 ]
 
-{ #category : #testing }
-LcsModules >> hasElements [
-	^ self collection notEmpty
-]
-
-{ #category : #testing }
-LcsModules >> hasNoElements [
-	^ self collection isEmpty
-]
-
-{ #category : #initialize }
-LcsModules >> initialize [ 
-	super initialize.
-	self collection: Dictionary new
-]
-
-{ #category : #accessing }
+{ #category : #build }
 LcsModules >> initializeModel [
 	self collection valuesDo: [ :eachModule | eachModule initializeModel ]
-]
-
-{ #category : #testing }
-LcsModules >> isEmpty [
-	^self collection isEmpty
-]
-
-{ #category : #testing }
-LcsModules >> isNotEmpty [
-	^ self isEmpty not
 ]
 
 { #category : #modules }
@@ -109,7 +64,7 @@ LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 	^ self collection at: aString ifAbsent: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsModules >> moduleViewChildren [
 	self collection isEmpty ifTrue: [ ^ #() ].
 	^ self collection associations
@@ -118,14 +73,4 @@ LcsModules >> moduleViewChildren [
 { #category : #modules }
 LcsModules >> numberOfModules [
 	^ self collection size
-]
-
-{ #category : #accessing }
-LcsModules >> parent [
-	^ parent
-]
-
-{ #category : #accessing }
-LcsModules >> parent: anObject [
-	parent := anObject
 ]

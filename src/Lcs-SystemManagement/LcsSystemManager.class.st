@@ -65,7 +65,7 @@ LcsSystemManager >> gtSystemManagerFor: aView [
 					'Current System' -> self currentSystem .
 					'Current Unit Of Work' -> self unitsOfWorkManager currentUnitOfWork.
 					'Number Of Systems' -> self numberOfSystems.
-					'Systems' -> self systems} ];
+					'Systems' -> self systems collection} ];
 		column: 'Option' text: #key width: 200;
 		column: 'Value' text: #value;
 		send: #value;
@@ -86,7 +86,7 @@ LcsSystemManager >> hasNoCurrentSystem [
 { #category : #initialize }
 LcsSystemManager >> initialize [
 	super initialize.
-	self systems: OrderedCollection new
+	self systems: (LcsSystems newOn: self)
 ]
 
 { #category : #initialize }

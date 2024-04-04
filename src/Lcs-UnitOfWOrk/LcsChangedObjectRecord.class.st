@@ -16,13 +16,13 @@ LcsChangedObjectRecord >> applyChanges [
 { #category : #api }
 LcsChangedObjectRecord >> changedSlot: aSlotName valueTo: anObject [
 
-	(self changedSlots at: aSlotName ifAbsentPut: [LcsChangedSlot newFor: aSlotName parent: self]) 
+	(self changedSlots at: aSlotName ifAbsentPut: [ LcsChangedSlot newFor: aSlotName parent: self ]) 
 		newValue: anObject
 ]
 
 { #category : #api }
 LcsChangedObjectRecord >> changedSlotRecordFor: aSlotName [
-	^self changedSlots at: aSlotName ifAbsent: [nil]
+	^ self changedSlots at: aSlotName ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
@@ -35,7 +35,7 @@ LcsChangedObjectRecord >> changedSlots: anObject [
 	changedSlots := anObject
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsChangedObjectRecord >> initialize [
 
 	super initialize.
@@ -44,5 +44,5 @@ LcsChangedObjectRecord >> initialize [
 
 { #category : #api }
 LcsChangedObjectRecord >> valueOfSlot: aSlotName [
-	^ (self changedSlots at: aSlotName ifAbsent: [nil]) newValue
+	^ (self changedSlots at: aSlotName ifAbsent: [ nil ]) newValue
 ]

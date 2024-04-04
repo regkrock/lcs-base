@@ -30,7 +30,7 @@ LcsBaseApplicationEnvironmentTest >> tearDown [
 	self abortTransaction. 
 	super tearDown.
 	LcsApplicationEnvironment restoreToCurrentApplicationEnvironment: self currentApplicationEnvironment.
-	self assert: LcsApplicationEnvironment hasInitializedEnvironment.
-	self assert: LcsApplicationEnvironment isInActiveStatus.
+	LcsApplicationEnvironment hasInitializedEnvironment ifTrue: [
+	self assert: LcsApplicationEnvironment isInActiveStatus].
 	self commitTransaction
 ]

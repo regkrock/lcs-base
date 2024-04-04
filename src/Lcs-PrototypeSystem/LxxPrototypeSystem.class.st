@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
 LxxPrototypeSystem class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlotDefinition newOn: LxxPrototypeSystemConfiguration
@@ -18,7 +18,7 @@ LxxPrototypeSystem class >> moduleClasses [
 		yourself
 ]
 
-{ #category : #intialization }
+{ #category : #initialize }
 LxxPrototypeSystem >> systemDomainClasses [
 	^ OrderedCollection new
 		add: LcsDomainObject;
