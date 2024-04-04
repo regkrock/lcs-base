@@ -17,8 +17,8 @@ Class {
 }
 
 { #category : #configuration }
-LcsSlotDefinition >> addSlotType: aClass [ 
-	self slotTypes add: aClass
+LcsSlotDefinition >> addSlotType: aClass [
+	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
 
 { #category : #configuration }
@@ -33,7 +33,7 @@ LcsSlotDefinition >> beRequired [
 
 { #category : #'application environment' }
 LcsSlotDefinition >> currentSystem [
-	^ LcsApplicationEnvironment currentSystem
+	^ #LcsApplicationEnvironment asClass currentSystem
 ]
 
 { #category : #'application environment' }
@@ -57,10 +57,10 @@ LcsSlotDefinition >> getValueIn: aDomainObject [
 { #category : #accessing }
 LcsSlotDefinition >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
-		add: 'domainClass' -> self domainClass displayString;
+		add: 'domainClass' -> self domainClass;
 		add: 'slotName' -> self slotName;
 		add: 'slotTypes' -> self slotTypeClassNames;
-		add: 'required' -> self isRequired displayString;
+		add: 'required' -> self isRequired;
 		yourself
 ]
 
@@ -75,8 +75,8 @@ LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 			text: #key
 			width: 200;
 		column: 'Value'
-			text: #value
-			width: 120;
+			text: [ :each | each value displayString ];
+		send: #value;
 		yourself
 ]
 

@@ -283,14 +283,15 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 		priority: 10;
 		items: [ { 
 					'Initialized' -> true.
-					'Has Current System' -> self systemManager hasCurrentSystem displayString.
-					'Number Of Systems' -> self systemManager numberOfSystems displayString.
+					'Current System' -> self currentSystem.
+					'Number Of Systems' -> self systemManager numberOfSystems.
 					'Systems' -> self systemManager systems.
-					'Has Current Unit Of Work' -> self unitsOfWorkManager hasCurrentUnitOfWork displayString.
-					'Number Of Units Of Work' -> self unitsOfWorkManager numberOfUnitsOfWork displayString.
-					'Status' -> self status statusName } ];
+					'Current Unit Of Work' -> self unitsOfWorkManager currentUnitOfWork.
+					'Units Of Work' -> self unitsOfWorkManager unitsOfWork.
+					'Status' -> self status } ];
 		column: 'Option' text: #key width: 200;
-		column: 'Value' text: #value width: 120;
+		column: 'Value' text: [ :each | each value displayString ];
+		send: #value;
 		yourself
 		
 

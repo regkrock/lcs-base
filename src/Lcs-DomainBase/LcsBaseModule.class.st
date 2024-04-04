@@ -72,15 +72,20 @@ LcsBaseModule >> geographyModule [
 ]
 
 { #category : #accessing }
-LcsBaseModule >> gtModulesFor: aView [
+LcsBaseModule >> gtApplicationModulesFor: aView [
 	<gtView>
 	(self modules isNil or: [self modules isEmpty])
-		ifTrue: [ ^ aView empty ].
+		ifTrue: [ 
+			^ aView list
+				title: 'Modules';
+				priority: 1;
+				items: #('Has no submodules');
+				yourself ].
 	^ aView forward
 		title: 'Modules';
 		priority: 1;
 		object: [ self modules ];
-		view: #gtModulesFor:;
+		view: #gtApplicationModulesFor:;
 		yourself
 ]
 

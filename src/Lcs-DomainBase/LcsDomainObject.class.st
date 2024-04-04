@@ -36,7 +36,12 @@ LcsDomainObject class >> currentUnitOfWork [
 LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
-	self slotDefinitions ifNil: [ ^ aView emptyList ].
+	self slotDefinitions ifNil: [ 
+		^ aView list
+			title: 'Slot Definitions';
+			priority: 10;
+			items: [ Array with: 'Not initialized' ];
+			yourself].	
 	^ aView forward
 		title: 'Slot Definitions';
 		priority: 99;

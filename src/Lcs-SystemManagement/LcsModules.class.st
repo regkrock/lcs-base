@@ -55,7 +55,7 @@ LcsModules >> findModuleNamed: aString [
 ]
 
 { #category : #accessing }
-LcsModules >> gtModulesFor: aView [
+LcsModules >> gtApplicationModulesFor: aView [
 	<gtView>
 	self hasNoElements ifTrue: [ ^ aView empty ].
 	^ aView columnedTree
@@ -69,6 +69,7 @@ LcsModules >> gtModulesFor: aView [
 		column: 'Value'
 			text: #value
 			width: 120;
+		send: #value;
 		yourself
 ]
 

@@ -4,6 +4,11 @@ Class {
 	#category : #'Lcs-SystemManagement'
 }
 
+{ #category : #accessing }
+LcsApplicationEnvironmentActiveStatus >> displayString [
+	^ self statusName
+]
+
 { #category : #testing }
 LcsApplicationEnvironmentActiveStatus >> isInActiveStatus [
 	^ true

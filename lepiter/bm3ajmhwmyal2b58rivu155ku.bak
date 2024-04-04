@@ -100,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:54:27.86079-04:00"
+						"dateAndTimeString" : "2024-03-23T12:54:29.108405-04:00"
 					}
 				},
 				"uid" : {
@@ -110,7 +110,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Inspect the LcsGithub repository"
+				"string" : "####Inspect the LcsBase Github repository"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -145,6 +145,111 @@
 					"uidString" : "UYUBgrjQDQCbIQOECh8kzw=="
 				},
 				"code" : "BaselineOfLcsBase gtRlProjectWithRepository: 'github//regkrock/lcs-base:main.src'."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-04T11:23:03.069841-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-04T11:23:12.476907-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "16P1pqjRDQCMRSt8Cv3sZA=="
+				},
+				"code" : "BaselineOfLcsBase"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-04T11:34:18.10158-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-04T11:34:55.955193-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "C9oxz6jRDQCMjrPKCv3sZA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtMethod:name=BaselineOfLcsBase>>baseline:}}"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-04T11:35:29.278004-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-04T11:35:54.012838-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MOlv06jRDQCNGvh/Cv3sZA=="
+				},
+				"code" : "BaselineOfLcsBase>>baseline:"
 			}
 		]
 	},

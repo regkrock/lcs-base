@@ -91,6 +91,29 @@ LcsBaseUnitOfWork >> deletedObjects: anObject [
 	deletedObjects := anObject
 ]
 
+{ #category : #accessing }
+LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
+	^ aView
+	"	column: 'Current'
+			text: [ :eachItem :eachIndex | (eachItem == self currentUnitOfWork) displayString asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Index'
+			text: [ :eachItem :eachIndex | eachIndex asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Unit Of Work Name'
+			text: [ :eachItem :eachIndex | eachItem unitOfWorkName asString asRopedText foreground: Color gray ]
+			width: 140;
+		column: 'Added'
+			text: [ :eachItem :eachIndex | eachItem addedObjects size printString asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Changed'
+			text: [ :eachItem :eachIndex | eachItem changedObjects size printString asRopedText foreground: Color gray ]
+			width: 45;
+column: 'Deleted'
+			text: [ :eachItem :eachIndex | eachItem deletedObjects size printString asRopedText foreground: Color gray ]
+			width: 45"
+]
+
 { #category : #initialization }
 LcsBaseUnitOfWork >> initialize [
 	super initialize.
@@ -100,6 +123,15 @@ LcsBaseUnitOfWork >> initialize [
 { #category : #initialization }
 LcsBaseUnitOfWork >> initializeOn: aSystem [ 
 	self system: aSystem
+]
+
+{ #category : #accessing }
+LcsBaseUnitOfWork >> printOn: aStream [
+	super printOn: aStream.
+	aStream
+		nextPutAll: ' (';
+		nextPutAll: self system printString;
+		nextPutAll: ')'
 ]
 
 { #category : #api }

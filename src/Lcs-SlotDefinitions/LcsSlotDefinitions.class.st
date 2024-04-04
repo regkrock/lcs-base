@@ -47,7 +47,7 @@ LcsSlotDefinitions >> elements: anObject [
 LcsSlotDefinitions >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
-	^ aView columnedList
+^ aView columnedList
 		title: 'Slot Definitions';
 		priority: 10;
 		items: [ self elements values ];

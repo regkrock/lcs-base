@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:53:30.64866-04:00"
+						"dateAndTimeString" : "2024-02-06T08:36:18.694229-05:00"
 					}
 				},
 				"editEmail" : {
@@ -29,51 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:53:40.376733-04:00"
+						"dateAndTimeString" : "2024-02-06T08:36:38.819534-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "knxfhLjQDQCcBXCqCh8kzw=="
+					"uidString" : "bvBuZhjNDQCg0uGXAFw9gQ=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Validate LCS Baseline"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T11:50:30.236202-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:11:47.272122-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "hPgKo7fQDQCCJHByACUrxA=="
-				},
-				"code" : "LcsBaselinesShouldProperlySpecifyDependencies new "
+				"string" : "This keeps track of the system information"
 			},
 			{
 				"__type" : "textSnippet",
@@ -89,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:53:54.78436-04:00"
+						"dateAndTimeString" : "2024-02-06T08:36:39.488588-05:00"
 					}
 				},
 				"editEmail" : {
@@ -100,17 +66,54 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:54:29.108405-04:00"
+						"dateAndTimeString" : "2024-02-06T08:36:47.970241-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "BJvPhbjQDQCco2TvCh8kzw=="
+					"uidString" : "BDCsZxjNDQChsHJdAFw9gQ=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Inspect the LcsBase Github repository"
+				"string" : "1 - currentUnitOfWork"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-06T08:36:48.730273-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-02-06T08:37:27.479303-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "NzI5aBjNDQCiRVWxAFw9gQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "2 - all units of work that are not completed or removed."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -126,7 +129,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:52:50.938072-04:00"
+						"dateAndTimeString" : "2024-02-06T08:40:49.177226-05:00"
 					}
 				},
 				"editEmail" : {
@@ -137,82 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T12:53:50.592994-04:00"
+						"dateAndTimeString" : "2024-02-06T08:40:56.972643-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "UYUBgrjQDQCbIQOECh8kzw=="
+					"uidString" : "uB6OdhjNDQCl+hfqAFw9gQ=="
 				},
-				"code" : "BaselineOfLcsBase gtRlProjectWithRepository: 'github//regkrock/lcs-base:main.src'."
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-04T11:23:03.069841-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-04T11:23:12.476907-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "16P1pqjRDQCMRSt8Cv3sZA=="
-				},
-				"code" : "BaselineOfLcsBase"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-04T11:35:29.278004-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-04T11:35:59.560568-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "MOlv06jRDQCNGvh/Cv3sZA=="
-				},
-				"code" : "BaselineOfLcsBase>>#baseline:"
+				"code" : "LcsSystem singleton"
 			}
 		]
 	},
@@ -224,7 +159,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-23T12:31:02.864722-04:00"
+			"dateAndTimeString" : "2024-02-06T08:36:26.976558-05:00"
 		}
 	},
 	"editEmail" : {
@@ -235,15 +170,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-23T12:31:02.864722-04:00"
+			"dateAndTimeString" : "2024-02-06T08:36:26.976558-05:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Validate Lcs Baseline"
+		"title" : "LcsSystem"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "7ef40aa3-b7d0-0d00-8223-480100252bc4"
+		"uuid" : "207f6e66-18cd-0d00-a0d1-2c4e005c3d81"
 	}
 }

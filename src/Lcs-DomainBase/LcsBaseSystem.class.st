@@ -83,6 +83,15 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 
 ]
 
+{ #category : #accessing }
+LcsBaseSystem >> printOn: aStream [
+	super printOn: aStream.
+	aStream
+		nextPutAll: ' (';
+		nextPutAll: self statusNameString;
+		nextPutAll: ')'
+]
+
 { #category : #asking }
 LcsBaseSystem >> relatedUnitOfWork [
 	^ self parent unitsOfWorkManager unitOfWorkFor: self
@@ -131,6 +140,11 @@ LcsBaseSystem >> status [
 { #category : #initialization }
 LcsBaseSystem >> status: aSystemStatus [ 
 	status := aSystemStatus
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> statusNameString [
+	^ self status ifNil: [ 'no status' ] ifNotNil: [ self status statusName ]
 ]
 
 { #category : #suspend }

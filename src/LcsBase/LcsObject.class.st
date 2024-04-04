@@ -47,9 +47,9 @@ LcsObject class >> releaseApplicationEnvironment [
 { #category : #printing }
 LcsObject >> printOn: aStream [
 	super printOn: aStream.
-	aStream 
+	"aStream 
 		nextPutAll: ' (objectId: ';
 		nextPutAll: self hash displayString;
-		nextPutAll: ')'
+		nextPutAll: ')'"
 
 ]
