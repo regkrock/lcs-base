@@ -283,6 +283,7 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 		priority: 10;
 		items: [ { 
 					'Initialized' -> true.
+					'Current' -> self.
 					'Current System' -> self currentSystem.
 					'Number Of Systems' -> self systemManager numberOfSystems.
 					'Systems' -> self systemManager systems.
@@ -296,6 +297,28 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 		
 
 
+]
+
+{ #category : #'gt view' }
+LcsApplicationEnvironment >> gtSystemManagerFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'System Manager';
+		priority: 11;
+		object: [ self systemManager ];
+		view: #gtSystemManagerFor:
+		yourself
+]
+
+{ #category : #'gt view' }
+LcsApplicationEnvironment >> gtUnitsOfWorkManagerFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Units Of Work';
+		priority: 12;
+		object: [ self unitsOfWorkManager ];
+		view: #gtUnitsOfWorkManagerFor:
+		yourself
 ]
 
 { #category : #testing }

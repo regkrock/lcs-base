@@ -62,14 +62,13 @@ LcsSystemManager >> gtSystemManagerFor: aView [
 		priority: 10;
 		items: [ { 
 					'Initialized' -> true.
-					'Has Current System' -> self systemManager hasCurrentSystem displayString.
-					'Number Of Systems' -> self systemManager numberOfSystems displayString.
-					'Systems' -> self systemManager systems.
-					'Has Current Unit Of Work' -> self unitsOfWorkManager hasCurrentUnitOfWork displayString.
-					'Number Of Units Of Work' -> self unitsOfWorkManager numberOfUnitsOfWork displayString.
-					'Status' -> self status statusName } ];
+					'Current System' -> self currentSystem .
+					'Current Unit Of Work' -> self unitsOfWorkManager currentUnitOfWork.
+					'Number Of Systems' -> self numberOfSystems.
+					'Systems' -> self systems} ];
 		column: 'Option' text: #key width: 200;
-		column: 'Value' text: #value width: 120;
+		column: 'Value' text: #value;
+		send: #value;
 		yourself
 		
 ]

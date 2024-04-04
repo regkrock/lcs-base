@@ -48,6 +48,24 @@ LcsUnitsOfWorkManager >> currentUnitOfWork: anObject [
 	currentUnitOfWork := anObject
 ]
 
+{ #category : #accessing }
+LcsUnitsOfWorkManager >> gtUnitsOfWorkManagerFor: aView [
+		<gtView>
+	^ aView columnedList
+		title: 'Units Of Work';
+		priority: 10;
+		items: [ { 
+					'Current Unit Of Work' -> self currentUnitOfWork.
+					'Current Systen' -> (self currentUnitOfWork ifNotNil: [ :obj | self currentUnitOfWork system ]).
+					'Number Of Units Of Work' -> self numberOfUnitsOfWork.
+					'Units Of Work' -> self unitsOfWork} ];
+		column: 'Option' text: #key width: 200;
+		column: 'Value' text: #value;
+		send: #value;
+		yourself
+		
+]
+
 { #category : #testing }
 LcsUnitsOfWorkManager >> hasCurrentUnitOfWork [
 	^self currentUnitOfWork notNil
