@@ -58,6 +58,19 @@ LxxOrderedCollectionTest >> testDo [
 ]
 
 { #category : #accessing }
+LxxOrderedCollectionTest >> testIncludes [
+	| anLxxCollection result |
+	anLxxCollection := LxxOrderedCollection new.
+	anLxxCollection 
+		add: 1; 
+		add: 2.
+	result := anLxxCollection select: [:each | each > 1 ].
+	self assert: (anLxxCollection includes: 1).
+	self deny: (anLxxCollection includes: 10).
+	
+]
+
+{ #category : #accessing }
 LxxOrderedCollectionTest >> testInjectInto [
 	| anLxxCollection result |
 	anLxxCollection := LxxOrderedCollection new.

@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-01T09:11:38.984975-04:00"
+						"dateAndTimeString" : "2024-04-01T09:11:48.14896-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This is an example of showing various attributes of an object in a GtView.  {{gtMethod:name=LcsApplicationEnvironment}}"
+				"string" : "This is an example of showing various attributes of an object in a GtView.  {{gtMethod:name=LcsApplicationEnvironment>>gtEnvironmentFor:}}"
 			}
 		]
 	},

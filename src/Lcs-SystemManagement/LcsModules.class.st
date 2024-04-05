@@ -45,11 +45,10 @@ LcsModules >> gtApplicationModulesFor: aView [
 		items: [ self moduleViewChildren ];
 		children: [ :each | (each isAssociation ifTrue: [ each value ] ifFalse: [ each ]) moduleViewChildren ];
 		column: 'Module Name'
-			text: #key
+			text: [ :each | each key ]
 			width: 200;
 		column: 'Value'
-			text: #value
-			width: 120;
+			text: [ :each | each value ];
 		send: #value;
 		yourself
 ]
