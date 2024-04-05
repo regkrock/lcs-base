@@ -291,7 +291,7 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 					'Current Unit Of Work' -> self unitsOfWorkManager currentUnitOfWork.
 					'Units Of Work' -> self unitsOfWorkManager unitsOfWork collection.
 					'Status' -> self status } ];
-		column: 'Option' text: [ :each | each key width: 200 ];
+		column: 'Option' text: [ :each | each key ] width: 200;
 		column: 'Value' text: [ :each | each value displayString ];
 		send: #value;
 		yourself
