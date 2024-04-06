@@ -9,6 +9,11 @@ LcsUnitsOfWork class >> collectionClass [
 	^ OrderedCollection
 ]
 
+{ #category : #'gt view\t' }
+LcsUnitsOfWork >> applicationEnvironmentViewChildren [
+	^ self collect: [ :each | LcsApplicationEnvironmentViewItem newOn: self label: '' item: each]
+]
+
 { #category : #'collection\t' }
 LcsUnitsOfWork >> removeUnitsOfWorkFor: aSystem [
 	self collection copy

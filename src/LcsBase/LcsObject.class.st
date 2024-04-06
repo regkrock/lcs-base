@@ -33,9 +33,9 @@ LcsObject class >> hasNoninitializedSlotModel [
 ]
 
 { #category : #testing }
-LcsObject class >> initializeEnvironment [
+LcsObject class >> initializeApplicationEnvironment [
 	self domainObjectClass
-		ifNotNil: [ :domainObjectClass | domainObjectClass initializeEnvironment ]
+		ifNotNil: [ :domainObjectClass | domainObjectClass initializeApplicationEnvironment ]
 ]
 
 { #category : #testing }

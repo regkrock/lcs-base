@@ -32,6 +32,13 @@ LcsApplicationEnvironment class >> applicationEnvironmentObject: aBlock [
 	^ self currentApplicationEnvironment ifNil: [ nil ] ifNotNil: aBlock 
 ]
 
+{ #category : #'gt views' }
+LcsApplicationEnvironment class >> applicationEnvironmentViewChildren [
+	^ {
+		LcsApplicationEnvironmentViewItem newOn: self label: 'Initialized' item: self currentApplicationEnvironment notNil.
+		LcsApplicationEnvironmentViewItem newOn: self label: 'Current' item: self currentApplicationEnvironment}
+]
+
 { #category : #'application environment - modify' }
 LcsApplicationEnvironment class >> createCurrentSystemFor: aSystemClass [ 
 	self verifyApplicationEnvironment.
@@ -66,33 +73,26 @@ LcsApplicationEnvironment class >> currentUnitOfWork [
 
 { #category : #running }
 LcsApplicationEnvironment class >> ensureInitialized [
-	self hasInitializedEnvironment ifFalse: [ self initializeEnvironment ].
+	self hasInitializedEnvironment ifFalse: [ self initializeApplicationEnvironment ].
 ]
 
 { #category : #'gt views' }
 LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 	<gtView>
 	<gtClassView>
-	self hasInitializedEnvironment
-		ifFalse: [ ^ aView columnedList
-				title: 'Application Environment';
-				priority: 1;
-				items: [ OrderedCollection new
-							add: {'Initialized'.
-									false};
-							yourself ];
-				column: 'Key'
-				text: [ :each | each first ]
-					width: 200;
-				column: 'Value'
-					text: [ :each | each last displayString ]
-					width: 120;
-				yourself ].
-	^ aView forward
+	^ aView columnedTree
 		title: 'Application Environment';
 		priority: 1;
-		object: [ self currentApplicationEnvironment ];
-		view: #gtApplicationEnvironmentFor:;
+		expandUpTo: 4;
+		items: [ self applicationEnvironmentViewChildren ];
+		children: [ :each | each children ];
+		column: 'Option' translated
+			text: [ :each | each label displayString ]
+			width: 200;
+		column: 'Value' translated text: [ :each | each item displayString ];
+		column: '' stencil: [ :viewItem | viewItem actionButton];
+		send: #item;
+		actionUpdateButton;
 		yourself
 ]
 
@@ -135,7 +135,7 @@ LcsApplicationEnvironment class >> hasUnitsOfWorkManager [
 ]
 
 { #category : #initiailize }
-LcsApplicationEnvironment class >> initializeEnvironment [
+LcsApplicationEnvironment class >> initializeApplicationEnvironment [
 	self singleton notNil ifTrue: [ self error: 'Environment is already initialized' ].
 	LcsSmalltalkConfiguration gsSystemClass abortTransaction.
 	self singleton: self basicNew initialize.
@@ -180,7 +180,7 @@ LcsApplicationEnvironment class >> removeCurrentUnitOfWork [
 { #category : #accessing }
 LcsApplicationEnvironment class >> resetApplicationEnvironment [
 	self releaseApplicationEnvironment.
-	self initializeEnvironment.
+	self initializeApplicationEnvironment.
 	^ self currentApplicationEnvironment
 ]
 
@@ -251,6 +251,14 @@ LcsApplicationEnvironment >> applicationEnvironment [
 	^ self
 ]
 
+{ #category : #'gt view' }
+LcsApplicationEnvironment >> applicationEnvironmentViewChildren [
+	^ {
+		LcsApplicationEnvironmentViewItem newOn: self label: 'Status' item: self status.
+		LcsApplicationEnvironmentViewItem newOn: self label: 'System Manager' item: self systemManager.
+		LcsApplicationEnvironmentViewItem newOn: self label: 'Units Of Work' item: self unitsOfWorkManager.}
+]
+
 { #category : #system }
 LcsApplicationEnvironment >> createCurrentSystemFor: aSystemClass [
 	^ self systemManager createCurrentSystemFor: aSystemClass
@@ -279,25 +287,20 @@ LcsApplicationEnvironment >> currentUnitOfWork [
 { #category : #'gt view' }
 LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 	<gtView>
-	^ aView columnedList
+	^ aView columnedTree
 		title: 'Application Environment';
 		priority: 10;
-		items: [ { 
-					'Initialized' -> true.
-					'Current' -> self.
-					'Current System' -> self currentSystem.
-					'Number Of Systems' -> self systemManager numberOfSystems.
-					'Systems' -> self systemManager systems collection.
-					'Current Unit Of Work' -> self unitsOfWorkManager currentUnitOfWork.
-					'Units Of Work' -> self unitsOfWorkManager unitsOfWork collection.
-					'Status' -> self status } ];
-		column: 'Option' text: [ :each | each key ] width: 200;
-		column: 'Value' text: [ :each | each value displayString ];
-		send: #value;
+		expandUpTo: 3;
+		items: [ self applicationEnvironmentViewChildren ];
+		children: [ :viewItem | viewItem children ];
+		column: 'Option'
+			text: [ :viewItem | viewItem label ]
+			width: 200;
+		column: 'Value' text: [ :viewItem | viewItem item displayString ];
+		column: '' stencil: [ :viewItem | viewItem actionButton];
+		send: #item;
+		actionUpdateButton;
 		yourself
-		
-
-
 ]
 
 { #category : #'gt view' }

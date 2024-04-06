@@ -16,8 +16,15 @@ LcsSystemActiveStatus >> statusName [
 
 { #category : #api }
 LcsSystemActiveStatus >> suspendSystem [
-	self parent 
-		releaseSlotModel;
-		suspendUnitOfWork;
-		status: (LcsSystemSuspendedStatus newOn: self parent)
+	self parent _suspendSystem 
+]
+
+{ #category : #accessing }
+LcsSystemActiveStatus >> toggleActionButtonLabel [
+	^ 'Suspend '
+]
+
+{ #category : #accessing }
+LcsSystemActiveStatus >> toggleStatus [
+	^ self suspendSystem
 ]

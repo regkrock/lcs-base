@@ -43,13 +43,13 @@ LcsModules >> gtApplicationModulesFor: aView [
 		title: 'Modules';
 		priority: 10;
 		items: [ self moduleViewChildren ];
-		children: [ :each | (each isAssociation ifTrue: [ each value ] ifFalse: [ each ]) moduleViewChildren ];
+		children: [ :each | each children ];
 		column: 'Module Name'
-			text: [ :each | each key ]
+			text: [ :each | each label ]
 			width: 200;
 		column: 'Value'
-			text: [ :each | each value ];
-		send: #value;
+			text: [ :each | each item ];
+		send: #item;
 		yourself
 ]
 
@@ -65,8 +65,7 @@ LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 
 { #category : #'gt view' }
 LcsModules >> moduleViewChildren [
-	self collection isEmpty ifTrue: [ ^ #() ].
-	^ self collection associations
+	^ self collect: [ :each | LcsModuleViewItem newLabel: each moduleName item: each ]
 ]
 
 { #category : #modules }

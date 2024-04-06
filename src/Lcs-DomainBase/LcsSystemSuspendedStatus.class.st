@@ -11,10 +11,7 @@ LcsSystemSuspendedStatus >> isInSuspendedStatus [
 
 { #category : #'api\t\t' }
 LcsSystemSuspendedStatus >> restoreSystem [
-	self parent
-		restoreUnitOfWork;
-		restoreSlotModel;
-		status: (LcsSystemActiveStatus newOn: self parent)
+	self parent _restoreSystem
 ]
 
 { #category : #accessing }
@@ -24,4 +21,14 @@ LcsSystemSuspendedStatus >> statusName [
 
 { #category : #accessing }
 LcsSystemSuspendedStatus >> suspendedSystem [
+]
+
+{ #category : #accessing }
+LcsSystemSuspendedStatus >> toggleActionButtonLabel [
+	^ 'Activate'
+]
+
+{ #category : #accessing }
+LcsSystemSuspendedStatus >> toggleStatus [
+	self restoreSystem
 ]

@@ -60,7 +60,11 @@ LcsSlotDefinitions >> gtViewSlotDefinitionsFor: aView [
 
 { #category : #'gt view' }
 LcsSlotDefinitions >> gtViewSlotModelChildren [
-	^ self elements associations
+	| children |
+	children := OrderedCollection new.
+	self elements keysAndValuesDo: [ :key :value |
+		children add: (LcsSlotModelViewItem newLabel: key item: value)].
+	^ children
 ]
 
 { #category : #testing }

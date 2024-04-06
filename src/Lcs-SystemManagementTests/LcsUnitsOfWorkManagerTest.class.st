@@ -8,7 +8,7 @@ Class {
 LcsUnitsOfWorkManagerTest >> testCreation [
 	| unitsOfWorkManager |
 	LcsApplicationEnvironment releaseApplicationEnvironment.
-	LcsApplicationEnvironment initializeEnvironment.
+	LcsApplicationEnvironment initializeApplicationEnvironment.
 	
 	unitsOfWorkManager := LcsApplicationEnvironment unitsOfWorkManager.
 	self assert: (unitsOfWorkManager isKindOf: LcsUnitsOfWorkManager).
@@ -20,7 +20,7 @@ LcsUnitsOfWorkManagerTest >> testCreation [
 LcsUnitsOfWorkManagerTest >> testRemoveCurrentUnitOfWork [
 	| unitOfWork |
 	LcsApplicationEnvironment releaseApplicationEnvironment.
-	LcsApplicationEnvironment initializeEnvironment.
+	LcsApplicationEnvironment initializeApplicationEnvironment.
 	
 	unitOfWork := LcsApplicationEnvironment createUnitOfWork.
 	self assert: LcsApplicationEnvironment currentUnitOfWork identicalTo: unitOfWork.

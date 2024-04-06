@@ -26,6 +26,13 @@ LcsUnitsOfWorkManager class >> newOn: anApplicationEnvironment [
 		yourself
 ]
 
+{ #category : #'gt view' }
+LcsUnitsOfWorkManager >> applicationEnvironmentViewChildren [
+	^ {
+		LcsApplicationEnvironmentViewItem newOn: self label: 'Current Unit Of Work' item: self currentUnitOfWork.
+		LcsApplicationEnvironmentViewItem newOn: self label: 'Units Of Work' item: self unitsOfWork. }
+]
+
 { #category : #api }
 LcsUnitsOfWorkManager >> createUnitOfWork [
 	^ self createUnitOfWorkFor: nil

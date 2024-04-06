@@ -8,3 +8,8 @@ Class {
 LcsSystems class >> collectionClass [
 	^ OrderedCollection
 ]
+
+{ #category : #'gt view\t' }
+LcsSystems >> applicationEnvironmentViewChildren [
+	^ self collect: [ :each | LcsApplicationEnvironmentViewItem newOn: self label: '' item: each]
+]

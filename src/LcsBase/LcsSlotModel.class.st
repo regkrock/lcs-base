@@ -29,21 +29,22 @@ LcsSlotModel >> gtSlotModelFor: aView [
 		priority: 2.5;
 		expandUpTo: 3;
 		items: [ self gtViewSlotModelChildren ];
-		children: [ :each | each value gtViewSlotModelChildren ];
-		column: 'Key' translated
-			text: [ :each | each key displayString ];
-		column: 'Value' translated 
-			text: [ :each | 
-				(each value isKindOf: #LcsSlotDefinitions asClass)
-					ifTrue: [ '' ]
-					ifFalse: [ each value displayString ] ];				
-		send: #value;
+		children: [ :each | each children ];
+		column: 'Option'
+			text: [ :each | each label ]
+			width: 200;
+		column: 'Value' text: [ :each | each item displayString ];
+		send: #item;
 		yourself
 ]
 
 { #category : #accessing }
 LcsSlotModel >> gtViewSlotModelChildren [
-	^ self slotDefinitions associations  
+	| children |
+	children := OrderedCollection new.
+	self slotDefinitions keysAndValuesDo: [ :key :value |
+		children add: (LcsSlotModelViewItem newLabel: key name item: value)].
+	^ children
 ]
 
 { #category : #accessing }

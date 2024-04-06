@@ -26,3 +26,13 @@ LcsApplicationEnvironmentActiveStatus >> suspendApplicationEnvironment [
 			suspendedSystem: self parent systemManager suspendCurrentSystem;
 			yourself)
 ]
+
+{ #category : #accessing }
+LcsApplicationEnvironmentActiveStatus >> toggleStatus [
+	self suspendApplicationEnvironment
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironmentActiveStatus >> toggleStatusLabel [
+	^ 'Stop'
+]

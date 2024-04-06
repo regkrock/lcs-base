@@ -13,10 +13,7 @@ GtClassUpdateForm class >> onClass: aClass [
 GtClassUpdateForm >> commit [
 	| aClass |
 	aClass := newClassName asClass.
-	aClass classSide slots
-		do: [ :aSlot | 
-			(RBRemoveInstanceVariableChange remove: aSlot name from: aClass classSide)
-				execute ].
+	self removeClassSlots: aClass.
 	self defineClass.
 	aClass := Smalltalk classNamed: self rawClassName.
 	self installClassSlotsOn: aClass.
@@ -40,5 +37,20 @@ GtClassUpdateForm >> onClass: aClass [
 				tagName: (tagName = packageName ifTrue: [ '' ] ifFalse: [ tagName ])).
 	self pools: (aClass sharedPools collect: #name).
 	self classVars: (aClass classVarNames collect: #asString).
-	self classSlots: (aClass classSide slots collect: #name)
+	self classSlots: (aClass classSide slots collect: #name).
+	self
+		superSlots: ((aClass allSlots collect: #name) asSet
+				difference: (aClass slots collect: #name) asSet)
+]
+
+{ #category : #accessing }
+GtClassUpdateForm >> removeClassSlots: aClass [
+	| changes |
+	aClass classSide slots isEmpty ifTrue: [ ^ self ].
+	changes := aClass classSide slots
+			collect: [ :aSlot | RBRemoveInstanceVariableChange remove: aSlot name from: aClass classSide ].
+	(RBCompositeRefactoryChange new
+		name: 'Remove class slots';
+		changes: changes;
+		yourself) gtExecuteWithUndo
 ]

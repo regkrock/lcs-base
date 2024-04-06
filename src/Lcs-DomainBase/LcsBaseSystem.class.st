@@ -22,6 +22,25 @@ LcsBaseSystem class >> new [
 	^ LcsApplicationEnvironment createCurrentSystemFor: self
 ]
 
+{ #category : #accessing }
+LcsBaseSystem >> _restoreSystem [
+	self suspendCurrentSystem.
+	self
+		restoreUnitOfWork;
+		restoreSlotModel;
+		status: (LcsSystemActiveStatus newOn: self).
+	self systemManager currentSystem: self
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> _suspendSystem [ 
+	self 
+		releaseSlotModel;
+		suspendUnitOfWork;
+		status: (LcsSystemSuspendedStatus newOn: self ).
+	self systemManager currentSystem: nil
+]
+
 { #category : #'slot model' }
 LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
 	self slotModel addSlotDefinitions: aSlotDefinitions
@@ -147,6 +166,11 @@ LcsBaseSystem >> statusNameString [
 	^ self status ifNil: [ 'no status' ] ifNotNil: [ self status statusName ]
 ]
 
+{ #category : #accessing }
+LcsBaseSystem >> suspendCurrentSystem [
+	self systemManager suspendCurrentSystem
+]
+
 { #category : #suspend }
 LcsBaseSystem >> suspendSystem [
 	self status suspendSystem
@@ -160,4 +184,19 @@ LcsBaseSystem >> suspendUnitOfWork [
 { #category : #'slot model' }
 LcsBaseSystem >> systemDomainClasses [
 	^ OrderedCollection new
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> systemManager [
+	^ self parent
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> toggleActionButtonLabel [
+	^ self status toggleActionButtonLabel
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> toggleStatus [
+	self status toggleStatus
 ]

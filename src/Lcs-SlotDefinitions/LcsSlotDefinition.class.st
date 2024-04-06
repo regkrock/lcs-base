@@ -82,8 +82,12 @@ LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 
 { #category : #'gt view' }
 LcsSlotDefinition >> gtViewSlotModelChildren [
-	^#()
-
+	^ {
+		LcsSlotModelViewItem newLabel: 'domainClass' item: self domainClass.
+		LcsSlotModelViewItem newLabel: 'slotName' item: self slotName.
+		LcsSlotModelViewItem newLabel: 'slotTypes' item: self slotTypeClassNames.
+		LcsSlotModelViewItem newLabel: 'required' item: self isRequired.
+		}
 ]
 
 { #category : #initialization }

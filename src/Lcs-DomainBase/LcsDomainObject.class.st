@@ -57,7 +57,7 @@ LcsDomainObject class >> hasNoninitializedEnvironment [
 ]
 
 { #category : #'application environment' }
-LcsDomainObject class >> initializeEnvironment [
+LcsDomainObject class >> initializeApplicationEnvironment [
 ]
 
 { #category : #'slot model' }
