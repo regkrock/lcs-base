@@ -42,80 +42,6 @@
 				"string" : "The application environment is the framework (structure) in which a system or systems can be defined. It is created by initializing the environemnt. It is released by releasing the environment. "
 			},
 			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-26T09:16:56.832-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-29T10:41:42.7749-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "LLBn1/HQDQCRaRmEBGvZTg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "This application has three roots: \n1) The system manager root {{gtClass:name=LcsSystemManager}} ;\n2) The unit of work root  {{gtClass:LcsUnitsOfWorkManager}};\n3) The domain object model which is in store in LcsDomainObject and its subclasses."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-25T10:10:06.644742-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-29T10:46:41.380433-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "7fuwd97QDQCzI39/CJ0sLQ=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "The system can have multiple \"systems\" defined. The system manager keeps track of the systems. It also know which system is the current system. All permenantly persisted objects belong to a system.\n\nExamples of permanently persisted objects would be name, person, country, general ledger, etc.\n\nThe  unit of work manager manages the units of work. There can be one or more units of work per system.  The unit of work manager knows which unit of work is current.\n\nObjects stored in the unit of work manager are persistent through Seaside related transactions. The contents of the unit of work are applied only when an application commit is issued.  If the unit of work is aborted, then the objects related to the unit of work are garbage collected.\n\nWhen inspecting the {{gtClass:name=LcsApplicationEnvironment}} if the environment is initialized, an 'Application Evnironment' tab will appear in the class inspector.\n"
-			},
-			{
 				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -163,7 +89,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T11:24:47.564531-04:00"
+						"dateAndTimeString" : "2024-04-07T08:44:14.252073-04:00"
 					}
 				},
 				"editEmail" : {
@@ -174,20 +100,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T11:28:13.754599-04:00"
+						"dateAndTimeString" : "2024-04-07T08:44:14.252073-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "V12BcYDRDQCemnxmAy32gQ=="
+					"uidString" : "8JeFyOLRDQCFTtr3DahRBw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Reset Application Environment"
+				"string" : "This application environment is the root for the entire applicaiton. In many systems, singletons are used to root objects. In this application there should only be one sigleton, the instance of  {{gtClass:name=LcsApplicationEnvironment}}  . "
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -200,7 +126,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T11:25:12.391346-04:00"
+						"dateAndTimeString" : "2024-03-26T09:16:56.832-04:00"
 					}
 				},
 				"editEmail" : {
@@ -211,14 +137,54 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T11:28:05.335898-04:00"
+						"dateAndTimeString" : "2024-04-07T08:46:35.793664-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "4yz8coDRDQCfdiJwAy32gQ=="
+					"uidString" : "LLBn1/HQDQCRaRmEBGvZTg=="
 				},
-				"code" : "LcsApplicationEnvironment resetApplicationEnvironment\r"
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "This singleton of this class provides a place to root the single instance of the following: \n1) The system manager root {{gtClass:name=LcsSystemManager}} ;\n2) The unit of work root  {{gtClass:LcsUnitsOfWorkManager}};"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-25T10:10:06.644742-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T09:16:10.25226-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "7fuwd97QDQCzI39/CJ0sLQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The application environment can have multiple \"systems\" defined. The [[System Manager]] keeps track of the systems. It also knows which system is the current system. All permenantly persisted objects belong to a system are rooted in the systemand/or its modules.\n\nExamples of permanently persisted objects would be name, person, country, general ledger, etc.\n\nThe  [[Unit of Work Manager]]manages the units of work. There can be one or more units of work per system.  (The multiple units of work for an instance of a system is not yet implementd) The unit of work manager knows which unit of work is current.\n\nA [[Unit Of Work]]manages the objects which were added, changed , and removed during a logical transaction. A logical transaction can span multiple commits.\n\nThe {{gtClass:name=LcsApplicationEnvironment}} has an 'Application Evnironment' tab which shows the state of the application environment and the systems within the application environment. From this panel the appication environment can be started and stopped. Also systems within the application environment can be started, activated, suspended, and stopped.\n"
 			},
 			{
 				"__type" : "textSnippet",
@@ -287,14 +253,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-26T16:16:45.249835-04:00"
+									"dateAndTimeString" : "2024-04-07T08:14:51.503558-04:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "KqRHAd7QDQCm/stlCJ0sLQ=="
 							},
-							"code" : "LcsApplicationEnvironment initializeEnvironment "
+							"code" : "LcsApplicationEnvironment initializeApplicationEnvironment "
 						},
 						{
 							"__type" : "textSnippet",
@@ -363,14 +329,14 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-26T16:19:37.474751-04:00"
+												"dateAndTimeString" : "2024-04-07T08:27:50.743407-04:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
 											"uidString" : "nFZaaN7QDQCq+/VHCJ0sLQ=="
 										},
-										"code" : "LcsApplicationEnvironment hasInitializedEnvironment."
+										"code" : "LcsApplicationEnvironment hasInitializedApplicationEnvironment."
 									},
 									{
 										"__type" : "textSnippet",
@@ -528,77 +494,6 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-29T09:19:57.540639-04:00"
-											}
-										},
-										"editEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"editTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-29T09:20:09.373992-04:00"
-											}
-										},
-										"uid" : {
-											"__type" : "uid",
-											"uidString" : "ejGzOy7RDQCYm7bnAA6ITA=="
-										},
-										"paragraphStyle" : {
-											"__type" : "textStyle"
-										},
-										"string" : "There is no systems definted."
-									},
-									{
-										"__type" : "pharoSnippet",
-										"children" : {
-											"__type" : "snippets",
-											"items" : [ ]
-										},
-										"createEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"createTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-29T09:20:16.067702-04:00"
-											}
-										},
-										"editEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"editTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-29T09:22:30.050696-04:00"
-											}
-										},
-										"uid" : {
-											"__type" : "uid",
-											"uidString" : "id/NPC7RDQCZMOKSAA6ITA=="
-										},
-										"code" : "LcsApplicationEnvironment numberOfSystems "
-									},
-									{
-										"__type" : "textSnippet",
-										"children" : {
-											"__type" : "snippets",
-											"items" : [ ]
-										},
-										"createEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"createTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
 												"dateAndTimeString" : "2024-03-27T11:26:42.851987-04:00"
 											}
 										},
@@ -647,14 +542,14 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-27T11:24:43.298586-04:00"
+												"dateAndTimeString" : "2024-04-07T09:20:24.276569-04:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
 											"uidString" : "DgILvQfRDQCPbF7MDPbC6w=="
 										},
-										"code" : "LcsApplicationEnvironment hasUnitOfWorkManager"
+										"code" : "LcsApplicationEnvironment hasUnitsOfWorkManager"
 									},
 									{
 										"__type" : "textSnippet",
@@ -789,14 +684,14 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-26T16:20:32.940614-04:00"
+												"dateAndTimeString" : "2024-04-07T08:27:14.939842-04:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
 											"uidString" : "UVmUJPHQDQC7F+NDBGvZTg=="
 										},
-										"code" : "LcsDomainObject hasNoninitializedEnvironment"
+										"code" : "LcsDomainObject hasNoninitializedApplicationEnvironment"
 									}
 								]
 							},
@@ -931,14 +826,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-26T16:23:53.081262-04:00"
+									"dateAndTimeString" : "2024-04-02T11:29:16.031303-04:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "Tt3Ri9/QDQCnXDC7BQ07vg=="
 							},
-							"code" : "LcsApplicationEnvironment releaseEnvironment"
+							"code" : "LcsApplicationEnvironment releaseApplicationEnvironment"
 						},
 						{
 							"__type" : "textSnippet",
@@ -1007,14 +902,14 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-26T16:25:46.38392-04:00"
+												"dateAndTimeString" : "2024-04-07T08:27:03.41689-04:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
 											"uidString" : "j4tFh9/QDQCk6+51BQ07vg=="
 										},
-										"code" : "LcsApplicationEnvironment hasNoninitializedEnvironment"
+										"code" : "LcsApplicationEnvironment hasNoninitializedApplicationEnvironment"
 									},
 									{
 										"__type" : "textSnippet",
@@ -1220,14 +1115,14 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-03-26T16:36:11.992316-04:00"
+												"dateAndTimeString" : "2024-04-07T08:26:52.322568-04:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
 											"uidString" : "t+XSKvHQDQC8hM4pBGvZTg=="
 										},
-										"code" : "LcsDomainObject hasNoninitializedEnvironment"
+										"code" : "LcsDomainObject hasNoninitializedApplicationEnvironment"
 									}
 								]
 							},
@@ -1250,7 +1145,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-03-27T11:19:50.672948-04:00"
+									"dateAndTimeString" : "2024-04-07T09:17:42.43988-04:00"
 								}
 							},
 							"uid" : {
@@ -1260,7 +1155,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "After the Application Environment is released (cleared) ,  the following will evaluate to true."
+							"string" : "After the Application Environment is stoped/released ,  the following will evaluate to true."
 						}
 					]
 				},

@@ -14,6 +14,12 @@ LcsObject class >> commitTransaction [
 	LcsSmalltalkConfiguration gsSystemClass commitTransaction
 ]
 
+{ #category : #'application environment' }
+LcsObject class >> currentSystem [
+
+	^ #LcsApplicationEnvironment asClass currentSystem
+]
+
 { #category : #private }
 LcsObject class >> domainObjectClass [
 	"This is done for packaging loading purposes"
@@ -21,7 +27,7 @@ LcsObject class >> domainObjectClass [
 ]
 
 { #category : #testing }
-LcsObject class >> hasNoninitializedEnvironment [
+LcsObject class >> hasNoninitializedApplicationEnvironment [
 	^ self hasNoninitializedSlotModel
 ]
 
@@ -29,7 +35,7 @@ LcsObject class >> hasNoninitializedEnvironment [
 LcsObject class >> hasNoninitializedSlotModel [
 	^ self domainObjectClass
 		ifNil: [ true ]
-		ifNotNil: [ :domainObjectClass | domainObjectClass hasNoninitializedEnvironment ]
+		ifNotNil: [ :domainObjectClass | domainObjectClass hasNoninitializedApplicationEnvironment ]
 ]
 
 { #category : #testing }
@@ -39,9 +45,24 @@ LcsObject class >> initializeApplicationEnvironment [
 ]
 
 { #category : #testing }
+LcsObject class >> isApplicationSystemClass [
+	^ false
+]
+
+{ #category : #testing }
 LcsObject class >> releaseApplicationEnvironment [
 	self domainObjectClass
 		ifNotNil: [ :domainObjectClass | domainObjectClass releaseApplicationEnvironment ]
+]
+
+{ #category : #accessing }
+LcsObject >> currentSystem [
+	^ self class currentSystem
+]
+
+{ #category : #'testing\t' }
+LcsObject >> isApplicationSystem [
+	^ false
 ]
 
 { #category : #printing }

@@ -22,12 +22,6 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 ]
 
 { #category : #'application environment' }
-LcsDomainObject class >> currentSystem [
-
-	^ LcsApplicationEnvironment currentSystem
-]
-
-{ #category : #'application environment' }
 LcsDomainObject class >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]
@@ -52,7 +46,7 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 ]
 
 { #category : #testing }
-LcsDomainObject class >> hasNoninitializedEnvironment [
+LcsDomainObject class >> hasNoninitializedApplicationEnvironment [
 	^ self isSlotModelReleased
 ]
 

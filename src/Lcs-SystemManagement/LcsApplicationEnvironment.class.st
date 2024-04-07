@@ -73,7 +73,7 @@ LcsApplicationEnvironment class >> currentUnitOfWork [
 
 { #category : #running }
 LcsApplicationEnvironment class >> ensureInitialized [
-	self hasInitializedEnvironment ifFalse: [ self initializeApplicationEnvironment ].
+	self hasInitializedApplicationEnvironment ifFalse: [ self initializeApplicationEnvironment ].
 ]
 
 { #category : #'gt views' }
@@ -89,11 +89,17 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 		column: 'Option' translated
 			text: [ :each | each label displayString ]
 			width: 200;
-		column: 'Value' translated text: [ :each | each item displayString ];
-		column: '' stencil: [ :viewItem | viewItem actionButton];
+		column: 'Value' translated text: [ :each | each item displayString ] width: 300;
+		column: '' stencil: [ :viewItem | viewItem actionButton] width: 70;
+		column: '' stencil: [ :viewItem | viewItem action2Button] width: 70; 
 		send: #item;
 		actionUpdateButton;
 		yourself
+]
+
+{ #category : #testing }
+LcsApplicationEnvironment class >> hasCurrentSystem [
+	^ self applicationEnvironmentDoesNotHave: [ :env | env currentSystem notNil ]
 ]
 
 { #category : #testing }
@@ -105,7 +111,7 @@ LcsApplicationEnvironment class >> hasCurrentUnitOfWork [
 ]
 
 { #category : #testing }
-LcsApplicationEnvironment class >> hasInitializedEnvironment [
+LcsApplicationEnvironment class >> hasInitializedApplicationEnvironment [
 	^ self currentApplicationEnvironment notNil
 ]
 
@@ -120,7 +126,7 @@ LcsApplicationEnvironment class >> hasNoCurrentUnitOfWork [
 ]
 
 { #category : #testing }
-LcsApplicationEnvironment class >> hasNoninitializedEnvironment [
+LcsApplicationEnvironment class >> hasNoninitializedApplicationEnvironment [
 	^ self currentApplicationEnvironment isNil
 ]
 
@@ -240,7 +246,7 @@ LcsApplicationEnvironment class >> unitsOfWorkManager [
 
 { #category : #'instance creation' }
 LcsApplicationEnvironment class >> verifyApplicationEnvironment [
-	self hasInitializedEnvironment
+	self hasInitializedApplicationEnvironment
 		ifFalse: [ LcsApplicationEnivronmentNotInitializedError
 				signal: 'Unable to create a system because application environment is not initialized' ].
 	^ true
@@ -296,8 +302,9 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 		column: 'Option'
 			text: [ :viewItem | viewItem label ]
 			width: 200;
-		column: 'Value' text: [ :viewItem | viewItem item displayString ];
-		column: '' stencil: [ :viewItem | viewItem actionButton];
+		column: 'Value' text: [ :viewItem | viewItem item displayString ] width: 300;
+		column: '' stencil: [ :viewItem | viewItem actionButton] width: 70;
+		column: '' stencil: [ :viewItem | viewItem action2Button] width: 70;
 		send: #item;
 		actionUpdateButton;
 		yourself

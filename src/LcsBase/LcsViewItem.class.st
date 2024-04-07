@@ -6,7 +6,7 @@ Class {
 		'item',
 		'childrenSelector'
 	],
-	#category : #'Lcs-SystemManagement'
+	#category : #LcsBase
 }
 
 { #category : #default }

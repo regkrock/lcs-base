@@ -11,6 +11,11 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
+{ #category : #'testing ' }
+LcsBaseSystem class >> isApplicationSystemClass [
+	^ true
+]
+
 { #category : #configuration }
 LcsBaseSystem class >> moduleName [
 	^ 'System'
@@ -100,6 +105,11 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 	self initialize.
 	self currentUnitOfWork applyChanges.
 
+]
+
+{ #category : #'testing\t' }
+LcsBaseSystem >> isApplicationSystem [
+	^ true
 ]
 
 { #category : #printing }

@@ -42,12 +42,6 @@ LcsSystemManager >> applicationEnvironmentViewaAvailableSystemsChildren [
 		collect: [ :eachClass | LcsApplicationEnvironmentViewItem newOn: self label: eachClass name item: eachClass ]
 ]
 
-{ #category : #'gt view\t' }
-LcsSystemManager >> availableSystemClasses [
-	^ LcsBaseSystem allSubclasses
-		select: [ :eachClass | eachClass subclasses isEmpty ]
-]
-
 { #category : #accessing }
 LcsSystemManager >> createCurrentSystemFor: aSystemClass [
 	self suspendCurrentSystem.

@@ -20,8 +20,14 @@ LcsApplicationEnvironmentViewItem class >> newOn: anObject label: aLabel item: a
 ]
 
 { #category : #'gt view' }
+LcsApplicationEnvironmentViewItem >> action2Button [
+	self isInstantiatedSystem ifTrue: [ ^ self stopSystemButton ].
+	^ BrButton new
+]
+
+{ #category : #'gt view' }
 LcsApplicationEnvironmentViewItem >> actionButton [
-	self isSystemClass ifTrue: [ ^ self startNewSystemButton ].
+	self isSystemClass ifTrue: [ ^ self startSystemButton ].
 	self isInstantiatedSystem ifTrue: [ ^ self activateSuspendSystemButton ].
 	self label = 'Initialized' ifTrue: [ ^ self startStopApplicationEnvironmentButton ].
 	^ BrButton new
@@ -55,12 +61,12 @@ LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: 
 
 { #category : #'gt view' }
 LcsApplicationEnvironmentViewItem >> isInstantiatedSystem [
-	^ self item isKindOf: LcsBaseSystem
+	^ self item isApplicationSystem
 ]
 
 { #category : #'testing\t' }
 LcsApplicationEnvironmentViewItem >> isSystemClass [
-	^ self item isClass and: [ self item inheritsFrom: LcsBaseSystem ]
+	^ self item isApplicationSystemClass
 ]
 
 { #category : #accessing }
@@ -90,4 +96,20 @@ LcsApplicationEnvironmentViewItem >> startStopApplicationEnvironmentButton [
 				aptitude: BrGlamorousButtonWithLabelAptitude new;
 				label: 'Start';
 				action: [ :aButton | LcsApplicationEnvironment initializeApplicationEnvironment ] ]
+]
+
+{ #category : #'gt view' }
+LcsApplicationEnvironmentViewItem >> startSystemButton [
+	^ BrButton new
+		aptitude: BrGlamorousButtonWithLabelAptitude new;
+		label: 'Start';
+		action: [ :aButton | self item new ]
+]
+
+{ #category : #'gt view' }
+LcsApplicationEnvironmentViewItem >> stopSystemButton [
+	^ BrButton new
+		aptitude: BrGlamorousButtonWithLabelAptitude new;
+		label: 'Stop';
+		action: [ :aButton | self item removeSystem ]
 ]
