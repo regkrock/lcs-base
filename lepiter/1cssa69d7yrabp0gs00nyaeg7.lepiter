@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:14:31.31025-04:00"
+						"dateAndTimeString" : "2024-04-08T08:12:04.675841-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "A system is the envelope that contains the entire system. It is based on a composite module pattern."
+				"string" : "An application environment is the envelope that can contains multiple systems. A system is a module and can be composed of multiple modules."
 			},
 			{
 				"__type" : "textSnippet",

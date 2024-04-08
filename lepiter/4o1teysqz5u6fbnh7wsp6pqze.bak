@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-12T10:41:55.906495-04:00"
+						"dateAndTimeString" : "2024-04-07T16:43:18.392961-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The Unif of Work class,  {{gtClass:name=LcsUnitOfWork}}, keeps track of the changes made to the system. When all of the changes have been made they are applied by applyinng the changes {{gtMethod:name=LcsUnitOfWork>>applyChanges}}"
+				"string" : "The Units of Work Manager,  {{gtClass:name=LcsUnitsOfWorkManager}}, keeps track of the units of work associated with all application systems. \n\nThe current unit of work is set when a system is set to current. The creation, activation, suspension, and removal of a unit or work is dependent the associated action on the corresponding system."
 			},
 			{
 				"__type" : "textSnippet",
@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-25T14:21:58.805376-04:00"
+						"dateAndTimeString" : "2024-04-07T16:43:25.055123-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "###Current Unit Of Work"
+				"string" : "####Current Unit Of Work"
 			},
 			{
 				"__type" : "textSnippet",
@@ -140,7 +140,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-25T14:16:38.703555-04:00"
+						"dateAndTimeString" : "2024-04-07T16:41:20.167748-04:00"
 					}
 				},
 				"uid" : {
@@ -150,7 +150,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The current unit ow work is also accessed view the System Manager. "
+				"string" : "The current unit of work corresponds to the current system."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -190,6 +190,80 @@
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T16:38:54.007555-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T16:39:06.273723-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "NS0MaunRDQCplWfLDahRBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Units Of Work"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T16:39:12.602876-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T16:40:27.449705-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "c+gna+nRDQCt+EgPDahRBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The manager has a collection, unitsOfWork which contains all of the unit of work objects. "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
 					"items" : [
 						{
 							"__type" : "textSnippet",
@@ -205,7 +279,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T10:48:40.770853-04:00"
+									"dateAndTimeString" : "2024-04-07T17:04:49.39159-04:00"
 								}
 							},
 							"editEmail" : {
@@ -216,7 +290,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T11:07:46.456204-04:00"
+									"dateAndTimeString" : "2024-04-07T17:04:49.39159-04:00"
 								}
 							},
 							"uid" : {
@@ -226,7 +300,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "#######Add to local (non-global) collection"
+							"string" : ""
 						},
 						{
 							"__type" : "textSnippet",
@@ -242,7 +316,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T10:51:21.199754-04:00"
+									"dateAndTimeString" : "2024-04-07T17:04:44.925464-04:00"
 								}
 							},
 							"editEmail" : {
@@ -253,7 +327,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T10:51:29.262456-04:00"
+									"dateAndTimeString" : "2024-04-07T17:04:44.925464-04:00"
 								}
 							},
 							"uid" : {
@@ -263,44 +337,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtTodo:label=Add object to local (non-global) collection}}"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T10:47:16.312602-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T11:07:58.358282-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "DZ56zWvRDQCrHGQRCrHlHw=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "#######Add object to global collection"
+							"string" : ""
 						},
 						{
 							"__type" : "textSnippet",
@@ -327,7 +364,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T10:50:58.92557-04:00"
+									"dateAndTimeString" : "2024-04-07T17:04:53.727904-04:00"
 								}
 							},
 							"uid" : {
@@ -337,7 +374,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtTodo:label=Add object to global collection|completed=}}"
+							"string" : "#######Add to local (non-global) collectioneted=}}"
 						}
 					]
 				},
@@ -349,7 +386,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-01T10:48:31.445888-04:00"
+						"dateAndTimeString" : "2024-04-07T17:04:23.117023-04:00"
 					}
 				},
 				"editEmail" : {
@@ -360,7 +397,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-01T10:48:40.491282-04:00"
+						"dateAndTimeString" : "2024-04-07T17:04:23.117023-04:00"
 					}
 				},
 				"uid" : {
@@ -370,7 +407,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "###Adding Objects"
+				"string" : ""
 			},
 			{
 				"__type" : "textSnippet",
@@ -468,12 +505,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-25T14:17:53.215565-04:00"
+			"dateAndTimeString" : "2024-04-07T16:18:56.899749-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Unit of Work Manager"
+		"title" : "Units of Work Manager"
 	},
 	"uid" : {
 		"__type" : "uuid",

@@ -88,8 +88,8 @@ LcsCollection >> initializeOn: anObject [
 ]
 
 { #category : #collection }
-LcsCollection >> inject: anOjbect into: aBlock [
-	^ self collection inject: anOjbect into: aBlock
+LcsCollection >> inject: anObject into: aBlock [
+	^ self collection inject: anObject into: aBlock
 ]
 
 { #category : #testing }

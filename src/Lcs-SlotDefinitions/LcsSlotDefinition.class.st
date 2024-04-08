@@ -31,9 +31,9 @@ LcsSlotDefinition >> beRequired [
 	self required: true
 ]
 
-{ #category : #'application environment' }
-LcsSlotDefinition >> currentSystem [
-	^ #LcsApplicationEnvironment asClass currentSystem
+{ #category : #configuration }
+LcsSlotDefinition >> clearSlotTypes [
+	self slotTypes removeAll.
 ]
 
 { #category : #'application environment' }

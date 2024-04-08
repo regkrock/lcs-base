@@ -8,6 +8,43 @@
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T16:10:34.345238-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T16:15:07.033826-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "bme9BOnRDQCGGdhTDahRBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The Unit of Work {{gtClass:name=LcsUnitOfWork}} is responsible for keeping track of the changes to the persisted objects during an application transaction. The concept of an application transaction is important because with server based web page providers, like Seaside in GemStone, a Seaside transaction commit is different from an application commit. "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
 					"items" : [
 						{
 							"__type" : "textSnippet",
@@ -71,7 +108,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-06T07:21:29.800857-05:00"
+									"dateAndTimeString" : "2024-04-07T16:15:25.902923-04:00"
 								}
 							},
 							"uid" : {
@@ -81,7 +118,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "2 - Apply the changes when a commit is performed."
+							"string" : "2 - Apply the changes when the application commit is performed."
 						},
 						{
 							"__type" : "textSnippet",
@@ -195,7 +232,7 @@
 							"string" : "5 - When a Unit of Work is successfully completed, the unit of work is removed from the system."
 						},
 						{
-							"__type" : "pharoSnippet",
+							"__type" : "textSnippet",
 							"children" : {
 								"__type" : "snippets",
 								"items" : [ ]
@@ -208,7 +245,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-06T10:51:28.751918-05:00"
+									"dateAndTimeString" : "2024-04-07T16:18:36.294685-04:00"
 								}
 							},
 							"editEmail" : {
@@ -219,48 +256,17 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-06T11:39:43.512901-05:00"
+									"dateAndTimeString" : "2024-04-07T16:18:37.121979-04:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
-								"uidString" : "ApDUSRrNDQCmbLsBAFw9gQ=="
+								"uidString" : "0VF3IenRDQCkIESxDahRBw=="
 							},
-							"code" : "| person system |\rLcsSystem createNewSingleton.\rsystem := LcsSystem singleton.\rperson := LcsPerson new.\rperson dateOfBirth: Date today.\rself assert: person dateOfBirth = Date today.\rself assert: system currentUnitOfWork system = system\r\t"
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
+							"paragraphStyle" : {
+								"__type" : "textStyle"
 							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-06T15:48:32.503716-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-06T15:48:38.198921-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "dWU1cB7NDQCr5pXTAFw9gQ=="
-							},
-							"code" : "LcsUnitOfWork"
+							"string" : "When all of the changes have been made they are applied by applyinng the changes {{gtMethod:name=LcsUnitOfWork>>applyChanges}}"
 						}
 					]
 				},
@@ -294,6 +300,231 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Responsibility of Unit Of Work"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-07T17:02:07.564559-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-07T17:02:35.652327-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "viocvenRDQCo6RqPDahRBw=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{gtTodo:label=Add object to local (non-global) collection|completed=}}"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-07T17:01:27.524146-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-07T17:01:58.759756-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "KzG5uunRDQConC0jDahRBw=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "#####Add to local (non-global) collection"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-07T17:02:11.990072-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-07T17:03:04.883135-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "G7FfvenRDQCo73KKDahRBw=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{gtTodo:label=Add object to global collection|completed=}}"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-07T17:01:43.230557-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-07T17:01:55.108552-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "3Nqou+nRDQCowMavDahRBw=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "############Add object to global collection"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T17:00:55.596922-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T17:01:02.629497-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "awXSuOnRDQCoeNDIDahRBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Adding Objects"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T17:03:15.476112-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-07T17:03:15.476112-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "v2cowenRDQCpCQbLDahRBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
 			}
 		]
 	},
@@ -316,12 +547,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-04T09:17:22.491221-04:00"
+			"dateAndTimeString" : "2024-04-04T09:17:56.173364-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "LcsUnitOfWork Details"
+		"title" : "Unit Of Work"
 	},
 	"uid" : {
 		"__type" : "uuid",

@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:41:09.733059-04:00"
+						"dateAndTimeString" : "2024-04-08T08:41:31.869789-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:41:12.024082-04:00"
+						"dateAndTimeString" : "2024-04-08T08:44:03.325521-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "needs work"
+				"string" : "This is an overview of the understanding of slots in this application. Since the execution target of this application is GemStone and GemStone does not implement slots, this is added"
 			}
 		]
 	},

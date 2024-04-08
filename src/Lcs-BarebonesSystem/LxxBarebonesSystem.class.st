@@ -27,6 +27,8 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlotDefinition new
 		slotName: 'persons';
+		addSlotType: LxxBarebonesPerson;
+		addCollectionMemberType: LxxBarebonesPerson;
 		beIdentitySetCollection;
 		yourself
 ]

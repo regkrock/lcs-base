@@ -118,11 +118,6 @@ LcsDomainObject >> applicationEnvironment [
 	^ self parent applicationEnvironment
 ]
 
-{ #category : #system }
-LcsDomainObject >> currentSystem [
-	^ self class currentSystem
-]
-
 { #category : #'unit of work' }
 LcsDomainObject >> currentUnitOfWork [
 	^ self parent currentUnitOfWork

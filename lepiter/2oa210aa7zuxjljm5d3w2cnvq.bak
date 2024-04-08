@@ -42,40 +42,6 @@
 				"string" : "The application environment is the framework (structure) in which a system or systems can be defined. It is created by initializing the environemnt. It is released by releasing the environment. "
 			},
 			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-29T10:43:42.036905-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-29T10:43:47.696043-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "ZekuZy/RDQCeklz5AA6ITA=="
-				},
-				"code" : "LcsApplicationEnvironment"
-			},
-			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
