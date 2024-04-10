@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'validatedObjects',
 		'validationErrors',
-		'validationIssues'
+		'validationIssues',
+		'visitationStack'
 	],
 	#category : #LcsBase
 }
@@ -33,6 +34,7 @@ LcsValidator >> hasValidationIssues [
 { #category : #'initiailize\t' }
 LcsValidator >> initialize [
 	super initialize.
+	self visitationStack: OrderedCollection new.
 	self validatedObjects: OrderedCollection new.
 	self validationIssues: OrderedCollection new
 ]
@@ -44,14 +46,15 @@ LcsValidator >> objectBeingValidated [
 
 { #category : #'validation\t' }
 LcsValidator >> objectBeingValidated: anObject [
+	self visitationStack add: anObject.
 	self validatedObjects add: anObject
 ]
 
 { #category : #'api\t\t' }
 LcsValidator >> validate: anObject [
 	(self hasAlreadyBeenValidated: anObject) ifTrue: [ ^ self ].
-	self objectBeingValidated: anObject.
-	self validateCurrentObject
+	[ self objectBeingValidated: anObject.
+	self validateCurrentObject ] ensure: [ self visitationStack removeLast ]
 ]
 
 { #category : #'validation\t\t' }
@@ -77,4 +80,14 @@ LcsValidator >> validationIssues [
 { #category : #accessing }
 LcsValidator >> validationIssues: anObject [ 
 	validationIssues := anObject
+]
+
+{ #category : #accessing }
+LcsValidator >> visitationStack [
+	^ visitationStack
+]
+
+{ #category : #accessing }
+LcsValidator >> visitationStack: anObject [
+	visitationStack := anObject
 ]
