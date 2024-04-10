@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T08:28:40.479688-04:00"
+						"dateAndTimeString" : "2024-04-10T10:02:01.262001-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,7 +66,44 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T08:29:58.907229-04:00"
+						"dateAndTimeString" : "2024-04-10T10:02:08.747625-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "opo4OCDSDQCS8MzAAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Example"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T09:57:41.001694-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T10:00:00.96695-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +113,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The validator has two examples,"
+				"string" : "The following examples takes on through the process of creating a new validator, creating classes that will be validated, executing the validation."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T10:00:21.534142-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T10:01:27.550517-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "fxr7MSDSDQCQApvXAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "First, create a new validaotr. Either manually create the class below or click the check box to create the example validator."
 			},
 			{
 				"__type" : "changesSnippet",
@@ -92,7 +166,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T08:44:35.870119-04:00"
+						"dateAndTimeString" : "2024-04-10T15:07:46.59421-04:00"
 					}
 				},
 				"editEmail" : {
@@ -103,15 +177,517 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T08:44:35.870119-04:00"
+						"dateAndTimeString" : "2024-04-10T15:07:46.59421-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "a5VVIx/SDQCZAUIbAa9Riw=="
+					"uidString" : "LjCwfSTSDQCV6EYmAXQk9g=="
 				},
 				"previewHeight" : 200,
-				"fileName" : ""
+				"fileName" : "attachments/ekllr4c9zgxa4a80s11d8ek4u/LxxSampleValidtorClassDefinition.ombu"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T10:24:26.111436-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T15:09:24.202039-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "CmhhiCDSDQCTM4SpAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The LcsSampleValidator has to implement a validate dispatch method. "
+			},
+			{
+				"__type" : "changesSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T15:08:15.570501-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T15:08:15.570501-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "vFVqfyTSDQCV8ypoAXQk9g=="
+				},
+				"previewHeight" : 200,
+				"fileName" : "attachments/ekllr4bn39hrkbsyg1jl5w7a9/LxxSampleValidator_validateCurrentObject.ombu"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T15:09:56.617712-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T15:10:23.865922-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2wI8hCTSDQCWJrSGAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "To show the full extent of the validator, two new test classes need to be created."
+			},
+			{
+				"__type" : "changesSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T15:10:33.310221-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T15:10:33.310221-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ZRSghyTSDQCYAcoqAXQk9g=="
+				},
+				"previewHeight" : 200,
+				"fileName" : "attachments/ekllr4bhx1nl0gdfi7ezu47i5/LxxSample1ClassDefinition.ombu"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:25:38.355911-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:26:05.351892-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "1JvmbyXSDQCYDsJvAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Add the validation method to the Sample 1 class. This method delegates the validation to the "
+			},
+			{
+				"__type" : "changesSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:15:36.48283-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:15:36.48283-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "17xFcCXSDQCYE3o5AXQk9g=="
+				},
+				"previewHeight" : 200,
+				"fileName" : "attachments/ekllr4gdb9bgpvbupg300x95m/LxxSample1_addValidateSampleTo.ombu"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:16:09.060121-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:25:01.446018-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "3dM2ciXSDQCYGVMYAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Load/Create the sample 2 class."
+			},
+			{
+				"__type" : "changesSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:16:16.842223-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:16:16.842223-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "6pmtciXSDQCYHrpHAXQk9g=="
+				},
+				"previewHeight" : 200,
+				"fileName" : "attachments/ekllr4ccaf2hp1sy6nnllhkgd/LxxSample2ClassDefinition.ombu"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:16:40.935438-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:25:28.514563-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xjMddCXSDQCYJJpkAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Add the validation method to the sample 2 class. "
+			},
+			{
+				"__type" : "changesSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:16:49.359487-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:16:49.359487-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "vceddCXSDQCYKS5DAXQk9g=="
+				},
+				"previewHeight" : 200,
+				"fileName" : "attachments/ekllr4hrqxurjqx2m1ex5cyc4/LxxSample2_addValidateSampleTo.ombu"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:17:08.864814-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:24:31.06957-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Kl7HdSXSDQCYL1xMAXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Now, inspect the code snippet below. The validator should have two validated objects and two validation issue messages."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:17:13.947729-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:22:45.734389-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MPEUdiXSDQCYNGTNAXQk9g=="
+				},
+				"code" : "sample := LxxSample1 new.\rvalidator := LxxSampleValidator new\r\t\t\t\tvalidate: sample.\rself assert: validator hasValidationIssues.\rvalidator"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:45:39.69591-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:45:49.790504-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "rliT2yXSDQCiAiP9AXQk9g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The classes can now be removed."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:45:57.10755-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T16:46:59.224873-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "AErK3CXSDQCiwH5HAXQk9g=="
+				},
+				"code" : ""
 			}
 		]
 	},
