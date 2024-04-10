@@ -680,14 +680,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T16:46:41.984297-04:00"
+						"dateAndTimeString" : "2024-04-10T17:53:18.736297-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "AErK3CXSDQCiwH5HAXQk9g=="
 				},
-				"code" : "LxxSample1\tremoveClass"
+				"code" : "\r(RBRemoveClassRefactoring classNames: {LxxSample1 name. LxxSample2 name. LxxSampleValidator name.}) execute"
 			}
 		]
 	},

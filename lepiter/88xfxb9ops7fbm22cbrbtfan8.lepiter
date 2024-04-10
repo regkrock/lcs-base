@@ -643,7 +643,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T16:45:49.790504-04:00"
+						"dateAndTimeString" : "2024-04-10T17:53:52.617203-04:00"
 					}
 				},
 				"uid" : {
@@ -653,7 +653,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The classes can now be removed."
+				"string" : "The classes can now  should be removed before saving changes to Git."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -680,14 +680,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T16:46:59.224873-04:00"
+						"dateAndTimeString" : "2024-04-10T17:53:18.736297-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "AErK3CXSDQCiwH5HAXQk9g=="
 				},
-				"code" : ""
+				"code" : "\r(RBRemoveClassRefactoring classNames: {LxxSample1 name. LxxSample2 name. LxxSampleValidator name.}) execute"
 			}
 		]
 	},
