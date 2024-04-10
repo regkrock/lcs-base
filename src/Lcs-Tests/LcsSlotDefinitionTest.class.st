@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsSlotDefinitionTest >> testCreation [
 	| slotDefinition |
-	slotDefinition := LcsSlotDefinition new.
+	slotDefinition := LcsSlotDefintion new.
 	self assert: slotDefinition slotTypes isEmpty.
 	self assert: slotDefinition slotName isNil.
 	slotDefinition slotName: #test.

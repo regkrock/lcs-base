@@ -12,7 +12,7 @@ Class {
 { #category : #'slot definitions' }
 LcsCountry class >> countryNameSlotDefintion [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: #'countryName';
 		beRequired;
 		validator: [ :string | string size > 2 ];
@@ -22,7 +22,7 @@ LcsCountry class >> countryNameSlotDefintion [
 { #category : #'slot definitions' }
 LcsCountry class >> isoCodeSlotDefintion [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: #'isoCode';
 		beRequired;
 		validator: [ :string | string size = 2 ];
@@ -32,7 +32,7 @@ LcsCountry class >> isoCodeSlotDefintion [
 { #category : #'slot definitions' }
 LcsCountry class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		moduleName: LcsGeographyModule moduleName;
 		collectionSlotName: 'countries';
@@ -42,7 +42,7 @@ LcsCountry class >> parentSlotDefinition [
 { #category : #'slot definitions' }
 LcsCountry class >> politicalUnitNameSlotDefintion [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: #'politicalUnitName';
 		beRequired;
 		validator: [ :string | string size = 2 ];

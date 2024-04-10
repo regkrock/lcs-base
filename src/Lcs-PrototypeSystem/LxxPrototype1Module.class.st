@@ -10,7 +10,7 @@ Class {
 { #category : #'slot definitions' }
 LxxPrototype1Module class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
 ]
 
 { #category : #configuration }
@@ -21,7 +21,7 @@ LxxPrototype1Module class >> moduleName [
 { #category : #'slot definitions' }
 LxxPrototype1Module class >> personsSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
 		beIdentitySetCollection;
 		yourself

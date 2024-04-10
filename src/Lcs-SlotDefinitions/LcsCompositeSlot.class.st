@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsCompositeSlotDefinition,
-	#superclass : #LcsSlotDefinition,
+	#name : #LcsCompositeSlot,
+	#superclass : #LcsSlotDefintion,
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #accessing }
-LcsCompositeSlotDefinition >> initializeModel: aDomainObject [
+LcsCompositeSlot >> initializeModel: aDomainObject [
 	| componentObject |
 	componentObject := self newSlotValue.
 	componentObject parent: aDomainObject.

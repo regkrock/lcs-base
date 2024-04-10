@@ -6,7 +6,8 @@ Class {
 	#superclass : #LcsBaseModule,
 	#instVars : [
 		'slotModel',
-		'status'
+		'status',
+		'systemDomainClasses'
 	],
 	#category : #'Lcs-DomainBase'
 }
@@ -48,7 +49,7 @@ LcsBaseSystem >> _suspendSystem [
 
 { #category : #'slot model' }
 LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
-	self slotModel addSlotDefinitions: aSlotDefinitions
+	self systemSlotModel addToSlotModel: aSlotDefinitions
 ]
 
 { #category : #initialize }
@@ -64,35 +65,66 @@ LcsBaseSystem >> buildSlotDefinitions [
 	self systemDomainClasses do: [ :eachDomainClass | eachDomainClass initializeSlotModel ]
 ]
 
+{ #category : #accessing }
+LcsBaseSystem >> configurationValidator [
+	^ LcsSystemConfigurationValidator new
+		validate: self;
+		yourself
+]
+
 { #category : #'unit of work' }
 LcsBaseSystem >> currentUnitOfWork [
 	^ self parent currentUnitOfWork
 ]
 
 { #category : #'slot model' }
+LcsBaseSystem >> gtConfigurationIssuesFor: aView [
+	<gtView>
+	self configurationValidator hasNoValidationIssues
+		ifTrue: [ ^ aView empty ].
+	^ aView forward
+		title: 'Configuration Issues';
+		priority: 1;
+		object: [ self configurationValidator ];
+		view: #gtConfigurationIssuesFor:;
+		yourself
+]
+
+{ #category : #'slot model' }
 LcsBaseSystem >> gtSlotModelFor: aView [
 	<gtView>
-	(self slotModel isNil or: [self slotModel hasSlotDefinitions not])
+	(self systemSlotModel isNil or: [self systemSlotModel hasSlotModels not])
 		ifTrue: [ ^ aView empty ].
 	^ aView forward
 		title: 'Slot Model';
 		priority: 1;
-		object: [ self slotModel ];
+		object: [ self systemSlotModel ];
 		view: #gtSlotModelFor:;
 		yourself
 ]
 
 { #category : #testing }
-LcsBaseSystem >> hasSlotDefinitions [
-	^ self slotModel hasSlotDefinitions
+LcsBaseSystem >> hasSlotModels [
+	^ self systemSlotModel hasSlotModels
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> hasValidConfiguration [
+	^ self configurationValidator hasNoValidationIssues
+]
+
+{ #category : #'slot model' }
+LcsBaseSystem >> initialSystemDomainClasses [
+	^ OrderedCollection new
 ]
 
 { #category : #initialize }
 LcsBaseSystem >> initialize [
 	super initialize.
 	self 
+		systemDomainClasses: self initialSystemDomainClasses;
 		status: (LcsSystemActiveStatus newOn: self);
-		slotModel: (LcsSlotModel newOn: self);
+		systemSlotModel: (LcsSystemSlotModel newOn: self);
 		buildSlotDefinitions;
 		buildModules;
 		initializeModel
@@ -110,6 +142,11 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 { #category : #'testing\t' }
 LcsBaseSystem >> isApplicationSystem [
 	^ true
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> isIncludedInSystemDomainClasses: aDomainClass [
+	^ self systemDomainClasses includes: aDomainClass class
 ]
 
 { #category : #printing }
@@ -138,7 +175,7 @@ LcsBaseSystem >> removeSystem [
 
 { #category : #restore }
 LcsBaseSystem >> restoreSlotModel [
-	self slotModel restoreSlotModel
+	self systemSlotModel restoreSlotModel
 ]
 
 { #category : #restore }
@@ -149,16 +186,6 @@ LcsBaseSystem >> restoreSystem [
 { #category : #restore }
 LcsBaseSystem >> restoreUnitOfWork [
 	self parent restoreUnitOfWorkFor: self
-]
-
-{ #category : #accessing }
-LcsBaseSystem >> slotModel [
-	^ slotModel
-]
-
-{ #category : #accessing }
-LcsBaseSystem >> slotModel: anObject [
-	slotModel := anObject
 ]
 
 { #category : #accessing }
@@ -191,14 +218,29 @@ LcsBaseSystem >> suspendUnitOfWork [
 	self parent suspendUnitOfWorkFor: self
 ]
 
-{ #category : #'slot model' }
+{ #category : #accessing }
 LcsBaseSystem >> systemDomainClasses [
-	^ OrderedCollection new
+	^ systemDomainClasses
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> systemDomainClasses: anObject [
+	systemDomainClasses := anObject
 ]
 
 { #category : #accessing }
 LcsBaseSystem >> systemManager [
 	^ self parent
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> systemSlotModel [
+	^ slotModel
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> systemSlotModel: anObject [
+	slotModel := anObject
 ]
 
 { #category : #accessing }

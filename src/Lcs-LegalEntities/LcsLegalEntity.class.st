@@ -10,7 +10,7 @@ Class {
 { #category : #'slot definitions' }
 LcsLegalEntity class >> entityNameSlotDefinition [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: 'entityName';
 		yourself
 ]
@@ -28,7 +28,7 @@ LcsLegalEntity >> entityName: anObject [
 { #category : #accessing }
 LcsLegalEntity >> entityNameSlotDefinition [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: 'entityName';
 		yourself
 ]

@@ -23,12 +23,12 @@ LcsViewItem class >> newLabel: aString item: anObject [
 
 { #category : #children }
 LcsViewItem >> children [
-	^self itemChildren: self childrenSelector
+	^ self itemChildren: self childrenSelector
 ]
 
 { #category : #children }
 LcsViewItem >> childrenSelector [
-	^childrenSelector
+	^ childrenSelector
 ]
 
 { #category : #accessing }

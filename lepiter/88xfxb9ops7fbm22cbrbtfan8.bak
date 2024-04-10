@@ -1,0 +1,148 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T08:26:07.101678-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T08:28:36.530352-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "FyM/4R7SDQCS7wVSAa9Riw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The {{gtClass:LcsValidator}}  implements the visitor pattern to validate a graph of objects.  This class is abstract and domain specific subclasses should be created for specific validations."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T08:28:40.479688-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T08:29:58.907229-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "BjFN5h7SDQCVO8jKAa9Riw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The validator has two examples,"
+			},
+			{
+				"__type" : "changesSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T08:44:35.870119-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T08:44:35.870119-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "a5VVIx/SDQCZAUIbAa9Riw=="
+				},
+				"previewHeight" : 200,
+				"fileName" : ""
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-04-10T08:26:07.067629-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-04-10T08:26:07.067629-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Validator"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "a49c3ee1-1ed2-0d00-92ee-81d201af518b"
+	}
+}

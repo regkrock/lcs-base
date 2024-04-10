@@ -15,5 +15,5 @@ LxxPrototypeSystemTest >> testCreation [
 	self assert: (system moduleNamed: LxxPrototype1Module moduleName) numberOfChildModules equals: 0.
 	self assert: (system moduleNamed: LxxPrototype2Module moduleName) numberOfChildModules equals: 1.
 	self assert: (system moduleNamed: LxxPrototype2Submodule moduleName) numberOfChildModules equals: 0.
-	system validateConfiguration. 
+	self assert:system hasValidConfiguration. 
 ]

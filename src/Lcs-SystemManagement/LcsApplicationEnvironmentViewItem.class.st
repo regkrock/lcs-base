@@ -27,9 +27,10 @@ LcsApplicationEnvironmentViewItem >> action2Button [
 
 { #category : #'gt view' }
 LcsApplicationEnvironmentViewItem >> actionButton [
+	self label = 'Initialized' ifTrue: [ ^ self startStopApplicationEnvironmentButton ].
 	self isSystemClass ifTrue: [ ^ self startSystemButton ].
 	self isInstantiatedSystem ifTrue: [ ^ self activateSuspendSystemButton ].
-	self label = 'Initialized' ifTrue: [ ^ self startStopApplicationEnvironmentButton ].
+
 	^ BrButton new
 ]
 
@@ -61,12 +62,14 @@ LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: 
 
 { #category : #'gt view' }
 LcsApplicationEnvironmentViewItem >> isInstantiatedSystem [
-	^ self item isApplicationSystem
+	(self item respondsTo: #isApplicationSystem) ifFalse: [ ^ false ].
+	^self item isApplicationSystem
 ]
 
 { #category : #'testing\t' }
 LcsApplicationEnvironmentViewItem >> isSystemClass [
-	^ self item isApplicationSystemClass
+	self item isClass ifFalse: [ ^ false ].
+	^self item isApplicationSystemClass
 ]
 
 { #category : #accessing }

@@ -14,7 +14,7 @@ Class {
 { #category : #'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefintion [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: #'defaultPoliticalUnitName';
 		beRequired;
 		validator: [ :string | string size >= 2 ];
@@ -24,7 +24,7 @@ LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefintion [
 { #category : #'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefintion [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: #'defaultPostalCodeName';
 		beRequired;
 		validator: [ :string | string size >= 2 ];
@@ -34,7 +34,7 @@ LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefintion [
 { #category : #'slot definitions' }
 LcsGeographyModuleConfiguration class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsSlotDefinition new
+	^ LcsSlotDefintion new
 		slotName: 'parent';
 		yourself
 ]

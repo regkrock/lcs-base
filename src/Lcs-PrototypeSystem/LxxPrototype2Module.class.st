@@ -7,7 +7,7 @@ Class {
 { #category : #'slot definitions' }
 LxxPrototype2Module class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
 ]
 
 { #category : #'modules ' }

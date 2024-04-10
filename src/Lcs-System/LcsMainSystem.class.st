@@ -10,7 +10,7 @@ Class {
 { #category : #'slot definitions' }
 LcsMainSystem class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsSystemConfiguration
+	^ LcsModuleConfigurationSlot newOn: LcsSystemConfiguration
 ]
 
 { #category : #'modules ' }
@@ -33,6 +33,6 @@ LcsMainSystem >> gtUnitOfWorkOn: aView [
 ]
 
 { #category : #'slot model' }
-LcsMainSystem >> systemDomainClasses [
+LcsMainSystem >> initialSystemDomainClasses [
 	^ (LcsDomainObject withAllSubclasses) reject: [ :each | each name beginsWith: 'Lxx' ]
 ]

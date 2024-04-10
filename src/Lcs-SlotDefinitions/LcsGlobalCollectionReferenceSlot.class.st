@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsGlobalCollectionReferenceSlotDefinition,
-	#superclass : #LcsSlotDefinition,
+	#name : #LcsGlobalCollectionReferenceSlot,
+	#superclass : #LcsSlotDefintion,
 	#instVars : [
 		'moduleName',
 		'collectionSlotName'
@@ -9,22 +9,22 @@ Class {
 }
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotDefinition >> collectionSlotName [
+LcsGlobalCollectionReferenceSlot >> collectionSlotName [
 	^ collectionSlotName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotDefinition >> collectionSlotName: anObject [
+LcsGlobalCollectionReferenceSlot >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
 { #category : #model }
-LcsGlobalCollectionReferenceSlotDefinition >> globalCollectionSlotDefinition [
+LcsGlobalCollectionReferenceSlot >> globalCollectionSlotDefinition [
 	^ self module slotDefinitionNamed: self collectionSlotName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotDefinition >> gtSlotDefinitionAttributes [
+LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'moduleName' -> self moduleName;
 		add: 'collectionSlotName' -> self collectionSlotName;
@@ -32,27 +32,27 @@ LcsGlobalCollectionReferenceSlotDefinition >> gtSlotDefinitionAttributes [
 ]
 
 { #category : #model }
-LcsGlobalCollectionReferenceSlotDefinition >> initializeModel: aDomainObject [
+LcsGlobalCollectionReferenceSlot >> initializeModel: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 ]
 
 { #category : #model }
-LcsGlobalCollectionReferenceSlotDefinition >> module [
+LcsGlobalCollectionReferenceSlot >> module [
 	^ self currentSystem moduleNamed: self moduleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotDefinition >> moduleName [
+LcsGlobalCollectionReferenceSlot >> moduleName [
 	^ moduleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotDefinition >> moduleName: aString [ 
+LcsGlobalCollectionReferenceSlot >> moduleName: aString [ 
 	moduleName := aString
 ]
 
 { #category : #model }
-LcsGlobalCollectionReferenceSlotDefinition >> persistValue: aDomainObject [
+LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject [
 	(self module slotDefinitionNamed: self collectionSlotName) persistValue: aDomainObject in: self module
 
 ]

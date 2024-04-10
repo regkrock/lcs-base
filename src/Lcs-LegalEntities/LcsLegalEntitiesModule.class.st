@@ -11,7 +11,7 @@ Class {
 { #category : #accessing }
 LcsLegalEntitiesModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsLegalEntitiesModuleConfiguration
+	^ LcsModuleConfigurationSlot newOn: LcsLegalEntitiesModuleConfiguration
 ]
 
 { #category : #configuration }
@@ -22,7 +22,7 @@ LcsLegalEntitiesModule class >> moduleName [
 { #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlot new
 		slotName: 'organizations';
 		addSlotType: LcsSmalltalkConfiguration identitySetClass
 		yourself
@@ -31,7 +31,7 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 { #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> personsSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
 		addSlotType: LcsSmalltalkConfiguration identitySetClass
 		yourself

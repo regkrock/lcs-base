@@ -10,7 +10,7 @@ Class {
 { #category : #'slot definitions' }
 LcsOrganization class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		moduleName: LcsLegalEntitiesModule moduleName;
 		collectionSlotName: 'organizations';

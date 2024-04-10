@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T08:43:52.248523-04:00"
+						"dateAndTimeString" : "2024-04-08T08:55:01.539996-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,229 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This is an overview of the understanding of slots in this application. Since the execution target of this application is GemStone and GemStone does not implement slots, "
+				"string" : "This is an overview of the understanding of slots in this application. The deployment and execution target of this application is GemStone. Therefore the Pharo definition of slots cannot be used."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T08:55:31.477337-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:53:20.920335-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "McJxDffRDQCsuzI0DslOlg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Slots, as used in this application, originates in the 'Frame and Slot' models developed in the AI field in the 1980's. {{gtTodo:label=(Reference needed)}}.  In Smalltalk a Frame is similar to a class. The new construct is a first class object, Slot, which manages access to the class' instance variable/slot.  "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:53:05.772024-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:53:05.777851-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "P7azLvfRDQC4PXGFDslOlg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In Smalltalk the objects that the instance of class references is called an instance varaible or a slot. In this application, application domain classes which are a subclass of {{gtClass:LcsDomainObject}} can have a slot definition created which manages the instance variable/slot."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:53:43.249497-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:53:43.923418-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "f7yVYvrRDQC0z2zLAqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In Pharo, there are already native slots defined. However GemStone there are no slots. To remedy that a class, {{gtClass:name=LcsSlotDefintion}} has been created to model the slot and to manage access to the instance variable/slot."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:56:57.443039-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T13:00:34.028568-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "1uQobvrRDQC2eVg9AqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In a domain class, there is a class instance variable, {{gtMethod:LcsDomainObject>>slotModel}} which has the responsibility of refrencing the class' slot model ({{gtClass:name=LcsSlotModel}}). The slot model is populated from the class side slot definition methods in the domian object. "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T13:04:16.822312-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T13:04:51.161218-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "s0lZiPrRDQC/qK5rAqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtMethod:name=LxxBarebonesSystem class>>personsSlotDefinition}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T13:06:28.690348-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T13:18:41.851945-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Vmg1kPrRDQCA8Je8AqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The instance of {{gtClass:name=LcsGlobalCollectionSlot}} both defines the attributes of the slot and also is used to access the instance variable/slot. \n{{gtMethod:LxxBarebonesSystem>>persons}} and {{gtMethod:LxxBarebonesSystem>>persons:}} are examples of how the getter and setter are modified to redirect the accessing of the inst"
 			}
 		]
 	},

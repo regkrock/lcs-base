@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsIntegerSlotDefinition,
-	#superclass : #LcsNumberSlotDefinition,
+	#name : #LcsIntegerSlot,
+	#superclass : #LcsNumberSlot,
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #configuration }
-LcsIntegerSlotDefinition >> typeClass [
+LcsIntegerSlot >> typeClass [
 	^LcsSmalltalkConfiguration integerClass
 ]

@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsDateOfBirthSlotDefinition,
-	#superclass : #LcsDateSlotDefinition,
+	#name : #LcsDateOfBirthSlot,
+	#superclass : #LcsDateSlot,
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #initialization }
-LcsDateOfBirthSlotDefinition >> initialize [
+LcsDateOfBirthSlot >> initialize [
 	super initialize.
 	self slotName: 'dateOfBirth'
 ]

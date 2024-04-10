@@ -10,13 +10,13 @@ Class {
 { #category : #'slot definitions' }
 LcsPerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
-	^ LcsDateOfBirthSlotDefinition new
+	^ LcsDateOfBirthSlot new
 ]
 
 { #category : #'slot definitions' }
 LcsPerson class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		moduleName: LcsLegalEntitiesModule moduleName;
 		collectionSlotName: 'persons';

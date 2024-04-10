@@ -10,13 +10,13 @@ Class {
 { #category : #'slot definitions' }
 LxxBarebonesPerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
-	^ LcsDateOfBirthSlotDefinition new
+	^ LcsDateOfBirthSlot new
 ]
 
 { #category : #'slot definitions' }
 LxxBarebonesPerson class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		moduleName: LxxBarebonesSystem moduleName;
 		collectionSlotName: 'persons';

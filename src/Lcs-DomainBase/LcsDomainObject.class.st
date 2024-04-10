@@ -5,7 +5,8 @@ Class {
 		'parent'
 	],
 	#classInstVars : [
-		'SlotDefinitions'
+		'SlotDefinitions',
+		'SlotModel'
 	],
 	#category : #'Lcs-DomainBase'
 }
@@ -13,7 +14,7 @@ Class {
 { #category : #'slot model' }
 LcsDomainObject class >> addSlotDefinitions [
 	self slotDefinitionMethods do: [ :eachPragma | 
-			self slotDefinitions addSlotDefinition: (self perform: eachPragma methodSelector) ]
+			self slotModel addSlotDefinition: (self perform: eachPragma methodSelector) ]
 ]
 
 { #category : #'unit of work' }
@@ -30,7 +31,7 @@ LcsDomainObject class >> currentUnitOfWork [
 LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
-	self slotDefinitions ifNil: [ 
+	self slotModel ifNil: [ 
 		^ aView list
 			title: 'Slot Definitions';
 			priority: 10;
@@ -39,7 +40,7 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 	^ aView forward
 		title: 'Slot Definitions';
 		priority: 99;
-		object: [ self slotDefinitions ];
+		object: [ self slotModel ];
 		view: #gtViewSlotDefinitionsFor:;
 		yourself
 		
@@ -56,14 +57,14 @@ LcsDomainObject class >> initializeApplicationEnvironment [
 
 { #category : #'slot model' }
 LcsDomainObject class >> initializeSlotModel [
-	self slotDefinitions: (LcsSlotDefinitions newOn: self).
-	self currentSystem addToSlotModel: self slotDefinitions.
+	self slotModel: (LcsSlotModel newOn: self).
+	self currentSystem addToSlotModel: self slotModel.
 	self addSlotDefinitions
 ]
 
 { #category : #testing }
 LcsDomainObject class >> isSlotModelReleased [
-	self slotDefinitions notNil ifTrue: [ ^ false ].
+	self slotModel notNil ifTrue: [ ^ false ].
 	self subclasses do: [ :each | each isSlotModelReleased ].
 	^ true
 ]
@@ -83,7 +84,7 @@ LcsDomainObject class >> releaseApplicationEnvironment [
 
 { #category : #'slot model' }
 LcsDomainObject class >> releaseSlotModel [
-	self slotDefinitions: nil.
+	self slotModel: nil.
 	self subclassesDo: [ :each | each releaseSlotModel ]
 ]
 
@@ -99,18 +100,29 @@ LcsDomainObject class >> slotDefinitionMethods [
 
 { #category : #'slot model' }
 LcsDomainObject class >> slotDefinitionNamed: aString [ 
-	self slotDefinitions ifNil: [ ^ LcsSlotDefinitionsNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
-	^ self slotDefinitions slotDefinitionNamed: aString
+	self slotModel ifNil: [ ^ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
+	^ self slotModel slotDefinitionNamed: aString
 ]
 
 { #category : #accessing }
-LcsDomainObject class >> slotDefinitions [
-	^ SlotDefinitions
+LcsDomainObject class >> slotModel [
+	^ SlotModel
 ]
 
 { #category : #accessing }
-LcsDomainObject class >> slotDefinitions: anObject [
-	SlotDefinitions := anObject
+LcsDomainObject class >> slotModel: aSlotModel [
+	SlotModel := aSlotModel
+]
+
+{ #category : #validation }
+LcsDomainObject >> addValidateConfigurationResultTo: aValidator [
+	self isIncludedInSystemDomainClasses
+		ifTrue: [self slotModel class name = #LcsSlotModel
+					ifFalse: [ aValidator addIssueMessage: 'Slot Model not defined for ' , self className ]]
+		ifFalse: [
+			self slotModel notNil
+				ifTrue: [ aValidator addIssueMessage: 'Slot Model is defined but not in the system model collection  ' ]].
+	aValidator validate: self slotModel
 ]
 
 { #category : #'application environment' }
@@ -141,6 +153,11 @@ LcsDomainObject >> gtViewSlotDefinitionsFor: aView [
 	^ self class gtViewSlotDefinitionsFor: aView
 ]
 
+{ #category : #validation }
+LcsDomainObject >> isIncludedInSystemDomainClasses [
+	^ self currentSystem isIncludedInSystemDomainClasses: self
+]
+
 { #category : #accessing }
 LcsDomainObject >> parent [
 	^ parent
@@ -162,12 +179,6 @@ LcsDomainObject >> slotDefinitionNamed: aString [
 ]
 
 { #category : #'slot definitions' }
-LcsDomainObject >> slotDefinitions [
-	^ self class slotDefinitions
-]
-
-{ #category : #validation }
-LcsDomainObject >> validateConfiguration [
-	self assert: self slotDefinitions class name equals: #LcsSlotDefinitions.
-	self slotDefinitions validateConfiguration
+LcsDomainObject >> slotModel [
+	^ self class slotModel
 ]

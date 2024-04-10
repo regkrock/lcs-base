@@ -53,7 +53,7 @@ LcsApplicationEnvironment class >> createUnitOfWork [
 
 { #category : #'application environment' }
 LcsApplicationEnvironment class >> currentApplicationEnvironment [
-	^ self singleton
+	^ LcsApplicationEnvironment singleton
 ]
 
 { #category : #'application environment' }

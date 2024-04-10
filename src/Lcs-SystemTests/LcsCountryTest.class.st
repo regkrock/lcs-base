@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsCountryTest >> testCreation [
 	| country |
-	self assert: LcsCountry slotDefinitions hasElements.
+	self assert: LcsCountry slotModel hasElements.
 	country := LcsCountry new.
 	country 
 		countryName: 'Canada';

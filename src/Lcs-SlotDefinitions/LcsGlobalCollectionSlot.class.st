@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsGlobalCollectionSlotDefinition,
-	#superclass : #LcsSlotDefinition,
+	#name : #LcsGlobalCollectionSlot,
+	#superclass : #LcsSlotDefintion,
 	#instVars : [
 		'collectionMemberTypes'
 	],
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LcsGlobalCollectionSlotDefinition >> addCollectionMemberType: aClass [
+LcsGlobalCollectionSlot >> addCollectionMemberType: aClass [
 	(self collectionMemberTypes includes: aClass)
 		ifFalse: [ self collectionMemberTypes add: aClass ]
 ]
 
 { #category : #configuration }
-LcsGlobalCollectionSlotDefinition >> beIdentitySetCollection [
+LcsGlobalCollectionSlot >> beIdentitySetCollection [
 	self slotTypes isEmpty
 		ifTrue: [ self addSlotType: LcsSmalltalkConfiguration identitySetClass.
 			^ self ].
@@ -24,33 +24,33 @@ LcsGlobalCollectionSlotDefinition >> beIdentitySetCollection [
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlotDefinition >> collectionMemberTypes [
+LcsGlobalCollectionSlot >> collectionMemberTypes [
 	^ collectionMemberTypes
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlotDefinition >> collectionMemberTypes: anObject [
+LcsGlobalCollectionSlot >> collectionMemberTypes: anObject [
 	collectionMemberTypes := anObject
 ]
 
 { #category : #initialize }
-LcsGlobalCollectionSlotDefinition >> initialize [
+LcsGlobalCollectionSlot >> initialize [
 	super initialize.
 	self collectionMemberTypes: OrderedCollection new
 ]
 
 { #category : #'testing ' }
-LcsGlobalCollectionSlotDefinition >> isSlotTypeIdentitySet [
+LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
 	^ self slotTypes size = 1
-		ifFalse: [ self slotTypes includes: LcsSmalltalkConfiguration identitySetClass ]
+		and: [ self slotTypes includes: LcsSmalltalkConfiguration identitySetClass ]
 ]
 
 { #category : #model }
-LcsGlobalCollectionSlotDefinition >> persistValue: anObject [
+LcsGlobalCollectionSlot >> persistValue: anObject [
 	(self getValueIn: self slotName asString) persistValue: anObject
 ]
 
 { #category : #model }
-LcsGlobalCollectionSlotDefinition >> persistValue: anObject in: aModule [
+LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
 	(self getValueIn: aModule) add: anObject
 ]

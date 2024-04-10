@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsBooleanSlotDefinition,
-	#superclass : #LcsPrimitiveSlotDefinition,
+	#name : #LcsBooleanSlot,
+	#superclass : #LcsPrimitiveSlot,
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #configuration }
-LcsBooleanSlotDefinition >> typeClass [
+LcsBooleanSlot >> typeClass [
 	^ LcsSmalltalkConfiguration booleanClass
 ]

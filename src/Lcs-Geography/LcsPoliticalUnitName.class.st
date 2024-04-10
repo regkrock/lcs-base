@@ -11,7 +11,7 @@ Class {
 { #category : #accessing }
 LcsPoliticalUnitName >> fullNameSlotDefintion [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: #'fullName';
 		beRequired;
 		validator: [ :string | string size > 2 ];
@@ -21,7 +21,7 @@ LcsPoliticalUnitName >> fullNameSlotDefintion [
 { #category : #accessing }
 LcsPoliticalUnitName >> shortNameSlotDefintion [
 	<slotDefinition>
-	^ LcsStringSlotDefinition new
+	^ LcsStringSlot new
 		slotName: #'shortName';
 		beRequired;
 		validator: [ :string | string size > 2 ];

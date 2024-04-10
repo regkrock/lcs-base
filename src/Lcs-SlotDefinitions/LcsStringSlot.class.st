@@ -1,16 +1,16 @@
 Class {
-	#name : #LcsStringSlotDefinition,
-	#superclass : #LcsPrimitiveSlotDefinition,
+	#name : #LcsStringSlot,
+	#superclass : #LcsPrimitiveSlot,
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #initialization }
-LcsStringSlotDefinition >> initialize [
+LcsStringSlot >> initialize [
 	super initialize.
 	self addSlotType: self typeClass
 ]
 
 { #category : #configuration }
-LcsStringSlotDefinition >> typeClass [
+LcsStringSlot >> typeClass [
 	^ LcsSmalltalkConfiguration stringClass
 ]

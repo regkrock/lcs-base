@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T15:52:56.052321-04:00"
+						"dateAndTimeString" : "2024-04-08T17:03:56.096233-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,91 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T15:53:00.936522-04:00"
+						"dateAndTimeString" : "2024-04-08T17:06:41.234735-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "LTt0MITRDQC1c0N+CJMbhw=="
+					"uidString" : "3pBr4f3RDQCTHQHnAqAYSw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "I am trying to create a view. It is a collection of classes "
+				"string" : "A slot model ({{gtClass:name=LcsSlotModel}}) is created for all subclasses of  {{gtMethod:name=LcsDomainObject class>>slotModel}} .  The slot model contains the slot definitions which model the behaviour surrounding the related instance variable/slot. A virtual (read only) slot definition can also be created for a calculated value."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T17:11:22.135348-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T17:11:22.135348-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4Z4B/P3RDQCj761eAqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The slot model present in each domain object subclass is related to the system that is currently active. To manage this, each system has a slot model which contains all of the slot models of all subclasses of domain object. When the current system is suspended, the slot model in the domain ojbect subclasses is set to ni. When the a system is made active, the systems slot model is used to restore the slot model to that of the current system."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T17:06:46.036989-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T17:11:50.620367-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "tjQ32v3RDQCRkIw8AqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "This feature is particularly useful for executing unit tests. "
 			},
 			{
 				"__type" : "textSnippet",

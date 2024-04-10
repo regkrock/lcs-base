@@ -10,13 +10,13 @@ Class {
 { #category : #accessing }
 LcsGeographyModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsGeographyModuleConfiguration
+	^ LcsModuleConfigurationSlot newOn: LcsGeographyModuleConfiguration
 ]
 
 { #category : #'slot definitions' }
 LcsGeographyModule class >> countriesSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionSlotDefinition new
+	^ LcsGlobalCollectionSlot new
 		slotName: 'countries';
 		beIdentitySetCollection;
 		yourself

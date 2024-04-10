@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsDateSlotDefinition,
-	#superclass : #LcsPrimitiveSlotDefinition,
+	#name : #LcsDateSlot,
+	#superclass : #LcsPrimitiveSlot,
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #configuration }
-LcsDateSlotDefinition >> typeClass [
+LcsDateSlot >> typeClass [
 	^ LcsSmalltalkConfiguration dateClass
 ]

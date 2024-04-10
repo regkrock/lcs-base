@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:37:38.445853-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:40:39.959917-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lYSWJvrRDQCjWAeIAqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In Smalltalk the objects that the instance of class references is called an instance varaible or a slot. In this application, application domain classes which are a subclass of {{gtClass:LcsDomainObject}} can have a slot definition created which manages the instance variable/slot."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:40:52.402118-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-08T12:45:23.490057-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "moujNPrRDQCt2NwEAqAYSw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In Pharo, there are already native slots defined. However GemStone there are no slots. To remedy that a class, {{gtClass:name=LcsSlotDefintion}} has been created to model the slot and to "
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-04-08T12:36:56.625645-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-04-08T12:36:56.625645-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Slot"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "bbe49526-fad1-0d00-a357-341302a0184b"
+	}
+}

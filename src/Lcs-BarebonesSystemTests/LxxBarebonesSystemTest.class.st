@@ -41,21 +41,6 @@ LxxBarebonesSystemTest >> tearDown [
 ]
 
 { #category : #tests }
-LxxBarebonesSystemTest >> testAddDomainObject [
-	| domainObject |
-	self system1: LxxBarebonesSystem new.
-	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
-	domainObject := LcsDomainObject new.
-	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
-	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
-	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
-	self assert: self currentSystem currentUnitOfWork addedObjects any domainObject identicalTo: domainObject
-]
-
-{ #category : #tests }
 LxxBarebonesSystemTest >> testBarebonesCreation [
 	| allDomainClasses |
 
@@ -64,13 +49,13 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 	self assert: (self system1 slotDefinitionNamed: 'persons') notNil.
 	self assert: self system1 persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
-	self assert: LxxBarebonesPerson slotDefinitions hasElements.
+	self assert: LxxBarebonesPerson slotModel hasElements.
 	self assert: self system1 configuration class name equals: #LxxBarebonesSystemConfiguration.
-	self assert: self system1 hasSlotDefinitions .
-	self assert: self system1 slotModel slotDefinitions size equals: LcsApplicationEnvironment currentSystem systemDomainClasses size.
+	self assert: self system1 hasSlotModels .
+	self assert: self system1 systemSlotModel slotModels size equals: LcsApplicationEnvironment currentSystem initialSystemDomainClasses size.
 	allDomainClasses := LcsDomainObject withAllSubclasses asOrderedCollection.
-	self system1 slotModel slotDefinitions keysDo: [:each | allDomainClasses remove: each ifAbsent: [ ] ].
-	self assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotDefinitions isNil ])
+	self system1 systemSlotModel slotModels keysDo: [ :each | allDomainClasses remove: each ifAbsent: [ ] ].
+	self assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotModel isNil ])
 ]
 
 { #category : #tests }
@@ -101,27 +86,28 @@ LxxBarebonesSystemTest >> testChangedSlotInDomainObject [
 ]
 
 { #category : #tests }
-LxxBarebonesSystemTest >> testCreation [
-	| numberOfSystems |
-	numberOfSystems := self systemManager numberOfSystems.
-	self system1: LxxBarebonesSystem new. 
-	self assert: self currentUnitOfWork hasNoChanges.
-	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
-	self assert: self currentSystem persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
-	
-	self assert: LxxBarebonesPerson slotDefinitions hasElements.
-	self assert: self currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration.
-	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1 
+LxxBarebonesSystemTest >> testCreatingNewDomainObject [
+	| domainObject |
+	self system1: LxxBarebonesSystem new.
+	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
+	domainObject := LcsDomainObject new.
+	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
+	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
+	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
+	self assert: self currentSystem currentUnitOfWork addedObjects any domainObject identicalTo: domainObject
 ]
 
 { #category : #tests }
 LxxBarebonesSystemTest >> testCreationOfNewSystem [
 	self system1: LxxBarebonesSystem new.
 	self assert: self currentSystem class identicalTo: LxxBarebonesSystem.
-	self assert: (self currentSystem slotDefinitionNamed: 'persons' ) notNil.
-	self assert: self currentSystem persons class == LcsSmalltalkConfiguration identitySetClass.
+	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
+	self assert: self currentSystem persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
-	self assert: LxxBarebonesPerson slotDefinitions hasElements.
+	self assert: LxxBarebonesPerson slotModel hasElements.
 	self assert: self currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration
 ]
 
@@ -132,14 +118,34 @@ LxxBarebonesSystemTest >> testCreationWithBareBonesSystem [
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem identicalTo:self system1.
-	self assert: (self currentSystem currentUnitOfWork addRecordFor: domainObject) domainObject == domainObject.
-	self assert: (domainObject slotDefinitions isKindOf: LcsSlotDefinitions) .
+	self assert: (self currentSystem currentUnitOfWork addRecordFor: domainObject) domainObject identicalTo: domainObject.
+	self assert: domainObject slotModel className equals: 'LcsSlotModel' .
 ]
 
 { #category : #tests }
 LxxBarebonesSystemTest >> testNewUnitOfWorkInSystem [
 	self system1: LxxBarebonesSystem new.
 	self assert: self currentSystem currentUnitOfWork system identicalTo: self  currentSystem
+]
+
+{ #category : #tests }
+LxxBarebonesSystemTest >> testSystemCreation [
+	| numberOfSystems |
+	numberOfSystems := self systemManager numberOfSystems.
+	self system1: LxxBarebonesSystem new. 
+
+	self assert: LcsApplicationEnvironment currentSystem identicalTo: self system1.
+	self assert: LcsApplicationEnvironment currentUnitOfWork identicalTo: self system1 relatedUnitOfWork.
+	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
+	self assert: self currentUnitOfWork hasNoChanges.
+	self assert: self system1 hasValidConfiguration.
+
+	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
+	self assert: self currentSystem persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
+	
+	self assert: LxxBarebonesPerson slotModel hasElements.
+	self assert: self currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration.
+
 ]
 
 { #category : #tests }

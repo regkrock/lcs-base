@@ -22,7 +22,7 @@ LcsBaseModule class >> addModuleClassesTo: moduleClasses [
 { #category : #'slot definitions' }
 LcsBaseModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlotDefinition newOn: LcsBaseConfiguration
+	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
 ]
 
 { #category : #modules }
@@ -115,7 +115,7 @@ LcsBaseModule >> initializeDomainCollections [
 
 { #category : #initialize }
 LcsBaseModule >> initializeModel [
-	self slotDefinitions initializeModel: self.
+	self slotModel initializeModel: self.
 	self modules initializeModel
 ]
 
@@ -175,11 +175,4 @@ LcsBaseModule >> modulesDo: aBlock [
 { #category : #modules }
 LcsBaseModule >> numberOfChildModules [
 	^ self modules numberOfModules
-]
-
-{ #category : #validation }
-LcsBaseModule >> validateConfiguration [
-	super validateConfiguration.
-
-	self modulesDo: [ :eachModule | eachModule validateConfiguration	 ]
 ]

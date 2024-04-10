@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 LxxBarebonesSystemConfiguration >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsSlotDefinition new
+	^ LcsSlotDefintion new
 		slotName: 'parent';
 		yourself
 ]

@@ -10,13 +10,13 @@ Class {
 { #category : #'slot definitions' }
 LxxPrototypePerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
-	^ LcsDateOfBirthSlotDefinition new
+	^ LcsDateOfBirthSlot new
 ]
 
 { #category : #'slot definitions' }
 LxxPrototypePerson class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionReferenceSlotDefinition new
+	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		moduleName: LxxPrototype1Module moduleName;
 		collectionSlotName: 'persons';
