@@ -55,6 +55,80 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-11T07:42:04.643283-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-11T07:51:43.4604-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "TXDVYDLSDQCBllKBAitpgA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "To create a new validator class, \n(1) create a new validator class which subclasses from LcsValidator. See\n       {{gtClass:LcsSystemConfigurationValidator}}; \n(2) implement the method #validateCurrentObject in the new class. See\n      {{gtMethod:LcsSystemConfigurationValidator>>validateCurrentObject}};\n(3) in the classes that are to be validated using the validator vistor, implement the sending method\n       definied in step (2). See {{gtMethod:name=LcsDomainObject>>addValidateConfigurationResultTo:}}."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-11T07:57:09.819747-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-11T07:57:31.467586-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "kaqJlzLSDQCOkdhHAitpgA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "If an issue is found during the validation, a validation issue {{gtClass:name=LcsValidatorIssueMessage}}  is added to the validator."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-04-10T10:02:01.262001-04:00"
 					}
 				},
@@ -643,7 +717,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-10T16:45:49.790504-04:00"
+						"dateAndTimeString" : "2024-04-10T17:53:52.617203-04:00"
 					}
 				},
 				"uid" : {
@@ -653,7 +727,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The classes can now be removed."
+				"string" : "The classes can now  should be removed before saving changes to Git."
 			},
 			{
 				"__type" : "pharoSnippet",
