@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsAuthors,
+	#name : #LcsLibraryItems,
 	#superclass : #LcsDomainCollection,
 	#category : #'Lcs-WarRabbitLibrary'
 }

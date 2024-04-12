@@ -23,6 +23,8 @@ LxxPrototype1Module class >> personsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
+		addSlotType: LxxPrototypePersons;
+		addCollectionMemberType: LxxPrototypePerson;
 		beIdentitySetCollection;
 		yourself
 ]

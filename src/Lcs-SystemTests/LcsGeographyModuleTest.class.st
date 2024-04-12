@@ -11,7 +11,8 @@ LcsGeographyModuleTest >> testCreation [
 	self assert: (module isKindOf: LcsGeographyModule).
 	self assert: (module slotDefinitionNamed: 'countries') notNil.
 	self currentSystem currentUnitOfWork applyChanges.
-	self assert: (module countries isKindOf: LcsSmalltalkConfiguration identitySetClass).
-	self assert: module countries isEmpty.
+	self assert: (module countries isKindOf: LcsCountries).
+	self assert: (module countries collection isKindOf: LcsSmalltalkConfiguration identitySetClass).
+	self assert: module countries hasNoElements.
 	
 ]

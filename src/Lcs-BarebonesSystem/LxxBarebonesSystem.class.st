@@ -27,7 +27,7 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
 		slotName: 'persons';
-		addSlotType: LxxBarebonesPerson;
+		addSlotType: LxxBarebonesPersons;
 		addCollectionMemberType: LxxBarebonesPerson;
 		beIdentitySetCollection;
 		yourself
@@ -35,11 +35,7 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 
 { #category : #initialize }
 LxxBarebonesSystem >> initialSystemDomainClasses [
-	^OrderedCollection new
-		add: LcsDomainObject;
-		add: LcsBaseSystem;
-		add: LcsModule;
-		add: LxxBarebonesSystem;
+	^super initialSystemDomainClasses
 		add: LxxBarebonesPerson;
 		add: LxxBarebonesSystemConfiguration;
 		yourself

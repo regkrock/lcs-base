@@ -47,7 +47,7 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 	self system1: LxxBarebonesSystem new.
 	self assert: self system1 currentUnitOfWork hasNoChanges.
 	self assert: (self system1 slotDefinitionNamed: 'persons') notNil.
-	self assert: self system1 persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
+	self assert: self system1 persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
 	self assert: LxxBarebonesPerson slotModel hasElements.
 	self assert: self system1 configuration class name equals: #LxxBarebonesSystemConfiguration.
@@ -105,7 +105,8 @@ LxxBarebonesSystemTest >> testCreationOfNewSystem [
 	self system1: LxxBarebonesSystem new.
 	self assert: self currentSystem class identicalTo: LxxBarebonesSystem.
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
-	self assert: self currentSystem persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
+	self assert: self currentSystem persons class identicalTo: LxxBarebonesPersons.
+	self assert: self currentSystem persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
 	self assert: LxxBarebonesPerson slotModel hasElements.
 	self assert: self currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration
@@ -141,8 +142,9 @@ LxxBarebonesSystemTest >> testSystemCreation [
 	self assert: self system1 hasValidConfiguration.
 
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
-	self assert: self currentSystem persons class identicalTo: LcsSmalltalkConfiguration identitySetClass.
-	
+	self assert: self currentSystem persons class identicalTo: LxxBarebonesPersons.
+	self assert: self currentSystem persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
+		
 	self assert: LxxBarebonesPerson slotModel hasElements.
 	self assert: self currentSystem configuration class name equals: #LxxBarebonesSystemConfiguration.
 

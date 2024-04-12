@@ -61,6 +61,16 @@ LcsBaseSystem >> allModuleClasses [
 ]
 
 { #category : #'slot model' }
+LcsBaseSystem >> baseDomainModelClasses [
+	^OrderedCollection new
+		add: LcsDomainObject;
+		add: LcsBaseModule;
+		add: LcsModule;
+		add: LcsBaseSystem;
+		yourself
+]
+
+{ #category : #'slot model' }
 LcsBaseSystem >> buildSlotDefinitions [
 	self systemDomainClasses do: [ :eachDomainClass | eachDomainClass initializeSlotModel ]
 ]
@@ -115,7 +125,7 @@ LcsBaseSystem >> hasValidConfiguration [
 
 { #category : #'slot model' }
 LcsBaseSystem >> initialSystemDomainClasses [
-	^ OrderedCollection new
+	^ self requiredSystemDomainClasses
 ]
 
 { #category : #initialize }
@@ -171,6 +181,14 @@ LcsBaseSystem >> releaseSlotModel [
 { #category : #remove }
 LcsBaseSystem >> removeSystem [ 
 	self parent removeSystem: self
+]
+
+{ #category : #'slot model' }
+LcsBaseSystem >> requiredSystemDomainClasses [
+	^OrderedCollection new
+		addAll: self baseDomainModelClasses;
+		add: self class;
+		yourself
 ]
 
 { #category : #restore }

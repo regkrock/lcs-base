@@ -53,6 +53,10 @@ LcsGlobalCollectionReferenceSlot >> moduleName: aString [
 
 { #category : #model }
 LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject [
-	(self module slotDefinitionNamed: self collectionSlotName) persistValue: aDomainObject in: self module
-
+	(self module slotDefinitionNamed: self collectionSlotName)
+		persistValue: (
+			aDomainObject
+				parent: (self module perform: self collectionSlotName asSymbol);
+				yourself)
+		in: self module
 ]

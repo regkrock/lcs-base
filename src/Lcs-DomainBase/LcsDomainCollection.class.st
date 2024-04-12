@@ -12,6 +12,19 @@ LcsDomainCollection class >> collectionClass [
 	^IdentitySet new
 ]
 
+{ #category : #'instace creation' }
+LcsDomainCollection class >> new [
+	^ self newWithCollection: self collectionClass
+]
+
+{ #category : #'instace creation' }
+LcsDomainCollection class >> newWithCollection: aCollectionClass [
+	^ self basicNew
+		initialize;
+		collection: aCollectionClass new;
+		yourself
+]
+
 { #category : #'collection\t' }
 LcsDomainCollection >> add: anObject [
 	^ self collection add: anObject
@@ -69,8 +82,7 @@ LcsDomainCollection >> includes: anObject [
 
 { #category : #initialization }
 LcsDomainCollection >> initialize [
-	super initialize.
-	self collection: self collectionClass new
+	super initialize
 ]
 
 { #category : #'collection\t' }

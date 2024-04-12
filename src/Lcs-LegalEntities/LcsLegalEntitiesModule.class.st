@@ -24,7 +24,9 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'organizations';
-		addSlotType: LcsSmalltalkConfiguration identitySetClass
+		addSlotType: LcsOrganizations;
+		addCollectionMemberType: LcsCountry;
+		beIdentitySetCollection;
 		yourself
 ]
 
@@ -33,7 +35,9 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
-		addSlotType: LcsSmalltalkConfiguration identitySetClass
+		addSlotType: LcsPersons;
+		addCollectionMemberType: LcsPerson;
+		beIdentitySetCollection;
 		yourself
 ]
 

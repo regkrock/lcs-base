@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsUnknowntem,
+	#name : #LcsUnknownLibraryItem,
 	#superclass : #LcsLibraryItem,
 	#category : #'Lcs-WarRabbitLibrary'
 }

@@ -18,6 +18,8 @@ LcsGeographyModule class >> countriesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'countries';
+		addSlotType: LcsCountries;
+		addCollectionMemberType: LcsCountry;
 		beIdentitySetCollection;
 		yourself
 ]

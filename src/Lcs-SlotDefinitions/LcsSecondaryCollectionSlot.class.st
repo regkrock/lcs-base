@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsGlobalCollectionSlot,
+	#name : #LcsSecondaryCollectionSlot,
 	#superclass : #LcsSlotDefintion,
 	#instVars : [
 		'collectionMemberTypes',
@@ -9,49 +9,49 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LcsGlobalCollectionSlot >> addCollectionMemberType: aClass [
+LcsSecondaryCollectionSlot >> addCollectionMemberType: aClass [
 	(self collectionMemberTypes includes: aClass)
 		ifFalse: [ self collectionMemberTypes add: aClass ]
 ]
 
 { #category : #configuration }
-LcsGlobalCollectionSlot >> beIdentitySetCollection [
+LcsSecondaryCollectionSlot >> beIdentitySetCollection [
 	self collectionSlotClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
 { #category : #configuration }
-LcsGlobalCollectionSlot >> beOrderedCollection [
+LcsSecondaryCollectionSlot >> beOrderedCollection [
 	self collectionSlotClass: OrderedCollection
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionMemberTypes [
+LcsSecondaryCollectionSlot >> collectionMemberTypes [
 	^ collectionMemberTypes
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionMemberTypes: anObject [
+LcsSecondaryCollectionSlot >> collectionMemberTypes: anObject [
 	collectionMemberTypes := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionSlotClass [
+LcsSecondaryCollectionSlot >> collectionSlotClass [
 	^ collectionSlotClass
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionSlotClass: anObject [
+LcsSecondaryCollectionSlot >> collectionSlotClass: anObject [
 	collectionSlotClass := anObject
 ]
 
 { #category : #initialize }
-LcsGlobalCollectionSlot >> initialize [
+LcsSecondaryCollectionSlot >> initialize [
 	super initialize.
 	self collectionMemberTypes: OrderedCollection new
 ]
 
 { #category : #model }
-LcsGlobalCollectionSlot >> initializeModel: aDomainObject [
+LcsSecondaryCollectionSlot >> initializeModel: aDomainObject [
 	self
 		setValueTo: (self newSlotValue
 				parent: aDomainObject;
@@ -60,22 +60,22 @@ LcsGlobalCollectionSlot >> initializeModel: aDomainObject [
 ]
 
 { #category : #'testing ' }
-LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
+LcsSecondaryCollectionSlot >> isSlotTypeIdentitySet [
 	^ self slotTypes size = 1
 		and: [ self slotTypes includes: LcsSmalltalkConfiguration identitySetClass ]
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> newSlotValue [
+LcsSecondaryCollectionSlot >> newSlotValue [
 	^ self slotTypes any newWithCollection: self  collectionSlotClass
 ]
 
 { #category : #model }
-LcsGlobalCollectionSlot >> persistValue: anObject [
+LcsSecondaryCollectionSlot >> persistValue: anObject [
 	(self getValueIn: self slotName asString) persistValue: anObject
 ]
 
 { #category : #model }
-LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
+LcsSecondaryCollectionSlot >> persistValue: anObject in: aModule [
 	(self getValueIn: aModule) add: anObject
 ]

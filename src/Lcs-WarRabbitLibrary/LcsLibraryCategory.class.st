@@ -1,11 +1,21 @@
 Class {
 	#name : #LcsLibraryCategory,
-	#superclass : #LcsObject,
+	#superclass : #LcsDomainObject,
 	#instVars : [
-		'categoryName'
+		'categoryName',
+		'subcategories'
 	],
 	#category : #'Lcs-WarRabbitLibrary'
 }
+
+{ #category : #'slot definition' }
+LcsLibraryCategory class >> categoryNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'categoryName';
+		beRequired;
+		yourself
+]
 
 { #category : #accessing }
 LcsLibraryCategory class >> newFor: aString [
@@ -13,6 +23,24 @@ LcsLibraryCategory class >> newFor: aString [
 		categoryName: aString;
 		yourself 
 	
+]
+
+{ #category : #'slot definition' }
+LcsLibraryCategory class >> parentSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionReferenceSlot new
+		slotName: 'parent';
+		moduleName: LcsWarRabbitLibrary moduleName;
+		collectionSlotName: 'libraryCategories';
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsLibraryCategory class >> subcategoriesSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'subcategories';
+		yourself
 ]
 
 { #category : #accessing }

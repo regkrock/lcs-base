@@ -20,11 +20,7 @@ LxxPrototypeSystem class >> moduleClasses [
 
 { #category : #initialize }
 LxxPrototypeSystem >> initialSystemDomainClasses [
-	^ OrderedCollection new
-		add: LcsDomainObject;
-		add: LcsBaseSystem;
-		add: LcsModule;
-		add: LcsBaseModule;
+	^ super initialSystemDomainClasses
 		addAll: self allModuleClasses;
 		add: LxxPrototypePerson;
 		yourself
