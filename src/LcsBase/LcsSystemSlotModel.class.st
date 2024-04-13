@@ -8,7 +8,7 @@ Class {
 	#category : #LcsBase
 }
 
-{ #category : #'instance creation\t' }
+{ #category : #'instance creation' }
 LcsSystemSlotModel class >> newOn: aSystem [ 
 	^ self new
 		parent: aSystem;

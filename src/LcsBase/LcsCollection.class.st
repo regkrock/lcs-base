@@ -8,7 +8,7 @@ Class {
 	#category : #LcsBase
 }
 
-{ #category : #'defaults ' }
+{ #category : #defaults }
 LcsCollection class >> collectionClass [
 	self subclassResponsibility
 ]
@@ -40,7 +40,7 @@ LcsCollection >> collection: anObject [
 	collection := anObject
 ]
 
-{ #category : #collection }
+{ #category : #defaults }
 LcsCollection >> collectionClass [
 	^ self class collectionClass
 ]
@@ -132,7 +132,7 @@ LcsCollection >> remove: anObject ifAbsent: aBlock [
 	^ self collection remove: anObject ifAbsent: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #collection }
 LcsCollection >> removeAll [
 	^ self collection removeAll
 ]

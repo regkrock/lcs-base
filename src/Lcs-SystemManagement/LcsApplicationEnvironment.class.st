@@ -149,7 +149,7 @@ LcsApplicationEnvironment class >> initializeApplicationEnvironment [
 	^ self currentApplicationEnvironment
 ]
 
-{ #category : #'running\t\t' }
+{ #category : #running }
 LcsApplicationEnvironment class >> isInActiveStatus [
 	^ self applicationEnvironmentHas: [ :env | env isInActiveStatus]
 ]

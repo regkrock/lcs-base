@@ -12,7 +12,7 @@ LcsApplicationEnvironmentViewItem class >> defaultChildrenSelector [
 	^ #applicationEnvironmentViewChildren
 ]
 
-{ #category : #'instance creation\t' }
+{ #category : #'instance creation' }
 LcsApplicationEnvironmentViewItem class >> newOn: anObject label: aLabel item: anItem [ 
 	^ self new
 		initializeOn: anObject label: aLabel item: anItem;

@@ -10,7 +10,7 @@ LxxPrototype2Module class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
 ]
 
-{ #category : #'modules ' }
+{ #category : #modules }
 LxxPrototype2Module class >> moduleClasses [
 	^ OrderedCollection new
 		add: LxxPrototype2Submodule;

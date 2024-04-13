@@ -69,7 +69,7 @@ LcsDomainObject class >> isSlotModelReleased [
 	^ true
 ]
 
-{ #category : #'instance creation\t' }
+{ #category : #'instance creation' }
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew initialize.

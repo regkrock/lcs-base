@@ -12,7 +12,7 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsBaseSystem class >> isApplicationSystemClass [
 	^ true
 ]

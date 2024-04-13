@@ -12,7 +12,7 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #'modules ' }
+{ #category : #modules }
 LcsBaseModule class >> addModuleClassesTo: moduleClasses [ 
 	moduleClasses add: self.
 	self moduleClasses do: [ :each |
@@ -25,7 +25,7 @@ LcsBaseModule class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
 ]
 
-{ #category : #'modules ' }
+{ #category : #modules }
 LcsBaseModule class >> moduleClasses [
 	^ OrderedCollection new
 ]

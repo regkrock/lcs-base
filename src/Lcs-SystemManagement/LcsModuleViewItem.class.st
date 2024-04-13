@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemManagement'
 }
 
-{ #category : #'default\t' }
+{ #category : #default }
 LcsModuleViewItem class >> childrenSelector [
 	^ #moduleViewChildrn
 ]
