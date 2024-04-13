@@ -9,26 +9,26 @@ LcsSystemSuspendedStatus >> isInSuspendedStatus [
 	^ true
 ]
 
-{ #category : #'api\t\t' }
+{ #category : #api }
 LcsSystemSuspendedStatus >> restoreSystem [
 	self parent _restoreSystem
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsSystemSuspendedStatus >> statusName [
 	^ 'Suspended' translated
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsSystemSuspendedStatus >> suspendedSystem [
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsSystemSuspendedStatus >> toggleActionButtonLabel [
 	^ 'Activate'
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsSystemSuspendedStatus >> toggleStatus [
 	self restoreSystem
 ]

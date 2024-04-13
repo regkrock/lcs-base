@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-BaseTests'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxOrderedCollectionTest >> testAdd [
 	| anLxxCollection addedObject |
 	anLxxCollection := LxxOrderedCollection new.
@@ -23,7 +23,7 @@ LxxOrderedCollectionTest >> testAdd [
 
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LxxOrderedCollectionTest >> testCollect [
 	| anLxxCollection result |
 	anLxxCollection := LxxOrderedCollection new.

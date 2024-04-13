@@ -17,7 +17,7 @@ LcsDomainClassSlot >> domainClass: anObject [
 	domainClass := anObject
 ]
 
-{ #category : #'slot model\t' }
+{ #category : #'slot model' }
 LcsDomainClassSlot >> initializeModel: aDomainObject [
 	self
 		setValueTo: (self newSlotValue

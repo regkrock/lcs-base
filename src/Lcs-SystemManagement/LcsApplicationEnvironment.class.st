@@ -380,7 +380,7 @@ LcsApplicationEnvironment >> makeSystemCurrent: aSystem [
 	self systemManager makeSystemCurrent: aSystem
 ]
 
-{ #category : #'release\t' }
+{ #category : #release }
 LcsApplicationEnvironment >> releaseApplicationEnvironment [
 	self systemManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].
 	self unitsOfWorkManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].

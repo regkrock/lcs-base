@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #'validation\t' }
+{ #category : #validation }
 LcsSystemConfigurationValidator >> validateCurrentObject [
 	self objectBeingValidated addValidateConfigurationResultTo: self
 ]

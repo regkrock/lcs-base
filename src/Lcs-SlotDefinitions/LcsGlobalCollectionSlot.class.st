@@ -59,7 +59,7 @@ LcsGlobalCollectionSlot >> initializeModel: aDomainObject [
 		in: aDomainObject
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
 	^ self slotTypes size = 1
 		and: [ self slotTypes includes: LcsSmalltalkConfiguration identitySetClass ]

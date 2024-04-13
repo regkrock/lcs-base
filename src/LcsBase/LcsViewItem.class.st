@@ -26,7 +26,7 @@ LcsViewItem >> children [
 	^ self itemChildren: self childrenSelector
 ]
 
-{ #category : #children }
+{ #category : #accessing }
 LcsViewItem >> childrenSelector [
 	^ childrenSelector
 ]
@@ -47,7 +47,7 @@ LcsViewItem >> initialize [
 	self childrenSelector: self defaultChildrenSelector
 ]
 
-{ #category : #'instance  creation' }
+{ #category : #initialize }
 LcsViewItem >> initializeLabel: aString value: anObject [ 
 	self 
 		label: aString;

@@ -60,7 +60,7 @@ LcsObject >> currentSystem [
 	^ self class currentSystem
 ]
 
-{ #category : #'testing\t' }
+{ #category : #testing }
 LcsObject >> isApplicationSystem [
 	^ false
 ]

@@ -47,12 +47,12 @@ LcsApplicationEnvironmentViewItem >> context [
 	^ context
 ]
 
-{ #category : #'accessing\t' }
+{ #category : #accessing }
 LcsApplicationEnvironmentViewItem >> context: anObject [ 
 	context := anObject
 ]
 
-{ #category : #'gt view\t' }
+{ #category : #'gt view' }
 LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: anItem [ 
 	self
 		context: anObject;
@@ -66,7 +66,7 @@ LcsApplicationEnvironmentViewItem >> isInstantiatedSystem [
 	^self item isApplicationSystem
 ]
 
-{ #category : #'testing\t' }
+{ #category : #testing }
 LcsApplicationEnvironmentViewItem >> isSystemClass [
 	self item isClass ifFalse: [ ^ false ].
 	^self item isApplicationSystemClass

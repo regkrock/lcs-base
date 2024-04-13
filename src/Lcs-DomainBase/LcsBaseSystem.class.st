@@ -52,7 +52,7 @@ LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
 	self systemSlotModel addToSlotModel: aSlotDefinitions
 ]
 
-{ #category : #initialize }
+{ #category : #modules }
 LcsBaseSystem >> allModuleClasses [
 	| moduleClasses |
 	moduleClasses := OrderedCollection new.
@@ -87,7 +87,7 @@ LcsBaseSystem >> currentUnitOfWork [
 	^ self parent currentUnitOfWork
 ]
 
-{ #category : #'slot model' }
+{ #category : #'gt view' }
 LcsBaseSystem >> gtConfigurationIssuesFor: aView [
 	<gtView>
 	self configurationValidator hasNoValidationIssues
@@ -118,7 +118,7 @@ LcsBaseSystem >> hasSlotModels [
 	^ self systemSlotModel hasSlotModels
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsBaseSystem >> hasValidConfiguration [
 	^ self configurationValidator hasNoValidationIssues
 ]
@@ -149,12 +149,12 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 
 ]
 
-{ #category : #'testing\t' }
+{ #category : #testing }
 LcsBaseSystem >> isApplicationSystem [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsBaseSystem >> isIncludedInSystemDomainClasses: aDomainClass [
 	^ self systemDomainClasses includes: aDomainClass class
 ]
@@ -221,7 +221,7 @@ LcsBaseSystem >> statusNameString [
 	^ self status ifNil: [ 'no status' ] ifNotNil: [ self status statusName ]
 ]
 
-{ #category : #accessing }
+{ #category : #suspend }
 LcsBaseSystem >> suspendCurrentSystem [
 	self systemManager suspendCurrentSystem
 ]

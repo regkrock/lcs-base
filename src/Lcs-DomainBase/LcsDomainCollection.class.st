@@ -25,12 +25,12 @@ LcsDomainCollection class >> newWithCollection: aCollectionClass [
 		yourself
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> add: anObject [
 	^ self collection add: anObject
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> collect: aBlock [
 	^ self collection collect: aBlock
 ]
@@ -55,27 +55,27 @@ LcsDomainCollection >> detect: aBlock [
 	^ self collection detect: aBlock
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> detect: aBlock ifNone: anIfNoneBlock [
 	^ self collection detect: aBlock ifNone: anIfNoneBlock
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> do: aBlock [
 	^ self collection do: aBlock
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsDomainCollection >> hasElements [
 	^ self collection notEmpty
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsDomainCollection >> hasNoElements [
 	^ self collection isEmpty
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> includes: anObject [
 	^ self collection includes: anObject
 ]
@@ -85,37 +85,37 @@ LcsDomainCollection >> initialize [
 	super initialize
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> inject: anObject into: aBlock [
 	^ self collection inject: anObject into: aBlock
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> reject: aBlock [
 	^ self collection reject: aBlock
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> remove: anObject [
 	^ self collection remove: anObject
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> remove: anObject ifAbsent: aBlock [
 	^ self collection remove: anObject ifAbsent: [ ]
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> removeAll [
 	^ self collection removeAll
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> select: aBlock [
 	^ self collection select: aBlock
 ]
 
-{ #category : #'collection\t' }
+{ #category : #collection }
 LcsDomainCollection >> size [
 	^ self collection size
 ]

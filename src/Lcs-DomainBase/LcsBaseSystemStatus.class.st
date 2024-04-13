@@ -14,7 +14,7 @@ LcsBaseSystemStatus class >> newOn: aSystem [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : #initialize }
 LcsBaseSystemStatus >> initializeOn: aSystem [ 
 	self parent: aSystem
 ]
@@ -29,12 +29,12 @@ LcsBaseSystemStatus >> isInSuspendedStatus [
 	^ false
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 LcsBaseSystemStatus >> parent [
 	^ parent
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 LcsBaseSystemStatus >> parent: aSystem [ 
 	parent := aSystem
 ]

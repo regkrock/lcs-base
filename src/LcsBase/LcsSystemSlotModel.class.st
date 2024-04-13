@@ -8,7 +8,7 @@ Class {
 	#category : #LcsBase
 }
 
-{ #category : #initialization }
+{ #category : #'instance creation\t' }
 LcsSystemSlotModel class >> newOn: aSystem [ 
 	^ self new
 		parent: aSystem;
@@ -20,7 +20,7 @@ LcsSystemSlotModel >> addToSlotModel: aSlotModel [
 	self slotModels at: aSlotModel parent put: aSlotModel
 ]
 
-{ #category : #'gt view\t' }
+{ #category : #'gt view' }
 LcsSystemSlotModel >> gtSlotModelFor: aView [
 	<gtView>
 	self slotModels ifEmpty: [ ^ aView empty ].
@@ -38,7 +38,7 @@ LcsSystemSlotModel >> gtSlotModelFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view\t' }
+{ #category : #'gt view' }
 LcsSystemSlotModel >> gtViewSlotModelChildren [
 	| children |
 	children := OrderedCollection new.

@@ -28,7 +28,7 @@ LcsSystemManager >> applicationEnvironment [
 	^self parent applicationEnvironment
 ]
 
-{ #category : #'gt view\t' }
+{ #category : #'gt view' }
 LcsSystemManager >> applicationEnvironmentViewChildren [
 	^ {
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Current System' item: self currentSystem.
@@ -36,7 +36,7 @@ LcsSystemManager >> applicationEnvironmentViewChildren [
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Available Systems' item: '' "self availableSystemClasses". }
 ]
 
-{ #category : #'gt view\t' }
+{ #category : #'gt view' }
 LcsSystemManager >> applicationEnvironmentViewaAvailableSystemsChildren [
 	^ self availableSystemClasses
 		collect: [ :eachClass | LcsApplicationEnvironmentViewItem newOn: self label: eachClass name item: eachClass ]
@@ -87,12 +87,12 @@ LcsSystemManager >> gtSystemManagerFor: aView [
 		
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsSystemManager >> hasCurrentSystem [
 	^ self currentSystem notNil
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsSystemManager >> hasNoCurrentSystem [
 	^ self currentSystem isNil
 ]

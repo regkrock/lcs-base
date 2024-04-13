@@ -10,7 +10,7 @@ Class {
 	#category : #LcsBase
 }
 
-{ #category : #'validation\t\t' }
+{ #category : #validation }
 LcsValidator >> addIssueMessage: aString [
 	self validationIssues
 		add: (LcsValidatorIssueMessage newOn: self objectBeingValidated message: aString)
@@ -31,7 +31,7 @@ LcsValidator >> hasValidationIssues [
 	^ self validationIssues notEmpty
 ]
 
-{ #category : #'initiailize\t' }
+{ #category : #initiailize }
 LcsValidator >> initialize [
 	super initialize.
 	self visitationStack: OrderedCollection new.
@@ -39,25 +39,28 @@ LcsValidator >> initialize [
 	self validationIssues: OrderedCollection new
 ]
 
-{ #category : #'validation\t\t' }
+{ #category : #validation }
 LcsValidator >> objectBeingValidated [
 	^ self validatedObjects last
 ]
 
-{ #category : #'validation\t' }
+{ #category : #validation }
 LcsValidator >> objectBeingValidated: anObject [
 	self visitationStack add: anObject.
 	self validatedObjects add: anObject
 ]
 
-{ #category : #'api\t\t' }
+{ #category : #api }
 LcsValidator >> validate: anObject [
 	(self hasAlreadyBeenValidated: anObject) ifTrue: [ ^ self ].
-	[ self objectBeingValidated: anObject.
-	self validateCurrentObject ] ensure: [ self visitationStack removeLast ]
+	[ 
+		self objectBeingValidated: anObject.
+		self validateCurrentObject 
+	] 
+		ensure: [ self visitationStack removeLast ]
 ]
 
-{ #category : #'validation\t\t' }
+{ #category : #validation }
 LcsValidator >> validateCurrentObject [
 	self subclassResponsibility
 ]

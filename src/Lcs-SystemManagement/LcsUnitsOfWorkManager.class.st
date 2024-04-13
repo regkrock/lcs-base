@@ -104,7 +104,7 @@ LcsUnitsOfWorkManager >> parent: anApplicationEnvironment [
 	parent := anApplicationEnvironment
 ]
 
-{ #category : #'release ' }
+{ #category : #release }
 LcsUnitsOfWorkManager >> releaseApplicationEnvironment [
 	self currentUnitOfWork: nil.
 	self unitsOfWork removeAll

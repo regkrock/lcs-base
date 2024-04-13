@@ -132,7 +132,7 @@ LcsCollection >> remove: anObject ifAbsent: aBlock [
 	^ self collection remove: anObject ifAbsent: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 LcsCollection >> removeAll [
 	^ self collection removeAll
 ]

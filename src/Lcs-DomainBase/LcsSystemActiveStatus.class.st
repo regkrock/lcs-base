@@ -9,7 +9,7 @@ LcsSystemActiveStatus >> isInActiveStatus [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsSystemActiveStatus >> statusName [
 	^ 'Active' translated
 ]
@@ -19,12 +19,12 @@ LcsSystemActiveStatus >> suspendSystem [
 	self parent _suspendSystem 
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsSystemActiveStatus >> toggleActionButtonLabel [
 	^ 'Suspend '
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsSystemActiveStatus >> toggleStatus [
 	^ self suspendSystem
 ]
