@@ -22,6 +22,22 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
+{ #category : #'slot model\t' }
+LcsDomainObject class >> assertSlotAdded: aSlotName [
+	self assert: (self instVarNames includes: aSlotName).
+	self assert: (self canUnderstand: aSlotName asSymbol).
+	self assert: (self canUnderstand: (aSlotName , ':') asSymbol).
+	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
+]
+
+{ #category : #'slot model\t' }
+LcsDomainObject class >> assertSlotRemoved: aSlotName [
+	self assert: (self instVarNames includes: aSlotName) not.
+	self assert: (self canUnderstand: aSlotName asSymbol) not.
+	self assert: (self canUnderstand: (aSlotName , ':') asSymbol) not.
+	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not
+]
+
 { #category : #'application environment' }
 LcsDomainObject class >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
@@ -86,6 +102,38 @@ LcsDomainObject class >> releaseApplicationEnvironment [
 LcsDomainObject class >> releaseSlotModel [
 	self slotModel: nil.
 	self subclassesDo: [ :each | each releaseSlotModel ]
+]
+
+{ #category : #'slot model\t' }
+LcsDomainObject class >> removeGetter: aGetter [
+	(self canUnderstand: aGetter)
+		ifTrue: [ self removeSelector: aGetter ]
+]
+
+{ #category : #'slot model\t' }
+LcsDomainObject class >> removeInstVarNamed: aSlotName [
+	(self instVarNames includes: aSlotName)
+		ifTrue: [ self removeInstVarNamed: aSlotName ]
+]
+
+{ #category : #'slot model\t' }
+LcsDomainObject class >> removeSetter: aSetterSelector [
+	(self canUnderstand: aSetterSelector)
+		ifTrue: [ self removeSelector: aSetterSelector ]
+]
+
+{ #category : #'slot model\t' }
+LcsDomainObject class >> removeSlotDefinition: aSlotDefinitionSelector [
+	(self class canUnderstand: aSlotDefinitionSelector)
+		ifTrue: [ self class removeSelector: aSlotDefinitionSelector ]
+]
+
+{ #category : #'slot model\t' }
+LcsDomainObject class >> removeSlotNamed: aSlotName [
+	self removeInstVarNamed: aSlotName.
+	self removeGetter: aSlotName asSymbol.
+	self removeSetter: (aSlotName , ':') asSymbol.
+	self removeSlotDefinition: (aSlotName , 'SlotDefinition') asSymbol
 ]
 
 { #category : #'slot model' }

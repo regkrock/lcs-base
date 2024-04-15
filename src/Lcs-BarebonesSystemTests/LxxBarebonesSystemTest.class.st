@@ -123,6 +123,14 @@ LxxBarebonesSystemTest >> testCreationWithBareBonesSystem [
 	self assert: domainObject slotModel className equals: 'LcsSlotModel' .
 ]
 
+{ #category : #accessing }
+LxxBarebonesSystemTest >> testInstallingFirstNameSlotInPerson [
+	self deny: (LxxBarebonesPerson instVarNames includes: 'firstName').
+	self deny: (LxxBarebonesPerson respondsTo: #firstName).
+	self deny: (LxxBarebonesPerson respondsTo: #firstName:).
+	self deny: (LxxBarebonesPerson class respondsTo: #firstNameSlotDefinition).
+]
+
 { #category : #tests }
 LxxBarebonesSystemTest >> testNewUnitOfWorkInSystem [
 	self system1: LxxBarebonesSystem new.

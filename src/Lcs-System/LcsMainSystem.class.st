@@ -13,7 +13,7 @@ LcsMainSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: LcsSystemConfiguration
 ]
 
-{ #category : #'modules ' }
+{ #category : #modules }
 LcsMainSystem class >> moduleClasses [
 	^ OrderedCollection new
 		add: LcsGeographyModule;

@@ -16,12 +16,12 @@ LcsGlobalCollectionSlot >> addCollectionMemberType: aClass [
 
 { #category : #configuration }
 LcsGlobalCollectionSlot >> beIdentitySetCollection [
-	self collectionSlotClass: LcsSmalltalkConfiguration identitySetClass
+	self collectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
 { #category : #configuration }
 LcsGlobalCollectionSlot >> beOrderedCollection [
-	self collectionSlotClass: OrderedCollection
+	self collectionSlotCollectionClass: OrderedCollection
 ]
 
 { #category : #accessing }
@@ -35,12 +35,12 @@ LcsGlobalCollectionSlot >> collectionMemberTypes: anObject [
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionSlotClass [
+LcsGlobalCollectionSlot >> collectionSlotCollectionClass [
 	^ collectionSlotClass
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionSlotClass: anObject [
+LcsGlobalCollectionSlot >> collectionSlotCollectionClass: anObject [
 	collectionSlotClass := anObject
 ]
 
@@ -67,7 +67,7 @@ LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
 
 { #category : #accessing }
 LcsGlobalCollectionSlot >> newSlotValue [
-	^ self slotTypes any newWithCollection: self  collectionSlotClass
+	^ self slotTypes any newWithCollection: self  collectionSlotCollectionClass
 ]
 
 { #category : #model }

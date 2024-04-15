@@ -70,3 +70,7 @@ LcsSmalltalkConfiguration class >> systemDictionary [
 LcsSmalltalkConfiguration class >> timeClass [
 	^ Time
 ]
+
+{ #category : #asking }
+LcsSmalltalkConfiguration >> classSelecotrFor: aClass [
+]

@@ -25,6 +25,13 @@ LcsBaseModule class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
 ]
 
+{ #category : #asking }
+LcsBaseModule class >> moduleClassNamed: aString [
+	^ self allSubclasses detect: [ :eachClass |
+		eachClass moduleName = aString ]
+		ifNone: []
+]
+
 { #category : #modules }
 LcsBaseModule class >> moduleClasses [
 	^ OrderedCollection new

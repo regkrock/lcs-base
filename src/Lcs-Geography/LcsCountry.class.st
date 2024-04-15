@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LcsCountry class >> countryNameSlotDefintion [
+LcsCountry class >> countryNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: #'countryName';
@@ -20,7 +20,7 @@ LcsCountry class >> countryNameSlotDefintion [
 ]
 
 { #category : #'slot definitions' }
-LcsCountry class >> isoCodeSlotDefintion [
+LcsCountry class >> isoCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: #'isoCode';
@@ -40,7 +40,7 @@ LcsCountry class >> parentSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsCountry class >> politicalUnitNameSlotDefintion [
+LcsCountry class >> politicalUnitNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: #'politicalUnitName';

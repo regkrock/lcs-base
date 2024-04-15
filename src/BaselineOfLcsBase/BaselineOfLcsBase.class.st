@@ -50,7 +50,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-BarebonesSystemTests' with: [spec requires: #('Lcs-BarebonesSystem' 'Lcs-Tests') ].  
 
 			" Tools "
-			spec package: 'Lcs-Tools' with: [ spec requires: #('LcsBase') ].
+			spec package: 'Lcs-Tools' with: [ spec requires: #('LcsBase' ) ].
 			
 			" Examples "
 			spec package: 'Lcs-Examples' with: [ spec requires: #('LcsBase') ].
