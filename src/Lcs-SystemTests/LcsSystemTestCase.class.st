@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemTests'
 }
 
-{ #category : #'running\t' }
+{ #category : #running }
 LcsSystemTestCase >> setupSunitSystem [
 	LcsMainSystem new
 ]

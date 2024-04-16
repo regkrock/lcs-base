@@ -4,75 +4,63 @@ Class {
 	#category : #'Lcs-BarebonesSystemTests'
 }
 
-{ #category : #accessing }
+{ #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> createLxxUserClass [
-	([ 'LxxUser'asClass ] on: NotFound do: [  nil ]) ifNil: [
-		(RBAddClassRefactoring
-			addClass: 'LxxUser' asSymbol
-			superclass: LcsDomainObject
-			subclasses: #()
-			category: #'Lcs-BarebonesSystem') execute ]
+	self
+		createClassName: 'LxxUser'
+		superclassName: 'LcsDomainCollection'
+		category: #'Lcs-BarebonesSystem'
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> createLxxUsersClass [
-	([ 'LxxUsers'asClass ] on: NotFound do: [  nil ]) ifNil: [
-		(RBAddClassRefactoring
-			addClass: 'LxxUsers' asSymbol
-			superclass: LcsDomainCollection
-			subclasses: #()
-			category: #'Lcs-BarebonesSystem') execute ]
+	self
+		createClassName: 'LxxUsers'
+		superclassName: 'LcsDomainCollection'
+		category: #'Lcs-BarebonesSystem'
 ]
 
-{ #category : #accessing }
-LcsGlobalSlotDefinitionBuilderTest >> removeClassName: aString [
-	[ aString asClass ] on: NotFound do: [ ^ self ].
-	(RBRemoveClassRefactoring
-		classNames: {aString}) execute
+{ #category : #running }
+LcsGlobalSlotDefinitionBuilderTest >> removeArtifactsRelatedToUsersSlot [
+	LxxBarebonesSystem removeDomainSlotNamed: 'users'.
+	self removeLxxUserClass.
+	self removeLxxUsersClass.
+
+	LxxBarebonesSystem assertSlotRemoved: 'users'.
+	self assert: (self classNamed: 'LxxUsers') isNil.
+	self assert: (self classNamed: 'LxxUser') isNil
 ]
 
-{ #category : #accessing }
+{ #category : #setUp }
 LcsGlobalSlotDefinitionBuilderTest >> removeLxxUserClass [
 	self removeClassName: 'LxxUser'
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> removeLxxUsersClass [
 	self removeClassName: 'LxxUsers'
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> setupSunitSystem [
 	LxxBarebonesSystem new
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> tearDown [
 	super tearDown.
-
-	LxxBarebonesSystem removeSlotNamed: 'users'.
-"	self removeLxxUserClass.
-	self removeLxxUsersClass."
-
-	LxxBarebonesSystem assertSlotRemoved: 'users'.
-	
-	"self deny: ([ 'LxxUser' asClass ] on: NotFound do: [ true ]).
-	self deny: ([ 'LxxUsers' asClass ] on: NotFound do: [ true ])."
-
-
+	self removeArtifactsRelatedToUsersSlot
 ]
 
 { #category : #tests }
 LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollection [
 	| builder |
 
-	"self removeLxxUserClass.
-	self removeLxxUsersClass."
+	self removeArtifactsRelatedToUsersSlot.
 	
 	self createLxxUserClass.
 	self createLxxUsersClass.
 
-	LxxBarebonesSystem assertSlotRemoved: 'users'.
 
 	builder := LcsGlobalSlotDefinitionBuilder new
 				slotName: 'users';

@@ -4,39 +4,28 @@ Class {
 	#category : #'Lcs-BarebonesSystemTests'
 }
 
-{ #category : #setUp }
+{ #category : #running }
+LcsStringSlotTest >> removeArtifactsRelatedToFirstNameSlot [
+	LxxBarebonesPerson removeDomainSlotNamed: 'firstName'.
+	LxxBarebonesPerson assertSlotRemoved: 'firstName'.
+
+]
+
+{ #category : #running }
 LcsStringSlotTest >> setupSunitSystem [
 	LxxBarebonesSystem new
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 LcsStringSlotTest >> tearDown [
 	super tearDown.
-
-	(LxxBarebonesPerson instVarNames includes: 'firstName')
-		ifTrue: [LxxBarebonesPerson removeInstVarNamed: 'firstName'].
-	(LxxBarebonesPerson canUnderstand: #firstName)
-		ifTrue: [LxxBarebonesPerson removeSelector: #'firstName'].
-	(LxxBarebonesPerson canUnderstand: #firstName:)
-		ifTrue: [LxxBarebonesPerson removeSelector: #'firstName:'].
-	(LxxBarebonesPerson class canUnderstand: #firstNameSlotDefinition)
-		ifTrue: [LxxBarebonesPerson class removeSelector: #firstNameSlotDefinition].
-		
-	self deny: (LxxBarebonesPerson instVarNames includes: 'firstName').
-	self deny: (LxxBarebonesPerson canUnderstand: #firstName).
-	self deny: (LxxBarebonesPerson canUnderstand: #firstName:).
-	self deny: (LxxBarebonesPerson class canUnderstand: #firstNameSlotDefinition).
-
-
+	self removeArtifactsRelatedToFirstNameSlot
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 LcsStringSlotTest >> testInstallingFirstNameSlotInPerson [
 	| builder |
-	self deny: (LxxBarebonesPerson instVarNames includes: 'firstName').
-	self deny: (LxxBarebonesPerson canUnderstand: #firstName).
-	self deny: (LxxBarebonesPerson canUnderstand: #firstName:).
-	self deny: (LxxBarebonesPerson class canUnderstand: #firstNameSlotDefinition).
+	self removeArtifactsRelatedToFirstNameSlot.
 
 	builder := LcsStringSlotDefinitionBuilder new
 		targetClassName: 'LxxBarebonesPerson';
@@ -49,9 +38,6 @@ LcsStringSlotTest >> testInstallingFirstNameSlotInPerson [
 	
 	builder install.
 		
-	self assert: (LxxBarebonesPerson instVarNames includes: 'firstName').
-	self assert: (LxxBarebonesPerson canUnderstand: #'firstName').
-	self assert: (LxxBarebonesPerson canUnderstand: #firstName:).
-	self assert: (LxxBarebonesPerson class canUnderstand: #firstNameSlotDefinition).
+	LxxBarebonesPerson assertSlotAdded: 'firstName'.
 
 ]

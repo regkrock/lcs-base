@@ -25,7 +25,7 @@ LcsBaseApplicationEnvironmentTest >> setUp [
 	self commitTransaction
 ]
 
-{ #category : #'running\t\t' }
+{ #category : #running }
 LcsBaseApplicationEnvironmentTest >> tearDown [
 	self abortTransaction. 
 	super tearDown.

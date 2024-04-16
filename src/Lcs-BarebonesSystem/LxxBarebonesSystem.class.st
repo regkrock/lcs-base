@@ -5,8 +5,7 @@ Class {
 	#name : #LxxBarebonesSystem,
 	#superclass : #LcsBaseSystem,
 	#instVars : [
-		'persons',
-		'users'
+		'persons'
 	],
 	#category : #'Lcs-BarebonesSystem'
 }
@@ -39,18 +38,6 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
-LxxBarebonesSystem class >> usersSlotDefinition [
-	<slotDefinition>
-	^ LcsGlobalCollectionSlot new
-		slotName: 'users';
-		addSlotType: LxxUsers;
-		collectionSlotCollectionClass: IdentitySet;
-		addCollectionMemberType: LxxUser;
-		beIdentitySetCollection;
-		yourself
-]
-
 { #category : #initialize }
 LxxBarebonesSystem >> initialSystemDomainClasses [
 	^super initialSystemDomainClasses
@@ -67,14 +54,4 @@ LxxBarebonesSystem >> persons [
 { #category : #accessing }
 LxxBarebonesSystem >> persons: anObject [
 	self setValueOfSlotNamed: 'presons' to: anObject
-]
-
-{ #category : #accessing }
-LxxBarebonesSystem >> users [
-	^ self getValueOfSlotNamed: 'users'
-]
-
-{ #category : #accessing }
-LxxBarebonesSystem >> users: anObject [
-	self setValueOfSlotNamed: 'users' to: anObject
 ]

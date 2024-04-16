@@ -6,7 +6,6 @@ Class {
 
 { #category : #accessing }
 RBCreateDomainSlotAcccessorsForVariableRefactoring >> defineGetterMethod [
-
 	self definingClass 
 		compile: ('<1s><r><t>^ self getValueOfSlotNamed: ''<2s>''' 
 			expandMacrosWith: self selector 
@@ -17,7 +16,6 @@ RBCreateDomainSlotAcccessorsForVariableRefactoring >> defineGetterMethod [
 
 { #category : #accessing }
 RBCreateDomainSlotAcccessorsForVariableRefactoring >> defineSetterMethod [
-
 	| definingClass string |
 	definingClass := self definingClass.
 	string := self needsReturnForSetter 
