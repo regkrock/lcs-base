@@ -1,3 +1,8 @@
+"
+This is the root class for application classes and tool and general utitlity classes.
+
+Another root class is LcsTestCase - all test case classes should inherit from there
+"
 Class {
 	#name : #LcsObject,
 	#superclass : #Object,
