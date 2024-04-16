@@ -17,15 +17,14 @@ LcsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 ]
 
 { #category : #api }
-LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: stream [ 
-	stream 
-		tab; tab; nextPutAll: 'addSlotType: ' , self slotClass name; nextPutAll: ';'; cr;
-		tab; tab; nextPutAll: 'collectionSlotCollectionClass: ' , self collectionSlotCollectionClass name; nextPutAll: ';'; cr.
+LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+	aCodeStream 
+		addSetter: 'addSlotType' contents: self slotClass name;
+		addSetter: 'collectionSlotCollectionClass' contents: self collectionSlotCollectionClass name.
 	self collectionElementTypes do: [ :eachClass |
-		stream
-			tab; tab; nextPutAll: 'addCollectionMemberType: '; nextPutAll: eachClass name; nextPutAll: ';'; cr].
-	stream
-		tab; tab; nextPutAll: 'beIdentitySetCollection'; nextPutAll: ';'; cr
+		aCodeStream addSetter: 'addCollectionMemberType' contents: eachClass name].
+	aCodeStream addCommand: 'beIdentitySetCollection'
+
 ]
 
 { #category : #accessing }
@@ -46,15 +45,6 @@ LcsGlobalSlotDefinitionBuilder >> collectionSlotCollectionClass [
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> collectionSlotCollectionClass: anObject [
 	collectionSlotCollectionClass := anObject
-]
-
-{ #category : #api }
-LcsGlobalSlotDefinitionBuilder >> install [
-	self ensureSlotDoesNotAlreadyExist.
-	self ensureSlotDefinitionMethodDoesNotAlreadyExist.
-	self createInstanceVariable.
-	self createGetterAndSetterMethods.
-	self createSlotDefinitionMethod
 ]
 
 { #category : #accessing }

@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #'code generation' }
-LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: stream [ 
+LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
 
 { #category : #'code generation' }
@@ -79,8 +79,8 @@ LcsSlotDefinitionBuilder >> slotDefinitionSelector: aSymbol [
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> slotDefinitionSource [
-	| stream |
-	stream := WriteStream on: String new.
+	| codeStream |
+"	stream := WriteStream on: String new.
 	stream 
 		nextPutAll: self slotDefinitionSelector; cr;
 		tab; nextPutAll: '<slotDefinition>'; cr;
@@ -89,7 +89,19 @@ LcsSlotDefinitionBuilder >> slotDefinitionSource [
 	self addSlotDefinitionSourceDetailsTo: stream.
 	stream
 		tab; tab; nextPutAll: 'yourself'.
-	^ stream contents
+	^ stream contents"
+	
+	codeStream := LcsMethodStream new.
+	codeStream
+		startSlotDefintionSource: self slotName; 
+		addSlotDefinitionClassCreatonLine: self slotDefinitionClass;
+		addSetter: 'slotName' contents: self slotName printString.
+		
+	self addSlotDefinitionSourceDetailsTo: codeStream. 
+		
+	^codeStream 
+		addYourself;
+		contents
 
 ]
 

@@ -77,6 +77,6 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollection [
 	
 	builder install.
 	
-	LxxBarebonesSystem assertSlotAdded: 'users'.
+	LxxBarebonesSystem assertSlotAdded: 'users'
 
 ]

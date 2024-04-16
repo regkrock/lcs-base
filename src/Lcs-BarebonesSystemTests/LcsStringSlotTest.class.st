@@ -35,7 +35,7 @@ LcsStringSlotTest >> testInstallingFirstNameSlotInPerson [
 	self assert: builder targetClassName equals: 'LxxBarebonesPerson'.
 	self assert: builder target equals: LxxBarebonesPerson.
 	self assert: builder slotDefinitionSelector equals: 'firstNameSlotDefinition'.	
-	
+
 	builder install.
 		
 	LxxBarebonesPerson assertSlotAdded: 'firstName'.

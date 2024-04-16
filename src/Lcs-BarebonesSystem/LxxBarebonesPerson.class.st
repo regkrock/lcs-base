@@ -8,6 +8,12 @@ Class {
 }
 
 { #category : #'slot definitions' }
+LxxBarebonesPerson class >> dateOfBirthSlotDefinition [
+	<slotDefinition>
+	^ LcsDateOfBirthSlot new
+]
+
+{ #category : #'slot definitions' }
 LxxBarebonesPerson class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
