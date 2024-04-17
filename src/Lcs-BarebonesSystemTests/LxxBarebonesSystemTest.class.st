@@ -1,6 +1,6 @@
 Class {
 	#name : #LxxBarebonesSystemTest,
-	#superclass : #LcsDomainTestCase,
+	#superclass : #LcsDomainTest,
 	#instVars : [
 		'system1',
 		'system2'

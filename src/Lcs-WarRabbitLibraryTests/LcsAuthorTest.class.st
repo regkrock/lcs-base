@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsAuthorTest,
-	#superclass : #LcsDomainTestCase,
+	#superclass : #LcsDomainTest,
 	#category : #'Lcs-WarRabbitLibraryTests'
 }
 

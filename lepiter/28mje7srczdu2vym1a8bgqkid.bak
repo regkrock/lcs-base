@@ -1,0 +1,144 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-27T16:52:59.642973-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-27T16:52:59.642973-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lnAyVAzRDQCoDKkZBWvUJQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-27T16:53:59.538731-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-27T16:54:00.448416-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "FlrEVwzRDQCoMtjlBWvUJQ=="
+				},
+				"code" : "| readStream newFile writeStream |\rreadStream := (ReadStream on: (File named: '/Users/regkrock/SEAS/Monmouth/main/basicsailing.htm' ) readStream upToEnd asString).\rnewFile := File named:'/Users/regkrock/SEAS//Monmouth/main/basicsailing.new.htm'.\rwriteStream := newFile writeStream.\r[readStream atEnd] whileFalse: [\r\twriteStream nextPutAll: readStream nextLine.\r\twriteStream cr; lf].\rwriteStream close.\r\"writeStream contentsOfEntireFile\""
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-27T17:16:34.277649-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-16T17:27:41.046224-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "tAaEqAzRDQCoPLvABWvUJQ=="
+				},
+				"code" : "| library |\r\r(LcsApplicationEnvironment currentSystem class == LcsWarRabbitLibrary)\r\tifFalse: [LcsWarRabbitLibrary new].\rself assert: LcsApplicationEnvironment currentSystem class == LcsWarRabbitLibrary.\rimporter := LcsWarRabbitLibrayImporter newOn: library.\rstream := ReadStream on: 'Crafts\n\t\t\tReader''s Digest Complete Guide to Needlework\t1979\n\t\t\tSignature 15 (New Series) 1952 \t\t\t[Printing]\nBealer, Alex W. \tArt of Blacksmithing\t(rev ed)\t\t\tCastle 1969/76/95\nJacobs, Flora Gill\tDoll''s Houses in America: Historic Preservation in Miniature\tScribner 1974\nJenkins, J. Geraint\tTraditional Country Craftsmen (rev ed)\t\t\tpb\tRKP 1965/78\nKauffman, Henry J.\tEarly American Ironware, Cast and Wrought: the crafts... hc Weather vane 1966\nKawai, Toyoaki\t\tOrigami\t(Color Books\tHoikuha 1970/77\n\t\t\tCreative Origami (Color Books \tHoikusha 1977 1st ed.)\nKobayashi,T/M. Bird\tA Compendium of Canadian Folk Artists\t\t\tpb     Boston Mills 1985\nMeehan, Aidan\t\tCeltic Design: Illuminated Letters\t\t\tpb\tT&H 1992\n\t\t\tCeltic Design: Maze Patterns\t\t\tpb  \tT&H 1993\t\nRobinson, Michael\tInternational  Arts and Crafts: Movement Overview\nSchultes,R.E./W.Davis\tGlass Flowers at Harvard\t\t\tpb\tHmofNH 1982\t\nSpielman, Patrick\tRouter Jigs and Techniques\t\t\tpb\tSterling 1988\nVillegas,Liliana&Ben\tArtefactos: Colombian Crafts from the Andes to the Amazon  hc\tRizzoli 1992\nWilkinson, Rosemary (ed)  Weekend Quilter: Fabulous Quilts to Make in a Weekend  hc\tRdrsDig  1997'.\r[stream atEnd] whileFalse: [\r\timporter importLine:  stream nextLine\r\t].\rimporter"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-03-27T16:53:18.142555-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-03-27T16:53:18.142555-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Don's Library"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "55063254-0cd1-0d00-a80b-4b73056bd425"
+	}
+}

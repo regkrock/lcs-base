@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDomainObjectTest,
-	#superclass : #LcsDomainTestCase,
+	#superclass : #LcsDomainTest,
 	#category : #'Lcs-Tests'
 }
 

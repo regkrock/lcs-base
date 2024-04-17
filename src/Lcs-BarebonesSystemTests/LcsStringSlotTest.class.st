@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStringSlotTest,
-	#superclass : #LcsDomainTestCase,
+	#superclass : #LcsDomainTest,
 	#category : #'Lcs-BarebonesSystemTests'
 }
 

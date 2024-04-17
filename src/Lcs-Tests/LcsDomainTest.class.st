@@ -2,7 +2,7 @@
 Tests inheriting from this class have the current 'System' saved in the #setUP and it will be restored in the #tearDown phase.
 "
 Class {
-	#name : #LcsDomainTestCase,
+	#name : #LcsDomainTest,
 	#superclass : #LcsTestCase,
 	#instVars : [
 		'savedSystem'
@@ -11,27 +11,27 @@ Class {
 }
 
 { #category : #'application environment' }
-LcsDomainTestCase >> currentSystem [
+LcsDomainTest >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
 { #category : #'application environment' }
-LcsDomainTestCase >> currentUnitOfWork [
+LcsDomainTest >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
 { #category : #accessing }
-LcsDomainTestCase >> savedSystem [
+LcsDomainTest >> savedSystem [
 	^ savedSystem
 ]
 
 { #category : #accessing }
-LcsDomainTestCase >> savedSystem: aSystem [
+LcsDomainTest >> savedSystem: aSystem [
 	savedSystem := aSystem
 ]
 
 { #category : #running }
-LcsDomainTestCase >> setUp [
+LcsDomainTest >> setUp [
 	super setUp.
 	self abortTransaction.
 	LcsApplicationEnvironment ensureInitialized.
@@ -41,17 +41,17 @@ LcsDomainTestCase >> setUp [
 ]
 
 { #category : #running }
-LcsDomainTestCase >> setupSunitSystem [
+LcsDomainTest >> setupSunitSystem [
 	"subclasses can override this method to create the system required for testing"
 ]
 
 { #category : #'application environment' }
-LcsDomainTestCase >> systemManager [
+LcsDomainTest >> systemManager [
 	^ LcsApplicationEnvironment systemManager
 ]
 
 { #category : #running }
-LcsDomainTestCase >> tearDown [
+LcsDomainTest >> tearDown [
 	super tearDown.
 	self abortTransaction.
 	LcsApplicationEnvironment restoreToCurrent: self savedSystem. 
@@ -60,6 +60,6 @@ LcsDomainTestCase >> tearDown [
 ]
 
 { #category : #'application environment' }
-LcsDomainTestCase >> unitsOfWorkManager [
+LcsDomainTest >> unitsOfWorkManager [
 	^ LcsApplicationEnvironment unitsOfWorkManager
 ]

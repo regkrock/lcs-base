@@ -77,6 +77,11 @@ LcsWarRabbitLibrary >> libraryCategories: anObject [
 	self setValueOfSlotNamed: 'libraryCategories' to: anObject
 ]
 
+{ #category : #query }
+LcsWarRabbitLibrary >> libraryCategoryFor: aString [
+	^ self libraryCategories libraryCategoryFor: aString
+]
+
 { #category : #accessing }
 LcsWarRabbitLibrary >> libraryItems [
 	^ self getValueOfSlotNamed: 'libraryItems'

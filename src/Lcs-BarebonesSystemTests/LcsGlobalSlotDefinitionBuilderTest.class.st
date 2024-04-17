@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsGlobalSlotDefinitionBuilderTest,
-	#superclass : #LcsDomainTestCase,
+	#superclass : #LcsDomainTest,
 	#category : #'Lcs-BarebonesSystemTests'
 }
 

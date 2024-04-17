@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsBaseModuleTest,
-	#superclass : #LcsDomainTestCase,
+	#superclass : #LcsDomainTest,
 	#category : #'Lcs-Tests'
 }
 
