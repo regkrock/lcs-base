@@ -18,8 +18,8 @@ LcsStringSlotTest >> setupSunitSystem [
 
 { #category : #running }
 LcsStringSlotTest >> tearDown [
-	super tearDown.
-	self removeArtifactsRelatedToFirstNameSlot
+	self removeArtifactsRelatedToFirstNameSlot.
+	super tearDown
 ]
 
 { #category : #tests }
@@ -37,7 +37,7 @@ LcsStringSlotTest >> testInstallingFirstNameSlotInPerson [
 	self assert: builder slotDefinitionSelector equals: 'firstNameSlotDefinition'.	
 
 	builder install.
-		
-	LxxBarebonesPerson assertSlotAdded: 'firstName'.
+	
+	LxxBarebonesPerson verifyClassHasDomainSlotNamed: 'firstName'
 
 ]

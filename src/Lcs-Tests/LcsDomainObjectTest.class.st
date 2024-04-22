@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsDomainObjectTest >> testCreationWithNilCurrentSystem [
 	| domainObject |
-	domainObject := LcsDomainObject new.
+	domainObject := self domainObjectClass new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem isNil.
 	self assert: (domainObject slotModel isNil).

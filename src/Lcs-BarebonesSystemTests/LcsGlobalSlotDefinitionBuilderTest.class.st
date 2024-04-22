@@ -23,22 +23,11 @@ LcsGlobalSlotDefinitionBuilderTest >> createLxxUsersClass [
 { #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> removeArtifactsRelatedToUsersSlot [
 	LxxBarebonesSystem removeDomainSlotNamed: 'users'.
-	self removeLxxUserClass.
-	self removeLxxUsersClass.
+	self removeClassesNamed: #('LxxUser' 'LxxUsers').
 
 	LxxBarebonesSystem assertSlotRemoved: 'users'.
 	self assert: (self classNamed: 'LxxUsers') isNil.
 	self assert: (self classNamed: 'LxxUser') isNil
-]
-
-{ #category : #setUp }
-LcsGlobalSlotDefinitionBuilderTest >> removeLxxUserClass [
-	self removeClassName: 'LxxUser'
-]
-
-{ #category : #running }
-LcsGlobalSlotDefinitionBuilderTest >> removeLxxUsersClass [
-	self removeClassName: 'LxxUsers'
 ]
 
 { #category : #running }
@@ -48,8 +37,8 @@ LcsGlobalSlotDefinitionBuilderTest >> setupSunitSystem [
 
 { #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> tearDown [
-	super tearDown.
-	self removeArtifactsRelatedToUsersSlot
+	self removeArtifactsRelatedToUsersSlot.
+	super tearDown
 ]
 
 { #category : #tests }
@@ -77,6 +66,5 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollection [
 	
 	builder install.
 	
-	LxxBarebonesSystem assertSlotAdded: 'users'
-
+	LxxBarebonesSystem verifyClassHasDomainSlotNamed: 'users'
 ]

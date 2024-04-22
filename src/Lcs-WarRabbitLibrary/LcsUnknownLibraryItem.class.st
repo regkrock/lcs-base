@@ -31,6 +31,13 @@ LcsUnknownLibraryItem >> initializeOn: aString [
 ]
 
 { #category : #accessing }
+LcsUnknownLibraryItem >> initializeOn: aString parts: protoItemParts [ 
+	self 
+		originalLine: aString;
+		parts: protoItemParts
+]
+
+{ #category : #accessing }
 LcsUnknownLibraryItem >> originalLine [
 	^ originalLine
 ]

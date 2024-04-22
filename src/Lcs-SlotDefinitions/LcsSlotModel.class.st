@@ -83,5 +83,11 @@ LcsSlotModel >> parent [
 
 { #category : #slots }
 LcsSlotModel >> slotDefinitionNamed: aSlotName [
-	^ self collection at: aSlotName ifAbsent: [ LcsSlotDoesNotExistError signal: 'Slot not defined: ' , aSlotName asString ]
+	| slotDefinition |
+	slotDefinition := self collection at: aSlotName ifAbsent: [ 
+		self domainClass superclass isDomainClass 
+			ifTrue: [ self domainClass superclass slotDefinitionNamed: aSlotName ]
+			ifFalse: [ nil ] ].
+	^ slotDefinition ifNil: [
+		LcsSlotDoesNotExistError signal: ('Slot ' , aSlotName printString  , ' not defined in ' , self domainClass name printString) ]
 ]

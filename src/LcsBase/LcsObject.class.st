@@ -54,6 +54,11 @@ LcsObject class >> isApplicationSystemClass [
 	^ false
 ]
 
+{ #category : #'testing ' }
+LcsObject class >> isDomainClass [
+	^ false
+]
+
 { #category : #testing }
 LcsObject class >> releaseApplicationEnvironment [
 	self domainObjectClass

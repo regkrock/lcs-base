@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T07:48:02.066799-04:00"
+						"dateAndTimeString" : "2024-04-22T09:13:04.194927-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T08:12:04.675841-04:00"
+						"dateAndTimeString" : "2024-04-22T09:19:00.399069-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "0yPwEuvPDQCycsV/A5PlFg=="
+					"uidString" : "mhFB7xDTDQC/RlQMBZZQfw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "An application environment is the envelope that can contains multiple systems. A system is a module and can be composed of multiple modules."
+				"string" : "There are two types of 'Code' classes. (1) The first is where there is an theoretically unlimited number of codes. An example is person title. (2) The second is where there is a finite number of instances. For example, Gender can have three instances: Male, Female and Unknown. From a modelling perspective this can be modelled the same way as (1). But it can also be modelled as concrete subclasses similar to Boolean with its True and False subclasses. This example  "
 			},
 			{
 				"__type" : "textSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:14:50.368397-04:00"
+						"dateAndTimeString" : "2024-04-22T09:27:49.007436-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,12 +66,86 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:14:50.368397-04:00"
+						"dateAndTimeString" : "2024-04-22T09:28:08.959113-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "dY+6dOvPDQC4iRJjA5PlFg=="
+					"uidString" : "JS7+IxHTDQCPN74RBZZQfw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Codes modelled as instances of a class"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-22T09:56:50.268722-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-22T10:04:02.104284-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "w7jHixHTDQCRYvr7BZZQfw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The followig will result in:\n1) Creation of LxxBaseTitle which is a subclass of LcxCode\n2) Creation of LxxTitle which is a subclass of LxxBaseTittle\n3) Creation of LxxUnknownTitle which is a subclass of LxxBaseTitle\n4) Creation of LxxTitles which will hold all instances of the LxxTitle and the singleton of LxxUknownTitle.\n5) Creation of an domain slot named 'titles' in the LxxBarebonesSystem.\n\tThe collection in the slot (an instance of LxxTitles) will be populated with three instances:\n\tan instance of LxxTitle for Mr, an instance of LxxTitle for M\n6) Creation of a domain slot named 'title' in LxxBarebonesPerson with a default of the unknonwn instance."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-22T09:29:07.452455-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-22T09:29:07.452455-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xy+rKBHTDQCPpBlWBZZQfw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
@@ -79,7 +153,7 @@
 				"string" : ""
 			},
 			{
-				"__type" : "textSnippet",
+				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -92,7 +166,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:12:29.129865-04:00"
+						"dateAndTimeString" : "2024-04-22T09:29:12.946121-04:00"
 					}
 				},
 				"editEmail" : {
@@ -103,17 +177,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:20:07.861571-04:00"
+						"dateAndTimeString" : "2024-04-22T09:55:24.934278-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "dVjvbOvPDQC3hhqyA5PlFg=="
+					"uidString" : "Gf3+KBHTDQCPqNL3BZZQfw=="
 				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "The SOLID ideas are:\n\t(1) The Single-responsibility principle:  Every class should have only one resonsibility.\n\t(2) The Open–closed principle: \"Software entities ... should be open for extension, \n\t\t\tbut closed for modification.\"[7]\n\t(3) The Liskov substitution principle: \"Functions that use pointers or references to \n\t\t\tbase classes must be able to use objects of derived classes without knowing it.\" \n\t\t\t(aka Design By Contract)\n    (4) The Interface segregation principle: \"Clients should not be forced to depend upon \n    \t\tinterfaces that they do not use.\"\n    (5) The Dependency inversion principle: \"Depend upon abstractions, [not] concretes.\"\n    \n    See: https://en.wikipedia.org/wiki/SOLID"
+				"code" : "builder := \r\tLcsCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeClassname: 'Title';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\taddCode: #('Ms');\r\t\taddCode: #('Mr');\r\t\taddUnknownCodeBuilder: ((LcsCodeClassBuilder newRootName: 'Unknown')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Ttiles' inSlotNamed: 'titles' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself.\r\rbuilder install"
 			},
 			{
 				"__type" : "textSnippet",
@@ -129,7 +200,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:34:16.383456-04:00"
+						"dateAndTimeString" : "2024-04-22T09:26:21.372167-04:00"
 					}
 				},
 				"editEmail" : {
@@ -140,17 +211,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:34:26.561167-04:00"
+						"dateAndTimeString" : "2024-04-22T09:26:55.950164-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "HXfauuvPDQCFdN6ZA5PlFg=="
+					"uidString" : "GgDFHhHTDQCOVwEHBZZQfw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "#Design - Modules "
+				"string" : "###Codes modelled as singleton classes"
 			},
 			{
 				"__type" : "textSnippet",
@@ -166,7 +237,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:31:15.845502-04:00"
+						"dateAndTimeString" : "2024-04-22T09:09:11.279167-04:00"
 					}
 				},
 				"editEmail" : {
@@ -177,17 +248,153 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:34:16.385372-04:00"
+						"dateAndTimeString" : "2024-04-22T09:12:39.905374-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "2r6rr+vPDQC8h4hPA5PlFg=="
+					"uidString" : "Ngdf4RDTDQC9TrOUBZZQfw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "To support the above the software is based on modules. Each module attempts to be independent of another module. Modules can be contain child modules. A 'System' is the top level module which contains all modules"
+				"string" : "The following code will do the following:\n1) Create the class LxxGender which is a subclass of LcsCode;\n2) Create three subclasses of LxxGender - LxxMale, LxxFemale, LxxUnknownGender;\n3) Create a collection class LxxGenders to hold onto the instances of LxxMale, LxxFemale and LxxUnknownGender;\n4)\tAdd a slot 'genders' to the module class - LxxBarebonesSystem;\n\t\t\tThis resutls in:\n\t\t\t\tthe creation of instance variable genders;\n\t\t\t\tadd getter method:  #genders',\n\t\t\t\tadd setter method: #genders:,\n\t\t\t\tadd class side slot definition method: #gendersSlotDefinition\n5)\tAdd a slot, 'gender' to LxxPerson;\n\t\t\tThis resutls in:\n\t    \t\tthe creation of instance variable gender;\n\t    \t\tadd getter method:  #gender',\n\t    \t\tadd setter method: #gender:,\n\t\t\t\tadd class side slot definition method: #genderSlotDefinition.\n\t\tWhen an instance of LxxPerson is created, the slot definition will cause the gender slot to be\n\t\tinitialized to the instance of LxxUnknownGender\n\n"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:24:38.09886-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-22T09:37:08.665769-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4VfTd8HSDQCNAS+8CeOFgA=="
+				},
+				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\taddCodeBuilder: (LcsCodeClassBuilder newRootName: 'Male');\r\t\taddCodeBuilder: (LcsCodeClassBuilder newRootName: 'Female');\r\t\taddCodeBuilder: ((LcsCodeClassBuilder newRootName: 'UnknownGender')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself.\r\rbuilder install"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T16:27:27.65726-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-20T12:04:37.400352-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "mDZkicbSDQCGE9uMBBSABQ=="
+				},
+				"code" : "{LxxUnknownGender. LxxFemale. LxxMale. LxxGender. LxxGenders.} do: [:each |\r\teach notNil ifTrue: [ (RBRemoveClassChange removeClassName: each name) execute ] ]."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-20T12:04:40.920681-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-20T12:04:41.792984-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ON1NGevSDQCdhWRqBZZkmw=="
+				},
+				"code" : "LxxBarebonesSystem removeDomainSlotNamed: 'genders'"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-20T12:05:25.101921-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-20T12:05:38.292033-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nADwG+vSDQCdjn1TBZZkmw=="
+				},
+				"code" : "LxxBarebonesPerson removeDomainSlotNamed: 'gender'"
 			},
 			{
 				"__type" : "textSnippet",
@@ -203,7 +410,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:34:34.377199-04:00"
+						"dateAndTimeString" : "2024-04-18T10:23:41.001076-04:00"
 					}
 				},
 				"editEmail" : {
@@ -214,276 +421,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:34:45.201159-04:00"
+						"dateAndTimeString" : "2024-04-18T10:23:41.001076-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "KwXtu+vPDQCFrD4pA5PlFg=="
+					"uidString" : "iBlsdMHSDQCNANuVCeOFgA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "#Module Communication"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:35:26.005955-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:37:58.967989-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "ygqbvOvPDQCGI2woA5PlFg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Since a module should not have knowledge of the internals of another module, or know where the module exists, knowledge of location of  other modules resides with a moudles parent or its parent, etc. This results in the request moving up and down the module heirarchy."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:38:20.341157-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:38:24.049185-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "3/NkyevPDQCQnr4fA5PlFg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "#System"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:38:24.826657-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:39:18.766666-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "V2mpyevPDQCQxQqYA5PlFg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "This is the top level module. All modules ultimately belong to a system through its heirarchy."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:09:48.761009-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:10:11.530826-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "WsuNQsHSDQC10WujCeOFgA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "#Null Object"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:10:24.737494-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:15:17.945433-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "syKwRMHSDQC2lInHCeOFgA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Rather than have a null object instance for each domain class, the direction this software will explore is the use of an 'Unknown' class to represent the state of not knowing.\n\nAn example is a LcsLibraryItem with two subclasses, LcsBook and LcsPeriodical. During the process of discovery/modelling, there may be an item which is not a book or a periodical. An instance of LcsUnknownLibraryItem would then be created to handle an unknown item. It will have a similar protocol but its attributes/slots are different."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:11:47.473544-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:15:38.687456-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "PITkScHSDQC6fFm+CeOFgA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "#Frame and Slot System"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:11:48.094068-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T10:21:24.773693-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "XvrtScHSDQC6gY2GCeOFgA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "In a frame and slot system, the entire object is created when a new Frame is built. If a Person object is created, then the slots like gender, title, etc should be prepopulated to an unknown object. Example: LcsUnknownGender for the gender slot, LcsUnknownTitle for the title slot."
+				"string" : ""
 			}
 		]
 	},
@@ -495,7 +443,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-13T07:47:26.957031-04:00"
+			"dateAndTimeString" : "2024-04-18T10:24:33.411465-04:00"
 		}
 	},
 	"editEmail" : {
@@ -506,15 +454,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-13T08:18:40.657053-04:00"
+			"dateAndTimeString" : "2024-04-18T10:24:33.411465-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Design Philosophy"
+		"title" : "Code Class Creation"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "a785ef12-ebcf-0d00-b271-1b940393e516"
+		"uuid" : "3a856b74-c1d2-0d00-8cff-4fdf09e38580"
 	}
 }

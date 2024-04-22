@@ -79,6 +79,11 @@ LcsDomainObject class >> initializeSlotModel [
 ]
 
 { #category : #testing }
+LcsDomainObject class >> isDomainClass [
+	^ true
+]
+
+{ #category : #testing }
 LcsDomainObject class >> isSlotModelReleased [
 	self slotModel notNil ifTrue: [ ^ false ].
 	self subclasses do: [ :each | each isSlotModelReleased ].
@@ -160,6 +165,22 @@ LcsDomainObject class >> slotModel [
 { #category : #accessing }
 LcsDomainObject class >> slotModel: aSlotModel [
 	SlotModel := aSlotModel
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> verifyClassHasDomainSlotNamed: aSlotName [
+	self assert: (self instVarNames includes: aSlotName).
+	self assert: (self canUnderstand: aSlotName asSymbol).
+	self assert: (self canUnderstand: (aSlotName , ':') asSymbol).
+	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> verifyClassHasNoDomainSlotNamed: aSlotName [
+	self assert: (self instVarNames includes: aSlotName) not.
+	self assert: (self canUnderstand: aSlotName asSymbol) not.
+	self assert: (self canUnderstand: (aSlotName , ':') asSymbol) not.
+	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not
 ]
 
 { #category : #validation }

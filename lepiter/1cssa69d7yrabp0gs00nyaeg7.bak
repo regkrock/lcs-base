@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T08:11:50.426192-04:00"
+						"dateAndTimeString" : "2024-04-08T08:12:04.675841-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "An application environment is the envelope that can contains multiple systems. A system is a module and can be composed of It is based on a composite module pattern."
+				"string" : "An application environment is the envelope that can contains multiple systems. A system is a module and can be composed of multiple modules."
 			},
 			{
 				"__type" : "textSnippet",
@@ -336,6 +336,154 @@
 					"__type" : "textStyle"
 				},
 				"string" : "This is the top level module. All modules ultimately belong to a system through its heirarchy."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:09:48.761009-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:10:11.530826-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "WsuNQsHSDQC10WujCeOFgA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "#Null Object"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:10:24.737494-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:15:17.945433-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "syKwRMHSDQC2lInHCeOFgA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Rather than have a null object instance for each domain class, the direction this software will explore is the use of an 'Unknown' class to represent the state of not knowing.\n\nAn example is a LcsLibraryItem with two subclasses, LcsBook and LcsPeriodical. During the process of discovery/modelling, there may be an item which is not a book or a periodical. An instance of LcsUnknownLibraryItem would then be created to handle an unknown item. It will have a similar protocol but its attributes/slots are different."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:11:47.473544-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:15:38.687456-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "PITkScHSDQC6fFm+CeOFgA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "#Frame and Slot System"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:11:48.094068-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T10:21:11.872323-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "XvrtScHSDQC6gY2GCeOFgA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In a frame and slot system, the entire object is created when a new Frame is built. If a Person object is created, then the slots like gender, title, etc should be prepopulated to an unknown object. Example: LcsUnknownGender for the gender slot, LcsUnknownTitle for the title slot."
 			}
 		]
 	},

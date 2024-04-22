@@ -6,6 +6,9 @@ Class {
 		'itemName',
 		'itemAuthors'
 	],
+	#classInstVars : [
+		'collectionSlotName'
+	],
 	#category : #'Lcs-WarRabbitLibrary'
 }
 
@@ -18,6 +21,11 @@ LcsLibraryItem class >> authorsSlotDefinition [
 		addCollectionMemberType: LcsAuthor;
 		beOrderedCollection;
 		yourself
+]
+
+{ #category : #'slot definition' }
+LcsLibraryItem class >> collectionSlotName [
+	^ collectionSlotName
 ]
 
 { #category : #'slot definition' }
@@ -45,12 +53,21 @@ LcsLibraryItem class >> librearyCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new
 		slotName: 'libraryCategory';
+		collectionSlotName: 'libraryCategories';
+		moduleName: 'WarRabbitLibrary';
 		beRequired;
 		yourself
 ]
 
 { #category : #'instance  creation' }
 LcsLibraryItem class >> newFor: line [ 
+]
+
+{ #category : #accessing }
+LcsLibraryItem class >> newOn: aString parts: protoItemParts [ 
+	^ self new
+		initializeOn: aString parts: protoItemParts;
+		yourself
 ]
 
 { #category : #'slot definition' }
@@ -61,6 +78,13 @@ LcsLibraryItem class >> parentSlotDefinition [
 		moduleName: LcsWarRabbitLibrary moduleName;
 		collectionSlotName: 'libraryItems';
 		yourself
+]
+
+{ #category : #accessing }
+LcsLibraryItem >> initializeOn: aString parts: protoItemParts [ 
+	self 
+		"originalLine: aString;
+		parts: protoItemParts"
 ]
 
 { #category : #accessing }

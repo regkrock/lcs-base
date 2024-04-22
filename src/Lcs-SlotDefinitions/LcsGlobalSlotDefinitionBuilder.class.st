@@ -16,6 +16,12 @@ LcsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionSlot
 ]
 
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
+	self collectionElementTypes add: aClass
+
+]
+
 { #category : #api }
 LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	aCodeStream 
@@ -48,13 +54,20 @@ LcsGlobalSlotDefinitionBuilder >> collectionSlotCollectionClass: anObject [
 ]
 
 { #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> initialize [
+	super initialize.
+	self collectionElementTypes:	OrderedCollection new.
+	self collectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass
+]
+
+{ #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> moduleName [
 	^ self targetClassName
 ]
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> moduleName: anObject [
-	self targetClassName: (LcsBaseModule moduleClassNamed: anObject) name
+	self targetClassName: (#LcsBaseModule asClass moduleClassNamed: anObject) name
 ]
 
 { #category : #accessing }

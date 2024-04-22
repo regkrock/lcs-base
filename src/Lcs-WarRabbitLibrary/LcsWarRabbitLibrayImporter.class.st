@@ -6,7 +6,8 @@ Class {
 		'currentCategory',
 		'currentAuthors',
 		'importedLines',
-		'items'
+		'items',
+		'protoItemParts'
 	],
 	#category : #'Lcs-WarRabbitLibrary'
 }
@@ -16,6 +17,15 @@ LcsWarRabbitLibrayImporter class >> newOn: aLibrary [
 	^ self new
 		initializeOn: aLibrary;
 		yourself
+]
+
+{ #category : #accessing }
+LcsWarRabbitLibrayImporter >> candidateLibraryComponent: aString [
+	^ self isLibraryCategoryCandidate
+		ifTrue: [ self libraryCategoryCandidate ]
+		ifFalse: [ (self libraryItemFor: aString)
+					libraryCategory: self currentCategory;
+					yourself ]
 ]
 
 { #category : #accessing }
@@ -46,7 +56,8 @@ LcsWarRabbitLibrayImporter >> currentLine [
 { #category : #accessing }
 LcsWarRabbitLibrayImporter >> importLine: aString [
 	self importedLines add: aString.
-	self items add: (LcsUnknownLibraryItem newOn: aString)
+	self protoItemParts: (aString substrings: {Character tab}).
+	self items add: (self candidateLibraryComponent: aString)
 ]
 
 { #category : #accessing }
@@ -70,6 +81,12 @@ LcsWarRabbitLibrayImporter >> initializeOn: aLibrary [
 	self library: aLibrary
 ]
 
+{ #category : #'testing ' }
+LcsWarRabbitLibrayImporter >> isLibraryCategoryCandidate [
+	^ self protoItemParts size = 1
+		and: [ self protoItemParts first allSatisfy: [ :each | each isCharacter ] ]
+]
+
 { #category : #accessing }
 LcsWarRabbitLibrayImporter >> items [
 	^ items ifNil: [items := OrderedCollection new]
@@ -88,4 +105,27 @@ LcsWarRabbitLibrayImporter >> library [
 { #category : #accessing }
 LcsWarRabbitLibrayImporter >> library: anObject [
 	library := anObject
+]
+
+{ #category : #accessing }
+LcsWarRabbitLibrayImporter >> libraryCategoryCandidate [
+	self currentCategory: (self currentSystem libraryCategoryFor: self protoItemParts first).
+	^self currentCategory
+]
+
+{ #category : #accessing }
+LcsWarRabbitLibrayImporter >> libraryItemFor: aString [
+	((self protoItemParts includes: 'pb') | (self protoItemParts includes: 'hc'))
+		ifTrue: [ ^ LcsBook newOn: aString parts: self protoItemParts ]. 
+	^ LcsUnknownLibraryItem newOn: aString parts: self protoItemParts
+]
+
+{ #category : #accessing }
+LcsWarRabbitLibrayImporter >> protoItemParts [
+	^ protoItemParts
+]
+
+{ #category : #accessing }
+LcsWarRabbitLibrayImporter >> protoItemParts: anObject [
+	protoItemParts := anObject
 ]

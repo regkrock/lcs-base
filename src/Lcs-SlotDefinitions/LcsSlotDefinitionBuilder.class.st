@@ -5,10 +5,18 @@ Class {
 		'slotName',
 		'target',
 		'slotDefinitionSelector',
-		'targetClassName'
+		'targetClassName',
+		'parent'
 	],
 	#category : #'Lcs-SlotDefinitions'
 }
+
+{ #category : #'instance  creation' }
+LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
+	^ self new
+		initializeOn: aBuilderOrBuilderJob;
+		yourself 
+]
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
@@ -23,7 +31,8 @@ LcsSlotDefinitionBuilder >> createGetterAndSetterMethods [
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> createInstanceVariable [
-	(RBAddInstanceVariableRefactoring variable: self slotName class: self target)
+	"(RBAddInstanceVariableRefactoring variable: self slotName class: self target)"
+	(RBAddInstanceVariableChange add: self slotName to: self target)
 		execute
 ]
 
@@ -52,6 +61,11 @@ LcsSlotDefinitionBuilder >> ensureSlotDoesNotAlreadyExist [
 		ifTrue: [ self error: 'Slot ' , self slotName , 'already exists' ]
 ]
 
+{ #category : #iniitialize }
+LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [ 
+	self parent: aBuilderOrBuilderJob
+]
+
 { #category : #api }
 LcsSlotDefinitionBuilder >> install [
 	self ensureSlotDoesNotAlreadyExist.
@@ -59,6 +73,16 @@ LcsSlotDefinitionBuilder >> install [
 	self createInstanceVariable.
 	self createGetterAndSetterMethods.
 	self createSlotDefinitionMethod
+]
+
+{ #category : #acccessing }
+LcsSlotDefinitionBuilder >> parent [
+	^ parent
+]
+
+{ #category : #acccessing }
+LcsSlotDefinitionBuilder >> parent: aBuilderOrBuilderJob [ 
+	parent := aBuilderOrBuilderJob
 ]
 
 { #category : #configuration }
@@ -79,18 +103,7 @@ LcsSlotDefinitionBuilder >> slotDefinitionSelector: aSymbol [
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> slotDefinitionSource [
-	| codeStream |
-"	stream := WriteStream on: String new.
-	stream 
-		nextPutAll: self slotDefinitionSelector; cr;
-		tab; nextPutAll: '<slotDefinition>'; cr;
-		tab; nextPutAll: '^ '; nextPutAll: self slotDefinitionClass name; nextPutAll: ' new'; cr;
-		tab; tab; nextPutAll: 'slotName: '; nextPutAll: self slotName printString; nextPutAll: ';'; cr.
-	self addSlotDefinitionSourceDetailsTo: stream.
-	stream
-		tab; tab; nextPutAll: 'yourself'.
-	^ stream contents"
-	
+	| codeStream |	
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotName; 
@@ -112,7 +125,8 @@ LcsSlotDefinitionBuilder >> slotName [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotName: anObject [
-	slotName := anObject
+	.
+	slotName := (anObject first asLowercase asString , (anObject asCamelCase copyFrom: 2 to: anObject size))
 ]
 
 { #category : #accessing }
