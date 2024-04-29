@@ -48,12 +48,12 @@ LcsSlotDefintion >> currentUnitOfWork [
 	^ #LcsApplicationEnvironment asClass currentUnitOfWork
 ]
 
-{ #category : #validation }
+{ #category : #'slot model' }
 LcsSlotDefintion >> domainClass [
 	^ self parent domainClass
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsSlotDefintion >> getValueIn: aDomainObject [
 
 	^ (self currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
@@ -61,7 +61,7 @@ LcsSlotDefintion >> getValueIn: aDomainObject [
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsSlotDefintion >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
 		add: 'domainClass' -> self domainClass;
@@ -71,7 +71,7 @@ LcsSlotDefintion >> gtSlotDefinitionAttributes [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsSlotDefintion >> gtSlotDefinitionViewFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -97,18 +97,18 @@ LcsSlotDefintion >> gtViewSlotModelChildren [
 		}
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsSlotDefintion >> initialize [
 	super initialize.
 	self initializeSlotTypes
 ]
 
-{ #category : #model }
+{ #category : #initialize }
 LcsSlotDefintion >> initializeModel: aDomainObject [
 	self setValueTo: self newSlotValue in: aDomainObject
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsSlotDefintion >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
 ]
@@ -128,7 +128,7 @@ LcsSlotDefintion >> isRequired [
 	^ self required == true
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsSlotDefintion >> newSlotValue [
 	^ self slotTypes any new
 ]
@@ -153,7 +153,7 @@ LcsSlotDefintion >> required: anObject [
 	required := anObject
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsSlotDefintion >> setValueTo: anObject in: aDomainObject [
 	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
 

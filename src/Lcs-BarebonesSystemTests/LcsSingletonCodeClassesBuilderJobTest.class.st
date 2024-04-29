@@ -1,16 +1,16 @@
 Class {
-	#name : #LcsCodeClassesBuilderJobTest,
+	#name : #LcsSingletonCodeClassesBuilderJobTest,
 	#superclass : #LcsDomainTest,
 	#category : #'Lcs-BarebonesSystemTests'
 }
 
 { #category : #running }
-LcsCodeClassesBuilderJobTest >> setupSunitSystem [
+LcsSingletonCodeClassesBuilderJobTest >> setupSunitSystem [
 	LxxBarebonesSystem new
 ]
 
 { #category : #running }
-LcsCodeClassesBuilderJobTest >> tearDown [
+LcsSingletonCodeClassesBuilderJobTest >> tearDown [
 	LxxBarebonesSystem removeDomainSlotNamed: 'genders'.
 	LxxBarebonesPerson removeDomainSlotNamed: 'gender'.
 	self removeClassesNamed: #('LxxUnknownGender' 'LxxFemale' 'LxxMale' 'LxxGender' 'LxxGenders').
@@ -18,7 +18,7 @@ LcsCodeClassesBuilderJobTest >> tearDown [
 ]
 
 { #category : #tests }
-LcsCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson [
+LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson [
 	| builder |
 	builder := 
 		LcsSingletonCodeClassesBuilderJob new
@@ -71,7 +71,7 @@ LcsCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderS
 ]
 
 { #category : #tests }
-LcsCodeClassesBuilderJobTest >> testInstallingGenderCodesAndGenderSlotInPerson [
+LcsSingletonCodeClassesBuilderJobTest >> testInstallingGenderCodesAndGenderSlotInPerson [
 	| builder genderClass femaleClass maleClass unknownGenderClass gendersClass|
 	
 	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.

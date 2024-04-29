@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsStringSlot >> initialize [
 	super initialize.
 	self addSlotType: self typeClass

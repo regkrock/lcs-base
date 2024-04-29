@@ -18,12 +18,12 @@ LcsGlobalCollectionReferenceSlot >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> globalCollectionSlotDefinition [
 	^ self module slotDefinitionNamed: self collectionSlotName
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'moduleName' -> self moduleName;
@@ -31,12 +31,12 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 		yourself
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> initializeModel: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> module [
 	^ self currentSystem moduleNamed: self moduleName
 ]
@@ -51,7 +51,7 @@ LcsGlobalCollectionReferenceSlot >> moduleName: aString [
 	moduleName := aString
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject [
 	(self module slotDefinitionNamed: self collectionSlotName)
 		persistValue: (

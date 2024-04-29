@@ -56,12 +56,12 @@ LcsBaseCodeClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
-{ #category : #'initialize\t' }
+{ #category : #initialize }
 LcsBaseCodeClassBuilder >> initializeOn: aBuilder [ 
 	self parent: aBuilder
 ]
 
-{ #category : #'initialize\t' }
+{ #category : #initialize }
 LcsBaseCodeClassBuilder >> initializeRootName: aString [ 
 	self rootName: aString
 ]

@@ -8,7 +8,156 @@
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [ ]
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-03-13T08:12:29.129865-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-26T08:49:31.852666-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "dVjvbOvPDQC3hhqyA5PlFg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "####SOLID Principles (Ar these principles or are they heurisitcs?\n\t1. **The Single-responsibility principle:  **Every class should have only one resonsibility.\n\t2. **The Open–closed principle: **\"Software entities ... should be open for extension,  but closed for modification.\"\n\t3. **The Liskov substitution principle: **\"Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.\" (aka Design By Contract)\n    4. **The Interface segregation principle: **\"Clients should not be forced to depend upon interfaces that they do not use.\"\n    5. **The Dependency inversion principle:** \"Depend upon abstractions, [not] concretes.\"\nSee: https://en.wikipedia.org/wiki/SOLID"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-26T08:04:42.59736-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-26T08:05:10.705057-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "pyIlcmDTDQCHps9/DqasIg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "####Design Heuristics - Hernan Wilinson"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-26T08:48:33.509019-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-26T08:53:19.984303-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "bqb1DmHTDQCrB/nyDqasIg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "H1) **For each enitity in the problem domain there must be an object represents it \"faithfully\"**\nH2) **Objects must be created complete**\nH3) **Don't break encapsulation**\nH4) **Model the system as a subsystem composition**\nH5) **Use metaphor as representation of reality**\nH6) **Only create valid objects**\n         - an Object must represent the entity of the domain in a valid way from the time moment it exists\n         - an Object must explicitly *teach* what it needs to represent that entity and fail if it is created\n            incorrectly (fail fast)\n\t\t- validating the objects in the business model avoids having repeated and \n\t\t   unmaintainable validations \n\t\t - validations in the business model allows us to minimize the number of tests that verify input\n\t\t   errors\nH7) **do not use Null/Nil**\n\t\t    - how to handle the null.nil problem:\n\t\t      a) use a null closuer ex: detect: aBlock ifNone: aNoneClosureBlock\n\t\t      b) create a null instance \n\t\t      \t\t- Unknown - example - UnknownGender subclasses Gender \n\t\t      \t\t- create a subclass of {{gtClass:name=UndefinedObject}} and have an instance of that. \n\t\t\t\t\t\tex; UnknownCustoer subclasses {{gtClass:name=UndefinedObject}}\nH8) **Favor the use of immutable objects**\n\t\t-  an object must be mutable/immutable if the entity it represents is motable/immutable\n\t\t- ex: date, time, numbers, string. How about CreditCard,\n\t\t\tInvoice, Contract. Difficult to see Customer. How about Address."
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-26T09:06:56.890613-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-26T09:09:15.544436-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "pOu5UGHTDQCv0jxVDqasIg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "The above is a summarization of [Desing Heuristics by Hernan Wilkinson](https://drive.google.com/file/d/1Y-pON0fyvG1ejsmoaPwVQYWdDq4iVvYb/view)"
+						}
+					]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -18,7 +167,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T07:48:02.066799-04:00"
+						"dateAndTimeString" : "2024-04-26T09:01:24.128055-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,91 +178,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T08:12:04.675841-04:00"
+						"dateAndTimeString" : "2024-04-26T09:01:33.73493-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "0yPwEuvPDQCycsV/A5PlFg=="
+					"uidString" : "eGR/PGHTDQCvR+zPDqasIg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "An application environment is the envelope that can contains multiple systems. A system is a module and can be composed of multiple modules."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:14:50.368397-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:14:50.368397-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "dY+6dOvPDQC4iRJjA5PlFg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : ""
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:12:29.129865-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-13T08:20:07.861571-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "dVjvbOvPDQC3hhqyA5PlFg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "The SOLID ideas are:\n\t(1) The Single-responsibility principle:  Every class should have only one resonsibility.\n\t(2) The Open–closed principle: \"Software entities ... should be open for extension, \n\t\t\tbut closed for modification.\"[7]\n\t(3) The Liskov substitution principle: \"Functions that use pointers or references to \n\t\t\tbase classes must be able to use objects of derived classes without knowing it.\" \n\t\t\t(aka Design By Contract)\n    (4) The Interface segregation principle: \"Clients should not be forced to depend upon \n    \t\tinterfaces that they do not use.\"\n    (5) The Dependency inversion principle: \"Depend upon abstractions, [not] concretes.\"\n    \n    See: https://en.wikipedia.org/wiki/SOLID"
+				"string" : "#Desing Heuristics"
 			},
 			{
 				"__type" : "textSnippet",

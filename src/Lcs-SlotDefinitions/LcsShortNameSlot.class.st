@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsShortNameSlot >> initialize [
 	super initialize.
 	self slotName: 'shortName'

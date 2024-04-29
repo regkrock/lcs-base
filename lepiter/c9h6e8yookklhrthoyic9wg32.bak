@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-23T15:29:03.889793-04:00"
+						"dateAndTimeString" : "2024-03-23T15:29:33.541648-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This software is partiioned into sections using "
+				"string" : "This software is partiioned into sections using modules. A moduel contains classes and data for a logical entity"
+			},
+			{
+				"__type" : "elementSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-26T22:45:10.882786-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-26T22:46:11.887309-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Zcj0vmzTDQCwp3DnDqasIg=="
+				},
+				"code" : "GtMondrianDomainExamples new classHierarchyFor:\r\t((LcsBaseModule withAllSuperclasses , LcsBaseModule withAllSubclasses)\r\t\t removeDuplicates;\r\t\t remove: ProtoObject;\r\t\t yourself)",
+				"elementHeight" : 513,
+				"codeHeight" : 101,
+				"codeVisible" : false
 			}
 		]
 	},

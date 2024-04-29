@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:19:00.399069-04:00"
+						"dateAndTimeString" : "2024-04-24T11:08:43.312756-04:00"
 					}
 				},
 				"uid" : {
@@ -39,152 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "There are two types of 'Code' classes. (1) The first is where there is an theoretically unlimited number of codes. An example is person title. (2) The second is where there is a finite number of instances. For example, Gender can have three instances: Male, Female and Unknown. From a modelling perspective this can be modelled the same way as (1). But it can also be modelled as concrete subclasses similar to Boolean with its True and False subclasses. This example  "
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:27:49.007436-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:28:08.959113-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "JS7+IxHTDQCPN74RBZZQfw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "###Codes modelled as instances of a class"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:56:50.268722-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T10:04:18.597966-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "w7jHixHTDQCRYvr7BZZQfw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "The followig will result in:\n1) Creation of LxxBaseTitle which is a subclass of LcxCode\n2) Creation of LxxTitle which is a subclass of LxxBaseTittle\n3) Creation of LxxUnknownTitle which is a subclass of LxxBaseTitle\n4) Creation of LxxTitles which will hold all instances of the LxxTitle and the singleton of LxxUknownTitle.\n5) Creation of an domain slot named 'titles' in the LxxBarebonesSystem.\n\tThe collection in the slot (an instance of LxxTitles) will be populated with three instances:\n\tan instance of LxxTitle for Mr, an instance of LxxTitle for Ms, and an instance of LxxUknowntTitle.\n6) Creation of a domain slot named 'title' in LxxBarebonesPerson with a default of the unknonwn instance."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:29:07.452455-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:29:07.452455-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "xy+rKBHTDQCPpBlWBZZQfw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : ""
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:29:12.946121-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:55:24.934278-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "Gf3+KBHTDQCPqNL3BZZQfw=="
-				},
-				"code" : "builder := \r\tLcsCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeClassname: 'Title';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\taddCode: #('Ms');\r\t\taddCode: #('Mr');\r\t\taddUnknownCodeBuilder: ((LcsCodeClassBuilder newRootName: 'Unknown')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Ttiles' inSlotNamed: 'titles' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself.\r\rbuilder install"
+				"string" : "This explores the creation of a \"code\" model for gender.  Gender can have three instances: Male, Female and Unknown.  "
 			},
 			{
 				"__type" : "textSnippet",
@@ -248,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:12:39.905374-04:00"
+						"dateAndTimeString" : "2024-04-24T11:44:45.670348-04:00"
 					}
 				},
 				"uid" : {
@@ -258,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The following code will do the following:\n1) Create the class LxxGender which is a subclass of LcsCode;\n2) Create three subclasses of LxxGender - LxxMale, LxxFemale, LxxUnknownGender;\n3) Create a collection class LxxGenders to hold onto the instances of LxxMale, LxxFemale and LxxUnknownGender;\n4)\tAdd a slot 'genders' to the module class - LxxBarebonesSystem;\n\t\t\tThis resutls in:\n\t\t\t\tthe creation of instance variable genders;\n\t\t\t\tadd getter method:  #genders',\n\t\t\t\tadd setter method: #genders:,\n\t\t\t\tadd class side slot definition method: #gendersSlotDefinition\n5)\tAdd a slot, 'gender' to LxxPerson;\n\t\t\tThis resutls in:\n\t    \t\tthe creation of instance variable gender;\n\t    \t\tadd getter method:  #gender',\n\t    \t\tadd setter method: #gender:,\n\t\t\t\tadd class side slot definition method: #genderSlotDefinition.\n\t\tWhen an instance of LxxPerson is created, the slot definition will cause the gender slot to be\n\t\tinitialized to the instance of LxxUnknownGender\n\n"
+				"string" : "The following code will do the following:\n1) Create the class LxxGender which is a subclass of LcsCode;\n2) Create three subclasses of LxxGender - LxxMale, LxxFemale, LxxUnknownGender;\n3) Create a collection class LxxGenders to hold onto the instances of LxxMale, LxxFemale and LxxUnknownGender;\n4)\tAdd a slot 'genders' to the module class - LxxBarebonesSystem;\n\t\t\tThis resutls in:\n\t\t\t\tthe creation of instance variable genders;\n\t\t\t\tadd getter method:  #genders',\n\t\t\t\tadd setter method: #genders:,\n\t\t\t\tadd class side slot definition method: #gendersSlotDefinition\n5)\tAdd a slot, 'gender' to LxxPerson;\n\t\t\tThis resutls in:\n\t    \t\tthe creation of instance variable gender;\n\t    \t\tadd getter method:  #gender',\n\t    \t\tadd setter method: #gender:,\n\t\t\t\tadd class side slot definition method: #genderSlotDefinition.\n\t\tWhen an instance of LxxPerson is created, the slot definition will cause the gender slot to be\n\t\tinitialized to the instance of LxxUnknownGender\n"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -285,14 +140,51 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-22T09:37:08.665769-04:00"
+						"dateAndTimeString" : "2024-04-24T15:00:00.935273-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "4VfTd8HSDQCNAS+8CeOFgA=="
 				},
-				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\taddCodeBuilder: (LcsCodeClassBuilder newRootName: 'Male');\r\t\taddCodeBuilder: (LcsCodeClassBuilder newRootName: 'Female');\r\t\taddCodeBuilder: ((LcsCodeClassBuilder newRootName: 'UnknownGender')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself.\r\rbuilder install"
+				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Male');\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Female');\r\t\taddCodeClassBuilder: ((LcsCodeClassBuilder newRootName: 'UnknownGender')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T11:39:38.406608-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T11:39:39.284958-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "X9AcNzvTDQC6UpBGDqasIg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Inspect the above code to see the setup. Execute the code below to create the classes."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -308,7 +200,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-18T16:27:27.65726-04:00"
+						"dateAndTimeString" : "2024-04-24T11:39:57.413195-04:00"
 					}
 				},
 				"editEmail" : {
@@ -319,14 +211,122 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-20T12:04:37.400352-04:00"
+						"dateAndTimeString" : "2024-04-24T11:39:57.996473-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "mDZkicbSDQCGE9uMBBSABQ=="
+					"uidString" : "99U+ODvTDQC6W+bGDqasIg=="
 				},
-				"code" : "{LxxUnknownGender. LxxFemale. LxxMale. LxxGender. LxxGenders.} do: [:each |\r\teach notNil ifTrue: [ (RBRemoveClassChange removeClassName: each name) execute ] ]."
+				"code" : "builder install"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T11:38:58.824584-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T11:38:59.515943-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2NPANDvTDQC6QA8KDqasIg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The following will remove the artifacts of the above code. Please execute them in order."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T11:39:14.698317-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T16:20:40.235158-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "+Q2zNTvTDQC6ScSvDqasIg=="
+				},
+				"code" : "LcsApplicationEnvironment currentSystem genders"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T11:15:05.451555-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T11:23:41.953736-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "jk1R3zrTDQCwqNtLDqasIg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The following will remove the artifacts of the above code. Please execute them in order."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -397,6 +397,40 @@
 				"code" : "LxxBarebonesPerson removeDomainSlotNamed: 'gender'"
 			},
 			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-18T16:27:27.65726-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-20T12:04:37.400352-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "mDZkicbSDQCGE9uMBBSABQ=="
+				},
+				"code" : "{LxxUnknownGender. LxxFemale. LxxMale. LxxGender. LxxGenders.} do: [:each |\r\teach notNil ifTrue: [ (RBRemoveClassChange removeClassName: each name) execute ] ]."
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -454,12 +488,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-18T10:24:33.411465-04:00"
+			"dateAndTimeString" : "2024-04-24T11:11:02.1732-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Code Class Creation"
+		"title" : "Singleton Code Classes Generation"
 	},
 	"uid" : {
 		"__type" : "uuid",

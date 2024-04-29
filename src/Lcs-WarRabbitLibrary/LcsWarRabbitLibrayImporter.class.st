@@ -73,7 +73,8 @@ LcsWarRabbitLibrayImporter >> importedLines: anObject [
 { #category : #accessing }
 LcsWarRabbitLibrayImporter >> initialize [
 	super initialize.
-	self importedLines: OrderedCollection new
+	self importedLines: OrderedCollection new.
+	self items:OrderedCollection new
 ]
 
 { #category : #initialize }
@@ -81,7 +82,7 @@ LcsWarRabbitLibrayImporter >> initializeOn: aLibrary [
 	self library: aLibrary
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsWarRabbitLibrayImporter >> isLibraryCategoryCandidate [
 	^ self protoItemParts size = 1
 		and: [ self protoItemParts first allSatisfy: [ :each | each isCharacter ] ]
@@ -89,7 +90,7 @@ LcsWarRabbitLibrayImporter >> isLibraryCategoryCandidate [
 
 { #category : #accessing }
 LcsWarRabbitLibrayImporter >> items [
-	^ items ifNil: [items := OrderedCollection new]
+	^ items
 ]
 
 { #category : #accessing }
@@ -115,7 +116,7 @@ LcsWarRabbitLibrayImporter >> libraryCategoryCandidate [
 
 { #category : #accessing }
 LcsWarRabbitLibrayImporter >> libraryItemFor: aString [
-	((self protoItemParts includes: 'pb') | (self protoItemParts includes: 'hc'))
+	((self protoItemParts includes: 'pb') | (self protoItemParts includes: 'hc') | (self protoItemParts includes: 'hc+dj'))
 		ifTrue: [ ^ LcsBook newOn: aString parts: self protoItemParts ]. 
 	^ LcsUnknownLibraryItem newOn: aString parts: self protoItemParts
 ]

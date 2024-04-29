@@ -9,3 +9,8 @@ LcsPrimitiveSlot >> initialize [
 	super initialize.
 	self addSlotType: self typeClass
 ]
+
+{ #category : #configuration }
+LcsPrimitiveSlot >> typeClass [
+	self subclassResponsibility
+]

@@ -22,6 +22,11 @@ LcsCode >> codeNameSlotDefinition [
 ]
 
 { #category : #accessing }
+LcsCode >> parentSlotDefinition [
+	^ LcsParentSlot new
+]
+
+{ #category : #accessing }
 LcsCode >> shortNameSlotDefinition [
 	<slotDefinition>
 	^ LcsShortNameSlot new

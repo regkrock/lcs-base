@@ -14,7 +14,7 @@ LcsBaseApplicationEnvironmentStatus class >> newOn: anApplicationEnvironment [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : #initialize }
 LcsBaseApplicationEnvironmentStatus >> initializeOn: anApplicationEnvironment [ 
 	self parent: anApplicationEnvironment
 ]
@@ -29,12 +29,12 @@ LcsBaseApplicationEnvironmentStatus >> isInSuspendedStatus [
 	^ false
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 LcsBaseApplicationEnvironmentStatus >> parent [
 	^ parent
 ]
 
-{ #category : #api }
+{ #category : #accessing }
 LcsBaseApplicationEnvironmentStatus >> parent: anApplicationEnvironment [ 
 	parent := anApplicationEnvironment
 ]

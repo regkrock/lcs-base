@@ -23,13 +23,13 @@ LcsCodeClassBuilder >> defaultInstance: aBoolean [
 	defaultInstance := aBoolean
 ]
 
-{ #category : #'initialize\t' }
+{ #category : #initialize }
 LcsCodeClassBuilder >> initialize [
 	super initialize.
 	self defaultInstance: false
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsCodeClassBuilder >> isDefaultInstance [
 	^ self defaultInstance == true
 ]

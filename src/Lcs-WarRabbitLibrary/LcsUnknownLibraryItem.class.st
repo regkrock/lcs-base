@@ -15,13 +15,13 @@ LcsUnknownLibraryItem class >> newOn: aString [
 		yourself
 ]
 
-{ #category : #'initialize\t' }
+{ #category : #initialize }
 LcsUnknownLibraryItem >> initialize [
 	super initialize.
 	self parts: OrderedCollection new
 ]
 
-{ #category : #'initialize\t' }
+{ #category : #initialize }
 LcsUnknownLibraryItem >> initializeOn: aString [ 
 
 	self originalLine: aString.
@@ -52,7 +52,7 @@ LcsUnknownLibraryItem >> parts [
 	^ parts
 ]
 
-{ #category : #'initialize\t' }
+{ #category : #initialize }
 LcsUnknownLibraryItem >> parts: anObject [ 
 	parts := anObject
 ]

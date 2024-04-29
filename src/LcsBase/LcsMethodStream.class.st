@@ -13,7 +13,7 @@ LcsMethodStream >> addCommand: aString [
 	self newLine nextPutAll: aString; nextPutAll: ';'
 ]
 
-{ #category : #'building\t' }
+{ #category : #building }
 LcsMethodStream >> addSetter: aString contents: aContentString [
 	self newLine
 		nextPutAll: aString;
@@ -31,7 +31,7 @@ LcsMethodStream >> addSlotDefinitionClassCreatonLine: aSlotDefinitionClass [
 	self increaseIndentLevel
 ]
 
-{ #category : #'building\t' }
+{ #category : #building }
 LcsMethodStream >> addYourself [
 	self newLine
 		nextPutAll: 'yourself'
@@ -65,7 +65,7 @@ LcsMethodStream >> initialize [
 	self indentLevel: 0
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsMethodStream >> isLastCharacterLineTerminationCharacter [
 	^ {Character lf.
 		Character cr} includes: self stream contents last
@@ -79,7 +79,7 @@ LcsMethodStream >> newLine [
 	^ self stream
 ]
 
-{ #category : #'building\t' }
+{ #category : #building }
 LcsMethodStream >> startSlotDefintionSource: aString [
 	self newLine nextPutAll: aString , 'SlotDefinition'.
 	self increaseIndentLevel.

@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemManagement'
 }
 
-{ #category : #accessing }
+{ #category : #printing }
 LcsApplicationEnvironmentActiveStatus >> displayString [
 	^ self statusName
 ]

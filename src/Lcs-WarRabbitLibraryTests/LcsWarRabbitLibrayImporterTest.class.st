@@ -9,7 +9,7 @@ LcsWarRabbitLibrayImporterTest >> setupSunitSystem [
 	LcsWarRabbitLibrary new
 ]
 
-{ #category : #'testing\t' }
+{ #category : #testing }
 LcsWarRabbitLibrayImporterTest >> testImportBook [
 	| importer stream |
 	importer := LcsWarRabbitLibrayImporter newOn: self currentSystem.
@@ -45,7 +45,7 @@ LcsWarRabbitLibrayImporterTest >> testImportCategoryName [
 	
 ]
 
-{ #category : #'testing\t' }
+{ #category : #testing }
 LcsWarRabbitLibrayImporterTest >> testImportCategoryNameTwice [
 	| importer stream |
 	importer := LcsWarRabbitLibrayImporter newOn: self currentSystem.
@@ -62,7 +62,7 @@ Crafts'.
 	self assert: self currentSystem libraryCategories collection any categoryName = 'Crafts'.
 ]
 
-{ #category : #'testing\t' }
+{ #category : #testing }
 LcsWarRabbitLibrayImporterTest >> testImportPaperbackBook [
 	| importer stream |
 	importer := LcsWarRabbitLibrayImporter newOn: self currentSystem.

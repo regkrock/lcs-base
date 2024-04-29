@@ -54,7 +54,7 @@ LcsObject class >> isApplicationSystemClass [
 	^ false
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsObject class >> isDomainClass [
 	^ false
 ]

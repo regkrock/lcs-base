@@ -14,7 +14,7 @@ LcsMemberOfSlotBuilder class >> slotDefinitionClass [
 	^ LcsMemberOfSlot
 ]
 
-{ #category : #api }
+{ #category : #'code generation' }
 LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 	self slotTypes do: [ :eachSlotTypeClass |
 		codeStream addSetter: 'addSlotType' contents: eachSlotTypeClass name].
@@ -25,7 +25,7 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsMemberOfSlotBuilder >> addSlotType: aClass [
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
@@ -40,7 +40,7 @@ LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsMemberOfSlotBuilder >> initialize [
 	super initialize.
 	self slotTypes: OrderedCollection new

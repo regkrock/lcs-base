@@ -11,18 +11,18 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #con }
+{ #category : #default }
 LcsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionSlot
 ]
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
 	self collectionElementTypes add: aClass
 
 ]
 
-{ #category : #api }
+{ #category : #'code generation' }
 LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	aCodeStream 
 		addSetter: 'addSlotType' contents: self slotClass name;
@@ -53,7 +53,7 @@ LcsGlobalSlotDefinitionBuilder >> collectionSlotCollectionClass: anObject [
 	collectionSlotCollectionClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsGlobalSlotDefinitionBuilder >> initialize [
 	super initialize.
 	self collectionElementTypes:	OrderedCollection new.
@@ -80,7 +80,7 @@ LcsGlobalSlotDefinitionBuilder >> slotClass: anObject [
 	slotClass := anObject
 ]
 
-{ #category : #api }
+{ #category : #configuration }
 LcsGlobalSlotDefinitionBuilder >> target [
 	^ target ifNil: [ target := 
 	 (self targetClassName asClass )

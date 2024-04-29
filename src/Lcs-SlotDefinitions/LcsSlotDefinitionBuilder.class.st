@@ -19,29 +19,36 @@ LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
 ]
 
 { #category : #'code generation' }
+LcsSlotDefinitionBuilder >> addCompletedRefactoring: anObject [ 
+	self parent notNil ifTrue: [ self parent addCompletedRefactoring: anObject ]
+]
+
+{ #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> createGetterAndSetterMethods [
-	(RBCreateDomainSlotAcccessorsForVariableRefactoring
-		instanceVariable: self slotName
-		class: self target) execute
+	self
+		addCompletedRefactoring: (RBCreateDomainSlotAcccessorsForVariableRefactoring
+				instanceVariable: self slotName
+				class: self target) execute
 ]
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> createInstanceVariable [
 	"(RBAddInstanceVariableRefactoring variable: self slotName class: self target)"
-	(RBAddInstanceVariableChange add: self slotName to: self target)
+	self addCompletedRefactoring: (RBAddInstanceVariableChange add: self slotName to: self target)
 		execute
 ]
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> createSlotDefinitionMethod [
-	(RBAddMethodChange
-		compile: self slotDefinitionSource
-		in: self target class
-		classified: #'slot definitions') execute
+	self
+		addCompletedRefactoring: (RBAddMethodChange
+				compile: self slotDefinitionSource
+				in: self target class
+				classified: #'slot definitions') execute
 ]
 
 { #category : #testing }
@@ -49,13 +56,13 @@ LcsSlotDefinitionBuilder >> doesSlotDefinitionMethodExist [
 	^ self target class includesSelector: self slotDefinitionSelector
 ]
 
-{ #category : #api }
+{ #category : #validation }
 LcsSlotDefinitionBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
 	self doesSlotDefinitionMethodExist
 		ifTrue: [ self error: 'Slot definition already exists' ]
 ]
 
-{ #category : #api }
+{ #category : #validation }
 LcsSlotDefinitionBuilder >> ensureSlotDoesNotAlreadyExist [
 	(self target allInstVarNames includes: self slotName)
 		ifTrue: [ self error: 'Slot ' , self slotName , 'already exists' ]
@@ -126,7 +133,7 @@ LcsSlotDefinitionBuilder >> slotName [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotName: anObject [
 	.
-	slotName := (anObject first asLowercase asString , (anObject asCamelCase copyFrom: 2 to: anObject size))
+	slotName := (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size))
 ]
 
 { #category : #accessing }

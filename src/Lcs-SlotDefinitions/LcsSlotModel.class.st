@@ -42,7 +42,7 @@ LcsSlotModel >> domainClass: anObject [
 	domainClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsSlotModel >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
@@ -71,7 +71,7 @@ LcsSlotModel >> initializeModel: aDomainObject [
 	self collection do: [ :eachDefintion | eachDefintion initializeModel: aDomainObject ]
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsSlotModel >> initializeOn: aDomainClass [ 
 	self domainClass: aDomainClass
 ]

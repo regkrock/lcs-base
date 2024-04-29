@@ -11,41 +11,41 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #'application environment' }
 LcsMemberOfSlot >> collectionModule [
 	^ self currentSystem moduleNamed: self moduleName
 ]
 
-{ #category : #'slot definition' }
+{ #category : #accessing }
 LcsMemberOfSlot >> collectionSlotName [
 	^ collectionSlotName
 ]
 
-{ #category : #'slot definition' }
+{ #category : #accessing }
 LcsMemberOfSlot >> collectionSlotName: aString [ 
 	collectionSlotName := aString
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 LcsMemberOfSlot >> defaultReferenceCollectionBlock [
 	^ [ [ self collectionModule perform: self collectionSlotName asSymbol ]
 			on: Error
 			do: [ :s | self singalNoReferenceCollectionError ] ]
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsMemberOfSlot >> initialize [
 	super initialize.
 	self beRequired.
 	self referenceCollectionBlock: self defaultReferenceCollectionBlock
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 LcsMemberOfSlot >> moduleName [
 	^ moduleName
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 LcsMemberOfSlot >> moduleName: aString [ 
 	moduleName := aString
 ]
@@ -55,7 +55,7 @@ LcsMemberOfSlot >> referenceCollection [
 	^ self referenceCollectionBlock value
 ]
 
-{ #category : #query }
+{ #category : #accessing }
 LcsMemberOfSlot >> referenceCollectionBlock [
 	referenceCollectionBlock
 ]

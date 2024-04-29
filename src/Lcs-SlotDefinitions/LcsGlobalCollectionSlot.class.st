@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #'slot definitions' }
+{ #category : #configuration }
 LcsGlobalCollectionSlot >> addCollectionMemberType: aClass [
 	(self collectionMemberTypes includes: aClass)
 		ifFalse: [ self collectionMemberTypes add: aClass ]
@@ -50,7 +50,7 @@ LcsGlobalCollectionSlot >> initialize [
 	self collectionMemberTypes: OrderedCollection new
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsGlobalCollectionSlot >> initializeModel: aDomainObject [
 	self
 		setValueTo: (self newSlotValue
@@ -65,17 +65,17 @@ LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
 		and: [ self slotTypes includes: LcsSmalltalkConfiguration identitySetClass ]
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsGlobalCollectionSlot >> newSlotValue [
 	^ self slotTypes any newWithCollection: self  collectionSlotCollectionClass
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsGlobalCollectionSlot >> persistValue: anObject [
 	(self getValueIn: self slotName asString) persistValue: anObject
 ]
 
-{ #category : #model }
+{ #category : #'slot model' }
 LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
 	(self getValueIn: aModule) add: anObject
 ]

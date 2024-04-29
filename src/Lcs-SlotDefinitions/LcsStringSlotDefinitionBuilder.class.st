@@ -9,7 +9,7 @@ LcsStringSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsStringSlot
 ]
 
-{ #category : #api }
+{ #category : #'code generation' }
 LcsStringSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: stream [ 
 	stream 
 ]
