@@ -6,7 +6,8 @@ Class {
 		'slotClass',
 		'collectionElementTypes',
 		'collectionSlotCollectionClass',
-		'targetModule'
+		'targetModule',
+		'slotClassName'
 	],
 	#category : #'Lcs-SlotDefinitions'
 }
@@ -25,7 +26,7 @@ LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
 { #category : #'code generation' }
 LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	aCodeStream 
-		addSetter: 'addSlotType' contents: self slotClass name;
+		addSetter: 'addSlotType' contents: self slotClassName;
 		addSetter: 'collectionSlotCollectionClass' contents: self collectionSlotCollectionClass name.
 	self collectionElementTypes do: [ :eachClass |
 		aCodeStream addSetter: 'addCollectionMemberType' contents: eachClass name].
@@ -62,22 +63,32 @@ LcsGlobalSlotDefinitionBuilder >> initialize [
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> moduleName [
-	^ self targetClassName
+	^ moduleName
 ]
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> moduleName: anObject [
-	self targetClassName: (#LcsBaseModule asClass moduleClassNamed: anObject) name
+	moduleName := anObject
 ]
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> slotClass [
-	^ slotClass
+	^ slotClass 
 ]
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> slotClass: anObject [
 	slotClass := anObject
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> slotClassName [
+	^ slotClassName ifNil: [ self slotClass name ]
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> slotClassName: aName [
+	slotClassName := aName
 ]
 
 { #category : #configuration }

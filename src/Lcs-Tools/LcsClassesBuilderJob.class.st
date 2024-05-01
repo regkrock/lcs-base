@@ -22,7 +22,8 @@ LcsClassesBuilderJob >> classPrefix [
 
 { #category : #accessing }
 LcsClassesBuilderJob >> classPrefix: anObject [
-	classPrefix := anObject
+	classPrefix := anObject.
+	self jobSteps do: [ :each | (each respondsTo: #classPrefix:) ifTrue: [each classPrefix: anObject]].
 ]
 
 { #category : #accessing }
@@ -55,8 +56,9 @@ LcsClassesBuilderJob >> initialize [
 ]
 
 { #category : #configuration }
-LcsClassesBuilderJob >> installCodesInPackageNamed: aString [ 
-	self codePackageName: aString
+LcsClassesBuilderJob >> installNewClassesInPackageNamed: aString [ 
+	self codePackageName: aString.
+	self jobSteps do: [ :each | (each respondsTo: #codePackageName:) ifTrue: [each codePackageName: aString]].
 ]
 
 { #category : #accessing }

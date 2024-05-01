@@ -23,11 +23,11 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	builder := 
 		LcsStandardCodeClassesBuilderJob new
 			classPrefix: 'Lxx';
-			codeSuperclassRootName: 'Talent';
-			installCodesInPackageNamed: 'Lcs-BarebonesSystem';
+			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+			codeRootName: 'Talent';
 			createCodeInstances: #('Guitar' 'Saxaphone');
-			installGlobalCollection: 'Talents' inSlotNamed: 'talents' inModule: LxxBarebonesSystem ;
-			installSlotIn: LxxBarebonesPerson;
+			installGlobalCollectionSlotInModule: LxxBarebonesSystem ;
+			installSlotInDomainClass: LxxBarebonesPerson;
 			yourself.
 	
 	self assert: builder classPrefix equals: 'Lxx'.
@@ -42,9 +42,15 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	self assert: builder codeCollectionClassBuilder installClassName equals: 'LxxTalents'.
 	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
 
-	self assert: builder memberOfSlotBuilder slotName equals: 'talent'.
-	self assert: builder memberOfSlotBuilder collectionSlotName equals: 'talents'.
-	self assert: builder memberOfSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
+	self assert: builder globalCollectionSlotBuilder slotName equals: 'talents'.
+	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
+	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxBarebonesSystem'.
+	self assert: builder globalCollectionSlotBuilder target equals: LxxBarebonesSystem.
+	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxTalent'.
+
+	self assert: builder memberOfSlotInDomainClassBuilder slotName equals: 'talent'.
+	self assert: builder memberOfSlotInDomainClassBuilder collectionSlotName equals: 'talents'.
+	self assert: builder memberOfSlotInDomainClassBuilder moduleName equals: LxxBarebonesSystem moduleName.
 
 ]
 
@@ -58,13 +64,13 @@ LcsStandardCodeClassesBuilderJobTest >> testInstallingTitleCodesAndTitleSlotInPe
 	builder := 
 		LcsStandardCodeClassesBuilderJob new
 			classPrefix: 'Lxx';
-			codeSuperclassRootName: 'Talent';
-			installCodesInPackageNamed: 'Lcs-BarebonesSystem';
+			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+			codeRootName: 'Talent';
 			createCodeInstances: #('Guitar' 'Saxaphone');
-			installGlobalCollection: 'Talents' inSlotNamed: 'talents' inModule: LxxBarebonesSystem ;
-			installSlotIn: LxxBarebonesPerson;
+			installGlobalCollectionSlotInModule: LxxBarebonesSystem ;
+			installSlotInDomainClass: LxxBarebonesPerson;
 			yourself.
-			
+				
 	builder install.
 	
 	talentClass := self classNamed: 'LxxTalent'.

@@ -23,11 +23,11 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	builder := 
 		LcsStandardCodeWithUnknownClassClassesBuilderJob new
 			classPrefix: 'Lxx';
-			codeSuperclassRootName: 'Title';
-			installCodesInPackageNamed: 'Lcs-BarebonesSystem';
+			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+			codeRootName: 'Title';
 			createCodeInstances: #('Mr' 'Ms');
-			installGlobalCollection: 'Titles' inSlotNamed: 'titles' inModule: LxxBarebonesSystem ;
-			installSlotIn: LxxBarebonesPerson;
+			installGlobalCollectionSlotInModule: LxxBarebonesSystem ;
+			installSlotInDomainClass: LxxBarebonesPerson;
 			yourself.
 	
 	self assert: builder classPrefix equals: 'Lxx'.
@@ -38,24 +38,31 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	self assert: builder codeSuperclassBuilder installClassName equals: 'LxxBaseTitle'.
 	self assert: builder codeSuperclassBuilder codePackageName  equals: 'Lcs-BarebonesSystem'.
 
-	self assert: builder codeClassBuilders size equals: 2.
-	self assert: (builder codeClassBuilders at: 1) superclassName equals: 'LxxBaseTitle'.
-	self assert: (builder codeClassBuilders at: 1) installClassName equals: 'LxxTitle'.
-	self assert: (builder codeClassBuilders at: 1) codePackageName equals: 'Lcs-BarebonesSystem'.
-	self deny: (builder codeClassBuilders at: 1) isDefaultInstance.
+	self assert: builder codeSubclassesBuilderJobSteps collection size equals: 2.
+	self assert: (builder codeSubclassesBuilderJobSteps collection at: 1) superclassName equals: 'LxxBaseTitle'.
+	self assert: (builder codeSubclassesBuilderJobSteps collection at: 1) installClassName equals: 'LxxTitle'.
+	self assert: (builder codeSubclassesBuilderJobSteps collection at: 1) codePackageName equals: 'Lcs-BarebonesSystem'.
+	self deny: (builder codeSubclassesBuilderJobSteps collection at: 1) isDefaultInstance.
 	
-	self assert: (builder codeClassBuilders at: 2) superclassName equals: 'LxxBaseTitle'.
-	self assert: (builder codeClassBuilders at: 2) installClassName equals: 'LxxUnknownTitle'.
-	self assert: (builder codeClassBuilders at: 2) codePackageName equals: 'Lcs-BarebonesSystem'.
-	self assert: (builder codeClassBuilders at: 2) isDefaultInstance.
+	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) superclassName equals: 'LxxBaseTitle'.
+	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) installClassName equals: 'LxxUnknownTitle'.
+	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) codePackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) isDefaultInstance.
 	
 	self assert: builder codeCollectionClassBuilder superclassName = 'LcsCodes'.
 	self assert: builder codeCollectionClassBuilder installClassName equals: 'LxxTitles'.
 	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
+	
+	self assert: builder globalCollectionSlotBuilder slotName equals: 'titles'.
+	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
+	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxBarebonesSystem'.
+	self assert: builder globalCollectionSlotBuilder target equals: LxxBarebonesSystem.
+	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxBaseTitle'.
 
-	self assert: builder memberOfSlotBuilder slotName equals: 'title'.
-	self assert: builder memberOfSlotBuilder collectionSlotName equals: 'titles'.
-	self assert: builder memberOfSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
+
+	self assert: builder memberOfSlotInDomainClassBuilder slotName equals: 'title'.
+	self assert: builder memberOfSlotInDomainClassBuilder collectionSlotName equals: 'titles'.
+	self assert: builder memberOfSlotInDomainClassBuilder moduleName equals: LxxBarebonesSystem moduleName.
 
 ]
 
@@ -69,11 +76,11 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testInstallingTitleCodes
 	builder := 
 		LcsStandardCodeWithUnknownClassClassesBuilderJob new
 			classPrefix: 'Lxx';
-			codeSuperclassRootName: 'Title';
-			installCodesInPackageNamed: 'Lcs-BarebonesSystem';
+			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+			codeRootName: 'Title';
 			createCodeInstances: #('Mr' 'Ms');
-			installGlobalCollection: 'Titles' inSlotNamed: 'titles' inModule: LxxBarebonesSystem ;
-			installSlotIn: LxxBarebonesPerson;
+			installGlobalCollectionSlotInModule: LxxBarebonesSystem ;
+			installSlotInDomainClass: LxxBarebonesPerson;
 			yourself.
 
 	builder install.

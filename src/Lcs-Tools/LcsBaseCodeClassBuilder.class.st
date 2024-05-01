@@ -5,7 +5,9 @@ Class {
 		'parent',
 		'installedClass',
 		'rootName',
-		'installClassName'
+		'installClassName',
+		'classPrefix',
+		'codePackageName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -29,9 +31,14 @@ LcsBaseCodeClassBuilder >> addCompletedRefactoring: aRefactoring [
 	self parent addCompletedRefactoring: aRefactoring
 ]
 
-{ #category : #build }
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> classPrefix [
-	^ self parent classPrefix
+	^ classPrefix
+]
+
+{ #category : #acessing }
+LcsBaseCodeClassBuilder >> classPrefix: aString [
+	classPrefix := aString
 ]
 
 { #category : #build }
@@ -46,9 +53,14 @@ LcsBaseCodeClassBuilder >> codeClassDefintion [
 			with: self codePackageName
 ]
 
-{ #category : #build }
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> codePackageName [
-	^ self parent codePackageName
+	^ codePackageName
+]
+
+{ #category : #accessing }
+LcsBaseCodeClassBuilder >> codePackageName: aString [
+	codePackageName := aString
 ]
 
 { #category : #build }

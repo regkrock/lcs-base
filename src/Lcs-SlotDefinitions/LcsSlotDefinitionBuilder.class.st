@@ -148,7 +148,7 @@ LcsSlotDefinitionBuilder >> target: aClass [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClassName [
-	^ targetClassName
+	^ targetClassName ifNil: [ targetClassName := (#LcsBaseModule asClass moduleClassNamed: self moduleName) name ]
 ]
 
 { #category : #accessing }
