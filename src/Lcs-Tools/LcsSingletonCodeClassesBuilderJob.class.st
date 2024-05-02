@@ -64,3 +64,11 @@ LcsSingletonCodeClassesBuilderJob >> initialize [
 LcsSingletonCodeClassesBuilderJob >> memberOfSlotInDomainClassBuilder [
 	^ self jobSteps at: 5
 ]
+
+{ #category : #accessing }
+LcsSingletonCodeClassesBuilderJob >> updateSlotModel [
+	self codeSuperclassBuilder installedClass withAllSubclassesDo: [ :eachClass | eachClass initializeSlotModel ].
+	self globalCollectionSlotBuilder installSlotDefinition.
+	self memberOfSlotInDomainClassBuilder installSlotDefinition.
+	
+]

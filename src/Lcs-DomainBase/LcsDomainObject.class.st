@@ -13,8 +13,8 @@ Class {
 
 { #category : #'slot model' }
 LcsDomainObject class >> addSlotDefinitions [
-	self slotDefinitionMethods do: [ :eachPragma | 
-			self slotModel addSlotDefinition: (self perform: eachPragma methodSelector) ]
+	self slotDefinitionMethods
+		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
 ]
 
 { #category : #'unit of work' }
@@ -76,6 +76,11 @@ LcsDomainObject class >> initializeSlotModel [
 	self slotModel: (LcsSlotModel newOn: self).
 	self currentSystem addToSlotModel: self slotModel.
 	self addSlotDefinitions
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
+	^ self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
 { #category : #testing }

@@ -82,6 +82,11 @@ LcsSlotDefinitionBuilder >> install [
 	self createSlotDefinitionMethod
 ]
 
+{ #category : #api }
+LcsSlotDefinitionBuilder >> installSlotDefinition [
+	self target installSlotDefinition: self slotDefinitionSelector
+]
+
 { #category : #acccessing }
 LcsSlotDefinitionBuilder >> parent [
 	^ parent
