@@ -9,8 +9,8 @@ Class {
 
 { #category : #'slot definitions' }
 LcsMainSystem class >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsSystemConfiguration
+	"<slotDefinition>
+	^ LcsModuleConfigurationSlot newOn: LcsSystemConfiguration"
 ]
 
 { #category : #modules }

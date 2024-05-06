@@ -51,7 +51,7 @@ LcsGlobalCollectionSlot >> initialize [
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionSlot >> initializeModel: aDomainObject [
+LcsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	self
 		setValueTo: (self newSlotValue
 				parent: aDomainObject;

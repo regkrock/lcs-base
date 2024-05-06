@@ -113,6 +113,11 @@ LcsSlotDefintion >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
 ]
 
+{ #category : #accessing }
+LcsSlotDefintion >> initializeSlotValueIn: aDomainObject [
+	self error: 'This needs to be implemented'
+]
+
 { #category : #validation }
 LcsSlotDefintion >> isInstanceVariableDefined [
 	^ self domainClass allInstVarNames includes: self slotName
@@ -156,7 +161,6 @@ LcsSlotDefintion >> required: anObject [
 { #category : #'slot model' }
 LcsSlotDefintion >> setValueTo: anObject in: aDomainObject [
 	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
-
 ]
 
 { #category : #validation }

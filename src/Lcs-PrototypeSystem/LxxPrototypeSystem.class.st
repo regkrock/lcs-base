@@ -23,5 +23,7 @@ LxxPrototypeSystem >> initialSystemDomainClasses [
 	^ super initialSystemDomainClasses
 		addAll: self allModuleClasses;
 		add: LxxPrototypePerson;
+		add: LxxPrototypePersons;
+		add: LxxPrototypeSystemConfiguration;
 		yourself
 ]

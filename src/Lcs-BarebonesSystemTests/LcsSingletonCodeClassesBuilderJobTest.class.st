@@ -60,11 +60,15 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	self assert: builder codeCollectionClassBuilder installClassName equals: 'LxxGenders'.
 	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
 
+	self assert: builder codeSuperClassParentSlotDefinitionStep slotName equals: 'parent'.
+	self assert: builder codeSuperClassParentSlotDefinitionStep moduleName equals: LxxBarebonesSystem moduleName.
+	self assert: builder codeSuperClassParentSlotDefinitionStep collectionSlotName equals: 'genders'.	
+	
 	self assert: builder globalCollectionSlotBuilder slotName equals: 'genders'.
 	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
 	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxBarebonesSystem'.
 	self assert: builder globalCollectionSlotBuilder target equals: LxxBarebonesSystem.
-	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxGender'.
+	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxGenders'.
 
 	self assert: builder memberOfSlotInDomainClassBuilder slotName equals: 'gender'.
 	self assert: builder memberOfSlotInDomainClassBuilder collectionSlotName equals: 'genders'.
@@ -72,55 +76,6 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	
 	"self assert: (builder memberOfSlotBuilder slotTypes includes: 'LxxGender' asClass)"
 
-	
-]
-
-{ #category : #tests }
-LcsSingletonCodeClassesBuilderJobTest >> testCreationStringForCreatingLxxGenderSubclassOfLcsCodesClass [
-	| builder |
-	builder := LcsCodeSuperClassBuilder new.
-	builder 
-		classPrefix: 'Lxx';
-		codePackageName: 'Lcs-BarebonesSystem';
-		rootName: 'Gender'.
-	self assert: builder codeClassDefintion equals: 'LcsCode subclass: #LxxGender
-		instanceVariableNames: ''''
-		classVariableNames: ''''
-		poolDictionaries: ''''
-		package: ''Lcs-BarebonesSystem'' '
-	
-]
-
-{ #category : #tests }
-LcsSingletonCodeClassesBuilderJobTest >> testCreationStringForCreatingLxxGendersSubclassOfLcsCodes [
-	| builder |
-	builder := LcsCodeCollectionClassBuilder  new.
-	builder 
-		classPrefix: 'Lxx';
-		codePackageName: 'Lcs-BarebonesSystem';
-		rootName: 'Genders'.
-	self assert: builder codeClassDefintion equals: 'LcsCodes subclass: #LxxGenders
-		instanceVariableNames: ''''
-		classVariableNames: ''''
-		poolDictionaries: ''''
-		package: ''Lcs-BarebonesSystem'' '
-	
-]
-
-{ #category : #tests }
-LcsSingletonCodeClassesBuilderJobTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
-	| builder |
-	builder := LcsCodeClassBuilder  new.
-	builder 
-		classPrefix: 'Lxx';
-		codePackageName: 'Lcs-BarebonesSystem';
-		superclassName: 'LxxGender';
-		rootName: 'Male'.
-	self assert: builder codeClassDefintion equals: 'LxxGender subclass: #LxxMale
-		instanceVariableNames: ''''
-		classVariableNames: ''''
-		poolDictionaries: ''''
-		package: ''Lcs-BarebonesSystem'' '
 	
 ]
 
@@ -144,13 +99,6 @@ LcsSingletonCodeClassesBuilderJobTest >> testInstallingGenderCodesAndGenderSlotI
 			yourself.
 
 	builder install.
-	"builder codeSuperclassBuilder install.
-	(builder codeSubclassesBuilderJobSteps collection at: 1) install.
-	(builder codeSubclassesBuilderJobSteps collection at: 2) install.
-	(builder codeSubclassesBuilderJobSteps collection at: 3) install.
-	builder codeCollectionClassBuilder install.
-	builder globalCollectionSlotBuilder install.
-	builder memberOfSlotInDomainClassBuilder install."
 		
 	genderClass := self classNamed: 'LxxGender'.
 	femaleClass := self classNamed: 'LxxFemale'.
@@ -172,4 +120,48 @@ LcsSingletonCodeClassesBuilderJobTest >> testInstallingGenderCodesAndGenderSlotI
 	
 	LxxBarebonesPerson verifyClassHasDomainSlotNamed: 'gender'.
 	LxxBarebonesSystem verifyClassHasDomainSlotNamed: 'genders'
+]
+
+{ #category : #tests }
+LcsSingletonCodeClassesBuilderJobTest >> testLoadCollectionClass [
+	| builder person |
+	
+	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.
+	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'genders'.
+	
+	builder := 
+		LcsSingletonCodeClassesBuilderJob new
+			classPrefix: 'Lxx';
+			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+			codeRootName: 'Gender';
+			addCodeSubclassWithRootNamed: 'Male';
+			addCodeSubclassWithRootNamed: 'Female';
+			addCodeSubclassWithRootNamed: 'UnknownGender' with: [ :classBuilder | classBuilder beDefaultInstance ];
+			installGlobalCollectionSlotInModule: LxxBarebonesSystem ;
+			installSlotInDomainClass: LxxBarebonesPerson;
+			yourself.
+
+	builder install.
+
+	self deny: (self currentSystem hasSlotModelFor: 'LxxGender' asClass).
+	self deny: (self currentSystem hasSlotModelFor: 'LxxMale' asClass).
+	self deny: (self currentSystem hasSlotModelFor: 'LxxFemale' asClass).
+	self deny: (self currentSystem hasSlotModelFor: 'LxxUnknownGender' asClass).
+	self deny: (self currentSystem hasSlotModelFor: 'LxxGenders' asClass).
+	self should: [self currentSystem slotDefinitionNamed: #genders] raise: LcsError.
+	self should: [LxxBarebonesPerson slotDefinitionNamed: #gender] raise: LcsError.
+	
+	builder updateSlotModel.
+	self currentSystem currentUnitOfWork applyChanges.
+
+	self assert: (self currentSystem hasSlotModelFor: 'LxxGender' asClass).
+	self assert: (self currentSystem hasSlotModelFor: 'LxxMale' asClass).
+	self assert: (self currentSystem hasSlotModelFor: 'LxxFemale' asClass).
+	self assert: (self currentSystem hasSlotModelFor: 'LxxUnknownGender' asClass).
+	self assert: (self currentSystem hasSlotModelFor: 'LxxGenders' asClass).
+	self shouldnt: [self currentSystem slotDefinitionNamed: #genders] raise: LcsError.
+	self shouldnt: [LxxBarebonesPerson slotDefinitionNamed: #gender] raise: LcsError.
+
+	person := 'LxxBarebonesPerson' asClass new.
+
 ]

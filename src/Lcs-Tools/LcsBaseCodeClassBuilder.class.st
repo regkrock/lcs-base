@@ -82,6 +82,7 @@ LcsBaseCodeClassBuilder >> initializeRootName: aString [
 LcsBaseCodeClassBuilder >> install [
 	self addCompletedRefactoring: (RBAddClassChange definition: self codeClassDefintion) execute.
 	self installedClass: self completedRefactorings last changeClass.
+	self addCompletedRefactoring: (RBAddClassChange definition: self codeClassDefintion) execute.
 
 	self assert: self installedClass notNil.
 	self assert: self installedClass category = self codePackageName

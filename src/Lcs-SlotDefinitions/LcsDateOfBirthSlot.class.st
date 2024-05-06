@@ -7,5 +7,6 @@ Class {
 { #category : #initialization }
 LcsDateOfBirthSlot >> initialize [
 	super initialize.
-	self slotName: 'dateOfBirth'
+	self slotName: 'dateOfBirth'.
+	self initialValueBlock: [ Date today]
 ]

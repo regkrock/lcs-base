@@ -40,6 +40,11 @@ LcsSmalltalkConfiguration class >> objectKeyDictionaryClass [
 ]
 
 { #category : #accessing }
+LcsSmalltalkConfiguration class >> scaledDeciamlClass [
+	^ ScaledDecimal
+]
+
+{ #category : #accessing }
 LcsSmalltalkConfiguration class >> setClass [
 
 	^ IdentitySet

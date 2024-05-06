@@ -108,9 +108,11 @@ LcsBaseModule >> hasNoModules [
 
 { #category : #initialize }
 LcsBaseModule >> initialize [
+	Transcript show: 'Start Initializing ' , self class name , ' -> LcsBseModule' ; cr.
+	self initializeSystem.	
 	super initialize.
-	self initializeModules.
-	self initializeDomainCollections.
+	Transcript show: 'Finished Initializing ' , self class name , ' <-LcsBseModule' ; cr
+	
 ]
 
 { #category : #initialize }
@@ -122,7 +124,7 @@ LcsBaseModule >> initializeDomainCollections [
 
 { #category : #initialize }
 LcsBaseModule >> initializeModel [
-	self slotModel initializeModel: self.
+	super initializeModel.
 	self modules initializeModel
 ]
 
@@ -131,6 +133,15 @@ LcsBaseModule >> initializeModules [
 	self modules:(LcsModules new
 						parent: self;
 						yourself)
+]
+
+{ #category : #initialize }
+LcsBaseModule >> initializeSystem [
+	Transcript show: 'Start Initializing ' , self class name , ' -> LcsBaseModule>>initializeSystem' ; cr.
+	self initializeModules.
+	self initializeDomainCollections.
+	Transcript show: 'Finished Initializing ' , self class name , ' -> LcsBaseModule>>initializeSystem' ; cr.
+
 ]
 
 { #category : #modules }

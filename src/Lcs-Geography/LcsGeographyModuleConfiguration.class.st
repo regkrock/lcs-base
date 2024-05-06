@@ -34,7 +34,5 @@ LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefintion [
 { #category : #'slot definitions' }
 LcsGeographyModuleConfiguration class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsSlotDefintion new
-		slotName: 'parent';
-		yourself
+	^ LcsParentSlot new
 ]

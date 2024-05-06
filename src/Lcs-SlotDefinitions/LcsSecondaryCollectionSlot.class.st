@@ -51,7 +51,7 @@ LcsSecondaryCollectionSlot >> initialize [
 ]
 
 { #category : #'slot model' }
-LcsSecondaryCollectionSlot >> initializeModel: aDomainObject [
+LcsSecondaryCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	self
 		setValueTo: (self newSlotValue
 				parent: aDomainObject;

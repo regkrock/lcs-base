@@ -32,7 +32,7 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionReferenceSlot >> initializeModel: aDomainObject [
+LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 ]
 

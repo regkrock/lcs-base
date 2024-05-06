@@ -18,6 +18,11 @@ LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
 		yourself 
 ]
 
+{ #category : #configuration }
+LcsSlotDefinitionBuilder class >> slotDefinitionClass [
+	^LcsGlobalCollectionReferenceSlot
+]
+
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addCompletedRefactoring: anObject [ 
 	self parent notNil ifTrue: [ self parent addCompletedRefactoring: anObject ]
@@ -64,7 +69,7 @@ LcsSlotDefinitionBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
 
 { #category : #validation }
 LcsSlotDefinitionBuilder >> ensureSlotDoesNotAlreadyExist [
-	(self target allInstVarNames includes: self slotName)
+	self isInstanceVariableAlreadyCreated
 		ifTrue: [ self error: 'Slot ' , self slotName , 'already exists' ]
 ]
 
@@ -75,9 +80,8 @@ LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [
 
 { #category : #api }
 LcsSlotDefinitionBuilder >> install [
-	self ensureSlotDoesNotAlreadyExist.
-	self ensureSlotDefinitionMethodDoesNotAlreadyExist.
-	self createInstanceVariable.
+	"self ensureSlotDefinitionMethodDoesNotAlreadyExist."
+	self isInstanceVariableAlreadyCreated ifFalse: [self createInstanceVariable].
 	self createGetterAndSetterMethods.
 	self createSlotDefinitionMethod
 ]
@@ -85,6 +89,11 @@ LcsSlotDefinitionBuilder >> install [
 { #category : #api }
 LcsSlotDefinitionBuilder >> installSlotDefinition [
 	self target installSlotDefinition: self slotDefinitionSelector
+]
+
+{ #category : #validation }
+LcsSlotDefinitionBuilder >> isInstanceVariableAlreadyCreated [
+	^ self target allInstVarNames includes: self slotName
 ]
 
 { #category : #acccessing }
@@ -105,7 +114,7 @@ LcsSlotDefinitionBuilder >> slotDefinitionClass [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotDefinitionSelector [
 	^ slotDefinitionSelector
-		ifNil: [ slotDefinitionSelector := self slotName , 'SlotDefinition' asSymbol ]
+		ifNil: [ slotDefinitionSelector := (self slotName , 'SlotDefinition') asSymbol ]
 ]
 
 { #category : #accessing }

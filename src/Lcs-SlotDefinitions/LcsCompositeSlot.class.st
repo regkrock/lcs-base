@@ -5,11 +5,10 @@ Class {
 }
 
 { #category : #accessing }
-LcsCompositeSlot >> initializeModel: aDomainObject [
-	| componentObject |
-	componentObject := self newSlotValue.
-	componentObject parent: aDomainObject.
-	self setValueTo: componentObject in: aDomainObject
-	
-	"super initializeModel: aDomainObject"
+LcsCompositeSlot >> initializeSlotValueIn: aDomainObject [
+	self
+		setValueTo: (self newSlotValue
+				parent: aDomainObject;
+				yourself)
+		in: aDomainObject
 ]

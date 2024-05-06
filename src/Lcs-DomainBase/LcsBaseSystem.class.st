@@ -67,6 +67,8 @@ LcsBaseSystem >> baseDomainModelClasses [
 		add: LcsBaseModule;
 		add: LcsModule;
 		add: LcsBaseSystem;
+		add: LcsCode;
+		add: LcsCodes;
 		yourself
 ]
 
@@ -113,6 +115,11 @@ LcsBaseSystem >> gtSlotModelFor: aView [
 		yourself
 ]
 
+{ #category : #accessing }
+LcsBaseSystem >> hasSlotModelFor: aClass [
+	^ self systemSlotModel hasSlotModelFor: aClass
+]
+
 { #category : #testing }
 LcsBaseSystem >> hasSlotModels [
 	^ self systemSlotModel hasSlotModels
@@ -130,14 +137,9 @@ LcsBaseSystem >> initialSystemDomainClasses [
 
 { #category : #initialize }
 LcsBaseSystem >> initialize [
+	Transcript show: 'Start Initializing ' , self class name , ' <-LcsBseSystem' ; cr.
 	super initialize.
-	self 
-		systemDomainClasses: self initialSystemDomainClasses;
-		status: (LcsSystemActiveStatus newOn: self);
-		systemSlotModel: (LcsSystemSlotModel newOn: self);
-		buildSlotDefinitions;
-		buildModules;
-		initializeModel
+	Transcript show: 'Finished Initializing ' , self class name , ' <-LcsBseSystem' ; cr
 ]
 
 { #category : #initialize }
@@ -146,6 +148,22 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 	aUnitOfWork addObject: self. "Need to add to unit of work"
 	self initialize.
 	self currentUnitOfWork applyChanges.
+
+]
+
+{ #category : #initialize }
+LcsBaseSystem >> initializeSystem [
+	Transcript show: 'Start Initializing  ' , self class name , ' -> LcsBaseSystem>>initializeSystem' ; cr.
+	super initializeSystem.
+	self
+		systemDomainClasses: self initialSystemDomainClasses;
+		status: (LcsSystemActiveStatus newOn: self);
+		systemSlotModel: (LcsSystemSlotModel newOn: self);
+		buildSlotDefinitions;
+		buildModules.
+	Transcript show: 'Finished Initializing ' , self class name , ' -> LcsBaseSystem>>initializeSystem' ; cr.
+
+
 
 ]
 

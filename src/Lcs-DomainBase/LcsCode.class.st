@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'codeName',
 		'shortName',
-		'codeDescription'
+		'codeDescription',
+		'isDefaultInstance'
 	],
 	#category : #'Lcs-DomainBase'
 }
@@ -19,6 +20,24 @@ LcsCode >> codeDescriptionSlotDefinition [
 LcsCode >> codeNameSlotDefinition [
 	<slotDefinition>
 	^ LcsCodeNameSlot new
+]
+
+{ #category : #accessing }
+LcsCode >> isDefaultInstance [
+	^ self getValueOfSlotNamed: 'isDefaultInstance' 
+]
+
+{ #category : #accessing }
+LcsCode >> isDefaultInstance: anObject [
+	self setValueOfSlotNamed: 'isDefaultInstance' to: anObject 
+]
+
+{ #category : #accessing }
+LcsCode >> isDefaultInstanceSlotDefinition [
+	<slotDefinition>
+	^ LcsBooleanSlot new
+		slotName: 'isDefaultInstance';
+		yourself
 ]
 
 { #category : #accessing }

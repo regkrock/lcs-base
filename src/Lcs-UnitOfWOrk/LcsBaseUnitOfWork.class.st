@@ -71,9 +71,10 @@ LcsBaseUnitOfWork >> changedSlot: aSlotName valueTo: anObject in: aDomainObject 
 
 { #category : #initialize }
 LcsBaseUnitOfWork >> clearUnitOfWork [
-	self addedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
-	self changedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
-	self deletedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new
+
+	self addedObjects removeAll.
+	self changedObjects removeAll.
+	self deletedObjects removeAll
 ]
 
 { #category : #api }
@@ -117,6 +118,9 @@ column: 'Deleted'
 { #category : #initialize }
 LcsBaseUnitOfWork >> initialize [
 	super initialize.
+	self addedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
+	self changedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
+	self deletedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
 	self clearUnitOfWork
 ]
 

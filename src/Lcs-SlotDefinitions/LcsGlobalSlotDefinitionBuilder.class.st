@@ -62,6 +62,12 @@ LcsGlobalSlotDefinitionBuilder >> initialize [
 ]
 
 { #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> initializeModel [
+	(self target slotDefinitionNamed: self slotName) 
+		initializeModel: (self currentSystem moduleNamed: self moduleName)
+]
+
+{ #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> moduleName [
 	^ moduleName
 ]

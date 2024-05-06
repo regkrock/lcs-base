@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsDomainClassSlot >> initializeModel: aDomainObject [
+LcsDomainClassSlot >> initializeSlotValueIn: aDomainObject [
 	self
 		setValueTo: (self newSlotValue
 				parent: aDomainObject;

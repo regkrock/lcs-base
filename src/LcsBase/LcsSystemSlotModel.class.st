@@ -48,6 +48,12 @@ LcsSystemSlotModel >> gtViewSlotModelChildren [
 ]
 
 { #category : #testing }
+LcsSystemSlotModel >> hasSlotModelFor: aClass [
+	self slotModels at: aClass ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #testing }
 LcsSystemSlotModel >> hasSlotModels [
 	^ self slotModels notEmpty
 ]

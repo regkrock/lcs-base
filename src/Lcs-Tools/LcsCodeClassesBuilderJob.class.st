@@ -26,6 +26,11 @@ LcsCodeClassesBuilderJob >> addCodeSuperClassBuilderStep [
 	self addJobStep: LcsCodeSuperClassBuilder new
 ]
 
+{ #category : #iniitialize }
+LcsCodeClassesBuilderJob >> addCodeSuperClassParentSlotDefinitionStep [
+	self addJobStep: LcsParentGlobaCollectionSlotDefinitionBuilder new
+]
+
 { #category : #initialize }
 LcsCodeClassesBuilderJob >> addGlobalCollectionSlotDefinitionBuilderStep [
 	self addJobStep: LcsGlobalSlotDefinitionBuilder new
@@ -42,23 +47,27 @@ LcsCodeClassesBuilderJob >> addMemberOfSlotInDomainClassBuilderStep [
 	self addJobStep: LcsMemberOfSlotBuilder new
 ]
 
-{ #category : #configuration }
+{ #category : #'job steps' }
 LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
 	self subclassResponsibility
 ]
 
 { #category : #configuration }
 LcsCodeClassesBuilderJob >> codeRootName: aString [
-	| codeSlotName codesSlotName codeSlotClassName|
+	| codeSlotName codesSlotName codeClassName codesClassName |
 
 	codeSlotName := self codeSlotNameFrom: aString.
 	codesSlotName := codeSlotName asEnglishPlural.
-	codeSlotClassName := self classPrefix , aString.
-	
+	codeClassName := self classPrefix , aString.
+	codesClassName := (self classPrefix , aString) asEnglishPlural.
+
 	self codeSuperclassBuilder rootName: aString.
 	self codeCollectionClassBuilder rootName: aString asEnglishPlural.
+	self codeSuperClassParentSlotDefinitionStep 
+		targetClassName: codeClassName;
+		collectionSlotName: codesSlotName.
 	self globalCollectionSlotBuilder 
-		slotClassName: codeSlotClassName;
+		slotClassName: codesClassName;
 		slotName: codesSlotName.
 	self memberOfSlotInDomainClassBuilder
 		collectionSlotName: codesSlotName;
@@ -70,7 +79,12 @@ LcsCodeClassesBuilderJob >> codeSlotNameFrom: aString [
 	^ (aString at: 1) asLowercase asString , (aString copyFrom: 2 to: aString size)
 ]
 
-{ #category : #configuration }
+{ #category : #'job steps' }
+LcsCodeClassesBuilderJob >> codeSuperClassParentSlotDefinitionStep [
+	self subclassResponsibility
+]
+
+{ #category : #'job steps' }
 LcsCodeClassesBuilderJob >> codeSuperclassBuilder [
 	self subclassResponsibility
 ]
@@ -78,10 +92,10 @@ LcsCodeClassesBuilderJob >> codeSuperclassBuilder [
 { #category : #configuration }
 LcsCodeClassesBuilderJob >> codeSuperclassRootName: aString [ 
 	self codeSuperclassBuilder rootName: aString.
-	self memberOfSlotInDomainClassBuilder slotName: ((aString at: 1) asLowercase) asString , (aString copyFrom: 2 to: aString size)
+	self memberOfSlotInDomainClassBuilder slotName: (self codeSlotNameFrom: aString)
 ]
 
-{ #category : #configuration }
+{ #category : #'job steps' }
 LcsCodeClassesBuilderJob >> globalCollectionSlotBuilder [
 	self subclassResponsibility
 ]
@@ -89,7 +103,7 @@ LcsCodeClassesBuilderJob >> globalCollectionSlotBuilder [
 { #category : #build }
 LcsCodeClassesBuilderJob >> install [
 	self jobSteps do: [:each | 
-		Transcript cr; show: each printString.
+		Transcript cr; show: 'Installing class:' , each printString.
 		each install ]
 ]
 
@@ -136,6 +150,7 @@ LcsCodeClassesBuilderJob >> installGlobalCollectionSlotInModule: aModuleClass [
 	self memberOfSlotInDomainClassBuilder moduleName: name.
 	self globalCollectionSlotBuilder moduleName: name.
 	self memberOfSlotInDomainClassBuilder moduleName: name.
+	self codeSuperClassParentSlotDefinitionStep moduleName: name
 ]
 
 { #category : #build }

@@ -5,10 +5,20 @@ Class {
 	#name : #LxxBarebonesSystem,
 	#superclass : #LcsBaseSystem,
 	#instVars : [
-		'persons'
+		'persons',
+		'age'
 	],
 	#category : #'Lcs-BarebonesSystem'
 }
+
+{ #category : #'slot definitions' }
+LxxBarebonesSystem class >> ageSlotDefinition [
+	<slotDefinition>
+	^LcsIntegerSlot new
+		slotName: 'age';
+		initialValue: 10;
+		yourself
+]
 
 { #category : #'slot definitions' }
 LxxBarebonesSystem class >> configurationSlotDefinition [
@@ -38,11 +48,24 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 		yourself
 ]
 
+{ #category : #accessing }
+LxxBarebonesSystem >> age [
+	^ self getValueOfSlotNamed: 'age'
+]
+
+{ #category : #accessing }
+LxxBarebonesSystem >> age: anObject [
+	self setValueOfSlotNamed: 'age' to: anObject
+]
+
 { #category : #initialize }
 LxxBarebonesSystem >> initialSystemDomainClasses [
 	^super initialSystemDomainClasses
 		add: LxxBarebonesPerson;
 		add: LxxBarebonesSystemConfiguration;
+		add: LxxBarebonesPersons;
+		add: LcsCode;
+		add: LcsCodes;
 		yourself
 ]
 

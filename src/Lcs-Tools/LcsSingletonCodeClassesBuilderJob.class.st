@@ -41,13 +41,18 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassesBuilderJobSteps [
 ]
 
 { #category : #'job steps' }
+LcsSingletonCodeClassesBuilderJob >> codeSuperClassParentSlotDefinitionStep [
+	^ self jobSteps at: 4
+]
+
+{ #category : #'job steps' }
 LcsSingletonCodeClassesBuilderJob >> codeSuperclassBuilder [
 	^ self jobSteps at: 1
 ]
 
 { #category : #'job steps' }
 LcsSingletonCodeClassesBuilderJob >> globalCollectionSlotBuilder [
-	^ self jobSteps at: 4
+	^ self jobSteps at: 5
 ]
 
 { #category : #iniitialize }
@@ -56,19 +61,31 @@ LcsSingletonCodeClassesBuilderJob >> initialize [
 	self addCodeSuperClassBuilderStep.
 	self addCodeSubclassesBuilderJobSteps.
 	self addCodeCollectionClassBuilderStep.
+	self addCodeSuperClassParentSlotDefinitionStep.
 	self addGlobalCollectionSlotDefinitionBuilderStep.
 	self addMemberOfSlotInDomainClassBuilderStep.
 ]
 
 { #category : #'job steps' }
 LcsSingletonCodeClassesBuilderJob >> memberOfSlotInDomainClassBuilder [
-	^ self jobSteps at: 5
+	^ self jobSteps at: 6
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> updateSlotModel [
 	self codeSuperclassBuilder installedClass withAllSubclassesDo: [ :eachClass | eachClass initializeSlotModel ].
+	self codeCollectionClassBuilder installedClass initializeSlotModel.
+	self codeSuperClassParentSlotDefinitionStep installSlotDefinition.
 	self globalCollectionSlotBuilder installSlotDefinition.
 	self memberOfSlotInDomainClassBuilder installSlotDefinition.
+	self globalCollectionSlotBuilder initializeModel.
+	
+	self codeSuperclassBuilder installedClass subclassesDo: [ :each |
+		| instance |
+		instance := each new.
+		instance class ==  self codeSubclassesBuilderJobSteps collection last installedClass ifTrue: [ instance isDefaultInstance: true]
+		 ].
+	self codeSubclassesBuilderJobSteps collection last .
+	self currentSystem currentUnitOfWork applyChanges
 	
 ]

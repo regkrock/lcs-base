@@ -7,12 +7,6 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
-{ #category : #'slot definitions' }
-LxxPrototype1Module class >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
-]
-
 { #category : #configuration }
 LxxPrototype1Module class >> moduleName [
 	^ 'Prototype 1 Module'

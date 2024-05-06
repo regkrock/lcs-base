@@ -66,14 +66,14 @@ LcsSlotModel >> gtViewSlotModelChildren [
 	^ children
 ]
 
-{ #category : #model }
-LcsSlotModel >> initializeModel: aDomainObject [
-	self collection do: [ :eachDefintion | eachDefintion initializeModel: aDomainObject ]
-]
-
 { #category : #initialize }
 LcsSlotModel >> initializeOn: aDomainClass [ 
 	self domainClass: aDomainClass
+]
+
+{ #category : #model }
+LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
+	self collection do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
 ]
 
 { #category : #accessing }

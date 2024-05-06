@@ -4,12 +4,6 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
-{ #category : #'slot definitions' }
-LxxPrototype2Module class >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
-]
-
 { #category : #modules }
 LxxPrototype2Module class >> moduleClasses [
 	^ OrderedCollection new

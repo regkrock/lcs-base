@@ -13,7 +13,7 @@ Class {
 
 { #category : #'slot model' }
 LcsDomainObject class >> addSlotDefinitions [
-	self slotDefinitionMethods
+	self slotDefinitionPragmas
 		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
 ]
 
@@ -98,8 +98,9 @@ LcsDomainObject class >> isSlotModelReleased [
 { #category : #'instance creation' }
 LcsDomainObject class >> new [
 	| newObject |
-	newObject := self basicNew initialize.
+	newObject := self basicNew.
 	self currentSystem ifNotNil: [ self addToUnitOfWork: newObject ].
+	newObject initialize.
 	^ newObject
 ]
 
@@ -152,14 +153,14 @@ LcsDomainObject class >> restorelotModel [
 ]
 
 { #category : #'slot model' }
-LcsDomainObject class >> slotDefinitionMethods [
-	^ Pragma allNamed: 'slotDefinition' in: self class
-]
-
-{ #category : #'slot model' }
 LcsDomainObject class >> slotDefinitionNamed: aString [ 
 	self slotModel ifNil: [ ^ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
 	^ self slotModel slotDefinitionNamed: aString
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> slotDefinitionPragmas [
+	^ Pragma allNamed: 'slotDefinition' in: self class
 ]
 
 { #category : #accessing }
@@ -225,6 +226,25 @@ LcsDomainObject >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
 	^ self class gtViewSlotDefinitionsFor: aView
+]
+
+{ #category : #iniitialize }
+LcsDomainObject >> initialize [
+	super initialize.
+	self initializeModel.
+]
+
+{ #category : #iniitialize }
+LcsDomainObject >> initializeModel [
+	self initializeSlotValues
+
+]
+
+{ #category : #iniitialize }
+LcsDomainObject >> initializeSlotValues [
+	self slotModel ifNil: [ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self className asString ) ].
+	self slotModel initializeSlotValuesIn: self.
+
 ]
 
 { #category : #validation }
