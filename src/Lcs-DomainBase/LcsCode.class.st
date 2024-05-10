@@ -10,16 +10,71 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #accessing }
-LcsCode >> codeDescriptionSlotDefinition [
+{ #category : #'slot definitions' }
+LcsCode class >> codeDescriptionSlotDefinition [
 	<slotDefinition>
 	^ LcsCodeDescriptionSlot new
 ]
 
-{ #category : #accessing }
-LcsCode >> codeNameSlotDefinition [
+{ #category : #'slot definitions' }
+LcsCode class >> codeNameSlotDefinition [
 	<slotDefinition>
 	^ LcsCodeNameSlot new
+]
+
+{ #category : #defaults }
+LcsCode class >> defaultCodeDescription [
+	self subclassResponsibility
+]
+
+{ #category : #defaults }
+LcsCode class >> defaultCodeName [
+	self subclassResponsibility
+]
+
+{ #category : #defaults }
+LcsCode class >> defaultShortName [
+	self subclassResponsibility
+]
+
+{ #category : #'slot definitions' }
+LcsCode class >> isDefaultInstanceSlotDefinition [
+	<slotDefinition>
+	^ LcsBooleanSlot new
+		slotName: 'isDefaultInstance';
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsCode class >> parentSlotDefinition [
+	<slotDefinition>
+	^ LcsParentSlot new
+]
+
+{ #category : #'slot definitions' }
+LcsCode class >> shortNameSlotDefinition [
+	<slotDefinition>
+	^ LcsShortNameSlot new
+]
+
+{ #category : #accessing }
+LcsCode >> codeDescription [
+	^ self getValueOfSlotNamed: 'codeDescription' 
+]
+
+{ #category : #accessing }
+LcsCode >> codeDescription: anObject [
+	self setValueOfSlotNamed: 'codeDescription' to: anObject 
+]
+
+{ #category : #accessing }
+LcsCode >> codeName [
+	^ self getValueOfSlotNamed: 'codeName' 
+]
+
+{ #category : #accessing }
+LcsCode >> codeName: anObject [
+	self setValueOfSlotNamed: 'codeName' to: anObject 
 ]
 
 { #category : #accessing }
@@ -32,21 +87,17 @@ LcsCode >> isDefaultInstance: anObject [
 	self setValueOfSlotNamed: 'isDefaultInstance' to: anObject 
 ]
 
-{ #category : #accessing }
-LcsCode >> isDefaultInstanceSlotDefinition [
-	<slotDefinition>
-	^ LcsBooleanSlot new
-		slotName: 'isDefaultInstance';
-		yourself
+{ #category : #search }
+LcsCode >> key [
+	^ self codeName
 ]
 
 { #category : #accessing }
-LcsCode >> parentSlotDefinition [
-	^ LcsParentSlot new
+LcsCode >> shortName [
+	^ self getValueOfSlotNamed: 'shortName' 
 ]
 
 { #category : #accessing }
-LcsCode >> shortNameSlotDefinition [
-	<slotDefinition>
-	^ LcsShortNameSlot new
+LcsCode >> shortName: anObject [
+	self setValueOfSlotNamed: 'shortName' to: anObject 
 ]

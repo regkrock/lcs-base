@@ -115,7 +115,7 @@ LcsSlotDefintion >> initializeSlotTypes [
 
 { #category : #accessing }
 LcsSlotDefintion >> initializeSlotValueIn: aDomainObject [
-	self error: 'This needs to be implemented'
+	self setValueTo: self defaultInstance in: aDomainObject
 ]
 
 { #category : #validation }

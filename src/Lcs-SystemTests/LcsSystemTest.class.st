@@ -9,6 +9,7 @@ LcsSystemTest >> testCreation [
 
 	| currentUnitOfWork system |
 
+	1 halt.
 	LcsApplicationEnvironment removeCurrentSystem.
 	self assert: self currentSystem isNil. 
 	system := LcsMainSystem new.

@@ -67,8 +67,10 @@ LcsBaseSystem >> baseDomainModelClasses [
 		add: LcsBaseModule;
 		add: LcsModule;
 		add: LcsBaseSystem;
+		add: LcsDomainCollection;
 		add: LcsCode;
 		add: LcsCodes;
+		add: LcsBaseConfiguration;
 		yourself
 ]
 
@@ -137,9 +139,7 @@ LcsBaseSystem >> initialSystemDomainClasses [
 
 { #category : #initialize }
 LcsBaseSystem >> initialize [
-	Transcript show: 'Start Initializing ' , self class name , ' <-LcsBseSystem' ; cr.
-	super initialize.
-	Transcript show: 'Finished Initializing ' , self class name , ' <-LcsBseSystem' ; cr
+	super initialize
 ]
 
 { #category : #initialize }

@@ -7,7 +7,10 @@ Class {
 		'rootName',
 		'installClassName',
 		'classPrefix',
-		'codePackageName'
+		'codePackageName',
+		'shortName',
+		'codeDescription',
+		'codeName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -27,8 +30,32 @@ LcsBaseCodeClassBuilder class >> newRootName: aString [
 ]
 
 { #category : #build }
+LcsBaseCodeClassBuilder >> addCodeDescriptionRefactoring [
+	^ RBAddMethodChange
+		compile: self defaultCodeDescriptionSource
+		in: self installedClass class
+		classified: #defaults
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> addCodeNameRefactoring [
+	^ RBAddMethodChange
+		compile: self defaultCodeNameSource
+		in: self installedClass class
+		classified: #defaults
+]
+
+{ #category : #build }
 LcsBaseCodeClassBuilder >> addCompletedRefactoring: aRefactoring [ 
 	self parent addCompletedRefactoring: aRefactoring
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> addShortNameRefactoring [
+	^ RBAddMethodChange
+		compile: self defaultShortNameSource
+		in: self installedClass class
+		classified: #defaults
 ]
 
 { #category : #accessing }
@@ -53,6 +80,23 @@ LcsBaseCodeClassBuilder >> codeClassDefintion [
 			with: self codePackageName
 ]
 
+{ #category : #build }
+LcsBaseCodeClassBuilder >> codeDescription [
+	^ codeDescription ifNil: [ self rootName ]
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> codeDescription: aString [
+	codeDescription := aString
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> codeName [
+	^ codeName
+		ifNil: [ self rootName first asLowercase asString
+				, (self rootName copyFrom: 2 to: self rootName size) ]
+]
+
 { #category : #accessing }
 LcsBaseCodeClassBuilder >> codePackageName [
 	^ codePackageName
@@ -68,6 +112,24 @@ LcsBaseCodeClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
+{ #category : #build }
+LcsBaseCodeClassBuilder >> defaultCodeDescriptionSource [
+	^ 'defaultCodeDescription
+	^ ''' , self codeDescription , ''''
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> defaultCodeNameSource [
+	^ 'defaultCodeName
+	^ ''' , (self codeName first asLowercase asString) , (self codeName copyFrom: 2 to: self codeName size) , ''''
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> defaultShortNameSource [
+	^ 'defaultShortName
+	^ ''' , self shortName , ''''
+]
+
 { #category : #initialize }
 LcsBaseCodeClassBuilder >> initializeOn: aBuilder [ 
 	self parent: aBuilder
@@ -81,11 +143,7 @@ LcsBaseCodeClassBuilder >> initializeRootName: aString [
 { #category : #build }
 LcsBaseCodeClassBuilder >> install [
 	self addCompletedRefactoring: (RBAddClassChange definition: self codeClassDefintion) execute.
-	self installedClass: self completedRefactorings last changeClass.
-	self addCompletedRefactoring: (RBAddClassChange definition: self codeClassDefintion) execute.
-
-	self assert: self installedClass notNil.
-	self assert: self installedClass category = self codePackageName
+	self installedClass: self completedRefactorings last changeClass
 ]
 
 { #category : #build }
@@ -122,6 +180,11 @@ LcsBaseCodeClassBuilder >> rootName [
 { #category : #accessing }
 LcsBaseCodeClassBuilder >> rootName: aString [ 
 	rootName := aString
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> shortName [
+	^ shortName ifNil: [ self rootName ]
 ]
 
 { #category : #build }

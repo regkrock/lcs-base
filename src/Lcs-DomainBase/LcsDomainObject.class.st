@@ -49,13 +49,13 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 	<gtClassView>
 	self slotModel ifNil: [ 
 		^ aView list
-			title: 'Slot Definitions';
+			title: 'Domian Slot Definitions';
 			priority: 10;
 			items: [ Array with: 'Not initialized' ];
 			yourself].	
 	^ aView forward
-		title: 'Slot Definitions';
-		priority: 99;
+		title: 'Domain Slot Definitions';
+		priority: 10;
 		object: [ self slotModel ];
 		view: #gtViewSlotDefinitionsFor:;
 		yourself
@@ -86,6 +86,11 @@ LcsDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 { #category : #testing }
 LcsDomainObject class >> isDomainClass [
 	^ true
+]
+
+{ #category : #testing }
+LcsDomainObject class >> isSlotModelDefined [
+	^ self slotModel notNil 
 ]
 
 { #category : #testing }

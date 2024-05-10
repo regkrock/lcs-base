@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 LcsPrimitiveSlot >> initialValue [
-	^ self initialValueBlock value
+	^ self initialValueBlock cull: self domainClass
 ]
 
 { #category : #accessing }
@@ -36,7 +36,7 @@ LcsPrimitiveSlot >> initialize [
 { #category : #accessing }
 LcsPrimitiveSlot >> initializeSlotValueIn: aDomainObject [
 		self
-		setValueTo: self initialValue
+		setValueTo: (self initialValueBlock cull: aDomainObject class)
 		in: aDomainObject
 ]
 

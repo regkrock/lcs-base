@@ -108,11 +108,8 @@ LcsBaseModule >> hasNoModules [
 
 { #category : #initialize }
 LcsBaseModule >> initialize [
-	Transcript show: 'Start Initializing ' , self class name , ' -> LcsBseModule' ; cr.
 	self initializeSystem.	
-	super initialize.
-	Transcript show: 'Finished Initializing ' , self class name , ' <-LcsBseModule' ; cr
-	
+	super initialize
 ]
 
 { #category : #initialize }
@@ -137,11 +134,8 @@ LcsBaseModule >> initializeModules [
 
 { #category : #initialize }
 LcsBaseModule >> initializeSystem [
-	Transcript show: 'Start Initializing ' , self class name , ' -> LcsBaseModule>>initializeSystem' ; cr.
 	self initializeModules.
-	self initializeDomainCollections.
-	Transcript show: 'Finished Initializing ' , self class name , ' -> LcsBaseModule>>initializeSystem' ; cr.
-
+	self initializeDomainCollections
 ]
 
 { #category : #modules }

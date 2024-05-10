@@ -7,5 +7,7 @@ Class {
 { #category : #initialize }
 LcsCodeDescriptionSlot >> initialize [
 	super initialize.
-	self slotName: 'codeDescription'
+	self 
+		slotName: 'codeDescription';
+		initialValueBlock: [ :domainClass | domainClass defaultCodeDescription ]
 ]

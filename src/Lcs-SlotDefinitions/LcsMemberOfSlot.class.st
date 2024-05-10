@@ -26,6 +26,12 @@ LcsMemberOfSlot >> collectionSlotName: aString [
 	collectionSlotName := aString
 ]
 
+{ #category : #accessing }
+LcsMemberOfSlot >> defaultInstance [
+	^ ((self currentSystem moduleNamed: self moduleName)
+		perform: self collectionSlotName asSymbol) defaultInstance
+]
+
 { #category : #private }
 LcsMemberOfSlot >> defaultReferenceCollectionBlock [
 	^ [ [ self collectionModule perform: self collectionSlotName asSymbol ]

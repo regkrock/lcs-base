@@ -29,6 +29,14 @@ LcsCodeClassBuilder >> initialize [
 	self defaultInstance: false
 ]
 
+{ #category : #build }
+LcsCodeClassBuilder >> install [
+	super install..
+	self addCompletedRefactoring: self addShortNameRefactoring execute.
+	self addCompletedRefactoring: self addCodeDescriptionRefactoring execute.
+	self addCompletedRefactoring: self addCodeNameRefactoring execute.
+]
+
 { #category : #testing }
 LcsCodeClassBuilder >> isDefaultInstance [
 	^ self defaultInstance == true

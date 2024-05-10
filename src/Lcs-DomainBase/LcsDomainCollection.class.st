@@ -50,7 +50,7 @@ LcsDomainCollection >> collectionClass [
 	^ self class collectionClass
 ]
 
-{ #category : #accessing }
+{ #category : #collection }
 LcsDomainCollection >> detect: aBlock [
 	^ self collection detect: aBlock
 ]
@@ -63,6 +63,11 @@ LcsDomainCollection >> detect: aBlock ifNone: anIfNoneBlock [
 { #category : #collection }
 LcsDomainCollection >> do: aBlock [
 	^ self collection do: aBlock
+]
+
+{ #category : #search }
+LcsDomainCollection >> findWithKey: anObject [
+	^ self collection detect: [ :each | each key = anObject ] ifNone: [  ]
 ]
 
 { #category : #testing }
