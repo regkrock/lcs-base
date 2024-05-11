@@ -22,6 +22,28 @@ LcsStandardCodeClassesBuilderJob >> codeInstances: aCollection [
 	codeInstances := aCollection
 ]
 
+{ #category : #configuration }
+LcsStandardCodeClassesBuilderJob >> codeRootName: aString [
+	| codeSlotName codesSlotName codeClassName codesClassName |
+
+	codeSlotName := self codeSlotNameFrom: aString.
+	codesSlotName := codeSlotName asEnglishPlural.
+	codeClassName := self classPrefix , aString.
+	codesClassName := (self classPrefix , aString) asEnglishPlural.
+
+	self codeSuperclassBuilder rootName: aString.
+	self codeCollectionClassBuilder rootName: aString asEnglishPlural.
+	"self codeSuperClassParentSlotDefinitionStep 
+		targetClassName: codeClassName;
+		collectionSlotName: codesSlotName."
+	self globalCollectionSlotBuilder 
+		slotClassName: codesClassName;
+		slotName: codesSlotName.
+	self memberOfSlotInDomainClassBuilder
+		collectionSlotName: codesSlotName;
+		slotName: codeSlotName
+]
+
 { #category : #'job steps' }
 LcsStandardCodeClassesBuilderJob >> codeSuperclassBuilder [
 	^ self jobSteps at: 1

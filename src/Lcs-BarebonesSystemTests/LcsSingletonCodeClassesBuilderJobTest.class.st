@@ -20,15 +20,21 @@ LcsSingletonCodeClassesBuilderJobTest >> genderBuilder [
 ]
 
 { #category : #running }
+LcsSingletonCodeClassesBuilderJobTest >> removeAllGenderArtifacts [
+	LxxBarebonesSystem removeDomainSlotNamed: 'genders'.
+	LxxBarebonesPerson removeDomainSlotNamed: 'gender'.
+	self
+		removeClassesNamed: #('LxxUnknownGender' 'LxxFemale' 'LxxMale' 'LxxGender' 'LxxGenders')
+]
+
+{ #category : #running }
 LcsSingletonCodeClassesBuilderJobTest >> setupSunitSystem [
 	LxxBarebonesSystem new
 ]
 
 { #category : #running }
 LcsSingletonCodeClassesBuilderJobTest >> tearDown [
-	LxxBarebonesSystem removeDomainSlotNamed: 'genders'.
-	LxxBarebonesPerson removeDomainSlotNamed: 'gender'.
-	self removeClassesNamed: #('LxxUnknownGender' 'LxxFemale' 'LxxMale' 'LxxGender' 'LxxGenders').
+	self removeAllGenderArtifacts.
 	super tearDown
 ]
 
@@ -118,6 +124,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testInstallingGenderCodesAndGenderSlotI
 LcsSingletonCodeClassesBuilderJobTest >> testLoadCollectionClass [
 	| builder person |
 	
+	self removeAllGenderArtifacts.
 	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.
 	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'genders'.
 	
@@ -140,8 +147,8 @@ LcsSingletonCodeClassesBuilderJobTest >> testLoadCollectionClass [
 	self deny: (self currentSystem hasSlotModelFor: 'LxxFemale' asClass).
 	self deny: (self currentSystem hasSlotModelFor: 'LxxUnknownGender' asClass).
 	self deny: (self currentSystem hasSlotModelFor: 'LxxGenders' asClass).
-	self should: [self currentSystem slotDefinitionNamed: #genders] raise: LcsError.
-	self should: [LxxBarebonesPerson slotDefinitionNamed: #gender] raise: LcsError.
+	self should: [ self currentSystem slotDefinitionNamed: #genders ] raise: LcsError.
+	self should: [ LxxBarebonesPerson slotDefinitionNamed: #gender ] raise: LcsError.
 	
 	builder updateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.

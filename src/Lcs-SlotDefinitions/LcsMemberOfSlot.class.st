@@ -3,8 +3,6 @@ Class {
 	#superclass : #LcsSlotDefintion,
 	#instVars : [
 		'collectionSourceBlock',
-		'referenceCollectionBlock',
-		'referenceCollection',
 		'collectionSlotName',
 		'moduleName'
 	],
@@ -32,18 +30,11 @@ LcsMemberOfSlot >> defaultInstance [
 		perform: self collectionSlotName asSymbol) defaultInstance
 ]
 
-{ #category : #private }
-LcsMemberOfSlot >> defaultReferenceCollectionBlock [
-	^ [ [ self collectionModule perform: self collectionSlotName asSymbol ]
-			on: Error
-			do: [ :s | self singalNoReferenceCollectionError ] ]
-]
-
 { #category : #initialize }
 LcsMemberOfSlot >> initialize [
 	super initialize.
 	self beRequired.
-	self referenceCollectionBlock: self defaultReferenceCollectionBlock
+	self initialValueBlock: [ self defaultInstance ]
 ]
 
 { #category : #accessing }
@@ -54,33 +45,4 @@ LcsMemberOfSlot >> moduleName [
 { #category : #accessing }
 LcsMemberOfSlot >> moduleName: aString [ 
 	moduleName := aString
-]
-
-{ #category : #query }
-LcsMemberOfSlot >> referenceCollection [
-	^ self referenceCollectionBlock value
-]
-
-{ #category : #accessing }
-LcsMemberOfSlot >> referenceCollectionBlock [
-	referenceCollectionBlock
-]
-
-{ #category : #accessing }
-LcsMemberOfSlot >> referenceCollectionBlock: aBlock [ 
-	referenceCollectionBlock := aBlock
-]
-
-{ #category : #query }
-LcsMemberOfSlot >> referenceCollectionSource: aCollectionSourceStringOrBlock [
-	self referenceCollectionBlock: (aCollectionSourceStringOrBlock isBlock 
-		ifTrue: [  aCollectionSourceStringOrBlock ]
-		ifFalse: [ [ aCollectionSourceStringOrBlock ] ])
-]
-
-{ #category : #error }
-LcsMemberOfSlot >> singalNoReferenceCollectionError [
-	^ LcsNoReferenceCollectionError
-		signal: 'No reference collection defined for: ' , self slotName , ' in class '
-				, self domainClass name
 ]

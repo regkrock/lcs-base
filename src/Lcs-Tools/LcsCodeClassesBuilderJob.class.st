@@ -145,12 +145,14 @@ LcsCodeClassesBuilderJob >> installGlobalCollection: aString inSlotNamed: aSlotN
 
 { #category : #configuration }
 LcsCodeClassesBuilderJob >> installGlobalCollectionSlotInModule: aModuleClass [
-	| name |
-	name := aModuleClass moduleName.
-	self memberOfSlotInDomainClassBuilder moduleName: name.
-	self globalCollectionSlotBuilder moduleName: name.
-	self memberOfSlotInDomainClassBuilder moduleName: name.
-	self codeSuperClassParentSlotDefinitionStep moduleName: name
+	self installGlobalCollectionSlotInModuleName: aModuleClass moduleName
+]
+
+{ #category : #configuration }
+LcsCodeClassesBuilderJob >> installGlobalCollectionSlotInModuleName: aString [
+	self memberOfSlotInDomainClassBuilder moduleName: aString.
+	self globalCollectionSlotBuilder moduleName: aString.
+	self memberOfSlotInDomainClassBuilder moduleName: aString
 ]
 
 { #category : #build }

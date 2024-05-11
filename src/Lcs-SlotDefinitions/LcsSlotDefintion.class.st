@@ -11,7 +11,8 @@ Class {
 		'parent',
 		'slotTypes',
 		'required',
-		'validator'
+		'validator',
+		'initialValueBlock'
 	],
 	#category : #'Lcs-SlotDefinitions'
 }
@@ -48,9 +49,20 @@ LcsSlotDefintion >> currentUnitOfWork [
 	^ #LcsApplicationEnvironment asClass currentUnitOfWork
 ]
 
+{ #category : #defaults }
+LcsSlotDefintion >> defaultInitialValueBlock [
+	^ [ self newSlotValue ]
+]
+
 { #category : #'slot model' }
 LcsSlotDefintion >> domainClass [
 	^ self parent domainClass
+]
+
+{ #category : #'gt view' }
+LcsSlotDefintion >> domainClassName [
+	self parent ifNil: [ ^ self parent class name].
+	^self parent domainClass
 ]
 
 { #category : #'slot model' }
@@ -64,7 +76,7 @@ LcsSlotDefintion >> getValueIn: aDomainObject [
 { #category : #'gt view' }
 LcsSlotDefintion >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
-		add: 'domainClass' -> self domainClass;
+		add: 'domainClass' -> self domainClassName;
 		add: 'slotName' -> self slotName;
 		add: 'slotTypes' -> self slotTypeClassNames;
 		add: 'required' -> self isRequired;
@@ -97,15 +109,42 @@ LcsSlotDefintion >> gtViewSlotModelChildren [
 		}
 ]
 
+{ #category : #accessing }
+LcsSlotDefintion >> initialValue [
+	^ self initialValueBlock value
+]
+
+{ #category : #accessing }
+LcsSlotDefintion >> initialValue: anObject [
+	self initialValueBlock: [ anObject ]
+]
+
+{ #category : #accessing }
+LcsSlotDefintion >> initialValueBlock [
+	^ initialValueBlock
+]
+
+{ #category : #accessing }
+LcsSlotDefintion >> initialValueBlock: aBlock [ 
+	initialValueBlock := aBlock
+]
+
+{ #category : #accessing }
+LcsSlotDefintion >> initialValueFor: aDomainObject [ 
+	^ self initialValueBlock cull: aDomainObject
+]
+
 { #category : #initialize }
 LcsSlotDefintion >> initialize [
 	super initialize.
-	self initializeSlotTypes
+	self initializeSlotTypes.
+	self initialValueBlock: self defaultInitialValueBlock
 ]
 
 { #category : #initialize }
 LcsSlotDefintion >> initializeModel: aDomainObject [
-	self setValueTo: self newSlotValue in: aDomainObject
+
+	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
 { #category : #initialize }
@@ -115,12 +154,17 @@ LcsSlotDefintion >> initializeSlotTypes [
 
 { #category : #accessing }
 LcsSlotDefintion >> initializeSlotValueIn: aDomainObject [
-	self setValueTo: self defaultInstance in: aDomainObject
+	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
 { #category : #validation }
 LcsSlotDefintion >> isInstanceVariableDefined [
 	^ self domainClass allInstVarNames includes: self slotName
+]
+
+{ #category : #testing }
+LcsSlotDefintion >> isNotRequired [
+	^ self isRequired not
 ]
 
 { #category : #testing }

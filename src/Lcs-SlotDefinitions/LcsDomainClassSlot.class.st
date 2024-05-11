@@ -5,10 +5,13 @@ Class {
 }
 
 { #category : #'slot model' }
+LcsDomainClassSlot >> initialValueFor: aDomainObject [
+	^ (self initialValueBlock cull: aDomainObject)
+		parent: aDomainObject;
+		yourself
+]
+
+{ #category : #'slot model' }
 LcsDomainClassSlot >> initializeSlotValueIn: aDomainObject [
-	self
-		setValueTo: (self newSlotValue
-				parent: aDomainObject;
-				yourself)
-		in: aDomainObject
+	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]

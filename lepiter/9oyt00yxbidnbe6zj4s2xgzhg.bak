@@ -118,7 +118,7 @@
 							"code" : "| classes |\rclasses := LcsBaseSystem withAllSuperclasses.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
 							"elementHeight" : 191,
 							"codeHeight" : 138,
-							"codeVisible" : false
+							"codeVisible" : true
 						}
 					]
 				},

@@ -5,6 +5,22 @@ Class {
 }
 
 { #category : #tests }
+LcsIntegerSlotDefinitionBuilderTest >> testCreatingIntegerSlotDefinition [
+	| slotDefinition |
+
+		slotDefinition := LcsIntegerSlot new.
+	slotDefinition slotName: 'height'.
+	slotDefinition initialValue: 180.
+
+	self assert: slotDefinition domainClassName = 'UndefinedObject'.
+	self assert: slotDefinition slotName equals: 'height'.
+	self assert: slotDefinition slotTypes size equals: 1.
+	self assert: (slotDefinition slotTypes includes: Integer).
+	self assert: slotDefinition isNotRequired.
+	self assert: slotDefinition initialValue equals: 180 
+]
+
+{ #category : #tests }
 LcsIntegerSlotDefinitionBuilderTest >> testInstallingHeightSlotInPerson [
 	| person |
 	self slotName: 'height'.

@@ -5,10 +5,13 @@ Class {
 }
 
 { #category : #accessing }
+LcsCompositeSlot >> initialValueFor: aDomainObject [
+	^ (self initialValueBlock cull: aDomainObject)
+		parent: aDomainObject;
+		yourself
+]
+
+{ #category : #accessing }
 LcsCompositeSlot >> initializeSlotValueIn: aDomainObject [
-	self
-		setValueTo: (self newSlotValue
-				parent: aDomainObject;
-				yourself)
-		in: aDomainObject
+	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]

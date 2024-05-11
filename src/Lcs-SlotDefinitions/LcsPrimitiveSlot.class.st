@@ -1,30 +1,25 @@
 Class {
 	#name : #LcsPrimitiveSlot,
 	#superclass : #LcsSlotDefintion,
-	#instVars : [
-		'initialValueBlock'
-	],
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
-LcsPrimitiveSlot >> initialValue [
-	^ self initialValueBlock cull: self domainClass
+{ #category : #default }
+LcsPrimitiveSlot >> defaultInitialValueBlock [
+	^ [ self defaultInitialValue ]
+]
+
+{ #category : #'gt view' }
+LcsPrimitiveSlot >> gtSlotDefinitionAttributes [
+	^ super gtSlotDefinitionAttributes
+		add: 'initialValueBlock' -> self initialValueBlock;
+		add: 'initialValue' -> initialValueBlock value;
+		yourself
 ]
 
 { #category : #accessing }
-LcsPrimitiveSlot >> initialValue: anObject [
-	self initialValueBlock: [ anObject ]
-]
-
-{ #category : #accessing }
-LcsPrimitiveSlot >> initialValueBlock [
-	^ initialValueBlock
-]
-
-{ #category : #accessing }
-LcsPrimitiveSlot >> initialValueBlock: aBlock [ 
-	initialValueBlock := aBlock
+LcsPrimitiveSlot >> initialValueFor: aDomainObject [
+	^ self initialValueBlock cull: aDomainObject class
 ]
 
 { #category : #initialization }
@@ -35,9 +30,7 @@ LcsPrimitiveSlot >> initialize [
 
 { #category : #accessing }
 LcsPrimitiveSlot >> initializeSlotValueIn: aDomainObject [
-		self
-		setValueTo: (self initialValueBlock cull: aDomainObject class)
-		in: aDomainObject
+	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
 { #category : #configuration }

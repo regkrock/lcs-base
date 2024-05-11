@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsDemonstrationModule,
+	#name : #LxxDemonstrationModule,
 	#superclass : #LcsBaseModule,
 	#category : #'Lcs-Tests'
 }
 
 { #category : #configuration }
-LcsDemonstrationModule class >> moduleName [
+LxxDemonstrationModule class >> moduleName [
 	^ 'Demonstration Module'
 ]

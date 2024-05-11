@@ -46,7 +46,7 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
 	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxBarebonesSystem'.
 	self assert: builder globalCollectionSlotBuilder target equals: LxxBarebonesSystem.
-	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxTalent'.
+	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxTalents'.
 
 	self assert: builder memberOfSlotInDomainClassBuilder slotName equals: 'talent'.
 	self assert: builder memberOfSlotInDomainClassBuilder collectionSlotName equals: 'talents'.

@@ -6,7 +6,7 @@ Class {
 
 { #category : #tests }
 LcsCountryTest >> testCreation [
-	| country |
+	| country countries |
 	self assert: LcsCountry slotModel hasElements.
 	country := LcsCountry new.
 	country 
@@ -18,5 +18,8 @@ LcsCountryTest >> testCreation [
 
 	self currentSystem currentUnitOfWork applyChanges.
 	
-	self assert: (self currentSystem geographyModule countries includes: country).
+	countries := self currentSystem geographyModule countries.
+	self assert: countries size equals: 1.
+	self assert: (countries includes: country)
+	
 ]

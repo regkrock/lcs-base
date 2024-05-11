@@ -4,10 +4,9 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #iniitialize }
-LcsBooleanSlot >> initialize [
-	super initialize.
-	self initialValueBlock: [ false ]
+{ #category : #accessing }
+LcsBooleanSlot >> defaultInitialValue [ 
+	^ false
 ]
 
 { #category : #configuration }

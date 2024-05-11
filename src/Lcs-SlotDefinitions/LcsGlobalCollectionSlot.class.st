@@ -44,6 +44,13 @@ LcsGlobalCollectionSlot >> collectionSlotCollectionClass: anObject [
 	collectionSlotClass := anObject
 ]
 
+{ #category : #'slot model' }
+LcsGlobalCollectionSlot >> initialValueFor: aDomainObject [
+	^ (self initialValueBlock cull: aDomainObject)
+		parent: aDomainObject;
+		yourself
+]
+
 { #category : #initialize }
 LcsGlobalCollectionSlot >> initialize [
 	super initialize.
@@ -52,11 +59,7 @@ LcsGlobalCollectionSlot >> initialize [
 
 { #category : #'slot model' }
 LcsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
-	self
-		setValueTo: (self newSlotValue
-				parent: aDomainObject;
-				yourself)
-		in: aDomainObject
+	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
 { #category : #testing }

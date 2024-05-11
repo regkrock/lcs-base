@@ -66,6 +66,12 @@ LcsSingletonCodeClassesBuilderJob >> initialize [
 	self addMemberOfSlotInDomainClassBuilderStep.
 ]
 
+{ #category : #configuration }
+LcsSingletonCodeClassesBuilderJob >> installGlobalCollectionSlotInModuleName: aString [
+	super installGlobalCollectionSlotInModuleName: aString.
+	self codeSuperClassParentSlotDefinitionStep moduleName: aString
+]
+
 { #category : #'job steps' }
 LcsSingletonCodeClassesBuilderJob >> memberOfSlotInDomainClassBuilder [
 	^ self jobSteps at: 6

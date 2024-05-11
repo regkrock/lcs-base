@@ -44,19 +44,23 @@ LcsSecondaryCollectionSlot >> collectionSlotCollectionClass: anObject [
 	collectionSlotClass := anObject
 ]
 
+{ #category : #'slot model' }
+LcsSecondaryCollectionSlot >> initialValueFor: aDomainObject [
+	^ (self initialValueBlock cull: aDomainObject)
+		parent: aDomainObject;
+		yourself
+]
+
 { #category : #initialize }
 LcsSecondaryCollectionSlot >> initialize [
 	super initialize.
-	self collectionMemberTypes: OrderedCollection new
+	self collectionMemberTypes: OrderedCollection new..
+	self beIdentitySetCollection
 ]
 
 { #category : #'slot model' }
 LcsSecondaryCollectionSlot >> initializeSlotValueIn: aDomainObject [
-	self
-		setValueTo: (self newSlotValue
-				parent: aDomainObject;
-				yourself)
-		in: aDomainObject
+	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
 { #category : #testing }

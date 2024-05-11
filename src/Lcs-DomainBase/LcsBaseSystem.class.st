@@ -153,16 +153,13 @@ LcsBaseSystem >> initializeInUnitOfWork: aUnitOfWork [
 
 { #category : #initialize }
 LcsBaseSystem >> initializeSystem [
-	Transcript show: 'Start Initializing  ' , self class name , ' -> LcsBaseSystem>>initializeSystem' ; cr.
 	super initializeSystem.
 	self
 		systemDomainClasses: self initialSystemDomainClasses;
 		status: (LcsSystemActiveStatus newOn: self);
 		systemSlotModel: (LcsSystemSlotModel newOn: self);
 		buildSlotDefinitions;
-		buildModules.
-	Transcript show: 'Finished Initializing ' , self class name , ' -> LcsBaseSystem>>initializeSystem' ; cr.
-
+		buildModules
 
 
 ]

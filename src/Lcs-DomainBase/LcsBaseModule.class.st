@@ -139,12 +139,21 @@ LcsBaseModule >> initializeSystem [
 ]
 
 { #category : #modules }
+LcsBaseModule >> installModule: aModuleClass [
+
+	self currentSystem systemDomainClasses remove: LxxDemonstrationModule ifAbsent: [ ].
+	aModuleClass initializeSlotModel.
+	self buildModule: LxxDemonstrationModule
+
+]
+
+{ #category : #modules }
 LcsBaseModule >> legalEntitiesModule [
 
 	^ self moduleNamed: 'Legal Entities Module'
 ]
 
-{ #category : #modu }
+{ #category : #modules }
 LcsBaseModule >> moduleClasses [
 	^ self class moduleClasses
 ]
