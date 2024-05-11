@@ -51,7 +51,7 @@ LcsSlotDefintion >> currentUnitOfWork [
 
 { #category : #defaults }
 LcsSlotDefintion >> defaultInitialValueBlock [
-	^ [ self newSlotValue ]
+	^ [ self slotTypes any new ]
 ]
 
 { #category : #'slot model' }
@@ -142,12 +142,6 @@ LcsSlotDefintion >> initialize [
 ]
 
 { #category : #initialize }
-LcsSlotDefintion >> initializeModel: aDomainObject [
-
-	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
-]
-
-{ #category : #initialize }
 LcsSlotDefintion >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
 ]
@@ -175,11 +169,6 @@ LcsSlotDefintion >> isOptional [
 { #category : #testing }
 LcsSlotDefintion >> isRequired [
 	^ self required == true
-]
-
-{ #category : #'slot model' }
-LcsSlotDefintion >> newSlotValue [
-	^ self slotTypes any new
 ]
 
 { #category : #accessing }

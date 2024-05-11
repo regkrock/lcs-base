@@ -58,11 +58,6 @@ LcsSecondaryCollectionSlot >> initialize [
 	self beIdentitySetCollection
 ]
 
-{ #category : #'slot model' }
-LcsSecondaryCollectionSlot >> initializeSlotValueIn: aDomainObject [
-	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
-]
-
 { #category : #testing }
 LcsSecondaryCollectionSlot >> isSlotTypeIdentitySet [
 	^ self slotTypes size = 1

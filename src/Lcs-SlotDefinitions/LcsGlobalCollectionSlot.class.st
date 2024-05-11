@@ -57,11 +57,6 @@ LcsGlobalCollectionSlot >> initialize [
 	self collectionMemberTypes: OrderedCollection new
 ]
 
-{ #category : #'slot model' }
-LcsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
-	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
-]
-
 { #category : #testing }
 LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
 	^ self slotTypes size = 1

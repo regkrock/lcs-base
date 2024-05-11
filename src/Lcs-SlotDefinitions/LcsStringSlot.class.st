@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #accessing }
-LcsStringSlot >> defaultInitialValue [
-	^ self typeClass new
+LcsStringSlot >> defaultInitialValueBlaock [
+	^ [ self typeClass new ]
 ]
 
 { #category : #initialize }

@@ -10,8 +10,3 @@ LcsDomainClassSlot >> initialValueFor: aDomainObject [
 		parent: aDomainObject;
 		yourself
 ]
-
-{ #category : #'slot model' }
-LcsDomainClassSlot >> initializeSlotValueIn: aDomainObject [
-	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
-]

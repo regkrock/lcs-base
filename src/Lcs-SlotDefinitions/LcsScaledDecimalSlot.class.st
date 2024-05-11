@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #accessing }
-LcsScaledDecimalSlot >> defaultInitialValue [ 
-	^ 0 asScaledDecimal: self numberOfDecimals
+LcsScaledDecimalSlot >> defaultInitialValueBlock [ 
+	^ [ 0 asScaledDecimal: self numberOfDecimals ]
 ]
 
 { #category : #accessing }

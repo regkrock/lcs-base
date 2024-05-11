@@ -10,8 +10,3 @@ LcsCompositeSlot >> initialValueFor: aDomainObject [
 		parent: aDomainObject;
 		yourself
 ]
-
-{ #category : #accessing }
-LcsCompositeSlot >> initializeSlotValueIn: aDomainObject [
-	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
-]

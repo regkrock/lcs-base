@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #accessing }
-LcsBooleanSlot >> defaultInitialValue [ 
-	^ false
+LcsBooleanSlot >> defaultInitialValueBlock [ 
+	^ [ false ]
 ]
 
 { #category : #configuration }

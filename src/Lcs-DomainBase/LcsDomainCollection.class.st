@@ -18,10 +18,10 @@ LcsDomainCollection class >> new [
 ]
 
 { #category : #'instace creation' }
-LcsDomainCollection class >> newWithCollection: aCollectionClass [
+LcsDomainCollection class >> newWithCollection: aCollection [
 	^ self basicNew
 		initialize;
-		collection: aCollectionClass new;
+		collection: aCollection;
 		yourself
 ]
 

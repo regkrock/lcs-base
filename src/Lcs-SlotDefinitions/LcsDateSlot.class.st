@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #accessing }
-LcsDateSlot >> defaultInitialValue [ 
-	^ Date today
+LcsDateSlot >> defaultInitialValueBlock [ 
+	^ [ Date today ]
 ]
 
 { #category : #configuration }

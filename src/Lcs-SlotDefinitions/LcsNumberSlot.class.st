@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #accessing }
-LcsNumberSlot >> defaultInitialValue [ 
-	^ 0
+LcsNumberSlot >> defaultInitialValueBlock [ 
+	^ [ 0 ]
 ]
 
 { #category : #default }
