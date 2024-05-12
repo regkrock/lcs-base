@@ -352,6 +352,43 @@
 										"__type" : "textSnippet",
 										"children" : {
 											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-05-12T14:56:17.66886-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-05-12T14:56:40.240838-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "GP2LD6jUDQC5+xqqB96p6A=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "[[Slot Definitions]]"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
 											"items" : [
 												{
 													"__type" : "textSnippet",

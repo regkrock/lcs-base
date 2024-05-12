@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:25:26.324722-04:00"
+						"dateAndTimeString" : "2024-05-12T14:56:44.553994-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:26:49.528438-04:00"
+						"dateAndTimeString" : "2024-05-12T14:56:44.553994-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "6cKkAnHSDQCr9vFsByYYXA=="
+					"uidString" : "IEcmEajUDQCZ+S5MB96p6A=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Needs work\n\n{{gtTodo:label=Explain how the system slot model contains all of the inidividual class slot models|completed=}}"
+				"string" : ""
 			},
 			{
 				"__type" : "elementSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-11T13:40:27.908662-04:00"
+						"dateAndTimeString" : "2024-05-12T15:00:27.104477-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-11T13:48:29.210952-04:00"
+						"dateAndTimeString" : "2024-05-12T15:00:28.452777-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "F82E4pLUDQCsaJXkB96p6A=="
+					"uidString" : "axdqHqjUDQCeiChFB96p6A=="
 				},
-				"code" : "| classes |\rclasses := OrderedCollection new add: LcsBaseSystem; addAll: LcsBaseSystem allSuperclasses; add: LcsSystemSlotModel; yourself.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ifAbsent: [] ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
-				"elementHeight" : 160,
-				"codeHeight" : 189,
-				"codeVisible" : true
+				"code" : "LcsSlotModelDiagramExamples new slotDefinitionsHierarchy",
+				"elementHeight" : 324,
+				"codeHeight" : 50,
+				"codeVisible" : false
 			}
 		]
 	},
@@ -88,7 +88,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-14T10:25:14.664081-04:00"
+			"dateAndTimeString" : "2024-05-12T14:56:44.252539-04:00"
 		}
 	},
 	"editEmail" : {
@@ -99,15 +99,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-14T10:25:14.664081-04:00"
+			"dateAndTimeString" : "2024-05-12T14:56:44.252539-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "System Slot Model"
+		"title" : "Slot Definitions"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "aac7a302-71d2-0d00-abf5-3d690726185c"
+		"uuid" : "d2ac2111-a8d4-0d00-98da-3cbe07dea9e8"
 	}
 }

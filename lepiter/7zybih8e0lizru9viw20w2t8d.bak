@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T17:11:45.874602-04:00"
+						"dateAndTimeString" : "2024-04-08T17:11:50.620367-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This feature is particularly useful for executing unit tests "
+				"string" : "This feature is particularly useful for executing unit tests. "
 			},
 			{
 				"__type" : "textSnippet",
@@ -188,6 +188,43 @@
 					"__type" : "textStyle"
 				},
 				"string" : ""
+			},
+			{
+				"__type" : "elementSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-12T15:06:18.687698-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-12T15:06:39.360654-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "cc5eM6jUDQC/lSHGB96p6A=="
+				},
+				"code" : "LcsSlotModelDiagramExamples new domainClassSlotModel",
+				"elementHeight" : 100,
+				"codeHeight" : 50,
+				"codeVisible" : true
 			},
 			{
 				"__type" : "textSnippet",
