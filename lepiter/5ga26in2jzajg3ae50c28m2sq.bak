@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-11T13:40:27.908662-04:00"
+						"dateAndTimeString" : "2024-05-13T11:38:53.815286-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,16 +66,16 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-11T13:48:14.950013-04:00"
+						"dateAndTimeString" : "2024-05-13T11:38:55.834659-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "F82E4pLUDQCsaJXkB96p6A=="
+					"uidString" : "wYNwa7nUDQCKVr9/ATnXCw=="
 				},
-				"code" : "| classes |\rclasses := OrderedCollection new add: LcsBaseSystem addAll: LcsBaseSystem allSuperclasses; add: LcsSystemSlotModel; yourself.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ifAbsent: [] ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
-				"elementHeight" : 160,
-				"codeHeight" : 189,
+				"code" : "LcsSlotModelDiagramExamples new systemSlotModel",
+				"elementHeight" : 100,
+				"codeHeight" : 50,
 				"codeVisible" : true
 			}
 		]

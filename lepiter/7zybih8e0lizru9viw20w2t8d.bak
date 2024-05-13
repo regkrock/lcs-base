@@ -129,43 +129,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T15:51:17.116687-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T15:52:56.057642-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "Qp+OKoTRDQCy6biCCJMbhw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : ""
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-04-02T15:50:59.805455-04:00"
 					}
 				},
@@ -214,15 +177,15 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-12T15:06:39.360654-04:00"
+						"dateAndTimeString" : "2024-05-13T11:37:27.47887-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "cc5eM6jUDQC/lSHGB96p6A=="
 				},
-				"code" : "LcsSlotModelDiagramExamples new domainClassSlotModel",
-				"elementHeight" : 100,
+				"code" : "LcsSlotModelDiagramExamples new domainObjectSlotModel",
+				"elementHeight" : 390,
 				"codeHeight" : 50,
 				"codeVisible" : true
 			},

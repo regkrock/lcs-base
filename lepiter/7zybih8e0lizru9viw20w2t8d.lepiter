@@ -177,17 +177,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-12T15:06:39.360654-04:00"
+						"dateAndTimeString" : "2024-05-13T11:37:27.47887-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "cc5eM6jUDQC/lSHGB96p6A=="
 				},
-				"code" : "LcsSlotModelDiagramExamples new domainClassSlotModel",
+				"code" : "LcsSlotModelDiagramExamples new domainObjectSlotModel",
 				"elementHeight" : 390,
 				"codeHeight" : 50,
-				"codeVisible" : false
+				"codeVisible" : true
 			},
 			{
 				"__type" : "textSnippet",

@@ -5,7 +5,6 @@ Class {
 		'parent'
 	],
 	#classInstVars : [
-		'SlotDefinitions',
 		'SlotModel'
 	],
 	#category : #'Lcs-DomainBase'
