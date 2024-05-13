@@ -5,7 +5,7 @@ Class {
 		'parent'
 	],
 	#classInstVars : [
-		'SlotModel'
+		'slotModel'
 	],
 	#category : #'Lcs-DomainBase'
 }
@@ -169,12 +169,12 @@ LcsDomainObject class >> slotDefinitionPragmas [
 
 { #category : #accessing }
 LcsDomainObject class >> slotModel [
-	^ SlotModel
+	^ slotModel
 ]
 
 { #category : #accessing }
 LcsDomainObject class >> slotModel: aSlotModel [
-	SlotModel := aSlotModel
+	slotModel := aSlotModel
 ]
 
 { #category : #'slot model' }
