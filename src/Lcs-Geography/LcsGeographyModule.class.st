@@ -9,8 +9,8 @@ Class {
 
 { #category : #accessing }
 LcsGeographyModule class >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsGeographyModuleConfiguration
+"	<slotDefinition>
+	^ LcsModuleConfigurationSlot newOn: LcsGeographyModuleConfiguration"
 ]
 
 { #category : #'slot definitions' }

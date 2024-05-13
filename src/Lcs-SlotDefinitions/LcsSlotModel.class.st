@@ -1,8 +1,9 @@
 Class {
 	#name : #LcsSlotModel,
-	#superclass : #LcsCollection,
+	#superclass : #LcsObject,
 	#instVars : [
-		'domainClass'
+		'domainClass',
+		'slotDefinitions'
 	],
 	#category : #'Lcs-SlotDefinitions'
 }
@@ -24,12 +25,12 @@ LcsSlotModel class >> newOn: aDomainClass [
 LcsSlotModel >> addSlotDefinition: aSlotDefinition [
 
 	aSlotDefinition parent: self.
-	^ self collection at: aSlotDefinition slotName put: aSlotDefinition
+	self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
 ]
 
 { #category : #model }
 LcsSlotModel >> addSlotDefinitionsTo: aCollection [
-	self collection keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
+	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
 		aCollection detect: [ :each | each slotName = eachSlotName ]
 			ifNone: [ aCollection add: eachSlotDefinition ] ].
 	self domainClass == LcsDomainObject
@@ -38,7 +39,7 @@ LcsSlotModel >> addSlotDefinitionsTo: aCollection [
 
 { #category : #validation }
 LcsSlotModel >> addValidateConfigurationResultTo: aValidator [
-	self collection do: [ :eachSlotDefintion | aValidator validate: eachSlotDefintion ]
+	self slotDefinitions do: [ :eachSlotDefintion | aValidator validate: eachSlotDefintion ]
 ]
 
 { #category : #model }
@@ -59,6 +60,16 @@ LcsSlotModel >> domainClass: anObject [
 	domainClass := anObject
 ]
 
+{ #category : #accessing }
+LcsSlotModel >> domianClass [
+	^ domainClass
+]
+
+{ #category : #accessing }
+LcsSlotModel >> domianClass: aDomainClass [ 
+	domainClass := aDomainClass
+]
+
 { #category : #'gt view' }
 LcsSlotModel >> gtViewSlotDefinitionsFor: aView [
 	<gtView>
@@ -66,7 +77,7 @@ LcsSlotModel >> gtViewSlotDefinitionsFor: aView [
 ^ aView columnedList
 		title: 'Domain Slot Definitions';
 		priority: 10;
-		items: [ self collection values ];
+		items: [ self slotDefinitions values ];
 		"children: [ :each | (each isAssociation ifTrue: [ each value ] ifFalse: [ each ]) moduleViewChildren ];"
 		column: 'Name' text: [ :each | each slotName ];
 		column: 'Class' text: [ :each | each class name ];
@@ -78,9 +89,15 @@ LcsSlotModel >> gtViewSlotDefinitionsFor: aView [
 LcsSlotModel >> gtViewSlotModelChildren [
 	| children |
 	children := OrderedCollection new.
-	self collection keysAndValuesDo: [ :key :value |
+	self slotDefinitions keysAndValuesDo: [ :key :value |
 		children add: (LcsSlotModelViewItem newLabel: key item: value)].
 	^ children
+]
+
+{ #category : #accessing }
+LcsSlotModel >> initialize [
+	super initialize.
+	self slotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
 ]
 
 { #category : #initialize }
@@ -94,6 +111,16 @@ LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
 	self allSlotDefinitions do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
 ]
 
+{ #category : #accessing }
+LcsSlotModel >> parent [
+	^ self domianClass
+]
+
+{ #category : #accessing }
+LcsSlotModel >> parent: aDomainClass [ 
+	self domianClass: aDomainClass
+]
+
 { #category : #slots }
 LcsSlotModel >> slotDefinitionNamed: aSlotName [
 	| slotDefinition |
@@ -103,6 +130,16 @@ LcsSlotModel >> slotDefinitionNamed: aSlotName [
 			ifFalse: [ nil ] ].
 	^ slotDefinition ifNil: [
 		LcsSlotDoesNotExistError signal: ('Slot ' , aSlotName printString  , ' not defined in ' , self domainClass name printString) ]
+]
+
+{ #category : #model }
+LcsSlotModel >> slotDefinitions [
+	^ slotDefinitions
+]
+
+{ #category : #accessing }
+LcsSlotModel >> slotDefinitions: aCollection [
+	slotDefinitions := aCollection 
 ]
 
 { #category : #model }
