@@ -64,11 +64,6 @@ LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionSlot >> newSlotValue [
-	^ self slotTypes any newWithCollection: self  collectionSlotCollectionClass
-]
-
-{ #category : #'slot model' }
 LcsGlobalCollectionSlot >> persistValue: anObject [
 	(self getValueIn: self slotName asString) persistValue: anObject
 ]

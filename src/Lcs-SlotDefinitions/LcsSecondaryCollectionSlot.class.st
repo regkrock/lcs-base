@@ -65,11 +65,6 @@ LcsSecondaryCollectionSlot >> isSlotTypeIdentitySet [
 ]
 
 { #category : #'slot model' }
-LcsSecondaryCollectionSlot >> newSlotValue [
-	^ self slotTypes any newWithCollection: self  collectionSlotCollectionClass
-]
-
-{ #category : #'slot model' }
 LcsSecondaryCollectionSlot >> persistValue: anObject [
 	(self getValueIn: self slotName asString) persistValue: anObject
 ]

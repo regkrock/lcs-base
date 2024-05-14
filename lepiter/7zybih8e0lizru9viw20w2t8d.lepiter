@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T17:03:56.096233-04:00"
+						"dateAndTimeString" : "2024-05-13T12:55:36.788444-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T17:06:41.234735-04:00"
+						"dateAndTimeString" : "2024-05-13T12:56:39.03862-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "3pBr4f3RDQCTHQHnAqAYSw=="
+					"uidString" : "IU3MfbrUDQCow+UaDKI/4Q=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "A slot model ({{gtClass:name=LcsSlotModel}}) is created for all subclasses of  {{gtMethod:name=LcsDomainObject class>>slotModel}} .  The slot model contains the slot definitions which model the behaviour surrounding the related instance variable/slot. A virtual (read only) slot definition can also be created for a calculated value."
+				"string" : "A slot model ({{gtClass:name=LcsSlotModel}}) must exist for {{gtClass:name=LcsDomainObject}} and all of its subclasses that are part of the current system. The class' slot model   {{gtMethod:name=LcsDomainObject class>>slotModel}} .  The slot model contains the slot definitions which model the behaviour surrounding the related instance variable/slot. A virtual (read only) slot definition can also be created for a calculated value."
 			},
 			{
 				"__type" : "textSnippet",
@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T17:11:22.135348-04:00"
+						"dateAndTimeString" : "2024-05-13T12:20:39.850365-04:00"
 					}
 				},
 				"uid" : {
@@ -116,43 +116,6 @@
 				"string" : "This feature is particularly useful for executing unit tests. "
 			},
 			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T15:50:59.805455-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-02T15:50:59.805455-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "VHmGKYTRDQCy6AN7CJMbhw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : ""
-			},
-			{
 				"__type" : "elementSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -185,9 +148,9 @@
 					"uidString" : "cc5eM6jUDQC/lSHGB96p6A=="
 				},
 				"code" : "LcsSlotModelDiagramExamples new domainObjectSlotModel",
-				"elementHeight" : 390,
-				"codeHeight" : 50,
-				"codeVisible" : true
+				"elementHeight" : 586,
+				"codeHeight" : 0,
+				"codeVisible" : false
 			},
 			{
 				"__type" : "textSnippet",

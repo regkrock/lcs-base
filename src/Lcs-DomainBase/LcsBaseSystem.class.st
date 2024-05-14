@@ -105,15 +105,15 @@ LcsBaseSystem >> gtConfigurationIssuesFor: aView [
 ]
 
 { #category : #'slot model' }
-LcsBaseSystem >> gtSlotModelFor: aView [
+LcsBaseSystem >> gtViewSystemSlotModelFor: aView [
 	<gtView>
 	(self systemSlotModel isNil or: [self systemSlotModel hasSlotModels not])
 		ifTrue: [ ^ aView empty ].
 	^ aView forward
-		title: 'Slot Model';
+		title: 'System Slot Model';
 		priority: 1;
 		object: [ self systemSlotModel ];
-		view: #gtSlotModelFor:;
+		view: #gtViewSystemSlotModelFor:;
 		yourself
 ]
 

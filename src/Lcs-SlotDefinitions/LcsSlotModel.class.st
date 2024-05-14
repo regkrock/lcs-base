@@ -71,7 +71,7 @@ LcsSlotModel >> domianClass: aDomainClass [
 ]
 
 { #category : #'gt view' }
-LcsSlotModel >> gtViewSlotDefinitionsFor: aView [
+LcsSlotModel >> gtViewDomainSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
 ^ aView columnedList

@@ -11,7 +11,7 @@ Class {
 
 { #category : #default }
 LcsViewItem class >> defaultChildrenSelector [
-	^ #pleaseDefineChildrenSelector
+	^ self subclassResponsibility
 ]
 
 { #category : #'instance  creation' }

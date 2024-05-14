@@ -13,7 +13,7 @@ LxxPrototypeSystem class >> configurationSlotDefinition [
 { #category : #modules }
 LxxPrototypeSystem class >> moduleClasses [
 	^ OrderedCollection new
-		add: LxxPersonsModule;
+		add: LxxPrototypePersonsModule;
 		add: LxxPrototype2Module;
 		yourself
 ]
@@ -22,6 +22,7 @@ LxxPrototypeSystem class >> moduleClasses [
 LxxPrototypeSystem >> initialSystemDomainClasses [
 	^ super initialSystemDomainClasses
 		addAll: self allModuleClasses;
+		add: LxxPrototypeOrganization;
 		add: LxxPrototypePerson;
 		add: LxxPrototypePersons;
 		add: LxxPrototypeSystemConfiguration;

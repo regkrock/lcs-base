@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #default }
-LcsModuleViewItem class >> childrenSelector [
-	^ #moduleViewChildrn
+LcsModuleViewItem class >> defaultChildrenSelector [
+	^ #moduleViewChildren
 ]

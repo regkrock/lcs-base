@@ -1,5 +1,5 @@
 Class {
-	#name : #LxxPersonsModule,
+	#name : #LxxPrototypePersonsModule,
 	#superclass : #LcsModule,
 	#instVars : [
 		'persons'
@@ -8,12 +8,12 @@ Class {
 }
 
 { #category : #configuration }
-LxxPersonsModule class >> moduleName [
+LxxPrototypePersonsModule class >> moduleName [
 	^ 'Persons Module'
 ]
 
 { #category : #'slot definitions' }
-LxxPersonsModule class >> personsSlotDefinition [
+LxxPrototypePersonsModule class >> personsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';

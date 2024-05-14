@@ -43,7 +43,7 @@ LcsDomainObject class >> currentUnitOfWork [
 ]
 
 { #category : #'gt view' }
-LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
+LcsDomainObject class >> gtViewDomainSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
 	self slotModel ifNil: [ 
@@ -56,7 +56,7 @@ LcsDomainObject class >> gtViewSlotDefinitionsFor: aView [
 		title: 'Domain Slot Definitions';
 		priority: 10;
 		object: [ self slotModel ];
-		view: #gtViewSlotDefinitionsFor:;
+		view: #gtViewDomainSlotDefinitionsFor:;
 		yourself
 		
 ]
@@ -226,10 +226,10 @@ LcsDomainObject >> getValueOfSlotNamed: aSlotName [
 ]
 
 { #category : #'gt view' }
-LcsDomainObject >> gtViewSlotDefinitionsFor: aView [
+LcsDomainObject >> gtViewDomainSlotDefinitionsFor: aView [
 	<gtView>
 	<gtClassView>
-	^ self class gtViewSlotDefinitionsFor: aView
+	^ self class gtViewDomainSlotDefinitionsFor: aView
 ]
 
 { #category : #iniitialize }

@@ -373,7 +373,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-12T14:56:28.298016-04:00"
+												"dateAndTimeString" : "2024-05-12T14:56:40.240838-04:00"
 											}
 										},
 										"uid" : {
@@ -383,7 +383,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "[[Slot "
+										"string" : "[[Slot Definitions]]"
 									},
 									{
 										"__type" : "textSnippet",
