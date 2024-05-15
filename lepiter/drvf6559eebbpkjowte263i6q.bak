@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-13T13:37:47.149534-04:00"
+						"dateAndTimeString" : "2024-05-14T19:08:02.013378-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The slot definition class and its subclsses define the properties of a slot. These include the following: \n1) The name of the slot (#slotName).\n2) Parent - the parent of the slot definition instance. Its parent  - an instance of {{gtClass:name=LcsSlotModel}}\n3) Domain Class - It knows the domain class that it is associated with. This is done via its parent.\n4) Type - this is the type of object that can be stored in the slot.\n5) Initial value - this is the value that will populate .\n6) Required - Indicates the initial value must be changed before the instance is saved.\n7) Validator - This is the object that is used to validate slot's value.\n8) Access Permission - Used to manage access to a slot - ex: Read, Write, etc.\n9) Slot Dependencies - It knows which other slots are dependent on it. \n10) Logging - The slot can have a logger added to log changes/access to a slot.\n11) \n     This is used to propogate changes to dependent slots."
+				"string" : "The slot definition class and its subclsses define the properties of a slot. These include the following: \n- The name of the slot (#slotName).\n2. Parent - the parent of the slot definition instance. Its parent  - an instance of {{gtClass:name=LcsSlotModel}}\n3. Domain Class - It knows the domain class that it is associated with. This is done via its parent.\n4. Type - this is the type of object that can be stored in the slot.\n5. Initial value - this is the value that will populate .\n6. Required - Indicates the initial value must be changed before the instance is saved.\n7. Validator - This is the object that is used to validate slot's value.\n8. Access Permission - Used to manage access to a slot - ex: Read, Write, etc.\n9. Slot Dependencies - It knows which other slots are dependent on it.  This is used to propogate changes to dependent slots.\n10. Logging - The slot can have a logger added to log changes/access to a slot."
 			},
 			{
 				"__type" : "textSnippet",
@@ -145,7 +145,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-13T18:26:53.432707-04:00"
+									"dateAndTimeString" : "2024-05-14T10:43:05.812186-04:00"
 								}
 							},
 							"uid" : {
@@ -155,7 +155,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "To explain this scenario the example of the person class  {{gtClass:name=LxxPrototypePerson}} whose instances are stored in a global collection which is an instance of  {{gtClass:name=LxxPrototypePersons}} will be followed.\n\nWhen an instance of  {{gtClass:name=LxxPrototypePerson}} is created, the #parent slot is not populated and it remains with a nil value. When the apply changes is made it will be added to the persons collection and the parent of the new instance will be set to the persons collection.\n\nTo accomplish this two slots must exist. The persons collection needs to be defined within the context of the system. By convention, 'global' collections belong to their module. This requires the addition of a personsSlotDefinition added to the corresponding module. This example that module is the {{gtClass:name=LxxPersonsModule}}."
+							"string" : "To explain this scenario the example of the person class  {{gtClass:name=LxxPrototypePerson}} whose instances are stored in a global collection which is an instance of  {{gtClass:name=LxxPrototypePersons}} will be followed.\n\nWhen an instance of  {{gtClass:name=LxxPrototypePerson}} is created, the #parent slot is not populated and it remains with a nil value. When the apply changes is made it will be added to the persons collection and the parent of the new instance will be set to the persons collection.\n\nTo accomplish this two slots must exist. The persons collection needs to be defined within the context of the system. By convention, 'global' collections belong to their module. This requires the addition of a personsSlotDefinition added to the corresponding module. This example that module is the {{gtClass:name=LxxPrototypePersonsModule}}."
 						},
 						{
 							"__type" : "textSnippet",
@@ -187,7 +187,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-13T18:30:32.562664-04:00"
+												"dateAndTimeString" : "2024-05-14T10:43:13.644978-04:00"
 											}
 										},
 										"uid" : {
@@ -197,7 +197,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtMethod:name=LxxPersonsModule class>>personsSlotDefinition}}"
+										"string" : "{{gtMethod:name=LxxPrototypePersonsModule class>>personsSlotDefinition}}"
 									}
 								]
 							},
@@ -220,7 +220,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-13T19:28:53.983306-04:00"
+									"dateAndTimeString" : "2024-05-14T08:12:29.783554-04:00"
 								}
 							},
 							"uid" : {
@@ -230,7 +230,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "####Install global collection slot - ex: persons"
+							"string" : "####Install global collection slot - ex: persons in a module"
 						},
 						{
 							"__type" : "textSnippet",
@@ -336,7 +336,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-13T18:58:34.663191-04:00"
+												"dateAndTimeString" : "2024-05-14T10:44:25.091272-04:00"
 											}
 										},
 										"uid" : {
@@ -346,7 +346,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "To prevent the initialization of the parent slot, the superclass implementation  {{gtMethod:LcsGlobalCollectionReferenceSlot>>initializeSlotValueIn:}} has been changed to be non-operation method."
+										"string" : "To prevent the initialization of the parent slot, the superclass implementation  {{gtMethod:LcsGlobalCollectionReferenceSlot>>initializeSlotValueIn:}} has been changed to be non-operand method."
 									}
 								]
 							},
@@ -465,6 +465,80 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-13T20:08:39.259825-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-14T13:05:02.266807-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lFx5isDUDQCeilFDDKI/4Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{The purpose of {{gtClass:name=LcsMemberOfSlot}} is to defined a slot where the contents of the slot is an object which is the member of a collection. \n\nIn the prototype example, there exists and organization class which has a chiefExecutiveOfficer slot. This slot is defined to contain a person object and that person object is a member of the persons collection."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-14T13:05:28.833257-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-14T13:06:22.319006-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "C5Ttvs7UDQC/jHXCDhmpog=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtMethod:name=LxxPrototypeOrganization class>>chiefExecutiveOfficerSlotDefinition}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-05-13T19:00:07.877907-04:00"
 					}
 				},
@@ -487,43 +561,6 @@
 					"__type" : "textStyle"
 				},
 				"string" : "####Installing a slot"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-13T20:08:39.259825-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-13T20:09:05.756813-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "lFx5isDUDQCeilFDDKI/4Q=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "LcbsMemberOfSlot"
 			},
 			{
 				"__type" : "textSnippet",
@@ -583,7 +620,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-05-13T13:27:09.920505-04:00"
+			"dateAndTimeString" : "2024-05-14T09:35:10.317396-04:00"
 		}
 	},
 	"pageType" : {

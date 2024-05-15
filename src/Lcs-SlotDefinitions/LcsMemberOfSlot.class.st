@@ -4,14 +4,24 @@ Class {
 	#instVars : [
 		'collectionSourceBlock',
 		'collectionSlotName',
-		'moduleName'
+		'collectionModuleName'
 	],
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #'application environment' }
 LcsMemberOfSlot >> collectionModule [
-	^ self currentSystem moduleNamed: self moduleName
+	^ self currentSystem moduleNamed: self collectionModuleName
+]
+
+{ #category : #accessing }
+LcsMemberOfSlot >> collectionModuleName [
+	^ collectionModuleName
+]
+
+{ #category : #accessing }
+LcsMemberOfSlot >> collectionModuleName: aString [ 
+	collectionModuleName := aString
 ]
 
 { #category : #accessing }
@@ -25,9 +35,13 @@ LcsMemberOfSlot >> collectionSlotName: aString [
 ]
 
 { #category : #accessing }
+LcsMemberOfSlot >> collectionmoduleName: aString [ 
+	collectionModuleName := aString
+]
+
+{ #category : #accessing }
 LcsMemberOfSlot >> defaultInstance [
-	^ ((self currentSystem moduleNamed: self moduleName)
-		perform: self collectionSlotName asSymbol) defaultInstance
+	^ self targetCollection defaultInstance
 ]
 
 { #category : #initialize }
@@ -38,11 +52,6 @@ LcsMemberOfSlot >> initialize [
 ]
 
 { #category : #accessing }
-LcsMemberOfSlot >> moduleName [
-	^ moduleName
-]
-
-{ #category : #accessing }
-LcsMemberOfSlot >> moduleName: aString [ 
-	moduleName := aString
+LcsMemberOfSlot >> targetCollection [
+	^ self collectionModule perform: self collectionSlotName asSymbol
 ]

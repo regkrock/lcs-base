@@ -50,6 +50,12 @@ LcsDomainCollection >> collectionClass [
 	^ self class collectionClass
 ]
 
+{ #category : #queries }
+LcsDomainCollection >> defaultInstance [
+	<todo: 'the null object needs to replace this?'>
+	^nil
+]
+
 { #category : #collection }
 LcsDomainCollection >> detect: aBlock [
 	^ self collection detect: aBlock

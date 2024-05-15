@@ -1,6 +1,9 @@
 Class {
 	#name : #LxxPrototypeOrganization,
 	#superclass : #LcsDomainObject,
+	#instVars : [
+		'chiefExecutiveOfficer'
+	],
 	#category : #'Lcs-PrototypeSystem'
 }
 
@@ -10,7 +13,7 @@ LxxPrototypeOrganization class >> chiefExecutiveOfficerSlotDefinition [
 	^ LcsMemberOfSlot new
 		slotName: 'chiefExecutiveOfficer';
 		collectionSlotName: 'persons';
-		moduleName: LxxPrototypeSystem;
+		collectionModuleName: LxxPrototypePersonsModule moduleName;
 		beRequired;
 		yourself
 ]

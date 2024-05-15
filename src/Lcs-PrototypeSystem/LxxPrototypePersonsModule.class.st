@@ -22,3 +22,13 @@ LxxPrototypePersonsModule class >> personsSlotDefinition [
 		beIdentitySetCollection;
 		yourself
 ]
+
+{ #category : #accessing }
+LxxPrototypePersonsModule >> persons [
+	^ self getValueOfSlotNamed: 'persons'
+]
+
+{ #category : #accessing }
+LxxPrototypePersonsModule >> persons: aCollection [
+	^ self setValueOfSlotNamed: 'persons' to: aCollection
+]

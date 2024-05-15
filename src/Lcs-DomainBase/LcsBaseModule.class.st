@@ -96,6 +96,18 @@ LcsBaseModule >> gtApplicationModulesFor: aView [
 		yourself
 ]
 
+{ #category : #'gt view' }
+LcsBaseModule >> gtViewGlobalCollectionsFor: aView [
+	<gtView>
+	 self domainCollections isEmpty ifTrue: [ ^ aView empty]. 
+	^ aView forward
+		title: 'Global Collections';
+		priority: 9;
+		object: [ self domainCollections ];
+		view: #gtViewGlobalCollectionsFor:;
+		yourself
+]
+
 { #category : #testing }
 LcsBaseModule >> hasModules [
 	^ self modules hasElements

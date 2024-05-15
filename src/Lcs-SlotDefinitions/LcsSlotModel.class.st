@@ -124,7 +124,7 @@ LcsSlotModel >> parent: aDomainClass [
 { #category : #slots }
 LcsSlotModel >> slotDefinitionNamed: aSlotName [
 	| slotDefinition |
-	slotDefinition := self collection at: aSlotName ifAbsent: [ 
+	slotDefinition := self slotDefinitions at: aSlotName ifAbsent: [ 
 		self domainClass superclass isDomainClass 
 			ifTrue: [ self domainClass superclass slotDefinitionNamed: aSlotName ]
 			ifFalse: [ nil ] ].

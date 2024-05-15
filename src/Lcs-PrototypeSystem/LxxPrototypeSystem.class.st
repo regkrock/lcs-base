@@ -1,6 +1,9 @@
 Class {
 	#name : #LxxPrototypeSystem,
 	#superclass : #LcsBaseSystem,
+	#instVars : [
+		'organization'
+	],
 	#category : #'Lcs-PrototypeSystem'
 }
 
@@ -18,6 +21,15 @@ LxxPrototypeSystem class >> moduleClasses [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LxxPrototypeSystem class >> organizationSlotDefinition [
+	<slotDefinition>
+	^ LcsDomainClassSlot new
+		slotName: 'organization';
+		addSlotType: LxxPrototypeOrganization;
+		yourself
+]
+
 { #category : #initialize }
 LxxPrototypeSystem >> initialSystemDomainClasses [
 	^ super initialSystemDomainClasses
@@ -27,4 +39,14 @@ LxxPrototypeSystem >> initialSystemDomainClasses [
 		add: LxxPrototypePersons;
 		add: LxxPrototypeSystemConfiguration;
 		yourself
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> organization [
+	^ self getValueOfSlotNamed: 'organization'
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> organization: anOrganization [
+	^ self setValueOfSlotNamed: 'organization' to: anOrganization
 ]
