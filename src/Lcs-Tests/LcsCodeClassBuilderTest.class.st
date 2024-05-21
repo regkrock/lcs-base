@@ -9,7 +9,7 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 	| builder |
 	builder := LcsCodeClassBuilder  new.
 	builder 
-		classPrefix: 'Lxx';
+		newClassName: 'LxxMale';
 		codePackageName: 'Lcs-BarebonesSystem';
 		superclassName: 'LxxGender';
 		rootName: 'Male'.

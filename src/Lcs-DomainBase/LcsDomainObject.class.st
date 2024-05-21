@@ -103,9 +103,15 @@ LcsDomainObject class >> isSlotModelReleased [
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.
-	self currentSystem ifNotNil: [ self addToUnitOfWork: newObject ].
+	self currentSystem ifNotNil: [ self addToUnitOfWork: newObject ]..
 	newObject initialize.
 	^ newObject
+]
+
+{ #category : #'slot definition' }
+LcsDomainObject class >> parentSlotDefinition [
+	<slotDefinition>
+	^ LcsParentSlot new
 ]
 
 { #category : #'application environment' }
@@ -244,11 +250,21 @@ LcsDomainObject >> initializeModel [
 
 ]
 
+{ #category : #'slot model' }
+LcsDomainObject >> initializeSlotNamed: aSlotName [
+	self slotModel initializeSlotNamed: aSlotName in: self
+]
+
 { #category : #iniitialize }
 LcsDomainObject >> initializeSlotValues [
 	self slotModel ifNil: [ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self className asString ) ].
 	self slotModel initializeSlotValuesIn: self.
 
+]
+
+{ #category : #accessing }
+LcsDomainObject >> isDomainObject [
+	^ true
 ]
 
 { #category : #validation }
@@ -258,12 +274,12 @@ LcsDomainObject >> isIncludedInSystemDomainClasses [
 
 { #category : #accessing }
 LcsDomainObject >> parent [
-	^ parent
+	^ self getValueOfSlotNamed: 'parent'
 ]
 
 { #category : #accessing }
 LcsDomainObject >> parent: anObject [
-	parent := anObject
+	self getValueOfSlotNamed: 'parent'
 ]
 
 { #category : #'slot definitions' }

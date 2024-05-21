@@ -9,3 +9,8 @@ LcsDeletedObjectRecord >> applyChanges [
 
 	self error: 'Needs to be implemented'
 ]
+
+{ #category : #accessing }
+LcsDeletedObjectRecord >> viewItemLabel [
+	^ 'Deleted'
+]

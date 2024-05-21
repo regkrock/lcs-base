@@ -18,7 +18,7 @@ LxxBarebonesPerson class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
-		moduleName: LxxBarebonesSystem moduleName;
+		collectionSlotModuleName: LxxBarebonesSystem moduleName;
 		collectionSlotName: 'persons';
 		yourself
 ]

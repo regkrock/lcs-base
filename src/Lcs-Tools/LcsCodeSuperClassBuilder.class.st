@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #accessing }
-LcsCodeSuperClassBuilder >> superclassName [
+LcsCodeSuperClassBuilder class >> superclassName [
 	^ 'LcsCode'
+]
+
+{ #category : #accessing }
+LcsCodeSuperClassBuilder >> verifyInstallation [
+	super verifyInstallation.
+	self assert: self installedClass superclass name equals: 'LcsCode'
 ]

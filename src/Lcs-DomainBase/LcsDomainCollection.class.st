@@ -7,22 +7,10 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #configuration }
-LcsDomainCollection class >> collectionClass [
-	^IdentitySet new
-]
-
-{ #category : #'instace creation' }
-LcsDomainCollection class >> new [
-	^ self newWithCollection: self collectionClass
-]
-
-{ #category : #'instace creation' }
-LcsDomainCollection class >> newWithCollection: aCollection [
-	^ self basicNew
-		initialize;
-		collection: aCollection;
-		yourself
+{ #category : #'slot definition' }
+LcsDomainCollection class >> collectionSlotDefinition [
+	<slotDefinition>
+	^ LcsIdentityCollectionSlot new
 ]
 
 { #category : #collection }
@@ -37,12 +25,12 @@ LcsDomainCollection >> collect: aBlock [
 
 { #category : #accessing }
 LcsDomainCollection >> collection [
-	^ collection
+	^ self getValueOfSlotNamed: 'collection'
 ]
 
 { #category : #accessing }
-LcsDomainCollection >> collection: anObject [
-	collection := anObject
+LcsDomainCollection >> collection: aCollection [
+	self setValueOfSlotNamed: 'collection' to: aCollection
 ]
 
 { #category : #configuration }
@@ -74,6 +62,16 @@ LcsDomainCollection >> do: aBlock [
 { #category : #search }
 LcsDomainCollection >> findWithKey: anObject [
 	^ self collection detect: [ :each | each key = anObject ] ifNone: [  ]
+]
+
+{ #category : #'gt view' }
+LcsDomainCollection >> gtItemsFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Items' translated;
+		priority: 0.5;
+		object: [ self collection ];
+		view: #gtItemsFor:
 ]
 
 { #category : #testing }

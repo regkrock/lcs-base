@@ -34,7 +34,6 @@ LxxBarebonesSystem class >> personsSlotDefinition [
 		slotName: 'persons';
 		addSlotType: LxxBarebonesPersons;
 		addCollectionMemberType: LxxBarebonesPerson;
-		beIdentitySetCollection;
 		yourself
 ]
 

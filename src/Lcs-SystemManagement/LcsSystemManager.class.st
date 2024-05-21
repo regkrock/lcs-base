@@ -43,12 +43,10 @@ LcsSystemManager >> applicationEnvironmentViewaAvailableSystemsChildren [
 ]
 
 { #category : #accessing }
-LcsSystemManager >> createCurrentSystemFor: aSystemClass [
+LcsSystemManager >> createCurrentSystemFor: aSystemClass [.
 	self suspendCurrentSystem.
-	self currentSystem: (aSystemClass basicNew
-							parent: self;
-							yourself).
-	self currentSystem initializeInUnitOfWork: self unitsOfWorkManager createUnitOfWork.
+	self currentSystem: aSystemClass basicNew.
+	self currentSystem initializeInNewUnitOfWork: self.
 	self systems add: self currentSystem.
 	^ self currentSystem
 ]

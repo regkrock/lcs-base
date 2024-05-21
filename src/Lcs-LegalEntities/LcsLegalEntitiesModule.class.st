@@ -26,7 +26,6 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 		slotName: 'organizations';
 		addSlotType: LcsOrganizations;
 		addCollectionMemberType: LcsCountry;
-		beIdentitySetCollection;
 		yourself
 ]
 

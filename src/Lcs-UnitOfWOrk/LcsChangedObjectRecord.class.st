@@ -35,6 +35,11 @@ LcsChangedObjectRecord >> changedSlots: anObject [
 	changedSlots := anObject
 ]
 
+{ #category : #accessing }
+LcsChangedObjectRecord >> gtUnitOfWorkChildren [
+	^ LcsUnitOfWorkViewItem newLabel: self domainObject item: self changedSlots values
+]
+
 { #category : #initialize }
 LcsChangedObjectRecord >> initialize [
 
@@ -45,4 +50,9 @@ LcsChangedObjectRecord >> initialize [
 { #category : #api }
 LcsChangedObjectRecord >> valueOfSlot: aSlotName [
 	^ (self changedSlots at: aSlotName ifAbsent: [ nil ]) newValue
+]
+
+{ #category : #accessing }
+LcsChangedObjectRecord >> viewItemLabel [
+	^ 'Changed'
 ]

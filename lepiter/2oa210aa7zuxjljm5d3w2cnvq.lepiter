@@ -153,6 +153,40 @@
 				"string" : "The application environment can have multiple \"systems\" defined. The [[System Manager]] keeps track of the systems. It also knows which system is the current system. All permenantly persisted objects belong to a system are rooted in the systemand/or its modules.\n\nExamples of permanently persisted objects would be name, person, country, general ledger, etc.\n\nThe  [[Units of Work Manager]]manages the units of work. There can be one or more units of work per system.  (The multiple units of work for an instance of a system is not yet implementd) The unit of work manager knows which unit of work is current.\n\nA [[Unit Of Work]]manages the objects which were added, changed , and removed during a logical transaction. A logical transaction can span multiple commits.\n\nThe {{gtClass:name=LcsApplicationEnvironment}} has an 'Application Evnironment' tab which shows the state of the application environment and the systems within the application environment. From this panel the appication environment can be started and stopped. Also systems within the application environment can be started, activated, suspended, and stopped.\n"
 			},
 			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-18T09:24:54.083538-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-18T09:25:22.145313-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Ns5wIRzVDQC4E5CfAcxk4w=="
+				},
+				"code" : "LcsApplicationEnvironment createCurrentSystemFor: LxxBarebonesSystem"
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",

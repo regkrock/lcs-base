@@ -30,8 +30,8 @@ LcsGlobalSlotDefinitionBuilderTest >> gendersBuilder [
 		addCodeSubclassWithRootNamed: 'Female';
 		addCodeSubclassWithRootNamed: 'UnknownGender'
 			with: [ :classBuilder | classBuilder beDefaultInstance ];
-		installGlobalCollectionSlotInModule: LxxBarebonesSystem;
-		installSlotInDomainClass: LxxBarebonesPerson;
+		moduleClass: LxxBarebonesSystem;
+		installMemberSlotInDomainClass: LxxBarebonesPerson;
 		yourself
 ]
 

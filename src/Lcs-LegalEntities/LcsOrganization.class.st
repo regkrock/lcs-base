@@ -12,7 +12,7 @@ LcsOrganization class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
-		moduleName: LcsLegalEntitiesModule moduleName;
+		collectionSlotModuleName: LcsLegalEntitiesModule moduleName;
 		collectionSlotName: 'organizations';
 		yourself
 ]

@@ -1,16 +1,15 @@
 Class {
 	#name : #LcsBaseCodeClassBuilder,
-	#superclass : #LcsObject,
+	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
-		'parent',
 		'installedClass',
 		'rootName',
-		'installClassName',
-		'classPrefix',
 		'codePackageName',
 		'shortName',
 		'codeDescription',
-		'codeName'
+		'codeName',
+		'newClassName',
+		'superclassName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -22,14 +21,12 @@ LcsBaseCodeClassBuilder class >> newOn: aString [
 		yourself
 ]
 
-{ #category : #'instance  creation' }
-LcsBaseCodeClassBuilder class >> newRootName: aString [ 
-	^ self new
-		initializeRootName: aString;
-		yourself
+{ #category : #accessing }
+LcsBaseCodeClassBuilder class >> superclassName [
+	^ nil
 ]
 
-{ #category : #build }
+{ #category : #refactoring }
 LcsBaseCodeClassBuilder >> addCodeDescriptionRefactoring [
 	^ RBAddMethodChange
 		compile: self defaultCodeDescriptionSource
@@ -37,7 +34,7 @@ LcsBaseCodeClassBuilder >> addCodeDescriptionRefactoring [
 		classified: #defaults
 ]
 
-{ #category : #build }
+{ #category : #refactoring }
 LcsBaseCodeClassBuilder >> addCodeNameRefactoring [
 	^ RBAddMethodChange
 		compile: self defaultCodeNameSource
@@ -45,12 +42,12 @@ LcsBaseCodeClassBuilder >> addCodeNameRefactoring [
 		classified: #defaults
 ]
 
-{ #category : #build }
+{ #category : #refactoring }
 LcsBaseCodeClassBuilder >> addCompletedRefactoring: aRefactoring [ 
 	self parent addCompletedRefactoring: aRefactoring
 ]
 
-{ #category : #build }
+{ #category : #refactoring }
 LcsBaseCodeClassBuilder >> addShortNameRefactoring [
 	^ RBAddMethodChange
 		compile: self defaultShortNameSource
@@ -58,17 +55,7 @@ LcsBaseCodeClassBuilder >> addShortNameRefactoring [
 		classified: #defaults
 ]
 
-{ #category : #accessing }
-LcsBaseCodeClassBuilder >> classPrefix [
-	^ classPrefix
-]
-
-{ #category : #acessing }
-LcsBaseCodeClassBuilder >> classPrefix: aString [
-	classPrefix := aString
-]
-
-{ #category : #build }
+{ #category : #template }
 LcsBaseCodeClassBuilder >> codeClassDefintion [
 	^ '<1s> subclass: #<2s>
 		instanceVariableNames: ''''
@@ -76,16 +63,16 @@ LcsBaseCodeClassBuilder >> codeClassDefintion [
 		poolDictionaries: ''''
 		package: ''<3s>'' '
 			expandMacrosWith: self superclassName
-			with: self installClassName
+			with: self newClassName
 			with: self codePackageName
 ]
 
-{ #category : #build }
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> codeDescription [
-	^ codeDescription ifNil: [ self rootName ]
+	^ codeDescription ifNil: [ codeDescription := self rootName ]
 ]
 
-{ #category : #build }
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> codeDescription: aString [
 	codeDescription := aString
 ]
@@ -95,6 +82,11 @@ LcsBaseCodeClassBuilder >> codeName [
 	^ codeName
 		ifNil: [ self rootName first asLowercase asString
 				, (self rootName copyFrom: 2 to: self rootName size) ]
+]
+
+{ #category : #build }
+LcsBaseCodeClassBuilder >> codeName: aString [
+	codeName := aString
 ]
 
 { #category : #accessing }
@@ -107,27 +99,39 @@ LcsBaseCodeClassBuilder >> codePackageName: aString [
 	codePackageName := aString
 ]
 
-{ #category : #build }
+{ #category : #refactoring }
 LcsBaseCodeClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
-{ #category : #build }
+{ #category : #'method source code' }
 LcsBaseCodeClassBuilder >> defaultCodeDescriptionSource [
 	^ 'defaultCodeDescription
 	^ ''' , self codeDescription , ''''
 ]
 
-{ #category : #build }
-LcsBaseCodeClassBuilder >> defaultCodeNameSource [
-	^ 'defaultCodeName
-	^ ''' , (self codeName first asLowercase asString) , (self codeName copyFrom: 2 to: self codeName size) , ''''
+{ #category : #private }
+LcsBaseCodeClassBuilder >> defaultCodeName [
+	^ self codeName first asLowercase asString
+		, (self codeName copyFrom: 2 to: self codeName size)
 ]
 
-{ #category : #build }
+{ #category : #'method source code' }
+LcsBaseCodeClassBuilder >> defaultCodeNameSource [
+	^ 'defaultCodeName
+	^ ' ,self defaultCodeName printString
+]
+
+{ #category : #'method source code' }
 LcsBaseCodeClassBuilder >> defaultShortNameSource [
 	^ 'defaultShortName
 	^ ''' , self shortName , ''''
+]
+
+{ #category : #initialize }
+LcsBaseCodeClassBuilder >> initialize [
+	super initialize.
+	self superclassName: self class superclassName
 ]
 
 { #category : #initialize }
@@ -135,41 +139,35 @@ LcsBaseCodeClassBuilder >> initializeOn: aBuilder [
 	self parent: aBuilder
 ]
 
-{ #category : #initialize }
-LcsBaseCodeClassBuilder >> initializeRootName: aString [ 
-	self rootName: aString
-]
-
 { #category : #build }
-LcsBaseCodeClassBuilder >> install [
+LcsBaseCodeClassBuilder >> installCode [
 	self addCompletedRefactoring: (RBAddClassChange definition: self codeClassDefintion) execute.
 	self installedClass: self completedRefactorings last changeClass
 ]
 
-{ #category : #build }
-LcsBaseCodeClassBuilder >> installClassName [
-	^ installClassName
-		ifNil: [ installClassName := self classPrefix , self rootName ]
-]
-
-{ #category : #build }
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> installedClass [
 	^ installedClass
 ]
 
-{ #category : #build }
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> installedClass: aClass [ 
 	installedClass := aClass
 ]
 
 { #category : #accessing }
-LcsBaseCodeClassBuilder >> parent [
-	^ parent
+LcsBaseCodeClassBuilder >> jobSteps [
+	^ OrderedCollection new
 ]
 
 { #category : #accessing }
-LcsBaseCodeClassBuilder >> parent: anObject [
-	parent := anObject
+LcsBaseCodeClassBuilder >> newClassName [
+	^ newClassName
+]
+
+{ #category : #accessing }
+LcsBaseCodeClassBuilder >> newClassName: aString [ 
+	newClassName := aString
 ]
 
 { #category : #accessing }
@@ -182,12 +180,40 @@ LcsBaseCodeClassBuilder >> rootName: aString [
 	rootName := aString
 ]
 
-{ #category : #build }
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> shortName [
-	^ shortName ifNil: [ self rootName ]
+	^ shortName ifNil: [ shortName := self rootName ]
 ]
 
-{ #category : #build }
+{ #category : #accessing }
+LcsBaseCodeClassBuilder >> shortName: aString [
+	shortName := aString
+]
+
+{ #category : #accessing }
 LcsBaseCodeClassBuilder >> superclassName [
-	self subclassResponsibility
+	^ superclassName
+]
+
+{ #category : #accessing }
+LcsBaseCodeClassBuilder >> superclassName: aString [
+	superclassName := aString
+]
+
+{ #category : #install }
+LcsBaseCodeClassBuilder >> updateSlotModel [
+	self installedClass initializeSlotModel
+]
+
+{ #category : #install }
+LcsBaseCodeClassBuilder >> verifyInstallation [
+	self assert: self installedClass notNil description: 'Class has been created'.
+	self assert: self installedClass name equals: self newClassName.
+	self assert: self installedClass slotModel isNil description: 'The class has been created but not yet installed in a system'
+]
+
+{ #category : #install }
+LcsBaseCodeClassBuilder >> verifySlotModelUpdates [
+	self assert: self installedClass slotModel  notNil.
+	self assert: (self currentSystem systemSlotModel hasSlotModelFor: self installedClass)
 ]

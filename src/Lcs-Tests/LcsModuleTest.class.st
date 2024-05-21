@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 LcsModuleTest >> setupSunitSystem [
-	LxxBarebonesSystem new
+	'LxxBarebonesSystem' asClass new
 ]
 
 { #category : #accessing }

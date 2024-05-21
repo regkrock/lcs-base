@@ -25,6 +25,15 @@ LcsBaseUnitOfWork >> addObject: aDomainObject [
 ]
 
 { #category : #api }
+LcsBaseUnitOfWork >> addObject: aDomainObject context: aDomainContextObject [
+	self addedObjects
+		at: aDomainObject
+		put: ((LcsAddedObjectRecord newFor: aDomainObject parent: self)
+				creationContext: aDomainContextObject;
+				yourself)
+]
+
+{ #category : #api }
 LcsBaseUnitOfWork >> addRecordFor: aDomainObject [
 	^ self addedObjects at: aDomainObject
 ]
@@ -92,27 +101,39 @@ LcsBaseUnitOfWork >> deletedObjects: anObject [
 	deletedObjects := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
+LcsBaseUnitOfWork >> gtUnitOfWorkChildren [
+	^ {
+		LcsUnitOfWorkViewItem newLabel: 'Added' item: self addedObjects values.
+		LcsUnitOfWorkViewItem newLabel: 'Changed' item: self changedObjects values.
+		LcsUnitOfWorkViewItem newLabel: 'Deleted' item: self deletedObjects values.
+		}
+]
+
+{ #category : #'gt view' }
 LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
-	^ aView empty
-	"	column: 'Current'
-			text: [ :eachItem :eachIndex | (eachItem == self currentUnitOfWork) displayString asRopedText foreground: Color gray ]
-			width: 45;
-		column: 'Index'
-			text: [ :eachItem :eachIndex | eachIndex asRopedText foreground: Color gray ]
-			width: 45;
-		column: 'Unit Of Work Name'
-			text: [ :eachItem :eachIndex | eachItem unitOfWorkName asString asRopedText foreground: Color gray ]
-			width: 140;
-		column: 'Added'
-			text: [ :eachItem :eachIndex | eachItem addedObjects size printString asRopedText foreground: Color gray ]
-			width: 45;
-		column: 'Changed'
-			text: [ :eachItem :eachIndex | eachItem changedObjects size printString asRopedText foreground: Color gray ]
-			width: 45;
-column: 'Deleted'
-			text: [ :eachItem :eachIndex | eachItem deletedObjects size printString asRopedText foreground: Color gray ]
-			width: 45"
+	<gtView>
+	^ aView columnedTree 
+		title: 'Unit Of Work';
+		priority: 2.5;
+		expandUpTo: 1;
+		items: [ self gtUnitOfWorkItems ];
+		children: [ :each | each children ];
+		column: 'Option'
+			text: [ :each | each label ]
+			width: 200;
+		column: 'Value' text: [ :each | each gtItemDisplayString ];
+		send: #item;
+		yourself
+]
+
+{ #category : #'gt view' }
+LcsBaseUnitOfWork >> gtUnitOfWorkItems [
+	^ {
+		LcsUnitOfWorkViewItem newLabel: 'Added' item: self addedObjects values.
+		LcsUnitOfWorkViewItem newLabel: 'Changed' item: self changedObjects values.
+		LcsUnitOfWorkViewItem newLabel: 'Deleted' item: self deletedObjects values.
+		}
 ]
 
 { #category : #initialize }
@@ -142,6 +163,8 @@ LcsBaseUnitOfWork >> printOn: aStream [
 LcsBaseUnitOfWork >> setValueTo: anObject in: aDomainObject forSlot: aSlotDefiniton [ 
 
 	(self addedObjects keys includes: aDomainObject) ifTrue: [ 
+		anObject isDomainObject ifTrue: [
+			(anObject instVarNamed: 'parent') ifNil: [ anObject instVarNamed: 'parent' put: aDomainObject ] ].
 		aDomainObject instVarNamed: aSlotDefiniton slotName asString put: anObject.
 		^ self ].
 	(self changedObjects at: aDomainObject ifAbsentPut: [ LcsChangedObjectRecord newFor: aDomainObject parent: self ])

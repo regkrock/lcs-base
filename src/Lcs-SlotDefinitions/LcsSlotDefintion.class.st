@@ -44,6 +44,13 @@ LcsSlotDefintion >> clearSlotTypes [
 	self slotTypes removeAll.
 ]
 
+{ #category : #defaults }
+LcsSlotDefintion >> createNewInstanceOf: aClass inContext: context [
+	aClass isDomainClass
+		ifTrue: [ aClass newInContext: context ]
+		ifFalse: [ aClass new ]
+]
+
 { #category : #'application environment' }
 LcsSlotDefintion >> currentUnitOfWork [
 	^ #LcsApplicationEnvironment asClass currentUnitOfWork
@@ -130,8 +137,12 @@ LcsSlotDefintion >> initialValueBlock: aBlock [
 ]
 
 { #category : #accessing }
-LcsSlotDefintion >> initialValueFor: aDomainObject [ 
-	^ self initialValueBlock cull: aDomainObject
+LcsSlotDefintion >> initialValueFor: aDomainObject [
+	| newValue |
+	newValue := self initialValueBlock cull: aDomainObject.
+	(newValue isDomainObject and: [ self currentSystem notNil ])
+		ifNotNil: [ self currentUnitOfWork addObject: newValue context: aDomainObject ].
+	^newValue
 ]
 
 { #category : #initialize }
@@ -194,6 +205,11 @@ LcsSlotDefintion >> required: anObject [
 { #category : #'slot model' }
 LcsSlotDefintion >> setValueTo: anObject in: aDomainObject [
 	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+]
+
+{ #category : #defaults }
+LcsSlotDefintion >> slotClass [
+	^ self slotTypes any
 ]
 
 { #category : #validation }

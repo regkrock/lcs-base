@@ -20,7 +20,6 @@ LcsUsersModule class >> usersSlotDefinition [
 		addSlotType: LcsUsers;
 		collectionSlotCollectionClass: IdentitySet;
 		addCollectionMemberType: LcsUser;
-		beIdentitySetCollection;
 		yourself
 ]
 

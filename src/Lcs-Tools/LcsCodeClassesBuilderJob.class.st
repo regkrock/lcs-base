@@ -1,166 +1,164 @@
 Class {
 	#name : #LcsCodeClassesBuilderJob,
-	#superclass : #LcsClassesBuilderJob,
+	#superclass : #LcsCodeBuilderJob,
 	#instVars : [
-		'codeSuperclassBuilder',
-		'codeCollectionClassBuilder',
-		'memberOfSlotBuilder',
-		'codeClassBuilders',
-		'collectionSlotBuilder'
+		'codeClassRootName',
+		'codeSlotName',
+		'codeClassName',
+		'codeCollectionClassName',
+		'codeCollectionSlotName',
+		'moduleClass',
+		'targetDomainClasses'
 	],
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #initialize }
-LcsCodeClassesBuilderJob >> addCodeCollectionClassBuilderStep [
-	self addJobStep: LcsCodeCollectionClassBuilder new
+{ #category : #builders }
+LcsCodeClassesBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
+	self targetDomainClasses
+		do: [ :eachClass | self addJobStep: (self domainClassCodeMemberSlotBuilder: eachClass) ]
 ]
 
-{ #category : #initialize }
-LcsCodeClassesBuilderJob >> addCodeSubclassesBuilderJobSteps [
-	self addJobStep: LcsCodeBuilderJobSteps new
+{ #category : #builders }
+LcsCodeClassesBuilderJob >> codeClassBuilder [
+	^ LcsCodeSuperClassBuilder new
+		newClassName: self codeClassName;
+		codePackageName: self codePackageName;
+		yourself
 ]
 
-{ #category : #initialize }
-LcsCodeClassesBuilderJob >> addCodeSuperClassBuilderStep [
-	self addJobStep: LcsCodeSuperClassBuilder new
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeClassName [
+	^ codeClassName
 ]
 
-{ #category : #iniitialize }
-LcsCodeClassesBuilderJob >> addCodeSuperClassParentSlotDefinitionStep [
-	self addJobStep: LcsParentGlobaCollectionSlotDefinitionBuilder new
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeClassName: anObject [ 
+	codeClassName := anObject
 ]
 
-{ #category : #initialize }
-LcsCodeClassesBuilderJob >> addGlobalCollectionSlotDefinitionBuilderStep [
-	self addJobStep: LcsGlobalSlotDefinitionBuilder new
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeClassRootName [
+	^ codeClassRootName
 ]
 
-{ #category : #initialize }
-LcsCodeClassesBuilderJob >> addJobStep: aBuilderJobStep [ 
-	aBuilderJobStep parent: self.
-	self jobSteps add: aBuilderJobStep
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeClassRootName: anObject [
+	codeClassRootName := anObject
 ]
 
-{ #category : #initialize }
-LcsCodeClassesBuilderJob >> addMemberOfSlotInDomainClassBuilderStep [
-	self addJobStep: LcsMemberOfSlotBuilder new
-]
-
-{ #category : #'job steps' }
+{ #category : #builders }
 LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
-	self subclassResponsibility
+	^ LcsCodeCollectionClassBuilder new
+		newClassName: self codeCollectionClassName;
+		codePackageName: self codePackageName;
+		yourself
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeCollectionClassName [
+	^ codeCollectionClassName
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeCollectionClassName: anObject [ 
+	codeCollectionClassName := anObject
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeCollectionSlotName [
+	^ codeCollectionSlotName
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeCollectionSlotName: aString [
+	codeCollectionSlotName := aString
+]
+
+{ #category : #builders }
+LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
+	^ LcsGlobalSlotDefinitionBuilder new
+		slotClassName: self codeCollectionClassName;
+		slotName: self codeCollectionSlotName;
+		moduleClass: self moduleClass;
+		yourself
+]
+
+{ #category : #builders }
+LcsCodeClassesBuilderJob >> codeParentGlobalCollectionSlotBuilder [
+	^ LcsGlobalCollectionReferenceSlotBuilder new
+		targetClassName: self codeClassName;
+		collectionSlotName: self codeCollectionSlotName;
+		collectionSlotModuleName: self moduleName;
+		yourself
 ]
 
 { #category : #configuration }
-LcsCodeClassesBuilderJob >> codeRootName: aString [
-	| codeSlotName codesSlotName codeClassName codesClassName |
-
-	codeSlotName := self codeSlotNameFrom: aString.
-	codesSlotName := codeSlotName asEnglishPlural.
-	codeClassName := self classPrefix , aString.
-	codesClassName := (self classPrefix , aString) asEnglishPlural.
-
-	self codeSuperclassBuilder rootName: aString.
-	self codeCollectionClassBuilder rootName: aString asEnglishPlural.
-	self codeSuperClassParentSlotDefinitionStep 
-		targetClassName: codeClassName;
-		collectionSlotName: codesSlotName.
-	self globalCollectionSlotBuilder 
-		slotClassName: codesClassName;
-		slotName: codesSlotName.
-	self memberOfSlotInDomainClassBuilder
-		collectionSlotName: codesSlotName;
-		slotName: codeSlotName
+LcsCodeClassesBuilderJob >> codeRootName: aRootName [
+	self codeClassRootName: aRootName.
+	self codeSlotName: (self codeSlotNameFrom: self codeClassRootName).
+	self codeCollectionSlotName: self codeSlotName asEnglishPlural.
+	self codeClassName: self classPrefix , aRootName.
+	self codeCollectionClassName: self codeClassName asEnglishPlural
 ]
 
-{ #category : #configuration }
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeSlotName [
+	^ codeSlotName
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeSlotName: aString [ 
+	codeSlotName := aString
+]
+
+{ #category : #private }
 LcsCodeClassesBuilderJob >> codeSlotNameFrom: aString [
 	^ (aString at: 1) asLowercase asString , (aString copyFrom: 2 to: aString size)
 ]
 
-{ #category : #'job steps' }
-LcsCodeClassesBuilderJob >> codeSuperClassParentSlotDefinitionStep [
-	self subclassResponsibility
+{ #category : #builders }
+LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: eachClass [
+	^ LcsMemberOfSlotBuilder new
+		target: eachClass;
+		collectionSlotName: self codeCollectionSlotName;
+		slotName: self codeSlotName;
+		moduleClass: self moduleClass;
+		yourself
 ]
 
-{ #category : #'job steps' }
-LcsCodeClassesBuilderJob >> codeSuperclassBuilder [
-	self subclassResponsibility
-]
-
-{ #category : #configuration }
-LcsCodeClassesBuilderJob >> codeSuperclassRootName: aString [ 
-	self codeSuperclassBuilder rootName: aString.
-	self memberOfSlotInDomainClassBuilder slotName: (self codeSlotNameFrom: aString)
-]
-
-{ #category : #'job steps' }
-LcsCodeClassesBuilderJob >> globalCollectionSlotBuilder [
-	self subclassResponsibility
-]
-
-{ #category : #build }
-LcsCodeClassesBuilderJob >> install [
-	self jobSteps do: [:each | 
-		Transcript cr; show: 'Installing class:' , each printString.
-		each install ]
-]
-
-{ #category : #build }
-LcsCodeClassesBuilderJob >> installCodeSuperclass [
-	self codeSuperclassBuilder install.
-	self memberOfSlotInDomainClassBuilder
-		addCollectionElementType: self codeSuperclassBuilder installedClass.
-	self memberOfSlotInDomainClassBuilder addSlotType: self codeSuperclassBuilder installedClass
-]
-
-{ #category : #build }
-LcsCodeClassesBuilderJob >> installCodesCollectionClass [
-	self codeCollectionClassBuilder install.
-	self memberOfSlotInDomainClassBuilder
-		slotClass: self codeCollectionClassBuilder installedClass
-]
-
-{ #category : #build }
-LcsCodeClassesBuilderJob >> installCodesSlotInModule [
-	self memberOfSlotInDomainClassBuilder install
-]
-
-{ #category : #build }
-LcsCodeClassesBuilderJob >> installDomainClassSlot [
-	self memberOfSlotInDomainClassBuilder install
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> initialize [
+	super initialize.
+	self targetDomainClasses: OrderedCollection new
 ]
 
 { #category : #configuration }
-LcsCodeClassesBuilderJob >> installGlobalCollection: aString inSlotNamed: aSlotName inModule: aModuleClass [ 
-	self codeCollectionClassBuilder targetClassName: (self classPrefix , aString).
-	self memberOfSlotInDomainClassBuilder 
-		slotName: aSlotName;
-		moduleName: aModuleClass moduleName.
-	self memberOfSlotInDomainClassBuilder 
-		collectionSlotName: aSlotName;
-		moduleName: aModuleClass moduleName
+LcsCodeClassesBuilderJob >> installMemberSlotInDomainClass: aClass [ 
+	self targetDomainClasses add: aClass
 ]
 
-{ #category : #configuration }
-LcsCodeClassesBuilderJob >> installGlobalCollectionSlotInModule: aModuleClass [
-	self installGlobalCollectionSlotInModuleName: aModuleClass moduleName
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> moduleClass [
+	^ moduleClass
 ]
 
-{ #category : #configuration }
-LcsCodeClassesBuilderJob >> installGlobalCollectionSlotInModuleName: aString [
-	self memberOfSlotInDomainClassBuilder moduleName: aString.
-	self globalCollectionSlotBuilder moduleName: aString.
-	self memberOfSlotInDomainClassBuilder moduleName: aString
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> moduleClass: aModuleClass [ 
+	moduleClass := aModuleClass
 ]
 
-{ #category : #build }
-LcsCodeClassesBuilderJob >> installSlotInDomainClass: aClass [ 
-	self memberOfSlotInDomainClassBuilder target: aClass
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> moduleName [
+	^ self moduleClass moduleName
 ]
 
-{ #category : #configuration }
-LcsCodeClassesBuilderJob >> memberOfSlotInDomainClassBuilder [
-	self subclassResponsibility
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> targetDomainClasses [
+	^ targetDomainClasses
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> targetDomainClasses: aCollection [
+	targetDomainClasses := aCollection
 ]

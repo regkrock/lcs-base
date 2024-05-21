@@ -33,7 +33,7 @@ LcsSlotModel >> addSlotDefinitionsTo: aCollection [
 	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
 		aCollection detect: [ :each | each slotName = eachSlotName ]
 			ifNone: [ aCollection add: eachSlotDefinition ] ].
-	self domainClass == LcsDomainObject
+	self domainClass == 'LcsDomainObject' asClass
 		ifFalse: [ self superClassSlotModel addSlotDefinitionsTo: aCollection ]
 ]
 
@@ -60,16 +60,6 @@ LcsSlotModel >> domainClass: anObject [
 	domainClass := anObject
 ]
 
-{ #category : #accessing }
-LcsSlotModel >> domianClass [
-	^ domainClass
-]
-
-{ #category : #accessing }
-LcsSlotModel >> domianClass: aDomainClass [ 
-	domainClass := aDomainClass
-]
-
 { #category : #'gt view' }
 LcsSlotModel >> gtViewDomainSlotDefinitionsFor: aView [
 	<gtView>
@@ -77,10 +67,11 @@ LcsSlotModel >> gtViewDomainSlotDefinitionsFor: aView [
 ^ aView columnedList
 		title: 'Domain Slot Definitions';
 		priority: 10;
-		items: [ self slotDefinitions values ];
+		items: [ self allSlotDefinitions ];
 		"children: [ :each | (each isAssociation ifTrue: [ each value ] ifFalse: [ each ]) moduleViewChildren ];"
 		column: 'Name' text: [ :each | each slotName ];
 		column: 'Class' text: [ :each | each class name ];
+		column: 'Defined In' text: [ :each | each domainClass name ];
 		yourself
 
 ]
@@ -107,18 +98,32 @@ LcsSlotModel >> initializeOn: aDomainClass [
 ]
 
 { #category : #model }
+LcsSlotModel >> initializeSlotNamed: aSlotName in: aDomainObject [
+	(self slotDefinitionNamed: aSlotName) initializeSlotValueIn: aDomainObject 
+]
+
+{ #category : #model }
 LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
 	self allSlotDefinitions do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
 ]
 
 { #category : #accessing }
 LcsSlotModel >> parent [
-	^ self domianClass
+	^ self domainClass
 ]
 
 { #category : #accessing }
 LcsSlotModel >> parent: aDomainClass [ 
-	self domianClass: aDomainClass
+	self domainClass: aDomainClass
+]
+
+{ #category : #printing }
+LcsSlotModel >> printOn: aStream [
+	super printOn: aStream.
+	aStream 
+		nextPutAll: '(';
+		nextPutAll: self domainClass name;
+		nextPutAll: ')'
 ]
 
 { #category : #slots }

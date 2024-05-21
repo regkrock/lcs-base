@@ -2,8 +2,7 @@ Class {
 	#name : #LcsCodeClassBuilder,
 	#superclass : #LcsBaseCodeClassBuilder,
 	#instVars : [
-		'defaultInstance',
-		'superclassName'
+		'defaultInstance'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -30,8 +29,8 @@ LcsCodeClassBuilder >> initialize [
 ]
 
 { #category : #build }
-LcsCodeClassBuilder >> install [
-	super install..
+LcsCodeClassBuilder >> installCode [
+	super installCode.
 	self addCompletedRefactoring: self addShortNameRefactoring execute.
 	self addCompletedRefactoring: self addCodeDescriptionRefactoring execute.
 	self addCompletedRefactoring: self addCodeNameRefactoring execute.
@@ -42,12 +41,11 @@ LcsCodeClassBuilder >> isDefaultInstance [
 	^ self defaultInstance == true
 ]
 
-{ #category : #build }
-LcsCodeClassBuilder >> superclassName [
-	^ superclassName
-]
-
-{ #category : #build }
-LcsCodeClassBuilder >> superclassName: aString [
-	superclassName := aString
+{ #category : #accessing }
+LcsCodeClassBuilder >> verifyInstallation [
+	super verifyInstallation.
+	self assert: self installedClass superclass name equals: self superclassName.
+	self assert: self installedClass defaultCodeDescription equals: self codeDescription.
+	self assert: self installedClass defaultCodeName equals: self codeName.
+	self assert: self installedClass defaultShortName equals: self shortName.
 ]

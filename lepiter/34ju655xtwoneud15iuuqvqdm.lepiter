@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-16T13:57:14.158753-04:00"
+						"dateAndTimeString" : "2024-05-15T10:36:49.644476-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Explain how to define a date slto"
+				"string" : "Explain how to define a date slot"
 			}
 		]
 	},

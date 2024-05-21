@@ -1,14 +1,14 @@
 Class {
 	#name : #LcsSlotDefinitionBuilder,
-	#superclass : #LcsObject,
+	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
 		'slotName',
 		'target',
 		'slotDefinitionSelector',
 		'targetClassName',
-		'parent'
+		'moduleClass'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-Tools'
 }
 
 { #category : #'instance  creation' }
@@ -20,7 +20,7 @@ LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
 
 { #category : #configuration }
 LcsSlotDefinitionBuilder class >> slotDefinitionClass [
-	^LcsGlobalCollectionReferenceSlot
+	self subclassResponsibility
 ]
 
 { #category : #'code generation' }
@@ -79,7 +79,7 @@ LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [
 ]
 
 { #category : #api }
-LcsSlotDefinitionBuilder >> install [
+LcsSlotDefinitionBuilder >> installCode [
 	"self ensureSlotDefinitionMethodDoesNotAlreadyExist."
 	self isInstanceVariableAlreadyCreated ifFalse: [self createInstanceVariable].
 	self createGetterAndSetterMethods.
@@ -96,14 +96,14 @@ LcsSlotDefinitionBuilder >> isInstanceVariableAlreadyCreated [
 	^ self target allInstVarNames includes: self slotName
 ]
 
-{ #category : #acccessing }
-LcsSlotDefinitionBuilder >> parent [
-	^ parent
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> moduleClass [
+	^ moduleClass ifNil: [ moduleClass := #LcsBaseModule asClass moduleClassNamed: self moduleName ]
 ]
 
-{ #category : #acccessing }
-LcsSlotDefinitionBuilder >> parent: aBuilderOrBuilderJob [ 
-	parent := aBuilderOrBuilderJob
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> moduleClass: aModuleClass [
+	moduleClass := aModuleClass
 ]
 
 { #category : #configuration }
@@ -162,10 +162,28 @@ LcsSlotDefinitionBuilder >> target: aClass [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClassName [
-	^ targetClassName ifNil: [ targetClassName := (#LcsBaseModule asClass moduleClassNamed: self moduleName) name ]
+	^ targetClassName ifNil: [ targetClassName := self moduleClass name ]
 ]
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClassName: anObject [
 	targetClassName := anObject
+]
+
+{ #category : #install }
+LcsSlotDefinitionBuilder >> updateSlotModel [
+	self installSlotDefinition
+]
+
+{ #category : #install }
+LcsSlotDefinitionBuilder >> verifyInstallation [
+	self assert: (self target allInstVarNames includes: slotName).
+	self assert: (self target canUnderstand: self slotName asSymbol).
+	self assert: (self target canUnderstand: (self slotName , ':') asSymbol).
+	self assert: (self target class canUnderstand: (slotName , 'SlotDefinition') asSymbol)
+]
+
+{ #category : #install }
+LcsSlotDefinitionBuilder >> verifySlotModelUpdates [
+	self assert: (self target slotModel slotDefinitionNamed: self slotName) notNil
 ]

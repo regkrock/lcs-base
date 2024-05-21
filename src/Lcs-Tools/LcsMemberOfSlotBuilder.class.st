@@ -20,7 +20,7 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 		codeStream addSetter: 'addSlotType' contents: eachSlotTypeClass name].
 	codeStream
 		addSetter: 'collectionSlotName' contents: self collectionSlotName printString;
-		addSetter: 'moduleName' contents: self moduleName printString
+		addSetter: 'collectionModuleName' contents: self moduleName printString
 .
 	
 ]
@@ -47,8 +47,13 @@ LcsMemberOfSlotBuilder >> initialize [
 ]
 
 { #category : #accessing }
+LcsMemberOfSlotBuilder >> jobSteps [
+	^ OrderedCollection new
+]
+
+{ #category : #accessing }
 LcsMemberOfSlotBuilder >> moduleName [
-	^ moduleName
+	^ moduleName ifNil: [ self moduleClass ifNil: [ ' missing moduleClass name' ] ifNotNil: [  self moduleClass moduleName ] ] 
 ]
 
 { #category : #accessing }

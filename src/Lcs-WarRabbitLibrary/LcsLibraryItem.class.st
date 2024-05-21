@@ -75,7 +75,7 @@ LcsLibraryItem class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
-		moduleName: LcsWarRabbitLibrary moduleName;
+		collectionSlotModuleName: LcsWarRabbitLibrary moduleName;
 		collectionSlotName: 'libraryItems';
 		yourself
 ]

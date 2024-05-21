@@ -16,7 +16,6 @@ LcsWarRabbitLibrary class >> authorsSlotDefinition [
 		slotName: 'authors';
 		addSlotType: LcsAuthors; 
 		addCollectionMemberType: LcsAuthor;
-		beIdentitySetCollection;
 		yourself
 ]
 
@@ -27,7 +26,6 @@ LcsWarRabbitLibrary class >> libraryCategoriesSlotDefinition [
 		slotName: 'libraryCategories';
 		addSlotType: LcsLibraryCategories; 
 		addCollectionMemberType: LcsLibraryCategory;
-		beIdentitySetCollection;
 		yourself
 ]
 
@@ -38,7 +36,6 @@ LcsWarRabbitLibrary class >> libraryItemsSlotDefinition [
 		slotName: 'libraryItems';
 		addSlotType: LcsLibraryItems; 
 		addCollectionMemberType: LcsLibraryItem;
-		beIdentitySetCollection;
 		yourself
 ]
 

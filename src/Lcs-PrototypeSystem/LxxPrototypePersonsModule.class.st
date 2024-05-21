@@ -19,7 +19,6 @@ LxxPrototypePersonsModule class >> personsSlotDefinition [
 		slotName: 'persons';
 		addSlotType: LxxPrototypePersons;
 		addCollectionMemberType: LxxPrototypePerson;
-		beIdentitySetCollection;
 		yourself
 ]
 

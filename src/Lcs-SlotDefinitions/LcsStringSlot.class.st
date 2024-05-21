@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #default }
 LcsStringSlot >> defaultInitialValueBlaock [
 	^ [ self typeClass new ]
 ]

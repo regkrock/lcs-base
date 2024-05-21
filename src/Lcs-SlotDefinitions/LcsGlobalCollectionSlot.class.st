@@ -44,13 +44,6 @@ LcsGlobalCollectionSlot >> collectionSlotCollectionClass: anObject [
 	collectionSlotClass := anObject
 ]
 
-{ #category : #'slot model' }
-LcsGlobalCollectionSlot >> initialValueFor: aDomainObject [
-	^ (self initialValueBlock cull: aDomainObject)
-		parent: aDomainObject;
-		yourself
-]
-
 { #category : #initialize }
 LcsGlobalCollectionSlot >> initialize [
 	super initialize.
@@ -64,8 +57,8 @@ LcsGlobalCollectionSlot >> isSlotTypeIdentitySet [
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionSlot >> persistValue: anObject [
-	(self getValueIn: self slotName asString) persistValue: anObject
+LcsGlobalCollectionSlot >> persistValue: anObject contextObject: aContextDomainObject [
+	(self getValueIn: self slotName asString) persistValue: anObject contextObject: aContextDomainObject
 ]
 
 { #category : #'slot model' }

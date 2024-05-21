@@ -30,6 +30,11 @@ LcsObjectChangeRecord >> domainObject: anObject [
 	domainObject := anObject
 ]
 
+{ #category : #accessing }
+LcsObjectChangeRecord >> gtUnitOfWorkChildren [
+	^ LcsUnitOfWorkViewItem newLabel: self viewItemLabel item: self domainObject
+]
+
 { #category : #initialization }
 LcsObjectChangeRecord >> initializeFor: aDomainObject parent: anObject [
 	self 

@@ -5,6 +5,17 @@ Class {
 }
 
 { #category : #accessing }
-LcsCodeCollectionClassBuilder >> superclassName [
+LcsCodeCollectionClassBuilder class >> superclassName [
 	^ 'LcsCodes'
+]
+
+{ #category : #accessing }
+LcsCodeCollectionClassBuilder >> updateSlotModel [
+	super updateSlotModel
+]
+
+{ #category : #accessing }
+LcsCodeCollectionClassBuilder >> verifyInstallation [
+	super verifyInstallation.
+	self assert: self installedClass superclass name equals: 'LcsCodes'
 ]

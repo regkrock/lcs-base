@@ -5,9 +5,9 @@ Class {
 	#name : #LcsBaseSystem,
 	#superclass : #LcsBaseModule,
 	#instVars : [
-		'slotModel',
 		'status',
-		'systemDomainClasses'
+		'systemDomainClasses',
+		'systemSlotModel'
 	],
 	#category : #'Lcs-DomainBase'
 }
@@ -105,9 +105,21 @@ LcsBaseSystem >> gtConfigurationIssuesFor: aView [
 ]
 
 { #category : #'slot model' }
+LcsBaseSystem >> gtUnitOfWorkFor: aView [
+	<gtView>
+	self currentUnitOfWork isNil ifTrue: [ ^ aView empty ].
+	^ aView forward
+		title: 'Unit Of Work';
+		priority: 2;
+		object: [ self currentUnitOfWork ];
+		view: #gtUnitOfWorkFor:;
+		yourself
+]
+
+{ #category : #'slot model' }
 LcsBaseSystem >> gtViewSystemSlotModelFor: aView [
 	<gtView>
-	(self systemSlotModel isNil or: [self systemSlotModel hasSlotModels not])
+	(self systemSlotModel isNil or: [self hasSystemSlotModels not])
 		ifTrue: [ ^ aView empty ].
 	^ aView forward
 		title: 'System Slot Model';
@@ -123,7 +135,7 @@ LcsBaseSystem >> hasSlotModelFor: aClass [
 ]
 
 { #category : #testing }
-LcsBaseSystem >> hasSlotModels [
+LcsBaseSystem >> hasSystemSlotModels [
 	^ self systemSlotModel hasSlotModels
 ]
 
@@ -138,8 +150,16 @@ LcsBaseSystem >> initialSystemDomainClasses [
 ]
 
 { #category : #initialize }
-LcsBaseSystem >> initialize [
-	super initialize
+LcsBaseSystem >> initializeInNewUnitOfWork: aSystemManger [
+	| newUnitOfWork |
+	
+	newUnitOfWork := aSystemManger unitsOfWorkManager createUnitOfWork.
+	newUnitOfWork system: self.
+	newUnitOfWork addObject: self. "Need to add to unit of work"
+	parent := aSystemManger.
+	self initialize.
+	self currentUnitOfWork applyChanges.
+
 ]
 
 { #category : #initialize }
@@ -195,7 +215,7 @@ LcsBaseSystem >> releaseSlotModel [
 
 { #category : #remove }
 LcsBaseSystem >> removeSystem [ 
-	self parent removeSystem: self
+	parent removeSystem: self
 ]
 
 { #category : #'slot model' }
@@ -218,7 +238,7 @@ LcsBaseSystem >> restoreSystem [
 
 { #category : #restore }
 LcsBaseSystem >> restoreUnitOfWork [
-	self parent restoreUnitOfWorkFor: self
+	parent restoreUnitOfWorkFor: self
 ]
 
 { #category : #accessing }
@@ -248,7 +268,7 @@ LcsBaseSystem >> suspendSystem [
 
 { #category : #suspend }
 LcsBaseSystem >> suspendUnitOfWork [
-	self parent suspendUnitOfWorkFor: self
+	parent suspendUnitOfWorkFor: self
 ]
 
 { #category : #accessing }
@@ -263,17 +283,17 @@ LcsBaseSystem >> systemDomainClasses: anObject [
 
 { #category : #accessing }
 LcsBaseSystem >> systemManager [
-	^ self parent
+	^ parent
 ]
 
 { #category : #accessing }
 LcsBaseSystem >> systemSlotModel [
-	^ slotModel
+	^ systemSlotModel
 ]
 
 { #category : #accessing }
 LcsBaseSystem >> systemSlotModel: anObject [
-	slotModel := anObject
+	systemSlotModel := anObject
 ]
 
 { #category : #accessing }

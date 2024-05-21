@@ -9,7 +9,7 @@ Class {
 		'targetModule',
 		'slotClassName'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-Tools'
 }
 
 { #category : #default }
@@ -68,6 +68,16 @@ LcsGlobalSlotDefinitionBuilder >> initializeModel [
 ]
 
 { #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> jobSteps [
+	^ OrderedCollection new
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> module [
+	^ self currentSystem moduleNamed: (self moduleName ifNil: [ self moduleClass moduleName ])
+]
+
+{ #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> moduleName [
 	^ moduleName
 ]
@@ -75,6 +85,11 @@ LcsGlobalSlotDefinitionBuilder >> moduleName [
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> moduleName: anObject [
 	moduleName := anObject
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
+	(self module perform: self slotName asSymbol) ifNil: [ self module initializeSlotNamed: self slotName ]
 ]
 
 { #category : #accessing }

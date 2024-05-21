@@ -26,8 +26,8 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
 			codeRootName: 'Talent';
 			createCodeInstances: #('Guitar' 'Saxaphone');
-			installGlobalCollectionSlotInModule: LxxBarebonesSystem ;
-			installSlotInDomainClass: LxxBarebonesPerson;
+			moduleClass: LxxBarebonesSystem ;
+			installMemberSlotInDomainClass: LxxBarebonesPerson;
 			yourself.
 	
 	self assert: builder classPrefix equals: 'Lxx'.
@@ -35,11 +35,11 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	self assert: builder completedRefactorings isEmpty.
 	
 	self assert: builder codeSuperclassBuilder superclassName equals: 'LcsCode'.
-	self assert: builder codeSuperclassBuilder installClassName equals: 'LxxTalent'.
+	self assert: builder codeSuperclassBuilder newClassName equals: 'LxxTalent'.
 	self assert: builder codeSuperclassBuilder codePackageName  equals: 'Lcs-BarebonesSystem'.
 	
 	self assert: builder codeCollectionClassBuilder superclassName equals: 'LcsCodes'.
-	self assert: builder codeCollectionClassBuilder installClassName equals: 'LxxTalents'.
+	self assert: builder codeCollectionClassBuilder newClassName equals: 'LxxTalents'.
 	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
 
 	self assert: builder globalCollectionSlotBuilder slotName equals: 'talents'.
@@ -67,8 +67,8 @@ LcsStandardCodeClassesBuilderJobTest >> testInstallingTitleCodesAndTitleSlotInPe
 			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
 			codeRootName: 'Talent';
 			createCodeInstances: #('Guitar' 'Saxaphone');
-			installGlobalCollectionSlotInModule: LxxBarebonesSystem ;
-			installSlotInDomainClass: LxxBarebonesPerson;
+			moduleClass: LxxBarebonesSystem ;
+			installMemberSlotInDomainClass: LxxBarebonesPerson;
 			yourself.
 				
 	builder install.

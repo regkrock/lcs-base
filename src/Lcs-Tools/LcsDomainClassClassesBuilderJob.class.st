@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDomainClassClassesBuilderJob,
-	#superclass : #LcsClassesBuilderJob,
+	#superclass : #LcsCodeBuilderJob,
 	#instVars : [
 		'codeSuperclassBuilder',
 		'codeCollectionClassBuilder',
@@ -12,6 +12,15 @@ Class {
 }
 
 { #category : #accessing }
+LcsDomainClassClassesBuilderJob >> buildJobSteps [
+	self addJobStep: self domainClassBuilder.
+	self addJobStep: self domainCollectionClassBuilder.
+	self addJobStep: self domainParentGlobalCollectionSlotBuilder.
+	self addJobStep: self domainGlobalCollectionSlotBuilder.
+	self addMemberOfSlotBuilderForTargetClasses
+]
+
+{ #category : #accessing }
 LcsDomainClassClassesBuilderJob >> codeClassBuilders [
 	^ codeClassBuilders
 ]
@@ -19,11 +28,6 @@ LcsDomainClassClassesBuilderJob >> codeClassBuilders [
 { #category : #accessing }
 LcsDomainClassClassesBuilderJob >> codeClassBuilders: anObject [ 
 	codeClassBuilders := anObject
-]
-
-{ #category : #accessing }
-LcsDomainClassClassesBuilderJob >> codeCollectionClassBuilder [
-	^ codeCollectionClassBuilder
 ]
 
 { #category : #accessing }
@@ -50,15 +54,6 @@ LcsDomainClassClassesBuilderJob >> codeSuperclassRootName: aString [
 { #category : #accessing }
 LcsDomainClassClassesBuilderJob >> collectionSlotBuilder: anObject [
 	collectionSlotBuilder := anObject
-]
-
-{ #category : #build }
-LcsDomainClassClassesBuilderJob >> install [
-	self installCodeSuperclass.
-	"self codeClassBuilders do: [ :each | each install ]."
-	self installCodesCollectionClass.
-	self installCodesSlotInModule.
-	self installDomainClassSlot
 ]
 
 { #category : #build }
@@ -98,7 +93,7 @@ LcsDomainClassClassesBuilderJob >> installGlobalCollection: aString inSlotNamed:
 ]
 
 { #category : #build }
-LcsDomainClassClassesBuilderJob >> installSlotInDomainClass: aClass [ 
+LcsDomainClassClassesBuilderJob >> installMemberSlotInDomainClass: aClass [ 
 	self memberOfSlotInDomainClassBuilder target: aClass
 ]
 

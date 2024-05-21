@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsScaledDecimalSlotDefinitionBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-Tools'
 }
 
 { #category : #configuration }

@@ -33,6 +33,11 @@ LcsCode class >> defaultCodeName [
 ]
 
 { #category : #defaults }
+LcsCode class >> defaultInstance [
+	^ false
+]
+
+{ #category : #defaults }
 LcsCode class >> defaultShortName [
 	self subclassResponsibility
 ]
@@ -42,6 +47,7 @@ LcsCode class >> isDefaultInstanceSlotDefinition [
 	<slotDefinition>
 	^ LcsBooleanSlot new
 		slotName: 'isDefaultInstance';
+		initialValueBlock: [ :codeClass | codeClass  defaultInstance ]; 
 		yourself
 ]
 

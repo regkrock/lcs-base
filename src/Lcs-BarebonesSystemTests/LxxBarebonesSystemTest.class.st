@@ -51,7 +51,7 @@ LxxBarebonesSystemTest >> testBarebonesCreation [
 	
 	self assert: LxxBarebonesPerson slotModel hasElements.
 	self assert: self system1 configuration class name equals: #LxxBarebonesSystemConfiguration.
-	self assert: self system1 hasSlotModels .
+	self assert: self system1 hasSystemSlotModels .
 	self assert: self system1 systemSlotModel slotModels size equals: LcsApplicationEnvironment currentSystem initialSystemDomainClasses size.
 	allDomainClasses := self domainObjectClass withAllSubclasses asOrderedCollection.
 	self system1 systemSlotModel slotModels keysDo: [ :each | allDomainClasses remove: each ifAbsent: [ ] ].
