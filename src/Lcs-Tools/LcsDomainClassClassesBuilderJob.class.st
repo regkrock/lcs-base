@@ -45,51 +45,9 @@ LcsDomainClassClassesBuilderJob >> codeSuperclassBuilder: anObject [
 	codeSuperclassBuilder := anObject
 ]
 
-{ #category : #configuration }
-LcsDomainClassClassesBuilderJob >> codeSuperclassRootName: aString [ 
-	self codeSuperclassBuilder rootName: aString.
-	self memberOfSlotInDomainClassBuilder slotName: aString
-]
-
 { #category : #accessing }
 LcsDomainClassClassesBuilderJob >> collectionSlotBuilder: anObject [
 	collectionSlotBuilder := anObject
-]
-
-{ #category : #build }
-LcsDomainClassClassesBuilderJob >> installCodeSuperclass [
-	self codeSuperclassBuilder install.
-	self memberOfSlotInDomainClassBuilder
-		addCollectionElementType: self codeSuperclassBuilder installedClass.
-	self memberOfSlotInDomainClassBuilder addSlotType: self codeSuperclassBuilder installedClass
-]
-
-{ #category : #build }
-LcsDomainClassClassesBuilderJob >> installCodesCollectionClass [
-	self codeCollectionClassBuilder install.
-	self memberOfSlotInDomainClassBuilder
-		slotClass: self codeCollectionClassBuilder installedClass
-]
-
-{ #category : #build }
-LcsDomainClassClassesBuilderJob >> installCodesSlotInModule [
-	self memberOfSlotInDomainClassBuilder install
-]
-
-{ #category : #build }
-LcsDomainClassClassesBuilderJob >> installDomainClassSlot [
-	self memberOfSlotInDomainClassBuilder install
-]
-
-{ #category : #configuration }
-LcsDomainClassClassesBuilderJob >> installGlobalCollection: aString inSlotNamed: aSlotName inModule: aModuleClass [ 
-	self codeCollectionClassBuilder rootName: aString.
-	self memberOfSlotInDomainClassBuilder 
-		slotName: aSlotName;
-		moduleName: aModuleClass moduleName.
-	self memberOfSlotInDomainClassBuilder 
-		collectionSlotName: aSlotName;
-		moduleName: aModuleClass moduleName
 ]
 
 { #category : #build }

@@ -66,6 +66,23 @@ LcsSystemManager >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
 ]
 
+{ #category : #'gt view' }
+LcsSystemManager >> gtAllSystemsFor: aView [
+	<gtView>
+	^ aView columnedTree 
+		title: 'Systems';
+		priority: 2.5;
+		expandUpTo: 3;
+		items: [ {LcsApplicationEnvironmentViewItem newOn: self label: 'System Manager' item: self} ];
+		children: [ :each | each children ];
+		column: 'Option'
+			text: [ :each | each label ]
+			width: 200;
+		column: 'Value' text: [ :each | each item displayString ];
+		send: #item;
+		yourself
+]
+
 { #category : #accessing }
 LcsSystemManager >> gtSystemManagerFor: aView [
 		<gtView>

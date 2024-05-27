@@ -18,7 +18,6 @@ LcsUsersModule class >> usersSlotDefinition [
 	^ LcsGlobalCollectionSlot new
 		slotName: 'users';
 		addSlotType: LcsUsers;
-		collectionSlotCollectionClass: IdentitySet;
 		addCollectionMemberType: LcsUser;
 		yourself
 ]

@@ -4,6 +4,26 @@ Class {
 	#category : #'Lcs-BarebonesSystemTests'
 }
 
+{ #category : #tests }
+LcsStandardCodeClassesBuilderJobTest >> jobBuilder [
+	^ LcsStandardCodeClassesBuilderJob new
+		classPrefix: 'Lxx';
+		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+		codeRootName: 'Talent';
+		createCodeInstances: #('Guitar' 'Saxaphone');
+		moduleClass: LxxBarebonesSystem;
+		installMemberSlotInDomainClass: LxxBarebonesPerson;
+		yourself
+]
+
+{ #category : #running }
+LcsStandardCodeClassesBuilderJobTest >> removeAllArtifacts [
+	LxxBarebonesSystem removeDomainSlotNamed: 'talents'.
+	LxxBarebonesPerson removeDomainSlotNamed: 'talent'.
+	self
+		removeClassesNamed: #('LxxTalent' 'LxxTalents')
+]
+
 { #category : #running }
 LcsStandardCodeClassesBuilderJobTest >> setupSunitSystem [
 	LxxBarebonesSystem new
@@ -11,77 +31,75 @@ LcsStandardCodeClassesBuilderJobTest >> setupSunitSystem [
 
 { #category : #running }
 LcsStandardCodeClassesBuilderJobTest >> tearDown [
-	LxxBarebonesSystem removeDomainSlotNamed: 'talents'.
-	LxxBarebonesPerson removeDomainSlotNamed: 'talent'.
-	self removeClassesNamed: #('LxxTalents' 'LxxTalent' ).
+	self removeAllArtifacts.
 	super tearDown
 ]
 
 { #category : #tests }
-LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson [
+LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson_Phase1_BuildJob [
 	| builder |
-	builder := 
-		LcsStandardCodeClassesBuilderJob new
-			classPrefix: 'Lxx';
-			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
-			codeRootName: 'Talent';
-			createCodeInstances: #('Guitar' 'Saxaphone');
-			moduleClass: LxxBarebonesSystem ;
-			installMemberSlotInDomainClass: LxxBarebonesPerson;
-			yourself.
-	
+	builder := self jobBuilder.
+
 	self assert: builder classPrefix equals: 'Lxx'.
 	self assert: builder codePackageName equals: 'Lcs-BarebonesSystem'.
 	self assert: builder completedRefactorings isEmpty.
-	
-	self assert: builder codeSuperclassBuilder superclassName equals: 'LcsCode'.
-	self assert: builder codeSuperclassBuilder newClassName equals: 'LxxTalent'.
-	self assert: builder codeSuperclassBuilder codePackageName  equals: 'Lcs-BarebonesSystem'.
-	
-	self assert: builder codeCollectionClassBuilder superclassName equals: 'LcsCodes'.
-	self assert: builder codeCollectionClassBuilder newClassName equals: 'LxxTalents'.
-	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: builder codeClassRootName equals: 'Talent'.
+	self assert: builder jobSteps hasNoJobSteps.
 
-	self assert: builder globalCollectionSlotBuilder slotName equals: 'talents'.
-	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
-	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxBarebonesSystem'.
-	self assert: builder globalCollectionSlotBuilder target equals: LxxBarebonesSystem.
-	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxTalents'.
-
-	self assert: builder memberOfSlotInDomainClassBuilder slotName equals: 'talent'.
-	self assert: builder memberOfSlotInDomainClassBuilder collectionSlotName equals: 'talents'.
-	self assert: builder memberOfSlotInDomainClassBuilder moduleName equals: LxxBarebonesSystem moduleName.
+	self assert: builder codeSlotName equals: 'talent'.
+	self assert: builder codeCollectionSlotName equals: 'talents'.
+	self assert: builder codeClassName equals: 'LxxTalent'.
+	self assert: builder codeCollectionClassName equals: 'LxxTalents'.
+	self assert: builder moduleClass equals: LxxBarebonesSystem.
 
 ]
 
 { #category : #tests }
-LcsStandardCodeClassesBuilderJobTest >> testInstallingTitleCodesAndTitleSlotInPerson [
-	| builder talentClass talentsClass |
+LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson_Phase2_BuildJobSteps [
+	| builder builderJobStep |
+	builder := self jobBuilder.
+	builder buildJobSteps.
 
-	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'talent'.
-	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'talents'.
+	self assert: builder jobSteps collection size equals: 5.
+
+	builderJobStep := builder jobSteps jobStepAt: 1.
+	self assert: builderJobStep class identicalTo: LcsCodeSuperClassBuilder.
+	self assert: builderJobStep superclassName equals: 'LcsCode'.
+	self assert: builderJobStep newClassName equals: 'LxxTalent'.
+	self assert: builderJobStep codePackageName equals: builder codePackageName.
+
+	builderJobStep := builder jobSteps jobStepAt: 2.
+	self assert: builderJobStep class identicalTo: LcsCodeCollectionClassBuilder.
+	self assert: builderJobStep superclassName equals: 'LcsCodes'.
+	self assert: builderJobStep newClassName equals: 'LxxTalents'.
+	self assert: builderJobStep codePackageName equals: builder codePackageName.
+		
+	builderJobStep := builder jobSteps jobStepAt: 3.
+	self assert: builderJobStep class identicalTo: LcsGlobalCollectionReferenceSlotBuilder.
+	self assert: builderJobStep targetClassName equals: 'LxxTalent'.
+	self assert: builderJobStep collectionSlotName equals: 'talents'.
+	self assert: builderJobStep collectionSlotModule class identicalTo: LxxBarebonesSystem.
 	
-	builder := 
-		LcsStandardCodeClassesBuilderJob new
-			classPrefix: 'Lxx';
-			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
-			codeRootName: 'Talent';
-			createCodeInstances: #('Guitar' 'Saxaphone');
-			moduleClass: LxxBarebonesSystem ;
-			installMemberSlotInDomainClass: LxxBarebonesPerson;
-			yourself.
-				
-	builder install.
-	
-	talentClass := self classNamed: 'LxxTalent'.
-	talentsClass := self classNamed: 'LxxTalents'.
-	
-	self assert: talentClass notNil.
-	self assert: talentsClass notNil.
-	
-	self assert: talentClass superclass equals: LcsCode.
-	self assert: talentsClass superclass equals: LcsCodes.
-	
-	LxxBarebonesPerson verifyClassHasDomainSlotNamed: 'talent'.
-	LxxBarebonesSystem verifyClassHasDomainSlotNamed: 'talents'
+	builderJobStep := builder jobSteps jobStepAt: 4.
+	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
+	self assert: builderJobStep moduleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep slotClassName equals: 'LxxTalents'.
+	self assert: builderJobStep slotName equals: 'talents'.
+
+
+	builderJobStep := builder jobSteps jobStepAt: 5.
+	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
+	self assert: builderJobStep target identicalTo: LxxBarebonesPerson.
+	self assert: builderJobStep moduleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep collectionSlotName equals: 'talents'.
+	self assert: builderJobStep slotName equals: 'talent'.
+]
+
+{ #category : #tests }
+LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson_Phase3_InstallClassesAndSlots [
+	| builder |
+	builder := self jobBuilder.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation
 ]

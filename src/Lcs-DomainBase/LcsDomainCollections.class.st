@@ -25,6 +25,11 @@ LcsDomainCollections >> initialize [
 ]
 
 { #category : #accessing }
+LcsDomainCollections >> isEmpty [
+	^ self collection isEmpty.
+]
+
+{ #category : #accessing }
 LcsDomainCollections >> parent [
 	^ parent
 ]

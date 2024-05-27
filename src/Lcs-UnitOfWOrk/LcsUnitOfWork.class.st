@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsUnitOfWork,
 	#superclass : #LcsBaseUnitOfWork,
-	#classVars : [
-		'Singleton'
-	],
 	#category : #'Lcs-UnitOfWOrk'
 }
 
@@ -33,4 +30,18 @@ LcsUnitOfWork >> hasNoChanges [
 	self changedObjects isEmpty ifTrue: [ ^ true ].
 	self deletedObjects isEmpty ifTrue: [ ^ true ].
 	^ self addedObjects isEmpty
+]
+
+{ #category : #query }
+LcsUnitOfWork >> pendingAddsFor: anItem [
+	^ self addedObjects
+		select: [ :eachAddRecord | 
+			eachAddRecord isMemberOfGlobalCollectionIn: anItem label ]
+]
+
+{ #category : #query }
+LcsUnitOfWork >> pendingRmovalsFor: anItem [
+	^ self deletedObjects
+		select: [ :eachDeletedRecord | 
+			eachDeletedRecord isMemberOfGlobalCollectionIn: anItem label ]
 ]

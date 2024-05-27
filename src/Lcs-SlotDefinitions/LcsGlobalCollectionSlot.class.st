@@ -1,3 +1,6 @@
+"
+This is used to define a global collection slot. All of the items stored in this collection are rooted in this collection.
+"
 Class {
 	#name : #LcsGlobalCollectionSlot,
 	#superclass : #LcsSlotDefintion,
@@ -48,6 +51,11 @@ LcsGlobalCollectionSlot >> collectionSlotCollectionClass: anObject [
 LcsGlobalCollectionSlot >> initialize [
 	super initialize.
 	self collectionMemberTypes: OrderedCollection new
+]
+
+{ #category : #accessing }
+LcsGlobalCollectionSlot >> isGlobalCollectionSlot [
+	^ true
 ]
 
 { #category : #testing }

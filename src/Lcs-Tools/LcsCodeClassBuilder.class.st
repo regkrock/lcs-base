@@ -42,8 +42,8 @@ LcsCodeClassBuilder >> isDefaultInstance [
 ]
 
 { #category : #accessing }
-LcsCodeClassBuilder >> verifyInstallation [
-	super verifyInstallation.
+LcsCodeClassBuilder >> verifyCodeInstallation [
+	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self superclassName.
 	self assert: self installedClass defaultCodeDescription equals: self codeDescription.
 	self assert: self installedClass defaultCodeName equals: self codeName.

@@ -21,16 +21,7 @@ LcsSystemSlotModel >> addToSlotModel: aSlotModel [
 ]
 
 { #category : #'gt view' }
-LcsSystemSlotModel >> gtViewSlotModelChildren [
-	| children |
-	children := OrderedCollection new.
-	self slotModels keysAndValuesDo: [ :key :value |
-		children add: (LcsSlotModelViewItem newLabel: key name item: value) ].
-	^ children
-]
-
-{ #category : #'gt view' }
-LcsSystemSlotModel >> gtViewSystemSlotModelFor: aView [
+LcsSystemSlotModel >> gtSystemSlotModelFor: aView [
 	<gtView>
 	self slotModels ifEmpty: [ ^ aView empty ].
 	^ aView columnedTree 
@@ -45,6 +36,15 @@ LcsSystemSlotModel >> gtViewSystemSlotModelFor: aView [
 		column: 'Value' text: [ :each | each item displayString ];
 		send: #item;
 		yourself
+]
+
+{ #category : #'gt view' }
+LcsSystemSlotModel >> gtViewSlotModelChildren [
+	| children |
+	children := OrderedCollection new.
+	self slotModels keysAndValuesDo: [ :key :value |
+		children add: (LcsSlotModelViewItem newLabel: key name item: value) ].
+	^ children
 ]
 
 { #category : #testing }

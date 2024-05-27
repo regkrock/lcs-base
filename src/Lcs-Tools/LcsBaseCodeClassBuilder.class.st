@@ -206,7 +206,7 @@ LcsBaseCodeClassBuilder >> updateSlotModel [
 ]
 
 { #category : #install }
-LcsBaseCodeClassBuilder >> verifyInstallation [
+LcsBaseCodeClassBuilder >> verifyCodeInstallation [
 	self assert: self installedClass notNil description: 'Class has been created'.
 	self assert: self installedClass name equals: self newClassName.
 	self assert: self installedClass slotModel isNil description: 'The class has been created but not yet installed in a system'

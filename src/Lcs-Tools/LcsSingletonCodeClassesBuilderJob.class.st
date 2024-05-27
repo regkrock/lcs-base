@@ -23,14 +23,6 @@ LcsSingletonCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString [
 	self addCodeSubclassWithRootNamed: aString with: [ :classBuilder | ]
 ]
 
-{ #category : #configuration }
-LcsSingletonCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString with: aBlock [
-	| classBuilder |
-	classBuilder := self codeSubclassBuilderFor: aString.
-	aBlock value: classBuilder.
-	self codeSubclassBuilders add: classBuilder
-]
-
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
@@ -61,52 +53,15 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 	codeSubclassBuilders := aCollection
 ]
 
-{ #category : #'job steps' }
-LcsSingletonCodeClassesBuilderJob >> codeSubclassesBuilderJobSteps [
-	^ self jobSteps at: 2
-]
-
-{ #category : #'job steps' }
-LcsSingletonCodeClassesBuilderJob >> codeSuperClassParentSlotDefinitionStep [
-	^ self jobSteps at: 4
-]
-
-{ #category : #'job steps' }
-LcsSingletonCodeClassesBuilderJob >> codeSuperclassBuilder [
-	^ self jobSteps at: 1
-]
-
-{ #category : #'job steps' }
-LcsSingletonCodeClassesBuilderJob >> globalCollectionSlotBuilder [
-	^ self jobSteps at: 5
-]
-
-{ #category : #'slot model' }
-LcsSingletonCodeClassesBuilderJob >> globalCollectionSlotBuilders [
-	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder)
-		do: [ :each | each populateSlotModel ]
-]
-
 { #category : #iniitialize }
 LcsSingletonCodeClassesBuilderJob >> initialize [
 	super initialize.
 	self codeSubclassBuilders: OrderedCollection new
 ]
 
-{ #category : #configuration }
-LcsSingletonCodeClassesBuilderJob >> installGlobalCollectionSlotInModuleName: aString [
-	super installGlobalCollectionSlotInModuleName: aString.
-	self codeSuperClassParentSlotDefinitionStep moduleName: aString
-]
-
-{ #category : #'job steps' }
-LcsSingletonCodeClassesBuilderJob >> memberOfSlotInDomainClassBuilder [
-	^ self jobSteps at: 6
-]
-
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
-	self jobSteps populateSlotModel.
+	self jobSteps .
 	self currentSystem currentUnitOfWork applyChanges
 ]
 
@@ -120,11 +75,6 @@ LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
 LcsSingletonCodeClassesBuilderJob >> updateSlotModel [
 	self jobSteps updateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges	
-]
-
-{ #category : #'slot model' }
-LcsSingletonCodeClassesBuilderJob >> verifyInstallation [
-	self jobSteps verifyInstallation
 ]
 
 { #category : #'slot model' }

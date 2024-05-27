@@ -80,7 +80,7 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollection [
 	self assert: builder target equals: LxxBarebonesSystem.
 	self assert: builder slotDefinitionSelector equals: 'usersSlotDefinition'.
 
-	builder install.
+	builder installCode.
 
 	LxxBarebonesSystem verifyClassHasDomainSlotNamed: 'users'
 ]
@@ -93,8 +93,10 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollectionWithExi
 	self removeArtifactsRelatedToGendersSlot.
 
 	builder := self gendersBuilder.
-	builder install.
-	
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation.
+
 	self assert: (LxxBarebonesSystem canUnderstand: #genders).
 	self assert: (LxxBarebonesSystem canUnderstand: #genders:).
 	
@@ -123,7 +125,9 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollectionWithExi
 	self removeArtifactsRelatedToGendersSlot.
 
 	builder := self gendersBuilder.
-	builder install.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation.
 	
 	self assert: (LxxBarebonesSystem canUnderstand: #genders).
 	self assert: (LxxBarebonesSystem canUnderstand: #genders:).

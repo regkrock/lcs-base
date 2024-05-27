@@ -67,6 +67,7 @@ LcsDomainCollection >> findWithKey: anObject [
 { #category : #'gt view' }
 LcsDomainCollection >> gtItemsFor: aView [
 	<gtView>
+	self collection isNil ifTrue: [ ^ aView empty ].
 	^ aView forward
 		title: 'Items' translated;
 		priority: 0.5;

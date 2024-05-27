@@ -51,8 +51,24 @@ LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 ]
 
+{ #category : #testing }
+LcsGlobalCollectionReferenceSlot >> isGlobalCollectionRefenceSlot [
+	^ true
+]
+
+{ #category : #testing }
+LcsGlobalCollectionReferenceSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
+	^ self isGlobalCollectionRefenceSlot and: [
+	self collectionSlotName = aSlotName ]
+]
+
 { #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject contextObject: aContextDomainObject [
-	aDomainObject instVarNamed: self slotName put: self collectionSlotModule.
+	aDomainObject instVarNamed: self slotName put: self targetCollection.
 	self collectionSlot persistValue: aDomainObject in: self collectionSlotModule
+]
+
+{ #category : #accessing }
+LcsGlobalCollectionReferenceSlot >> targetCollection [
+	^self collectionSlotModule perform: self collectionSlotName asSymbol
 ]

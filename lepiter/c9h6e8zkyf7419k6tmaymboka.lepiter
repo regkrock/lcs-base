@@ -415,7 +415,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2024-05-14T19:11:28.024165-04:00"
+															"dateAndTimeString" : "2024-05-22T11:06:45.979584-04:00"
 														}
 													},
 													"uid" : {
@@ -425,7 +425,7 @@
 													"paragraphStyle" : {
 														"__type" : "textStyle"
 													},
-													"string" : "[[Domain Object stored in Global collection]]"
+													"string" : "[[Add new Domain Object which is stored in Global collection]]"
 												}
 											]
 										},

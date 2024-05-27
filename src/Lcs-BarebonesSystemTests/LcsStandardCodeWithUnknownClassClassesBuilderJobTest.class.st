@@ -4,6 +4,26 @@ Class {
 	#category : #'Lcs-BarebonesSystemTests'
 }
 
+{ #category : #tests }
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> jobBuilder [
+	^ LcsStandardCodeWithUnknownClassClassesBuilderJob new
+		classPrefix: 'Lxx';
+		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+		codeRootName: 'Title';
+		createCodeInstances: #('Mr' 'Ms');
+		moduleClass: LxxBarebonesSystem;
+		installMemberSlotInDomainClass: LxxBarebonesPerson;
+		yourself
+]
+
+{ #category : #running }
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> removeAllArtifacts [
+	LxxBarebonesSystem removeDomainSlotNamed: 'titles'.
+	LxxBarebonesPerson removeDomainSlotNamed: 'titles'.
+	self
+		removeClassesNamed: #('LxxUnknownTitle' 'LxxTitle' 'LxxTitles')
+]
+
 { #category : #running }
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> setupSunitSystem [
 	LxxBarebonesSystem new
@@ -11,96 +31,83 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> setupSunitSystem [
 
 { #category : #running }
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> tearDown [
-	LxxBarebonesSystem removeDomainSlotNamed: 'titles'.
-	LxxBarebonesPerson removeDomainSlotNamed: 'title'.
-	self removeClassesNamed: #('LxxTitles' 'LxxUnknownTitle' 'LxxTitle' 'LxxBaseTitle' ).
+	self removeAllArtifacts.
 	super tearDown
 ]
 
 { #category : #tests }
-LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson [
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase1_BuildJob [
 	| builder |
-	builder := 
-		LcsStandardCodeWithUnknownClassClassesBuilderJob new
-			classPrefix: 'Lxx';
-			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
-			codeRootName: 'Title';
-			createCodeInstances: #('Mr' 'Ms');
-			moduleClass: LxxBarebonesSystem ;
-			installMemberSlotInDomainClass: LxxBarebonesPerson;
-			yourself.
-	
+	builder := self jobBuilder.
+
 	self assert: builder classPrefix equals: 'Lxx'.
 	self assert: builder codePackageName equals: 'Lcs-BarebonesSystem'.
 	self assert: builder completedRefactorings isEmpty.
-	
-	self assert: builder codeSuperclassBuilder superclassName equals: 'LcsCode'.
-	self assert: builder codeSuperclassBuilder newClassName equals: 'LxxBaseTitle'.
-	self assert: builder codeSuperclassBuilder codePackageName  equals: 'Lcs-BarebonesSystem'.
+	self assert: builder codeClassRootName equals: 'Title'.
+	self assert: builder jobSteps hasNoJobSteps.
 
-	self assert: builder codeSubclassesBuilderJobSteps collection size equals: 2.
-	self assert: (builder codeSubclassesBuilderJobSteps collection at: 1) superclassName equals: 'LxxBaseTitle'.
-	self assert: (builder codeSubclassesBuilderJobSteps collection at: 1) newClassName equals: 'LxxTitle'.
-	self assert: (builder codeSubclassesBuilderJobSteps collection at: 1) codePackageName equals: 'Lcs-BarebonesSystem'.
-	self deny: (builder codeSubclassesBuilderJobSteps collection at: 1) isDefaultInstance.
+	self assert: builder codeSlotName equals: 'title'.
+	self assert: builder codeCollectionSlotName equals: 'titles'.
+	self assert: builder codeClassName equals: 'LxxTitle'.
+	self assert: builder codeCollectionClassName equals: 'LxxTitles'.
+	self assert: builder moduleClass equals: LxxBarebonesSystem.
+	self assert:builder undefinedClassName equals: 'LxxUnknownTitle'.
+]
+
+{ #category : #tests }
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase2_BuildJobStep [
+	| builder builderJobStep |
+	builder := self jobBuilder.
+	builder buildJobSteps.
+
+	self assert: builder jobSteps collection size equals: 6.
 	
-	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) superclassName equals: 'LxxBaseTitle'.
-	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) newClassName equals: 'LxxUnknownTitle'.
-	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) codePackageName equals: 'Lcs-BarebonesSystem'.
-	self assert: (builder codeSubclassesBuilderJobSteps collection at: 2) isDefaultInstance.
+	builderJobStep := builder jobSteps jobStepAt: 1.
+	self assert: builderJobStep class identicalTo: LcsCodeSuperClassBuilder.
+	self assert: builderJobStep superclassName equals: 'LcsCode'.
+	self assert: builderJobStep newClassName equals: 'LxxTitle'.
+	self assert: builderJobStep codePackageName equals: builder codePackageName.
 	
-	self assert: builder codeCollectionClassBuilder superclassName = 'LcsCodes'.
-	self assert: builder codeCollectionClassBuilder newClassName equals: 'LxxTitles'.
-	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
+	builderJobStep := builder jobSteps jobStepAt: 2.
+	self assert: builderJobStep class identicalTo: LcsCodeClassBuilder.
+	self assert: builderJobStep superclassName equals: 'LxxTitle'.
+	self assert: builderJobStep newClassName equals: 'LxxUnknownTitle'.
+	self assert: builderJobStep codePackageName equals: builder codePackageName.
+
+	builderJobStep := builder jobSteps jobStepAt: 3.
+	self assert: builderJobStep class identicalTo: LcsCodeCollectionClassBuilder.
+	self assert: builderJobStep superclassName equals: 'LcsCodes'.
+	self assert: builderJobStep newClassName equals: 'LxxTitles'.
+	self assert: builderJobStep codePackageName equals: builder codePackageName.
+		
+	builderJobStep := builder jobSteps jobStepAt: 4.
+	self assert: builderJobStep class identicalTo: LcsGlobalCollectionReferenceSlotBuilder.
+	self assert: builderJobStep targetClassName equals: 'LxxTitle'.
+	self assert: builderJobStep collectionSlotName equals: 'titles'.
+	self assert: builderJobStep collectionSlotModule class identicalTo: LxxBarebonesSystem.
 	
-	self assert: builder globalCollectionSlotBuilder slotName equals: 'titles'.
-	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
-	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxBarebonesSystem'.
-	self assert: builder globalCollectionSlotBuilder target equals: LxxBarebonesSystem.
-	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxBaseTitle'.
+	builderJobStep := builder jobSteps jobStepAt: 5.
+	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
+	self assert: builderJobStep moduleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep slotClassName equals: 'LxxTitles'.
+	self assert: builderJobStep slotName equals: 'titles'.
 
 
-	self assert: builder memberOfSlotInDomainClassBuilder slotName equals: 'title'.
-	self assert: builder memberOfSlotInDomainClassBuilder collectionSlotName equals: 'titles'.
-	self assert: builder memberOfSlotInDomainClassBuilder moduleName equals: LxxBarebonesSystem moduleName.
+	builderJobStep := builder jobSteps jobStepAt: 6.
+	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
+	self assert: builderJobStep target identicalTo: LxxBarebonesPerson.
+	self assert: builderJobStep moduleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep collectionSlotName equals: 'titles'.
+	self assert: builderJobStep slotName equals: 'title'.
 
 ]
 
 { #category : #tests }
-LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testInstallingTitleCodesAndTitleSlotInPerson [
-	| builder titleBaseClass titleClass unknownTitleClass titlesClass |
-	
-	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'title'.
-	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'titles'.
-	
-	builder := 
-		LcsStandardCodeWithUnknownClassClassesBuilderJob new
-			classPrefix: 'Lxx';
-			installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
-			codeRootName: 'Title';
-			moduleClass: LxxBarebonesSystem ;
-			createCodeInstances: #('Mr' 'Ms');
-			installMemberSlotInDomainClass: LxxBarebonesPerson;
-			yourself.
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase3_InstallClassesAndSlots [
+	| builder |
+	builder := self jobBuilder.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation
 
-	builder install.
-	
-	titleBaseClass := self classNamed: 'LxxBaseTitle'.
-	titleClass := self classNamed: 'LxxTitle'.
-	unknownTitleClass := self classNamed: 'LxxUnknownTitle'.
-	titlesClass := self classNamed: 'LxxTitles'.
-	
-	self assert: titleBaseClass notNil.
-	self assert: titleClass notNil.
-	self assert: unknownTitleClass notNil.
-	self assert: titlesClass notNil.
-	
-	self assert: titleBaseClass superclass equals: LcsCode.
-	self assert: titleClass superclass equals: titleBaseClass.
-	self assert: unknownTitleClass superclass equals: titleBaseClass.
-
-	self assert: titlesClass superclass equals: LcsCodes.
-	
-	LxxBarebonesPerson verifyClassHasDomainSlotNamed: 'title'.
-	LxxBarebonesSystem verifyClassHasDomainSlotNamed: 'titles'
 ]

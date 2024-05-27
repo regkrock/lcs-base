@@ -887,7 +887,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T22:30:35.174391-04:00"
+						"dateAndTimeString" : "2024-05-14T22:30:42.591079-04:00"
 					}
 				},
 				"uid" : {
@@ -897,7 +897,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "After the system is restarted, then one can create new instances of the new domain class and it will be added to the new domain collection. (Note: the unit of work must have its changes applied t"
+				"string" : "After the system is restarted, then one can create new instances of the new domain class and it will be added to the new domain collection. (Note: the unit of work must have its changes applied to be added to the collection."
 			}
 		]
 	},

@@ -10,7 +10,7 @@ LcsCodeSuperClassBuilder class >> superclassName [
 ]
 
 { #category : #accessing }
-LcsCodeSuperClassBuilder >> verifyInstallation [
-	super verifyInstallation.
-	self assert: self installedClass superclass name equals: 'LcsCode'
+LcsCodeSuperClassBuilder >> verifyCodeInstallation [
+	super verifyCodeInstallation.
+	self assert: self installedClass superclass name equals: self superclassName
 ]

@@ -13,6 +13,14 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #configuration }
+LcsCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString with: aBlock [
+	| classBuilder |
+	classBuilder := self codeSubclassBuilderFor: aString.
+	aBlock value: classBuilder.
+	self codeSubclassBuilders add: classBuilder
+]
+
 { #category : #builders }
 LcsCodeClassesBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
 	self targetDomainClasses

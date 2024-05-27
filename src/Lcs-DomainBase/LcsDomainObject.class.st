@@ -165,7 +165,10 @@ LcsDomainObject class >> restorelotModel [
 { #category : #'slot model' }
 LcsDomainObject class >> slotDefinitionNamed: aString [ 
 	self slotModel ifNil: [ ^ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
-	^ self slotModel slotDefinitionNamed: aString
+	^ [ self slotModel slotDefinitionNamed: aString ]
+		on: LcsSlotDoesNotExistInSlotModelHeirarchyError
+		do: [:s |
+			LcsSlotDoesNotExistInSlotModelError signal: ('Slot ' , aString printString  , ' not defined in slot model') ]
 ]
 
 { #category : #'slot model' }
@@ -272,6 +275,11 @@ LcsDomainObject >> isIncludedInSystemDomainClasses [
 	^ self currentSystem isIncludedInSystemDomainClasses: self
 ]
 
+{ #category : #testing }
+LcsDomainObject >> isMemberOfGlobalCollectionIn: aSlotName [
+	^ self parentSlotDefinition isGlobalCollectionRefenceSlotTo: aSlotName
+]
+
 { #category : #accessing }
 LcsDomainObject >> parent [
 	^ self getValueOfSlotNamed: 'parent'
@@ -280,6 +288,11 @@ LcsDomainObject >> parent [
 { #category : #accessing }
 LcsDomainObject >> parent: anObject [
 	self getValueOfSlotNamed: 'parent'
+]
+
+{ #category : #'slot model' }
+LcsDomainObject >> parentSlotDefinition [
+	^ self slotModel parentSlotDefinition
 ]
 
 { #category : #'slot definitions' }

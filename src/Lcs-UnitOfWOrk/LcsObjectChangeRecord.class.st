@@ -43,6 +43,11 @@ LcsObjectChangeRecord >> initializeFor: aDomainObject parent: anObject [
 ]
 
 { #category : #accessing }
+LcsObjectChangeRecord >> isMemberOfGlobalCollectionIn: aSlotName [
+	^ self domainObject isMemberOfGlobalCollectionIn: aSlotName
+]
+
+{ #category : #accessing }
 LcsObjectChangeRecord >> parent [
 	^ parent
 ]

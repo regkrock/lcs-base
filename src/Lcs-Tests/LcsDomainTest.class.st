@@ -55,6 +55,8 @@ LcsDomainTest >> tearDown [
 	super tearDown.
 	self abortTransaction.
 	LcsApplicationEnvironment restoreToCurrent: self savedSystem. 
+	self currentSystem notNil ifTrue: [
+		self assert: self currentSystem identicalTo: self savedSystem ].
 	self commitTransaction.
 
 ]

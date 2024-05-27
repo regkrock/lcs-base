@@ -36,7 +36,6 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 		slotName: 'persons';
 		addSlotType: LcsPersons;
 		addCollectionMemberType: LcsPerson;
-		beIdentitySetCollection;
 		yourself
 ]
 

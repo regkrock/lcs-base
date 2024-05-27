@@ -91,6 +91,19 @@ LcsBaseSystem >> currentUnitOfWork [
 	^ self parent currentUnitOfWork
 ]
 
+{ #category : #'slot model' }
+LcsBaseSystem >> gtAllSystemsFor: aView [
+	<gtView>
+	(LcsApplicationEnvironment isInActiveStatus)
+		ifFalse: [ ^ aView empty ].
+	^ aView forward
+		title: 'Systems';
+		priority: 50;
+		object: [ LcsApplicationEnvironment systemManager ];
+		view: #gtAllSystemsFor:;
+		yourself
+]
+
 { #category : #'gt view' }
 LcsBaseSystem >> gtConfigurationIssuesFor: aView [
 	<gtView>
@@ -105,19 +118,7 @@ LcsBaseSystem >> gtConfigurationIssuesFor: aView [
 ]
 
 { #category : #'slot model' }
-LcsBaseSystem >> gtUnitOfWorkFor: aView [
-	<gtView>
-	self currentUnitOfWork isNil ifTrue: [ ^ aView empty ].
-	^ aView forward
-		title: 'Unit Of Work';
-		priority: 2;
-		object: [ self currentUnitOfWork ];
-		view: #gtUnitOfWorkFor:;
-		yourself
-]
-
-{ #category : #'slot model' }
-LcsBaseSystem >> gtViewSystemSlotModelFor: aView [
+LcsBaseSystem >> gtSystemSlotModelFor: aView [
 	<gtView>
 	(self systemSlotModel isNil or: [self hasSystemSlotModels not])
 		ifTrue: [ ^ aView empty ].
@@ -125,7 +126,20 @@ LcsBaseSystem >> gtViewSystemSlotModelFor: aView [
 		title: 'System Slot Model';
 		priority: 1;
 		object: [ self systemSlotModel ];
-		view: #gtViewSystemSlotModelFor:;
+		view: #gtSystemSlotModelFor:;
+		yourself
+]
+
+{ #category : #'slot model' }
+LcsBaseSystem >> gtUnitOfWorkFor: aView [
+	<gtView>
+	self slotModel isNil ifTrue: [ ^ aView empty ].
+	self currentUnitOfWork isNil ifTrue: [ ^ aView empty ].
+	^ aView forward
+		title: 'Unit Of Work';
+		priority: 2;
+		object: [ self relatedUnitOfWork ];
+		view: #gtUnitOfWorkFor:;
 		yourself
 ]
 
@@ -304,4 +318,9 @@ LcsBaseSystem >> toggleActionButtonLabel [
 { #category : #accessing }
 LcsBaseSystem >> toggleStatus [
 	self status toggleStatus
+]
+
+{ #category : #'unit of work' }
+LcsBaseSystem >> unitOfWork [
+	^ self currentUnitOfWork
 ]

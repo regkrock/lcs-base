@@ -64,7 +64,7 @@ LcsBaseModule >> configuration: anObject [
 
 { #category : #accessing }
 LcsBaseModule >> domainCollections [
-	^ domainCollections
+	^ self slotModel globalCollectionSlots collect: [ :each | self perform: each slotName asSymbol ]
 ]
 
 { #category : #accessing }
@@ -76,6 +76,15 @@ LcsBaseModule >> domainCollections: anObject [
 LcsBaseModule >> geographyModule [
 
 	^ self moduleNamed: 'Geography Module'
+]
+
+{ #category : #accessing }
+LcsBaseModule >> globalCollectionItems [
+	^ self slotModel globalCollectionSlots
+		collect: [ :eachSlotDefinition | 
+			LcsGlobalCollectionItem
+				newLabel: eachSlotDefinition slotName
+				item: (self perform: eachSlotDefinition slotName asSymbol) ]
 ]
 
 { #category : #'gt views' }
@@ -97,14 +106,29 @@ LcsBaseModule >> gtApplicationModulesFor: aView [
 ]
 
 { #category : #'gt view' }
-LcsBaseModule >> gtViewGlobalCollectionsFor: aView [
+LcsBaseModule >> gtGlobalCollectionsFor: aView [
 	<gtView>
 	 self domainCollections isEmpty ifTrue: [ ^ aView empty]. 
-	^ aView forward
+	^ aView columnedTree
 		title: 'Global Collections';
 		priority: 9;
-		object: [ self domainCollections ];
-		view: #gtViewGlobalCollectionsFor:;
+		items: [ self globalCollectionItems ];
+		column: 'Slot'
+			text: [ :item | item  label asString ]
+			width: 100;
+		column: 'Size'
+			text: [ :item | item item size printString ]
+			width: 50;
+		column: 'Class'
+			text: [ :item | item item class asString ]
+			width: 200;
+		column: 'Pending Adds'
+			text: [ :item | item numberOfPendingAdds asString ]
+			width: 100;
+		column: 'Pending Removals'
+			text: [ :item | item numberOfPendingRemovals asString ]
+			width: 125;
+		send: #item;
 		yourself
 ]
 
@@ -208,4 +232,18 @@ LcsBaseModule >> modulesDo: aBlock [
 { #category : #modules }
 LcsBaseModule >> numberOfChildModules [
 	^ self modules numberOfModules
+]
+
+{ #category : #accessing }
+LcsBaseModule >> objectId [
+	^ self hash
+]
+
+{ #category : #accessing }
+LcsBaseModule >> printOn: aStream [
+	super printOn: aStream.
+	aStream 
+		nextPutAll: ' (';
+		nextPutAll: self objectId asString;
+		nextPutAll: ')'
 ]

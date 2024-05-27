@@ -9,13 +9,6 @@ LcsModuleTest >> setupSunitSystem [
 	'LxxBarebonesSystem' asClass new
 ]
 
-{ #category : #accessing }
-LcsModuleTest >> tearDown [
-	super tearDown.
-	self currentSystem notNil ifTrue: [
-		self deny: self currentSystem identicalTo: self savedSystem ]
-]
-
 { #category : #tests }
 LcsModuleTest >> testAddingAModule [
 	self assert: self currentSystem notNil.

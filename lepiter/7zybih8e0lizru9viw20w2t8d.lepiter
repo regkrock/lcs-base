@@ -148,9 +148,9 @@
 					"uidString" : "cc5eM6jUDQC/lSHGB96p6A=="
 				},
 				"code" : "LcsSlotModelDiagramExamples new domainObjectSlotModel",
-				"elementHeight" : 586,
-				"codeHeight" : 0,
-				"codeVisible" : false
+				"elementHeight" : 548,
+				"codeHeight" : 38,
+				"codeVisible" : true
 			},
 			{
 				"__type" : "textSnippet",

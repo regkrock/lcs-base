@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #tests }
-LcsSingletonCodeClassesBuilderJobTest >> genderBuilder [
+LcsSingletonCodeClassesBuilderJobTest >> jobBuilder [
 	^ LcsSingletonCodeClassesBuilderJob new
 		classPrefix: 'Lxx';
 		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
@@ -20,7 +20,7 @@ LcsSingletonCodeClassesBuilderJobTest >> genderBuilder [
 ]
 
 { #category : #running }
-LcsSingletonCodeClassesBuilderJobTest >> removeAllGenderArtifacts [
+LcsSingletonCodeClassesBuilderJobTest >> removeAllArtifacts [
 	LxxBarebonesSystem removeDomainSlotNamed: 'genders'.
 	LxxBarebonesPerson removeDomainSlotNamed: 'gender'.
 	self
@@ -34,7 +34,7 @@ LcsSingletonCodeClassesBuilderJobTest >> setupSunitSystem [
 
 { #category : #running }
 LcsSingletonCodeClassesBuilderJobTest >> tearDown [
-	self removeAllGenderArtifacts.
+	self removeAllArtifacts.
 	super tearDown
 ]
 
@@ -42,7 +42,7 @@ LcsSingletonCodeClassesBuilderJobTest >> tearDown [
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase1_BuildJob [
 	| builder codeSubclassBuilder |
 	
-	builder := self genderBuilder.
+	builder := self jobBuilder.
 
 	self assert: builder classPrefix equals: 'Lxx'.
 	self assert: builder codePackageName equals: 'Lcs-BarebonesSystem'.
@@ -110,7 +110,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase2_BuildJobSteps [
 	| builder builderJobStep |
 	
-	builder := self genderBuilder.
+	builder := self jobBuilder.
 	builder buildJobSteps.
 
 	self assert: builder jobSteps collection size equals: 8.
@@ -174,29 +174,40 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.
 	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'genders'.
 
-	builder := self genderBuilder.
+	builder := self jobBuilder.
 	builder buildJobSteps.
 	builder installCode.
-	builder verifyInstallation
+	builder verifyCodeInstallation.
+	
+	"The code has been created but the model is not initialized"
+	
+	self should: [ self currentSystem slotDefinitionNamed: 'genders' ] raise: LcsSlotDoesNotExistInSlotModelError.
+	self assert: (self currentSystem respondsTo: #genders).
+	
+	self should: [ LxxBarebonesPerson slotDefinitionNamed: 'gender' ] raise: LcsSlotDoesNotExistInSlotModelError.
+	self assert: (LxxBarebonesPerson canUnderstand: #gender).
+
+
 ]
 
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase4_PopulateGendersCollection [
 	| builder person |
 	
-	self removeAllGenderArtifacts.
+	self removeAllArtifacts.
 	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.
 	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'genders'.
 	
-	builder := self genderBuilder.
+	builder := self jobBuilder.
 	builder buildJobSteps.
 	builder installCode.
-	builder verifyInstallation.
-	
+	builder verifyCodeInstallation.
+
 	builder updateSlotModel.
 	builder verifySlotModelUpdates.
-
-	"builder populateSlotModel."
+	
+	builder populateSlotModel.
+	
 	self currentSystem currentUnitOfWork applyChanges.
 
 	self currentSystem initializeSlotNamed: 'genders'.
@@ -222,4 +233,17 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	
 	self assert: person gender identicalTo: self currentSystem genders defaultInstance
 
+]
+
+{ #category : #tests }
+LcsSingletonCodeClassesBuilderJobTest >> testSlotDefinitionDoesNotExist [
+
+	| returnedSignal |
+	self should: [ self currentSystem slotDefinitionNamed: 'fooBars' ] raise: LcsSlotDoesNotExistInSlotModelError.
+	
+	returnedSignal := [ self currentSystem slotDefinitionNamed: 'fooBars' ]
+		on: LcsSlotDoesNotExistInSlotModelError
+		do: [:signal | signal ].
+
+	self assert: returnedSignal messageText equals: 'Slot ''fooBars'' not defined in slot model'.
 ]

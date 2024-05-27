@@ -60,6 +60,11 @@ LcsSlotModel >> domainClass: anObject [
 	domainClass := anObject
 ]
 
+{ #category : #query }
+LcsSlotModel >> globalCollectionSlots [
+	^ self slotDefinitions values select: [ :each | each isGlobalCollectionSlot ]
+]
+
 { #category : #'gt view' }
 LcsSlotModel >> gtViewDomainSlotDefinitionsFor: aView [
 	<gtView>
@@ -83,6 +88,11 @@ LcsSlotModel >> gtViewSlotModelChildren [
 	self slotDefinitions keysAndValuesDo: [ :key :value |
 		children add: (LcsSlotModelViewItem newLabel: key item: value)].
 	^ children
+]
+
+{ #category : #'testing ' }
+LcsSlotModel >> hasSlotDefinitions [
+	^ self allSlotDefinitions notEmpty
 ]
 
 { #category : #accessing }
@@ -117,6 +127,11 @@ LcsSlotModel >> parent: aDomainClass [
 	self domainClass: aDomainClass
 ]
 
+{ #category : #'slot model' }
+LcsSlotModel >> parentSlotDefinition [
+	^ self slotDefinitionNamed: 'parent'
+]
+
 { #category : #printing }
 LcsSlotModel >> printOn: aStream [
 	super printOn: aStream.
@@ -134,7 +149,7 @@ LcsSlotModel >> slotDefinitionNamed: aSlotName [
 			ifTrue: [ self domainClass superclass slotDefinitionNamed: aSlotName ]
 			ifFalse: [ nil ] ].
 	^ slotDefinition ifNil: [
-		LcsSlotDoesNotExistError signal: ('Slot ' , aSlotName printString  , ' not defined in ' , self domainClass name printString) ]
+		LcsSlotDoesNotExistInSlotModelHeirarchyError signal: ('Slot ' , aSlotName printString  , ' not defined in slot model heirarchy') ]
 ]
 
 { #category : #model }

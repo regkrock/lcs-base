@@ -162,6 +162,21 @@ LcsSlotDefintion >> initializeSlotValueIn: aDomainObject [
 	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
+{ #category : #accessing }
+LcsSlotDefintion >> isGlobalCollectionRefenceSlot [
+	^ false
+]
+
+{ #category : #accessing }
+LcsSlotDefintion >> isGlobalCollectionRefenceSlotTo: aSlotName [
+	^ false
+]
+
+{ #category : #testing }
+LcsSlotDefintion >> isGlobalCollectionSlot [
+	^ false
+]
+
 { #category : #validation }
 LcsSlotDefintion >> isInstanceVariableDefined [
 	^ self domainClass allInstVarNames includes: self slotName

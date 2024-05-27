@@ -33,7 +33,7 @@ LcsCodeBuilderStep >> updateSlotModel [
 ]
 
 { #category : #install }
-LcsCodeBuilderStep >> verifyInstallation [
+LcsCodeBuilderStep >> verifyCodeInstallation [
 	self subclassResponsibility
 ]
 

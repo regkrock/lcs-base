@@ -21,17 +21,6 @@ LcsMainSystem class >> moduleClasses [
 		yourself
 ]
 
-{ #category : #'gt view' }
-LcsMainSystem >> gtUnitOfWorkOn: aView [
-	<gtView>
-	^ aView forward
-		title: 'Unit Of Work' translated;
-		priority: 5;
-		object: [ self relatedUnitOfWork ];
-		view: #gtUnitOfWorkFor:
-		yourself
-]
-
 { #category : #'slot model' }
 LcsMainSystem >> initialSystemDomainClasses [
 	<todo: 'Refactor to make this mor efficient'>

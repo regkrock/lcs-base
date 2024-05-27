@@ -176,7 +176,7 @@ LcsSlotDefinitionBuilder >> updateSlotModel [
 ]
 
 { #category : #install }
-LcsSlotDefinitionBuilder >> verifyInstallation [
+LcsSlotDefinitionBuilder >> verifyCodeInstallation [
 	self assert: (self target allInstVarNames includes: slotName).
 	self assert: (self target canUnderstand: self slotName asSymbol).
 	self assert: (self target canUnderstand: (self slotName , ':') asSymbol).

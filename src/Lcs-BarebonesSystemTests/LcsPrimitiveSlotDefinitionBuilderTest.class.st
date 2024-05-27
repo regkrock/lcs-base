@@ -26,7 +26,7 @@ LcsPrimitiveSlotDefinitionBuilderTest >> buildAndInstallNewSlot [
 		assert: builder slotDefinitionSelector
 		equals: self slotName , 'SlotDefinition'.
 
-	builder install.
+	builder installCode.
 
 	self targetClass verifyClassHasDomainSlotNamed: self slotName.
 

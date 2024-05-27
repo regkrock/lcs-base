@@ -30,7 +30,7 @@ LcsSingletonCodeClassBuilder >> populateSlotModel [
 ]
 
 { #category : #verification }
-LcsSingletonCodeClassBuilder >> verifyInstallation [
-	super verifyInstallation.
+LcsSingletonCodeClassBuilder >> verifyCodeInstallation [
+	super verifyCodeInstallation.
 	self assert: self installedClass defaultInstance equals: self defaultInstance
 ]

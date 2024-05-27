@@ -119,3 +119,8 @@ LcsCodeBuilderJob >> stepIcon [
 	<return: #BlElement or: nil>
 	^ nil
 ]
+
+{ #category : #'slot model' }
+LcsCodeBuilderJob >> verifyCodeInstallation [
+	self jobSteps verifyCodeInstallation
+]
