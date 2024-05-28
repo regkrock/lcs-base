@@ -9,90 +9,81 @@ Class {
 }
 
 { #category : #factory }
-GtPharoClassNavigationViewModelHierarchyTree class >> fromWithPharoBehaviorCoderModels: aCollectionOfWithPharoBehaviorCoderModels [
-	| aRootItem theSetOfWithPharoBehaviorCoderModels theRootTrees theSubclassTrees |
-	
-	aRootItem := self new.
-	
-	theSetOfWithPharoBehaviorCoderModels := aCollectionOfWithPharoBehaviorCoderModels asSet.
-	
-	theRootTrees := theSetOfWithPharoBehaviorCoderModels
-		reject: [ :eachWithPharoBehaviorCoderModel |
-			theSetOfWithPharoBehaviorCoderModels anySatisfy: [ :eachWithPharoBehaviorSuperclassCoderModel |
-				self
-					isWithPharoBehaviorCoderModel: eachWithPharoBehaviorCoderModel
-					inheritsFrom: eachWithPharoBehaviorSuperclassCoderModel ] ]
-		thenCollect: [ :eachRootClass | eachRootClass -> (theSetOfWithPharoBehaviorCoderModels select: [ :eachClass |
-				self
-					isWithPharoBehaviorCoderModel: eachClass
-					inheritsFrom: eachRootClass ]) ].
-	
-	theSubclassTrees := theRootTrees collect: [ :eachAssoc | (self fromWithPharoBehaviorCoderModels: eachAssoc value) rootClass: eachAssoc key ] as: Array.
-	aRootItem subclassTrees: theSubclassTrees.
-	^ aRootItem
+GtPharoClassNavigationViewModelHierarchyTree class >> fromWithPharoBehaviorCoderModels: arg1 [
+	| tmp1 tmp2 tmp3 tmp4 |
+	tmp1 := self new.
+	tmp2 := arg1 asSet.
+	tmp3 := tmp2
+			reject: [ :arg2 | 
+				tmp2
+					anySatisfy: [ :arg3 | self isWithPharoBehaviorCoderModel: arg2 inheritsFrom: arg3 ] ]
+			thenCollect: [ :arg4 | 
+				arg4
+					-> (tmp2
+							select: [ :arg5 | self isWithPharoBehaviorCoderModel: arg5 inheritsFrom: arg4 ]) ].
+	tmp4 := tmp3
+			collect: [ :arg6 | (self fromWithPharoBehaviorCoderModels: arg6 value) rootClass: arg6 key ]
+			as: Array.
+	tmp1 subclassTrees: tmp4.
+	^ tmp1
 ]
 
 { #category : #'private - testing' }
-GtPharoClassNavigationViewModelHierarchyTree class >> isWithPharoBehaviorCoderModel: aTGtWithPharoBehaviorCoderModel inheritsFrom: anOtherTGtWithPharoBehaviorCoderModel [
-	^ aTGtWithPharoBehaviorCoderModel pharoBehaviorCoderModel behavior
-		inheritsFrom: anOtherTGtWithPharoBehaviorCoderModel pharoBehaviorCoderModel behavior
+GtPharoClassNavigationViewModelHierarchyTree class >> isWithPharoBehaviorCoderModel: arg1 inheritsFrom: arg2 [
+	^ arg1 pharoBehaviorCoderModel behavior
+		inheritsFrom: arg2 pharoBehaviorCoderModel behavior
 ]
 
 { #category : #accessing }
-GtPharoClassNavigationViewModelHierarchyTree >> at: anIndex [
+GtPharoClassNavigationViewModelHierarchyTree >> at: arg1 [
 	<return: #GtCoderClassesHierarchyTree>
-
-	^ self subclassTrees at: anIndex
+	^ self subclassTrees at: arg1
 ]
 
 { #category : #accessing }
 GtPharoClassNavigationViewModelHierarchyTree >> classes [
 	<return: #Collection of: #Class>
-	
-	^ self subclassTrees collect: [ :eachTree | eachTree rootClass ]
+	^ self subclassTrees collect: [ :arg1 | arg1 rootClass ]
 ]
 
 { #category : #accessing }
 GtPharoClassNavigationViewModelHierarchyTree >> first [
 	<return: #GtCoderClassesHierarchyTree>
-
 	^ self at: 1
 ]
 
 { #category : #'gt-extension' }
-GtPharoClassNavigationViewModelHierarchyTree >> gtTreeFor: aView [
+GtPharoClassNavigationViewModelHierarchyTree >> gtTreeFor: arg1 [
 	<gtView>
-
-	^ aView tree
+	| tmp2 |
+	tmp2 := arg1 tree.
+	tmp2
 		title: 'Classes';
 		priority: 1;
-		items: [ { self } ];
-		children: [ :anItem | anItem subclassTrees ];
-		expandUpTo: 1
+		items: [ {self} ];
+		children: [ :arg2 | arg2 subclassTrees ].
+	^ tmp2 expandUpTo: 1
 ]
 
 { #category : #testing }
 GtPharoClassNavigationViewModelHierarchyTree >> hasRootClass [
 	<return: #Boolean>
-
 	^ rootClass isNotNil
 ]
 
 { #category : #initialization }
 GtPharoClassNavigationViewModelHierarchyTree >> initialize [
 	super initialize.
-	subclassTrees := Array empty.
+	subclassTrees := Array empty
 ]
 
 { #category : #printing }
-GtPharoClassNavigationViewModelHierarchyTree >> printOn: aStream [
+GtPharoClassNavigationViewModelHierarchyTree >> printOn: arg1 [
 	self hasRootClass
-		ifTrue: [ aStream print: self rootClass ]
-		ifFalse: [ aStream nextPutAll: 'Classes' ].
-	
+		ifTrue: [ arg1 print: self rootClass ]
+		ifFalse: [ arg1 nextPutAll: 'Classes' ].
 	self size isZero
-		ifFalse: [ 
-			aStream
+		ifFalse: [ arg1
 				space;
 				nextPut: $(;
 				print: self size;
@@ -106,36 +97,35 @@ GtPharoClassNavigationViewModelHierarchyTree >> rootClass [
 ]
 
 { #category : #accessing }
-GtPharoClassNavigationViewModelHierarchyTree >> rootClass: aClass [
-	rootClass := aClass
+GtPharoClassNavigationViewModelHierarchyTree >> rootClass: arg1 [
+	rootClass := arg1
 ]
 
 { #category : #accessing }
 GtPharoClassNavigationViewModelHierarchyTree >> size [
 	<return: #Number>
-
 	^ subclassTrees size
 ]
 
 { #category : #sorting }
-GtPharoClassNavigationViewModelHierarchyTree >> sort: aBlock [
-	subclassTrees := subclassTrees sorted: [ :treeA :treeB | aBlock value: treeA rootClass value: treeB rootClass ].
-	subclassTrees do: [ :eachTree | eachTree sort: aBlock ]
+GtPharoClassNavigationViewModelHierarchyTree >> sort: arg1 [
+	subclassTrees := subclassTrees
+			sorted: [ :arg2 :arg3 | arg1 value: arg2 rootClass value: arg3 rootClass ].
+	subclassTrees do: [ :arg4 | arg4 sort: arg1 ]
 ]
 
 { #category : #sorting }
 GtPharoClassNavigationViewModelHierarchyTree >> sortByClassName [
-	self sort: [ :classA :classB | classA name < classB name ]
+	self sort: [ :arg1 :arg2 | arg1 name < arg2 name ]
 ]
 
 { #category : #accessing }
 GtPharoClassNavigationViewModelHierarchyTree >> subclassTrees [
 	<return: #Collection of: #GtCoderClassesHierarchyTree>
-
 	^ subclassTrees
 ]
 
 { #category : #initialization }
-GtPharoClassNavigationViewModelHierarchyTree >> subclassTrees: aCollection [
-	subclassTrees := aCollection
+GtPharoClassNavigationViewModelHierarchyTree >> subclassTrees: arg1 [
+	subclassTrees := arg1
 ]

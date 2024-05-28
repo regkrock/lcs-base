@@ -1,6 +1,6 @@
 Extension { #name : #GtSearchNegationFilter }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtSearchNegationFilter >> filterDescriptorFor: aMethodsCoder [
-	^ originalFilter filterDescriptorFor: aMethodsCoder
+GtSearchNegationFilter >> filterDescriptorFor: arg1 [
+	^ originalFilter filterDescriptorFor: arg1
 ]

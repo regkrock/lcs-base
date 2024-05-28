@@ -27,10 +27,12 @@ LcsPrimitiveSlotDefinitionBuilderTest >> buildAndInstallNewSlot [
 		equals: self slotName , 'SlotDefinition'.
 
 	builder installCode.
+	builder verifyCodeInstallation.
 
 	self targetClass verifyClassHasDomainSlotNamed: self slotName.
 
-	builder installSlotDefinition
+	builder updateSlotModel.
+	builder verifySlotModelUpdates
 ]
 
 { #category : #tests }
@@ -48,7 +50,7 @@ LcsPrimitiveSlotDefinitionBuilderTest >> removeArtifactsRelatedToSlot [
 	self slotName
 		ifNotNil: [ 
 			self targetClass removeDomainSlotNamed: self slotName.
-			self targetClass assertSlotRemoved: self slotName ]
+			self targetClass assertDomainSlotRemoved: self slotName ]
 ]
 
 { #category : #running }

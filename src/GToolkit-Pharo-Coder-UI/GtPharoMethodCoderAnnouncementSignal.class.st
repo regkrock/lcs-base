@@ -9,12 +9,10 @@ Class {
 
 { #category : #accessing }
 GtPharoMethodCoderAnnouncementSignal >> announcement [
-
 	^ announcement
 ]
 
 { #category : #accessing }
-GtPharoMethodCoderAnnouncementSignal >> announcement: anObject [
-
-	announcement := anObject
+GtPharoMethodCoderAnnouncementSignal >> announcement: arg1 [
+	announcement := arg1
 ]

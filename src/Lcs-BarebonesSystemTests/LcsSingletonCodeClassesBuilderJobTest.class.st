@@ -206,7 +206,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builder updateSlotModel.
 	builder verifySlotModelUpdates.
 	
-	builder populateSlotModel.
+	"builder populateSlotModel."
 	
 	self currentSystem currentUnitOfWork applyChanges.
 

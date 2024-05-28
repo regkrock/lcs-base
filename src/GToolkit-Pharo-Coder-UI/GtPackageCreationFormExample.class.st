@@ -22,16 +22,14 @@ GtPackageCreationFormExample >> removePackage [
 { #category : #accessing }
 GtPackageCreationFormExample >> scripterOnSimpleForm [
 	<gtExample>
-	| scripter |
-	scripter := self scripterWithModel: [ self simpleForm ].
-
-	scripter
-		checkStep: [ :s | 
-			s
+	| tmp1 |
+	tmp1 := self scripterWithModel: [ self simpleForm ].
+	tmp1
+		checkStep: [ :arg1 | 
+			arg1
 				label: 'Check save button is disabled';
-				satisfies: [ :aForm | ((aForm childNamed: #toolbar) childAt: 1) isEnabled not ] ].
-
-	^ scripter
+				satisfies: [ :arg2 | ((arg2 childNamed: #toolbar) childAt: 1) isEnabled not ] ].
+	^ tmp1
 ]
 
 { #category : #accessing }
@@ -44,92 +42,74 @@ GtPackageCreationFormExample >> simpleForm [
 GtPackageCreationFormExample >> simpleFormWithPackageAdded [
 	<gtExample>
 	<after: #removePackage>
-	| scripter createdPackage |
-	scripter := self simpleFormWithPackageFilled.
-
-	scripter
-		clickStep: [ :s | 
-			s
+	| tmp1 tmp2 |
+	tmp1 := self simpleFormWithPackageFilled.
+	tmp1
+		clickStep: [ :arg1 | 
+			arg1
 				label: 'Click save button';
 				// #toolbar;
 				onChildAt: 1 ].
-
-	createdPackage := self examplePackageName asPackageIfAbsent: nil.
-	self assert: createdPackage isNotNil.
-
-	^ scripter
+	tmp2 := self examplePackageName asPackageIfAbsent: nil.
+	self assert: tmp2 isNotNil.
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtPackageCreationFormExample >> simpleFormWithPackageFilled [
 	<gtExample>
-	| scripter |
-	scripter := self scripterOnSimpleForm.
-
-	scripter
-		clickStep: [ :s | 
-			s
+	| tmp1 |
+	tmp1 := self scripterOnSimpleForm.
+	tmp1
+		clickStep: [ :arg1 | 
+			arg1
 				label: 'Select package editor';
-				// (GtMagritteFieldElementId new
-						description: scripter model packageAndTagDescription);
-				// #package ].
-
-	scripter
-		typeStep: [ :s | 
-			s
-				label: 'Enter package name';
-				text: self examplePackageName ].
-
-	scripter
-		checkStep: [ :s | 
-			s
-				label: 'Check that package is set';
-				satisfies: [ :aFrame | 
-					(aFrame userData at: #gtmemento) cache anyOne valueOrNil currentValue
-						packageName = self examplePackageName ] ].
-
-	^ scripter
+				// (GtMagritteFieldElementId new description: tmp1 model packageAndTagDescription);
+				// #package ];
+		typeStep: [ :arg2 | 
+				arg2
+					label: 'Enter package name';
+					text: self examplePackageName ];
+		checkStep: [ :arg3 | 
+				arg3
+					label: 'Check that package is set';
+					satisfies: [ :arg4 | 
+							(arg4 userData at: #gtmemento) cache anyOne valueOrNil currentValue packageName
+								= self examplePackageName ] ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtPackageCreationFormExample >> simpleFormWithPackageFilledValidationFailed [
 	<gtExample>
-	| scripter |
-	scripter := self scripterOnSimpleForm.
-
-	scripter
-		clickStep: [ :s | 
-			s
+	| tmp1 |
+	tmp1 := self scripterOnSimpleForm.
+	tmp1
+		clickStep: [ :arg1 | 
+			arg1
 				label: 'Select package editor';
-				// (GtMagritteFieldElementId new
-						description: scripter model packageAndTagDescription);
-				// #package ].
-
-	scripter
-		typeStep: [ :s | 
-			s
-				label: 'Enter package name';
-				text: 'Kernel' ].
-
-	scripter
-		checkStep: [ :s | 
-			s
-				label: 'Check that package is invalid';
-				satisfies: [ :aFrame | (aFrame userData at: #gtmemento) cache anyOne valueOrNil isValid not ] ].
-
-	^ scripter
+				// (GtMagritteFieldElementId new description: tmp1 model packageAndTagDescription);
+				// #package ];
+		typeStep: [ :arg2 | 
+				arg2
+					label: 'Enter package name';
+					text: 'Kernel' ];
+		checkStep: [ :arg3 | 
+				arg3
+					label: 'Check that package is invalid';
+					satisfies: [ :arg4 | (arg4 userData at: #gtmemento) cache anyOne valueOrNil isValid not ] ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtPackageCreationFormExample >> simpleFormWithTagNavigated [
 	<gtExample>
-	| scripter |
-	scripter := self simpleFormWithPackageFilled.
-
-	scripter shortcut
+	| tmp1 tmp3 |
+	tmp1 := self simpleFormWithPackageFilled.
+	tmp3 := tmp1 shortcut.
+	tmp3
 		label: 'Navigate to tag';
 		combination: BlKeyCombination tab;
 		play.
-
-	^ scripter
+	^ tmp1
 ]

@@ -13,109 +13,126 @@ GtBehaviorUpdateForm class >> isAdditionForm [
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> abstractClassVariable: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := (self modelClassFrom: aModel) classSide.
-
+GtBehaviorUpdateForm >> abstractClassVariable: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := (self modelClassFrom: tmp1) classSide.
 	^ RBAbstractInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> abstractVariable: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := self modelClassFrom: aModel.
-
+GtBehaviorUpdateForm >> abstractVariable: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := self modelClassFrom: tmp1.
 	^ RBAbstractInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> addRefactoringPreviewFor: aRefactoring in: anElement [
-	| button |
-	button := GtRefactoringsPreviewButton new
-			id: GtBehaviorCoderBehaviorNameApplyPreviewId;
-			margin: (BlInsets right: 5);
-			refactorings: [ {aRefactoring} ];
-			cancelBlock: [  ];
-			when: GtRefactoringsAppliedEvent do: [ :anEvent | button removeFromParent ].
-	anElement parent addChild: button after: anElement.
-	button enqueueTask: [ button openPreview ] asBlTask
+GtBehaviorUpdateForm >> addRefactoringPreviewFor: arg1 in: arg2 [
+	| tmp2 tmp4 |
+	tmp4 := GtRefactoringsPreviewButton new.
+	tmp4
+		id: GtBehaviorCoderBehaviorNameApplyPreviewId;
+		margin: (BlInsets right: 5);
+		refactorings: [ {arg1} ];
+		cancelBlock: [  ].
+	tmp2 := tmp4
+			when: GtRefactoringsAppliedEvent
+			do: [ :arg3 | tmp2 removeFromParent ].
+	arg2 parent addChild: tmp2 after: arg2.
+	tmp2 enqueueTask: [ tmp2 openPreview ] asBlTask
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> browseReferencesToClassVar: aClassVarName in: anElement [
-	anElement phlow
+GtBehaviorUpdateForm >> browseReferencesToClassVar: arg1 in: arg2 [
+	arg2 phlow
 		spawnObject: (GtSearchClassVariableReferenceFilter
 				forClassAndSubclasses: (Smalltalk at: self rawClassName asSymbol)
-				andVariable: aClassVarName)
+				andVariable: arg1)
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> browseReferencesToSlot: aSlotName in: anElement [
-	anElement phlow
+GtBehaviorUpdateForm >> browseReferencesToSlot: arg1 in: arg2 [
+	arg2 phlow
 		spawnObject: (GtSearchInstanceSlotReferenceFilter
 				forClassAndSubclasses: (Smalltalk at: self rawClassName asSymbol)
-				andVariable: aSlotName)
+				andVariable: arg1)
 ]
 
 { #category : #accessing }
 GtBehaviorUpdateForm >> classSlotsDescription [
 	<magritteDescription>
-	^ super classSlotsDescription
+	| tmp2 |
+	tmp2 := super classSlotsDescription.
+	tmp2
 		blocListStencil: (self
 				taggerStencilWithCompletion: nil
-				andContextMenuBlock: [ :aVariable :anElement :aMemento | 
-					aMemento overallStatus valueOrNil isChanged
-						ifTrue: [ GtCoderContextMenuContent new editorElement: anElement ]
-						ifFalse: [ self createClassSlotsContextMenuContentFor: aVariable editor: anElement ] ]);
-		blocShortcuts: [ {BlShortcutWithAction new
-					name: 'Inspect slot';
-					description: 'Inspect the slot indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | 
-						anEvent target phlow
+				andContextMenuBlock: [ :arg1 :arg2 :arg3 | 
+					arg3 overallStatus valueOrNil isChanged
+						ifTrue: [ GtCoderContextMenuContent new editorElement: arg2 ]
+						ifFalse: [ self createClassSlotsContextMenuContentFor: arg1 editor: arg2 ] ]).
+	^ tmp2
+		blocShortcuts: [ | tmp4 tmp6 |
+			tmp4 := BlShortcutWithAction new.
+			tmp4
+				name: 'Inspect slot';
+				description: 'Inspect the slot indicated by the editor';
+				combination: BlKeyCombination primaryG.
+			tmp6 := BlShortcutWithAction new.
+			tmp6
+				name: 'Browse slot references';
+				description: 'Browses references to the slot indicated by the editor';
+				combination: BlKeyCombination primaryN.
+			{tmp4
+					action: [ :arg4 | 
+						arg4 target phlow
 							spawnObject: (self newClassName asString asClass classSide
-									slotNamed: anEvent target text asString) ].
-				BlShortcutWithAction new
-					name: 'Browse slot references';
-					description: 'Browses references to the slot indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent currentTarget phlow
+									slotNamed: arg4 target text asString) ].
+				tmp6
+					action: [ :arg5 | 
+						arg5 currentTarget phlow
 							spawnObject: (GtSearchClassSlotReferenceFilter
 									forClassAndSubclasses: self newClassName asString asClass classSide
-									andVariable: anEvent target text asString) ]} ]
+									andVariable: arg5 target text asString) ]} ]
 ]
 
 { #category : #accessing }
 GtBehaviorUpdateForm >> classVarsDescription [
 	<magritteDescription>
-	^ super classVarsDescription
+	| tmp2 |
+	tmp2 := super classVarsDescription.
+	tmp2
 		blocListStencil: (self
 				taggerStencilWithCompletion: nil
-				andContextMenuBlock: [ :aVariable :anElement :aMemento | self createClassVarsContextMenuContentFor: aVariable editor: anElement ]);
-		blocShortcuts: [ {BlShortcutWithAction new
-					name: 'Inspect variable';
-					description: 'Inspect the variable indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: (self newClassName asString asClass classVarNamed: anEvent target text asString) ].
-				BlShortcutWithAction new
-					name: 'Browse variable references';
-					description: 'Browses references to the variable indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent currentTarget phlow
+				andContextMenuBlock: [ :arg1 :arg2 :arg3 | self createClassVarsContextMenuContentFor: arg1 editor: arg2 ]).
+	^ tmp2
+		blocShortcuts: [ | tmp4 tmp6 |
+			tmp4 := BlShortcutWithAction new.
+			tmp4
+				name: 'Inspect variable';
+				description: 'Inspect the variable indicated by the editor';
+				combination: BlKeyCombination primaryG.
+			tmp6 := BlShortcutWithAction new.
+			tmp6
+				name: 'Browse variable references';
+				description: 'Browses references to the variable indicated by the editor';
+				combination: BlKeyCombination primaryN.
+			{tmp4
+					action: [ :arg4 | 
+						arg4 target phlow
+							spawnObject: (self newClassName asString asClass classVarNamed: arg4 target text asString) ].
+				tmp6
+					action: [ :arg5 | 
+						arg5 currentTarget phlow
 							spawnObject: (GtSearchReferencesFilter
-									literal: (self newClassName asString asClass bindingOf: anEvent target text asString)) ]} ]
+									literal: (self newClassName asString asClass bindingOf: arg5 target text asString)) ]} ]
 ]
 
 { #category : #accessing }
@@ -124,78 +141,83 @@ GtBehaviorUpdateForm >> commit [
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> createClassSlotsContextMenuContentFor: aSlotName editor: anElement [
-	| theContextMenu items |
-	theContextMenu := GtFormContextMenuContent new editorElement: anElement.
-	items := OrderedCollection new.
-	items
-		addAll: {GtCoderContextMenuAction new
-					action: [ :form :elem | self browseReferencesToSlot: aSlotName in: elem ];
-					title: (self createLabelTextFor: 'Browse references' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self pushUpClassSlotRefactoringFor: aSlotName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Push up' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self pushDownClassSlotRefactoringFor: aSlotName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Push down' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self generateClassAccessorsFor: aSlotName asClassVar: false)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Create accessors' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self abstractClassVariable: aSlotName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Abstract' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self protectClassVariable: aSlotName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Protect' description: aSlotName)}.
-	theContextMenu items: items.
-	^ theContextMenu
+GtBehaviorUpdateForm >> createClassSlotsContextMenuContentFor: arg1 editor: arg2 [
+	| tmp1 tmp2 tmp4 tmp6 tmp8 tmp10 tmp12 tmp14 |
+	tmp1 := GtFormContextMenuContent new editorElement: arg2.
+	tmp2 := OrderedCollection new.
+	tmp4 := GtCoderContextMenuAction new.
+	tmp4 action: [ :arg3 :arg4 | self browseReferencesToSlot: arg1 in: arg4 ].
+	tmp6 := GtCoderContextMenuAction new.
+	tmp6
+		action: [ self
+				addRefactoringPreviewFor: (self pushUpClassSlotRefactoringFor: arg1)
+				in: arg2 ].
+	tmp8 := GtCoderContextMenuAction new.
+	tmp8
+		action: [ self
+				addRefactoringPreviewFor: (self pushDownClassSlotRefactoringFor: arg1)
+				in: arg2 ].
+	tmp10 := GtCoderContextMenuAction new.
+	tmp10
+		action: [ self
+				addRefactoringPreviewFor: (self generateClassAccessorsFor: arg1 asClassVar: false)
+				in: arg2 ].
+	tmp12 := GtCoderContextMenuAction new.
+	tmp12
+		action: [ self addRefactoringPreviewFor: (self abstractClassVariable: arg1) in: arg2 ].
+	tmp14 := GtCoderContextMenuAction new.
+	tmp14
+		action: [ self addRefactoringPreviewFor: (self protectClassVariable: arg1) in: arg2 ].
+	tmp2
+		addAll: {tmp4 title: (self createLabelTextFor: 'Browse references' description: arg1).
+				tmp6 title: (self createLabelTextFor: 'Push up' description: arg1).
+				tmp8 title: (self createLabelTextFor: 'Push down' description: arg1).
+				tmp10 title: (self createLabelTextFor: 'Create accessors' description: arg1).
+				tmp12 title: (self createLabelTextFor: 'Abstract' description: arg1).
+				tmp14 title: (self createLabelTextFor: 'Protect' description: arg1)}.
+	tmp1 items: tmp2.
+	^ tmp1
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> createClassVarsContextMenuContentFor: aClassVarName editor: anElement [
-	| theContextMenu items |
-	theContextMenu := GtFormContextMenuContent new editorElement: anElement.
-	items := OrderedCollection new.
-	items
-		addAll: {GtCoderContextMenuAction new
-					action: [ :form :elem | self browseReferencesToClassVar: aClassVarName in: elem ];
-					title: (self createLabelTextFor: 'Browse references' description: aClassVarName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self pushUpClassVariableRefactoringFor: aClassVarName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Push up' description: aClassVarName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self pushDownClassVariableRefactoringFor: aClassVarName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Push down' description: aClassVarName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self generateAccessorsFor: aClassVarName asClassVar: true)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Create accessors' description: aClassVarName)}.
-	theContextMenu items: items.
-	^ theContextMenu
+GtBehaviorUpdateForm >> createClassVarsContextMenuContentFor: arg1 editor: arg2 [
+	| tmp1 tmp2 tmp4 tmp6 tmp8 tmp10 |
+	tmp1 := GtFormContextMenuContent new editorElement: arg2.
+	tmp2 := OrderedCollection new.
+	tmp4 := GtCoderContextMenuAction new.
+	tmp4 action: [ :arg3 :arg4 | self browseReferencesToClassVar: arg1 in: arg4 ].
+	tmp6 := GtCoderContextMenuAction new.
+	tmp6
+		action: [ self
+				addRefactoringPreviewFor: (self pushUpClassVariableRefactoringFor: arg1)
+				in: arg2 ].
+	tmp8 := GtCoderContextMenuAction new.
+	tmp8
+		action: [ self
+				addRefactoringPreviewFor: (self pushDownClassVariableRefactoringFor: arg1)
+				in: arg2 ].
+	tmp10 := GtCoderContextMenuAction new.
+	tmp10
+		action: [ self
+				addRefactoringPreviewFor: (self generateAccessorsFor: arg1 asClassVar: true)
+				in: arg2 ].
+	tmp2
+		addAll: {tmp4 title: (self createLabelTextFor: 'Browse references' description: arg1).
+				tmp6 title: (self createLabelTextFor: 'Push up' description: arg1).
+				tmp8 title: (self createLabelTextFor: 'Push down' description: arg1).
+				tmp10 title: (self createLabelTextFor: 'Create accessors' description: arg1)}.
+	tmp1 items: tmp2.
+	^ tmp1
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> createLabelTextFor: aString description: description [
-	^ aString asRopedText glamorousRegularFont
-		, ((' ' , description) asRopedText
-				glamorousCodeFont;
-				foreground: Color gray;
-				glamorousCodeTinySize)
+GtBehaviorUpdateForm >> createLabelTextFor: arg1 description: arg2 [
+	| tmp2 |
+	tmp2 := (' ' , arg2) asRopedText.
+	tmp2
+		glamorousCodeFont;
+		foreground: Color gray.
+	^ arg1 asRopedText glamorousRegularFont , tmp2 glamorousCodeTinySize
 ]
 
 { #category : #accessing }
@@ -204,102 +226,98 @@ GtBehaviorUpdateForm >> createRefactoringModel [
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> createSlotsContextMenuContentFor: aSlotName editor: anElement [
-	| theContextMenu items |
-	theContextMenu := GtFormContextMenuContent new editorElement: anElement.
-	items := OrderedCollection new.
-	items
-		addAll: {GtCoderContextMenuAction new
-					action: [ :form :elem | self browseReferencesToSlot: aSlotName in: elem ];
-					title: (self createLabelTextFor: 'Browse references' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self pushUpSlotRefactoringFor: aSlotName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Push up' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self pushDownSlotRefactoringFor: aSlotName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Push down' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self generateAccessorsFor: aSlotName asClassVar: false)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Create accessors' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self
-							addRefactoringPreviewFor: (self abstractVariable: aSlotName)
-							in: anElement ];
-					title: (self createLabelTextFor: 'Abstract' description: aSlotName).
-				GtCoderContextMenuAction new
-					action: [ self addRefactoringPreviewFor: (self protectVariable: aSlotName) in: anElement ];
-					title: (self createLabelTextFor: 'Protect' description: aSlotName)}.
-	theContextMenu items: items.
-	^ theContextMenu
+GtBehaviorUpdateForm >> createSlotsContextMenuContentFor: arg1 editor: arg2 [
+	| tmp1 tmp2 tmp4 tmp6 tmp8 tmp10 tmp12 tmp14 |
+	tmp1 := GtFormContextMenuContent new editorElement: arg2.
+	tmp2 := OrderedCollection new.
+	tmp4 := GtCoderContextMenuAction new.
+	tmp4 action: [ :arg3 :arg4 | self browseReferencesToSlot: arg1 in: arg4 ].
+	tmp6 := GtCoderContextMenuAction new.
+	tmp6
+		action: [ self addRefactoringPreviewFor: (self pushUpSlotRefactoringFor: arg1) in: arg2 ].
+	tmp8 := GtCoderContextMenuAction new.
+	tmp8
+		action: [ self
+				addRefactoringPreviewFor: (self pushDownSlotRefactoringFor: arg1)
+				in: arg2 ].
+	tmp10 := GtCoderContextMenuAction new.
+	tmp10
+		action: [ self
+				addRefactoringPreviewFor: (self generateAccessorsFor: arg1 asClassVar: false)
+				in: arg2 ].
+	tmp12 := GtCoderContextMenuAction new.
+	tmp12
+		action: [ self addRefactoringPreviewFor: (self abstractVariable: arg1) in: arg2 ].
+	tmp14 := GtCoderContextMenuAction new.
+	tmp14
+		action: [ self addRefactoringPreviewFor: (self protectVariable: arg1) in: arg2 ].
+	tmp2
+		addAll: {tmp4 title: (self createLabelTextFor: 'Browse references' description: arg1).
+				tmp6 title: (self createLabelTextFor: 'Push up' description: arg1).
+				tmp8 title: (self createLabelTextFor: 'Push down' description: arg1).
+				tmp10 title: (self createLabelTextFor: 'Create accessors' description: arg1).
+				tmp12 title: (self createLabelTextFor: 'Abstract' description: arg1).
+				tmp14 title: (self createLabelTextFor: 'Protect' description: arg1)}.
+	tmp1 items: tmp2.
+	^ tmp1
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> executeRefactoring: refactoring [
-	[ refactoring execute ]
+GtBehaviorUpdateForm >> executeRefactoring: arg1 [
+	[ arg1 execute ]
 		on: RBRefactoringError
-		do: [ :ex | 
-			| message |
-			message := ex messageText.
-			(message endsWith: 'Browse references?')
-				ifTrue: [ message := message allButLast: 18 ].
-			self inform: message ]
+		do: [ :arg2 | 
+			| tmp1 |
+			tmp1 := arg2 messageText.
+			(tmp1 endsWith: 'Browse references?') ifTrue: [ tmp1 := tmp1 allButLast: 18 ].
+			self inform: tmp1 ]
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> generateAccessorsFor: varName asClassVar: aBoolean [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := self modelClassFrom: aModel.
-
+GtBehaviorUpdateForm >> generateAccessorsFor: arg1 asClassVar: arg2 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := self modelClassFrom: tmp1.
 	^ RBCreateAccessorsForVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
-		classVariable: aBoolean
+		model: tmp1
+		variable: arg1
+		class: tmp2
+		classVariable: arg2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> generateClassAccessorsFor: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := (self modelClassFrom: aModel) classSide.
-
+GtBehaviorUpdateForm >> generateClassAccessorsFor: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := (self modelClassFrom: tmp1) classSide.
 	^ RBCreateAccessorsForVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 		classVariable: false
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> generateClassAccessorsFor: varName asClassVar: aBoolean [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := (self modelClassFrom: aModel) classSide.
-
+GtBehaviorUpdateForm >> generateClassAccessorsFor: arg1 asClassVar: arg2 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := (self modelClassFrom: tmp1) classSide.
 	^ RBCreateAccessorsForVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
-		classVariable: aBoolean
+		model: tmp1
+		variable: arg1
+		class: tmp2
+		classVariable: arg2
 ]
 
 { #category : #accessing }
 GtBehaviorUpdateForm >> initialize [
 	super initialize.
-	
-	classSlots := OrderedCollection new.
+	classSlots := OrderedCollection new
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> modelClassFrom: aModel [
-	^ aModel classNamed: self newClassName asString asSymbol
+GtBehaviorUpdateForm >> modelClassFrom: arg1 [
+	^ arg1 classNamed: self newClassName asString asSymbol
 ]
 
 { #category : #accessing }
@@ -308,129 +326,129 @@ GtBehaviorUpdateForm >> nameDescription [
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> protectClassVariable: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := (self modelClassFrom: aModel) classSide.
-
+GtBehaviorUpdateForm >> protectClassVariable: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := (self modelClassFrom: tmp1) classSide.
 	^ RBProtectInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> protectVariable: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := self modelClassFrom: aModel.
-
+GtBehaviorUpdateForm >> protectVariable: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := self modelClassFrom: tmp1.
 	^ RBProtectInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> pushDownClassSlotRefactoringFor: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := (self modelClassFrom: aModel) classSide.
-
+GtBehaviorUpdateForm >> pushDownClassSlotRefactoringFor: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := (self modelClassFrom: tmp1) classSide.
 	^ GtPushDownInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> pushDownClassVariableRefactoringFor: varName [ 
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := self modelClassFrom: aModel.
-
+GtBehaviorUpdateForm >> pushDownClassVariableRefactoringFor: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := self modelClassFrom: tmp1.
 	^ RBPushDownClassVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> pushDownSlotRefactoringFor: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := self modelClassFrom: aModel.
-
+GtBehaviorUpdateForm >> pushDownSlotRefactoringFor: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := self modelClassFrom: tmp1.
 	^ GtPushDownInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass
+		model: tmp1
+		variable: arg1
+		class: tmp2
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> pushUpClassSlotRefactoringFor: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := (self modelClassFrom: aModel) classSide.
-
+GtBehaviorUpdateForm >> pushUpClassSlotRefactoringFor: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := (self modelClassFrom: tmp1) classSide.
 	^ RBPullUpInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass superclass
+		model: tmp1
+		variable: arg1
+		class: tmp2 superclass
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> pushUpClassVariableRefactoringFor: varName [ 
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := self modelClassFrom: aModel.
-
+GtBehaviorUpdateForm >> pushUpClassVariableRefactoringFor: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := self modelClassFrom: tmp1.
 	^ RBPullUpClassVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass superclass
+		model: tmp1
+		variable: arg1
+		class: tmp2 superclass
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> pushUpSlotRefactoringFor: varName [
-	| aModel aClass |
-	aModel := self createRefactoringModel.
-	aClass := self modelClassFrom: aModel.
-
+GtBehaviorUpdateForm >> pushUpSlotRefactoringFor: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self createRefactoringModel.
+	tmp2 := self modelClassFrom: tmp1.
 	^ RBPullUpInstanceVariableRefactoring
-		model: aModel
-		variable: varName
-		class: aClass superclass
+		model: tmp1
+		variable: arg1
+		class: tmp2 superclass
 ]
 
 { #category : #accessing }
 GtBehaviorUpdateForm >> slotsDescription [
 	<magritteDescription>
-	^ super slotsDescription
+	| tmp2 |
+	tmp2 := super slotsDescription.
+	tmp2
 		blocListStencil: (self
 				taggerStencilWithCompletion: nil
-				andContextMenuBlock: [ :aVariable :anElement :aMemento | 
-					(aMemento overallStatus valueOrNil ifNotNil: #isChanged ifNil: [ true ])
-						ifTrue: [ GtCoderContextMenuContent new editorElement: anElement ]
-						ifFalse: [ self createSlotsContextMenuContentFor: aVariable editor: anElement ] ]);
-		blocShortcuts: [ {BlShortcutWithAction new
+				andContextMenuBlock: [ :arg1 :arg2 :arg3 | 
+					(arg3 overallStatus valueOrNil ifNotNil: #isChanged ifNil: [ true ])
+						ifTrue: [ GtCoderContextMenuContent new editorElement: arg2 ]
+						ifFalse: [ self createSlotsContextMenuContentFor: arg1 editor: arg2 ] ]);
+		blocShortcuts: [ | tmp4 tmp6 |
+				tmp4 := BlShortcutWithAction new.
+				tmp4
 					name: 'Inspect slot';
 					description: 'Inspect the slot indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: (self newClassName asString asClass slotNamed: anEvent target text asString) ].
-				BlShortcutWithAction new
+					combination: BlKeyCombination primaryG.
+				tmp6 := BlShortcutWithAction new.
+				tmp6
 					name: 'Browse slot references';
 					description: 'Browses references to the slot indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent currentTarget phlow
-							spawnObject: (GtSearchInstanceSlotReferenceFilter
-									forClassAndSubclasses: self newClassName asString asClass
-									andVariable: anEvent target text asString) ]} ];
-		addCondition: [ :aValue | aValue noneSatisfy: [ :aSlot | superSlots includes: aSlot ] ]
-			labelled: 'Slot names are already taken in superclass'
+					combination: BlKeyCombination primaryN.
+				{tmp4
+						action: [ :arg4 | 
+							arg4 target phlow
+								spawnObject: (self newClassName asString asClass slotNamed: arg4 target text asString) ].
+					tmp6
+						action: [ :arg5 | 
+							arg5 currentTarget phlow
+								spawnObject: (GtSearchInstanceSlotReferenceFilter
+										forClassAndSubclasses: self newClassName asString asClass
+										andVariable: arg5 target text asString) ]} ].
+	^ tmp2
+		addCondition: [ :arg6 | arg6 noneSatisfy: [ :arg7 | superSlots includes: arg7 ] ]
+		labelled: 'Slot names are already taken in superclass'
 ]
 
 { #category : #accessing }
@@ -439,12 +457,11 @@ GtBehaviorUpdateForm >> superSlots [
 ]
 
 { #category : #accessing }
-GtBehaviorUpdateForm >> superSlots: anObject [
-	superSlots := anObject
+GtBehaviorUpdateForm >> superSlots: arg1 [
+	superSlots := arg1
 ]
 
 { #category : #accessing }
 GtBehaviorUpdateForm >> textualCoderViewModel [
-	"Hack to use context menus"
-	^self
+	
 ]

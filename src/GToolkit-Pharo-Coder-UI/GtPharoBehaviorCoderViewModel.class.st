@@ -16,14 +16,15 @@ GtPharoBehaviorCoderViewModel >> behavior [
 { #category : #accessing }
 GtPharoBehaviorCoderViewModel >> computeAddOns [
 	<return: #TAsyncPromise>
-
 	^ [ self syncComputeAddOnsFor: coderModel ] asAsyncFuture
-		await: (self class addOnsExecutionConfiguration)
+		await: self class addOnsExecutionConfiguration
 ]
 
 { #category : #accessing }
 GtPharoBehaviorCoderViewModel >> definitionCoderUIModel [
-	^ definitionCoderUIModel ifNil: [ self coder definitionCoder asCoderViewModel ]
+	^ definitionCoderUIModel
+		ifNil: [ self coder definitionCoder asCoderViewModel ]
+		ifNotNil: [ definitionCoderUIModel ]
 ]
 
 { #category : #accessing }
@@ -34,37 +35,32 @@ GtPharoBehaviorCoderViewModel >> elementClass [
 { #category : #initialization }
 GtPharoBehaviorCoderViewModel >> initialize [
 	super initialize.
-	
-	extraAddOns := GtCoderAddOns new.
+	extraAddOns := GtCoderAddOns new
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderViewModel >> mainActions [ 
-	^ currentAddOns ifNil: [ #() ] ifNotNil: [ 
-		currentAddOns mainActions ]
+GtPharoBehaviorCoderViewModel >> mainActions [
+	^ currentAddOns ifNil: [ #() ] ifNotNil: [ currentAddOns mainActions ]
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderViewModel >> onAddOnsChanged: theAddOns [
-	"Is sent when new add-ons are computed"
-
-	currentAddOns := theAddOns.
-	self announce: (GtPharoBehaviorCoderViewModelAddonsChangedAnnouncement new
-		pharoBehaviorCoderViewModel: self) 
+GtPharoBehaviorCoderViewModel >> onAddOnsChanged: arg1 [
+	currentAddOns := arg1.
+	self
+		announce: (GtPharoBehaviorCoderViewModelAddonsChangedAnnouncement new
+				pharoBehaviorCoderViewModel: self)
 ]
 
 { #category : #'api - coder model' }
 GtPharoBehaviorCoderViewModel >> onCoderModelChanged [
 	super onCoderModelChanged.
-	
 	addOnPromise := nil.
-	self ensureAddOns.
+	self ensureAddOns
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderViewModel >> previews [ 
-	^ currentAddOns ifNil: [ #() ] ifNotNil: [ 
-		currentAddOns previews ]
+GtPharoBehaviorCoderViewModel >> previews [
+	^ currentAddOns ifNil: [ #() ] ifNotNil: [ currentAddOns previews ]
 ]
 
 { #category : #'api - coder model' }
@@ -73,38 +69,34 @@ GtPharoBehaviorCoderViewModel >> protocols [
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderViewModel >> syncComputeAddOnsFor: aCoderModel [
-	| newAddOns pragmas |
-
-	pragmas := aCoderModel
-		pragmasNamed: GtCoderModel astExtensionsPragma
-		inHierarchy: aCoderModel class.
-	newAddOns := aCoderModel newAddOns.
-	
-	"extra addons"
-	newAddOns addAddOns: aCoderModel addOns.
-	"aCoderModel initializeShortcuts: newAddOns."
-	aCoderModel initializeAddOns: newAddOns viewModel: self.
-	
-	pragmas reverseDo: [ :eachPragma |
-		[ aCoderModel
-				perform: eachPragma methodSelector
-				withEnoughArguments: { newAddOns . self } ]
-		on: Error
-		do: [ :anError |
-			"emit as a beacon signal"
-			anError emit.
-				
-			NonInteractiveTranscript stderr
-				nextPut: $[;
-				print: eachPragma method printString;
-				nextPut: $];
-				space;
-				print: anError;
-				cr ] ].
-
-	"view model add-ons override coder model add-ons"
-	newAddOns addAddOns: extraAddOns.
-	newAddOns markAsUpdated.
-	^ newAddOns
+GtPharoBehaviorCoderViewModel >> syncComputeAddOnsFor: arg1 [
+	| tmp1 tmp2 |
+	tmp2 := arg1
+			pragmasNamed: GtCoderModel astExtensionsPragma
+			inHierarchy: arg1 class.
+	tmp1 := arg1 newAddOns.
+	tmp1 addAddOns: arg1 addOns.
+	arg1 initializeAddOns: tmp1 viewModel: self.
+	tmp2
+		reverseDo: [ :arg2 | 
+			[ arg1
+				perform: arg2 methodSelector
+				withEnoughArguments: {tmp1.
+						self} ]
+				on: Error
+				do: [ :arg3 | 
+					| tmp4 |
+					arg3 emit.
+					tmp4 := NonInteractiveTranscript stderr.
+					tmp4
+						nextPut: $[;
+						print: arg2 method printString;
+						nextPut: $];
+						space;
+						print: arg3;
+						cr ] ].
+	tmp1
+		addAddOns: extraAddOns;
+		markAsUpdated.
+	^ tmp1
 ]

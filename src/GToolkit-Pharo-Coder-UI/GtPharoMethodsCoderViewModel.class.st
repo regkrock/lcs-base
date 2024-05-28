@@ -9,20 +9,20 @@ Class {
 
 { #category : #'api - interations' }
 GtPharoMethodsCoderViewModel >> addNewCoder [
-	| aNewCoder |
-	
-	aNewCoder := self coder addNewCoder.
+	| tmp1 |
+	tmp1 := self coder addNewCoder.
 	self
-		expandCoder: aNewCoder;
-		focusCoder: aNewCoder.
-	^ aNewCoder
+		expandCoder: tmp1;
+		focusCoder: tmp1.
+	^ tmp1
 ]
 
 { #category : #updating }
-GtPharoMethodsCoderViewModel >> coderUIModelFor: aCoder [
-	^ aCoder asCoderViewModel
-		expanded: false;
-		selfObject: self coder object
+GtPharoMethodsCoderViewModel >> coderUIModelFor: arg1 [
+	| tmp2 |
+	tmp2 := arg1 asCoderViewModel.
+	tmp2 expanded: false.
+	^ tmp2 selfObject: self coder object
 ]
 
 { #category : #accessing }
@@ -31,40 +31,36 @@ GtPharoMethodsCoderViewModel >> elementClass [
 ]
 
 { #category : #'api - interations' }
-GtPharoMethodsCoderViewModel >> expandCoder: aMethodCoder [
+GtPharoMethodsCoderViewModel >> expandCoder: arg1 [
 	coderUIModels
-		detect: [ :eachCoderUIModel | eachCoderUIModel coder = aMethodCoder ]
-		ifFound: [ :targetCoderUIModel | targetCoderUIModel expanded: true ]
+		detect: [ :arg2 | arg2 coder = arg1 ]
+		ifFound: [ :arg3 | arg3 expanded: true ]
 ]
 
 { #category : #'api - interations' }
-GtPharoMethodsCoderViewModel >> focusCoder: aMethodCoder [
+GtPharoMethodsCoderViewModel >> focusCoder: arg1 [
 	coderUIModels
-		detect: [ :eachCoderUIModel | eachCoderUIModel coder = aMethodCoder ]
-		ifFound: [ :targetCoderUIModel | self focusCoderUIModel: targetCoderUIModel ]
+		detect: [ :arg2 | arg2 coder = arg1 ]
+		ifFound: [ :arg3 | self focusCoderUIModel: arg3 ]
 ]
 
 { #category : #'api - focus' }
-GtPharoMethodsCoderViewModel >> focusCoderUIModel: aCoderUIModel [
-	(focusedCoderUIModel notNil
-		and: [ focusedCoderUIModel ~= aCoderUIModel ])
+GtPharoMethodsCoderViewModel >> focusCoderUIModel: arg1 [
+	(focusedCoderUIModel notNil and: [ focusedCoderUIModel ~= arg1 ])
 		ifTrue: [ focusedCoderUIModel focused: false.
 			focusedCoderUIModel := nil ].
-	focusedCoderUIModel := aCoderUIModel.
+	focusedCoderUIModel := arg1.
 	focusedCoderUIModel focused: true
 ]
 
 { #category : #accessing }
 GtPharoMethodsCoderViewModel >> focusedCoderUIModel [
 	<return: #GtSingleCoderViewModel>
-
 	^ focusedCoderUIModel
 ]
 
 { #category : #'api - focus' }
-GtPharoMethodsCoderViewModel >> unfocusCoderUIModel: aCoderUIModel [
-	focusedCoderUIModel = aCoderUIModel
-		ifTrue: [ focusedCoderUIModel := nil ].
-
-	aCoderUIModel hasFocus: false
+GtPharoMethodsCoderViewModel >> unfocusCoderUIModel: arg1 [
+	focusedCoderUIModel = arg1 ifTrue: [ focusedCoderUIModel := nil ].
+	arg1 hasFocus: false
 ]

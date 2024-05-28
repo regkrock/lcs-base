@@ -6,22 +6,20 @@ Class {
 
 { #category : #'private - streaming' }
 GtPharoExampleSuiteMethodsCoderMediator >> connect [
-	| anExamplesStream |
-	anExamplesStream := self examplesStream.
-
-	GtPharoNewCodersStreamSignal new
+	| tmp1 tmp3 |
+	tmp1 := self examplesStream.
+	tmp3 := GtPharoNewCodersStreamSignal new.
+	tmp3
 		mediator: self;
-		stream: anExamplesStream;
+		stream: tmp1;
 		emit.
-
-	self suiteModel stream: anExamplesStream
+	self suiteModel stream: tmp1
 ]
 
 { #category : #'private - streaming' }
 GtPharoExampleSuiteMethodsCoderMediator >> examplesStream [
-	^ (self subscriptionsStream
-		map: [ :aMethodCoder | aMethodCoder example ])
-		filter: [ :anExample | anExample isNotNil ]
+	^ (self subscriptionsStream map: [ :arg1 | arg1 example ])
+		filter: [ :arg2 | arg2 isNotNil ]
 ]
 
 { #category : #accessing }
@@ -30,17 +28,16 @@ GtPharoExampleSuiteMethodsCoderMediator >> mediatorLabel [
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoExampleSuiteMethodsCoderMediator >> onSuiteSelectedStateChanged: anAnnouncement [
+GtPharoExampleSuiteMethodsCoderMediator >> onSuiteSelectedStateChanged: arg1 [
+	| tmp2 tmp4 |
 	self methodsCoder ifNil: [ ^ self ].
 	self suiteModel ifNil: [ ^ self ].
-
-	GtPharoMethodCoderAnnouncementSignal new
+	tmp2 := GtPharoMethodCoderAnnouncementSignal new.
+	tmp2
 		mediator: self;
-		announcement: anAnnouncement;
+		announcement: arg1;
 		emit.
-
-	self methodsCoder
-		additionalFilters: (GtPharoExampleStateFilter new
-				resultState: anAnnouncement state;
-				pharoExampleSuite: self suiteModel)
+	tmp4 := GtPharoExampleStateFilter new.
+	tmp4 resultState: arg1 state.
+	self methodsCoder additionalFilters: (tmp4 pharoExampleSuite: self suiteModel)
 ]

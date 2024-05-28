@@ -1,85 +1,87 @@
 Extension { #name : #GtClassSuperclassDefinition }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassSuperclassDefinition >> browseFrom: anEvent [
+GtClassSuperclassDefinition >> browseFrom: arg1 [
 	self class environment
 		at: self name
-		ifPresent: [ :aClass |
-			| aCoderEvent aClassCoder |
-
-			aClassCoder := GtPharoBehaviorCoder forClass: aClass.
-			aCoderEvent := GtCoderToSpawn new coder: aClassCoder.
-			anEvent currentTarget fireEvent: aCoderEvent.
-			aCoderEvent isConsumed
-				ifFalse: [ anEvent currentTarget phlow spawnTool: (GtReadyCoderTool coder: aCoderEvent coder) ] ]
+		ifPresent: [ :arg2 | 
+			| tmp1 tmp2 |
+			tmp2 := GtPharoBehaviorCoder forClass: arg2.
+			tmp1 := GtCoderToSpawn new coder: tmp2.
+			arg1 currentTarget fireEvent: tmp1.
+			tmp1 isConsumed
+				ifFalse: [ arg1 currentTarget phlow spawnTool: (GtReadyCoderTool coder: tmp1 coder) ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassSuperclassDefinition >> browseReferencesFrom: anEvent [
+GtClassSuperclassDefinition >> browseReferencesFrom: arg1 [
 	self class environment
 		at: self name
-		ifPresent:
-			[ :class | anEvent currentTarget phlow spawnObject: class gtReferences ]
+		ifPresent: [ :arg2 | arg1 currentTarget phlow spawnObject: arg2 gtReferences ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassSuperclassDefinition >> newTabFrom: anEvent [
+GtClassSuperclassDefinition >> newTabFrom: arg1 [
 	self class environment
 		at: self name
-		ifPresent: [ :aClass | 
-			| aClassCoder aSpace |
-			aClassCoder := GtCoderElement forClass: aClass.
-
-			aSpace := BlSpace new.
-			aSpace title: self name.
-			aSpace icon: BrGlamorousVectorIcons emphasizedBrowse.
-			aSpace extent: 1200 @ 600.
-			aSpace root background: Color transparent.
-			aSpace
+		ifPresent: [ :arg2 | 
+			| tmp1 tmp2 tmp4 |
+			tmp1 := GtCoderElement forClass: arg2.
+			tmp2 := BlSpace new.
+			tmp2
+				title: self name;
+				icon: BrGlamorousVectorIcons emphasizedBrowse;
+				extent: 1200 @ 600.
+			tmp2 root background: Color transparent.
+			tmp4 := GtPagerWrapperElement new.
+			tmp4 tool: tmp1.
+			tmp2
 				addChild: (GtPager
-						createOn: (GtPagerWrapperElement new
-								tool: aClassCoder;
-								embellisher: (GtPagerPageEmbellisher new extension: GtPagerPageEmbellisherExtension null))).
-			aSpace withHalos.
-			anEvent target showSpace: aSpace ]
+						createOn: (tmp4
+								embellisher: (GtPagerPageEmbellisher new extension: GtPagerPageEmbellisherExtension null)));
+				withHalos.
+			arg1 target showSpace: tmp2 ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtClassSuperclassDefinition >> readers [
-	^ { self superclassReader }
+	^ {self superclassReader}
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassSuperclassDefinition >> replaceFrom: anEvent [
+GtClassSuperclassDefinition >> replaceFrom: arg1 [
 	self class environment
 		at: self name
-		ifPresent: [ :aClass |
-			| aCoderEvent aClassCoder |
-			aClassCoder := GtPharoBehaviorCoder forClass: aClass.
-			aCoderEvent := GtCoderToReplace new coder: aClassCoder.
-			anEvent currentTarget fireEvent: aCoderEvent.
-			aCoderEvent isConsumed ifFalse: [ 
-				anEvent currentTarget phlow spawnTool: (GtReadyCoderTool coder: aCoderEvent coder) ] ]
+		ifPresent: [ :arg2 | 
+			| tmp1 tmp2 |
+			tmp2 := GtPharoBehaviorCoder forClass: arg2.
+			tmp1 := GtCoderToReplace new coder: tmp2.
+			arg1 currentTarget fireEvent: tmp1.
+			tmp1 isConsumed
+				ifFalse: [ arg1 currentTarget phlow spawnTool: (GtReadyCoderTool coder: tmp1 coder) ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtClassSuperclassDefinition >> superclassReader [
 	<return: #GtCodeDefinitionViewer>
-	^ GtCodeDefinitionSingleReader new
+	| tmp2 |
+	tmp2 := GtCodeDefinitionSingleReader new.
+	tmp2
 		definition: self;
 		title: 'Superclass';
 		getSelector: #name;
 		renameEvent: GtBehaviorSuperclassRenamed;
-		whenAltClickDo: [ :anEvent :aDefinition | aDefinition replaceFrom: anEvent ];
-		whenPrimaryClickDo: [ :anEvent :aDefinition | aDefinition newTabFrom: anEvent ];
-		whenClickDo: [ :anEvent :aDefinition | aDefinition browseFrom: anEvent ];
-		when: BlKeyUpEvent do: [ :anEvent | anEvent target mouseCursor: nil ];
+		whenAltClickDo: [ :arg1 :arg2 | arg2 replaceFrom: arg1 ];
+		whenPrimaryClickDo: [ :arg3 :arg4 | arg4 newTabFrom: arg3 ];
+		whenClickDo: [ :arg5 :arg6 | arg6 browseFrom: arg5 ];
+		when: BlKeyUpEvent do: [ :arg7 | arg7 target mouseCursor: nil ].
+	^ tmp2
 		when: BlKeyDownEvent
-			do: [ :anEvent | 
-				anEvent consumed: true.
-				anEvent key isAlt
-					ifTrue: [ anEvent target mouseCursor: BlAliasCursor new ]
-					ifFalse: [ anEvent key isPrimary
-							ifTrue: [ anEvent target mouseCursor: BlCopyCursor new ]
-							ifFalse: [ anEvent target mouseCursor: nil ] ] ]
+		do: [ :arg8 | 
+			arg8 consumed: true.
+			arg8 key isAlt
+				ifTrue: [ arg8 target mouseCursor: BlAliasCursor new ]
+				ifFalse: [ arg8 key isPrimary
+						ifTrue: [ arg8 target mouseCursor: BlCopyCursor new ]
+						ifFalse: [ arg8 target mouseCursor: nil ] ] ]
 ]

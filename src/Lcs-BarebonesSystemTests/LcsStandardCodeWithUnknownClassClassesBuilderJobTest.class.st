@@ -19,7 +19,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> jobBuilder [
 { #category : #running }
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> removeAllArtifacts [
 	LxxBarebonesSystem removeDomainSlotNamed: 'titles'.
-	LxxBarebonesPerson removeDomainSlotNamed: 'titles'.
+	LxxBarebonesPerson removeDomainSlotNamed: 'title'.
 	self
 		removeClassesNamed: #('LxxUnknownTitle' 'LxxTitle' 'LxxTitles')
 ]
@@ -69,7 +69,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	self assert: builderJobStep codePackageName equals: builder codePackageName.
 	
 	builderJobStep := builder jobSteps jobStepAt: 2.
-	self assert: builderJobStep class identicalTo: LcsCodeClassBuilder.
+	self assert: builderJobStep class identicalTo: LcsUnknownCodeClassBuilder.
 	self assert: builderJobStep superclassName equals: 'LxxTitle'.
 	self assert: builderJobStep newClassName equals: 'LxxUnknownTitle'.
 	self assert: builderJobStep codePackageName equals: builder codePackageName.

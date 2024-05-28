@@ -6,13 +6,12 @@ GtCompositeDefinition >> createRefactoringModel [
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtCompositeDefinition >> executeRefactoring: refactoring [
-	[ refactoring execute ]
+GtCompositeDefinition >> executeRefactoring: arg1 [
+	[ arg1 execute ]
 		on: RBRefactoringError
-		do: [ :ex | 
-			| message |
-			message := ex messageText.
-			(message endsWith: 'Browse references?')
-				ifTrue: [ message := message allButLast: 18 ].
-			self inform: message ]
+		do: [ :arg2 | 
+			| tmp1 |
+			tmp1 := arg2 messageText.
+			(tmp1 endsWith: 'Browse references?') ifTrue: [ tmp1 := tmp1 allButLast: 18 ].
+			self inform: tmp1 ]
 ]

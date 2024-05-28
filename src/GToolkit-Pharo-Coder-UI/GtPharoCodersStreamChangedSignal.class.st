@@ -9,17 +9,15 @@ Class {
 
 { #category : #accessing }
 GtPharoCodersStreamChangedSignal >> announcement [
-
 	^ announcement
 ]
 
 { #category : #accessing }
-GtPharoCodersStreamChangedSignal >> announcement: anObject [
-
-	announcement := anObject
+GtPharoCodersStreamChangedSignal >> announcement: arg1 [
+	announcement := arg1
 ]
 
 { #category : #printing }
-GtPharoCodersStreamChangedSignal >> printOneLineContentsOn: aStream [
-	self printOneLineCommunicatorId: aStream
+GtPharoCodersStreamChangedSignal >> printOneLineContentsOn: arg1 [
+	self printOneLineCommunicatorId: arg1
 ]

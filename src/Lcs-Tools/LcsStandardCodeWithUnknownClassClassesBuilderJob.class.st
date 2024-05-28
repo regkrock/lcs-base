@@ -91,7 +91,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedClassName: anObject
 
 { #category : #builders }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedCodeClassBuilder [
-	^ LcsCodeClassBuilder new
+	^ LcsUnknownCodeClassBuilder new
 		newClassName: self undefinedClassName;
 		superclassName: self codeClassName;
 		codePackageName: self codePackageName;

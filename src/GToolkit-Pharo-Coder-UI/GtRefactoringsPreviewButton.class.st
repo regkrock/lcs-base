@@ -1,6 +1,3 @@
-"
-nil
-"
 Class {
 	#name : #GtRefactoringsPreviewButton,
 	#superclass : #BrHorizontalPane,
@@ -23,158 +20,163 @@ GtRefactoringsPreviewButton >> beMiniSize [
 ]
 
 { #category : #initialization }
-GtRefactoringsPreviewButton >> buildAcceptFor: theRefactoringsElement progressContainer: progressContainer [
-	| applyAction anAcceptButton progress |
+GtRefactoringsPreviewButton >> buildAcceptFor: arg1 progressContainer: arg2 [
+	| tmp1 tmp2 tmp4 tmp7 |
 	(running and: [ runningElement notNil ])
-		ifTrue: [ progressContainer
+		ifTrue: [ arg2
 				enqueueTask: [ runningElement ifNotNil: [ runningElement removeFromParent ].
-					progressContainer addChild: runningElement ] asBlTask ].
-	applyAction := [ :theAcceptButton | 
+					arg2 addChild: runningElement ] asBlTask ].
+	tmp1 := [ :arg3 | 
 		running
 			ifFalse: [ running := true.
-				theAcceptButton disable.
-				theRefactoringsElement changesSize > 1
-					ifTrue: [ progress := self newProgressElement.
-						progressContainer addChild: progress after: theAcceptButton.
-						progress fraction: 0.
-						runningElement := progress ].
-				(theRefactoringsElement
-					applyRefactoringWithProgress: [ :fraction | 
-						progress
-							ifNotNil: [ progress
-									enqueueTask: (BlTaskAction new action: [ progress fraction: fraction ]) ] ])
-					then: [ :ignore | 
+				arg3 disable.
+				arg1 changesSize > 1
+					ifTrue: [ tmp4 := self newProgressElement.
+						arg2 addChild: tmp4 after: arg3.
+						tmp4 fraction: 0.
+						runningElement := tmp4 ].
+				(arg1
+					applyRefactoringWithProgress: [ :arg4 | 
+						tmp4
+							ifNotNil: [ tmp4 enqueueTask: (BlTaskAction new action: [ tmp4 fraction: arg4 ]) ] ])
+					then: [ :arg5 | 
 						running := false.
 						self
 							dispatchEvent: (GtRefactoringsAppliedEvent new refactorings: executedRefactorings).
-						progressContainer
-							enqueueTask: [ theAcceptButton enable.
-								theAcceptButton fireEvent: BrDropdownHideWish new ] asBlTask ]
-					otherwise: [ :anError | 
-						| aDebugElement |
+						arg2
+							enqueueTask: [ arg3
+									enable;
+									fireEvent: BrDropdownHideWish new ] asBlTask ]
+					otherwise: [ :arg6 | 
+						| tmp5 |
 						running := false.
-						aDebugElement := anError asDebuggableElement
+						tmp5 := arg6 asDebuggableElement
 								margin: (BlInsets
 										top: 5
 										left: 10
 										bottom: 15
 										right: 10).
-						runningElement := aDebugElement.
-						progressContainer
-							enqueueTask: [ progress ifNotNil: [ progress removeFromParent ].
-								progressContainer addChild: aDebugElement ] asBlTask ] ] ].
-	anAcceptButton := BrButton new
-			aptitude: BrGlamorousButtonWithIconAptitude new;
-			id: GtRefactoringsPreviewAcceptId;
-			icon: BrGlamorousVectorIcons accept;
-			beSmallSize;
-			requestFocus;
-			label: 'Save';
-			margin: (BlInsets
+						runningElement := tmp5.
+						arg2
+							enqueueTask: [ tmp4 ifNotNil: [ tmp4 removeFromParent ].
+								arg2 addChild: tmp5 ] asBlTask ] ] ].
+	tmp7 := BrButton new.
+	tmp7
+		aptitude: BrGlamorousButtonWithIconAptitude new;
+		id: GtRefactoringsPreviewAcceptId;
+		icon: BrGlamorousVectorIcons accept;
+		beSmallSize;
+		requestFocus;
+		label: 'Save';
+		margin: (BlInsets
 					top: 0
 					left: 10
 					bottom: 10
 					right: 0);
-			action: applyAction;
-			yourself.
-	running ifTrue: [ anAcceptButton disable ].
-	^ anAcceptButton
+		action: tmp1.
+	tmp2 := tmp7 yourself.
+	running ifTrue: [ tmp2 disable ].
+	^ tmp2
 ]
 
 { #category : #initialization }
-GtRefactoringsPreviewButton >> buildAsyncPreviewForButton: previewButton [
-	^ BrAsyncWidget new
+GtRefactoringsPreviewButton >> buildAsyncPreviewForButton: arg1 [
+	| tmp2 |
+	tmp2 := BrAsyncWidget new.
+	tmp2
 		layout: BlLinearLayout vertical;
-		constraintsDo: [ :c | 
-			c vertical exact: 50.
-			c horizontal exact: self previewWidth ];
-		postAction: [ :theLazyElement | theLazyElement constraintsDo: [ :c | c vertical fitContentLimited ] ];
-		stencil: [ self buildRefactoringsPreviewForButton: previewButton ]
+		constraintsDo: [ :arg2 | 
+				arg2 vertical exact: 50.
+				arg2 horizontal exact: self previewWidth ];
+		postAction: [ :arg3 | arg3 constraintsDo: [ :arg4 | arg4 vertical fitContentLimited ] ].
+	^ tmp2 stencil: [ self buildRefactoringsPreviewForButton: arg1 ]
 ]
 
 { #category : #initialization }
 GtRefactoringsPreviewButton >> buildCancelButton [
-	| cancelAction |
-	cancelAction := [ self removeFromParent.
+	| tmp1 tmp3 |
+	tmp1 := [ self removeFromParent.
 		cancelBlock value ].
-
-	^ BrButton new
+	tmp3 := BrButton new.
+	tmp3
 		aptitude: BrGlamorousButtonWithIconAptitude;
 		icon: BrGlamorousVectorIcons cancel;
 		beSmallSize;
 		alignCenterLeft;
 		label: 'Cancel';
 		margin: (BlInsets left: 5);
-		action: cancelAction;
-		yourself
+		action: tmp1.
+	^ tmp3 yourself
 ]
 
 { #category : #initialization }
-GtRefactoringsPreviewButton >> buildPreviewForButton: previewButton [
-	^ self buildAsyncPreviewForButton: previewButton
+GtRefactoringsPreviewButton >> buildPreviewForButton: arg1 [
+	^ self buildAsyncPreviewForButton: arg1
 ]
 
 { #category : #initialization }
-GtRefactoringsPreviewButton >> buildRefactoringsPreviewForButton: aButton [
-	| theRefactoringsElement anAcceptButton aContainer label refactoringsOrChanges aToolbarElement |
-	refactoringsOrChanges := self executedRefactorings.
-	theRefactoringsElement := GtRefactoringsElement new
-			hExact: self previewWidth * 1.25;
-			vFitContentLimited.
-	(refactoringsOrChanges allSatisfy: [ :each | each isKindOf: RBRefactoring ])
-		ifTrue: [ theRefactoringsElement refactorings: refactoringsOrChanges ]
-		ifFalse: [ | change |
-			change := RBCompositeRefactoryChange named: 'Changes'.
-			refactoringsOrChanges do: [ :each | change addChange: each ].
-			theRefactoringsElement changes: change ].
-	aContainer := BlElement new
-			layout: BlLinearLayout vertical;
-			when: GtPhlowObjectToSpawn
-				do: [ :anEvent | anEvent target phlow spawnObject: anEvent object ];
-			constraintsDo: [ :c1 | 
-				c1 horizontal exact: self previewWidth.
-				c1 vertical fitContentLimited ].
-	aToolbarElement := BrHorizontalPane new
-			vFitContent;
-			hMatchParent.
-	anAcceptButton := self
-			buildAcceptFor: theRefactoringsElement
-			progressContainer: aToolbarElement.
+GtRefactoringsPreviewButton >> buildRefactoringsPreviewForButton: arg1 [
+	| tmp1 tmp2 tmp3 tmp4 tmp5 tmp6 tmp7 tmp9 tmp11 tmp13 |
+	tmp5 := self executedRefactorings.
+	tmp9 := GtRefactoringsElement new.
+	tmp9 hExact: self previewWidth * 1.25.
+	tmp1 := tmp9 vFitContentLimited.
+	(tmp5 allSatisfy: [ :arg2 | arg2 isKindOf: RBRefactoring ])
+		ifTrue: [ tmp1 refactorings: tmp5 ]
+		ifFalse: [ tmp7 := RBCompositeRefactoryChange named: 'Changes'.
+			tmp5 do: [ :arg3 | tmp7 addChange: arg3 ].
+			tmp1 changes: tmp7 ].
+	tmp11 := BlElement new.
+	tmp11
+		layout: BlLinearLayout vertical;
+		when: GtPhlowObjectToSpawn
+			do: [ :arg4 | arg4 target phlow spawnObject: arg4 object ].
+	tmp3 := tmp11
+			constraintsDo: [ :arg5 | 
+				arg5 horizontal exact: self previewWidth.
+				arg5 vertical fitContentLimited ].
+	tmp13 := BrHorizontalPane new.
+	tmp13 vFitContent.
+	tmp6 := tmp13 hMatchParent.
+	tmp2 := self buildAcceptFor: tmp1 progressContainer: tmp6.
 	self errorMessages isEmpty
-		ifTrue: [ self notificationMessages
-				do: [ :each | 
-					| element |
-					element := each cull: aButton.
-					element
+		ifTrue: [ | tmp16 |
+			self notificationMessages
+				do: [ :arg6 | 
+					| tmp14 |
+					tmp14 := arg6 cull: arg1.
+					tmp14
 						margin: (BlInsets
 								top: 10
 								left: 10
 								bottom: 0
 								right: 10).
-					aContainer addChild: element ].
-			aContainer
-				addChild: ((theRefactoringsElement asScalableElement
-						width: self previewWidth;
-						fitWidth;
-						constraintsDo: [ :c | c vertical fitContentLimited ]) asScrollableElement
-						constraintsDo: [ :c | c vertical fitContentLimited ]).
-
-			aToolbarElement addChild: anAcceptButton.
-			aContainer addChild: aToolbarElement.
-			anAcceptButton beFocusable ]
+					tmp3 addChild: tmp14 ].
+			tmp16 := tmp1 asScalableElement.
+			tmp16
+				width: self previewWidth;
+				fitWidth.
+			tmp3
+				addChild: ((tmp16 constraintsDo: [ :arg7 | arg7 vertical fitContentLimited ])
+						asScrollableElement
+						constraintsDo: [ :arg8 | arg8 vertical fitContentLimited ]).
+			tmp6 addChild: tmp2.
+			tmp3 addChild: tmp6.
+			tmp2 beFocusable ]
 		ifFalse: [ self errorMessages
-				do: [ :each | 
-					| element |
-					element := each cull: aButton.
-					element padding: (BlInsets all: 5).
-					aContainer background: BrGlamorousColors errorBackgroundColor.
-					aContainer addChild: element ] ].
-	^ aContainer
+				do: [ :arg9 | 
+					| tmp17 |
+					tmp17 := arg9 cull: arg1.
+					tmp17 padding: (BlInsets all: 5).
+					tmp3
+						background: BrGlamorousColors errorBackgroundColor;
+						addChild: tmp17 ] ].
+	^ tmp3
 ]
 
 { #category : #accessing }
-GtRefactoringsPreviewButton >> cancelBlock: aBlock [
-	cancelBlock := aBlock.
+GtRefactoringsPreviewButton >> cancelBlock: arg1 [
+	cancelBlock := arg1.
 	cancelBlock notNil ifTrue: [ self addChild: self buildCancelButton ]
 ]
 
@@ -190,21 +192,21 @@ GtRefactoringsPreviewButton >> executeRefactorings [
 	notificationMessages := OrderedCollection new.
 	executedRefactorings := self refactorings.
 	executedRefactorings
-		do: [ :each | 
-			(each isKindOf: RBRefactoring)
-				ifTrue: [ each model
-						name: ([ each gtDescription asString ]
+		do: [ :arg1 | 
+			(arg1 isKindOf: RBRefactoring)
+				ifTrue: [ arg1 model
+						name: ([ arg1 gtDescription asString ]
 								on: Error
-								do: [ :ex | ex return: each printString ]) ].
-			[ [ each primitiveExecute ]
+								do: [ :arg2 | arg2 return: arg1 printString ]) ].
+			[ [ arg1 primitiveExecute ]
 				on: GtRefactoringNotification
-				do: [ :ex | 
-					notificationMessages add: ex messageBlock.
-					ex pass ] ]
+				do: [ :arg3 | 
+					notificationMessages add: arg3 messageBlock.
+					arg3 pass ] ]
 				on: RBRefactoringError
-				do: [ :ex | 
-					errorMessages add: ex messageBlock.
-					ex return ] ]
+				do: [ :arg4 | 
+					errorMessages add: arg4 messageBlock.
+					arg4 return ] ]
 ]
 
 { #category : #initialization }
@@ -212,14 +214,15 @@ GtRefactoringsPreviewButton >> executedRefactorings [
 	^ executedRefactorings
 		ifNil: [ self executeRefactorings.
 			executedRefactorings ]
+		ifNotNil: [ executedRefactorings ]
 ]
 
 { #category : #actions }
-GtRefactoringsPreviewButton >> focusAcceptButton: aContainer [
+GtRefactoringsPreviewButton >> focusAcceptButton: arg1 [
 	self shouldFocusAcceptButton
-		ifTrue: [ aContainer
+		ifTrue: [ arg1
 				childWithId: GtRefactoringsPreviewAcceptId
-				ifFound: [ :button | button enqueueTask: (BlTaskAction new action: [ button requestFocus ]) ] ]
+				ifFound: [ :arg2 | arg2 enqueueTask: (BlTaskAction new action: [ arg2 requestFocus ]) ] ]
 ]
 
 { #category : #accessing }
@@ -228,65 +231,59 @@ GtRefactoringsPreviewButton >> focusAction [
 ]
 
 { #category : #accessing }
-GtRefactoringsPreviewButton >> focusAction: anObject [
-	focusAction := anObject
+GtRefactoringsPreviewButton >> focusAction: arg1 [
+	focusAction := arg1
 ]
 
 { #category : #initialization }
 GtRefactoringsPreviewButton >> initialize [
-	| previewButton |
+	| tmp1 tmp6 |
 	super initialize.
-
 	self
 		fitContent;
 		alignCenterLeft.
-
 	refactoringsComputation := [ #() ].
-
-	previewButton := BrButton new.
-	previewButton
+	tmp1 := BrButton new.
+	tmp1
 		icon: BrGlamorousVectorIcons accept;
 		id: #previewCheckButton;
 		beSmallSize;
 		aptitude: BrGlamorousButtonWithIconAptitude new
-				+ ((BrGlamorousWithDropdownAptitude
-						handle: [ BrButton new
-								icon: BrGlamorousIcons empty;
-								beSmallSize;
-								aptitude: BrGlamorousButtonRectangularAptitude new + BrGlamorousButtonIconAptitude new ]
-						content: [ | element |
-							element := self buildPreviewForButton: previewButton.
-							focusAction cull: element cull: self.
-							element ]) preferredExtent: self previewWidth @ 50);
+					+ ((BrGlamorousWithDropdownAptitude
+							handle: [ | tmp3 |
+								tmp3 := BrButton new.
+								tmp3
+									icon: BrGlamorousIcons empty;
+									beSmallSize;
+									aptitude: BrGlamorousButtonRectangularAptitude new + BrGlamorousButtonIconAptitude new ]
+							content: [ | tmp4 |
+								tmp4 := self buildPreviewForButton: tmp1.
+								focusAction cull: tmp4 cull: self.
+								tmp4 ]) preferredExtent: self previewWidth @ 50);
 		label: 'Preview'.
-
-	previewButton
-		addShortcut: (BlShortcutWithAction new
-				combination: BlKeyCombination enter;
-				action: [ self openPreview ]).
-
-	self addChild: previewButton.
-
-	focusAction := [ :container | self focusAcceptButton: container ].
+	tmp6 := BlShortcutWithAction new.
+	tmp6 combination: BlKeyCombination enter.
+	tmp1 addShortcut: (tmp6 action: [ self openPreview ]).
+	self addChild: tmp1.
+	focusAction := [ :arg1 | self focusAcceptButton: arg1 ].
 	running := false
 ]
 
 { #category : #initialization }
 GtRefactoringsPreviewButton >> newProgressElement [
-	| progress |
-	progress := BrProgress new.
-	progress aptitude: BrGlamorousProgressBarAptitude.
-	progress
+	| tmp1 |
+	tmp1 := BrProgress new.
+	tmp1
+		aptitude: BrGlamorousProgressBarAptitude;
 		margin: (BlInsets
-				top: 5
-				left: 10
-				bottom: 15
-				right: 10).
-	progress
-		constraintsDo: [ :c | 
-			c horizontal matchParent.
-			c vertical matchParent ].
-	^ progress
+					top: 5
+					left: 10
+					bottom: 15
+					right: 10);
+		constraintsDo: [ :arg1 | 
+				arg1 horizontal matchParent.
+				arg1 vertical matchParent ].
+	^ tmp1
 ]
 
 { #category : #accessing }
@@ -319,8 +316,8 @@ GtRefactoringsPreviewButton >> refactorings [
 ]
 
 { #category : #accessing }
-GtRefactoringsPreviewButton >> refactorings: aBlock [
-	refactoringsComputation := aBlock
+GtRefactoringsPreviewButton >> refactorings: arg1 [
+	refactoringsComputation := arg1
 ]
 
 { #category : #testing }

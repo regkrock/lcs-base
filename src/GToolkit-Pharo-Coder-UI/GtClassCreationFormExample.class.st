@@ -33,274 +33,228 @@ GtClassCreationFormExample >> removeClassAndPackage [
 { #category : #accessing }
 GtClassCreationFormExample >> scripterOnSimpleForm [
 	<gtExample>
-	| scripter |
-	scripter := self scripterWithModel: [ self simpleForm ].
-
-	scripter
-		checkStep: [ :s | 
-			s
+	| tmp1 |
+	tmp1 := self scripterWithModel: [ self simpleForm ].
+	tmp1
+		checkStep: [ :arg1 | 
+			arg1
 				label: 'Check save button is disabled';
-				satisfies: [ :aForm | ((aForm childNamed: #toolbar) childAt: 1) isEnabled not ] ].
-
-	^ scripter
+				satisfies: [ :arg2 | ((arg2 childNamed: #toolbar) childAt: 1) isEnabled not ] ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtClassCreationFormExample >> scripterWithClassAccepted [
 	<gtExample>
 	<after: #removeClassAndPackage>
-	| scripter createdClass |
-	scripter := self scripterWithClassNameAndPackageFilled.
-
-	scripter
-		clickStep: [ :s | 
-			s
+	| tmp1 tmp2 |
+	tmp1 := self scripterWithClassNameAndPackageFilled.
+	tmp1
+		clickStep: [ :arg1 | 
+			arg1
 				label: 'Click save button';
 				// #toolbar;
 				onChildAt: 1 ].
-
-	createdClass := Smalltalk classNamed: self exampleClassName.
-	self assert: createdClass isNotNil.
-
-	^ scripter
+	tmp2 := Smalltalk classNamed: self exampleClassName.
+	self assert: tmp2 isNotNil.
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtClassCreationFormExample >> scripterWithClassNameAndPackageFilled [
 	<gtExample>
-	| scripter aDescription anElementId |
-	scripter := self scripterWithClassNameFilled.
-	aDescription := scripter model packageAndTagDescription.
-	anElementId := GtMagritteFieldElementId new description: aDescription.
-
-	scripter requestFocus
+	| tmp1 tmp2 tmp3 tmp5 |
+	tmp1 := self scripterWithClassNameFilled.
+	tmp2 := tmp1 model packageAndTagDescription.
+	tmp3 := GtMagritteFieldElementId new description: tmp2.
+	tmp5 := tmp1 requestFocus.
+	tmp5
 		label: 'Focus package editor';
-		// anElementId;
+		// tmp3;
 		onChildAt: 1;
 		play.
-
-	scripter
-		typeStep: [ :s | 
-			s
+	tmp1
+		typeStep: [ :arg1 | 
+			arg1
 				label: 'Fill package name';
 				text: self examplePackageName;
-				// anElementId;
-				onChildAt: 1 ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Check that package is set';
-				satisfies: [ :aFrame | 
-					((aFrame userData at: #gtmemento) cache at: aDescription) valueOrNil
-						currentValue packageName = self examplePackageName ] ].
-
-	^ scripter
+				// tmp3;
+				onChildAt: 1 ];
+		assertStep: [ :arg2 | 
+				arg2
+					label: 'Check that package is set';
+					satisfies: [ :arg3 | 
+							((arg3 userData at: #gtmemento) cache at: tmp2) valueOrNil currentValue
+								packageName = self examplePackageName ] ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtClassCreationFormExample >> scripterWithClassNameFilled [
 	<gtExample>
-	| scripter aDescription anElementId |
-	scripter := self scripterOnSimpleForm.
-	aDescription := scripter model nameDescription.
-	anElementId := GtMagritteFieldElementId new description: aDescription.
-
-	scripter requestFocus
+	| tmp1 tmp2 tmp3 tmp5 |
+	tmp1 := self scripterOnSimpleForm.
+	tmp2 := tmp1 model nameDescription.
+	tmp3 := GtMagritteFieldElementId new description: tmp2.
+	tmp5 := tmp1 requestFocus.
+	tmp5
 		label: 'Focus name editor';
-		// anElementId;
+		// tmp3;
 		play.
-
-	scripter
-		typeStep: [ :s | 
-			s
+	tmp1
+		typeStep: [ :arg1 | 
+			arg1
 				label: 'Fill class name';
 				text: self exampleClassName;
-				// anElementId ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Assert class name';
-				value: [ :anEditor | anEditor text asString ]
-					equals: [ self exampleClassName ];
-				// anElementId ].
-
-	^ scripter
+				// tmp3 ];
+		assertStep: [ :arg2 | 
+				arg2
+					label: 'Assert class name';
+					value: [ :arg3 | arg3 text asString ] equals: [ self exampleClassName ];
+					// tmp3 ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtClassCreationFormExample >> scripterWithClassNameFilledValidationFailed [
 	<gtExample>
-	| scripter aDescription anElementId |
-	scripter := self scripterOnSimpleForm.
-	aDescription := scripter model nameDescription.
-	anElementId := GtMagritteFieldElementId new description: aDescription.
-
-	scripter requestFocus
+	| tmp1 tmp2 tmp3 tmp5 |
+	tmp1 := self scripterOnSimpleForm.
+	tmp2 := tmp1 model nameDescription.
+	tmp3 := GtMagritteFieldElementId new description: tmp2.
+	tmp5 := tmp1 requestFocus.
+	tmp5
 		label: 'Focus name editor';
-		// anElementId;
+		// tmp3;
 		play.
-
-	scripter
-		typeStep: [ :s | 
-			s
+	tmp1
+		typeStep: [ :arg1 | 
+			arg1
 				label: 'Fill class name';
 				text: 'Object';
-				// anElementId ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Check that class name is invalid';
-				satisfies: [ :aFrame | ((aFrame userData at: #gtmemento) cache at: aDescription) valueOrNil isValid not ] ].
-
-	^ scripter
+				// tmp3 ];
+		assertStep: [ :arg2 | 
+				arg2
+					label: 'Check that class name is invalid';
+					satisfies: [ :arg3 | ((arg3 userData at: #gtmemento) cache at: tmp2) valueOrNil isValid not ] ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtClassCreationFormExample >> scripterWithClassNamePackageAndTwoConflictingTraitsFilled [
 	<gtExample>
-	| scripter aDescription aFieldElementId aValidatorElementId |
-	scripter := self scripterWithClassNameAndPackageFilled.
-	aDescription := scripter model traitsDescription.
-	aFieldElementId := GtMagritteFieldElementId new description: aDescription.
-	aValidatorElementId := GtMagritteValidatorElementId new description: aDescription.
-
-	scripter click
+	| tmp1 tmp2 tmp3 tmp4 tmp6 |
+	tmp1 := self scripterWithClassNameAndPackageFilled.
+	tmp2 := tmp1 model traitsDescription.
+	tmp3 := GtMagritteFieldElementId new description: tmp2.
+	tmp4 := GtMagritteValidatorElementId new description: tmp2.
+	tmp6 := tmp1 click.
+	tmp6
 		label: 'Add Trait';
-		// aFieldElementId;
+		// tmp3;
 		onChildAt: 1;
 		play.
-
-	scripter
-		typeStep: [ :s | 
-			s
+	tmp1
+		typeStep: [ :arg1 | 
+			arg1
 				label: 'Fill Trait name';
 				text: TGtPharoDummyTraitOne name;
-				// aFieldElementId;
-				onChildAt: 1 ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Assert that Trait is set';
-				satisfies: [ :aFrame | 
-					((aFrame userData at: #gtmemento) cache at: aDescription) valueOrNil
-						currentValue = {TGtPharoDummyTraitOne name} ] ].
-
-	scripter
-		shortcutStep: [ :s | 
-			s
-				label: 'Next Trait';
-				combination: BlKeyCombination tab;
-				// aFieldElementId;
-				/ #tags;
-				onChildAt: 1 ].
-
-	scripter
-		typeStep: [ :s | 
-			s
-				label: 'Fill Trait name';
-				text: TGtPharoDummyTraitThree name;
-				// aFieldElementId;
-				/ #tags;
-				onChildAt: 2 ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Assert that both Traits are set';
-				satisfies: [ :aFrame | 
-					((aFrame userData at: #gtmemento) cache at: aDescription) valueOrNil
-						currentValue
-						= {TGtPharoDummyTraitOne name.
-								TGtPharoDummyTraitThree name} ] ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Assert conflicting Traits message';
-				value: [ :anEditor | anEditor text asString ] equals: 'Conflicting Traits';
-				// aValidatorElementId;
-				// GtMagritteIssuesExplanationId ].
-
-	^ scripter
+				// tmp3;
+				onChildAt: 1 ];
+		assertStep: [ :arg2 | 
+				arg2
+					label: 'Assert that Trait is set';
+					satisfies: [ :arg3 | 
+							((arg3 userData at: #gtmemento) cache at: tmp2) valueOrNil currentValue
+								= {TGtPharoDummyTraitOne name} ] ];
+		shortcutStep: [ :arg4 | 
+				arg4
+					label: 'Next Trait';
+					combination: BlKeyCombination tab;
+					// tmp3;
+					/ #tags;
+					onChildAt: 1 ];
+		typeStep: [ :arg5 | 
+				arg5
+					label: 'Fill Trait name';
+					text: TGtPharoDummyTraitThree name;
+					// tmp3;
+					/ #tags;
+					onChildAt: 2 ];
+		assertStep: [ :arg6 | 
+				arg6
+					label: 'Assert that both Traits are set';
+					satisfies: [ :arg7 | 
+							((arg7 userData at: #gtmemento) cache at: tmp2) valueOrNil currentValue
+								= {TGtPharoDummyTraitOne name.
+										TGtPharoDummyTraitThree name} ] ];
+		assertStep: [ :arg8 | 
+				arg8
+					label: 'Assert conflicting Traits message';
+					value: [ :arg9 | arg9 text asString ] equals: 'Conflicting Traits';
+					// tmp4;
+					// GtMagritteIssuesExplanationId ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtClassCreationFormExample >> scripterWithClassNamePackageAndTwoTraitsFilled [
 	<gtExample>
-	| scripter aDescription anElementId |
-	scripter := self scripterWithClassNameAndPackageFilled.
-	aDescription := scripter model traitsDescription.
-	anElementId := GtMagritteFieldElementId new description: aDescription.
-
-	scripter click
+	| tmp1 tmp2 tmp3 tmp5 |
+	tmp1 := self scripterWithClassNameAndPackageFilled.
+	tmp2 := tmp1 model traitsDescription.
+	tmp3 := GtMagritteFieldElementId new description: tmp2.
+	tmp5 := tmp1 click.
+	tmp5
 		label: 'Add Trait';
-		// anElementId;
+		// tmp3;
 		onChildAt: 1;
 		play.
-
-	scripter
-		typeStep: [ :s | 
-			s
+	tmp1
+		typeStep: [ :arg1 | 
+			arg1
 				label: 'Fill Trait name';
 				text: TGtPharoDummyTraitOne name;
-				// anElementId;
-				onChildAt: 1 ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Assert that Trait is set';
-				satisfies: [ :aFrame | 
-					((aFrame userData at: #gtmemento) cache at: aDescription) valueOrNil
-						currentValue = {TGtPharoDummyTraitOne name} ] ].
-
-	scripter
-		shortcutStep: [ :s | 
-			s
-				label: 'Next Trait';
-				combination: BlKeyCombination tab;
-				// anElementId;
-				/ #tags;
-				onChildAt: 1 ].
-
-	scripter
-		typeStep: [ :s | 
-			s
-				label: 'Fill Trait name';
-				text: TGtPharoDummyTraitTwo name;
-				// anElementId;
-				/ #tags;
-				onChildAt: 2 ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Assert that both Traits are set';
-				satisfies: [ :aFrame | 
-					((aFrame userData at: #gtmemento) cache at: aDescription) valueOrNil
-						currentValue
-						= {TGtPharoDummyTraitOne name.
-								TGtPharoDummyTraitTwo name} ] ].
-
-	scripter
-		doStep: [ :s | 
-			s
-				label: 'Accept form changes (without defining a class)';
-				block: [ :aFrame | (aFrame userData at: #gtmemento) commit ] ].
-
-	scripter
-		assertStep: [ :s | 
-			s
-				label: 'Assert class code';
-				value: [ :aModel | aModel classDefinitionString ]
-					equals: self classWithTwoTraitsDefinitionString;
-				onModel ].
-
-	^ scripter
+				// tmp3;
+				onChildAt: 1 ];
+		assertStep: [ :arg2 | 
+				arg2
+					label: 'Assert that Trait is set';
+					satisfies: [ :arg3 | 
+							((arg3 userData at: #gtmemento) cache at: tmp2) valueOrNil currentValue
+								= {TGtPharoDummyTraitOne name} ] ];
+		shortcutStep: [ :arg4 | 
+				arg4
+					label: 'Next Trait';
+					combination: BlKeyCombination tab;
+					// tmp3;
+					/ #tags;
+					onChildAt: 1 ];
+		typeStep: [ :arg5 | 
+				arg5
+					label: 'Fill Trait name';
+					text: TGtPharoDummyTraitTwo name;
+					// tmp3;
+					/ #tags;
+					onChildAt: 2 ];
+		assertStep: [ :arg6 | 
+				arg6
+					label: 'Assert that both Traits are set';
+					satisfies: [ :arg7 | 
+							((arg7 userData at: #gtmemento) cache at: tmp2) valueOrNil currentValue
+								= {TGtPharoDummyTraitOne name.
+										TGtPharoDummyTraitTwo name} ] ];
+		doStep: [ :arg8 | 
+				arg8
+					label: 'Accept form changes (without defining a class)';
+					block: [ :arg9 | (arg9 userData at: #gtmemento) commit ] ];
+		assertStep: [ :arg10 | 
+				arg10
+					label: 'Assert class code';
+					value: [ :arg11 | arg11 classDefinitionString ]
+						equals: self classWithTwoTraitsDefinitionString;
+					onModel ].
+	^ tmp1
 ]
 
 { #category : #accessing }

@@ -13,6 +13,6 @@ GtPharoBehaviorNavigationViewModelDeselected >> behaviorViewModel [
 ]
 
 { #category : #accessing }
-GtPharoBehaviorNavigationViewModelDeselected >> behaviorViewModel: anObject [
-	behaviorViewModel := anObject
+GtPharoBehaviorNavigationViewModelDeselected >> behaviorViewModel: arg1 [
+	behaviorViewModel := arg1
 ]

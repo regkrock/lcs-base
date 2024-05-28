@@ -14,8 +14,8 @@ GtListAdvice >> compute [
 ]
 
 { #category : #accessing }
-GtListAdvice >> compute: aBlock [
-	compute := aBlock
+GtListAdvice >> compute: arg1 [
+	compute := arg1
 ]
 
 { #category : #testing }
@@ -31,10 +31,10 @@ GtListAdvice >> initialize [
 
 { #category : #accessing }
 GtListAdvice >> result [
-	^ items ifNil: [ items := compute value ]
+	^ items ifNil: [ items := compute value ] ifNotNil: [ items ]
 ]
 
 { #category : #enumerating }
-GtListAdvice >> resultsDo: aBlock [
-	self result do: aBlock
+GtListAdvice >> resultsDo: arg1 [
+	self result do: arg1
 ]

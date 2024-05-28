@@ -8,21 +8,21 @@ Class {
 }
 
 { #category : #accessing }
-GtRefactoringsWithInputPreviewElement >> buildPreviewForButton: previewButton [
-	| pane |
-	pane := BrVerticalPane new.
-	pane fitContent.
+GtRefactoringsWithInputPreviewElement >> buildPreviewForButton: arg1 [
+	| tmp1 |
+	tmp1 := BrVerticalPane new.
+	tmp1 fitContent.
 	editorElement
 		ifNotNil: [ editorElement removeFromParent.
-			pane addChild: editorElement ].
-	self buildRefactoringsFor: previewButton in: pane.
-	^ pane
+			tmp1 addChild: editorElement ].
+	self buildRefactoringsFor: arg1 in: tmp1.
+	^ tmp1
 ]
 
 { #category : #accessing }
-GtRefactoringsWithInputPreviewElement >> buildRefactoringsFor: previewButton in: pane [
+GtRefactoringsWithInputPreviewElement >> buildRefactoringsFor: arg1 in: arg2 [
 	self refactorings notEmpty
-		ifTrue: [ pane addChild: (self buildAsyncPreviewForButton: previewButton) as: #preview ]
+		ifTrue: [ arg2 addChild: (self buildAsyncPreviewForButton: arg1) as: #preview ]
 ]
 
 { #category : #accessing }
@@ -31,20 +31,20 @@ GtRefactoringsWithInputPreviewElement >> editorElement [
 ]
 
 { #category : #accessing }
-GtRefactoringsWithInputPreviewElement >> editorElement: anObject [
-	editorElement := anObject
+GtRefactoringsWithInputPreviewElement >> editorElement: arg1 [
+	editorElement := arg1
 ]
 
 { #category : #accessing }
-GtRefactoringsWithInputPreviewElement >> refactorings: aBlock [
-	| pane |
-	super refactorings: aBlock.
+GtRefactoringsWithInputPreviewElement >> refactorings: arg1 [
+	| tmp1 |
+	super refactorings: arg1.
 	executedRefactorings := nil.
 	editorElement ifNil: [ ^ self ].
-	pane := editorElement parent.
-	pane ifNil: [ ^ self ].
-	pane removeChildNamed: #preview.
-	self buildRefactoringsFor: (self childNamed: #previewCheckButton) in: pane
+	tmp1 := editorElement parent.
+	tmp1 ifNil: [ ^ self ].
+	tmp1 removeChildNamed: #preview.
+	self buildRefactoringsFor: (self childNamed: #previewCheckButton) in: tmp1
 ]
 
 { #category : #testing }

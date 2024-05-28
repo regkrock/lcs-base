@@ -48,7 +48,7 @@ LcsGlobalSlotDefinitionBuilderTest >> removeArtifactsRelatedToUsersSlot [
 	LxxBarebonesSystem removeDomainSlotNamed: 'users'.
 	self removeClassesNamed: #('LxxUser' 'LxxUsers').
 
-	LxxBarebonesSystem assertSlotRemoved: 'users'.
+	LxxBarebonesSystem assertDomainSlotRemoved: 'users'.
 	self assert: (self classNamed: 'LxxUsers') isNil.
 	self assert: (self classNamed: 'LxxUser') isNil
 ]

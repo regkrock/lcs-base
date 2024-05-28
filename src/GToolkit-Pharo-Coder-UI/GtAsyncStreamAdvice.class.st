@@ -14,8 +14,8 @@ GtAsyncStreamAdvice >> compute [
 ]
 
 { #category : #accessing }
-GtAsyncStreamAdvice >> compute: aBlock [
-	compute := aBlock
+GtAsyncStreamAdvice >> compute: arg1 [
+	compute := arg1
 ]
 
 { #category : #testing }
@@ -36,6 +36,6 @@ GtAsyncStreamAdvice >> result [
 ]
 
 { #category : #enumerating }
-GtAsyncStreamAdvice >> resultsDo: aBlock [
-	(self result do: aBlock) wait
+GtAsyncStreamAdvice >> resultsDo: arg1 [
+	(self result do: arg1) wait
 ]

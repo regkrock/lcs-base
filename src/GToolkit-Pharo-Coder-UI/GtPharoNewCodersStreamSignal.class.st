@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #printing }
-GtPharoNewCodersStreamSignal >> printOneLineContentsOn: aStream [
-	self printOneLineCommunicatorId: aStream
+GtPharoNewCodersStreamSignal >> printOneLineContentsOn: arg1 [
+	self printOneLineCommunicatorId: arg1
 ]
 
 { #category : #accessing }
@@ -18,6 +18,6 @@ GtPharoNewCodersStreamSignal >> stream [
 ]
 
 { #category : #accessing }
-GtPharoNewCodersStreamSignal >> stream: anObject [
-	stream := anObject
+GtPharoNewCodersStreamSignal >> stream: arg1 [
+	stream := arg1
 ]

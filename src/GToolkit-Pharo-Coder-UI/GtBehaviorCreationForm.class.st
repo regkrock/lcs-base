@@ -26,41 +26,43 @@ GtBehaviorCreationForm >> classSlots [
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> classSlots: anObject [
-	classSlots := anObject
+GtBehaviorCreationForm >> classSlots: arg1 [
+	classSlots := arg1
 ]
 
 { #category : #accessing }
 GtBehaviorCreationForm >> classSlotsDescription [
 	<magritteDescription>
-	^ MAToManyRelationDescription new
+	| tmp2 |
+	tmp2 := MAToManyRelationDescription new.
+	tmp2
 		label: 'Class Slots';
 		priority: 10;
 		accessor: #classSlots;
 		classes: {String};
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil);
-		addCondition: [ :aValue | aValue asSet size = aValue size ]
-			labelled: 'All slot names must be unique'
+		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil).
+	^ tmp2
+		addCondition: [ :arg1 | arg1 asSet size = arg1 size ]
+		labelled: 'All slot names must be unique'
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> createTraitsContextMenuContentFor: aTrait editor: anElement [
-	| theContextMenu items |
-	theContextMenu := GtFormContextMenuContent new editorElement: anElement.
-	items := OrderedCollection new.
-	items
-		addAll: {GtCoderContextMenuAction new
-					action: [ :form :elem | elem phlow spawnObject: (Smalltalk at: aTrait asSymbol) users ];
-					title: 'Browse users' asText}.
-	theContextMenu items: items.
-	^ theContextMenu
+GtBehaviorCreationForm >> createTraitsContextMenuContentFor: arg1 editor: arg2 [
+	| tmp1 tmp2 tmp4 |
+	tmp1 := GtFormContextMenuContent new editorElement: arg2.
+	tmp2 := OrderedCollection new.
+	tmp4 := GtCoderContextMenuAction new.
+	tmp4
+		action: [ :arg3 :arg4 | arg4 phlow spawnObject: (Smalltalk at: arg1 asSymbol) users ].
+	tmp2 addAll: {tmp4 title: 'Browse users' asText}.
+	tmp1 items: tmp2.
+	^ tmp1
 ]
 
 { #category : #initialization }
 GtBehaviorCreationForm >> initialize [
 	super initialize.
-
 	self newClassName: ''.
 	traits := OrderedCollection new.
 	slots := OrderedCollection new.
@@ -68,21 +70,24 @@ GtBehaviorCreationForm >> initialize [
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> installClassSlotsOn: aClass [
-	| changes |
+GtBehaviorCreationForm >> installClassSlotsOn: arg1 [
+	| tmp1 tmp3 |
 	classSlots isEmpty ifTrue: [ ^ self ].
-	changes := classSlots
-			collect: [ :aSlot | RBAddInstanceVariableChange add: aSlot to: aClass classSide ].
-	(RBCompositeRefactoryChange new
+	tmp1 := classSlots
+			collect: [ :arg2 | RBAddInstanceVariableChange add: arg2 to: arg1 classSide ].
+	tmp3 := RBCompositeRefactoryChange new.
+	tmp3
 		name: 'Add class slots';
-		changes: changes;
-		yourself) gtExecuteWithUndo
+		changes: tmp1.
+	tmp3 yourself gtExecuteWithUndo
 ]
 
 { #category : #magritte }
 GtBehaviorCreationForm >> nameDescription [
 	<magritteDescription>
-	^ GtMATextDescription new
+	| tmp2 |
+	tmp2 := GtMATextDescription new.
+	tmp2
 		label: 'Name';
 		beRequired;
 		priority: 1;
@@ -90,16 +95,17 @@ GtBehaviorCreationForm >> nameDescription [
 		kind: Object;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		addCondition: [ :aValue | aValue asString trim isNotEmpty ]
+		addCondition: [ :arg1 | arg1 asString trim isNotEmpty ]
 			labelled: 'Name cannot be empty';
-		addCondition: [ :aValue | (Smalltalk classNamed: aValue asString trim) isNil ]
+		addCondition: [ :arg2 | (Smalltalk classNamed: arg2 asString trim) isNil ]
 			labelled: 'Name is already taken';
-		addCondition: [ :aValue | aValue size > 0 ifTrue: [ aValue first isUppercase ] ifFalse: [ true ] ]
+		addCondition: [ :arg3 | arg3 size > 0 ifTrue: [ arg3 first isUppercase ] ifFalse: [ true ] ]
 			labelled: 'First character must be uppercase';
-		addCondition: [ :aValue | aValue asString allSatisfy: [ :c | c isAlphaNumeric or: [ c = $_ ] ] ]
-			labelled: 'Name must be alphanumeric';
-		addCondition: [ :aValue | (aValue = 'TNameOfTrait') not and: [ (aValue = 'NameOfSubclass') not ] ]
-			labelled: 'Name cannot be example value'
+		addCondition: [ :arg4 | arg4 asString allSatisfy: [ :arg5 | arg5 isAlphaNumeric or: [ arg5 = $_ ] ] ]
+			labelled: 'Name must be alphanumeric'.
+	^ tmp2
+		addCondition: [ :arg6 | (arg6 = 'TNameOfTrait') not and: [ (arg6 = 'NameOfSubclass') not ] ]
+		labelled: 'Name cannot be example value'
 ]
 
 { #category : #accessing }
@@ -108,8 +114,8 @@ GtBehaviorCreationForm >> newClassName [
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> newClassName: aClassName [
-	newClassName := aClassName asString
+GtBehaviorCreationForm >> newClassName: arg1 [
+	newClassName := arg1 asString
 ]
 
 { #category : #accessing }
@@ -119,45 +125,41 @@ GtBehaviorCreationForm >> rawClassName [
 
 { #category : #accessing }
 GtBehaviorCreationForm >> slots [
-
 	^ slots
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> slots: anObject [
-
-	slots := anObject
+GtBehaviorCreationForm >> slots: arg1 [
+	slots := arg1
 ]
 
 { #category : #accessing }
 GtBehaviorCreationForm >> slotsDescription [
 	<magritteDescription>
-	^ MAToManyRelationDescription new
+	| tmp2 |
+	tmp2 := MAToManyRelationDescription new.
+	tmp2
 		label: 'Slots';
 		priority: 5;
 		accessor: #slots;
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		classes: {String};
-		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil);
-		addCondition: [ :aValue | aValue asSet size = aValue size ]
-			labelled: 'All slot names must be unique'
+		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil).
+	^ tmp2
+		addCondition: [ :arg1 | arg1 asSet size = arg1 size ]
+		labelled: 'All slot names must be unique'
 ]
 
 { #category : #accessing }
 GtBehaviorCreationForm >> traitClassesOrNils [
-	"Return collection of Traits. If a Trait does not exist, `nil` value is used."
-
 	<return: #Collection of: #Trait>
 	^ self traitClassesOrNilsFor: self traits
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> traitClassesOrNilsFor: aCollectionOfTraitNames [
-	"Return collection of Traits. If a Trait does not exist, `nil` value is used."
-
+GtBehaviorCreationForm >> traitClassesOrNilsFor: arg1 [
 	<return: #Collection of: #Trait>
-	^ aCollectionOfTraitNames
-		collect: [ :eachTraitName | Smalltalk classOrTraitNamed: eachTraitName asString trimBoth ]
+	^ arg1 collect: [ :arg2 | Smalltalk classOrTraitNamed: arg2 asString trimBoth ]
 ]
 
 { #category : #accessing }
@@ -166,8 +168,8 @@ GtBehaviorCreationForm >> traitComposition [
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> traitCompositionFor: aCollectionOfTraits [
-	^ (aCollectionOfTraits reject: #isNil) asArray asTraitComposition
+GtBehaviorCreationForm >> traitCompositionFor: arg1 [
+	^ (arg1 reject: #isNil) asArray asTraitComposition
 ]
 
 { #category : #accessing }
@@ -177,67 +179,72 @@ GtBehaviorCreationForm >> traits [
 ]
 
 { #category : #accessing }
-GtBehaviorCreationForm >> traits: anObject [
-
-	traits := anObject
+GtBehaviorCreationForm >> traits: arg1 [
+	traits := arg1
 ]
 
 { #category : #accessing }
 GtBehaviorCreationForm >> traitsDescription [
 	<magritteDescription>
-	^ MAToManyRelationDescription new
+	| tmp2 |
+	tmp2 := MAToManyRelationDescription new.
+	tmp2
 		label: 'Traits';
 		priority: 6;
 		accessor: #traits;
 		classes: {String};
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocListStencil: (self
-				taggerStencilWithCompletion: GtClassesCompletionStrategy new
-				andContextMenuBlock: [ :aTrait :anElement :aMemento | 
-					aMemento overallStatus valueOrNil isChanged
-						ifTrue: [ GtCoderContextMenuContent new editorElement: anElement ]
-						ifFalse: [ self createTraitsContextMenuContentFor: aTrait editor: anElement ] ]);
-		blocShortcuts: [ {BlShortcutWithAction new
+					taggerStencilWithCompletion: GtClassesCompletionStrategy new
+					andContextMenuBlock: [ :arg1 :arg2 :arg3 | 
+						arg3 overallStatus valueOrNil isChanged
+							ifTrue: [ GtCoderContextMenuContent new editorElement: arg2 ]
+							ifFalse: [ self createTraitsContextMenuContentFor: arg1 editor: arg2 ] ]);
+		blocShortcuts: [ | tmp4 tmp6 tmp8 |
+				tmp4 := BlShortcutWithAction new.
+				tmp4
 					name: 'Browse trait';
 					description: 'Browses the trait indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
+					combination: BlKeyCombination primaryB.
+				tmp6 := BlShortcutWithAction new.
+				tmp6
 					name: 'Inspect trait';
 					description: 'Inspects the trait indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
+					combination: BlKeyCombination primaryG.
+				tmp8 := BlShortcutWithAction new.
+				tmp8
 					name: 'Browse trait references';
 					description: 'Browses references to the trait indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]} ];
-		addCondition: [ :aValue | aValue asSet size = aValue size ]
+					combination: BlKeyCombination primaryN.
+				{tmp4
+						action: [ :arg4 | 
+							arg4 target phlow
+								spawnTool: (GtClassCoderTool forClass: arg4 target text asString asClass) ].
+					tmp6
+						action: [ :arg5 | arg5 target phlow spawnObject: arg5 target text asString asClass ].
+					tmp8
+						action: [ :arg6 | arg6 target phlow spawnObject: arg6 target text asString asClass gtReferences ]} ];
+		addCondition: [ :arg7 | arg7 asSet size = arg7 size ]
 			labelled: 'All Trait names must be unique';
-		addCondition: [ :aValue | 
-				aValue
-					allSatisfy: [ :eachTraitName | (Smalltalk classOrTraitNamed: eachTraitName asString trim) isNotNil ] ]
+		addCondition: [ :arg8 | 
+					arg8
+						allSatisfy: [ :arg9 | (Smalltalk classOrTraitNamed: arg9 asString trim) isNotNil ] ]
 			labelled: 'Unknown Trait(s)';
-		addCondition: [ :aValue | 
-				| givenTraitsOrNils |
-				givenTraitsOrNils := self traitClassesOrNilsFor: aValue.
-				givenTraitsOrNils allSatisfy: [ :each | each isNil or: [ each isTrait ] ] ]
-			labelled: 'Only Traits are allowed';
-		addCondition: [ :aValue | 
-				aValue size > 1
-					ifTrue: [ | givenTraits aTraitComposition |
-						givenTraits := self traitClassesOrNilsFor: aValue.
-
-						((givenTraits allSatisfy: #isNotNil)
-							and: [ givenTraits size = givenTraits asSet size ])
-							ifTrue: [ aTraitComposition := self traitCompositionFor: givenTraits.
-								aTraitComposition methods
-									allSatisfy: [ :each | (aTraitComposition isConflictingSelector: each selector) not ] ]
-							ifFalse: [ true ] ]
-					ifFalse: [ true ] ]
-			labelled: 'Conflicting Traits'
+		addCondition: [ :arg10 | 
+					| tmp9 |
+					tmp9 := self traitClassesOrNilsFor: arg10.
+					tmp9 allSatisfy: [ :arg11 | arg11 isNil or: [ arg11 isTrait ] ] ]
+			labelled: 'Only Traits are allowed'.
+	^ tmp2
+		addCondition: [ :arg12 | 
+			| tmp10 tmp11 |
+			arg12 size > 1
+				ifTrue: [ tmp10 := self traitClassesOrNilsFor: arg12.
+					((tmp10 allSatisfy: #isNotNil) and: [ tmp10 size = tmp10 asSet size ])
+						ifTrue: [ tmp11 := self traitCompositionFor: tmp10.
+							tmp11 methods
+								allSatisfy: [ :arg13 | (tmp11 isConflictingSelector: arg13 selector) not ] ]
+						ifFalse: [ true ] ]
+				ifFalse: [ true ] ]
+		labelled: 'Conflicting Traits'
 ]

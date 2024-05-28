@@ -13,6 +13,6 @@ GtPharoPackageNavigationViewModelSelected >> packageViewModel [
 ]
 
 { #category : #accessing }
-GtPharoPackageNavigationViewModelSelected >> packageViewModel: anObject [
-	packageViewModel := anObject
+GtPharoPackageNavigationViewModelSelected >> packageViewModel: arg1 [
+	packageViewModel := arg1
 ]

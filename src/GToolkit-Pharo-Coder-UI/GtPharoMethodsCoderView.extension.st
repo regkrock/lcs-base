@@ -1,40 +1,30 @@
 Extension { #name : #GtPharoMethodsCoderView }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtPharoMethodsCoderView >> gtMethodsFor: aView [
-	| aMethodsCoder aMethodsCoderViewModel  anItemsView |
+GtPharoMethodsCoderView >> gtMethodsFor: arg1 [
 	<gtView>
-
-	aMethodsCoder := GtPharoStreamingMethodsCoder forFilter: filter.
-	aMethodsCoderViewModel := (GtPharoStreamingMethodsCoderViewModel new 
-		streamingCodersModel: aMethodsCoder)
-			shouldExpandByDefault: false;
-			shouldHaveHeaderByDefault: true.
-
-	anItemsView := aView explicit
+	| tmp1 tmp2 tmp3 tmp4 tmp5 tmp7 tmp9 |
+	tmp1 := GtPharoStreamingMethodsCoder forFilter: filter.
+	tmp7 := GtPharoStreamingMethodsCoderViewModel new streamingCodersModel: tmp1.
+	tmp7 shouldExpandByDefault: false.
+	tmp2 := tmp7 shouldHaveHeaderByDefault: true.
+	tmp9 := arg1 explicit.
+	tmp9
 		title: 'Methods';
-		priority: 10;
-		stencil: [ 
-			GtPharoStreamingMethodsCoderElement new 
-				streamingCodersViewModel: aMethodsCoderViewModel ].
-
-	shouldHaveTestsRunner ifTrue: [
-		| aTestSuiteViewModel |
-		aTestSuiteViewModel := GtPharoTestSuiteViewModel new 
-			pharoTestSuite: (GtPharoTestSuite forStream: aMethodsCoder itemsStream).
-		aMethodsCoder testSuite: aTestSuiteViewModel pharoTestSuite.
-		anItemsView
-			actionStencil: [ 
-				GtPharoCoderUIUtility newTestsDropdownButtonForViewModel: aTestSuiteViewModel ] ].
-
-	shouldHaveExamplesRunner ifTrue: [
-		| anExamplesSuiteViewModel |
-		anExamplesSuiteViewModel := GtPharoExampleSuiteViewModel new 
-			pharoExampleSuite: (GtPharoExampleSuite forStream: aMethodsCoder itemsStream).
-		aMethodsCoder exampleSuite: anExamplesSuiteViewModel pharoExampleSuite.
-		anItemsView
-			actionStencil: [ 
-				GtPharoCoderUIUtility newExamplesDropdownButtonForViewModel: anExamplesSuiteViewModel ] ].
-
-	^ anItemsView
+		priority: 10.
+	tmp3 := tmp9
+			stencil: [ GtPharoStreamingMethodsCoderElement new streamingCodersViewModel: tmp2 ].
+	shouldHaveTestsRunner
+		ifTrue: [ tmp4 := GtPharoTestSuiteViewModel new
+					pharoTestSuite: (GtPharoTestSuite forStream: tmp1 itemsStream).
+			tmp1 testSuite: tmp4 pharoTestSuite.
+			tmp3
+				actionStencil: [ GtPharoCoderUIUtility newTestsDropdownButtonForViewModel: tmp4 ] ].
+	shouldHaveExamplesRunner
+		ifTrue: [ tmp5 := GtPharoExampleSuiteViewModel new
+					pharoExampleSuite: (GtPharoExampleSuite forStream: tmp1 itemsStream).
+			tmp1 exampleSuite: tmp5 pharoExampleSuite.
+			tmp3
+				actionStencil: [ GtPharoCoderUIUtility newExamplesDropdownButtonForViewModel: tmp5 ] ].
+	^ tmp3
 ]

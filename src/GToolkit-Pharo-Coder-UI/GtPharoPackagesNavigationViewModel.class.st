@@ -1,9 +1,3 @@
-"
-# GtPharoPackagesCoder View Model
-## Accessing child view models
-A view model built for a domain model that represents a collection of some entities creates a view model ({{gtClass:GtPharoPackageNavigationViewModel}}) for each domain entity. To do so it accesses the children of the {{gtMethod:GtPharoPackagesNavigationViewModel>>#pharoPackagesCoderModel}} by sending it `coders` message. Users can access the child view models via {{gtMethod:GtPharoPackagesNavigationViewModel>>#pharoPackageNavigationViewModels}}. In addition to the parent -> child view model navigation, each child view model knows its parent view model via {{gtMethod:GtPharoPackageNavigationViewModel>>#parentPharoPackagesNavigationViewModel:}}
-
-"
 Class {
 	#name : #GtPharoPackagesNavigationViewModel,
 	#superclass : #Object,
@@ -17,145 +11,129 @@ Class {
 }
 
 { #category : #'api - announcer' }
-GtPharoPackagesNavigationViewModel >> announce: anAnnouncement [
-	announcer ifNotNil: [ :anAnnouncer | anAnnouncer announce: anAnnouncement ]
+GtPharoPackagesNavigationViewModel >> announce: arg1 [
+	| tmp1 |
+	(tmp1 := announcer) ifNotNil: [ tmp1 announce: arg1 ]
 ]
 
 { #category : #'private - instance creation' }
 GtPharoPackagesNavigationViewModel >> createPharoPackageNavigationViewModels [
-	"For each child from the domain modal create a view model and return a resulting collection"
 	<return: #Collection of: #GtPharoPackageNavigationViewModel>
-	
-	^ self pharoPackagesCoderModel coders collect: [ :eachModel |
-		| eachViewModel |
-		eachViewModel := GtPharoPackageNavigationViewModel new.
-		eachViewModel parentPharoPackagesNavigationViewModel: self.
-		eachViewModel pharoPackageCoderModel: eachModel ] as: Array
+	^ self pharoPackagesCoderModel coders
+		collect: [ :arg1 | 
+			| tmp1 |
+			tmp1 := GtPharoPackageNavigationViewModel new.
+			tmp1
+				parentPharoPackagesNavigationViewModel: self;
+				pharoPackageCoderModel: arg1 ]
+		as: Array
 ]
 
 { #category : #'gt-extentions' }
-GtPharoPackagesNavigationViewModel >> gtPackagesListViewFor: aView [
+GtPharoPackagesNavigationViewModel >> gtPackagesListViewFor: arg1 [
 	<gtView>
-	
-	^ aView list
+	| tmp2 |
+	tmp2 := arg1 list.
+	tmp2
 		priority: 5;
-		title: 'Packages';
-		items: [ self pharoPackageNavigationViewModels ]
+		title: 'Packages'.
+	^ tmp2 items: [ self pharoPackageNavigationViewModels ]
 ]
 
 { #category : #'api - testing' }
 GtPharoPackagesNavigationViewModel >> isPharoBehaviorNavigationViewModel [
-	"Return true if this is a view model of Behavior, false otherwise"
 	<return: #Boolean>
-
 	^ false
 ]
 
 { #category : #'api - testing' }
 GtPharoPackagesNavigationViewModel >> isPharoBehaviorsNavigationViewModel [
-	"Return true if this is a view model of Behaviors, false otherwise"
 	<return: #Boolean>
-
 	^ false
 ]
 
 { #category : #'api - testing' }
 GtPharoPackagesNavigationViewModel >> isPharoPackageNavigationViewModel [
-	"Return true if this is a view model of Package, false otherwise"
 	<return: #Boolean>
-
 	^ false
 ]
 
 { #category : #'api - testing' }
 GtPharoPackagesNavigationViewModel >> isPharoPackagesNavigationViewModel [
-	"Return true if this is a view model of Packages, false otherwise"
 	<return: #Boolean>
-
 	^ true
 ]
 
 { #category : #'api - testing' }
 GtPharoPackagesNavigationViewModel >> isPharoTagNavigationViewModel [
-	"Return true if this is a view model of Tag, false otherwise"
 	<return: #Boolean>
-
 	^ false
 ]
 
 { #category : #'api - testing' }
 GtPharoPackagesNavigationViewModel >> isPharoTagsNavigationViewModel [
-	"Return true if this is a view model of Tags, false otherwise"
 	<return: #Boolean>
-
 	^ false
 ]
 
 { #category : #'api - selected package view model' }
 GtPharoPackagesNavigationViewModel >> notifySelectedPackageViewModelChanged [
-	"Override this notify method to announce changes to the property"
 	<propertyChangeNotifier: #selectedPackageViewModel>
-
 	self announce: GtPharoNavigationSelectedPackageViewModelChanged new
 ]
 
 { #category : #'api - selected package view model' }
-GtPharoPackagesNavigationViewModel >> onNewSelectedPackageViewModelSet: aNewSelectedPackageViewModel [
-	"Is sent after a new value of the selectedPackageViewModel is assigned"
+GtPharoPackagesNavigationViewModel >> onNewSelectedPackageViewModelSet: arg1 [
 	<propertySetHook: #selectedPackageViewModel>
-
-	aNewSelectedPackageViewModel notifyPackageSelected
+	arg1 notifyPackageSelected
 ]
 
 { #category : #'api - selected package view model' }
-GtPharoPackagesNavigationViewModel >> onPreviousSelectedPackageViewModelUnset: aPreviousSelectedPackageViewModel [
-	"Is sent after a previous value of the selectedPackageViewModel is de-assigned"
+GtPharoPackagesNavigationViewModel >> onPreviousSelectedPackageViewModelUnset: arg1 [
 	<propertyUnsetHook: #selectedPackageViewModel>
-
-	aPreviousSelectedPackageViewModel deselectOtherEntities.
-	aPreviousSelectedPackageViewModel notifyPackageDeselected
+	arg1
+		deselectOtherEntities;
+		notifyPackageDeselected
 ]
 
 { #category : #'api - accessing' }
 GtPharoPackagesNavigationViewModel >> pharoPackageNavigationViewModels [
-	"Return a collection of view models (${class:GtPharoPackageNavigationViewModel}$) created for each child from the domain model.
-	Note: The view models are lazily instantiated."
 	<return: #Collection of: #GtPharoPackageNavigationViewModel>
-
-	^  pharoPackageNavigationViewModels ifNil: [ pharoPackageNavigationViewModels := self createPharoPackageNavigationViewModels ]
+	^ pharoPackageNavigationViewModels
+		ifNil: [ pharoPackageNavigationViewModels := self
+					createPharoPackageNavigationViewModels ]
+		ifNotNil: [ pharoPackageNavigationViewModels ]
 ]
 
 { #category : #printing }
-GtPharoPackagesNavigationViewModel >> printOn: aStream [
-	aStream
-		print: self pharoPackagesCoderModel
+GtPharoPackagesNavigationViewModel >> printOn: arg1 [
+	arg1 print: self pharoPackagesCoderModel
 ]
 
 { #category : #'api - announcer' }
-GtPharoPackagesNavigationViewModel >> unsubscribe: anObject [
-	"Unsubscribe all subscriptions of anObject from the receiver"
-
-	^ announcer ifNotNil: [ :anAnnouncer | anAnnouncer unsubscribe: anObject ]
+GtPharoPackagesNavigationViewModel >> unsubscribe: arg1 [
+	| tmp1 tmp3 |
+	tmp3 := tmp1 := announcer.
+	^ tmp3 ifNotNil: [ tmp1 unsubscribe: arg1 ]
 ]
 
 { #category : #'api - accessing' }
 GtPharoPackagesNavigationViewModel >> viewModelName [
-	"Return a symbolic name of this view model which helps to create (view model -> element class) mappings.
-	Note: The symbolic name of the view model is the exact name that was used
-	in the view model declaration from which this view model was generated"
 	<return: #Symbol>
-
 	^ #packages
 ]
 
 { #category : #'api - announcer' }
-GtPharoPackagesNavigationViewModel >> when: anAnnouncementClass do: aBlock [
-	(announcer ifNil: [ announcer := Announcer new ])
-		when: anAnnouncementClass do: aBlock
+GtPharoPackagesNavigationViewModel >> when: arg1 do: arg2 [
+	(announcer ifNil: [ announcer := Announcer new ] ifNotNil: [ announcer ])
+		when: arg1
+		do: arg2
 ]
 
 { #category : #'api - announcer' }
-GtPharoPackagesNavigationViewModel >> when: anAnnouncementClass send: aSelector to: anObject [
-	(announcer ifNil: [ announcer := Announcer new ]) weak
-		when: anAnnouncementClass send: aSelector to: anObject
+GtPharoPackagesNavigationViewModel >> when: arg1 send: arg2 to: arg3 [
+	(announcer ifNil: [ announcer := Announcer new ] ifNotNil: [ announcer ]) weak
+		when: arg1
+		send: arg2
+		to: arg3
 ]

@@ -13,152 +13,139 @@ Class {
 }
 
 { #category : #callbacks }
-GtPharoBehaviorCoderElement >> actOnMethodProtocol: anAnnouncement [
-	| tab selectTabBlock selectMethodBlock |
-	tab := contentTabs viewModel tabs
-			detect: [ :each | each widget label asString = 'Methods' ]
+GtPharoBehaviorCoderElement >> actOnMethodProtocol: arg1 [
+	| tmp1 tmp2 tmp3 |
+	tmp1 := contentTabs viewModel tabs
+			detect: [ :arg2 | arg2 widget label asString = 'Methods' ]
 			ifNone: [ ^ self ].
-	tab isSelected
-		ifFalse: [ selectTabBlock := [ tab select ].
-			self executeTask: selectTabBlock ].
-
-	selectMethodBlock := [ self
-			filterWithMethodProtocol: anAnnouncement methodProtocol name
-			source: anAnnouncement source ].
-	self executeTask: selectMethodBlock
+	tmp1 isSelected
+		ifFalse: [ tmp2 := [ tmp1 select ].
+			self executeTask: tmp2 ].
+	tmp3 := [ self
+			filterWithMethodProtocol: arg1 methodProtocol name
+			source: arg1 source ].
+	self executeTask: tmp3
 ]
 
 { #category : #callbacks }
-GtPharoBehaviorCoderElement >> actOnPackageUpdated: ann [
+GtPharoBehaviorCoderElement >> actOnPackageUpdated: arg1 [
 	self removeContentTabs
 ]
 
 { #category : #callbacks }
-GtPharoBehaviorCoderElement >> actOnSelectMethod: aGtClassCoderMethodNavigationAnnouncement [
-	| aMethod tab selectTabBlock selectMethodBlock |
-
-	aMethod := aGtClassCoderMethodNavigationAnnouncement method.
-
-	tab := contentTabs viewModel tabs
-		detect: [ :each | each widget label asString = 'Methods' ]
-		ifNone: [ ^ self ].
-	
-	tab isSelected
-		ifFalse: [
-			selectTabBlock := [ tab select ].
-			self executeTask: selectTabBlock ].
-	
-	selectMethodBlock := [ self selectAndScrollToMethod: aMethod ].
-	self executeTask: selectMethodBlock
-]
-
-{ #category : #accessing }
-GtPharoBehaviorCoderElement >> actOnSlot: anAnnouncement [
-	| tab selectTabBlock selectMethodBlock |
-	tab := contentTabs viewModel tabs
-			detect: [ :each | each widget label asString = 'Methods' ]
+GtPharoBehaviorCoderElement >> actOnSelectMethod: arg1 [
+	| tmp1 tmp2 tmp3 tmp4 |
+	tmp1 := arg1 method.
+	tmp2 := contentTabs viewModel tabs
+			detect: [ :arg2 | arg2 widget label asString = 'Methods' ]
 			ifNone: [ ^ self ].
-	tab isSelected
-		ifFalse: [ selectTabBlock := [ tab select ].
-			self executeTask: selectTabBlock ].
-	selectMethodBlock := anAnnouncement slot owningClass isMeta
-			ifTrue: [ [ self
-					filterWithClassSlot: anAnnouncement slot name
-					source: anAnnouncement source ] ]
-			ifFalse: [ anAnnouncement slot isClassVariable
-					ifTrue: [ [ self
-							filterWithClassVariable: anAnnouncement slot name
-							source: anAnnouncement source ] ]
-					ifFalse: [ [ self
-							filterWithSlot: anAnnouncement slot name
-							source: anAnnouncement source ] ] ].
-	self executeTask: selectMethodBlock
+	tmp2 isSelected
+		ifFalse: [ tmp3 := [ tmp2 select ].
+			self executeTask: tmp3 ].
+	tmp4 := [ self selectAndScrollToMethod: tmp1 ].
+	self executeTask: tmp4
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderElement >> addFilters: filters [
+GtPharoBehaviorCoderElement >> actOnSlot: arg1 [
+	| tmp1 tmp2 tmp3 |
+	tmp1 := contentTabs viewModel tabs
+			detect: [ :arg2 | arg2 widget label asString = 'Methods' ]
+			ifNone: [ ^ self ].
+	tmp1 isSelected
+		ifFalse: [ tmp2 := [ tmp1 select ].
+			self executeTask: tmp2 ].
+	tmp3 := arg1 slot owningClass isMeta
+			ifTrue: [ [ self filterWithClassSlot: arg1 slot name source: arg1 source ] ]
+			ifFalse: [ arg1 slot isClassVariable
+					ifTrue: [ [ self filterWithClassVariable: arg1 slot name source: arg1 source ] ]
+					ifFalse: [ [ self filterWithSlot: arg1 slot name source: arg1 source ] ] ].
+	self executeTask: tmp3
+]
+
+{ #category : #accessing }
+GtPharoBehaviorCoderElement >> addFilters: arg1 [
 	contentTabs content
-		allChildrenBreadthFirstDetect: [ :eachElement | eachElement isKindOf: GtPharoStreamingMethodsCoderElement ]
-		ifFound: [ :theElement | theElement streamingCodersViewModel additionalFilters: filters ]
-		ifNone: [  "ignore" ]
+		allChildrenBreadthFirstDetect: [ :arg2 | arg2 isKindOf: GtPharoStreamingMethodsCoderElement ]
+		ifFound: [ :arg3 | arg3 streamingCodersViewModel additionalFilters: arg1 ]
+		ifNone: [  ]
 ]
 
 { #category : #'updating ui' }
-GtPharoBehaviorCoderElement >> addOrReplaceFilter: aFilter [
+GtPharoBehaviorCoderElement >> addOrReplaceFilter: arg1 [
 	contentTabs content
-		allChildrenBreadthFirstDetect: [ :eachElement | eachElement isKindOf: GtPharoStreamingMethodsCoderElement ]
-		ifFound: [ :theElement | 
-			| vm existing changed |
-			vm := theElement streamingCodersViewModel.
-			changed := false.
-			existing := vm additionalFilters
-					collect: [ :each | 
-						each class = aFilter class
-							ifTrue: [ changed := true.
-								aFilter ]
-							ifFalse: [ each ] ].
-			changed ifFalse: [ existing := existing , {aFilter} ].
-			vm additionalFilters: existing ]
-		ifNone: [  "ignore" ]
+		allChildrenBreadthFirstDetect: [ :arg2 | arg2 isKindOf: GtPharoStreamingMethodsCoderElement ]
+		ifFound: [ :arg3 | 
+			| tmp1 tmp2 tmp4 |
+			tmp1 := arg3 streamingCodersViewModel.
+			tmp4 := false.
+			tmp2 := tmp1 additionalFilters
+					collect: [ :arg4 | 
+						arg4 class = arg1 class
+							ifTrue: [ tmp4 := true.
+								arg1 ]
+							ifFalse: [ arg4 ] ].
+			tmp4 ifFalse: [ tmp2 := tmp2 , {arg1} ].
+			tmp1 additionalFilters: tmp2 ]
+		ifNone: [  ]
 ]
 
 { #category : #accessing }
 GtPharoBehaviorCoderElement >> behavior [
 	<return: #Behavior>
-
 	^ self coderViewModel coder behavior
 ]
 
 { #category : #'building ui' }
 GtPharoBehaviorCoderElement >> buildClassHeader [
-	| headerContainer |
-
-	headerContainer := BrHorizontalPane new
+	| tmp1 tmp3 |
+	tmp3 := BrHorizontalPane new.
+	tmp3
 		hMatchParent;
-		alignCenterLeft;
-		vFitContent.
-
-	headerContainer addChild: (GtPharoBehaviorCoderNameElement new 
-		coderViewModel: behaviorCoderViewModel).
-	headerContainer addChild: self toolbarElement.
-
-	^ headerContainer
+		alignCenterLeft.
+	tmp1 := tmp3 vFitContent.
+	tmp1
+		addChild: (GtPharoBehaviorCoderNameElement new coderViewModel: behaviorCoderViewModel);
+		addChild: self toolbarElement.
+	^ tmp1
 ]
 
 { #category : #'building ui' }
 GtPharoBehaviorCoderElement >> buildContentPane [
-
 	contentPane := BlElement new.
-	contentPane layout: BlLinearLayout vertical.
-	contentPane constraintsDo: [ :c | 
-		c horizontal matchParent.
-		c vertical matchParent ].
-	contentPane padding: (BlInsets top: 5 left: 6 bottom: 5 right: 6).
-	contentPane addChild: self makeLabel.
-	contentPane addChild: self buildClassHeader.
-	contentPane addChild: self buildDefinitionElement.
-	contentPane addChild: self buildContentTabs.
-
+	contentPane
+		layout: BlLinearLayout vertical;
+		constraintsDo: [ :arg1 | 
+				arg1 horizontal matchParent.
+				arg1 vertical matchParent ];
+		padding: (BlInsets
+					top: 5
+					left: 6
+					bottom: 5
+					right: 6);
+		addChild: self makeLabel;
+		addChild: self buildClassHeader;
+		addChild: self buildDefinitionElement;
+		addChild: self buildContentTabs.
 	^ contentPane
 ]
 
 { #category : #'building ui' }
 GtPharoBehaviorCoderElement >> buildContentTabs [
 	<return: #BrTabGroup>
-
-	contentTabs := GtPhlowCompositeView new
-		views: self classViewItems;
-		asElementDo: [ :aBrTabGroup | aBrTabGroup ].
-
+	| tmp2 |
+	tmp2 := GtPhlowCompositeView new.
+	tmp2 views: self classViewItems.
+	contentTabs := tmp2 asElementDo: [ :arg1 | arg1 ].
 	^ contentTabs
 ]
 
 { #category : #'building ui' }
 GtPharoBehaviorCoderElement >> buildDefinitionElement [
-
-	^ GtPharoBehaviorDefinitionCoderElement new
-		coderViewModel: behaviorCoderViewModel definitionCoderUIModel;
-		margin: (BlInsets top: 5 left: 5)
+	| tmp2 |
+	tmp2 := GtPharoBehaviorDefinitionCoderElement new.
+	tmp2 coderViewModel: behaviorCoderViewModel definitionCoderUIModel.
+	^ tmp2 margin: (BlInsets top: 5 left: 5)
 ]
 
 { #category : #accessing }
@@ -168,22 +155,18 @@ GtPharoBehaviorCoderElement >> classCoder [
 
 { #category : #private }
 GtPharoBehaviorCoderElement >> classViewItems [
-	| classCoder collector context |
-	
-	classCoder := behaviorCoderViewModel coder.
-
-	collector := GtPhlowViewsCollector new
-		fromObject: classCoder theClass;
-		from: classCoder theClass class;
-		to: Behavior;
-		pragmaName: #gtClassView.
-
-	context := GtPhlowContext new.
-	context optionAt: #behaviorCoder put: behaviorCoderViewModel.
-
-	collector context: context.
-
-	^ collector collect
+	| tmp1 tmp2 tmp3 tmp5 |
+	tmp1 := behaviorCoderViewModel coder.
+	tmp5 := GtPhlowViewsCollector new.
+	tmp5
+		fromObject: tmp1 theClass;
+		from: tmp1 theClass class;
+		to: Behavior.
+	tmp2 := tmp5 pragmaName: #gtClassView.
+	tmp3 := GtPhlowContext new.
+	tmp3 optionAt: #behaviorCoder put: behaviorCoderViewModel.
+	tmp2 context: tmp3.
+	^ tmp2 collect
 ]
 
 { #category : #accessing }
@@ -192,106 +175,107 @@ GtPharoBehaviorCoderElement >> coderViewModel [
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderElement >> coderViewModel: aGtBehaviorCoderViewModel [
+GtPharoBehaviorCoderElement >> coderViewModel: arg1 [
 	self unsubscribeFromCoderViewModel.
-
-	behaviorCoderViewModel := aGtBehaviorCoderViewModel.
-	self subscribeToCoderViewModel.
-
-	self updateContent.
+	behaviorCoderViewModel := arg1.
+	self
+		subscribeToCoderViewModel;
+		updateContent
 ]
 
 { #category : #private }
-GtPharoBehaviorCoderElement >> executeTask: aBlock [
+GtPharoBehaviorCoderElement >> executeTask: arg1 [
 	BlUseAsyncFeatures
-		ifEnabledDo: [ self enqueueTask: (BlTaskAction new action: aBlock) ]
-		otherwise: aBlock
+		ifEnabledDo: [ self enqueueTask: (BlTaskAction new action: arg1) ]
+		otherwise: arg1
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderElement >> filterWithClassSlot: slotName source: aSource [
+GtPharoBehaviorCoderElement >> filterWithClassSlot: arg1 source: arg2 [
 	self
 		addFilters: {GtSearchClassSlotReferenceFilter
-					forClass: aSource selectedClass class
-					andVariable: slotName}
+					forClass: arg2 selectedClass class
+					andVariable: arg1}
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderElement >> filterWithClassVariable: slotName source: aSource [
+GtPharoBehaviorCoderElement >> filterWithClassVariable: arg1 source: arg2 [
 	self
 		addFilters: {GtSearchClassVariableReferenceFilter
-					forClass: aSource selectedClass
-					andVariable: slotName}
+					forClass: arg2 selectedClass
+					andVariable: arg1}
 ]
 
 { #category : #'updating ui' }
-GtPharoBehaviorCoderElement >> filterWithMethodProtocol: aMethodProtocol source: aSource [
-	self addOrReplaceFilter: (GtSearchMethodCategoryFilter forCategory: aMethodProtocol)
+GtPharoBehaviorCoderElement >> filterWithMethodProtocol: arg1 source: arg2 [
+	self addOrReplaceFilter: (GtSearchMethodCategoryFilter forCategory: arg1)
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderElement >> filterWithSlot: slotName source: aSource [
+GtPharoBehaviorCoderElement >> filterWithSlot: arg1 source: arg2 [
 	self
 		addFilters: {GtSearchInstanceSlotReferenceFilter
-					forClass: aSource selectedClass
-					andVariable: slotName}
+					forClass: arg2 selectedClass
+					andVariable: arg1}
 ]
 
 { #category : #initialization }
 GtPharoBehaviorCoderElement >> initialize [
 	super initialize.
-	self initializeToolbarElement.
-
 	self
+		initializeToolbarElement;
 		layout: BlLinearLayout vertical;
-		constraintsDo: [ :c | 
-			c horizontal matchParent.
-			c vertical matchParent ].
-		
-	self when: BlClickEvent do: [ self requestFocus ]
+		constraintsDo: [ :arg1 | 
+				arg1 horizontal matchParent.
+				arg1 vertical matchParent ];
+		when: BlClickEvent do: [ self requestFocus ]
 ]
 
 { #category : #'building ui' }
 GtPharoBehaviorCoderElement >> makeLabel [
-	^ BrLabel new
-		aptitude: (BrGlamorousLabelAptitude new glamorousRegularFontAndSize
-				foreground: Color gray;
-				fontSize: 12);
-		text: 'Class';
-		padding: (BlInsets left: 5)
+	| tmp2 tmp4 |
+	tmp2 := BrLabel new.
+	tmp4 := BrGlamorousLabelAptitude new glamorousRegularFontAndSize.
+	tmp4 foreground: Color gray.
+	tmp2
+		aptitude: (tmp4 fontSize: 12);
+		text: 'Class'.
+	^ tmp2 padding: (BlInsets left: 5)
 ]
 
 { #category : #'updating ui' }
 GtPharoBehaviorCoderElement >> removeContentTabs [
 	contentTabs
-		ifNotNil: [ 
-			contentPane removeChild: contentTabs.
+		ifNotNil: [ contentPane removeChild: contentTabs.
 			contentTabs := nil ]
 ]
 
 { #category : #'updating ui' }
-GtPharoBehaviorCoderElement >> selectAndScrollToMethod: aMethod [
-
-	contentTabs content 
-		allChildrenBreadthFirstDetect: [ :eachElement | eachElement isKindOf: GtPharoStreamingMethodsCoderElement ] 
-		ifFound: [ :theElement |
-			theElement streamingCodersViewModel
-				expandAndFocusCompiledMethod: aMethod;
-				scrollToCompiledMethod: aMethod ] 
-		ifNone: [ "ignore" ]
+GtPharoBehaviorCoderElement >> selectAndScrollToMethod: arg1 [
+	contentTabs content
+		allChildrenBreadthFirstDetect: [ :arg2 | arg2 isKindOf: GtPharoStreamingMethodsCoderElement ]
+		ifFound: [ :arg3 | 
+			| tmp2 |
+			tmp2 := arg3 streamingCodersViewModel.
+			tmp2
+				expandAndFocusCompiledMethod: arg1;
+				scrollToCompiledMethod: arg1 ]
+		ifNone: [  ]
 ]
 
 { #category : #'building ui' }
 GtPharoBehaviorCoderElement >> streamingMethodCodersElement [
 	^ contentTabs content
-		allChildrenBreadthFirstDetect: [ :eachElement | eachElement isKindOf: GtPharoStreamingMethodsCoderElement ]
+		allChildrenBreadthFirstDetect: [ :arg1 | arg1 isKindOf: GtPharoStreamingMethodsCoderElement ]
 		ifFound: #yourself
-		ifNone: [ nil ]
+		ifNone: [  ]
 ]
 
 { #category : #subscriptions }
-GtPharoBehaviorCoderElement >> subscribeToCoderViewModel [	
-	behaviorCoderViewModel coder weak
+GtPharoBehaviorCoderElement >> subscribeToCoderViewModel [
+	| tmp2 |
+	tmp2 := behaviorCoderViewModel coder weak.
+	tmp2
 		when: GtCoderPackageUpdatedAnnouncement
 			send: #actOnPackageUpdated:
 			to: self;
@@ -303,20 +287,19 @@ GtPharoBehaviorCoderElement >> subscribeToCoderViewModel [
 			to: self;
 		when: GtClassCoderSlotNavigationAnnouncement
 			send: #actOnSlot:
-			to: self.
+			to: self
 ]
 
 { #category : #subscriptions }
-GtPharoBehaviorCoderElement >> unsubscribeFromCoderViewModel [	
-	behaviorCoderViewModel
-		ifNotNil: [ :aPreviousCoderViewModel | 
-			aPreviousCoderViewModel unsubscribe: self ].
+GtPharoBehaviorCoderElement >> unsubscribeFromCoderViewModel [
+	| tmp1 |
+	(tmp1 := behaviorCoderViewModel) ifNotNil: [ tmp1 unsubscribe: self ]
 ]
 
 { #category : #accessing }
 GtPharoBehaviorCoderElement >> updateContent [
-	container ifNotNil: [ :anElement | anElement removeFromParent].
-	
+	| tmp1 |
+	(tmp1 := container) ifNotNil: [ tmp1 removeFromParent ].
 	container := self buildContentPane.
 	self addChildFirst: container
 ]

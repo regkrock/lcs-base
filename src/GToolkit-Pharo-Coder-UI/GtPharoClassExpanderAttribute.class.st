@@ -8,47 +8,48 @@ Class {
 }
 
 { #category : #'initialize-release' }
-GtPharoClassExpanderAttribute class >> forClass: aClass [
-	^ self new
-		forClass: aClass;
-		yourself
+GtPharoClassExpanderAttribute class >> forClass: arg1 [
+	| tmp2 |
+	tmp2 := self new.
+	tmp2 forClass: arg1.
+	^ tmp2 yourself
 ]
 
 { #category : #private }
 GtPharoClassExpanderAttribute >> buildBehaviorCoder [
-	| editorElement |
-	editorElement := GtCoderElement forClass: classToExpand.
-	editorElement background: Color white.
-	editorElement
-		aptitude: BrShadowAptitude
-				+ (BrGlamorousWithVerticalResizerAptitude new
-						beBottom;
-						yourself).
-	editorElement
+	| tmp1 tmp3 |
+	tmp1 := GtCoderElement forClass: classToExpand.
+	tmp1 background: Color white.
+	tmp3 := BrGlamorousWithVerticalResizerAptitude new.
+	tmp3 beBottom.
+	tmp1
+		aptitude: BrShadowAptitude + tmp3 yourself;
 		height: 400;
 		margin: (BlInsets
-				top: 3
-				right: 10
-				bottom: 10
-				left: 10).
-	^ editorElement
+					top: 3
+					right: 10
+					bottom: 10
+					left: 10).
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtPharoClassExpanderAttribute >> expandedClass [
-	^classToExpand
+	^ classToExpand
 ]
 
 { #category : #'initialize-release' }
-GtPharoClassExpanderAttribute >> forClass: aClass [
-	classToExpand := aClass
+GtPharoClassExpanderAttribute >> forClass: arg1 [
+	classToExpand := arg1
 ]
 
 { #category : #'initialize-release' }
 GtPharoClassExpanderAttribute >> initialize [
 	super initialize.
 	self
-		attributesCreatingBlock: [ BrTextAdornmentDynamicAttribute new
+		attributesCreatingBlock: [ | tmp2 |
+			tmp2 := BrTextAdornmentDynamicAttribute new.
+			tmp2
 				beAppend;
 				stencil: [ self buildBehaviorCoder ] ]
 ]

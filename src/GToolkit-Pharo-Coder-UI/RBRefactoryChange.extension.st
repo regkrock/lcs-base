@@ -6,15 +6,17 @@ RBRefactoryChange >> gtExecuteWithNotification [
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-RBRefactoryChange >> gtExecuteWithNotificationWithProgress: aBlock [
-	| job notification |
-	job := self gtCompilationJobWithProgress: aBlock.
-	notification := GtCompilationNotificationJob new.
-	notification job: job.
-	notification registerNotifications.
-	^ [ job run ] asAsyncPromise
+RBRefactoryChange >> gtExecuteWithNotificationWithProgress: arg1 [
+	| tmp1 tmp2 |
+	tmp1 := self gtCompilationJobWithProgress: arg1.
+	tmp2 := GtCompilationNotificationJob new.
+	tmp2
+		job: tmp1;
+		registerNotifications.
+	^ [ tmp1 run ] asAsyncPromise
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-RBRefactoryChange >> recursivelyRemoveChange: aChange [
+RBRefactoryChange >> recursivelyRemoveChange: arg1 [
+	
 ]

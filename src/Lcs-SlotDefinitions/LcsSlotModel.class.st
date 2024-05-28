@@ -77,6 +77,11 @@ LcsSlotModel >> gtViewDomainSlotDefinitionsFor: aView [
 		column: 'Name' text: [ :each | each slotName ];
 		column: 'Class' text: [ :each | each class name ];
 		column: 'Defined In' text: [ :each | each domainClass name ];
+		column: '' stencil: [ :each | BrButton new
+										aptitude: BrGlamorousButtonWithLabelAptitude new;
+										label: 'Remove';
+										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; 
+		actionUpdateButton;
 		yourself
 
 ]
@@ -88,6 +93,12 @@ LcsSlotModel >> gtViewSlotModelChildren [
 	self slotDefinitions keysAndValuesDo: [ :key :value |
 		children add: (LcsSlotModelViewItem newLabel: key item: value)].
 	^ children
+]
+
+{ #category : #slots }
+LcsSlotModel >> hasSlotDefinitionNamed: aSlotName [
+	^ self slotDefinitions at: aSlotName ifAbsent: [ 
+		self allSlotDefinitions anySatisfy: [ :eachSlotDefinition | eachSlotDefinition slotName = aSlotName ] ]
 ]
 
 { #category : #'testing ' }
@@ -139,6 +150,11 @@ LcsSlotModel >> printOn: aStream [
 		nextPutAll: '(';
 		nextPutAll: self domainClass name;
 		nextPutAll: ')'
+]
+
+{ #category : #slots }
+LcsSlotModel >> removeSlotDefinitionNamed: aSlotName [
+	self slotDefinitions removeKey: aSlotName ifAbsent: [ ]
 ]
 
 { #category : #slots }

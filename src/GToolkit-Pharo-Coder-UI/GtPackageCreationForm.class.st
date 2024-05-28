@@ -23,26 +23,24 @@ GtPackageCreationForm >> commit [
 GtPackageCreationForm >> packageAndTagDescription [
 	<magritteDescription>
 	^ super packageAndTagDescription
-		addCondition: [ :aValue | 
-			| aPackage |
-			aPackage := aValue packageName asPackageIfAbsent: [ nil ].
-			aPackage
-				ifNil: [ true ]
-				ifNotNil: [ aValue tagName
+		addCondition: [ :arg1 | 
+			| tmp1 |
+			tmp1 := arg1 packageName asPackageIfAbsent: [  ].
+			tmp1 == nil
+				or: [ arg1 tagName
 						ifEmpty: [ false ]
-						ifNotEmpty: [ (aPackage classTagNamed: aValue tagName ifAbsent: [ nil ]) isNil ] ] ]
+						ifNotEmpty: [ (tmp1 classTagNamed: arg1 tagName ifAbsent: [  ]) isNil ] ] ]
 		labelled: 'Package and tag exist'
 ]
 
 { #category : #accessing }
-GtPackageCreationForm >> selectInNavigationModel: aNavigationModel anInstance: anInstance [
+GtPackageCreationForm >> selectInNavigationModel: arg1 anInstance: arg2 [
 	^ self packageAndTagName tagName
-		ifEmpty: [ aNavigationModel selectPackage: anInstance ]
-		ifNotEmpty: [ aNavigationModel
-				selectPackageTag: (anInstance classTagNamed: self packageAndTagName tagName) ]
+		ifEmpty: [ arg1 selectPackage: arg2 ]
+		ifNotEmpty: [ arg1 selectPackageTag: (arg2 classTagNamed: self packageAndTagName tagName) ]
 ]
 
 { #category : #accessing }
-GtPackageCreationForm >> toolFor: anInstance [
-	^ GtPackageCoderTool package: anInstance
+GtPackageCreationForm >> toolFor: arg1 [
+	^ GtPackageCoderTool package: arg1
 ]

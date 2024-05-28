@@ -22,13 +22,11 @@ GtClassCreationForm class >> priority [
 { #category : #accessing }
 GtClassCreationForm >> classDefinitionString [
 	^ String
-		streamContents: [ :stream | 
-			stream << self superclassName << ' subclass: '
+		streamContents: [ :arg1 | 
+			arg1 << self superclassName << ' subclass: '
 				<< self rawClassName asSymbol storeString.
-
-			self traits ifNotEmpty: [ stream << ' uses: ' << (' + ' join: self traits) ].
-
-			stream << ' instanceVariableNames: ' << (' ' join: self slots) storeString
+			self traits ifNotEmpty: [ arg1 << ' uses: ' << (' + ' join: self traits) ].
+			arg1 << ' instanceVariableNames: ' << (' ' join: self slots) storeString
 				<< ' classVariableNames: ' << (' ' join: self classVars) storeString
 				<< ' poolDictionaries: ' << (' ' join: self pools) storeString
 				<< ' package: ' << self commitPackage categoryName asString storeString ]
@@ -36,41 +34,42 @@ GtClassCreationForm >> classDefinitionString [
 
 { #category : #accessing }
 GtClassCreationForm >> classVars [
-
 	^ classVars
 ]
 
 { #category : #accessing }
-GtClassCreationForm >> classVars: anObject [
-
-	classVars := anObject
+GtClassCreationForm >> classVars: arg1 [
+	classVars := arg1
 ]
 
 { #category : #accessing }
 GtClassCreationForm >> classVarsDescription [
 	<magritteDescription>
-	^ MAToManyRelationDescription new
+	| tmp2 |
+	tmp2 := MAToManyRelationDescription new.
+	tmp2
 		label: 'Class vars';
 		priority: 7;
 		accessor: #classVars;
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		classes: {String};
+		classes: {String}.
+	^ tmp2
 		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil)
 ]
 
 { #category : #accessing }
 GtClassCreationForm >> commit [
-	| aClass |
+	| tmp1 |
 	self defineClass.
-	aClass := Smalltalk classNamed: self rawClassName.
-	self installClassSlotsOn: aClass.
-	^ aClass
+	tmp1 := Smalltalk classNamed: self rawClassName.
+	self installClassSlotsOn: tmp1.
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtClassCreationForm >> contextMenuItemsForSuperclass [
 	^ {'Browse references'
-			-> [ :aBrEditor | aBrEditor phlow spawnObject: aBrEditor text asString asClass gtReferences ]}
+			-> [ :arg1 | arg1 phlow spawnObject: arg1 text asString asClass gtReferences ]}
 ]
 
 { #category : #accessing }
@@ -87,34 +86,33 @@ GtClassCreationForm >> defineClass [
 { #category : #accessing }
 GtClassCreationForm >> initialize [
 	super initialize.
-
 	self superclassName: 'Object'.
-
 	classVars := OrderedCollection new.
 	pools := OrderedCollection new
 ]
 
 { #category : #accessing }
 GtClassCreationForm >> pools [
-
 	^ pools
 ]
 
 { #category : #accessing }
-GtClassCreationForm >> pools: anObject [
-
-	pools := anObject
+GtClassCreationForm >> pools: arg1 [
+	pools := arg1
 ]
 
 { #category : #accessing }
 GtClassCreationForm >> poolsDescription [
 	<magritteDescription>
-	^ MAToManyRelationDescription new
+	| tmp2 |
+	tmp2 := MAToManyRelationDescription new.
+	tmp2
 		label: 'Pools';
 		priority: 7;
 		accessor: #pools;
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		classes: {String};
+		classes: {String}.
+	^ tmp2
 		blocListStencil: (self
 				taggerStencilWithCompletion: GtPoolsCompletionStrategy new
 				andContextMenuBlock: nil)
@@ -123,60 +121,64 @@ GtClassCreationForm >> poolsDescription [
 { #category : #accessing }
 GtClassCreationForm >> superclassDescription [
 	<magritteDescription>
-	^ MAStringDescription new
+	| tmp2 |
+	tmp2 := MAStringDescription new.
+	tmp2
 		label: 'Superclass';
 		priority: 2;
 		accessor: #superclassName;
 		blocCompletion: [ GtStringsCompletionStrategy new
-				completions: (GtPharoIndex current classNameTree) ];
-		blocShortcuts: [ {BlShortcutWithAction new
+					completions: GtPharoIndex current classNameTree ];
+		blocShortcuts: [ | tmp4 tmp6 tmp8 |
+				tmp4 := BlShortcutWithAction new.
+				tmp4
 					name: 'Browse class';
 					description: 'Browses the class indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
+					combination: BlKeyCombination primaryB.
+				tmp6 := BlShortcutWithAction new.
+				tmp6
 					name: 'Inspect class';
 					description: 'Inspects the class indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
+					combination: BlKeyCombination primaryG.
+				tmp8 := BlShortcutWithAction new.
+				tmp8
 					name: 'Browse class references';
 					description: 'Browses references to the class indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]} ];
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize+ (BrGlamorousWithContextMenuAptitude
-								content: [ BrGlamorousSimpleContextMenuContent new
-										items: (self contextMenuItemsForSuperclass) ]) ];
+					combination: BlKeyCombination primaryN.
+				{tmp4
+						action: [ :arg1 | 
+							arg1 target phlow
+								spawnTool: (GtClassCoderTool forClass: arg1 target text asString asClass) ].
+					tmp6
+						action: [ :arg2 | arg2 target phlow spawnObject: arg2 target text asString asClass ].
+					tmp8
+						action: [ :arg3 | arg3 target phlow spawnObject: arg3 target text asString asClass gtReferences ]} ];
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+					+ (BrGlamorousWithContextMenuAptitude
+							content: [ BrGlamorousSimpleContextMenuContent new
+									items: self contextMenuItemsForSuperclass ]) ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		addCondition: [ :aValue | (Smalltalk classNamed: aValue trim) isNotNil ]
+		addCondition: [ :arg4 | (Smalltalk classNamed: arg4 trim) isNotNil ]
 			labelled: 'Unknown class';
-		addCondition: [ :aValue | 
-			| aClass |
-			aClass := Smalltalk classNamed: aValue trim.
-			aClass isNil or: [ aClass isClass ] ]
+		addCondition: [ :arg5 | 
+					| tmp9 |
+					tmp9 := Smalltalk classNamed: arg5 trim.
+					tmp9 isNil or: [ tmp9 isClass ] ]
 			labelled: 'Must be a class';
-		addCondition: [ :aValue | 
-			| aClass |
-			aClass := Smalltalk classNamed: aValue trim.
-			aClass isNil or: [ aClass isInstanceSide ] ]
-			labelled: 'Must be an instance-side class';
-		beRequired
+		addCondition: [ :arg6 | 
+					| tmp10 |
+					tmp10 := Smalltalk classNamed: arg6 trim.
+					tmp10 isNil or: [ tmp10 isInstanceSide ] ]
+			labelled: 'Must be an instance-side class'.
+	^ tmp2 beRequired
 ]
 
 { #category : #accessing }
 GtClassCreationForm >> superclassName [
-
 	^ superclassName
 ]
 
 { #category : #accessing }
-GtClassCreationForm >> superclassName: anObject [
-
-	superclassName := anObject
+GtClassCreationForm >> superclassName: arg1 [
+	superclassName := arg1
 ]

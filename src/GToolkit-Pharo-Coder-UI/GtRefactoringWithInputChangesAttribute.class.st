@@ -8,11 +8,11 @@ Class {
 }
 
 { #category : #accessing }
-GtRefactoringWithInputChangesAttribute >> doAffect: aTBrTextEditorTextualPiece in: anEditorElement [
-	| button |
-	button := super doAffect: aTBrTextEditorTextualPiece in: anEditorElement.
-	button editorElement: editorElement.
-	^ button
+GtRefactoringWithInputChangesAttribute >> doAffect: arg1 in: arg2 [
+	| tmp1 |
+	tmp1 := super doAffect: arg1 in: arg2.
+	tmp1 editorElement: editorElement.
+	^ tmp1
 ]
 
 { #category : #accessing }
@@ -21,8 +21,8 @@ GtRefactoringWithInputChangesAttribute >> editorElement [
 ]
 
 { #category : #accessing }
-GtRefactoringWithInputChangesAttribute >> editorElement: anObject [
-	editorElement := anObject
+GtRefactoringWithInputChangesAttribute >> editorElement: arg1 [
+	editorElement := arg1
 ]
 
 { #category : #accessing }

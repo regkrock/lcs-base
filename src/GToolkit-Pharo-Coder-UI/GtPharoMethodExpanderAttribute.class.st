@@ -10,10 +10,11 @@ Class {
 }
 
 { #category : #'instance creation' }
-GtPharoMethodExpanderAttribute class >> forClass: aClass andSelector: aSymbol [
-	^ self new
-		forClass: aClass andSelector: aSymbol;
-		yourself
+GtPharoMethodExpanderAttribute class >> forClass: arg1 andSelector: arg2 [
+	| tmp2 |
+	tmp2 := self new.
+	tmp2 forClass: arg1 andSelector: arg2.
+	^ tmp2 yourself
 ]
 
 { #category : #accessing }
@@ -23,34 +24,29 @@ GtPharoMethodExpanderAttribute >> argumentBindingsBuilder [
 ]
 
 { #category : #accessing }
-GtPharoMethodExpanderAttribute >> argumentBindingsBuilder: anObject [
-	argumentBindingsBuilder := anObject
+GtPharoMethodExpanderAttribute >> argumentBindingsBuilder: arg1 [
+	argumentBindingsBuilder := arg1
 ]
 
 { #category : #private }
 GtPharoMethodExpanderAttribute >> buildMethodCoder [
-	| editorElement coder method viewModel |
-	(method := self compiledMethod) ifNil: [ ^ BlElement new ].
-	coder := GtPharoMethodCoder forMethod: method.
-	coder subscribeToSystem.
-	viewModel := coder asCoderViewModel.
-	self
-		configureViewModel: viewModel
-		andCoder: coder.
-
-	editorElement := viewModel asElement.
-
+	| tmp1 tmp2 tmp3 tmp4 |
+	(tmp3 := self compiledMethod) ifNil: [ ^ BlElement new ].
+	tmp2 := GtPharoMethodCoder forMethod: tmp3.
+	tmp2 subscribeToSystem.
+	tmp4 := tmp2 asCoderViewModel.
+	self configureViewModel: tmp4 andCoder: tmp2.
+	tmp1 := tmp4 asElement.
 	self id isIndexed
-		ifTrue: [ editorElement id: (GtPharoEmbeddedMethodId indexed: self id index) ]
-		ifFalse: [ editorElement id: GtPharoEmbeddedMethodId ].
-
-	editorElement
+		ifTrue: [ tmp1 id: (GtPharoEmbeddedMethodId indexed: self id index) ]
+		ifFalse: [ tmp1 id: GtPharoEmbeddedMethodId ].
+	tmp1
 		margin: (BlInsets
 				top: 3
 				right: 10
 				bottom: 10
 				left: 10).
-	^ editorElement
+	^ tmp1
 ]
 
 { #category : #accessing }
@@ -64,37 +60,40 @@ GtPharoMethodExpanderAttribute >> compiledMethod [
 ]
 
 { #category : #private }
-GtPharoMethodExpanderAttribute >> configureViewModel: viewModel andCoder: coder [
+GtPharoMethodExpanderAttribute >> configureViewModel: arg1 andCoder: arg2 [
+	| tmp1 tmp2 tmp3 |
 	argumentBindingsBuilder ifNil: [ ^ self ].
-	argumentBindingsBuilder compiledMethod: self compiledMethod.
-	argumentBindingsBuilder build.
-
-	argumentBindingsBuilder explicitProviderClass
-		ifNotNil: [ :aClass | coder explicitProviderClass: aClass ].
-	argumentBindingsBuilder localBindings
-		ifNotNil: [ :aLocalBindings | viewModel addLocalBindings: aLocalBindings ].
-	argumentBindingsBuilder receiverObject
-		ifNotNil: [ :aSelfObject | viewModel selfObject: aSelfObject ]
+	argumentBindingsBuilder
+		compiledMethod: self compiledMethod;
+		build.
+	(tmp1 := argumentBindingsBuilder explicitProviderClass)
+		ifNotNil: [ arg2 explicitProviderClass: tmp1 ].
+	(tmp2 := argumentBindingsBuilder localBindings)
+		ifNotNil: [ arg1 addLocalBindings: tmp2 ].
+	(tmp3 := argumentBindingsBuilder receiverObject)
+		ifNotNil: [ arg1 selfObject: tmp3 ]
 ]
 
 { #category : #'initialize-release' }
-GtPharoMethodExpanderAttribute >> forClass: aClass andSelector: aSymbol [
-	classOrMetaClass := aClass.
-	selector := aSymbol
+GtPharoMethodExpanderAttribute >> forClass: arg1 andSelector: arg2 [
+	classOrMetaClass := arg1.
+	selector := arg2
 ]
 
 { #category : #'initialize-release' }
 GtPharoMethodExpanderAttribute >> initialize [
 	super initialize.
 	self
-		attributesCreatingBlock: [ BrTextAdornmentDynamicAttribute new
+		attributesCreatingBlock: [ | tmp2 |
+			tmp2 := BrTextAdornmentDynamicAttribute new.
+			tmp2
 				beAppend;
 				stencil: [ self buildMethodCoder ] ]
 ]
 
 { #category : #printing }
-GtPharoMethodExpanderAttribute >> printOn: aStream [
-	aStream
+GtPharoMethodExpanderAttribute >> printOn: arg1 [
+	arg1
 		nextPutAll: 'method-expander: ';
 		print: self id
 ]

@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 GtCompilationNotificationJob >> registerNotifications [
-	GtWorld allInstancesDo: [ :world | world showNotification: self ]
+	GtWorld allInstancesDo: [ :arg1 | arg1 showNotification: self ]
 ]
 
 { #category : #accessing }

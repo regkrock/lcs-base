@@ -19,36 +19,36 @@ GtBaselineCreationForm class >> priority [
 
 { #category : #accessing }
 GtBaselineCreationForm >> baseline [
-
 	^ baseline
 ]
 
 { #category : #accessing }
-GtBaselineCreationForm >> baseline: anObject [
-
-	baseline := anObject
+GtBaselineCreationForm >> baseline: arg1 [
+	baseline := arg1
 ]
 
 { #category : #magritte }
 GtBaselineCreationForm >> baselineDescription [
 	<magritteDescription>
-	^ MAStringDescription new
+	| tmp2 |
+	tmp2 := MAStringDescription new.
+	tmp2
 		label: 'Baseline';
 		priority: 1;
 		accessor: #baselineRope;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocCompletion: [ GtStringsCompletionStrategy new
-				completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
-		addCondition: [ :aValue | aValue asString trim isNotEmpty ]
+					completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
+		addCondition: [ :arg1 | arg1 asString trim isNotEmpty ]
 			labelled: 'Baseline name must be set';
-		addCondition: [ :aValue | (Smalltalk classNamed: aValue asString trim) isNil ]
+		addCondition: [ :arg2 | (Smalltalk classNamed: arg2 asString trim) isNil ]
 			labelled: 'Baseline name is already taken';
-		addCondition: [ :aValue | aValue beginsWith: 'BaselineOf' ]
+		addCondition: [ :arg3 | arg3 beginsWith: 'BaselineOf' ]
 			labelled: 'Baseline name must start with BaselineOf';
-		addCondition: [ :aValue | aValue asString isAllAlphaNumerics ]
-			labelled: 'Baseline name must be alphanumeric';
-		beRequired
+		addCondition: [ :arg4 | arg4 asString isAllAlphaNumerics ]
+			labelled: 'Baseline name must be alphanumeric'.
+	^ tmp2 beRequired
 ]
 
 { #category : #accessing }
@@ -59,15 +59,15 @@ GtBaselineCreationForm >> baselineRope [
 ]
 
 { #category : #accessing }
-GtBaselineCreationForm >> baselineRope: aRope [
-	self baseline: aRope asString
+GtBaselineCreationForm >> baselineRope: arg1 [
+	self baseline: arg1 asString
 ]
 
 { #category : #callbacks }
 GtBaselineCreationForm >> commit [
 	^ Smalltalk classInstaller
-		make: [ :builder | 
-			builder
+		make: [ :arg1 | 
+			arg1
 				name: baseline trim;
 				superclass: BaselineOf;
 				category: baseline trim ]
@@ -90,6 +90,5 @@ GtBaselineCreationForm >> initialize [
 
 { #category : #magritte }
 GtBaselineCreationForm >> packageAndTagDescription [
-	"empty"
 	^ nil
 ]

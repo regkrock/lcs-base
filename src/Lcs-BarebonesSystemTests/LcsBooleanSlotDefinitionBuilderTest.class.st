@@ -5,12 +5,12 @@ Class {
 }
 
 { #category : #tests }
-LcsBooleanSlotDefinitionBuilderTest >> testInstallingHeightSlotInPerson [
+LcsBooleanSlotDefinitionBuilderTest >> testInstallingBooleanInPerson [
 	| person |
-	self slotName: 'height'.
-	self initialValue: 180.
+	self slotName: 'hasBlueEyes'.
+	self initialValue: true.
 	self targetClass: LxxBarebonesPerson.
-	self slotBuilderClass: LcsIntegerSlotDefinitionBuilder.
+	self slotBuilderClass: LcsBooleanSlotDefinitionBuilder. 
 	
 	self buildAndInstallNewSlot.
 	

@@ -13,8 +13,8 @@ GtPharoBehaviorProtocolCoderViewModel >> elementClass [
 ]
 
 { #category : #'gt-extension' }
-GtPharoBehaviorProtocolCoderViewModel >> gtLiveFor: aView [
-	^ aView empty
+GtPharoBehaviorProtocolCoderViewModel >> gtLiveFor: arg1 [
+	^ arg1 empty
 ]
 
 { #category : #accessing }
@@ -25,9 +25,8 @@ GtPharoBehaviorProtocolCoderViewModel >> methodViewModels [
 { #category : #'api - coder model' }
 GtPharoBehaviorProtocolCoderViewModel >> onCoderModelChanged [
 	super onCoderModelChanged.
-
 	methodViewModels := self coderModel methodCoders
-		collect: [ :eachMethodCoder | eachMethodCoder asCoderViewModel ]
+			collect: [ :arg1 | arg1 asCoderViewModel ]
 ]
 
 { #category : #'api - coder model' }

@@ -13,8 +13,8 @@ Class {
 }
 
 { #category : #'instance creation' }
-GtCopyClassForm class >> for: aClass [
-	^ self new for: aClass
+GtCopyClassForm class >> for: arg1 [
+	^ self new for: arg1
 ]
 
 { #category : #converting }
@@ -24,104 +24,106 @@ GtCopyClassForm >> asElement [
 
 { #category : #accessing }
 GtCopyClassForm >> copyClass [
-	| class |
-	class := Smalltalk classInstaller make: 
-					[:builder |
-					builder
-						fillFor: innerClass;
-						name: newClassName trim;
-						superclass: superClassName trim asClass;
-						category: (packageAndTag tagName trim
-									ifEmpty: [packageAndTag packageName trim]
-									ifNotEmpty: [packageAndTag fullName])].
+	| tmp1 |
+	tmp1 := Smalltalk classInstaller
+			make: [ :arg1 | 
+				arg1
+					fillFor: innerClass;
+					name: newClassName trim;
+					superclass: superClassName trim asClass;
+					category: (packageAndTag tagName trim
+								ifEmpty: [ packageAndTag packageName trim ]
+								ifNotEmpty: [ packageAndTag fullName ]) ].
 	copyMethods
-		ifTrue: 
-			[class copyAllCategoriesFrom: innerClass.
-			class class copyAllCategoriesFrom: innerClass class].
-	^class
+		ifTrue: [ tmp1 copyAllCategoriesFrom: innerClass.
+			tmp1 class copyAllCategoriesFrom: innerClass class ].
+	^ tmp1
 ]
 
 { #category : #accessing }
 GtCopyClassForm >> copyMethods [
-
 	^ copyMethods
 ]
 
 { #category : #accessing }
-GtCopyClassForm >> copyMethods: anObject [
-
-	copyMethods := anObject
+GtCopyClassForm >> copyMethods: arg1 [
+	copyMethods := arg1
 ]
 
 { #category : #magritte }
 GtCopyClassForm >> copyMethodsDescription [
 	<magritteDescription>
-	^(MABooleanDescription new)
+	| tmp2 |
+	tmp2 := MABooleanDescription new.
+	tmp2
 		label: 'Copy methods';
 		priority: 3;
 		accessor: #copyMethods;
-		editorAptitude: 
-				[BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
-		labelAptitude: [BrGlamorousLabelAptitude new glamorousFormLabelStyle]
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ].
+	^ tmp2 labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : #accessing }
-GtCopyClassForm >> for: aClass [
-	innerClass := aClass.
-	newClassName := aClass name asString.
-	superClassName := aClass superclass name asString.
+GtCopyClassForm >> for: arg1 [
+	| tmp2 |
+	innerClass := arg1.
+	newClassName := arg1 name asString.
+	superClassName := arg1 superclass name asString.
 	copyMethods := true.
-	packageAndTag := GtPackageAndTagName new
-			packageName: aClass package name;
-			tagName: (self treatTag: aClass)
+	tmp2 := GtPackageAndTagName new.
+	tmp2 packageName: arg1 package name.
+	packageAndTag := tmp2 tagName: (self treatTag: arg1)
 ]
 
 { #category : #accessing }
 GtCopyClassForm >> magritteAcceptAction [
 	<magritteActionDescription>
-	^ super magritteAcceptAction
-		label: 'Copy';
+	| tmp2 |
+	tmp2 := super magritteAcceptAction.
+	tmp2 label: 'Copy'.
+	^ tmp2
 		onSuccessCallback: (GtMagritteCallback new
-				action: [ :aModel :aButton :aMemento :aDescription | 
-					[ | aClass |
-					aClass := self copyClass.
-					onAccept ifNotNil: [ onAccept value: aClass ] ] on: Error do: #debug ])
+				action: [ :arg1 :arg2 :arg3 :arg4 | 
+					[ | tmp3 |
+					tmp3 := self copyClass.
+					onAccept ifNotNil: [ onAccept value: tmp3 ] ] on: Error do: #debug ])
 ]
 
 { #category : #magritte }
 GtCopyClassForm >> nameDescription [
 	<magritteDescription>
-	^ MAStringDescription new
+	| tmp2 |
+	tmp2 := MAStringDescription new.
+	tmp2
 		label: 'Name';
 		priority: 1;
 		accessor: #newClassName;
-		editorAptitude:  [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocCompletion: [ GtStringsCompletionStrategy new
-				completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
-		addCondition: [ :aValue | (Smalltalk classNamed: aValue trim) isNil ]
+					completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
+		addCondition: [ :arg1 | (Smalltalk classNamed: arg1 trim) isNil ]
 			labelled: 'Class name is already taken';
-		addCondition: [ :aValue | aValue isEmpty or: [ aValue first isUppercase ] ]
-			labelled: 'First character must be uppercase';
-		addCondition: [ :aValue | aValue isAllAlphaNumerics ]
-			labelled: 'Class name must be alphanumeric'
+		addCondition: [ :arg2 | arg2 isEmpty or: [ arg2 first isUppercase ] ]
+			labelled: 'First character must be uppercase'.
+	^ tmp2
+		addCondition: [ :arg3 | arg3 isAllAlphaNumerics ]
+		labelled: 'Class name must be alphanumeric'
 ]
 
 { #category : #accessing }
 GtCopyClassForm >> newClassName [
-
 	^ newClassName
 ]
 
 { #category : #accessing }
-GtCopyClassForm >> newClassName: anObject [
-
-	newClassName := anObject
+GtCopyClassForm >> newClassName: arg1 [
+	newClassName := arg1
 ]
 
 { #category : #accessing }
-GtCopyClassForm >> onAccept: anAction [
-	onAccept := anAction
+GtCopyClassForm >> onAccept: arg1 [
+	onAccept := arg1
 ]
 
 { #category : #accessing }
@@ -130,58 +132,59 @@ GtCopyClassForm >> packageAndTag [
 ]
 
 { #category : #accessing }
-GtCopyClassForm >> packageAndTag: anObject [
-	packageAndTag := anObject
+GtCopyClassForm >> packageAndTag: arg1 [
+	packageAndTag := arg1
 ]
 
 { #category : #magritte }
 GtCopyClassForm >> packageAndTagDescription [
 	<magritteDescription>
-	^ GtPackageAndTagDescription new
+	| tmp2 |
+	tmp2 := GtPackageAndTagDescription new.
+	tmp2
 		label: 'Package';
 		priority: 3;
 		accessor: #packageAndTag;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		beRequired
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ].
+	^ tmp2 beRequired
 ]
 
 { #category : #magritte }
 GtCopyClassForm >> superClassDescription [
 	<magritteDescription>
-	^ MAStringDescription new
+	| tmp2 |
+	tmp2 := MAStringDescription new.
+	tmp2
 		label: 'Superclass';
 		priority: 2;
 		accessor: #superClassName;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocCompletion: [ GtStringsCompletionStrategy new
-				completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
-		addCondition: [ :aValue | (Smalltalk classNamed: aValue trim) isNotNil ]
-		labelled: 'Class does not exist'		
+					completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ].
+	^ tmp2
+		addCondition: [ :arg1 | (Smalltalk classNamed: arg1 trim) isNotNil ]
+		labelled: 'Class does not exist'
 ]
 
 { #category : #accessing }
 GtCopyClassForm >> superClassName [
-
 	^ superClassName
 ]
 
 { #category : #accessing }
-GtCopyClassForm >> superClassName: anObject [
-
-	superClassName := anObject
+GtCopyClassForm >> superClassName: arg1 [
+	superClassName := arg1
 ]
 
 { #category : #accessing }
-GtCopyClassForm >> treatTag: aClass [
-	| aCategoryName aPackageName aTagString |
-	aCategoryName := aClass category.
-	aPackageName := aClass package name.
-
-	aTagString := (aCategoryName beginsWith: aPackageName)
-			ifFalse: [ '' ]
-			ifTrue: [ aCategoryName allButFirst: aPackageName size ].
-
-	^ aTagString trimBoth: [ :aChar | aChar = $- or: [ aChar isSeparator ] ]
+GtCopyClassForm >> treatTag: arg1 [
+	| tmp1 tmp2 tmp3 |
+	tmp1 := arg1 category.
+	tmp2 := arg1 package name.
+	tmp3 := (tmp1 beginsWith: tmp2)
+			ifTrue: [ tmp1 allButFirst: tmp2 size ]
+			ifFalse: [ '' ].
+	^ tmp3 trimBoth: [ :arg2 | arg2 = $- or: [ arg2 isSeparator ] ]
 ]

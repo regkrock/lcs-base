@@ -22,19 +22,20 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 ]
 
 { #category : #'slot model' }
+LcsDomainObject class >> assertDomainSlotRemoved: aSlotName [
+	self assert: (self hasSlotDefinitionNamed: aSlotName) not.
+	self assert: (self instVarNames includes: aSlotName) not.
+	self assert: (self canUnderstand: aSlotName asSymbol) not.
+	self assert: (self canUnderstand: (aSlotName , ':') asSymbol) not.
+	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not
+]
+
+{ #category : #'slot model' }
 LcsDomainObject class >> assertSlotAdded: aSlotName [
 	self assert: (self instVarNames includes: aSlotName).
 	self assert: (self canUnderstand: aSlotName asSymbol).
 	self assert: (self canUnderstand: (aSlotName , ':') asSymbol).
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
-]
-
-{ #category : #'slot model' }
-LcsDomainObject class >> assertSlotRemoved: aSlotName [
-	self assert: (self instVarNames includes: aSlotName) not.
-	self assert: (self canUnderstand: aSlotName asSymbol) not.
-	self assert: (self canUnderstand: (aSlotName , ':') asSymbol) not.
-	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not
 ]
 
 { #category : #'application environment' }
@@ -64,6 +65,12 @@ LcsDomainObject class >> gtViewDomainSlotDefinitionsFor: aView [
 { #category : #testing }
 LcsDomainObject class >> hasNoninitializedApplicationEnvironment [
 	^ self isSlotModelReleased
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> hasSlotDefinitionNamed: aString [ 
+	self slotModel ifNil: [ ^ false ].
+	^ self slotModel hasSlotDefinitionNamed: aString
 ]
 
 { #category : #'application environment' }
@@ -127,6 +134,7 @@ LcsDomainObject class >> releaseSlotModel [
 
 { #category : #'slot model' }
 LcsDomainObject class >> removeDomainSlotNamed: aSlotName [
+	self slotModel removeSlotDefinitionNamed: aSlotName.
 	self removeInstVar: aSlotName.
 	self removeGetter: aSlotName asSymbol.
 	self removeSetter: (aSlotName , ':') asSymbol.

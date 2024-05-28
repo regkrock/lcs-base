@@ -14,14 +14,12 @@ GtPharoExampleSuiteMediatorSignal >> id [
 
 { #category : #accessing }
 GtPharoExampleSuiteMediatorSignal >> mediator [
-
 	^ medator
 ]
 
 { #category : #accessing }
-GtPharoExampleSuiteMediatorSignal >> mediator: anObject [
-
-	medator := anObject
+GtPharoExampleSuiteMediatorSignal >> mediator: arg1 [
+	medator := arg1
 ]
 
 { #category : #accessing }
@@ -30,9 +28,9 @@ GtPharoExampleSuiteMediatorSignal >> mediatorLabel [
 ]
 
 { #category : #printing }
-GtPharoExampleSuiteMediatorSignal >> printOneLineCommunicatorId: aStream [
+GtPharoExampleSuiteMediatorSignal >> printOneLineCommunicatorId: arg1 [
 	self mediator ifNil: [ ^ self ].
-	aStream
+	arg1
 		nextPutAll: self mediatorLabel;
 		nextPutAll: '-ID: ';
 		print: self id
