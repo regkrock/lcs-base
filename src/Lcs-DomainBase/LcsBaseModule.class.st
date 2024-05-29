@@ -117,7 +117,9 @@ LcsBaseModule >> gtGlobalCollectionsFor: aView [
 			text: [ :item | item  label asString ]
 			width: 100;
 		column: 'Size'
-			text: [ :item | item item size printString ]
+			text: [ :item | item item 
+								ifNil: [ '' ] 
+								ifNotNil: [ item item size printString ] ]
 			width: 50;
 		column: 'Class'
 			text: [ :item | item item class asString ]

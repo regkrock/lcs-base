@@ -23,8 +23,10 @@ LcsSingletonCodeClassesBuilderJobTest >> jobBuilder [
 LcsSingletonCodeClassesBuilderJobTest >> removeAllArtifacts [
 	LxxBarebonesSystem removeDomainSlotNamed: 'genders'.
 	LxxBarebonesPerson removeDomainSlotNamed: 'gender'.
-	self
-		removeClassesNamed: #('LxxUnknownGender' 'LxxFemale' 'LxxMale' 'LxxGender' 'LxxGenders')
+	self removeClassesNamed: #('LxxUnknownGender' 'LxxFemale' 'LxxMale' 'LxxGender' 'LxxGenders').
+	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.
+	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'genders'.
+
 ]
 
 { #category : #running }
@@ -117,7 +119,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	
 	builderJobStep := builder jobSteps jobStepAt: 1.
 	self assert: builderJobStep class identicalTo: LcsCodeSuperClassBuilder.
-	self assert: builderJobStep superclassName equals: 'LcsCode'.
+	self assert: builderJobStep superclassName equals: 'LcsSingletonCode'.
 	self assert: builderJobStep newClassName equals: 'LxxGender'.
 	self assert: builderJobStep codePackageName equals: builder codePackageName.
 	
@@ -168,7 +170,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 ]
 
 { #category : #tests }
-LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase3_InstallClassesAndSlots [
+LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase3_InstallCode [
 	| builder |
 
 	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.
@@ -191,12 +193,25 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 ]
 
 { #category : #tests }
-LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase4_PopulateGendersCollection [
+LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase4_UpdateSlotModel [
 	| builder person |
 	
 	self removeAllArtifacts.
-	LxxBarebonesPerson verifyClassHasNoDomainSlotNamed: 'gender'.
-	LxxBarebonesSystem verifyClassHasNoDomainSlotNamed: 'genders'.
+	
+	builder := self jobBuilder.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation.
+
+	builder updateSlotModel.
+	builder verifySlotModelUpdates.
+]
+
+{ #category : #tests }
+LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase5_Populate [
+	| builder person |
+	
+	self removeAllArtifacts.
 	
 	builder := self jobBuilder.
 	builder buildJobSteps.
@@ -206,28 +221,10 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builder updateSlotModel.
 	builder verifySlotModelUpdates.
 	
-	"builder populateSlotModel."
-	
 	self currentSystem currentUnitOfWork applyChanges.
 
-	self currentSystem initializeSlotNamed: 'genders'.
-	self currentSystem currentUnitOfWork applyChanges.
-	self assert: self currentSystem genders class name equals: 'LxxGenders'.
-	self assert: self currentSystem genders parent identicalTo: self currentSystem.
-	
-	self assert: self currentSystem genders hasNoElements.
-	'LxxMale' asClass new.
-	'LxxFemale' asClass new.
-	'LxxUnknownGender' asClass new.
-
-	self currentSystem currentUnitOfWork applyChanges.
-
-	self assert: self currentSystem genders hasElements.
-
-	self assert: (self currentSystem genders findWithKey: 'male') class equals: 'LxxMale' asClass.
-	self assert: (self currentSystem genders findWithKey: 'female') class equals: 'LxxFemale' asClass.
-	self assert: (self currentSystem genders findWithKey: 'unknownGender') class equals: 'LxxUnknownGender' asClass.
-
+	builder populateSlotModel.
+	builder verifyPopulateSlotModel.
 
 	person := 'LxxBarebonesPerson' asClass new.
 	

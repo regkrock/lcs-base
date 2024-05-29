@@ -33,7 +33,7 @@ LcsSlotModel >> addSlotDefinitionsTo: aCollection [
 	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
 		aCollection detect: [ :each | each slotName = eachSlotName ]
 			ifNone: [ aCollection add: eachSlotDefinition ] ].
-	self domainClass == 'LcsDomainObject' asClass
+	self domainClass isRootDomainClass
 		ifFalse: [ self superClassSlotModel addSlotDefinitionsTo: aCollection ]
 ]
 

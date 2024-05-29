@@ -33,6 +33,13 @@ LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 	self addMemberOfSlotBuilderForTargetClasses
 ]
 
+{ #category : #builders }
+LcsSingletonCodeClassesBuilderJob >> codeClassBuilder [
+	^ super codeClassBuilder
+		superclassName: 'LcsSingletonCode';
+		yourself
+]
+
 { #category : #configuration }
 LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsSingletonCodeClassBuilder new
@@ -61,23 +68,23 @@ LcsSingletonCodeClassesBuilderJob >> initialize [
 
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
-	self jobSteps .
+	self globalCollectionSlotDefinitionBuilder populateSlotModel.
+	self currentSystem currentUnitOfWork applyChanges.
+	self singletonClassBuilders do: [ :eachStep | eachStep populateSlotModel ].
 	self currentSystem currentUnitOfWork applyChanges
 ]
 
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
-	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder)
-		do: [ :each | each populateSlotModel ]
+	^ self jobSteps stepsWithClass: LcsSingletonCodeClassBuilder
 ]
 
 { #category : #'slot model' }
-LcsSingletonCodeClassesBuilderJob >> updateSlotModel [
-	self jobSteps updateSlotModel.
-	self currentSystem currentUnitOfWork applyChanges	
-]
-
-{ #category : #'slot model' }
-LcsSingletonCodeClassesBuilderJob >> verifySlotModelUpdates [
-	self jobSteps verifySlotModelUpdates
+LcsSingletonCodeClassesBuilderJob >> verifyPopulateSlotModel [
+	self assert: self targetGlobalCollection parent == self module.
+	self assert: self targetGlobalCollection size = self singletonClassBuilders size.
+	self singletonClassBuilders
+		do: [ :eachStep | 
+			self assert: (self targetGlobalCollection findWithKey: eachStep codeName) notNil ].
+	self assert: self targetGlobalCollection defaultInstance notNil
 ]

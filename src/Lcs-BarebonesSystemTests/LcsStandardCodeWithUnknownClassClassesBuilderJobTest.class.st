@@ -10,7 +10,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> jobBuilder [
 		classPrefix: 'Lxx';
 		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
 		codeRootName: 'Title';
-		createCodeInstances: #('Mr' 'Ms');
+		createCodeInstances: #( #('Mr') #('Ms'));
 		moduleClass: LxxBarebonesSystem;
 		installMemberSlotInDomainClass: LxxBarebonesPerson;
 		yourself
@@ -103,11 +103,44 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 ]
 
 { #category : #tests }
-LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase3_InstallClassesAndSlots [
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase3_InstallCode [
 	| builder |
 	builder := self jobBuilder.
 	builder buildJobSteps.
 	builder installCode.
 	builder verifyCodeInstallation
+
+]
+
+{ #category : #tests }
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase4_UpdateSlotModel [
+	| builder |
+	builder := self jobBuilder.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation.
+
+	builder updateSlotModel.
+	builder verifySlotModelUpdates.
+
+
+]
+
+{ #category : #tests }
+LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase5_Populate [
+	| builder |
+	builder := self jobBuilder.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation.
+
+	builder updateSlotModel.
+	builder verifySlotModelUpdates.
+	
+	self currentSystem currentUnitOfWork applyChanges.
+	
+	builder populateSlotModel.
+	builder verifyPopulateSlotModel.
+
 
 ]

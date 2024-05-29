@@ -95,6 +95,11 @@ LcsDomainObject class >> isDomainClass [
 ]
 
 { #category : #testing }
+LcsDomainObject class >> isRootDomainClass [
+	^ self name == #'LcsDomainObject'
+]
+
+{ #category : #testing }
 LcsDomainObject class >> isSlotModelDefined [
 	^ self slotModel notNil 
 ]
@@ -286,6 +291,11 @@ LcsDomainObject >> isIncludedInSystemDomainClasses [
 { #category : #testing }
 LcsDomainObject >> isMemberOfGlobalCollectionIn: aSlotName [
 	^ self parentSlotDefinition isGlobalCollectionRefenceSlotTo: aSlotName
+]
+
+{ #category : #accessing }
+LcsDomainObject >> isRootDomainClass [
+	self class isRootDomainClass
 ]
 
 { #category : #accessing }

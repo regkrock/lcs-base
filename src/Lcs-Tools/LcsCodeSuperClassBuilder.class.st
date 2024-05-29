@@ -5,8 +5,14 @@ Class {
 }
 
 { #category : #accessing }
-LcsCodeSuperClassBuilder class >> superclassName [
+LcsCodeSuperClassBuilder class >> defaultSuperclassName [
 	^ 'LcsCode'
+]
+
+{ #category : #accessing }
+LcsCodeSuperClassBuilder >> initialize [
+	super initialize.
+	self superclassName: self class defaultSuperclassName
 ]
 
 { #category : #accessing }

@@ -7,13 +7,23 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #accessing }
+{ #category : #builders }
 LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self codeCollectionClassBuilder.
 	self addJobStep: self codeParentGlobalCollectionSlotBuilder.
 	self addJobStep: self codeGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> codeClass [
+	^ self codeClassBuilderStep installedClass
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> codeClassBuilderStep [
+	^ (self jobSteps stepsWithClass: LcsCodeSuperClassBuilder) first
 ]
 
 { #category : #accessing }
@@ -35,4 +45,41 @@ LcsStandardCodeClassesBuilderJob >> createCodeInstances: aCollection [
 LcsStandardCodeClassesBuilderJob >> initialize [
 	super initialize.
 	self codeInstances: OrderedCollection new
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> isDefaultInstanceFrom: anArray [
+	anArray size < 4 ifTrue: [ ^ false ].
+	^ anArray at: 4
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> populateSlotModel [
+	self globalCollectionSlotDefinitionBuilder populateSlotModel.
+	self codeInstances
+		do: [ :each | 
+			self codeClass new
+				codeName: (self codeNameFrom: each);
+				codeDescription: (self codeDescriptionFrom: each);
+				shortName: (self shortNameFrom: each);
+				isDefaultInstance: (self isDefaultInstanceFrom: each) ].
+	self currentSystem currentUnitOfWork applyChanges.
+	self targetGlobalCollection hasUnknownInstance ifFalse: [
+		self codeClass new
+				codeName: 'unknown';
+				codeDescription: '';
+				shortName: '';
+				isDefaultInstance: self targetGlobalCollection hasDefaultInstance not].
+	self currentSystem currentUnitOfWork applyChanges.
+
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> verifyPopulateSlotModel [
+	self assert: self targetGlobalCollection parent == self module.
+	self assert: self targetGlobalCollection size = (self codeInstances size + 1).
+	self codeInstances
+		do: [ :each | 
+			self assert: (self targetGlobalCollection findWithKey: (self codeNameFrom: each)) notNil ].
+	self assert: self targetGlobalCollection defaultInstance notNil
 ]

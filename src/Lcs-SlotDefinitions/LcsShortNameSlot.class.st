@@ -8,6 +8,5 @@ Class {
 LcsShortNameSlot >> initialize [
 	super initialize.
 	self 
-		slotName: 'shortName';
-		initialValueBlock: [ :domainClass | domainClass defaultCodeDescription ]
+		slotName: 'shortName'
 ]

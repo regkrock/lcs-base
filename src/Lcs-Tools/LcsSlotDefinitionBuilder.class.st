@@ -73,6 +73,11 @@ LcsSlotDefinitionBuilder >> ensureSlotDoesNotAlreadyExist [
 		ifTrue: [ self error: 'Slot ' , self slotName , 'already exists' ]
 ]
 
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> getterSelector [
+	^ self slotName asSymbol
+]
+
 { #category : #iniitialize }
 LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [ 
 	self parent: aBuilderOrBuilderJob

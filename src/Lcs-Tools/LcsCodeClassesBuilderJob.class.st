@@ -83,6 +83,12 @@ LcsCodeClassesBuilderJob >> codeCollectionSlotName: aString [
 	codeCollectionSlotName := aString
 ]
 
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeDescriptionFrom: anArray [
+	anArray size < 2 ifTrue: [ ^ (anArray at: 1) capitalized ].
+	^ anArray at: 2
+]
+
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
@@ -90,6 +96,12 @@ LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
 		slotName: self codeCollectionSlotName;
 		moduleClass: self moduleClass;
 		yourself
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> codeNameFrom: anArray [
+	(anArray at: 1) first isLowercase ifTrue: [ ^ anArray at: 1 ].
+	^ (anArray at: 1) first asString asLowercase , ((anArray at: 1) copyFrom: 2 to: (anArray at: 1) size)
 ]
 
 { #category : #builders }
@@ -135,6 +147,11 @@ LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: eachClass [
 		yourself
 ]
 
+{ #category : #'slot model' }
+LcsCodeClassesBuilderJob >> globalCollectionSlotDefinitionBuilder [
+	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
+]
+
 { #category : #accessing }
 LcsCodeClassesBuilderJob >> initialize [
 	super initialize.
@@ -144,6 +161,11 @@ LcsCodeClassesBuilderJob >> initialize [
 { #category : #configuration }
 LcsCodeClassesBuilderJob >> installMemberSlotInDomainClass: aClass [ 
 	self targetDomainClasses add: aClass
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> module [
+	^ self currentSystem moduleNamed: self moduleName
 ]
 
 { #category : #accessing }
@@ -162,6 +184,12 @@ LcsCodeClassesBuilderJob >> moduleName [
 ]
 
 { #category : #accessing }
+LcsCodeClassesBuilderJob >> shortNameFrom: anArray [
+	anArray size < 3 ifTrue: [ ^ self codeDescriptionFrom: anArray ].
+	^ anArray at: 3
+]
+
+{ #category : #accessing }
 LcsCodeClassesBuilderJob >> targetDomainClasses [
 	^ targetDomainClasses
 ]
@@ -169,4 +197,25 @@ LcsCodeClassesBuilderJob >> targetDomainClasses [
 { #category : #accessing }
 LcsCodeClassesBuilderJob >> targetDomainClasses: aCollection [
 	targetDomainClasses := aCollection
+]
+
+{ #category : #'slot model' }
+LcsCodeClassesBuilderJob >> targetGlobalCollection [
+	^ self module perform: self globalCollectionSlotDefinitionBuilder getterSelector
+]
+
+{ #category : #'slot model' }
+LcsCodeClassesBuilderJob >> updateSlotModel [
+	self jobSteps updateSlotModel.
+	self currentSystem currentUnitOfWork applyChanges	
+]
+
+{ #category : #verification }
+LcsCodeClassesBuilderJob >> verifyPopulateSlotModel [
+	self subclassResponsibility
+]
+
+{ #category : #'slot model' }
+LcsCodeClassesBuilderJob >> verifySlotModelUpdates [
+	self jobSteps verifySlotModelUpdates
 ]

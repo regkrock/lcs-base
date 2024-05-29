@@ -10,7 +10,7 @@ LcsStandardCodeClassesBuilderJobTest >> jobBuilder [
 		classPrefix: 'Lxx';
 		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
 		codeRootName: 'Talent';
-		createCodeInstances: #('Guitar' 'Saxaphone');
+		createCodeInstances: #(#('Guitar') #('Saxaphone'));
 		moduleClass: LxxBarebonesSystem;
 		installMemberSlotInDomainClass: LxxBarebonesPerson;
 		yourself
@@ -96,10 +96,41 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 ]
 
 { #category : #tests }
-LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson_Phase3_InstallClassesAndSlots [
+LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson_Phase3_InstallCode [
 	| builder |
 	builder := self jobBuilder.
 	builder buildJobSteps.
 	builder installCode.
 	builder verifyCodeInstallation
+]
+
+{ #category : #tests }
+LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson_Phase4_UpdateSlotModel [
+	| builder |
+	builder := self jobBuilder.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation.
+
+	builder updateSlotModel.
+	builder verifySlotModelUpdates.
+
+]
+
+{ #category : #tests }
+LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstallTalentSlotInPerson_Phase5_Populate [
+	| builder |
+	builder := self jobBuilder.
+	builder buildJobSteps.
+	builder installCode.
+	builder verifyCodeInstallation.
+
+	builder updateSlotModel.
+	builder verifySlotModelUpdates.
+
+	self currentSystem currentUnitOfWork applyChanges.
+
+	builder populateSlotModel.
+	builder verifyPopulateSlotModel.
+
 ]

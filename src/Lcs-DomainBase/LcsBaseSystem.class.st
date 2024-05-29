@@ -69,6 +69,7 @@ LcsBaseSystem >> baseDomainModelClasses [
 		add: LcsBaseSystem;
 		add: LcsDomainCollection;
 		add: LcsCode;
+		add: LcsSingletonCode;
 		add: LcsCodes;
 		add: LcsBaseConfiguration;
 		yourself
