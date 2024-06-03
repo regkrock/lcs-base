@@ -6,7 +6,7 @@ Class {
 		'target',
 		'slotDefinitionSelector',
 		'targetClassName',
-		'moduleClass'
+		'targetModuleClass'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -101,16 +101,6 @@ LcsSlotDefinitionBuilder >> isInstanceVariableAlreadyCreated [
 	^ self target allInstVarNames includes: self slotName
 ]
 
-{ #category : #accessing }
-LcsSlotDefinitionBuilder >> moduleClass [
-	^ moduleClass ifNil: [ moduleClass := #LcsBaseModule asClass moduleClassNamed: self moduleName ]
-]
-
-{ #category : #accessing }
-LcsSlotDefinitionBuilder >> moduleClass: aModuleClass [
-	moduleClass := aModuleClass
-]
-
 { #category : #configuration }
 LcsSlotDefinitionBuilder >> slotDefinitionClass [
 	^ self class slotDefinitionClass
@@ -167,12 +157,22 @@ LcsSlotDefinitionBuilder >> target: aClass [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClassName [
-	^ targetClassName ifNil: [ targetClassName := self moduleClass name ]
+	^ targetClassName ifNil: [ targetClassName := self targetModuleClass name asString ]
 ]
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClassName: anObject [
 	targetClassName := anObject
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> targetModuleClass [
+	^ targetModuleClass ifNil: [ targetModuleClass := #LcsBaseModule asClass moduleClassNamed: self targetModuleName ]
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> targetModuleClass: aModuleClass [
+	targetModuleClass := aModuleClass
 ]
 
 { #category : #install }

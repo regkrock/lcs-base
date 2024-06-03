@@ -15,8 +15,8 @@ GtItemAdvice >> compute [
 ]
 
 { #category : #accessing }
-GtItemAdvice >> compute: arg1 [
-	compute := arg1
+GtItemAdvice >> compute: aBlock [
+	compute := aBlock
 ]
 
 { #category : #testing }
@@ -40,6 +40,6 @@ GtItemAdvice >> result [
 ]
 
 { #category : #enumerating }
-GtItemAdvice >> resultsDo: arg1 [
-	self result ifNotNil: arg1
+GtItemAdvice >> resultsDo: aBlock [
+	self result ifNotNil: aBlock
 ]

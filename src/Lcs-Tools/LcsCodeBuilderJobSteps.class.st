@@ -43,17 +43,6 @@ LcsCodeBuilderJobSteps >> classPrefix: aString [
 ]
 
 { #category : #accessing }
-LcsCodeBuilderJobSteps >> codePackageName [
-	^ codePackageName
-]
-
-{ #category : #accessing }
-LcsCodeBuilderJobSteps >> codePackageName: aString [
-	self collection
-		do: [ :each | (each respondsTo: #codePackageName:) ifTrue: [ each codePackageName: aString ] ]
-]
-
-{ #category : #accessing }
 LcsCodeBuilderJobSteps >> collection [
 	^ collection
 ]
@@ -117,6 +106,17 @@ LcsCodeBuilderJobSteps >> populateSlotModel [
 { #category : #accessing }
 LcsCodeBuilderJobSteps >> stepsWithClass: aClass [
 	^ self collection select: [ :each | each class  == aClass ]
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJobSteps >> targetPackageName [
+	^ codePackageName
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJobSteps >> targetPackageName: aString [
+	self collection
+		do: [ :each | (each respondsTo: #targetPackageName:) ifTrue: [ each targetPackageName: aString ] ]
 ]
 
 { #category : #accessing }

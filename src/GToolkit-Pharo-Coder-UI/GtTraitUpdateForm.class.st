@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #accessing }
-GtTraitUpdateForm class >> onTrait: arg1 [
-	^ self new onTrait: arg1
+GtTraitUpdateForm class >> onTrait: aTrait [
+	^ self new onTrait: aTrait
 ]
 
 { #category : #accessing }
@@ -16,37 +16,38 @@ GtTraitUpdateForm >> classVarsDescription [
 
 { #category : #accessing }
 GtTraitUpdateForm >> commit [
-	| tmp1 tmp3 |
-	tmp1 := self commitPackage categoryName.
-	tmp3 := newClassName asClass.
-	tmp3 classSide slots
-		do: [ :arg1 | (RBRemoveInstanceVariableChange remove: arg1 name from: tmp3 classSide) execute ].
-	tmp3 := Smalltalk classInstaller
-			make: [ :arg2 | 
-				arg2
+	| category aClass |
+	category := self commitPackage categoryName.
+	aClass := newClassName asClass.
+	aClass classSide slots
+		do: [ :aSlot | 
+			(RBRemoveInstanceVariableChange remove: aSlot name from: aClass classSide)
+				execute ].
+	aClass := Smalltalk classInstaller
+			make: [ :builder | 
+				builder
 					name: newClassName;
-					category: tmp1;
+					category: category;
 					slots: slots;
 					traitComposition: self traitComposition;
 					beTrait ].
-	self installClassSlotsOn: tmp3.
-	^ tmp3
+	self installClassSlotsOn: aClass.
+	^ aClass
 ]
 
 { #category : #accessing }
-GtTraitUpdateForm >> onTrait: arg1 [
-	| tmp2 |
+GtTraitUpdateForm >> onTrait: aTrait [
+	self newClassName: aTrait name.
+	self slots: (aTrait slots collect: #name).
+	self traits: (aTrait traits collect: #name).
 	self
-		newClassName: arg1 name;
-		slots: (arg1 slots collect: #name);
-		traits: (arg1 traits collect: #name).
-	tmp2 := GtPackageAndTagName new.
-	tmp2 packageName: arg1 package name.
+		packageAndTagName: (GtPackageAndTagName new
+				packageName: aTrait package name;
+				tagName: (aTrait package classTagForClass: aTrait) name).
+	self classSlots: (aTrait classSide slots collect: #name).
 	self
-		packageAndTagName: (tmp2 tagName: (arg1 package classTagForClass: arg1) name);
-		classSlots: (arg1 classSide slots collect: #name);
-		superSlots: ((arg1 allSlots collect: #name) asSet
-					difference: (arg1 slots collect: #name) asSet)
+		superSlots: ((aTrait allSlots collect: #name) asSet
+				difference: (aTrait slots collect: #name) asSet)
 ]
 
 { #category : #accessing }

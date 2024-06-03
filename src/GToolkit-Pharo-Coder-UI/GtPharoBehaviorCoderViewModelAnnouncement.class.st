@@ -13,6 +13,6 @@ GtPharoBehaviorCoderViewModelAnnouncement >> pharoBehaviorCoderViewModel [
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderViewModelAnnouncement >> pharoBehaviorCoderViewModel: arg1 [
-	pharoBehaviorCoderViewModel := arg1
+GtPharoBehaviorCoderViewModelAnnouncement >> pharoBehaviorCoderViewModel: aCoderViewModel [
+	pharoBehaviorCoderViewModel := aCoderViewModel
 ]

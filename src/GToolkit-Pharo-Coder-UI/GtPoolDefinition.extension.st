@@ -1,8 +1,8 @@
 Extension { #name : #GtPoolDefinition }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtPoolDefinition >> browseFrom: arg1 [
+GtPoolDefinition >> browseFrom: anEvent [
 	self class environment
 		at: self name
-		ifPresent: [ :arg2 | arg1 currentTarget phlow spawnTool: (GtClassCoderTool observedClass: arg2) ]
+		ifPresent: [ :aPool | anEvent currentTarget phlow spawnTool: (GtClassCoderTool observedClass: aPool) ]
 ]

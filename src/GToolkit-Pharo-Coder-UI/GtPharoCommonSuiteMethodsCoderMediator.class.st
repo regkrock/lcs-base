@@ -28,14 +28,12 @@ GtPharoCommonSuiteMethodsCoderMediator class >> enableSubscribeToMethodCoder [
 ]
 
 { #category : #'api - instance creation' }
-GtPharoCommonSuiteMethodsCoderMediator class >> forMethodsCoder: arg1 suiteModel: arg2 viewModel: arg3 [
-	| tmp2 |
-	tmp2 := self new.
-	tmp2
-		methodsCoder: arg1;
-		suiteModel: arg2;
-		suiteViewModel: arg3.
-	^ tmp2 connect
+GtPharoCommonSuiteMethodsCoderMediator class >> forMethodsCoder: aMethodsCoder suiteModel: aSuiteModel viewModel: aSuiteViewModel [
+	^ self new
+		methodsCoder: aMethodsCoder;
+		suiteModel: aSuiteModel;
+		suiteViewModel: aSuiteViewModel;
+		connect
 ]
 
 { #category : #'private - testing' }
@@ -45,6 +43,8 @@ GtPharoCommonSuiteMethodsCoderMediator >> canSubscribeToMethodCoder [
 
 { #category : #'private - subscriptions' }
 GtPharoCommonSuiteMethodsCoderMediator >> connect [
+	"Create a new stream from the methodsCoder to suiteModel"
+
 	self subclassResponsibility
 ]
 
@@ -55,102 +55,106 @@ GtPharoCommonSuiteMethodsCoderMediator >> mediatorLabel [
 
 { #category : #accessing }
 GtPharoCommonSuiteMethodsCoderMediator >> methodsCoder [
-	^ methodsCoder
+
+	^ methodsCoder 
 ]
 
 { #category : #accessing }
-GtPharoCommonSuiteMethodsCoderMediator >> methodsCoder: arg1 [
+GtPharoCommonSuiteMethodsCoderMediator >> methodsCoder: aMethodsCoder [
 	self
 		assert: [ methodsCoder isNil ]
 		description: [ 'Methods coder can be initialized only once' ].
-	methodsCoder := arg1.
-	arg1
+	methodsCoder := aMethodsCoder.
+
+	aMethodsCoder
 		when: GtStreamingCodersStreamChanged
 		send: #onCodersStreamChanged:
 		to: self
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoCommonSuiteMethodsCoderMediator >> onCoderMethodAdded: arg1 [
-	| tmp2 |
-	tmp2 := GtPharoMethodCoderAddedSignal new.
-	tmp2
+GtPharoCommonSuiteMethodsCoderMediator >> onCoderMethodAdded: anAnnouncement [
+	GtPharoMethodCoderAddedSignal new
 		mediator: self;
-		announcement: arg1;
+		announcement: anAnnouncement;
 		emit.
+
 	self connect
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoCommonSuiteMethodsCoderMediator >> onCoderMethodModified: arg1 [
-	| tmp2 |
-	tmp2 := GtPharoMethodCoderModifiedSignal new.
-	tmp2
+GtPharoCommonSuiteMethodsCoderMediator >> onCoderMethodModified: anAnnouncement [
+	GtPharoMethodCoderModifiedSignal new
 		mediator: self;
-		announcement: arg1;
+		announcement: anAnnouncement;
 		emit.
+
 	self connect
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoCommonSuiteMethodsCoderMediator >> onCoderMethodRemoved: arg1 [
-	| tmp1 tmp3 |
-	tmp3 := GtPharoMethodCoderRemovedSignal new.
-	tmp3
+GtPharoCommonSuiteMethodsCoderMediator >> onCoderMethodRemoved: anAnnouncement [
+	GtPharoMethodCoderRemovedSignal new
 		mediator: self;
-		announcement: arg1;
+		announcement: anAnnouncement;
 		emit.
-	(tmp1 := arg1 coder) ifNotNil: [ tmp1 unsubscribe: self ].
+
+	anAnnouncement coder ifNotNil: [ :aCoder | aCoder unsubscribe: self ].
 	self connect
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoCommonSuiteMethodsCoderMediator >> onCodersStreamChanged: arg1 [
-	| tmp2 |
+GtPharoCommonSuiteMethodsCoderMediator >> onCodersStreamChanged: anAnnouncement [
 	self methodsCoder ifNil: [ ^ self ].
 	self suiteModel ifNil: [ ^ self ].
-	tmp2 := GtPharoCodersStreamChangedSignal new.
-	tmp2
+
+	GtPharoCodersStreamChangedSignal new
 		mediator: self;
-		announcement: arg1;
+		announcement: anAnnouncement;
 		emit.
-	((arg1 isDueTo: GtStreamingCodersAddedReason)
-		or: [ (arg1 isDueTo: GtStreamingCodersRemovedReason)
-				or: [ arg1 isDueTo: GtStreamingCodersSwappedReason ] ]) ifFalse: [ ^ self ].
+
+	((anAnnouncement isDueTo: GtStreamingCodersAddedReason)
+		or: [ (anAnnouncement isDueTo: GtStreamingCodersRemovedReason)
+				or: [ anAnnouncement isDueTo: GtStreamingCodersSwappedReason ] ])
+		ifFalse: [ ^ self ].
+
 	self connect
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoCommonSuiteMethodsCoderMediator >> onPharoMethodCoderCompiled: arg1 [
-	| tmp2 |
-	tmp2 := GtPharoMethodCoderCompiledSignal new.
-	tmp2
+GtPharoCommonSuiteMethodsCoderMediator >> onPharoMethodCoderCompiled: anAnnouncement [
+	GtPharoMethodCoderCompiledSignal new
 		mediator: self;
-		announcement: arg1;
+		announcement: anAnnouncement;
 		emit.
+
 	self connect
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoCommonSuiteMethodsCoderMediator >> onSuiteSelectedStateChanged: arg1 [
+GtPharoCommonSuiteMethodsCoderMediator >> onSuiteSelectedStateChanged: anAnnouncement [
+	"Set an example/test case state filter into methods coder."
+
 	self subclassResponsibility
 ]
 
 { #category : #'private - subscriptions' }
-GtPharoCommonSuiteMethodsCoderMediator >> subscribeToMethodCoder: arg1 [
-	| tmp2 |
+GtPharoCommonSuiteMethodsCoderMediator >> subscribeToMethodCoder: aMethodCoder [
 	self canSubscribeToMethodCoder ifFalse: [ ^ self ].
-	(arg1 announcer hasSubscriber: self) ifTrue: [ ^ self ].
-	arg1 weak
+
+	(aMethodCoder announcer hasSubscriber: self) ifTrue: [ ^ self ].
+
+	aMethodCoder weak
 		when: GtCoderMethodModified
-			send: #onCoderMethodModified:
-			to: self;
+		send: #onCoderMethodModified:
+		to: self.
+	aMethodCoder weak
 		when: GtPharoMethodCoderCompiled
-			send: #onPharoMethodCoderCompiled:
-			to: self.
-	tmp2 := GtPharoSubscribedToMethodCoderSignal new.
-	tmp2
-		methodCoder: arg1;
+		send: #onPharoMethodCoderCompiled:
+		to: self.
+
+	GtPharoSubscribedToMethodCoderSignal new
+		methodCoder: aMethodCoder;
 		mediator: self;
 		emit
 ]
@@ -158,34 +162,38 @@ GtPharoCommonSuiteMethodsCoderMediator >> subscribeToMethodCoder: arg1 [
 { #category : #'private - subscriptions' }
 GtPharoCommonSuiteMethodsCoderMediator >> subscriptionsStream [
 	^ self methodsCoder codersStream
-		relay: [ :arg1 | self subscribeToMethodCoder: arg1 ]
+		relay: [ :aMethodCoder | self subscribeToMethodCoder: aMethodCoder ]
 ]
 
 { #category : #accessing }
 GtPharoCommonSuiteMethodsCoderMediator >> suiteModel [
-	^ suiteModel
+
+	^ suiteModel 
 ]
 
 { #category : #accessing }
-GtPharoCommonSuiteMethodsCoderMediator >> suiteModel: arg1 [
+GtPharoCommonSuiteMethodsCoderMediator >> suiteModel: aSuiteModel [
 	self
 		assert: [ suiteModel isNil ]
 		description: [ 'Suite model can be initialized only once' ].
-	suiteModel := arg1
+
+	suiteModel := aSuiteModel
 ]
 
 { #category : #accessing }
 GtPharoCommonSuiteMethodsCoderMediator >> suiteViewModel [
-	^ suiteViewModel
+
+	^ suiteViewModel 
 ]
 
 { #category : #accessing }
-GtPharoCommonSuiteMethodsCoderMediator >> suiteViewModel: arg1 [
+GtPharoCommonSuiteMethodsCoderMediator >> suiteViewModel: aViewModel [
 	self
 		assert: [ suiteViewModel isNil ]
 		description: [ 'Suite view model can be initialized only once' ].
-	suiteViewModel := arg1.
-	arg1
+	suiteViewModel := aViewModel.
+
+	aViewModel
 		when: GtPharoSuiteSelectedStateChanged
 		send: #onSuiteSelectedStateChanged:
 		to: self

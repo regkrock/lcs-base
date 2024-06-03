@@ -16,16 +16,17 @@ GtChangesElement >> applyChanges [
 ]
 
 { #category : #executing }
-GtChangesElement >> applyChangesWithProgress: arg1 [
-	| tmp1 tmp2 |
-	tmp1 := RBCompositeRefactoryChange named: changes name.
-	tmp2 := (changesTree viewModel root value flatCollect: #allChanges)
-			reject: [ :arg2 | arg2 isEnabled ].
-	tmp1
-		changes: (changesTree viewModel root value collect: [ :arg3 | arg3 change copy ])
+GtChangesElement >> applyChangesWithProgress: aBlock [
+	| changesToCompile disabledChanges |
+	changesToCompile := RBCompositeRefactoryChange named: changes name.
+	disabledChanges := (changesTree viewModel root value flatCollect: #allChanges)
+			reject: [ :each | each isEnabled ].
+	changesToCompile
+		changes: (changesTree viewModel root value collect: [ :each | each change copy ])
 				asOrderedCollection.
-	tmp2 do: [ :arg4 | tmp1 recursivelyRemoveChange: arg4 change ].
-	^ tmp1 gtExecuteWithNotificationWithProgress: arg1
+	disabledChanges
+		do: [ :each | changesToCompile recursivelyRemoveChange: each change ].
+	^ changesToCompile gtExecuteWithNotificationWithProgress: aBlock
 ]
 
 { #category : #accessing }
@@ -34,33 +35,29 @@ GtChangesElement >> changes [
 ]
 
 { #category : #accessing }
-GtChangesElement >> changes: arg1 [
-	changes := arg1.
+GtChangesElement >> changes: aRefactoryChange [
+	changes := aRefactoryChange.
 	changesTree
 		items: {GtUserActivatableChange fromChange: changes}
-		lazy: [ :arg2 | arg2 changes ]
+		lazy: [ :each | each changes ]
 ]
 
 { #category : #accessing }
-GtChangesElement >> expandUpTo: arg1 [
-	changesTree expandUpTo: arg1
+GtChangesElement >> expandUpTo: anInteger [
+	changesTree expandUpTo: anInteger
 ]
 
 { #category : #initialization }
 GtChangesElement >> initialize [
-	| tmp2 |
 	super initialize.
-	self
-		layout: BlLinearLayout vertical;
-		matchParent;
-		padding: (BlInsets all: 10).
-	tmp2 := BrSimpleTree new.
-	tmp2
-		nodeType: [ :arg1 :arg2 | arg2 value elementClass ];
-		nodeStencil: [ :arg3 | arg3 new ];
-		nodeDataBinder: [ :arg4 :arg5 | arg4 activatableChange: arg5 ].
-	changesTree := tmp2 yourself.
-	self
-		addAptitude: (BrLayoutResizerAptitude new inherit: changesTree);
-		addChild: changesTree
+	self layout: BlLinearLayout vertical.
+	self matchParent.
+	self padding: (BlInsets all: 10).
+	changesTree := BrSimpleTree new
+			nodeType: [ :aTypeFactory :aTreeNode | aTreeNode value elementClass ];
+			nodeStencil: [ :aNodeType | aNodeType new ];
+			nodeDataBinder: [ :eachElement :eachUserActivatableChange | eachElement activatableChange: eachUserActivatableChange ];
+			yourself.
+	self addAptitude: (BrLayoutResizerAptitude new inherit: changesTree).
+	self addChild: changesTree
 ]

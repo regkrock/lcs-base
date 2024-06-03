@@ -1,27 +1,23 @@
 Extension { #name : #GtSearchMethodsWithClassPatternFilter }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtSearchMethodsWithClassPatternFilter class >> filterDescriptorFor: arg1 [
-	| tmp2 |
-	arg1 isForClass ifTrue: [ ^ nil ].
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg2 | self pattern: arg2 ];
+GtSearchMethodsWithClassPatternFilter class >> filterDescriptorFor: aMethodsCoder [
+	aMethodsCoder isForClass
+		ifTrue: [ ^ nil ].
+
+	^ GtFilterDescriptor new
+		creator: [ :value | self pattern: value ];
 		named: 'Class';
-		order: 20.
-	^ tmp2
-		completion: [ GtStringsCompletionStrategy new completions: [ arg1 classNames ] ]
+		order: 20;
+		completion: [ GtStringsCompletionStrategy new completions: [ aMethodsCoder classNames ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtSearchMethodsWithClassPatternFilter class >> globalFilterDescriptor [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg1 | self pattern: arg1 ];
+	^ GtFilterDescriptor new
+		creator: [ :value | self pattern: value ];
 		named: 'Class';
-		order: 20.
-	^ tmp2
+		order: 20;
 		completion: [ GtStringsCompletionStrategy new
 				completions: [ GtPharoIndex current classNameTree ] ]
 ]

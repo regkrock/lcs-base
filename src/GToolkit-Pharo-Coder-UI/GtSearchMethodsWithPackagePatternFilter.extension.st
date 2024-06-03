@@ -1,39 +1,30 @@
 Extension { #name : #GtSearchMethodsWithPackagePatternFilter }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtSearchMethodsWithPackagePatternFilter class >> filterDescriptorFor: arg1 [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg2 | self pattern: arg2 ];
+GtSearchMethodsWithPackagePatternFilter class >> filterDescriptorFor: aMethodsCoder [
+	^ GtFilterDescriptor new
+		creator: [ :value | self pattern: value ];
 		named: 'Package';
-		order: 30.
-	^ tmp2
-		completion: [ GtStringsCompletionStrategy new completions: [ arg1 packageNames ] ]
+		order: 30;
+		completion: [ GtStringsCompletionStrategy new completions: [ aMethodsCoder packageNames ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtSearchMethodsWithPackagePatternFilter class >> globalFilterDescriptor [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg1 | self pattern: arg1 ];
+	^ GtFilterDescriptor new
+		creator: [ :value | self pattern: value ];
 		named: 'Package';
-		order: 30.
-	^ tmp2
+		order: 30;
 		completion: [ GtStringsCompletionStrategy new
 				completions: [ GtPrefixTree withAll: RPackageOrganizer default packageNames ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtSearchMethodsWithPackagePatternFilter class >> packageFilterDescriptor [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg1 | self pattern: arg1 ];
+	^ GtFilterDescriptor new
+		creator: [ :value | self pattern: value ];
 		named: 'Package';
-		order: 30.
-	^ tmp2
+		order: 30;
 		completion: [ GtStringsCompletionStrategy new
 				completions: [ GtPrefixTree withAll: RPackageOrganizer default packageNames ] ]
 ]

@@ -10,8 +10,8 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 	builder := LcsCodeClassBuilder  new.
 	builder 
 		newClassName: 'LxxMale';
-		codePackageName: 'Lcs-BarebonesSystem';
-		superclassName: 'LxxGender';
+		targetPackageName: 'Lcs-BarebonesSystem';
+		targetSuperclassName: 'LxxGender';
 		rootName: 'Male'.
 	self assert: builder codeClassDefintion equals: 'LxxGender subclass: #LxxMale
 		instanceVariableNames: ''''

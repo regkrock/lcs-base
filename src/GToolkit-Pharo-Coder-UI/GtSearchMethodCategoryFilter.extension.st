@@ -1,26 +1,22 @@
 Extension { #name : #GtSearchMethodCategoryFilter }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtSearchMethodCategoryFilter class >> filterDescriptorFor: arg1 [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg2 | self forCategory: arg2 ];
+GtSearchMethodCategoryFilter class >> filterDescriptorFor: aMethodsCoder [
+	^ GtFilterDescriptor new
+		creator: [ :value | self forCategory: value ];
 		named: 'Category';
 		order: 15;
 		beNotDefault;
-		completion: [ GtStringsCompletionStrategy new completions: [ arg1 categories ] ].
-	^ tmp2 emptyDefaultValue: 'All'
+		completion: [ GtStringsCompletionStrategy new completions: [ aMethodsCoder categories ] ];
+		emptyDefaultValue: 'All'
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtSearchMethodCategoryFilter class >> globalFilterDescriptor [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg1 | self forCategory: arg1 ];
+	^ GtFilterDescriptor new
+		creator: [ :value | self forCategory: value ];
 		named: 'Category';
 		order: 15;
-		beNotDefault.
-	^ tmp2 emptyDefaultValue: 'All'
+		beNotDefault;
+		emptyDefaultValue: 'All'
 ]

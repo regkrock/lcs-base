@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsUnknownCodeClassBuilder,
-	#superclass : #LcsCodeClassBuilder,
+	#superclass : #LcsSingletonCodeClassBuilder,
 	#category : #'Lcs-Tools'
 }
 

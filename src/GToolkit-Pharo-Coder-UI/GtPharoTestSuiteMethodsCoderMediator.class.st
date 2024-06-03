@@ -6,14 +6,15 @@ Class {
 
 { #category : #'private - streaming' }
 GtPharoTestSuiteMethodsCoderMediator >> connect [
-	| tmp1 tmp3 |
-	tmp1 := self testCasesStream.
-	tmp3 := GtPharoNewCodersStreamSignal new.
-	tmp3
+	| aTestCaseStream |
+	aTestCaseStream := self testCasesStream.
+
+	GtPharoNewCodersStreamSignal new
 		mediator: self;
-		stream: tmp1;
+		stream: aTestCaseStream;
 		emit.
-	self suiteModel stream: tmp1
+
+	self suiteModel stream: aTestCaseStream
 ]
 
 { #category : #accessing }
@@ -22,17 +23,19 @@ GtPharoTestSuiteMethodsCoderMediator >> mediatorLabel [
 ]
 
 { #category : #'private - announcement handling' }
-GtPharoTestSuiteMethodsCoderMediator >> onSuiteSelectedStateChanged: arg1 [
-	| tmp2 |
+GtPharoTestSuiteMethodsCoderMediator >> onSuiteSelectedStateChanged: anAnnouncement [
 	self methodsCoder ifNil: [ ^ self ].
 	self suiteModel ifNil: [ ^ self ].
-	tmp2 := GtPharoTestCaseStateFilter new.
-	tmp2 resultState: arg1 state.
-	self methodsCoder additionalFilters: (tmp2 pharoTestSuite: self suiteModel)
+
+	self methodsCoder
+		additionalFilters: (GtPharoTestCaseStateFilter new
+				resultState: anAnnouncement state;
+				pharoTestSuite: self suiteModel)
 ]
 
 { #category : #'private - streaming' }
 GtPharoTestSuiteMethodsCoderMediator >> testCasesStream [
-	^ (self subscriptionsStream map: [ :arg1 | arg1 testCase ])
-		filter: [ :arg2 | arg2 isNotNil ]
+	^ (self subscriptionsStream 
+		map: [ :aMethodCoder | aMethodCoder testCase ])
+		filter: [ :aTestCase | aTestCase isNotNil ]
 ]

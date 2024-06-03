@@ -13,8 +13,8 @@ LcsSingletonCodeClassesBuilderJob >> addCodeSubclassBuilders [
 		do: [ :eachBuilder | 
 			self
 				addJobStep: (eachBuilder
-						superclassName: self codeClassName;
-						codePackageName: self codePackageName;
+						targetSuperclassName: self domainClassName;
+						targetPackageName: self targetPackageName;
 						yourself) ]
 ]
 
@@ -28,7 +28,7 @@ LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addCodeSubclassBuilders.
 	self addJobStep: self codeCollectionClassBuilder.
-	self addJobStep: self codeParentGlobalCollectionSlotBuilder.
+	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codeGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 ]
@@ -36,7 +36,7 @@ LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> codeClassBuilder [
 	^ super codeClassBuilder
-		superclassName: 'LcsSingletonCode';
+		targetSuperclassName: 'LcsSingletonCode';
 		yourself
 ]
 
@@ -45,8 +45,8 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsSingletonCodeClassBuilder new
 		rootName: aString;
 		newClassName: self classPrefix , aString;
-		superclassName: self codeClassName;
-		codePackageName: self codePackageName;
+		targetSuperclassName: self domainClassName;
+		targetPackageName: self targetPackageName;
 		yourself
 ]
 
@@ -68,7 +68,7 @@ LcsSingletonCodeClassesBuilderJob >> initialize [
 
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
-	self globalCollectionSlotDefinitionBuilder populateSlotModel.
+	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
 	self singletonClassBuilders do: [ :eachStep | eachStep populateSlotModel ].
 	self currentSystem currentUnitOfWork applyChanges
@@ -81,7 +81,7 @@ LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
 
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> verifyPopulateSlotModel [
-	self assert: self targetGlobalCollection parent == self module.
+	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection size = self singletonClassBuilders size.
 	self singletonClassBuilders
 		do: [ :eachStep | 

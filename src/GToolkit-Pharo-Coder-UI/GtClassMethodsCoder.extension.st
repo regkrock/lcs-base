@@ -1,111 +1,104 @@
 Extension { #name : #GtClassMethodsCoder }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassMethodsCoder >> categoryFilter: arg1 [
+GtClassMethodsCoder >> categoryFilter: aView [
 	<gtFilterTypes>
-	| tmp2 |
-	tmp2 := arg1 explicit.
-	tmp2
+	^ aView explicit
 		title: 'Categories';
-		priority: 10.
-	^ tmp2
-		stencil: [ | tmp3 tmp4 |
-			tmp3 := class organization categories asSet.
-			tmp3 addAll: class class organization categories.
-			tmp3 := tmp3 asSortedCollection.
-			tmp4 := GtCoderFilterList new.
-			tmp4
+		priority: 10;
+		stencil: [
+			|  categories anElement |
+			categories := class organization categories asSet.
+			categories addAll: class class organization categories.
+			categories := categories asSortedCollection.
+			
+			anElement := GtCoderFilterList new.
+			anElement
 				matchParent;
-				items: tmp3
-					title: [ :arg2 | arg2 ]
-					action: [ :arg3 | self setFilters: {GtSearchMethodCategoryFilter forCategory: arg3} source: tmp4 ] ]
+				items: categories 
+				title: [ :aCategory | aCategory ]
+				action: [ :aCategory | self 
+					setFilters: { (GtSearchMethodCategoryFilter
+						forCategory: aCategory) }
+					source: anElement ] ].
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassMethodsCoder >> classSlotFilter: arg1 [
+GtClassMethodsCoder >> classSlotFilter: aView [
 	<gtFilterTypes>
-	| tmp2 |
-	tmp2 := arg1 explicit.
-	tmp2
+	^ aView explicit
 		title: 'Class Slots';
-		priority: 40.
-	^ tmp2
-		stencil: [ | tmp3 |
-			tmp3 := GtCoderFilterList new.
-			tmp3
+		priority: 40;
+		stencil: [ | anElement |
+			anElement := GtCoderFilterList new.
+			anElement
 				matchParent;
-				items: (class class allInstVarNames sorted: [ :arg2 :arg3 | arg2 < arg3 ])
-					title: [ :arg4 | arg4 ]
-					action: [ :arg5 | 
+				items: (class class allInstVarNames sorted: [ :a :b | a < b ])
+					title: [ :aVariable | aVariable ]
+					action: [ :aVariable | 
 						self
 							setFilters: {GtSearchClassSlotReferenceFilter
 										forClass: self classOrMetaClass class
-										andVariable: arg5}
-							source: tmp3 ] ]
+										andVariable: aVariable}
+							source: anElement ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassMethodsCoder >> classVariableFilter: arg1 [
+GtClassMethodsCoder >> classVariableFilter: aView [
 	<gtFilterTypes>
-	| tmp2 |
-	tmp2 := arg1 explicit.
-	tmp2
+	^ aView explicit
 		title: 'Class Variables';
-		priority: 30.
-	^ tmp2
-		stencil: [ | tmp3 |
-			tmp3 := GtCoderFilterList new.
-			tmp3
+		priority: 30;
+		stencil: [
+			| anElement |
+			anElement := GtCoderFilterList new.
+			anElement
 				matchParent;
-				items: (class allClassVarNames sorted: [ :arg2 :arg3 | arg2 < arg3 ])
-					title: [ :arg4 | arg4 ]
-					action: [ :arg5 | 
-						self
-							setFilters: {GtSearchClassVariableReferenceFilter
-										forClass: self classOrMetaClass
-										andVariable: arg5}
-							source: tmp3 ] ]
+				items: (class allClassVarNames sorted: [ :a :b | a < b ])
+				title: [ :aVariable | aVariable ]
+				action: [ :aVariable | self 
+					setFilters: { (GtSearchClassVariableReferenceFilter
+						forClass: self classOrMetaClass
+						andVariable: aVariable) }
+					source: anElement ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassMethodsCoder >> codeGeneratorsDropDown: arg1 for: arg2 [
-	| tmp2 tmp4 |
-	tmp2 := BrHorizontalPane new.
-	tmp2 exact: 300 @ 300.
-	tmp4 := GtPhlowCompositeView new.
-	tmp4 views: (self codeGeneratorsFor: arg2).
-	^ tmp2 addChild: (tmp4 asElementDo: [ :arg3 | arg3 matchParent ])
+GtClassMethodsCoder >> codeGeneratorsDropDown: anElement for: aMethodsCoderViewModel [
+	^ BrHorizontalPane new
+		exact: 300@300;
+		addChild:
+			(GtPhlowCompositeView new
+				views: (self codeGeneratorsFor: aMethodsCoderViewModel);
+				asElementDo: [ :aTabGroup | aTabGroup matchParent ])
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassMethodsCoder >> filterDropDown: arg1 [
-	| tmp2 tmp4 |
-	tmp2 := BlElement new.
-	tmp2 size: 430 @ 430.
-	tmp4 := GtPhlowCompositeView new.
-	tmp4 views: self filterTypes.
-	^ tmp2 addChild: (tmp4 asElementDo: [ :arg2 | arg2 matchParent ])
+GtClassMethodsCoder >> filterDropDown: anElement [
+	^ BlElement new
+		size: 430 @ 430;
+		addChild:
+			(GtPhlowCompositeView new
+				views: self filterTypes;
+				asElementDo: [ :aTabGroup | aTabGroup matchParent ])
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtClassMethodsCoder >> instanceSlotFilter: arg1 [
+GtClassMethodsCoder >> instanceSlotFilter: aView [
 	<gtFilterTypes>
-	| tmp2 |
-	tmp2 := arg1 explicit.
-	tmp2
+	^ aView explicit
 		title: 'Slots';
-		priority: 20.
-	^ tmp2
-		stencil: [ | tmp3 |
-			tmp3 := GtCoderFilterList new.
-			tmp3
+		priority: 20;
+		stencil: [
+			| anElement |
+			anElement := GtCoderFilterList new.
+			anElement
 				matchParent;
-				items: (class allInstVarNames sorted: [ :arg2 :arg3 | arg2 < arg3 ])
-					title: [ :arg4 | arg4 ]
-					action: [ :arg5 | 
-						self
-							setFilters: {GtSearchInstanceSlotReferenceFilter
-										forClass: self classOrMetaClass
-										andVariable: arg5}
-							source: tmp3 ] ]
+				items: (class allInstVarNames sorted: [ :a :b | a < b ])
+				title: [ :aVariable | aVariable ]
+				action: [ :aVariable | self 
+					setFilters: { GtSearchInstanceSlotReferenceFilter
+						forClass: self classOrMetaClass
+						andVariable: aVariable }
+					source: anElement ] ]
 ]

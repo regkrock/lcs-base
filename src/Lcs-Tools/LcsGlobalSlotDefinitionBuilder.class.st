@@ -2,12 +2,12 @@ Class {
 	#name : #LcsGlobalSlotDefinitionBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
-		'moduleName',
 		'slotClass',
 		'collectionElementTypes',
 		'collectionSlotCollectionClass',
 		'targetModule',
-		'slotClassName'
+		'slotClassName',
+		'targetModuleName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -64,7 +64,7 @@ LcsGlobalSlotDefinitionBuilder >> initialize [
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> initializeModel [
 	(self target slotDefinitionNamed: self slotName) 
-		initializeSlotValueIn: (self currentSystem moduleNamed: self moduleName)
+		initializeSlotValueIn: (self currentSystem moduleNamed: self targetModuleName)
 ]
 
 { #category : #accessing }
@@ -73,23 +73,8 @@ LcsGlobalSlotDefinitionBuilder >> jobSteps [
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> module [
-	^ self currentSystem moduleNamed: (self moduleName ifNil: [ self moduleClass moduleName ])
-]
-
-{ #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> moduleName [
-	^ moduleName
-]
-
-{ #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> moduleName: anObject [
-	moduleName := anObject
-]
-
-{ #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
-	(self module perform: self slotName asSymbol) ifNil: [ self module initializeSlotNamed: self slotName ]
+	(self targetModule perform: self slotName asSymbol) ifNil: [ self targetModule initializeSlotNamed: self slotName ]
 ]
 
 { #category : #accessing }
@@ -116,5 +101,20 @@ LcsGlobalSlotDefinitionBuilder >> slotClassName: aName [
 LcsGlobalSlotDefinitionBuilder >> target [
 	^ target ifNil: [ target := 
 	 (self targetClassName asClass )
-		ifNil: [ self error: 'Module ' , self moduleName , ' not found' ]]
+		ifNil: [ self error: 'Module ' , self targetModuleName , ' not found' ]]
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> targetModule [
+	^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass moduleName ])
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> targetModuleName [
+	^ targetModuleName
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> targetModuleName: anObject [
+	targetModuleName := anObject
 ]

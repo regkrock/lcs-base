@@ -6,6 +6,9 @@ Another root class is LcsTestCase - all test case classes should inherit from th
 Class {
 	#name : #LcsObject,
 	#superclass : #Object,
+	#instVars : [
+		'globalCollectionClassName'
+	],
 	#category : #LcsBase
 }
 

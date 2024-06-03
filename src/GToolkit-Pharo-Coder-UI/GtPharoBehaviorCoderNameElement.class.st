@@ -8,207 +8,213 @@ Class {
 }
 
 { #category : #callbacks }
-GtPharoBehaviorCoderNameElement >> actOnCoderClassChangedFor: arg1 [
-	
+GtPharoBehaviorCoderNameElement >> actOnCoderClassChangedFor: anAnnouncements [
 ]
 
 { #category : #'building - ui' }
-GtPharoBehaviorCoderNameElement >> addAddOnsElementIn: arg1 [
-	| tmp1 |
-	tmp1 := self newAddonActionsElement.
-	tmp1 coderViewModel: self coderViewModel.
-	arg1 addChild: tmp1
+GtPharoBehaviorCoderNameElement >> addAddOnsElementIn: aContainer [ 
+	| addonActionsElement |
+	addonActionsElement := self newAddonActionsElement.
+	addonActionsElement coderViewModel: self coderViewModel.
+	aContainer addChild: addonActionsElement
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderNameElement >> addAdviceDropDownIn: arg1 [
-	| tmp1 tmp2 |
-	(tmp2 := behaviorCoderViewModel behavior)
-		ifNotNil: [ tmp1 := ((GtAdvice adviceForClass: tmp2) asAsyncStream
-					select: [ :arg2 | arg2 hasAdvice ]) cached.
-			(tmp1 asyncSimilarCopy hasNext
-				then: [ :arg3 | 
-					arg3
-						ifTrue: [ arg1
-								enqueueTask: (BlTaskAction new
-										action: [ arg1 addChild: (self buildAdviceListFor: tmp1 asyncSimilarCopy) ]) ] ])
-				await ]
+GtPharoBehaviorCoderNameElement >> addAdviceDropDownIn: aContainer [ 
+	behaviorCoderViewModel behavior
+		ifNotNil: [ :class | 
+			| adviceStream |
+			adviceStream := ((GtAdvice adviceForClass: class) asAsyncStream
+					select: [ :each | each hasAdvice ]) cached.
+			(adviceStream asyncSimilarCopy hasNext
+				then: [ :bool | 
+					bool ifTrue: [ 
+						aContainer enqueueTask: (BlTaskAction new
+							action: [ aContainer addChild: (self 
+								buildAdviceListFor: adviceStream asyncSimilarCopy) ]) ] ]) await ]
 ]
 
 { #category : #accessing }
 GtPharoBehaviorCoderNameElement >> behavior [
 	<return: #Behavior>
+
 	^ self coderViewModel coder behavior
 ]
 
 { #category : #actions }
 GtPharoBehaviorCoderNameElement >> browseClassReferences [
-	| tmp1 tmp2 |
-	tmp1 := behaviorCoderViewModel coder.
-	(tmp2 := tmp1 theClass) ifNotNil: [ self phlow spawnObject: tmp2 gtReferences ]
+	| classCoder |
+	classCoder := behaviorCoderViewModel coder.
+
+	classCoder theClass
+		ifNotNil: [ :class | self phlow spawnObject: class gtReferences ]
 ]
 
 { #category : #'building - ui' }
-GtPharoBehaviorCoderNameElement >> buildAdviceListFor: arg1 [
-	| tmp1 tmp2 |
-	tmp1 := GtFixItButton new.
-	tmp1
-		beTinySize;
-		label: 'Advice'.
-	tmp2 := BrGlamorousWithDropdownAptitude
-			handle: [ | tmp3 |
-				tmp3 := BrButton new.
-				tmp3
-					beTinySize;
+GtPharoBehaviorCoderNameElement >> buildAdviceListFor: anAsyncStream [
+	| button dropDownAptitude |
+	button := GtFixItButton new.
+	button beTinySize.
+	button label: 'Advice'.
+	dropDownAptitude := BrGlamorousWithDropdownAptitude
+			handle: [ | dropdownButton |
+				dropdownButton := BrButton new.
+				dropdownButton beTinySize.
+				dropdownButton
 					aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonWithLabelTooltipAptitude
-								- BrGlamorousButtonExteriorAptitude;
-					icon: BrGlamorousVectorIcons repair.
-				tmp3 ]
-			content: [ | tmp4 tmp6 |
-				tmp4 := BrSimpleList new.
-				tmp4
-					padding: (BlInsets all: 3);
-					vFitContentLimited;
-					hExact: 300.
-				tmp6 := BrStreamItemsProvider new.
-				tmp6 preloadAmount: 1.
-				tmp4
-					itemsProvider: (tmp6 stream: arg1 asyncSimilarCopy);
-					stencil: [ :arg2 | arg2 buildElementFor: tmp1 ].
-				tmp4 ].
-	tmp1
-		aptitude: BrGlamorousButtonWithIconAptitude + tmp2;
-		icon: BrGlamorousVectorIcons repair;
-		margin: (BlInsets left: 5).
-	^ tmp1
+							- BrGlamorousButtonExteriorAptitude.
+				dropdownButton icon: BrGlamorousVectorIcons repair.
+				dropdownButton ]
+			content: [ | element |
+				element := BrSimpleList new.
+				element padding: (BlInsets all: 3).
+				element vFitContentLimited.
+				element hExact: 300.
+				element
+					itemsProvider: (BrStreamItemsProvider new
+							preloadAmount: 1;
+							stream: anAsyncStream asyncSimilarCopy);
+					stencil: [ :eachImage | eachImage buildElementFor: button ].
+				element ].
+	button aptitude: BrGlamorousButtonWithIconAptitude + dropDownAptitude.
+	button icon: BrGlamorousVectorIcons repair.
+	button margin: (BlInsets left: 5).
+	^ button
 ]
 
 { #category : #'building - ui' }
 GtPharoBehaviorCoderNameElement >> buildContent [
-	| tmp1 tmp2 tmp4 tmp6 |
-	tmp6 := BrHorizontalPane new.
-	tmp6
-		hMatchParent;
-		alignCenterLeft.
-	tmp1 := tmp6 vFitContent.
-	tmp2 := self buildEditableNameLabel.
-	self registerShortcutsForNameEditor: tmp2.
-	tmp2 editor
+	| nameContainer classNameEditor previewButton |
+	nameContainer := BrHorizontalPane new
+			hMatchParent;
+			alignCenterLeft;
+			vFitContent.
+
+	classNameEditor := self buildEditableNameLabel.
+	self registerShortcutsForNameEditor: classNameEditor.
+	classNameEditor editor
 		when: BrTextEditorModifiedEvent
-		do: [ :arg1 | 
-			arg1 text asString trimBoth asSymbol = self coderModel name
-				ifTrue: [ tmp4 removeFromParent ]
-				ifFalse: [ (tmp1 hasChild: tmp4) ifFalse: [ tmp1 addChild: tmp4 after: tmp2 ] ] ].
-	self instalCompletionControllerOnNameEditor: tmp2.
-	tmp4 := self buildRefactoringPreviewButtonForNameEditor: tmp2 inContainer: tmp1.
-	tmp1 addChild: tmp2.
-	self
-		addAddOnsElementIn: tmp1;
-		addAdviceDropDownIn: tmp1.
-	^ tmp1
+		do: [ :anEvent | 
+			anEvent text asString trimBoth asSymbol = self coderModel name
+				ifTrue: [ previewButton removeFromParent ]
+				ifFalse: [ (nameContainer hasChild: previewButton)
+						ifFalse: [ nameContainer addChild: previewButton after: classNameEditor ] ] ].
+	self instalCompletionControllerOnNameEditor: classNameEditor.
+
+	previewButton := self
+			buildRefactoringPreviewButtonForNameEditor: classNameEditor
+			inContainer: nameContainer.
+
+	nameContainer addChild: classNameEditor.
+
+	self addAddOnsElementIn: nameContainer.
+	self addAdviceDropDownIn: nameContainer.
+
+	^ nameContainer
 ]
 
 { #category : #'building - ui' }
 GtPharoBehaviorCoderNameElement >> buildEditableNameLabel [
-	| tmp2 tmp4 |
-	tmp2 := BrEditableLabel new.
-	tmp4 := BrGlamorousEditableLabelAptitude new.
-	tmp4
-		defaultBackground: Color transparent;
-		glamorousCodeFont;
-		bold.
-	tmp2
-		aptitude: (tmp4 fontSize: 18)
-				+ (BrGlamorousWithContextMenuAptitude
-						content: [ BrGlamorousSimpleContextMenuContent new items: self contextMenuItemsForClass ]);
-		inputFilter: BrTextEditorClassNameInputFilter new;
-		text: self coderModel name;
-		margin: (BlInsets all: 0).
-	^ tmp2 id: GtBehaviorCoderBehaviorNameId
+	^ BrEditableLabel new
+			aptitude: (BrGlamorousEditableLabelAptitude new
+					defaultBackground: Color transparent;
+					glamorousCodeFont;
+					bold;
+					fontSize: 18)
+					+ (BrGlamorousWithContextMenuAptitude
+							content: [ BrGlamorousSimpleContextMenuContent new 
+								items: self contextMenuItemsForClass ]);
+			inputFilter: BrTextEditorClassNameInputFilter new;
+			text: self coderModel name;
+			margin: (BlInsets all: 0);
+			id: GtBehaviorCoderBehaviorNameId
 ]
 
 { #category : #'building - ui' }
-GtPharoBehaviorCoderNameElement >> buildRefactoringPreviewButtonForNameEditor: arg1 inContainer: arg2 [
-	| tmp2 |
-	tmp2 := GtRefactoringsPreviewButton new.
-	tmp2
+GtPharoBehaviorCoderNameElement >> buildRefactoringPreviewButtonForNameEditor: aClassNameEditor inContainer: aContainer [
+	^ GtRefactoringsPreviewButton new
 		id: GtBehaviorCoderBehaviorNameApplyPreviewId;
 		margin: (BlInsets left: 5);
 		refactorings: [ {GtRBRenameClassRefactoring
-						model: (RBClassModelFactory rbNamespace
-								onEnvironment: RBBrowserEnvironment new)
-						rename: self coderModel theClass name
-						to: arg1 text asString} ];
-		cancelBlock: [ arg1 text: self coderModel theClass name ].
-	^ tmp2
+					model: (RBClassModelFactory rbNamespace
+							onEnvironment: RBBrowserEnvironment new)
+					rename: self coderModel theClass name
+					to: aClassNameEditor text asString} ];
+		cancelBlock: [ aClassNameEditor text: self coderModel theClass name ];
 		when: GtRefactoringsAppliedEvent
-		do: [ :arg3 | 
-			| tmp3 |
-			tmp3 := arg3 currentTarget.
-			arg2 enqueueTask: [ arg2 removeChild: tmp3 ] asBlTask ]
+			do: [ :anEvent | 
+				| element |
+				element := anEvent currentTarget.
+				aContainer enqueueTask: [ aContainer removeChild: element ] asBlTask ]
 ]
 
 { #category : #accessing }
 GtPharoBehaviorCoderNameElement >> coderModel [
 	<return: #Behavior>
+
 	^ self coderViewModel coder
 ]
 
 { #category : #accessing }
 GtPharoBehaviorCoderNameElement >> coderViewModel [
-	^ behaviorCoderViewModel
+	^ behaviorCoderViewModel 
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderNameElement >> coderViewModel: arg1 [
+GtPharoBehaviorCoderNameElement >> coderViewModel: aGtBehaviorDefinitionCoderViewModel [
 	self unsubscribeFromCoderViewModel.
-	behaviorCoderViewModel := arg1.
-	self
-		subscribeToCoderViewModel;
-		addChild: self buildContent
+
+	behaviorCoderViewModel := aGtBehaviorDefinitionCoderViewModel.
+	self subscribeToCoderViewModel.
+	
+	self addChild: self buildContent
 ]
 
 { #category : #'building - ui' }
 GtPharoBehaviorCoderNameElement >> contextMenuItemsForClass [
-	^ {'Browse references' -> [ :arg1 | self browseClassReferences ].
-		'Rename' -> [ :arg2 | arg2 switchToEditor ]}
+	^ {'Browse references' -> [ :e | self browseClassReferences ].
+		'Rename' -> [ :e | e switchToEditor ]}
 ]
 
 { #category : #initialization }
 GtPharoBehaviorCoderNameElement >> initialize [
 	super initialize.
+	
 	self
 		hMatchParent;
 		vFitContent
 ]
 
 { #category : #accessing }
-GtPharoBehaviorCoderNameElement >> instalCompletionControllerOnNameEditor: arg1 [
-	(GtCompletionController on: arg1 strategy: GtClassesCompletionStrategy new)
-		install showOnTextModification: false
+GtPharoBehaviorCoderNameElement >> instalCompletionControllerOnNameEditor: aClassNameEditor [ 
+	(GtCompletionController
+		on: aClassNameEditor
+		strategy: GtClassesCompletionStrategy new) install
+		showOnTextModification: false.
 ]
 
 { #category : #accessing }
 GtPharoBehaviorCoderNameElement >> newAddonActionsElement [
-	| tmp2 |
-	tmp2 := GtBehaviorCoderActionsElement new.
-	tmp2 id: #actions.
-	^ tmp2 yourself
+	^ GtBehaviorCoderActionsElement new
+		id: #actions;
+		yourself
 ]
 
 { #category : #shortcuts }
-GtPharoBehaviorCoderNameElement >> registerShortcutsForNameEditor: arg1 [
-	arg1
+GtPharoBehaviorCoderNameElement >> registerShortcutsForNameEditor: aClassNameEditor [ 
+	aClassNameEditor
 		whenKey: BlKeyCombination primaryN
-			labelDo: [ :arg2 | self browseClassReferences ];
+			labelDo: [ :aShortcutEvent | self browseClassReferences ];
 		whenKey: BlKeyCombination primaryB
-			labelDo: [ :arg3 | self phlow spawnTool: (GtClassCoderTool observedClass: self behavior) ];
+			labelDo: [ :aShortcutEvent | self phlow 
+				spawnTool: (GtClassCoderTool observedClass: self behavior) ];
 		whenKey: BlKeyCombination primaryG
-			labelDo: [ :arg4 | self phlow spawnObject: self behavior ];
+			labelDo: [ :aShortcutEvent | self phlow spawnObject: self behavior ];
 		whenKey: BlKeyCombination primaryR
-			labelDo: [ :arg5 | arg5 currentTarget switchToEditor ];
+			labelDo: [ :aShortcutEvent | aShortcutEvent currentTarget switchToEditor ];
 		whenKey: BlKeyCombination primaryC
-			labelDo: [ :arg6 | Clipboard clipboardText: self behavior name asString ]
+			labelDo: [ :aShortcutEvent | 
+				Clipboard clipboardText: self behavior name asString ]
 ]
 
 { #category : #subscriptions }
@@ -216,11 +222,12 @@ GtPharoBehaviorCoderNameElement >> subscribeToCoderViewModel [
 	behaviorCoderViewModel weak
 		when: GtCoderClassChanged
 		send: #actOnCoderClassChangedFor:
-		to: self
+		to: self.
 ]
 
 { #category : #subscriptions }
-GtPharoBehaviorCoderNameElement >> unsubscribeFromCoderViewModel [
-	| tmp1 |
-	(tmp1 := behaviorCoderViewModel) ifNotNil: [ tmp1 unsubscribe: self ]
+GtPharoBehaviorCoderNameElement >> unsubscribeFromCoderViewModel [	
+	behaviorCoderViewModel
+		ifNotNil: [ :aPreviousCoderViewModel | 
+			aPreviousCoderViewModel unsubscribe: self ].
 ]

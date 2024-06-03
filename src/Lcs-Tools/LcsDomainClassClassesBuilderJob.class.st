@@ -1,12 +1,9 @@
 Class {
 	#name : #LcsDomainClassClassesBuilderJob,
-	#superclass : #LcsCodeBuilderJob,
+	#superclass : #LcsDomainGlobalClassBuilderJob,
 	#instVars : [
-		'codeSuperclassBuilder',
-		'codeCollectionClassBuilder',
-		'memberOfSlotBuilder',
-		'codeClassBuilders',
-		'collectionSlotBuilder'
+		'protoInstances',
+		'undefinedClassName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -14,58 +11,154 @@ Class {
 { #category : #accessing }
 LcsDomainClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self domainClassBuilder.
+	self addJobStep: self domainUnknownClassBuilder.
 	self addJobStep: self domainCollectionClassBuilder.
-	self addJobStep: self domainParentGlobalCollectionSlotBuilder.
-	self addJobStep: self domainGlobalCollectionSlotBuilder.
+	self addJobStep: self globalCollectionReferenceSlotBuilder.
+	self addJobStep: self globalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 ]
 
-{ #category : #accessing }
-LcsDomainClassClassesBuilderJob >> codeClassBuilders [
-	^ codeClassBuilders
+{ #category : #configuration }
+LcsDomainClassClassesBuilderJob >> createForRootName: aRootName [
+	super createForRootName: aRootName.
+	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> codeClassBuilders: anObject [ 
-	codeClassBuilders := anObject
+LcsDomainClassClassesBuilderJob >> createInstances: aCollection [
+	aCollection do: [ :each |
+		self protoInstances add: each ]
+]
+
+{ #category : #builders }
+LcsDomainClassClassesBuilderJob >> domainClassBuilder [
+	^ LcsDomainClassBuilder new
+		newClassName: self domainClassName;
+		targetPackageName: self targetPackageName;
+		yourself
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> codeCollectionClassBuilder: anObject [ 
-	codeCollectionClassBuilder := anObject
+LcsDomainClassClassesBuilderJob >> domainClassBuilderStep [
+	^ (self jobSteps stepsWithClass: LcsDomainClassBuilder) first
+]
+
+{ #category : #builders }
+LcsDomainClassClassesBuilderJob >> domainClassCodeMemberSlotBuilder: eachClass [
+	^ LcsMemberOfSlotBuilder new
+		target: eachClass;
+		collectionSlotName: self globalCollectionSlotName;
+		slotName: self domainInstanceSlotName;
+		targetModuleClass: self targetModule class;
+		yourself
+]
+
+{ #category : #builders }
+LcsDomainClassClassesBuilderJob >> domainClassMemberSlotBuilder: eachClass [
+	^ LcsMemberOfSlotBuilder new
+		target: eachClass;
+		collectionSlotName: self globalCollectionSlotName;
+		slotName: self domainInstanceSlotName;
+		targetModuleClass: self targetModule class;
+		yourself
+]
+
+{ #category : #builders }
+LcsDomainClassClassesBuilderJob >> domainCollectionClassBuilder [
+	^ LcsDomainCollectionClassBuilder new
+		newClassName: self globalCollectionClassName;
+		targetPackageName: self targetPackageName;
+		yourself
+]
+
+{ #category : #builders }
+LcsDomainClassClassesBuilderJob >> domainUnknownClassBuilder [
+	^ LcsUnknownClassBuilder new
+		newClassName: self undefinedClassName;
+		targetSuperclassName: self domainClassName;
+		targetPackageName: self targetPackageName;
+		yourself
+]
+
+{ #category : #builders }
+LcsDomainClassClassesBuilderJob >> globalCollectionReferenceSlotBuilder [
+	^ LcsGlobalCollectionReferenceSlotBuilder new
+		targetClassName: self domainClassName;
+		collectionSlotName: self globalCollectionSlotName;
+		collectionSlotModuleName: self targetModuleName;
+		yourself
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> codeSuperclassBuilder [
-	^ codeSuperclassBuilder
+LcsDomainClassClassesBuilderJob >> globalCollectionSlotBuilder [
+	^ LcsGlobalSlotDefinitionBuilder new
+		slotClassName: self globalCollectionClassName;
+		slotName: self globalCollectionSlotName;
+		targetModuleClass: self targetModuleClass;
+		yourself
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> codeSuperclassBuilder: anObject [
-	codeSuperclassBuilder := anObject
+LcsDomainClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
+	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> collectionSlotBuilder: anObject [
-	collectionSlotBuilder := anObject
-]
-
-{ #category : #build }
-LcsDomainClassClassesBuilderJob >> installMemberSlotInDomainClass: aClass [ 
-	self memberOfSlotInDomainClassBuilder target: aClass
+LcsDomainClassClassesBuilderJob >> initialize [
+	super initialize.
+	self protoInstances: OrderedCollection new.
+	self targetDomainClasses: Set new
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> memberOfSlotBuilder [
-	^ memberOfSlotBuilder
+LcsDomainClassClassesBuilderJob >> populateSlotModel [
+	self globalCollectionSlotDefinitionStep populateSlotModel.
+	self currentSystem currentUnitOfWork applyChanges.
+	self unknownClass new.
+	"self protoInstances do: [ :each | 
+		self domainClassBuilderStep installedClass new
+			isoCode: (each at: 1);
+			countryName: (each at: 2)]."
+	self currentSystem currentUnitOfWork applyChanges.
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> memberOfSlotBuilder: anObject [ 
-	memberOfSlotBuilder := anObject
+LcsDomainClassClassesBuilderJob >> protoInstances [
+	^ protoInstances
 ]
 
 { #category : #accessing }
-LcsDomainClassClassesBuilderJob >> memberOfSlotInDomainClassBuilder [
-	^ collectionSlotBuilder
+LcsDomainClassClassesBuilderJob >> protoInstances: aCollection [
+	protoInstances := aCollection
+]
+
+{ #category : #accessing }
+LcsDomainClassClassesBuilderJob >> undefinedClassName [
+	^ undefinedClassName
+]
+
+{ #category : #accessing }
+LcsDomainClassClassesBuilderJob >> undefinedClassName: anObject [
+	undefinedClassName := anObject
+]
+
+{ #category : #accessing }
+LcsDomainClassClassesBuilderJob >> unknownClass [
+	^ self unknownClassBuilderStep installedClass
+]
+
+{ #category : #accessing }
+LcsDomainClassClassesBuilderJob >> unknownClassBuilderStep [
+	^ (self jobSteps stepsWithClass: LcsUnknownClassBuilder) first
+]
+
+{ #category : #accessing }
+LcsDomainClassClassesBuilderJob >> updateSlotModel [
+	self jobSteps updateSlotModel.
+	self currentSystem currentUnitOfWork applyChanges	
+]
+
+{ #category : #verification }
+LcsDomainClassClassesBuilderJob >> verifySlotModelUpdates [
+	self jobSteps verifySlotModelUpdates
 ]

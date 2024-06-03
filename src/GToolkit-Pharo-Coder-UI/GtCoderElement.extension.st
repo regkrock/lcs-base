@@ -6,40 +6,39 @@ GtCoderElement class >> forAllPackages [
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtCoderElement class >> forClass: arg1 [
-	^ self forCoder: (GtPharoBehaviorCoder forClass: arg1)
+GtCoderElement class >> forClass: aClass [
+	^ self forCoder: (GtPharoBehaviorCoder forClass: aClass)
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtCoderElement class >> forCoder: arg1 [
-	| tmp2 |
-	tmp2 := self basicNew initialize.
-	tmp2 navigationModel: GtCoderNavigationModel default.
-	^ tmp2 pushCoder: arg1
+GtCoderElement class >> forCoder: aCoder [
+	^ self basicNew initialize
+		navigationModel: GtCoderNavigationModel default;
+		pushCoder: aCoder
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtCoderElement class >> forMethod: arg1 [
-	| tmp1 tmp2 |
-	tmp1 := GtPharoBehaviorCoder forClass: arg1 methodClass instanceSide.
-	tmp2 := self forCoder: tmp1.
-	tmp1 withSelectedMethod: arg1.
-	^ tmp2
+GtCoderElement class >> forMethod: aCompiledMethod [
+    | classCoder coder |
+    classCoder := GtPharoBehaviorCoder forClass: aCompiledMethod methodClass instanceSide.
+    coder := self forCoder: classCoder.
+    classCoder withSelectedMethod: aCompiledMethod.
+    ^ coder
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtCoderElement class >> forObject: arg1 [
-	^ self forCoder: (GtPharoBehaviorCoder forObject: arg1)
+GtCoderElement class >> forObject: anObject [
+	^ self forCoder: (GtPharoBehaviorCoder forObject: anObject)
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtCoderElement class >> forPackage: arg1 [
-	^ self forCoder: (GtPharoPackageCoder forPackage: arg1)
+GtCoderElement class >> forPackage: anRPackage [
+	^ self forCoder: (GtPharoPackageCoder forPackage: anRPackage)
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtCoderElement class >> forPackageTag: arg1 [
-	^ self forCoder: (GtPharoPackageTagCoder forPackageTag: arg1)
+GtCoderElement class >> forPackageTag: anRPackageTag [
+	^ self forCoder: (GtPharoPackageTagCoder forPackageTag: anRPackageTag)
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }

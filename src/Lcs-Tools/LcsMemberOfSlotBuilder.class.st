@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'collectionSlotName',
 		'moduleName',
-		'slotTypes'
+		'slotTypes',
+		'targetModuleName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -20,7 +21,7 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 		codeStream addSetter: 'addSlotType' contents: eachSlotTypeClass name].
 	codeStream
 		addSetter: 'collectionSlotName' contents: self collectionSlotName printString;
-		addSetter: 'collectionModuleName' contents: self moduleName printString
+		addSetter: 'collectionModuleName' contents: self targetModuleName printString
 .
 	
 ]
@@ -53,12 +54,7 @@ LcsMemberOfSlotBuilder >> jobSteps [
 
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> moduleName [
-	^ moduleName ifNil: [ self moduleClass ifNil: [ ' missing moduleClass name' ] ifNotNil: [  self moduleClass moduleName ] ] 
-]
-
-{ #category : #accessing }
-LcsMemberOfSlotBuilder >> moduleName: anObject [
-	moduleName := anObject
+	^ moduleName ifNil: [ self targertModuleClass ifNil: [ ' missing moduleClass name' ] ifNotNil: [  self targertModuleClass moduleName ] ] 
 ]
 
 { #category : #accessing }
@@ -69,4 +65,14 @@ LcsMemberOfSlotBuilder >> slotTypes [
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> slotTypes: anObject [
 	slotTypes := anObject
+]
+
+{ #category : #accessing }
+LcsMemberOfSlotBuilder >> targetModuleName [
+	^ targetModuleName ifNil: [ targetModuleName := self targetModuleClass moduleName ]
+]
+
+{ #category : #accessing }
+LcsMemberOfSlotBuilder >> targetModuleName: anObject [
+	moduleName := anObject
 ]

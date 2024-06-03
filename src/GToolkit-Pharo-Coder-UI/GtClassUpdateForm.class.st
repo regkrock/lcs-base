@@ -5,52 +5,52 @@ Class {
 }
 
 { #category : #accessing }
-GtClassUpdateForm class >> onClass: arg1 [
-	^ self new onClass: arg1
+GtClassUpdateForm class >> onClass: aClass [
+	^ self new onClass: aClass
 ]
 
 { #category : #accessing }
 GtClassUpdateForm >> commit [
-	| tmp1 |
-	tmp1 := newClassName asClass.
-	self
-		removeClassSlots: tmp1;
-		defineClass.
-	tmp1 := Smalltalk classNamed: self rawClassName.
-	self installClassSlotsOn: tmp1.
-	^ tmp1
+	| aClass |
+	aClass := newClassName asClass.
+	self removeClassSlots: aClass.
+	self defineClass.
+	aClass := Smalltalk classNamed: self rawClassName.
+	self installClassSlotsOn: aClass.
+
+	^ aClass
 ]
 
 { #category : #accessing }
-GtClassUpdateForm >> onClass: arg1 [
-	| tmp1 tmp2 tmp4 |
+GtClassUpdateForm >> onClass: aClass [
+	| packageName tagName |
+	self newClassName: aClass name.
+	self superclassName: aClass superclass name.
 	self
-		newClassName: arg1 name;
-		superclassName: arg1 superclass name;
-		slots: ((arg1 slots select: [ :arg2 | arg2 definingClass = arg1 ]) collect: #name);
-		traits: (arg1 traits collect: #name).
-	tmp1 := arg1 package name.
-	tmp2 := (arg1 package classTagForClass: arg1) name.
-	tmp4 := GtPackageAndTagName new.
-	tmp4 packageName: tmp1.
+		slots: ((aClass slots select: [ :aSlot | aSlot definingClass = aClass ]) collect: #name).
+	self traits: (aClass traits collect: #name).
+	packageName := aClass package name.
+	tagName := (aClass package classTagForClass: aClass) name.
 	self
-		packageAndTagName: (tmp4 tagName: (tmp2 = tmp1 ifTrue: [ '' ] ifFalse: [ tmp2 ]));
-		pools: (arg1 sharedPools collect: #name);
-		classVars: (arg1 classVarNames collect: #asString);
-		classSlots: (arg1 classSide slots collect: #name);
-		superSlots: ((arg1 allSlots collect: #name) asSet
-					difference: (arg1 slots collect: #name) asSet)
+		packageAndTagName: (GtPackageAndTagName new
+				packageName: packageName;
+				tagName: (tagName = packageName ifTrue: [ '' ] ifFalse: [ tagName ])).
+	self pools: (aClass sharedPools collect: #name).
+	self classVars: (aClass classVarNames collect: #asString).
+	self classSlots: (aClass classSide slots collect: #name).
+	self
+		superSlots: ((aClass allSlots collect: #name) asSet
+				difference: (aClass slots collect: #name) asSet)
 ]
 
 { #category : #accessing }
-GtClassUpdateForm >> removeClassSlots: arg1 [
-	| tmp1 tmp3 |
-	arg1 classSide slots isEmpty ifTrue: [ ^ self ].
-	tmp1 := arg1 classSide slots
-			collect: [ :arg2 | RBRemoveInstanceVariableChange remove: arg2 name from: arg1 classSide ].
-	tmp3 := RBCompositeRefactoryChange new.
-	tmp3
+GtClassUpdateForm >> removeClassSlots: aClass [
+	| changes |
+	aClass classSide slots isEmpty ifTrue: [ ^ self ].
+	changes := aClass classSide slots
+			collect: [ :aSlot | RBRemoveInstanceVariableChange remove: aSlot name from: aClass classSide ].
+	(RBCompositeRefactoryChange new
 		name: 'Remove class slots';
-		changes: tmp1.
-	tmp3 yourself gtExecuteWithUndo
+		changes: changes;
+		yourself) gtExecuteWithUndo
 ]

@@ -21,8 +21,8 @@ GtCreationFormWidget class >> forClass [
 ]
 
 { #category : #'instance creation' }
-GtCreationFormWidget class >> forForm: arg1 [
-	^ self new form: arg1
+GtCreationFormWidget class >> forForm: aDescription [
+	^ self new form: aDescription
 ]
 
 { #category : #'instance creation' }
@@ -47,38 +47,39 @@ GtCreationFormWidget >> createForm [
 
 { #category : #accessing }
 GtCreationFormWidget >> form [
+
 	^ form
 ]
 
 { #category : #accessing }
-GtCreationFormWidget >> form: arg1 [
-	form := arg1.
-	self
-		removeChildren;
-		createForm
+GtCreationFormWidget >> form: anObject [
+	form := anObject.
+	self removeChildren.
+	self createForm
 ]
 
 { #category : #initialization }
 GtCreationFormWidget >> initialize [
 	super initialize.
-	onAccept := [ :arg1 | self phlow spawnObject: arg1 ].
+
+	onAccept := [ :aValue | self phlow spawnObject: aValue ].
+	self layout: BlFlowLayout vertical.
+	self margin: (BlInsets all: 5).
 	self
-		layout: BlFlowLayout vertical;
-		margin: (BlInsets all: 5);
-		constraintsDo: [ :arg2 | 
-				arg2 horizontal exact: 400.
-				arg2 vertical fitContent ]
+		constraintsDo: [ :c | 
+			c horizontal exact: 400.
+			c vertical fitContent ]
 ]
 
 { #category : #accessing }
 GtCreationFormWidget >> onAccept [
+
 	^ onAccept
 ]
 
 { #category : #accessing }
-GtCreationFormWidget >> onAccept: arg1 [
-	onAccept := arg1.
-	self
-		removeChildren;
-		createForm
+GtCreationFormWidget >> onAccept: anObject [
+	onAccept := anObject.
+	self removeChildren.
+	self createForm
 ]

@@ -1,26 +1,20 @@
 Extension { #name : #GtSearchImplementorPatternFilter }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtSearchImplementorPatternFilter class >> filterDescriptorFor: arg1 [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg2 | self pattern: arg2 ];
+GtSearchImplementorPatternFilter class >> filterDescriptorFor: aMethodsCoder [
+	^ GtFilterDescriptor new
+		creator: [ :value | self pattern: value ];
 		named: 'Implementor';
-		order: 10.
-	^ tmp2
-		completion: [ GtStringsCompletionStrategy new completions: [ arg1 selectorNames ] ]
+		order: 10;
+		completion: [ GtStringsCompletionStrategy new completions: [ aMethodsCoder selectorNames ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtSearchImplementorPatternFilter class >> globalFilterDescriptor [
-	| tmp2 |
-	tmp2 := GtFilterDescriptor new.
-	tmp2
-		creator: [ :arg1 | self pattern: arg1 ];
+	^ GtFilterDescriptor new
+		creator: [ :value | self pattern: value ];
 		named: 'Implementor';
-		order: 10.
-	^ tmp2
+		order: 10;
 		completion: [ GtStringsCompletionStrategy new
 				completions: [ GtPharoIndex current selectorCache ] ]
 ]

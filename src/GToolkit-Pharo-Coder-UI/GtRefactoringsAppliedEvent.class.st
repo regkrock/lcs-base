@@ -13,6 +13,6 @@ GtRefactoringsAppliedEvent >> refactorings [
 ]
 
 { #category : #accessing }
-GtRefactoringsAppliedEvent >> refactorings: arg1 [
-	refactorings := arg1
+GtRefactoringsAppliedEvent >> refactorings: anObject [
+	refactorings := anObject
 ]

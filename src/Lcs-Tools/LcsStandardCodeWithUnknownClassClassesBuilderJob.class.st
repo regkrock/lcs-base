@@ -18,7 +18,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self undefinedCodeClassBuilder.
 	self addJobStep: self codeCollectionClassBuilder.
-	self addJobStep: self codeParentGlobalCollectionSlotBuilder.
+	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codeGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 ]
@@ -44,17 +44,11 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeInstances: aCollection [
 ]
 
 { #category : #configuration }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeRootName: aRootName [
-	super codeRootName: aRootName.
-	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
-]
-
-{ #category : #configuration }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsCodeClassBuilder new
-		codeClassName: (self classPrefix , aString);
-		superclassName: self codeSuperclassBuilder newClassName;
-		codePackageName: self codePackageName;
+		domainClassName: (self classPrefix , aString);
+		targetSuperclassName: self codeSuperclassBuilder newClassName;
+		targetPackageName: self targetPackageName;
 		yourself
 ]
 
@@ -73,8 +67,14 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> createCodeInstances: aCollec
 	self codeInstances addAll: aCollection
 ]
 
+{ #category : #configuration }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> createForRootName: aRootName [
+	super createForRootName: aRootName.
+	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
+]
+
 { #category : #'job steps' }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> globalCollectionSlotDefinitionBuilder [
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
 ]
 
@@ -90,14 +90,9 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> isDefaultInstanceFrom: anArr
 	^ anArray at: 4
 ]
 
-{ #category : #'job steps' }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> memberOfSlotInDomainClassBuilder [
-	^ self jobSteps at: 5
-]
-
 { #category : #populate }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
-	self globalCollectionSlotDefinitionBuilder populateSlotModel.
+	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self unknownClass new
 		codeName: 'unknown';
 		codeDescription: 'Unknown';
@@ -128,8 +123,8 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedClassName: anObject
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedCodeClassBuilder [
 	^ LcsUnknownCodeClassBuilder new
 		newClassName: self undefinedClassName;
-		superclassName: self codeClassName;
-		codePackageName: self codePackageName;
+		targetSuperclassName: self domainClassName;
+		targetPackageName: self targetPackageName;
 		yourself
 ]
 
@@ -145,7 +140,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownCodeClassBuilderStep 
 
 { #category : #verification }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> verifyPopulateSlotModel [
-	self assert: self targetGlobalCollection parent == self module.
+	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection size = (self codeInstances size + 1).
 	self codeInstances
 		do: [ :each | 

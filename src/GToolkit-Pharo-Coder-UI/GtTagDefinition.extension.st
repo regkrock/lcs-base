@@ -1,93 +1,95 @@
 Extension { #name : #GtTagDefinition }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtTagDefinition >> browseFrom: arg1 [
-	| tmp1 |
-	tmp1 := RPackageOrganizer default
-			packageNamed: self parent category package name
-			ifAbsent: [ ^ self ].
-	tmp1
+GtTagDefinition >> browseFrom: anEvent [
+	| aRealPackage |
+
+	aRealPackage := RPackageOrganizer default
+		packageNamed: self parent category package name
+		ifAbsent: [ ^ self ].
+
+	aRealPackage
 		classTagNamed: self name
-		ifPresent: [ :arg2 | 
-			| tmp2 tmp3 |
-			tmp2 := (GtPharoPackageTagCoder forPackageTag: arg2)
-					packageCoder: (GtPharoPackageCoder forPackage: tmp1).
-			tmp3 := GtCoderToSpawn new coder: tmp2.
-			arg1 currentTarget fireEvent: tmp3.
-			tmp3 isConsumed
-				ifFalse: [ arg1 currentTarget phlow spawnTool: (GtReadyCoderTool coder: tmp3 coder) ] ]
+		ifPresent: [ :aTag |
+			| aPackageTagCoder aCoderEvent |
+			aPackageTagCoder := (GtPharoPackageTagCoder forPackageTag: aTag)
+				packageCoder: (GtPharoPackageCoder forPackage: aRealPackage).
+			aCoderEvent := GtCoderToSpawn new coder: aPackageTagCoder.
+			anEvent currentTarget fireEvent: aCoderEvent.
+			aCoderEvent isConsumed
+				ifFalse: [ anEvent currentTarget phlow spawnTool: (GtReadyCoderTool coder: aCoderEvent coder) ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtTagDefinition >> newTabFrom: arg1 [
-	| tmp1 |
-	tmp1 := RPackageOrganizer default
+GtTagDefinition >> newTabFrom: anEvent [
+	| aRealPackage |
+	aRealPackage := RPackageOrganizer default
 			packageNamed: self parent category package name
 			ifAbsent: [ ^ self ].
-	tmp1
+
+	aRealPackage
 		classTagNamed: self name
-		ifPresent: [ :arg2 | 
-			| tmp2 tmp3 tmp5 |
-			tmp2 := GtCoderElement forPackageTag: arg2.
-			tmp3 := BlSpace new.
-			tmp3
-				title: self name;
-				icon: BrGlamorousVectorIcons emphasizedBrowse;
-				extent: 1200 @ 600.
-			tmp3 root background: Color transparent.
-			tmp5 := GtPagerWrapperElement new.
-			tmp5 tool: tmp2.
-			tmp3
+		ifPresent: [ :aTag | 
+			| aPackageTagCoder aSpace |
+			aPackageTagCoder := GtCoderElement forPackageTag: aTag.
+
+
+			aSpace := BlSpace new.
+			aSpace title: self name.
+			aSpace icon: BrGlamorousVectorIcons emphasizedBrowse.
+			aSpace extent: 1200 @ 600.
+			aSpace root background: Color transparent.
+			aSpace
 				addChild: (GtPager
-						createOn: (tmp5
-								embellisher: (GtPagerPageEmbellisher new extension: GtPagerPageEmbellisherExtension null)));
-				withHalos.
-			arg1 target showSpace: tmp3 ]
+						createOn: (GtPagerWrapperElement new
+								tool: aPackageTagCoder;
+								embellisher: (GtPagerPageEmbellisher new extension: GtPagerPageEmbellisherExtension null))).
+			aSpace withHalos.
+			anEvent target showSpace: aSpace ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtTagDefinition >> readers [
-	^ {self tagReader}
+	^ { self tagReader }
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtTagDefinition >> replaceFrom: arg1 [
-	| tmp1 |
-	tmp1 := RPackageOrganizer default
-			packageNamed: self parent category package name
-			ifAbsent: [ ^ self ].
-	tmp1
+GtTagDefinition >> replaceFrom: anEvent [
+	| aRealPackage |
+
+	aRealPackage := RPackageOrganizer default
+		packageNamed: self parent category package name
+		ifAbsent: [ ^ self ].
+
+	aRealPackage
 		classTagNamed: self name
-		ifPresent: [ :arg2 | 
-			| tmp2 tmp3 |
-			tmp2 := (GtPharoPackageTagCoder forPackageTag: arg2)
-					packageCoder: (GtPharoPackageCoder forPackage: tmp1).
-			tmp3 := GtCoderToReplace new coder: tmp2.
-			arg1 currentTarget fireEvent: tmp3.
-			tmp3 isConsumed
-				ifFalse: [ arg1 currentTarget phlow spawnTool: (GtReadyCoderTool coder: tmp3 coder) ] ]
+		ifPresent: [ :aTag |
+			| aPackageTagCoder aCoderEvent |
+			aPackageTagCoder := (GtPharoPackageTagCoder forPackageTag: aTag)
+				packageCoder: (GtPharoPackageCoder forPackage: aRealPackage).
+			aCoderEvent := GtCoderToReplace new coder: aPackageTagCoder.
+			anEvent currentTarget fireEvent: aCoderEvent.
+			aCoderEvent isConsumed
+				ifFalse: [ anEvent currentTarget phlow spawnTool: (GtReadyCoderTool coder: aCoderEvent coder) ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtTagDefinition >> tagReader [
-	| tmp2 |
-	tmp2 := GtCodeDefinitionSingleReader new.
-	tmp2
+	^ GtCodeDefinitionSingleReader new
 		title: 'Tag';
 		definition: self;
 		getSelector: #name;
 		renameEvent: GtBehaviorTagRenamed;
-		whenAltClickDo: [ :arg1 :arg2 | arg2 replaceFrom: arg1 ];
-		whenPrimaryClickDo: [ :arg3 :arg4 | arg4 newTabFrom: arg3 ];
-		whenClickDo: [ :arg5 :arg6 | arg6 browseFrom: arg5 ];
-		when: BlKeyUpEvent do: [ :arg7 | arg7 target mouseCursor: nil ].
-	^ tmp2
+		whenAltClickDo: [ :anEvent :aDefinition | aDefinition replaceFrom: anEvent ];
+		whenPrimaryClickDo: [ :anEvent :aDefinition | aDefinition newTabFrom: anEvent ];
+		whenClickDo: [ :anEvent :aDefinition | aDefinition browseFrom: anEvent ];
+		when: BlKeyUpEvent do: [ :anEvent | anEvent target mouseCursor: nil ];
 		when: BlKeyDownEvent
-		do: [ :arg8 | 
-			arg8 consumed: true.
-			arg8 key isAlt
-				ifTrue: [ arg8 target mouseCursor: BlAliasCursor new ]
-				ifFalse: [ arg8 key isPrimary
-						ifTrue: [ arg8 target mouseCursor: BlCopyCursor new ]
-						ifFalse: [ arg8 target mouseCursor: nil ] ] ]
+			do: [ :anEvent | 
+				anEvent consumed: true.
+				anEvent key isAlt
+					ifTrue: [ anEvent target mouseCursor: BlAliasCursor new ]
+					ifFalse: [ anEvent key isPrimary
+							ifTrue: [ anEvent target mouseCursor: BlCopyCursor new ]
+							ifFalse: [ anEvent target mouseCursor: nil ] ] ]
 ]

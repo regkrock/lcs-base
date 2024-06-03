@@ -6,41 +6,37 @@ GtAsyncSearchMethodGroupStream >> asCoder [
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtAsyncSearchMethodGroupStream >> gtItemsFor: arg1 [
+GtAsyncSearchMethodGroupStream >> gtItemsFor: aView [
 	<gtView>
-	| tmp2 |
-	tmp2 := arg1 forward.
-	tmp2
+	^ aView forward
 		title: 'Live' translated;
 		priority: 10;
-		object: [ self ].
-	^ tmp2 view: #gtItemsFor:context:
+		object: [ self ];
+		view: #gtItemsFor:context:
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtAsyncSearchMethodGroupStream >> gtItemsFor: arg1 context: arg2 [
+GtAsyncSearchMethodGroupStream >> gtItemsFor: aView context: aPhlowContext [
 	<gtView>
-	| tmp2 |
-	tmp2 := GtPharoCoderUIUtility
-			filteredMethodsPhlowViewFor: arg1
-			context: arg2
-			filter: filter
-			testsRunner: true
-			examplesRunner: true.
-	tmp2 title: 'Live' translated.
-	^ tmp2 priority: 10
+	^ (GtPharoCoderUIUtility
+		filteredMethodsPhlowViewFor: aView
+		context: aPhlowContext
+		filter: filter
+		testsRunner: true
+		examplesRunner: true)
+			title: 'Live' translated;
+			priority: 10
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtAsyncSearchMethodGroupStream >> gtLiveFor: arg1 [
+GtAsyncSearchMethodGroupStream >> gtLiveFor: aView [
 	<gtView>
-	| tmp2 |
-	tmp2 := arg1 columnedList.
-	tmp2
+	
+	^ aView columnedList
 		title: 'Methods' translated;
 		priority: 11;
-		column: 'Class' text: [ :arg2 | arg2 methodClass name ];
-		column: 'Selector' text: [ :arg3 | arg3 selector ];
-		column: 'Package' text: [ :arg4 | arg4 package name ].
-	^ tmp2 items: [ self asyncSimilarCopy ]
+		column: 'Class' text: [ :eachItem | eachItem methodClass name ];
+		column: 'Selector' text: [ :eachItem | eachItem selector ];
+		column: 'Package' text: [ :eachItem | eachItem package name ];
+		items: [ self asyncSimilarCopy ]
 ]

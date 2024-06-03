@@ -9,20 +9,23 @@ Class {
 
 { #category : #accessing }
 GtPharoSubscribedToMethodCoderSignal >> methodCoder [
+
 	^ methodCoder
 ]
 
 { #category : #accessing }
-GtPharoSubscribedToMethodCoderSignal >> methodCoder: arg1 [
-	methodCoder := arg1
+GtPharoSubscribedToMethodCoderSignal >> methodCoder: anObject [
+
+	methodCoder := anObject
 ]
 
 { #category : #printing }
-GtPharoSubscribedToMethodCoderSignal >> printOneLineContentsOn: arg1 [
-	| tmp1 |
-	self printOneLineCommunicatorId: arg1.
+GtPharoSubscribedToMethodCoderSignal >> printOneLineContentsOn: aStream [
+	self printOneLineCommunicatorId: aStream.
+
 	self methodCoder ifNil: [ ^ self ].
-	self mediator ifNotNil: [ arg1 nextPutAll: ', ' ].
-	(tmp1 := self methodCoder selector)
-		ifNotNil: [ arg1 nextPutAll: tmp1 asString ]
+	self mediator ifNotNil: [ aStream nextPutAll: ', ' ].
+
+	self methodCoder selector
+		ifNotNil: [ :aSelector | aStream nextPutAll: aSelector asString ]
 ]

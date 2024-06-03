@@ -9,34 +9,34 @@ Class {
 
 { #category : #accessing }
 GtCompilationNotificationSummary >> initialize [
-	| tmp2 |
 	super initialize.
 	self
-		constraintsDo: [ :arg1 | 
-			arg1 vertical exact: 21.
-			arg1 horizontal fitContent ];
-		layout: BlLinearLayout horizontal;
-		border: (BlBorder paint: Color orange width: 2);
-		geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
-		padding: (BlInsets left: 5 right: 5);
-		background: Color white.
-	tmp2 := BrLabel new.
-	tmp2
-		aptitude: BrGlamorousLabelAptitude;
-		beSmallSize;
-		hFitContent;
-		vExact: 15;
-		margin: (BlInsets all: 3);
-		layout: BlLinearLayout horizontal alignCenter;
-		geometry: (BlRoundedRectangleGeometry cornerRadius: 4).
-	self addChild: (executedLabel := tmp2 text: 'Compiling 0%')
+		constraintsDo: [ :c | 
+			c vertical exact: 21.
+			c horizontal fitContent ].
+	self layout: BlLinearLayout horizontal.
+	self border: (BlBorder paint: Color orange width: 2).
+	self geometry: (BlRoundedRectangleGeometry cornerRadius: 4).
+	self padding: (BlInsets left: 5 right: 5).
+	self background: Color white.
+
+	self
+		addChild: (executedLabel := BrLabel new
+					aptitude: BrGlamorousLabelAptitude;
+					beSmallSize;
+					hFitContent;
+					vExact: 15;
+					margin: (BlInsets all: 3);
+					layout: BlLinearLayout horizontal alignCenter;
+					geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
+					text: 'Compiling 0%')
 ]
 
 { #category : #accessing }
 GtCompilationNotificationSummary >> subscribeToNotifications [
 	notifications
-		do: [ :arg1 | 
-			arg1 job announcer
+		do: [ :each | 
+			each job announcer
 				when: JobChange
 				send: #requestUpdate
 				to: self ]
@@ -44,17 +44,17 @@ GtCompilationNotificationSummary >> subscribeToNotifications [
 
 { #category : #accessing }
 GtCompilationNotificationSummary >> unsubscribeFromNotifications [
-	notifications do: [ :arg1 | arg1 job announcer unsubscribe: self ]
+	notifications do: [ :each | each job announcer unsubscribe: self ]
 ]
 
 { #category : #accessing }
 GtCompilationNotificationSummary >> updateSummaryContent [
-	| tmp2 tmp3 |
-	tmp2 := tmp3 := 0.
+	| compiled total |
+	compiled := total := 0.
 	self notifications
-		do: [ :arg1 | 
-			tmp2 := tmp2 + arg1 job currentValue.
-			tmp3 := tmp3 + arg1 job max ].
+		do: [ :each | 
+			compiled := compiled + each job currentValue.
+			total := total + each job max ].
 	executedLabel
-		text: 'Compiling ' , (tmp2 * 100 / tmp3 printShowingDecimalPlaces: 0) , '%'
+		text: 'Compiling ' , (compiled * 100 / total printShowingDecimalPlaces: 0) , '%'
 ]

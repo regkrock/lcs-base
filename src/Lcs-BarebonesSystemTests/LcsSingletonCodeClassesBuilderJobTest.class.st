@@ -9,12 +9,12 @@ LcsSingletonCodeClassesBuilderJobTest >> jobBuilder [
 	^ LcsSingletonCodeClassesBuilderJob new
 		classPrefix: 'Lxx';
 		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
-		codeRootName: 'Gender';
+		createForRootName: 'Gender';
 		addCodeSubclassWithRootNamed: 'Male';
 		addCodeSubclassWithRootNamed: 'Female';
 		addCodeSubclassWithRootNamed: 'UnknownGender'
 			with: [ :classBuilder | classBuilder beDefaultInstance ];
-		moduleClass: LxxBarebonesSystem;
+		targetModuleClass: LxxBarebonesSystem;
 		installMemberSlotInDomainClass: LxxBarebonesPerson;
 		yourself
 ]
@@ -47,41 +47,41 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builder := self jobBuilder.
 
 	self assert: builder classPrefix equals: 'Lxx'.
-	self assert: builder codePackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: builder targetPackageName equals: 'Lcs-BarebonesSystem'.
 	self assert: builder completedRefactorings isEmpty.
-	self assert: builder codeClassRootName equals: 'Gender'.
+	self assert: builder classRootName equals: 'Gender'.
 	self assert: builder jobSteps hasNoJobSteps.
 
-	self assert: builder codeSlotName equals: 'gender'.
-	self assert: builder codeCollectionSlotName equals: 'genders'.
-	self assert: builder codeClassName equals: 'LxxGender'.
-	self assert: builder codeCollectionClassName equals: 'LxxGenders'.
-	self assert: builder moduleClass equals: LxxBarebonesSystem.
+	self assert: builder domainInstanceSlotName equals: 'gender'.
+	self assert: builder globalCollectionSlotName equals: 'genders'.
+	self assert: builder domainClassName equals: 'LxxGender'.
+	self assert: builder globalCollectionClassName equals: 'LxxGenders'.
+	self assert: builder targetModuleClass equals: LxxBarebonesSystem.
 
 	self assert: builder codeSubclassBuilders size equals: 3.
 	
 	codeSubclassBuilder := builder codeSubclassBuilders at: 1.
-	self assert: codeSubclassBuilder superclassName equals: 'LxxGender'.
+	self assert: codeSubclassBuilder targetSuperclassName equals: 'LxxGender'.
 	self assert: codeSubclassBuilder newClassName equals: 'LxxMale'.
-	self assert: codeSubclassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-BarebonesSystem'.
 	self assert: codeSubclassBuilder shortName equals: 'Male'. 
 	self assert: codeSubclassBuilder codeDescription equals: 'Male'. 
 	self assert: codeSubclassBuilder codeName equals: 'male'. 
 	self deny: codeSubclassBuilder isDefaultInstance.
 
 	codeSubclassBuilder := builder codeSubclassBuilders at: 2.
-	self assert: codeSubclassBuilder superclassName equals: 'LxxGender'.
+	self assert: codeSubclassBuilder targetSuperclassName equals: 'LxxGender'.
 	self assert: codeSubclassBuilder newClassName equals: 'LxxFemale'.
-	self assert: codeSubclassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-BarebonesSystem'.
 	self assert: codeSubclassBuilder shortName equals: 'Female'. 
 	self assert: codeSubclassBuilder codeDescription equals: 'Female'. 
 	self assert: codeSubclassBuilder codeName equals: 'female'. 
 	self deny: codeSubclassBuilder isDefaultInstance.
 
 	codeSubclassBuilder := builder codeSubclassBuilders at: 3.
-	self assert: codeSubclassBuilder superclassName equals: 'LxxGender'.
+	self assert: codeSubclassBuilder targetSuperclassName equals: 'LxxGender'.
 	self assert: codeSubclassBuilder newClassName equals: 'LxxUnknownGender'.
-	self assert: codeSubclassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-BarebonesSystem'.
 	self assert: codeSubclassBuilder shortName equals: 'UnknownGender'. 
 	self assert: codeSubclassBuilder codeDescription equals: 'UnknownGender'. 
 	self assert: codeSubclassBuilder codeName equals: 'unknownGender'. 
@@ -111,7 +111,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase2_BuildJobSteps [
 	| builder builderJobStep |
-	
+
 	builder := self jobBuilder.
 	builder buildJobSteps.
 
@@ -119,33 +119,33 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	
 	builderJobStep := builder jobSteps jobStepAt: 1.
 	self assert: builderJobStep class identicalTo: LcsCodeSuperClassBuilder.
-	self assert: builderJobStep superclassName equals: 'LcsSingletonCode'.
+	self assert: builderJobStep targetSuperclassName equals: 'LcsSingletonCode'.
 	self assert: builderJobStep newClassName equals: 'LxxGender'.
-	self assert: builderJobStep codePackageName equals: builder codePackageName.
+	self assert: builderJobStep targetPackageName equals: builder targetPackageName.
 	
 	builderJobStep := builder jobSteps jobStepAt: 2.
 	self assert: builderJobStep class identicalTo: LcsSingletonCodeClassBuilder.
-	self assert: builderJobStep superclassName equals: 'LxxGender'.
+	self assert: builderJobStep targetSuperclassName equals: 'LxxGender'.
 	self assert: builderJobStep newClassName equals: 'LxxMale'.
-	self assert: builderJobStep codePackageName equals: builder codePackageName.
+	self assert: builderJobStep targetPackageName equals: builder targetPackageName.
 
 	builderJobStep := builder jobSteps jobStepAt: 3.
 	self assert: builderJobStep class identicalTo: LcsSingletonCodeClassBuilder.
-	self assert: builderJobStep superclassName equals: 'LxxGender'.
+	self assert: builderJobStep targetSuperclassName equals: 'LxxGender'.
 	self assert: builderJobStep newClassName equals: 'LxxFemale'.
-	self assert: builderJobStep codePackageName equals: builder codePackageName.
+	self assert: builderJobStep targetPackageName equals: builder targetPackageName.
 	
 	builderJobStep := builder jobSteps jobStepAt: 4.
 	self assert: builderJobStep class identicalTo: LcsSingletonCodeClassBuilder.
-	self assert: builderJobStep superclassName equals: 'LxxGender'.
+	self assert: builderJobStep targetSuperclassName equals: 'LxxGender'.
 	self assert: builderJobStep newClassName equals: 'LxxUnknownGender'.
-	self assert: builderJobStep codePackageName equals: builder codePackageName.
+	self assert: builderJobStep targetPackageName equals: builder targetPackageName.
 
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsCodeCollectionClassBuilder.
-	self assert: builderJobStep superclassName equals: 'LcsCodes'.
+	self assert: builderJobStep targetSuperclassName equals: 'LcsCodes'.
 	self assert: builderJobStep newClassName equals: 'LxxGenders'.
-	self assert: builderJobStep codePackageName equals: builder codePackageName.
+	self assert: builderJobStep targetPackageName equals: builder targetPackageName.
 		
 	builderJobStep := builder jobSteps jobStepAt: 6.
 	self assert: builderJobStep class identicalTo: LcsGlobalCollectionReferenceSlotBuilder.
@@ -155,7 +155,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	
 	builderJobStep := builder jobSteps jobStepAt: 7.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
-	self assert: builderJobStep moduleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep targetModuleClass identicalTo: LxxBarebonesSystem.
 	self assert: builderJobStep slotClassName equals: 'LxxGenders'.
 	self assert: builderJobStep slotName equals: 'genders'.
 
@@ -163,7 +163,8 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builderJobStep := builder jobSteps jobStepAt: 8.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
 	self assert: builderJobStep target identicalTo: LxxBarebonesPerson.
-	self assert: builderJobStep moduleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep targetModuleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep  targetModuleName equals: 'Barebones System'.
 	self assert: builderJobStep collectionSlotName equals: 'genders'.
 	self assert: builderJobStep slotName equals: 'gender'.
 
@@ -194,7 +195,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase4_UpdateSlotModel [
-	| builder person |
+	| builder |
 	
 	self removeAllArtifacts.
 	

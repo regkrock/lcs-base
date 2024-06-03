@@ -1,11 +1,11 @@
 Class {
 	#name : #LcsCodeCollectionClassBuilder,
-	#superclass : #LcsBaseCodeClassBuilder,
+	#superclass : #LcsBaseClassBuilder,
 	#category : #'Lcs-Tools'
 }
 
 { #category : #accessing }
-LcsCodeCollectionClassBuilder class >> superclassName [
+LcsCodeCollectionClassBuilder class >> targetSuperclassName [
 	^ 'LcsCodes'
 ]
 

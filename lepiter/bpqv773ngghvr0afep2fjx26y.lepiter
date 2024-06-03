@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-15T10:28:15.848237-04:00"
+						"dateAndTimeString" : "2024-06-03T08:54:22.187494-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Bj8qKYXSDQCa1RUQDiXixQ=="
 				},
-				"code" : "LcsStringSlotDefinitionBuilder new\r\tslotName: 'firstName';\r\tslotClass: LcsPerson;\r\tcollectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass;\r\tcollectionElementTypes: {LcsUser};\r\tinstall\r\t"
+				"code" : "LcsStringSlotDefinitionBuilder new\r\tslotName: 'firstName';\r\ttargetClassName: 'LcsPerson';\r\tinstallCode;\r\tverifyCodeInstallation;\r\tupdateSlotModel;\r\tverifySlotModelUpdates\t"
 			}
 		]
 	},

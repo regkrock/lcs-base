@@ -12,34 +12,35 @@ Class {
 }
 
 { #category : #'private - attributes' }
-GtRefactoringChangesAttribute >> cancelAction: arg1 [
-	cancelAction := arg1
+GtRefactoringChangesAttribute >> cancelAction: aBlock [
+	cancelAction := aBlock 
 ]
 
 { #category : #initialization }
-GtRefactoringChangesAttribute >> completionAction: arg1 [
-	completionAction := arg1
+GtRefactoringChangesAttribute >> completionAction: aBlock [
+	completionAction := aBlock
 ]
 
 { #category : #accessing }
-GtRefactoringChangesAttribute >> doAffect: arg1 in: arg2 [
-	| tmp1 |
-	tmp1 := self previewButtonClass new.
-	tmp1 vMatchParent.
-	focusAction ifNotNil: [ tmp1 focusAction: focusAction ].
-	tmp1
-		refactorings: [ self refactorings ];
+GtRefactoringChangesAttribute >> doAffect: aTBrTextEditorTextualPiece in: anEditorElement [
+	| button |
+	button := self previewButtonClass new.
+	button vMatchParent.
+	focusAction ifNotNil: [ button focusAction: focusAction ].
+	button refactorings: [ self refactorings ].
+	button
 		padding: (BlInsets
-					top: 1
-					right: 4
-					bottom: 0
-					left: 4);
-		cancelBlock: cancelAction;
-		beMiniSize;
+				top: 1
+				right: 4
+				bottom: 0
+				left: 4).
+	button cancelBlock: cancelAction.
+	button beMiniSize.
+	button
 		when: GtRefactoringsAppliedEvent
-			do: [ :arg3 | completionAction notNil ifTrue: [ completionAction cull: arg3 ] ].
-	showWhenCreated ifTrue: [ tmp1 enqueueTask: [ tmp1 openPreview ] asBlTask ].
-	^ tmp1
+		do: [ :event | completionAction notNil ifTrue: [ completionAction cull: event ] ].
+	showWhenCreated ifTrue: [ button enqueueTask: [ button openPreview ] asBlTask ].
+	^ button
 ]
 
 { #category : #accessing }
@@ -48,16 +49,15 @@ GtRefactoringChangesAttribute >> focusAction [
 ]
 
 { #category : #accessing }
-GtRefactoringChangesAttribute >> focusAction: arg1 [
-	focusAction := arg1
+GtRefactoringChangesAttribute >> focusAction: anObject [
+	focusAction := anObject
 ]
 
 { #category : #initialization }
 GtRefactoringChangesAttribute >> initialize [
 	super initialize.
-	self
-		beAppend;
-		beNotOverwritableByStyler.
+	self beAppend.
+	self beNotOverwritableByStyler.
 	showWhenCreated := false
 ]
 
@@ -72,8 +72,8 @@ GtRefactoringChangesAttribute >> refactoring [
 ]
 
 { #category : #accessing }
-GtRefactoringChangesAttribute >> refactoring: arg1 [
-	refactoring := arg1
+GtRefactoringChangesAttribute >> refactoring: aRBRefactoring [
+	refactoring := aRBRefactoring
 ]
 
 { #category : #accessing }
@@ -87,6 +87,6 @@ GtRefactoringChangesAttribute >> showWhenCreated [
 ]
 
 { #category : #accessing }
-GtRefactoringChangesAttribute >> showWhenCreated: arg1 [
-	showWhenCreated := arg1
+GtRefactoringChangesAttribute >> showWhenCreated: aBoolean [
+	showWhenCreated := aBoolean
 ]

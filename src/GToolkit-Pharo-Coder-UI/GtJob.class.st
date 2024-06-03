@@ -6,10 +6,10 @@ Class {
 
 { #category : #accessing }
 GtJob >> announcer [
-	^ announcer ifNil: [ announcer := Announcer new ] ifNotNil: [ announcer ]
+	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
 { #category : #accessing }
-GtJob >> announcer: arg1 [
-	announcer := arg1
+GtJob >> announcer: anAnnouncer [ 
+	announcer := anAnnouncer
 ]

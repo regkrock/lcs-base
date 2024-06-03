@@ -26,125 +26,144 @@ GtParserCreationFormExample >> formClass [
 
 { #category : #accessing }
 GtParserCreationFormExample >> removeParserAndPackage [
-	Smalltalk
-		removeClassNamed: self exampleParserName;
-		removeClassNamed: self exampleScannerName.
+	Smalltalk removeClassNamed: self exampleParserName.	Smalltalk removeClassNamed: self exampleScannerName.
 	self examplePackageName asPackage removeFromSystem
 ]
 
 { #category : #accessing }
 GtParserCreationFormExample >> scripterOnSimpleForm [
 	<gtExample>
-	| tmp1 |
-	tmp1 := self scripterWithModel: [ self simpleForm ].
-	tmp1
-		assertStep: [ :arg1 | 
-			arg1
+	| scripter |
+	scripter := self scripterWithModel: [ self simpleForm ].
+
+	scripter
+		assertStep: [ :s | 
+			s
 				label: 'Check save button is disabled';
-				satisfies: [ :arg2 | ((arg2 childNamed: #toolbar) childAt: 1) isEnabled not ] ].
-	^ tmp1
+				satisfies: [ :aForm | ((aForm childNamed: #toolbar) childAt: 1) isEnabled not ] ].
+
+	^ scripter
 ]
 
 { #category : #accessing }
 GtParserCreationFormExample >> scripterWithParserAccepted [
 	<gtExample>
 	<after: #removeParserAndPackage>
-	| tmp1 tmp2 |
-	tmp1 := self scripterWithParserAndScannerNameAndPackageFilled.
-	tmp1
-		clickStep: [ :arg1 | 
-			arg1
+	| scripter createdClass |
+	scripter := self scripterWithParserAndScannerNameAndPackageFilled.
+
+	scripter
+		clickStep: [ :s | 
+			s
 				label: 'Click save button';
 				// #toolbar;
 				onChildAt: 1 ].
-	tmp2 := Smalltalk classNamed: self exampleParserName.
-	self assert: tmp2 isNotNil.
-	tmp2 := Smalltalk classNamed: self exampleScannerName.
-	self assert: tmp2 isNotNil.
-	^ tmp1
+
+	createdClass := Smalltalk classNamed: self exampleParserName.
+	self assert: createdClass isNotNil.
+
+	createdClass := Smalltalk classNamed: self exampleScannerName.
+	self assert: createdClass isNotNil.
+
+	^ scripter
 ]
 
 { #category : #accessing }
 GtParserCreationFormExample >> scripterWithParserAndScannerNameAndPackageFilled [
 	<gtExample>
-	| tmp1 tmp2 tmp3 tmp5 |
-	tmp1 := self scripterWithParserAndScannerNameFilled.
-	tmp2 := tmp1 model packageAndTagDescription.
-	tmp3 := GtMagritteFieldElementId new description: tmp2.
-	tmp2 := tmp1 model packageAndTagDescription.
-	tmp3 := GtMagritteFieldElementId new description: tmp2.
-	tmp5 := tmp1 requestFocus.
-	tmp5
+	| scripter aDescription anElementId |
+	scripter := self scripterWithParserAndScannerNameFilled.
+	aDescription := scripter model packageAndTagDescription.
+	anElementId := GtMagritteFieldElementId new description: aDescription.
+
+	aDescription := scripter model packageAndTagDescription.
+	anElementId := GtMagritteFieldElementId new description: aDescription.
+
+	scripter requestFocus
 		label: 'Focus package editor';
-		// tmp3;
+		// anElementId;
 		onChildAt: 1;
 		play.
-	tmp1
-		typeStep: [ :arg1 | 
-			arg1
+
+	scripter
+		typeStep: [ :s | 
+			s
 				label: 'Fill package name';
 				text: self examplePackageName;
-				// tmp3;
-				onChildAt: 1 ];
-		assertStep: [ :arg2 | 
-				arg2
-					label: 'Check that package is set';
-					satisfies: [ :arg3 | 
-							((arg3 userData at: #gtmemento) cache at: tmp2) valueOrNil currentValue
-								packageName = self examplePackageName ] ].
-	^ tmp1
+				// anElementId;
+				onChildAt: 1 ].
+
+	scripter
+		assertStep: [ :s | 
+			s
+				label: 'Check that package is set';
+				satisfies: [ :aFrame | 
+					((aFrame userData at: #gtmemento) cache at: aDescription) valueOrNil
+						currentValue packageName = self examplePackageName ] ].
+
+	^ scripter
 ]
 
 { #category : #accessing }
 GtParserCreationFormExample >> scripterWithParserAndScannerNameFilled [
 	<gtExample>
-	| tmp1 tmp2 tmp3 tmp5 |
-	tmp1 := self scripterWithParserNameFilled.
-	tmp2 := tmp1 model scannerDescription.
-	tmp3 := GtMagritteFieldElementId new description: tmp2.
-	tmp5 := tmp1 requestFocus.
-	tmp5
+	| scripter aDescription anElementId |
+	scripter := self scripterWithParserNameFilled.
+	aDescription := scripter model scannerDescription.
+	anElementId := GtMagritteFieldElementId new description: aDescription.
+
+	scripter requestFocus
 		label: 'Focus scanner editor';
-		// tmp3;
+		// anElementId;
 		play.
-	tmp1
-		typeStep: [ :arg1 | 
-			arg1
+
+	scripter
+		typeStep: [ :s | 
+			s
 				label: 'Fill scanner name';
 				text: self exampleScannerName;
-				// tmp3 ];
-		assertStep: [ :arg2 | 
-				arg2
-					label: 'Assert scanner name';
-					value: [ :arg3 | arg3 text asString ] equals: [ self exampleScannerName ];
-					// tmp3 ].
-	^ tmp1
+				// anElementId ].
+
+	scripter
+		assertStep: [ :s | 
+			s
+				label: 'Assert scanner name';
+				value: [ :anEditor | anEditor text asString ]
+					equals: [ self exampleScannerName ];
+				// anElementId ].
+
+	^ scripter
 ]
 
 { #category : #accessing }
 GtParserCreationFormExample >> scripterWithParserNameFilled [
 	<gtExample>
-	| tmp1 tmp2 tmp3 tmp5 |
-	tmp1 := self scripterOnSimpleForm.
-	tmp2 := tmp1 model parserDescription.
-	tmp3 := GtMagritteFieldElementId new description: tmp2.
-	tmp5 := tmp1 requestFocus.
-	tmp5
+	| scripter aDescription anElementId |
+	scripter := self scripterOnSimpleForm.
+	aDescription := scripter model parserDescription.
+	anElementId := GtMagritteFieldElementId new description: aDescription.
+
+	scripter requestFocus
 		label: 'Focus parser editor';
-		// tmp3;
+		// anElementId;
 		play.
-	tmp1
-		typeStep: [ :arg1 | 
-			arg1
+
+	scripter
+		typeStep: [ :s | 
+			s
 				label: 'Fill parser name';
 				text: self exampleParserName;
-				// tmp3 ];
-		assertStep: [ :arg2 | 
-				arg2
-					label: 'Assert parser name';
-					value: [ :arg3 | arg3 text asString ] equals: [ self exampleParserName ];
-					// tmp3 ].
-	^ tmp1
+				// anElementId ].
+
+	scripter
+		assertStep: [ :s | 
+			s
+				label: 'Assert parser name';
+				value: [ :anEditor | anEditor text asString ]
+					equals: [ self exampleParserName ];
+				// anElementId ].
+
+	^ scripter
 ]
 
 { #category : #accessing }

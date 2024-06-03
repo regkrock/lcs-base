@@ -11,18 +11,18 @@ GtTraitCreationForm class >> componentName [
 
 { #category : #accessing }
 GtTraitCreationForm >> commit [
-	| tmp1 tmp2 |
-	tmp1 := self commitPackage categoryName.
-	tmp2 := Smalltalk classInstaller
-			make: [ :arg1 | 
-				arg1
-					name: newClassName;
-					category: tmp1;
-					slots: slots;
-					traitComposition: self traitComposition;
-					beTrait ].
-	self installClassSlotsOn: tmp2.
-	^ tmp2
+	| category aClass |
+	category := self commitPackage categoryName.
+	aClass := Smalltalk classInstaller
+		make: [ :builder | 
+			builder
+				name: newClassName;
+				category: category;
+				slots: slots;
+				traitComposition: self traitComposition;
+				beTrait ].
+	self installClassSlotsOn: aClass.
+	^ aClass
 ]
 
 { #category : #accessing }

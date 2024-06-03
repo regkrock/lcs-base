@@ -14,64 +14,71 @@ Class {
 
 { #category : #initialization }
 GtPharoNavigationElement >> initialize [
-	| tmp2 tmp4 |
 	super initialize.
-	self
-		aptitude: BrProportionalHorizontalPagerAptitude;
-		matchParent.
+	
+	self aptitude: BrProportionalHorizontalPagerAptitude.
+	self matchParent.
+	
 	packagesNavigationElement := GtPharoPackagesNavigationElement new.
 	behaivorsNavigationElement := GtPharoBehaviorsNavigationElement new.
-	tmp2 := BlElement new.
-	tmp2
+
+	packagesPage := (BlElement new
 		viewModel: BrPagerPageModel new;
 		layout: BlLinearLayout vertical;
-		constraintsDo: [ :arg1 | 
-				arg1 horizontal matchParent.
-				arg1 vertical matchParent ].
-	packagesPage := tmp2 addChild: packagesNavigationElement.
-	tmp4 := BlElement new.
-	tmp4
+		constraintsDo: [ :c |
+			c horizontal matchParent.
+			c vertical matchParent ];
+		addChild: packagesNavigationElement).
+		
+	behaviorsPage := (BlElement new
 		viewModel: BrPagerPageModel new;
 		layout: BlLinearLayout vertical;
-		constraintsDo: [ :arg2 | 
-				arg2 horizontal matchParent.
-				arg2 vertical matchParent ].
-	behaviorsPage := tmp4 addChild: behaivorsNavigationElement.
-	self
-		addPage: packagesPage;
-		addPage: behaviorsPage
+		constraintsDo: [ :c |
+			c horizontal matchParent.
+			c vertical matchParent ];
+		addChild: behaivorsNavigationElement).
+		
+	self addPage: packagesPage.
+	self addPage: behaviorsPage
 ]
 
 { #category : #'private - event handling' }
-GtPharoNavigationElement >> onPharoPackageNavigationSelected: arg1 [
-	behaivorsNavigationElement
-		pharoBehaviorsNavigationViewModel: arg1 packageViewModel pharoBehaviorsNavigationViewModel
+GtPharoNavigationElement >> onPharoPackageNavigationSelected: anAnnouncement [
+
+	behaivorsNavigationElement pharoBehaviorsNavigationViewModel: anAnnouncement packageViewModel pharoBehaviorsNavigationViewModel
 ]
 
 { #category : #'api - pharo packages navigation view model' }
 GtPharoNavigationElement >> onPharoPackagesNavigationViewModelChanged [
-	packagesNavigationElement
-		pharoPackagesNavigationViewModel: self pharoPackagesNavigationViewModel
+	"Is sent when a new pharoPackagesNavigation view model is assigned to the element.
+	Note: #onPharoPackagesNavigationViewModelChanged is sent before #subscribeToPharoPackagesNavigationViewModel
+	which means that if you perform any operation that triggers an announcement it will be ignored because the receiver
+	didn't get a chance to subscribe to any announcement. Override #onPostPharoPackagesNavigationViewModelChanged if you
+	wish to perform an operation that requires an announcement, but keep in mind that this is not the most efficient way"
+	
+	packagesNavigationElement pharoPackagesNavigationViewModel: self pharoPackagesNavigationViewModel
 ]
 
 { #category : #'private - event handling' }
-GtPharoNavigationElement >> onPharoTagNavigationDeselected: arg1 [
-	behaivorsNavigationElement
-		pharoBehaviorsNavigationViewModel: arg1 tagViewModel parentPharoTagsNavigationViewModel
-				parentPharoPackageNavigationViewModel pharoBehaviorsNavigationViewModel
+GtPharoNavigationElement >> onPharoTagNavigationDeselected: anAnnouncement [
+
+	behaivorsNavigationElement pharoBehaviorsNavigationViewModel:
+		anAnnouncement tagViewModel parentPharoTagsNavigationViewModel parentPharoPackageNavigationViewModel pharoBehaviorsNavigationViewModel
 ]
 
 { #category : #'private - event handling' }
-GtPharoNavigationElement >> onPharoTagNavigationSelected: arg1 [
-	behaivorsNavigationElement
-		pharoBehaviorsNavigationViewModel: arg1 tagViewModel pharoBehaviorsNavigationViewModel
+GtPharoNavigationElement >> onPharoTagNavigationSelected: anAnnouncement [
+
+	behaivorsNavigationElement pharoBehaviorsNavigationViewModel: anAnnouncement tagViewModel pharoBehaviorsNavigationViewModel
 ]
 
 { #category : #'api - pharo packages navigation view model' }
 GtPharoNavigationElement >> subscribeToPharoPackagesNavigationViewModel [
-	| tmp2 |
-	tmp2 := self pharoPackagesNavigationViewModel.
-	tmp2
+	"Is sent after a new pharoPackagesNavigation view model is assigned to the element.
+	It is required to unsubscribe from the view model or domain model by implementing
+	#unsubscribeFromPharoPackagesNavigationViewModel if elements subscribe to them"
+	
+	self pharoPackagesNavigationViewModel
 		when: GtPharoTagNavigationViewModelSelected
 			send: #onPharoTagNavigationSelected:
 			to: self;
@@ -80,10 +87,13 @@ GtPharoNavigationElement >> subscribeToPharoPackagesNavigationViewModel [
 			to: self;
 		when: GtPharoPackageNavigationViewModelSelected
 			send: #onPharoPackageNavigationSelected:
-			to: self
+			to: self.
 ]
 
 { #category : #'api - pharo packages navigation view model' }
 GtPharoNavigationElement >> unsubscribeFromPharoPackagesNavigationViewModel [
+	"Is sent before a new pharoPackagesNavigation view model is assigned to the element.
+	Elements that subscribe to pharoPackagesNavigation view model in domain model are required to implement this methods."
+	
 	self pharoPackagesNavigationViewModel unsubscribe: self
 ]

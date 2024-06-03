@@ -10,11 +10,12 @@ GtPharoMethodCoderCompiledSignal >> methodCoder [
 ]
 
 { #category : #accessing }
-GtPharoMethodCoderCompiledSignal >> printOneLineContentsOn: arg1 [
-	| tmp1 |
-	self printOneLineCommunicatorId: arg1.
+GtPharoMethodCoderCompiledSignal >> printOneLineContentsOn: aStream [
+	self printOneLineCommunicatorId: aStream.
+
 	self methodCoder ifNil: [ ^ self ].
-	self mediator ifNotNil: [ arg1 nextPutAll: ', ' ].
-	(tmp1 := self methodCoder selector)
-		ifNotNil: [ arg1 nextPutAll: tmp1 asString ]
+	self mediator ifNotNil: [ aStream nextPutAll: ', ' ].
+
+	self methodCoder selector
+		ifNotNil: [ :aSelector | aStream nextPutAll: aSelector asString ]
 ]

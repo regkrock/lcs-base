@@ -1,6 +1,7 @@
 Extension { #name : #MAVisitor }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-MAVisitor >> visitGtPackageAndTagDescription: arg1 [
-	self visitElementDescription: arg1
+MAVisitor >> visitGtPackageAndTagDescription: aDescription [
+
+	self visitElementDescription: aDescription
 ]

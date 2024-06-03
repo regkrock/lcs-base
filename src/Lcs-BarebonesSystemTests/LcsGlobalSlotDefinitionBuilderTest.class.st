@@ -25,12 +25,12 @@ LcsGlobalSlotDefinitionBuilderTest >> gendersBuilder [
 	^ LcsSingletonCodeClassesBuilderJob new
 		classPrefix: 'Lxx';
 		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
-		codeRootName: 'Gender';
+		createForRootName: 'Gender';
 		addCodeSubclassWithRootNamed: 'Male';
 		addCodeSubclassWithRootNamed: 'Female';
 		addCodeSubclassWithRootNamed: 'UnknownGender'
 			with: [ :classBuilder | classBuilder beDefaultInstance ];
-		moduleClass: LxxBarebonesSystem;
+		targetModuleClass: LxxBarebonesSystem;
 		installMemberSlotInDomainClass: LxxBarebonesPerson;
 		yourself
 ]
@@ -148,7 +148,7 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollectionWithExi
 LcsGlobalSlotDefinitionBuilderTest >> usersGlobalCollectionBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
 		slotName: 'users';
-		moduleName: LxxBarebonesSystem moduleName;
+		targetModuleName: LxxBarebonesSystem moduleName;
 		slotClass: 'LxxUsers' asClass;
 		collectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass;
 		collectionElementTypes: {'LxxUser' asClass};

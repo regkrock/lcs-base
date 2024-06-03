@@ -11,8 +11,8 @@ Class {
 }
 
 { #category : #accessing }
-GtRefactoringsElement >> applyRefactoringWithProgress: arg1 [
-	^ changesElement applyChangesWithProgress: arg1
+GtRefactoringsElement >> applyRefactoringWithProgress: aBlock [
+	^ changesElement applyChangesWithProgress: aBlock
 ]
 
 { #category : #accessing }
@@ -21,8 +21,8 @@ GtRefactoringsElement >> applyRefactorings [
 ]
 
 { #category : #accessing }
-GtRefactoringsElement >> changes: arg1 [
-	changesElement changes: arg1
+GtRefactoringsElement >> changes: changes [
+	changesElement changes: changes
 ]
 
 { #category : #accessing }
@@ -33,20 +33,18 @@ GtRefactoringsElement >> changesSize [
 { #category : #initialization }
 GtRefactoringsElement >> initialize [
 	super initialize.
-	self
-		layout: BlLinearLayout vertical;
-		matchParent;
-		padding: (BlInsets all: 10).
+	self layout: BlLinearLayout vertical.
+	self matchParent.
+	self padding: (BlInsets all: 10).
 	changesElement := GtChangesElement new.
-	self
-		addAptitude: (BrLayoutResizerAptitude new inherit: changesElement);
-		addChild: changesElement
+	self addAptitude: (BrLayoutResizerAptitude new inherit: changesElement).
+	self addChild: changesElement
 ]
 
 { #category : #accessing }
-GtRefactoringsElement >> refactorings: arg1 [
-	| tmp1 |
-	arg1 isEmpty ifTrue: [ ^ self ].
-	tmp1 := arg1 first model changes.
-	self changes: tmp1
+GtRefactoringsElement >> refactorings: aCollectionOfRBRefactorings [
+	| changes |
+	aCollectionOfRBRefactorings isEmpty ifTrue: [ ^ self ].
+	changes := aCollectionOfRBRefactorings first model changes.
+	self changes: changes
 ]

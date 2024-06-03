@@ -13,6 +13,6 @@ GtPharoTagNavigationViewModelSelected >> tagViewModel [
 ]
 
 { #category : #accessing }
-GtPharoTagNavigationViewModelSelected >> tagViewModel: arg1 [
-	tagViewModel := arg1
+GtPharoTagNavigationViewModelSelected >> tagViewModel: anObject [
+	tagViewModel := anObject
 ]

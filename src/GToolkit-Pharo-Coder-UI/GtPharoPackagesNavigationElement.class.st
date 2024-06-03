@@ -9,31 +9,44 @@ Class {
 { #category : #initialization }
 GtPharoPackagesNavigationElement >> initialize [
 	super initialize.
-	self
-		withoutSelection;
-		nodeType: [ :arg1 :arg2 | 
-				{#package -> GtPharoPackageNavigationElement.
-					#tag -> GtPharoPackageTagNavigationElement} asDictionary
-					at: arg2 value viewModelName ];
-		nodeStencil: [ :arg3 | arg3 new ];
-		nodeDataBinder: [ :arg4 :arg5 | 
-				| tmp1 |
-				tmp1 := {#package -> #pharoPackageNavigationViewModel:.
-						#tag -> #pharoTagNavigationViewModel:} asDictionary
-						at: arg5 value viewModelName.
-				arg4 perform: tmp1 with: arg5 value ]
+	
+	self withoutSelection.
+
+	self nodeType: [ :aTypeFactory :aTreeNode |
+		{
+			#package -> GtPharoPackageNavigationElement.
+			#tag -> GtPharoPackageTagNavigationElement.
+		} asDictionary at: aTreeNode value viewModelName ].
+
+	self nodeStencil: [ :anElementClass | anElementClass new ].
+
+	self nodeDataBinder: [ :eachNodeElement :eachTreeNode |
+		| aViewModelSetter |
+		aViewModelSetter := {
+			#package -> #pharoPackageNavigationViewModel:.
+			#tag -> #pharoTagNavigationViewModel:.
+		} asDictionary at: eachTreeNode value viewModelName.
+		eachNodeElement perform: aViewModelSetter with: eachTreeNode value ]
 ]
 
 { #category : #'api - pharo packages navigation view model' }
 GtPharoPackagesNavigationElement >> onPharoPackagesNavigationViewModelChanged [
-	| tmp1 |
-	tmp1 := {#package
-				-> [ :arg1 | arg1 pharoTagsNavigationViewModel pharoTagNavigationViewModels ].
-			#tag -> [ :arg2 | #() ]} asDictionary.
+	"Is sent when a new pharoPackagesNavigation view model is assigned to the element.
+	Note: #onPharoPackagesNavigationViewModelChanged is sent before #subscribeToPharoPackagesNavigationViewModel
+	which means that if you perform any operation that triggers an announcement it will be ignored because the receiver
+	didn't get a chance to subscribe to any announcement. Override #onPostPharoPackagesNavigationViewModelChanged if you
+	wish to perform an operation that requires an announcement, but keep in mind that this is not the most efficient way"
+	| theItems |
+
+	theItems := {
+		#package -> [ :aViewModel | aViewModel pharoTagsNavigationViewModel pharoTagNavigationViewModels ].
+		#tag -> [ :aViewModel | #() ].
+	} asDictionary.
+
 	self
 		items: self pharoPackagesNavigationViewModel pharoPackageNavigationViewModels
-		lazy: [ :arg3 | 
-			| tmp2 |
-			tmp2 := tmp1 at: arg3 viewModelName.
-			tmp2 value: arg3 ]
+		lazy: [ :eachViewModel |
+			| theItemsBlock |
+			theItemsBlock := theItems at: eachViewModel viewModelName.
+			theItemsBlock value: eachViewModel ]
 ]

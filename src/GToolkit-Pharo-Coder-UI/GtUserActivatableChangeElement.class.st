@@ -8,28 +8,29 @@ Class {
 }
 
 { #category : #'instance creation' }
-GtUserActivatableChangeElement class >> fromActivatableChange: arg1 [
-	^ self new activatableChange: arg1
+GtUserActivatableChangeElement class >> fromActivatableChange: aGtUserActivatableChange [
+	^ self new activatableChange: aGtUserActivatableChange
 ]
 
 { #category : #'instance creation' }
-GtUserActivatableChangeElement >> activatableChange: arg1 [
+GtUserActivatableChangeElement >> activatableChange: aGtUserActivatableChange [
 	self removeChildren.
-	activatableChange := arg1.
-	self
-		addChild: (arg1 hasDiffChange
-				ifTrue: [ arg1 change gtDiffChange asElement vFitContent beSmallSize ]
-				ifFalse: [ | tmp2 |
-					tmp2 := BrLabel new.
-					tmp2
-						aptitude: BrGlamorousLabelAptitude new;
-						text: arg1 change displayString ])
+
+	activatableChange := aGtUserActivatableChange.
+	
+	self addChild: ((aGtUserActivatableChange hasDiffChange)
+		ifTrue: [ aGtUserActivatableChange change gtDiffChange asElement vFitContent beSmallSize ]
+		ifFalse: [ BrLabel new
+				aptitude: BrGlamorousLabelAptitude new;
+				text: aGtUserActivatableChange change displayString ])
 ]
 
 { #category : #initialization }
 GtUserActivatableChangeElement >> initialize [
 	super initialize.
-	self
-		hMatchParent;
-		vFitContent
+	
+	self hMatchParent.
+	self vFitContent.
+	
+	
 ]

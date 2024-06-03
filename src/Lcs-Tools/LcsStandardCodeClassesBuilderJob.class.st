@@ -11,7 +11,7 @@ Class {
 LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self codeCollectionClassBuilder.
-	self addJobStep: self codeParentGlobalCollectionSlotBuilder.
+	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codeGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 ]
@@ -55,7 +55,7 @@ LcsStandardCodeClassesBuilderJob >> isDefaultInstanceFrom: anArray [
 
 { #category : #accessing }
 LcsStandardCodeClassesBuilderJob >> populateSlotModel [
-	self globalCollectionSlotDefinitionBuilder populateSlotModel.
+	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self codeInstances
 		do: [ :each | 
 			self codeClass new
@@ -76,7 +76,7 @@ LcsStandardCodeClassesBuilderJob >> populateSlotModel [
 
 { #category : #accessing }
 LcsStandardCodeClassesBuilderJob >> verifyPopulateSlotModel [
-	self assert: self targetGlobalCollection parent == self module.
+	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection size = (self codeInstances size + 1).
 	self codeInstances
 		do: [ :each | 

@@ -1,22 +1,22 @@
 Class {
 	#name : #LcsCodeSuperClassBuilder,
-	#superclass : #LcsBaseCodeClassBuilder,
+	#superclass : #LcsBaseClassBuilder,
 	#category : #'Lcs-Tools'
 }
 
 { #category : #accessing }
-LcsCodeSuperClassBuilder class >> defaultSuperclassName [
+LcsCodeSuperClassBuilder class >> targetSuperclassName [
 	^ 'LcsCode'
 ]
 
 { #category : #accessing }
 LcsCodeSuperClassBuilder >> initialize [
 	super initialize.
-	self superclassName: self class defaultSuperclassName
+	self targetSuperclassName: self class targetSuperclassName
 ]
 
 { #category : #accessing }
 LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
-	self assert: self installedClass superclass name equals: self superclassName
+	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]

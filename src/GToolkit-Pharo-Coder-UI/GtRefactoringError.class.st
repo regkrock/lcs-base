@@ -6,5 +6,5 @@ Class {
 
 { #category : #accessing }
 GtRefactoringError >> messageBlock [
-	^ tag ifNil: [ super messageBlock ] ifNotNil: [ tag ]
+	^ tag ifNil: [ super messageBlock ]
 ]

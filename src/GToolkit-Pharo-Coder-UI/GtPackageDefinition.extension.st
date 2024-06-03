@@ -1,73 +1,80 @@
 Extension { #name : #GtPackageDefinition }
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtPackageDefinition >> browseFrom: arg1 [
-	| tmp1 tmp2 tmp3 |
-	tmp1 := RPackageOrganizer default packageNamed: self name ifAbsent: [ ^ self ].
-	tmp3 := GtPharoPackageCoder forPackage: tmp1.
-	tmp2 := GtCoderToSpawn new coder: tmp3.
-	arg1 currentTarget fireEvent: tmp2.
-	tmp2 isConsumed
-		ifFalse: [ arg1 currentTarget phlow spawnTool: (GtReadyCoderTool coder: tmp2 coder) ]
+GtPackageDefinition >> browseFrom: anEvent [
+	| aRealPackage aCoderEvent aPackageCoder |
+
+	aRealPackage := RPackageOrganizer default
+		packageNamed: self name
+		ifAbsent: [ ^ self ].
+
+	aPackageCoder := GtPharoPackageCoder forPackage: aRealPackage.
+	aCoderEvent := GtCoderToSpawn new coder: aPackageCoder.
+	anEvent currentTarget fireEvent: aCoderEvent.
+	aCoderEvent isConsumed
+		ifFalse: [ anEvent currentTarget phlow spawnTool: (GtReadyCoderTool coder: aCoderEvent coder) ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtPackageDefinition >> newTabFrom: arg1 [
-	| tmp1 tmp2 tmp3 tmp5 |
-	tmp1 := RPackageOrganizer default packageNamed: self name ifAbsent: [ ^ self ].
-	tmp2 := GtCoderElement forPackage: tmp1.
-	tmp3 := BlSpace new.
-	tmp3
-		title: self name;
-		icon: BrGlamorousVectorIcons emphasizedBrowse;
-		extent: 1200 @ 600.
-	tmp3 root background: Color transparent.
-	tmp5 := GtPagerWrapperElement new.
-	tmp5 tool: tmp2.
-	tmp3
+GtPackageDefinition >> newTabFrom: anEvent [
+	| aRealPackage aPackageCoder aSpace |
+	aRealPackage := RPackageOrganizer default
+			packageNamed: self name
+			ifAbsent: [ ^ self ].
+
+	aPackageCoder := GtCoderElement forPackage: aRealPackage.
+
+	aSpace := BlSpace new.
+	aSpace title: self name.
+	aSpace icon: BrGlamorousVectorIcons emphasizedBrowse.
+	aSpace extent: 1200 @ 600.
+	aSpace root background: Color transparent.
+	aSpace
 		addChild: (GtPager
-				createOn: (tmp5
-						embellisher: (GtPagerPageEmbellisher new extension: GtPagerPageEmbellisherExtension null)));
-		withHalos.
-	arg1 target showSpace: tmp3
+				createOn: (GtPagerWrapperElement new
+						tool: aPackageCoder;
+						embellisher: (GtPagerPageEmbellisher new extension: GtPagerPageEmbellisherExtension null))).
+	aSpace withHalos.
+	anEvent target showSpace: aSpace
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtPackageDefinition >> packageReader [
-	| tmp2 |
-	tmp2 := GtCodeDefinitionSingleReader new.
-	tmp2
+	^ GtCodeDefinitionSingleReader new
 		title: 'Package';
 		definition: self;
 		getSelector: #name;
 		renameEvent: GtBehaviorPackageRenamed;
-		whenAltClickDo: [ :arg1 :arg2 | arg2 replaceFrom: arg1 ];
-		whenPrimaryClickDo: [ :arg3 :arg4 | arg4 newTabFrom: arg3 ];
-		whenClickDo: [ :arg5 :arg6 | arg6 browseFrom: arg5 ];
-		when: BlKeyUpEvent do: [ :arg7 | arg7 target mouseCursor: nil ].
-	^ tmp2
+		whenAltClickDo: [ :anEvent :aDefinition | aDefinition replaceFrom: anEvent ];
+		whenPrimaryClickDo: [ :anEvent :aDefinition | aDefinition newTabFrom: anEvent ];
+		whenClickDo: [ :anEvent :aDefinition | aDefinition browseFrom: anEvent ];
+		when: BlKeyUpEvent do: [ :anEvent | anEvent target mouseCursor: nil ];
 		when: BlKeyDownEvent
-		do: [ :arg8 | 
-			arg8 consumed: true.
-			arg8 key isAlt
-				ifTrue: [ arg8 target mouseCursor: BlAliasCursor new ]
-				ifFalse: [ arg8 key isPrimary
-						ifTrue: [ arg8 target mouseCursor: BlCopyCursor new ]
-						ifFalse: [ arg8 target mouseCursor: nil ] ] ]
+			do: [ :anEvent | 
+				anEvent consumed: true.
+				anEvent key isAlt
+					ifTrue: [ anEvent target mouseCursor: BlAliasCursor new ]
+					ifFalse: [ anEvent key isPrimary
+							ifTrue: [ anEvent target mouseCursor: BlCopyCursor new ]
+							ifFalse: [ anEvent target mouseCursor: nil ] ] ]
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
 GtPackageDefinition >> readers [
-	^ {self packageReader}
+	^ { self packageReader }
 ]
 
 { #category : #'*GToolkit-Pharo-Coder-UI' }
-GtPackageDefinition >> replaceFrom: arg1 [
-	| tmp1 tmp2 tmp3 |
-	tmp1 := RPackageOrganizer default packageNamed: self name ifAbsent: [ ^ self ].
-	tmp3 := GtPharoPackageCoder forPackage: tmp1.
-	tmp2 := GtCoderToReplace new coder: tmp3.
-	arg1 currentTarget fireEvent: tmp2.
-	tmp2 isConsumed
-		ifFalse: [ arg1 currentTarget phlow spawnTool: (GtReadyCoderTool coder: tmp2 coder) ]
+GtPackageDefinition >> replaceFrom: anEvent [
+	| aRealPackage aCoderEvent aPackageCoder |
+
+	aRealPackage := RPackageOrganizer default
+		packageNamed: self name
+		ifAbsent: [ ^ self ].
+
+	aPackageCoder := GtPharoPackageCoder forPackage: aRealPackage.
+	aCoderEvent := GtCoderToReplace new coder: aPackageCoder.
+	anEvent currentTarget fireEvent: aCoderEvent.
+	aCoderEvent isConsumed
+		ifFalse: [ anEvent currentTarget phlow spawnTool: (GtReadyCoderTool coder: aCoderEvent coder) ]
 ]

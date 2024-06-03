@@ -20,33 +20,35 @@ GtParserCreationForm class >> priority [
 
 { #category : #callbacks }
 GtParserCreationForm >> commit [
-	| tmp1 tmp2 tmp3 |
-	tmp1 := self commitPackage categoryName.
-	tmp2 := Smalltalk classInstaller
-			make: [ :arg1 | 
-				arg1
+	| category scannerClass parserClass |
+	category := self commitPackage categoryName.
+	scannerClass := Smalltalk classInstaller
+			make: [ :builder | 
+				builder
 					name: scanner trim;
 					superclass: SmaCCScanner;
-					category: tmp1 ].
-	tmp3 := Smalltalk classInstaller
-			make: [ :arg2 | 
-				arg2
+					category: category ].
+	parserClass := Smalltalk classInstaller
+			make: [ :builder | 
+				builder
 					name: parser trim;
 					superclass: SmaCCParser;
-					category: tmp1 ].
+					category: category ].
 	(RBAddMethodChange
 		compile: 'scannerClass
 	^' , scanner
-		in: tmp3 class
+		in: parserClass class
 		classified: #generated) execute.
+
 	(RBAddMethodChange
 		compile: 'definitionComment
 	"Start 
 	:
 	;"'
-		in: tmp3 class
+		in: parserClass class
 		classified: #generated) execute.
-	^ tmp3
+
+	^ parserClass
 ]
 
 { #category : #accessing }
@@ -62,42 +64,43 @@ GtParserCreationForm >> defaultScanner [
 { #category : #initialization }
 GtParserCreationForm >> initialize [
 	super initialize.
+
 	parser := ''.
 	scanner := ''
 ]
 
 { #category : #accessing }
 GtParserCreationForm >> parser [
+
 	^ parser
 ]
 
 { #category : #accessing }
-GtParserCreationForm >> parser: arg1 [
-	parser := arg1
+GtParserCreationForm >> parser: anObject [
+
+	parser := anObject
 ]
 
 { #category : #magritte }
 GtParserCreationForm >> parserDescription [
 	<magritteDescription>
-	| tmp2 |
-	tmp2 := MAStringDescription new.
-	tmp2
+	^ MAStringDescription new
 		label: 'Parser';
 		priority: 1;
 		accessor: #parserRope;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocCompletion: [ GtStringsCompletionStrategy new
-					completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
-		addCondition: [ :arg1 | arg1 asString trim isNotEmpty ]
+				completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
+		addCondition: [ :aValue | aValue asString trim isNotEmpty ]
 			labelled: 'Parser name must be set';
-		addCondition: [ :arg2 | (Smalltalk classNamed: arg2 asString trim) isNil ]
+		addCondition: [ :aValue | (Smalltalk classNamed: aValue asString trim) isNil ]
 			labelled: 'Class name is already taken';
-		addCondition: [ :arg3 | arg3 isEmpty or: [ arg3 asString first isUppercase ] ]
+		addCondition: [ :aValue | aValue isEmpty or: [ aValue asString first isUppercase ] ]
 			labelled: 'First character must be uppercase';
-		addCondition: [ :arg4 | arg4 asString isAllAlphaNumerics ]
-			labelled: 'Class name must be alphanumeric'.
-	^ tmp2 beRequired
+		addCondition: [ :aValue | aValue asString isAllAlphaNumerics ]
+			labelled: 'Class name must be alphanumeric';
+		beRequired
 ]
 
 { #category : #accessing }
@@ -107,42 +110,42 @@ GtParserCreationForm >> parserRope [
 ]
 
 { #category : #accessing }
-GtParserCreationForm >> parserRope: arg1 [
-	self parser: arg1 asString
+GtParserCreationForm >> parserRope: aRope [
+	self parser: aRope asString
 ]
 
 { #category : #accessing }
 GtParserCreationForm >> scanner [
+
 	^ scanner
 ]
 
 { #category : #accessing }
-GtParserCreationForm >> scanner: arg1 [
-	scanner := arg1
+GtParserCreationForm >> scanner: anObject [
+
+	scanner := anObject
 ]
 
 { #category : #magritte }
 GtParserCreationForm >> scannerDescription [
 	<magritteDescription>
-	| tmp2 |
-	tmp2 := MAStringDescription new.
-	tmp2
+	^ MAStringDescription new
 		label: 'Scanner';
 		priority: 2;
 		accessor: #scannerRope;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocCompletion: [ GtStringsCompletionStrategy new
-					completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
-		addCondition: [ :arg1 | arg1 asString trim isNotEmpty ]
+				completions: (GtPrefixTree withAll: (Smalltalk allClasses collect: #name)) ];
+		addCondition: [ :aValue | aValue asString trim isNotEmpty ]
 			labelled: 'Scanner name must be set';
-		addCondition: [ :arg2 | (Smalltalk classNamed: arg2 asString trim) isNil ]
+		addCondition: [ :aValue | (Smalltalk classNamed: aValue asString trim) isNil ]
 			labelled: 'Class name is already taken';
-		addCondition: [ :arg3 | arg3 isEmpty or: [ arg3 asString first isUppercase ] ]
+		addCondition: [ :aValue | aValue isEmpty or: [ aValue asString first isUppercase ] ]
 			labelled: 'First character must be uppercase';
-		addCondition: [ :arg4 | arg4 asString isAllAlphaNumerics ]
-			labelled: 'Class name must be alphanumeric'.
-	^ tmp2 beRequired
+		addCondition: [ :aValue | aValue asString isAllAlphaNumerics ]
+			labelled: 'Class name must be alphanumeric';
+		beRequired
 ]
 
 { #category : #accessing }
@@ -152,6 +155,6 @@ GtParserCreationForm >> scannerRope [
 ]
 
 { #category : #accessing }
-GtParserCreationForm >> scannerRope: arg1 [
-	self scanner: arg1 asString
+GtParserCreationForm >> scannerRope: aRope [
+	self scanner: aRope asString
 ]
