@@ -77,6 +77,17 @@ LcsDomainGlobalClassBuilderJob >> createForRootName: aRootName [
 	self globalCollectionClassName: self domainClassName asEnglishPlural
 ]
 
+{ #category : #builders }
+LcsDomainGlobalClassBuilderJob >> domainClassMemberSlotBuilder: eachClass [ 
+	^ LcsMemberOfSlotBuilder new
+		target: eachClass;
+		collectionSlotName: self globalCollectionSlotName;
+		slotName: self domainInstanceSlotName;
+		targetModuleClass: self targetModule class;
+		targetClassName: eachClass name;
+		yourself
+]
+
 { #category : #accessing }
 LcsDomainGlobalClassBuilderJob >> domainClassName [
 	^ domainClassName
@@ -164,6 +175,11 @@ LcsDomainGlobalClassBuilderJob >> installMemberSlotInDomainClass: aClass [
 { #category : #configuration }
 LcsDomainGlobalClassBuilderJob >> installNewClassesInPackageNamed: aString [ 
 	self targetPackageName: aString
+]
+
+{ #category : #accessing }
+LcsDomainGlobalClassBuilderJob >> jobStepDescription [
+	^ self printString
 ]
 
 { #category : #accessing }

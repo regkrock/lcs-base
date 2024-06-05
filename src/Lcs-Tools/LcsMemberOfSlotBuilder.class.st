@@ -48,11 +48,6 @@ LcsMemberOfSlotBuilder >> initialize [
 ]
 
 { #category : #accessing }
-LcsMemberOfSlotBuilder >> jobSteps [
-	^ OrderedCollection new
-]
-
-{ #category : #accessing }
 LcsMemberOfSlotBuilder >> moduleName [
 	^ moduleName ifNil: [ self targertModuleClass ifNil: [ ' missing moduleClass name' ] ifNotNil: [  self targertModuleClass moduleName ] ] 
 ]

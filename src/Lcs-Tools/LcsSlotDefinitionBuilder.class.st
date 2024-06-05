@@ -6,7 +6,8 @@ Class {
 		'target',
 		'slotDefinitionSelector',
 		'targetClassName',
-		'targetModuleClass'
+		'targetModuleClass',
+		'jobSteps'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -32,28 +33,9 @@ LcsSlotDefinitionBuilder >> addCompletedRefactoring: anObject [
 LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
 
-{ #category : #'code generation' }
-LcsSlotDefinitionBuilder >> createGetterAndSetterMethods [
-	self
-		addCompletedRefactoring: (RBCreateDomainSlotAcccessorsForVariableRefactoring
-				instanceVariable: self slotName
-				class: self target) execute
-]
-
-{ #category : #'code generation' }
-LcsSlotDefinitionBuilder >> createInstanceVariable [
-	"(RBAddInstanceVariableRefactoring variable: self slotName class: self target)"
-	self addCompletedRefactoring: (RBAddInstanceVariableChange add: self slotName to: self target)
-		execute
-]
-
-{ #category : #'code generation' }
-LcsSlotDefinitionBuilder >> createSlotDefinitionMethod [
-	self
-		addCompletedRefactoring: (RBAddMethodChange
-				compile: self slotDefinitionSource
-				in: self target class
-				classified: #'slot definitions') execute
+{ #category : #printing }
+LcsSlotDefinitionBuilder >> addStepNumberTo: aString [
+	^ self stepNumber , '.' ,aString
 ]
 
 { #category : #testing }
@@ -78,6 +60,16 @@ LcsSlotDefinitionBuilder >> getterSelector [
 	^ self slotName asSymbol
 ]
 
+{ #category : #initialize }
+LcsSlotDefinitionBuilder >> initialize [
+	super initialize.
+	self jobSteps: (LcsCodeBuilderJobSteps newOn: self).
+	self jobSteps addJobStep: LcsSlotInstanceVariableBuilder new.
+	self jobSteps addJobStep: LcsSlotDefintionMethodBuilder new.
+	self jobSteps addJobStep: LcsSlotGetterAndSetterBuilder new.
+
+]
+
 { #category : #iniitialize }
 LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [ 
 	self parent: aBuilderOrBuilderJob
@@ -85,10 +77,7 @@ LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [
 
 { #category : #api }
 LcsSlotDefinitionBuilder >> installCode [
-	"self ensureSlotDefinitionMethodDoesNotAlreadyExist."
-	self isInstanceVariableAlreadyCreated ifFalse: [self createInstanceVariable].
-	self createGetterAndSetterMethods.
-	self createSlotDefinitionMethod
+	self jobSteps installCode
 ]
 
 { #category : #api }
@@ -99,6 +88,27 @@ LcsSlotDefinitionBuilder >> installSlotDefinition [
 { #category : #validation }
 LcsSlotDefinitionBuilder >> isInstanceVariableAlreadyCreated [
 	^ self target allInstVarNames includes: self slotName
+]
+
+{ #category : #printing }
+LcsSlotDefinitionBuilder >> jobStepDescription [
+	^ (WriteStream on: String new)
+		nextPutAll: self stepNumber;
+		nextPutAll: ') Install slot "';
+		nextPutAll: self slotName;
+		nextPutAll: '" in ';
+		nextPutAll: self targetClassName;
+		contents
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> jobSteps [
+	^ jobSteps
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> jobSteps: anObject [
+	jobSteps := anObject
 ]
 
 { #category : #configuration }
@@ -145,6 +155,11 @@ LcsSlotDefinitionBuilder >> slotName: anObject [
 	slotName := (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size))
 ]
 
+{ #category : #printing }
+LcsSlotDefinitionBuilder >> stepNumber [
+	^ (self parent indexOf: self) printString
+]
+
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> target [
 	^target ifNil: [ target := self targetClassName asClass ]
@@ -182,13 +197,10 @@ LcsSlotDefinitionBuilder >> updateSlotModel [
 
 { #category : #install }
 LcsSlotDefinitionBuilder >> verifyCodeInstallation [
-	self assert: (self target allInstVarNames includes: slotName).
-	self assert: (self target canUnderstand: self slotName asSymbol).
-	self assert: (self target canUnderstand: (self slotName , ':') asSymbol).
-	self assert: (self target class canUnderstand: (slotName , 'SlotDefinition') asSymbol)
+	self jobSteps verifyCodeInstallation
 ]
 
 { #category : #install }
 LcsSlotDefinitionBuilder >> verifySlotModelUpdates [
-	self assert: (self target slotModel slotDefinitionNamed: self slotName) notNil
+	self jobSteps verifySlotModelUpdates
 ]

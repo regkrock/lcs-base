@@ -16,6 +16,11 @@ LcsCodeSuperClassBuilder >> initialize [
 ]
 
 { #category : #accessing }
+LcsCodeSuperClassBuilder >> jobStepDescription [
+	self printString
+]
+
+{ #category : #accessing }
 LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName

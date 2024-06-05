@@ -60,6 +60,7 @@ LcsDomainClassClassesBuilderJob >> domainClassMemberSlotBuilder: eachClass [
 		collectionSlotName: self globalCollectionSlotName;
 		slotName: self domainInstanceSlotName;
 		targetModuleClass: self targetModule class;
+		targetClassName: eachClass name;
 		yourself
 ]
 
@@ -104,10 +105,71 @@ LcsDomainClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 ]
 
 { #category : #accessing }
+LcsDomainClassClassesBuilderJob >> gtConstructionTreeFor: aView [
+	<gtView>
+	
+	^ aView mondrian
+		title: 'Construction Steps Tree';
+		priority: 2;
+		painting: [ :aMondrian | self gtPaintTreeWith: aMondrian ]
+]
+
+{ #category : #'gt views' }
+LcsDomainClassClassesBuilderJob >> gtPaintTreeWith: aMondrian [ 
+
+self
+	withDeep: [ :each | each jobSteps collect: [:eachStep | eachStep]  ]
+	do: [ :each | 
+		aMondrian nodes
+			stencil: [ :x | 
+				BrVerticalPane new
+					fitContent;
+					addChild: (BrLabel new
+							text: x class name;
+							aptitude: (BrGlamorousLabelAptitude new
+									foreground: Color gray;
+									fontSize: 10));
+					addChild: (BrLabel new
+							text: x jobStepDescription;
+							aptitude: BrGlamorousLabelAptitude new) ];
+			with: {each} ]
+	relationDo: [ :from :to | 
+		aMondrian edges
+			fromRightCenter;
+			toLeftCenter;
+			stencil: [ :x | 
+				BlParabollaArcElement new
+					zIndex: 0;
+					curvatureFraction: 0.0;
+					border: (BlBorder paint: (Color gray alpha: 0.2) width: 2);
+					toHead: (BlArrowheadSimpleArrow new
+							border: (BlBorder builder
+									paint: (Color gray alpha: 0.2);
+									width: 4;
+									build)) ];
+			connectAssociations: {from -> to} ].
+aMondrian layout custom: (GtGraphHorizontalTreeLayout new
+	levelDistance: 50;
+	nodeDistance: 20).
+aMondrian
+]
+
+{ #category : #accessing }
 LcsDomainClassClassesBuilderJob >> initialize [
 	super initialize.
 	self protoInstances: OrderedCollection new.
 	self targetDomainClasses: Set new
+]
+
+{ #category : #printing }
+LcsDomainClassClassesBuilderJob >> jobStepDescription [
+	^ (WriteStream on: String new) 
+		nextPutAll: '1) Install ';
+		nextPutAll: self domainClassName ;
+		cr;
+		nextPutAll: ' with instances  stored in ';
+		nextPutAll: self globalCollectionClassName;
+		contents
 ]
 
 { #category : #accessing }

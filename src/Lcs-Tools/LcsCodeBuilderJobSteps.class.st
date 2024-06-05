@@ -43,6 +43,16 @@ LcsCodeBuilderJobSteps >> classPrefix: aString [
 ]
 
 { #category : #accessing }
+LcsCodeBuilderJobSteps >> collect: aCollectBlock [
+	^ self collection collect: aCollectBlock
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJobSteps >> collect: aCollectBlock thenSelect: aSelectBlock [
+	^ self collection collect: aCollectBlock thenSelect: aSelectBlock
+]
+
+{ #category : #accessing }
 LcsCodeBuilderJobSteps >> collection [
 	^ collection
 ]
@@ -70,6 +80,11 @@ LcsCodeBuilderJobSteps >> hasNoJobSteps [
 { #category : #testing }
 LcsCodeBuilderJobSteps >> hasSteps [
 	^ self collection notEmpty
+]
+
+{ #category : #asking }
+LcsCodeBuilderJobSteps >> indexOf: aJobStep [
+	^ self collection indexOf: aJobStep
 ]
 
 { #category : #initialize }

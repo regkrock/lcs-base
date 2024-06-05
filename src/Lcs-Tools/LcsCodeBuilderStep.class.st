@@ -13,6 +13,16 @@ LcsCodeBuilderStep >> builderJob [
 ]
 
 { #category : #accessing }
+LcsCodeBuilderStep >> jobStepDescription [
+	self printString
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> jobSteps [
+	self subclassResponsibility
+]
+
+{ #category : #accessing }
 LcsCodeBuilderStep >> parent [
 	^ parent
 ]

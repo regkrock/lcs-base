@@ -1,6 +1,11 @@
 Class {
 	#name : #LcsSingletonCodeClassBuilder,
 	#superclass : #LcsCodeClassBuilder,
+	#instVars : [
+		'shortName',
+		'codeName',
+		'codeDescription'
+	],
 	#category : #'Lcs-Tools'
 }
 
@@ -34,6 +39,28 @@ LcsSingletonCodeClassBuilder >> addDefaultShortNameRefactoring [
 		compile: self defaultShortNameSource
 		in: self installedClass class
 		classified: #defaults
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> codeDescription [
+	^ codeDescription ifNil: [ codeDescription := self rootName ]
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> codeDescription: aString [
+	codeDescription := aString
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> codeName [
+	^ codeName
+		ifNil: [ self rootName first asLowercase asString
+				, (self rootName copyFrom: 2 to: self rootName size) ]
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> codeName: aString [
+	codeName := aString
 ]
 
 { #category : #'method code source' }
@@ -78,6 +105,16 @@ LcsSingletonCodeClassBuilder >> installCode [
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> populateSlotModel [
 	self installedClass new
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> shortName [
+	^ shortName ifNil: [ shortName := self rootName ]
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> shortName: aString [
+	shortName := aString
 ]
 
 { #category : #verification }

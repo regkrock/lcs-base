@@ -36,7 +36,7 @@ LcsDomainClassClassesBuilderJobTest >> tearDown [
 ]
 
 { #category : #tests }
-LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase1_BuildJob [
+LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase1_BuildJob [
 	| builder |
 	builder := self jobBuilder.
 
@@ -55,10 +55,10 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallT
 ]
 
 { #category : #tests }
-LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase2_BuildJobStep [
+LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase2_BuildJobStep [
 	| builder builderJobStep |
 
-		builder := self jobBuilder.
+	builder := self jobBuilder.
 	builder buildJobSteps.
 
 	self assert: builder jobSteps collection size equals: 6.
@@ -70,7 +70,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallT
 	self assert: builderJobStep targetPackageName equals: builder targetPackageName.
 	
 	builderJobStep := builder jobSteps jobStepAt: 2.
-	self assert: builderJobStep class identicalTo: LcsUnknownCodeClassBuilder.
+	self assert: builderJobStep class identicalTo: LcsUnknownClassBuilder.
 	self assert: builderJobStep targetSuperclassName equals: 'LxxCountry'.
 	self assert: builderJobStep newClassName equals: 'LxxUnknownCountry'.
 	self assert: builderJobStep targetPackageName equals: builder targetPackageName.
@@ -104,7 +104,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallT
 ]
 
 { #category : #tests }
-LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase3_InstallCode [
+LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase3_InstallCode [
 	| builder |
 	builder := self jobBuilder.
 	builder buildJobSteps.
@@ -114,7 +114,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallT
 ]
 
 { #category : #tests }
-LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase4_UpdateSlotModel [
+LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase4_UpdateSlotModel [
 	| builder |
 	builder := self jobBuilder.
 	builder buildJobSteps.
@@ -127,7 +127,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallT
 ]
 
 { #category : #tests }
-LcsDomainClassClassesBuilderJobTest >> testCreatingJobToAddTitleCodesAndInstallTitleSlotInPerson_Phase5_Populate [
+LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase5_Populate [
 	| builder |
 	builder := self jobBuilder.
 	builder buildJobSteps.

@@ -68,11 +68,6 @@ LcsGlobalSlotDefinitionBuilder >> initializeModel [
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> jobSteps [
-	^ OrderedCollection new
-]
-
-{ #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
 	(self targetModule perform: self slotName asSymbol) ifNil: [ self targetModule initializeSlotNamed: self slotName ]
 ]

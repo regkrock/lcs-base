@@ -4,12 +4,10 @@ Class {
 	#instVars : [
 		'installedClass',
 		'rootName',
-		'shortName',
-		'codeDescription',
-		'codeName',
 		'newClassName',
 		'targetPackageName',
-		'targetSuperclassName'
+		'targetSuperclassName',
+		'jobSteps'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -32,7 +30,7 @@ LcsBaseClassBuilder >> addCompletedRefactoring: aRefactoring [
 ]
 
 { #category : #template }
-LcsBaseClassBuilder >> codeClassDefintion [
+LcsBaseClassBuilder >> classCreationString [
 	^ '<1s> subclass: #<2s>
 		instanceVariableNames: ''''
 		classVariableNames: ''''
@@ -43,28 +41,6 @@ LcsBaseClassBuilder >> codeClassDefintion [
 			with: self targetPackageName
 ]
 
-{ #category : #accessing }
-LcsBaseClassBuilder >> codeDescription [
-	^ codeDescription ifNil: [ codeDescription := self rootName ]
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> codeDescription: aString [
-	codeDescription := aString
-]
-
-{ #category : #build }
-LcsBaseClassBuilder >> codeName [
-	^ codeName
-		ifNil: [ self rootName first asLowercase asString
-				, (self rootName copyFrom: 2 to: self rootName size) ]
-]
-
-{ #category : #build }
-LcsBaseClassBuilder >> codeName: aString [
-	codeName := aString
-]
-
 { #category : #refactoring }
 LcsBaseClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
@@ -73,7 +49,8 @@ LcsBaseClassBuilder >> completedRefactorings [
 { #category : #initialize }
 LcsBaseClassBuilder >> initialize [
 	super initialize.
-	self targetSuperclassName: self class targetSuperclassName
+	self targetSuperclassName: self class targetSuperclassName.
+	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
 { #category : #initialize }
@@ -83,7 +60,7 @@ LcsBaseClassBuilder >> initializeOn: aBuilder [
 
 { #category : #build }
 LcsBaseClassBuilder >> installCode [
-	self addCompletedRefactoring: (RBAddClassChange definition: self codeClassDefintion) execute.
+	self addCompletedRefactoring: (RBAddClassChange definition: self classCreationString) execute.
 	self installedClass: self completedRefactorings last changeClass
 ]
 
@@ -97,9 +74,23 @@ LcsBaseClassBuilder >> installedClass: aClass [
 	installedClass := aClass
 ]
 
+{ #category : #printing }
+LcsBaseClassBuilder >> jobStepDescription [
+	^ (WriteStream on: String new)
+		nextPutAll: self stepNumber;
+		nextPutAll: ') Install ';
+		nextPutAll: self newClassName;
+		contents
+]
+
 { #category : #accessing }
 LcsBaseClassBuilder >> jobSteps [
-	^ OrderedCollection new
+	^ jobSteps
+]
+
+{ #category : #accessing }
+LcsBaseClassBuilder >> jobSteps: anObject [
+	jobSteps := anObject
 ]
 
 { #category : #accessing }
@@ -122,14 +113,9 @@ LcsBaseClassBuilder >> rootName: aString [
 	rootName := aString
 ]
 
-{ #category : #accessing }
-LcsBaseClassBuilder >> shortName [
-	^ shortName ifNil: [ shortName := self rootName ]
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> shortName: aString [
-	shortName := aString
+{ #category : #printing }
+LcsBaseClassBuilder >> stepNumber [
+	^ (self parent indexOf: self) printString
 ]
 
 { #category : #accessing }

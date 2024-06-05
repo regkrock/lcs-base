@@ -52,8 +52,3 @@ LcsGlobalCollectionReferenceSlotBuilder >> initialize [
 	super initialize.
 	self slotName: 'parent'
 ]
-
-{ #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> jobSteps [
-	^ OrderedCollection new
-]

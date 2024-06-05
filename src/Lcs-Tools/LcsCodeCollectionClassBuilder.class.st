@@ -10,6 +10,11 @@ LcsCodeCollectionClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #accessing }
+LcsCodeCollectionClassBuilder >> jobStepDescription [
+	self printString
+]
+
+{ #category : #accessing }
 LcsCodeCollectionClassBuilder >> updateSlotModel [
 	super updateSlotModel
 ]

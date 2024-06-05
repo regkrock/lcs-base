@@ -12,7 +12,7 @@ LcsCodeSuperClassBuilderTest >> testCreationStringForCreatingLxxGenderSubclassOf
 		newClassName: 'LxxGender';
 		targetPackageName: 'Lcs-BarebonesSystem';
 		rootName: 'Gender'.
-	self assert: builder codeClassDefintion equals: 'LcsCode subclass: #LxxGender
+	self assert: builder classCreationString equals: 'LcsCode subclass: #LxxGender
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
