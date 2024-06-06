@@ -11,11 +11,7 @@ RBCreateDomainSlotAcccessorsForVariableRefactoring >> createMatcher [
 
 { #category : #accessing }
 RBCreateDomainSlotAcccessorsForVariableRefactoring >> defineGetterMethod [
-	self definingClass 
-		compile: ('<1s><r><t>^ self getValueOfSlotNamed: ''<2s>''' 
-			expandMacrosWith: self selector 
-			with: variableName)
-		classified: #(#accessing).
+	self definingClass compile: self slotGetterMethodSource classified: #(#accessing).
 	^ selector
 ]
 
@@ -23,14 +19,13 @@ RBCreateDomainSlotAcccessorsForVariableRefactoring >> defineGetterMethod [
 RBCreateDomainSlotAcccessorsForVariableRefactoring >> defineSetterMethod [
 	| definingClass string |
 	definingClass := self definingClass.
-	string := self needsReturnForSetter 
-				ifTrue: [ '<1s> anObject<r><t>^ self setValueOfSlotNamed: ''<2s>'' to: anObject' ]
-				ifFalse: [ '<1s> anObject<r><t>self setValueOfSlotNamed: ''<2s>'' to: anObject' ].
-				
-	selector := self safeMethodNameFor: definingClass
-				basedOn: variableName asString , ':'.
-	definingClass 
-		compile: (string expandMacrosWith: selector with: variableName)
+	string := self slotSetterMethodSource.
+
+	selector := self
+			safeMethodNameFor: definingClass
+			basedOn: variableName asString , ':'.
+	self definingClass
+		compile: self slotSetterMethodSource
 		classified: #accessing.
 	^ selector
 ]
@@ -79,4 +74,25 @@ RBCreateDomainSlotAcccessorsForVariableRefactoring >> possibleSetterSelectors [
 			on: KeyNotFound
 			do: [ ^ Array new ].
 	^ Array with: method selector
+]
+
+{ #category : #accessing }
+RBCreateDomainSlotAcccessorsForVariableRefactoring >> slotGetterMethodSource [
+	^ '<1s><r><t>^ self getValueOfSlotNamed: ''<2s>'''
+		expandMacrosWith: self selector
+		with: variableName
+]
+
+{ #category : #accessing }
+RBCreateDomainSlotAcccessorsForVariableRefactoring >> slotSetterMethodSource [
+	| string |
+	string :=  self needsReturnForSetter
+		ifTrue: [ '<1s> anObject<r><t>^ self setValueOfSlotNamed: ''<2s>'' to: anObject' ]
+		ifFalse: [ '<1s> anObject<r><t>self setValueOfSlotNamed: ''<2s>'' to: anObject' ].
+		
+	selector := self
+			safeMethodNameFor: self definingClass
+			basedOn: variableName asString , ':'.
+			
+	^ string expandMacrosWith: selector with: variableName
 ]

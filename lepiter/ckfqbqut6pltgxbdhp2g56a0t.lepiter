@@ -103,14 +103,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T13:10:12.512516-04:00"
+						"dateAndTimeString" : "2024-06-05T10:55:45.051949-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "cP5hMXXWDQCztBQAC5BI1A=="
 				},
-				"code" : "previousSystem := LcsApplicationEnvironment currentSystem.\rsystem := LcsApplicationEnvironment createNewBarebonesSystem"
+				"code" : "LcsApplicationEnvironment isInActiveStatus \r\tifFalse: [ LcsApplicationEnvironment initializeApplicationEnvironment].\rpreviousSystem := LcsApplicationEnvironment currentSystem.\rsystem := LcsApplicationEnvironment createNewBarebonesSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -219,6 +219,114 @@
 					"uidString" : "5Tb7KnXWDQCzM+VnC5BI1A=="
 				},
 				"code" : "jobBuilder := LcsDomainClassClassesBuilderJob new\r\t\t\t\tclassPrefix: 'Lxx';\r\t\t\t\tinstallNewClassesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\t\t\tcreateForRootName: 'Country';\r\t\t\t\ttargetModuleClass: LxxBarebonesSystem;\r\t\t\t\tinstallMemberSlotInDomainClass: LxxBarebonesPerson;\r\t\t\t\tbuildJobSteps."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:43:22.967756-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:43:29.958618-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "n6cjhIvWDQCN5cePBEOJIw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Install Code and Update Slot Model"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:39:08.789579-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:43:22.976365-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "m/1UdIvWDQCKb/2VBEOJIw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Run the job to install the code and update the system model"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:39:44.873353-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:42:09.431103-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "HMIjd4vWDQCMbRszBEOJIw=="
+				},
+				"code" : "jobBuilder \r\tinstallCode; \r\tverifyCodeInstallation; \r\tupdateSlotModel;\r\tverifySlotModelUpdates."
 			},
 			{
 				"__type" : "textSnippet",

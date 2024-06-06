@@ -60,6 +60,15 @@ LcsSlotDefinitionBuilder >> getterSelector [
 	^ self slotName asSymbol
 ]
 
+{ #category : #'gt views' }
+LcsSlotDefinitionBuilder >> gtRefactoringChangeOn: aView [
+	<gtView>
+	^ aView text
+		title: 'Refactoring';
+		priority: 1;
+		text: [ self refactoringText asRopedText ]
+]
+
 { #category : #initialize }
 LcsSlotDefinitionBuilder >> initialize [
 	super initialize.
@@ -109,6 +118,15 @@ LcsSlotDefinitionBuilder >> jobSteps [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> jobSteps: anObject [
 	jobSteps := anObject
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinitionBuilder >> refactoringText [
+	| stream |
+	stream := WriteStream on: String new.
+	self jobSteps do: [ :each |
+		stream nextPutAll: each refactoringText ] separatedBy: [ stream cr; cr ].
+	^ stream contents
 ]
 
 { #category : #configuration }

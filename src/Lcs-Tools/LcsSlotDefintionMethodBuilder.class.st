@@ -4,6 +4,15 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #'gt v' }
+LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
+	<gtView>
+	^ aView text
+		title: 'Refactoring';
+		priority: 1;
+		text: [ self refactoringText asRopedText ]
+]
+
 { #category : #building }
 LcsSlotDefintionMethodBuilder >> installCode [
 	self refactoring: (RBAddMethodChange
@@ -16,6 +25,11 @@ LcsSlotDefintionMethodBuilder >> installCode [
 { #category : #printing }
 LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 	^ 'Install slot definition for'
+]
+
+{ #category : #'gt v' }
+LcsSlotDefintionMethodBuilder >> refactoringText [
+	^ self slotDefinitionSource
 ]
 
 { #category : #verification }

@@ -46,6 +46,16 @@ LcsBaseClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
+{ #category : #accessing }
+LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
+	<gtView>
+	^ aView text
+		title: 'Refactoring';
+		priority: 1;
+		text: [ self classCreationString asRopedText ]
+	
+]
+
 { #category : #initialize }
 LcsBaseClassBuilder >> initialize [
 	super initialize.

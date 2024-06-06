@@ -67,6 +67,11 @@ LcsCodeBuilderJobSteps >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
+{ #category : #accessing }
+LcsCodeBuilderJobSteps >> do: aDoBlock separatedBy: aBlock [
+	self collection do: aDoBlock separatedBy: aBlock
+]
+
 { #category : #testing }
 LcsCodeBuilderJobSteps >> hasJobSteps [
 	^ self collection notEmpty
