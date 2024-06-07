@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-24T15:00:00.935273-04:00"
+						"dateAndTimeString" : "2024-06-07T07:34:27.822637-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "4VfTd8HSDQCNAS+8CeOFgA=="
 				},
-				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Male');\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Female');\r\t\taddCodeClassBuilder: ((LcsCodeClassBuilder newRootName: 'UnknownGender')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself"
+				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Male');\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Female');\r\t\taddCodeClassBuilder: ((LcsCodeClassBuilder newRootName: 'UnknownGender')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxPrototypeSystem ;\r\t\tinstallSlotIn: LxxPrototypePerson;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",
@@ -282,14 +282,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-24T11:39:15.352009-04:00"
+						"dateAndTimeString" : "2024-04-24T16:20:40.235158-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "+Q2zNTvTDQC6ScSvDqasIg=="
 				},
-				"code" : "LcsApplicationEnvironment currentSystem titles"
+				"code" : "LcsApplicationEnvironment currentSystem genders"
 			},
 			{
 				"__type" : "textSnippet",
@@ -387,14 +387,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-20T12:05:38.292033-04:00"
+						"dateAndTimeString" : "2024-06-07T07:34:41.820268-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "nADwG+vSDQCdjn1TBZZkmw=="
 				},
-				"code" : "LxxBarebonesPerson removeDomainSlotNamed: 'gender'"
+				"code" : "LxxPrototypePerson removeDomainSlotNamed: 'gender'"
 			},
 			{
 				"__type" : "pharoSnippet",

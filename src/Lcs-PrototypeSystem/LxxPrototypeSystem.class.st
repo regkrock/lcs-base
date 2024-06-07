@@ -1,7 +1,11 @@
+"
+This is a system with no modules, etc. It is used for basic testing of the system logic
+"
 Class {
 	#name : #LxxPrototypeSystem,
 	#superclass : #LcsBaseSystem,
 	#instVars : [
+		'persons',
 		'organization'
 	],
 	#category : #'Lcs-PrototypeSystem'
@@ -19,6 +23,12 @@ LxxPrototypeSystem class >> moduleClasses [
 		add: LxxPrototypePersonsModule;
 		add: LxxPrototype2Module;
 		yourself
+
+]
+
+{ #category : #configuration }
+LxxPrototypeSystem class >> moduleName [
+	^ 'Barebones System'
 ]
 
 { #category : #'slot definitions' }
@@ -30,14 +40,23 @@ LxxPrototypeSystem class >> organizationSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LxxPrototypeSystem class >> personsSlotDefinition [
+	<slotDefinition>
+	^LcsGlobalCollectionSlot new
+		slotName: 'persons';
+		addSlotType: LxxPrototypePersons;
+		addCollectionMemberType: LxxPrototypePerson;
+		yourself
+]
+
 { #category : #initialize }
 LxxPrototypeSystem >> initialSystemDomainClasses [
-	^ super initialSystemDomainClasses
-		addAll: self allModuleClasses;
+	^super initialSystemDomainClasses
 		add: LxxPrototypeOrganization;
 		add: LxxPrototypePerson;
-		add: LxxPrototypePersons;
 		add: LxxPrototypeSystemConfiguration;
+		add: LxxPrototypePersons;
 		yourself
 ]
 
@@ -47,6 +66,16 @@ LxxPrototypeSystem >> organization [
 ]
 
 { #category : #accessing }
-LxxPrototypeSystem >> organization: anOrganization [
-	^ self setValueOfSlotNamed: 'organization' to: anOrganization
+LxxPrototypeSystem >> organization: anObject [
+	self setValueOfSlotNamed: 'organization' to: anObject
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> persons [
+	^ self getValueOfSlotNamed: 'persons'
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> persons: anObject [
+	self setValueOfSlotNamed: 'presons' to: anObject
 ]

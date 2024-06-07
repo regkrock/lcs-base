@@ -211,14 +211,51 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T20:18:05.045768-04:00"
+						"dateAndTimeString" : "2024-06-07T07:29:41.634073-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "5Tb7KnXWDQCzM+VnC5BI1A=="
 				},
-				"code" : "jobBuilder := LcsDomainClassClassesBuilderJob new\r\t\t\t\tclassPrefix: 'Lxx';\r\t\t\t\tinstallNewClassesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\t\t\tcreateForRootName: 'Country';\r\t\t\t\ttargetModuleClass: LxxBarebonesSystem;\r\t\t\t\tinstallMemberSlotInDomainClass: LxxBarebonesPerson;\r\t\t\t\tbuildJobSteps."
+				"code" : "jobBuilder := LcsDomainClassClassesBuilderJob new\r\t\t\t\tclassPrefix: 'Lxx';\r\t\t\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\t\t\tcreateForRootName: 'Country';\r\t\t\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\t\t\tinstallMemberSlotInDomainClass: LxxPrototPerson;\r\t\t\t\tbuildJobSteps."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:43:22.967756-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-05T15:43:29.958618-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "n6cjhIvWDQCN5cePBEOJIw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Install Code and Update Slot Model"
 			},
 			{
 				"__type" : "textSnippet",
@@ -245,7 +282,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-05T15:43:04.870646-04:00"
+						"dateAndTimeString" : "2024-06-05T15:43:22.976365-04:00"
 					}
 				},
 				"uid" : {
@@ -255,7 +292,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Install Code and Update Slot ModelRun the job to install the code and update the system model"
+				"string" : "Run the job to install the code and update the system model"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -353,14 +390,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T13:19:25.616411-04:00"
+						"dateAndTimeString" : "2024-06-07T07:29:16.190378-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "agJVP3XWDQC0moagC5BI1A=="
 				},
-				"code" : "LcsApplicationEnvironment currentSystem notNil ifTrue: [\r\tLxxBarebonesSystem removeDomainSlotNamed: 'countries'.\r\tLxxBarebonesPerson removeDomainSlotNamed: 'country'.\r\t#('LxxUnknownCountry' 'LxxCountry' 'LxxCountries') do: [ :eachClassName | \r\t\t([ eachClassName asClass ] on: NotFound do: [ nil ]) ifNotNil: [\r\t\t\t(RBRemoveClassChange removeClassName: eachClassName asSymbol) execute ] ].\r\tLcsApplicationEnvironment removeCurrentSystem.\r\tLcsApplicationEnvironment restoreToCurrent: previousSystem ]"
+				"code" : "LcsApplicationEnvironment currentSystem notNil ifTrue: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'countries'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'country'.\r\t#('LxxUnknownCountry' 'LxxCountry' 'LxxCountries') do: [ :eachClassName | \r\t\t([ eachClassName asClass ] on: NotFound do: [ nil ]) ifNotNil: [\r\t\t\t(RBRemoveClassChange removeClassName: eachClassName asSymbol) execute ] ].\r\tLcsApplicationEnvironment removeCurrentSystem.\r\tLcsApplicationEnvironment restoreToCurrent: previousSystem ]"
 			}
 		]
 	},

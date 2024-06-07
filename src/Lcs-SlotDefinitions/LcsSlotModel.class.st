@@ -101,7 +101,7 @@ LcsSlotModel >> hasSlotDefinitionNamed: aSlotName [
 		self allSlotDefinitions anySatisfy: [ :eachSlotDefinition | eachSlotDefinition slotName = aSlotName ] ]
 ]
 
-{ #category : #'testing ' }
+{ #category : #testing }
 LcsSlotModel >> hasSlotDefinitions [
 	^ self allSlotDefinitions notEmpty
 ]

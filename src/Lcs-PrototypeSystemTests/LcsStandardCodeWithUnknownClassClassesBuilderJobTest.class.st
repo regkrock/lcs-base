@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJobTest,
 	#superclass : #LcsDomainTest,
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #tests }
@@ -11,22 +11,22 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> jobBuilder [
 		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
 		createForRootName: 'Title';
 		createCodeInstances: #( #('Mr') #('Ms'));
-		targetModuleClass: LxxBarebonesSystem;
-		installMemberSlotInDomainClass: LxxBarebonesPerson;
+		targetModuleClass: LxxPrototypeSystem;
+		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
 
 { #category : #running }
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> removeAllArtifacts [
-	LxxBarebonesSystem removeDomainSlotNamed: 'titles'.
-	LxxBarebonesPerson removeDomainSlotNamed: 'title'.
+	LxxPrototypeSystem removeDomainSlotNamed: 'titles'.
+	LxxPrototypePerson removeDomainSlotNamed: 'title'.
 	self
 		removeClassesNamed: #('LxxUnknownTitle' 'LxxTitle' 'LxxTitles')
 ]
 
 { #category : #running }
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> setupSunitSystem [
-	LxxBarebonesSystem new
+	LxxPrototypeSystem new
 ]
 
 { #category : #running }
@@ -50,7 +50,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	self assert: builder globalCollectionSlotName equals: 'titles'.
 	self assert: builder domainClassName equals: 'LxxTitle'.
 	self assert: builder globalCollectionClassName equals: 'LxxTitles'.
-	self assert: builder targetModuleClass equals: LxxBarebonesSystem.
+	self assert: builder targetModuleClass equals: LxxPrototypeSystem.
 	self assert:builder undefinedClassName equals: 'LxxUnknownTitle'.
 ]
 
@@ -84,19 +84,19 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	self assert: builderJobStep class identicalTo: LcsGlobalCollectionReferenceSlotBuilder.
 	self assert: builderJobStep targetClassName equals: 'LxxTitle'.
 	self assert: builderJobStep collectionSlotName equals: 'titles'.
-	self assert: builderJobStep collectionSlotModule class identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep collectionSlotModule class identicalTo: LxxPrototypeSystem.
 	
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
 	self assert: builderJobStep slotClassName equals: 'LxxTitles'.
 	self assert: builderJobStep slotName equals: 'titles'.
 
 
 	builderJobStep := builder jobSteps jobStepAt: 6.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
-	self assert: builderJobStep target identicalTo: LxxBarebonesPerson.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
+	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
 	self assert: builderJobStep collectionSlotName equals: 'titles'.
 	self assert: builderJobStep slotName equals: 'title'.
 

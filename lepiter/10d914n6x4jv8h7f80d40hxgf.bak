@@ -734,7 +734,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-07T15:29:47.320118-04:00"
+												"dateAndTimeString" : "2024-04-07T15:31:16.416283-04:00"
 											}
 										},
 										"uid" : {
@@ -744,7 +744,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "To activate a suspended system, go the 'Application Environment' tab and click the 'Activate' button for the system. Or send the message {{gtMethod:LcsSystem>>restoreSystem}}"
+										"string" : "To activate a suspended system, go the 'Application Environment' tab and click the 'Activate' button for the system. Or send the message {{gtMethod:LcsBaseSystem>>restoreSystem}}to the instance of the suspended system."
 									}
 								]
 							},
@@ -929,40 +929,6 @@
 											"__type" : "textStyle"
 										},
 										"string" : "The following two systems are example systems. Executing the code below will create system and make it current."
-									},
-									{
-										"__type" : "pharoSnippet",
-										"children" : {
-											"__type" : "snippets",
-											"items" : [ ]
-										},
-										"createEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"createTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-02T17:39:13.80143-04:00"
-											}
-										},
-										"editEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"editTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-02T17:39:38.193593-04:00"
-											}
-										},
-										"uid" : {
-											"__type" : "uid",
-											"uidString" : "dOmYrIXRDQC5dypkCJMbhw=="
-										},
-										"code" : "LxxBarebonesSystem new"
 									},
 									{
 										"__type" : "pharoSnippet",

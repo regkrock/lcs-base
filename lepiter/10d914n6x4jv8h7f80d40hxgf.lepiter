@@ -516,14 +516,14 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-07T14:48:50.50903-04:00"
+												"dateAndTimeString" : "2024-06-07T07:42:07.208339-04:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
 											"uidString" : "LHUMHtnPDQCU2sD8BRXooQ=="
 										},
-										"code" : "\rLxxBarebonesSystem new"
+										"code" : "\rLxxPrototypeSystem new"
 									},
 									{
 										"__type" : "textSnippet",
@@ -929,40 +929,6 @@
 											"__type" : "textStyle"
 										},
 										"string" : "The following two systems are example systems. Executing the code below will create system and make it current."
-									},
-									{
-										"__type" : "pharoSnippet",
-										"children" : {
-											"__type" : "snippets",
-											"items" : [ ]
-										},
-										"createEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"createTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-02T17:39:13.80143-04:00"
-											}
-										},
-										"editEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"editTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-02T17:39:38.193593-04:00"
-											}
-										},
-										"uid" : {
-											"__type" : "uid",
-											"uidString" : "dOmYrIXRDQC5dypkCJMbhw=="
-										},
-										"code" : "LxxBarebonesSystem new"
 									},
 									{
 										"__type" : "pharoSnippet",

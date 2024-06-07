@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsIntegerSlotDefinitionBuilderTest,
 	#superclass : #LcsPrimitiveSlotDefinitionBuilderTest,
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #tests }
@@ -25,7 +25,7 @@ LcsIntegerSlotDefinitionBuilderTest >> testInstallingHeightSlotInPerson [
 	| person |
 	self slotName: 'height'.
 	self initialValue: 180.
-	self targetClass: LxxBarebonesPerson.
+	self targetClass: LxxPrototypePerson.
 	self slotBuilderClass: LcsIntegerSlotDefinitionBuilder.
 	
 	self buildAndInstallNewSlot.

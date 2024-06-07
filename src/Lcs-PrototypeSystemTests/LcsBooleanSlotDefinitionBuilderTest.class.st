@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsBooleanSlotDefinitionBuilderTest,
 	#superclass : #LcsPrimitiveSlotDefinitionBuilderTest,
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #tests }
@@ -9,7 +9,7 @@ LcsBooleanSlotDefinitionBuilderTest >> testInstallingBooleanInPerson [
 	| person |
 	self slotName: 'hasBlueEyes'.
 	self initialValue: true.
-	self targetClass: LxxBarebonesPerson.
+	self targetClass: LxxPrototypePerson.
 	self slotBuilderClass: LcsBooleanSlotDefinitionBuilder. 
 	
 	self buildAndInstallNewSlot.

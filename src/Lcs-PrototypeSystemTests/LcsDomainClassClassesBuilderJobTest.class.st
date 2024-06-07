@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDomainClassClassesBuilderJobTest,
 	#superclass : #LcsDomainTest,
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #tests }
@@ -11,22 +11,22 @@ LcsDomainClassClassesBuilderJobTest >> jobBuilder [
 		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
 		createForRootName: 'Country';
 		createInstances: #( #('CA' 'Canada') #('US' 'United States Of America'));
-		targetModuleClass: LxxBarebonesSystem;
-		installMemberSlotInDomainClass: LxxBarebonesPerson;
+		targetModuleClass: LxxPrototypeSystem;
+		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
 
 { #category : #running }
 LcsDomainClassClassesBuilderJobTest >> removeAllArtifacts [
-	LxxBarebonesSystem removeDomainSlotNamed: 'countries'.
-	LxxBarebonesPerson removeDomainSlotNamed: 'country'.
+	LxxPrototypeSystem removeDomainSlotNamed: 'countries'.
+	LxxPrototypePerson removeDomainSlotNamed: 'country'.
 	self
 		removeClassesNamed: #('LxxUnknownCountry' 'LxxCountry' 'LxxCountries')
 ]
 
 { #category : #running }
 LcsDomainClassClassesBuilderJobTest >> setupSunitSystem [
-	LxxBarebonesSystem new
+	LxxPrototypeSystem new
 ]
 
 { #category : #running }
@@ -50,7 +50,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase1_Bui
 	self assert: builder globalCollectionSlotName equals: 'countries'.
 	self assert: builder domainClassName equals: 'LxxCountry'.
 	self assert: builder globalCollectionClassName equals: 'LxxCountries'.
-	self assert: builder targetModuleClass equals: LxxBarebonesSystem.
+	self assert: builder targetModuleClass equals: LxxPrototypeSystem.
 	self assert:builder undefinedClassName equals: 'LxxUnknownCountry'.
 ]
 
@@ -85,19 +85,19 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase2_Bui
 	self assert: builderJobStep class identicalTo: LcsGlobalCollectionReferenceSlotBuilder.
 	self assert: builderJobStep targetClassName equals: 'LxxCountry'.
 	self assert: builderJobStep collectionSlotName equals: 'countries'.
-	self assert: builderJobStep collectionSlotModule class identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep collectionSlotModule class identicalTo: LxxPrototypeSystem.
 	
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
 	self assert: builderJobStep slotClassName equals: 'LxxCountries'.
 	self assert: builderJobStep slotName equals: 'countries'.
 
 
 	builderJobStep := builder jobSteps jobStepAt: 6.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
-	self assert: builderJobStep target identicalTo: LxxBarebonesPerson.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxBarebonesSystem.
+	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
+	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
 	self assert: builderJobStep collectionSlotName equals: 'countries'.
 	self assert: builderJobStep slotName equals: 'country'.
 

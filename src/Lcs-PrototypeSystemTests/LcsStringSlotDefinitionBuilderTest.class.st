@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStringSlotDefinitionBuilderTest,
 	#superclass : #LcsPrimitiveSlotDefinitionBuilderTest,
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #tests }
@@ -9,7 +9,7 @@ LcsStringSlotDefinitionBuilderTest >> testInstallingFirstNameSlotInPerson [
 	| person |
 	self slotName: 'firstName'.
 	self initialValue: 'John'.
-	self targetClass: LxxBarebonesPerson.
+	self targetClass: LxxPrototypePerson.
 	self slotBuilderClass: LcsStringSlotDefinitionBuilder.
 
 	self buildAndInstallNewSlot.

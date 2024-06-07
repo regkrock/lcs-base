@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsGlobalSlotDefinitionBuilderTest,
 	#superclass : #LcsDomainTest,
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #running }
@@ -30,32 +30,32 @@ LcsGlobalSlotDefinitionBuilderTest >> gendersBuilder [
 		addCodeSubclassWithRootNamed: 'Female';
 		addCodeSubclassWithRootNamed: 'UnknownGender'
 			with: [ :classBuilder | classBuilder beDefaultInstance ];
-		targetModuleClass: LxxBarebonesSystem;
-		installMemberSlotInDomainClass: LxxBarebonesPerson;
+		targetModuleClass: LxxPrototypeSystem;
+		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
 
 { #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> removeArtifactsRelatedToGendersSlot [
-	LxxBarebonesPerson removeDomainSlotNamed: 'gender'.
-	LxxBarebonesSystem removeDomainSlotNamed: 'genders'.
-	LxxBarebonesSystem removeDomainSlotNamed: 'genders1'.
+	LxxPrototypePerson removeDomainSlotNamed: 'gender'.
+	LxxPrototypeSystem removeDomainSlotNamed: 'genders'.
+	LxxPrototypeSystem removeDomainSlotNamed: 'genders1'.
 	self removeClassesNamed: #('LxxGender' 'LxxGenders' 'LxxMale' 'LxxFemale' 'LxxUnknownGender').
 ]
 
 { #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> removeArtifactsRelatedToUsersSlot [
-	LxxBarebonesSystem removeDomainSlotNamed: 'users'.
+	LxxPrototypeSystem removeDomainSlotNamed: 'users'.
 	self removeClassesNamed: #('LxxUser' 'LxxUsers').
 
-	LxxBarebonesSystem assertDomainSlotRemoved: 'users'.
+	LxxPrototypeSystem assertDomainSlotRemoved: 'users'.
 	self assert: (self classNamed: 'LxxUsers') isNil.
 	self assert: (self classNamed: 'LxxUser') isNil
 ]
 
 { #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> setupSunitSystem [
-	LxxBarebonesSystem new
+	LxxPrototypeSystem new
 ]
 
 { #category : #running }
@@ -76,13 +76,13 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollection [
 	builder := self usersGlobalCollectionBuilder.
 
 	self assert: builder slotName equals: 'users'.
-	self assert: builder targetClassName equals: 'LxxBarebonesSystem'.
-	self assert: builder target equals: LxxBarebonesSystem.
+	self assert: builder targetClassName equals: LxxPrototypeSystem name asString.
+	self assert: builder target equals: LxxPrototypeSystem.
 	self assert: builder slotDefinitionSelector equals: 'usersSlotDefinition'.
 
 	builder installCode.
 
-	LxxBarebonesSystem verifyClassHasDomainSlotNamed: 'users'
+	LxxPrototypeSystem verifyClassHasDomainSlotNamed: 'users'
 ]
 
 { #category : #tests }
@@ -97,24 +97,24 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollectionWithExi
 	builder installCode.
 	builder verifyCodeInstallation.
 
-	self assert: (LxxBarebonesSystem canUnderstand: #genders).
-	self assert: (LxxBarebonesSystem canUnderstand: #genders:).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders:).
 	
-	LxxBarebonesSystem compile: 'genders
+	LxxPrototypeSystem compile: 'genders
 	^ genders'.
-	LxxBarebonesSystem compile: 'genders: anObject
+	LxxPrototypeSystem compile: 'genders: anObject
 	genders := anObject'.
 
 	"Attempt to create genders getter and selector again where the existing gender and genders methods do something different"
 
 	(RBCreateDomainSlotAcccessorsForVariableRefactoring
 		instanceVariable: 'genders'
-		class: LxxBarebonesSystem) execute.
+		class: LxxPrototypeSystem) execute.
 
-	self assert: (LxxBarebonesSystem canUnderstand: #genders).
-	self assert: (LxxBarebonesSystem canUnderstand: #genders:).
-	self assert: (LxxBarebonesSystem canUnderstand: #genders1).
-	self assert: (LxxBarebonesSystem canUnderstand: #genders1:)
+	self assert: (LxxPrototypeSystem canUnderstand: #genders).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders:).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders1).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders1:)
 ]
 
 { #category : #tests }
@@ -129,26 +129,26 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollectionWithExi
 	builder installCode.
 	builder verifyCodeInstallation.
 	
-	self assert: (LxxBarebonesSystem canUnderstand: #genders).
-	self assert: (LxxBarebonesSystem canUnderstand: #genders:).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders:).
 
 	"Attempt to create users getter and selector again"
 
 	(RBCreateDomainSlotAcccessorsForVariableRefactoring
 		instanceVariable: 'genders'
-		class: LxxBarebonesSystem) execute.
+		class: LxxPrototypeSystem) execute.
 
-	self assert: (LxxBarebonesSystem canUnderstand: #genders).
-	self assert: (LxxBarebonesSystem canUnderstand: #genders:).
-	self deny: (LxxBarebonesSystem canUnderstand: #genders1).
-	self deny: (LxxBarebonesSystem canUnderstand: #genders1:)
+	self assert: (LxxPrototypeSystem canUnderstand: #genders).
+	self assert: (LxxPrototypeSystem canUnderstand: #genders:).
+	self deny: (LxxPrototypeSystem canUnderstand: #genders1).
+	self deny: (LxxPrototypeSystem canUnderstand: #genders1:)
 ]
 
 { #category : #tests }
 LcsGlobalSlotDefinitionBuilderTest >> usersGlobalCollectionBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
 		slotName: 'users';
-		targetModuleName: LxxBarebonesSystem moduleName;
+		targetModuleName: LxxPrototypeSystem moduleName;
 		slotClass: 'LxxUsers' asClass;
 		collectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass;
 		collectionElementTypes: {'LxxUser' asClass};

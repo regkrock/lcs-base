@@ -47,11 +47,6 @@ LcsApplicationEnvironment class >> createCurrentSystemFor: aSystemClass [
 ]
 
 { #category : #'application environment - modify' }
-LcsApplicationEnvironment class >> createNewBarebonesSystem [
-	^ self createCurrentSystemFor: LxxBarebonesSystem .	
-]
-
-{ #category : #'application environment - modify' }
 LcsApplicationEnvironment class >> createUnitOfWork [
 	^ self applicationEnvironmentDo: [ :env | env createUnitOfWork ]
 ]

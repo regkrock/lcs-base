@@ -235,10 +235,14 @@ LcsBaseSystem >> removeSystem [
 
 { #category : #'slot model' }
 LcsBaseSystem >> requiredSystemDomainClasses [
-	^OrderedCollection new
+	| modelClasses |
+	modelClasses := OrderedCollection new
 		addAll: self baseDomainModelClasses;
 		add: self class;
-		yourself
+		addAll: self moduleClasses;
+		yourself.
+	self moduleClasses deep: [ :each | each moduleClasses ] do: [ :each | modelClasses add: each ].
+	^ modelClasses
 ]
 
 { #category : #restore }

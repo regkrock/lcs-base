@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-24T11:36:29.394146-04:00"
+						"dateAndTimeString" : "2024-04-24T11:41:55.375118-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "FxQQ2jrTDQCwRQ8jDqasIg=="
 				},
-				"code" : "builder := \r\tLcsStandardCodeWithUnknownClassClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Title';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\tcreateCodeInstances: #('Mr' 'Ms' 'Unknown');\r\t\tinstallGlobalCollection: 'Titles' inSlotNamed: 'titles' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself"
+				"code" : "builder := \r\tLcsStandardCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Title';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\tcreateCodeInstances: #('Mr' 'Ms' 'Unknown');\r\t\tinstallGlobalCollection: 'Titles' inSlotNamed: 'titles' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",
@@ -353,14 +353,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-24T11:22:14.546135-04:00"
+						"dateAndTimeString" : "2024-06-07T07:35:23.581936-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Hiqb+DrTDQCyhsNNDqasIg=="
 				},
-				"code" : "LxxBarebonesPerson removeDomainSlotNamed: 'title'"
+				"code" : "LxxPrototypePerson removeDomainSlotNamed: 'title'"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -387,14 +387,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-24T11:23:02.748432-04:00"
+						"dateAndTimeString" : "2024-06-07T07:35:35.288977-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "fXkI+zrTDQCyramFDqasIg=="
 				},
-				"code" : "LxxBarebonesSystem removeDomainSlotNamed: 'titles'"
+				"code" : "LxxPrototypeSystem removeDomainSlotNamed: 'titles'"
 			},
 			{
 				"__type" : "pharoSnippet",

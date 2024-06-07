@@ -1,13 +1,13 @@
 Class {
 	#name : #LcsPrimitiveSlotDefinitionBuilderTest,
-	#superclass : #LcsSLotDefinitionBuilderTest,
+	#superclass : #LcsSlotDefinitionBuilderTest,
 	#instVars : [
 		'initialValue',
 		'slotName',
 		'targetClass',
 		'slotBuilderClass'
 	],
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #tests }
@@ -55,7 +55,7 @@ LcsPrimitiveSlotDefinitionBuilderTest >> removeArtifactsRelatedToSlot [
 
 { #category : #running }
 LcsPrimitiveSlotDefinitionBuilderTest >> setupSunitSystem [
-	LxxBarebonesSystem new
+	LxxPrototypeSystem new
 ]
 
 { #category : #tests }

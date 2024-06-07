@@ -6,14 +6,14 @@ Class {
 
 { #category : #accessing }
 LcsModuleTest >> setupSunitSystem [
-	'LxxBarebonesSystem' asClass new
+	'LxxPrototypeSystem' asClass new
 ]
 
 { #category : #tests }
 LcsModuleTest >> testAddingAModule [
 	self assert: self currentSystem notNil.
-	self assert: self currentSystem hasNoModules.
+	self assert: self currentSystem modules size = 2.
 	self currentSystem installModule: LxxDemonstrationModule.
-	self assert: self currentSystem hasModules.
+	self assert: self currentSystem modules size = 3.
 	self assert: (( self currentSystem moduleNamed: LxxDemonstrationModule moduleName) isKindOf: LxxDemonstrationModule) 
 ]

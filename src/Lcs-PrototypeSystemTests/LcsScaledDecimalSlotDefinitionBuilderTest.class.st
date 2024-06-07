@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsScaledDecimalSlotDefinitionBuilderTest,
 	#superclass : #LcsPrimitiveSlotDefinitionBuilderTest,
-	#category : #'Lcs-BarebonesSystemTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #accessing }
@@ -9,7 +9,7 @@ LcsScaledDecimalSlotDefinitionBuilderTest >> testInstallingHeightSlotInPerson [
 	| person |
 	self slotName: 'height'.
 	self initialValue: 180.
-	self targetClass: LxxBarebonesPerson.
+	self targetClass: LxxPrototypePerson.
 	self slotBuilderClass: LcsIntegerSlotDefinitionBuilder.
 	
 	self buildAndInstallNewSlot.
@@ -23,7 +23,7 @@ LcsScaledDecimalSlotDefinitionBuilderTest >> testInstallingWeightSlotInPerson [
 	| person |
 	self slotName: 'wegith'.
 	self initialValue: 180.0s2.
-	self targetClass: LxxBarebonesPerson.
+	self targetClass: LxxPrototypePerson.
 	self slotBuilderClass: LcsIntegerSlotDefinitionBuilder.
 	
 	self buildAndInstallNewSlot.

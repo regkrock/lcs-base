@@ -251,7 +251,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T13:18:41.851945-04:00"
+						"dateAndTimeString" : "2024-04-08T13:19:05.297312-04:00"
 					}
 				},
 				"uid" : {
@@ -261,7 +261,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The instance of {{gtClass:name=LcsGlobalCollectionSlot}} both defines the attributes of the slot and also is used to access the instance variable/slot. \n{{gtMethod:LxxBarebonesSystem>>persons}} and {{gtMethod:LxxBarebonesSystem>>persons:}} are examples of how the getter and setter are modified to redirect the accessing of the inst"
+				"string" : "The instance of {{gtClass:name=LcsGlobalCollectionSlot}} both defines the attributes of the slot and also is used to access the instance variable/slot. \n{{gtMethod:LxxBarebonesSystem>>persons}} and {{gtMethod:LxxBarebonesSystem>>persons:}} are examples of how the getter and setter are modified to redirect the accessing of the instance variable/slot to be via the slot definition instance."
 			}
 		]
 	},
