@@ -12,7 +12,7 @@ BaselineOfLcsBase class >> loadLepiter [
 		ifFound: [ :aRepository | 
 			| defaultDatabase currentProperties |
 			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
-			currentProperties := defaultDatabase declarations.
+			currentProperties := defaultDatabase properties.
 			currentProperties addRegisteredDirectory: aRepository repositoryDirectory / 'lepiter'.
 			defaultDatabase reload ]
 		ifNone: [
