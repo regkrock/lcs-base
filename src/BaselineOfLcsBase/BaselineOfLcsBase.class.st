@@ -12,7 +12,7 @@ BaselineOfLcsBase class >> loadLepiter [
 		ifFound: [ :aRepository | 
 			| defaultDatabase currentProperties |
 			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
-			currentProperties := defaultDatabase properties.
+			currentProperties := defaultDatabase declarations.
 			currentProperties addRegisteredDirectory: aRepository repositoryDirectory / 'lepiter'.
 			defaultDatabase reload ]
 		ifNone: [
@@ -52,5 +52,9 @@ BaselineOfLcsBase >> baseline: spec [
 			
 			" Examples "
 			spec package: 'Lcs-Examples' with: [ spec requires: #('LcsBase') ].
-					]
+			
+			"Css"
+			spec package: 'Lcs-Css' with: [ spec requires: #('LcsBase') ].
+			spec package: 'Lcs-Css-Tests' with: [ spec requires: #('Lcs-BaseTests' 'Lcs-Css') ].
+				]
 ]
