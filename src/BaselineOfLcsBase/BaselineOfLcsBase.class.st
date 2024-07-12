@@ -55,6 +55,6 @@ BaselineOfLcsBase >> baseline: spec [
 			
 			"Css"
 			spec package: 'Lcs-Css' with: [ spec requires: #('LcsBase') ].
-			spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-Tests' 'Lcs-Css') ].
+			"spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-Tests' 'Lcs-Css') ]."
 				]
 ]
