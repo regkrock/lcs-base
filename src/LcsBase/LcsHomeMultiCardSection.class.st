@@ -13,7 +13,7 @@ LcsHomeMultiCardSection >> gtBookCardSection [
 
 { #category : #accessing }
 LcsHomeMultiCardSection >> gtBookName [
-	^ 'Lcs Book'
+	^ 'LCS Knowledge Base'
 ]
 
 { #category : #accessing }
