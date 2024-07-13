@@ -5,26 +5,31 @@ Class {
 }
 
 { #category : #accessing }
-LcsHomeMultiCardSection >> gtBookCardSection [
+LcsHomeMultiCardSection >> aboutThisBookCard [
+	"<gtSectionCard>"
 	<gtExample>
 	<notest>
-	^ self
+	^ GtHomeCard page
+		priority: 20;
+		pageName: 'About this book';
+		databaseName: self gtBookName;
+		yourself
 ]
 
 { #category : #accessing }
-LcsHomeMultiCardSection >> gtBookName [
-	^ 'LCS Knowledge Base'
+LcsHomeMultiCardSection >> defaultPriority [
+	^ 5
 ]
 
 { #category : #accessing }
-LcsHomeMultiCardSection >> gtUsedKnowledgeBaseCard [
+LcsHomeMultiCardSection >> gtBookCard [
 	<gtSectionCard>
 	<gtExample>
 	<notest>
-	^ GtHomeCard lcsLepiterBaseWithTableOfContents
+	^ GtHome lcsBaseGetStartedSection  
 		title: 'LCS Knowledge Base';
 		description: 'Explore your LCS knowledge base';
-		priority: 1;
+		priority: 5;
 		primaryKnowledgebase;
 		recentlyEditedPage;
 		editableToolbar;
@@ -37,6 +42,18 @@ LcsHomeMultiCardSection >> gtUsedKnowledgeBaseCard [
 				, snippets size asString , ' snippets of '
 				, (snippets groupedBy: #class) size asString , ' different kinds.' ]
 				yourself
+]
+
+{ #category : #accessing }
+LcsHomeMultiCardSection >> gtBookCardSection [
+	<gtExample>
+	<notest>
+	^ self
+]
+
+{ #category : #accessing }
+LcsHomeMultiCardSection >> gtBookName [
+	^ 'LCS Knowledge Base'
 ]
 
 { #category : #accessing }
