@@ -10,7 +10,7 @@ GtHome >> getStartedSection [
 ]
 
 { #category : #'*LcsBase' }
-GtHome class >> lcsBaseGetStartedSection [
+GtHome >> lcsBaseGetStartedSection [
 	<gtHomeSection>
 	<gtExample>
 	<noTest>	
