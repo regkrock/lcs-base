@@ -26,7 +26,7 @@ LcsHomeMultiCardSection >> gtBookCard [
 	<gtSectionCard>
 	<gtExample>
 	<notest>
-	^ GtHomeCard lcsBaseGetStartedSection  
+	^ GtHome new lcsBaseGetStartedSection  
 		title: 'LCS Knowledge Base';
 		description: 'Explore your LCS knowledge base';
 		priority: 5;
