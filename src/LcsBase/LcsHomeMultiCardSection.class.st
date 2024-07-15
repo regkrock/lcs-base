@@ -26,7 +26,7 @@ LcsHomeMultiCardSection >> gtBookCard [
 	<gtSectionCard>
 	<gtExample>
 	<notest>
-	^ GtHome new lcsBaseGetStartedSection  
+	^ self homeCard  
 		title: 'LCS Knowledge Base';
 		description: 'Explore your LCS knowledge base';
 		priority: 5;
@@ -54,6 +54,13 @@ LcsHomeMultiCardSection >> gtBookCardSection [
 { #category : #accessing }
 LcsHomeMultiCardSection >> gtBookName [
 	^ 'LCS Knowledge Base'
+]
+
+{ #category : #accessing }
+LcsHomeMultiCardSection >> homeCard [
+	^ GtHomeLepiterBaseCard "GtHomePageCard" new
+		databaseName: 'regkrock/lcs-base/lepiter';
+		yourself
 ]
 
 { #category : #accessing }

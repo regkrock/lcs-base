@@ -14,9 +14,5 @@ GtHome >> lcsBaseGetStartedSection [
 	<gtHomeSection>
 	<gtExample>
 	<noTest>	
-	^ GtHomeLepiterBaseCard new 
-		databaseName: 'regkrock/lcs-base/lepiter';
-		yourself
-
-
+	^ LcsHomeMultiCardSection new
 ]
