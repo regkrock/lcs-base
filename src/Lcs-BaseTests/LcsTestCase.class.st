@@ -9,12 +9,12 @@ Class {
 
 { #category : #running }
 LcsTestCase >> abortTransaction [
-	LcsSmalltalkConfiguration gsSystemClass abortTransaction
+	System abortTransaction
 ]
 
 { #category : #running }
 LcsTestCase >> beginTransaction [
-	LcsSmalltalkConfiguration gsSystemClass beginTransaction
+	System beginTransaction
 ]
 
 { #category : #accessing }
@@ -24,7 +24,7 @@ LcsTestCase >> classNamed: aString [
 
 { #category : #running }
 LcsTestCase >> commitTransaction [
-	LcsSmalltalkConfiguration gsSystemClass commitTransaction
+	System commitTransaction
 ]
 
 { #category : #refactoring }

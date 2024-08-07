@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsHomeMultiCardSection,
 	#superclass : #GtHomeMultiCardSection,
-	#category : #LcsBase
+	#category : #'Lcs-Base-Pharo'
 }
 
 { #category : #accessing }

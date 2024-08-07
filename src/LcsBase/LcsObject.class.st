@@ -14,12 +14,12 @@ Class {
 
 { #category : #transactions }
 LcsObject class >> abortTransaction [
-	LcsSmalltalkConfiguration gsSystemClass abortTransaction
+	System abortTransaction
 ]
 
 { #category : #transactions }
 LcsObject class >> commitTransaction [
-	LcsSmalltalkConfiguration gsSystemClass commitTransaction
+	System commitTransaction
 ]
 
 { #category : #'application environment' }
@@ -86,4 +86,14 @@ LcsObject >> printOn: aStream [
 		nextPutAll: self hash displayString;
 		nextPutAll: ')'"
 
+]
+
+{ #category : #accessing }
+LcsObject >> tempMethod [
+	^'Hello'
+]
+
+{ #category : #accessing }
+LcsObject >> testGemstone [
+	^1 = 2
 ]

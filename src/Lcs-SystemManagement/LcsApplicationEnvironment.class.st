@@ -143,9 +143,9 @@ LcsApplicationEnvironment class >> hasUnitsOfWorkManager [
 { #category : #initiailize }
 LcsApplicationEnvironment class >> initializeApplicationEnvironment [
 	self singleton notNil ifTrue: [ self error: 'Environment is already initialized' ].
-	LcsSmalltalkConfiguration gsSystemClass abortTransaction.
+	System abortTransaction.
 	self singleton: self basicNew initialize.
-	LcsSmalltalkConfiguration gsSystemClass commitTransaction.
+	System commitTransaction.
 	^ self currentApplicationEnvironment
 ]
 
