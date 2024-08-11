@@ -7,11 +7,11 @@ Class {
 { #category : #accessing }
 LcsHomeMultiCardSection >> aboutThisBookCard [
 	"<gtSectionCard>"
-	<gtExample>
+	<gtExample>  
 	<notest>
 	^ GtHomeCard page
 		priority: 20;
-		pageName: 'About this book';
+		pageName: 'About this book'; 
 		databaseName: self gtBookName;
 		yourself
 ]

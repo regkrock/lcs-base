@@ -8,11 +8,3 @@ GtHome >> getStartedSection [
 	^ GtHomeMultiCardGetStartedSection new
 
 ]
-
-{ #category : #'*LcsBase' }
-GtHome >> lcsBaseGetStartedSection [
-	<gtHomeSection>
-	<gtExample>
-	<noTest>	
-	^ LcsHomeMultiCardSection new
-]
