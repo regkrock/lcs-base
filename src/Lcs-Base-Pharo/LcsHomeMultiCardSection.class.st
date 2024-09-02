@@ -26,18 +26,22 @@ LcsHomeMultiCardSection >> gtBookCard [
 	<gtSectionCard>
 	<gtExample>
 	<notest>
-	^ self homeCard  
+	"^ self homeCard " 
+	^ GtHomeCard lepiterBaseWithTableOfContents
 		title: 'LCS Knowledge Base';
 		description: 'Explore your LCS knowledge base';
 		priority: 5;
-		primaryKnowledgebase;
+		"primaryKnowledgebase;
 		recentlyEditedPage;
-		editableToolbar;
+		editableToolbar;"
+		pageName: 'LCS';
+		databaseName: self gtBookName;
+		readMoreToolbar;
 		details: [ :db | 
 			| snippets somePages |
 			somePages := db pages select: #shouldAppearInIndexOrDailyNotes.
 			snippets := somePages flatCollect: #allChildrenDepthFirst.
-			'Your LCS knowledge base includes '
+			'Your LCS Knowledge Base includes '
 				, somePages size asString , ' pages containing '
 				, snippets size asString , ' snippets of '
 				, (snippets groupedBy: #class) size asString , ' different kinds.' ]
@@ -54,6 +58,29 @@ LcsHomeMultiCardSection >> gtBookCardSection [
 { #category : #accessing }
 LcsHomeMultiCardSection >> gtBookName [
 	^ 'LCS Knowledge Base'
+]
+
+{ #category : #example }
+LcsHomeMultiCardSection >> gtUsedKnowledgeBaseCard [
+	<gtSectionCard>
+	<gtExample>
+	<noTest>
+	^ GtHomeCard lepiterBaseWithTableOfContents
+		title: 'Local knowledge base';
+		description: 'Explore your local knowledge base';
+		priority: 1;
+		primaryKnowledgebase;
+		recentlyEditedPage;
+		editableToolbar;
+		details: [ :db | 
+			| snippets somePages |
+			somePages := db pages select: #shouldAppearInIndexOrDailyNotes.
+			snippets := somePages flatCollect: #allChildrenDepthFirst.
+			'Your local knowledge base includes '
+				, somePages size asString , ' pages containing '
+				, snippets size asString , ' snippets of '
+				, (snippets groupedBy: #class) size asString , ' different kinds.' ]
+				yourself
 ]
 
 { #category : #accessing }
