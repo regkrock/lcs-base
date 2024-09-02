@@ -35,7 +35,7 @@ LcsHomeMultiCardSection >> gtBookCard [
 		recentlyEditedPage;
 		editableToolbar;"
 		pageName: 'LCS';
-		databaseName: self gtBookName;
+		databaseName: 'regkrock/lcs-base/lepiter';
 		readMoreToolbar;
 		details: [ :db | 
 			| snippets somePages |
