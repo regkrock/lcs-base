@@ -66,6 +66,7 @@ LcsHomeMultiCardSection >> gtUsedKnowledgeBaseCard [
 	<gtExample>
 	<noTest>
 	^ GtHomeCard lepiterBaseWithTableOfContents
+		databaseName: 'regkrock/lcs-base/lepiter';
 		title: 'Local knowledge base';
 		description: 'Explore your local knowledge base';
 		priority: 1;
