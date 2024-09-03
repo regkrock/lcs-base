@@ -27,14 +27,15 @@ LcsHomeMultiCardSection >> gtBookCard [
 	<gtExample>
 	<notest>
 	"^ self homeCard " 
-	^ GtHomeCard lepiterBaseWithTableOfContents
+	| card |
+	card := GtHomeCard lepiterBaseWithTableOfContents
 		title: 'LCS Knowledge Base';
 		description: 'Explore your LCS knowledge base';
 		priority: 5;
 		"primaryKnowledgebase;
 		recentlyEditedPage;
 		editableToolbar;"
-		pageName: 'LCS';
+		pageName: 'Lcs Table of Contents';
 		databaseName: 'regkrock/lcs-base/lepiter';
 		readMoreToolbar;
 		details: [ :db | 
@@ -45,7 +46,8 @@ LcsHomeMultiCardSection >> gtBookCard [
 				, somePages size asString , ' pages containing '
 				, snippets size asString , ' snippets of '
 				, (snippets groupedBy: #class) size asString , ' different kinds.' ]
-				yourself
+				yourself.
+	^ card
 ]
 
 { #category : #accessing }
@@ -62,9 +64,9 @@ LcsHomeMultiCardSection >> gtBookName [
 
 { #category : #example }
 LcsHomeMultiCardSection >> gtUsedKnowledgeBaseCard [
-	<gtSectionCard>
+	"<gtSectionCard>
 	<gtExample>
-	<noTest>
+	<noTest>"
 	^ GtHomeCard lepiterBaseWithTableOfContents
 		databaseName: 'regkrock/lcs-base/lepiter';
 		title: 'Local knowledge base';
