@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #accessing }
-BaselineOfLcsBase class >> loadLepiter [
+BaselineOfLcsBase class >> manuallyloadLepiter [
 
 	"| repository defaultDatabase currentProperties |
 	repository := IceRepository registry  
