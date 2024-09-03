@@ -31,6 +31,7 @@ LcsHomeMultiCardSection >> gtBookCard [
 	card := GtHomeCard lepiterBaseWithTableOfContents
 		title: 'LCS Knowledge Base';
 		description: 'Explore your LCS knowledge base';
+		loadLepiter: [ BaselineOfLcsBase loadLepiter ];
 		priority: 5;
 		"primaryKnowledgebase;
 		recentlyEditedPage;
