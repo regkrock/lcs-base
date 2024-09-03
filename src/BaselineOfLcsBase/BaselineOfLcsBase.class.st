@@ -5,6 +5,31 @@ Class {
 }
 
 { #category : #accessing }
+BaselineOfLcsBase class >> loadLepiter [
+
+	"| repository defaultDatabase currentProperties |
+	repository := IceRepository registry  
+				detect: [ :aRepository |
+				aRepository name = 'lcs-base' ].
+				
+	defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
+	currentProperties := defaultDatabase properties.
+	currentProperties addRegisteredDirectory: repository repositoryDirectory / 'lepiter'.
+	defaultDatabase reload."
+	
+	IceRepository registry
+		detect: [ :aRepository | aRepository name = 'lcs-base' ]
+		ifFound: [ :aRepository | 
+			| defaultDatabase currentProperties |
+			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
+			currentProperties := defaultDatabase properties.
+			currentProperties
+				addRegisteredDirectory: aRepository repositoryDirectory / 'lepiter'.
+			defaultDatabase reload ]
+		ifNone: [ self inform: 'Repository not found.' ]
+]
+
+{ #category : #accessing }
 BaselineOfLcsBase class >> manuallyloadLepiter [
 
 	"| repository defaultDatabase currentProperties |
