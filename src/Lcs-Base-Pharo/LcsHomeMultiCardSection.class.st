@@ -37,7 +37,7 @@ LcsHomeMultiCardSection >> gtBookCard [
 		editableToolbar;"
 		pageName: 'Lcs Table of Contents';
 		databaseName: 'regkrock/lcs-base/lepiter';
-		readMoreToolbar;
+		editableToolbar;
 		details: [ :db | 
 			| snippets somePages |
 			somePages := db pages select: #shouldAppearInIndexOrDailyNotes.
