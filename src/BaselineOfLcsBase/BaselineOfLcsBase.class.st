@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #loading }
-BaselineOfLcsBase class >> loadLepiter [
+BaselineOfLcsBase class >> manualLoadLepiter [
 
 	Delay forSeconds: 5.
 
