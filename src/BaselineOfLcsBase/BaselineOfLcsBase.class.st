@@ -4,22 +4,6 @@ Class {
 	#category : #BaselineOfLcsBase
 }
 
-{ #category : #loading }
-BaselineOfLcsBase class >> manualLoadLepiter [
-
-	Delay forSeconds: 5.
-
-	IceRepository registry
-		detect: [ :aRepository | aRepository name = 'lcs-base' ]
-		ifFound: [ :aRepository | 
-			| defaultDatabase currentProperties |
-			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
-			currentProperties := defaultDatabase properties.
-			currentProperties addRegisteredDirectory: aRepository repositoryDirectory / 'lepiter'.
-			defaultDatabase reload ]
-		ifNone: [ self inform: 'Repository not found.' ]
-]
-
 { #category : #baselines }
 BaselineOfLcsBase >> baseline: spec [
 	<baseline>
