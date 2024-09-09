@@ -11,7 +11,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-GemStoneMocks'.
 			spec package: 'LcsBase'  with: [ spec requires: #('Lcs-GemStoneMocks' ) ].
 			spec package: 'Lcs-PharoExtensions' with: [ spec requires: #('LcsBase' ) ].
-			spec package: 'Lcs-Base-Pharo'  with: [ spec requires: #('LcsBase' ) ].
+			"spec package: 'Lcs-Base-Pharo'  with: [ spec requires: #('LcsBase' ) ]."
 			spec package: 'Lcs-UnitOfWOrk' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('LcsBase' ) ].
 			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase' 'Lcs-UnitOfWOrk' 'Lcs-SlotDefinitions') ].
