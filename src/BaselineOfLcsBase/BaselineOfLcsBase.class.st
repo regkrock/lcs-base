@@ -4,6 +4,20 @@ Class {
 	#category : #BaselineOfLcsBase
 }
 
+{ #category : #accessing }
+BaselineOfLcsBase class >> manuallyLoadLepiter [
+	| repository defaultDatabase currentProperties |
+	
+	repository := IceRepository registry 
+				detect: [ :aRepository | aRepository name = 'lcs-base' ] 
+				ifNone: [nil].
+
+	defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
+	currentProperties := defaultDatabase properties.
+	currentProperties addRegisteredDirectory: repository repositoryDirectory / 'lepiter'.
+	defaultDatabase reload.
+]
+
 { #category : #baselines }
 BaselineOfLcsBase >> baseline: spec [
 	<baseline>
