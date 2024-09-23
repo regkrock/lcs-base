@@ -26,6 +26,11 @@ CssObject >> parent: aCssObject [
 ]
 
 { #category : #printing }
+CssObject >> prettyCssOn: stream [ 
+	self subclassResponsibility
+]
+
+{ #category : #printing }
 CssObject >> prettyCssString [
 	| stream |
 	stream := WriteStream on: String new.

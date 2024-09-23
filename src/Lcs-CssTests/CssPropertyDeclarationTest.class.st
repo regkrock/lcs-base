@@ -1,13 +1,13 @@
 Class {
-	#name : #CssDeclarationTest,
+	#name : #CssPropertyDeclarationTest,
 	#superclass : #TestCase,
 	#category : #'Lcs-CssTests-Tests'
 }
 
 { #category : #test }
-CssDeclarationTest >> testDeclaration [
+CssPropertyDeclarationTest >> testPropertyDeclaration [
 	| declaration |
-	declaration := CssDeclaration new 
+	declaration := CssPropertyDeclaration new 
 					propertyName: 'color';
 					propertyValue: 'red';
 					yourself.

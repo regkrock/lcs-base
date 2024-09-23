@@ -16,6 +16,30 @@ CssRuleset class >> on: aParent [
 		yourself
 ]
 
+{ #category : #example }
+CssRuleset >> bodyRuleset [
+	<gtExample>
+	<noTest>
+	| ruleset |
+	ruleset := CssRuleset new.
+	ruleset
+		selector: 'body';
+		property: 'width' value: '600px';
+		property: 'margin' value: '0 auto';
+		property: 'background-color' value: '#ff9500';
+		property: 'padding' value: '0 20px 20px 20px';
+		property: 'border' value: '5px solid black'.
+	self assert: ruleset declarations size = 5.
+	self assert: ruleset prettyCssString equals: 'body {
+	width: 600px;
+	margin: 0 auto;
+	background-color: #ff9500;
+	padding: 0 20px 20px 20px;
+	border: 5px solid black;
+}'.
+	^ruleset
+]
+
 { #category : #printing }
 CssRuleset >> compressedCssOn: aStream [
 	self nestedRulesets isEmpty
@@ -123,7 +147,7 @@ CssRuleset >> prettyDeclarationsOn: aStream [
 { #category : #accessing }
 CssRuleset >> property: aString value: aValue [
 	self declarations add: (
-		(CssDeclaration on: self) 
+		(CssPropertyDeclaration on: self) 
 			propertyName: aString;
 			propertyValue: aValue;
 			yourself)
