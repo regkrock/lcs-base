@@ -4,11 +4,12 @@ Class {
 	#category : #'Lcs-WebComponentsTests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #test }
 LuiComponentTest >> testCreation [
 	| webComponent |
 	webComponent := LuiComponent new.
 	self assert: (webComponent class == LuiComponent).
-	self assert: webComponent components isEmpty
+	self assert: webComponent components isEmpty.
+	self assert: webComponent cssClassesString isEmpty
 	
 ]
