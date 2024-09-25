@@ -58,6 +58,6 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-Css' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-Tests' 'Lcs-Css') ].
 			"Web Components"
-			spec package: 'Lcx-WebCounter' with: [ spec requires: #('LcsBase') ]
+			"spec package: 'Lcx-WebCounter' with: [ spec requires: #('LcsBase') ]"
 				]
 ]
