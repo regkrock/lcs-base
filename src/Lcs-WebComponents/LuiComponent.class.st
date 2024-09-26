@@ -6,16 +6,23 @@ Class {
 		'cssClasses',
 		'domainObject',
 		'parentComponent',
-		'componentId'
+		'componentId',
+		'componentPolicies'
 	],
 	#category : #'Lcs-WebComponents-Base'
 }
 
 { #category : #'instance creation' }
 LuiComponent class >> on: aWebComponent [
-	^ self new 
+	^ super new 
 		initializeOn: aWebComponent;
 		yourself
+]
+
+{ #category : #asking }
+LuiComponent >> addComponentNameTo: names [
+	names addFirst: self class name.
+	self parentComponent ifNil: [ self addComponentNameTo: names ]
 ]
 
 { #category : #accessing }
@@ -26,6 +33,16 @@ LuiComponent >> componentId [
 { #category : #accessing }
 LuiComponent >> componentId: anObject [
 	componentId := anObject
+]
+
+{ #category : #accessing }
+LuiComponent >> componentPolicies [
+	^ componentPolicies
+]
+
+{ #category : #accessing }
+LuiComponent >> componentPolicies: anObject [
+	componentPolicies := anObject
 ]
 
 { #category : #accessing }
@@ -68,16 +85,39 @@ LuiComponent >> domainObject: anObject [
 	domainObject := anObject
 ]
 
+{ #category : #asking }
+LuiComponent >> fullComponentName [
+	| names fullNameStream |
+	names := OrderedCollection new.
+	self addComponentNameTo: names.
+	fullNameStream := WriteStream on: String new.
+	names 
+		do: [ :eachName | fullNameStream nextPutAll: eachName ]
+		separatedBy: [ fullNameStream nextPutAll: '/' ].
+	^ fullNameStream contents
+]
+
+{ #category : #asking }
+LuiComponent >> fullComponentNameWithId [
+	^ self fullComponentName , '(' , self componentId , ')'
+]
+
 { #category : #initialize }
 LuiComponent >> initialize [
 	super initialize.
 	self components: OrderedDictionary new.
 	self cssClasses: LuiCssClasses new.
+	self componentPolicies: (LuiComponentPolicies on: self)
 ]
 
 { #category : #initialize }
 LuiComponent >> initializeOn: aWebComponent [ 
 	self parentComponent: aWebComponent
+]
+
+{ #category : #'as yet unclassified' }
+LuiComponent >> isVisible [
+	^ self componentPolcies
 ]
 
 { #category : #accessing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #LuiTextInput,
 	#superclass : #LuiComponent,
-	#category : #'Lcs-WebComponents'
+	#category : #'Lcs-WebComponents-Widgets'
 }
 
 { #category : #rendering }

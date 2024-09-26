@@ -1,6 +1,6 @@
 Class {
 	#name : #LuiRootComponent,
-	#superclass : #WAComponent,
+	#superclass : #LuiComponent,
 	#category : #'Lcs-WebComponents-Base'
 }
 
@@ -10,9 +10,8 @@ LuiRootComponent class >> initialize [
 ]
 
 { #category : #rendering }
-LuiRootComponent >> renderingContentOn: html [
-	html with: 'hello'
-	"html heading
+LuiRootComponent >> renderContentOn: html [
+	html heading
 		level: 1;
-		with: 'Hello Seas Members'"
+		with: 'Hello Seas Members'.
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #LuiPage,
 	#superclass : #LuiComponent,
-	#category : #'Lcs-WebComponents'
+	#category : #'Lcs-WebComponents-Base'
 }
 
 { #category : #'as yet unclassified' }
