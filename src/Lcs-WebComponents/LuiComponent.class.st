@@ -7,22 +7,46 @@ Class {
 		'domainObject',
 		'parentComponent',
 		'componentId',
-		'componentPolicies'
+		'componentPolicies',
+		'componentName'
 	],
 	#category : #'Lcs-WebComponents-Base'
 }
 
 { #category : #'instance creation' }
-LuiComponent class >> on: aWebComponent [
+LuiComponent class >> named: aName on: aWebComponent [
 	^ super new 
-		initializeOn: aWebComponent;
+		initializeNamed: aName on: aWebComponent;
 		yourself
+]
+
+{ #category : #'instance creation' }
+LuiComponent class >> on: aWebComponent [
+	^ self named: nil on: aWebComponent
+]
+
+{ #category : #components }
+LuiComponent >> addComponent: aComponent [
+	| component |
+	component := self components at: aComponent componentName put: aComponent.
+	component assignId.
+	^component
 ]
 
 { #category : #asking }
 LuiComponent >> addComponentNameTo: names [
 	names addFirst: self class name.
 	self parentComponent ifNil: [ self addComponentNameTo: names ]
+]
+
+{ #category : #components }
+LuiComponent >> assignId [
+	self componentId: self fullComponentName hash asString
+]
+
+{ #category : #components }
+LuiComponent >> componentAtIndex: anInteger [
+	^ self components values at: anInteger
 ]
 
 { #category : #accessing }
@@ -33,6 +57,16 @@ LuiComponent >> componentId [
 { #category : #accessing }
 LuiComponent >> componentId: anObject [
 	componentId := anObject
+]
+
+{ #category : #accessing }
+LuiComponent >> componentName [
+	^ componentName
+]
+
+{ #category : #accessing }
+LuiComponent >> componentName: anObject [
+	componentName := anObject
 ]
 
 { #category : #accessing }
@@ -70,6 +104,11 @@ LuiComponent >> cssClassesString [
 	^ self cssClasses cssClassesString
 ]
 
+{ #category : #defaults }
+LuiComponent >> defaultCssClasses [
+	^OrderedCollection new
+]
+
 { #category : #rendering }
 LuiComponent >> displayValue [
 	^ self domainObject ifNil: [ '' ] displayString
@@ -83,6 +122,11 @@ LuiComponent >> domainObject [
 { #category : #accessing }
 LuiComponent >> domainObject: anObject [
 	domainObject := anObject
+]
+
+{ #category : #components }
+LuiComponent >> firstComponent [
+	^ self componentAtIndex: 1
 ]
 
 { #category : #asking }
@@ -102,22 +146,55 @@ LuiComponent >> fullComponentNameWithId [
 	^ self fullComponentName , '(' , self componentId , ')'
 ]
 
+{ #category : #'gt - views' }
+LuiComponent >> gtCompoentsFor: aView [
+	<gtView>
+	
+	^ aView columnedTree
+		title: 'Components';
+		priority: 10;
+		expandUpTo: 4;
+		items: [ { self } ];
+		children: #components;
+		column: 'Component Class' text: [ :aComponent | aComponent class name ];
+		column: 'Name' text: [ :aComponent | aComponent componentName displayString ];
+		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
+]
+
 { #category : #initialize }
 LuiComponent >> initialize [
 	super initialize.
 	self components: OrderedDictionary new.
 	self cssClasses: LuiCssClasses new.
+	self cssClasses addCssClasses: self defaultCssClasses.
 	self componentPolicies: (LuiComponentPolicies on: self)
 ]
 
 { #category : #initialize }
-LuiComponent >> initializeOn: aWebComponent [ 
-	self parentComponent: aWebComponent
+LuiComponent >> initializeNamed: aName on: aWebComponent [
+	self 
+		componentName: aName;
+		parentComponent: aWebComponent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
+LuiComponent >> isHidden [
+	^ self componentPolicies isHidden
+]
+
+{ #category : #rendering }
+LuiComponent >> isTraceOn [
+	^true
+]
+
+{ #category : #testing }
 LuiComponent >> isVisible [
-	^ self componentPolcies
+	^ self componentPolicies isVisible
+]
+
+{ #category : #components }
+LuiComponent >> lastComponent [
+	^ self components values last
 ]
 
 { #category : #accessing }
@@ -130,12 +207,34 @@ LuiComponent >> parentComponent: anObject [
 	parentComponent := anObject
 ]
 
+{ #category : #components }
+LuiComponent >> removeComponent: aComponent [
+	^ self components remove: aComponent ifAbsent: []
+]
+
 { #category : #rendering }
-LuiComponent >> renderContentOn: aRenderer [
-	self renderSubcomponentsOn: aRenderer
+LuiComponent >> renderComponentOn: html [
+	self isTraceOn ifTrue: [ self renderTraceOn: html ]
+]
+
+{ #category : #rendering }
+LuiComponent >> renderContentOn: html [
+	self renderComponentOn: html
 ]
 
 { #category : #rendering }
 LuiComponent >> renderSubcomponentsOn: aRenderer [
-	self components do: [ :each | each renderComponentOn: aRenderer ]
+	self components do: [ :each | aRenderer render: each ]
+]
+
+{ #category : #rendering }
+LuiComponent >> renderTraceOn: html [
+	Transcript
+		show: self traceRenderMessage;
+		cr
+]
+
+{ #category : #rendering }
+LuiComponent >> traceRenderMessage [
+	^ self class name asString , '     ' , self componentName asString
 ]

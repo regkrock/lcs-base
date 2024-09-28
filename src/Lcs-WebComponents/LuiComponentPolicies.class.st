@@ -38,8 +38,18 @@ LuiComponentPolicies >> initializeOn: aComponent [
 ]
 
 { #category : #'as yet unclassified' }
+LuiComponentPolicies >> isHidden [
+	^ self isVisiblePolicy isHidden
+]
+
+{ #category : #'as yet unclassified' }
 LuiComponentPolicies >> isVisible [
-	^(self policyNamed: 'isVisible') value
+	^(self policyNamed: 'isVisible') isVisible
+]
+
+{ #category : #policies }
+LuiComponentPolicies >> isVisiblePolicy [
+	^ self policyNamed: 'isVisible'
 ]
 
 { #category : #accessing }
@@ -54,11 +64,12 @@ LuiComponentPolicies >> parent: anObject [
 
 { #category : #asking }
 LuiComponentPolicies >> parentComponent [
-	^self parent
+	^ self parent
 ]
 
 { #category : #initialize }
 LuiComponentPolicies >> policies [
+	^ policies
 ]
 
 { #category : #initialize }
@@ -68,6 +79,6 @@ LuiComponentPolicies >> policies: anObject [
 
 { #category : #'as yet unclassified' }
 LuiComponentPolicies >> policyNamed: aString [
-	self policies at: aString ifAbsent: [
+	^ self policies at: aString ifAbsent: [
 		LuiComponentPolicyNotFound signal: ('Policy ' , aString , ' not defined for ' , self fullComponentNameWithId)]
 ]

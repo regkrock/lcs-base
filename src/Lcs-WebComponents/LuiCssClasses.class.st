@@ -12,6 +12,12 @@ LuiCssClasses >> addCssClass: aString [
 	(self cssClasses includes: aString) ifFalse: [ self cssClasses add: aString ]
 ]
 
+{ #category : #'as yet unclassified' }
+LuiCssClasses >> addCssClasses: anOrderedCollection [
+	anOrderedCollection do: [ :eachCssClass |
+		self addCssClass: eachCssClass ]
+]
+
 { #category : #accessing }
 LuiCssClasses >> cssClasses [
 	^ cssClasses

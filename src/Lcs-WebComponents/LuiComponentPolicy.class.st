@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'policyName',
-		'parent'
+		'parent',
+		'evaluationBlock'
 	],
 	#category : #'Lcs-WebComponents-Base'
 }
@@ -15,9 +16,24 @@ LuiComponentPolicy class >> on: aComponentPolicies [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #component }
 LuiComponentPolicy >> component [
-	^ self parent component
+	^ self parent parent
+]
+
+{ #category : #defaults }
+LuiComponentPolicy >> defaultBlock [
+	^ [ ]
+]
+
+{ #category : #accessing }
+LuiComponentPolicy >> evaluationBlock [
+	^ evaluationBlock
+]
+
+{ #category : #accessing }
+LuiComponentPolicy >> evaluationBlock: anObject [
+	evaluationBlock := anObject
 ]
 
 { #category : #initialize }

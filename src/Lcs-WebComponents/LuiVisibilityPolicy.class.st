@@ -7,9 +7,15 @@ Class {
 	#category : #'Lcs-WebComponents-Base'
 }
 
+{ #category : #defaults }
+LuiVisibilityPolicy >> defaultBlock [
+	^ [ true ]
+]
+
 { #category : #'as yet unclassified' }
 LuiVisibilityPolicy >> initialize [
-	self visibleBlock: [ true ]
+	self evaluationBlock: self defaultBlock.
+	self policyName: 'isVisible'
 ]
 
 { #category : #'as yet unclassified' }
@@ -19,7 +25,7 @@ LuiVisibilityPolicy >> isHidden [
 
 { #category : #'as yet unclassified' }
 LuiVisibilityPolicy >> isVisible [
-	^ self visibleBlock cull: self component
+	^ self evaluationBlock cull: self component
 ]
 
 { #category : #accessing }
@@ -29,5 +35,5 @@ LuiVisibilityPolicy >> visibleBlock [
 
 { #category : #'as yet unclassified' }
 LuiVisibilityPolicy >> visibleBlock: aBlock [
-	self visibleBlock: aBlock 
+	visibleBlock := aBlock 
 ]

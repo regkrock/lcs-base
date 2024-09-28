@@ -1,7 +1,7 @@
 Class {
 	#name : #LuiCssClassesTest,
 	#superclass : #TestCase,
-	#category : #'Lcs-WebComponentsTests'
+	#category : #'Lcs-WebComponentsTests-Tests'
 }
 
 { #category : #'as yet unclassified' }
