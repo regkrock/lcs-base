@@ -28,7 +28,7 @@ LuiComponent class >> on: aWebComponent [
 { #category : #asking }
 LuiComponent >> addClassNameTo: names [
 	names addFirst: self class name.
-	self parentComponent ifNil: [ self addClassNameTo: names ]
+	self parentComponent ifNil: [ self parentComponent addClassNameTo: names ]
 ]
 
 { #category : #components }
@@ -42,7 +42,7 @@ LuiComponent >> addComponent: aComponent [
 { #category : #asking }
 LuiComponent >> addComponentNameTo: names [
 	names addFirst: self componentName asString.
-	self parentComponent ifNotNil: [ self addComponentNameTo: names ]
+	self parentComponent ifNotNil: [ self parentComponent addComponentNameTo: names ]
 ]
 
 { #category : #components }
