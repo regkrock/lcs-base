@@ -9,5 +9,7 @@ LuiExampleMainPage >> renderComponentOn: html [
 	html div
 		id: self componentId asString;
 		class: self cssClassesString;
+		dataName: self componentName;
+		dataStClass: self;
 		with: [self renderSubcomponentsOn: html]
 ]

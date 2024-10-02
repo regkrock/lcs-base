@@ -9,27 +9,27 @@ LuiMenuObjectTest >> menuDefinition [
 	| menuDefinition |
 	menuDefinition := LcsMainMenuDefinition new.
 	menuDefinition
-		addGroup: (LcsMenuGroupDefinition new
-				menuName: 'Who Are We';
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Our Officers and Trustees');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Photos and Videos');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Policies, Manuals and Forms');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Contact Us');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Donations');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Members Section (requires login)'));
-		addGroup: (LcsMenuGroupDefinition new
-				menuName: 'Learn';
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Basic Sailing');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Curising'));
-		addGroup: (LcsMenuGroupDefinition new
-				menuName: 'Policies, Manuals and Forms';
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Contact Us');
-				addMenuItem: (LcsMenuItemDefinition new
-						menuName: 'Donations';
-						submenu: (LcsMenuSubgroupDefinition new
-								addMenuItem: (LcsMenuItemDefinition new menuName: 'Small Boat Donation');
-								addMenuItem: (LcsMenuItemDefinition new menuName: 'Activity Sail Donation')));
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Members Section (requires login)')).
+		addMenuComponentDefintion: (LcsSubmenuDefinition new
+				menuItemLabel: 'Who Are We';
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Our Officers and Trustees');
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Photos and Videos');
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Policies, Manuals and Forms');
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Contact Us');
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Donations');
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Members Section (requires login)'));
+		addMenuComponentDefintion: (LcsSubmenuDefinition new
+				menuItemLabel: 'Learn';
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Basic Sailing');
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Curising'));
+		addMenuComponentDefintion: (LcsSubmenuDefinition new
+				menuItemLabel: 'Policies, Manuals and Forms';
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Contact Us');
+				addMenuComponentDefintion: (LcsMenuItemDefinition new
+						menuItemLabel: 'Donations';
+						submenu: (LcsSubmenuDefinition new
+								addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Small Boat Donation');
+								addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Activity Sail Donation')));
+				addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Members Section (requires login)')).
 	^ menuDefinition
 ]
 
@@ -45,10 +45,10 @@ LuiMenuObjectTest >> testCreation [
 	self assert: groupMenuComponent parentComponent == mainMenuComponent.
 	
 	menuItemComponent := groupMenuComponent firstComponent.
-	self assert: menuItemComponent menuName = 'Our Officers and Trustees'.
+	self assert: menuItemComponent menuItemLabel = 'Our Officers and Trustees'.
 
 	menuItemComponent := groupMenuComponent lastComponent.
-	self assert: menuItemComponent menuName = 'Members Section (requires login)'.
+	self assert: menuItemComponent menuItemLabel = 'Members Section (requires login)'.
 	self assert: menuItemComponent components isEmpty.
 	
 	"==Third Group=="
@@ -56,13 +56,13 @@ LuiMenuObjectTest >> testCreation [
 	self assert: groupMenuComponent name = 'Policies, Manuals and Forms'.
 	
 	menuItemComponent := groupMenuComponent componentAtIndex: 2.
-	self assert: menuItemComponent menuName = 'Donations'.
+	self assert: menuItemComponent menuItemLabel = 'Donations'.
 	self assert: menuItemComponent components size = 1.
 	submenuComponent := menuItemComponent firstComponent.
 	self assert: submenuComponent components size = 2.
 	menuItemComponent := submenuComponent lastComponent.
 	self assert: menuItemComponent components isEmpty.
-	self assert: menuItemComponent menuName = 'Activity Sail Donation'
+	self assert: menuItemComponent menuItemLabel = 'Activity Sail Donation'
 
 
 ]

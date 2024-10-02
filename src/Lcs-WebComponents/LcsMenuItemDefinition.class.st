@@ -2,34 +2,27 @@ Class {
 	#name : #LcsMenuItemDefinition,
 	#superclass : #LcsMenuDefinition,
 	#instVars : [
-		'menuName',
-		'submenu'
+		'menuItemLabel'
 	],
 	#category : #'Lcs-WebComponents-Menus'
 }
 
+{ #category : #constant }
+LcsMenuItemDefinition >> componentClass [
+	^ LuiMenuItem
+]
+
 { #category : #asking }
 LcsMenuItemDefinition >> componentName [
-	^ self selectorNameFrom: self menuName
+	^ self selectorNameFrom: self menuItemLabel
 ]
 
 { #category : #accessing }
-LcsMenuItemDefinition >> menuName [
-	^ menuName
+LcsMenuItemDefinition >> menuItemLabel [
+	^ menuItemLabel
 ]
 
 { #category : #accessing }
-LcsMenuItemDefinition >> menuName: anObject [
-	menuName := anObject
-]
-
-{ #category : #accessing }
-LcsMenuItemDefinition >> submenu [
-	^ submenu
-]
-
-{ #category : #accessing }
-LcsMenuItemDefinition >> submenu: aSubmenu [
-	aSubmenu parent: self.
-	submenu := aSubmenu
+LcsMenuItemDefinition >> menuItemLabel: anObject [
+	menuItemLabel := anObject
 ]

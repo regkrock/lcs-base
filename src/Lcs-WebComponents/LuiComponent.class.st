@@ -25,6 +25,12 @@ LuiComponent class >> on: aWebComponent [
 	^ self named: nil on: aWebComponent
 ]
 
+{ #category : #asking }
+LuiComponent >> addClassNameTo: names [
+	names addFirst: self class name.
+	self parentComponent ifNil: [ self addClassNameTo: names ]
+]
+
 { #category : #components }
 LuiComponent >> addComponent: aComponent [
 	| component |
@@ -35,8 +41,8 @@ LuiComponent >> addComponent: aComponent [
 
 { #category : #asking }
 LuiComponent >> addComponentNameTo: names [
-	names addFirst: self class name.
-	self parentComponent ifNil: [ self addComponentNameTo: names ]
+	names addFirst: self componentName asString.
+	self parentComponent ifNotNil: [ self addComponentNameTo: names ]
 ]
 
 { #category : #components }
@@ -67,6 +73,11 @@ LuiComponent >> componentName [
 { #category : #accessing }
 LuiComponent >> componentName: anObject [
 	componentName := anObject
+]
+
+{ #category : #components }
+LuiComponent >> componentNamed: aString [
+	^ self components at: aString ifAbsent: [ nil] 
 ]
 
 { #category : #accessing }
@@ -101,7 +112,7 @@ LuiComponent >> cssClasses: anObject [
 
 { #category : #styling }
 LuiComponent >> cssClassesString [
-	^ self cssClasses cssClassesString
+	^ self cssClasses cssClassesString ifEmpty: [ nil ]
 ]
 
 { #category : #defaults }
@@ -184,7 +195,7 @@ LuiComponent >> isHidden [
 
 { #category : #rendering }
 LuiComponent >> isTraceOn [
-	^true
+	^false
 ]
 
 { #category : #testing }

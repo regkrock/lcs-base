@@ -2,46 +2,44 @@ Class {
 	#name : #LuiMenuItem,
 	#superclass : #LuiMenuObject,
 	#instVars : [
-		'menuName'
+		'menuItemLabel'
 	],
 	#category : #'Lcs-WebComponents-Menus'
 }
 
-{ #category : #building }
-LuiMenuItem >> buidlSubmenuFrom: aSubmenuDefinition [
-	| submenuComponent |
-	submenuComponent := LuiSubmenu
-			named: aSubmenuDefinition componentName
-			on: self.
-	self addComponent: submenuComponent.
-	^ submenuComponent buildFrom: aSubmenuDefinition
+{ #category : #rendering }
+LuiMenuItem >> anchorClicked: aString [
+	Transcript show: 'Clicked ' , aString; cr 
 ]
 
 { #category : #building }
 LuiMenuItem >> buildFrom: aMenuItemDefinition [
-	self menuName: aMenuItemDefinition menuName.
-	aMenuItemDefinition submenu
-		ifNotNil: [ self buidlSubmenuFrom: aMenuItemDefinition submenu]
+	self menuItemLabel: aMenuItemDefinition menuItemLabel
 ]
 
 { #category : #accessing }
-LuiMenuItem >> menuName [
-	^ menuName
+LuiMenuItem >> menuItemLabel [
+	^ menuItemLabel
 ]
 
 { #category : #accessing }
-LuiMenuItem >> menuName: anObject [
-	menuName := anObject
+LuiMenuItem >> menuItemLabel: anObject [
+	menuItemLabel := anObject
 ]
 
 { #category : #rendering }
 LuiMenuItem >> renderComponentOn: html [
 	super renderComponentOn: html.
-	html div
+	html listItem
 		id: self componentId;
-		class: self cssClassesString;
+		"class: self cssClassesString;"
+		class: 'mainMenuItem';
+		"class: ((self parentComponent class = LuiMainMenu) ifTrue: ['mainMenuItem'] ifFalse: ['subMenuItem']);"
+		dataName: self componentName;
+		dataStClass: self;
 		with: [
-			html text: self menuName asString.
-			self components do: [ :eachComponent |
-				html render: eachComponent ] ]
+			html anchor
+				class: ((self parentComponent class = LuiMainMenu) ifTrue: ['mainMenuItemButton'] ifFalse: ['submenuItemButton']) ;
+				callback: [ self anchorClicked: self menuItemLabel asString];
+				with: self menuItemLabel asString ]
 ]

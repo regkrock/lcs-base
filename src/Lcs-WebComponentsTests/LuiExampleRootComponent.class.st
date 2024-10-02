@@ -9,7 +9,7 @@ LuiExampleRootComponent class >> initialize [
 	WAAdmin register: self asApplicationAt: 'example'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setup }
 LuiExampleRootComponent >> addMainNavigationMenuTo: aComponent [
 	| menuBarComponent |
 	menuBarComponent := LuiMainMenu named: 'navigation' on: aComponent.
@@ -17,37 +17,16 @@ LuiExampleRootComponent >> addMainNavigationMenuTo: aComponent [
 	menuBarComponent buildFrom: self menuDefinition
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialize }
 LuiExampleRootComponent >> initialize [
 	super initialize.
-	self addComponent: (LuiExampleMainPage named: 'root' on: self).
+	self addComponent: (LuiExampleMainPage named: 'mainPage' on: self).
 	self addMainNavigationMenuTo: self lastComponent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #setup }
 LuiExampleRootComponent >> menuDefinition [
-	| menuDefinition |
-	menuDefinition := LcsMainMenuDefinition new.
-	menuDefinition
-		addGroup: (LcsMenuGroupDefinition new
-				menuName: 'Menu 1';
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 1 Item 1');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 1 Item 2');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 1 Item 3'));
-		addGroup: (LcsMenuGroupDefinition new
-				menuName: 'Menu 2';
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 2 Item 1');
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 2 Item 2'));
-		addGroup: (LcsMenuGroupDefinition new
-				menuName: 'Menu 3';
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Contact Us');
-				addMenuItem: (LcsMenuItemDefinition new
-						menuName: 'Menu 3 Item 2';
-						submenu: (LcsMenuSubgroupDefinition new
-								addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 3 2 Item 1');
-								addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 3 2 Item 2')));
-				addMenuItem: (LcsMenuItemDefinition new menuName: 'Menu 3 3 Item')).
-	^ menuDefinition
+	^ LcsMainMenuDefinition menuBarWithSubSubMenuDefinition
 ]
 
 { #category : #rendering }
@@ -56,15 +35,15 @@ LuiExampleRootComponent >> renderComponentOn: html [
 		with: [
 			html heading
 				level: 1;
-				with: 'Example System'.
+				with: 'LCS Example System'.
 			html break.
 			self renderSubcomponentsOn: html ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #updating }
 LuiExampleRootComponent >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.
-	aRoot title: 'Seaside Example'.
-	aRoot stylesheet url: WAFileLibrary / #mainCss
+	aRoot title: 'LCS Seaside Example'.
+	aRoot stylesheet url: LcsFileLibrary / #mainCss
 ]

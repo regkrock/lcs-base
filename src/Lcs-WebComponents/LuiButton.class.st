@@ -18,5 +18,7 @@ LuiButton >> renderComponentOn: aRenderer [
 	aRenderer button
 		id: self componentId;
 		class: self cssClassesString;
+		dataName: self componentName;
+		dataStClass: self;
 		with: [ self displayValue ]
 ]

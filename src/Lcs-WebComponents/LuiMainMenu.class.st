@@ -8,17 +8,24 @@ Class {
 }
 
 { #category : #building }
-LuiMainMenu >> buildFrom: aGroupMenuDefinition [
-	aGroupMenuDefinition menuGroups do: [ :eachMenuGroup | 
-		| menuGroupComponent |
-		menuGroupComponent := LuiGroupMenu named: eachMenuGroup componentName on: self.
-		self addComponent: menuGroupComponent.
-		menuGroupComponent buildFrom: eachMenuGroup]
+LuiMainMenu >> buildFrom: aMenuComponentDefinition [
+	aMenuComponentDefinition menuComponentDefintions do: [ :eachComponent | 
+		| menuComponent |
+		menuComponent := eachComponent componentClass named: eachComponent componentName on: self.
+		self addComponent: menuComponent.
+		menuComponent buildFrom: eachComponent]
+]
+
+{ #category : #'as yet unclassified' }
+LuiMainMenu >> buildSubmenuCssClassName: aString [
+	^ aString , 'menu'
 ]
 
 { #category : #defaults }
 LuiMainMenu >> defaultCssClasses [
-	^OrderedCollection with: 'navbar'
+	^super defaultCssClasses 
+		add: 'mainMenuBar';  "'nav'"
+		yourself
 ]
 
 { #category : #rendering }
@@ -27,9 +34,13 @@ LuiMainMenu >> renderComponentOn: html [
 	html div
 		id: self componentId;
 		class: self cssClassesString;
+		dataName: self componentName;
+		dataStClass: self;
 		with: [
-			self components do: [ :eachComponent |
-				html render: eachComponent ] ]
+			html unorderedList
+				class: 'mainMenuBarContents';
+				with: [
+					self components do: [ :eachComponent | html render: eachComponent ] ] ]
 		
 
 ]
