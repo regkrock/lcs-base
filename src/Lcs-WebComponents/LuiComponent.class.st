@@ -25,6 +25,14 @@ LuiComponent class >> on: aWebComponent [
 	^ self named: nil on: aWebComponent
 ]
 
+{ #category : #components }
+LuiComponent >> _componentNamed: aTargetNames [
+	| targetComponent |
+	targetComponent := self components at: aTargetNames first ifAbsent: [ ^ nil].
+	aTargetNames size = 1 ifTrue: [ ^targetComponent ].
+	^ targetComponent _componentNamed: (aTargetNames copyFrom: 2 to: aTargetNames size)
+]
+
 { #category : #asking }
 LuiComponent >> addClassNameTo: names [
 	names addFirst: self class name.
@@ -77,7 +85,9 @@ LuiComponent >> componentName: anObject [
 
 { #category : #components }
 LuiComponent >> componentNamed: aString [
-	^ self components at: aString ifAbsent: [ nil] 
+	| targetNames |
+	targetNames := aString substrings: { $/ }.
+	^ self _componentNamed: targetNames
 ]
 
 { #category : #accessing }

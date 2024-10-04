@@ -1,5 +1,5 @@
 Class {
 	#name : #LuiLabelAndTextInput,
-	#superclass : #LuiComponent,
+	#superclass : #LuiEnterableComponent,
 	#category : #'Lcs-WebComponents-Widgets'
 }

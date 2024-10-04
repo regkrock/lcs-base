@@ -1,6 +1,6 @@
 Class {
 	#name : #LuiTextInput,
-	#superclass : #LuiComponent,
+	#superclass : #LuiEnterableComponent,
 	#category : #'Lcs-WebComponents-Widgets'
 }
 
