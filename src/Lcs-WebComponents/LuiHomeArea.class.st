@@ -1,5 +1,5 @@
 Class {
-	#name : #LuiGreetingsArea,
+	#name : #LuiHomeArea,
 	#superclass : #LuiApplicationArea,
 	#instVars : [
 		'greeting',
@@ -9,21 +9,26 @@ Class {
 }
 
 { #category : #accessing }
-LuiGreetingsArea >> body [
+LuiHomeArea >> body [
 	^ body
 ]
 
 { #category : #accessing }
-LuiGreetingsArea >> body: anObject [
+LuiHomeArea >> body: anObject [
 	body := anObject
 ]
 
 { #category : #accessing }
-LuiGreetingsArea >> greeting [
+LuiHomeArea >> greeting [
 	^ greeting
 ]
 
 { #category : #accessing }
-LuiGreetingsArea >> greeting: anObject [
+LuiHomeArea >> greeting: anObject [
 	greeting := anObject
+]
+
+{ #category : #rendering }
+LuiHomeArea >> renderApplicationAreaContentOn: html [
+	super renderApplicationAreaContentOn: html
 ]

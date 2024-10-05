@@ -3,7 +3,7 @@ Extension { #name : #WATagBrush }
 { #category : #'*Lcs-WebComponents' }
 WATagBrush >> dataName: aString [
 
-	self attributes at: 'data-name' put: aString
+	self dataAttributeAt: 'name' put: aString
 ]
 
 { #category : #'*Lcs-WebComponents' }
@@ -13,7 +13,7 @@ WATagBrush >> dataStClass: anInstanceOrClass [
 				ifTrue: [anInstanceOrClass] 
 				ifFalse: [anInstanceOrClass class].
 				
-	self attributes at: 'data-StClass' put: stClass name asString
+	self dataAttributeAt: 'StClass' put: stClass name asString
 ]
 
 { #category : #'*Lcs-WebComponents' }

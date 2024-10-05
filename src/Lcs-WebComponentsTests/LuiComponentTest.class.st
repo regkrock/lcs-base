@@ -22,7 +22,8 @@ LuiComponentTest >> testCreation [
 	webComponent := LuiComponent new.
 	self assert: (webComponent class == LuiComponent).
 	self assert: webComponent components isEmpty.
-	self assert: webComponent cssClassesString isEmpty.
+	self assert: webComponent cssClassesString isNil.
+	self assert: (webComponent properties isKindOf: LuiProperties).
 	self assert: webComponent isVisible.
 	self deny: webComponent isHidden.
 	self assert: webComponent componentId isNil.

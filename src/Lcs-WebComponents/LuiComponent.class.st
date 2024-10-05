@@ -8,7 +8,8 @@ Class {
 		'parentComponent',
 		'componentId',
 		'componentPolicies',
-		'componentName'
+		'componentName',
+		'properties'
 	],
 	#category : #'Lcs-WebComponents-Base'
 }
@@ -182,10 +183,26 @@ LuiComponent >> gtCompoentsFor: aView [
 		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
 ]
 
+{ #category : #'gt - views' }
+LuiComponent >> gtParentCompoentsFor: aView [
+	<gtView>
+	
+	^ aView columnedTree
+		title: 'Parents';
+		priority: 15;
+		expandUpTo: 4;
+		items: [ { self } ];
+		children: #parentViewComponents;
+		column: 'Component Class' text: [ :aComponent | aComponent class name ];
+		column: 'Name' text: [ :aComponent | aComponent componentName displayString ];
+		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
+]
+
 { #category : #initialize }
 LuiComponent >> initialize [
 	super initialize.
 	self components: OrderedDictionary new.
+	self properties: (LuiProperties on: self).
 	self cssClasses: LuiCssClasses new.
 	self cssClasses addCssClasses: self defaultCssClasses.
 	self componentPolicies: (LuiComponentPolicies on: self)
@@ -210,7 +227,7 @@ LuiComponent >> isTraceOn [
 
 { #category : #testing }
 LuiComponent >> isVisible [
-	^ self componentPolicies isVisible
+	^ ( self properties propertyAt: 'isHidden' ifAbsent: [ true ] ) value
 ]
 
 { #category : #components }
@@ -229,8 +246,37 @@ LuiComponent >> parentComponent: anObject [
 ]
 
 { #category : #components }
+LuiComponent >> parentComponentNamed: aString [
+	self componentName = aString ifTrue: [ ^ self ].
+	^ self parentComponent
+		ifNil: [ nil ]
+		ifNotNil: [ :parent |  parent parentComponentNamed: aString ]
+]
+
+{ #category : #'as yet unclassified' }
+LuiComponent >> parentViewComponents [
+	self parentComponent ifNil: [ ^ {} ].
+	^Array with: self parentComponent
+]
+
+{ #category : #accessing }
+LuiComponent >> properties [
+	^ properties
+]
+
+{ #category : #initialize }
+LuiComponent >> properties: anObject [ 
+	properties := anObject
+]
+
+{ #category : #components }
 LuiComponent >> removeComponent: aComponent [
-	^ self components remove: aComponent ifAbsent: []
+	^ self components removeKey: aComponent componentName ifAbsent: []
+]
+
+{ #category : #components }
+LuiComponent >> removeComponentNamed: aName [
+	^ self removeComponent: (self componentNamed: aName)
 ]
 
 { #category : #rendering }

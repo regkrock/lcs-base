@@ -2,7 +2,8 @@ Class {
 	#name : #LuiMenuItem,
 	#superclass : #LuiMenuObject,
 	#instVars : [
-		'menuItemLabel'
+		'menuItemLabel',
+		'targetClass'
 	],
 	#category : #'Lcs-WebComponents-Menus'
 }
@@ -14,7 +15,24 @@ LuiMenuItem >> anchorClicked: aString [
 
 { #category : #building }
 LuiMenuItem >> buildFrom: aMenuItemDefinition [
-	self menuItemLabel: aMenuItemDefinition menuItemLabel
+	self 
+		menuItemLabel: aMenuItemDefinition menuItemLabel;
+		targetClass: aMenuItemDefinition targetClass
+]
+
+{ #category : #'as yet unclassified' }
+LuiMenuItem >> defaultCssClasses [
+	^ OrderedCollection with: 'mainMenuItem'
+]
+
+{ #category : #'as yet unclassified' }
+LuiMenuItem >> initialize [
+	super initialize
+]
+
+{ #category : #rendering }
+LuiMenuItem >> mainPage [
+	^ self parentComponentNamed: 'mainPage'
 ]
 
 { #category : #accessing }
@@ -32,14 +50,24 @@ LuiMenuItem >> renderComponentOn: html [
 	super renderComponentOn: html.
 	html listItem
 		id: self componentId;
-		"class: self cssClassesString;"
-		class: 'mainMenuItem';
-		"class: ((self parentComponent class = LuiMainMenu) ifTrue: ['mainMenuItem'] ifFalse: ['subMenuItem']);"
+		class: self cssClassesString;
 		dataName: self componentName;
 		dataStClass: self;
-		with: [
-			html anchor
-				class: ((self parentComponent class = LuiMainMenu) ifTrue: ['mainMenuItemButton'] ifFalse: ['submenuItemButton']) ;
-				callback: [ self anchorClicked: self menuItemLabel asString];
+		with: [ html anchor
+				class: (self parentComponent class = LuiMainMenu
+						ifTrue: [ 'mainMenuItemButton' ]
+						ifFalse: [ 'submenuItemButton' ]);
+				callback: [ self anchorClicked: self menuItemLabel asString.
+					self mainPage nextApplicationAreaClass: self targetClass ];
 				with: self menuItemLabel asString ]
+]
+
+{ #category : #accessing }
+LuiMenuItem >> targetClass [
+	^ targetClass
+]
+
+{ #category : #accessing }
+LuiMenuItem >> targetClass: anObject [
+	targetClass := anObject
 ]

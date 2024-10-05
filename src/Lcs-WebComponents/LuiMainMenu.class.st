@@ -24,7 +24,7 @@ LuiMainMenu >> buildSubmenuCssClassName: aString [
 { #category : #defaults }
 LuiMainMenu >> defaultCssClasses [
 	^super defaultCssClasses 
-		add: 'mainMenuBar';  "'nav'"
+		add: 'mainMenuBar';
 		yourself
 ]
 

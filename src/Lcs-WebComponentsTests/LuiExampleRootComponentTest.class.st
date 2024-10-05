@@ -9,7 +9,7 @@ LuiExampleRootComponentTest >> testExampleRootComponent [
 	| root mainPage navBar submenu subsubmenu |
 	root := LuiExampleRootComponent new.
 	mainPage := root componentNamed: 'mainPage'.
-	self assert: (mainPage isKindOf: LuiExampleMainPage).
+	self assert: (mainPage isKindOf: LuiMainPage).
 	navBar := mainPage componentNamed: 'navigation'.
 	self assert: (navBar isKindOf: LuiMainMenu).
 	self assert: navBar componentName = 'navigation'.

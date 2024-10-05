@@ -12,7 +12,7 @@ LuiApplicationArea >> defaultCssClasses [
 { #category : #rendering }
 LuiApplicationArea >> renderApplicationAreaContentOn: html [
 
-	html paragraph:'Application Area'
+	html paragraph: self class name
 ]
 
 { #category : #rendering }

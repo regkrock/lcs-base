@@ -21,7 +21,7 @@ LuiExampleRootComponent >> addMainNavigationMenuTo: aComponent [
 LuiExampleRootComponent >> initialize [
 	super initialize.
 	self componentName: 'root'.
-	self addComponent: (LuiExampleMainPage named: 'mainPage' on: self).
+	self addComponent: (LuiMainPage named: 'mainPage' on: self).
 	self addMainNavigationMenuTo: self lastComponent
 ]
 

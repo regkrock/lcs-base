@@ -2,7 +2,8 @@ Class {
 	#name : #LcsMenuItemDefinition,
 	#superclass : #LcsMenuDefinition,
 	#instVars : [
-		'menuItemLabel'
+		'menuItemLabel',
+		'targetClass'
 	],
 	#category : #'Lcs-WebComponents-Menus'
 }
@@ -25,4 +26,14 @@ LcsMenuItemDefinition >> menuItemLabel [
 { #category : #accessing }
 LcsMenuItemDefinition >> menuItemLabel: anObject [
 	menuItemLabel := anObject
+]
+
+{ #category : #accessing }
+LcsMenuItemDefinition >> targetClass [
+	^ targetClass
+]
+
+{ #category : #accessing }
+LcsMenuItemDefinition >> targetClass: anObject [
+	targetClass := anObject
 ]
