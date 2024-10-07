@@ -97,11 +97,6 @@ LcsObject >> selectorNameFrom: aString [
 ]
 
 { #category : #accessing }
-LcsObject >> tempMethod [
-	^'Hello'
-]
-
-{ #category : #accessing }
 LcsObject >> testGemstone [
 	^1 = 2
 ]

@@ -1,12 +1,17 @@
 Class {
 	#name : #LuiExampleRootComponent,
-	#superclass : #LuiComponent,
+	#superclass : #LuiRoot,
 	#category : #'Lcs-WebComponentsTests-Base'
 }
 
 { #category : #initialize }
+LuiExampleRootComponent class >> browserTabName [
+	^ 'example'
+]
+
+{ #category : #initialize }
 LuiExampleRootComponent class >> initialize [
-	WAAdmin register: self asApplicationAt: 'example'
+	WAAdmin register: self asApplicationAt: self browserTabName
 ]
 
 { #category : #setup }
@@ -19,10 +24,15 @@ LuiExampleRootComponent >> addMainNavigationMenuTo: aComponent [
 
 { #category : #initialize }
 LuiExampleRootComponent >> initialize [
+	| mainPage |
 	super initialize.
 	self componentName: 'root'.
-	self addComponent: (LuiMainPage named: 'mainPage' on: self).
-	self addMainNavigationMenuTo: self lastComponent
+	self componentId: 'root'.
+	self addComponent: (mainPage := LuiMainPage named: 'mainPage' on: self).
+
+	self addMainNavigationMenuTo: (mainPage componentNamed: 'header/navigation').
+	(mainPage componentNamed: 'header/title') domainObject: 'LCS Example'.
+
 ]
 
 { #category : #setup }
@@ -33,11 +43,8 @@ LuiExampleRootComponent >> menuDefinition [
 { #category : #rendering }
 LuiExampleRootComponent >> renderComponentOn: html [
 	html div 
+		addCommonProperties: self;
 		with: [
-			html heading
-				level: 1;
-				with: 'LCS Example System'.
-			html break.
 			self renderSubcomponentsOn: html ]
 ]
 
