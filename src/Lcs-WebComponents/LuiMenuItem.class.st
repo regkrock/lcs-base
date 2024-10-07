@@ -49,10 +49,7 @@ LuiMenuItem >> menuItemLabel: anObject [
 LuiMenuItem >> renderComponentOn: html [
 	super renderComponentOn: html.
 	html listItem
-		id: self componentId;
-		class: self cssClassesString;
-		dataName: self componentName;
-		dataStClass: self;
+		addCommonProperties: self;
 		with: [ html anchor
 				class: (self parentComponent class = LuiMainMenu
 						ifTrue: [ 'mainMenuItemButton' ]

@@ -16,9 +16,6 @@ LuiButton >> addLabel: aString [
 { #category : #'as yet unclassified' }
 LuiButton >> renderComponentOn: aRenderer [
 	aRenderer button
-		id: self componentId;
-		class: self cssClassesString;
-		dataName: self componentName;
-		dataStClass: self;
+		addCommonProperties: self;
 		with: [ self displayValue ]
 ]

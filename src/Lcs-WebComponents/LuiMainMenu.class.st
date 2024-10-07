@@ -32,10 +32,7 @@ LuiMainMenu >> defaultCssClasses [
 LuiMainMenu >> renderComponentOn: html [
 	super renderComponentOn: html.
 	html div
-		id: self componentId;
-		class: self cssClassesString;
-		dataName: self componentName;
-		dataStClass: self;
+		addCommonProperties: self;
 		with: [
 			html unorderedList
 				class: 'mainMenuBarContents';

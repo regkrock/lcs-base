@@ -1,5 +1,5 @@
 Class {
-	#name : #LuiProperties,
+	#name : #LuiComponentProperties,
 	#superclass : #Object,
 	#instVars : [
 		'properties',
@@ -9,19 +9,47 @@ Class {
 }
 
 { #category : #'instance creation' }
-LuiProperties class >> on: aComponent [
+LuiComponentProperties class >> on: aComponent [
 	^ self new 
 		initializeOn: aComponent;
 		yourself
 ]
 
+{ #category : #'adding - removing properties' }
+LuiComponentProperties >> addCssClassProperty [
+	| property |
+	property := self propertyAt: LuiCssClassesProperty propertyName 
+					put: (LuiCssClassesProperty on: self).
+	property addCssClasses: self parentComponent defaultCssClasses
+]
+
+{ #category : #rendering }
+LuiComponentProperties >> addPropertiesToTag: aTag [
+	aTag
+		id: self parentComponent componentId;
+		class: self cssClassesString;
+		dataName: self parentComponent componentName;
+		dataStClass: self parentComponent
+
+]
+
+{ #category : #'as yet unclassified' }
+LuiComponentProperties >> cssClassesProperty [
+	^ self propertyAt: LuiCssClassesProperty propertyName ifAbsent: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
+LuiComponentProperties >> cssClassesString [
+	^ (self cssClassesProperty ifNil: [ ^ nil ]) propertyValue ifEmpty: [ nil ]
+]
+
 { #category : #private }
-LuiProperties >> errorPropertyNotFound: aSelector [ 
+LuiComponentProperties >> errorPropertyNotFound: aSelector [ 
 	MAPropertyError signal: 'Property ' , aSelector , ' not found.'
 ]
 
 { #category : #'gt view' }
-LuiProperties >> gtViewPropertiesOn: aView [
+LuiComponentProperties >> gtViewPropertiesOn: aView [
 	<gtView>
 	
 	self properties ifEmpty: [ ^ aView empty ].
@@ -39,51 +67,51 @@ LuiProperties >> gtViewPropertiesOn: aView [
 ]
 
 { #category : #testing }
-LuiProperties >> hasProperty: aKey [
+LuiComponentProperties >> hasProperty: aKey [
 	"Test if the property ==aKey== is defined within the receiver."
 
 	^ self properties includesKey: aKey
 ]
 
 { #category : #iniitialize }
-LuiProperties >> initialize [
+LuiComponentProperties >> initialize [
 	super initialize.
 	self properties: Dictionary new
 ]
 
 { #category : #initialize }
-LuiProperties >> initializeOn: aComponent [ 
+LuiComponentProperties >> initializeOn: aComponent [ 
 	self parentComponent: aComponent
 ]
 
 { #category : #accessing }
-LuiProperties >> parentComponent [
+LuiComponentProperties >> parentComponent [
 	^ parentComponent
 ]
 
 { #category : #accessing }
-LuiProperties >> parentComponent: anObject [
+LuiComponentProperties >> parentComponent: anObject [
 	parentComponent := anObject
 ]
 
 { #category : #copying }
-LuiProperties >> postCopyProperties [
+LuiComponentProperties >> postCopyProperties [
 	"Call after super postCopy"
 	properties := properties copy
 ]
 
 { #category : #accessing }
-LuiProperties >> properties [
+LuiComponentProperties >> properties [
 	^ properties
 ]
 
 { #category : #accessing }
-LuiProperties >> properties: anObject [
+LuiComponentProperties >> properties: anObject [
 	properties := anObject
 ]
 
 { #category : #'gt view' }
-LuiProperties >> propertiesSearchOn: aSearch [
+LuiComponentProperties >> propertiesSearchOn: aSearch [
 	<gtSearch>
 	
 	^ aSearch list
@@ -95,7 +123,7 @@ LuiProperties >> propertiesSearchOn: aSearch [
 ]
 
 { #category : #subscription }
-LuiProperties >> propertyAnnounceKey: aPropertyKey oldValue: anOldValue newValue: aNewValue [
+LuiComponentProperties >> propertyAnnounceKey: aPropertyKey oldValue: anOldValue newValue: aNewValue [
 	"Announce a property change if there are subscriptions."
 	
 	self propertyAnnouncerDo: [ :anAnnouncer |
@@ -107,7 +135,7 @@ LuiProperties >> propertyAnnounceKey: aPropertyKey oldValue: anOldValue newValue
 ]
 
 { #category : #subscription }
-LuiProperties >> propertyAnnouncerDo: aBlock [
+LuiComponentProperties >> propertyAnnouncerDo: aBlock [
 	"Announce a property change if there are subscriptions."
 
 	self properties
@@ -117,21 +145,21 @@ LuiProperties >> propertyAnnouncerDo: aBlock [
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aKey [
+LuiComponentProperties >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
 
 	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aKey ifAbsent: aBlock [
+LuiComponentProperties >> propertyAt: aKey ifAbsent: aBlock [
 	"Answer the value of the property ==aKey==, or the result of ==aBlock== if the property doesn't exist."
 
 	^ self properties at: aKey ifAbsent: aBlock
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aKey ifAbsentPut: aBlock [
+LuiComponentProperties >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the value of the property ==aKey==, or if the property doesn't exist adds and answers the result of evaluating ==aBlock==."
 
 	| aValue shouldAnnounce |
@@ -150,20 +178,20 @@ LuiProperties >> propertyAt: aKey ifAbsentPut: aBlock [
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aKey ifPresent: aBlock [
+LuiComponentProperties >> propertyAt: aKey ifPresent: aBlock [
 	"Lookup the property ==aKey==, if it is present, answer the value of evaluating ==aBlock== block with the value. Otherwise, answer ==nil==."
 
 	^ self properties at: aKey ifPresent: aBlock
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsent: absentBlock [
+LuiComponentProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsent: absentBlock [
 	"Lookup ==aKey==, if it is present, answer the value of evaluating the oneArgBlock with the value associated with the key, otherwise answer the value of absentBlock."
 	^ self properties at: aKey ifPresent: oneArgBlock ifAbsent: absentBlock
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsentPut: absentBlock [
+LuiComponentProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsentPut: absentBlock [
 	"Lookup ==aKey==, if it is present, answer the value of evaluating the oneArgBlock with the value associated with the key, otherwise answer the value of absentBlock."
 	| anOldValue aNewValue |
 	anOldValue := nil.
@@ -180,7 +208,7 @@ LuiProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsentPut: absentBloc
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aKey put: aValue [
+LuiComponentProperties >> propertyAt: aKey put: aValue [
 	"Adds or replaces the property ==aKey== with ==aValue==."
 
 	| anOldValue aNewValue |
@@ -193,7 +221,7 @@ LuiProperties >> propertyAt: aKey put: aValue [
 ]
 
 { #category : #properties }
-LuiProperties >> propertyAt: aSymbol putRemovingNil: aValue [
+LuiComponentProperties >> propertyAt: aSymbol putRemovingNil: aValue [
 	
 	| anOldValue |
 	aValue ifNotNil: [ 
@@ -209,7 +237,7 @@ LuiProperties >> propertyAt: aSymbol putRemovingNil: aValue [
 ]
 
 { #category : #subscription }
-LuiProperties >> unsubscribe: aSubscriber [
+LuiComponentProperties >> unsubscribe: aSubscriber [
 	self properties
 		at: #propertyAnnouncer
 		ifPresent: [ :anAnnouncer | 
@@ -218,12 +246,12 @@ LuiProperties >> unsubscribe: aSubscriber [
 ]
 
 { #category : #properties }
-LuiProperties >> valueOfProperty: aName [
+LuiComponentProperties >> valueOfProperty: aName [
 	^self propertyAt: aName ifPresent: [ :each | each value ] ifAbsent: [ nil ]
 ]
 
 { #category : #subscription }
-LuiProperties >> whenPropertyChangedSend: aSelector to: aReceiver [
+LuiComponentProperties >> whenPropertyChangedSend: aSelector to: aReceiver [
 	| anAnnouncer |
 	anAnnouncer := self properties 
 		at: #propertyAnnouncer

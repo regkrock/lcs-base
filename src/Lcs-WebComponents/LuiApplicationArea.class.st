@@ -18,9 +18,6 @@ LuiApplicationArea >> renderApplicationAreaContentOn: html [
 { #category : #rendering }
 LuiApplicationArea >> renderComponentOn: html [
 	html div
-		id: self componentId;
-		class: self cssClassesString;
-		dataName: self componentName;
-		dataStClass: self;
+		addCommonProperties: self;
 		with: [self renderApplicationAreaContentOn: html ]
 ]

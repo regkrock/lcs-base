@@ -26,9 +26,7 @@ LuiHeading >> level: anInteger [
 { #category : #rendering }
 LuiHeading >> renderComponentOn: html [
 	html heading 
-		class: self cssClassesString;
-		dataName: self componentName;
-		dataStClass: self;
+		addCommonProperties: self;
 		level: self level;
 		with: [
 			html text: self domainObject asString.

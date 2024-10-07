@@ -1,6 +1,11 @@
 Extension { #name : #WATagBrush }
 
 { #category : #'*Lcs-WebComponents' }
+WATagBrush >> addCommonProperties: aComponent [
+	aComponent properties addPropertiesToTag: self
+]
+
+{ #category : #'*Lcs-WebComponents' }
 WATagBrush >> dataName: aString [
 
 	self dataAttributeAt: 'name' put: aString
@@ -24,4 +29,9 @@ WATagBrush >> direction: aString [
 	APPLET, BASE, BASEFONT, BR, FRAME, FRAMESET, IFRAME, PARAM, SCRIPT"
 
 	self attributes at: 'dir' put: aString
+]
+
+{ #category : #'*Lcs-WebComponents' }
+WATagBrush >> visitComponentProperities: aComponent with: tag [ 
+	aComponent addPropertiesTo: tag
 ]

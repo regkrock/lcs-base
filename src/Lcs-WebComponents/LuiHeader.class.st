@@ -15,10 +15,7 @@ LuiHeader >> defaultCssClasses [
 { #category : #rendering }
 LuiHeader >> renderComponentOn: html [
 	html header 
-		id: self componentId asString;
-		class: self cssClassesString;
-		dataName: self componentName;
-		dataStClass: self;
+		addCommonProperties: self;
 		with: [
 			self renderSubcomponentsOn: html]
 ]

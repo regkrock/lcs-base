@@ -95,7 +95,7 @@ LuiMainPage >> setCurrentApplicatonAreaComponent [
 LuiMainPage >> swapToNewApplicationAreaComponent [
 	| currentComponent |
 	currentComponent := self removeComponentNamed: self applicationAreaName.
-	self swappedApplicationAreas addComponent: currentComponent.
+	self swappedApplicationAreas swappedOut: currentComponent.
 	self addComponent: (
 		self nextApplicationAreaClass named: self applicationAreaName on: self).
 	self nextApplicationAreaClass: nil

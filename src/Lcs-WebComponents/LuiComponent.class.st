@@ -7,7 +7,6 @@ Class {
 		'domainObject',
 		'parentComponent',
 		'componentId',
-		'componentPolicies',
 		'componentName',
 		'properties'
 	],
@@ -92,16 +91,6 @@ LuiComponent >> componentNamed: aString [
 ]
 
 { #category : #accessing }
-LuiComponent >> componentPolicies [
-	^ componentPolicies
-]
-
-{ #category : #accessing }
-LuiComponent >> componentPolicies: anObject [
-	componentPolicies := anObject
-]
-
-{ #category : #accessing }
 LuiComponent >> components [
 	^ components
 ]
@@ -122,8 +111,13 @@ LuiComponent >> cssClasses: anObject [
 ]
 
 { #category : #styling }
+LuiComponent >> cssClassesProperty [
+	^ self properties propertyAt: LuiCssClassesProperty propertyName ifAbsent: [ nil ]
+]
+
+{ #category : #styling }
 LuiComponent >> cssClassesString [
-	^ self cssClasses cssClassesString ifEmpty: [ nil ]
+	^ (self cssClassesProperty ifNil: [ ^ nil ]) propertyValue ifEmpty: [ nil ]
 ]
 
 { #category : #defaults }
@@ -202,10 +196,14 @@ LuiComponent >> gtParentCompoentsFor: aView [
 LuiComponent >> initialize [
 	super initialize.
 	self components: OrderedDictionary new.
-	self properties: (LuiProperties on: self).
-	self cssClasses: LuiCssClasses new.
-	self cssClasses addCssClasses: self defaultCssClasses.
-	self componentPolicies: (LuiComponentPolicies on: self)
+	self properties: (LuiComponentProperties on: self).
+	self initializeCssClasses.
+]
+
+{ #category : #initialize }
+LuiComponent >> initializeCssClasses [
+	self defaultCssClasses isEmpty ifTrue: [ ^self ].
+	self properties addCssClassProperty
 ]
 
 { #category : #initialize }
@@ -217,7 +215,7 @@ LuiComponent >> initializeNamed: aName on: aWebComponent [
 
 { #category : #testing }
 LuiComponent >> isHidden [
-	^ self componentPolicies isHidden
+	^ self halt isHidden
 ]
 
 { #category : #rendering }

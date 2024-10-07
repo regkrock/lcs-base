@@ -47,9 +47,6 @@ LuiSubmenu >> renderComponentOn: html [
 	html listItem
 		id: self componentId;
 		class: ((self parentComponent class = LuiMainMenu) ifTrue: ['mainMenuItem'] ifFalse: ['submenuItem']);
-		"class: 'subMenuItem';"
-		"class: self cssClassesString;
-		class: 'nav__listitem';"
 		dataName: self componentName;
 		dataStClass: self;
 		with: [
