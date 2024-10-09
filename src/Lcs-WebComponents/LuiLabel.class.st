@@ -5,9 +5,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-LuiLabel >> renderComponentOn: aRenderer [
-
-	aRenderer textInput
+LuiLabel >> renderComponentOn: html [
+	html label
 		addCommonProperties: self;
-		with: [self displayValue]
+		with: self displayValue
 ]

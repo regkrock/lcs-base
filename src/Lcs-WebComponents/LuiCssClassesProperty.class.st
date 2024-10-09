@@ -51,6 +51,11 @@ LuiCssClassesProperty >> initialize [
 ]
 
 { #category : #'css classes' }
+LuiCssClassesProperty >> removeAllCssClasses [
+	self removeCssClasses: self cssClasses copy 
+]
+
+{ #category : #'css classes' }
 LuiCssClassesProperty >> removeCssClass: aString [
 	(self cssClasses includes: aString) ifTrue: [
 		self cssClasses remove: aString ifAbsent: [ ].
@@ -60,4 +65,10 @@ LuiCssClassesProperty >> removeCssClass: aString [
 { #category : #'css classes' }
 LuiCssClassesProperty >> removeCssClasses: aCollection [
 	aCollection do: [ :eachClass | self removeCssClass: eachClass ]
+]
+
+{ #category : #'css classes\\' }
+LuiCssClassesProperty >> replaceExistingCssClassesWithCssClass: aString [
+	self removeAllCssClasses.
+	self addCssClass: aString
 ]

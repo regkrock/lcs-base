@@ -28,6 +28,15 @@ LuiSubmenu >> defaultCssClasses [
 ]
 
 { #category : #initialize }
+LuiSubmenu >> initializeNamed: aName on: aWebComponent [
+	super initializeNamed: aName on: aWebComponent.
+	self cssClassesProperty replaceExistingCssClassesWithCssClass: (
+		(self parentComponent class = LuiMainMenu) 
+			ifTrue: ['mainMenuItem'] 
+			ifFalse: ['submenuItem'])
+]
+
+{ #category : #initialize }
 LuiSubmenu >> initializeNamed: aName on: aWebComponent index: anIndex [ 
 ]
 
@@ -45,15 +54,11 @@ LuiSubmenu >> menuItemLabel: anObject [
 LuiSubmenu >> renderComponentOn: html [
 	super renderComponentOn: html.
 	html listItem
-		id: self componentId;
-		class: ((self parentComponent class = LuiMainMenu) ifTrue: ['mainMenuItem'] ifFalse: ['submenuItem']);
-		dataName: self componentName;
-		dataStClass: self;
+		addCommonProperties: self;
 		with: [
 			html text: self menuItemLabel.
 			html unorderedList 
 				class: self submenuCssClass;
-				"class: 'nav__listitemdrop';"
 				with: [
 					self components do: [ :eachComponent | html render: eachComponent ] ] ]
 ]

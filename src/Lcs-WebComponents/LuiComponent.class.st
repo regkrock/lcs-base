@@ -127,7 +127,7 @@ LuiComponent >> defaultCssClasses [
 
 { #category : #rendering }
 LuiComponent >> displayValue [
-	^ self domainObject ifNil: [ '' ] displayString
+	^ self domainObject ifNil: [ 'xxxx' ] displayString
 ]
 
 { #category : #accessing }
@@ -288,8 +288,8 @@ LuiComponent >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-LuiComponent >> renderSubcomponentsOn: aRenderer [
-	self components do: [ :each | aRenderer render: each ]
+LuiComponent >> renderSubcomponentsOn: html [
+	self components do: [ :each | html render: each ]
 ]
 
 { #category : #rendering }

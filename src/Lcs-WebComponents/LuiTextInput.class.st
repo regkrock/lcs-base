@@ -5,8 +5,9 @@ Class {
 }
 
 { #category : #rendering }
-LuiTextInput >> renderComponentOn: aRenderer [
-	aRenderer textInput
+LuiTextInput >> renderComponentOn: html [
+	html textInput
 		addCommonProperties: self;
-		with: [ self displayValue ]
+		value: self displayValue;
+		callback: [ :value | Transcript cr; nextPutAll: ('entered: ' , value greaseString) ]
 ]
