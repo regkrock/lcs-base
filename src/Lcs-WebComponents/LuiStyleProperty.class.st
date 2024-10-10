@@ -11,7 +11,9 @@ LuiStyleProperty class >> propertyName [
 
 { #category : #'as yet unclassified' }
 LuiStyleProperty >> appendToStyle: aString [
-	self valueBlock: [ self propertyValue , aString  ]
+	| newString |
+	newString := self propertyValue , aString.
+	self valueBlock: [ newString  ]
 ]
 
 { #category : #initialize }
