@@ -3,7 +3,8 @@ Class {
 	#superclass : #LuiApplicationArea,
 	#instVars : [
 		'greeting',
-		'body'
+		'body',
+		'homeMessage'
 	],
 	#category : #'Lcs-WebComponents-Base'
 }
@@ -28,7 +29,18 @@ LuiHomeArea >> greeting: anObject [
 	greeting := anObject
 ]
 
+{ #category : #accessing }
+LuiHomeArea >> homeMessage [
+	^ homeMessage ifNil: [ '' ]
+]
+
+{ #category : #accessing }
+LuiHomeArea >> homeMessage: anObject [
+	homeMessage := anObject
+]
+
 { #category : #rendering }
 LuiHomeArea >> renderApplicationAreaContentOn: html [
-	super renderApplicationAreaContentOn: html
+	super renderApplicationAreaContentOn: html.
+	html paragraph: self homeMessage
 ]

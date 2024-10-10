@@ -56,6 +56,11 @@ LuiMainPage >> initialize [
 	self swappedApplicationAreas: (LuiSwappedApplicationAreas on: self)
 ]
 
+{ #category : #components }
+LuiMainPage >> navigationBar [
+	^ self componentNamed: 'header/navigation'
+]
+
 { #category : #accessing }
 LuiMainPage >> nextApplicationAreaClass [
 	^ nextApplicationAreaClass
@@ -74,6 +79,11 @@ LuiMainPage >> pageTitle [
 { #category : #accessing }
 LuiMainPage >> pageTitle: anObject [
 	pageTitle := anObject
+]
+
+{ #category : #components }
+LuiMainPage >> pageTitleComponent [
+	^ self componentNamed: 'header/title'
 ]
 
 { #category : #rendering }

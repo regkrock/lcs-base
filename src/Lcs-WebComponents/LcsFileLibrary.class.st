@@ -4,6 +4,40 @@ Class {
 	#category : #'Lcs-WebComponents-Libraries'
 }
 
+{ #category : #'as yet unclassified' }
+LcsFileLibrary class >> mainCss2 [
+	| object stream |
+	stream := WriteStream on: String new.
+	object := self new.
+	object addCssDefinitionsTo: stream.
+	^stream contents
+	
+]
+
+{ #category : #css }
+LcsFileLibrary >> addCssDefinitionsTo: aStream [
+	aStream nextPutAll:
+'
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}'.
+
+	#(mainMenuBarContentsCssClassDefinition mainMenuBarCssClassDefinition) 
+		do: [:each | aStream nextPutAll: (self perform: each asSymbol) ]
+		separatedBy: [aStream cr; cr ].
+	"aStream nextPutAll: self mainMenuBarContentsCssClassDefinition.
+	aStream nextPutAll: self mainMenuBarCssClassDefinition"
+]
+
 { #category : #'html page' }
 LcsFileLibrary >> homePageText [
 ^
@@ -94,7 +128,6 @@ body {
   width: 100vw;
   box-shadow: 0 0 10px #e1e5ee;
   padding-right: 20px;
-
 }
 
 .mainMenuBarContents {
@@ -194,4 +227,53 @@ for the transition to work , thus moved it from POS_001 */
 	margin: 2px 2px 2px 2px
 }
  '
+]
+
+{ #category : #css }
+LcsFileLibrary >> mainCss2 [
+	| stream |
+	stream := WriteStream on: String new.
+	stream nextPutAll:
+'
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}'.
+
+	#(mainMenuBarContentsCssClassDefinition mainMenuBarCssClassDefinition) 
+		do: [:each | stream nextPutAll: (self perform: each asSymbol) ] separatedBy: [ stream cr; cr ].
+	"stream nextPutAll: self mainMenuBarContentsCssClassDefinition.
+	stream nextPutAll: self mainMenuBarCssClassDefinition."
+	^ stream contents
+]
+
+{ #category : #css }
+LcsFileLibrary >> mainMenuBarContentsCssClassDefinition [
+
+^'.mainMenuBarContents {
+  display: flex;
+  justify-content: flex-start; /* should be flex-end */
+  align-items: center;
+  gap: 2rem;
+  margin: 0 2rem;
+    }'
+]
+
+{ #category : #css }
+LcsFileLibrary >> mainMenuBarCssClassDefinition [
+	^'.mainMenuBarContents {
+  display: flex;
+  justify-content: flex-start; /* should be flex-end */
+  align-items: center;
+  gap: 2rem;
+  margin: 0 2rem;
+    }'
 ]

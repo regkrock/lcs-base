@@ -10,7 +10,7 @@ LuiComponentTest >> testChangingVisibilityBlock [
 	webComponent := LuiComponent new.
 	self assert: webComponent isVisible.
 	self deny: webComponent isHidden.
-	webComponent halt isVisiblePolicy evaluationBlock: [ false ].
+	webComponent isVisiblePolicy evaluationBlock: [ false ].
 	self deny: webComponent isVisible.
 	self assert: webComponent isHidden.
 

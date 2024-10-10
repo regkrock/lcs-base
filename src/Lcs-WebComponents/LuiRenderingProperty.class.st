@@ -1,3 +1,6 @@
+"
+This determines if a component will be rendered. If the component is hidden, it is rendered by the property is set to hidden. A hidden component is in the DOM tree and takes of browser space.
+"
 Class {
 	#name : #LuiRenderingProperty,
 	#superclass : #LuiComponentProperty,
@@ -10,12 +13,12 @@ LuiRenderingProperty class >> propertyName [
 ]
 
 { #category : #command }
-LuiRenderingProperty >> beNotRendereed [
+LuiRenderingProperty >> beNotRenderable [
 	self valueBlock: [ false ]
 ]
 
 { #category : #command }
-LuiRenderingProperty >> beRendered [
+LuiRenderingProperty >> beRenderable [
 	self valueBlock: [ true ]
 ]
 
@@ -32,5 +35,5 @@ LuiRenderingProperty >> isNotRenderable [
 
 { #category : #'as yet unclassified' }
 LuiRenderingProperty >> isRenderable [
-	^ self propertyValue = true 
+	^ self propertyValue == true 
 ]

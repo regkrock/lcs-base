@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-WebComponents-Menus'
 }
 
+{ #category : #configuration }
+LuiMainMenu >> beAnchor [
+	self addComponent: (LuiAnchor named: 'button' on: self)
+]
+
 { #category : #building }
 LuiMainMenu >> buildFrom: aMenuComponentDefinition [
 	aMenuComponentDefinition menuComponentDefintions do: [ :eachComponent | 
@@ -30,7 +35,6 @@ LuiMainMenu >> defaultCssClasses [
 
 { #category : #rendering }
 LuiMainMenu >> renderComponentOn: html [
-	super renderComponentOn: html.
 	html div
 		addCommonProperties: self;
 		with: [

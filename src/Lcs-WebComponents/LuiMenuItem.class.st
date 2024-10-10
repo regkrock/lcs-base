@@ -47,7 +47,6 @@ LuiMenuItem >> menuItemLabel: anObject [
 
 { #category : #rendering }
 LuiMenuItem >> renderComponentOn: html [
-	super renderComponentOn: html.
 	html listItem
 		addCommonProperties: self;
 		with: [ html anchor

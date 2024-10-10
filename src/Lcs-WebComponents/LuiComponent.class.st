@@ -3,7 +3,6 @@ Class {
 	#superclass : #WAComponent,
 	#instVars : [
 		'components',
-		'cssClasses',
 		'domainObject',
 		'parentComponent',
 		'componentId',
@@ -33,7 +32,7 @@ LuiComponent >> _componentNamed: aTargetNames [
 	^ targetComponent _componentNamed: (aTargetNames copyFrom: 2 to: aTargetNames size)
 ]
 
-{ #category : #asking }
+{ #category : #private }
 LuiComponent >> addClassNameTo: names [
 	names addFirst: self class name.
 	self parentComponent ifNil: [ self parentComponent addClassNameTo: names ]
@@ -47,7 +46,7 @@ LuiComponent >> addComponent: aComponent [
 	^component
 ]
 
-{ #category : #asking }
+{ #category : #private }
 LuiComponent >> addComponentNameTo: names [
 	names addFirst: self componentName asString.
 	self parentComponent ifNotNil: [ self parentComponent addComponentNameTo: names ]
@@ -100,24 +99,14 @@ LuiComponent >> components: anObject [
 	components := anObject
 ]
 
-{ #category : #accessing }
-LuiComponent >> cssClasses [
-	^ cssClasses
-]
-
-{ #category : #accessing }
-LuiComponent >> cssClasses: anObject [
-	cssClasses := anObject
-]
-
-{ #category : #styling }
+{ #category : #properties }
 LuiComponent >> cssClassesProperty [
-	^ self properties propertyAt: LuiCssClassesProperty propertyName ifAbsent: [ nil ]
+	^ self properties cssClassesProperty
 ]
 
-{ #category : #styling }
+{ #category : #properties }
 LuiComponent >> cssClassesString [
-	^ (self cssClassesProperty ifNil: [ ^ nil ]) propertyValue ifEmpty: [ nil ]
+	^ self cssClassesProperty cssClassesString
 ]
 
 { #category : #defaults }
@@ -143,6 +132,18 @@ LuiComponent >> domainObject: anObject [
 { #category : #components }
 LuiComponent >> firstComponent [
 	^ self componentAtIndex: 1
+]
+
+{ #category : #asking }
+LuiComponent >> fullClassesName [
+	| names fullNameStream |
+	names := OrderedCollection new.
+	self addClassNameTo: names.
+	fullNameStream := WriteStream on: String new.
+	names 
+		do: [ :eachName | fullNameStream nextPutAll: eachName ]
+		separatedBy: [ fullNameStream nextPutAll: '/' ].
+	^ fullNameStream contents
 ]
 
 { #category : #asking }
@@ -192,6 +193,11 @@ LuiComponent >> gtParentCompoentsFor: aView [
 		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
 ]
 
+{ #category : #testing }
+LuiComponent >> hasNoComponents [
+	^ self components isEmpty
+]
+
 { #category : #initialize }
 LuiComponent >> initialize [
 	super initialize.
@@ -202,8 +208,8 @@ LuiComponent >> initialize [
 
 { #category : #initialize }
 LuiComponent >> initializeCssClasses [
-	self defaultCssClasses isEmpty ifTrue: [ ^self ].
-	self properties addCssClassProperty
+	self defaultCssClasses ifEmpty: [ ^self ].
+	self properties cssClassesProperty addCssClassProperty
 ]
 
 { #category : #initialize }
@@ -215,10 +221,15 @@ LuiComponent >> initializeNamed: aName on: aWebComponent [
 
 { #category : #testing }
 LuiComponent >> isHidden [
-	^ self halt isHidden
+	^ self properties isHidden
 ]
 
-{ #category : #rendering }
+{ #category : #testing }
+LuiComponent >> isRenderable [
+	^ self properties isRenderable
+]
+
+{ #category : #testing }
 LuiComponent >> isTraceOn [
 	^false
 ]
@@ -231,6 +242,14 @@ LuiComponent >> isVisible [
 { #category : #components }
 LuiComponent >> lastComponent [
 	^ self components values last
+]
+
+{ #category : #logging }
+LuiComponent >> logRenderingTrace [
+	self isTraceOn ifTrue: [
+		Transcript
+			show: self traceRenderMessage;
+			cr ]
 ]
 
 { #category : #accessing }
@@ -251,7 +270,7 @@ LuiComponent >> parentComponentNamed: aString [
 		ifNotNil: [ :parent |  parent parentComponentNamed: aString ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'gt - views' }
 LuiComponent >> parentViewComponents [
 	self parentComponent ifNil: [ ^ {} ].
 	^Array with: self parentComponent
@@ -262,7 +281,7 @@ LuiComponent >> properties [
 	^ properties
 ]
 
-{ #category : #initialize }
+{ #category : #accessing }
 LuiComponent >> properties: anObject [ 
 	properties := anObject
 ]
@@ -279,7 +298,7 @@ LuiComponent >> removeComponentNamed: aName [
 
 { #category : #rendering }
 LuiComponent >> renderComponentOn: html [
-	self isTraceOn ifTrue: [ self renderTraceOn: html ]
+	self subclassResponsibility
 ]
 
 { #category : #rendering }
@@ -292,14 +311,17 @@ LuiComponent >> renderSubcomponentsOn: html [
 	self components do: [ :each | html render: each ]
 ]
 
-{ #category : #rendering }
-LuiComponent >> renderTraceOn: html [
-	Transcript
-		show: self traceRenderMessage;
-		cr
+{ #category : #properties }
+LuiComponent >> title: aString [
+	self properties title: aString
 ]
 
-{ #category : #rendering }
+{ #category : #properties }
+LuiComponent >> titleBlock: aBlock [
+	self properties titleBlock: aBlock
+]
+
+{ #category : #logging }
 LuiComponent >> traceRenderMessage [
-	^ self class name asString , '     ' , self componentName asString
+	^ 'rendering... ' , self class name asString , '     ' , self componentName asString
 ]

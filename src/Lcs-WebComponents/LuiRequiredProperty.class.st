@@ -27,10 +27,10 @@ LuiRequiredProperty >> initialize [
 
 { #category : #testing }
 LuiRequiredProperty >> isOptional [
-	^ self isRequired not
+	^ self isRequired ~~ true
 ]
 
 { #category : #testing }
 LuiRequiredProperty >> isRequired [
-	^ self cachedValue
+	^ self propertyValue == true
 ]

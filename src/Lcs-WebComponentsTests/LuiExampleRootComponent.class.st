@@ -15,11 +15,8 @@ LuiExampleRootComponent class >> initialize [
 ]
 
 { #category : #setup }
-LuiExampleRootComponent >> addMainNavigationMenuTo: aComponent [
-	| menuBarComponent |
-	menuBarComponent := LuiMainMenu named: 'navigation' on: aComponent.
-	aComponent addComponent: menuBarComponent.
-	menuBarComponent buildFrom: self menuDefinition
+LuiExampleRootComponent >> addMainNavigationMenuTo: aMainMenu [
+	aMainMenu buildFrom: self menuDefinition
 ]
 
 { #category : #initialize }

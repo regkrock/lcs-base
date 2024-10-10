@@ -15,16 +15,26 @@ LuiComponentProperties class >> on: aComponent [
 		yourself
 ]
 
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> addCssClass: aCssClassName [
+	^ self cssClassesProperty addCssClass: aCssClassName
+]
+
 { #category : #'adding - removing properties' }
 LuiComponentProperties >> addCssClassProperty [
 	| property |
-	property := self propertyAt: LuiCssClassesProperty propertyName 
-					put: (LuiCssClassesProperty on: self).
+	property := self cssClassesProperty.
 	property addCssClasses: self parentComponent defaultCssClasses
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> addCssClasses: aCollection [
+	^ self cssClassesProperty addCssClasses: aCollection
 ]
 
 { #category : #rendering }
 LuiComponentProperties >> addPropertiesToTag: aTag [
+	self parentComponent logRenderingTrace.
 	aTag
 		id: self parentComponent componentId;
 		class: self cssClassesString;
@@ -33,19 +43,70 @@ LuiComponentProperties >> addPropertiesToTag: aTag [
 
 ]
 
-{ #category : #'as yet unclassified' }
-LuiComponentProperties >> cssClassesProperty [
-	^ self propertyAt: LuiCssClassesProperty propertyName ifAbsent: [ nil ]
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> appendToStyle: aString [
+	^ self styleProperty appendToStyle: aString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beDisabled [
+	^ self disabledProperty beDisabled
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beEnabled [
+	^ self disabledProperty beEnabled
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beHidden [
+	^ self hiddenProperty beHidden
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beNotRenderable [
+	^ self renderingProperty beNotRenderable
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beOptional [
+	^ self requiredProperty beOptional
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beRenderable [
+	^ self renderingProperty beRenderable
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beRequired [
+	^ self requiredProperty beRequired
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> beVisible [
+	^ self hiddenProperty beVisible
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> cssClassesProperty [
+	^ self lazyInitializedProperty: LuiCssClassesProperty
+]
+
+{ #category : #'properties - delegated' }
 LuiComponentProperties >> cssClassesString [
-	^ (self cssClassesProperty ifNil: [ ^ nil ]) propertyValue ifEmpty: [ nil ]
+	self hasCssClassesProperty ifFalse: [ ^ nil ].
+	self cssClassesProperty propertyValue
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> disabledProperty [
+	^ self lazyInitializedProperty: LuiDisabledProperty
 ]
 
 { #category : #private }
 LuiComponentProperties >> errorPropertyNotFound: aSelector [ 
-	MAPropertyError signal: 'Property ' , aSelector , ' not found.'
+	LuiComponentPropertyNotFound signal: 'Property ' , aSelector , ' not found.'
 ]
 
 { #category : #'gt view' }
@@ -66,6 +127,24 @@ LuiComponentProperties >> gtViewPropertiesOn: aView [
 		actionUpdateButton
 ]
 
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasCssClassesProperty [
+	self propertyAt: LuiCssClassesProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasDisabledProperty [
+	self propertyAt: LuiDisabledProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasHiddenProperty [
+	self propertyAt: LuiHiddenProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
 { #category : #testing }
 LuiComponentProperties >> hasProperty: aKey [
 	"Test if the property ==aKey== is defined within the receiver."
@@ -73,15 +152,101 @@ LuiComponentProperties >> hasProperty: aKey [
 	^ self properties includesKey: aKey
 ]
 
-{ #category : #iniitialize }
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasRenderingProperty [
+	self propertyAt: LuiRenderingProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasRequiredProperty [
+	self propertyAt: LuiRequiredProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasStyleProperty [
+	self propertyAt: LuiStyleProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasTitleProperty [
+	self propertyAt: LuiTitleProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> hiddenProperty [
+	^ self lazyInitializedProperty:  LuiHiddenProperty 
+]
+
+{ #category : #initialize }
 LuiComponentProperties >> initialize [
 	super initialize.
 	self properties: Dictionary new
 ]
 
 { #category : #initialize }
-LuiComponentProperties >> initializeOn: aComponent [ 
-	self parentComponent: aComponent
+LuiComponentProperties >> initializeCssClassesProperty [
+	self parentComponent ifNil: [ ^ self ].
+	self parentComponent defaultCssClasses ifNotEmpty: [
+		self addCssClasses: self parentComponent defaultCssClasses ]
+]
+
+{ #category : #initialize }
+LuiComponentProperties >> initializeOn: aComponent [
+	self parentComponent: aComponent.
+	self initializeCssClassesProperty
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isDisabled [
+	^ self disabledProperty isDisabled
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isEnabled [
+	^ self disabledProperty isEnabled
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isHidden [
+	^ self hiddenProperty isHidden
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isNotRenderable [
+	self hasRenderingProperty ifFalse: [ ^ false ].
+	^ self renderingProperty isNotRenderable 
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isOptional [
+	^ self requiredProperty isOptional
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isRenderable [
+	self hasRenderingProperty ifFalse: [ ^true ].
+	^ self renderingProperty isRenderable
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isRequired [
+	^ self requiredProperty isRequired
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> isVisible [
+	^ self hasHiddenProperty 
+		ifTrue: [ self hiddenProperty isVisible ]
+		ifFalse: [ true ]
+]
+
+{ #category : #'properties - accessing' }
+LuiComponentProperties >> lazyInitializedProperty: aComponentPropertyClass [
+	^ self propertyAt: aComponentPropertyClass propertyName ifAbsentPut: [ aComponentPropertyClass on: self ]
 ]
 
 { #category : #accessing }
@@ -144,21 +309,21 @@ LuiComponentProperties >> propertyAnnouncerDo: aBlock [
 		ifAbsent: [  "ignore" ]
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
 
 	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aKey ifAbsent: aBlock [
 	"Answer the value of the property ==aKey==, or the result of ==aBlock== if the property doesn't exist."
 
 	^ self properties at: aKey ifAbsent: aBlock
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the value of the property ==aKey==, or if the property doesn't exist adds and answers the result of evaluating ==aBlock==."
 
@@ -177,20 +342,20 @@ LuiComponentProperties >> propertyAt: aKey ifAbsentPut: aBlock [
 	^ aValue
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aKey ifPresent: aBlock [
 	"Lookup the property ==aKey==, if it is present, answer the value of evaluating ==aBlock== block with the value. Otherwise, answer ==nil==."
 
 	^ self properties at: aKey ifPresent: aBlock
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsent: absentBlock [
 	"Lookup ==aKey==, if it is present, answer the value of evaluating the oneArgBlock with the value associated with the key, otherwise answer the value of absentBlock."
 	^ self properties at: aKey ifPresent: oneArgBlock ifAbsent: absentBlock
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsentPut: absentBlock [
 	"Lookup ==aKey==, if it is present, answer the value of evaluating the oneArgBlock with the value associated with the key, otherwise answer the value of absentBlock."
 	| anOldValue aNewValue |
@@ -207,7 +372,7 @@ LuiComponentProperties >> propertyAt: aKey ifPresent: oneArgBlock ifAbsentPut: a
 	^ aNewValue
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aKey put: aValue [
 	"Adds or replaces the property ==aKey== with ==aValue==."
 
@@ -220,7 +385,7 @@ LuiComponentProperties >> propertyAt: aKey put: aValue [
 	^ aNewValue
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> propertyAt: aSymbol putRemovingNil: aValue [
 	
 	| anOldValue |
@@ -236,6 +401,72 @@ LuiComponentProperties >> propertyAt: aSymbol putRemovingNil: aValue [
 	^ anOldValue
 ]
 
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> removeAllCssClasses [
+	^ self cssClassesProperty removeAllCssClasses
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> removeCssClass: aCssClassName [
+	^ self cssClassesProperty removeCssClasses: aCssClassName
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> renderingProperty [
+	^ self lazyInitializedProperty: LuiRenderingProperty
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> requiredProperty [
+	^ self lazyInitializedProperty: LuiRequiredProperty
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> rmoveCssClasses: aCollection [
+	^ self cssClassesProperty removeCssClasses: aCollection
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> style [
+	self hasStyleProperty ifFalse: [ ^ '' ].
+	^ self styleProperty propertyValue
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> style: aString [
+	^ self styleProperty style: aString
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> styleBlock: aBlock [
+	^ self styleProperty valueBlock: aBlock
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> styleProperty [
+	^ self lazyInitializedProperty: LuiStyleProperty
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> title [
+	^ self titleProperty propertyValue
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> title: aString [
+	^ self titleProperty title: aString
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> titleBlock: aBlock [
+	^ self titleProperty valueBlock: aBlock
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> titleProperty [
+	^ self lazyInitializedProperty: LuiTitleProperty
+]
+
 { #category : #subscription }
 LuiComponentProperties >> unsubscribe: aSubscriber [
 	self properties
@@ -245,9 +476,9 @@ LuiComponentProperties >> unsubscribe: aSubscriber [
 		ifAbsent: [  "ignore" ]
 ]
 
-{ #category : #properties }
+{ #category : #'properties - accessing' }
 LuiComponentProperties >> valueOfProperty: aName [
-	^self propertyAt: aName ifPresent: [ :each | each value ] ifAbsent: [ nil ]
+	^ self propertyAt: aName ifPresent: [ :each | each propertyValue ] ifAbsent: [ nil ]
 ]
 
 { #category : #subscription }

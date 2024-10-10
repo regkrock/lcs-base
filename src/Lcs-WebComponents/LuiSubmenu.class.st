@@ -36,10 +36,6 @@ LuiSubmenu >> initializeNamed: aName on: aWebComponent [
 			ifFalse: ['submenuItem'])
 ]
 
-{ #category : #initialize }
-LuiSubmenu >> initializeNamed: aName on: aWebComponent index: anIndex [ 
-]
-
 { #category : #accessing }
 LuiSubmenu >> menuItemLabel [
 	^ menuItemLabel
@@ -52,7 +48,6 @@ LuiSubmenu >> menuItemLabel: anObject [
 
 { #category : #rendering }
 LuiSubmenu >> renderComponentOn: html [
-	super renderComponentOn: html.
 	html listItem
 		addCommonProperties: self;
 		with: [
