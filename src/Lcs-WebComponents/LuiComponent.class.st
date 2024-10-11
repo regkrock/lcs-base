@@ -209,7 +209,7 @@ LuiComponent >> initialize [
 { #category : #initialize }
 LuiComponent >> initializeCssClasses [
 	self defaultCssClasses ifEmpty: [ ^self ].
-	self properties cssClassesProperty addCssClassProperty
+	self properties cssClassesProperty addCssClasses: self defaultCssClasses
 ]
 
 { #category : #initialize }
@@ -222,6 +222,11 @@ LuiComponent >> initializeNamed: aName on: aWebComponent [
 { #category : #testing }
 LuiComponent >> isHidden [
 	^ self properties isHidden
+]
+
+{ #category : #testing }
+LuiComponent >> isNotRenderable [
+	^ self properties isNotRenderable
 ]
 
 { #category : #testing }
@@ -303,6 +308,7 @@ LuiComponent >> renderComponentOn: html [
 
 { #category : #rendering }
 LuiComponent >> renderContentOn: html [
+	self isNotRenderable ifTrue: [ ^ self ].
 	self renderComponentOn: html
 ]
 

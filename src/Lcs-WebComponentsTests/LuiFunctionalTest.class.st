@@ -1,6 +1,6 @@
 Class {
 	#name : #LuiFunctionalTest,
-	#superclass : #LuiComponent,
+	#superclass : #LuiRoot,
 	#category : #'Lcs-WebComponentsTests-Functional'
 }
 

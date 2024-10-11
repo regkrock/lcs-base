@@ -32,6 +32,20 @@ WATagBrush >> direction: aString [
 ]
 
 { #category : #'*Lcs-WebComponents' }
+WATagBrush >> required [
+	"supported on:
+	- Opera 9"
+	self attributeAt: 'required' put: true
+]
+
+{ #category : #'*Lcs-WebComponents' }
+WATagBrush >> required: aBoolean [
+	"supported on:
+	- Opera 9"
+	self attributeAt: 'required' put: aBoolean
+]
+
+{ #category : #'*Lcs-WebComponents' }
 WATagBrush >> visitComponentProperities: aComponent with: tag [ 
 	aComponent addPropertiesTo: tag
 ]

@@ -39,7 +39,21 @@ LuiComponentProperties >> addPropertiesToTag: aTag [
 		id: self parentComponent componentId;
 		class: self cssClassesString;
 		dataName: self parentComponent componentName;
-		dataStClass: self parentComponent
+		dataStClass: self parentComponent.
+		
+	self hasDisabledProperty ifTrue: [
+		aTag disabled: self isDisabled ].
+		
+	self hasRequiredProperty ifTrue: [
+		aTag required: self isRequired ].
+		
+	self hasStyleProperty ifTrue: [
+		aTag style: self style ].
+		
+	self hasTitleProperty ifTrue: [
+		aTag title: self title ]
+
+
 
 ]
 
@@ -96,7 +110,7 @@ LuiComponentProperties >> cssClassesProperty [
 { #category : #'properties - delegated' }
 LuiComponentProperties >> cssClassesString [
 	self hasCssClassesProperty ifFalse: [ ^ nil ].
-	self cssClassesProperty propertyValue
+	^ self cssClassesProperty propertyValue
 ]
 
 { #category : #'properties - defined' }
@@ -202,6 +216,7 @@ LuiComponentProperties >> initializeOn: aComponent [
 
 { #category : #'properties - delegated' }
 LuiComponentProperties >> isDisabled [
+	self hasDisabledProperty ifFalse: [ ^''].
 	^ self disabledProperty isDisabled
 ]
 
@@ -234,6 +249,7 @@ LuiComponentProperties >> isRenderable [
 
 { #category : #'properties - delegated' }
 LuiComponentProperties >> isRequired [
+	self hasRequiredProperty ifFalse: [ ^ false ].
 	^ self requiredProperty isRequired
 ]
 
@@ -449,6 +465,7 @@ LuiComponentProperties >> styleProperty [
 
 { #category : #'properties - delegated' }
 LuiComponentProperties >> title [
+	self hasTitleProperty ifFalse: [ ^ nil ].
 	^ self titleProperty propertyValue
 ]
 
