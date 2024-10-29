@@ -21,6 +21,11 @@ LuiComponentProperty class >> propertyName [
 	self subclassResponsibility
 ]
 
+{ #category : #private }
+LuiComponentProperty >> _propertyValue [
+	^ self valueBlock cull: self component
+]
+
 { #category : #accessing }
 LuiComponentProperty >> cachedValue [
 	^ cachedValue
@@ -69,7 +74,7 @@ LuiComponentProperty >> propertyName [
 
 { #category : #asking }
 LuiComponentProperty >> propertyValue [
-	self cachedValue ifNil: [self cachedValue: (self valueBlock cull: self component) ].
+	self cachedValue ifNil: [ self cachedValue: self _propertyValue ].
 	^ self cachedValue
 ]
 

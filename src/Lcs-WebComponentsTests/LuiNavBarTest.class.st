@@ -57,7 +57,7 @@ LuiNavBarTest >> menuBarWithThreeMenuItems [
 		addMenuComponentDefintion: (
 			LcsMenuItemDefinition new 
 				menuItemLabel: 'Home';
-				beAnchor;
+				useAnchorButton;
 				title: 'abc';
 				yourself);
 		addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Contadt');
@@ -131,5 +131,6 @@ LuiNavBarTest >> testSimpleNavBar [
 	self assert: menuItem cssClassesString = 'mainMenuItem'.
 	self assert: menuItem components size = 1.
 	menuItemButton := menuItem components values first.
-	self assert: menuItemButton componentName = ''
+	self assert: menuItemButton componentName = 'button'.
+	self assert: menuItemButton label = 'Home'.
 ]

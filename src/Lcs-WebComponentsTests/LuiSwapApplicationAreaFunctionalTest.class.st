@@ -1,21 +1,21 @@
 Class {
-	#name : #LuiSwapApplicationAreaTest,
+	#name : #LuiSwapApplicationAreaFunctionalTest,
 	#superclass : #LuiFunctionalTest,
 	#category : #'Lcs-WebComponentsTests-Functional'
 }
 
 { #category : #initialize }
-LuiSwapApplicationAreaTest class >> browserTabName [
+LuiSwapApplicationAreaFunctionalTest class >> browserTabName [
 	^ 'Seas Monmouth'
 ]
 
 { #category : #initialize }
-LuiSwapApplicationAreaTest class >> initialize [
+LuiSwapApplicationAreaFunctionalTest class >> initialize [
 	WAAdmin register: self asApplicationAt: self browserTabName
 ]
 
 { #category : #menus }
-LuiSwapApplicationAreaTest class >> menuBarDefinition [
+LuiSwapApplicationAreaFunctionalTest class >> menuBarDefinition [
 	| menuDefinition |
 	menuDefinition := LcsMainMenuDefinition new.
 	menuDefinition
@@ -36,30 +36,30 @@ LuiSwapApplicationAreaTest class >> menuBarDefinition [
 ]
 
 { #category : #setup }
-LuiSwapApplicationAreaTest >> addMainNavigationMenuTo: aMainMenu [
+LuiSwapApplicationAreaFunctionalTest >> addMainNavigationMenuTo: aMainMenu [
 	aMainMenu buildFrom: self menuDefinition
 ]
 
 { #category : #initialize }
-LuiSwapApplicationAreaTest >> initialize [
+LuiSwapApplicationAreaFunctionalTest >> initialize [
 	| mainPage |
 	super initialize.
 	self componentName: 'root'.
 	self componentId: 'root'.
 	self addComponent: (mainPage := LuiMainPage named: 'mainPage' on: self).
 
-	self addMainNavigationMenuTo: (mainPage componentNamed: 'header/navigation').
+	self addMainNavigationMenuTo: (mainPage componentNamed: 'navBar/navigation').
 	(mainPage componentNamed: 'header/title') domainObject: 'Swap Application Area'.
 
 ]
 
 { #category : #setup }
-LuiSwapApplicationAreaTest >> menuDefinition [
+LuiSwapApplicationAreaFunctionalTest >> menuDefinition [
 	^ self class menuBarDefinition
 ]
 
 { #category : #rendering }
-LuiSwapApplicationAreaTest >> renderComponentOn: html [
+LuiSwapApplicationAreaFunctionalTest >> renderComponentOn: html [
 	html div 
 		addCommonProperties: self;
 		with: [
@@ -67,7 +67,7 @@ LuiSwapApplicationAreaTest >> renderComponentOn: html [
 ]
 
 { #category : #updating }
-LuiSwapApplicationAreaTest >> updateRoot: aRoot [
+LuiSwapApplicationAreaFunctionalTest >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.
 	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss

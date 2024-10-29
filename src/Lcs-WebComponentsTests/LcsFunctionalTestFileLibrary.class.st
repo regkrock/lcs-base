@@ -11,7 +11,7 @@ LcsFunctionalTestFileLibrary class >> mainCss [
 
 { #category : #css }
 LcsFunctionalTestFileLibrary >> applicationAreaCss [
-
+	<css>
 ^'.applicationArea {
 	margin: 2px 2px 2px 2px;
 	padding: 5px;
@@ -21,6 +21,7 @@ LcsFunctionalTestFileLibrary >> applicationAreaCss [
 
 { #category : #css }
 LcsFunctionalTestFileLibrary >> bodyCss [
+	<css>
 ^'body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -29,14 +30,16 @@ LcsFunctionalTestFileLibrary >> bodyCss [
 
 { #category : #css }
 LcsFunctionalTestFileLibrary >> globalCss [
-^'
+	<css>
+	^''
+"^'
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}'
+}'"
 ]
 
 { #category : #css }
@@ -50,7 +53,7 @@ LcsFunctionalTestFileLibrary >> mainCss [
 
 { #category : #css }
 LcsFunctionalTestFileLibrary >> mainMenuBarCss [
-
+	<css>
 ^'.mainMenuBar {
   font-size:18px;
   font-weight:bold;
@@ -76,7 +79,7 @@ LcsFunctionalTestFileLibrary >> mainMenuBarCss [
     float:left;
     text-wrap: nowrap;
     width: fit-content;
- /*   padding: 0.5em;  */
+    padding: 0.5em;
     }
     
 .mainMenuItem:hover {
@@ -90,6 +93,18 @@ LcsFunctionalTestFileLibrary >> mainMenuBarCss [
   padding:2px;
   text-decoration:none;
   color:#000000;
+}
+
+.menuItemButton {
+	text-decoration: none;
+	background: none;
+	border: none;
+}
+		
+.menuItemButtonLabel {
+	text-decoration: none;
+	background: none;
+	border: none;
 }'
  
 
@@ -97,6 +112,7 @@ LcsFunctionalTestFileLibrary >> mainMenuBarCss [
 
 { #category : #css }
 LcsFunctionalTestFileLibrary >> subSubmenuCss [
+	<css>
 ^
 '/* had to make the position NOT based on hover, but permanent for the transition to work , thus moved it from POS_001 */
 .subsubmenu {
@@ -123,6 +139,7 @@ LcsFunctionalTestFileLibrary >> subSubmenuCss [
 
 { #category : #css }
 LcsFunctionalTestFileLibrary >> submenuCss [
+	<css>
 ^'.submenu {
   display: block;
   position: absolute;

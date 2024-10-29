@@ -6,7 +6,7 @@ Class {
 
 { #category : #testing }
 LuiFunctionalTest class >> isLcsFunctionalTest [
-	^ self name ~= #LcsFunctionalTest
+	^ self name asString ~= 'LuiFunctionalTest'
 ]
 
 { #category : #updating }

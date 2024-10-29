@@ -8,6 +8,27 @@ Class {
 	#category : #'Lcs-WebComponents-Menus'
 }
 
+{ #category : #building }
+LuiMenuItem >> addAnchorButton: aMenuItemDefinition [
+	self
+		addComponent: ((LuiAnchor named: 'button' on: self)
+				replaceExistingCssClassesWithCssClass: (aMenuItemDefinition buttonCssClasses ifEmpty: [ 'menuItemButton' ]);
+				label: aMenuItemDefinition menuItemLabel;
+				yourself)
+]
+
+{ #category : #building }
+LuiMenuItem >> addPushButton: aMenuItemDefinition [
+	| button |
+	button := self
+		addComponent: (
+			(LuiPushButton named: 'button' on: self)
+				replaceExistingCssClassesWithCssClass: (aMenuItemDefinition buttonCssClasses ifEmpty: [ 'menuItemButton' ]);
+				label: aMenuItemDefinition menuItemLabel;
+				yourself).
+	(button componentNamed: 'label') replaceExistingCssClassesWithCssClass: 'menuItemButtonLabel'
+]
+
 { #category : #rendering }
 LuiMenuItem >> anchorClicked: aString [
 	Transcript show: 'Clicked ' , aString; cr 
@@ -15,19 +36,18 @@ LuiMenuItem >> anchorClicked: aString [
 
 { #category : #building }
 LuiMenuItem >> buildFrom: aMenuItemDefinition [
-	self 
+	self
 		menuItemLabel: aMenuItemDefinition menuItemLabel;
-		targetClass: aMenuItemDefinition targetClass
+		targetClass: aMenuItemDefinition targetClass;
+		title: aMenuItemDefinition title.
+	aMenuItemDefinition useAnchorButton
+		ifTrue: [ self addAnchorButton: aMenuItemDefinition ]
+		ifFalse: [ self addPushButton: aMenuItemDefinition ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 LuiMenuItem >> defaultCssClasses [
 	^ OrderedCollection with: 'mainMenuItem'
-]
-
-{ #category : #'as yet unclassified' }
-LuiMenuItem >> initialize [
-	super initialize
 ]
 
 { #category : #rendering }
@@ -49,13 +69,7 @@ LuiMenuItem >> menuItemLabel: anObject [
 LuiMenuItem >> renderComponentOn: html [
 	html listItem
 		addCommonProperties: self;
-		with: [ html anchor
-				class: (self parentComponent class = LuiMainMenu
-						ifTrue: [ 'mainMenuItemButton' ]
-						ifFalse: [ 'submenuItemButton' ]);
-				callback: [ self anchorClicked: self menuItemLabel asString.
-					self mainPage nextApplicationAreaClass: self targetClass ];
-				with: self menuItemLabel asString ]
+		with: [ self components do: [ :eachComponent | html render: eachComponent ] ]
 ]
 
 { #category : #accessing }
@@ -66,4 +80,10 @@ LuiMenuItem >> targetClass [
 { #category : #accessing }
 LuiMenuItem >> targetClass: anObject [
 	targetClass := anObject
+]
+
+{ #category : #'as yet unclassified' }
+LuiMenuItem >> useAnchorButton [
+	self components detect: [ :each | each class = LuiAnchor ] ifNone: [ ^ false ].
+	^ true
 ]

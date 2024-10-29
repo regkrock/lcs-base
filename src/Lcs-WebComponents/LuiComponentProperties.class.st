@@ -51,7 +51,10 @@ LuiComponentProperties >> addPropertiesToTag: aTag [
 		aTag style: self style ].
 		
 	self hasTitleProperty ifTrue: [
-		aTag title: self title ]
+		aTag title: self title ].
+
+	self hasButtonTypeProperty ifTrue: [
+		aTag type: self buttonType ]
 
 
 
@@ -102,6 +105,17 @@ LuiComponentProperties >> beVisible [
 	^ self hiddenProperty beVisible
 ]
 
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> buttonType [
+	self hasButtonTypeProperty ifFalse: [ ^ nil ].
+	^ self buttonTypeProperty propertyValue
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> buttonTypeProperty [
+	^ self lazyInitializedProperty: LuiButtonTypeProperty
+]
+
 { #category : #'properties - defined' }
 LuiComponentProperties >> cssClassesProperty [
 	^ self lazyInitializedProperty: LuiCssClassesProperty
@@ -127,7 +141,7 @@ LuiComponentProperties >> errorPropertyNotFound: aSelector [
 LuiComponentProperties >> gtViewPropertiesOn: aView [
 	<gtView>
 	
-	self properties ifEmpty: [ ^ aView empty ].
+	self properties ifNil: [ ^ aView empty ].
 	
 	^ aView columnedList
 		title: 'Properties' translated;
@@ -136,9 +150,18 @@ LuiComponentProperties >> gtViewPropertiesOn: aView [
 		column: 'Name' 
 			text: [ :a | a key ]
 			width: 75;
-		column: 'Value' text: [ :a | a value ];
+		column: 'Property' text: [ :anAssociation | anAssociation value class name displayString ];
+		column: 'Cached' text: [ :anAssociation | anAssociation value cachedValue displayString ];
+		column: 'Basic Value' text: [ :anAssociation | anAssociation value _propertyValue displayString ];
+		column: 'Block' text: [ :anAssociation | anAssociation value  valueBlock displayString];
 		send: [ :e | e value ];
 		actionUpdateButton
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasButtonTypeProperty [
+	self propertyAt: LuiButtonTypeProperty propertyName ifAbsent: [ ^ false ].
+	^ true
 ]
 
 { #category : #'properties - testing' }
@@ -156,6 +179,12 @@ LuiComponentProperties >> hasDisabledProperty [
 { #category : #'properties - testing' }
 LuiComponentProperties >> hasHiddenProperty [
 	self propertyAt: LuiHiddenProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasLabelProperty [
+	self propertyAt: LuiLabelProperty propertyName ifAbsent: [ ^ false ].
 	^ true
 ]
 
@@ -258,6 +287,27 @@ LuiComponentProperties >> isVisible [
 	^ self hasHiddenProperty 
 		ifTrue: [ self hiddenProperty isVisible ]
 		ifFalse: [ true ]
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> label [
+	self hasLabelProperty ifFalse: [ ^ nil ].
+	^ self labelProperty propertyValue
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> label: aString [
+	^ self labelProperty value: aString
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> labelBlock: aBlock [
+	^ self labelProperty valueBlock: aBlock
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> labelProperty [
+	^ self lazyInitializedProperty: LuiLabelProperty
 ]
 
 { #category : #'properties - accessing' }
@@ -430,6 +480,11 @@ LuiComponentProperties >> removeCssClass: aCssClassName [
 { #category : #'properties - defined' }
 LuiComponentProperties >> renderingProperty [
 	^ self lazyInitializedProperty: LuiRenderingProperty
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> replaceExistingCssClassesWithCssClass: aString [
+	^ self cssClassesProperty replaceExistingCssClassesWithCssClass: aString
 ]
 
 { #category : #'properties - defined' }

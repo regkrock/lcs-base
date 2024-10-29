@@ -9,7 +9,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 LuiHeader >> defaultCssClasses [
-	^ OrderedCollection with: 'applicationArea'
+	^ OrderedCollection with: 'header'
 ]
 
 { #category : #rendering }

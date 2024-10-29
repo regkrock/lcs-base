@@ -4,7 +4,23 @@ Class {
 	#category : #'Lcs-WebComponentsTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
+LuiComponentPropertiesTest >> testButtonTypeProperty [
+	| properties |
+	properties := LuiComponentProperties new.
+	self assert: properties properties isEmpty.
+	self deny: properties hasButtonTypeProperty.
+	self assert: (properties valueOfProperty: LuiButtonTypeProperty propertyName) isNil.
+	self assert: properties buttonTypeProperty notNil.	"Lazily initialized"
+	self assert: (properties valueOfProperty: LuiButtonTypeProperty propertyName) equals: 'button'.
+	self assert: properties buttonType equals: 'button'.
+	properties buttonTypeProperty beSubmitType.
+	self assert: (properties valueOfProperty: LuiButtonTypeProperty propertyName) equals: 'submit'.
+	self assert: properties buttonType equals: 'submit'.
+
+]
+
+{ #category : #tests }
 LuiComponentPropertiesTest >> testCacheIsClearedWhenBlockIsChanged [
 	| properties |
 	properties := LuiComponentProperties new.	
@@ -14,7 +30,7 @@ LuiComponentPropertiesTest >> testCacheIsClearedWhenBlockIsChanged [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testCreation [
 	| properties |
 	properties := LuiComponentProperties new.
@@ -26,10 +42,11 @@ LuiComponentPropertiesTest >> testCreation [
 	self deny: properties hasHiddenProperty.
 	self deny: properties hasRequiredProperty.
 	self deny: properties hasStyleProperty.
-	self deny: properties hasTitleProperty
+	self deny: properties hasTitleProperty.
+	self deny: properties hasButtonTypeProperty
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testDisabledProperty [
 	| properties |
 	properties := LuiComponentProperties new.	
@@ -49,7 +66,7 @@ LuiComponentPropertiesTest >> testDisabledProperty [
 	self deny: properties isDisabled.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testHiddenProperty [
 	| properties |
 	properties := LuiComponentProperties new.	
@@ -69,7 +86,24 @@ LuiComponentPropertiesTest >> testHiddenProperty [
 	self deny: properties isHidden.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
+LuiComponentPropertiesTest >> testLabelProperty [
+	| properties |
+	properties := LuiComponentProperties new.	
+	properties label: 'abcdef'.
+	self assert: properties label equals: 'abcdef'.
+	self assert: properties labelProperty cachedValue equals: 'abcdef'.
+	
+	properties label: 'Xxxx'.
+	self assert: properties labelProperty cachedValue isNil.
+	properties label.
+	self assert: properties labelProperty cachedValue equals: 'Xxxx'..
+	
+	self assert: properties hasLabelProperty
+
+]
+
+{ #category : #tests }
 LuiComponentPropertiesTest >> testLazyInitializationOfTitleProperty [
 	| properties |
 	properties := LuiComponentProperties new.
@@ -81,7 +115,7 @@ LuiComponentPropertiesTest >> testLazyInitializationOfTitleProperty [
 	self assert: (properties valueOfProperty: LuiTitleProperty propertyName) isNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testRenderingProperty [
 	| properties |
 	properties := LuiComponentProperties new.	
@@ -101,7 +135,7 @@ LuiComponentPropertiesTest >> testRenderingProperty [
 	self deny: properties isNotRenderable.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testRequiredProperty [
 	| properties |
 	properties := LuiComponentProperties new.	
@@ -121,7 +155,7 @@ LuiComponentPropertiesTest >> testRequiredProperty [
 	self deny: properties isRequired.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testSettingTitleWithBlockProperty [
 	| properties |
 	properties := LuiComponentProperties new.	
@@ -132,7 +166,7 @@ LuiComponentPropertiesTest >> testSettingTitleWithBlockProperty [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testStyleProperty [
 	| properties |
 	properties := LuiComponentProperties new.	
@@ -151,7 +185,7 @@ LuiComponentPropertiesTest >> testStyleProperty [
 	self assert: properties style equals: 'XxxxYyyy'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentPropertiesTest >> testTitleProperty [
 	| properties |
 	properties := LuiComponentProperties new.	

@@ -179,7 +179,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-21T11:12:46.881453-04:00"
+						"dateAndTimeString" : "2024-10-28T08:01:56.684238-04:00"
 					}
 				},
 				"uid" : {
@@ -1343,6 +1343,80 @@
 					"__type" : "textStyle"
 				},
 				"string" : "#CSS Definitions"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-28T08:02:28.246547-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-28T08:33:22.105501-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "KXHH+unhDQCoz5cBBQA6EA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "#Button Tag vs Anchor Tag"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-28T08:02:57.339583-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-28T08:34:41.71372-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xl+D/OnhDQCpMdqABQA6EA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "- **Button** - stay on the same page\n\tbutton{all:unset}   <--- this will unset browser defaults and treat the tag like a span for styling.\n\t\"<button type=\"button\" onClick={...}>Click Me</button>>\" <-- type prevents form submit\n- **Anchor** - go to another docuement/page - menu need to be this way?\n\t- by using anchor, open in other page etc is available <-- this is good for semantics\n- <div onClick....\n\t- a lot of work - better to use a button or an anchor.\n\t- do not use <--not focusable, not screen readable, space bar, return key doesn't work\n\t- to make div focusable, use tabIndex=\"0\"\n- See: [video on differences between anchor and button](https://www.youtube.com/watch?v=sg5RtXNxs1o)"
 			}
 		]
 	},

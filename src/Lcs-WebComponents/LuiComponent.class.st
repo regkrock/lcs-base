@@ -193,6 +193,12 @@ LuiComponent >> gtParentCompoentsFor: aView [
 		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
 ]
 
+{ #category : #'gt - views' }
+LuiComponent >> gtViewPropertiesOn: aView [
+	<gtView>
+	^ self properties gtViewPropertiesOn: aView
+]
+
 { #category : #testing }
 LuiComponent >> hasNoComponents [
 	^ self components isEmpty
@@ -315,6 +321,16 @@ LuiComponent >> renderContentOn: html [
 { #category : #rendering }
 LuiComponent >> renderSubcomponentsOn: html [
 	self components do: [ :each | html render: each ]
+]
+
+{ #category : #'as yet unclassified' }
+LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
+	self cssClassesProperty replaceExistingCssClassesWithCssClass: aString
+]
+
+{ #category : #properties }
+LuiComponent >> title [
+	^ self properties title
 ]
 
 { #category : #properties }

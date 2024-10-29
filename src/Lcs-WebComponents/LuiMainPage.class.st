@@ -47,18 +47,20 @@ LuiMainPage >> homeApplicationAreaClass [
 
 { #category : #initialize }
 LuiMainPage >> initialize [
-	| header |
+	| header navigationBar |
 	super initialize.
 	self addComponent: (header := LuiHeader named: 'header' on: self).
 	header addComponent: (LuiHeading named: 'title' on: header).
-	header addComponent: (LuiMainMenu named: 'navigation' on: header).	"self addComponent:  (LuiButtonBar named: 'actionBar' on: self)."
+	self addComponent: (navigationBar := LuiNavigationBar named: 'navBar' on: self).
+	navigationBar addComponent: (LuiMainMenu named: 'navigation' on: header).
+	"self addComponent:  (LuiButtonBar named: 'actionBar' on: self)."
 	self addComponent: (self homeApplicationAreaClass named: self applicationAreaName on: self).
 	self swappedApplicationAreas: (LuiSwappedApplicationAreas on: self)
 ]
 
 { #category : #components }
 LuiMainPage >> navigationBar [
-	^ self componentNamed: 'header/navigation'
+	^ self componentNamed: 'navBar/navigation'
 ]
 
 { #category : #accessing }

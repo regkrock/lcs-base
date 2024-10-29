@@ -6,7 +6,8 @@ Class {
 
 { #category : #'as yet unclassified' }
 LuiLabel >> renderComponentOn: html [
-	html label
-		addCommonProperties: self;
+	html span
+		"addCommonProperties: self;"
+		"callback: [ self parentComponent showLabelOnTranscript ];"
 		with: self displayValue
 ]

@@ -10,7 +10,7 @@ Class {
 { #category : #building }
 LuiSubmenu >> buildFrom: aSubmenuDefinition [
 	self menuItemLabel: aSubmenuDefinition menuItemLabel.
-	aSubmenuDefinition menuComponentDefintions doWithIndex: [ :eachMenuDefinition :index | 
+	aSubmenuDefinition menuComponentDefintions do: [ :eachMenuDefinition  | 
 		| menuComponent |
 		menuComponent := eachMenuDefinition componentClass named: eachMenuDefinition componentName on: self.
 		self addComponent: menuComponent.
@@ -19,21 +19,25 @@ LuiSubmenu >> buildFrom: aSubmenuDefinition [
 
 { #category : #rendering }
 LuiSubmenu >> buildSubmenuCssClassName: aString [ 
-	^ self parentComponent buildSubmenuCssClassName: aString , 'sub'
+	^ (self parentComponent buildSubmenuCssClassName: aString) , 'sub'
+]
+
+{ #category : #initialize }
+LuiSubmenu >> cssMenuClassName [
+	self parentComponent class = LuiMainMenu ifTrue: [ ^ 'mainMenuItem' ].
+	^ 'submenuItem' 
 ]
 
 { #category : #defaults }
 LuiSubmenu >> defaultCssClasses [
-	^OrderedCollection with: 'subnav'
+	^OrderedCollection with: 'submenu'
 ]
 
 { #category : #initialize }
 LuiSubmenu >> initializeNamed: aName on: aWebComponent [
 	super initializeNamed: aName on: aWebComponent.
-	self cssClassesProperty replaceExistingCssClassesWithCssClass: (
-		(self parentComponent class = LuiMainMenu) 
-			ifTrue: ['mainMenuItem'] 
-			ifFalse: ['submenuItem'])
+	self cssClassesProperty
+		replaceExistingCssClassesWithCssClass: self cssMenuClassName
 ]
 
 { #category : #accessing }

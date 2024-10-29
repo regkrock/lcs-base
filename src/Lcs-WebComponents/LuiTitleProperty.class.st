@@ -15,17 +15,22 @@ LuiTitleProperty >> initialize [
 	self valueBlock: [ nil ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #property }
+LuiTitleProperty >> title [
+	^ self cachedValue
+]
+
+{ #category : #property }
 LuiTitleProperty >> title: aString [
 	self valueBlock: [ aString ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #property }
 LuiTitleProperty >> titleBlock: aBlock [
 	self valueBlock: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #property }
 LuiTitleProperty >> value: aString [
 	self valueBlock: [ aString ]
 ]
