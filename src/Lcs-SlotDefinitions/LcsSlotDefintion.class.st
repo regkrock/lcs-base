@@ -80,6 +80,15 @@ LcsSlotDefintion >> getValueIn: aDomainObject [
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotDefintion >> getterSelector [
+	| substring1 substring2 |
+	substring1 := (self slotName at: 1) asLowercase asString.
+	substring2 := self slotName asCamelCase copyFrom: 2 to: self slotName size.
+	^ (substring1 , substring2) asSymbol
+		
+]
+
 { #category : #'gt view' }
 LcsSlotDefintion >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
@@ -225,6 +234,12 @@ LcsSlotDefintion >> required: anObject [
 { #category : #'slot model' }
 LcsSlotDefintion >> setValueTo: anObject in: aDomainObject [
 	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefintion >> setterSelector [
+	^ (self getterSelector , ':') asSymbol
+		
 ]
 
 { #category : #defaults }

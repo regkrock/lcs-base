@@ -9,6 +9,11 @@ LcsStringSlot >> defaultInitialValueBlaock [
 	^ [ self typeClass new ]
 ]
 
+{ #category : #'as yet unclassified' }
+LcsStringSlot >> defaultInputComponentClassName [
+	^#LuiTextInput
+]
+
 { #category : #initialize }
 LcsStringSlot >> initialize [
 	super initialize.

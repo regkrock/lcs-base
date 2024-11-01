@@ -10,10 +10,9 @@ LuiLabel >> labelString [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #rendering }
 LuiLabel >> renderComponentOn: html [
 	html label
 		addCommonProperties: self;
-		"callback: [ self parentComponent showLabelOnTranscript ];"
-		text: self labelString
+		with: self labelString
 ]

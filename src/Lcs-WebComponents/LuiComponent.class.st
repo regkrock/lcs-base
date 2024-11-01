@@ -116,7 +116,7 @@ LuiComponent >> defaultCssClasses [
 
 { #category : #rendering }
 LuiComponent >> displayValue [
-	^ self valueAccessor label
+	^ self valueAccessor displayValue
 ]
 
 { #category : #accessing }

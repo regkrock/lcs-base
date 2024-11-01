@@ -1,8 +1,17 @@
 Class {
 	#name : #LcsPrimitiveSlot,
 	#superclass : #LcsSlotDefintion,
+	#instVars : [
+		'inputComponentClassName'
+	],
 	#category : #'Lcs-SlotDefinitions'
 }
+
+{ #category : #defaults }
+LcsPrimitiveSlot >> defaultInputComponentClassName [
+	^ #'NeedsToBeDefined'
+	"self subclassResponsibility"
+]
 
 { #category : #'gt view' }
 LcsPrimitiveSlot >> gtSlotDefinitionAttributes [
@@ -20,7 +29,23 @@ LcsPrimitiveSlot >> initialValueFor: aDomainObject [
 { #category : #initialization }
 LcsPrimitiveSlot >> initialize [
 	super initialize.
-	self addSlotType: self typeClass
+	self addSlotType: self typeClass.
+	self inputComponentClassName: self defaultInputComponentClassName
+]
+
+{ #category : #accessing }
+LcsPrimitiveSlot >> inputComponentClass [
+	^ self inputComponentClassName asClass
+]
+
+{ #category : #accessing }
+LcsPrimitiveSlot >> inputComponentClassName [
+	^ inputComponentClassName
+]
+
+{ #category : #accessing }
+LcsPrimitiveSlot >> inputComponentClassName: anObject [
+	inputComponentClassName := anObject
 ]
 
 { #category : #configuration }

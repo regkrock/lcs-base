@@ -34,7 +34,6 @@ LuiComponentProperties >> addCssClasses: aCollection [
 
 { #category : #rendering }
 LuiComponentProperties >> addPropertiesToTag: aTag [
-	self parentComponent logRenderingTrace.
 	aTag
 		id: self parentComponent componentId;
 		class: self cssClassesString;
@@ -54,7 +53,13 @@ LuiComponentProperties >> addPropertiesToTag: aTag [
 		aTag title: self title ].
 
 	self hasButtonTypeProperty ifTrue: [
-		aTag type: self buttonType ]
+		aTag type: self buttonType ].
+		
+	self hasForNameProperty ifTrue: [
+		aTag for: self forName ].
+		
+	self hasNameProperty ifTrue: [
+		aTag name: self name ]
 
 
 
@@ -137,6 +142,22 @@ LuiComponentProperties >> errorPropertyNotFound: aSelector [
 	LuiComponentPropertyNotFound signal: 'Property ' , aSelector , ' not found.'
 ]
 
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> forName [
+	self hasForNameProperty ifFalse: [ ^ nil ].
+	^ self forNameProperty propertyValue
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> forName: aString [
+	^ self forNameProperty for: aString
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> forNameProperty [
+	^ self lazyInitializedProperty: LuiForNameProperty
+]
+
 { #category : #'gt view' }
 LuiComponentProperties >> gtViewPropertiesOn: aView [
 	<gtView>
@@ -177,6 +198,12 @@ LuiComponentProperties >> hasDisabledProperty [
 ]
 
 { #category : #'properties - testing' }
+LuiComponentProperties >> hasForNameProperty [
+	self propertyAt: LuiForNameProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
 LuiComponentProperties >> hasHiddenProperty [
 	self propertyAt: LuiHiddenProperty propertyName ifAbsent: [ ^ false ].
 	^ true
@@ -185,6 +212,12 @@ LuiComponentProperties >> hasHiddenProperty [
 { #category : #'properties - testing' }
 LuiComponentProperties >> hasLabelProperty [
 	self propertyAt: LuiLabelProperty propertyName ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #'properties - testing' }
+LuiComponentProperties >> hasNameProperty [
+	self propertyAt: LuiNameProperty propertyName ifAbsent: [ ^ false ].
 	^ true
 ]
 
@@ -320,6 +353,22 @@ LuiComponentProperties >> labelPropertyValue [
 { #category : #'properties - accessing' }
 LuiComponentProperties >> lazyInitializedProperty: aComponentPropertyClass [
 	^ self propertyAt: aComponentPropertyClass propertyName ifAbsentPut: [ aComponentPropertyClass on: self ]
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> name [
+	self hasNameProperty ifFalse: [ ^ nil ].
+	^ self nameProperty propertyValue
+]
+
+{ #category : #'properties - delegated' }
+LuiComponentProperties >> name: aString [
+	^ self nameProperty name: aString
+]
+
+{ #category : #'properties - defined' }
+LuiComponentProperties >> nameProperty [
+	^ self lazyInitializedProperty: LuiNameProperty
 ]
 
 { #category : #accessing }

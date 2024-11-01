@@ -5,7 +5,8 @@ Class {
 		'readSelector',
 		'writeSelector',
 		'model',
-		'slotName'
+		'slotName',
+		'slotDefinition'
 	],
 	#category : #'Lcs-WebComponents-Accessor'
 }
@@ -87,7 +88,7 @@ LuiSlotAccessor >> hash [
 
 { #category : #accessing }
 LuiSlotAccessor >> label [ 
-	^ ((self model ifNil: [ ^'<nil>']) slotDefinitionNamed: self slotName) label
+	^ self slotDefinition label
 ]
 
 { #category : #accessing }
@@ -134,6 +135,23 @@ LuiSlotAccessor >> selector [
 LuiSlotAccessor >> selector: aSelector [ 
 	self readSelector: aSelector asSymbol.
 	self writeSelector: (aSelector greaseString copyWith: $:) asSymbol
+]
+
+{ #category : #accessing }
+LuiSlotAccessor >> slot: aSlotDefinition [
+	^ slotDefinition
+]
+
+{ #category : #accessing }
+LuiSlotAccessor >> slotDefinition [
+	^ slotDefinition
+]
+
+{ #category : #accessing }
+LuiSlotAccessor >> slotDefinition: aSlotDefinition [
+	slotDefinition := aSlotDefinition.
+	self selector: aSlotDefinition getterSelector.
+	self slotName: aSlotDefinition slotName
 ]
 
 { #category : #accessing }

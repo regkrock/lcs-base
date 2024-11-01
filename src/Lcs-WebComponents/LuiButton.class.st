@@ -7,17 +7,14 @@ Class {
 	#category : #'Lcs-WebComponents-Buttons'
 }
 
-{ #category : #configuration }
-LuiButton >> addIcon: anIcon [
-	self addComponent: (
-		(LuiIcon named: 'icon' on: self) 
-			"domainObject: anIcon;"
-			yourself)
+{ #category : #components }
+LuiButton >> addLabelComponent [
+	self addComponent: (LuiButtonLabel named: 'label' on: self)
 ]
 
-{ #category : #components }
+{ #category : #testing }
 LuiButton >> hasLabelComponent [
-	^ self componentNamed: 'label'
+	^ (self componentNamed: 'label') notNil
 ]
 
 { #category : #configuration }
@@ -30,12 +27,13 @@ LuiButton >> icon: anIcon [
 
 { #category : #components }
 LuiButton >> labelComponent [
-	^ self hasLabelComponent
-		ifNil: [ self addComponent: (LuiButtonLabel named: 'label' on: self) ]
+	self hasLabelComponent ifFalse: [ self addLabelComponent ].
+	^ self componentNamed: 'label'
 ]
 
 { #category : #configuration }
 LuiButton >> labelString [
+	self hasLabelComponent ifFalse: [^ '' ].
 	^ self labelComponent labelString
 ]
 

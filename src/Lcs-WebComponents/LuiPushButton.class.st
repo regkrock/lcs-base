@@ -30,6 +30,5 @@ LuiPushButton >> renderComponentOn: html [
 	html button
 		addCommonProperties: self;
 		onClick: (html jQuery ajax callback: [:v | self halt]);
-		"value: 'button'"
 		with: [ self components do: [ :eachComponent | html render: eachComponent ] ]
 ]
