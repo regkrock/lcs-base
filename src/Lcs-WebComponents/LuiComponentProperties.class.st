@@ -310,6 +310,13 @@ LuiComponentProperties >> labelProperty [
 	^ self lazyInitializedProperty: LuiLabelProperty
 ]
 
+{ #category : #'properties - defined' }
+LuiComponentProperties >> labelPropertyValue [
+	^ self hasLabelProperty 
+		ifTrue: [ self labelProperty propertyValue ]
+		ifFalse: [ ^ '' ]
+]
+
 { #category : #'properties - accessing' }
 LuiComponentProperties >> lazyInitializedProperty: aComponentPropertyClass [
 	^ self propertyAt: aComponentPropertyClass propertyName ifAbsentPut: [ aComponentPropertyClass on: self ]

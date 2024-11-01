@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-WebComponentsTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiCssClassesPropertyTest >> testAddingCssClass [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
@@ -16,7 +16,7 @@ LuiCssClassesPropertyTest >> testAddingCssClass [
 	self assert: cssClassesProperty cssClassesString = 'testClass testClass2'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiCssClassesPropertyTest >> testAddingDuplicateCssClass [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
@@ -27,7 +27,7 @@ LuiCssClassesPropertyTest >> testAddingDuplicateCssClass [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiCssClassesPropertyTest >> testCreation [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
@@ -35,7 +35,7 @@ LuiCssClassesPropertyTest >> testCreation [
 	self assert: cssClassesProperty cssClassesString isEmpty
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiCssClassesPropertyTest >> testCssClassString [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
@@ -57,7 +57,7 @@ LuiCssClassesPropertyTest >> testCssClassString [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiCssClassesPropertyTest >> testRemovingCssClass [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.

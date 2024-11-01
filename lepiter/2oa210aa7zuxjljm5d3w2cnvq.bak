@@ -177,14 +177,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-18T09:25:22.145313-04:00"
+						"dateAndTimeString" : "2024-06-07T07:40:18.988523-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Ns5wIRzVDQC4E5CfAcxk4w=="
 				},
-				"code" : "LcsApplicationEnvironment createCurrentSystemFor: LxxBarebonesSystem"
+				"code" : "LcsApplicationEnvironment createCurrentSystemFor: LxxPrototypeSystem"
 			},
 			{
 				"__type" : "textSnippet",

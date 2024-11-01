@@ -5,6 +5,21 @@ Class {
 }
 
 { #category : #initialize }
+LuiPushButton >> beButtonType [
+	self buttonTypeProperty beButtonType
+]
+
+{ #category : #initialize }
+LuiPushButton >> beSubmitType [
+	self buttonTypeProperty beSubmitType
+]
+
+{ #category : #initialize }
+LuiPushButton >> buttonTypeProperty [
+	^ self properties buttonTypeProperty
+]
+
+{ #category : #initialize }
 LuiPushButton >> initialize [
 	super initialize.
 	self beButtonType
@@ -14,7 +29,7 @@ LuiPushButton >> initialize [
 LuiPushButton >> renderComponentOn: html [
 	html button
 		addCommonProperties: self;
-		onClick: ((html jQuery ajax) callback: [self showLabelOnTranscript ]);
-		value: 'button'
-		"with: [ self components do: [ :eachComponent | html render: eachComponent ] ]"
+		onClick: (html jQuery ajax callback: [:v | self halt]);
+		"value: 'button'"
+		with: [ self components do: [ :eachComponent | html render: eachComponent ] ]
 ]

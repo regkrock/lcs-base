@@ -60,6 +60,11 @@ LxxPrototypeSystem >> initialSystemDomainClasses [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+LxxPrototypeSystem >> isPrototypeSystem [
+	^ true
+]
+
 { #category : #accessing }
 LxxPrototypeSystem >> organization [
 	^ self getValueOfSlotNamed: 'organization'

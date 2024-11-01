@@ -209,6 +209,11 @@ LcsBaseSystem >> isIncludedInSystemDomainClasses: aDomainClass [
 	^ self systemDomainClasses includes: aDomainClass class
 ]
 
+{ #category : #'as yet unclassified' }
+LcsBaseSystem >> isPrototypeSystem [
+	^ false
+]
+
 { #category : #printing }
 LcsBaseSystem >> printOn: aStream [
 	super printOn: aStream.

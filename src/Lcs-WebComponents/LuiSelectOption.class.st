@@ -1,5 +1,5 @@
 Class {
 	#name : #LuiSelectOption,
-	#superclass : #LuiEnterableComponent,
+	#superclass : #LuiInputComponent,
 	#category : #'Lcs-WebComponents-Widgets'
 }

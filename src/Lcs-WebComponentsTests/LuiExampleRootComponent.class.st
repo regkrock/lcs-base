@@ -27,7 +27,7 @@ LuiExampleRootComponent >> initialize [
 	self componentId: 'root'.
 	self addComponent: (mainPage := LuiMainPage named: 'mainPage' on: self).
 
-	self addMainNavigationMenuTo: (mainPage componentNamed: 'header/navigation').
+	self addMainNavigationMenuTo: (mainPage componentNamed: 'navBar/navigation').
 	(mainPage componentNamed: 'header/title') domainObject: 'LCS Example'.
 
 ]

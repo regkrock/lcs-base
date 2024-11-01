@@ -1,13 +1,19 @@
 Class {
 	#name : #LuiLabel,
-	#superclass : #LuiEnterableComponent,
+	#superclass : #LuiInputComponent,
 	#category : #'Lcs-WebComponents-Widgets'
 }
 
+{ #category : #label }
+LuiLabel >> labelString [
+	self subclassResponsibility
+
+]
+
 { #category : #'as yet unclassified' }
 LuiLabel >> renderComponentOn: html [
-	html span
-		"addCommonProperties: self;"
+	html label
+		addCommonProperties: self;
 		"callback: [ self parentComponent showLabelOnTranscript ];"
-		with: self displayValue
+		text: self labelString
 ]

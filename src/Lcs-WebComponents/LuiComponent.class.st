@@ -116,7 +116,7 @@ LuiComponent >> defaultCssClasses [
 
 { #category : #rendering }
 LuiComponent >> displayValue [
-	^ self domainObject ifNil: [ 'xxxx' ] displayString
+	^ self valueAccessor label
 ]
 
 { #category : #accessing }

@@ -15,36 +15,33 @@ LuiButton >> addIcon: anIcon [
 			yourself)
 ]
 
-{ #category : #initialize }
-LuiButton >> beButtonType [
-	self properties buttonTypeProperty
+{ #category : #components }
+LuiButton >> hasLabelComponent [
+	^ self componentNamed: 'label'
 ]
 
 { #category : #configuration }
 LuiButton >> icon: anIcon [
+	self addComponent: (
+		(LuiIcon named: 'icon' on: self) 
+			"domainObject: anIcon;"
+			yourself)
 ]
 
-{ #category : #initialize }
-LuiButton >> initialize [
-	super initialize.
-]
-
-{ #category : #configuration }
-LuiButton >> label [
-	^ (self labelComponent ifNil: [ ^ nil ]) label
-]
-
-{ #category : #configuration }
-LuiButton >> label: aString [
-	| labelComponent |
-	labelComponent := self labelComponent ifNil: [ 
-						self addComponent: (LuiLabel named: 'label' on: self) ].
-	labelComponent domainObject: aString
-]
-
-{ #category : #configuration }
+{ #category : #components }
 LuiButton >> labelComponent [
-	^ self componentNamed: 'label'
+	^ self hasLabelComponent
+		ifNil: [ self addComponent: (LuiButtonLabel named: 'label' on: self) ]
+]
+
+{ #category : #configuration }
+LuiButton >> labelString [
+	^ self labelComponent labelString
+]
+
+{ #category : #configuration }
+LuiButton >> labelString: aString [
+	self labelComponent labelString: aString
 ]
 
 { #category : #'as yet unclassified' }

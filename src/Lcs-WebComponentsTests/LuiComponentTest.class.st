@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-WebComponentsTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiComponentTest >> testChangingVisibilityBlock [
 	| webComponent |
 	webComponent := LuiComponent new.
@@ -16,7 +16,7 @@ LuiComponentTest >> testChangingVisibilityBlock [
 
 ]
 
-{ #category : #test }
+{ #category : #tests }
 LuiComponentTest >> testCreation [
 	| webComponent |
 	webComponent := LuiComponent new.

@@ -197,6 +197,11 @@ LcsSlotDefintion >> isRequired [
 	^ self required == true
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotDefintion >> label [
+	^self labelForSelector: self slotName
+]
+
 { #category : #accessing }
 LcsSlotDefintion >> parent [
 	^ parent

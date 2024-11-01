@@ -65,7 +65,7 @@ LuiNavBarTest >> menuBarWithThreeMenuItems [
 	^ menuDefinition
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 LuiNavBarTest >> rootComponentWithMainPageWithHeaderAndEmptyNavBar [
 	self basicRootComponent.
 
@@ -117,7 +117,7 @@ LuiNavBarTest >> testNavBarMenuCreation [
 	self assert: subsubmenu menuItemLabel = 'Menu 3 Item 2'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LuiNavBarTest >> testSimpleNavBar [
 	<example>
 	| menuItem menuItemButton |
