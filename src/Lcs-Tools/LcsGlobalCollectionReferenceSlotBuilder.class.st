@@ -52,3 +52,9 @@ LcsGlobalCollectionReferenceSlotBuilder >> initialize [
 	super initialize.
 	self slotName: 'parent'
 ]
+
+{ #category : #'gt view' }
+LcsGlobalCollectionReferenceSlotBuilder >> shortDescription [
+	^ 'Add collection slot: ' , self collectionSlotName asString , ' in ' , self targetClassName
+
+]

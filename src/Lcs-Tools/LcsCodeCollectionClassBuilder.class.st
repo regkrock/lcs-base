@@ -14,6 +14,11 @@ LcsCodeCollectionClassBuilder >> jobStepDescription [
 	self printString
 ]
 
+{ #category : #'gt view' }
+LcsCodeCollectionClassBuilder >> shortDescription [
+	^ 'Create class: ' , self newClassName asString
+]
+
 { #category : #accessing }
 LcsCodeCollectionClassBuilder >> updateSlotModel [
 	super updateSlotModel

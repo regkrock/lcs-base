@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'savedSystem'
 	],
-	#category : #'Lcs-Tests'
+	#category : #'Lcs-Tests-Tests'
 }
 
 { #category : #'application environment' }

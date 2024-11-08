@@ -42,6 +42,7 @@ LuiLabelWithInputComponentTest >> testAddingSlotModelWithUndefinedLastName [
 	component model: person.
 	self assert: component valueAccessor slotName equals: 'lastName'.
 	self assert: component labelComponent labelString equals: 'Last Name'.
+	self assert: person lastName equals: ''.
 	self assert: component inputComponent displayValue equals: ''
 		
 ]

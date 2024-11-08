@@ -8,7 +8,7 @@ Class {
 LcsSingletonCodeClassesBuilderJobTest >> jobBuilder [
 	^ LcsSingletonCodeClassesBuilderJob new
 		classPrefix: 'Lxx';
-		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+		installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
 		createForRootName: 'Gender';
 		addCodeSubclassWithRootNamed: 'Male';
 		addCodeSubclassWithRootNamed: 'Female';

@@ -46,6 +46,16 @@ LcsApplicationEnvironment class >> createCurrentSystemFor: aSystemClass [
 	
 ]
 
+{ #category : #system }
+LcsApplicationEnvironment class >> createNewPrototypeSystem [
+	| prototypeSystem |
+	System abortTransaction.
+	self ensureInitialized.
+	prototypeSystem := self createCurrentSystemFor: LxxPrototypeSystem.
+	System commitTransaction.
+	^ prototypeSystem
+]
+
 { #category : #'application environment - modify' }
 LcsApplicationEnvironment class >> createUnitOfWork [
 	^ self applicationEnvironmentDo: [ :env | env createUnitOfWork ]
@@ -171,6 +181,14 @@ LcsApplicationEnvironment class >> releaseApplicationEnvironment [
 		 env releaseApplicationEnvironment.
 		 self singleton: nil ].
 	
+]
+
+{ #category : #accessing }
+LcsApplicationEnvironment class >> removeClassesNamed: classNames [ 
+	| classesToBeRemoved |
+	classesToBeRemoved := (classNames collect: [:each | 
+		[ each asClass ] on: NotFound do: [ :s | s return: nil] ]) reject: [ :e | e isNil].
+	classesToBeRemoved do: [ :eachClass | (RBRemoveClassChange removeClassName: eachClass name) execute ]
 ]
 
 { #category : #'application environment - modify' }

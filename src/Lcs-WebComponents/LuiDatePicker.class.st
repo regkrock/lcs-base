@@ -19,6 +19,11 @@ LuiDatePicker >> contentsFromString: aString [
 	^ self fromStringConverter value: aString
 ]
 
+{ #category : #rendering }
+LuiDatePicker >> displayValue [
+	^ self valueAccessor displayValue yyyymmdd
+]
+
 { #category : #accessing }
 LuiDatePicker >> fromStringConverter [
 	^ fromStringConverter
@@ -34,6 +39,12 @@ LuiDatePicker >> initialize [
 	super initialize.
 	self toStringConverter: LuiDateToStringConverter new.
 	self fromStringConverter: LuiStringToDateConverter new.
+]
+
+{ #category : #initialize }
+LuiDatePicker >> initializeOnSlot: aSlotDefinition on: aComponent [ 
+	super initializeOnSlot: aSlotDefinition on: aComponent .
+	self properties name: aSlotDefinition slotName
 ]
 
 { #category : #rendering }

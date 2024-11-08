@@ -31,15 +31,20 @@ LcsFunctionalTestFileLibrary >> bodyCss [
 { #category : #css }
 LcsFunctionalTestFileLibrary >> globalCss [
 	<css>
-	^''
-"^'
+	"This forces the padding and margin to be zero. 
+	It overrides the browser defaults.
+	Also, all component sizes are defined by width and heigth with the padding, border, and margin
+	taken from inside the width and height. This is in contrast to 'content-box' where the padding,
+	border, and margins are added to the hieght and width."
+	
+	^'
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}'"
+}'
 ]
 
 { #category : #css }

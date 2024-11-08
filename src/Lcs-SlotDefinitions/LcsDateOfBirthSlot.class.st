@@ -4,6 +4,11 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
+{ #category : #defaults }
+LcsDateOfBirthSlot >> defaultInputComponentClassName [
+	^ #'LuiDatePicker'
+]
+
 { #category : #initialization }
 LcsDateOfBirthSlot >> initialize [
 	super initialize.

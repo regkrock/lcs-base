@@ -1,5 +1,5 @@
 Class {
 	#name : #LuiRadioButtons,
-	#superclass : #LuiSelectOption,
+	#superclass : #LuiSelect,
 	#category : #'Lcs-WebComponents-Widgets'
 }

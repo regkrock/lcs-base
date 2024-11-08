@@ -1,5 +1,5 @@
 Class {
 	#name : #LuiCheckbox,
-	#superclass : #LuiSelectOption,
+	#superclass : #LuiSelect,
 	#category : #'Lcs-WebComponents-Widgets'
 }

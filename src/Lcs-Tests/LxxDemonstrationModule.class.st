@@ -1,7 +1,7 @@
 Class {
 	#name : #LxxDemonstrationModule,
 	#superclass : #LcsBaseModule,
-	#category : #'Lcs-Tests'
+	#category : #'Lcs-Tests-Support'
 }
 
 { #category : #configuration }

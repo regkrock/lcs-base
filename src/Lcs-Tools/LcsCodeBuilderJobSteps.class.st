@@ -42,12 +42,12 @@ LcsCodeBuilderJobSteps >> classPrefix: aString [
 	self collection do: [ :each | (each respondsTo: #classPrefix:) ifTrue: [each classPrefix: aString]].
 ]
 
-{ #category : #accessing }
+{ #category : #collection }
 LcsCodeBuilderJobSteps >> collect: aCollectBlock [
 	^ self collection collect: aCollectBlock
 ]
 
-{ #category : #accessing }
+{ #category : #collection }
 LcsCodeBuilderJobSteps >> collect: aCollectBlock thenSelect: aSelectBlock [
 	^ self collection collect: aCollectBlock thenSelect: aSelectBlock
 ]
@@ -67,7 +67,12 @@ LcsCodeBuilderJobSteps >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
-{ #category : #accessing }
+{ #category : #collection }
+LcsCodeBuilderJobSteps >> do: aCollectBlock [
+	^ self collection do: aCollectBlock
+]
+
+{ #category : #collection }
 LcsCodeBuilderJobSteps >> do: aDoBlock separatedBy: aBlock [
 	self collection do: aDoBlock separatedBy: aBlock
 ]
@@ -108,6 +113,16 @@ LcsCodeBuilderJobSteps >> installCode [
 	self collection do: [ :each | each installCode ]
 ]
 
+{ #category : #collection }
+LcsCodeBuilderJobSteps >> isEmpty [
+	^ self collection isEmpty
+]
+
+{ #category : #testing }
+LcsCodeBuilderJobSteps >> isNotEmpty [
+	^ self collection isNotEmpty
+]
+
 { #category : #accessing }
 LcsCodeBuilderJobSteps >> jobStepAt: anIndex [
 	^ self collection at: anIndex
@@ -126,6 +141,11 @@ LcsCodeBuilderJobSteps >> populateSlotModel [
 { #category : #accessing }
 LcsCodeBuilderJobSteps >> stepsWithClass: aClass [
 	^ self collection select: [ :each | each class  == aClass ]
+]
+
+{ #category : #'as yet unclassified' }
+LcsCodeBuilderJobSteps >> targetClassName [
+	^ self parent targetClassName
 ]
 
 { #category : #accessing }

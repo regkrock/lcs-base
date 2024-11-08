@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsCodeBuilderJobTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-Tests'
+	#category : #'Lcs-Tests-Tests'
 }
 
 { #category : #test }

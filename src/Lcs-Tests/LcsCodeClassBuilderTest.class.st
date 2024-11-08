@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsCodeClassBuilderTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-Tests'
+	#category : #'Lcs-Tests-Tests'
 }
 
 { #category : #test }
@@ -17,5 +17,5 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
-		package: ''Lcs-BarebonesSystem'' '
+		package: ''Lcs-PrototypeSystem'' '
 ]

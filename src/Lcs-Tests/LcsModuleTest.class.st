@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsModuleTest,
 	#superclass : #LcsDomainTest,
-	#category : #'Lcs-Tests'
+	#category : #'Lcs-Tests-Tests'
 }
 
 { #category : #accessing }

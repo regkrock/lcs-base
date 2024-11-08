@@ -25,6 +25,7 @@ LcsSingletonCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString [
 
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
+	self jobSteps isEmpty ifFalse: [ ^ self ].
 	self addJobStep: self codeClassBuilder.
 	self addCodeSubclassBuilders.
 	self addJobStep: self codeCollectionClassBuilder.

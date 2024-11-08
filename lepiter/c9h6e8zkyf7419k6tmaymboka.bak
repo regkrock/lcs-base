@@ -294,7 +294,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-06-06T12:21:45.067569-04:00"
+									"dateAndTimeString" : "2024-06-06T12:23:40.073435-04:00"
 								}
 							},
 							"uid" : {
@@ -304,7 +304,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "[[User Roles And Permissions]]"
+							"string" : "[[Application User Roles And Permissions]]"
 						},
 						{
 							"__type" : "textSnippet",
@@ -500,6 +500,43 @@
 														"__type" : "textStyle"
 													},
 													"string" : "[[Add new Domain Class whose instances are stored in global collection - Example]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2024-11-06T17:45:03.921548-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2024-11-06T17:45:03.921548-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "U7xyAajiDQC+QRmUAd/nRw=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : ""
 												}
 											]
 										},

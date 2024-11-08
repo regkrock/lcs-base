@@ -32,6 +32,16 @@ LcsSlotDefintionMethodBuilder >> refactoringText [
 	^ self slotDefinitionSource
 ]
 
+{ #category : #'gt view' }
+LcsSlotDefintionMethodBuilder >> shortDescription [
+	^ 'Add slot definition: ' , self slotName asString , ' in ' , self targetClassName asString
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefintionMethodBuilder >> targetClassName [
+	^ self parent targetClassName
+]
+
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
 	self assert: (self target class canUnderstand: self slotBuilder slotDefinitionSelector)

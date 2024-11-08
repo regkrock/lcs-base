@@ -9,6 +9,15 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #'as yet unclassified' }
+LcsSingletonCodeClassBuilder >> actionButton [
+	self installedClass isNil ifTrue: [ ^ BrButton new ].
+	^BrButton new
+		aptitude: BrGlamorousButtonWithLabelAptitude new;
+		label: 'Browse';
+		action: [ :aButton | self installedClass inspect ]
+]
+
 { #category : #refactoring }
 LcsSingletonCodeClassBuilder >> addDefaultCodeDescriptionRefactoring [
 	^ RBAddMethodChange
@@ -105,6 +114,11 @@ LcsSingletonCodeClassBuilder >> installCode [
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> populateSlotModel [
 	self installedClass new
+]
+
+{ #category : #'gt view' }
+LcsSingletonCodeClassBuilder >> shortDescription [
+	^ 'Create class: ' , self newClassName asString
 ]
 
 { #category : #accessing }

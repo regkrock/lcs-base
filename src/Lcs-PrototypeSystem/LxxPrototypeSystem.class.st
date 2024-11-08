@@ -28,7 +28,7 @@ LxxPrototypeSystem class >> moduleClasses [
 
 { #category : #configuration }
 LxxPrototypeSystem class >> moduleName [
-	^ 'Barebones System'
+	^ 'Prototype System'
 ]
 
 { #category : #'slot definitions' }

@@ -103,14 +103,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-05T10:55:45.051949-04:00"
+						"dateAndTimeString" : "2024-11-06T13:25:39.826141-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "cP5hMXXWDQCztBQAC5BI1A=="
 				},
-				"code" : "LcsApplicationEnvironment isInActiveStatus \r\tifFalse: [ LcsApplicationEnvironment initializeApplicationEnvironment].\rpreviousSystem := LcsApplicationEnvironment currentSystem.\rsystem := LcsApplicationEnvironment createNewBarebonesSystem"
+				"code" : "LcsApplicationEnvironment isInActiveStatus \r\tifFalse: [ LcsApplicationEnvironment initializeApplicationEnvironment].\rpreviousSystem := LcsApplicationEnvironment currentSystem.\rsystem := LcsApplicationEnvironment createNewPrototypeSystems"
 			},
 			{
 				"__type" : "textSnippet",

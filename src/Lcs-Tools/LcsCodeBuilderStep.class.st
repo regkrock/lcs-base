@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> actionButton [
+	^ BrButton new
+]
+
 { #category : #accessing }
 LcsCodeBuilderStep >> builderJob [
 	^ self parent builderJob
@@ -35,6 +40,11 @@ LcsCodeBuilderStep >> parent: anObject [
 { #category : #accessing }
 LcsCodeBuilderStep >> populateSlotModel [
 	"Subclasses should implement as needed"
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> shortDescription [
+	^ self printString
 ]
 
 { #category : #install }

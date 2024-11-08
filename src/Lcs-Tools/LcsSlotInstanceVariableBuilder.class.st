@@ -37,6 +37,11 @@ LcsSlotInstanceVariableBuilder >> refactoringText [
 		ifFalse: [ 'Add instanceVariable: ' , self slotName ]
 ]
 
+{ #category : #'gt view' }
+LcsSlotInstanceVariableBuilder >> shortDescription [
+	^ 'Add slot: ' , self slotName asString
+]
+
 { #category : #verification }
 LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
 	self assert: (self target allInstVarNames includes: self slotName).

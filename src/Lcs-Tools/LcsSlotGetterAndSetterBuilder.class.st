@@ -43,6 +43,16 @@ LcsSlotGetterAndSetterBuilder >> refactoringText [
 		contents
 ]
 
+{ #category : #'gt view' }
+LcsSlotGetterAndSetterBuilder >> shortDescription [
+	^ 'Add getter and setter for: ' , self slotName , ' in ' , self targetClassName asString
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotGetterAndSetterBuilder >> targetClassName [
+	^ self parent targetClassName
+]
+
 { #category : #verification }
 LcsSlotGetterAndSetterBuilder >> verifyCodeInstallation [
 	self assert: (self target canUnderstand: self slotName asSymbol).

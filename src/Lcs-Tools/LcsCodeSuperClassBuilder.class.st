@@ -20,6 +20,11 @@ LcsCodeSuperClassBuilder >> jobStepDescription [
 	self printString
 ]
 
+{ #category : #'gt view' }
+LcsCodeSuperClassBuilder >> shortDescription [
+	^ 'Create class: ' , self newClassName asString
+]
+
 { #category : #accessing }
 LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.

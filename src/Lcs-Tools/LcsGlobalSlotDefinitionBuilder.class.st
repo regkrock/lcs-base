@@ -72,6 +72,11 @@ LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
 	(self targetModule perform: self slotName asSymbol) ifNil: [ self targetModule initializeSlotNamed: self slotName ]
 ]
 
+{ #category : #'gt view' }
+LcsGlobalSlotDefinitionBuilder >> shortDescription [
+	^ 'Add slot: ' , self slotName asString , ' in ' , self target name asString
+]
+
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> slotClass [
 	^ slotClass 

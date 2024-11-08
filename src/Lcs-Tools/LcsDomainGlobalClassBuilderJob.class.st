@@ -142,6 +142,26 @@ LcsDomainGlobalClassBuilderJob >> globalCollectionSlotName: aString [
 	globalCollectionSlotName := aString
 ]
 
+{ #category : #'as yet unclassified' }
+LcsDomainGlobalClassBuilderJob >> gtClassBuilderViewFor: aView [
+	<gtView>
+	^ aView columnedTree
+		title: 'Steps';
+		priority: 10;
+		expandUpTo: 3;
+		items: [ self jobSteps ];
+		children: [ :step | step jobSteps ];
+		column: 'Number'
+			text: [ :step | step stepNumber ] width: 55;
+		column: 'Description'
+			text: [ :step | step shortDescription ];
+		column: 'Step Class'
+			text: [ :step | step class name ];
+		column: 'Browse'
+			stencil: [ :step | step actionButton ]
+
+]
+
 { #category : #'gt view' }
 LcsDomainGlobalClassBuilderJob >> gtStepsMondrianTreeFor: aView [
 	<gtView>
