@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:00:11.113428-05:00"
+						"dateAndTimeString" : "2024-11-08T16:09:07.521964-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "sOLfjqjiDQCC3Pw3Ad/nRw=="
 				},
-				"code" : "savedSystem := LcsApplicationEnvironment currentSystem.\rprototypeSystem := LcsApplicationEnvironment createNewPrototypeSystems"
+				"code" : "savedSystem := LcsApplicationEnvironment currentSystem.\rprototypeSystem := LcsApplicationEnvironment createNewPrototypeSystem"
 			},
 			{
 				"__type" : "pharoSnippet",

@@ -37,8 +37,3 @@ LcsCodeClassBuilder >> isDefaultInstance [
 LcsCodeClassBuilder >> jobStepDescription [
 	self printString
 ]
-
-{ #category : #accessing }
-LcsCodeClassBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-]

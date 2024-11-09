@@ -157,7 +157,7 @@ LcsDomainGlobalClassBuilderJob >> gtClassBuilderViewFor: aView [
 			text: [ :step | step shortDescription ];
 		column: 'Step Class'
 			text: [ :step | step class name ];
-		column: 'Browse'
+		column: ''
 			stencil: [ :step | step actionButton ]
 
 ]
