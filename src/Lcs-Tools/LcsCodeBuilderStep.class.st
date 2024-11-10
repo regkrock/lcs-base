@@ -7,11 +7,6 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #'gt view' }
-LcsCodeBuilderStep >> actionButton [
-	^ BrButton new
-]
-
 { #category : #accessing }
 LcsCodeBuilderStep >> builderJob [
 	^ self parent builderJob
@@ -60,4 +55,9 @@ LcsCodeBuilderStep >> verifyCodeInstallation [
 { #category : #install }
 LcsCodeBuilderStep >> verifySlotModelUpdates [
 	self subclassResponsibility
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> viewCodeButton [
+	^ BrButton new
 ]

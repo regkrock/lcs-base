@@ -20,3 +20,8 @@ LcsDomainCollectionClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]
+
+{ #category : #'gt view' }
+LcsDomainCollectionClassBuilder >> viewCodeButton [
+	^ BrButton new
+]

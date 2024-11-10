@@ -9,15 +9,6 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #'as yet unclassified' }
-LcsSingletonCodeClassBuilder >> actionButton [
-	self installedClass isNil ifTrue: [ ^ BrButton new ].
-	^BrButton new
-		aptitude: BrGlamorousButtonWithLabelAptitude new;
-		label: 'Browse';
-		action: [ :aButton | self installedClass inspect ]
-]
-
 { #category : #refactoring }
 LcsSingletonCodeClassBuilder >> addDefaultCodeDescriptionRefactoring [
 	^ RBAddMethodChange
