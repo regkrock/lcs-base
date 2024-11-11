@@ -15,10 +15,17 @@ LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 
 { #category : #building }
 LcsSlotGetterAndSetterBuilder >> installCode [
-	self refactoring: ( RBCreateDomainSlotAcccessorsForVariableRefactoring
-		instanceVariable: self slotName
-		class: self target).
+	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
+	self
+		refactoring: (RBCreateDomainSlotAcccessorsForVariableRefactoring
+				instanceVariable: self slotName
+				class: self target).
 	self refactoring execute
+]
+
+{ #category : #testing }
+LcsSlotGetterAndSetterBuilder >> isAlreadyImplementedInSuperclass [
+	^ self target superclass canUnderstand: self slotName asSymbol
 ]
 
 { #category : #printing }
@@ -35,6 +42,8 @@ LcsSlotGetterAndSetterBuilder >> protoGetterAndSetterRefactoring [
 
 { #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> refactoringText [
+	self isAlreadyImplementedInSuperclass ifTrue: [ 
+		^ self slotName asString , ' getter and setter are already implemented in superclass'].
 	^ (WriteStream on: String new)
 		nextPutAll: self protoGetterAndSetterRefactoring slotSetterMethodSource;
 		cr;

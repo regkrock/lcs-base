@@ -30,8 +30,3 @@ LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]
-
-{ #category : #'gt view' }
-LcsCodeSuperClassBuilder >> viewCodeButton [
-	^ BrButton new
-]
