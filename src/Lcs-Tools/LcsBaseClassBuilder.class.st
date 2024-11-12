@@ -169,8 +169,5 @@ LcsBaseClassBuilder >> verifySlotModelUpdates [
 { #category : #'gt view' }
 LcsBaseClassBuilder >> viewCodeButton [
 	self installedClass isNil ifTrue: [ ^ BrButton new ].
-	^BrButton new
-		aptitude: BrGlamorousButtonWithLabelAptitude new;
-		label: 'Browse';
-		action: [ :aButton | self installedClass inspect ]
+	^ self viewClassButtonFor: self installedClass 
 ]
