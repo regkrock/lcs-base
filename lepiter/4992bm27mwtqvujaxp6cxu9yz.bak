@@ -76,10 +76,45 @@
 				"code" : "savedSystem := LcsApplicationEnvironment currentSystem.\rprototypeSystem := LcsApplicationEnvironment createNewPrototypeSystem"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [ ]
+					"items" : [
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-06T17:46:29.674947-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-06T17:49:15.701039-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "8jyPBqjiDQC+qIYrAd/nRw=="
+							},
+							"code" : "builder := LcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateForRootName: 'GenderExample';\r\t\taddCodeSubclassWithRootNamed: 'MaleExample';\r\t\taddCodeSubclassWithRootNamed: 'FemaleExample';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGenderExample'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\tyourself."
+						}
+					]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -89,7 +124,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-06T17:46:29.674947-05:00"
+						"dateAndTimeString" : "2024-11-15T15:55:03.427135-05:00"
 					}
 				},
 				"editEmail" : {
@@ -100,20 +135,58 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-06T17:49:15.701039-05:00"
+						"dateAndTimeString" : "2024-11-15T15:55:07.820189-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "8jyPBqjiDQC+qIYrAd/nRw=="
+					"uidString" : "1WFkhFvjDQCmTo4AAb9UoA=="
 				},
-				"code" : "builder := LcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateForRootName: 'GenderExample';\r\t\taddCodeSubclassWithRootNamed: 'MaleExample';\r\t\taddCodeSubclassWithRootNamed: 'FemaleExample';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGenderExample'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\tyourself."
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Create builder"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [ ]
+					"items" : [
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:49:40.405343-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:49:46.248587-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "s6tYcVvjDQCjezXwAb9UoA=="
+							},
+							"code" : "builder execute"
+						}
+					]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -123,7 +196,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-06T17:46:46.857488-05:00"
+						"dateAndTimeString" : "2024-11-15T15:49:52.287457-05:00"
 					}
 				},
 				"editEmail" : {
@@ -134,20 +207,330 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T13:52:08.577757-05:00"
+						"dateAndTimeString" : "2024-11-15T15:55:24.126652-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "bXGVB6jiDQC+wUZ9Ad/nRw=="
+					"uidString" : "n/MNclvjDQCjyo9ZAb9UoA=="
 				},
-				"code" : "builder buildJobSteps"
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Execute all of the steps at once"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [ ]
+					"items" : [
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-06T17:46:46.857488-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T13:52:08.577757-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "bXGVB6jiDQC+wUZ9Ad/nRw=="
+							},
+							"code" : "builder buildJobSteps"
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-06T18:32:16.326911-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-06T18:32:17.027967-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "3tZFqqjiDQCE1vuAAd/nRw=="
+							},
+							"code" : "builder installCode"
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T13:00:14.562887-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T21:26:44.406009-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "kpmGQsziDQCQVFKoAd/nRw=="
+							},
+							"code" : "builder verifyCodeInstallation "
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T15:58:58.233022-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T15:59:22.825669-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "hM+0wc7iDQCUJ1M2Ad/nRw=="
+							},
+							"code" : "builder updateSlotModel "
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T15:59:09.736585-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T15:59:26.437003-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "mVZkws7iDQCUWSgXAd/nRw=="
+							},
+							"code" : "builder verifySlotModelUpdates"
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:51:47.90185-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:52:23.524583-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "JB3yeFvjDQCk95asAb9UoA=="
+							},
+							"code" : "builder currentUnitOfWork applyChanges."
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:52:28.724764-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:52:33.586495-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "9AVhe1vjDQClgnliAb9UoA=="
+							},
+							"code" : "builder populateSlotModel."
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:52:43.735304-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:52:51.80017-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "bAxGfFvjDQCllSefAb9UoA=="
+							},
+							"code" : "builder verifyPopulateSlotModel."
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:52:55.90521-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:52:56.589301-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "uL7/fFvjDQClqHZPAb9UoA=="
+							},
+							"code" : "builder currentUnitOfWork applyChanges. "
+						}
+					]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -157,7 +540,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-06T18:32:16.326911-05:00"
+						"dateAndTimeString" : "2024-11-15T15:50:04.054975-05:00"
 					}
 				},
 				"editEmail" : {
@@ -168,20 +551,92 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-06T18:32:17.027967-05:00"
+						"dateAndTimeString" : "2024-11-15T15:50:15.806547-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "3tZFqqjiDQCE1vuAAd/nRw=="
+					"uidString" : "NIjBclvjDQCkN3xSAb9UoA=="
 				},
-				"code" : "builder installCode"
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Execute each step individually"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [ ]
+					"items" : [
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T16:02:13.664561-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:53:48.649555-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "Ittazc7iDQCViD5PAd/nRw=="
+							},
+							"code" : "prototypeSystem genderExamples"
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T16:04:38.432779-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T16:04:49.534112-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "ANr71c7iDQCWMYJWAd/nRw=="
+							},
+							"code" : "LxxPrototypePerson new"
+						}
+					]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -191,7 +646,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T13:00:14.562887-05:00"
+						"dateAndTimeString" : "2024-11-15T15:53:20.661088-05:00"
 					}
 				},
 				"editEmail" : {
@@ -202,20 +657,92 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T15:56:27.540509-05:00"
+						"dateAndTimeString" : "2024-11-15T15:53:24.154056-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "kpmGQsziDQCQVFKoAd/nRw=="
+					"uidString" : "SjI8flvjDQClt2HPAb9UoA=="
 				},
-				"code" : "builder verifyCodeInstallation "
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Results"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [ ]
+					"items" : [
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-06T18:46:11.486438-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-15T15:48:52.83569-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "OlsN3KjiDQCE9D2sAd/nRw=="
+							},
+							"code" : "\r{ LxxUnknownGenderExample. LxxFemaleExample. LxxMaleExample. LxxGenderExample. LxxGenderExamples. }.\r\rprototypeSystem ifNotNil: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'genderExamples'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'genderExample'.\r\tLcsApplicationEnvironment removeClassesNamed: #(  \r\t\t'LxxUnknownGenderExample' \r\t\t'LxxFemaleExample' \r\t\t'LxxMaleExample' \r\t\t'LxxGenderExample' \r\t\t'LxxGenderExamples').\r\tLxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'genderExample'.\r\tLxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genderExamples'].\r"
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T09:16:55.660205-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-08T09:18:29.450366-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "MYXjI8niDQCOhswKAd/nRw=="
+							},
+							"code" : "LcsApplicationEnvironment removeCurrentSystem.\rLcsApplicationEnvironment restoreToCurrent: savedSystem"
+						}
+					]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -225,7 +752,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T15:58:58.233022-05:00"
+						"dateAndTimeString" : "2024-11-15T15:54:02.490671-05:00"
 					}
 				},
 				"editEmail" : {
@@ -236,184 +763,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T15:59:22.825669-05:00"
+						"dateAndTimeString" : "2024-11-15T15:54:04.704021-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "hM+0wc7iDQCUJ1M2Ad/nRw=="
+					"uidString" : "o8f3gFvjDQCmGcYdAb9UoA=="
 				},
-				"code" : "builder updateSlotModel "
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
+				"paragraphStyle" : {
+					"__type" : "textStyle"
 				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T15:59:09.736585-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T15:59:26.437003-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "mVZkws7iDQCUWSgXAd/nRw=="
-				},
-				"code" : "builder verifySlotModelUpdates"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:02:13.664561-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:02:55.482878-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "Ittazc7iDQCViD5PAd/nRw=="
-				},
-				"code" : "prototypeSystem genderExamples"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:04:38.432779-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:04:49.534112-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "ANr71c7iDQCWMYJWAd/nRw=="
-				},
-				"code" : "LxxPrototypePerson new"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-06T18:46:11.486438-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:00:37.515654-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "OlsN3KjiDQCE9D2sAd/nRw=="
-				},
-				"code" : "\rprototypeSystem ifNotNil: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'genderExamples'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'genderExample'.\r\tLcsApplicationEnvironment removeClassesNamed: #(  \r\t\t'LxxUnknownGenderExample' \r\t\t'LxxFemaleExample' \r\t\t'LxxMaleExample' \r\t\t'LxxGenderExample' \r\t\t'LxxGenderExamples').\r\tLxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'genderExample'.\r\tLxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genderExamples'].\r"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T09:16:55.660205-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T09:18:29.450366-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "MYXjI8niDQCOhswKAd/nRw=="
-				},
-				"code" : "LcsApplicationEnvironment removeCurrentSystem.\rLcsApplicationEnvironment restoreToCurrent: savedSystem"
+				"string" : "Cleanup"
 			}
 		]
 	},

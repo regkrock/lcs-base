@@ -61,6 +61,19 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 	codeSubclassBuilders := aCollection
 ]
 
+{ #category : #building }
+LcsSingletonCodeClassesBuilderJob >> execute [ 
+	self buildJobSteps.
+	self installCode.
+	self verifyCodeInstallation.
+	self updateSlotModel.
+	self verifySlotModelUpdates.
+	self currentUnitOfWork applyChanges.
+	self populateSlotModel.
+	self verifyPopulateSlotModel.
+	self currentUnitOfWork applyChanges.
+]
+
 { #category : #iniitialize }
 LcsSingletonCodeClassesBuilderJob >> initialize [
 	super initialize.

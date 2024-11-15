@@ -28,6 +28,12 @@ LcsObject class >> currentSystem [
 	^ #LcsApplicationEnvironment asClass currentSystem
 ]
 
+{ #category : #'application environment' }
+LcsObject class >> currentUnitOfWork [
+
+	^ self currentSystem currentUnitOfWork
+]
+
 { #category : #private }
 LcsObject class >> domainObjectClass [
 	"This is done for packaging loading purposes"
@@ -71,6 +77,11 @@ LcsObject class >> releaseApplicationEnvironment [
 { #category : #accessing }
 LcsObject >> currentSystem [
 	^ self class currentSystem
+]
+
+{ #category : #accessing }
+LcsObject >> currentUnitOfWork [
+	^ self class currentUnitOfWork
 ]
 
 { #category : #testing }
