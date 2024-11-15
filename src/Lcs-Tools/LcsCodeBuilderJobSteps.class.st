@@ -29,7 +29,8 @@ LcsCodeBuilderJobSteps >> addCompletedRefactoring: aRefactoring [
 { #category : #accessing }
 LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 	aJobStep parent: self.
-	self collection add: aJobStep
+	self collection add: aJobStep.
+	"StringSignal emit: 'add job step'"
 ]
 
 { #category : #accessing }

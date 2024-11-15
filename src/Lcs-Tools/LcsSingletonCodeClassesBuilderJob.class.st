@@ -71,7 +71,7 @@ LcsSingletonCodeClassesBuilderJob >> execute [
 	self currentUnitOfWork applyChanges.
 	self populateSlotModel.
 	self verifyPopulateSlotModel.
-	self currentUnitOfWork applyChanges.
+	self currentUnitOfWork applyChanges
 ]
 
 { #category : #iniitialize }
