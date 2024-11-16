@@ -148,6 +148,14 @@ LcsBaseClassBuilder >> targetSuperclassName: aString [
 	targetSuperclassName := aString
 ]
 
+{ #category : #building }
+LcsBaseClassBuilder >> uninstall [
+	self installedClass ifNil: [ ^ self ].
+	self currentSystem  removeClassFromSlotModel: self installedClass.
+	(RBRemoveClassChange removeClassName: self installedClass name) execute.
+	self installedClass: nil
+]
+
 { #category : #install }
 LcsBaseClassBuilder >> updateSlotModel [
 	self installedClass initializeSlotModel

@@ -75,6 +75,16 @@ LcsSystemSlotModel >> parent: aSystem [
 ]
 
 { #category : #'slot model' }
+LcsSystemSlotModel >> removeClassFromSlotModel: aDomainClass [
+	self slotModels removeKey: aDomainClass ifAbsent: [ ]
+]
+
+{ #category : #'slot model' }
+LcsSystemSlotModel >> removeFromSlotModel: aSlotModel [
+	self slotModels removeKey: aSlotModel parent ifAbsent: [ ]
+]
+
+{ #category : #'slot model' }
 LcsSystemSlotModel >> restoreSlotModel [
 	#LcsDomainObject asClass releaseApplicationEnvironment.
 	self slotModels keysAndValuesDo: [ :eachDomainClass :eachSlotModel | eachDomainClass slotModel: eachSlotModel ]

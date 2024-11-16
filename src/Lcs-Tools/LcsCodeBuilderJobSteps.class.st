@@ -161,6 +161,11 @@ LcsCodeBuilderJobSteps >> targetPackageName: aString [
 ]
 
 { #category : #accessing }
+LcsCodeBuilderJobSteps >> uninstall [
+	self collection reverseDo: [ :each | each uninstall ]
+]
+
+{ #category : #accessing }
 LcsCodeBuilderJobSteps >> updateSlotModel [
 	self collection do: [ :each | each updateSlotModel ]
 ]

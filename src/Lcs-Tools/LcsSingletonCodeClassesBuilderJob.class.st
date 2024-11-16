@@ -93,6 +93,20 @@ LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
 	^ self jobSteps stepsWithClass: LcsSingletonCodeClassBuilder
 ]
 
+{ #category : #building }
+LcsSingletonCodeClassesBuilderJob >> uninstall [
+	self jobSteps uninstall.
+	self currentUnitOfWork applyChanges
+	"
+	1. Remove MemberOfSlot (ex: LxxPrototypePerson - remove genderExample slot.
+			(this should also remove instvar. In GS this would require a migration)
+			The slot was created in step 8.
+	2. In Global collection, delete instances (step 8)
+	2. Remove global collection slot (ex: LxxPrototypeSystem) (step 7)
+	4. Remove parent slot in from code superclass (ex: LxxGenderExample) (Step 6)"
+
+]
+
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> verifyPopulateSlotModel [
 	self assert: self targetGlobalCollection parent == self targetModule.

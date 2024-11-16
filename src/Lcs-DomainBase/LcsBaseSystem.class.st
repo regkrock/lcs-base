@@ -233,6 +233,16 @@ LcsBaseSystem >> releaseSlotModel [
 	self parent releaseSlotModel
 ]
 
+{ #category : #'slot model' }
+LcsBaseSystem >> removeClassFromSlotModel: aDomainClass [
+	self systemSlotModel removeClassFromSlotModel: aDomainClass
+]
+
+{ #category : #'slot model' }
+LcsBaseSystem >> removeFromSlotModel: aSlotDefinitions [
+	self systemSlotModel removeFromSlotModel: aSlotDefinitions
+]
+
 { #category : #remove }
 LcsBaseSystem >> removeSystem [ 
 	parent removeSystem: self

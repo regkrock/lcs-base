@@ -43,6 +43,11 @@ LcsCodeBuilderStep >> shortDescription [
 ]
 
 { #category : #install }
+LcsCodeBuilderStep >> uninstall [
+	"Subclass can override"
+]
+
+{ #category : #install }
 LcsCodeBuilderStep >> updateSlotModel [
 	self subclassResponsibility
 ]
@@ -59,37 +64,13 @@ LcsCodeBuilderStep >> verifySlotModelUpdates [
 
 { #category : #'gt view' }
 LcsCodeBuilderStep >> viewClassButtonFor: aClass [
-
-	| button |
-	button := BrButton new
-				id: GtCoderBrowseCoderButtonId;
-				aptitude: BrGlamorousButtonWithIconAptitude;
-				label: 'Browse';
-				icon: BrGlamorousVectorIcons emphasizedBrowse;
-				action: [ :aButton :aModel :anEvent | 
-					anEvent modifiers isPrimaryModifier
-						ifTrue: [ aClass gtBrowseFromButton: aButton ]
-						ifFalse: [ aButton phlow
-									spawnTool: (GtPhlowValuableTool new
-											name: aClass gtDisplayString;
-											valuable: [ | aCoder |
-												aButton phlow firstParentCoderNavigationModel
-													coderDo: [ :oldCoder | aCoder := GtCoderElement forCoder: oldCoder asNewCoderModelWithSameSubject ].
-												aCoder ]) ] ].
-	button viewModel
-		when: BlClickEvent
-		do: [ :anEvent | 
-				anEvent modifiers isPrimaryModifier
-					ifTrue: [ button viewModel clickEvent: anEvent ] ].
-	button viewModel
-		when: BlMouseEnterEvent
-		do: [ :anEvent | 
-			anEvent consumed: true.
-			anEvent modifiers isPrimaryModifier
-				ifTrue: [ anEvent target mouseCursor: BlCopyCursor new ]
-				ifFalse: [ anEvent target mouseCursor: nil ].
-			anEvent target requestFocus ].
-	^ button 
+	^ BrButton new
+		id: GtCoderBrowseCoderButtonId;
+		aptitude: BrGlamorousButtonWithIconAptitude;
+		label: 'Browse';
+		icon: BrGlamorousVectorIcons emphasizedBrowse;
+		action: [ :aButton | 
+			aButton phlow spawnTool: (GtClassCoderTool forClass: aClass) ]
 ]
 
 { #category : #'gt view' }

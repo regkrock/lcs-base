@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:09:07.521964-05:00"
+						"dateAndTimeString" : "2024-11-15T15:56:00.145349-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "sOLfjqjiDQCC3Pw3Ad/nRw=="
 				},
-				"code" : "savedSystem := LcsApplicationEnvironment currentSystem.\rprototypeSystem := LcsApplicationEnvironment createNewPrototypeSystem"
+				"code" : "savedSystem := LcsApplicationEnvironment currentSystem.\rprototypeSystem := LcsApplicationEnvironment createNewPrototypeSystem.\rLcsApplicationEnvironment"
 			},
 			{
 				"__type" : "textSnippet",
@@ -688,6 +688,40 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-16T12:35:13.601796-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-16T12:35:14.805999-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "88DK12zjDQCkVJxIAUeuAQ=="
+							},
+							"code" : "builder uninstall."
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
 									"dateAndTimeString" : "2024-11-06T18:46:11.486438-05:00"
 								}
 							},
@@ -699,14 +733,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-15T15:48:52.83569-05:00"
+									"dateAndTimeString" : "2024-11-16T11:25:11.578313-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "OlsN3KjiDQCE9D2sAd/nRw=="
 							},
-							"code" : "\r{ LxxUnknownGenderExample. LxxFemaleExample. LxxMaleExample. LxxGenderExample. LxxGenderExamples. }.\r\rprototypeSystem ifNotNil: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'genderExamples'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'genderExample'.\r\tLcsApplicationEnvironment removeClassesNamed: #(  \r\t\t'LxxUnknownGenderExample' \r\t\t'LxxFemaleExample' \r\t\t'LxxMaleExample' \r\t\t'LxxGenderExample' \r\t\t'LxxGenderExamples').\r\tLxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'genderExample'.\r\tLxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genderExamples'].\r"
+							"code" : "\rbuilder uninstall.\r\r{ LxxUnknownGenderExample. LxxFemaleExample. LxxMaleExample. LxxGenderExample. LxxGenderExamples. }.\r\rprototypeSystem ifNotNil: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'genderExamples'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'genderExample'.\r\tLcsApplicationEnvironment removeClassesNamed: #(  \r\t\t'LxxUnknownGenderExample' \r\t\t'LxxFemaleExample' \r\t\t'LxxMaleExample' \r\t\t'LxxGenderExample' \r\t\t'LxxGenderExamples').\r\tLxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'genderExample'.\r\tLxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genderExamples'].\r"
 						},
 						{
 							"__type" : "pharoSnippet",

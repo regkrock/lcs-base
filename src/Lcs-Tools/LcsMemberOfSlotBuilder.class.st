@@ -76,3 +76,8 @@ LcsMemberOfSlotBuilder >> targetModuleName [
 LcsMemberOfSlotBuilder >> targetModuleName: anObject [
 	moduleName := anObject
 ]
+
+{ #category : #'as yet unclassified' }
+LcsMemberOfSlotBuilder >> uninstall [
+	self target removeDomainSlotNamed: self slotName.
+]

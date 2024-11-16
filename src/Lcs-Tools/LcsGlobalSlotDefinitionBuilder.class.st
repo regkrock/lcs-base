@@ -119,8 +119,7 @@ LcsGlobalSlotDefinitionBuilder >> targetModuleName: anObject [
 	targetModuleName := anObject
 ]
 
-{ #category : #'gt view' }
-LcsGlobalSlotDefinitionBuilder >> viewCodeButton [
-	self target isNil ifTrue: [ ^ BrButton new ].
-	^ self viewClassButtonFor: self target 
+{ #category : #builder }
+LcsGlobalSlotDefinitionBuilder >> uninstall [
+	self target removeDomainSlotNamed: self slotName.
 ]

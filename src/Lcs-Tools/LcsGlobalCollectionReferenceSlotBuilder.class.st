@@ -58,3 +58,8 @@ LcsGlobalCollectionReferenceSlotBuilder >> shortDescription [
 	^ 'Add collection slot: ' , self collectionSlotName asString , ' in ' , self targetClassName
 
 ]
+
+{ #category : #builder }
+LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
+	self target removeDomainSlotNamed: self slotName
+]

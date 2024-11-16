@@ -222,3 +222,9 @@ LcsSlotDefinitionBuilder >> verifyCodeInstallation [
 LcsSlotDefinitionBuilder >> verifySlotModelUpdates [
 	self jobSteps verifySlotModelUpdates
 ]
+
+{ #category : #'gt view' }
+LcsSlotDefinitionBuilder >> viewCodeButton [
+	self target isNil ifTrue: [ ^ BrButton new ].
+	^ self viewClassButtonFor: self target 
+]

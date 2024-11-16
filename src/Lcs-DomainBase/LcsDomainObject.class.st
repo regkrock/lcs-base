@@ -148,8 +148,7 @@ LcsDomainObject class >> removeDomainSlotNamed: aSlotName [
 
 { #category : #'slot model' }
 LcsDomainObject class >> removeGetter: aGetter [
-	(self canUnderstand: aGetter)
-		ifTrue: [ self removeSelector: aGetter ]
+	self removeSelector: aGetter
 ]
 
 { #category : #'slot model' }
@@ -160,14 +159,12 @@ LcsDomainObject class >> removeInstVar: aSlotName [
 
 { #category : #'slot model' }
 LcsDomainObject class >> removeSetter: aSetterSelector [
-	(self canUnderstand: aSetterSelector)
-		ifTrue: [ self removeSelector: aSetterSelector ]
+	self removeSelector: aSetterSelector
 ]
 
 { #category : #'slot model' }
 LcsDomainObject class >> removeSlotDefinition: aSlotDefinitionSelector [
-	(self class canUnderstand: aSlotDefinitionSelector)
-		ifTrue: [ self class removeSelector: aSlotDefinitionSelector ]
+	self class removeSelector: aSlotDefinitionSelector
 ]
 
 { #category : #'slot model' }
