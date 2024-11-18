@@ -34,6 +34,14 @@ LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 ]
 
 { #category : #accessing }
+LcsCodeBuilderJobSteps >> allStepsAfter: aJobStep [
+	self collection last == aJobStep ifTrue: [ ^ OrderedCollection new ].
+	^ self collection
+		copyFrom: (self collection indexOf: aJobStep) + 1
+		to: self collection size
+]
+
+{ #category : #accessing }
 LcsCodeBuilderJobSteps >> classPrefix [
 	^ classPrefix
 ]
@@ -91,6 +99,11 @@ LcsCodeBuilderJobSteps >> hasNoJobSteps [
 { #category : #testing }
 LcsCodeBuilderJobSteps >> hasSteps [
 	^ self collection notEmpty
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJobSteps >> inStepsAfter: aJobStep removeTargetClass: aClass [
+	(self allStepsAfter: aJobStep) do: [ :eachStep | eachStep clearTargetClass: aClass ]
 ]
 
 { #category : #asking }

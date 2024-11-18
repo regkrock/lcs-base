@@ -12,6 +12,11 @@ LcsCodeBuilderStep >> builderJob [
 	^ self parent builderJob
 ]
 
+{ #category : #uninstall }
+LcsCodeBuilderStep >> clearTargetClass: aClass [
+	"subclasses can override"
+]
+
 { #category : #accessing }
 LcsCodeBuilderStep >> jobStepDescription [
 	self printString

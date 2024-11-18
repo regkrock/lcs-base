@@ -41,6 +41,12 @@ LcsBaseClassBuilder >> classCreationString [
 			with: self targetPackageName
 ]
 
+{ #category : #uninstall }
+LcsBaseClassBuilder >> clearTargetClass: aClass [
+	self installedClass == aClass
+		ifTrue: [ self installedClass: nil ]
+]
+
 { #category : #refactoring }
 LcsBaseClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
@@ -152,8 +158,9 @@ LcsBaseClassBuilder >> targetSuperclassName: aString [
 LcsBaseClassBuilder >> uninstall [
 	self installedClass ifNil: [ ^ self ].
 	self currentSystem  removeClassFromSlotModel: self installedClass.
+	self parent inStepsAfter: self removeTargetClass: self installedClass.
 	(RBRemoveClassChange removeClassName: self installedClass name) execute.
-	self installedClass: nil
+	self installedClass: nil.
 ]
 
 { #category : #install }

@@ -38,6 +38,12 @@ LcsSlotDefinitionBuilder >> addStepNumberTo: aString [
 	^ self stepNumber , '.' ,aString
 ]
 
+{ #category : #uninstall }
+LcsSlotDefinitionBuilder >> clearTargetClass: aClass [
+	self target == aClass
+		ifTrue: [ self target: nil ]
+]
+
 { #category : #testing }
 LcsSlotDefinitionBuilder >> doesSlotDefinitionMethodExist [
 	^ self target class includesSelector: self slotDefinitionSelector
