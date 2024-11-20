@@ -12,6 +12,11 @@ LxxPrototypePersonsModule class >> moduleName [
 	^ 'Persons Module'
 ]
 
+{ #category : #configuration }
+LxxPrototypePersonsModule class >> owningModules [
+	<owningModule: 'LxxPrototypeSystem'>
+]
+
 { #category : #'slot definitions' }
 LxxPrototypePersonsModule class >> personsSlotDefinition [
 	<slotDefinition>

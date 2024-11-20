@@ -28,6 +28,11 @@ LcsGeographyModule class >> moduleName [
 	^ 'Geography Module'
 ]
 
+{ #category : #configuration }
+LcsGeographyModule class >> owningModules [
+	<owningModule: 'LcsMainSystem'>
+]
+
 { #category : #accessing }
 LcsGeographyModule >> countries [
 	^ countries

@@ -52,14 +52,6 @@ LcsBaseSystem >> addToSlotModel: aSlotDefinitions [
 	self systemSlotModel addToSlotModel: aSlotDefinitions
 ]
 
-{ #category : #modules }
-LcsBaseSystem >> allModuleClasses [
-	| moduleClasses |
-	moduleClasses := OrderedCollection new.
-	self class addModuleClassesTo: moduleClasses.
-	^moduleClasses
-]
-
 { #category : #'slot model' }
 LcsBaseSystem >> baseDomainModelClasses [
 	^OrderedCollection new
@@ -250,14 +242,11 @@ LcsBaseSystem >> removeSystem [
 
 { #category : #'slot model' }
 LcsBaseSystem >> requiredSystemDomainClasses [
-	| modelClasses |
-	modelClasses := OrderedCollection new
+	^OrderedCollection new
 		addAll: self baseDomainModelClasses;
 		add: self class;
-		addAll: self moduleClasses;
-		yourself.
-	self moduleClasses deep: [ :each | each moduleClasses ] do: [ :each | modelClasses add: each ].
-	^ modelClasses
+		addAll: self allSubmoduleClasses;
+		yourself
 ]
 
 { #category : #restore }

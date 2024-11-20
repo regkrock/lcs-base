@@ -17,15 +17,6 @@ LxxPrototypeSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: LxxPrototypeSystemConfiguration
 ]
 
-{ #category : #modules }
-LxxPrototypeSystem class >> moduleClasses [
-	^ OrderedCollection new
-		add: LxxPrototypePersonsModule;
-		add: LxxPrototype2Module;
-		yourself
-
-]
-
 { #category : #configuration }
 LxxPrototypeSystem class >> moduleName [
 	^ 'Prototype System'

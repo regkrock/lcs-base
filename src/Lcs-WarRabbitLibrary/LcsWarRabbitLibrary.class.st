@@ -51,7 +51,7 @@ LcsWarRabbitLibrary >> authors: anObject [
 
 { #category : #'slot model' }
 LcsWarRabbitLibrary >> initialSystemDomainClasses [
-	<todo: 'Refactor to make this mor efficient'>
+	<todo: 'Refactor to make this more efficient'>
 	^ super initialSystemDomainClasses
 		add: LcsAuthor;
 		add: LcsAuthors;

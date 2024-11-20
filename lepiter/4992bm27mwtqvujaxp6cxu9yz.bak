@@ -733,14 +733,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-16T11:25:11.578313-05:00"
+									"dateAndTimeString" : "2024-11-16T13:07:01.829389-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "OlsN3KjiDQCE9D2sAd/nRw=="
 							},
-							"code" : "\rbuilder uninstall.\r\r{ LxxUnknownGenderExample. LxxFemaleExample. LxxMaleExample. LxxGenderExample. LxxGenderExamples. }.\r\rprototypeSystem ifNotNil: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'genderExamples'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'genderExample'.\r\tLcsApplicationEnvironment removeClassesNamed: #(  \r\t\t'LxxUnknownGenderExample' \r\t\t'LxxFemaleExample' \r\t\t'LxxMaleExample' \r\t\t'LxxGenderExample' \r\t\t'LxxGenderExamples').\r\tLxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'genderExample'.\r\tLxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genderExamples'].\r"
+							"code" : "\r{ LxxUnknownGenderExample. LxxFemaleExample. LxxMaleExample. LxxGenderExample. LxxGenderExamples. }.\r\rprototypeSystem ifNotNil: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'genderExamples'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'genderExample'.\r\tLcsApplicationEnvironment removeClassesNamed: #(  \r\t\t'LxxUnknownGenderExample' \r\t\t'LxxFemaleExample' \r\t\t'LxxMaleExample' \r\t\t'LxxGenderExample' \r\t\t'LxxGenderExamples').\r\tLxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'genderExample'.\r\tLxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genderExamples'].\r"
 						},
 						{
 							"__type" : "pharoSnippet",

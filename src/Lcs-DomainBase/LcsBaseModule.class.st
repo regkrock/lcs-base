@@ -13,16 +13,50 @@ Class {
 }
 
 { #category : #modules }
-LcsBaseModule class >> addModuleClassesTo: moduleClasses [ 
+LcsBaseModule class >> addSubmoduleClassesFor: aModuleClass to: aCollection [
+	| submduleClasses |
+	submduleClasses := self submoduleClassesFor: aModuleClass.
+	aCollection addAll: submduleClasses.
+	submduleClasses do: [ :each | self addSubmoduleClassesFor: each to: aCollection ]
+	
+]
+
+{ #category : #modules }
+LcsBaseModule class >> addSubmoduleClassesTo: moduleClasses [ 
 	moduleClasses add: self.
-	self moduleClasses do: [ :each |
-		each addModuleClassesTo: moduleClasses ]
+	self allSubmoduleClasses do: [ :each |
+		each addSubmoduleClassesTo: moduleClasses ]
+]
+
+{ #category : #modules }
+LcsBaseModule class >> allSubmoduleClasses [
+	| collection |
+	collection := OrderedCollection new.
+	self addSubmoduleClassesFor: self to: collection.
+	^ collection
 ]
 
 { #category : #'slot definitions' }
 LcsBaseModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
+]
+
+{ #category : #modules }
+LcsBaseModule class >> hasOwningModulePragmaFor: aPragma [
+	(aPragma selector = 'owningModule:') ifFalse: [ ^ false ].
+	^ (aPragma arguments at: 1) = self name asString 
+]
+
+{ #category : #modules }
+LcsBaseModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
+	(aPragma selector = 'owningModule:') ifFalse: [ ^ false ].
+	^ (aPragma arguments at: 1) = aModuleClass asString 
+]
+
+{ #category : #modules }
+LcsBaseModule class >> localSubmoduleClasses [
+	^self submoduleClassesFor: self
 ]
 
 { #category : #asking }
@@ -32,14 +66,25 @@ LcsBaseModule class >> moduleClassNamed: aString [
 		ifNone: []
 ]
 
-{ #category : #modules }
-LcsBaseModule class >> moduleClasses [
-	^ OrderedCollection new
-]
-
 { #category : #configuration }
 LcsBaseModule class >> moduleName [
 	^ self name
+]
+
+{ #category : #modules }
+LcsBaseModule class >> submoduleClassesFor: aModuleClass [
+	| submoduleClasses |
+	submoduleClasses := OrderedCollection new.
+	LcsBaseModule withAllSubclassesDo: [ :eachClass | 
+		eachClass class pragmas
+			do: [ :eachPragma | (self hasOwningModulePragmaFor: eachPragma ownedBy: aModuleClass) 
+				ifTrue: [ submoduleClasses add: eachClass ] ] ].
+	^ submoduleClasses
+]
+
+{ #category : #modules }
+LcsBaseModule >> allSubmoduleClasses [
+	^ self class allSubmoduleClasses
 ]
 
 { #category : #building }
@@ -49,7 +94,7 @@ LcsBaseModule >> buildModule: eachModuleClass [
 
 { #category : #building }
 LcsBaseModule >> buildModules [
-	self moduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
+	self allSubmoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
 ]
 
 { #category : #accessing }
@@ -192,8 +237,8 @@ LcsBaseModule >> legalEntitiesModule [
 ]
 
 { #category : #modules }
-LcsBaseModule >> moduleClasses [
-	^ self class moduleClasses
+LcsBaseModule >> localSubmoduleClasses [
+	^ self class localSubmoduleClasses
 ]
 
 { #category : #configuration }

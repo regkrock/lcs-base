@@ -29,6 +29,11 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 		yourself
 ]
 
+{ #category : #configur }
+LcsLegalEntitiesModule class >> owningModules [
+	<owningModule: 'LcsMainSystem'>
+]
+
 { #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> personsSlotDefinition [
 	<slotDefinition>

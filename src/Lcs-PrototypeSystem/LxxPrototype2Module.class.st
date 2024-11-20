@@ -4,14 +4,12 @@ Class {
 	#category : #'Lcs-PrototypeSystem'
 }
 
-{ #category : #modules }
-LxxPrototype2Module class >> moduleClasses [
-	^ OrderedCollection new
-		add: LxxPrototype2Submodule;
-		yourself
-]
-
 { #category : #configuration }
 LxxPrototype2Module class >> moduleName [
 	^ 'Prototype 2 Module'
+]
+
+{ #category : #configuration }
+LxxPrototype2Module class >> owningModules [
+	<owningModule: 'LxxPrototypeSystem'>
 ]

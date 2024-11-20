@@ -13,14 +13,6 @@ LcsMainSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: LcsSystemConfiguration"
 ]
 
-{ #category : #modules }
-LcsMainSystem class >> moduleClasses [
-	^ OrderedCollection new
-		add: LcsGeographyModule;
-		add: LcsLegalEntitiesModule;
-		yourself
-]
-
 { #category : #'slot model' }
 LcsMainSystem >> initialSystemDomainClasses [
 	<todo: 'Refactor to make this mor efficient'>
