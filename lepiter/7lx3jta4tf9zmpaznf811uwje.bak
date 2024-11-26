@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:34:27.822637-04:00"
+						"dateAndTimeString" : "2024-11-20T14:37:45.026973-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "4VfTd8HSDQCNAS+8CeOFgA=="
 				},
-				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Male');\r\t\taddCodeClassBuilder: (LcsCodeClassBuilder newRootName: 'Female');\r\t\taddCodeClassBuilder: ((LcsCodeClassBuilder newRootName: 'UnknownGender')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxPrototypeSystem ;\r\t\tinstallSlotIn: LxxPrototypePerson;\r\t\tyourself"
+				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\taddCodeSubclassWithRootNamed: 'Male');\r\t\taddCodeSubclassWithRootNamed: 'Female');\r\t\taddCodeSubclassWithRootNamed: 'UnknownGenderExample'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\taddCodeClassBuilder: ((LcsCodeClassBuilder newRootName: 'UnknownGender')\r\t\t\t\t\t\t\t\t\tbeDefaultInstance;\r\t\t\t\t\t\t\t\t\tyourself);\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxPrototypeSystem ;\r\t\tinstallSlotIn: LxxPrototypePerson;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",
@@ -353,14 +353,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-20T12:04:41.792984-04:00"
+						"dateAndTimeString" : "2024-06-07T07:34:56.533831-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ON1NGevSDQCdhWRqBZZkmw=="
 				},
-				"code" : "LxxBarebonesSystem removeDomainSlotNamed: 'genders'"
+				"code" : " LxxPrototypePerson removeDomainSlotNamed: 'genders'"
 			},
 			{
 				"__type" : "pharoSnippet",

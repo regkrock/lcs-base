@@ -103,14 +103,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T16:09:12.510672-05:00"
+						"dateAndTimeString" : "2024-11-20T20:56:26.991843-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "cP5hMXXWDQCztBQAC5BI1A=="
 				},
-				"code" : "LcsApplicationEnvironment isInActiveStatus \r\tifFalse: [ LcsApplicationEnvironment initializeApplicationEnvironment].\rpreviousSystem := LcsApplicationEnvironment currentSystem.\rsystem := LcsApplicationEnvironment createNewPrototypeSystem"
+				"code" : "savedSystem := LcsApplicationEnvironment currentSystem.\rprototypeSystem := LcsApplicationEnvironment createNewPrototypeSystem.\rLcsApplicationEnvironment"
 			},
 			{
 				"__type" : "textSnippet",
@@ -319,14 +319,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-05T15:42:09.431103-04:00"
+						"dateAndTimeString" : "2024-11-20T21:18:46.473038-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "HMIjd4vWDQCMbRszBEOJIw=="
 				},
-				"code" : "jobBuilder \r\tinstallCode; \r\tverifyCodeInstallation; \r\tupdateSlotModel;\r\tverifySlotModelUpdates."
+				"code" : "jobBuilder execute"
 			},
 			{
 				"__type" : "textSnippet",
@@ -379,6 +379,40 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-20T21:19:37.436787-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-20T21:19:47.763525-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MUGMosTjDQCarIfcCOwMXA=="
+				},
+				"code" : "jobBuilder uninstall"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-06-04T13:09:19.295113-04:00"
 					}
 				},
@@ -390,14 +424,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:29:16.190378-04:00"
+						"dateAndTimeString" : "2024-11-20T21:56:05.461459-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "agJVP3XWDQC0moagC5BI1A=="
 				},
-				"code" : "LcsApplicationEnvironment currentSystem notNil ifTrue: [\r\tLxxPrototypeSystem removeDomainSlotNamed: 'countries'.\r\tLxxPrototypePerson removeDomainSlotNamed: 'country'.\r\t#('LxxUnknownCountry' 'LxxCountry' 'LxxCountries') do: [ :eachClassName | \r\t\t([ eachClassName asClass ] on: NotFound do: [ nil ]) ifNotNil: [\r\t\t\t(RBRemoveClassChange removeClassName: eachClassName asSymbol) execute ] ].\r\tLcsApplicationEnvironment removeCurrentSystem.\r\tLcsApplicationEnvironment restoreToCurrent: previousSystem ]"
+				"code" : "{LxxUnknownCountry. LxxCountry. LxxCountries.}\r\rprototypeSystem"
 			}
 		]
 	},

@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-24T11:41:55.375118-04:00"
+						"dateAndTimeString" : "2024-06-07T07:35:52.816662-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "FxQQ2jrTDQCwRQ8jDqasIg=="
 				},
-				"code" : "builder := \r\tLcsStandardCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Title';\r\t\tinstallCodesInPackageNamed: 'Lcs-BarebonesSystem';\r\t\tcreateCodeInstances: #('Mr' 'Ms' 'Unknown');\r\t\tinstallGlobalCollection: 'Titles' inSlotNamed: 'titles' inModule: LxxBarebonesSystem ;\r\t\tinstallSlotIn: LxxBarebonesPerson;\r\t\tyourself"
+				"code" : "builder := \r\tLcsStandardCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Title';\r\t\tinstallCodesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateCodeInstances: #('Mr' 'Ms' 'Unknown');\r\t\tinstallGlobalCollection: 'Titles' inSlotNamed: 'titles' inModule: LxxPrototypeSystem ;\r\t\tinstallSlotIn: LxxPrototypePerson;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",
