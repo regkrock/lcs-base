@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-20T14:38:16.775814-05:00"
+						"dateAndTimeString" : "2024-11-26T17:59:29.734837-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "4VfTd8HSDQCNAS+8CeOFgA=="
 				},
-				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\taddCodeSubclassWithRootNamed: 'Male');\r\t\taddCodeSubclassWithRootNamed: 'Female');\r\t\taddCodeSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxPrototypeSystem ;\r\t\tinstallSlotIn: LxxPrototypePerson;\r\t\tyourself"
+				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcodeSuperclassRootName: 'Gender';\r\t\tinstallCodesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\taddCodeSubclassWithRootNamed: 'Male';\r\t\taddCodeSubclassWithRootNamed: 'Female';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\tinstallGlobalCollection: 'Genders' inSlotNamed: 'genders' inModule: LxxPrototypeSystem ;\r\t\tinstallSlotIn: LxxPrototypePerson;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",

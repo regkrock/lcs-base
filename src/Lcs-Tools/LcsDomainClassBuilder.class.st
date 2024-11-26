@@ -16,6 +16,11 @@ LcsDomainClassBuilder >> initialize [
 ]
 
 { #category : #'gt view' }
+LcsDomainClassBuilder >> jobStepDescription [
+	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
+]
+
+{ #category : #'gt view' }
 LcsDomainClassBuilder >> stepDescription [
 	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
 ]
