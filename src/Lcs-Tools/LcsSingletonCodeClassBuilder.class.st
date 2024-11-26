@@ -102,6 +102,11 @@ LcsSingletonCodeClassBuilder >> installCode [
 	self addCompletedRefactoring: self addDefaultInstanceRefactoring execute
 ]
 
+{ #category : #'gt view' }
+LcsSingletonCodeClassBuilder >> jobStepDescription [
+	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
+]
+
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> populateSlotModel [
 	self installedClass new

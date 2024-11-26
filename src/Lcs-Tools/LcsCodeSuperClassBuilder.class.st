@@ -15,9 +15,9 @@ LcsCodeSuperClassBuilder >> initialize [
 	self targetSuperclassName: self class targetSuperclassName
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsCodeSuperClassBuilder >> jobStepDescription [
-	self printString
+	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
 ]
 
 { #category : #'gt view' }
