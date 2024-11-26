@@ -21,8 +21,8 @@ LcsCodeSuperClassBuilder >> jobStepDescription [
 ]
 
 { #category : #'gt view' }
-LcsCodeSuperClassBuilder >> shortDescription [
-	^ 'Create class: ' , self newClassName asString
+LcsCodeSuperClassBuilder >> stepDescription [
+	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
 ]
 
 { #category : #accessing }

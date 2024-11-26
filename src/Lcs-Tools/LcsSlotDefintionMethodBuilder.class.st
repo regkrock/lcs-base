@@ -33,7 +33,7 @@ LcsSlotDefintionMethodBuilder >> refactoringText [
 ]
 
 { #category : #'gt view' }
-LcsSlotDefintionMethodBuilder >> shortDescription [
+LcsSlotDefintionMethodBuilder >> stepDescription [
 	^ 'Add slot definition: ' , self slotName asString , ' in ' , self targetClassName asString
 ]
 

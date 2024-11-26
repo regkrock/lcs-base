@@ -6,7 +6,8 @@ Class {
 	#superclass : #LcsBaseSystem,
 	#instVars : [
 		'persons',
-		'organization'
+		'organization',
+		'countries'
 	],
 	#category : #'Lcs-PrototypeSystem'
 }

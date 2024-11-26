@@ -25,7 +25,14 @@ LcsSlotGetterAndSetterBuilder >> installCode [
 
 { #category : #testing }
 LcsSlotGetterAndSetterBuilder >> isAlreadyImplementedInSuperclass [
+	self _target isNil ifTrue: [ ^ true ].
 	^ self target superclass canUnderstand: self slotName asSymbol
+]
+
+{ #category : #'gt views' }
+LcsSlotGetterAndSetterBuilder >> isAlreadyImplementedInTargetClass [
+	self _target isNil ifTrue: [ ^ false ].
+	^ self target canUnderstand: self slotName asSymbol
 ]
 
 { #category : #printing }
@@ -42,8 +49,12 @@ LcsSlotGetterAndSetterBuilder >> protoGetterAndSetterRefactoring [
 
 { #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> refactoringText [
-	self isAlreadyImplementedInSuperclass ifTrue: [ 
-		^ self slotName asString , ' getter and setter are already implemented in superclass'].
+	self isAlreadyImplementedInTargetClass
+		ifTrue: [ ^ self slotName asString , ' getter and setter are already implemented in '
+				, self target name displayString ].
+	self isAlreadyImplementedInSuperclass
+		ifTrue: [ ^ self slotName asString
+				, ' getter and setter are already implemented in superclass' ].
 	^ (WriteStream on: String new)
 		nextPutAll: self protoGetterAndSetterRefactoring slotSetterMethodSource;
 		cr;
@@ -53,7 +64,7 @@ LcsSlotGetterAndSetterBuilder >> refactoringText [
 ]
 
 { #category : #'gt view' }
-LcsSlotGetterAndSetterBuilder >> shortDescription [
+LcsSlotGetterAndSetterBuilder >> stepDescription [
 	^ 'Add getter and setter for: ' , self slotName , ' in ' , self targetClassName asString
 ]
 

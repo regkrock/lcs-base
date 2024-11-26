@@ -54,8 +54,8 @@ LcsGlobalCollectionReferenceSlotBuilder >> initialize [
 ]
 
 { #category : #'gt view' }
-LcsGlobalCollectionReferenceSlotBuilder >> shortDescription [
-	^ 'Add collection slot: ' , self collectionSlotName asString , ' in ' , self targetClassName
+LcsGlobalCollectionReferenceSlotBuilder >> stepDescription [
+	^ 'Add slot: ' , self slotName asString , ' in ' , self targetClassName
 
 ]
 

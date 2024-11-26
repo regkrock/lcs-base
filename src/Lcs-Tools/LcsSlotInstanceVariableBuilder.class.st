@@ -38,7 +38,7 @@ LcsSlotInstanceVariableBuilder >> refactoringText [
 ]
 
 { #category : #'gt view' }
-LcsSlotInstanceVariableBuilder >> shortDescription [
+LcsSlotInstanceVariableBuilder >> stepDescription [
 	^ 'Add slot: ' , self slotName asString
 ]
 

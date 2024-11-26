@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #building }
+LcsSlotDetailBuilder >> _target [
+	^ self slotBuilder _target
+]
+
 { #category : #printing }
 LcsSlotDetailBuilder >> jobStepActionDescription [
 	^ 'Install instVar'
@@ -64,7 +69,7 @@ LcsSlotDetailBuilder >> stepNumber [
 
 { #category : #building }
 LcsSlotDetailBuilder >> target [
-	^ self slotBuilder target
+	^ self slotBuilder _target
 ]
 
 { #category : #verification }

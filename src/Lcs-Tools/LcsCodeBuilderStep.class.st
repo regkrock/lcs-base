@@ -43,7 +43,7 @@ LcsCodeBuilderStep >> populateSlotModel [
 ]
 
 { #category : #'gt view' }
-LcsCodeBuilderStep >> shortDescription [
+LcsCodeBuilderStep >> stepDescription [
 	^ self printString
 ]
 

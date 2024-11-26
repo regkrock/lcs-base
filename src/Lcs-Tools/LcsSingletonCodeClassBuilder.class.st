@@ -107,11 +107,6 @@ LcsSingletonCodeClassBuilder >> populateSlotModel [
 	self installedClass new
 ]
 
-{ #category : #'gt view' }
-LcsSingletonCodeClassBuilder >> shortDescription [
-	^ 'Create class: ' , self newClassName asString
-]
-
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> shortName [
 	^ shortName ifNil: [ shortName := self rootName ]
@@ -120,6 +115,11 @@ LcsSingletonCodeClassBuilder >> shortName [
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> shortName: aString [
 	shortName := aString
+]
+
+{ #category : #'gt view' }
+LcsSingletonCodeClassBuilder >> stepDescription [
+	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
 ]
 
 { #category : #verification }

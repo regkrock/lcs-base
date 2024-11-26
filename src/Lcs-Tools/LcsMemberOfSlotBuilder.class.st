@@ -52,11 +52,6 @@ LcsMemberOfSlotBuilder >> moduleName [
 	^ moduleName ifNil: [ self targertModuleClass ifNil: [ ' missing moduleClass name' ] ifNotNil: [  self targertModuleClass moduleName ] ] 
 ]
 
-{ #category : #'gt view' }
-LcsMemberOfSlotBuilder >> shortDescription [
-	^ 'Create memberOfSlot: ' , self slotName asString , ' in ' , self targetClassName
-]
-
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> slotTypes [
 	^ slotTypes
@@ -65,6 +60,11 @@ LcsMemberOfSlotBuilder >> slotTypes [
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> slotTypes: anObject [
 	slotTypes := anObject
+]
+
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> stepDescription [
+	^ 'Create memberOfSlot: ' , self slotName asString , ' in ' , self targetClassName
 ]
 
 { #category : #accessing }

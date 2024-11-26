@@ -14,9 +14,9 @@ LcsCodeCollectionClassBuilder >> jobStepDescription [
 	self printString
 ]
 
-{ #category : #'gt view' }
-LcsCodeCollectionClassBuilder >> shortDescription [
-	^ 'Create class: ' , self newClassName asString
+{ #category : #'as yet unclassified' }
+LcsCodeCollectionClassBuilder >> stepDescription [
+	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
 ]
 
 { #category : #accessing }

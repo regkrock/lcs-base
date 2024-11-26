@@ -25,7 +25,6 @@ LcsSingletonCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString [
 
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
-	self jobSteps isEmpty ifFalse: [ ^ self ].
 	self addJobStep: self codeClassBuilder.
 	self addCodeSubclassBuilders.
 	self addJobStep: self codeCollectionClassBuilder.
@@ -63,7 +62,7 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 
 { #category : #building }
 LcsSingletonCodeClassesBuilderJob >> execute [ 
-	self buildJobSteps.
+	self jobSteps isEmpty ifTrue: [self buildJobSteps].
 	self installCode.
 	self verifyCodeInstallation.
 	self updateSlotModel.
@@ -80,6 +79,16 @@ LcsSingletonCodeClassesBuilderJob >> initialize [
 	self codeSubclassBuilders: OrderedCollection new
 ]
 
+{ #category : #'gt view' }
+LcsSingletonCodeClassesBuilderJob >> overview [
+	| collection |
+	collection := OrderedCollection new.
+	collection add: 'Superclass' -> 1 .
+	
+	^collection.
+	
+]
+
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
@@ -91,20 +100,6 @@ LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
 	^ self jobSteps stepsWithClass: LcsSingletonCodeClassBuilder
-]
-
-{ #category : #building }
-LcsSingletonCodeClassesBuilderJob >> uninstall [
-	self jobSteps uninstall.
-	self currentUnitOfWork applyChanges
-	"
-	1. Remove MemberOfSlot (ex: LxxPrototypePerson - remove genderExample slot.
-			(this should also remove instvar. In GS this would require a migration)
-			The slot was created in step 8.
-	2. In Global collection, delete instances (step 8)
-	2. Remove global collection slot (ex: LxxPrototypeSystem) (step 7)
-	4. Remove parent slot in from code superclass (ex: LxxGenderExample) (Step 6)"
-
 ]
 
 { #category : #'slot model' }

@@ -81,6 +81,19 @@ LcsDomainClassClassesBuilderJob >> domainUnknownClassBuilder [
 		yourself
 ]
 
+{ #category : #install }
+LcsDomainClassClassesBuilderJob >> execute [ 
+	self jobSteps isEmpty ifTrue: [self buildJobSteps].
+	self installCode.
+	self verifyCodeInstallation.
+	self updateSlotModel.
+	self verifySlotModelUpdates.
+	self currentUnitOfWork applyChanges.
+	self populateSlotModel.
+	"self verifyPopulateSlotModel".
+	self currentUnitOfWork applyChanges
+]
+
 { #category : #builders }
 LcsDomainClassClassesBuilderJob >> globalCollectionReferenceSlotBuilder [
 	^ LcsGlobalCollectionReferenceSlotBuilder new
@@ -102,56 +115,6 @@ LcsDomainClassClassesBuilderJob >> globalCollectionSlotBuilder [
 { #category : #accessing }
 LcsDomainClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
-]
-
-{ #category : #accessing }
-LcsDomainClassClassesBuilderJob >> gtConstructionTreeFor: aView [
-	<gtView>
-	
-	^ aView mondrian
-		title: 'Construction Steps Tree';
-		priority: 2;
-		painting: [ :aMondrian | self gtPaintTreeWith: aMondrian ]
-]
-
-{ #category : #'gt views' }
-LcsDomainClassClassesBuilderJob >> gtPaintTreeWith: aMondrian [ 
-
-self
-	withDeep: [ :each | each jobSteps collect: [:eachStep | eachStep]  ]
-	do: [ :each | 
-		aMondrian nodes
-			stencil: [ :x | 
-				BrVerticalPane new
-					fitContent;
-					addChild: (BrLabel new
-							text: x class name;
-							aptitude: (BrGlamorousLabelAptitude new
-									foreground: Color gray;
-									fontSize: 10));
-					addChild: (BrLabel new
-							text: x jobStepDescription;
-							aptitude: BrGlamorousLabelAptitude new) ];
-			with: {each} ]
-	relationDo: [ :from :to | 
-		aMondrian edges
-			fromRightCenter;
-			toLeftCenter;
-			stencil: [ :x | 
-				BlParabollaArcElement new
-					zIndex: 0;
-					curvatureFraction: 0.0;
-					border: (BlBorder paint: (Color gray alpha: 0.2) width: 2);
-					toHead: (BlArrowheadSimpleArrow new
-							border: (BlBorder builder
-									paint: (Color gray alpha: 0.2);
-									width: 4;
-									build)) ];
-			connectAssociations: {from -> to} ].
-aMondrian layout custom: (GtGraphHorizontalTreeLayout new
-	levelDistance: 50;
-	nodeDistance: 20).
-aMondrian
 ]
 
 { #category : #accessing }

@@ -24,6 +24,11 @@ LcsSlotDefinitionBuilder class >> slotDefinitionClass [
 	self subclassResponsibility
 ]
 
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> _target [
+	^ target
+]
+
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addCompletedRefactoring: anObject [ 
 	self parent notNil ifTrue: [ self parent addCompletedRefactoring: anObject ]
@@ -231,6 +236,6 @@ LcsSlotDefinitionBuilder >> verifySlotModelUpdates [
 
 { #category : #'gt view' }
 LcsSlotDefinitionBuilder >> viewCodeButton [
-	self target isNil ifTrue: [ ^ BrButton new ].
+	self _target isNil ifTrue: [ ^ BrButton new ].
 	^ self viewClassButtonFor: self target 
 ]
