@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'dateOfBirth',
-		'lastName'
+		'lastName',
+		'country'
 	],
 	#category : #'Lcs-PrototypeSystem'
 }
