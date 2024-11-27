@@ -62,11 +62,6 @@ LcsMemberOfSlotBuilder >> slotTypes: anObject [
 	slotTypes := anObject
 ]
 
-{ #category : #'gt view' }
-LcsMemberOfSlotBuilder >> stepDescription [
-	^ 'Create memberOfSlot: ' , self slotName asString , ' in ' , self targetClassName
-]
-
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> targetModuleName [
 	^ targetModuleName ifNil: [ targetModuleName := self targetModuleClass moduleName ]

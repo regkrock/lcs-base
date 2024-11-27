@@ -17,22 +17,19 @@ LcsSlotDetailBuilder >> jobStepActionDescription [
 	^ 'Install instVar'
 ]
 
+{ #category : #accessing }
+LcsSlotDetailBuilder >> jobSteps [
+	^ LcsCodeBuilderJobSteps new
+]
+
 { #category : #printing }
-LcsSlotDetailBuilder >> jobStepDescription [
-	^ (WriteStream on: String new)
-		nextPutAll: self stepNumber;
-		nextPutAll: ') ';
+LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
+	aStream
 		nextPutAll: self jobStepActionDescription;
 		nextPutAll: ' "';
 		nextPutAll: self slotName;
 		nextPutAll: '" in ';
-		nextPutAll: self slotBuilder targetClassName;
-		contents
-]
-
-{ #category : #accessing }
-LcsSlotDetailBuilder >> jobSteps [
-	^ LcsCodeBuilderJobSteps new
+		nextPutAll: self slotBuilder targetClassName
 ]
 
 { #category : #building }

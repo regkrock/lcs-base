@@ -25,8 +25,8 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #refactoring }
-LcsBaseClassBuilder >> addCompletedRefactoring: aRefactoring [ 
-	self parent addCompletedRefactoring: aRefactoring
+LcsBaseClassBuilder >> addRefactoring: aRefactoring [ 
+	self refactorings add: aRefactoring
 ]
 
 { #category : #template }
@@ -76,8 +76,8 @@ LcsBaseClassBuilder >> initializeOn: aBuilder [
 
 { #category : #build }
 LcsBaseClassBuilder >> installCode [
-	self addCompletedRefactoring: (RBAddClassChange definition: self classCreationString) execute.
-	self installedClass: self completedRefactorings last changeClass
+	self addRefactoring: (RBAddClassChange definition: self classCreationString) execute.
+	self installedClass: self refactorings last changeClass
 ]
 
 { #category : #accessing }
@@ -88,15 +88,6 @@ LcsBaseClassBuilder >> installedClass [
 { #category : #accessing }
 LcsBaseClassBuilder >> installedClass: aClass [ 
 	installedClass := aClass
-]
-
-{ #category : #printing }
-LcsBaseClassBuilder >> jobStepDescription [
-	^ (WriteStream on: String new)
-		nextPutAll: self stepNumber;
-		nextPutAll: ') Install ';
-		nextPutAll: self newClassName;
-		contents
 ]
 
 { #category : #accessing }
@@ -117,6 +108,15 @@ LcsBaseClassBuilder >> newClassName [
 { #category : #accessing }
 LcsBaseClassBuilder >> newClassName: aString [ 
 	newClassName := aString
+]
+
+{ #category : #printing }
+LcsBaseClassBuilder >> printJobStreamDetailsOn: aStream [
+	aStream
+		nextPutAll: 'Create class: ';
+		nextPutAll: self newClassName asString;
+		nextPutAll: ' as subclass of ';
+		nextPutAll: self targetSuperclassName displayString
 ]
 
 { #category : #accessing }

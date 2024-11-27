@@ -92,11 +92,6 @@ LcsGlobalSlotDefinitionBuilder >> slotClassName: aName [
 	slotClassName := aName
 ]
 
-{ #category : #'gt view' }
-LcsGlobalSlotDefinitionBuilder >> stepDescription [
-	^ 'Add slot: ' , self slotName asString , ' in ' , self target name asString
-]
-
 { #category : #configuration }
 LcsGlobalSlotDefinitionBuilder >> target [
 	^ target ifNil: [ target := 

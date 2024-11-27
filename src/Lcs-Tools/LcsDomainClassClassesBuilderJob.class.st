@@ -124,17 +124,6 @@ LcsDomainClassClassesBuilderJob >> initialize [
 	self targetDomainClasses: Set new
 ]
 
-{ #category : #printing }
-LcsDomainClassClassesBuilderJob >> jobStepDescription [
-	^ (WriteStream on: String new) 
-		nextPutAll: '1) Install ';
-		nextPutAll: self domainClassName ;
-		cr;
-		nextPutAll: ' with instances  stored in ';
-		nextPutAll: self globalCollectionClassName;
-		contents
-]
-
 { #category : #accessing }
 LcsDomainClassClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
@@ -145,6 +134,15 @@ LcsDomainClassClassesBuilderJob >> populateSlotModel [
 			isoCode: (each at: 1);
 			countryName: (each at: 2)]."
 	self currentSystem currentUnitOfWork applyChanges.
+]
+
+{ #category : #printing }
+LcsDomainClassClassesBuilderJob >> printJobStreamDetailsOn: aStream [
+	aStream 
+		nextPutAll: 'Install ';
+		nextPutAll: self domainClassName ;
+		nextPutAll: ' with instances stored in ';
+		nextPutAll: self globalCollectionClassName
 ]
 
 { #category : #accessing }

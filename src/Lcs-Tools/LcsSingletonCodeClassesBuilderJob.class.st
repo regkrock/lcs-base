@@ -97,6 +97,13 @@ LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
 	self currentSystem currentUnitOfWork applyChanges
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSingletonCodeClassesBuilderJob >> printJobStreamDetailsOn: aStream [
+	aStream
+		nextPutAll: 'Create and populate classes related to ';
+		nextPutAll: self domainClassName asString
+]
+
 { #category : #'slot model' }
 LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
 	^ self jobSteps stepsWithClass: LcsSingletonCodeClassBuilder

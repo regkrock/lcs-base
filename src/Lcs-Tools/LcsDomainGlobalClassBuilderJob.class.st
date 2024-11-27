@@ -3,7 +3,6 @@ Class {
 	#superclass : #LcsObject,
 	#instVars : [
 		'classPrefix',
-		'completedRefactorings',
 		'jobSteps',
 		'targetPackageName',
 		'domainInstanceSlotName',
@@ -17,11 +16,6 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #build }
-LcsDomainGlobalClassBuilderJob >> addCompletedRefactoring: aRefactoring [ 
-	self completedRefactorings add: aRefactoring
-]
-
 { #category : #configuration }
 LcsDomainGlobalClassBuilderJob >> addJobStep: aBuilderJobStep [ 
 	self jobSteps addJobStep: aBuilderJobStep
@@ -31,6 +25,11 @@ LcsDomainGlobalClassBuilderJob >> addJobStep: aBuilderJobStep [
 LcsDomainGlobalClassBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
 	self targetDomainClasses
 		do: [ :eachClass | self addJobStep: (self domainClassMemberSlotBuilder: eachClass) ]
+]
+
+{ #category : #accessing }
+LcsDomainGlobalClassBuilderJob >> addRefactoringsTo: refactorings [ 
+	self jobSteps addRefactoringsTo: refactorings 
 ]
 
 { #category : #query }
@@ -60,12 +59,9 @@ LcsDomainGlobalClassBuilderJob >> classRootName: aString [
 
 { #category : #accessing }
 LcsDomainGlobalClassBuilderJob >> completedRefactorings [
-	^ completedRefactorings
-]
-
-{ #category : #accessing }
-LcsDomainGlobalClassBuilderJob >> completedRefactorings: anObject [
-	completedRefactorings := anObject
+	| allRefactorings |
+	self addRefactoringsTo: allRefactorings.
+	^ allRefactorings
 ]
 
 { #category : #configuration }
@@ -146,7 +142,7 @@ LcsDomainGlobalClassBuilderJob >> globalCollectionSlotName: aString [
 LcsDomainGlobalClassBuilderJob >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
-		title: 'Steps';
+		title: 'Steps List';
 		priority: 10;
 		expandUpTo: 3;
 		items: [ self jobSteps ];
@@ -154,11 +150,13 @@ LcsDomainGlobalClassBuilderJob >> gtClassBuilderViewFor: aView [
 		column: 'Number'
 			text: [ :step | step stepNumber ] width: 55;
 		column: 'Description'
-			text: [ :step | step stepDescription ] width: 500;
+			text: [ :step | step jobStepDescription ] width: 400;
 		column: 'Step Class'
 			text: [ :step | step class name ];
 		column: ''
-			stencil: [ :step | step viewCodeButton ]
+			stencil: [ :step | step viewCodeButton ];
+		column: 'Status'
+			stencil: [ :step | step state asString ]
 
 ]
 
@@ -167,7 +165,7 @@ LcsDomainGlobalClassBuilderJob >> gtConstructionTreeFor: aView [
 	<gtView>
 	
 	^ aView mondrian
-		title: 'Construction Steps Tree';
+		title: 'Steps Tree';
 		priority: 2;
 		painting: [ :aMondrian | self gtPaintTreeWith: aMondrian ]
 ]
@@ -228,8 +226,7 @@ LcsDomainGlobalClassBuilderJob >> initialize [
 	super initialize.
 	self
 		jobSteps: (LcsCodeBuilderJobSteps newOn: self);
-		classPrefix: 'Lcs';
-		completedRefactorings: OrderedCollection new.
+		classPrefix: 'Lcs'.
 ]
 
 { #category : #build }
@@ -247,9 +244,12 @@ LcsDomainGlobalClassBuilderJob >> installNewClassesInPackageNamed: aString [
 	self targetPackageName: aString
 ]
 
-{ #category : #accessing }
+{ #category : #'gt views' }
 LcsDomainGlobalClassBuilderJob >> jobStepDescription [
-	^ self printString
+	| stream |
+	stream := WriteStream on: String new.
+	self printJobStreamDetailsOn: stream.
+	^ stream contents
 ]
 
 { #category : #accessing }
@@ -274,6 +274,12 @@ LcsDomainGlobalClassBuilderJob >> paintTreeWith: view [
 		toLeftCenter;
 		connectToAll: #steps.
 	view layout custom: (GtGradWestHierarchicalLayout new alignment: GtGradHierarchicalLayoutRootAlignment new)
+]
+
+{ #category : #'gt views' }
+LcsDomainGlobalClassBuilderJob >> printJobStreamDetailsOn: aStream [
+	aStream nextPutAll: self printString
+
 ]
 
 { #category : #'gt view' }

@@ -22,15 +22,15 @@ LcsCodeBuilderJobSteps class >> newOn: anObject [
 ]
 
 { #category : #accessing }
-LcsCodeBuilderJobSteps >> addCompletedRefactoring: aRefactoring [
-	self parent addCompletedRefactoring: aRefactoring
-]
-
-{ #category : #accessing }
 LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 	aJobStep parent: self.
 	self collection add: aJobStep.
 	"StringSignal emit: 'add job step'"
+]
+
+{ #category : #queries }
+LcsCodeBuilderJobSteps >> addRefactoringsTo: allRefactorings [
+	self collection do: [ :eachStep | eachStep addRefactoringsTo: allRefactorings ]
 ]
 
 { #category : #accessing }

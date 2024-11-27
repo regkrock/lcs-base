@@ -2,10 +2,16 @@ Class {
 	#name : #LcsCodeBuilderStep,
 	#superclass : #LcsObject,
 	#instVars : [
-		'parent'
+		'parent',
+		'refactorings'
 	],
 	#category : #'Lcs-Tools'
 }
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> addRefactoringsTo: allRefactorings [
+	allRefactorings addAll: self refactorings
+]
 
 { #category : #accessing }
 LcsCodeBuilderStep >> builderJob [
@@ -17,9 +23,26 @@ LcsCodeBuilderStep >> clearTargetClass: aClass [
 	"subclasses can override"
 ]
 
+{ #category : #'as yet unclassified' }
+LcsCodeBuilderStep >> initialize [ 
+	super initialize.
+	self refactorings: OrderedCollection new
+]
+
 { #category : #accessing }
 LcsCodeBuilderStep >> jobStepDescription [
-	self printString
+	| stream |
+	stream := self jobStepDescriptionStream.
+	self printJobStreamDetailsOn: stream.
+	^ stream contents
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> jobStepDescriptionStream [
+	^ (WriteStream on: String new)
+			nextPutAll: self stepNumber;
+			nextPutAll: ')';
+			yourself 
 ]
 
 { #category : #accessing }
@@ -42,9 +65,20 @@ LcsCodeBuilderStep >> populateSlotModel [
 	"Subclasses should implement as needed"
 ]
 
-{ #category : #'gt view' }
-LcsCodeBuilderStep >> stepDescription [
-	^ self printString
+{ #category : #accessing }
+LcsCodeBuilderStep >> printJobStreamDetailsOn: aStream [
+	aStream 
+		nextPutAll: self printString
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> refactorings [
+	^ refactorings
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> refactorings: anObject [
+	refactorings := anObject
 ]
 
 { #category : #install }

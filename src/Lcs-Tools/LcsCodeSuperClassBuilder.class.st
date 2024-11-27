@@ -15,16 +15,6 @@ LcsCodeSuperClassBuilder >> initialize [
 	self targetSuperclassName: self class targetSuperclassName
 ]
 
-{ #category : #'gt view' }
-LcsCodeSuperClassBuilder >> jobStepDescription [
-	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
-]
-
-{ #category : #'gt view' }
-LcsCodeSuperClassBuilder >> stepDescription [
-	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
-]
-
 { #category : #accessing }
 LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.

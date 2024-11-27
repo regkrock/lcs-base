@@ -96,15 +96,10 @@ LcsSingletonCodeClassBuilder >> defaultShortNameSource [
 { #category : #install }
 LcsSingletonCodeClassBuilder >> installCode [
 	super installCode.
-	self addCompletedRefactoring: self addDefaultShortNameRefactoring execute.
-	self addCompletedRefactoring: self addDefaultCodeDescriptionRefactoring execute.
-	self addCompletedRefactoring: self addDefaultCodeNameRefactoring execute.
-	self addCompletedRefactoring: self addDefaultInstanceRefactoring execute
-]
-
-{ #category : #'gt view' }
-LcsSingletonCodeClassBuilder >> jobStepDescription [
-	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
+	self addRefactoring: self addDefaultShortNameRefactoring execute.
+	self addRefactoring: self addDefaultCodeDescriptionRefactoring execute.
+	self addRefactoring: self addDefaultCodeNameRefactoring execute.
+	self addRefactoring: self addDefaultInstanceRefactoring execute
 ]
 
 { #category : #accessing }
@@ -120,11 +115,6 @@ LcsSingletonCodeClassBuilder >> shortName [
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> shortName: aString [
 	shortName := aString
-]
-
-{ #category : #'gt view' }
-LcsSingletonCodeClassBuilder >> stepDescription [
-	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
 ]
 
 { #category : #verification }

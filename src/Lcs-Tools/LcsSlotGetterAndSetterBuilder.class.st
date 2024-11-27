@@ -63,11 +63,6 @@ LcsSlotGetterAndSetterBuilder >> refactoringText [
 		contents
 ]
 
-{ #category : #'gt view' }
-LcsSlotGetterAndSetterBuilder >> stepDescription [
-	^ 'Add getter and setter for: ' , self slotName , ' in ' , self targetClassName asString
-]
-
 { #category : #'as yet unclassified' }
 LcsSlotGetterAndSetterBuilder >> targetClassName [
 	^ self parent targetClassName

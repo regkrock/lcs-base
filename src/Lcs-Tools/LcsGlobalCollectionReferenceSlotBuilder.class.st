@@ -53,10 +53,13 @@ LcsGlobalCollectionReferenceSlotBuilder >> initialize [
 	self slotName: 'parent'
 ]
 
-{ #category : #'gt view' }
-LcsGlobalCollectionReferenceSlotBuilder >> stepDescription [
-	^ 'Add slot: ' , self slotName asString , ' in ' , self targetClassName
-
+{ #category : #printing }
+LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
+	aStream
+		nextPutAll: 'Install slot "';
+		nextPutAll: self slotName;
+		nextPutAll: '" in ';
+		nextPutAll: self targetClassName
 ]
 
 { #category : #builder }

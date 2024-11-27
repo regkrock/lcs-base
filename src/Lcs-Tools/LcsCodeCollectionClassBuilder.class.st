@@ -10,16 +10,6 @@ LcsCodeCollectionClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #accessing }
-LcsCodeCollectionClassBuilder >> jobStepDescription [
-	self printString
-]
-
-{ #category : #'as yet unclassified' }
-LcsCodeCollectionClassBuilder >> stepDescription [
-	^ 'Create class: ' , self newClassName asString , ' as subclass of ' , self targetSuperclassName displayString
-]
-
-{ #category : #accessing }
 LcsCodeCollectionClassBuilder >> updateSlotModel [
 	super updateSlotModel
 ]

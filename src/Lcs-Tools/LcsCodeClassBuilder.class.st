@@ -32,8 +32,3 @@ LcsCodeClassBuilder >> initialize [
 LcsCodeClassBuilder >> isDefaultInstance [
 	^ self defaultInstance == true
 ]
-
-{ #category : #accessing }
-LcsCodeClassBuilder >> jobStepDescription [
-	self printString
-]

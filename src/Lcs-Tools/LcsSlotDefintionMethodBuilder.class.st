@@ -32,11 +32,6 @@ LcsSlotDefintionMethodBuilder >> refactoringText [
 	^ self slotDefinitionSource
 ]
 
-{ #category : #'gt view' }
-LcsSlotDefintionMethodBuilder >> stepDescription [
-	^ 'Add slot definition: ' , self slotName asString , ' in ' , self targetClassName asString
-]
-
 { #category : #'as yet unclassified' }
 LcsSlotDefintionMethodBuilder >> targetClassName [
 	^ self parent targetClassName

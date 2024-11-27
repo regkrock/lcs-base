@@ -30,11 +30,6 @@ LcsSlotDefinitionBuilder >> _target [
 ]
 
 { #category : #'code generation' }
-LcsSlotDefinitionBuilder >> addCompletedRefactoring: anObject [ 
-	self parent notNil ifTrue: [ self parent addCompletedRefactoring: anObject ]
-]
-
-{ #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
 
@@ -110,17 +105,6 @@ LcsSlotDefinitionBuilder >> isInstanceVariableAlreadyCreated [
 	^ self target allInstVarNames includes: self slotName
 ]
 
-{ #category : #printing }
-LcsSlotDefinitionBuilder >> jobStepDescription [
-	^ (WriteStream on: String new)
-		nextPutAll: self stepNumber;
-		nextPutAll: ') Install slot "';
-		nextPutAll: self slotName;
-		nextPutAll: '" in ';
-		nextPutAll: self targetClassName;
-		contents
-]
-
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> jobSteps [
 	^ jobSteps
@@ -129,6 +113,15 @@ LcsSlotDefinitionBuilder >> jobSteps [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> jobSteps: anObject [
 	jobSteps := anObject
+]
+
+{ #category : #printing }
+LcsSlotDefinitionBuilder >> printJobStreamDetailsOn: aStream [
+	aStream
+		nextPutAll: 'Install slot "';
+		nextPutAll: self slotName;
+		nextPutAll: '" in ';
+		nextPutAll: self targetClassName
 ]
 
 { #category : #'gt views' }
