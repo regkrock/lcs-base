@@ -74,6 +74,13 @@ LcsCodeCollectionClassBuilderTest >> testInstallClass [
 	builder verifyCodeInstallation
 ]
 
+{ #category : #testing }
+LcsCodeCollectionClassBuilderTest >> testPopulateSlotModelForClass [
+	self createUpdateSlotModelBuilder.
+	builder populateSlotModel.
+	builder verifyPopulateSlotModel.
+]
+
 { #category : #test }
 LcsCodeCollectionClassBuilderTest >> testUninstallClass [
 	self createPopulatedBuilder.
