@@ -119,6 +119,12 @@ LcsBaseClassBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: self targetSuperclassName displayString
 ]
 
+{ #category : #building }
+LcsBaseClassBuilder >> removeReferencesFromSubsequentSteps [
+	self parent isNil ifTrue: [ ^ self ].
+	self parent inStepsAfter: self removeTargetClass: self installedClass
+]
+
 { #category : #accessing }
 LcsBaseClassBuilder >> rootName [
 	^ rootName
@@ -157,10 +163,10 @@ LcsBaseClassBuilder >> targetSuperclassName: aString [
 { #category : #building }
 LcsBaseClassBuilder >> uninstall [
 	self installedClass ifNil: [ ^ self ].
-	self currentSystem  removeClassFromSlotModel: self installedClass.
-	self parent inStepsAfter: self removeTargetClass: self installedClass.
-	(RBRemoveClassChange removeClassName: self installedClass name) execute.
-	self installedClass: nil.
+	self currentSystem removeClassFromSlotModel: self installedClass.
+	self removeReferencesFromSubsequentSteps.
+	self reverseRefactorings.
+	self installedClass: nil
 ]
 
 { #category : #install }

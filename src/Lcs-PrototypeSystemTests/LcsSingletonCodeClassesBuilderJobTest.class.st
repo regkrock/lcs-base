@@ -47,7 +47,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builder := self jobBuilder.
 
 	self assert: builder classPrefix equals: 'Lxx'.
-	self assert: builder targetPackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: builder targetPackageName equals: 'Lcs-PrototypeSystem'.
 	self assert: builder completedRefactorings isEmpty.
 	self assert: builder classRootName equals: 'Gender'.
 	self assert: builder jobSteps hasNoJobSteps.
@@ -63,7 +63,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	codeSubclassBuilder := builder codeSubclassBuilders at: 1.
 	self assert: codeSubclassBuilder targetSuperclassName equals: 'LxxGender'.
 	self assert: codeSubclassBuilder newClassName equals: 'LxxMale'.
-	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-PrototypeSystem'.
 	self assert: codeSubclassBuilder shortName equals: 'Male'. 
 	self assert: codeSubclassBuilder codeDescription equals: 'Male'. 
 	self assert: codeSubclassBuilder codeName equals: 'male'. 
@@ -72,7 +72,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	codeSubclassBuilder := builder codeSubclassBuilders at: 2.
 	self assert: codeSubclassBuilder targetSuperclassName equals: 'LxxGender'.
 	self assert: codeSubclassBuilder newClassName equals: 'LxxFemale'.
-	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-PrototypeSystem'.
 	self assert: codeSubclassBuilder shortName equals: 'Female'. 
 	self assert: codeSubclassBuilder codeDescription equals: 'Female'. 
 	self assert: codeSubclassBuilder codeName equals: 'female'. 
@@ -81,7 +81,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	codeSubclassBuilder := builder codeSubclassBuilders at: 3.
 	self assert: codeSubclassBuilder targetSuperclassName equals: 'LxxGender'.
 	self assert: codeSubclassBuilder newClassName equals: 'LxxUnknownGender'.
-	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: codeSubclassBuilder targetPackageName equals: 'Lcs-PrototypeSystem'.
 	self assert: codeSubclassBuilder shortName equals: 'UnknownGender'. 
 	self assert: codeSubclassBuilder codeDescription equals: 'UnknownGender'. 
 	self assert: codeSubclassBuilder codeName equals: 'unknownGender'. 
@@ -89,21 +89,21 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 
 	"self assert: builder codeCollectionClassBuilder superclassName = 'LcsCodes'.
 	self assert: builder codeCollectionClassBuilder newClassName equals: 'LxxGenders'.
-	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: builder codeCollectionClassBuilder codePackageName equals: 'Lcs-PrototypeSystem'.
 
 	self assert: builder codeSuperClassParentSlotDefinitionStep slotName equals: 'parent'.
-	self assert: builder codeSuperClassParentSlotDefinitionStep moduleName equals: LxxBarebonesSystem moduleName.
+	self assert: builder codeSuperClassParentSlotDefinitionStep moduleName equals: LxxPrototypeSystem moduleName.
 	self assert: builder codeSuperClassParentSlotDefinitionStep collectionSlotName equals: 'genders'.
 
 	self assert: builder globalCollectionSlotBuilder slotName equals: 'genders'.
-	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxBarebonesSystem moduleName.
-	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxBarebonesSystem'.
+	self assert: builder globalCollectionSlotBuilder moduleName equals: LxxPrototypeSystem moduleName.
+	self assert: builder globalCollectionSlotBuilder targetClassName equals: 'LxxPrototypeSystem'.
 	self assert: builder globalCollectionSlotBuilder target equals: LxxBarebonesSystem.
 	self assert: builder globalCollectionSlotBuilder slotClassName equals: 'LxxGenders'.
 
 	self assert: builder memberOfSlotInDomainClassBuilder slotName equals: 'gender'.
 	self assert: builder memberOfSlotInDomainClassBuilder collectionSlotName equals: 'genders'.
-	self assert: builder memberOfSlotInDomainClassBuilder moduleName equals: LxxBarebonesSystem moduleName	"
+	self assert: builder memberOfSlotInDomainClassBuilder moduleName equals: LxxPrototypeSystem moduleName	"
 	
 	"self assert: (builder memberOfSlotBuilder slotTypes includes: 'LxxGender' asClass)"
 ]
@@ -164,7 +164,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
 	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
 	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
-	self assert: builderJobStep  targetModuleName equals: 'Barebones System'.
+	self assert: builderJobStep  targetModuleName equals: 'Prototype System'.
 	self assert: builderJobStep collectionSlotName equals: 'genders'.
 	self assert: builderJobStep slotName equals: 'gender'.
 

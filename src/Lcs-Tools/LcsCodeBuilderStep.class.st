@@ -23,7 +23,7 @@ LcsCodeBuilderStep >> clearTargetClass: aClass [
 	"subclasses can override"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialize }
 LcsCodeBuilderStep >> initialize [ 
 	super initialize.
 	self refactorings: OrderedCollection new
@@ -81,6 +81,11 @@ LcsCodeBuilderStep >> refactorings: anObject [
 	refactorings := anObject
 ]
 
+{ #category : #uninstall }
+LcsCodeBuilderStep >> reverseRefactorings [
+	self refactorings reverseDo: [ :each | each execute ]
+]
+
 { #category : #install }
 LcsCodeBuilderStep >> uninstall [
 	"Subclass can override"
@@ -96,9 +101,19 @@ LcsCodeBuilderStep >> verifyCodeInstallation [
 	self subclassResponsibility
 ]
 
-{ #category : #install }
+{ #category : #accessing }
+LcsCodeBuilderStep >> verifyPopulateSlotModel [
+	"Subclasses should implement as needed"
+]
+
+{ #category : #uninstall }
 LcsCodeBuilderStep >> verifySlotModelUpdates [
 	self subclassResponsibility
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> verifyUnistall [
+	"Subclasses should implement as needed"
 ]
 
 { #category : #'gt view' }

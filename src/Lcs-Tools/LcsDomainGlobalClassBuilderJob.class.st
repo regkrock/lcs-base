@@ -60,6 +60,7 @@ LcsDomainGlobalClassBuilderJob >> classRootName: aString [
 { #category : #accessing }
 LcsDomainGlobalClassBuilderJob >> completedRefactorings [
 	| allRefactorings |
+	allRefactorings := OrderedCollection new.
 	self addRefactoringsTo: allRefactorings.
 	^ allRefactorings
 ]

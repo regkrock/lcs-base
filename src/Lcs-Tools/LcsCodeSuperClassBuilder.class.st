@@ -20,3 +20,9 @@ LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]
+
+{ #category : #accessing }
+LcsCodeSuperClassBuilder >> verifyUnistall [
+	super verifyUnistall.
+	self assert: self installedClass isNil
+]

@@ -19,7 +19,7 @@ LcsTestCase >> beginTransaction [
 
 { #category : #accessing }
 LcsTestCase >> classNamed: aString [
-	^ [ aString asClass ] on: NotFound do: [ nil ]
+	^ [ aString asClass ] on: NotFound do: [ :ex | ex return: nil ]
 ]
 
 { #category : #running }
