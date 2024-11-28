@@ -8,6 +8,10 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #printing }
+LcsCodeBuilderStep >> addRefactoringTextDetailsTo: stream [ 
+]
+
 { #category : #accessing }
 LcsCodeBuilderStep >> addRefactoringsTo: allRefactorings [
 	allRefactorings addAll: self refactorings
@@ -21,6 +25,18 @@ LcsCodeBuilderStep >> builderJob [
 { #category : #uninstall }
 LcsCodeBuilderStep >> clearTargetClass: aClass [
 	"subclasses can override"
+]
+
+{ #category : #'as yet unclassified' }
+LcsCodeBuilderStep >> fullyInstall [
+	"If this is part of a builder job, then do not use this. Let the builder control the phases"
+	self 
+		installCode;
+		verifyCodeInstallation;
+		updateSlotModel;
+		verifySlotModelUpdates;
+		populateSlotModel;
+		verifyPopulateSlotModel
 ]
 
 { #category : #initialize }
@@ -69,6 +85,14 @@ LcsCodeBuilderStep >> populateSlotModel [
 LcsCodeBuilderStep >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: self printString
+]
+
+{ #category : #printing }
+LcsCodeBuilderStep >> refactoringText [
+	| stream |
+	stream := WriteStream on: String new.
+	self addRefactoringTextDetailsTo: stream.
+	^ stream contents
 ]
 
 { #category : #accessing }

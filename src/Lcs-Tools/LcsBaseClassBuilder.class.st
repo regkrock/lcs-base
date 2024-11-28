@@ -30,6 +30,11 @@ LcsBaseClassBuilder >> addRefactoring: aRefactoring [
 ]
 
 { #category : #template }
+LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
+	aStream nextPutAll: self classCreationString
+]
+
+{ #category : #template }
 LcsBaseClassBuilder >> classCreationString [
 	^ '<1s> subclass: #<2s>
 		instanceVariableNames: ''''
@@ -58,7 +63,7 @@ LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 	^ aView text
 		title: 'Refactoring';
 		priority: 1;
-		text: [ self classCreationString asRopedText ]
+		text: [ self refactoringText asRopedText ]
 	
 ]
 

@@ -29,6 +29,12 @@ LcsSlotDefinitionBuilder >> _target [
 	^ target
 ]
 
+{ #category : #'gt views' }
+LcsSlotDefinitionBuilder >> addRefactoringTextDetailsTo: aStream [
+	self jobSteps do: [ :each |
+		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
+]
+
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
@@ -122,15 +128,6 @@ LcsSlotDefinitionBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: self slotName;
 		nextPutAll: '" in ';
 		nextPutAll: self targetClassName
-]
-
-{ #category : #'gt views' }
-LcsSlotDefinitionBuilder >> refactoringText [
-	| stream |
-	stream := WriteStream on: String new.
-	self jobSteps do: [ :each |
-		stream nextPutAll: each refactoringText ] separatedBy: [ stream cr; cr ].
-	^ stream contents
 ]
 
 { #category : #configuration }

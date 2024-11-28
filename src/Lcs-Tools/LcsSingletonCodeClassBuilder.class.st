@@ -41,6 +41,17 @@ LcsSingletonCodeClassBuilder >> addDefaultShortNameRefactoring [
 		classified: #defaults
 ]
 
+{ #category : #printing }
+LcsSingletonCodeClassBuilder >> addRefactoringTextDetailsTo: aStream [
+	super addRefactoringTextDetailsTo: aStream.
+	aStream 
+		cr; cr; nextPutAll: 'Create Class Methods:';
+		cr; cr; nextPutAll: self defaultCodeNameSource;
+		cr; cr; nextPutAll: self defaultCodeDescriptionSource;
+		cr; cr; nextPutAll: self defaultShortNameSource;
+		cr; cr; nextPutAll: self defaultCodeDescriptionSource
+]
+
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> codeDescription [
 	^ codeDescription ifNil: [ codeDescription := self rootName ]

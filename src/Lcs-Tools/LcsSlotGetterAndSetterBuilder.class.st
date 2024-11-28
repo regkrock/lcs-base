@@ -4,6 +4,28 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #printing }
+LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
+	self isAlreadyImplementedInTargetClass
+		ifTrue: [ 
+			aStream 
+				nextPutAll: self slotName asString;
+				nextPutAll: ' getter and setter are already implemented in ';
+				nextPutAll: self target name displayString.
+			^self].
+	self isAlreadyImplementedInSuperclass
+		ifTrue: [
+			aStream 
+				nextPutAll:  self slotName asString;
+				nextPutAll: ' getter and setter are already implemented in superclass'.
+			^self ].
+	^ aStream
+		nextPutAll: self protoGetterAndSetterRefactoring slotSetterMethodSource;
+		cr;
+		cr;
+		nextPutAll: self protoGetterAndSetterRefactoring slotGetterMethodSource
+]
+
 { #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
@@ -45,22 +67,6 @@ LcsSlotGetterAndSetterBuilder >> protoGetterAndSetterRefactoring [
 	^ RBCreateDomainSlotAcccessorsForVariableRefactoring
 		instanceVariable: self slotName
 		class: ([ self target ] on: Error do: [ :s | UndefinedClass ] )
-]
-
-{ #category : #'gt views' }
-LcsSlotGetterAndSetterBuilder >> refactoringText [
-	self isAlreadyImplementedInTargetClass
-		ifTrue: [ ^ self slotName asString , ' getter and setter are already implemented in '
-				, self target name displayString ].
-	self isAlreadyImplementedInSuperclass
-		ifTrue: [ ^ self slotName asString
-				, ' getter and setter are already implemented in superclass' ].
-	^ (WriteStream on: String new)
-		nextPutAll: self protoGetterAndSetterRefactoring slotSetterMethodSource;
-		cr;
-		cr;
-		nextPutAll: self protoGetterAndSetterRefactoring slotGetterMethodSource;
-		contents
 ]
 
 { #category : #'as yet unclassified' }

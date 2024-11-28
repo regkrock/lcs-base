@@ -5,6 +5,13 @@ Class {
 }
 
 { #category : #'gt views' }
+LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
+	([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
+		ifTrue: [ aStream nextPutAll: 'Use existing instanceVariable: ' , self slotName ]
+		ifFalse: [ aStream nextPutAll: 'Add instanceVariable: ' , self slotName ]
+]
+
+{ #category : #'gt views' }
 LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -28,13 +35,6 @@ LcsSlotInstanceVariableBuilder >> isInstanceVariableAlreadyCreated [
 { #category : #printing }
 LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 	^ 'Install instVar '
-]
-
-{ #category : #'gt views' }
-LcsSlotInstanceVariableBuilder >> refactoringText [
-	^ ([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
-		ifTrue: [ 'Use existing instanceVariable: ' , self slotName ]
-		ifFalse: [ 'Add instanceVariable: ' , self slotName ]
 ]
 
 { #category : #verification }

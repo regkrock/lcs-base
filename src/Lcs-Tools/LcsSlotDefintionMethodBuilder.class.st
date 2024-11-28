@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #'gt v' }
+LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
+	aStream nextPutAll: self slotDefinitionSource
+]
+
+{ #category : #'gt v' }
 LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -25,11 +30,6 @@ LcsSlotDefintionMethodBuilder >> installCode [
 { #category : #printing }
 LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 	^ 'Install slot definition for'
-]
-
-{ #category : #'gt v' }
-LcsSlotDefintionMethodBuilder >> refactoringText [
-	^ self slotDefinitionSource
 ]
 
 { #category : #'as yet unclassified' }
