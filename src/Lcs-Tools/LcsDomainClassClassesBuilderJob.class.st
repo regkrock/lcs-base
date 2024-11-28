@@ -140,7 +140,7 @@ LcsDomainClassClassesBuilderJob >> populateSlotModel [
 LcsDomainClassClassesBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: 'Install ';
-		nextPutAll: self domainClassName ;
+		nextPutAll: self domainClassName ; cr;
 		nextPutAll: ' with instances stored in ';
 		nextPutAll: self globalCollectionClassName
 ]

@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsObject,
 	#instVars : [
 		'parent',
-		'refactorings'
+		'refactorings',
+		'state'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -27,7 +28,7 @@ LcsCodeBuilderStep >> clearTargetClass: aClass [
 	"subclasses can override"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 LcsCodeBuilderStep >> fullyInstall [
 	"If this is part of a builder job, then do not use this. Let the builder control the phases"
 	self 
@@ -42,6 +43,7 @@ LcsCodeBuilderStep >> fullyInstall [
 { #category : #initialize }
 LcsCodeBuilderStep >> initialize [ 
 	super initialize.
+	self state: 'Initial'.
 	self refactorings: OrderedCollection new
 ]
 
@@ -57,7 +59,7 @@ LcsCodeBuilderStep >> jobStepDescription [
 LcsCodeBuilderStep >> jobStepDescriptionStream [
 	^ (WriteStream on: String new)
 			nextPutAll: self stepNumber;
-			nextPutAll: ')';
+			nextPutAll: ') ';
 			yourself 
 ]
 
@@ -108,6 +110,16 @@ LcsCodeBuilderStep >> refactorings: anObject [
 { #category : #uninstall }
 LcsCodeBuilderStep >> reverseRefactorings [
 	self refactorings reverseDo: [ :each | each execute ]
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> state [
+	^ state
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> state: anObject [
+	state := anObject
 ]
 
 { #category : #install }

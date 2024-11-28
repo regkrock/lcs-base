@@ -148,16 +148,16 @@ LcsDomainGlobalClassBuilderJob >> gtClassBuilderViewFor: aView [
 		expandUpTo: 3;
 		items: [ self jobSteps ];
 		children: [ :step | step jobSteps ];
-		column: 'Number'
-			text: [ :step | step stepNumber ] width: 55;
-		column: 'Description'
+		"column: 'Number'
+			text: [ :step | step stepNumber ] width: 55;"
+		column: 'Step'
 			text: [ :step | step jobStepDescription ] width: 400;
 		column: 'Step Class'
 			text: [ :step | step class name ];
 		column: ''
 			stencil: [ :step | step viewCodeButton ];
 		column: 'Status'
-			stencil: [ :step | step state asString ]
+			text: [ :step | step state asString asRopedText ]
 
 ]
 
