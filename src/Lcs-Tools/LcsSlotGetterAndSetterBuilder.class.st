@@ -38,11 +38,11 @@ LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 { #category : #building }
 LcsSlotGetterAndSetterBuilder >> installCode [
 	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
-	self
-		refactoring: (RBCreateDomainSlotAcccessorsForVariableRefactoring
-				instanceVariable: self slotName
-				class: self target).
-	self refactoring execute
+	self addRefactoring: (
+		RBCreateDomainSlotAcccessorsForVariableRefactoring
+			instanceVariable: self slotName
+			class: self target) execute.
+	self beCodeInstalled
 ]
 
 { #category : #testing }

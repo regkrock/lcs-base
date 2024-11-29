@@ -20,11 +20,12 @@ LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 
 { #category : #building }
 LcsSlotDefintionMethodBuilder >> installCode [
-	self refactoring: (RBAddMethodChange
-				compile: self slotDefinitionSource
-				in: self target class
-				classified: #'slot definitions').
-	self refactoring execute
+	self addRefactoring: (
+		RBAddMethodChange
+			compile: self slotDefinitionSource
+			in: self target class
+			classified: #'slot definitions') execute.
+	self beCodeInstalled
 ]
 
 { #category : #printing }

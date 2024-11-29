@@ -9,6 +9,11 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
+{ #category : #refactoring }
+LcsCodeBuilderStep >> addRefactoring: aRefactoring [ 
+	self refactorings add: aRefactoring
+]
+
 { #category : #printing }
 LcsCodeBuilderStep >> addRefactoringTextDetailsTo: stream [ 
 ]
@@ -16,6 +21,26 @@ LcsCodeBuilderStep >> addRefactoringTextDetailsTo: stream [
 { #category : #accessing }
 LcsCodeBuilderStep >> addRefactoringsTo: allRefactorings [
 	allRefactorings addAll: self refactorings
+]
+
+{ #category : #state }
+LcsCodeBuilderStep >> beCodeInstalled [
+	self state: 'Code Installed'
+]
+
+{ #category : #state }
+LcsCodeBuilderStep >> beCodeVerified [
+	self state: 'Code Verified'
+]
+
+{ #category : #state }
+LcsCodeBuilderStep >> beSlotModelUpdated [
+	self state: 'Slot Model Updated'
+]
+
+{ #category : #state }
+LcsCodeBuilderStep >> beSlotModelUpdatedVerified [
+	self state: 'Slot Model Verified'
 ]
 
 { #category : #accessing }

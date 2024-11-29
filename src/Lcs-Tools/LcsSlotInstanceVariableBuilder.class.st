@@ -23,8 +23,8 @@ LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 { #category : #building }
 LcsSlotInstanceVariableBuilder >> installCode [
 	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
-	self refactoring: (RBAddInstanceVariableChange add: self slotName to: self target).
-	self refactoring execute
+	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self target) execute.
+	self beCodeInstalled
 ]
 
 { #category : #'gt views' }

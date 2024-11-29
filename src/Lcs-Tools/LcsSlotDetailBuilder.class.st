@@ -33,16 +33,6 @@ LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 ]
 
 { #category : #building }
-LcsSlotDetailBuilder >> refactoring [
-	^ refactoring
-]
-
-{ #category : #building }
-LcsSlotDetailBuilder >> refactoring: anObject [ 
-	refactoring := anObject
-]
-
-{ #category : #building }
 LcsSlotDetailBuilder >> slotBuilder [
 	^ self parent parent
 ]

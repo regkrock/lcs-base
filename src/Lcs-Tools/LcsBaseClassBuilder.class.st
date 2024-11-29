@@ -24,11 +24,6 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 	^ nil
 ]
 
-{ #category : #refactoring }
-LcsBaseClassBuilder >> addRefactoring: aRefactoring [ 
-	self refactorings add: aRefactoring
-]
-
 { #category : #template }
 LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self classCreationString
@@ -82,7 +77,8 @@ LcsBaseClassBuilder >> initializeOn: aBuilder [
 { #category : #build }
 LcsBaseClassBuilder >> installCode [
 	self addRefactoring: (RBAddClassChange definition: self classCreationString) execute.
-	self installedClass: self refactorings last changeClass
+	self installedClass: self refactorings last changeClass.
+	self beCodeInstalled
 ]
 
 { #category : #accessing }

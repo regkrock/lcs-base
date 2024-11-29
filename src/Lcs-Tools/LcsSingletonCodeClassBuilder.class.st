@@ -110,7 +110,8 @@ LcsSingletonCodeClassBuilder >> installCode [
 	self addRefactoring: self addDefaultShortNameRefactoring execute.
 	self addRefactoring: self addDefaultCodeDescriptionRefactoring execute.
 	self addRefactoring: self addDefaultCodeNameRefactoring execute.
-	self addRefactoring: self addDefaultInstanceRefactoring execute
+	self addRefactoring: self addDefaultInstanceRefactoring execute.
+	self beCodeInstalled
 ]
 
 { #category : #accessing }
