@@ -224,9 +224,9 @@ LcsBaseModule >> initializeSystem [
 { #category : #modules }
 LcsBaseModule >> installModule: aModuleClass [
 
-	self currentSystem systemDomainClasses remove: LxxDemonstrationModule ifAbsent: [ ].
+	self currentSystem systemDomainClasses remove: aModuleClass ifAbsent: [ ].
 	aModuleClass initializeSlotModel.
-	self buildModule: LxxDemonstrationModule
+	self buildModule: aModuleClass
 
 ]
 

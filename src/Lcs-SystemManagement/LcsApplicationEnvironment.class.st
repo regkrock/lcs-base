@@ -46,16 +46,6 @@ LcsApplicationEnvironment class >> createCurrentSystemFor: aSystemClass [
 	
 ]
 
-{ #category : #system }
-LcsApplicationEnvironment class >> createNewPrototypeSystem [
-	| prototypeSystem |
-	System abortTransaction.
-	self ensureInitialized.
-	prototypeSystem := self createCurrentSystemFor: LxxPrototypeSystem.
-	System commitTransaction.
-	^ prototypeSystem
-]
-
 { #category : #'application environment - modify' }
 LcsApplicationEnvironment class >> createUnitOfWork [
 	^ self applicationEnvironmentDo: [ :env | env createUnitOfWork ]

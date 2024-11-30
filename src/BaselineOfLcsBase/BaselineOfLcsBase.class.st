@@ -26,6 +26,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'LcsBase'  with: [ spec requires: #('Lcs-GemStoneMocks' ) ].
 			spec package: 'Lcs-PharoExtensions' with: [ spec requires: #('LcsBase' ) ].
 			"spec package: 'Lcs-Base-Pharo'  with: [ spec requires: #('LcsBase' ) ]."
+			spec package: 'Lcs-StateMachine-Core' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-UnitOfWOrk' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('LcsBase' ) ].
 			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase' 'Lcs-UnitOfWOrk' 'Lcs-SlotDefinitions') ].
@@ -43,6 +44,8 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
 			spec package: 'Lcs-Tests' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-BaseTests' 'Lcs-Tools') ].  
 			spec package: 'Lcs-SystemTests' with: [ spec requires: #('Lcs-System' 'Lcs-Tests') ].  
+			spec package: 'Lcs-StateMachine-Tests' with: [ spec requires: #('Lcs-StateMachine-Core' 'Lcs-Tests') ].  
+			"spec package: 'Lcs-StateMachine-Tests' with: [ spec requires: #('Lcs-StateMachine-Core' 'Lcs-Tests') ]."
 			spec package: 'Lcs-WarRabbitLibraryTests' with: [ spec requires: #('Lcs-WarRabbitLibrary' 'Lcs-Tests') ].  
 
 			" Tests on experimentation systems "			
@@ -58,7 +61,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-Css' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-Tests' 'Lcs-Css') ].
 			"Web Components"
-			spec package: 'Lcs-WebComponents' with: [ spec requires: #('LcsBase') ].
-			spec package: 'Lcs-WebComponentsTests' with: [ spec requires: #('LcsBase') ]
+			spec package: 'Lcs-WebComponents' with: [ spec requires: #('Lcs-DomainBase') ].
+			spec package: 'Lcs-WebComponentsTests' with: [ spec requires: #('Lcs-WebComponents' 'Lcs-Tests') ]
 				]
 ]
