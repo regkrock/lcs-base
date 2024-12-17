@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStateMachineEventNotSupportedError,
-	#superclass : #LcsError,
+	#superclass : #Warning,
 	#instVars : [
 		'event',
 		'state'

@@ -1,13 +1,15 @@
 Class {
 	#name : #LcsStateMachine,
-	#superclass : #LcsObject,
+	#superclass : #LcsDomainObject,
 	#instVars : [
 		'currentState',
 		'stateDict',
 		'transDict',
 		'listeners',
 		'startState',
-		'context'
+		'context',
+		'owner',
+		'id'
 	],
 	#category : #'Lcs-StateMachine-Core'
 }
@@ -87,6 +89,26 @@ LcsStateMachine >> debug: anObject [
 	LcsDebugLogger default debug: anObject
 ]
 
+{ #category : #'gt views' }
+LcsStateMachine >> gtStateMachineViewFor: aView [
+	<gtView>
+	^ aView columnedTree
+		title: 'State Machine';
+		priority: 10;
+		expandUpTo: 3;
+		items: [ self stateMachineViewChildren ];
+		children: [ :viewItem | viewItem children ];
+		column: 'Option'
+			text: [ :viewItem | viewItem label ]
+			width: 200;
+		column: 'Value' text: [ :viewItem | viewItem itemDisplay displayString ] width: 300;
+		column: '' stencil: [ :viewItem | viewItem actionButton] width: 70;
+		column: '' stencil: [ :viewItem | viewItem action2Button] width: 70;
+		send: #item;
+		actionUpdateButton;
+		yourself
+]
+
 { #category : #'event handling' }
 LcsStateMachine >> handleEvent: anEventSymbolOrEvent [ 
 	^self handleEvent: anEventSymbolOrEvent ifFailed: []
@@ -109,6 +131,16 @@ LcsStateMachine >> hasTransitions [
 	^self transDict size > 0
 ]
 
+{ #category : #accessing }
+LcsStateMachine >> id [
+	^ id
+]
+
+{ #category : #accessing }
+LcsStateMachine >> id: anObject [
+	id := anObject
+]
+
 { #category : #'initialize-release' }
 LcsStateMachine >> initialize [
 	self addState: LcsStateMachineEndState new.
@@ -124,6 +156,16 @@ LcsStateMachine >> listeners [
 { #category : #accessing }
 LcsStateMachine >> listeners: anOrderedCollection [
 	listeners := anOrderedCollection
+]
+
+{ #category : #accessing }
+LcsStateMachine >> owner [
+	^ owner
+]
+
+{ #category : #accessing }
+LcsStateMachine >> owner: anObject [
+	owner := anObject
 ]
 
 { #category : #accessing }
@@ -212,6 +254,20 @@ LcsStateMachine >> stateDict [
 { #category : #accessing }
 LcsStateMachine >> stateDict: aState [
 	stateDict := aState
+]
+
+{ #category : #'gt views' }
+LcsStateMachine >> stateMachineViewChildren [
+	^ {
+		LcsStateMachineViewItem newOn: self label: 'Owner' item: self owner.
+		LcsStateMachineViewItem newOn: self label: 'Current State' item: self currentState displaySelector: #id.
+		LcsStateMachineViewItem newOn: self label: 'States' item: self states.
+		"LcsStateMachineViewItem newOn: self label: 'Units Of Work' item: self unitsOfWorkManager."}
+]
+
+{ #category : #'as yet unclassified' }
+LcsStateMachine >> states [
+	^ self stateDict values
 ]
 
 { #category : #'actions-basic' }

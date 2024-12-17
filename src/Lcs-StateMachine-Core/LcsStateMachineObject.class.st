@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStateMachineObject,
-	#superclass : #LcsObject,
+	#superclass : #LcsDomainObject,
 	#instVars : [
 		'id',
 		'stateMachine',

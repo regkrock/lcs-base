@@ -265,7 +265,7 @@ LcsApplicationEnvironment >> applicationEnvironment [
 	^ self
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironment >> applicationEnvironmentViewChildren [
 	^ {
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Status' item: self status.
@@ -298,7 +298,7 @@ LcsApplicationEnvironment >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 	<gtView>
 	^ aView columnedTree
@@ -318,7 +318,7 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironment >> gtSystemManagerFor: aView [
 	<gtView>
 	^ aView forward
@@ -329,7 +329,7 @@ LcsApplicationEnvironment >> gtSystemManagerFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironment >> gtUnitsOfWorkManagerFor: aView [
 	<gtView>
 	^ aView forward

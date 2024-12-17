@@ -158,6 +158,13 @@ LcsStateMachineState >> name [
 	^self id
 ]
 
+{ #category : #'gt views' }
+LcsStateMachineState >> stateMachineViewChildren [
+	^ {
+		LcsStateMachineViewItem newOn: self label: 'Name' item: self name.
+		LcsStateMachineViewItem newOn: self label: 'Submachine' item: self subStateMachine. }
+]
+
 { #category : #accessing }
 LcsStateMachineState >> subStateMachine [
 	^subStateMachine
@@ -206,6 +213,6 @@ LcsStateMachineState >> when: anEventOrSymbol guarded: guardCondition to: nextSt
 ]
 
 { #category : #'actions-event' }
-LcsStateMachineState >> when: anEventOrSymbol to: nextStateId [
+LcsStateMachineState >> whenEvent: anEventOrSymbol transitionToState: nextStateId [
 	self when: anEventOrSymbol doTransition: (LcsStateMachineStateTransition nextStateId: nextStateId) 
 ]

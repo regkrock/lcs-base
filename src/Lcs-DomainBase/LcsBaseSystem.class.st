@@ -64,6 +64,9 @@ LcsBaseSystem >> baseDomainModelClasses [
 		add: LcsSingletonCode;
 		add: LcsCodes;
 		add: LcsBaseConfiguration;
+		add: LcsStateMachine;
+		addAll: LcsStateMachineObject withAllSubclasses;
+		add: LcsStateMachineEvent;
 		yourself
 ]
 

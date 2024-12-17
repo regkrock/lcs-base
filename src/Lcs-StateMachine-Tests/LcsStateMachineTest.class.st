@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStateMachineTest,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsPrototypeSystemTest,
 	#instVars : [
 		'counter'
 	],
@@ -25,7 +25,7 @@ LcsStateMachineTest >> testAutoTransition [
 	self initCounter.
 	
 	stateA := (stateMachine addStateNamed: #stateA)
-		when: #toB to: #stateB.
+		whenEvent: #toB transitionToState: #stateB.
 		
 	stateB := (stateMachine addStateNamed: #stateB).
 	stateB activity: [self incrementCounter].
@@ -79,18 +79,18 @@ LcsStateMachineTest >> testDecision [
 	testNum := 0.
 	
 	stateA := (stateMachine addStateNamed: #stateA)
-		when: #toB to: #stateB.
+		whenEvent: #toB transitionToState: #stateB.
 		
 	stateB := (stateMachine addStateNamed: #stateB).
 	stateB entryAction: [steps add: #b].
 		
 	even := (stateMachine addStateNamed: #even).
 	even entryAction: [steps add: #c].
-	even when: #toA to: #stateA.
+	even whenEvent: #toA transitionToState: #stateA.
 	
 	odd := (stateMachine addStateNamed: #odd).
 	odd entryAction: [steps add: #d].
-	odd when: #toA to: #stateA.
+	odd whenEvent: #toA transitionToState: #stateA.
 	
 	stateMachine setDecisionFrom: #stateB if: [testNum even] trueTo: #even falseTo: #odd.
 	stateMachine setStartStateTo: #stateA.
@@ -123,11 +123,11 @@ LcsStateMachineTest >> testEventWithArguments [
 		entryAction:[:ctx :ev | ctx at: #stateAEntry put: ev];
 		activity:[:ctx :ev | ctx at: #stateAActivity put: ev];
 		exitAction:[:ctx :ev | ctx at: #stateAExit put: ev];
-		when: toB to: #stateB;
-		when: toC to: #stateC.
+		whenEvent: toB transitionToState: #stateB;
+		whenEvent: toC transitionToState: #stateC.
 		
 	stateB := (stateMachine addStateNamed: #stateB)
-		when: toA to: #stateA.
+		whenEvent: toA transitionToState: #stateA.
 		
 	stateC := (stateMachine addStateNamed: #stateC)
 		when: #toA do: [:ctx :ev | ctx at: #transCA put: ev] to: #stateA;
@@ -146,7 +146,7 @@ LcsStateMachineTest >> testEventWithArguments [
 	self assert:(stateMachine context includesKey: #stateAExit).
 	self assert: ((stateMachine context at: #stateAExit) arguments = #(#toBArg)).
 	
-	stateMachine handleEvent: toB.
+	self should: [ stateMachine handleEvent: toB ] raise: LcsStateMachineEventNotSupportedError.
 	self assert:(stateMachine currentState id = #stateB).
 	
 	self should: [stateMachine handleEvent: #toC] raise: LcsStateMachineEventNotSupportedError.
@@ -186,12 +186,12 @@ LcsStateMachineTest >> testGuardedTransition [
 		
 	stateB := (stateMachine addStateNamed: #stateB).
 	stateB activity: [self incrementCounter].
-	stateB when: #toC to: #stateC.
-	stateB when: #toA to: #stateA.
+	stateB whenEvent: #toC transitionToState: #stateC.
+	stateB whenEvent: #toA transitionToState: #stateA.
 		
 	stateC := (stateMachine addStateNamed: #stateC).
 	stateC exitAction: [self incrementCounter].
-	stateC when: #toB to: #stateB.
+	stateC whenEvent: #toB transitionToState: #stateB.
 	
 	stateMachine setStartStateTo: #stateA.
 	self assert:(stateMachine currentState id = #stateA).
@@ -221,11 +221,11 @@ LcsStateMachineTest >> testStateMachineContext [
 		entryAction:[:ctx | ctx at: #stateAEntry put: (self incrementCounter, 'sN')];
 		activity:[:ctx | ctx at: #stateAActivity put: (self incrementCounter, 'sV')];
 		exitAction:[:ctx | ctx at: #stateAExit put: (self incrementCounter, 'sX')];
-		when: #toB to: #stateB;
-		when: #toC to: #stateC.
+		whenEvent: #toB transitionToState: #stateB;
+		whenEvent: #toC transitionToState: #stateC.
 		
 	stateB := (stateMachine addStateNamed: #stateB)
-		when: #toA to: #stateA.
+		whenEvent: #toA transitionToState: #stateA.
 		
 	stateC := (stateMachine addStateNamed: #stateC)
 		when: #toA do: [:ctx | ctx at: #transCA put: (self incrementCounter, 'tCA')] to: #stateA;
@@ -244,7 +244,7 @@ LcsStateMachineTest >> testStateMachineContext [
 	self assert:(stateMachine context includesKey: #stateAExit).
 	self assert: ((stateMachine context at: #stateAExit) = '3sX').
 	
-	stateMachine handleEvent: #toB.
+	self should: [ stateMachine handleEvent: #toB ] raise: LcsStateMachineEventNotSupportedError.
 	self assert:(stateMachine currentState id = #stateB).
 	
 	self should: [stateMachine handleEvent: #toC] raise: LcsStateMachineEventNotSupportedError.

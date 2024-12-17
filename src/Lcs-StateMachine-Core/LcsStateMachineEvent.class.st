@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStateMachineEvent,
-	#superclass : #LcsObject,
+	#superclass : #LcsDomainObject,
 	#instVars : [
 		'handled',
 		'arguments',
