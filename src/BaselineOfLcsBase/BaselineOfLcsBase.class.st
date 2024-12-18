@@ -26,11 +26,11 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'LcsBase'  with: [ spec requires: #('Lcs-GemStoneMocks' ) ].
 			spec package: 'Lcs-PharoExtensions' with: [ spec requires: #('LcsBase' ) ].
 			"spec package: 'Lcs-Base-Pharo'  with: [ spec requires: #('LcsBase' ) ]."
-			spec package: 'Lcs-StateMachine-Core' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-UnitOfWOrk' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('LcsBase' ) ].
 			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase' 'Lcs-UnitOfWOrk' 'Lcs-SlotDefinitions') ].
 			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SystemManagement') ].
+			spec package: 'Lcs-StateMachine-Core' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
 			spec package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Geography') ].
 			spec package: 'Lcs-System' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' ) ].
