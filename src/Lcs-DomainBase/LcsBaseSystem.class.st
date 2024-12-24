@@ -12,6 +12,11 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
+{ #category : #pragma }
+LcsBaseSystem class >> baseSystemClassPragma [
+	<baseSystemClass>
+]
+
 { #category : #testing }
 LcsBaseSystem class >> isApplicationSystemClass [
 	^ true

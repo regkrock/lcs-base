@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
+{ #category : #pragma }
+LcsDomainCollection class >> baseSystemClassPragma [
+	<baseSystemClass>
+]
+
 { #category : #'slot definition' }
 LcsDomainCollection class >> collectionSlotDefinition [
 	<slotDefinition>

@@ -43,6 +43,13 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 ]
 
 { #category : #initialize }
+LxxPrototypeSystem >> addPrototypeClassesTo: classes [
+	LcsDomainObject allSubclasses
+		do: [ :each | each addPrototypeClassTo: classes ].
+	^ classes
+]
+
+{ #category : #initialize }
 LxxPrototypeSystem >> initialSystemDomainClasses [
 	^super initialSystemDomainClasses
 		add: LxxPrototypeOrganization;

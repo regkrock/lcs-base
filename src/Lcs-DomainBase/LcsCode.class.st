@@ -10,6 +10,11 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
+{ #category : #'pragma\t' }
+LcsCode class >> baseSystemClassPragma [
+	<baseSystemClass>
+]
+
 { #category : #'slot definitions' }
 LcsCode class >> codeDescriptionSlotDefinition [
 	<slotDefinition>

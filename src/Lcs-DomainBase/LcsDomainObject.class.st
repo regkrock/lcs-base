@@ -11,6 +11,11 @@ Class {
 }
 
 { #category : #'slot model' }
+LcsDomainObject class >> addPrototypeClassTo: classes [ 
+	self isPrototypeClass ifTrue: [ classes add: self ] 
+]
+
+{ #category : #'slot model' }
 LcsDomainObject class >> addSlotDefinitions [
 	self slotDefinitionPragmas
 		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
@@ -36,6 +41,11 @@ LcsDomainObject class >> assertSlotAdded: aSlotName [
 	self assert: (self canUnderstand: aSlotName asSymbol).
 	self assert: (self canUnderstand: (aSlotName , ':') asSymbol).
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
+]
+
+{ #category : #pragma }
+LcsDomainObject class >> baseSystemClassPragma [
+	<baseSystemClass>
 ]
 
 { #category : #'application environment' }
@@ -97,6 +107,11 @@ LcsDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 { #category : #testing }
 LcsDomainObject class >> isDomainClass [
 	^ true
+]
+
+{ #category : #testing }
+LcsDomainObject class >> isPrototypeClass [
+	^ self name beginsWith: 'Lxx'
 ]
 
 { #category : #testing }

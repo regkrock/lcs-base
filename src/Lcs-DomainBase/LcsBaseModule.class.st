@@ -36,6 +36,11 @@ LcsBaseModule class >> allSubmoduleClasses [
 	^ collection
 ]
 
+{ #category : #pragma }
+LcsBaseModule class >> baseSystemClassPragma [
+	<baseSystemClass>
+]
+
 { #category : #'slot definitions' }
 LcsBaseModule class >> configurationSlotDefinition [
 	<slotDefinition>

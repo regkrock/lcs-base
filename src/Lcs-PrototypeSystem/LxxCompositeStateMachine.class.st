@@ -1,19 +1,19 @@
 Class {
-	#name : #LxxTestCompositeStateMachine,
+	#name : #LxxCompositeStateMachine,
 	#superclass : #LcsStateMachine,
 	#instVars : [
 		'changes'
 	],
-	#category : #'Lcs-StateMachine-Tests'
+	#category : #'Lcs-PrototypeSystem'
 }
 
 { #category : #accessing }
-LxxTestCompositeStateMachine >> changes [
+LxxCompositeStateMachine >> changes [
 	^changes
 ]
 
 { #category : #'initialize-release' }
-LxxTestCompositeStateMachine >> initialize [
+LxxCompositeStateMachine >> initialize [
 	
 	| state2 |
 	super initialize.
@@ -23,7 +23,7 @@ LxxTestCompositeStateMachine >> initialize [
 	(self addStateNamed: #state1) when: #event12 do: [self changes add: 's1->s2'] to: #state2.
 	
 	state2 := self addStateNamed: #state2.
-	state2 subStateMachine: LxxTestSubStateMachine new.
+	state2 subStateMachine: LxxSubStateMachine new.
 	
 	state2 when: #event21 do: [self changes add: 's2->s1'] to: #state1.
 	

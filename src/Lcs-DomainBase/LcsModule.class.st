@@ -6,3 +6,8 @@ Class {
 	#superclass : #LcsBaseModule,
 	#category : #'Lcs-DomainBase'
 }
+
+{ #category : #'pragma\t' }
+LcsModule class >> baseSystemClassPragma [
+	<baseSystemClass>
+]

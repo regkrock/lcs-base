@@ -105,7 +105,7 @@ LcsStateMachineTest >> testAutoTransition [
 { #category : #testing }
 LcsStateMachineTest >> testCompositeStateMachine [
 	| stateMachine subStateMachine |
-	stateMachine := LxxTestCompositeStateMachine new.
+	stateMachine := LxxCompositeStateMachine new.
 		
 	self assert:(stateMachine currentState id = #state1).
 	stateMachine handleEvent: #event12.

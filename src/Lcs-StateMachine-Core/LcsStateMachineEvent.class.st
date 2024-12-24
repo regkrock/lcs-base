@@ -9,6 +9,11 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
+{ #category : #pragma }
+LcsStateMachineEvent class >> baseSystemClassPragma [
+	<baseSystemClass>
+]
+
 { #category : #'instance creation' }
 LcsStateMachineEvent class >> newType: aSymbol [
 	^self newType: aSymbol arguments: nil

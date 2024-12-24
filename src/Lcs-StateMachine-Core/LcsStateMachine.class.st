@@ -13,6 +13,11 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
+{ #category : #'as yet unclassified' }
+LcsStateMachine class >> baseSystemClassPragma [
+	<baseSystemClass>
+]
+
 { #category : #'slot definitions' }
 LcsStateMachine class >> stateTransitionsSlotDefinition [
 	<slotDefinition>

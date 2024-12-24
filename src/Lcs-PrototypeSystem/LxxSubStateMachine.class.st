@@ -1,19 +1,19 @@
 Class {
-	#name : #LxxTestSubStateMachine,
+	#name : #LxxSubStateMachine,
 	#superclass : #LcsStateMachine,
 	#instVars : [
 		'changes'
 	],
-	#category : #'Lcs-StateMachine-Tests'
+	#category : #'Lcs-PrototypeSystem'
 }
 
 { #category : #accessing }
-LxxTestSubStateMachine >> changes [
+LxxSubStateMachine >> changes [
 	^changes
 ]
 
 { #category : #'initialize-release' }
-LxxTestSubStateMachine >> initialize [
+LxxSubStateMachine >> initialize [
 
 	super initialize.
 	changes := OrderedCollection new.
