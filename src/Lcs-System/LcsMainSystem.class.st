@@ -17,7 +17,8 @@ LcsMainSystem class >> configurationSlotDefinition [
 LcsMainSystem >> initialSystemDomainClasses [
 	<todo: 'Refactor to make this mor efficient'>
 	^ super initialSystemDomainClasses
-		addAll: (LcsDomainObject withAllSubclasses
+		addAll: (
+			LcsDomainObject withAllSubclasses
 				reject: [ :eachDomainClass | 
 					(eachDomainClass name beginsWith: 'Lxx')
 						or: [ self requiredSystemDomainClasses includes: eachDomainClass ] ]);

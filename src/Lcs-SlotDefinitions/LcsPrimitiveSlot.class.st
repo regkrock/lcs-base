@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsPrimitiveSlot,
-	#superclass : #LcsSlotDefintion,
+	#superclass : #LcsSlotDefinition,
 	#instVars : [
 		'inputComponentClassName'
 	],

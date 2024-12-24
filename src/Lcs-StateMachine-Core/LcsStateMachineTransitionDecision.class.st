@@ -8,16 +8,6 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
-{ #category : #'instance creation' }
-LcsStateMachineTransitionDecision class >> if: aBlockOrMessageSend trueTo: trueStateId falseTo: falseStateId [
-	| inst |
-	inst := self new.
-	inst action: aBlockOrMessageSend.
-	inst trueStateId: trueStateId.
-	inst falseStateId: falseStateId.
-	^inst
-]
-
 { #category : #accessing }
 LcsStateMachineTransitionDecision >> falseStateId [
 	^ falseStateId

@@ -37,14 +37,15 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-WarRabbitLibrary' with: [ spec requires: #('Lcs-DomainBase') ].
 
 			" Systems for experimentation "
-			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-DomainBase') ].  
+			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-StateMachine-Core') ].  
 
 			" Tests on main code "			
 			spec package: 'Lcs-BaseTests' with: [ spec requires: #('LcsBase')  ].
 			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
 			spec package: 'Lcs-Tests' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-BaseTests' 'Lcs-Tools') ].  
 			spec package: 'Lcs-SystemTests' with: [ spec requires: #('Lcs-System' 'Lcs-Tests') ].  
-			spec package: 'Lcs-StateMachine-Tests' with: [ spec requires: #('Lcs-StateMachine-Core' 'Lcs-Tests') ].  
+			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemTests') ].  
+			spec package: 'Lcs-StateMachine-Tests' with: [ spec requires: #('Lcs-StateMachine-Core' 'Lcs-PrototypeSystem' 'Lcs-Tests') ].  
 			spec package: 'Lcs-WarRabbitLibraryTests' with: [ spec requires: #('Lcs-WarRabbitLibrary' 'Lcs-Tests') ].  
 
 			" Tests on experimentation systems "			

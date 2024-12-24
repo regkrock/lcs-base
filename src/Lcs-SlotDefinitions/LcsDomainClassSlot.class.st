@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsDomainClassSlot,
-	#superclass : #LcsSlotDefintion,
+	#superclass : #LcsSlotDefinition,
 	#category : #'Lcs-SlotDefinitions'
 }

@@ -22,7 +22,7 @@ LcsStateMachineObject >> = other [
 
 { #category : #'actions-event' }
 LcsStateMachineObject >> context [
-	^self stateMachine ifNotNil:[:sc | sc context]
+	^self stateMachine ifNotNil:[ self stateMachine context ]
 ]
 
 { #category : #accessing }

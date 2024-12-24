@@ -138,7 +138,7 @@ LcsSlotModel >> parent: aDomainClass [
 	self domainClass: aDomainClass
 ]
 
-{ #category : #'slot model' }
+{ #category : #slots }
 LcsSlotModel >> parentSlotDefinition [
 	^ self slotDefinitionNamed: 'parent'
 ]

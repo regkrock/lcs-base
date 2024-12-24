@@ -10,13 +10,16 @@ Class {
 }
 
 { #category : #'instance creation' }
-LcsStateMachineEvent class >> type: aSymbol [
-	^self type: aSymbol arguments: nil
+LcsStateMachineEvent class >> newType: aSymbol [
+	^self newType: aSymbol arguments: nil
 ]
 
 { #category : #'instance creation' }
-LcsStateMachineEvent class >> type: aSymbol arguments: args [
-	^self new type: aSymbol; arguments: args; yourself
+LcsStateMachineEvent class >> newType: aSymbol arguments: args [
+	^self new 
+		type: aSymbol; 
+		arguments: args; 
+		yourself
 ]
 
 { #category : #accessing }

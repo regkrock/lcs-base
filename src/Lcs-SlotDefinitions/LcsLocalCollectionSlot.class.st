@@ -1,70 +1,71 @@
-"
-This is used to define a global collection slot. All of the items stored in this collection are rooted in this collection.
-"
 Class {
-	#name : #LcsGlobalCollectionSlot,
+	#name : #LcsLocalCollectionSlot,
 	#superclass : #LcsPrimaryCollectionSlot,
+	#instVars : [
+		'collectionMemberTypes',
+		'collectionSlotClass'
+	],
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #configuration }
-LcsGlobalCollectionSlot >> addCollectionMemberType: aClass [
+LcsLocalCollectionSlot >> addCollectionMemberType: aClass [
 	(self collectionMemberTypes includes: aClass)
 		ifFalse: [ self collectionMemberTypes add: aClass ]
 ]
 
 { #category : #configuration }
-LcsGlobalCollectionSlot >> beIdentitySetCollection [
+LcsLocalCollectionSlot >> beIdentitySetCollection [
 	self collectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
 { #category : #configuration }
-LcsGlobalCollectionSlot >> beOrderedCollection [
+LcsLocalCollectionSlot >> beOrderedCollection [
 	self collectionSlotCollectionClass: OrderedCollection
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionMemberTypes [
+LcsLocalCollectionSlot >> collectionMemberTypes [
 	^ collectionMemberTypes
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionMemberTypes: anObject [
+LcsLocalCollectionSlot >> collectionMemberTypes: anObject [
 	collectionMemberTypes := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionSlotCollectionClass [
+LcsLocalCollectionSlot >> collectionSlotCollectionClass [
 	^ collectionSlotClass
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> collectionSlotCollectionClass: anObject [
+LcsLocalCollectionSlot >> collectionSlotCollectionClass: anObject [
 	collectionSlotClass := anObject
 ]
 
 { #category : #initialize }
-LcsGlobalCollectionSlot >> initialize [
+LcsLocalCollectionSlot >> initialize [
 	super initialize.
 	self collectionMemberTypes: OrderedCollection new
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlot >> isGlobalCollectionSlot [
-	^ true
-]
-
-{ #category : #accessing }
-LcsGlobalCollectionSlot >> isLocalCollectionSlot [
+LcsLocalCollectionSlot >> isGlobalCollectionSlot [
 	^ false
 ]
 
+{ #category : #accessing }
+LcsLocalCollectionSlot >> isLocalCollectionSlot [
+	^ true
+]
+
 { #category : #'slot model' }
-LcsGlobalCollectionSlot >> persistValue: anObject contextObject: aContextDomainObject [
+LcsLocalCollectionSlot >> persistValue: anObject contextObject: aContextDomainObject [
 	(self getValueIn: self slotName asString) persistValue: anObject contextObject: aContextDomainObject
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
+LcsLocalCollectionSlot >> persistValue: anObject in: aModule [
 	(self getValueIn: aModule) add: anObject
 ]

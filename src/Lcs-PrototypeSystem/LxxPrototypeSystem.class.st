@@ -49,6 +49,8 @@ LxxPrototypeSystem >> initialSystemDomainClasses [
 		add: LxxPrototypePerson;
 		add: LxxPrototypeSystemConfiguration;
 		add: LxxPrototypePersons;
+		add: #LxxTestCompositeStateMachine asClass;
+		add: #LxxTestSubStateMachine asClass;
 		yourself
 ]
 

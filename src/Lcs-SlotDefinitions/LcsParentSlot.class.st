@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsParentSlot,
-	#superclass : #LcsSlotDefintion,
+	#superclass : #LcsSlotDefinition,
 	#category : #'Lcs-SlotDefinitions'
 }
 

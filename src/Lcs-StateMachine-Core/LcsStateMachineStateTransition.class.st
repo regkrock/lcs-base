@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'nextStateId',
 		'guardCondition',
-		'action'
+		'action',
+		'eventType'
 	],
 	#category : #'Lcs-StateMachine-Core'
 }
@@ -24,6 +25,20 @@ LcsStateMachineStateTransition class >> guarded: guardCondition action: aBlockOr
 	inst guardCondition: guardCondition.
 	inst action: aBlockOrMessageSend.
 	^inst
+]
+
+{ #category : #'instance creation' }
+LcsStateMachineStateTransition class >> newId: anId with: aBlock [
+	^ self new
+		initializeId: anId with: aBlock;
+		yourself
+]
+
+{ #category : #'actions-event' }
+LcsStateMachineStateTransition class >> newWhenEvent: anEventOrSymbol transitionToStateId: nextStateId [ 
+	^ self new
+		initializeWhenEvent: anEventOrSymbol transitionToStateId: nextStateId;
+		yourself
 ]
 
 { #category : #'instance creation' }
@@ -51,13 +66,20 @@ LcsStateMachineStateTransition >> activate [
 
 { #category : #actions }
 LcsStateMachineStateTransition >> changeState [
-	self changeStateTo: self nextStateId.
+	self changeStateToStateNamed: self nextStateId.
 ]
 
 { #category : #private }
-LcsStateMachineStateTransition >> changeStateTo: aStateSymbol [
+LcsStateMachineStateTransition >> changeStateTo: aState [
 
-	self stateMachine changeStateTo: aStateSymbol on: self currentEvent
+	self stateMachine changeStateTo: aState on: self currentEvent
+	
+]
+
+{ #category : #private }
+LcsStateMachineStateTransition >> changeStateToStateNamed: aStateSymbol [
+
+	self stateMachine changeStateToStateNamed: aStateSymbol on: self currentEvent
 	
 ]
 
@@ -70,6 +92,16 @@ LcsStateMachineStateTransition >> checkGuard [
 ]
 
 { #category : #accessing }
+LcsStateMachineStateTransition >> eventType [
+	^ eventType
+]
+
+{ #category : #accessing }
+LcsStateMachineStateTransition >> eventType: anEventOrSymbol [
+	eventType := (anEventOrSymbol isString ifTrue: [anEventOrSymbol] ifFalse: [anEventOrSymbol type])
+]
+
+{ #category : #accessing }
 LcsStateMachineStateTransition >> guardCondition [
 	^ guardCondition
 ]
@@ -79,9 +111,24 @@ LcsStateMachineStateTransition >> guardCondition: anObject [
 	guardCondition := anObject
 ]
 
+{ #category : #'instance creation' }
+LcsStateMachineStateTransition >> initializeId: anId with: aBlock [
+	self 
+		id: anId;
+		with: aBlock 
+]
+
+{ #category : #'actions-event' }
+LcsStateMachineStateTransition >> initializeWhenEvent: anEventOrSymbol transitionToStateId: aNextStateId [ 
+	self	
+		nextStateId: aNextStateId;
+		eventType: anEventOrSymbol
+	
+]
+
 { #category : #accessing }
 LcsStateMachineStateTransition >> nextState [
-	^self stateMachine stateAt: self nextStateId.
+	^self stateMachine stateNamed: self nextStateId.
 	
 ]
 

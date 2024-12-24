@@ -6,5 +6,5 @@ Class {
 
 { #category : #actions }
 LcsStateMachineEndTransition >> changeState [
-	self stateMachine changeStateTo: LcsStateMachineEndState new id.
+	self stateMachine changeStateToStateNamed: LcsStateMachineEndState new id.
 ]

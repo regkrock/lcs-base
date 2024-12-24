@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsGlobalCollectionReferenceSlot,
+	#name : #LcsCollectionReferenceSlot,
 	#superclass : #LcsSlotDefinition,
 	#instVars : [
 		'collectionSlotName',
@@ -9,37 +9,37 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsGlobalCollectionReferenceSlot >> collectionSlot [
+LcsCollectionReferenceSlot >> collectionSlot [
 	^ self collectionSlotModule slotDefinitionNamed: self collectionSlotName
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionReferenceSlot >> collectionSlotModule [
+LcsCollectionReferenceSlot >> collectionSlotModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName [
+LcsCollectionReferenceSlot >> collectionSlotModuleName [
 	^ collectionSlotModuleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName: aString [
+LcsCollectionReferenceSlot >> collectionSlotModuleName: aString [
 	collectionSlotModuleName := aString
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlot >> collectionSlotName [
+LcsCollectionReferenceSlot >> collectionSlotName [
 	^ collectionSlotName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlot >> collectionSlotName: anObject [
+LcsCollectionReferenceSlot >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
 { #category : #'gt view' }
-LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
+LcsCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'collectionSlotModuleName' -> self collectionSlotModuleName;
 		add: 'collectionSlotName' -> self collectionSlotName;
@@ -47,28 +47,28 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
+LcsCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 ]
 
 { #category : #testing }
-LcsGlobalCollectionReferenceSlot >> isGlobalCollectionRefenceSlot [
+LcsCollectionReferenceSlot >> isGlobalCollectionRefenceSlot [
 	^ true
 ]
 
 { #category : #testing }
-LcsGlobalCollectionReferenceSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
+LcsCollectionReferenceSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
 	^ self isGlobalCollectionRefenceSlot and: [
 	self collectionSlotName = aSlotName ]
 ]
 
 { #category : #'slot model' }
-LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject contextObject: aContextDomainObject [
+LcsCollectionReferenceSlot >> persistValue: aDomainObject contextObject: aContextDomainObject [
 	aDomainObject instVarNamed: self slotName put: self targetCollection.
 	self collectionSlot persistValue: aDomainObject in: self collectionSlotModule
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlot >> targetCollection [
+LcsCollectionReferenceSlot >> targetCollection [
 	^self collectionSlotModule perform: self collectionSlotName asSymbol
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsTestCompositeStateMachine,
+	#name : #LxxTestCompositeStateMachine,
 	#superclass : #LcsStateMachine,
 	#instVars : [
 		'changes'
@@ -8,22 +8,24 @@ Class {
 }
 
 { #category : #accessing }
-LcsTestCompositeStateMachine >> changes [
+LxxTestCompositeStateMachine >> changes [
 	^changes
 ]
 
 { #category : #'initialize-release' }
-LcsTestCompositeStateMachine >> initialize [
+LxxTestCompositeStateMachine >> initialize [
 	
 	| state2 |
+	super initialize.
+	
 	changes := OrderedCollection new.
 	
 	(self addStateNamed: #state1) when: #event12 do: [self changes add: 's1->s2'] to: #state2.
 	
 	state2 := self addStateNamed: #state2.
-	state2 subStateMachine: LcsTestSubStateMachine new.
+	state2 subStateMachine: LxxTestSubStateMachine new.
 	
 	state2 when: #event21 do: [self changes add: 's2->s1'] to: #state1.
 	
-	self setStartStateTo: #state1
+	self setStartStateToStateNamed: #state1
 ]

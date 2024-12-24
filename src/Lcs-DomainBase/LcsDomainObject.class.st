@@ -68,6 +68,11 @@ LcsDomainObject class >> hasNoninitializedApplicationEnvironment [
 ]
 
 { #category : #'slot model' }
+LcsDomainObject class >> hasParentSlotDefinition [
+	^ self hasSlotDefinitionNamed: 'parent' 
+]
+
+{ #category : #'slot model' }
 LcsDomainObject class >> hasSlotDefinitionNamed: aString [ 
 	self slotModel ifNil: [ ^ false ].
 	^ self slotModel hasSlotDefinitionNamed: aString
@@ -115,7 +120,7 @@ LcsDomainObject class >> isSlotModelReleased [
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.
-	self currentSystem ifNotNil: [ self addToUnitOfWork: newObject ]..
+	self currentSystem ifNotNil: [ self addToUnitOfWork: newObject ].
 	newObject initialize.
 	^ newObject
 ]
@@ -302,7 +307,7 @@ LcsDomainObject >> parent [
 
 { #category : #accessing }
 LcsDomainObject >> parent: anObject [
-	self getValueOfSlotNamed: 'parent'
+	self setValueOfSlotNamed: 'parent' to: anObject
 ]
 
 { #category : #'slot model' }

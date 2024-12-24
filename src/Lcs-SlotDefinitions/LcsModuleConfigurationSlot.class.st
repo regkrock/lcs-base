@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #accessing }
+{ #category : #'instance creation' }
 LcsModuleConfigurationSlot class >> newOn: aConfigurationClass [
 	^ self new
 		initializeOn: aConfigurationClass
