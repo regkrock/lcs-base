@@ -21,7 +21,7 @@ LcsStateMachine class >> baseSystemClassPragma [
 { #category : #'slot definitions' }
 LcsStateMachine class >> stateTransitionsSlotDefinition [
 	<slotDefinition>
-	^LcsSecondaryCollectionSlot new
+	^ LcsSecondaryCollectionSlot new
 		slotName: 'stateTransitions';
 		addSlotType: LcsStateMachineTransitions; 
 		addCollectionMemberType: LcsStateMachineStateTransition;
@@ -45,7 +45,7 @@ LcsStateMachine >> addListener: aStatechart [
 
 { #category : #adding }
 LcsStateMachine >> addState: aState [
-	aState parent: self.
+	"aState parent: self."
 	^ self states add: aState
 ]
 

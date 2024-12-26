@@ -20,6 +20,11 @@ LcsDomainTest >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
+{ #category : #running }
+LcsDomainTest >> domainModelTestClasses [
+	^ OrderedCollection new
+]
+
 { #category : #accessing }
 LcsDomainTest >> savedSystem [
 	^ savedSystem
@@ -37,6 +42,7 @@ LcsDomainTest >> setUp [
 	LcsApplicationEnvironment ensureInitialized.
 	self savedSystem: LcsApplicationEnvironment suspendCurrentSystem.
 	self setupSunitSystem.
+	self currentSystem buildSlotDefinitionsFor: self domainModelTestClasses.
 	self commitTransaction
 ]
 

@@ -6,8 +6,7 @@ Class {
 	#superclass : #LcsBaseSystem,
 	#instVars : [
 		'persons',
-		'organization',
-		'countries'
+		'organization'
 	],
 	#category : #'Lcs-PrototypeSystem'
 }
@@ -56,8 +55,8 @@ LxxPrototypeSystem >> initialSystemDomainClasses [
 		add: LxxPrototypePerson;
 		add: LxxPrototypeSystemConfiguration;
 		add: LxxPrototypePersons;
-		add: #LxxTestCompositeStateMachine asClass;
-		add: #LxxTestSubStateMachine asClass;
+		add: #LxxCompositeStateMachine asClass;
+		add: #LxxSubStateMachine asClass;
 		yourself
 ]
 

@@ -72,12 +72,22 @@ LcsBaseSystem >> baseDomainModelClasses [
 		add: #LcsStateMachine asClass;
 		addAll: #LcsStateMachineObject asClass withAllSubclasses;
 		add: #LcsStateMachineEvent asClass;
+		add: #LcsStateMachineStates asClass;
+		add: #LcsStateMachineTransitions asClass;
 		yourself
 ]
 
 { #category : #'slot model' }
 LcsBaseSystem >> buildSlotDefinitions [
-	self systemDomainClasses do: [ :eachDomainClass | eachDomainClass initializeSlotModel ]
+	self buildSlotDefinitionsFor: self systemDomainClasses copy
+]
+
+{ #category : #'slot model' }
+LcsBaseSystem >> buildSlotDefinitionsFor: aCollectionOfDomainClasses [
+	aCollectionOfDomainClasses do: [ :eachDomainClass | 
+		eachDomainClass initializeSlotModel.
+		(self systemDomainClasses includes: eachDomainClass) ifFalse: [
+			self systemDomainClasses add: eachDomainClass ] ]
 ]
 
 { #category : #accessing }

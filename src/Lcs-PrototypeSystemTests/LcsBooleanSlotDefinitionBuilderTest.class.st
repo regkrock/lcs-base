@@ -15,5 +15,6 @@ LcsBooleanSlotDefinitionBuilderTest >> testInstallingBooleanInPerson [
 	self buildAndInstallNewSlot.
 	
 	person := self targetClass new perform: self slotSetterName with: self initialValue.
-	self assert: (person perform: self slotGetterName) equals: self initialValue
+	self assert: (person perform: self slotGetterName) equals: self initialValue.
+	self assert: (person hasBlueEyes) equals: self initialValue
 ]
