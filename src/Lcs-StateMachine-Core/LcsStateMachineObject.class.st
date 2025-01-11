@@ -9,9 +9,37 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
+{ #category : #'slot definition' }
+LcsStateMachineObject class >> currentEventSlotDefinition [
+	<slotDefinition>
+	^ LcsStateMachineEventSlot new
+		slotName: 'currentEvent';
+		yourself
+]
+
 { #category : #'instance creation' }
 LcsStateMachineObject class >> id: anId [
 	^self new id: anId
+]
+
+{ #category : #'slot definition' }
+LcsStateMachineObject class >> idSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'id';
+		addSlotType: String; 
+		allowNil;
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsStateMachineObject class >> stateMachineSlotDefinition [
+	<slotDefinition>
+	^ LcsAggregateSlot new
+		slotName: 'stateMachine';
+		addSlotType: LcsStateMachine; 
+		allowNil;
+		yourself
 ]
 
 { #category : #comparing }

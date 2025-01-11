@@ -64,5 +64,5 @@ LcsSlotDetailBuilder >> verifyCodeInstallation [
 ]
 
 { #category : #verification }
-LcsSlotDetailBuilder >> verifySlotModelUpdates [
+LcsSlotDetailBuilder >> verifySlotModelUpdatesMadeByBuilder [
 ]

@@ -49,6 +49,11 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 { #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
+	| targetModule targetSlotDefinition domainCollectonClass|
+	targetModule := self moduleNamed: self collectionSlotModuleName. 
+	targetSlotDefinition := (targetModule slotDefinitionNamed: self collectionSlotName).
+	domainCollectonClass := targetSlotDefinition getValueIn: targetModule.
+	aDomainObject parent: domainCollectonClass.
 ]
 
 { #category : #testing }
@@ -63,9 +68,28 @@ LcsGlobalCollectionReferenceSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
 ]
 
 { #category : #'slot model' }
+LcsGlobalCollectionReferenceSlot >> moduleNamed: aModuleName [
+	^ self currentSystem moduleNamed: aModuleName
+]
+
+{ #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject contextObject: aContextDomainObject [
 	aDomainObject instVarNamed: self slotName put: self targetCollection.
 	self collectionSlot persistValue: aDomainObject in: self collectionSlotModule
+]
+
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
+
+	aUnitOfWork addPendingAddOf: aDomainObject to: 
+	self targetCollection 
+]
+
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionReferenceSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
+
+	aUnitOfWork addPendingAddOf: aDomainObject to: 
+	self targetCollection 
 ]
 
 { #category : #accessing }

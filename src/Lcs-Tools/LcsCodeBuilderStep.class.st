@@ -60,7 +60,7 @@ LcsCodeBuilderStep >> fullyInstall [
 		installCode;
 		verifyCodeInstallation;
 		updateSlotModel;
-		verifySlotModelUpdates;
+		verifySlotModelUpdatesMadeByBuilder;
 		populateSlotModel;
 		verifyPopulateSlotModel
 ]
@@ -168,7 +168,7 @@ LcsCodeBuilderStep >> verifyPopulateSlotModel [
 ]
 
 { #category : #uninstall }
-LcsCodeBuilderStep >> verifySlotModelUpdates [
+LcsCodeBuilderStep >> verifySlotModelUpdatesMadeByBuilder [
 	self subclassResponsibility
 ]
 

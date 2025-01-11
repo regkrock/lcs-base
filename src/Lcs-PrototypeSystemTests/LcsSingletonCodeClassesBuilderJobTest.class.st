@@ -189,8 +189,6 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	
 	self should: [ LxxPrototypePerson slotDefinitionNamed: 'gender' ] raise: LcsSlotDoesNotExistInSlotModelError.
 	self assert: (LxxPrototypePerson canUnderstand: #gender).
-
-
 ]
 
 { #category : #tests }
@@ -205,7 +203,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builder verifyCodeInstallation.
 
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 ]
 
 { #category : #tests }
@@ -220,7 +218,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builder verifyCodeInstallation.
 
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 	
 	self currentSystem currentUnitOfWork applyChanges.
 

@@ -8,14 +8,16 @@ Class {
 LcsBooleanSlotTest >> domainModelTestClasses [
 	^ super domainModelTestClasses
 		add: LxxExampleDomain;
+		add: LxxExampleComponent;
 		yourself
 ]
 
 { #category : #tests }
-LcsBooleanSlotTest >> testInitializeSlot [
+LcsBooleanSlotTest >> testInitializeOfBooleanSlotInNewDomainObject [
 	| object |
 	object := LxxExampleDomain new.
+	self assert: (self currentSystem unitOfWork hasAddedRecordFor: object).
 	self assert: object boolean equals: true.
-	self assert: (self currentSystem unitOfWork halt).
-	self assert: (object instVarNamed: 'boolean') = true description: 'The primitive value has been set because the object is being added. If it was been changed it would be the prvious value'
+	self assert: (object getPersistedValueOf: 'boolean') = true.
+	"self currentSystem currentUnitOfWork halt applyChanges."
 ]

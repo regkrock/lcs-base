@@ -1,0 +1,141 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-02T18:18:36.117666-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-02T18:18:36.117666-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "vdZWHiPnDQCvuDtVDsa+vA=="
+				},
+				"code" : "test := LxxPrototypeSystemTest new.\rtest setUp."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-02T18:18:36.118322-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-02T18:18:36.118322-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "WNlWHiPnDQCvuVMxDsa+vA=="
+				},
+				"code" : "test assert: test currentSystem isNil.\rtest assert: LcsApplicationEnvironment systemManager notNil.\rtest assert: test currentUnitOfWork isNil.\rtest newSystem: LxxPrototypeSystem basicNew.\rtest assert: test newSystem class identicalTo: LxxPrototypeSystem.\rLcsApplicationEnvironment systemManager addSystem: test newSystem.\rtest assert: test currentSystem == test newSystem.\rtest assert: test currentUnitOfWork notNil.\rtest\r\tassert: test currentSystem _parent == LcsApplicationEnvironment systemManager.\rtest\r\tassert: (LcsApplicationEnvironment systemManager systems includes: test currentSystem).\rtest assert: (test currentUnitOfWork hasAddedRecordFor: test newSystem).\rtest newSystem bootstrapDomainClasses do: [ :each | each instantiateSlotModel ].\rtest newSystem bootstrapDomainClasses\r\tdo: [ :each | each verifySlotModelConsistency ].\rtest newSystem bootstrapDomainClasses\r\tdo: [ :each | each installSlotDefinitions ].\rtest newSystem initializeModel.\rtest bootstrapDomainClasses\r\tdo: [ :each | test newSystem addToSlotModel: each slotModel ].\rtest assert: test newSystem modules size equals: 2.\rtest assert: test newSystem systemSlotModel size equals: 19"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-02T18:18:36.118408-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-02T18:18:36.118408-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "jNlWHiPnDQCvus/mDsa+vA=="
+				},
+				"code" : "test tearDown"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-01-02T18:18:36.117655-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-01-02T18:18:36.117655-05:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "unnamedPage",
+		"defaultTitle" : "LxxPrototypeSystemTest>>testCreationBasicNew playground"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "86d4561e-23e7-0d00-afb7-63f40ec6bebc"
+	}
+}

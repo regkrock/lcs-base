@@ -21,10 +21,10 @@ LcsScaledDecimalSlotDefinitionBuilderTest >> testInstallingHeightSlotInPerson [
 { #category : #accessing }
 LcsScaledDecimalSlotDefinitionBuilderTest >> testInstallingWeightSlotInPerson [
 	| person |
-	self slotName: 'wegith'.
+	self slotName: 'weigth'.
 	self initialValue: 180.0s2.
 	self targetClass: LxxPrototypePerson.
-	self slotBuilderClass: LcsIntegerSlotDefinitionBuilder.
+	self slotBuilderClass: LcsScaledDecimalSlotDefinitionBuilder.
 	
 	self buildAndInstallNewSlot.
 	

@@ -17,6 +17,12 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
+{ #category : #'slot model' }
+LcsSlotDefinition >> _setValueTo: anObject in: aDomainObject [ 
+	self verifyType: anObject.
+	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+]
+
 { #category : #configuration }
 LcsSlotDefinition >> addSlotType: aClass [
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
@@ -27,6 +33,12 @@ LcsSlotDefinition >> addValidateConfigurationResultTo: aValidator [
 	(self domainClass allInstVarNames includes: self slotName)
 		ifFalse: [ aValidator
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefinition >> allowNil [
+	self addSlotType: UndefinedObject.
+	self initialValue: nil
 ]
 
 { #category : #configuration }
@@ -73,14 +85,20 @@ LcsSlotDefinition >> domainClassName [
 ]
 
 { #category : #'slot model' }
+LcsSlotDefinition >> getPersistedValueIn: aDomainObject [
+
+	^ aDomainObject instVarNamed: self slotName asString
+]
+
+{ #category : #'slot model' }
 LcsSlotDefinition >> getValueIn: aDomainObject [
 
 	^ (self currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
-		ifNil: [ aDomainObject instVarNamed: self slotName asString ]
+		ifNil: [ self getPersistedValueIn: aDomainObject]
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'slot model' }
 LcsSlotDefinition >> getterSelector [
 	| substring1 substring2 |
 	substring1 := (self slotName at: 1) asLowercase asString.
@@ -92,6 +110,8 @@ LcsSlotDefinition >> getterSelector [
 { #category : #'gt view' }
 LcsSlotDefinition >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
+		add: 'slotDefinition' -> self;
+		add: 'slotDefinitionClass' -> self class;
 		add: 'domainClass' -> self domainClassName;
 		add: 'slotName' -> self slotName;
 		add: 'slotTypes' -> self slotTypeClassNames;
@@ -113,6 +133,35 @@ LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 			text: [ :each | each value displayString ];
 		send: #value;
 		yourself
+]
+
+{ #category : #'gt view' }
+LcsSlotDefinition >> gtSlotTypesViewFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Slot Types';
+		priority: 10;
+		items: [ self slotTypes];
+		column: 'Index' 
+			text: [ :eachItem :eachIndex | 
+				eachIndex asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Item' do: [ :aColumn | 
+			aColumn
+				cellStencil: [ :eachItem | GtPhlowLabelWithIcon new ];
+				dataBinder: [ :aCellElement :eachItem | | icon class label |
+					class := eachItem isClass 
+								ifTrue: [ eachItem ] 
+								ifFalse: [ eachItem class ].
+					icon := aCellElement gtSafeIconNamed: class gtSystemIconName.
+					label := eachItem isClass 
+								ifTrue: [eachItem name asString ] 
+								ifFalse: [ eachItem gtDisplayText ].
+					aCellElement 
+						initializeWithIcon: icon
+						label: label ] ];
+		yourself
+
 ]
 
 { #category : #'gt view' }
@@ -172,6 +221,12 @@ LcsSlotDefinition >> initializeSlotValueIn: aDomainObject [
 ]
 
 { #category : #accessing }
+LcsSlotDefinition >> initializeUnintializedSlotValueIn: aDomainObject [
+	(self getValueIn: aDomainObject) ifNotNil: [ ^ self ].
+	self initializeSlotValueIn: aDomainObject
+]
+
+{ #category : #accessing }
 LcsSlotDefinition >> isGlobalCollectionRefenceSlot [
 	^ false
 ]
@@ -211,7 +266,7 @@ LcsSlotDefinition >> isRequired [
 	^ self required == true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'slot model' }
 LcsSlotDefinition >> label [
 	^self labelForSelector: self slotName
 ]
@@ -226,6 +281,15 @@ LcsSlotDefinition >> parent: anObject [
 	parent := anObject
 ]
 
+{ #category : #printing }
+LcsSlotDefinition >> printOn: aStream [
+	super printOn: aStream.
+	aStream 
+		nextPutAll: ' (';
+		nextPutAll: self slotName displayString; 
+		nextPutAll: ')'
+]
+
 { #category : #accessing }
 LcsSlotDefinition >> required [
 	^ required
@@ -237,11 +301,28 @@ LcsSlotDefinition >> required: anObject [
 ]
 
 { #category : #'slot model' }
-LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
-	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+LcsSlotDefinition >> setPersistedValueTo: anObject in: aDomainObject [
+	self verifyType: anObject.
+	aDomainObject instVarNamed: self slotName asString put: anObject
+
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
+LcsSlotDefinition >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
+	"collection slots need to implement logic here"
+]
+
+{ #category : #private }
+LcsSlotDefinition >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
+	"collection slots need to implement logic here"
+]
+
+{ #category : #'slot model' }
+LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
+	self _setValueTo: anObject  in: aDomainObject
+]
+
+{ #category : #'slot model' }
 LcsSlotDefinition >> setterSelector [
 	^ (self getterSelector , ':') asSymbol
 		
@@ -273,7 +354,10 @@ LcsSlotDefinition >> slotTypeClassNames [
 	| stream |
 	stream := WriteStream on: String new.
 	self slotTypes do: [ :eachClass |
-		stream nextPutAll: eachClass name displayString] separatedBy: [ stream nextPutAll: ', '].
+		stream nextPutAll: (
+			eachClass isClass 
+				ifTrue: [ eachClass name displayString ] 
+				ifFalse: [ eachClass printString ])  ] separatedBy: [ stream nextPutAll: ', '].
 	^stream contents
 ]
 
@@ -295,4 +379,13 @@ LcsSlotDefinition >> validator [
 { #category : #accessing }
 LcsSlotDefinition >> validator: anObject [
 	validator := anObject
+]
+
+{ #category : #'slot model' }
+LcsSlotDefinition >> verifyType: anObject [
+	self slotTypes
+		detect: [ :eachClass | anObject isKindOf: eachClass ]
+		ifNone: [ 
+			self currentUnitOfWork removeAddOf: anObject.
+			LcsInvalidSlotType newInvalidParentTypeObject: anObject forSlot: self ]
 ]

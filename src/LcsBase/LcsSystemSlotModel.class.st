@@ -1,8 +1,7 @@
 Class {
 	#name : #LcsSystemSlotModel,
-	#superclass : #LcsObject,
+	#superclass : #LcsDomainObject,
 	#instVars : [
-		'parent',
 		'slotModels'
 	],
 	#category : #LcsBase
@@ -12,6 +11,14 @@ Class {
 LcsSystemSlotModel class >> newOn: aSystem [ 
 	^ self new
 		parent: aSystem;
+		yourself
+]
+
+{ #category : #'slot model' }
+LcsSystemSlotModel class >> slotModelsSlotDefinition [
+	<slotDefinition>
+	^ LcsIdentityDictionarySlot new
+		slotName: 'slotModels';
 		yourself
 ]
 
@@ -48,8 +55,13 @@ LcsSystemSlotModel >> gtViewSlotModelChildren [
 ]
 
 { #category : #testing }
-LcsSystemSlotModel >> hasSlotModelFor: aClass [
-	self slotModels at: aClass ifAbsent: [ ^ false ].
+LcsSystemSlotModel >> hasSlotModelFor: aDomainObject [
+	^ self hasSlotModelForClass: aDomainObject class
+]
+
+{ #category : #testing }
+LcsSystemSlotModel >> hasSlotModelForClass: aDomainClass [
+	self slotModels at: aDomainClass ifAbsent: [ ^ false ].
 	^ true
 ]
 
@@ -58,20 +70,15 @@ LcsSystemSlotModel >> hasSlotModels [
 	^ self slotModels notEmpty
 ]
 
+{ #category : #testing }
+LcsSystemSlotModel >> includes: anObject [
+	^ self slotModels includes: anObject
+]
+
 { #category : #initialize }
 LcsSystemSlotModel >> initialize [
 	super initialize.
 	self slotModels: LcsSmalltalkConfiguration identityDictionaryClass new
-]
-
-{ #category : #accessing }
-LcsSystemSlotModel >> parent [
-	^ parent
-]
-
-{ #category : #accessing }
-LcsSystemSlotModel >> parent: aSystem [ 
-	parent := aSystem
 ]
 
 { #category : #'slot model' }
@@ -89,6 +96,11 @@ LcsSystemSlotModel >> restoreSlotModel [
 	#LcsDomainObject asClass releaseApplicationEnvironment.
 	self slotModels keysAndValuesDo: [ :eachDomainClass :eachSlotModel | eachDomainClass slotModel: eachSlotModel ]
 
+]
+
+{ #category : #collection }
+LcsSystemSlotModel >> size [
+	^ self slotModels size
 ]
 
 { #category : #accessing }

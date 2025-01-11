@@ -6,5 +6,5 @@ Class {
 
 { #category : #setUp }
 LcsPrototypeSystemTest >> setupSunitSystem [
-	'LxxPrototypeSystem' asClass new
+	^ #LxxPrototypeSystem asClass new
 ]

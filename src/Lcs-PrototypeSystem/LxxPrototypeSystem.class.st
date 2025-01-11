@@ -49,6 +49,18 @@ LxxPrototypeSystem >> addPrototypeClassesTo: classes [
 ]
 
 { #category : #initialize }
+LxxPrototypeSystem >> bootstrapDomainClasses [
+	^super bootstrapDomainClasses
+		"add: LxxPrototypeSystem;"
+		add: LxxPrototypeOrganization;
+		add: LxxPrototypePerson;
+		add: LxxPrototypePersons;
+		add: LxxPrototypeSystemConfiguration;
+		addAll: LxxPrototypeSystem submoduleClasses;
+		yourself
+]
+
+{ #category : #initialize }
 LxxPrototypeSystem >> initialSystemDomainClasses [
 	^super initialSystemDomainClasses
 		add: LxxPrototypeOrganization;
@@ -60,9 +72,26 @@ LxxPrototypeSystem >> initialSystemDomainClasses [
 		yourself
 ]
 
+{ #category : #testing }
+LxxPrototypeSystem >> isInActiveStatus [
+	self isSlotModelDefined ifFalse: [ ^ false ].
+	^ self status isInActiveStatus
+]
+
+{ #category : #testing }
+LxxPrototypeSystem >> isInSuspendedStatus [
+	self isSlotModelDefined ifFalse: [ ^ true ].
+	^ self status isInSuspendedStatus
+]
+
 { #category : #'as yet unclassified' }
 LxxPrototypeSystem >> isPrototypeSystem [
 	^ true
+]
+
+{ #category : #testing }
+LxxPrototypeSystem >> isSlotModelDefined [
+	^ self class isSlotModelDefined
 ]
 
 { #category : #accessing }

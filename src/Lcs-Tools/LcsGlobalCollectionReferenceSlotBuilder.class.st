@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'collectionSlotName',
-		'collectionSlotModuleName'
+		'collectionSlotModuleName',
+		'collectionClassName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -15,11 +16,28 @@ LcsGlobalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
 
 { #category : #'code generation' }
 LcsGlobalCollectionReferenceSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+	self collectionClassName isNil ifTrue: [ self error: 'Missing collection class name'].
 	aCodeStream 
 		addSetter: 'collectionSlotName' contents: self collectionSlotName printString;
-		addSetter: 'collectionSlotModuleName' contents: self collectionSlotModuleName printString.
+		addSetter: 'collectionSlotModuleName' contents: self collectionSlotModuleName printString;
+		addSetter: 'addSlotType' contents: self collectionClassName
 	
 
+]
+
+{ #category : #'code generation' }
+LcsGlobalCollectionReferenceSlotBuilder >> collectionClass [
+	^self collectionClassName asClass
+]
+
+{ #category : #accessing }
+LcsGlobalCollectionReferenceSlotBuilder >> collectionClassName [
+	^ collectionClassName
+]
+
+{ #category : #accessing }
+LcsGlobalCollectionReferenceSlotBuilder >> collectionClassName: anObject [
+	collectionClassName := anObject
 ]
 
 { #category : #accessing }

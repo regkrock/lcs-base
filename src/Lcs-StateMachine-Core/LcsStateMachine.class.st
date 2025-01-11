@@ -13,9 +13,50 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
-{ #category : #'as yet unclassified' }
-LcsStateMachine class >> baseSystemClassPragma [
-	<baseSystemClass>
+{ #category : #'slot definitions' }
+LcsStateMachine class >> contextSlotDefinition [
+	<slotDefinition>
+	^ LcsAggregateSlot new
+		slotName: 'context';
+		addSlotType: Object;
+		allowNil;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsStateMachine class >> currentStateSlotDefinition [
+	<slotDefinition>
+	^ LcsStateMachineStateSlot new
+		slotName: 'currentState';
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsStateMachine class >> idSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'id';
+		addSlotType: String; 
+		allowNil;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsStateMachine class >> listenersSlotDefinition [
+	<slotDefinition>
+	^ LcsOrderedCollectionSlot new
+		slotName: 'listeners';
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsStateMachine class >> startStateSlotDefinition [
+	<slotDefinition>
+	^ LcsAggregateSlot new
+		slotName: 'startState';
+		addSlotType: LcsStateMachineState;
+		allowNil;
+		yourself
 ]
 
 { #category : #'slot definitions' }

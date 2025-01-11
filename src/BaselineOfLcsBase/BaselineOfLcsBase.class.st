@@ -52,7 +52,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-Tests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
 
 			" Tools "
-			spec package: 'Lcs-Tools' with: [ spec requires: #('LcsBase' 'Lcs-SlotDefinitions') ].
+			spec package: 'Lcs-Tools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
 			
 			" Examples "
 			spec package: 'Lcs-Examples' with: [ spec requires: #('LcsBase') ].
@@ -62,6 +62,6 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-Tests' 'Lcs-Css') ].
 			"Web Components"
 			spec package: 'Lcs-WebComponents' with: [ spec requires: #('Lcs-DomainBase') ].
-			spec package: 'Lcs-WebComponentsTests' with: [ spec requires: #('Lcs-WebComponents' 'Lcs-Tests') ]
+			spec package: 'Lcs-WebComponentsTests' with: [ spec requires: #('Lcs-WebComponents' 'Lcs-Tests' 'Lcs-PrototypeSystem') ]
 				]
 ]

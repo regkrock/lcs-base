@@ -32,7 +32,7 @@ LcsPrimitiveSlotDefinitionBuilderTest >> buildAndInstallNewSlot [
 	self targetClass verifyClassHasDomainSlotNamed: self slotName.
 
 	builder updateSlotModel.
-	builder verifySlotModelUpdates
+	builder verifySlotModelUpdatesMadeByBuilder
 ]
 
 { #category : #tests }

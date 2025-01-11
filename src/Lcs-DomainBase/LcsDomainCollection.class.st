@@ -7,11 +7,6 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #pragma }
-LcsDomainCollection class >> baseSystemClassPragma [
-	<baseSystemClass>
-]
-
 { #category : #'slot definition' }
 LcsDomainCollection class >> collectionSlotDefinition [
 	<slotDefinition>
@@ -36,11 +31,6 @@ LcsDomainCollection >> collection [
 { #category : #accessing }
 LcsDomainCollection >> collection: aCollection [
 	self setValueOfSlotNamed: 'collection' to: aCollection
-]
-
-{ #category : #configuration }
-LcsDomainCollection >> collectionClass [
-	^ self class collectionClass
 ]
 
 { #category : #queries }
@@ -103,6 +93,21 @@ LcsDomainCollection >> initialize [
 { #category : #collection }
 LcsDomainCollection >> inject: anObject into: aBlock [
 	^ self collection inject: anObject into: aBlock
+]
+
+{ #category : #testing }
+LcsDomainCollection >> isEmpty [
+	^ self collection isEmpty
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainCollection >> pendingAdds [
+	^ self currentUnitOfWork pendingAddsIn: self
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainCollection >> pendingDeletes [
+	^ self currentUnitOfWork pendingDeletesFromCollection: self
 ]
 
 { #category : #collection }

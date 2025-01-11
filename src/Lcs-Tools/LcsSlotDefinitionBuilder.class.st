@@ -220,8 +220,8 @@ LcsSlotDefinitionBuilder >> verifyCodeInstallation [
 ]
 
 { #category : #install }
-LcsSlotDefinitionBuilder >> verifySlotModelUpdates [
-	self jobSteps verifySlotModelUpdates
+LcsSlotDefinitionBuilder >> verifySlotModelUpdatesMadeByBuilder [
+	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
 
 { #category : #'gt view' }

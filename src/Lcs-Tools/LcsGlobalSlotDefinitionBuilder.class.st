@@ -4,10 +4,10 @@ Class {
 	#instVars : [
 		'slotClass',
 		'collectionElementTypes',
-		'collectionSlotCollectionClass',
 		'targetModule',
 		'slotClassName',
-		'targetModuleName'
+		'targetModuleName',
+		'collectionClass'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -26,12 +26,25 @@ LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
 { #category : #'code generation' }
 LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	aCodeStream 
-		addSetter: 'addSlotType' contents: self slotClassName;
-		addSetter: 'collectionSlotCollectionClass' contents: self collectionSlotCollectionClass name.
+		addSetter: 'addSlotType' contents: self slotClassName.
+	self collectionClass notNil ifTrue: [
+		aCodeStream
+			addSetter: 'collectionClass' contents: self collectionClass name].
 	self collectionElementTypes do: [ :eachClass |
-		aCodeStream addSetter: 'addCollectionMemberType' contents: eachClass name].
-	aCodeStream addCommand: 'beIdentitySetCollection'
+		aCodeStream addSetter: 'addCollectionMemberType' contents: (eachClass isString ifTrue: [ eachClass asClass ] ifFalse: [ eachClass ] ) name].
+	self collectionClass isNil ifTrue: [
+		aCodeStream addCommand: 'beIdentitySetCollection']
 
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> collectionClass [
+	^ collectionClass
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> collectionClass: anObject [
+	collectionClass := anObject
 ]
 
 { #category : #accessing }
@@ -44,21 +57,11 @@ LcsGlobalSlotDefinitionBuilder >> collectionElementTypes: anObject [
 	collectionElementTypes := anObject
 ]
 
-{ #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> collectionSlotCollectionClass [
-	^ collectionSlotCollectionClass
-]
-
-{ #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> collectionSlotCollectionClass: anObject [
-	collectionSlotCollectionClass := anObject
-]
-
 { #category : #initialize }
 LcsGlobalSlotDefinitionBuilder >> initialize [
 	super initialize.
 	self collectionElementTypes:	OrderedCollection new.
-	self collectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass
+	self collectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
 { #category : #accessing }

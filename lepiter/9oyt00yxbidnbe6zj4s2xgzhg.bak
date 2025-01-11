@@ -364,6 +364,40 @@
 								"uidString" : "++IO4a3jDQCKViEaAxlSQw=="
 							},
 							"code" : "LxxPrototype2Module allSubmoduleClasses"
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-20T11:04:33.983906-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-11-20T11:04:43.676086-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "rUDuCrzjDQCEjBSdAuq82g=="
+							},
+							"code" : "LxxPrototype2Module localSubmoduleClasses"
 						}
 					]
 				},

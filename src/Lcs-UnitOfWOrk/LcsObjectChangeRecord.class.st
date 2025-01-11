@@ -27,6 +27,7 @@ LcsObjectChangeRecord >> domainObject [
 
 { #category : #accessing }
 LcsObjectChangeRecord >> domainObject: anObject [
+	anObject isDomainObject ifFalse: [ self error: 'Not a domain object'].
 	domainObject := anObject
 ]
 

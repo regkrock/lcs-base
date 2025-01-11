@@ -24,6 +24,16 @@ LcsSystemManager class >> newOn: anAppicaltionEnvironment [
 ]
 
 { #category : #accessing }
+LcsSystemManager >> addSystem: aBasicSystem [
+	self suspendCurrentSystem.
+	self currentSystem: aBasicSystem.
+	self currentSystem systemManager: self.
+	self systems add: self currentSystem.
+	self unitsOfWorkManager createUnitOfWorkForCurrentSystem. 
+	"self currentUnitOfWork addObject: aBasicSystem"
+]
+
+{ #category : #accessing }
 LcsSystemManager >> applicationEnvironment [
 	^self parent applicationEnvironment
 ]
@@ -43,11 +53,8 @@ LcsSystemManager >> applicationEnvironmentViewaAvailableSystemsChildren [
 ]
 
 { #category : #accessing }
-LcsSystemManager >> createCurrentSystemFor: aSystemClass [.
-	self suspendCurrentSystem.
-	self currentSystem: aSystemClass basicNew.
-	self currentSystem initializeInNewUnitOfWork: self.
-	self systems add: self currentSystem.
+LcsSystemManager >> createCurrentSystemFor: aSystemClass [
+	self initializeBasicSystem: aSystemClass basicNew.
 	^ self currentSystem
 ]
 
@@ -118,6 +125,18 @@ LcsSystemManager >> initialize [
 	self systems: (LcsSystems newOn: self)
 ]
 
+{ #category : #accessing }
+LcsSystemManager >> initializeBasicSystem: aBasicSystem [
+	self suspendCurrentSystem.
+	self currentSystem: aBasicSystem.
+	self currentSystem systemManager: self.
+	self systems add: self currentSystem.
+	self unitsOfWorkManager createUnitOfWorkForCurrentSystem. 
+	self currentUnitOfWork addObject: aBasicSystem.
+	
+	"self currentSystem initializeInNewUnitOfWork: self."
+]
+
 { #category : #initialize }
 LcsSystemManager >> initializeOn: anAppicaltionEnvironment [ 
 	self parent: anAppicaltionEnvironment 
@@ -125,10 +144,12 @@ LcsSystemManager >> initializeOn: anAppicaltionEnvironment [
 
 { #category : #api }
 LcsSystemManager >> makeSystemCurrent: aSystem [
-	self currentSystem: aSystem.
+	"self currentSystem: aSystem.
 	self currentSystem 
 		ifNil: [  self releaseSlotModel ]
-		ifNotNil: [ self currentSystem restoreSystem ]
+		ifNotNil: [ self currentSystem restoreSystem ]"
+	aSystem isNil ifTrue: [ ^ self ].
+	aSystem restoreSystem
 ]
 
 { #category : #querry }
@@ -182,11 +203,11 @@ LcsSystemManager >> restoreUnitOfWorkFor: suspendedSystem [
 
 { #category : #api }
 LcsSystemManager >> suspendCurrentSystem [
-	| suspendedSystem |
-	suspendedSystem := self currentSystem.
-	suspendedSystem ifNotNil: [ suspendedSystem suspendSystem ].
+	| suspensionCandidate |
+	suspensionCandidate := self currentSystem.
+	suspensionCandidate ifNotNil: [ suspensionCandidate suspendSystem ].
 	self currentSystem: nil.
-	^ suspendedSystem
+	^ suspensionCandidate
 ]
 
 { #category : #api }

@@ -8,7 +8,7 @@ Class {
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> jobBuilder [
 	^ LcsStandardCodeWithUnknownClassClassesBuilderJob new
 		classPrefix: 'Lxx';
-		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Title';
 		createCodeInstances: #( #('Mr') #('Ms'));
 		targetModuleClass: LxxPrototypeSystem;
@@ -41,7 +41,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	builder := self jobBuilder.
 
 	self assert: builder classPrefix equals: 'Lxx'.
-	self assert: builder targetPackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: builder targetPackageName equals: 'Lcs-Temp'.
 	self assert: builder completedRefactorings isEmpty.
 	self assert: builder classRootName equals: 'Title'.
 	self assert: builder jobSteps hasNoJobSteps.
@@ -121,7 +121,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	builder verifyCodeInstallation.
 
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 
 
 ]
@@ -135,7 +135,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	builder verifyCodeInstallation.
 
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 	
 	self currentSystem currentUnitOfWork applyChanges.
 	

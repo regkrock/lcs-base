@@ -8,7 +8,7 @@ Class {
 LcsStandardCodeClassesBuilderJobTest >> jobBuilder [
 	^ LcsStandardCodeClassesBuilderJob new
 		classPrefix: 'Lxx';
-		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Talent';
 		createCodeInstances: #(#('Guitar') #('Saxaphone'));
 		targetModuleClass: LxxPrototypeSystem;
@@ -41,7 +41,7 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	builder := self jobBuilder.
 
 	self assert: builder classPrefix equals: 'Lxx'.
-	self assert: builder targetPackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: builder targetPackageName equals: 'Lcs-Temp'.
 	self assert: builder completedRefactorings isEmpty.
 	self assert: builder classRootName equals: 'Talent'.
 	self assert: builder jobSteps hasNoJobSteps.
@@ -113,7 +113,7 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	builder verifyCodeInstallation.
 
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 
 ]
 
@@ -126,7 +126,7 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	builder verifyCodeInstallation.
 
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 
 	self currentSystem currentUnitOfWork applyChanges.
 

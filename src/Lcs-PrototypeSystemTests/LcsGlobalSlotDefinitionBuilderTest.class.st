@@ -9,7 +9,7 @@ LcsGlobalSlotDefinitionBuilderTest >> createLxxUserClass [
 	self
 		createClassName: 'LxxUser'
 		superclassName: 'LcsDomainCollection'
-		category: #'Lcs-BarebonesSystem'
+		category: #'Lcs-Temp'
 ]
 
 { #category : #running }
@@ -17,14 +17,14 @@ LcsGlobalSlotDefinitionBuilderTest >> createLxxUsersClass [
 	self
 		createClassName: 'LxxUsers'
 		superclassName: 'LcsDomainCollection'
-		category: #'Lcs-BarebonesSystem'
+		category: #'Lcs-Temp'
 ]
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilderTest >> gendersBuilder [
 	^ LcsSingletonCodeClassesBuilderJob new
 		classPrefix: 'Lxx';
-		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Gender';
 		addCodeSubclassWithRootNamed: 'Male';
 		addCodeSubclassWithRootNamed: 'Female';
@@ -150,7 +150,7 @@ LcsGlobalSlotDefinitionBuilderTest >> usersGlobalCollectionBuilder [
 		slotName: 'users';
 		targetModuleName: LxxPrototypeSystem moduleName;
 		slotClass: 'LxxUsers' asClass;
-		collectionSlotCollectionClass: LcsSmalltalkConfiguration identitySetClass;
+		collectionClass: LcsSmalltalkConfiguration identitySetClass;
 		collectionElementTypes: {'LxxUser' asClass};
 		yourself
 ]

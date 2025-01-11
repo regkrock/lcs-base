@@ -87,7 +87,7 @@ LcsDomainClassClassesBuilderJob >> execute [
 	self installCode.
 	self verifyCodeInstallation.
 	self updateSlotModel.
-	self verifySlotModelUpdates.
+	self verifySlotModelUpdatesMadeByBuilder.
 	self currentUnitOfWork applyChanges.
 	self populateSlotModel.
 	"self verifyPopulateSlotModel".
@@ -100,6 +100,7 @@ LcsDomainClassClassesBuilderJob >> globalCollectionReferenceSlotBuilder [
 		targetClassName: self domainClassName;
 		collectionSlotName: self globalCollectionSlotName;
 		collectionSlotModuleName: self targetModuleName;
+		collectionClassName: self globalCollectionClassName; 
 		yourself
 ]
 
@@ -109,6 +110,7 @@ LcsDomainClassClassesBuilderJob >> globalCollectionSlotBuilder [
 		slotClassName: self globalCollectionClassName;
 		slotName: self globalCollectionSlotName;
 		targetModuleClass: self targetModuleClass;
+		collectionElementTypes: { self domainClassName};
 		yourself
 ]
 
@@ -182,6 +184,6 @@ LcsDomainClassClassesBuilderJob >> updateSlotModel [
 ]
 
 { #category : #verification }
-LcsDomainClassClassesBuilderJob >> verifySlotModelUpdates [
-	self jobSteps verifySlotModelUpdates
+LcsDomainClassClassesBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
+	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]

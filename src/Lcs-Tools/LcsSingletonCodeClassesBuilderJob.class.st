@@ -66,7 +66,7 @@ LcsSingletonCodeClassesBuilderJob >> execute [
 	self installCode.
 	self verifyCodeInstallation.
 	self updateSlotModel.
-	self verifySlotModelUpdates.
+	self verifySlotModelUpdatesMadeByBuilder.
 	self currentUnitOfWork applyChanges.
 	self populateSlotModel.
 	self verifyPopulateSlotModel.

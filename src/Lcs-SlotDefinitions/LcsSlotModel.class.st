@@ -25,7 +25,7 @@ LcsSlotModel class >> newOn: aDomainClass [
 LcsSlotModel >> addSlotDefinition: aSlotDefinition [
 
 	aSlotDefinition parent: self.
-	self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
+	^ self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
 ]
 
 { #category : #model }
@@ -60,13 +60,27 @@ LcsSlotModel >> domainClass: anObject [
 	domainClass := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotModel >> getPersistedValueOf: aString in: anObject [
+	^ (self slotDefinitionNamed: aString) getPersistedValueIn: anObject
+]
+
 { #category : #query }
 LcsSlotModel >> globalCollectionSlots [
 	^ self slotDefinitions values select: [ :each | each isGlobalCollectionSlot ]
 ]
 
 { #category : #'gt view' }
-LcsSlotModel >> gtViewDomainSlotDefinitionsFor: aView [
+LcsSlotModel >> gtViewSlotModelChildren [
+	| children |
+	children := OrderedCollection new.
+	self slotDefinitions keysAndValuesDo: [ :key :value |
+		children add: (LcsSlotModelViewItem newLabel: key item: value)].
+	^ children
+]
+
+{ #category : #'gt view' }
+LcsSlotModel >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
 ^ aView columnedList
@@ -84,15 +98,6 @@ LcsSlotModel >> gtViewDomainSlotDefinitionsFor: aView [
 		actionUpdateButton;
 		yourself
 
-]
-
-{ #category : #'gt view' }
-LcsSlotModel >> gtViewSlotModelChildren [
-	| children |
-	children := OrderedCollection new.
-	self slotDefinitions keysAndValuesDo: [ :key :value |
-		children add: (LcsSlotModelViewItem newLabel: key item: value)].
-	^ children
 ]
 
 { #category : #slots }
@@ -126,6 +131,11 @@ LcsSlotModel >> initializeSlotNamed: aSlotName in: aDomainObject [
 { #category : #model }
 LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
 	self allSlotDefinitions do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
+]
+
+{ #category : #model }
+LcsSlotModel >> initializeUnintializedSlotValuesIn: aDomainObject [
+	self allSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ]
 ]
 
 { #category : #accessing }

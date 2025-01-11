@@ -45,6 +45,11 @@ LcsUnitsOfWorkManager >> createUnitOfWorkFor: aSystem [
 	^ self currentUnitOfWork
 ]
 
+{ #category : #api }
+LcsUnitsOfWorkManager >> createUnitOfWorkForCurrentSystem [
+	^ self createUnitOfWorkFor: self currentSystem
+]
+
 { #category : #accessing }
 LcsUnitsOfWorkManager >> currentUnitOfWork [
 	^ currentUnitOfWork

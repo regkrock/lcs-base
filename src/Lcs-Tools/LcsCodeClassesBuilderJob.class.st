@@ -101,6 +101,6 @@ LcsCodeClassesBuilderJob >> verifyPopulateSlotModel [
 ]
 
 { #category : #'slot model' }
-LcsCodeClassesBuilderJob >> verifySlotModelUpdates [
-	self jobSteps verifySlotModelUpdates
+LcsCodeClassesBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
+	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]

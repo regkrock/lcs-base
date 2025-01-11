@@ -4,11 +4,6 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #'pragama\t' }
-LcsSingletonCode class >> baseSystemClassPragma [
-	<baseSystemClass>
-]
-
 { #category : #'slot definitions' }
 LcsSingletonCode class >> codeDescriptionSlotDefinition [
 	<slotDefinition>

@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsBlockSlotDefinition,
-	#superclass : #LcsSlotDefinition,
+	#superclass : #LcsPrimitiveSlot,
 	#category : #'Lcs-SlotDefinitions'
 }
 
@@ -17,7 +17,6 @@ LcsBlockSlotDefinition >> initialValueFor: aDomainObject [
 ]
 
 { #category : #initialize }
-LcsBlockSlotDefinition >> initialize [
-	super initialize.
-	self addSlotType: BlockClosure.
+LcsBlockSlotDefinition >> typeClass [
+	^ BlockClosure.
 ]

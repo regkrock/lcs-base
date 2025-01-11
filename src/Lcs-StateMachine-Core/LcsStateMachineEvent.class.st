@@ -9,27 +9,43 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
-{ #category : #pragma }
-LcsStateMachineEvent class >> baseSystemClassPragma [
-	<baseSystemClass>
+{ #category : #'slot definition\t' }
+LcsStateMachineEvent class >> argumentsSlotDefinition [
+	<slotDefinition>
+	^ LcsOrderedCollectionSlot new
+		slotName: 'arguments';
+		yourself
+]
+
+{ #category : #'slot definition\t' }
+LcsStateMachineEvent class >> handledSlotDefinition [
+	<slotDefinition>
+	^ LcsBooleanSlot new
+		slotName: 'handled';
+		initialValue: false;
+		yourself
 ]
 
 { #category : #'instance creation' }
 LcsStateMachineEvent class >> newType: aSymbol [
-	^self newType: aSymbol arguments: nil
+	^self newType: aSymbol arguments: #()
 ]
 
 { #category : #'instance creation' }
 LcsStateMachineEvent class >> newType: aSymbol arguments: args [
 	^self new 
-		type: aSymbol; 
-		arguments: args; 
+		initializeType: aSymbol arguments: args
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definition\t' }
+LcsStateMachineEvent class >> typeSlotDefinition [
+	<slotDefinition>
+	^ LcsStateMachineEventTypeSlot new
+]
+
+{ #category : #initialize }
 LcsStateMachineEvent >> arguments [
-	arguments isNil ifTrue:[arguments := Array new].
 	^arguments
 ]
 
@@ -40,13 +56,18 @@ LcsStateMachineEvent >> arguments: anArray [
 
 { #category : #accessing }
 LcsStateMachineEvent >> handled [
-	handled isNil ifTrue:[handled := false].
-	^handled
+	handled
 ]
 
 { #category : #accessing }
 LcsStateMachineEvent >> handled: aBoolean [
 	handled := aBoolean
+]
+
+{ #category : #initialize }
+LcsStateMachineEvent >> initializeType: aSymbol arguments: args [
+	self type: aSymbol.
+	self arguments addAll: args
 ]
 
 { #category : #printing }

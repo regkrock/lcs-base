@@ -34,7 +34,7 @@ LcsCodeSuperClassBuilderTest >> createPopulatedBuilder [
 LcsCodeSuperClassBuilderTest >> createUpdateSlotModelBuilder [
 	self createInstalledBuilder.
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 ]
 
 { #category : #private }
@@ -96,5 +96,5 @@ LcsCodeSuperClassBuilderTest >> testUninstallClass [
 LcsCodeSuperClassBuilderTest >> testUpdateSlotModelForClass [
 	self createInstalledBuilder.
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 ]

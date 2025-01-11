@@ -8,7 +8,15 @@ Class {
 LcsUnitOfWork >> applyChanges [
 	self addedObjects valuesDo: [ :each | each applyChanges ].
 	self changedObjects do: [ :each | each applyChanges ].
+	self changedCollections keysAndValuesDo: [ :eachCollection :values | self applyChanges: values to: eachCollection ].
 	self clearUnitOfWork
+]
+
+{ #category : #api }
+LcsUnitOfWork >> applyChanges: aDictionary to: eachCollection [ 
+		(aDictionary at: 'add') do: [ :eachItem | eachCollection add: eachItem ].
+		(aDictionary at: 'delete') do: [ :eachItem | eachCollection delete: eachItem ]
+
 ]
 
 { #category : #api }
@@ -16,6 +24,11 @@ LcsUnitOfWork >> changedSlotRecordFor: aDomainObject slotNamed: aSlotName [
 	^ (self changedRecordFor: aDomainObject)
 		ifNil: [ nil ]
 		ifNotNil: [ :changedObjectRecord | changedObjectRecord changedSlotRecordFor: aSlotName ]
+]
+
+{ #category : #testing }
+LcsUnitOfWork >> hasAddedRecordFor: aDomainObject [
+	^ (self addedObjects at: aDomainObject ifAbsent: [ nil ]) notNil
 ]
 
 { #category : #testing }
@@ -32,7 +45,12 @@ LcsUnitOfWork >> hasNoChanges [
 	^ self addedObjects isEmpty
 ]
 
-{ #category : #query }
+{ #category : #testing }
+LcsUnitOfWork >> hasRemovalRecordFor: aDomainObject [
+	^ (self deletedObjects at: aDomainObject ifAbsent: [ nil ]) notNil
+]
+
+{ #category : #testing }
 LcsUnitOfWork >> pendingAddsFor: anItem [
 	^ self addedObjects
 		select: [ :eachAddRecord | 
@@ -40,8 +58,15 @@ LcsUnitOfWork >> pendingAddsFor: anItem [
 ]
 
 { #category : #query }
-LcsUnitOfWork >> pendingRmovalsFor: anItem [
+LcsUnitOfWork >> pendingDeletesFor: anItem [
 	^ self deletedObjects
 		select: [ :eachDeletedRecord | 
 			eachDeletedRecord isMemberOfGlobalCollectionIn: anItem label ]
+]
+
+{ #category : #api }
+LcsUnitOfWork >> removeAddOf: anObject [
+	(self hasAddedRecordFor: anObject) ifFalse: [ ^ self ].
+	anObject instVarNamed: 'parent' put: nil.
+	self addedObjects removeKey: anObject ifAbsent: [ nil ]
 ]

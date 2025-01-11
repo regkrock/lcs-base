@@ -8,7 +8,7 @@ Class {
 LcsDomainClassClassesBuilderJobTest >> jobBuilder [
 	^ LcsDomainClassClassesBuilderJob new
 		classPrefix: 'Lxx';
-		installNewClassesInPackageNamed: 'Lcs-BarebonesSystem';
+		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Country';
 		createInstances: #( #('CA' 'Canada') #('US' 'United States Of America'));
 		targetModuleClass: LxxPrototypeSystem;
@@ -41,7 +41,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase1_Bui
 	builder := self jobBuilder.
 
 	self assert: builder classPrefix equals: 'Lxx'.
-	self assert: builder targetPackageName equals: 'Lcs-BarebonesSystem'.
+	self assert: builder targetPackageName equals: 'Lcs-Temp'.
 	self assert: builder completedRefactorings isEmpty.
 	self assert: builder classRootName equals: 'Country'.
 	self assert: builder jobSteps hasNoJobSteps.
@@ -121,7 +121,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase4_Upd
 	builder installCode.
 	builder verifyCodeInstallation.
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 
 
 ]
@@ -134,7 +134,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase5_Pop
 	builder installCode.
 	builder verifyCodeInstallation.
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 	
 	self currentSystem currentUnitOfWork applyChanges.
 	

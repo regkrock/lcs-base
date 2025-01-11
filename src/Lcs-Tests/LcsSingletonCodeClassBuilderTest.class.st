@@ -47,7 +47,7 @@ LcsSingletonCodeClassBuilderTest >> createPopulatedBuilder [
 LcsSingletonCodeClassBuilderTest >> createUpdateSlotModelBuilder [
 	self createInstalledBuilder.
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 ]
 
 { #category : #private }
@@ -112,5 +112,5 @@ LcsSingletonCodeClassBuilderTest >> testUninstallClass [
 LcsSingletonCodeClassBuilderTest >> testUpdateSlotModelForClass [
 	self createInstalledBuilder.
 	builder updateSlotModel.
-	builder verifySlotModelUpdates.
+	builder verifySlotModelUpdatesMadeByBuilder.
 ]

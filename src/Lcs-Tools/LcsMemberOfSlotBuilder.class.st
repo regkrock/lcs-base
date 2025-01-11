@@ -21,7 +21,8 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 		codeStream addSetter: 'addSlotType' contents: eachSlotTypeClass name].
 	codeStream
 		addSetter: 'collectionSlotName' contents: self collectionSlotName printString;
-		addSetter: 'collectionModuleName' contents: self targetModuleName printString
+		addSetter: 'collectionModuleName' contents: self targetModuleName printString;
+		addSetter: 'addSlotType' contents: self parent parent domainClassName
 .
 	
 ]

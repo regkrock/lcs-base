@@ -189,6 +189,6 @@ LcsCodeBuilderJobSteps >> verifyCodeInstallation [
 ]
 
 { #category : #accessing }
-LcsCodeBuilderJobSteps >> verifySlotModelUpdates [
-	self collection do: [ :each | each verifySlotModelUpdates ]
+LcsCodeBuilderJobSteps >> verifySlotModelUpdatesMadeByBuilder [
+	self collection do: [ :each | each verifySlotModelUpdatesMadeByBuilder ]
 ]

@@ -18,6 +18,32 @@ LcsStateMachineStateTransition class >> action: aBlockOrMessageSend to: nextStat
 	^inst
 ]
 
+{ #category : #'slot definition' }
+LcsStateMachineStateTransition class >> actionSlotDefinition [
+	<slotDefinition>
+	^ LcsBlockSlotDefinition new
+		slotName: 'action';
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsStateMachineStateTransition class >> eventTypeSlotDefinition [
+	<slotDefinition>
+	^ LcsSymbolSlot new
+		slotName: 'eventType';
+		inputConversionBlock: [ :domainObject :anEventOrSymbol  :slot | 
+			domainObject asEventType: anEventOrSymbol];
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsStateMachineStateTransition class >> guardConditionSlotDefinition [
+	<slotDefinition>
+	^ LcsBlockSlotDefinition new
+		slotName: 'guardCondition';
+		yourself
+]
+
 { #category : #'instance creation' }
 LcsStateMachineStateTransition class >> guarded: guardCondition action: aBlockOrMessageSend to: nextStateId [
 	| inst |
@@ -46,6 +72,14 @@ LcsStateMachineStateTransition class >> nextStateId: aStateSymbol [
 	^self new nextStateId: aStateSymbol
 ]
 
+{ #category : #'slot definition' }
+LcsStateMachineStateTransition class >> nextStateIdSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'nextStateId';
+		yourself
+]
+
 { #category : #accessing }
 LcsStateMachineStateTransition >> action [
 	^ action
@@ -62,6 +96,13 @@ LcsStateMachineStateTransition >> activate [
 	self changeState.
 	
 	
+]
+
+{ #category : #accessing }
+LcsStateMachineStateTransition >> asEventType: anEventOrSymbol [
+	^ anEventOrSymbol isString
+		ifTrue: [ anEventOrSymbol ]
+		ifFalse: [ anEventOrSymbol type ]
 ]
 
 { #category : #actions }
@@ -98,7 +139,7 @@ LcsStateMachineStateTransition >> eventType [
 
 { #category : #accessing }
 LcsStateMachineStateTransition >> eventType: anEventOrSymbol [
-	eventType := (anEventOrSymbol isString ifTrue: [anEventOrSymbol] ifFalse: [anEventOrSymbol type])
+	eventType := self asEventType: anEventOrSymbol
 ]
 
 { #category : #accessing }

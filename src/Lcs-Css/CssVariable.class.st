@@ -67,7 +67,7 @@ CssVariable >> declarations: anObject [
 ]
 
 { #category : #'gt - views' }
-CssVariable >> gtViewDomainSlotDefinitionsFor: aView [
+CssVariable >> gtViewSlotModelFor: aView [
 	<gtView>
 ^ aView columnedList
 		title: 'CSS Variable';

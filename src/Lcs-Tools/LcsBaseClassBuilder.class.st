@@ -183,9 +183,9 @@ LcsBaseClassBuilder >> verifyCodeInstallation [
 ]
 
 { #category : #install }
-LcsBaseClassBuilder >> verifySlotModelUpdates [
+LcsBaseClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	self assert: self installedClass slotModel  notNil.
-	self assert: (self currentSystem systemSlotModel hasSlotModelFor: self installedClass)
+	self assert: (self currentSystem systemSlotModel hasSlotModelForClass: self installedClass)
 ]
 
 { #category : #'gt view' }

@@ -87,6 +87,16 @@ LcsStateMachineState class >> statesTransitionsSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LcsStateMachineState class >> subStateMachineSlotDefinition [
+	<slotDefinition>
+	^LcsCompositeSlot new
+		slotName: 'subStateMachine';
+		addSlotType: LcsStateMachine; 
+		allowNil;
+		yourself
+]
+
 { #category : #private }
 LcsStateMachineState >> activateTransitionAt: aStateTransition for: anEvent [
 

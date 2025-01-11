@@ -1,12 +1,16 @@
 Class {
 	#name : #LcsModules,
-	#superclass : #LcsCollection,
-	#category : #'Lcs-SystemManagement'
+	#superclass : #LcsDomainCollection,
+	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #configuration }
-LcsModules class >> collectionClass [
-	^ LcsSmalltalkConfiguration stringDictionaryClass
+{ #category : #'slot definition' }
+LcsModules class >> collectionSlotDefinition [
+	<slotDefinition>
+	^ LcsDirectAssignmentSlot new
+		slotName: 'collection';
+		addSlotType: LcsSmalltalkConfiguration stringDictionaryClass;
+		yourself
 ]
 
 { #category : #'application environment' }
@@ -22,6 +26,18 @@ LcsModules >> buildModuleFor: eachModuleClass [
 	module parent: self.
 	self collection at: module moduleName put: module.
 	module buildModules
+]
+
+{ #category : #accessing }
+LcsModules >> collection [
+	"Bypass unit of work - this is a setup situation"
+	^ collection
+]
+
+{ #category : #accessing }
+LcsModules >> collection: aCollection [
+	"Bypass unit of work - this is a setup situation"
+	collection := aCollection
 ]
 
 { #category : #modules }
@@ -55,6 +71,7 @@ LcsModules >> gtApplicationModulesFor: aView [
 
 { #category : #build }
 LcsModules >> initializeModel [
+	super initializeSlotValues.
 	self collection valuesDo: [ :eachModule | eachModule initializeModel ]
 ]
 

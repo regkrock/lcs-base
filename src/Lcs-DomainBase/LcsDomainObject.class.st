@@ -11,14 +11,20 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsDomainObject class >> addPrototypeClassTo: classes [ 
-	self isPrototypeClass ifTrue: [ classes add: self ] 
+LcsDomainObject class >> _installSlotDefinition: aSlotDefinitionSelector [
+	^ self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
+]
+
+{ #category : #initialize }
+LcsDomainObject class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [ 
+	prebootstrapClasses addFirst: self.
+	((self superclass inheritsFrom: LcsDomainObject) or: [ self superclass == LcsDomainObject ])
+		ifTrue: [ self superclass addMyDomainClassHeirarchyTo: prebootstrapClasses ]
 ]
 
 { #category : #'slot model' }
-LcsDomainObject class >> addSlotDefinitions [
-	self slotDefinitionPragmas
-		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
+LcsDomainObject class >> addPrototypeClassTo: classes [ 
+	self isPrototypeClass ifTrue: [ classes add: self ] 
 ]
 
 { #category : #'unit of work' }
@@ -43,31 +49,53 @@ LcsDomainObject class >> assertSlotAdded: aSlotName [
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
 ]
 
-{ #category : #pragma }
-LcsDomainObject class >> baseSystemClassPragma [
-	<baseSystemClass>
-]
-
 { #category : #'application environment' }
 LcsDomainObject class >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
+{ #category : #'slot definitions' }
+LcsDomainObject class >> getPersistedValueOf: aString in: anObject [ 
+	^ self slotModel getPersistedValueOf: aString in: anObject 
+]
+
 { #category : #'gt view' }
-LcsDomainObject class >> gtViewDomainSlotDefinitionsFor: aView [
+LcsDomainObject class >> gtViewSlotDefinitionFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView columnedList
+		title: 'Slot Definitions';
+		priority: 3;
+		items: [ self slotDefinitionPragmasAndInstVarNames ];
+		column: 'Slot' text: [ :each | each value slotName ] width: 100;
+		column: 'InstVar' text: [ :each | each key ] width: 100;
+		column: 'Getter' text: [ :each | each value getterSelector ] width: 100;
+		column: 'Setter' text: [ :each | each value setterSelector ] width: 100;
+		"column: '' stencil: [ :each | BrButton new
+										aptitude: BrGlamorousButtonWithLabelAptitude new;
+										label: 'Remove';
+										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; "
+		actionUpdateButton;
+		send: #value;
+		yourself
+		
+]
+
+{ #category : #'gt view' }
+LcsDomainObject class >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
 	self slotModel ifNil: [ 
 		^ aView list
-			title: 'Domian Slot Definitions';
-			priority: 10;
+			title: 'Slot Model';
+			priority: 2;
 			items: [ Array with: 'Not initialized' ];
 			yourself].	
 	^ aView forward
-		title: 'Domain Slot Definitions';
-		priority: 10;
+		title: 'Slot Model';
+		priority: 2;
 		object: [ self slotModel ];
-		view: #gtViewDomainSlotDefinitionsFor:;
+		view: #gtViewSlotModelFor:;
 		yourself
 		
 ]
@@ -94,14 +122,36 @@ LcsDomainObject class >> initializeApplicationEnvironment [
 
 { #category : #'slot model' }
 LcsDomainObject class >> initializeSlotModel [
-	self slotModel: (LcsSlotModel newOn: self).
-	self currentSystem addToSlotModel: self slotModel.
-	self addSlotDefinitions
+	self instantiateSlotModel.
+	self installSlotModel
 ]
 
 { #category : #'slot model' }
 LcsDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
-	^ self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
+	self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> installSlotDefinitions [
+	self slotDefinitionPragmas
+		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> installSlotModel [
+	self installSlotModelIn: self currentSystem
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> installSlotModelIn: aSystem [
+	aSystem addToSlotModel: self slotModel.
+	self installSlotDefinitions
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> instantiateSlotModel [
+	self verifySuperclassHasSlotModel.
+	self slotModel: (LcsSlotModel newOn: self)
 ]
 
 { #category : #testing }
@@ -125,9 +175,15 @@ LcsDomainObject class >> isSlotModelDefined [
 ]
 
 { #category : #testing }
+LcsDomainObject class >> isSlotModelPopulated [
+	^ self slotModel isNil 
+		ifTrue: [ ^ false ]
+		ifFalse: [ self subclasses allSatisfy: [ :each | each isSlotModelPopulated ] ]
+]
+
+{ #category : #testing }
 LcsDomainObject class >> isSlotModelReleased [
-	self slotModel notNil ifTrue: [ ^ false ].
-	self subclasses do: [ :each | each isSlotModelReleased ].
+	self withAllSubclassesDo: [ :eachClass | eachClass slotModel notNil ifTrue: [ ^ false ] ].
 	^ true
 ]
 
@@ -141,9 +197,19 @@ LcsDomainObject class >> new [
 ]
 
 { #category : #'slot definition' }
+LcsDomainObject class >> parentSlot [
+	^ self slotModel slotDefinitionNamed: 'parent'
+]
+
+{ #category : #'slot definition' }
 LcsDomainObject class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsParentSlot new
+]
+
+{ #category : #'slot definition' }
+LcsDomainObject class >> parentSlotSlotDefinition [
+	^ self slotModel slotDefinitionNamed: 'parent'
 ]
 
 { #category : #'application environment' }
@@ -206,6 +272,26 @@ LcsDomainObject class >> slotDefinitionPragmas [
 	^ Pragma allNamed: 'slotDefinition' in: self class
 ]
 
+{ #category : #'slot model' }
+LcsDomainObject class >> slotDefinitionPragmasAndInstVarNames [
+	" self slotDefinitionPragmasAndInstVarNames "
+	| instVarNamesAndSlotDefinitions slotDefinition slotDefinitions |
+	slotDefinitions := (self slotDefinitionPragmas collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection.
+	instVarNamesAndSlotDefinitions := OrderedCollection new.
+	self instVarNames do: [:eachName |
+		slotDefinition := slotDefinitions
+			detect: [ :eachSlotDefinition | eachSlotDefinition slotName = eachName ]
+			ifNone: [ LcsSlotDefinition new slotName: 'missing' ].
+		instVarNamesAndSlotDefinitions add: (Association key: eachName value: slotDefinition).
+		slotDefinitions remove: slotDefinition ifAbsent: []].
+	slotDefinitions do: [ :eachSlotDefinition |
+		instVarNamesAndSlotDefinitions add: (
+			(self classThatDefinesInstVarNamed: eachSlotDefinition slotName)
+				ifNil: [ Association key: 'missing' value: eachSlotDefinition ]
+				ifNotNil: [ :class | Association key: eachSlotDefinition slotName , '(' , class name asString , ')' value: eachSlotDefinition ]) ] .
+	^ instVarNamesAndSlotDefinitions
+]
+
 { #category : #accessing }
 LcsDomainObject class >> slotModel [
 	^ slotModel
@@ -218,7 +304,7 @@ LcsDomainObject class >> slotModel: aSlotModel [
 
 { #category : #'slot model' }
 LcsDomainObject class >> verifyClassHasDomainSlotNamed: aSlotName [
-	self assert: (self instVarNames includes: aSlotName).
+	self assert: (self allInstVarNames includes: aSlotName).
 	self assert: (self canUnderstand: aSlotName asSymbol).
 	self assert: (self canUnderstand: (aSlotName , ':') asSymbol).
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
@@ -232,15 +318,59 @@ LcsDomainObject class >> verifyClassHasNoDomainSlotNamed: aSlotName [
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not
 ]
 
+{ #category : #'slot model' }
+LcsDomainObject class >> verifyClassHasSlotDefinitionsForInstVars [
+	self verifyNoSlotDefinitionInstanceVariableMismatch.
+	self slotDefinitionPragmas do: [ :eachPragma |
+		self verifyClassHasDomainSlotNamed: (self perform: eachPragma method selector) slotName]
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
+	| localInstVarNames slotDefinitions |
+	localInstVarNames := self instVarNames asOrderedCollection.
+	slotDefinitions := (self slotDefinitionPragmas collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection.
+	slotDefinitions copy do: [ :eachSlotDefintion |
+		(localInstVarNames includes: eachSlotDefintion slotName) 
+			ifTrue: [
+				slotDefinitions remove: eachSlotDefintion ifAbsent: [].
+				localInstVarNames remove: eachSlotDefintion slotName]
+			ifFalse: [
+				(self classThatDefinesInstVarNamed: eachSlotDefintion slotName) notNil ifTrue: [
+					slotDefinitions remove: eachSlotDefintion ifAbsent: [] ] ] ].
+	self assert: localInstVarNames isEmpty description: self class name , ' has instance variable(s) which have not slot definition'.
+	self assert: slotDefinitions isEmpty description: self class name , ' has slot definition(s) without a corresponding instance variable name(s)'
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> verifySlotModelConsistency [
+	 self verifyClassHasSlotDefinitionsForInstVars .
+	self assert: self isSlotModelDefined.
+	self assert: self slotModel parent == self.
+
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> verifySuperclassHasSlotModel [
+	self == LcsDomainObject ifTrue: [ ^ self ].
+	self superclass isSlotModelDefined
+		ifFalse: [ LcsSlotModelNotInitializedError new
+						messageText: 'Slot Model not initialized for ' , self superclass name;
+						signal ]
+]
+
 { #category : #validation }
 LcsDomainObject >> addValidateConfigurationResultTo: aValidator [
-	self isIncludedInSystemDomainClasses
+	"self isIncludedInSystemDomainClasses
 		ifTrue: [self slotModel class name = #LcsSlotModel
-					ifFalse: [ aValidator addIssueMessage: 'Slot Model not defined for ' , self className ]]
+					ifFalse: [ aValidator addIssueMessage: 'Slot Model not defined for ' , self className ]]"
+	self slotModel isNil 
+		ifTrue: [
+			 aValidator addIssueMessage: 'Slot Model is not defined' ]
 		ifFalse: [
-			self slotModel notNil
-				ifTrue: [ aValidator addIssueMessage: 'Slot Model is defined but not in the system model collection  ' ]].
-	aValidator validate: self slotModel
+			(self currentSystem systemSlotModel includes: self)
+				ifFalse: [ aValidator addIssueMessage: 'Slot Model is defined but not in the systemSlotModel' ].
+		aValidator validate: self slotModel]
 ]
 
 { #category : #'application environment' }
@@ -260,15 +390,27 @@ LcsDomainObject >> delete [
 ]
 
 { #category : #'slot definitions' }
+LcsDomainObject >> getPersistedValueOf: aString [
+	^ self class getPersistedValueOf: aString in: self
+]
+
+{ #category : #'slot definitions' }
 LcsDomainObject >> getValueOfSlotNamed: aSlotName [
 	^ (self slotDefinitionNamed: aSlotName) getValueIn: self
 ]
 
 { #category : #'gt view' }
-LcsDomainObject >> gtViewDomainSlotDefinitionsFor: aView [
+LcsDomainObject >> gtViewSlotDefinitionFor: aView [
 	<gtView>
 	<gtClassView>
-	^ self class gtViewDomainSlotDefinitionsFor: aView
+	^ self class gtViewSlotDefinitionFor: aView
+]
+
+{ #category : #'gt view' }
+LcsDomainObject >> gtViewSlotModelFor: aView [
+	<gtView>
+	<gtClassView>
+	^ self class gtViewSlotModelFor: aView
 ]
 
 { #category : #iniitialize }
@@ -280,7 +422,6 @@ LcsDomainObject >> initialize [
 { #category : #iniitialize }
 LcsDomainObject >> initializeModel [
 	self initializeSlotValues
-
 ]
 
 { #category : #'slot model' }
@@ -290,8 +431,14 @@ LcsDomainObject >> initializeSlotNamed: aSlotName [
 
 { #category : #iniitialize }
 LcsDomainObject >> initializeSlotValues [
+	self verifySlotModelInitialized.
+	self slotModel initializeSlotValuesIn: self
+]
+
+{ #category : #iniitialize }
+LcsDomainObject >> initializeUninitializedSlotValues [
 	self slotModel ifNil: [ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self className asString ) ].
-	self slotModel initializeSlotValuesIn: self.
+	self slotModel initializeUnintializedSlotValuesIn: self.
 
 ]
 
@@ -325,6 +472,16 @@ LcsDomainObject >> parent: anObject [
 	self setValueOfSlotNamed: 'parent' to: anObject
 ]
 
+{ #category : #accessing }
+LcsDomainObject >> parentPersistedValue [
+	^ self getPersistedValueOf: 'parent'
+]
+
+{ #category : #accessing }
+LcsDomainObject >> parentSlot [
+	^ self class parentSlot
+]
+
 { #category : #'slot model' }
 LcsDomainObject >> parentSlotDefinition [
 	^ self slotModel parentSlotDefinition
@@ -343,4 +500,15 @@ LcsDomainObject >> slotDefinitionNamed: aString [
 { #category : #'slot definitions' }
 LcsDomainObject >> slotModel [
 	^ self class slotModel
+]
+
+{ #category : #iniitialize }
+LcsDomainObject >> slotModelNotInitializedError [
+	^ LcsSlotModelNotInitializedError
+		signal: 'Slot Model not initialized for ' , self className asString
+]
+
+{ #category : #iniitialize }
+LcsDomainObject >> verifySlotModelInitialized [
+	self slotModel ifNil: [ self slotModelNotInitializedError ]
 ]

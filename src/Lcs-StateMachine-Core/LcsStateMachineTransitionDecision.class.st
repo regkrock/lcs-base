@@ -8,6 +8,24 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
+{ #category : #'slot definition' }
+LcsStateMachineTransitionDecision class >> falseStateIdSlotDefinition [
+	<slotDefinition>
+	^ LcsStateMachineEventTypeSlot new
+		slotName: 'falseStateId';
+		beRequired;
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsStateMachineTransitionDecision class >> trueStateIdSlotDefinition [
+	<slotDefinition>
+	^ LcsStateMachineEventTypeSlot new
+		slotName: 'trueStateId';
+		beRequired;
+		yourself
+]
+
 { #category : #accessing }
 LcsStateMachineTransitionDecision >> falseStateId [
 	^ falseStateId

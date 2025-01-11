@@ -28,6 +28,7 @@ LxxPrototypePerson class >> parentSlotDefinition [
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		collectionSlotModuleName: LxxPrototypeSystem moduleName;
+		addSlotType: LxxPrototypePersons;
 		collectionSlotName: 'persons';
 		yourself
 ]

@@ -15,7 +15,7 @@ Class {
 { #category : #modules }
 LcsBaseModule class >> addSubmoduleClassesFor: aModuleClass to: aCollection [
 	| submduleClasses |
-	submduleClasses := self submoduleClassesFor: aModuleClass.
+	submduleClasses := self submoduleClasses.
 	aCollection addAll: submduleClasses.
 	submduleClasses do: [ :each | self addSubmoduleClassesFor: each to: aCollection ]
 	
@@ -24,44 +24,46 @@ LcsBaseModule class >> addSubmoduleClassesFor: aModuleClass to: aCollection [
 { #category : #modules }
 LcsBaseModule class >> addSubmoduleClassesTo: moduleClasses [ 
 	moduleClasses add: self.
-	self allSubmoduleClasses do: [ :each |
+	self submoduleClasses do: [ :each |
 		each addSubmoduleClassesTo: moduleClasses ]
 ]
 
 { #category : #modules }
 LcsBaseModule class >> allSubmoduleClasses [
 	| collection |
+	self error: 'This is recursive and needs to be fixewd'.
 	collection := OrderedCollection new.
 	self addSubmoduleClassesFor: self to: collection.
 	^ collection
 ]
 
-{ #category : #pragma }
-LcsBaseModule class >> baseSystemClassPragma [
-	<baseSystemClass>
-]
-
-{ #category : #'slot definitions' }
+{ #category : #'slot definition' }
 LcsBaseModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
 ]
 
-{ #category : #modules }
-LcsBaseModule class >> hasOwningModulePragmaFor: aPragma [
-	(aPragma selector = 'owningModule:') ifFalse: [ ^ false ].
-	^ (aPragma arguments at: 1) = self name asString 
+{ #category : #'slot definition' }
+LcsBaseModule class >> domainCollectionsSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotName: 'domainCollections';
+		addSlotType: LcsGlobalCollections;
+		addCollectionMemberType: LcsDomainCollection;
+		yourself
 ]
 
 { #category : #modules }
 LcsBaseModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
 	(aPragma selector = 'owningModule:') ifFalse: [ ^ false ].
-	^ (aPragma arguments at: 1) = aModuleClass asString 
+	^ (aPragma arguments at: 1) = aModuleClass name asString 
 ]
 
-{ #category : #modules }
-LcsBaseModule class >> localSubmoduleClasses [
-	^self submoduleClassesFor: self
+{ #category : #testing }
+LcsBaseModule class >> isSubmoduleOf: aModuleClass [
+	self class pragmas do:  [ :eachPragma | 
+		(self hasOwningModulePragmaFor: eachPragma ownedBy: aModuleClass) ifTrue: [ ^true ] ].
+	^ false
 ]
 
 { #category : #asking }
@@ -76,14 +78,22 @@ LcsBaseModule class >> moduleName [
 	^ self name
 ]
 
+{ #category : #'slot definition' }
+LcsBaseModule class >> modulesSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotName: 'modules';
+		addSlotType: LcsModules;
+		addCollectionMemberType: LcsModule;
+		yourself
+]
+
 { #category : #modules }
-LcsBaseModule class >> submoduleClassesFor: aModuleClass [
+LcsBaseModule class >> submoduleClasses [
 	| submoduleClasses |
 	submoduleClasses := OrderedCollection new.
-	LcsBaseModule withAllSubclassesDo: [ :eachClass | 
-		eachClass class pragmas
-			do: [ :eachPragma | (self hasOwningModulePragmaFor: eachPragma ownedBy: aModuleClass) 
-				ifTrue: [ submoduleClasses add: eachClass ] ] ].
+	LcsBaseModule allSubclassesDo: [ :eachClass | 
+		(eachClass isSubmoduleOf: self) ifTrue: [ submoduleClasses add: eachClass ] ].
 	^ submoduleClasses
 ]
 
@@ -94,12 +104,14 @@ LcsBaseModule >> allSubmoduleClasses [
 
 { #category : #building }
 LcsBaseModule >> buildModule: eachModuleClass [ 
+	eachModuleClass isSlotModelDefined ifFalse: [
+		eachModuleClass initializeSlotModel.].
 	self modules buildModuleFor: eachModuleClass
 ]
 
 { #category : #building }
 LcsBaseModule >> buildModules [
-	self allSubmoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
+	self submoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
 ]
 
 { #category : #accessing }
@@ -195,41 +207,15 @@ LcsBaseModule >> hasNoModules [
 ]
 
 { #category : #initialize }
-LcsBaseModule >> initialize [
-	self initializeSystem.	
-	super initialize
-]
-
-{ #category : #initialize }
-LcsBaseModule >> initializeDomainCollections [
-	self domainCollections: (LcsDomainCollections new
-				parent: self;
-				yourself)
-]
-
-{ #category : #initialize }
 LcsBaseModule >> initializeModel [
 	super initializeModel.
 	self modules initializeModel
 ]
 
-{ #category : #initialize }
-LcsBaseModule >> initializeModules [
-	self modules:(LcsModules new
-						parent: self;
-						yourself)
-]
-
-{ #category : #initialize }
-LcsBaseModule >> initializeSystem [
-	self initializeModules.
-	self initializeDomainCollections
-]
-
 { #category : #modules }
 LcsBaseModule >> installModule: aModuleClass [
 
-	self currentSystem systemDomainClasses remove: aModuleClass ifAbsent: [ ].
+	self currentSystem globalCollections remove: aModuleClass ifAbsent: [ ].
 	aModuleClass initializeSlotModel.
 	self buildModule: aModuleClass
 
@@ -239,11 +225,6 @@ LcsBaseModule >> installModule: aModuleClass [
 LcsBaseModule >> legalEntitiesModule [
 
 	^ self moduleNamed: 'Legal Entities Module'
-]
-
-{ #category : #modules }
-LcsBaseModule >> localSubmoduleClasses [
-	^ self class localSubmoduleClasses
 ]
 
 { #category : #configuration }
@@ -268,7 +249,7 @@ LcsBaseModule >> moduleViewChildren [
 
 { #category : #accessing }
 LcsBaseModule >> modules [
-	^ modules
+	^ self getValueOfSlotNamed: 'modules'
 ]
 
 { #category : #accessing }
@@ -298,4 +279,9 @@ LcsBaseModule >> printOn: aStream [
 		nextPutAll: ' (';
 		nextPutAll: self objectId asString;
 		nextPutAll: ')'
+]
+
+{ #category : #modules }
+LcsBaseModule >> submoduleClasses [
+	^ self class submoduleClasses
 ]

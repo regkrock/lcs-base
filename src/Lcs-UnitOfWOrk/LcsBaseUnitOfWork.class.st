@@ -6,7 +6,8 @@ Class {
 		'changedObjects',
 		'deletedObjects',
 		'system',
-		'unitOfWorkName'
+		'unitOfWorkName',
+		'changedCollections'
 	],
 	#category : #'Lcs-UnitOfWOrk'
 }
@@ -19,18 +20,36 @@ LcsBaseUnitOfWork class >> newOn: aSystem [
 ]
 
 { #category : #api }
+LcsBaseUnitOfWork >> _pendingAddsIn: aTargetCollection [
+	^ (self collectionChagesFor: aTargetCollection)
+		at: 'add'
+]
+
+{ #category : #api }
 LcsBaseUnitOfWork >> addObject: aDomainObject [
 
-	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self)
+	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self).
+	aDomainObject parentSlot setUpPendingAddOf: aDomainObject in: self
 ]
 
 { #category : #api }
 LcsBaseUnitOfWork >> addObject: aDomainObject context: aDomainContextObject [
+	aDomainObject isNil ifTrue: [ ^ self ].
 	self addedObjects
 		at: aDomainObject
 		put: ((LcsAddedObjectRecord newFor: aDomainObject parent: self)
 				creationContext: aDomainContextObject;
 				yourself)
+]
+
+{ #category : #private }
+LcsBaseUnitOfWork >> addPendingAddOf: aDomainObject to: aTargetCollection [
+	(self _pendingAddsIn: aTargetCollection) add: aDomainObject
+]
+
+{ #category : #private }
+LcsBaseUnitOfWork >> addPendingDeletionOf: aDomainObject to: aTargetCollection [
+	(self pendingDeletesIn: aTargetCollection) add: aDomainObject
 ]
 
 { #category : #api }
@@ -52,6 +71,16 @@ LcsBaseUnitOfWork >> addedObjects: anObject [
 LcsBaseUnitOfWork >> applyChanges [
 	self addedObjects valuesDo: [ :each | each applyChanges ].
 	self changedObjects do: [ :each | each applyChanges ]
+]
+
+{ #category : #accessing }
+LcsBaseUnitOfWork >> changedCollections [
+	^ changedCollections
+]
+
+{ #category : #accessing }
+LcsBaseUnitOfWork >> changedCollections: anObject [ 
+	changedCollections := anObject
 ]
 
 { #category : #accessing }
@@ -83,12 +112,22 @@ LcsBaseUnitOfWork >> clearUnitOfWork [
 
 	self addedObjects removeAll.
 	self changedObjects removeAll.
-	self deletedObjects removeAll
+	self deletedObjects removeAll.
+	self changedCollections removeAll.
+]
+
+{ #category : #private }
+LcsBaseUnitOfWork >> collectionChagesFor: aTargetCollection [
+	^ self changedCollections
+		at: aTargetCollection
+		ifAbsentPut: [ self newCollectionChaangesDictionary ]
 ]
 
 { #category : #api }
 LcsBaseUnitOfWork >> deleteObject: aDomainObject [
-	self deletedObjects at: aDomainObject put: (LcsDeletedObjectRecord newFor: aDomainObject parent: self)
+
+	self deletedObjects at: aDomainObject put: (LcsDeletedObjectRecord newFor: aDomainObject parent: self).
+	aDomainObject parentSlot setUpPendingDeleteOf: aDomainObject in: self
 ]
 
 { #category : #accessing }
@@ -137,11 +176,24 @@ LcsBaseUnitOfWork >> gtUnitOfWorkItems [
 		}
 ]
 
+{ #category : #testing }
+LcsBaseUnitOfWork >> hasChangesForCollection: aTargetCollection [
+	^ self changedCollections keys includes: aTargetCollection
+]
+
+{ #category : #private }
+LcsBaseUnitOfWork >> hasCollectionChagesFor: aTargetCollection [
+	^ (self changedCollections at: aTargetCollection ifAbsent: [ nil ])
+		notNil
+]
+
 { #category : #initialize }
 LcsBaseUnitOfWork >> initialize [
 	super initialize.
 	self addedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
 	self changedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
+	self changedCollections: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
+
 	self deletedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
 	self clearUnitOfWork
 ]
@@ -149,6 +201,27 @@ LcsBaseUnitOfWork >> initialize [
 { #category : #initialize }
 LcsBaseUnitOfWork >> initializeOn: aSystem [ 
 	self system: aSystem
+]
+
+{ #category : #private }
+LcsBaseUnitOfWork >> newCollectionChaangesDictionary [
+	^ Dictionary new
+		at: 'add' put: OrderedCollection new;
+		at: 'delete' put: OrderedCollection new;
+		yourself
+]
+
+{ #category : #api }
+LcsBaseUnitOfWork >> pendingAddsIn: aTargetCollection [
+	(self hasChangesForCollection: aTargetCollection)
+		ifFalse: [ ^ OrderedCollection new ].
+	^ self _pendingAddsIn: aTargetCollection
+]
+
+{ #category : #api }
+LcsBaseUnitOfWork >> pendingDeletesIn: aTargetCollection [
+	(self changedCollections keys includes: aTargetCollection) ifFalse: [ ^OrderedCollection new ].
+	^ (self collectionChagesFor: aTargetCollection) at: 'delete'
 ]
 
 { #category : #accessing }
