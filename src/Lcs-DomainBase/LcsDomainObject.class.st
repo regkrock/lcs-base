@@ -260,11 +260,8 @@ LcsDomainObject class >> restorelotModel [
 
 { #category : #'slot model' }
 LcsDomainObject class >> slotDefinitionNamed: aString [ 
-	self slotModel ifNil: [ ^ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self name) ].
-	^ [ self slotModel slotDefinitionNamed: aString ]
-		on: LcsSlotDoesNotExistInSlotModelHeirarchyError
-		do: [:s |
-			LcsSlotDoesNotExistInSlotModelError signal: ('Slot ' , aString printString  , ' not defined in slot model') ]
+	self verifySlotModelInitialized.
+	^ self slotModel slotDefinitionNamed: aString
 ]
 
 { #category : #'slot model' }
@@ -300,6 +297,11 @@ LcsDomainObject class >> slotModel [
 { #category : #accessing }
 LcsDomainObject class >> slotModel: aSlotModel [
 	slotModel := aSlotModel
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> slotModelNotInitializedError [
+	LcsSlotModelNotInitializedError signalWithContext: self
 ]
 
 { #category : #'slot model' }
@@ -348,6 +350,11 @@ LcsDomainObject class >> verifySlotModelConsistency [
 	self assert: self isSlotModelDefined.
 	self assert: self slotModel parent == self.
 
+]
+
+{ #category : #'slot model' }
+LcsDomainObject class >> verifySlotModelInitialized [
+	self slotModel ifNil: [ self slotModelNotInitializedError ]
 ]
 
 { #category : #'slot model' }
@@ -503,12 +510,6 @@ LcsDomainObject >> slotModel [
 ]
 
 { #category : #iniitialize }
-LcsDomainObject >> slotModelNotInitializedError [
-	^ LcsSlotModelNotInitializedError
-		signal: 'Slot Model not initialized for ' , self className asString
-]
-
-{ #category : #iniitialize }
 LcsDomainObject >> verifySlotModelInitialized [
-	self slotModel ifNil: [ self slotModelNotInitializedError ]
+	self class verifySlotModelInitialized
 ]

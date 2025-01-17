@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeClassesBuilderJob,
-	#superclass : #LcsDomainGlobalClassBuilderJob,
+	#superclass : #LcsCodeBuilderJob,
 	#instVars : [
 		'moduleClass'
 	],
@@ -42,6 +42,7 @@ LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
 		slotClassName: self globalCollectionClassName;
 		slotName: self globalCollectionSlotName;
+		targetClassName: self targetModuleClass name;
 		targetModuleClass: self targetModuleClass;
 		yourself
 ]
@@ -59,15 +60,16 @@ LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: eachClass [
 		collectionSlotName: self globalCollectionSlotName;
 		slotName: self domainInstanceSlotName;
 		targetModuleClass: self targetModule class;
+		addSlotType: (self error: 'Need to fix this');
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : #'builder step' }
 LcsCodeClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsCodeClassesBuilderJob >> initialize [
 	super initialize.
 	self targetDomainClasses: OrderedCollection new
@@ -89,7 +91,7 @@ LcsCodeClassesBuilderJob >> targetModuleName [
 	^ targetModuleName ifNil: [ targetModuleName :=  self targetModuleClass moduleName ]
 ]
 
-{ #category : #'slot model' }
+{ #category : #command }
 LcsCodeClassesBuilderJob >> updateSlotModel [
 	self jobSteps updateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges	
@@ -100,7 +102,7 @@ LcsCodeClassesBuilderJob >> verifyPopulateSlotModel [
 	self subclassResponsibility
 ]
 
-{ #category : #'slot model' }
+{ #category : #command }
 LcsCodeClassesBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]

@@ -17,17 +17,12 @@ LcsSlotDetailBuilder >> jobStepActionDescription [
 	^ 'Install instVar'
 ]
 
-{ #category : #accessing }
-LcsSlotDetailBuilder >> jobSteps [
-	^ LcsCodeBuilderJobSteps new
-]
-
 { #category : #printing }
 LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: self jobStepActionDescription;
 		nextPutAll: ' "';
-		nextPutAll: self slotName;
+		nextPutAll: (self slotName ifNil: [ '<missing>' ]);
 		nextPutAll: '" in ';
 		nextPutAll: self slotBuilder targetClassName
 ]
@@ -50,13 +45,13 @@ LcsSlotDetailBuilder >> slotName [
 { #category : #printing }
 LcsSlotDetailBuilder >> stepNumber [
 	| stepNumber |
-	stepNumber := (self parent indexOf: self) printString.
+	stepNumber := self parent ifNil: [ '1'] ifNotNil: [ (self parent indexOf: self) printString ].
 	^ self slotBuilder addStepNumberTo: stepNumber
 ]
 
 { #category : #building }
 LcsSlotDetailBuilder >> target [
-	^ self slotBuilder _target
+	^ self slotBuilder target
 ]
 
 { #category : #verification }

@@ -9,7 +9,6 @@ LcsMainSystemTest >> testCreation [
 
 	| currentUnitOfWork system |
 
-	self assert: self currentSystem isNil. 
 	system := LcsMainSystem new.
 	self assert: self currentSystem notNil.
 

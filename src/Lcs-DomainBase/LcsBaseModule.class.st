@@ -40,7 +40,7 @@ LcsBaseModule class >> allSubmoduleClasses [
 { #category : #'slot definition' }
 LcsBaseModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsBaseConfiguration
+	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
 ]
 
 { #category : #'slot definition' }
@@ -71,6 +71,11 @@ LcsBaseModule class >> moduleClassNamed: aString [
 	^ self allSubclasses detect: [ :eachClass |
 		eachClass moduleName = aString ]
 		ifNone: []
+]
+
+{ #category : #'slot definition' }
+LcsBaseModule class >> moduleConfigurationClass [
+	^ LcsBaseConfiguration
 ]
 
 { #category : #configuration }
@@ -215,7 +220,7 @@ LcsBaseModule >> initializeModel [
 { #category : #modules }
 LcsBaseModule >> installModule: aModuleClass [
 
-	self currentSystem globalCollections remove: aModuleClass ifAbsent: [ ].
+	"self currentSystem globalCollections remove: aModuleClass ifAbsent: [ ]."
 	aModuleClass initializeSlotModel.
 	self buildModule: aModuleClass
 

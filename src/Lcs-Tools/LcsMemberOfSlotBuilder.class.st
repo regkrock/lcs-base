@@ -3,9 +3,8 @@ Class {
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'collectionSlotName',
-		'moduleName',
 		'slotTypes',
-		'targetModuleName'
+		'collectionSlotModuleName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -15,21 +14,37 @@ LcsMemberOfSlotBuilder class >> slotDefinitionClass [
 	^ LcsMemberOfSlot
 ]
 
-{ #category : #'code generation' }
-LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
-	self slotTypes do: [ :eachSlotTypeClass |
-		codeStream addSetter: 'addSlotType' contents: eachSlotTypeClass name].
-	codeStream
-		addSetter: 'collectionSlotName' contents: self collectionSlotName printString;
-		addSetter: 'collectionModuleName' contents: self targetModuleName printString;
-		addSetter: 'addSlotType' contents: self parent parent domainClassName
-.
-	
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> addModelAssociationsTo: aCollection [
+	aCollection add: self targetClass-> {{self slotName. self domainClass}}
 ]
 
-{ #category : #configuration }
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
+	self slotTypes isEmpty
+		ifTrue: [
+			codeStream addSetter: 'addSlotType' contents: '<no slot types defined>' ]
+		ifFalse: [ 
+			self slotTypesNames do: [ :eachName | 
+				codeStream addSetter: 'addSlotType' contents: eachName ] ].
+	codeStream
+		addSetter: 'collectionSlotName' contents: (self collectionSlotName ifNil: [ '<missing>' ]);
+		addSetter: 'collectionModuleName' contents: (self collectionSlotModuleName ifNil: [ '<missing>' ])
+]
+
+{ #category : #initialize }
 LcsMemberOfSlotBuilder >> addSlotType: aClass [
-	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
+	self slotTypes add: aClass
+]
+
+{ #category : #accessing }
+LcsMemberOfSlotBuilder >> collectionSlotModuleName [
+	^ collectionSlotModuleName
+]
+
+{ #category : #accessing }
+LcsMemberOfSlotBuilder >> collectionSlotModuleName: aString [
+	collectionSlotModuleName := aString
 ]
 
 { #category : #accessing }
@@ -42,15 +57,20 @@ LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> domainClass [
+	^ self domainClassName asClass
+]
+
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> domainClassName [
+	^ self parent parent domainClassName
+]
+
 { #category : #initialize }
 LcsMemberOfSlotBuilder >> initialize [
 	super initialize.
 	self slotTypes: OrderedCollection new
-]
-
-{ #category : #accessing }
-LcsMemberOfSlotBuilder >> moduleName [
-	^ moduleName ifNil: [ self targertModuleClass ifNil: [ ' missing moduleClass name' ] ifNotNil: [  self targertModuleClass moduleName ] ] 
 ]
 
 { #category : #accessing }
@@ -63,17 +83,20 @@ LcsMemberOfSlotBuilder >> slotTypes: anObject [
 	slotTypes := anObject
 ]
 
+{ #category : #asking }
+LcsMemberOfSlotBuilder >> slotTypesNames [
+	^ self slotTypes collect: [ :each |
+		each isClass 
+			ifTrue: [ each name ]
+			ifFalse: [ each] ]
+]
+
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> targetModuleName [
-	^ targetModuleName ifNil: [ targetModuleName := self targetModuleClass moduleName ]
+	^ self targetModuleClass moduleName
 ]
 
-{ #category : #accessing }
-LcsMemberOfSlotBuilder >> targetModuleName: anObject [
-	moduleName := anObject
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #command }
 LcsMemberOfSlotBuilder >> uninstall [
 	self target removeDomainSlotNamed: self slotName.
 ]

@@ -89,7 +89,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
 	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
-	self assert: builderJobStep slotClassName equals: 'LxxTitles'.
+	self assert: builderJobStep slotTypeClassName equals: 'LxxTitles'.
 	self assert: builderJobStep slotName equals: 'titles'.
 
 

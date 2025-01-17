@@ -5,9 +5,9 @@ Class {
 		'slotClass',
 		'collectionElementTypes',
 		'targetModule',
-		'slotClassName',
 		'targetModuleName',
-		'collectionClass'
+		'collectionClass',
+		'slotTypeClassName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -17,21 +17,29 @@ LcsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionSlot
 ]
 
-{ #category : #configuration }
+{ #category : #'gt view' }
 LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
 	self collectionElementTypes add: aClass
+
+]
+
+{ #category : #'gt view' }
+LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
+	aCollection 
+		add: (self targetModuleClass -> {{self slotName. self slotTypeClass.}});
+		add: (self slotTypeClass -> {{'parent'. self targetModuleClass.}})
 
 ]
 
 { #category : #'code generation' }
 LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	aCodeStream 
-		addSetter: 'addSlotType' contents: self slotClassName.
+		addSetter: 'addSlotType' contents: self slotTypeClassName.
 	self collectionClass notNil ifTrue: [
 		aCodeStream
 			addSetter: 'collectionClass' contents: self collectionClass name].
 	self collectionElementTypes do: [ :eachClass |
-		aCodeStream addSetter: 'addCollectionMemberType' contents: (eachClass isString ifTrue: [ eachClass asClass ] ifFalse: [ eachClass ] ) name].
+		aCodeStream addSetter: 'addCollectionMemberType' contents: (eachClass isString ifTrue: [ eachClass ] ifFalse: [ eachClass name ] )].
 	self collectionClass isNil ifTrue: [
 		aCodeStream addCommand: 'beIdentitySetCollection']
 
@@ -64,15 +72,15 @@ LcsGlobalSlotDefinitionBuilder >> initialize [
 	self collectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsGlobalSlotDefinitionBuilder >> initializeModel [
 	(self target slotDefinitionNamed: self slotName) 
 		initializeSlotValueIn: (self currentSystem moduleNamed: self targetModuleName)
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
-	(self targetModule perform: self slotName asSymbol) ifNil: [ self targetModule initializeSlotNamed: self slotName ]
+	(self target perform: self slotName asSymbol) ifNil: [ self target initializeSlotNamed: self slotName ]
 ]
 
 { #category : #accessing }
@@ -86,20 +94,24 @@ LcsGlobalSlotDefinitionBuilder >> slotClass: anObject [
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotClassName [
-	^ slotClassName ifNil: [ self slotClass name ]
+LcsGlobalSlotDefinitionBuilder >> slotClassName: aName [
+	slotTypeClassName := aName
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotClassName: aName [
-	slotClassName := aName
+LcsGlobalSlotDefinitionBuilder >> slotTypeClass [
+	^ self slotTypeClassName asClass
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> slotTypeClassName [
+	^ slotTypeClassName ifNil: [ self slotClass name ]
 ]
 
 { #category : #configuration }
 LcsGlobalSlotDefinitionBuilder >> target [
-	^ target ifNil: [ target := 
-	 (self targetClassName asClass )
-		ifNil: [ self error: 'Module ' , self targetModuleName , ' not found' ]]
+	^ target ifNil: [ 
+		target := self targetClassName ifNotNil: [ self targetClassName asClass ] ]
 ]
 
 { #category : #accessing }
@@ -117,7 +129,7 @@ LcsGlobalSlotDefinitionBuilder >> targetModuleName: anObject [
 	targetModuleName := anObject
 ]
 
-{ #category : #builder }
+{ #category : #command }
 LcsGlobalSlotDefinitionBuilder >> uninstall [
 	self target removeDomainSlotNamed: self slotName.
 ]

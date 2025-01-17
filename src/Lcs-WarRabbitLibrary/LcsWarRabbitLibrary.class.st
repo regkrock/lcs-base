@@ -50,9 +50,9 @@ LcsWarRabbitLibrary >> authors: anObject [
 ]
 
 { #category : #'slot model' }
-LcsWarRabbitLibrary >> initialSystemDomainClasses [
+LcsWarRabbitLibrary >> bootstrapDomainClasses [
 	<todo: 'Refactor to make this more efficient'>
-	^ super initialSystemDomainClasses
+	^ super bootstrapDomainClasses
 		add: LcsAuthor;
 		add: LcsAuthors;
 		add: LcsItemAuthors;

@@ -6,8 +6,7 @@ Class {
 		'rootName',
 		'newClassName',
 		'targetPackageName',
-		'targetSuperclassName',
-		'jobSteps'
+		'targetSuperclassName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -24,12 +23,21 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 	^ nil
 ]
 
-{ #category : #template }
+{ #category : #'gt view' }
+LcsBaseClassBuilder >> addModelAssociationsTo: aCollection [
+]
+
+{ #category : #'gt view' }
+LcsBaseClassBuilder >> addModelClassesTo: aCollection [
+	aCollection addAll: self newClassName asClass withAllSuperclasses
+]
+
+{ #category : #printing }
 LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self classCreationString
 ]
 
-{ #category : #template }
+{ #category : #'method code source' }
 LcsBaseClassBuilder >> classCreationString [
 	^ '<1s> subclass: #<2s>
 		instanceVariableNames: ''''
@@ -47,12 +55,28 @@ LcsBaseClassBuilder >> clearTargetClass: aClass [
 		ifTrue: [ self installedClass: nil ]
 ]
 
-{ #category : #refactoring }
+{ #category : #refactorings }
 LcsBaseClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
+LcsBaseClassBuilder >> gtClassViewOn: aView [
+	<gtView>
+	self installedClass isNil ifTrue: [ 
+		^ aView list
+			title: self newClassName;
+			priority: 200;
+			items: [ {'Not yet created'} ];
+			yourself ].
+	^ aView explicit
+		title: 'Installed(' , self installedClass name , ')';
+		priority: 200;
+		stencil: [ (GtCoderElement forObject: self installedClass) disablePlayPage beNormalLevel ];
+		yourself
+]
+
+{ #category : #'gt view' }
 LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -65,8 +89,7 @@ LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 { #category : #initialize }
 LcsBaseClassBuilder >> initialize [
 	super initialize.
-	self targetSuperclassName: self class targetSuperclassName.
-	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
+	self targetSuperclassName: self class targetSuperclassName
 ]
 
 { #category : #initialize }
@@ -89,16 +112,6 @@ LcsBaseClassBuilder >> installedClass [
 { #category : #accessing }
 LcsBaseClassBuilder >> installedClass: aClass [ 
 	installedClass := aClass
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> jobSteps [
-	^ jobSteps
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> jobSteps: anObject [
-	jobSteps := anObject
 ]
 
 { #category : #accessing }
@@ -136,8 +149,9 @@ LcsBaseClassBuilder >> rootName: aString [
 	rootName := aString
 ]
 
-{ #category : #printing }
+{ #category : #asking }
 LcsBaseClassBuilder >> stepNumber [
+	self parent isNil ifTrue: [ ^'1'].
 	^ (self parent indexOf: self) printString
 ]
 
@@ -161,7 +175,7 @@ LcsBaseClassBuilder >> targetSuperclassName: aString [
 	targetSuperclassName := aString
 ]
 
-{ #category : #building }
+{ #category : #command }
 LcsBaseClassBuilder >> uninstall [
 	self installedClass ifNil: [ ^ self ].
 	self currentSystem removeClassFromSlotModel: self installedClass.
@@ -170,19 +184,20 @@ LcsBaseClassBuilder >> uninstall [
 	self installedClass: nil
 ]
 
-{ #category : #install }
+{ #category : #command }
 LcsBaseClassBuilder >> updateSlotModel [
 	self installedClass initializeSlotModel
 ]
 
-{ #category : #install }
+{ #category : #command }
 LcsBaseClassBuilder >> verifyCodeInstallation [
 	self assert: self installedClass notNil description: 'Class has been created'.
 	self assert: self installedClass name equals: self newClassName.
-	self assert: self installedClass slotModel isNil description: 'The class has been created but not yet installed in a system'
+	self assert: self installedClass slotModel isNil description: 'The class has been created but not yet installed in a system'.
+	self assert: self installedClass package name equals: self targetPackageName
 ]
 
-{ #category : #install }
+{ #category : #command }
 LcsBaseClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	self assert: self installedClass slotModel  notNil.
 	self assert: (self currentSystem systemSlotModel hasSlotModelForClass: self installedClass)

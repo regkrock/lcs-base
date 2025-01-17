@@ -60,18 +60,6 @@ LxxPrototypeSystem >> bootstrapDomainClasses [
 		yourself
 ]
 
-{ #category : #initialize }
-LxxPrototypeSystem >> initialSystemDomainClasses [
-	^super initialSystemDomainClasses
-		add: LxxPrototypeOrganization;
-		add: LxxPrototypePerson;
-		add: LxxPrototypeSystemConfiguration;
-		add: LxxPrototypePersons;
-		add: #LxxCompositeStateMachine asClass;
-		add: #LxxSubStateMachine asClass;
-		yourself
-]
-
 { #category : #testing }
 LxxPrototypeSystem >> isInActiveStatus [
 	self isSlotModelDefined ifFalse: [ ^ false ].

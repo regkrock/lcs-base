@@ -5,6 +5,43 @@
 		"__type" : "snippets",
 		"items" : [
 			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-15T08:04:14.356914-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-15T08:04:32.13589-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "F+IkDSDoDQCtzpFNAfjseg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "TODO: This needs to have a full system to work"
+			},
+			{
 				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -29,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-08T08:24:29.048748-05:00"
+						"dateAndTimeString" : "2025-01-15T08:01:24.663914-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "rTdManHSDQC4DDN7ByYYXA=="
 				},
-				"code" : "LcsGlobalSlotDefinitionBuilder new\r\tslotName: 'users';\r\ttargetModuleClass: LcsUsersModule;\r\tslotClass: LcsUsers;\r\tcollectionClass: LcsSmalltalkConfiguration identitySetClass;\r\tcollectionElementTypes: {LcsUser}\";\r\tinstall\"\r\t\r\t\r\t"
+				"code" : "LcsGlobalSlotDefinitionBuilder new\r\tslotName: 'users';\r\ttargetModuleClass: LcsUsersModule;\r\tslotClass: LcsUsers;\r\tcollectionClass: LcsSmalltalkConfiguration identitySetClass;\r\tcollectionElementTypes: {LcsUser};\r\tfullyInstall"
 			},
 			{
 				"__type" : "textSnippet",

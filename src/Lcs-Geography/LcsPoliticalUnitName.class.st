@@ -8,8 +8,8 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
-{ #category : #accessing }
-LcsPoliticalUnitName >> fullNameSlotDefintion [
+{ #category : #'slot definition' }
+LcsPoliticalUnitName class >> fullNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: #'fullName';
@@ -18,12 +18,32 @@ LcsPoliticalUnitName >> fullNameSlotDefintion [
 		yourself
 ]
 
-{ #category : #accessing }
-LcsPoliticalUnitName >> shortNameSlotDefintion [
+{ #category : #'slot definition' }
+LcsPoliticalUnitName class >> shortNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: #'shortName';
 		beRequired;
 		validator: [ :string | string size > 2 ];
 		yourself
+]
+
+{ #category : #accessing }
+LcsPoliticalUnitName >> fullName [
+	^ self getValueOfSlotNamed: 'fullName'
+]
+
+{ #category : #accessing }
+LcsPoliticalUnitName >> fullName: anObject [
+	self setValueOfSlotNamed: 'fullName' to: anObject
+]
+
+{ #category : #accessing }
+LcsPoliticalUnitName >> shortName [
+	^ self getValueOfSlotNamed: 'shortName'
+]
+
+{ #category : #accessing }
+LcsPoliticalUnitName >> shortName: anObject [
+	self setValueOfSlotNamed: 'shortName' to: anObject
 ]

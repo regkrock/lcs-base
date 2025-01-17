@@ -34,5 +34,28 @@ LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefintion [
 { #category : #'slot definitions' }
 LcsGeographyModuleConfiguration class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsParentSlot new
+	^ LcsCompositeSlot new
+		slotName: 'parent';
+		addSlotType: LcsGeographyModule;
+		yourself
+]
+
+{ #category : #accessing }
+LcsGeographyModuleConfiguration >> defaultPoliticalUnitName [
+	^ self getValueOfSlotNamed: 'defaultPoliticalUnitName'
+]
+
+{ #category : #accessing }
+LcsGeographyModuleConfiguration >> defaultPoliticalUnitName: anObject [
+	^ self setValueOfSlotNamed: 'defaultPoliticalUnitName' to: anObject
+]
+
+{ #category : #accessing }
+LcsGeographyModuleConfiguration >> defaultPostalCodeName [
+	^ self getValueOfSlotNamed: 'defaultPostalCodeName'
+]
+
+{ #category : #accessing }
+LcsGeographyModuleConfiguration >> defaultPostalCodeName: anObject [
+	^ self setValueOfSlotNamed: 'defaultPostalCodeName' to: anObject
 ]

@@ -14,13 +14,16 @@ LcsMainSystem class >> configurationSlotDefinition [
 ]
 
 { #category : #'slot model' }
-LcsMainSystem >> initialSystemDomainClasses [
+LcsMainSystem >> bootstrapDomainClasses [
 	<todo: 'Refactor to make this mor efficient'>
-	^ super initialSystemDomainClasses
+	| domainClasses |
+	domainClasses := self prebootstrapDomainClasses copy.
+	domainClasses addAll: super bootstrapDomainClasses.
+	^ super bootstrapDomainClasses
 		addAll: (
 			LcsDomainObject withAllSubclasses
 				reject: [ :eachDomainClass | 
 					(eachDomainClass name beginsWith: 'Lxx')
-						or: [ self requiredSystemDomainClasses includes: eachDomainClass ] ]);
+						or: [ domainClasses includes: eachDomainClass ] ]);
 		yourself
 ]

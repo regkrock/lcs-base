@@ -254,14 +254,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T11:03:00.592426-05:00"
+									"dateAndTimeString" : "2025-01-01T14:42:02.880313-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "1y5aA7zjDQCyh9sLAuq82g=="
 							},
-							"code" : "LcsMainSystem localSubmoduleClasses"
+							"code" : "LcsMainSystem submoduleClasses"
 						},
 						{
 							"__type" : "pharoSnippet",
@@ -322,14 +322,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T11:03:27.630508-05:00"
+									"dateAndTimeString" : "2025-01-01T14:42:02.90795-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "86pjBrzjDQCC8y5fAuq82g=="
 							},
-							"code" : "LxxPrototypeSystem localSubmoduleClasses"
+							"code" : "LxxPrototypeSystem submoduleClasses"
 						},
 						{
 							"__type" : "pharoSnippet",
@@ -390,14 +390,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T11:04:43.676086-05:00"
+									"dateAndTimeString" : "2025-01-01T14:42:02.874272-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "rUDuCrzjDQCEjBSdAuq82g=="
 							},
-							"code" : "LxxPrototype2Module localSubmoduleClasses"
+							"code" : "LxxPrototype2Module submoduleClasses"
 						}
 					]
 				},

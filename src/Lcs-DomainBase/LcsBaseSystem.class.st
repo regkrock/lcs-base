@@ -250,11 +250,6 @@ LcsBaseSystem >> hasValidConfiguration [
 	^ self configurationValidator hasNoValidationIssues
 ]
 
-{ #category : #'slot model' }
-LcsBaseSystem >> initialSystemDomainClasses [
-	^ self requiredSystemDomainClasses
-]
-
 { #category : #initialize }
 LcsBaseSystem >> initialize [
 	self makeCurrentSystem.

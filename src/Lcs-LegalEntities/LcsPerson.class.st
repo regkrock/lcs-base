@@ -2,7 +2,10 @@ Class {
 	#name : #LcsPerson,
 	#superclass : #LcsLegalEntity,
 	#instVars : [
-		'dateOfBirth'
+		'dateOfBirth',
+		'firstName',
+		'surname',
+		'middleNames'
 	],
 	#category : #'Lcs-LegalEntities'
 }
@@ -11,6 +14,22 @@ Class {
 LcsPerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
 	^ LcsDateOfBirthSlot new
+]
+
+{ #category : #'slot definition' }
+LcsPerson class >> firstNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'firstName';
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsPerson class >> middleNamesSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'middleNames';
+		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -23,6 +42,14 @@ LcsPerson class >> parentSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definition' }
+LcsPerson class >> surnameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'surname';
+		yourself
+]
+
 { #category : #accessing }
 LcsPerson >> dateOfBirth [
 	^ self getValueOfSlotNamed: 'dateOfBirth'
@@ -31,4 +58,34 @@ LcsPerson >> dateOfBirth [
 { #category : #accessing }
 LcsPerson >> dateOfBirth: anObject [
 	self setValueOfSlotNamed: 'dateOfBirth' to: anObject
+]
+
+{ #category : #accessing }
+LcsPerson >> firstName [
+	^ self getValueOfSlotNamed: 'firstName'
+]
+
+{ #category : #accessing }
+LcsPerson >> firstName: anObject [
+	self setValueOfSlotNamed: 'firstName' to: anObject
+]
+
+{ #category : #accessing }
+LcsPerson >> middleNames [
+	^ self getValueOfSlotNamed: 'middleNames'
+]
+
+{ #category : #accessing }
+LcsPerson >> middleNames: anObject [
+	self setValueOfSlotNamed: 'middleNames' to: anObject
+]
+
+{ #category : #accessing }
+LcsPerson >> surname [
+	^ self getValueOfSlotNamed: 'surname'
+]
+
+{ #category : #accessing }
+LcsPerson >> surname: anObject [
+	self setValueOfSlotNamed: 'surname' to: anObject
 ]

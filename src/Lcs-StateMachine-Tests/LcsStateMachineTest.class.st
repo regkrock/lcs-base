@@ -36,7 +36,7 @@ LcsStateMachineTest >> newStateMachine [
 	^stateMachine
 ]
 
-{ #category : #setUp }
+{ #category : #running }
 LcsStateMachineTest >> setUp [
 	super setUp.
 	self initCounter
@@ -133,6 +133,7 @@ LcsStateMachineTest >> testCompositeStateMachine [
 { #category : #testing }
 LcsStateMachineTest >> testCreation [
 	| stateMachine |
+	self assert: self currentSystem notNil.
 	stateMachine := self newStateMachine.	
 ]
 

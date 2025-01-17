@@ -12,12 +12,13 @@ LcsUsersModule class >> moduleName [
 	^ 'Users Module'
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #'slot definition' }
 LcsUsersModule class >> usersSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'users';
 		addSlotType: LcsUsers;
+		collectionClass: IdentitySet;
 		addCollectionMemberType: LcsUser;
 		yourself
 ]

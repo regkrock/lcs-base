@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #builders }
+{ #category : #command }
 LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self codeCollectionClassBuilder.
@@ -21,7 +21,7 @@ LcsStandardCodeClassesBuilderJob >> codeClass [
 	^ self codeClassBuilderStep installedClass
 ]
 
-{ #category : #accessing }
+{ #category : #'builder step' }
 LcsStandardCodeClassesBuilderJob >> codeClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsCodeSuperClassBuilder) first
 ]
@@ -36,24 +36,24 @@ LcsStandardCodeClassesBuilderJob >> codeInstances: aCollection [
 	codeInstances := aCollection
 ]
 
-{ #category : #tests }
+{ #category : #populate }
 LcsStandardCodeClassesBuilderJob >> createCodeInstances: aCollection [ 
 	self codeInstances addAll: aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsStandardCodeClassesBuilderJob >> initialize [
 	super initialize.
 	self codeInstances: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsStandardCodeClassesBuilderJob >> isDefaultInstanceFrom: anArray [
 	anArray size < 4 ifTrue: [ ^ false ].
 	^ anArray at: 4
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsStandardCodeClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self codeInstances
@@ -74,7 +74,7 @@ LcsStandardCodeClassesBuilderJob >> populateSlotModel [
 
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsStandardCodeClassesBuilderJob >> verifyPopulateSlotModel [
 	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection size = (self codeInstances size + 1).

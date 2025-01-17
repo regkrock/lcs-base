@@ -1,15 +1,16 @@
 Class {
 	#name : #LcsCodeBuilderJobSteps,
-	#superclass : #LcsCodeBuilderStep,
+	#superclass : #LcsObject,
 	#instVars : [
 		'classPrefix',
 		'codePackageName',
-		'collection'
+		'collection',
+		'parent'
 	],
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsCodeBuilderJobSteps class >> collectionClass [
 	^OrderedCollection
 ]
@@ -21,24 +22,39 @@ LcsCodeBuilderJobSteps class >> newOn: anObject [
 		yourself 
 ]
 
-{ #category : #accessing }
+{ #category : #steps }
 LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 	aJobStep parent: self.
 	self collection add: aJobStep.
 	"StringSignal emit: 'add job step'"
 ]
 
-{ #category : #queries }
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> addModelAssociationsTo: aCollection [
+	self collection do: [ :eachStep | eachStep addModelAssociationsTo: aCollection ]
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> addModelClassesTo: classes [
+	self collection do: [ :eachStep | eachStep addModelClassesTo: classes ]
+]
+
+{ #category : #refactorings }
 LcsCodeBuilderJobSteps >> addRefactoringsTo: allRefactorings [
 	self collection do: [ :eachStep | eachStep addRefactoringsTo: allRefactorings ]
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsCodeBuilderJobSteps >> allStepsAfter: aJobStep [
 	self collection last == aJobStep ifTrue: [ ^ OrderedCollection new ].
 	^ self collection
 		copyFrom: (self collection indexOf: aJobStep) + 1
 		to: self collection size
+]
+
+{ #category : #asking }
+LcsCodeBuilderJobSteps >> builderJob [
+	^ self parent builderJob
 ]
 
 { #category : #accessing }
@@ -71,7 +87,7 @@ LcsCodeBuilderJobSteps >> collection: aCollection [
 	^ collection := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsCodeBuilderJobSteps >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
@@ -84,6 +100,57 @@ LcsCodeBuilderJobSteps >> do: aCollectBlock [
 { #category : #collection }
 LcsCodeBuilderJobSteps >> do: aDoBlock separatedBy: aBlock [
 	self collection do: aDoBlock separatedBy: aBlock
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> gtClassBuilderViewFor: aView [
+	<gtView>
+	^ aView columnedTree
+		title: 'Steps List';
+		priority: 10;
+		expandUpTo: 3;
+		items: [ self collection ];
+		children: [ :step | step jobSteps ];
+		"column: 'Number'
+			text: [ :step | step stepNumber ] width: 55;"
+		column: 'Step'
+			text: [ :step | step jobStepDescription ] width: 400;
+		column: 'Step Class'
+			text: [ :step | step class name ];
+		column: ''
+			stencil: [ :step | step viewCodeButton ];
+		column: 'Status'
+			text: [ :step | step state asString asRopedText ]
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> gtConstructionTreeFor: aView [
+	<gtView>
+	^ aView mondrian
+		title: 'Steps Tree';
+		priority: 2;
+		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> gtPaintTreeWith: aMondrian [
+	self
+		withDeep: [ :each | each jobSteps collect: [ :eachStep | eachStep ] ]
+		do: [ :each | 
+			aMondrian nodes
+				stencil: [ :eachJobStep | self jobStepPane: eachJobStep ];
+				with: {each} ]
+		relationDo: [ :from :to | 
+			aMondrian edges
+				fromRightCenter;
+				toLeftCenter;
+				stencil: [ :x | self jobStepPaneAssociation ];
+				connectAssociations: {from -> to} ].
+	aMondrian layout
+		custom: (GtGraphHorizontalTreeLayout new
+				levelDistance: 50;
+				nodeDistance: 20).
+	aMondrian
 ]
 
 { #category : #testing }
@@ -101,7 +168,7 @@ LcsCodeBuilderJobSteps >> hasSteps [
 	^ self collection notEmpty
 ]
 
-{ #category : #accessing }
+{ #category : #asking }
 LcsCodeBuilderJobSteps >> inStepsAfter: aJobStep removeTargetClass: aClass [
 	(self allStepsAfter: aJobStep) do: [ :eachStep | eachStep clearTargetClass: aClass ]
 ]
@@ -122,12 +189,12 @@ LcsCodeBuilderJobSteps >> initializeOn: anObject [
 	self parent: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderJobSteps >> installCode [
 	self collection do: [ :each | each installCode ]
 ]
 
-{ #category : #collection }
+{ #category : #testing }
 LcsCodeBuilderJobSteps >> isEmpty [
 	^ self collection isEmpty
 ]
@@ -137,27 +204,77 @@ LcsCodeBuilderJobSteps >> isNotEmpty [
 	^ self collection isNotEmpty
 ]
 
-{ #category : #accessing }
+{ #category : #steps }
 LcsCodeBuilderJobSteps >> jobStepAt: anIndex [
 	^ self collection at: anIndex
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> jobStepDescription [
+	| stream |
+	stream := WriteStream on: String new.
+	self printJobStreamDetailsOn: stream.
+	^ stream contents
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> jobStepPane: eachJobStep [
+	^ BrVerticalPane new
+		fitContent;
+		addChild: (BrLabel new
+				text: eachJobStep class name;
+				aptitude: (BrGlamorousLabelAptitude new
+						foreground: Color gray;
+						fontSize: 10));
+		addChild: (BrLabel new
+				text: eachJobStep jobStepDescription;
+				aptitude: BrGlamorousLabelAptitude new)
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> jobStepPaneAssociation [
+	^ BlParabollaArcElement new
+		zIndex: 0;
+		curvatureFraction: 0.0;
+		border: (BlBorder paint: (Color gray alpha: 0.2) width: 2);
+		toHead: (BlArrowheadSimpleArrow new
+				border: (BlBorder builder
+						paint: (Color gray alpha: 0.2);
+						width: 4;
+						build))
+]
+
+{ #category : #private }
 LcsCodeBuilderJobSteps >> jobSteps [
 	^ self collection
 ]
 
 { #category : #accessing }
+LcsCodeBuilderJobSteps >> parent [
+	^ parent
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJobSteps >> parent: anObject [
+	parent := anObject
+]
+
+{ #category : #command }
 LcsCodeBuilderJobSteps >> populateSlotModel [
 	self collection reverse do: [ :each | each populateSlotModel ]
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
+LcsCodeBuilderJobSteps >> printJobStreamDetailsOn: aStream [
+	aStream nextPutAll: 'Job Steps'
+]
+
+{ #category : #steps }
 LcsCodeBuilderJobSteps >> stepsWithClass: aClass [
 	^ self collection select: [ :each | each class  == aClass ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 LcsCodeBuilderJobSteps >> targetClassName [
 	^ self parent targetClassName
 ]
@@ -173,22 +290,22 @@ LcsCodeBuilderJobSteps >> targetPackageName: aString [
 		do: [ :each | (each respondsTo: #targetPackageName:) ifTrue: [ each targetPackageName: aString ] ]
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderJobSteps >> uninstall [
 	self collection reverseDo: [ :each | each uninstall ]
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderJobSteps >> updateSlotModel [
 	self collection do: [ :each | each updateSlotModel ]
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderJobSteps >> verifyCodeInstallation [
 	self collection do: [ :each | each verifyCodeInstallation ]
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderJobSteps >> verifySlotModelUpdatesMadeByBuilder [
 	self collection do: [ :each | each verifySlotModelUpdatesMadeByBuilder ]
 ]

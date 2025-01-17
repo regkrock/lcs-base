@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-15T10:21:37.624187-04:00"
+						"dateAndTimeString" : "2025-01-15T07:59:25.49303-05:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-15T10:21:37.624187-04:00"
+						"dateAndTimeString" : "2025-01-15T08:00:06.119919-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "nmSLE4XSDQCa0MfCDiXixQ=="
+					"uidString" : "nCft+x/oDQCr2APLAfjseg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "The following code will do the following:\n1) Create a slot named 'firstName' in LcsPerson\n2) Add #firstName and #firstName: methods.\n3) Add a firstNameSlotDefinition class method to LcsPerson "
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -66,14 +66,51 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-11T16:31:48.639619-05:00"
+						"dateAndTimeString" : "2025-01-15T08:05:29.886835-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Bj8qKYXSDQCa1RUQDiXixQ=="
 				},
-				"code" : "LcsStringSlotDefinitionBuilder new\r\tslotName: 'firstName';\r\ttargetClassName: 'LcsPerson';\r\tinstallCode;\r\tverifyCodeInstallation;\r\tupdateSlotModel;\r\tverifySlotModelUpdatesMadeByBuilder\t"
+				"code" : "LcsStringSlotDefinitionBuilder new\r\tslotName: 'middleNames';\r\ttargetClassName: 'LcsPerson';\r\tfullyInstall\t"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-15T07:53:30.970947-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-15T07:53:40.670209-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "9NbP5R/oDQCoEPNJAfjseg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:LcsPerson}}gtClass:}}"
 			}
 		]
 	},

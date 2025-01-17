@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStateMachineStateSlot,
 	#superclass : #LcsAggregateSlot,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #initialize }

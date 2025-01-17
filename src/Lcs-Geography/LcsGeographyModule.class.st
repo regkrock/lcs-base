@@ -7,12 +7,6 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
-{ #category : #accessing }
-LcsGeographyModule class >> configurationSlotDefinition [
-"	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsGeographyModuleConfiguration"
-]
-
 { #category : #'slot definitions' }
 LcsGeographyModule class >> countriesSlotDefinition [
 	<slotDefinition>
@@ -21,6 +15,11 @@ LcsGeographyModule class >> countriesSlotDefinition [
 		addSlotType: LcsCountries;
 		addCollectionMemberType: LcsCountry;
 		yourself
+]
+
+{ #category : #'slot definition' }
+LcsGeographyModule class >> moduleConfigurationClass [
+	^ LcsGeographyModuleConfiguration
 ]
 
 { #category : #configuration }
@@ -35,10 +34,10 @@ LcsGeographyModule class >> owningModules [
 
 { #category : #accessing }
 LcsGeographyModule >> countries [
-	^ countries
+	^ self getValueOfSlotNamed: 'countries'
 ]
 
 { #category : #accessing }
 LcsGeographyModule >> countries: anObject [
-	countries := anObject
+	self setValueOfSlotNamed: 'countries' to: anObject
 ]

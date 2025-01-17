@@ -5,7 +5,8 @@ Class {
 		'surname',
 		'firstName',
 		'middleNames',
-		'authorship'
+		'authorship',
+		'person'
 	],
 	#category : #'Lcs-WarRabbitLibrary'
 }

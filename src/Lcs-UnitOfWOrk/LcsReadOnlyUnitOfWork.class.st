@@ -25,6 +25,6 @@ LcsReadOnlyUnitOfWork >> deleteObject: aDomainObject [
 ]
 
 { #category : #api }
-LcsReadOnlyUnitOfWork >> setValueTo: anObject in: aDomainObject forSlot: aSlotDefiniton [ 
+LcsReadOnlyUnitOfWork >> setValueIn: aDomainObject slot: aSlotDefiniton to: anObject [ 
 	"do nothing"
 ]

@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsOrganization,
 	#superclass : #LcsLegalEntity,
-	#instVars : [
-		'location'
-	],
 	#category : #'Lcs-LegalEntities'
 }
 

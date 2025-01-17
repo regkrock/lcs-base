@@ -66,6 +66,7 @@ LcsStateMachineViewItem >> initializeOn: anObject label: aLabel item: anItem dis
 
 { #category : #accessing }
 LcsStateMachineViewItem >> itemDisplay [
+	self item isNil ifTrue: [ ^self item ].
 	^ self displaySelector isNil 
 		ifTrue: [ self item ] 
 		ifFalse: [ self item perform: self displaySelector ]

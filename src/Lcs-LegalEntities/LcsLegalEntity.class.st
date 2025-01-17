@@ -24,11 +24,3 @@ LcsLegalEntity >> entityName [
 LcsLegalEntity >> entityName: anObject [
 	self setValueOfSlotNamed: 'entityName' to: anObject
 ]
-
-{ #category : #accessing }
-LcsLegalEntity >> entityNameSlotDefinition [
-	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'entityName';
-		yourself
-]

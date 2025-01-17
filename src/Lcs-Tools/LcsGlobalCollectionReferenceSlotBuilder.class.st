@@ -14,7 +14,12 @@ LcsGlobalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionReferenceSlot
 ]
 
-{ #category : #'code generation' }
+{ #category : #'gt view' }
+LcsGlobalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
+	aCollection add: (self target -> {{self slotName. self collectionClass.}})
+]
+
+{ #category : #'gt view' }
 LcsGlobalCollectionReferenceSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	self collectionClassName isNil ifTrue: [ self error: 'Missing collection class name'].
 	aCodeStream 
@@ -80,7 +85,24 @@ LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: self targetClassName
 ]
 
-{ #category : #builder }
+{ #category : #accessing }
+LcsGlobalCollectionReferenceSlotBuilder >> target [
+	^ target ifNil: [ target := self targetClassName asClass ]
+]
+
+{ #category : #command }
 LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
 	self target removeDomainSlotNamed: self slotName
+]
+
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
+	| slotDefinition |
+	super verifyCodeInstallation.
+	slotDefinition := self targetSlotDefinition.
+	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
+	self assert: slotDefinition collectionSlotName isString.
+	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
+	self assert: slotDefinition collectionSlotModuleName isString.
+
 ]

@@ -100,12 +100,12 @@ LcsDomainCollection >> isEmpty [
 	^ self collection isEmpty
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'domain collection' }
 LcsDomainCollection >> pendingAdds [
 	^ self currentUnitOfWork pendingAddsIn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'domain collection' }
 LcsDomainCollection >> pendingDeletes [
 	^ self currentUnitOfWork pendingDeletesFromCollection: self
 ]

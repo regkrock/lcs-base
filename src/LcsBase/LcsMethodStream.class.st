@@ -80,8 +80,8 @@ LcsMethodStream >> newLine [
 ]
 
 { #category : #building }
-LcsMethodStream >> startSlotDefintionSource: aString [
-	self newLine nextPutAll: aString , 'SlotDefinition'.
+LcsMethodStream >> startSlotDefintionSource: aSelector [
+	self newLine nextPutAll: aSelector.
 	self increaseIndentLevel.
 	self newLine nextPutAll: '<slotDefinition>'.
 ]

@@ -8,10 +8,9 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
-{ #category : #accessing }
-LcsLegalEntitiesModule class >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsLegalEntitiesModuleConfiguration
+{ #category : #'slot definition' }
+LcsLegalEntitiesModule class >> moduleConfigurationClass [
+	^ LcsLegalEntitiesModuleConfiguration
 ]
 
 { #category : #configuration }
@@ -46,20 +45,20 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> organizations [
-	^ organizations
+	^ self getValueOfSlotNamed: 'organizations'
 ]
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> organizations: anObject [
-	organizations := anObject
+	self setValueOfSlotNamed: 'organizations' to: anObject
 ]
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> persons [
-	^ persons
+	^ self getValueOfSlotNamed: 'persons'
 ]
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> persons: anObject [
-	persons := anObject
+	self setValueOfSlotNamed: 'persons' to: anObject
 ]

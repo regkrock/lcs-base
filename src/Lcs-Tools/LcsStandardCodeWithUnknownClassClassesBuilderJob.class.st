@@ -13,7 +13,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> addCodeSubclassWithRootNamed
 	self addCodeSubclassWithRootNamed: aString with: [ :classBuilder | ]
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self undefinedCodeClassBuilder.
@@ -43,7 +43,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeInstances: aCollection [
 	codeInstances := aCollection
 ]
 
-{ #category : #configuration }
+{ #category : #builders }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsCodeClassBuilder new
 		domainClassName: (self classPrefix , aString);
@@ -78,7 +78,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> globalCollectionSlotDefiniti
 	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> initialize [
 	super initialize.
 	self codeInstances: OrderedCollection new
@@ -109,12 +109,12 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 	self currentSystem currentUnitOfWork applyChanges
 ]
 
-{ #category : #configuration }
+{ #category : #accessing }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedClassName [
 	^ undefinedClassName
 ]
 
-{ #category : #configuration }
+{ #category : #accessing }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedClassName: anObject [ 
 	undefinedClassName := anObject
 ]

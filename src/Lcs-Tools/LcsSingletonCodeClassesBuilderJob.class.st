@@ -23,7 +23,7 @@ LcsSingletonCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString [
 	self addCodeSubclassWithRootNamed: aString with: [ :classBuilder | ]
 ]
 
-{ #category : #builders }
+{ #category : #command }
 LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addCodeSubclassBuilders.
@@ -40,7 +40,7 @@ LcsSingletonCodeClassesBuilderJob >> codeClassBuilder [
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsSingletonCodeClassBuilder new
 		rootName: aString;
@@ -60,7 +60,7 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 	codeSubclassBuilders := aCollection
 ]
 
-{ #category : #building }
+{ #category : #install }
 LcsSingletonCodeClassesBuilderJob >> execute [ 
 	self jobSteps isEmpty ifTrue: [self buildJobSteps].
 	self installCode.
@@ -89,7 +89,7 @@ LcsSingletonCodeClassesBuilderJob >> overview [
 	
 ]
 
-{ #category : #'slot model' }
+{ #category : #command }
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
@@ -97,19 +97,19 @@ LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
 	self currentSystem currentUnitOfWork applyChanges
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 LcsSingletonCodeClassesBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Create and populate classes related to ';
 		nextPutAll: self domainClassName asString
 ]
 
-{ #category : #'slot model' }
+{ #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
 	^ self jobSteps stepsWithClass: LcsSingletonCodeClassBuilder
 ]
 
-{ #category : #'slot model' }
+{ #category : #command }
 LcsSingletonCodeClassesBuilderJob >> verifyPopulateSlotModel [
 	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection size = self singletonClassBuilders size.

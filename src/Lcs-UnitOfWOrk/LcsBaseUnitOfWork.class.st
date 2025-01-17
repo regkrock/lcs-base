@@ -26,6 +26,12 @@ LcsBaseUnitOfWork >> _pendingAddsIn: aTargetCollection [
 ]
 
 { #category : #api }
+LcsBaseUnitOfWork >> _pendingDeletesIn: aTargetCollection [
+	^ (self collectionChagesFor: aTargetCollection)
+		at: 'delete'
+]
+
+{ #category : #api }
 LcsBaseUnitOfWork >> addObject: aDomainObject [
 
 	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self).
@@ -219,6 +225,13 @@ LcsBaseUnitOfWork >> pendingAddsIn: aTargetCollection [
 ]
 
 { #category : #api }
+LcsBaseUnitOfWork >> pendingDeletesFromCollection: aTargetCollection [
+	(self hasChangesForCollection: aTargetCollection)
+		ifFalse: [ ^ OrderedCollection new ].
+	^ self _pendingDeletesIn: aTargetCollection
+]
+
+{ #category : #api }
 LcsBaseUnitOfWork >> pendingDeletesIn: aTargetCollection [
 	(self changedCollections keys includes: aTargetCollection) ifFalse: [ ^OrderedCollection new ].
 	^ (self collectionChagesFor: aTargetCollection) at: 'delete'
@@ -234,11 +247,11 @@ LcsBaseUnitOfWork >> printOn: aStream [
 ]
 
 { #category : #api }
-LcsBaseUnitOfWork >> setValueTo: anObject in: aDomainObject forSlot: aSlotDefiniton [ 
+LcsBaseUnitOfWork >> setValueIn: aDomainObject slot: aSlotDefiniton to: anObject [ 
 
 	(self addedObjects keys includes: aDomainObject) ifTrue: [ 
-		anObject isDomainObject ifTrue: [
-			(anObject instVarNamed: 'parent') ifNil: [ anObject instVarNamed: 'parent' put: aDomainObject ] ].
+		"anObject isDomainObject ifTrue: [
+			(anObject instVarNamed: 'parent') ifNil: [ anObject instVarNamed: 'parent' put: aDomainObject ] ]."
 		aDomainObject instVarNamed: aSlotDefiniton slotName asString put: anObject.
 		^ self ].
 	(self changedObjects at: aDomainObject ifAbsentPut: [ LcsChangedObjectRecord newFor: aDomainObject parent: self ])

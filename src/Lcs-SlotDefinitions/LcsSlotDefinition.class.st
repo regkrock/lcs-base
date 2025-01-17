@@ -18,9 +18,12 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsSlotDefinition >> _setValueTo: anObject in: aDomainObject [ 
+LcsSlotDefinition >> _setValueTo: anObject in: aDomainObject [
 	self verifyType: anObject.
-	self currentUnitOfWork setValueTo: anObject in: aDomainObject forSlot: self
+	self currentUnitOfWork
+		setValueIn: aDomainObject
+		slot: self
+		to: anObject
 ]
 
 { #category : #configuration }
@@ -108,13 +111,53 @@ LcsSlotDefinition >> getterSelector [
 ]
 
 { #category : #'gt view' }
+LcsSlotDefinition >> gtCreateClassAndValueElementFor: aColumn [
+	^ aColumn
+		cellStencil: [ BrHorizontalPane new
+				hMatchParent;
+				vFitContent;
+				alignCenter ];
+		dataBinder: [ :itemElement :aNode | 
+			| nodeIcon |
+			Transcript 
+				show: 'Item: ';
+				show: itemElement printString; tab; 
+				show: ' Node: ';
+				show: aNode printString; 
+				cr.
+			nodeIcon := [ aNode value gtInspectorIcon
+					ifNil: [ aNode value class iconNamed: aNode value class systemIconName ] ]
+					on: Error
+					do: [ :error | Smalltalk ui icons iconNamed: #smallWarningIcon ].
+					
+			itemElement
+				removeChildren;
+				addChild: nodeIcon asElement;
+				addChild: (BrLabel new
+							aptitude: BrGlamorousListLabelAptitude;
+							text: aNode value displayString;
+							alignCenterLeft;
+							hMatchParent;
+							vFitContent) ]
+]
+
+{ #category : #'gt view' }
+LcsSlotDefinition >> gtDomainMetaFor: aView [
+	<gtView>
+	^ aView explicit
+		title: 'Domain Meta';
+		priority: 200;
+		stencil: [ (GtCoderElement forObject: self domainClass) disablePlayPage beNormalLevel ]
+]
+
+{ #category : #'gt view' }
 LcsSlotDefinition >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
 		add: 'slotDefinition' -> self;
 		add: 'slotDefinitionClass' -> self class;
 		add: 'domainClass' -> self domainClassName;
 		add: 'slotName' -> self slotName;
-		add: 'slotTypes' -> self slotTypeClassNames;
+		add: 'slotTypes' -> self slotTypes;
 		add: 'required' -> self isRequired;
 		yourself
 ]
@@ -126,12 +169,22 @@ LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 		title: 'Attributes';
 		priority: 10;
 		items: [ self gtSlotDefinitionAttributes ];
-		column: 'Option'
-			text: #key
+		column: 'Option' 
+			text: #key 
 			width: 200;
-		column: 'Value'
-			text: [ :each | each value displayString ];
+		column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];
 		send: #value;
+		yourself
+]
+
+{ #category : #'gt view' }
+LcsSlotDefinition >> gtSlotModelFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Slot Model';
+		priority: 200;
+		object: [ self parent ];
+		view: #gtRawFor:;
 		yourself
 ]
 

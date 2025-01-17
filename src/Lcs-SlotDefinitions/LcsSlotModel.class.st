@@ -174,8 +174,9 @@ LcsSlotModel >> slotDefinitionNamed: aSlotName [
 		self domainClass superclass isDomainClass 
 			ifTrue: [ self domainClass superclass slotDefinitionNamed: aSlotName ]
 			ifFalse: [ nil ] ].
-	^ slotDefinition ifNil: [
-		LcsSlotDoesNotExistInSlotModelHeirarchyError signal: ('Slot ' , aSlotName printString  , ' not defined in slot model heirarchy') ]
+	slotDefinition ifNil: [
+		LcsSlotDoesNotExistInSlotModelError signalWithContext: self slotName: aSlotName ].
+	^ slotDefinition
 ]
 
 { #category : #model }

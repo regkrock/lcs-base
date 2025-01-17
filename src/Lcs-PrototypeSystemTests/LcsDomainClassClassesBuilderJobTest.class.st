@@ -11,7 +11,7 @@ LcsDomainClassClassesBuilderJobTest >> jobBuilder [
 		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Country';
 		createInstances: #( #('CA' 'Canada') #('US' 'United States Of America'));
-		targetModuleClass: LxxPrototypeSystem;
+		installGlobalCollectionSlotInClass: LxxPrototypeSystem;
 		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
@@ -58,6 +58,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase1_Bui
 LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase2_BuildJobStep [
 	| builder builderJobStep |
 
+	self assert: self currentSystem notNil.
 	builder := self jobBuilder.
 	builder buildJobSteps.
 
@@ -90,7 +91,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase2_Bui
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
 	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
-	self assert: builderJobStep slotClassName equals: 'LxxCountries'.
+	self assert: builderJobStep slotTypeClassName equals: 'LxxCountries'.
 	self assert: builderJobStep slotName equals: 'countries'.
 
 

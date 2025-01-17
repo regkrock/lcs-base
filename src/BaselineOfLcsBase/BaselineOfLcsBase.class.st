@@ -55,7 +55,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-Tools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
 			
 			" Examples "
-			spec package: 'Lcs-Examples' with: [ spec requires: #('LcsBase') ].
+			spec package: 'Lcs-Examples' with: [ spec requires: #('Lcs-DomainBase') ].
 			
 			"Css"
 			spec package: 'Lcs-Css' with: [ spec requires: #('LcsBase') ].

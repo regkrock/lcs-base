@@ -9,7 +9,7 @@ LcsAddress >> cityName: aString [
 ]
 
 { #category : #accessing }
-LcsAddress >> sate: aString [ 
+LcsAddress >> state: aString [ 
 ]
 
 { #category : #accessing }

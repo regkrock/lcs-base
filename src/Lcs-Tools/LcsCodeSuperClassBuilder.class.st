@@ -9,6 +9,11 @@ LcsCodeSuperClassBuilder class >> targetSuperclassName [
 	^ 'LcsCode'
 ]
 
+{ #category : #'gt view' }
+LcsCodeSuperClassBuilder >> addModelClassesTo: aCollection [
+	aCollection addAll: self targetSuperclassName asClass withAllSuperclasses
+]
+
 { #category : #accessing }
 LcsCodeSuperClassBuilder >> initialize [
 	super initialize.

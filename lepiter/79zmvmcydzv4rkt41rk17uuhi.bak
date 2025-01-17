@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:54:13.75576-04:00"
+						"dateAndTimeString" : "2025-01-15T08:11:31.621158-05:00"
 					}
 				},
 				"editEmail" : {
@@ -29,14 +29,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T08:01:24.663914-05:00"
+						"dateAndTimeString" : "2025-01-15T08:35:13.075524-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "rTdManHSDQC4DDN7ByYYXA=="
+					"uidString" : "TgE1JyDoDQCwNxqtAfjseg=="
 				},
-				"code" : "LcsGlobalSlotDefinitionBuilder new\r\tslotName: 'users';\r\ttargetModuleClass: LcsUsersModule;\r\tslotClass: LcsUsers;\r\tcollectionClass: LcsSmalltalkConfiguration identitySetClass;\r\tcollectionElementTypes: {LcsUser};\r\tfullyInstall"
+				"code" : "^ LcsMemberOfSlotBuilder new\r\ttarget: LcsAuthor;\r\tslotName: 'person';\r\tcollectionSlotName: 'persons';\r\tcollectionSlotModuleName:LcsLegalEntitiesModule moduleName;\r\tfullyInstall"
 			},
 			{
 				"__type" : "textSnippet",
@@ -52,7 +52,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:53:37.360831-04:00"
+						"dateAndTimeString" : "2025-01-15T08:10:27.52905-05:00"
 					}
 				},
 				"editEmail" : {
@@ -63,12 +63,12 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:53:37.360831-04:00"
+						"dateAndTimeString" : "2025-01-15T08:10:27.52905-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "2t8gaHHSDQC4C56QByYYXA=="
+					"uidString" : "WApjIyDoDQCwNsMqAfjseg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
@@ -85,7 +85,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-14T10:54:04.709515-04:00"
+			"dateAndTimeString" : "2025-01-15T08:11:23.945975-05:00"
 		}
 	},
 	"editEmail" : {
@@ -96,15 +96,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-14T10:54:04.709515-04:00"
+			"dateAndTimeString" : "2025-01-15T08:12:17.772957-05:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Define Global Collection Slot"
+		"title" : "Define member of slot pointing to existing domain class"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "b86f2068-71d2-0d00-b80a-898d0726185c"
+		"uuid" : "d6006323-20e8-0d00-b035-dd4001f8ec7a"
 	}
 }

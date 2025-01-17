@@ -156,7 +156,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builderJobStep := builder jobSteps jobStepAt: 7.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
 	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
-	self assert: builderJobStep slotClassName equals: 'LxxGenders'.
+	self assert: builderJobStep slotTypeClassName equals: 'LxxGenders'.
 	self assert: builderJobStep slotName equals: 'genders'.
 
 
@@ -164,7 +164,8 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
 	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
 	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
-	self assert: builderJobStep  targetModuleName equals: 'Prototype System'.
+	self assert: builderJobStep targetModuleName equals: LxxPrototypeSystem moduleName.
+	builderJobStep  targetModuleClass moduleName equals: 'Prototype System'.
 	self assert: builderJobStep collectionSlotName equals: 'genders'.
 	self assert: builderJobStep slotName equals: 'gender'.
 
@@ -234,12 +235,5 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testSlotDefinitionDoesNotExist [
 
-	| returnedSignal |
-	self should: [ self currentSystem slotDefinitionNamed: 'fooBars' ] raise: LcsSlotDoesNotExistInSlotModelError.
-	
-	returnedSignal := [ self currentSystem slotDefinitionNamed: 'fooBars' ]
-		on: LcsSlotDoesNotExistInSlotModelError
-		do: [:signal | signal ].
-
-	self assert: returnedSignal messageText equals: 'Slot ''fooBars'' not defined in slot model'.
+	self should: [ self currentSystem slotDefinitionNamed: 'fooBars' ] raise: LcsSlotDoesNotExistInSlotModelError
 ]

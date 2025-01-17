@@ -114,7 +114,7 @@ LcsSingletonCodeClassBuilder >> installCode [
 	self beCodeInstalled
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsSingletonCodeClassBuilder >> populateSlotModel [
 	self installedClass new
 ]

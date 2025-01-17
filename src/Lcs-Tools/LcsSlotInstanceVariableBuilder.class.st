@@ -8,7 +8,10 @@ Class {
 LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
 	([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
 		ifTrue: [ aStream nextPutAll: 'Use existing instanceVariable: ' , self slotName ]
-		ifFalse: [ aStream nextPutAll: 'Add instanceVariable: ' , self slotName ]
+		ifFalse: [ 
+			aStream 
+				nextPutAll: 'Add instanceVariable: ';
+				nextPutAll:  (self slotName ifNil: [ '<missing>' ]) ]
 ]
 
 { #category : #'gt views' }
@@ -20,7 +23,7 @@ LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 		text: [ self refactoringText asRopedText ]
 ]
 
-{ #category : #building }
+{ #category : #command }
 LcsSlotInstanceVariableBuilder >> installCode [
 	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
 	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self target) execute.
@@ -37,7 +40,7 @@ LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 	^ 'Install instVar '
 ]
 
-{ #category : #verification }
+{ #category : #command }
 LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
 	self assert: (self target allInstVarNames includes: self slotName).
 ]

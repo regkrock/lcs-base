@@ -4,21 +4,22 @@ Class {
 	#instVars : [
 		'parent',
 		'refactorings',
-		'state'
+		'state',
+		'jobSteps'
 	],
 	#category : #'Lcs-Tools'
 }
 
-{ #category : #refactoring }
+{ #category : #refactorings }
 LcsCodeBuilderStep >> addRefactoring: aRefactoring [ 
 	self refactorings add: aRefactoring
 ]
 
-{ #category : #printing }
+{ #category : #refactorings }
 LcsCodeBuilderStep >> addRefactoringTextDetailsTo: stream [ 
 ]
 
-{ #category : #accessing }
+{ #category : #refactorings }
 LcsCodeBuilderStep >> addRefactoringsTo: allRefactorings [
 	allRefactorings addAll: self refactorings
 ]
@@ -43,7 +44,7 @@ LcsCodeBuilderStep >> beSlotModelUpdatedVerified [
 	self state: 'Slot Model Verified'
 ]
 
-{ #category : #accessing }
+{ #category : #'builder job' }
 LcsCodeBuilderStep >> builderJob [
 	^ self parent builderJob
 ]
@@ -53,7 +54,7 @@ LcsCodeBuilderStep >> clearTargetClass: aClass [
 	"subclasses can override"
 ]
 
-{ #category : #private }
+{ #category : #command }
 LcsCodeBuilderStep >> fullyInstall [
 	"If this is part of a builder job, then do not use this. Let the builder control the phases"
 	self 
@@ -65,14 +66,52 @@ LcsCodeBuilderStep >> fullyInstall [
 		verifyPopulateSlotModel
 ]
 
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
+	<gtView>
+	self jobSteps isEmpty ifTrue: [^ aView empty ].
+	^ aView mondrian
+		title: 'Steps Tree';
+		priority: 2;
+		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> gtPaintTreeWith: aMondrian [
+	self
+		withDeep: [ :each | 
+			each jobSteps collect: [ :eachStep | eachStep ] ]
+		do: [ :each | 
+			aMondrian nodes
+				stencil: [ :eachJobStep | self jobStepPane: eachJobStep ];
+				with: {each} ]
+		relationDo: [ :from :to | 
+			aMondrian edges
+				fromRightCenter;
+				toLeftCenter;
+				stencil: [ :x | self jobStepPaneAssociation ];
+				connectAssociations: {from -> to} ].
+	aMondrian layout
+		custom: (GtGraphHorizontalTreeLayout new
+					levelDistance: 50;
+					nodeDistance: 20).
+	aMondrian
+]
+
 { #category : #initialize }
 LcsCodeBuilderStep >> initialize [ 
 	super initialize.
 	self state: 'Initial'.
-	self refactorings: OrderedCollection new
+	self refactorings: OrderedCollection new.
+	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
-{ #category : #accessing }
+{ #category : #install }
+LcsCodeBuilderStep >> installCode [
+	self subclassResponsibility
+]
+
+{ #category : #printing }
 LcsCodeBuilderStep >> jobStepDescription [
 	| stream |
 	stream := self jobStepDescriptionStream.
@@ -80,7 +119,7 @@ LcsCodeBuilderStep >> jobStepDescription [
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 LcsCodeBuilderStep >> jobStepDescriptionStream [
 	^ (WriteStream on: String new)
 			nextPutAll: self stepNumber;
@@ -88,9 +127,41 @@ LcsCodeBuilderStep >> jobStepDescriptionStream [
 			yourself 
 ]
 
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> jobStepPane: aJobStep [
+	^ BrVerticalPane new
+		fitContent;
+		addChild: (BrLabel new
+				text: aJobStep class name;
+				aptitude: (BrGlamorousLabelAptitude new
+						foreground: Color gray;
+						fontSize: 10));
+		addChild: (BrLabel new
+				text: aJobStep jobStepDescription;
+				aptitude: BrGlamorousLabelAptitude new)
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> jobStepPaneAssociation [
+	^ BlParabollaArcElement new
+		zIndex: 0;
+		curvatureFraction: 0.0;
+		border: (BlBorder paint: (Color gray alpha: 0.2) width: 2);
+		toHead: (BlArrowheadSimpleArrow new
+				border: (BlBorder builder
+						paint: (Color gray alpha: 0.2);
+						width: 4;
+						build))
+]
+
 { #category : #accessing }
 LcsCodeBuilderStep >> jobSteps [
-	self subclassResponsibility
+	^ jobSteps
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> jobSteps: anObject [
+	jobSteps := anObject
 ]
 
 { #category : #accessing }
@@ -103,12 +174,12 @@ LcsCodeBuilderStep >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderStep >> populateSlotModel [
 	"Subclasses should implement as needed"
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 LcsCodeBuilderStep >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: self printString
@@ -162,7 +233,7 @@ LcsCodeBuilderStep >> verifyCodeInstallation [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderStep >> verifyPopulateSlotModel [
 	"Subclasses should implement as needed"
 ]
@@ -172,7 +243,7 @@ LcsCodeBuilderStep >> verifySlotModelUpdatesMadeByBuilder [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #command }
 LcsCodeBuilderStep >> verifyUnistall [
 	"Subclasses should implement as needed"
 ]
