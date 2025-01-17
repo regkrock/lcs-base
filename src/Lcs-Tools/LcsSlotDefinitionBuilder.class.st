@@ -170,7 +170,7 @@ LcsSlotDefinitionBuilder >> slotDefinitionSource [
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector; 
 		addSlotDefinitionClassCreatonLine: self slotDefinitionClass;
-		addSetter: 'slotName' contents: (self slotName ifNil: [ '<missing>' ]).
+		addSetter: 'slotName' contents: (self slotName ifNil: [ '<missing>' ]) printString.
 		
 	self addSlotDefinitionSourceDetailsTo: codeStream. 
 		
@@ -193,8 +193,9 @@ LcsSlotDefinitionBuilder >> slotName: anObject [
 
 { #category : #printing }
 LcsSlotDefinitionBuilder >> stepNumber [
-	self parent isNil ifTrue: [ ^ '' ].
-	^ (self parent indexOf: self) printString
+	^ self parent isNil 
+		ifTrue: [ '1']
+		ifFalse: [ (self parent indexOf: self) printString ]
 ]
 
 { #category : #accessing }

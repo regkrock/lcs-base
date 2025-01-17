@@ -151,8 +151,9 @@ LcsBaseClassBuilder >> rootName: aString [
 
 { #category : #asking }
 LcsBaseClassBuilder >> stepNumber [
-	self parent isNil ifTrue: [ ^'1'].
-	^ (self parent indexOf: self) printString
+	^ self parent isNil 
+		ifTrue: [ '1']
+		ifFalse: [ (self parent indexOf: self) printString ]
 ]
 
 { #category : #accessing }

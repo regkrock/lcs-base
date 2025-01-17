@@ -22,6 +22,15 @@ LcsSlotModel class >> newOn: aDomainClass [
 ]
 
 { #category : #slots }
+LcsSlotModel >> _slotDefinitionNamed: aSlotName [
+	^ self slotDefinitions
+		at: aSlotName
+		ifAbsent: [ self domainClass superclass isDomainClass
+				ifTrue: [ self domainClass superclass slotDefinitionNamed: aSlotName ]
+				ifFalse: [ nil ] ]
+]
+
+{ #category : #slots }
 LcsSlotModel >> addSlotDefinition: aSlotDefinition [
 
 	aSlotDefinition parent: self.
@@ -102,8 +111,7 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 
 { #category : #slots }
 LcsSlotModel >> hasSlotDefinitionNamed: aSlotName [
-	^ self slotDefinitions at: aSlotName ifAbsent: [ 
-		self allSlotDefinitions anySatisfy: [ :eachSlotDefinition | eachSlotDefinition slotName = aSlotName ] ]
+	^ (self _slotDefinitionNamed: aSlotName) notNil
 ]
 
 { #category : #testing }
@@ -170,12 +178,11 @@ LcsSlotModel >> removeSlotDefinitionNamed: aSlotName [
 { #category : #slots }
 LcsSlotModel >> slotDefinitionNamed: aSlotName [
 	| slotDefinition |
-	slotDefinition := self slotDefinitions at: aSlotName ifAbsent: [ 
-		self domainClass superclass isDomainClass 
-			ifTrue: [ self domainClass superclass slotDefinitionNamed: aSlotName ]
-			ifFalse: [ nil ] ].
-	slotDefinition ifNil: [
-		LcsSlotDoesNotExistInSlotModelError signalWithContext: self slotName: aSlotName ].
+	slotDefinition := self _slotDefinitionNamed: aSlotName.
+	slotDefinition
+		ifNil: [ LcsSlotDoesNotExistInSlotModelError
+				signalWithContext: self
+				slotName: aSlotName ].
 	^ slotDefinition
 ]
 

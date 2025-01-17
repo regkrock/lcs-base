@@ -23,13 +23,13 @@ LcsMemberOfSlotBuilder >> addModelAssociationsTo: aCollection [
 LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 	self slotTypes isEmpty
 		ifTrue: [
-			codeStream addSetter: 'addSlotType' contents: '<no slot types defined>' ]
+			codeStream addSetter: 'addSlotType' contents: '<no slot types defined>' printString ]
 		ifFalse: [ 
 			self slotTypesNames do: [ :eachName | 
 				codeStream addSetter: 'addSlotType' contents: eachName ] ].
 	codeStream
-		addSetter: 'collectionSlotName' contents: (self collectionSlotName ifNil: [ '<missing>' ]);
-		addSetter: 'collectionModuleName' contents: (self collectionSlotModuleName ifNil: [ '<missing>' ])
+		addSetter: 'collectionSlotName' contents: (self collectionSlotName ifNil: [ '<missing>' ]) printString;
+		addSetter: 'collectionModuleName' contents: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
 ]
 
 { #category : #initialize }

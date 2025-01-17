@@ -1,10 +1,6 @@
 Class {
 	#name : #LcsSlotDoesNotExistInSlotModelError,
-	#superclass : #LcsError,
-	#instVars : [
-		'context',
-		'slotName'
-	],
+	#superclass : #LcsSlotModelError,
 	#category : #'Lcs-SlotDefinitions'
 }
 
@@ -22,41 +18,14 @@ LcsSlotDoesNotExistInSlotModelError class >> signalWithContext: anObject slotNam
 			
 ]
 
-{ #category : #accessing }
-LcsSlotDoesNotExistInSlotModelError >> context [
-	^ context
-]
-
-{ #category : #accessing }
-LcsSlotDoesNotExistInSlotModelError >> context: anObject [
-	context := anObject
-]
-
-{ #category : #'gt view' }
-LcsSlotDoesNotExistInSlotModelError >> gtCurrentSystemViewFor: aView [
-	<gtView>
-	<gtExceptionView>
-	self currentSystem ifNil: [ 
-		^ aView list
-			title: 'No Current System';
-			priority: 20;
-			items: [ {'No current system'} ]; 
-			yourself].
-	^ aView forward
-		title: 'Current System';
-		priority: 20;
-		object: [ self currentSystem ];
-		view: #gtMetaFor:
-]
-
 { #category : #'gt view' }
 LcsSlotDoesNotExistInSlotModelError >> gtDomainClassViewFor: aView [
 	<gtView>
 	<gtExceptionView>
 	^ aView forward
-		title: 'Domain';
+		title: 'Domain Class';
 		priority: 20;
-		object: [ self context ];
+		object: [ self context parent ];
 		view: #gtMetaFor:
 ]
 

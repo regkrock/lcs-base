@@ -150,7 +150,7 @@ LcsDomainObject class >> installSlotModelIn: aSystem [
 
 { #category : #'slot model' }
 LcsDomainObject class >> instantiateSlotModel [
-	self verifySuperclassHasSlotModel.
+	self superclass verifySuperclassesHaveInitializedSlotModel.
 	self slotModel: (LcsSlotModel newOn: self)
 ]
 
@@ -358,12 +358,12 @@ LcsDomainObject class >> verifySlotModelInitialized [
 ]
 
 { #category : #'slot model' }
-LcsDomainObject class >> verifySuperclassHasSlotModel [
-	self == LcsDomainObject ifTrue: [ ^ self ].
-	self superclass isSlotModelDefined
-		ifFalse: [ LcsSlotModelNotInitializedError new
-						messageText: 'Slot Model not initialized for ' , self superclass name;
-						signal ]
+LcsDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
+	(self subclasses includes: LcsDomainObject) ifTrue: [ ^ self ].
+	self isSlotModelDefined
+		ifFalse: [ LcsSlotModelNotInitializedError signalWithContext: self ].
+	self superclass verifySuperclassesHaveInitializedSlotModel
+
 ]
 
 { #category : #validation }
@@ -444,7 +444,7 @@ LcsDomainObject >> initializeSlotValues [
 
 { #category : #iniitialize }
 LcsDomainObject >> initializeUninitializedSlotValues [
-	self slotModel ifNil: [ LcsSlotModelNotInitializedError signal: ('Slot Definitions not initialized in ' , self className asString ) ].
+	self slotModel ifNil: [ LcsSlotModelNotInitializedError signalWithContext: self ].
 	self slotModel initializeUnintializedSlotValuesIn: self.
 
 ]

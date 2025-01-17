@@ -98,10 +98,10 @@ LcsMemberOfSlotBuilderTest >> testCreation [
 	self assert: builder slotDefinitionSource equals: 'undefinedSlotDefinition
 	<slotDefinition>
 	^ LcsMemberOfSlot new
-		slotName: <missing>;
-		addSlotType: <no slot types defined>;
-		collectionSlotName: <missing>;
-		collectionModuleName: <missing>;
+		slotName: ''<missing>'';
+		addSlotType: ''<no slot types defined>'';
+		collectionSlotName: ''<missing>'';
+		collectionModuleName: ''<missing>'';
 		yourself' 
 ]
 

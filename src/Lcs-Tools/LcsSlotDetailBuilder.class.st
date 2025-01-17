@@ -44,9 +44,11 @@ LcsSlotDetailBuilder >> slotName [
 
 { #category : #printing }
 LcsSlotDetailBuilder >> stepNumber [
-	| stepNumber |
-	stepNumber := self parent ifNil: [ '1'] ifNotNil: [ (self parent indexOf: self) printString ].
-	^ self slotBuilder addStepNumberTo: stepNumber
+	| stepNumber  |
+	stepNumber := self parent 
+					ifNil: [ '1'] 
+					ifNotNil: [ (self parent indexOf: self) printString ].
+	^ self slotBuilder addStepNumberTo: stepNumber.
 ]
 
 { #category : #building }
