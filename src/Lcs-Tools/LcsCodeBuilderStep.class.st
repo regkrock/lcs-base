@@ -20,8 +20,8 @@ LcsCodeBuilderStep >> addRefactoringTextDetailsTo: stream [
 ]
 
 { #category : #refactorings }
-LcsCodeBuilderStep >> addRefactoringsTo: allRefactorings [
-	allRefactorings addAll: self refactorings
+LcsCodeBuilderStep >> addRefactoringsTo: aCollection [
+	aCollection addAll: self refactorings
 ]
 
 { #category : #state }

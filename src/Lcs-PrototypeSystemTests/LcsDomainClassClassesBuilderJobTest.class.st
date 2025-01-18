@@ -6,12 +6,12 @@ Class {
 
 { #category : #tests }
 LcsDomainClassClassesBuilderJobTest >> jobBuilder [
-	^ LcsDomainClassClassesBuilderJob new
+	^ LcsGlobalDomainClassClassesBuilderJob new
 		classPrefix: 'Lxx';
 		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Country';
 		createInstances: #( #('CA' 'Canada') #('US' 'United States Of America'));
-		installGlobalCollectionSlotInClass: LxxPrototypeSystem;
+		installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
 		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
@@ -48,10 +48,10 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase1_Bui
 
 	self assert: builder domainInstanceSlotName equals: 'country'.
 	self assert: builder globalCollectionSlotName equals: 'countries'.
-	self assert: builder domainClassName equals: 'LxxCountry'.
-	self assert: builder globalCollectionClassName equals: 'LxxCountries'.
-	self assert: builder targetModuleClass equals: LxxPrototypeSystem.
-	self assert:builder undefinedClassName equals: 'LxxUnknownCountry'.
+	self assert: builder newDomainClassName equals: 'LxxCountry'.
+	self assert: builder newGlobalCollectionClassName equals: 'LxxCountries'.
+	self assert: builder globalCollectionModuleClass equals: LxxPrototypeSystem.
+	self assert:builder unknownClassName equals: 'LxxUnknownCountry'.
 ]
 
 { #category : #tests }
@@ -90,7 +90,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase2_Bui
 	
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
+	self assert: builderJobStep target identicalTo: LxxPrototypeSystem.
 	self assert: builderJobStep slotTypeClassName equals: 'LxxCountries'.
 	self assert: builderJobStep slotName equals: 'countries'.
 
@@ -98,7 +98,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase2_Bui
 	builderJobStep := builder jobSteps jobStepAt: 6.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
 	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
+	self assert: builderJobStep collectionSlotModuleName identicalTo: LxxPrototypeSystem moduleName.
 	self assert: builderJobStep collectionSlotName equals: 'countries'.
 	self assert: builderJobStep slotName equals: 'country'.
 

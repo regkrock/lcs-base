@@ -40,8 +40,8 @@ LcsCodeBuilderJobSteps >> addModelClassesTo: classes [
 ]
 
 { #category : #refactorings }
-LcsCodeBuilderJobSteps >> addRefactoringsTo: allRefactorings [
-	self collection do: [ :eachStep | eachStep addRefactoringsTo: allRefactorings ]
+LcsCodeBuilderJobSteps >> addRefactoringsTo: aCollection [
+	self collection do: [ :eachStep | eachStep addRefactoringsTo: aCollection ]
 ]
 
 { #category : #asking }

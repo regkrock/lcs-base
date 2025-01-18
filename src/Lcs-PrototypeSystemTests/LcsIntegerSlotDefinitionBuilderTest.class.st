@@ -12,7 +12,7 @@ LcsIntegerSlotDefinitionBuilderTest >> testCreatingIntegerSlotDefinition [
 	slotDefinition slotName: 'height'.
 	slotDefinition initialValue: 180.
 
-	self assert: slotDefinition domainClassName = 'UndefinedObject'.
+	self assert: slotDefinition newDomainClassName = 'UndefinedObject'.
 	self assert: slotDefinition slotName equals: 'height'.
 	self assert: slotDefinition slotTypes size equals: 1.
 	self assert: (slotDefinition slotTypes includes: Integer).

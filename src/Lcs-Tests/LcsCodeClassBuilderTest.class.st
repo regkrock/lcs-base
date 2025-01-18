@@ -20,7 +20,7 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 	builder := LcsCodeClassBuilder new.
 	builder
 		newClassName: self newClassName;
-		targetPackageName: 'Lcs-PrototypeSystem';
+		targetPackageName: 'Lcs-Temp';
 		targetSuperclassName: self targetSuperclassName;
 		rootName: 'Male'.
 	self
@@ -30,5 +30,5 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
-		package: ''Lcs-PrototypeSystem'' '
+		package: ''Lcs-Temp'' '
 ]

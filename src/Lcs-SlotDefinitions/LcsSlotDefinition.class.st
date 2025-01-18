@@ -81,12 +81,6 @@ LcsSlotDefinition >> domainClass [
 	^ self parent domainClass
 ]
 
-{ #category : #'gt view' }
-LcsSlotDefinition >> domainClassName [
-	self parent ifNil: [ ^ self parent class name].
-	^self parent domainClass
-]
-
 { #category : #'slot model' }
 LcsSlotDefinition >> getPersistedValueIn: aDomainObject [
 
@@ -155,7 +149,7 @@ LcsSlotDefinition >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
 		add: 'slotDefinition' -> self;
 		add: 'slotDefinitionClass' -> self class;
-		add: 'domainClass' -> self domainClassName;
+		add: 'domainClass' -> self newDomainClassName;
 		add: 'slotName' -> self slotName;
 		add: 'slotTypes' -> self slotTypes;
 		add: 'required' -> self isRequired;
@@ -322,6 +316,12 @@ LcsSlotDefinition >> isRequired [
 { #category : #'slot model' }
 LcsSlotDefinition >> label [
 	^self labelForSelector: self slotName
+]
+
+{ #category : #'gt view' }
+LcsSlotDefinition >> newDomainClassName [
+	self parent ifNil: [ ^ self parent class name].
+	^self parent domainClass
 ]
 
 { #category : #accessing }

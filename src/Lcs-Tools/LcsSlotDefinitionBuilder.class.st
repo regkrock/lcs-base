@@ -221,10 +221,7 @@ LcsSlotDefinitionBuilder >> targetClass: aClass [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClassName [
-	^ targetClassName ifNil: [ 
-		self target 
-			ifNil: [ '<missing target class>' ]
-			ifNotNil: [ self target name ] ]
+	^ targetClassName
 ]
 
 { #category : #accessing }
@@ -235,7 +232,7 @@ LcsSlotDefinitionBuilder >> targetClassName: aString [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetModuleClass [
-	^ targetModuleClass ifNil: [ targetModuleClass := #LcsBaseModule asClass moduleClassNamed: self targetModuleName ]
+	^ targetModuleClass
 ]
 
 { #category : #accessing }

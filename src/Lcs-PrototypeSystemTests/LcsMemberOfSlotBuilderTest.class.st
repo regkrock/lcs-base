@@ -90,7 +90,7 @@ LcsMemberOfSlotBuilderTest >> testCreation [
 	builder := LcsMemberOfSlotBuilder new.
 	self should: builder target isNil.
 	self should: builder targetClass isNil.
-	self assert: builder targetClassName equals: '<missing target class>'.
+	self assert: builder targetClassName isNil.
 	self assert: builder slotName isNil.
 	self assert: builder collectionSlotName isNil.
 	self assert: builder collectionSlotModuleName isNil.

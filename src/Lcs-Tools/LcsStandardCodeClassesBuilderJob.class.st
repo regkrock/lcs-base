@@ -36,6 +36,14 @@ LcsStandardCodeClassesBuilderJob >> codeInstances: aCollection [
 	codeInstances := aCollection
 ]
 
+{ #category : #private }
+LcsStandardCodeClassesBuilderJob >> codeNameFrom: anArray [ 
+	| protoCode |
+	protoCode := anArray at: 1.
+	protoCode size = 1 ifTrue: [ ^protoCode ].
+	^ protoCode asCamelCase asValidSelector asString
+]
+
 { #category : #populate }
 LcsStandardCodeClassesBuilderJob >> createCodeInstances: aCollection [ 
 	self codeInstances addAll: aCollection

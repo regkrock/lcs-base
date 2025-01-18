@@ -1,17 +1,27 @@
 Class {
 	#name : #LcsCodeSuperClassBuilderTest,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsPrototypeSystemTest,
 	#instVars : [
 		'builder'
 	],
-	#category : #'Lcs-Tests-Tests'
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
+
+{ #category : #accessing }
+LcsCodeSuperClassBuilderTest >> builder [
+	^ builder
+]
+
+{ #category : #accessing }
+LcsCodeSuperClassBuilderTest >> builder: anObject [
+	builder := anObject
+]
 
 { #category : #private }
 LcsCodeSuperClassBuilderTest >> createBuilder [
 	builder := LcsCodeSuperClassBuilder new
 			newClassName: self newClassName;
-			targetPackageName: 'Lcs-PrototypeSystem';
+			targetPackageName: 'Lcs-Temp';
 			rootName: 'Gender'
 ]
 
@@ -50,7 +60,7 @@ LcsCodeSuperClassBuilderTest >> setUp [
 
 { #category : #setUp }
 LcsCodeSuperClassBuilderTest >> tearDown [
-	builder ifNotNil: [ builder uninstall ].
+	self builder ifNotNil: [ builder uninstall ].
 	super tearDown.
 	self should: [ self newClassName asClass ] raise: NotFound
 ]

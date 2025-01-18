@@ -11,7 +11,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> jobBuilder [
 		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Title';
 		createCodeInstances: #( #('Mr') #('Ms'));
-		targetModuleClass: LxxPrototypeSystem;
+		globalCollectionModuleClass: LxxPrototypeSystem;
 		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
@@ -48,10 +48,10 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 
 	self assert: builder domainInstanceSlotName equals: 'title'.
 	self assert: builder globalCollectionSlotName equals: 'titles'.
-	self assert: builder domainClassName equals: 'LxxTitle'.
-	self assert: builder globalCollectionClassName equals: 'LxxTitles'.
-	self assert: builder targetModuleClass equals: LxxPrototypeSystem.
-	self assert:builder undefinedClassName equals: 'LxxUnknownTitle'.
+	self assert: builder newDomainClassName equals: 'LxxTitle'.
+	self assert: builder newGlobalCollectionClassName equals: 'LxxTitles'.
+	self assert: builder globalCollectionModuleClass equals: LxxPrototypeSystem.
+	self assert:builder unknownClassName equals: 'LxxUnknownTitle'.
 ]
 
 { #category : #tests }
@@ -84,7 +84,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	self assert: builderJobStep class identicalTo: LcsGlobalCollectionReferenceSlotBuilder.
 	self assert: builderJobStep targetClassName equals: 'LxxTitle'.
 	self assert: builderJobStep collectionSlotName equals: 'titles'.
-	self assert: builderJobStep collectionSlotModule class identicalTo: LxxPrototypeSystem.
 	
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsGlobalSlotDefinitionBuilder.
@@ -96,7 +95,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreatingJobToAddTitl
 	builderJobStep := builder jobSteps jobStepAt: 6.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
 	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
+	self assert: builderJobStep collectionSlotModuleName identicalTo: LxxPrototypeSystem moduleName.
 	self assert: builderJobStep collectionSlotName equals: 'titles'.
 	self assert: builderJobStep slotName equals: 'title'.
 

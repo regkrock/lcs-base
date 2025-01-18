@@ -13,7 +13,7 @@ LcsSingletonCodeClassesBuilderJob >> addCodeSubclassBuilders [
 		do: [ :eachBuilder | 
 			self
 				addJobStep: (eachBuilder
-						targetSuperclassName: self domainClassName;
+						targetSuperclassName: self newDomainClassName;
 						targetPackageName: self targetPackageName;
 						yourself) ]
 ]
@@ -45,7 +45,7 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsSingletonCodeClassBuilder new
 		rootName: aString;
 		newClassName: self classPrefix , aString;
-		targetSuperclassName: self domainClassName;
+		targetSuperclassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -58,19 +58,6 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders [
 { #category : #accessing }
 LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 	codeSubclassBuilders := aCollection
-]
-
-{ #category : #install }
-LcsSingletonCodeClassesBuilderJob >> execute [ 
-	self jobSteps isEmpty ifTrue: [self buildJobSteps].
-	self installCode.
-	self verifyCodeInstallation.
-	self updateSlotModel.
-	self verifySlotModelUpdatesMadeByBuilder.
-	self currentUnitOfWork applyChanges.
-	self populateSlotModel.
-	self verifyPopulateSlotModel.
-	self currentUnitOfWork applyChanges
 ]
 
 { #category : #iniitialize }
@@ -101,7 +88,7 @@ LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
 LcsSingletonCodeClassesBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Create and populate classes related to ';
-		nextPutAll: self domainClassName asString
+		nextPutAll: self newDomainClassName asString
 ]
 
 { #category : #builders }

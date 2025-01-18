@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeClassesBuilderJob,
-	#superclass : #LcsCodeBuilderJob,
+	#superclass : #LcsDomainClassWithGlobalCollectionBuilderJob,
 	#instVars : [
 		'moduleClass'
 	],
@@ -18,7 +18,7 @@ LcsCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString with: aBlock [
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codeClassBuilder [
 	^ LcsCodeSuperClassBuilder new
-		newClassName: self domainClassName;
+		newClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -26,7 +26,7 @@ LcsCodeClassesBuilderJob >> codeClassBuilder [
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
 	^ LcsCodeCollectionClassBuilder new
-		newClassName: self globalCollectionClassName;
+		newClassName: self newGlobalCollectionClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -40,27 +40,22 @@ LcsCodeClassesBuilderJob >> codeDescriptionFrom: anArray [
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
-		slotClassName: self globalCollectionClassName;
+		slotClassName: self newGlobalCollectionClassName;
 		slotName: self globalCollectionSlotName;
-		targetClassName: self targetModuleClass name;
-		targetModuleClass: self targetModuleClass;
+		targetClassName: self globalCollectionModuleClass name;
+		targetModuleClass: self globalCollectionModuleClass;
 		yourself
 ]
 
-{ #category : #private }
-LcsCodeClassesBuilderJob >> codeNameFrom: anArray [
-	(anArray at: 1) first isLowercase ifTrue: [ ^ anArray at: 1 ].
-	^ (anArray at: 1) first asString asLowercase , ((anArray at: 1) copyFrom: 2 to: (anArray at: 1) size)
-]
-
 { #category : #builders }
-LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: eachClass [
+LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 	^ LcsMemberOfSlotBuilder new
-		target: eachClass;
-		collectionSlotName: self globalCollectionSlotName;
+		target: aTargetClass;
+		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;
-		targetModuleClass: self targetModule class;
-		addSlotType: (self error: 'Need to fix this');
+		collectionSlotName: self globalCollectionSlotName;
+		targetModuleClass: self globalCollectionModuleClass;
+		addSlotType: self newDomainClassName;
 		yourself
 ]
 
@@ -89,20 +84,4 @@ LcsCodeClassesBuilderJob >> targetGlobalCollection [
 { #category : #accessing }
 LcsCodeClassesBuilderJob >> targetModuleName [
 	^ targetModuleName ifNil: [ targetModuleName :=  self targetModuleClass moduleName ]
-]
-
-{ #category : #command }
-LcsCodeClassesBuilderJob >> updateSlotModel [
-	self jobSteps updateSlotModel.
-	self currentSystem currentUnitOfWork applyChanges	
-]
-
-{ #category : #verification }
-LcsCodeClassesBuilderJob >> verifyPopulateSlotModel [
-	self subclassResponsibility
-]
-
-{ #category : #command }
-LcsCodeClassesBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
-	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]

@@ -5,14 +5,14 @@ Class {
 }
 
 { #category : #accessing }
-LcsDomainClassBuilder class >> targetSuperclassName [
+LcsDomainClassBuilder class >> defaultTargetSuperclassName [
 	^ 'LcsDomainObject'
 ]
 
 { #category : #accessing }
 LcsDomainClassBuilder >> initialize [
 	super initialize.
-	self targetSuperclassName: self class targetSuperclassName
+	self targetSuperclassName: self class defaultTargetSuperclassName
 ]
 
 { #category : #accessing }

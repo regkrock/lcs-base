@@ -1,12 +1,22 @@
 Class {
 	#name : #LcsSingletonCodeClassBuilderTest,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsPrototypeSystemTest,
 	#instVars : [
 		'builder',
 		'superclassBuilder'
 	],
-	#category : #'Lcs-Tests-Tests'
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilderTest >> builder [
+	^ builder
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilderTest >> builder: anObject [
+	builder := anObject
+]
 
 { #category : #private }
 LcsSingletonCodeClassBuilderTest >> createBuilder [

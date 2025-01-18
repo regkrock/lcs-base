@@ -1,17 +1,17 @@
 Class {
 	#name : #LcsCodeCollectionClassBuilderTest,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsPrototypeSystemTest,
 	#instVars : [
 		'builder'
 	],
-	#category : #'Lcs-Tests-Tests'
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #test }
 LcsCodeCollectionClassBuilderTest >> createBuilder [
 	builder := LcsCodeCollectionClassBuilder new
 			newClassName: 'LxxGenders1';
-			targetPackageName: 'Lcs-PrototypeSystem';
+			targetPackageName: 'Lcs-Temp';
 			rootName: 'Genders1'
 ]
 
@@ -64,7 +64,7 @@ LcsCodeCollectionClassBuilderTest >> testCreationStringForCreatingLxxGendersSubc
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
-		package: ''Lcs-PrototypeSystem'' '
+		package: ''Lcs-Temp'' '
 ]
 
 { #category : #test }
@@ -74,7 +74,7 @@ LcsCodeCollectionClassBuilderTest >> testInstallClass [
 	builder verifyCodeInstallation
 ]
 
-{ #category : #testing }
+{ #category : #test }
 LcsCodeCollectionClassBuilderTest >> testPopulateSlotModelForClass [
 	self createUpdateSlotModelBuilder.
 	builder populateSlotModel.

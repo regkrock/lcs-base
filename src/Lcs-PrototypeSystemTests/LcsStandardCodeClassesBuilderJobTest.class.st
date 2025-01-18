@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStandardCodeClassesBuilderJobTest,
-	#superclass : #LcsDomainTest,
+	#superclass : #LcsPrototypeSystemTest,
 	#category : #'Lcs-PrototypeSystemTests'
 }
 
@@ -11,7 +11,7 @@ LcsStandardCodeClassesBuilderJobTest >> jobBuilder [
 		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Talent';
 		createCodeInstances: #(#('Guitar') #('Saxaphone'));
-		targetModuleClass: LxxPrototypeSystem;
+		installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
 		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
@@ -48,9 +48,9 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 
 	self assert: builder domainInstanceSlotName equals: 'talent'.
 	self assert: builder globalCollectionSlotName equals: 'talents'.
-	self assert: builder domainClassName equals: 'LxxTalent'.
-	self assert: builder globalCollectionClassName equals: 'LxxTalents'.
-	self assert: builder targetModuleClass equals: LxxPrototypeSystem.
+	self assert: builder newDomainClassName equals: 'LxxTalent'.
+	self assert: builder newGlobalCollectionClassName equals: 'LxxTalents'.
+	self assert: builder globalCollectionModuleClass equals: LxxPrototypeSystem.
 
 ]
 
@@ -90,7 +90,7 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
 	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
-	self assert: builderJobStep targetModuleClass identicalTo: LxxPrototypeSystem.
+	self assert: builderJobStep collectionSlotModuleName identicalTo: LxxPrototypeSystem moduleName.
 	self assert: builderJobStep collectionSlotName equals: 'talents'.
 	self assert: builderJobStep slotName equals: 'talent'.
 ]

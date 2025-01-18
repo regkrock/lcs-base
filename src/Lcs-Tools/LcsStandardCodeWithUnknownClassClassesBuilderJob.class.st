@@ -3,7 +3,7 @@ Class {
 	#superclass : #LcsCodeClassesBuilderJob,
 	#instVars : [
 		'codeInstances',
-		'undefinedClassName'
+		'unknownClassName'
 	],
 	#category : #'Lcs-Tools'
 }
@@ -43,10 +43,18 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeInstances: aCollection [
 	codeInstances := aCollection
 ]
 
+{ #category : #populate }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeNameFrom: anArray [ 
+	| protoCode |
+	protoCode := anArray at: 1.
+	protoCode size = 1 ifTrue: [ ^protoCode ].
+	^ protoCode asCamelCase asValidSelector asString
+]
+
 { #category : #builders }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsCodeClassBuilder new
-		domainClassName: (self classPrefix , aString);
+		newDomainClassName: (self classPrefix , aString);
 		targetSuperclassName: self codeSuperclassBuilder newClassName;
 		targetPackageName: self targetPackageName;
 		yourself
@@ -110,20 +118,15 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 ]
 
 { #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedClassName [
-	^ undefinedClassName
-]
-
-{ #category : #accessing }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedClassName: anObject [ 
-	undefinedClassName := anObject
+	unknownClassName := anObject
 ]
 
 { #category : #builders }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedCodeClassBuilder [
 	^ LcsUnknownCodeClassBuilder new
-		newClassName: self undefinedClassName;
-		targetSuperclassName: self domainClassName;
+		newClassName: self unknownClassName;
+		targetSuperclassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -131,6 +134,11 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedCodeClassBuilder [
 { #category : #populate }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClass [
 	^ self unknownCodeClassBuilderStep installedClass
+]
+
+{ #category : #accessing }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClassName [
+	^ unknownClassName
 ]
 
 { #category : #populate }

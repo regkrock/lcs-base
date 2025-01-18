@@ -59,18 +59,18 @@ LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
 
 { #category : #'gt view' }
 LcsMemberOfSlotBuilder >> domainClass [
-	^ self domainClassName asClass
-]
-
-{ #category : #'gt view' }
-LcsMemberOfSlotBuilder >> domainClassName [
-	^ self parent parent domainClassName
+	^ self newDomainClassName asClass
 ]
 
 { #category : #initialize }
 LcsMemberOfSlotBuilder >> initialize [
 	super initialize.
 	self slotTypes: OrderedCollection new
+]
+
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> newDomainClassName [
+	^ self parent parent newDomainClassName
 ]
 
 { #category : #accessing }

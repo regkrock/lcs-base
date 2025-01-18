@@ -82,7 +82,7 @@ LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: 'Install slot "';
 		nextPutAll: self slotName;
 		nextPutAll: '" in ';
-		nextPutAll: self targetClassName
+		nextPutAll: (self targetClassName ifNil: [ '<missing target class>' ])
 ]
 
 { #category : #accessing }

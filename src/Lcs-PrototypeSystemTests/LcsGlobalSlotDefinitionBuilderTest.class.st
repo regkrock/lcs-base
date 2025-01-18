@@ -30,7 +30,7 @@ LcsGlobalSlotDefinitionBuilderTest >> gendersBuilder [
 		addCodeSubclassWithRootNamed: 'Female';
 		addCodeSubclassWithRootNamed: 'UnknownGender'
 			with: [ :classBuilder | classBuilder beDefaultInstance ];
-		targetModuleClass: LxxPrototypeSystem;
+		installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
 		installMemberSlotInDomainClass: LxxPrototypePerson;
 		yourself
 ]
@@ -148,6 +148,7 @@ LcsGlobalSlotDefinitionBuilderTest >> testInstallingUsersGlobalCollectionWithExi
 LcsGlobalSlotDefinitionBuilderTest >> usersGlobalCollectionBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
 		slotName: 'users';
+		targetClassName: LxxPrototypeSystem name;
 		targetModuleName: LxxPrototypeSystem moduleName;
 		slotClass: 'LxxUsers' asClass;
 		collectionClass: LcsSmalltalkConfiguration identitySetClass;

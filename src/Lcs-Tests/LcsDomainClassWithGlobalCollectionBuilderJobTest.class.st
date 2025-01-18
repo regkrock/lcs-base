@@ -1,13 +1,13 @@
 Class {
-	#name : #LcsCodeBuilderJobTest,
+	#name : #LcsDomainClassWithGlobalCollectionBuilderJobTest,
 	#superclass : #LcsTestCase,
 	#category : #'Lcs-Tests-Tests'
 }
 
 { #category : #test }
-LcsCodeBuilderJobTest >> testAddingAJobStep [
+LcsDomainClassWithGlobalCollectionBuilderJobTest >> testAddingAJobStep [
 	| builderJob |
-	builderJob := LcsCodeBuilderJob new.
+	builderJob := LcsDomainClassWithGlobalCollectionBuilderJob new.
 	builderJob addJobStep: LcsCodeSuperClassBuilder new.
 	self assert: builderJob jobSteps hasJobSteps.
 	self assert: builderJob jobSteps collection size equals: 1.
@@ -16,9 +16,9 @@ LcsCodeBuilderJobTest >> testAddingAJobStep [
 ]
 
 { #category : #test }
-LcsCodeBuilderJobTest >> testCreation [
+LcsDomainClassWithGlobalCollectionBuilderJobTest >> testCreation [
 	| builderJob |
-	builderJob := LcsCodeBuilderJob new.
+	builderJob := LcsDomainClassWithGlobalCollectionBuilderJob new.
 	self assert: (builderJob jobSteps isKindOf: LcsCodeBuilderJobSteps).
 	self assert: builderJob jobSteps parent identicalTo: builderJob.
 	self assert: builderJob jobSteps hasNoJobSteps.
