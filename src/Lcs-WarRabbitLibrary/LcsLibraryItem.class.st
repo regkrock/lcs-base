@@ -14,7 +14,7 @@ Class {
 
 { #category : #'slot definition' }
 LcsLibraryItem class >> authorsSlotDefinition [
-	<slotDefinition>
+	"<slotDefinition>"
 	^LcsSecondaryCollectionSlot new
 		slotName: 'authors';
 		addSlotType: LcsAuthors; 

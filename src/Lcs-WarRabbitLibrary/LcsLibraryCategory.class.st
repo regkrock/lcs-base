@@ -32,6 +32,7 @@ LcsLibraryCategory class >> parentSlotDefinition [
 		slotName: 'parent';
 		collectionSlotModuleName: LcsWarRabbitLibrary moduleName;
 		collectionSlotName: 'libraryCategories';
+		addSlotType: self;
 		yourself
 ]
 
@@ -45,10 +46,20 @@ LcsLibraryCategory class >> subcategoriesSlotDefinition [
 
 { #category : #accessing }
 LcsLibraryCategory >> categoryName [
-	^ categoryName
+		^ self getValueOfSlotNamed: 'categoryName'
 ]
 
 { #category : #accessing }
 LcsLibraryCategory >> categoryName: anObject [
-	categoryName := anObject
+	self setValueOfSlotNamed: 'categoryName' to: anObject
+]
+
+{ #category : #accessing }
+LcsLibraryCategory >> subcategories [
+	^ self getValueOfSlotNamed: 'subcategories'
+]
+
+{ #category : #accessing }
+LcsLibraryCategory >> subcategories: anObject [
+	^ self setValueOfSlotNamed: 'subcategories' to: anObject
 ]
