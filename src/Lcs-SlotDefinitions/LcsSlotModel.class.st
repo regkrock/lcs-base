@@ -26,7 +26,7 @@ LcsSlotModel >> _slotDefinitionNamed: aSlotName [
 	^ self slotDefinitions
 		at: aSlotName
 		ifAbsent: [ self domainClass superclass isDomainClass
-				ifTrue: [ self domainClass superclass slotDefinitionNamed: aSlotName ]
+				ifTrue: [ self domainClass superclass slotModel _slotDefinitionNamed: aSlotName ]
 				ifFalse: [ nil ] ]
 ]
 

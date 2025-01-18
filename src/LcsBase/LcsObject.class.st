@@ -86,6 +86,11 @@ LcsObject >> isApplicationSystem [
 	^ false
 ]
 
+{ #category : #testing }
+LcsObject >> isDomainClass [
+	^self class isDomainClass
+]
+
 { #category : #printing }
 LcsObject >> printOn: aStream [
 	super printOn: aStream.

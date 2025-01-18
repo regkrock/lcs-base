@@ -2,5 +2,5 @@ Extension { #name : #Object }
 
 { #category : #'*LcsBase' }
 Object >> isDomainObject [
-	^ false
+	^ self class isDomainClass
 ]

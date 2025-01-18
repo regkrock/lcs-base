@@ -150,13 +150,13 @@ LcsDomainObject class >> installSlotModelIn: aSystem [
 
 { #category : #'slot model' }
 LcsDomainObject class >> instantiateSlotModel [
-	self superclass verifySuperclassesHaveInitializedSlotModel.
+	self  verifySuperclassesHaveInitializedSlotModel.
 	self slotModel: (LcsSlotModel newOn: self)
 ]
 
 { #category : #testing }
 LcsDomainObject class >> isDomainClass [
-	^ true
+	^true
 ]
 
 { #category : #testing }
@@ -359,8 +359,8 @@ LcsDomainObject class >> verifySlotModelInitialized [
 
 { #category : #'slot model' }
 LcsDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
-	(self subclasses includes: LcsDomainObject) ifTrue: [ ^ self ].
-	self isSlotModelDefined
+	self superclass == LcsObject ifTrue: [ ^ self ].
+	self superclass isSlotModelDefined
 		ifFalse: [ LcsSlotModelNotInitializedError signalWithContext: self ].
 	self superclass verifySuperclassesHaveInitializedSlotModel
 
@@ -449,9 +449,9 @@ LcsDomainObject >> initializeUninitializedSlotValues [
 
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsDomainObject >> isDomainObject [
-	^ true
+	^true
 ]
 
 { #category : #validation }
