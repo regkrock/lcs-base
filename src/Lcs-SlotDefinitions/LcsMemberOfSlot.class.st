@@ -13,24 +13,24 @@ Class {
 	#instVars : [
 		'collectionSourceBlock',
 		'collectionSlotName',
-		'collectionModuleName'
+		'collectionSlotModuleName'
 	],
 	#category : #'Lcs-SlotDefinitions'
 }
 
 { #category : #'application environment' }
 LcsMemberOfSlot >> collectionModule [
-	^ self currentSystem moduleNamed: self collectionModuleName
+	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
 { #category : #accessing }
-LcsMemberOfSlot >> collectionModuleName [
-	^ collectionModuleName
+LcsMemberOfSlot >> collectionSlotModuleName [
+	^ collectionSlotModuleName
 ]
 
 { #category : #accessing }
-LcsMemberOfSlot >> collectionModuleName: aString [ 
-	collectionModuleName := aString
+LcsMemberOfSlot >> collectionSlotModuleName: aString [ 
+	collectionSlotModuleName := aString
 ]
 
 { #category : #accessing }

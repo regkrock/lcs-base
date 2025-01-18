@@ -13,7 +13,7 @@ LxxPrototypeOrganization class >> chiefExecutiveOfficerSlotDefinition [
 	^ LcsMemberOfSlot new
 		slotName: 'chiefExecutiveOfficer';
 		collectionSlotName: 'persons';
-		collectionModuleName: LxxPrototypePersonsModule moduleName;
+		collectionSlotModuleName: LxxPrototypePersonsModule moduleName;
 		addSlotType: LxxPrototypePerson;
 		addSlotType: UndefinedObject;
 		beRequired;

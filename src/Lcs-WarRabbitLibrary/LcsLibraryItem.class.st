@@ -54,7 +54,7 @@ LcsLibraryItem class >> librearyCategorySlotDefinition [
 	^ LcsMemberOfSlot new
 		slotName: 'libraryCategory';
 		collectionSlotName: 'libraryCategories';
-		collectionModuleName: 'WarRabbitLibrary';
+		collectionSlotModuleName: 'WarRabbitLibrary';
 		beRequired;
 		yourself
 ]

@@ -2,9 +2,6 @@ Class {
 	#name : #LcsAuthor,
 	#superclass : #LcsDomainObject,
 	#instVars : [
-		'surname',
-		'firstName',
-		'middleNames',
 		'authorship',
 		'person'
 	],
@@ -16,26 +13,8 @@ LcsAuthor class >> authorshipSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
 		slotName: 'authorship';
-		addSlotType: LcsLibraryItems; 
 		addCollectionMemberType: LcsLibraryItem;
-		yourself
-]
-
-{ #category : #'slot definition' }
-LcsAuthor class >> fristNameSlotDefinition [
-	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'firstName';
-		beRequired;
-		yourself
-]
-
-{ #category : #'slot definition' }
-LcsAuthor class >> middleNamesSlotDefinition [
-	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'middleNames';
-		beOptional;
+		addSlotType: LcsLibraryItems; 
 		yourself
 ]
 
@@ -44,17 +23,19 @@ LcsAuthor class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
-		collectionSlotModuleName: LcsWarRabbitLibrary moduleName;
 		collectionSlotName: 'authors';
+		collectionSlotModuleName: LcsWarRabbitLibrary moduleName;
+		addSlotType: LcsAuthor
 		yourself
 ]
 
 { #category : #'slot definition' }
-LcsAuthor class >> surnameSlotDefinition [
+LcsAuthor class >> personSlotDefinition [
 	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'surname';
-		beRequired;
+	^ LcsMemberOfSlot new
+		slotName: 'person';
+		collectionSlotName: 'persons';
+		collectionSlotModuleName: LcsLegalEntitiesModule moduleName;
 		yourself
 ]
 
@@ -68,32 +49,27 @@ LcsAuthor >> authorship: anObject [
 	self setValueOfSlotNamed: 'authorship' to: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #person }
 LcsAuthor >> firstName [
-	^ self getValueOfSlotNamed: 'firstName'
+	^ self person firstName
 ]
 
-{ #category : #accessing }
-LcsAuthor >> firstName: anObject [
-	self setValueOfSlotNamed: 'firstName' to:anObject
-]
-
-{ #category : #accessing }
+{ #category : #person }
 LcsAuthor >> middleNames [
-	^ self getValueOfSlotNamed: 'middleNames'
+	^ self person middleNames
 ]
 
 { #category : #accessing }
-LcsAuthor >> middleNames: anObject [
-	self setValueOfSlotNamed: 'middleNames' to: anObject
+LcsAuthor >> person [
+	^ self getValueOfSlotNamed: 'person'
 ]
 
 { #category : #accessing }
+LcsAuthor >> person: anObject [
+	self setValueOfSlotNamed: 'person' to: anObject
+]
+
+{ #category : #person }
 LcsAuthor >> surname [
-	^ self getValueOfSlotNamed: 'surname'
-]
-
-{ #category : #accessing }
-LcsAuthor >> surname: anObject [
-	self setValueOfSlotNamed: 'surname' to: anObject
+	^ self person surname
 ]
