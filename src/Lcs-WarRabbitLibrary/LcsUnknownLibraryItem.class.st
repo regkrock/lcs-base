@@ -15,6 +15,22 @@ LcsUnknownLibraryItem class >> newOn: aString [
 		yourself
 ]
 
+{ #category : #'slot definition' }
+LcsUnknownLibraryItem class >> originalLineSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'originalLine';
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsUnknownLibraryItem class >> partsSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'parts';
+		yourself
+]
+
 { #category : #initialize }
 LcsUnknownLibraryItem >> initialize [
 	super initialize.
@@ -39,20 +55,20 @@ LcsUnknownLibraryItem >> initializeOn: aString parts: protoItemParts [
 
 { #category : #accessing }
 LcsUnknownLibraryItem >> originalLine [
-	^ originalLine
+	^ self getValueOfSlotNamed: 'originalLine'
 ]
 
 { #category : #accessing }
 LcsUnknownLibraryItem >> originalLine: anObject [
-	originalLine := anObject
+	self setValueOfSlotNamed: 'originalLine' to: anObject originalLine
 ]
 
 { #category : #accessing }
 LcsUnknownLibraryItem >> parts [
-	^ parts
+	^ self getValueOfSlotNamed: 'parts'
 ]
 
 { #category : #initialize }
 LcsUnknownLibraryItem >> parts: anObject [ 
-	parts := anObject
+	^ self setValueOfSlotNamed: 'parts' to: anObject
 ]

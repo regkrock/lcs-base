@@ -12,20 +12,20 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefintion [
+LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: #'defaultPoliticalUnitName';
+		slotName: 'defaultPoliticalUnitName';
 		beRequired;
 		validator: [ :string | string size >= 2 ];
 		yourself
 ]
 
 { #category : #'slot definitions' }
-LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefintion [
+LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: #'defaultPostalCodeName';
+		slotName: 'defaultPostalCodeName';
 		beRequired;
 		validator: [ :string | string size >= 2 ];
 		yourself

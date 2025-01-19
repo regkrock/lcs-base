@@ -49,6 +49,17 @@ LcsLibraryItem class >> itemNameSlotDefinition [
 ]
 
 { #category : #'slot definition' }
+LcsLibraryItem class >> libraryCategorySlotDefinition [
+	<slotDefinition>
+	^ LcsMemberOfSlot new
+		slotName: 'libraryCategory';
+		collectionSlotName: 'libraryCategories';
+		collectionSlotModuleName: 'WarRabbitLibrary';
+		beRequired;
+		yourself
+]
+
+{ #category : #'slot definition' }
 LcsLibraryItem class >> librearyCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new
