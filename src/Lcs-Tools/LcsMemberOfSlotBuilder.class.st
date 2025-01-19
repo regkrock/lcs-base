@@ -29,7 +29,7 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 				codeStream addSetter: 'addSlotType' contents: eachName ] ].
 	codeStream
 		addSetter: 'collectionSlotName' contents: (self collectionSlotName ifNil: [ '<missing>' ]) printString;
-		addSetter: 'collectionModuleName' contents: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
+		addSetter: 'collectionSlotModuleName' contents: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
 ]
 
 { #category : #initialize }

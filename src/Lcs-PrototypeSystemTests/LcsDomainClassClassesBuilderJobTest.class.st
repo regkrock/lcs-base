@@ -122,9 +122,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase4_Upd
 	builder installCode.
 	builder verifyCodeInstallation.
 	builder updateSlotModel.
-	builder verifySlotModelUpdatesMadeByBuilder.
-
-
+	builder verifySlotModelUpdatesMadeByBuilder
 ]
 
 { #category : #tests }

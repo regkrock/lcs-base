@@ -80,7 +80,7 @@ LcsMemberOfSlotBuilderTest >> testBuilderSetup [
 		slotName: ''person'';
 		addSlotType: LxxPrototypePerson;
 		collectionSlotName: ''persons'';
-		collectionModuleName: ''Persons Module'';
+		collectionSlotModuleName: ''Persons Module'';
 		yourself'
 ]
 
@@ -101,7 +101,7 @@ LcsMemberOfSlotBuilderTest >> testCreation [
 		slotName: ''<missing>'';
 		addSlotType: ''<no slot types defined>'';
 		collectionSlotName: ''<missing>'';
-		collectionModuleName: ''<missing>'';
+		collectionSlotModuleName: ''<missing>'';
 		yourself' 
 ]
 
