@@ -9,7 +9,7 @@ LcsParentSlot >> initialize [
 	super initialize.
 	self 
 		slotName: 'parent';
-		addSlotType: 'LcsDomainObject' asClass.
+		addSlotType: LcsDomainObject.
 ]
 
 { #category : #accessing }

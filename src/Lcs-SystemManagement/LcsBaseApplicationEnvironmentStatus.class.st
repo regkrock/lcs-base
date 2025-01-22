@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsBaseApplicationEnvironmentStatus,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'parent'
 	],

@@ -20,6 +20,6 @@ LcsCompositeSlot >> setValueTo: anObject in: aDomainObject [
 	| originalObject |
 	originalObject := self getPersistedValueIn: aDomainObject.
 	self _setValueTo: anObject in: aDomainObject.
-	(originalObject isKindOf: LcsDomainObject)
+	(originalObject isDomainObject)
 		ifTrue: [ self currentUnitOfWork deleteObject: originalObject ]
 ]

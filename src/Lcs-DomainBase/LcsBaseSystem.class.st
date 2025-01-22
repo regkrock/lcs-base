@@ -43,13 +43,15 @@ LcsBaseSystem class >> new [
 { #category : #'slot model' }
 LcsBaseSystem class >> prebootstrapDomainClasses [
 	| prebootstrapClasses |
-	prebootstrapClasses := OrderedCollection new.
+	prebootstrapClasses := 
+		OrderedCollection new
+			add: LcsDomainObject;
+			add: LcsSystemSlotModel;
+			add: LcsBaseSystemStatus;
+			addAll: LcsBaseSystemStatus subclasses;
+			yourself.
 	self addMyDomainClassHeirarchyTo: prebootstrapClasses.
 	^ prebootstrapClasses
-		add: LcsSystemSlotModel;
-		add: LcsBaseSystemStatus;
-		addAll: LcsBaseSystemStatus subclasses;
-		yourself
 ]
 
 { #category : #'slot definition' }

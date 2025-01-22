@@ -16,10 +16,10 @@ LcsDomainObject class >> _installSlotDefinition: aSlotDefinitionSelector [
 ]
 
 { #category : #initialize }
-LcsDomainObject class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [ 
-	prebootstrapClasses addFirst: self.
-	((self superclass inheritsFrom: LcsDomainObject) or: [ self superclass == LcsDomainObject ])
-		ifTrue: [ self superclass addMyDomainClassHeirarchyTo: prebootstrapClasses ]
+LcsDomainObject class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
+	self allClassBetweenMyselfAndLcsDomainObject
+		do: [ :each | prebootstrapClasses add: each ].
+	prebootstrapClasses add: self
 ]
 
 { #category : #'slot model' }
@@ -30,6 +30,12 @@ LcsDomainObject class >> addPrototypeClassTo: classes [
 { #category : #'unit of work' }
 LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
+]
+
+{ #category : #initialize }
+LcsDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
+	^ self allSuperclasses reverse
+		reject: [ :each | (each inheritsFrom: LcsDomainObject) not ]
 ]
 
 { #category : #'slot model' }
@@ -176,7 +182,7 @@ LcsDomainObject class >> isPrototypeClass [
 
 { #category : #testing }
 LcsDomainObject class >> isRootDomainClass [
-	^ self name == #'LcsDomainObject'
+	^ self name asString = 'LcsDomainObject'
 ]
 
 { #category : #testing }
@@ -394,7 +400,12 @@ LcsDomainObject >> applicationEnvironment [
 	^ self parent applicationEnvironment
 ]
 
-{ #category : #'unit of work' }
+{ #category : #system }
+LcsDomainObject >> currentSystem [
+	^ self class currentSystem
+]
+
+{ #category : #system }
 LcsDomainObject >> currentUnitOfWork [
 	^ self parent currentUnitOfWork
 ]

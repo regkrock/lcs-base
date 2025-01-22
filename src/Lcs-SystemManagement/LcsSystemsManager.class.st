@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSystemsManager,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'parent',
 		'systems',
@@ -163,7 +163,7 @@ LcsSystemsManager >> releaseApplicationEnvironment [
 
 { #category : #api }
 LcsSystemsManager >> releaseSlotModel [
-	#LcsDomainObject asClass releaseSlotModel
+	LcsDomainObject releaseSlotModel
 ]
 
 { #category : #api }
@@ -181,7 +181,8 @@ LcsSystemsManager >> removeSystem: aSystem [
 
 { #category : #api }
 LcsSystemsManager >> restoreSlotModel [
-	#LcsDomainObject asClass restoreSlotModel
+	self error: 'this is broken as resutoreSlotModel is not implemented in LcsDomainObject'.
+	LcsDomainObject restoreSlotModel
 ]
 
 { #category : #api }

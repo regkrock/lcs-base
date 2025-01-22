@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsUnitsOfWorkManager,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'currentUnitOfWork',
 		'unitsOfWork',

@@ -54,6 +54,12 @@ LcsObject >> printOn: aStream [
 
 ]
 
+{ #category : #pirvate }
+LcsObject >> removerProtoObjectFrom: classes [
+	([ 'ProtoObject' asClass ] on: NotFound do: [ nil ])
+		ifNotNil: [ :class | classes remove: class ifAbsent: [  ] ]
+]
+
 { #category : #convenience }
 LcsObject >> selectorNameFrom: aString [
 	| newString |

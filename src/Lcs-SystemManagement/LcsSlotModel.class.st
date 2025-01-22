@@ -5,7 +5,7 @@ Class {
 		'domainClass',
 		'slotDefinitions'
 	],
-	#category : #'Lcs-SlotDefinitions-Core'
+	#category : #'Lcs-SystemManagement-Core'
 }
 
 { #category : #configuration }

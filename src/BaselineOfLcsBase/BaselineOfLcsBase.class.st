@@ -23,44 +23,36 @@ BaselineOfLcsBase >> baseline: spec [
 	<baseline>
 		^ spec for: #common do: [
 			spec package: 'Lcs-GemStoneMocks'.
-			spec package: 'LcsBase'  with: [ spec requires: #('Lcs-GemStoneMocks' ) ].
-			spec package: 'Lcs-PharoExtensions' with: [ spec requires: #('LcsBase' ) ].
-			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('LcsBase' ) ].
-			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase' 'Lcs-SlotDefinitions') ].
-			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SystemManagement') ].
-			spec package: 'Lcs-StateMachine-Core' with: [ spec requires: #('Lcs-DomainBase') ].
+			spec package: 'LcsBase'  with: [ spec requires: #('Lcs-GemStoneMocks') ].
+			spec package: 'Lcs-PharoExtensions' with: [ spec requires: #('LcsBase') ].
+			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase') ].
+			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('Lcs-SystemManagement') ].
+			spec package: 'Lcs-ApplicationTools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
+			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-ApplicationTools') ].
+			spec package: 'Lcs-StateMachine' with: [ spec requires: #('Lcs-DomainBase') ].
+
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
 			spec package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Geography') ].
-			spec package: 'Lcs-System' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' ) ].
-			spec package: 'Lcs-WarRabbitLibrary' with: [ spec requires: #('Lcs-DomainBase') ].
+			spec package: 'Lcs-MainSystem' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' ) ].
 
-			" Systems for experimentation "
-			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-StateMachine-Core') ].  
+			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-StateMachine') ].  
 
-			" Tests on main code "			
 			spec package: 'Lcs-BaseTests' with: [ spec requires: #('LcsBase')  ].
+			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests') ].  
 			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
-			spec package: 'Lcs-Tests' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-BaseTests' 'Lcs-Tools') ].  
-			spec package: 'Lcs-SystemTests' with: [ spec requires: #('Lcs-System' 'Lcs-Tests') ].  
-			"spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemTests') ]. "   
-			spec package: 'Lcs-WarRabbitLibraryTests' with: [ spec requires: #('Lcs-WarRabbitLibrary' 'Lcs-Tests') ].  
+			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystemTests') ].
+			spec package: 'Lcs-StateMachineTests' with: [ spec requires: #('Lcs-StateMachine' 'Lcs-PrototypeSystem' 'Lcs-PrototypeSystemTests') ].
+			spec package: 'Lcs-MainSystemTests' with: [ spec requires: #('Lcs-MainSystem' 'Lcs-SlotDefinitionsTests') ].  
 
-			" Tests on experimentation systems "			
-			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-Tests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
-			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-PrototypeSystemTests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
-			spec package: 'Lcs-StateMachine-Tests' with: [ spec requires: #('Lcs-StateMachine-Core' 'Lcs-PrototypeSystem' 'Lcs-PrototypeSystemTests') ].
-			
-			" Tools "
-			spec package: 'Lcs-Tools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
-			
-			" Examples "
+			spec package: 'Lcs-WarRabbitLibrary' with: [ spec requires: #('Lcs-LegalEntities') ].
+			spec package: 'Lcs-WarRabbitLibraryTests' with: [ spec requires: #('Lcs-WarRabbitLibrary' 'Lcs-SystemManagementTests') ].  
+
 			spec package: 'Lcs-Examples' with: [ spec requires: #('Lcs-DomainBase') ].
 			
-			"Css"
 			spec package: 'Lcs-Css' with: [ spec requires: #('LcsBase') ].
-			spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-Tests' 'Lcs-Css') ].
-			"Web Components"
+			spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-BaseTests' 'Lcs-Css') ].
+
 			spec package: 'Lcs-WebComponents' with: [ spec requires: #('Lcs-DomainBase') ].
-			spec package: 'Lcs-WebComponentsTests' with: [ spec requires: #('Lcs-WebComponents' 'Lcs-Tests' 'Lcs-PrototypeSystem') ]
+			spec package: 'Lcs-WebComponentsTests' with: [ spec requires: #('Lcs-WebComponents' 'Lcs-SystemManagementTests' 'Lcs-PrototypeSystem' ) ]
 				]
 ]

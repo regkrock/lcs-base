@@ -54,8 +54,7 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModelClasses [
 			yourself.
 	classes removeDuplicates.
 	classes remove: Object.
-	([ 'ProtoObject' asClass ] on: NotFound do: [ nil ])
-		ifNotNil: [ :class | classes remove: class ifAbsent: [  ] ].
+	self removerProtoObjectFrom: classes.
 	^ classes
 ]
 
@@ -150,8 +149,7 @@ LcsSlotModelDiagramExamples >> systemSlotModelClasses [
 			yourself.
 	classes removeDuplicates.
 	classes remove: Object.
-	([ 'ProtoObject' asClass ] on: NotFound do: [ nil ])
-		ifNotNil: [ :class | classes remove: class ifAbsent: [  ] ].
+	self removerProtoObjectFrom: classes.
 	^ classes
 ]
 

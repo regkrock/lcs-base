@@ -5,7 +5,7 @@ slotName - this is the name of the slot and is the same as the instvarName.
 "
 Class {
 	#name : #LcsSlotDefinition,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'slotName',
 		'parent',
@@ -14,7 +14,7 @@ Class {
 		'validator',
 		'initialValueBlock'
 	],
-	#category : #'Lcs-SlotDefinitions-Core'
+	#category : #'Lcs-SystemManagement-Core'
 }
 
 { #category : #'slot model' }
@@ -64,11 +64,6 @@ LcsSlotDefinition >> createNewInstanceOf: aClass inContext: context [
 	aClass isDomainClass
 		ifTrue: [ aClass newInContext: context ]
 		ifFalse: [ aClass new ]
-]
-
-{ #category : #'application environment' }
-LcsSlotDefinition >> currentUnitOfWork [
-	^ #LcsApplicationEnvironment asClass currentUnitOfWork
 ]
 
 { #category : #defaults }

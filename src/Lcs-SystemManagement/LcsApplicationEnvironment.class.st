@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsApplicationEnvironment,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'systemManager',
 		'unitsOfWorkManager',

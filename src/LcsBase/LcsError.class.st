@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsError,
 	#superclass : #Error,
-	#category : #LcsBase
+	#category : #'LcsBase-Error'
 }
 
 { #category : #'as yet unclassified' }

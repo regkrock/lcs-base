@@ -63,7 +63,7 @@ LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: 
 { #category : #'gt view' }
 LcsApplicationEnvironmentViewItem >> isInstantiatedSystem [
 	(self item respondsTo: #isApplicationSystem) ifFalse: [ ^ false ].
-	^self item isApplicationSystem
+	^ self item isApplicationSystem
 ]
 
 { #category : #testing }
