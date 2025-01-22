@@ -47,7 +47,7 @@ BaselineOfLcsBase >> baseline: spec [
 
 			" Tests on experimentation systems "			
 			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-Tests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
-			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-Tests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
+			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-PrototypeSystemTests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
 			spec package: 'Lcs-StateMachine-Tests' with: [ spec requires: #('Lcs-StateMachine-Core' 'Lcs-PrototypeSystem' 'Lcs-PrototypeSystemTests') ].
 			
 			" Tools "

@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsGlobalCollectionSlotTest,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsPrototypeSystemTest,
 	#instVars : [
 		'fooBuilder',
 		'foosBuilder'
@@ -63,7 +63,16 @@ LcsGlobalCollectionSlotTest >> foosGlobalCollectionSlotBuilder [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
+LcsGlobalCollectionSlotTest >> setUp [
+	self fooBuilder notNil ifTrue: [
+		self should: [ self fooBuilder newClassName asClass ] raise: Error].
+	self foosBuilder notNil ifTrue: [
+		self should: [ self foosBuilder newClassName asClass ] raise: Error ].
+	super setUp
+]
+
+{ #category : #running }
 LcsGlobalCollectionSlotTest >> tearDown [
 	self fooBuilder ifNotNil: [ self fooBuilder uninstall ].
 	self foosBuilder ifNotNil: [ self foosBuilder uninstall ].
