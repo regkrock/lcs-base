@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsModuleViewItem,
 	#superclass : #LcsViewItem,
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-View'
 }
 
 { #category : #default }

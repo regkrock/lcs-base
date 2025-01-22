@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJobTest,
-	#superclass : #LcsDomainTest,
-	#category : #'Lcs-PrototypeSystemTests'
+	#superclass : #LcsPrototypeSystemTest,
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #tests }
@@ -22,11 +22,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> removeAllArtifacts [
 	LxxPrototypePerson removeDomainSlotNamed: 'title'.
 	self
 		removeClassesNamed: #('LxxUnknownTitle' 'LxxTitle' 'LxxTitles')
-]
-
-{ #category : #running }
-LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> setupSunitSystem [
-	LxxPrototypeSystem new
 ]
 
 { #category : #running }

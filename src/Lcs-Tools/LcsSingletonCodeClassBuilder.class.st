@@ -65,8 +65,8 @@ LcsSingletonCodeClassBuilder >> codeDescription: aString [
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> codeName [
 	^ codeName
-		ifNil: [ self rootName first asLowercase asString
-				, (self rootName copyFrom: 2 to: self rootName size) ]
+		ifNil: [ self codeDescription first asLowercase asString
+				, (self codeDescription copyFrom: 2 to: self rootName size) ]
 ]
 
 { #category : #accessing }
@@ -121,7 +121,7 @@ LcsSingletonCodeClassBuilder >> populateSlotModel [
 
 { #category : #accessing }
 LcsSingletonCodeClassBuilder >> shortName [
-	^ shortName ifNil: [ shortName := self rootName ]
+	^ shortName ifNil: [ shortName := self codeDescription ]
 ]
 
 { #category : #accessing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #RBCreateDomainSlotAcccessorsForVariableRefactoring,
 	#superclass : #RBCreateAccessorsForVariableRefactoring,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #accessing }

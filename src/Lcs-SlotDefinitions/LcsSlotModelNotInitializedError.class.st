@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSlotModelNotInitializedError,
 	#superclass : #LcsSlotModelError,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Error'
 }
 
 { #category : #iniitialize }

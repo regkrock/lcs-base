@@ -44,6 +44,7 @@ LcsSingletonCodeClassesBuilderJob >> codeClassBuilder [
 LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsSingletonCodeClassBuilder new
 		rootName: aString;
+		codeDescription: aString;
 		newClassName: self classPrefix , aString;
 		targetSuperclassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;

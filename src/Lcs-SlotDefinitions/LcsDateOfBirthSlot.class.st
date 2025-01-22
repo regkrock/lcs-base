@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDateOfBirthSlot,
 	#superclass : #LcsDateSlot,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #defaults }

@@ -1,22 +1,22 @@
 Class {
-	#name : #LcsSystemManager,
+	#name : #LcsSystemsManager,
 	#superclass : #LcsObject,
 	#instVars : [
 		'parent',
 		'systems',
 		'currentSystem'
 	],
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Environment'
 }
 
 { #category : #'instance creation' }
-LcsSystemManager class >> new [
+LcsSystemsManager class >> new [
 	"Use the #newOn: method"
 	self shouldNotImplement
 ]
 
 { #category : #'instance creation' }
-LcsSystemManager class >> newOn: anAppicaltionEnvironment [
+LcsSystemsManager class >> newOn: anAppicaltionEnvironment [
 	^ self basicNew 
 		initialize;
 		initializeOn: anAppicaltionEnvironment;
@@ -24,7 +24,7 @@ LcsSystemManager class >> newOn: anAppicaltionEnvironment [
 ]
 
 { #category : #accessing }
-LcsSystemManager >> addSystem: aBasicSystem [
+LcsSystemsManager >> addSystem: aBasicSystem [
 	self suspendCurrentSystem.
 	self currentSystem: aBasicSystem.
 	self currentSystem systemManager: self.
@@ -34,12 +34,12 @@ LcsSystemManager >> addSystem: aBasicSystem [
 ]
 
 { #category : #accessing }
-LcsSystemManager >> applicationEnvironment [
+LcsSystemsManager >> applicationEnvironment [
 	^self parent applicationEnvironment
 ]
 
 { #category : #'gt view' }
-LcsSystemManager >> applicationEnvironmentViewChildren [
+LcsSystemsManager >> applicationEnvironmentViewChildren [
 	^ {
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Current System' item: self currentSystem.
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Running Systems' item: self systems.
@@ -47,34 +47,34 @@ LcsSystemManager >> applicationEnvironmentViewChildren [
 ]
 
 { #category : #'gt view' }
-LcsSystemManager >> applicationEnvironmentViewaAvailableSystemsChildren [
+LcsSystemsManager >> applicationEnvironmentViewaAvailableSystemsChildren [
 	^ self availableSystemClasses
 		collect: [ :eachClass | LcsApplicationEnvironmentViewItem newOn: self label: eachClass name item: eachClass ]
 ]
 
 { #category : #accessing }
-LcsSystemManager >> createCurrentSystemFor: aSystemClass [
-	self initializeBasicSystem: aSystemClass basicNew.
+LcsSystemsManager >> createCurrentSystemFor: aSystemClass [
+	aSystemClass new.
 	^ self currentSystem
 ]
 
 { #category : #accessing }
-LcsSystemManager >> currentSystem [
+LcsSystemsManager >> currentSystem [
 	^ currentSystem
 ]
 
 { #category : #accessing }
-LcsSystemManager >> currentSystem: anObject [
+LcsSystemsManager >> currentSystem: anObject [
 	currentSystem := anObject
 ]
 
 { #category : #querry }
-LcsSystemManager >> currentUnitOfWork [
+LcsSystemsManager >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
 ]
 
 { #category : #'gt view' }
-LcsSystemManager >> gtAllSystemsFor: aView [
+LcsSystemsManager >> gtAllSystemsFor: aView [
 	<gtView>
 	^ aView columnedTree 
 		title: 'Systems';
@@ -91,7 +91,7 @@ LcsSystemManager >> gtAllSystemsFor: aView [
 ]
 
 { #category : #accessing }
-LcsSystemManager >> gtSystemManagerFor: aView [
+LcsSystemsManager >> gtSystemManagerFor: aView [
 		<gtView>
 	^ aView columnedList
 		title: 'System Manager';
@@ -110,40 +110,28 @@ LcsSystemManager >> gtSystemManagerFor: aView [
 ]
 
 { #category : #testing }
-LcsSystemManager >> hasCurrentSystem [
+LcsSystemsManager >> hasCurrentSystem [
 	^ self currentSystem notNil
 ]
 
 { #category : #testing }
-LcsSystemManager >> hasNoCurrentSystem [
+LcsSystemsManager >> hasNoCurrentSystem [
 	^ self currentSystem isNil
 ]
 
 { #category : #initialize }
-LcsSystemManager >> initialize [
+LcsSystemsManager >> initialize [
 	super initialize.
 	self systems: (LcsSystems newOn: self)
 ]
 
-{ #category : #accessing }
-LcsSystemManager >> initializeBasicSystem: aBasicSystem [
-	self suspendCurrentSystem.
-	self currentSystem: aBasicSystem.
-	self currentSystem systemManager: self.
-	self systems add: self currentSystem.
-	self unitsOfWorkManager createUnitOfWorkForCurrentSystem. 
-	self currentUnitOfWork addObject: aBasicSystem.
-	
-	"self currentSystem initializeInNewUnitOfWork: self."
-]
-
 { #category : #initialize }
-LcsSystemManager >> initializeOn: anAppicaltionEnvironment [ 
+LcsSystemsManager >> initializeOn: anAppicaltionEnvironment [ 
 	self parent: anAppicaltionEnvironment 
 ]
 
 { #category : #api }
-LcsSystemManager >> makeSystemCurrent: aSystem [
+LcsSystemsManager >> makeSystemCurrent: aSystem [
 	"self currentSystem: aSystem.
 	self currentSystem 
 		ifNil: [  self releaseSlotModel ]
@@ -153,38 +141,38 @@ LcsSystemManager >> makeSystemCurrent: aSystem [
 ]
 
 { #category : #querry }
-LcsSystemManager >> numberOfSystems [
+LcsSystemsManager >> numberOfSystems [
 	^ self systems size
 ]
 
 { #category : #accessing }
-LcsSystemManager >> parent [
+LcsSystemsManager >> parent [
 	^ parent
 ]
 
 { #category : #accessing }
-LcsSystemManager >> parent: anObject [
+LcsSystemsManager >> parent: anObject [
 	parent := anObject
 ]
 
 { #category : #api }
-LcsSystemManager >> releaseApplicationEnvironment [
+LcsSystemsManager >> releaseApplicationEnvironment [
 	self removeCurrentSystem.
 	self systems: OrderedCollection new
 ]
 
 { #category : #api }
-LcsSystemManager >> releaseSlotModel [
+LcsSystemsManager >> releaseSlotModel [
 	#LcsDomainObject asClass releaseSlotModel
 ]
 
 { #category : #api }
-LcsSystemManager >> removeCurrentSystem [
+LcsSystemsManager >> removeCurrentSystem [
 	self removeSystem: self currentSystem
 ]
 
 { #category : #api }
-LcsSystemManager >> removeSystem: aSystem [
+LcsSystemsManager >> removeSystem: aSystem [
 	self releaseSlotModel.
 	self unitsOfWorkManager removeUnitsOfWorkFor: aSystem.
 	self systems remove: aSystem ifAbsent: [ ].
@@ -192,17 +180,17 @@ LcsSystemManager >> removeSystem: aSystem [
 ]
 
 { #category : #api }
-LcsSystemManager >> restoreSlotModel [
+LcsSystemsManager >> restoreSlotModel [
 	#LcsDomainObject asClass restoreSlotModel
 ]
 
 { #category : #api }
-LcsSystemManager >> restoreUnitOfWorkFor: suspendedSystem [
+LcsSystemsManager >> restoreUnitOfWorkFor: suspendedSystem [
 	^ self unitsOfWorkManager restoreUnitOfWorkFor: suspendedSystem
 ]
 
 { #category : #api }
-LcsSystemManager >> suspendCurrentSystem [
+LcsSystemsManager >> suspendCurrentSystem [
 	| suspensionCandidate |
 	suspensionCandidate := self currentSystem.
 	suspensionCandidate ifNotNil: [ suspensionCandidate suspendSystem ].
@@ -211,21 +199,21 @@ LcsSystemManager >> suspendCurrentSystem [
 ]
 
 { #category : #api }
-LcsSystemManager >> suspendUnitOfWorkFor: suspendedSystem [
+LcsSystemsManager >> suspendUnitOfWorkFor: suspendedSystem [
 	^ self unitsOfWorkManager suspendUnitOfWorkFor: suspendedSystem
 ]
 
 { #category : #accessing }
-LcsSystemManager >> systems [
+LcsSystemsManager >> systems [
 	^ systems
 ]
 
 { #category : #accessing }
-LcsSystemManager >> systems: anObject [
+LcsSystemsManager >> systems: anObject [
 	systems := anObject
 ]
 
 { #category : #accessing }
-LcsSystemManager >> unitsOfWorkManager [
+LcsSystemsManager >> unitsOfWorkManager [
 	^ self parent unitsOfWorkManager
 ]

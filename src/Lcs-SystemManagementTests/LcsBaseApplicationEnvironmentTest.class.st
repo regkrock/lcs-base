@@ -1,3 +1,8 @@
+"
+Subclasses of this class will suspend the current application environment during setUp. It will be restored during tearDown.
+
+The subclasses of this test then have a 'pristine' environment to test the creation of the application environment and its operation without interfeering with the existing Application Environment
+"
 Class {
 	#name : #LcsBaseApplicationEnvironmentTest,
 	#superclass : #LcsTestCase,

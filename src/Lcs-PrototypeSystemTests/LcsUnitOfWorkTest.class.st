@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsUnitOfWorkTest,
-	#superclass : #LcsDomainTest,
-	#category : #'Lcs-PrototypeSystemTests'
+	#superclass : #LcsTestWithTestSystemSetUpForTest,
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #test }
@@ -16,7 +16,7 @@ LcsUnitOfWorkTest >> testCreation [
 	self assert: unitOfWork changedObjects isEmpty.
 ]
 
-{ #category : #'*Lcs-PrototypeSystemTests' }
+{ #category : #'as yet unclassified' }
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	"| domainObject |
 	LxxPrototypeSystem new. 

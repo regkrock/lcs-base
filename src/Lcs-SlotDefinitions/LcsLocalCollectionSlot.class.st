@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'collectionSlotClass'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #accessing }

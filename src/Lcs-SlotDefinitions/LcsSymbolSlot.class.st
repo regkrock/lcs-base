@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'inputConversionBlock'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'slot definition' }

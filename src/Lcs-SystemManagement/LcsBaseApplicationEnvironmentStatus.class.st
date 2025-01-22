@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'parent'
 	],
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Environment'
 }
 
 { #category : #'instance creation' }

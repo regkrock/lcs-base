@@ -4,7 +4,7 @@ This is used to define a global collection slot. All of the items stored in this
 Class {
 	#name : #LcsGlobalCollectionSlot,
 	#superclass : #LcsPrimaryCollectionSlot,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'as yet unclassified' }

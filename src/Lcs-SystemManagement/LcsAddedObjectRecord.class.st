@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'creationContext'
 	],
-	#category : #'Lcs-UnitOfWOrk'
+	#category : #'Lcs-SystemManagement-UnitOfWork'
 }
 
 { #category : #api }

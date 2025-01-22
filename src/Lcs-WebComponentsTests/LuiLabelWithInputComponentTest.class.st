@@ -1,6 +1,6 @@
 Class {
 	#name : #LuiLabelWithInputComponentTest,
-	#superclass : #LcsDomainTest,
+	#superclass : #LcsTestWithTestSystemSetUpForTest,
 	#category : #'Lcs-WebComponentsTests-Tests'
 }
 

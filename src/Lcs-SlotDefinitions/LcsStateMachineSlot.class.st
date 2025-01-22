@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStateMachineSlot,
 	#superclass : #LcsCompositeSlot,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'instance creation' }

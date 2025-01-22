@@ -25,10 +25,8 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-GemStoneMocks'.
 			spec package: 'LcsBase'  with: [ spec requires: #('Lcs-GemStoneMocks' ) ].
 			spec package: 'Lcs-PharoExtensions' with: [ spec requires: #('LcsBase' ) ].
-			"spec package: 'Lcs-Base-Pharo'  with: [ spec requires: #('LcsBase' ) ]."
-			spec package: 'Lcs-UnitOfWOrk' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('LcsBase' ) ].
-			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase' 'Lcs-UnitOfWOrk' 'Lcs-SlotDefinitions') ].
+			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase' 'Lcs-SlotDefinitions') ].
 			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SystemManagement') ].
 			spec package: 'Lcs-StateMachine-Core' with: [ spec requires: #('Lcs-DomainBase') ].
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
@@ -49,6 +47,7 @@ BaselineOfLcsBase >> baseline: spec [
 
 			" Tests on experimentation systems "			
 			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-Tests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
+			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests' 'Lcs-Tests' 'Lcs-SlotDefinitions' 'Lcs-Tools') ].  
 			spec package: 'Lcs-StateMachine-Tests' with: [ spec requires: #('Lcs-StateMachine-Core' 'Lcs-PrototypeSystem' 'Lcs-PrototypeSystemTests') ].
 			
 			" Tools "

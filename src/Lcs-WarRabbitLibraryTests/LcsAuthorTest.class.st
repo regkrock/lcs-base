@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsAuthorTest,
-	#superclass : #LcsDomainTest,
+	#superclass : #LcsTestWithTestSystemSetUpForTest,
 	#category : #'Lcs-WarRabbitLibraryTests'
 }
 

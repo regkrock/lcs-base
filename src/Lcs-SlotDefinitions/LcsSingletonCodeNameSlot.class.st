@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSingletonCodeNameSlot,
 	#superclass : #LcsCodeNameSlot,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #initialize }

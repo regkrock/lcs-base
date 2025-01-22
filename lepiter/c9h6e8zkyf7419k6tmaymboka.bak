@@ -675,7 +675,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2024-04-16T13:56:49.306903-04:00"
+															"dateAndTimeString" : "2025-01-15T08:09:52.949423-05:00"
 														}
 													},
 													"uid" : {
@@ -685,44 +685,7 @@
 													"paragraphStyle" : {
 														"__type" : "textStyle"
 													},
-													"string" : "[[Define Date Slot]]"
-												},
-												{
-													"__type" : "textSnippet",
-													"children" : {
-														"__type" : "snippets",
-														"items" : [ ]
-													},
-													"createEmail" : {
-														"__type" : "email",
-														"emailString" : "<unknown>"
-													},
-													"createTime" : {
-														"__type" : "time",
-														"time" : {
-															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-01-15T08:09:01.382879-05:00"
-														}
-													},
-													"editEmail" : {
-														"__type" : "email",
-														"emailString" : "<unknown>"
-													},
-													"editTime" : {
-														"__type" : "time",
-														"time" : {
-															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-01-15T08:09:42.72857-05:00"
-														}
-													},
-													"uid" : {
-														"__type" : "uid",
-														"uidString" : "eIFAHiDoDQCu2SdGAfjseg=="
-													},
-													"paragraphStyle" : {
-														"__type" : "textStyle"
-													},
-													"string" : "[[Define Domain Class att"
+													"string" : "[[Define Date Slot]"
 												}
 											]
 										},

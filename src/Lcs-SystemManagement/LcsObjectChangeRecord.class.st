@@ -5,7 +5,7 @@ Class {
 		'domainObject',
 		'parent'
 	],
-	#category : #'Lcs-UnitOfWOrk'
+	#category : #'Lcs-SystemManagement-UnitOfWork'
 }
 
 { #category : #accessing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsCollectionSlot,
 	#superclass : #LcsPrimitiveSlot,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #default }

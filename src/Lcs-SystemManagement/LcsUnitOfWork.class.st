@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsUnitOfWork,
 	#superclass : #LcsBaseUnitOfWork,
-	#category : #'Lcs-UnitOfWOrk'
+	#category : #'Lcs-SystemManagement-UnitOfWork'
 }
 
 { #category : #api }

@@ -1,10 +1,10 @@
 Class {
 	#name : #LcsSingletonCodeClassesBuilderJobTest,
-	#superclass : #LcsDomainTest,
+	#superclass : #LcsPrototypeSystemTest,
 	#instVars : [
 		'builder'
 	],
-	#category : #'Lcs-PrototypeSystemTests'
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #accessing }
@@ -40,11 +40,6 @@ LcsSingletonCodeClassesBuilderJobTest >> removeAllArtifacts [
 	LxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'gender'.
 	LxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genders'.
 
-]
-
-{ #category : #running }
-LcsSingletonCodeClassesBuilderJobTest >> setupSunitSystem [
-	LxxPrototypeSystem new
 ]
 
 { #category : #running }

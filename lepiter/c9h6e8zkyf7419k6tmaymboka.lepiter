@@ -1451,7 +1451,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-05T07:59:51.068033-04:00"
+									"dateAndTimeString" : "2025-01-21T08:26:40.69089-05:00"
 								}
 							},
 							"uid" : {
@@ -1461,7 +1461,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "[[Coding Standars/Examples]]"
+							"string" : "[[Coding Standards/Examples]]"
 						}
 					]
 				},

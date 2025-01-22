@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDeletedObjectRecord,
 	#superclass : #LcsObjectChangeRecord,
-	#category : #'Lcs-UnitOfWOrk'
+	#category : #'Lcs-SystemManagement-UnitOfWork'
 }
 
 { #category : #api }

@@ -5,7 +5,7 @@ Class {
 		'collectionMemberTypes',
 		'collectionClass'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'slot definitions' }

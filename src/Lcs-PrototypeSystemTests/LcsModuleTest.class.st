@@ -1,13 +1,8 @@
 Class {
 	#name : #LcsModuleTest,
-	#superclass : #LcsDomainTest,
+	#superclass : #LcsPrototypeSystemTest,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
-
-{ #category : #accessing }
-LcsModuleTest >> setupSunitSystem [
-	^ LxxPrototypeSystem new
-]
 
 { #category : #tests }
 LcsModuleTest >> testAddingAModule [

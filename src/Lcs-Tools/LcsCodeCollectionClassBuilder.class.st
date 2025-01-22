@@ -10,11 +10,6 @@ LcsCodeCollectionClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #accessing }
-LcsCodeCollectionClassBuilder >> updateSlotModel [
-	super updateSlotModel
-]
-
-{ #category : #accessing }
 LcsCodeCollectionClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: 'LcsCodes'

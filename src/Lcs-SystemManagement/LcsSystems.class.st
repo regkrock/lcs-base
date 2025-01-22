@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSystems,
 	#superclass : #LcsCollection,
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Environment'
 }
 
 { #category : #collection }

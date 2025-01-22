@@ -1,6 +1,6 @@
 Class {
 	#name : #LuiLabelWithDatePickerComponentTest,
-	#superclass : #LcsDomainTest,
+	#superclass : #LcsTestWithTestSystemSetUpForTest,
 	#category : #'Lcs-WebComponentsTests-Tests'
 }
 

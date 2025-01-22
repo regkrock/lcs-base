@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDirectAssignmentSlot,
 	#superclass : #LcsSlotDefinition,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'slot model' }

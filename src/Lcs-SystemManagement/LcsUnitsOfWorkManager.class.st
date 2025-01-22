@@ -9,7 +9,7 @@ Class {
 	#classInstVars : [
 		'Singleton'
 	],
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Environment'
 }
 
 { #category : #accessing }

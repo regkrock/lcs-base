@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsSlotDefinitionBuilderTest,
-	#superclass : #LcsDomainTest,
-	#category : #'Lcs-PrototypeSystemTests'
+	#superclass : #LcsPrototypeSystemTest,
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }

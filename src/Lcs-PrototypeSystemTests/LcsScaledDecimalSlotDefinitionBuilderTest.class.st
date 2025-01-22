@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsScaledDecimalSlotDefinitionBuilderTest,
 	#superclass : #LcsPrimitiveSlotDefinitionBuilderTest,
-	#category : #'Lcs-PrototypeSystemTests'
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #accessing }

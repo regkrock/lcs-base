@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'numberOfDecimals'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #accessing }

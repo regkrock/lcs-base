@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsGlobalSlotDefinitionBuilderTest,
-	#superclass : #LcsDomainTest,
-	#category : #'Lcs-PrototypeSystemTests'
+	#superclass : #LcsPrototypeSystemTest,
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #running }
@@ -51,11 +51,6 @@ LcsGlobalSlotDefinitionBuilderTest >> removeArtifactsRelatedToUsersSlot [
 	LxxPrototypeSystem assertDomainSlotRemoved: 'users'.
 	self assert: (self classNamed: 'LxxUsers') isNil.
 	self assert: (self classNamed: 'LxxUser') isNil
-]
-
-{ #category : #running }
-LcsGlobalSlotDefinitionBuilderTest >> setupSunitSystem [
-	LxxPrototypeSystem new
 ]
 
 { #category : #running }

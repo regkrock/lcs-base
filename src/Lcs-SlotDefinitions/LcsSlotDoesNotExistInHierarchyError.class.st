@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsSlotDoesNotExistInHierarchyError,
 	#superclass : #LcsSlotModelError,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Error'
 }

@@ -1,16 +1,17 @@
 Class {
 	#name : #LcsMainSystemTest,
-	#superclass : #LcsNoExistingSetupSystemTest,
+	#superclass : #LcsTestWithNoTestSystemSetupForTest,
 	#category : #'Lcs-SystemTests'
 }
 
 { #category : #tests }
 LcsMainSystemTest >> testCreation [
 
-	| currentUnitOfWork system |
+	| currentUnitOfWork |
 
-	system := LcsMainSystem new.
+	self subject: LcsMainSystem new.
 	self assert: self currentSystem notNil.
+	self assert: self subject == self currentSystem.
 
 	currentUnitOfWork := self currentSystem currentUnitOfWork.
 	self assert: LcsApplicationEnvironment unitsOfWorkManager  unitsOfWork notEmpty. 

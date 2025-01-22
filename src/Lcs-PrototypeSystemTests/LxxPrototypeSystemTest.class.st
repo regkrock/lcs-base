@@ -1,33 +1,53 @@
 Class {
 	#name : #LxxPrototypeSystemTest,
-	#superclass : #LcsNoExistingSetupSystemTest,
+	#superclass : #LcsTestWithNoTestSystemSetupForTest,
 	#instVars : [
 		'system1',
 		'system2',
-		'newSystem'
+		'newSystem',
+		'additionalSubject'
 	],
-	#category : #'Lcs-PrototypeSystemTests'
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #private }
+LxxPrototypeSystemTest >> additionalNewPrototypeSystem [
+	self addtionalSubject: LxxPrototypeSystem new
+]
+
+{ #category : #accessing }
+LxxPrototypeSystemTest >> additionalSubject [
+	^ additionalSubject
+]
+
+{ #category : #accessing }
+LxxPrototypeSystemTest >> additionalSubject: anObject [
+	additionalSubject := anObject 
+]
+
+{ #category : #private }
+LxxPrototypeSystemTest >> addtionalSubject: anObject [ 
+	additionalSubject := anObject
+]
+
+{ #category : #private }
 LxxPrototypeSystemTest >> newPrototypeSystem [
-	| system numberOfSystems numberOfUnitsOfWork |
+	| numberOfSystems numberOfUnitsOfWork |
 	numberOfSystems := self systemManager numberOfSystems.
 	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
 	
-	system := LxxPrototypeSystem new.
+	self subject: LxxPrototypeSystem new.
 
-	self assert: self currentSystem identicalTo: system.
-	self assert: self currentUnitOfWork == system unitOfWork.
+	self assert: self currentSystem identicalTo: self subject.
+	self assert: self currentUnitOfWork == self subject unitOfWork.
 	self assert: self currentUnitOfWork hasNoChanges.
-	self assert: system status isInActiveStatus.
-	self assert: system status parent identicalTo: system.
+	self assert: self subject status isInActiveStatus.
+	self assert: self subject status parent identicalTo: self subject.
 	self assert: LcsDomainObject isSlotModelReleased not.
-	self assert: (system systemSlotModel hasSlotModelFor: system).
-	self assert: (self unitsOfWorkManager unitOfWorkFor: system) system identicalTo: system.
+	self assert: (self subject systemSlotModel hasSlotModelFor: self subject).
+	self assert: (self unitsOfWorkManager unitOfWorkFor: self subject) system identicalTo: self subject.
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
-	"self assert: self system1 hasValidConfiguration."
 
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
 	self assert: self currentSystem persons class identicalTo: LxxPrototypePersons.
@@ -36,9 +56,7 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
 	self assert: self currentSystem configuration class name equals: #LxxPrototypeSystemConfiguration.
 
-	self assert: LcsDomainObject isSlotModelReleased not.
-	
-	^ system
+	self assert: LcsDomainObject isSlotModelReleased not
 ]
 
 { #category : #'as yet unclassified' }
@@ -47,34 +65,14 @@ LxxPrototypeSystemTest >> setUp [
 	self assert: self currentSystem isNil
 ]
 
-{ #category : #accessing }
-LxxPrototypeSystemTest >> system1 [
-	^ system1
-]
-
-{ #category : #accessing }
-LxxPrototypeSystemTest >> system1: anObject [
-	^ system1 := anObject
-]
-
-{ #category : #accessing }
-LxxPrototypeSystemTest >> system2 [
-	^ system2
-]
-
-{ #category : #accessing }
-LxxPrototypeSystemTest >> system2: anObject [
-	^ system2 := anObject
-]
-
 { #category : #running }
 LxxPrototypeSystemTest >> tearDown [
-	self system1 ifNotNil: [ 
-		self system1 removeSystem.
-		self system1: nil ].
-	self system2 ifNotNil: [ 
-		self system2 removeSystem.
-		self system2: nil ].
+	self subject ifNotNil: [ 
+		self subject removeSystem.
+		self subject: nil ].
+	self additionalSubject ifNotNil: [ 
+		self additionalSubject removeSystem.
+		self additionalSubject: nil ].
 	super tearDown
 
 ]
@@ -82,18 +80,18 @@ LxxPrototypeSystemTest >> tearDown [
 { #category : #tests }
 LxxPrototypeSystemTest >> testAddingNewDomainObjectToDomainCollection [
 	| domainObject |
-	self system1: self newPrototypeSystem.
+	self newPrototypeSystem.
 
 	domainObject := LxxPrototypePerson new.
-	self assert: (self system1 persons pendingAdds includes: domainObject).
-	self deny: (self system1 persons includes: domainObject).
+	self assert: (self subject persons pendingAdds includes: domainObject).
+	self deny: (self subject persons includes: domainObject).
 	
 	self currentSystem applyChanges.
 	self currentSystem currentUnitOfWork hasNoChanges.
 
-	self assert: (self system1 persons pendingAdds isEmpty).
-	self assert: (self system1 persons includes: domainObject).
-	self assert: domainObject parent == self system1 persons 
+	self assert: (self subject persons pendingAdds isEmpty).
+	self assert: (self subject persons includes: domainObject).
+	self assert: domainObject parent == self subject persons 
 	
 
 ]
@@ -106,7 +104,7 @@ LxxPrototypeSystemTest >> testChangedSlotInDomainObject [
 	firstChangedDateOfBirth := Date newDay: 1 month: 1 year: 2000.
 	secondChangedDateOfBirth := Date newDay: 1 month: 1 year: 2010.
 
-	self system1: self newPrototypeSystem.
+	self newPrototypeSystem.
 
 	domainObject := LxxPrototypePerson new.
 	"Test initial date of birth when new person is created"
@@ -138,11 +136,11 @@ LxxPrototypeSystemTest >> testChangedSlotInDomainObject [
 { #category : #tests }
 LxxPrototypeSystemTest >> testCreatingNewDomainObject [
 	| domainObject |
-	self system1: self newPrototypeSystem.
+	self newPrototypeSystem.
 	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
-	domainObject := self domainObjectClass new.
+	domainObject := LcsDomainObject new.
 	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
@@ -152,21 +150,20 @@ LxxPrototypeSystemTest >> testCreatingNewDomainObject [
 
 { #category : #tests }
 LxxPrototypeSystemTest >> testCreationNew [
-	| system |
-	system := self newPrototypeSystem.
-	self assert: self currentSystem identicalTo: system.
-	self assert: (system moduleNamed: LxxPrototypePersonsModule moduleName) class name equals: #LxxPrototypePersonsModule.
-	self assert: (system moduleNamed: LxxPrototype2Module moduleName) class equals: LxxPrototype2Module.
-	self assert: system numberOfChildModules equals: 2. 
-	self assert: (system moduleNamed: LxxPrototypePersonsModule moduleName) numberOfChildModules equals: 0.
-	self assert: (system moduleNamed: LxxPrototype2Module moduleName) numberOfChildModules equals: 1.
-	self assert: (system moduleNamed: LxxPrototype2Submodule moduleName) numberOfChildModules equals: 0.
+	self newPrototypeSystem.
+	self assert: self currentSystem identicalTo: self subject.
+	self assert: (self subject moduleNamed: LxxPrototypePersonsModule moduleName) class name equals: #LxxPrototypePersonsModule.
+	self assert: (self subject moduleNamed: LxxPrototype2Module moduleName) class equals: LxxPrototype2Module.
+	self assert: self subject numberOfChildModules equals: 2. 
+	self assert: (self subject moduleNamed: LxxPrototypePersonsModule moduleName) numberOfChildModules equals: 0.
+	self assert: (self subject moduleNamed: LxxPrototype2Module moduleName) numberOfChildModules equals: 1.
+	self assert: (self subject moduleNamed: LxxPrototype2Submodule moduleName) numberOfChildModules equals: 0.
 	"self assert:system hasValidConfiguration. "
 ]
 
 { #category : #tests }
 LxxPrototypeSystemTest >> testCreationOfNewSystem [
-	self system1: self newPrototypeSystem.
+	self newPrototypeSystem.
 	self assert: self currentSystem class identicalTo: LxxPrototypeSystem.
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
 	self assert: self currentSystem persons class identicalTo: LxxPrototypePersons.
@@ -179,10 +176,10 @@ LxxPrototypeSystemTest >> testCreationOfNewSystem [
 { #category : #tests }
 LxxPrototypeSystemTest >> testCreationWithPrototypeSystem [
 	| domainObject |
-	self system1: self newPrototypeSystem.
+	self newPrototypeSystem.
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
-	self assert: domainObject currentSystem identicalTo:self system1.
+	self assert: domainObject currentSystem identicalTo:self subject.
 	self assert: (self currentSystem currentUnitOfWork addRecordFor: domainObject) domainObject identicalTo: domainObject.
 	self assert: domainObject slotModel className equals: 'LcsSlotModel' .
 ]
@@ -197,7 +194,7 @@ LxxPrototypeSystemTest >> testInstallingFirstNameSlotInPerson [
 
 { #category : #tests }
 LxxPrototypeSystemTest >> testNewUnitOfWorkInSystem [
-	self system1: self newPrototypeSystem.
+	self newPrototypeSystem.
 	self assert: self currentSystem currentUnitOfWork system identicalTo: self  currentSystem
 ]
 
@@ -205,67 +202,57 @@ LxxPrototypeSystemTest >> testNewUnitOfWorkInSystem [
 LxxPrototypeSystemTest >> testPrototypeSystemCreation [
 	| allDomainClasses |
 
-	self system1: self newPrototypeSystem.
-	self assert: self system1 currentUnitOfWork hasNoChanges.
-	self assert: (self system1 slotDefinitionNamed: 'persons') notNil.
-	self assert: self system1 persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
+	self newPrototypeSystem.
+	self assert: self subject currentUnitOfWork hasNoChanges.
+	self assert: (self subject slotDefinitionNamed: 'persons') notNil.
+	self assert: self subject persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
 	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
-	self assert: self system1 configuration class equals: LxxPrototypeSystemConfiguration.
-	self assert: self system1 hasSystemSlotModels .
-	self assert: self system1 systemSlotModel slotModels size equals: self system1 allBootstrapDomainClasses size.
-	allDomainClasses := self domainObjectClass withAllSubclasses asOrderedCollection.
-	self system1 systemSlotModel slotModels keysDo: [ :each | allDomainClasses remove: each ifAbsent: [ ] ].
+	self assert: self subject configuration class equals: LxxPrototypeSystemConfiguration.
+	self assert: self subject hasSystemSlotModels .
+	self assert: self subject systemSlotModel slotModels size equals: self subject allBootstrapDomainClasses size.
+	allDomainClasses := LcsDomainObject withAllSubclasses asOrderedCollection.
+	self subject systemSlotModel slotModels keysDo: [ :each | allDomainClasses remove: each ifAbsent: [ ] ].
 	self assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotModel isNil ])
 ]
 
 { #category : #tests }
-LxxPrototypeSystemTest >> testSystemCreation [
-
-	self system1: self newPrototypeSystem. 
-
-	self assert: self system1 identicalTo: self currentSystem
-]
-
-{ #category : #tests }
-LxxPrototypeSystemTest >> testSystemRemoval [
-
-	self system1: self newPrototypeSystem.
-	self system2:self newPrototypeSystem.
-	self assert: self system1 isInSuspendedStatus.
-	self assert: self system2 isInActiveStatus.
+LxxPrototypeSystemTest >> testRestoreSuspendedSystem [
 	
-	LcsApplicationEnvironment removeCurrentSystem.
-	
-	self assert: self system1 isInSuspendedStatus.
+	self newPrototypeSystem.
 
-	self assert: self systemManager hasNoCurrentSystem.
+	self assert: self subject isInActiveStatus.
+	self subject suspendSystem.
+	self assert: self subject isInSuspendedStatus.
+
+	self assert: self currentSystem isNil.
 	
-	self assert: (self systemManager systems includes: self system1).
-	self assert: (self systemManager systems includes: self system2) not.
-	
-	LcsApplicationEnvironment makeSystemCurrent: self system1.
-	self assert: self system1 isInActiveStatus.
+	self subject restoreSystem.
+	self assert: self currentSystem == self subject.
+	self assert: self currentSystem isInActiveStatus
 
 ]
 
 { #category : #tests }
-LxxPrototypeSystemTest >> testSystemSuspend [
+LxxPrototypeSystemTest >> testSuspendCurrentSystem [
 	
-	self system1: self newPrototypeSystem.
-	self assert: self system1 isInActiveStatus.
+	self newPrototypeSystem.
 
-	self system2: self newPrototypeSystem.
-	self assert: self system1 isInSuspendedStatus.
-	self assert: self system2 isInActiveStatus.
+	self assert: self subject isInActiveStatus.
+	self subject suspendSystem.
+	self assert: self subject isInSuspendedStatus.
 
-	self system2 suspendSystem.
-	self assert: self system1 isInSuspendedStatus.
-	self assert: self system2 isInSuspendedStatus.
+	self assert: self currentSystem isNil
+	
+	"self assert: self additionalSubject isInActiveStatus.
 
-	self system1 restoreSystem.
-	self assert: self system1 isInActiveStatus.
-	self assert: self system2 isInSuspendedStatus.
+	self additionalSubject suspendSystem.
+	self assert: self subject isInSuspendedStatus.
+	self assert: self additionalSubject isInSuspendedStatus.
+
+	self additionalSubject restoreSystem.
+	self assert: self subject isInActiveStatus.
+	self assert: self additionalSubject isInSuspendedStatus."
 
 	"	LcsApplicationEnvironment suspendCurrentSystem.
 	self assert: LcsDomainObject isSlotModelReleased.
@@ -275,9 +262,75 @@ LxxPrototypeSystemTest >> testSystemSuspend [
 	
 	LcsApplicationEnvironment makeSystemCurrent: self system1.
 	self assert: self systemManager currentSystem identicalTo: self system1.
-	self assert: self systemManager currentUnitOfWork system identicalTo: self system1.
-	self assert: LcsDomainObject isSlotModelReleased not.
-"
+	self assert: self systemManager currentUnitOfWork system identicalTo: self subject.
+	self assert: LcsDomainObject isSlotModelReleased not."
 
+
+]
+
+{ #category : #tests }
+LxxPrototypeSystemTest >> testSyspendAndRestoreBetweenTwoSystems [
+	
+	self newPrototypeSystem.
+	self subject isInActiveStatus.
+
+	self additionalNewPrototypeSystem.
+	self assert: self subject isInSuspendedStatus.
+	self assert: self additionalSubject isInActiveStatus.
+
+	self additionalSubject suspendSystem.
+	self assert: self subject isInSuspendedStatus.
+	self assert: self additionalSubject isInSuspendedStatus.
+	self assert: self currentSystem isNil.
+
+	self additionalSubject restoreSystem.
+	self assert: self additionalSubject isInActiveStatus.
+	self assert: self subject isInSuspendedStatus
+
+
+]
+
+{ #category : #tests }
+LxxPrototypeSystemTest >> testSystemCreation [
+
+	self newPrototypeSystem. 
+
+	self assert: self subject identicalTo: self currentSystem
+]
+
+{ #category : #tests }
+LxxPrototypeSystemTest >> testSystemRemoval [
+
+	self newPrototypeSystem.
+	self assert: self subject isInActiveStatus.
+
+	LcsApplicationEnvironment removeCurrentSystem.
+	
+	self assert: self subject isInSuspendedStatus.
+
+	self assert: self systemManager hasNoCurrentSystem.
+	
+	self assert: (self systemManager systems includes: self subject) not
+]
+
+{ #category : #tests }
+LxxPrototypeSystemTest >> testSystemRemovalWhenTwoSystemsExist [
+
+	self newPrototypeSystem.
+	self additionalNewPrototypeSystem.
+	self assert: self subject isInSuspendedStatus.
+	self assert: self additionalSubject isInActiveStatus.
+	
+	LcsApplicationEnvironment removeCurrentSystem.
+	
+	self assert: self subject isInSuspendedStatus.
+
+	self assert: self systemManager hasNoCurrentSystem.
+	
+	self assert: (self systemManager systems includes: self subject).
+	self assert: (self systemManager systems includes: self additionalSubject) not.
+	
+	LcsApplicationEnvironment makeSystemCurrent: self subject.
+	self assert: self subject isInActiveStatus.
 
 ]

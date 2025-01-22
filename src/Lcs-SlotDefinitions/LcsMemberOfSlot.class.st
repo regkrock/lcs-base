@@ -15,7 +15,7 @@ Class {
 		'collectionSlotName',
 		'collectionSlotModuleName'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'application environment' }

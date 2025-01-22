@@ -10,9 +10,9 @@ Class {
 { #category : #test }
 LcsCodeCollectionClassBuilderTest >> createBuilder [
 	builder := LcsCodeCollectionClassBuilder new
-			newClassName: 'LxxGenders1';
+			newClassName: self newClassName;
 			targetPackageName: 'Lcs-Temp';
-			rootName: 'Genders1'
+			rootName: 'Foos'
 ]
 
 { #category : #private }
@@ -39,7 +39,7 @@ LcsCodeCollectionClassBuilderTest >> createUpdateSlotModelBuilder [
 
 { #category : #private }
 LcsCodeCollectionClassBuilderTest >> newClassName [
-	^ 'LxxGenders1'
+	^ 'LxxFoos'
 ]
 
 { #category : #setUp }
@@ -56,11 +56,11 @@ LcsCodeCollectionClassBuilderTest >> tearDown [
 ]
 
 { #category : #test }
-LcsCodeCollectionClassBuilderTest >> testCreationStringForCreatingLxxGendersSubclassOfLcsCodes [
+LcsCodeCollectionClassBuilderTest >> testCreationStringForCreatingLxxFoosSubclassOfLcsCodes [
 	self createBuilder.
 	self
 		assert: builder classCreationString
-		equals: 'LcsCodes subclass: #LxxGenders1
+		equals: 'LcsCodes subclass: #LxxFoos
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''

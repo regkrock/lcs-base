@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDomainClassClassesBuilderJobTest,
-	#superclass : #LcsDomainTest,
-	#category : #'Lcs-PrototypeSystemTests'
+	#superclass : #LcsPrototypeSystemTest,
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #tests }
@@ -22,11 +22,6 @@ LcsDomainClassClassesBuilderJobTest >> removeAllArtifacts [
 	LxxPrototypePerson removeDomainSlotNamed: 'country'.
 	self
 		removeClassesNamed: #('LxxUnknownCountry' 'LxxCountry' 'LxxCountries')
-]
-
-{ #category : #running }
-LcsDomainClassClassesBuilderJobTest >> setupSunitSystem [
-	LxxPrototypeSystem new
 ]
 
 { #category : #running }

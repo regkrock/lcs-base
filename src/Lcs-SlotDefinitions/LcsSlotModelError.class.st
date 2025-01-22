@@ -5,7 +5,7 @@ Class {
 		'context',
 		'slotName'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Error'
 }
 
 { #category : #accessing }

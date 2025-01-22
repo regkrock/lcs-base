@@ -14,7 +14,7 @@ Class {
 		'validator',
 		'initialValueBlock'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'slot model' }

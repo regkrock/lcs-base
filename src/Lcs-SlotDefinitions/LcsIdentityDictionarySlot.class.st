@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsIdentityDictionarySlot,
 	#superclass : #LcsCollectionSlot,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #configuration }

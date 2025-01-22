@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'slotModel'
 	],
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-SystemManagement-Domain'
 }
 
 { #category : #'slot model' }
@@ -47,6 +47,11 @@ LcsDomainObject class >> assertSlotAdded: aSlotName [
 	self assert: (self canUnderstand: aSlotName asSymbol).
 	self assert: (self canUnderstand: (aSlotName , ':') asSymbol).
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
+]
+
+{ #category : #'application environment' }
+LcsDomainObject class >> currentSystem [
+	^ LcsApplicationEnvironment currentSystem
 ]
 
 { #category : #'application environment' }
@@ -103,6 +108,11 @@ LcsDomainObject class >> gtViewSlotModelFor: aView [
 { #category : #testing }
 LcsDomainObject class >> hasNoninitializedApplicationEnvironment [
 	^ self isSlotModelReleased
+]
+
+{ #category : #testing }
+LcsDomainObject class >> hasNoninitializedSlotModel [
+	^ self hasNoninitializedApplicationEnvironment
 ]
 
 { #category : #'slot model' }
@@ -176,9 +186,8 @@ LcsDomainObject class >> isSlotModelDefined [
 
 { #category : #testing }
 LcsDomainObject class >> isSlotModelPopulated [
-	^ self slotModel isNil 
-		ifTrue: [ ^ false ]
-		ifFalse: [ self subclasses allSatisfy: [ :each | each isSlotModelPopulated ] ]
+	^ self isDefined and: [ 
+		self subclasses allSatisfy: [ :each | each isSlotModelPopulated ] ]
 ]
 
 { #category : #testing }

@@ -15,44 +15,13 @@ LcsObject class >> abortTransaction [
 ]
 
 { #category : #transactions }
+LcsObject class >> beginTransaction [
+	System beginTransaction
+]
+
+{ #category : #transactions }
 LcsObject class >> commitTransaction [
 	System commitTransaction
-]
-
-{ #category : #'application environment' }
-LcsObject class >> currentSystem [
-
-	^ #LcsApplicationEnvironment asClass currentSystem
-]
-
-{ #category : #'application environment' }
-LcsObject class >> currentUnitOfWork [
-
-	^ self currentSystem currentUnitOfWork
-]
-
-{ #category : #private }
-LcsObject class >> domainObjectClass [
-	"This is done for packaging loading purposes"
-	^ self subclasses detect: [ :each | each name = #LcsDomainObject ] ifNone: [ nil ]
-]
-
-{ #category : #testing }
-LcsObject class >> hasNoninitializedApplicationEnvironment [
-	^ self hasNoninitializedSlotModel
-]
-
-{ #category : #testing }
-LcsObject class >> hasNoninitializedSlotModel [
-	^ self domainObjectClass
-		ifNil: [ true ]
-		ifNotNil: [ :domainObjectClass | domainObjectClass hasNoninitializedApplicationEnvironment ]
-]
-
-{ #category : #testing }
-LcsObject class >> initializeApplicationEnvironment [
-	self domainObjectClass
-		ifNotNil: [ :domainObjectClass | domainObjectClass initializeApplicationEnvironment ]
 ]
 
 { #category : #testing }
@@ -63,22 +32,6 @@ LcsObject class >> isApplicationSystemClass [
 { #category : #testing }
 LcsObject class >> isDomainClass [
 	^ false
-]
-
-{ #category : #testing }
-LcsObject class >> releaseApplicationEnvironment [
-	self domainObjectClass
-		ifNotNil: [ :domainObjectClass | domainObjectClass releaseApplicationEnvironment ]
-]
-
-{ #category : #accessing }
-LcsObject >> currentSystem [
-	^ self class currentSystem
-]
-
-{ #category : #accessing }
-LcsObject >> currentUnitOfWork [
-	^ self class currentUnitOfWork
 ]
 
 { #category : #testing }
@@ -111,5 +64,5 @@ LcsObject >> selectorNameFrom: aString [
 
 { #category : #accessing }
 LcsObject >> testGemstone [
-	^1 = 2
+	^ 1 = 2
 ]

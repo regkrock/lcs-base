@@ -9,7 +9,7 @@ Class {
 	#classInstVars : [
 		'singleton'
 	],
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Environment'
 }
 
 { #category : #'application environment - private' }
@@ -140,7 +140,7 @@ LcsApplicationEnvironment class >> hasUnitsOfWorkManager [
 	^ self applicationEnvironmentHas: [ :env | env hasUnitsOfWorkManager ]
 ]
 
-{ #category : #initiailize }
+{ #category : #initialize }
 LcsApplicationEnvironment class >> initializeApplicationEnvironment [
 	self singleton notNil ifTrue: [ self error: 'Environment is already initialized' ].
 	System abortTransaction.
@@ -363,7 +363,7 @@ LcsApplicationEnvironment >> hasUnitsOfWorkManager [
 { #category : #initialize }
 LcsApplicationEnvironment >> initialize [
 	super initialize.
-	self systemManager: (LcsSystemManager newOn: self).
+	self systemManager: (LcsSystemsManager newOn: self).
 	self unitsOfWorkManager: (LcsUnitsOfWorkManager newOn: self).
 	self status: (LcsApplicationEnvironmentActiveStatus newOn: self)
 ]
@@ -392,7 +392,7 @@ LcsApplicationEnvironment >> makeSystemCurrent: aSystem [
 LcsApplicationEnvironment >> releaseApplicationEnvironment [
 	self systemManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].
 	self unitsOfWorkManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].
-	LcsObject releaseApplicationEnvironment  
+	LcsDomainObject releaseApplicationEnvironment  
 ]
 
 { #category : #system }

@@ -1,7 +1,7 @@
-Extension { #name : #LcsSystemManager }
+Extension { #name : #LcsSystemsManager }
 
 { #category : #'*Lcs-DomainBase' }
-LcsSystemManager >> availableSystemClasses [
+LcsSystemsManager >> availableSystemClasses [
 	^ LcsBaseSystem allSubclasses
 		select: [ :eachClass | eachClass subclasses isEmpty ]
 ]

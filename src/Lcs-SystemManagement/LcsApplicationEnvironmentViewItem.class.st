@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'context'
 	],
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-View'
 }
 
 { #category : #default }

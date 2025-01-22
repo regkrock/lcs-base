@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-07T08:46:35.793664-04:00"
+						"dateAndTimeString" : "2025-01-21T14:46:29.531933-05:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This singleton of this class provides a place to root the single instance of the following: \n1) The system manager root {{gtClass:name=LcsSystemManager}} ;\n2) The unit of work root  {{gtClass:LcsUnitsOfWorkManager}};"
+				"string" : "This singleton of this class provides a place to root the single instance of the following: \n1) The system manager root {{gtClass:name=LcsSystemsManager}} ;\n2) The unit of work root  {{gtClass:LcsUnitsOfWorkManager}};"
 			},
 			{
 				"__type" : "textSnippet",
@@ -185,6 +185,40 @@
 					"uidString" : "Ns5wIRzVDQC4E5CfAcxk4w=="
 				},
 				"code" : "LcsApplicationEnvironment createCurrentSystemFor: LxxPrototypeSystem"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-21T21:55:52.357844-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-21T21:56:01.075743-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sSxYXqToDQC1baC8AvB48w=="
+				},
+				"code" : "LcsApplicationEnvironment createNewPrototypeSystem"
 			},
 			{
 				"__type" : "textSnippet",

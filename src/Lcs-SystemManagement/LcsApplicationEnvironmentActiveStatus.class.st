@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsApplicationEnvironmentActiveStatus,
 	#superclass : #LcsBaseApplicationEnvironmentStatus,
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Environment'
 }
 
 { #category : #printing }

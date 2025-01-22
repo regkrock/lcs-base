@@ -5,7 +5,7 @@ Class {
 		'slotName',
 		'targetClass'
 	],
-	#category : #'Lcs-PrototypeSystemTests'
+	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #private }
@@ -27,11 +27,6 @@ LcsMemberOfSlotBuilderTest >> removeArtifactsRelatedToSlot [
 		ifNotNil: [ 
 			self targetClass removeDomainSlotNamed: self slotName.
 			self targetClass assertDomainSlotRemoved: self slotName ]
-]
-
-{ #category : #running }
-LcsMemberOfSlotBuilderTest >> setupSunitSystem [
-	LxxPrototypeSystem new
 ]
 
 { #category : #accessing }

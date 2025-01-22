@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsNoReferenceCollectionError,
 	#superclass : #LcsError,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Error'
 }

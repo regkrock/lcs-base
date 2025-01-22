@@ -4,8 +4,16 @@ All application test classes should inherit from this class
 Class {
 	#name : #LcsTestCase,
 	#superclass : #TestCase,
+	#instVars : [
+		'subject'
+	],
 	#category : #'Lcs-BaseTests'
 }
+
+{ #category : #subject }
+LcsTestCase class >> subjectClass [
+	^ self subclassResponsibility
+]
 
 { #category : #running }
 LcsTestCase >> abortTransaction [
@@ -38,10 +46,14 @@ LcsTestCase >> createClassName: aString superclassName: aSuperclassName category
 				category: aCategory asSymbol) execute ]
 ]
 
-{ #category : #accessing }
-LcsTestCase >> domainObjectClass [
-	"This is done for packaging loading purposes"
-	^ LcsObject subclasses detect: [ :each | each name = #LcsDomainObject ] ifNone: [ nil ]
+{ #category : #subject }
+LcsTestCase >> createNewSubject [
+	self subject: self newSubject
+]
+
+{ #category : #subject }
+LcsTestCase >> newSubject [
+	^ self subjectClass new
 ]
 
 { #category : #refactoring }
@@ -53,4 +65,19 @@ LcsTestCase >> removeClassName: aString [
 { #category : #refactoring }
 LcsTestCase >> removeClassesNamed: aCollectionOfClassNaes [
 	aCollectionOfClassNaes do: [ :eachClassName | self removeClassName: eachClassName ]
+]
+
+{ #category : #accessing }
+LcsTestCase >> subject [
+	^ subject
+]
+
+{ #category : #accessing }
+LcsTestCase >> subject: anObject [
+	subject := anObject
+]
+
+{ #category : #subject }
+LcsTestCase >> subjectClass [
+	^ self class subjectClass
 ]

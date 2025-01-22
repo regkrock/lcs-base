@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'inputComponentClassName'
 	],
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #defaults }

@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsSystemHasNoUnitOfWorkError,
 	#superclass : #LcsError,
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Error'
 }

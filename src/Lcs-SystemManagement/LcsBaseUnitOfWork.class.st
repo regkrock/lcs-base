@@ -9,7 +9,7 @@ Class {
 		'unitOfWorkName',
 		'changedCollections'
 	],
-	#category : #'Lcs-UnitOfWOrk'
+	#category : #'Lcs-SystemManagement-UnitOfWork'
 }
 
 { #category : #'instance creation' }
@@ -131,7 +131,7 @@ LcsBaseUnitOfWork >> collectionChagesFor: aTargetCollection [
 
 { #category : #api }
 LcsBaseUnitOfWork >> deleteObject: aDomainObject [
-
+	aDomainObject isNil ifTrue: [ ^ self ].
 	self deletedObjects at: aDomainObject put: (LcsDeletedObjectRecord newFor: aDomainObject parent: self).
 	aDomainObject parentSlot setUpPendingDeleteOf: aDomainObject in: self
 ]

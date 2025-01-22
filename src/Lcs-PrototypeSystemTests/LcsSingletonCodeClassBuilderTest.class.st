@@ -22,11 +22,12 @@ LcsSingletonCodeClassBuilderTest >> builder: anObject [
 LcsSingletonCodeClassBuilderTest >> createBuilder [
 	self createFullyInstalledSuperclassBuilder.
 	builder := LcsSingletonCodeClassBuilder new
-			newClassName: self newClassName;
-			targetSuperclassName: self superclassName;
-			targetPackageName: 'Lcs-PrototypeSystem';
-			rootName: 'Gender';
-			yourself
+				newClassName: self newClassName;
+				targetSuperclassName: self superclassName;
+				targetPackageName: 'Lcs-PrototypeSystem';
+				rootName: 'Gender';
+				codeDescription: 'Gender';
+				yourself
 ]
 
 { #category : #private }

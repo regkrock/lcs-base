@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSlotDoesNotExistInSlotModelError,
 	#superclass : #LcsSlotModelError,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Error'
 }
 
 { #category : #'instance creation' }

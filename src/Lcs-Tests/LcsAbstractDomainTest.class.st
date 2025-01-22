@@ -1,3 +1,8 @@
+"
+Subclasses in:
+1)  the  setUp phase of this test will suspend and save the current system.
+2) the tearDwon phase will restore the suspended system.
+"
 Class {
 	#name : #LcsAbstractDomainTest,
 	#superclass : #LcsTestCase,

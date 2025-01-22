@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStateMachineEventTypeSlot,
 	#superclass : #LcsSlotDefinition,
-	#category : #'Lcs-SlotDefinitions'
+	#category : #'Lcs-SlotDefinitions-Core'
 }
 
 { #category : #'as yet unclassified' }

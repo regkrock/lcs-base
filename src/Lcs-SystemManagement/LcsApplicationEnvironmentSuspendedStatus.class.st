@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'suspendedSystem'
 	],
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Environment'
 }
 
 { #category : #testing }
