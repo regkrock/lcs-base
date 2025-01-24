@@ -35,7 +35,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Geography') ].
 			spec package: 'Lcs-MainSystem' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' ) ].
 
-			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-StateMachine') ].  
+			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-StateMachine-Core') ].  
 
 			spec package: 'Lcs-BaseTests' with: [ spec requires: #('LcsBase')  ].
 			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests') ].  
