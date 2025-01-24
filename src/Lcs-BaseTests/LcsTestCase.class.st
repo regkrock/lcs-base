@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'subject'
 	],
-	#category : #'Lcs-BaseTests'
+	#category : #'Lcs-BaseTests-Tests'
 }
 
 { #category : #subject }

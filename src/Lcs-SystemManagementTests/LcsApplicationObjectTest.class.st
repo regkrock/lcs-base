@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsApplicationObjectTest,
 	#superclass : #LcsTestWithNoTestSystemSetupForTest,
-	#category : #'Lcs-SystemManagementTests'
+	#category : #'Lcs-SystemManagementTests-Tests'
 }
 
 { #category : #test }

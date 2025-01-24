@@ -1,7 +1,7 @@
 Class {
 	#name : #CssRulesetExamples,
 	#superclass : #Object,
-	#category : #'Lcs-CssTests'
+	#category : #'Lcs-CssTests-Examples'
 }
 
 { #category : #example }

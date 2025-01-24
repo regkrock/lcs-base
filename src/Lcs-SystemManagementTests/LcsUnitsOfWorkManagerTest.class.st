@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsUnitsOfWorkManagerTest,
 	#superclass : #LcsBaseApplicationEnvironmentTest,
-	#category : #'Lcs-SystemManagementTests'
+	#category : #'Lcs-SystemManagementTests-Tests'
 }
 
 { #category : #accessing }

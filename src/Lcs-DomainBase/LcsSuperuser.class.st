@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsUser,
+	#name : #LcsSuperuser,
 	#superclass : #LcsBaseUser,
 	#category : #'Lcs-DomainBase-Core'
 }

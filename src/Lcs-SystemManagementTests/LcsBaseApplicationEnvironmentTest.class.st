@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'currentApplicationEnvironment'
 	],
-	#category : #'Lcs-SystemManagementTests'
+	#category : #'Lcs-SystemManagementTests-Tests'
 }
 
 { #category : #accessing }

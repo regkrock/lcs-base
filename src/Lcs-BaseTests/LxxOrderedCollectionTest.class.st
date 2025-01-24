@@ -1,7 +1,7 @@
 Class {
 	#name : #LxxOrderedCollectionTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-BaseTests'
+	#category : #'Lcs-BaseTests-Tests'
 }
 
 { #category : #tests }
