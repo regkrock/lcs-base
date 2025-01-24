@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'changes'
 	],
-	#category : #'Lcs-StateMachineTests-Test'
+	#category : #'Lcs-StateMachineTests-Support'
 }
 
 { #category : #accessing }

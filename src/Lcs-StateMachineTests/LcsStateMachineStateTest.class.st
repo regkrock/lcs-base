@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStateMachineStateTest,
 	#superclass : #LcsPrototypeSystemTest,
-	#category : #'Lcs-StateMachineTests'
+	#category : #'Lcs-StateMachineTests-Tests'
 }
 
 { #category : #subject }

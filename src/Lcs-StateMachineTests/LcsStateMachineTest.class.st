@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'counter'
 	],
-	#category : #'Lcs-StateMachineTests'
+	#category : #'Lcs-StateMachineTests-Tests'
 }
 
 { #category : #private }
