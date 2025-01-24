@@ -27,7 +27,10 @@ LcsBaseSystem class >> installSlotDefinitions [
 	self == LcsBaseSystem ifFalse: [
 		self installSlotDefinitions.
 		^ self].
-	self slotDefinitionPragmas halt.
+	"self slotDefinitionPragmas"
+	self installSlotDefinition: #systemSlotModelSlotDefinition.
+	self installSlotDefinition: #statusSlotDefinition.
+	self installSlotDefinition: #globalCollectionSlotDefinition.
 ]
 
 { #category : #testing }
@@ -323,15 +326,15 @@ LcsBaseSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBl
 
 { #category : #initialize }
 LcsBaseSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
-	aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ].
-	"LcsDomainObject installSlotDefinitions. 
+	"aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]."
+	LcsDomainObject installSlotDefinitions. 
 	LcsSystemSlotModel installSlotDefinitions. 
 	LcsBaseSystemStatus installSlotDefinitions.
 	LcsSystemActiveStatus installSlotDefinitions.
 	LcsSystemSuspendedStatus installSlotDefinitions.
 	LcsBaseModule installSlotDefinitions.
 	LcsBaseSystem installSlotDefinitions.
-	LxxPrototypeSystem installSlotDefinitions."
+	LxxPrototypeSystem installSlotDefinitions.
 	^self
 ]
 
