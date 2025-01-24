@@ -1,7 +1,7 @@
 Class {
 	#name : #LxxPrototypeSystemConfiguration,
 	#superclass : #LcsBaseConfiguration,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #accessing }

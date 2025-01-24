@@ -1,5 +1,5 @@
 Class {
 	#name : #LxxPrototypePersons,
 	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }

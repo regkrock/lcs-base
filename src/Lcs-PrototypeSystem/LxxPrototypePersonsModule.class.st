@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'persons'
 	],
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #configuration }

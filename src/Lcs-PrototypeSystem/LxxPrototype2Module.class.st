@@ -1,7 +1,7 @@
 Class {
 	#name : #LxxPrototype2Module,
 	#superclass : #LcsModule,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #configuration }

@@ -5,7 +5,7 @@ Class {
 		'dateOfBirth',
 		'lastName'
 	],
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #'slot definitions' }
