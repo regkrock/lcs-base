@@ -7,7 +7,7 @@ Class {
 		'codeDescription',
 		'isDefaultInstance'
 	],
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'slot definitions' }

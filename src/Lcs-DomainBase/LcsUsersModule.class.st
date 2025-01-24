@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'users'
 	],
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #configuration }

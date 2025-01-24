@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSingletonCode,
 	#superclass : #LcsCode,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'slot definitions' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSystemActiveStatus,
 	#superclass : #LcsBaseSystemStatus,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #testing }

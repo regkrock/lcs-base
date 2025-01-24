@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsBaseConfiguration,
 	#superclass : #LcsDomainObject,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }

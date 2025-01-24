@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsModules,
 	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'slot definition' }

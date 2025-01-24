@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSystemConfigurationValidator,
 	#superclass : #LcsValidator,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'gt view' }

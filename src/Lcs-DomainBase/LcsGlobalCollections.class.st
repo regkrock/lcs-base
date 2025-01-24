@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsGlobalCollections,
 	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'slot model' }

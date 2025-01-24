@@ -9,7 +9,7 @@ Class {
 		'systemSlotModel',
 		'globalCollections'
 	],
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'slot definition' }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'slotModels'
 	],
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'instance creation' }

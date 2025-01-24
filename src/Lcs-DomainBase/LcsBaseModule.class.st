@@ -9,7 +9,7 @@ Class {
 		'domainCollections',
 		'configuration'
 	],
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #modules }
