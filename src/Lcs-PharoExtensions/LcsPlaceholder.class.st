@@ -4,5 +4,5 @@ This was created to overcome a bug - an extension cannot be put into a package w
 Class {
 	#name : #LcsPlaceholder,
 	#superclass : #LcsObject,
-	#category : #'Lcs-PharoExtensions'
+	#category : #'Lcs-PharoExtensions-Temp'
 }
