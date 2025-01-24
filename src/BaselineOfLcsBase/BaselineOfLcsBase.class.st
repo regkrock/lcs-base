@@ -27,8 +27,8 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-PharoExtensions' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('Lcs-SystemManagement') ].
-			spec package: 'Lcs-Tools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
-			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-Tools') ].
+			spec package: 'Lcs-SlotTools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
+			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SlotTools') ].
 			spec package: 'Lcs-StateMachine' with: [ spec requires: #('Lcs-DomainBase') ].
 
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
