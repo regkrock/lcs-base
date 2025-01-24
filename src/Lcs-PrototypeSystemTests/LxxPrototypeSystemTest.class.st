@@ -43,6 +43,7 @@ LxxPrototypeSystemTest >> addtionalSubject: anObject [
 { #category : #private }
 LxxPrototypeSystemTest >> newPrototypeSystem [
 	| numberOfSystems numberOfUnitsOfWork |
+	self assert: LcsApplicationEnvironment isInActiveStatus.
 	numberOfSystems := self systemManager numberOfSystems.
 	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
 	
