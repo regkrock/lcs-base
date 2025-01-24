@@ -1,3 +1,9 @@
+"
+This is testing with no system setup in the setup. 
+
+
+Use this to test creating a prototype system
+"
 Class {
 	#name : #LxxPrototypeSystemTest,
 	#superclass : #LcsTestWithNoTestSystemSetupForTest,

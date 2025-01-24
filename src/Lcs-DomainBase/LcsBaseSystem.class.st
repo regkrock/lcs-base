@@ -309,10 +309,13 @@ LcsBaseSystem >> inititalizeSlotModelFor: aCollection [
 { #category : #initialize }
 LcsBaseSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBlock: aBlock [
 	aDomainClassesCollection do: aBlock.
-	aDomainClassesCollection do: [ :eachClass |
-		eachClass  verifySlotModelConsistency ]. 
-	aDomainClassesCollection do: [ :eachClass |
-		eachClass  installSlotDefinitions ]
+	self verifySlotModelConsistencyFor: aDomainClassesCollection.
+	self installSlotDefinitionsIn: aDomainClassesCollection
+]
+
+{ #category : #initialize }
+LcsBaseSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
+	aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]
 ]
 
 { #category : #testing }
@@ -471,4 +474,10 @@ LcsBaseSystem >> toggleStatus [
 { #category : #'unit of work' }
 LcsBaseSystem >> unitOfWork [
 	^ self currentUnitOfWork
+]
+
+{ #category : #initialize }
+LcsBaseSystem >> verifySlotModelConsistencyFor: aDomainClassesCollection [
+	aDomainClassesCollection
+		do: [ :eachClass | eachClass verifySlotModelConsistency ]
 ]
