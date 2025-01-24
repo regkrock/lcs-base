@@ -30,7 +30,7 @@ LcsBaseSystem class >> installSlotDefinitions [
 	"self slotDefinitionPragmas"
 	self installSlotDefinition: #systemSlotModelSlotDefinition.
 	self installSlotDefinition: #statusSlotDefinition.
-	self installSlotDefinition: #globalCollectionSlotDefinition.
+	self installSlotDefinition: #globalCollectionsSlotDefinition.
 ]
 
 { #category : #testing }
