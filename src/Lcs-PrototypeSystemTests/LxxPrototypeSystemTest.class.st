@@ -4,6 +4,8 @@ This is testing with no system setup in the setup.
 
 Use this to test creating a prototype system.
 
+To see the application environment click on: {{gtClass:LcsApplicationEnvironment}}
+
 
 "
 Class {
