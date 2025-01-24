@@ -322,7 +322,8 @@ LcsBaseSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
 	LcsSystemActiveStatus installSlotDefinitions.
 	LcsSystemSuspendedStatus installSlotDefinitions.
 	LcsBaseModule installSlotDefinitions.
-	LcsBaseSystem installSlotDefinitions.
+	LcsBaseSystem slotDefinitionPragmas do: [ :eachPragma | LcsBaseSystem installSlotDefinition: eachPragma methodSelector ].
+	"LcsBaseSystem installSlotDefinitions."
 	LxxPrototypeSystem installSlotDefinitions.
 	^self
 ]
