@@ -25,12 +25,12 @@ LcsBaseSystem class >> globalCollectionsSlotDefinition [
 { #category : #'as yet unclassified' }
 LcsBaseSystem class >> installSlotDefinitions [
 	self == LcsBaseSystem ifFalse: [
-		self installSlotDefinitions.
+		self _installSlotDefinitions.
 		^ self].
 	"self slotDefinitionPragmas"
 	self installSlotDefinition: #systemSlotModelSlotDefinition.
-	self installSlotDefinition: #statusSlotDefinition.
-	self installSlotDefinition: #globalCollectionsSlotDefinition.
+"	self installSlotDefinition: #statusSlotDefinition.
+	self installSlotDefinition: #globalCollectionsSlotDefinition."
 ]
 
 { #category : #testing }

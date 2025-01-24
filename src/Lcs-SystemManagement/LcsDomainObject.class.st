@@ -15,6 +15,12 @@ LcsDomainObject class >> _installSlotDefinition: aSlotDefinitionSelector [
 	^ self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
+{ #category : #'slot model' }
+LcsDomainObject class >> _installSlotDefinitions [
+	self slotDefinitionPragmas
+		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
+]
+
 { #category : #initialize }
 LcsDomainObject class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
 	self allClassBetweenMyselfAndLcsDomainObject
@@ -149,7 +155,7 @@ LcsDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 
 { #category : #'slot model' }
 LcsDomainObject class >> installSlotDefinitions [
-	self slotDefinitionPragmas do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
+	self _installSlotDefinitions
 ]
 
 { #category : #'slot model' }
