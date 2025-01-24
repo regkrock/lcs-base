@@ -59,7 +59,7 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: LcsDomainObject isSlotModelReleased not
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 LxxPrototypeSystemTest >> setUp [
 	super setUp.
 	self assert: self currentSystem isNil
