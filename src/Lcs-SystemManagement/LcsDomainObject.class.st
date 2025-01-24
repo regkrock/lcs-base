@@ -149,7 +149,9 @@ LcsDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 
 { #category : #'slot model' }
 LcsDomainObject class >> installSlotDefinitions [
-	self slotDefinitionPragmas
+	| definitions |
+	definitions := self slotDefinitionPragmas.
+	definitions
 		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ]
 ]
 

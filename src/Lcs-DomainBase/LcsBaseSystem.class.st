@@ -315,7 +315,16 @@ LcsBaseSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBl
 
 { #category : #initialize }
 LcsBaseSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
-	aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]
+	"aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]."
+	LcsDomainObject installSlotDefinitions. 
+	LcsSystemSlotModel installSlotDefinitions. 
+	LcsBaseSystemStatus installSlotDefinitions.
+	LcsSystemActiveStatus installSlotDefinitions.
+	LcsSystemSuspendedStatus installSlotDefinitions.
+	LcsBaseModule installSlotDefinitions.
+	LcsBaseSystem installSlotDefinitions.
+	LxxPrototypeSystem installSlotDefinitions.
+	^self
 ]
 
 { #category : #testing }
