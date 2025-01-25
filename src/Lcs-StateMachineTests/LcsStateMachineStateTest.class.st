@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStateMachineStateTest,
-	#superclass : #LcsPrototypeSystemTest,
+	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#category : #'Lcs-StateMachineTests-Tests'
 }
 

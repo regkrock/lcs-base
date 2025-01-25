@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeSuperClassBuilderTest,
-	#superclass : #LcsPrototypeSystemTest,
+	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#instVars : [
 		'builder'
 	],

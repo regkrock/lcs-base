@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSystemManagerTest,
-	#superclass : #LcsBaseApplicationEnvironmentTest,
+	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
 	#category : #'Lcs-SystemManagementTests-Tests'
 }
 

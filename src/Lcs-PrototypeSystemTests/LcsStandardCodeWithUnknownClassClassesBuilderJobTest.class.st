@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJobTest,
-	#superclass : #LcsPrototypeSystemTest,
+	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 

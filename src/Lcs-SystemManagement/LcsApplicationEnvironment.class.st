@@ -139,10 +139,10 @@ LcsApplicationEnvironment class >> hasUnitsOfWorkManager [
 
 { #category : #'instance creation' }
 LcsApplicationEnvironment class >> initializeApplicationEnvironment [
-	self singleton notNil ifTrue: [ self error: 'Environment is already initialized' ].
-	System abortTransaction.
+	self currentApplicationEnvironment ifNotNil: [ self error: 'Environment is already initialized' ].
+	"System abortTransaction."
 	self singleton: self basicNew initialize.
-	System commitTransaction.
+	"System commitTransaction."
 	^ self currentApplicationEnvironment
 ]
 
@@ -358,11 +358,6 @@ LcsApplicationEnvironment >> initialize [
 { #category : #testing }
 LcsApplicationEnvironment >> isInActiveStatus [
 	^self status isInActiveStatus
-]
-
-{ #category : #testing }
-LcsApplicationEnvironment >> isInSActiveStatus [
-	^self status isInSActiveStatus
 ]
 
 { #category : #testing }

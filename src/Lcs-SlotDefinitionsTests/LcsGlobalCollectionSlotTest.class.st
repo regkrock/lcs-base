@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsGlobalCollectionSlotTest,
-	#superclass : #LcsPrototypeSystemTest,
+	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#instVars : [
 		'fooBuilder',
 		'foosBuilder'
