@@ -34,7 +34,7 @@ LcsSlotModel >> _slotDefinitionNamed: aSlotName [
 LcsSlotModel >> addSlotDefinition: aSlotDefinition [
 
 	aSlotDefinition parent: self.
-	^ self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
+	self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
 ]
 
 { #category : #model }

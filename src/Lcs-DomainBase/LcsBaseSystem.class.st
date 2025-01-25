@@ -22,17 +22,6 @@ LcsBaseSystem class >> globalCollectionsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
-LcsBaseSystem class >> installSlotDefinitions [
-	self == LcsBaseSystem ifFalse: [
-		self _installSlotDefinitions.
-		^ self].
-
-	self installSlotDefinition: #systemSlotModelSlotDefinition.
-"	self installSlotDefinition: #statusSlotDefinition."
-	self installSlotDefinition: #globalCollectionsSlotDefinition.
-]
-
 { #category : #testing }
 LcsBaseSystem class >> isApplicationSystemClass [
 	^ true
@@ -326,16 +315,7 @@ LcsBaseSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBl
 
 { #category : #initialize }
 LcsBaseSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
-	"aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]."
-	LcsDomainObject installSlotDefinitions. 
-	LcsSystemSlotModel installSlotDefinitions. 
-	LcsBaseSystemStatus installSlotDefinitions.
-	LcsSystemActiveStatus installSlotDefinitions.
-	LcsSystemSuspendedStatus installSlotDefinitions.
-	LcsBaseModule installSlotDefinitions.
-	LcsBaseSystem installSlotDefinitions.
-	LxxPrototypeSystem installSlotDefinitions.
-	^self
+	aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]
 ]
 
 { #category : #testing }
