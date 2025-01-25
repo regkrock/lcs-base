@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeBuilderJobSteps,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'classPrefix',
 		'codePackageName',

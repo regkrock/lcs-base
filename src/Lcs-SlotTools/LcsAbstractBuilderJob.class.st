@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsAbstractBuilderJob,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'jobSteps'
 	],

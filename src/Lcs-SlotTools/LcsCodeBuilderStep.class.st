@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeBuilderStep,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'parent',
 		'refactorings',
