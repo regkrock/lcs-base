@@ -192,11 +192,12 @@ LcsSystemsManager >> restoreUnitOfWorkFor: suspendedSystem [
 
 { #category : #api }
 LcsSystemsManager >> suspendCurrentSystem [
-	| suspensionCandidate |
-	suspensionCandidate := self currentSystem.
-	suspensionCandidate ifNotNil: [ suspensionCandidate suspendSystem ].
-	self currentSystem: nil.
-	^ suspensionCandidate
+	self currentSystem
+		ifNil: [ ] 
+		ifNotNil: [
+			self currentSystem suspendSystem.
+			self currentSystem: nil ]
+	
 ]
 
 { #category : #api }

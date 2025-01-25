@@ -245,6 +245,28 @@ LxxPrototypeSystemTest >> testRestoreSuspendedSystem [
 ]
 
 { #category : #tests }
+LxxPrototypeSystemTest >> testSuspendAndRestoreBetweenTwoSystems [
+	
+	self newPrototypeSystem.
+	self subject isInActiveStatus.
+
+	self additionalNewPrototypeSystem.
+	self assert: self subject isInSuspendedStatus.
+	self assert: self additionalSubject isInActiveStatus.
+
+	self additionalSubject suspendSystem.
+	self assert: self subject isInSuspendedStatus.
+	self assert: self additionalSubject isInSuspendedStatus.
+	self assert: self currentSystem isNil.
+
+	self additionalSubject restoreSystem.
+	self assert: self additionalSubject isInActiveStatus.
+	self assert: self subject isInSuspendedStatus
+
+
+]
+
+{ #category : #tests }
 LxxPrototypeSystemTest >> testSuspendCurrentSystem [
 	
 	self newPrototypeSystem.
@@ -275,28 +297,6 @@ LxxPrototypeSystemTest >> testSuspendCurrentSystem [
 	self assert: self systemManager currentSystem identicalTo: self system1.
 	self assert: self systemManager currentUnitOfWork system identicalTo: self subject.
 	self assert: LcsDomainObject isSlotModelReleased not."
-
-
-]
-
-{ #category : #tests }
-LxxPrototypeSystemTest >> testSyspendAndRestoreBetweenTwoSystems [
-	
-	self newPrototypeSystem.
-	self subject isInActiveStatus.
-
-	self additionalNewPrototypeSystem.
-	self assert: self subject isInSuspendedStatus.
-	self assert: self additionalSubject isInActiveStatus.
-
-	self additionalSubject suspendSystem.
-	self assert: self subject isInSuspendedStatus.
-	self assert: self additionalSubject isInSuspendedStatus.
-	self assert: self currentSystem isNil.
-
-	self additionalSubject restoreSystem.
-	self assert: self additionalSubject isInActiveStatus.
-	self assert: self subject isInSuspendedStatus
 
 
 ]

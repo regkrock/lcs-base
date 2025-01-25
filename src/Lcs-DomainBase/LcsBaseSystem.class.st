@@ -90,9 +90,9 @@ LcsBaseSystem >> _restoreSystem [
 	self suspendCurrentSystem.
 	self
 		restoreUnitOfWork;
-		restoreSlotModel;
-		status: LcsSystemActiveStatus new.
-	self systemManager currentSystem: self
+		restoreSlotModel.
+	self systemManager currentSystem: self.
+	self status: LcsSystemActiveStatus new.
 ]
 
 { #category : #environment }
