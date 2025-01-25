@@ -42,13 +42,6 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 ]
 
 { #category : #initialize }
-LxxPrototypeSystem >> addPrototypeClassesTo: classes [
-	LcsDomainObject allSubclasses
-		do: [ :each | each addPrototypeClassTo: classes ].
-	^ classes
-]
-
-{ #category : #initialize }
 LxxPrototypeSystem >> bootstrapDomainClasses [
 	^super bootstrapDomainClasses
 		"add: LxxPrototypeSystem;"

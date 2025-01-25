@@ -408,7 +408,9 @@ LcsBaseSystem >> restoreUnitOfWork [
 
 { #category : #accessing }
 LcsBaseSystem >> status [
-	^ self getValueOfSlotNamed: 'status'
+	^ self isSlotModelDefined 
+		ifTrue: [^ self getValueOfSlotNamed: 'status' ]
+		ifFalse: [ self instVarNamed: 'status' ]
 ]
 
 { #category : #accessing }
@@ -418,7 +420,9 @@ LcsBaseSystem >> status: aSystemStatus [
 
 { #category : #asking }
 LcsBaseSystem >> statusNameString [
-	^ self status ifNil: [ 'no status' ] ifNotNil: [ self status statusName ]
+	^ ([ self status ] on: Error do: [ :s | s return: nil ]) 
+		ifNil: [ 'no status' ] 
+		ifNotNil: [ self status statusName ]
 ]
 
 { #category : #suspend }
