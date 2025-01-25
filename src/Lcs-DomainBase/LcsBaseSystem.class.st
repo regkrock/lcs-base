@@ -92,17 +92,15 @@ LcsBaseSystem >> _restoreSystem [
 		restoreUnitOfWork;
 		restoreSlotModel.
 	self systemManager currentSystem: self.
-	self status: LcsSystemActiveStatus new.
+	self status: self newActiveState
 ]
 
 { #category : #environment }
-LcsBaseSystem >> _suspendSystem [ 
-	(self slotDefinitionNamed: 'status') setPersistedValueTo: LcsSystemSuspendedStatus new in: self.
-		
+LcsBaseSystem >> _suspendSystem [
+	(self slotDefinitionNamed: 'status') setPersistedValueTo: self newSuspendedState in: self.
 	self
 		releaseSlotModel;
 		suspendUnitOfWork.
-		
 	self systemManager currentSystem: nil
 ]
 
@@ -341,6 +339,20 @@ LcsBaseSystem >> makeCurrentSystem [
 { #category : #'slot model' }
 LcsBaseSystem >> modulesSlot [
 	^ self slotDefinitionNamed: 'modules'
+]
+
+{ #category : #environment }
+LcsBaseSystem >> newActiveState [
+	^ LcsSystemActiveStatus new
+		parent: self;
+		yourself
+]
+
+{ #category : #environment }
+LcsBaseSystem >> newSuspendedState [
+	^ LcsSystemSuspendedStatus new
+		parent: self;
+		yourself
 ]
 
 { #category : #initialize }

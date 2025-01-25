@@ -16,7 +16,7 @@ LcsSystemActiveStatus >> statusName [
 
 { #category : #api }
 LcsSystemActiveStatus >> suspendSystem [
-	self parent _suspendSystem 
+	self privateParent _suspendSystem 
 ]
 
 { #category : #asking }

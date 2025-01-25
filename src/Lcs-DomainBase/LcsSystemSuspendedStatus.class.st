@@ -11,7 +11,7 @@ LcsSystemSuspendedStatus >> isInSuspendedStatus [
 
 { #category : #api }
 LcsSystemSuspendedStatus >> restoreSystem [
-	self parent _restoreSystem
+	self privateParent _restoreSystem
 ]
 
 { #category : #asking }

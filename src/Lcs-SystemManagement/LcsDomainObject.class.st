@@ -181,6 +181,11 @@ LcsDomainObject class >> isSlotModelDefined [
 ]
 
 { #category : #testing }
+LcsDomainObject class >> isSlotModelInstantiated [
+	^ self slotModel notNil
+]
+
+{ #category : #testing }
 LcsDomainObject class >> isSlotModelPopulated [
 	^ self isDefined and: [ 
 		self subclasses allSatisfy: [ :each | each isSlotModelPopulated ] ]
@@ -467,6 +472,11 @@ LcsDomainObject >> isMemberOfGlobalCollectionIn: aSlotName [
 { #category : #testing }
 LcsDomainObject >> isRootDomainClass [
 	self class isRootDomainClass
+]
+
+{ #category : #testing }
+LcsDomainObject >> isSlotModelInstantiated [
+	^ self class isSlotModelInstantiated
 ]
 
 { #category : #accessing }

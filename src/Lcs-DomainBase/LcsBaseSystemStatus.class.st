@@ -14,6 +14,13 @@ LcsBaseSystemStatus >> isInSuspendedStatus [
 	^ false
 ]
 
+{ #category : #private }
+LcsBaseSystemStatus >> privateParent [
+	^ self class slotModel isNil
+		ifTrue: [ self instVarNamed: 'parent' ]
+		ifFalse: [ self parent]
+]
+
 { #category : #api }
 LcsBaseSystemStatus >> restoreSystem [
 ]
