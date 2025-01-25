@@ -183,7 +183,7 @@ LcsBaseSystem >> configurationValidator [
 
 { #category : #'unit of work' }
 LcsBaseSystem >> currentUnitOfWork [
-	^ self parent currentUnitOfWork
+	^ self _parent currentUnitOfWork
 ]
 
 { #category : #accessing }
@@ -273,8 +273,8 @@ LcsBaseSystem >> initialize [
 
 { #category : #initialize }
 LcsBaseSystem >> initializeBasicSystem [
-	self inititalizeSlotModelFor: self prebootstrapDomainClasses instantiateBlock:	[ :eachClass |
-		eachClass  instantiateSlotModel ]. .
+	self inititalizeSlotModelFor: self prebootstrapDomainClasses 
+			instantiateBlock: [ :eachClass | eachClass  instantiateSlotModel ].
 
 	self unitOfWork addObject: self.
 	
