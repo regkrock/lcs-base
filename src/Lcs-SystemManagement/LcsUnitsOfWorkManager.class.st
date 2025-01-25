@@ -12,14 +12,14 @@ Class {
 	#category : #'Lcs-SystemManagement-Environment'
 }
 
-{ #category : #accessing }
+{ #category : #'instance creation' }
 LcsUnitsOfWorkManager class >> new [
 	"Use the #newOn: method"
 	self shouldNotImplement
 
 ]
 
-{ #category : #accessing }
+{ #category : #'instance creation' }
 LcsUnitsOfWorkManager class >> newOn: anApplicationEnvironment [
 	^ self basicNew initialize
 		initializeOn: anApplicationEnvironment;
@@ -60,7 +60,7 @@ LcsUnitsOfWorkManager >> currentUnitOfWork: anObject [
 	currentUnitOfWork := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #'gt view' }
 LcsUnitsOfWorkManager >> gtUnitsOfWorkManagerFor: aView [
 		<gtView>
 	^ aView columnedList
@@ -89,12 +89,12 @@ LcsUnitsOfWorkManager >> initialize [
 	self unitsOfWork: (LcsUnitsOfWork newOn: self)
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsUnitsOfWorkManager >> initializeOn: anApplicationEnvironment [ 
 	self parent: anApplicationEnvironment
 ]
 
-{ #category : #accessing }
+{ #category : #querry }
 LcsUnitsOfWorkManager >> numberOfUnitsOfWork [
 	^ self unitsOfWork size
 ]
@@ -115,7 +115,7 @@ LcsUnitsOfWorkManager >> releaseApplicationEnvironment [
 	self unitsOfWork removeAll
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsUnitsOfWorkManager >> removeAllUnitsOfWork [
 	self removeCurrentUnitOfWork.
 	self unitsOfWork removeAll
@@ -138,7 +138,7 @@ LcsUnitsOfWorkManager >> removeUnitsOfWorkFor: aSystem [
 	self currentUnitOfWork system == aSystem ifTrue: [ self removeCurrentUnitOfWork ]
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsUnitsOfWorkManager >> restoreUnitOfWorkFor: aSystem [
 	self
 		currentUnitOfWork: (aSystem ifNil: [  ] ifNotNil: [ self unitOfWorkFor: aSystem ])
@@ -149,7 +149,7 @@ LcsUnitsOfWorkManager >> suspendUnitOfWorkFor: aSystem [
 	self currentUnitOfWork: nil
 ]
 
-{ #category : #accessing }
+{ #category : #api }
 LcsUnitsOfWorkManager >> unitOfWorkFor: aSystem [
 	^ self unitsOfWork unitOfWorkFor: aSystem
 ]

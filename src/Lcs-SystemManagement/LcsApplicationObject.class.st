@@ -4,22 +4,22 @@ Class {
 	#category : #'Lcs-SystemManagement-Environment'
 }
 
-{ #category : #environment }
+{ #category : #system }
 LcsApplicationObject class >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #environment }
+{ #category : #system }
 LcsApplicationObject class >> currentUnitOfWork [
 	^ self currentSystem ifNotNil: [:system | system currentUnitOfWork ]
 ]
 
-{ #category : #environment }
+{ #category : #system }
 LcsApplicationObject >> currentSystem [
 	^ self class currentSystem
 ]
 
-{ #category : #environment }
+{ #category : #system }
 LcsApplicationObject >> currentUnitOfWork [
 	^ self class currentUnitOfWork
 ]

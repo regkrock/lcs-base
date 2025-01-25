@@ -6,27 +6,29 @@ Class {
 
 { #category : #accessing }
 LcsUnitsOfWorkManagerTest >> testCreation [
-	| unitsOfWorkManager |
-	LcsApplicationEnvironment releaseApplicationEnvironment.
 	LcsApplicationEnvironment initializeApplicationEnvironment.
-	
-	unitsOfWorkManager := LcsApplicationEnvironment unitsOfWorkManager.
-	self assert: (unitsOfWorkManager isKindOf: LcsUnitsOfWorkManager).
-	self assert: unitsOfWorkManager notNil
+	subject := LcsApplicationEnvironment unitsOfWorkManager.
+	self assert: (subject isKindOf: LcsUnitsOfWorkManager).
+	self assert: subject notNil.
+	self assert: subject currentUnitOfWork isNil.
+	self deny: subject hasCurrentUnitOfWork.
+	self assert: subject unitsOfWork isEmpty.
+	self assert: subject parent == LcsApplicationEnvironment singleton.
+	self assert: subject numberOfUnitsOfWork equals: 0
 
 ]
 
 { #category : #accessing }
 LcsUnitsOfWorkManagerTest >> testRemoveCurrentUnitOfWork [
 	| unitOfWork |
-	LcsApplicationEnvironment releaseApplicationEnvironment.
 	LcsApplicationEnvironment initializeApplicationEnvironment.
-	
-	unitOfWork := LcsApplicationEnvironment createUnitOfWork.
-	self assert: LcsApplicationEnvironment currentUnitOfWork identicalTo: unitOfWork.
-	self assert: LcsApplicationEnvironment unitsOfWorkManager unitsOfWork size = 1.
-	
-	LcsApplicationEnvironment removeCurrentUnitOfWork.
-	self assert: LcsApplicationEnvironment currentUnitOfWork identicalTo:nil.
-	self assert: LcsApplicationEnvironment unitsOfWorkManager unitsOfWork isEmpty
+
+	subject := LcsApplicationEnvironment unitsOfWorkManager.
+	self assert: subject numberOfUnitsOfWork equals: 0.
+	unitOfWork := subject createUnitOfWork.
+	self assert: subject currentUnitOfWork identicalTo: unitOfWork.
+	self assert: subject numberOfUnitsOfWork equals: 1.
+	subject removeCurrentUnitOfWork.
+	self assert: subject currentUnitOfWork identicalTo:nil.
+	self assert: subject unitsOfWork isEmpty
 ]

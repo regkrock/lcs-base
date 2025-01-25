@@ -26,7 +26,7 @@ LcsBaseApplicationEnvironmentTest >> currentApplicationEnvironment: anApplicatio
 LcsBaseApplicationEnvironmentTest >> setUp [
 	self abortTransaction. 
 	super setUp.
-	self currentApplicationEnvironment: LcsApplicationEnvironment suspendCurrentApplicationEnvironment.
+	self currentApplicationEnvironment: LcsApplicationEnvironment suspendApplicationEnvironment.
 	self commitTransaction
 ]
 
