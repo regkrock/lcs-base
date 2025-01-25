@@ -72,6 +72,11 @@ LcsApplicationEnvironment class >> currentUnitOfWork [
 ]
 
 { #category : #'application environment' }
+LcsApplicationEnvironment class >> deleteCurrentAndMakeCurrent: aSystem [
+	self applicationEnvironmentDo: [ :env | env deleteCurrentAndMakeCurrent: aSystem ]
+]
+
+{ #category : #'application environment' }
 LcsApplicationEnvironment class >> ensureInitialized [
 	self hasInitializedApplicationEnvironment ifFalse: [ self initializeApplicationEnvironment ].
 ]
@@ -195,11 +200,6 @@ LcsApplicationEnvironment class >> resetApplicationEnvironment [
 ]
 
 { #category : #'application environment' }
-LcsApplicationEnvironment class >> restoreToCurrent: aSystem [
-	self applicationEnvironmentDo: [ :env | env restoreToCurrent: aSystem ]
-]
-
-{ #category : #'application environment' }
 LcsApplicationEnvironment class >> restoreToCurrentApplicationEnvironment: anApplicationEnvironment [
 	self singleton: anApplicationEnvironment.
 	self applicationEnvironmentDo: [ :env | env restoreApplicationEnvironment ]
@@ -283,6 +283,13 @@ LcsApplicationEnvironment >> currentSystem: aSystem [
 { #category : #'unit of work' }
 LcsApplicationEnvironment >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
+]
+
+{ #category : #system }
+LcsApplicationEnvironment >> deleteCurrentAndMakeCurrent: aSystem [
+	self 
+		removeCurrentSystem;
+		makeSystemCurrent: aSystem
 ]
 
 { #category : #'gt views' }
@@ -390,13 +397,6 @@ LcsApplicationEnvironment >> removeCurrentUnitOfWork [
 { #category : #system }
 LcsApplicationEnvironment >> restoreApplicationEnvironment [
 	self status restoreApplicationEnvironment
-]
-
-{ #category : #system }
-LcsApplicationEnvironment >> restoreToCurrent: aSystem [
-	self 
-		removeCurrentSystem;
-		makeSystemCurrent: aSystem
 ]
 
 { #category : #accessing }

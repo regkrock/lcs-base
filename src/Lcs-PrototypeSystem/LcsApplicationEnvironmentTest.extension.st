@@ -13,3 +13,50 @@ LcsApplicationEnvironmentTest >> testAddingSystenToApplicationEnvironment [
 	self assert: subject hasCurrentSystem.
 	self assert: subject hasCurrentUnitOfWork.
 ]
+
+{ #category : #'*Lcs-PrototypeSystem' }
+LcsApplicationEnvironmentTest >> testDeletingCurrentSystemAndMakingSuspendedSystemCurrentViaApplicationEnvironment [
+	| system temporarySystem |
+	subject := LcsApplicationEnvironment.
+	subject initializeApplicationEnvironment.
+	subject createCurrentSystemFor: LxxPrototypeSystem.
+	system := subject currentSystem.
+	subject createCurrentSystemFor: LxxPrototypeSystem.
+	temporarySystem := subject currentSystem.
+	
+	subject deleteCurrentAndMakeCurrent: system.
+	self assert: subject currentSystem identicalTo: system.
+	self assert: system isInActiveStatus.
+	self assert: (subject systemManager systems includes: system).
+	self deny:(subject systemManager systems includes: temporarySystem).
+]
+
+{ #category : #'*Lcs-PrototypeSystem' }
+LcsApplicationEnvironmentTest >> testMakingSuspendedSystemCurrentViaApplicationEnvironment [
+	| system |
+	subject := LcsApplicationEnvironment.
+	subject initializeApplicationEnvironment.
+	subject createCurrentSystemFor: LxxPrototypeSystem.
+	system := subject currentSystem.
+	subject suspendCurrentSystem.
+	
+	subject makeSystemCurrent: system.
+	
+	self assert: subject currentSystem identicalTo: system.
+	self assert: system isInActiveStatus
+]
+
+{ #category : #'*Lcs-PrototypeSystem' }
+LcsApplicationEnvironmentTest >> testSuspendingCurrentSystemViaApplicationEnvironment [
+	| system |
+	subject := LcsApplicationEnvironment.
+	subject initializeApplicationEnvironment.
+	subject createCurrentSystemFor: LxxPrototypeSystem.
+	system := subject currentSystem.
+	self assert: system isInActiveStatus.
+	
+	subject suspendCurrentSystem.
+	
+	self assert: subject currentSystem isNil.
+	self assert: system isInSuspendedStatus
+]

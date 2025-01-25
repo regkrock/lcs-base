@@ -385,14 +385,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-08T15:59:26.437003-05:00"
+									"dateAndTimeString" : "2025-01-11T16:31:48.732819-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "mVZkws7iDQCUWSgXAd/nRw=="
 							},
-							"code" : "builder verifySlotModelUpdates"
+							"code" : "builder verifySlotModelUpdatesMadeByBuilder"
 						},
 						{
 							"__type" : "pharoSnippet",
@@ -767,14 +767,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-08T09:18:29.450366-05:00"
+									"dateAndTimeString" : "2025-01-25T16:29:10.781853-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "MYXjI8niDQCOhswKAd/nRw=="
 							},
-							"code" : "LcsApplicationEnvironment removeCurrentSystem.\rLcsApplicationEnvironment restoreToCurrent: savedSystem"
+							"code" : "LcsApplicationEnvironment removeCurrentSystem.\rLcsApplicationEnvironment deleteCurrentAndRestoreToCurrent: savedSystem"
 						}
 					]
 				},

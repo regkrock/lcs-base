@@ -61,7 +61,7 @@ LcsAbstractDomainTest >> tearDown [
 			LcsApplicationEnvironment removeCurrentSystem.
 			self assert: self currentSystem isNil ]
 		ifFalse: [
-			LcsApplicationEnvironment restoreToCurrent: self savedSystem.
+			LcsApplicationEnvironment deleteCurrentAndMakeCurrent: self savedSystem.
 		self assert: self currentSystem identicalTo: self savedSystem ].
 	self commitTransaction.
 
