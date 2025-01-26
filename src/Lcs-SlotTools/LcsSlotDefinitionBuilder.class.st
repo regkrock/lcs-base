@@ -267,6 +267,13 @@ LcsSlotDefinitionBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
 
+{ #category : #command }
+LcsSlotDefinitionBuilder >> verifyUninstall [
+	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) 
+		ifNil: [ ^ self ].
+	self jobSteps verifyUninstall
+]
+
 { #category : #'gt view' }
 LcsSlotDefinitionBuilder >> viewCodeButton [
 	self _target isNil ifTrue: [ ^ BrButton new ].

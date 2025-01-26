@@ -235,6 +235,11 @@ LcsBaseClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	self assert: (self currentSystem systemSlotModel hasSlotModelForClass: self installedClass)
 ]
 
+{ #category : #command }
+LcsBaseClassBuilder >> verifyUninstall [
+	self assert: self installedClass isNil
+]
+
 { #category : #'gt view' }
 LcsBaseClassBuilder >> viewCodeButton [
 	self installedClass isNil ifTrue: [ ^ BrButton new ].

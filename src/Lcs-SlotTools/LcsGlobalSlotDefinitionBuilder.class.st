@@ -141,3 +141,8 @@ LcsGlobalSlotDefinitionBuilder >> targetModuleName: anObject [
 LcsGlobalSlotDefinitionBuilder >> uninstall [
 	self target removeDomainSlotNamed: self slotName.
 ]
+
+{ #category : #command }
+LcsGlobalSlotDefinitionBuilder >> verifyUninstall [
+	self target verifyRemovedDomainSlotNamed: self slotName.
+]

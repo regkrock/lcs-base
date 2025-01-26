@@ -344,6 +344,17 @@ LcsDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 	self assert: slotDefinitions isEmpty description: self class name , ' has slot definition(s) without a corresponding instance variable name(s)'
 ]
 
+{ #category : #'slot definition - removal' }
+LcsDomainObject class >> verifyRemovedDomainSlotNamed: aSlotName [
+	self slotModel ifNotNil: [
+		self assert: (self slotModel _slotDefinitionNamed: aSlotName) isNil ].
+	self assert: (self instVarNames includes: aSlotName) not.
+	self assert: (self canUnderstand: aSlotName asSymbol) not.
+	self assert: (self canUnderstand: (aSlotName , ':') asSymbol) not.
+	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not.
+
+]
+
 { #category : #'slot model - verification' }
 LcsDomainObject class >> verifySlotModelConsistency [
 	 self verifyClassHasSlotDefinitionsForInstVars .

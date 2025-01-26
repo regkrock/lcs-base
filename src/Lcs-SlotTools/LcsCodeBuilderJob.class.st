@@ -207,3 +207,8 @@ LcsCodeBuilderJob >> verifyPopulateSlotModel [
 LcsCodeBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
+
+{ #category : #command }
+LcsCodeBuilderJob >> verifyUninstall [
+	self jobSteps verifyUninstall
+]

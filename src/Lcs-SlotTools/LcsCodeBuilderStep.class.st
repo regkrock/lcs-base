@@ -243,6 +243,11 @@ LcsCodeBuilderStep >> verifySlotModelUpdatesMadeByBuilder [
 	self subclassResponsibility
 ]
 
+{ #category : #install }
+LcsCodeBuilderStep >> verifyUninstall [
+	self subclassResponsibility
+]
+
 { #category : #command }
 LcsCodeBuilderStep >> verifyUnistall [
 	"Subclasses should implement as needed"

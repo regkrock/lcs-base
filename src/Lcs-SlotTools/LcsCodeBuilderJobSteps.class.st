@@ -309,3 +309,8 @@ LcsCodeBuilderJobSteps >> verifyCodeInstallation [
 LcsCodeBuilderJobSteps >> verifySlotModelUpdatesMadeByBuilder [
 	self collection do: [ :each | each verifySlotModelUpdatesMadeByBuilder ]
 ]
+
+{ #category : #command }
+LcsCodeBuilderJobSteps >> verifyUninstall [
+	self collection do: [ :each | each verifyUninstall ]
+]

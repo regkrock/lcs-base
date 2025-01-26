@@ -110,3 +110,10 @@ LcsSlotGetterAndSetterBuilder >> verifyCodeInstallation [
 	self assert: (self target canUnderstand: self getterSelector).
 	self assert: (self target canUnderstand: self setterSelector).
 ]
+
+{ #category : #command }
+LcsSlotGetterAndSetterBuilder >> verifyUninstall [
+	([ self target ] on: NotFound do: [ :s | s return: nil ]) ifNil: [ ^ self ].
+	self assert: (self target canUnderstand: self getterSelector) not.
+	self assert: (self target canUnderstand: self setterSelector) not.
+]

@@ -44,3 +44,9 @@ LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
 	self assert: (self target allInstVarNames includes: self slotName).
 ]
+
+{ #category : #command }
+LcsSlotInstanceVariableBuilder >> verifyUninstall [
+	([ self target ] on: NotFound do: [ :s | s return: nil ]) isNil ifTrue: [ ^ self  ].
+	self assert: (self target allInstVarNames includes: self slotName) not.
+]

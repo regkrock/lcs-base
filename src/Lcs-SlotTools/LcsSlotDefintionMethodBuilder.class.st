@@ -64,3 +64,9 @@ LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
 LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	self assert: (self target slotModel slotDefinitionNamed: self slotName) notNil
 ]
+
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> verifyUninstall [
+	([ self target ] on: NotFound do: [ :s | s return: nil ]) ifNil: [ ^ self ].
+	self assert: (self target class canUnderstand: self slotBuilder slotDefinitionSelector) not
+]

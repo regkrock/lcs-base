@@ -106,3 +106,16 @@ LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
 	self assert: slotDefinition collectionSlotModuleName isString.
 
 ]
+
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionReferenceSlotBuilder >> verifyUninstall [
+	| slotDefinition |
+	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) ifNil: [ ^ self ].
+	super verifyUninstall.
+	slotDefinition := self targetSlotDefinition.
+	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
+	self assert: slotDefinition collectionSlotName isString.
+	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
+	self assert: slotDefinition collectionSlotModuleName isString.
+
+]

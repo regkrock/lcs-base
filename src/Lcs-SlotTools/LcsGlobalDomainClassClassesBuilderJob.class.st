@@ -178,3 +178,10 @@ LcsGlobalDomainClassClassesBuilderJob >> unknownClassBuilderStep [
 LcsGlobalDomainClassClassesBuilderJob >> unknownClassName [
 	^ unknownClassName
 ]
+
+{ #category : #verification }
+LcsGlobalDomainClassClassesBuilderJob >> verifyPopulateSlotModel [
+	self protoInstances isEmpty 
+		ifTrue: [ ]
+		ifFalse: [ self subclassResponsibility ]
+]

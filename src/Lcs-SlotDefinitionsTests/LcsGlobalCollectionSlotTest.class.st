@@ -2,9 +2,7 @@ Class {
 	#name : #LcsGlobalCollectionSlotTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#instVars : [
-		'fooBuilder',
-		'foosBuilder',
-		'builders'
+		'codeJobBuilder'
 	],
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
@@ -15,83 +13,49 @@ LcsGlobalCollectionSlotTest class >> subjectClass [
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlotTest >> builders [
-	^ builders
+LcsGlobalCollectionSlotTest >> codeJobBuilder [
+	^ codeJobBuilder
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlotTest >> builders: anObject [
-	builders := anObject
-]
-
-{ #category : #private }
-LcsGlobalCollectionSlotTest >> createFooClass [
-	self fooBuilder: LxxFooClassExampleBuilder new fullyInstall
-]
-
-{ #category : #private }
-LcsGlobalCollectionSlotTest >> createFoosClass [
-	self foosBuilder: (
-		LcsDomainCollectionClassBuilder new
-			newClassName: 'Foos';
-			targetPackageName: 'Lcs-Temp';
-			yourself).
-	self foosBuilder fullyInstall
-]
-
-{ #category : #accessing }
-LcsGlobalCollectionSlotTest >> fooBuilder [
-	^ fooBuilder
-]
-
-{ #category : #accessing }
-LcsGlobalCollectionSlotTest >> fooBuilder: aBuilder [
-	fooBuilder := aBuilder
-]
-
-{ #category : #private }
-LcsGlobalCollectionSlotTest >> foosBuilder [
-	^ foosBuilder
-]
-
-{ #category : #private }
-LcsGlobalCollectionSlotTest >> foosBuilder: anObject [ 
-	foosBuilder := anObject
-]
-
-{ #category : #private }
-LcsGlobalCollectionSlotTest >> foosGlobalCollectionSlotBuilder [
-	^ LcsGlobalSlotDefinitionBuilder new
-		slotClassName: self fooBuilder newClassName;
-		slotName: 'foos';
-		targetClassName: LxxPrototypeSystem name;
-		targetModuleClass: LxxPrototypeSystem moduleName;
-		yourself
+LcsGlobalCollectionSlotTest >> codeJobBuilder: anObject [
+	codeJobBuilder := anObject
 ]
 
 { #category : #initialize }
 LcsGlobalCollectionSlotTest >> initialize [
 	super initialize.
-	self builders: OrderedCollection new.
-	self builders add: LxxFooClassExampleBuilder new.
-	self builders add: LxxFooClassExampleBuilder new
+	self codeJobBuilder: self newCodeJobBuilder
+]
+
+{ #category : #initialize }
+LcsGlobalCollectionSlotTest >> newCodeJobBuilder [
+	"^ LcsCodeBuilderJob new  <--- If this abstracted, then this will be superclass implementation"
+	^ LcsGlobalDomainClassClassesBuilderJob new
+		classPrefix: 'Lxx';
+		installNewClassesInPackageNamed: 'Lcs-Temp';
+		createForRootName: 'Foo';
+		installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
+		installMemberSlotInDomainClass: LxxPrototypePerson;
+		buildJobSteps
 ]
 
 { #category : #running }
 LcsGlobalCollectionSlotTest >> setUp [
-	self builders do: [ :each | each assertNotInstalled ].
+	"self codeJobBuilder assertNotInstalled."
 	super setUp
 ]
 
 { #category : #running }
 LcsGlobalCollectionSlotTest >> tearDown [
-	self builders do: [ :each | each tearDown ].
+	self codeJobBuilder uninstall.
 	super tearDown.
-	self builders do: [ :each | each assertNotInstalled ]
+	self codeJobBuilder verifyUninstall
 ]
 
 { #category : #tests }
 LcsGlobalCollectionSlotTest >> testDefaultCreation [
+	self useEmptyCodeJobBuilder.
 	self createNewSubject.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject collectionMemberTypes isEmpty.
@@ -99,16 +63,19 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self assert: self subject slotName isNil.
 	self assert: self subject parent isNil.
 	self assert: self subject required isNil.
-	self assert: self subject initialValueBlock asString equals: '[ self slotTypes any new ]'.
+	self
+		assert: self subject initialValueBlock asString
+		equals: '[ self slotTypes any new ]'.
 	self assert: self subject validator isNil
 ]
 
 { #category : #tests }
 LcsGlobalCollectionSlotTest >> testInstallingGlobalCollectionSlot [
-	self builders 
-		add: LxxFooClassExampleBuilder new;
-		add: LxxFoosClassExampleBuilder new;
-		add: self foosGlobalCollectionSlotBuilder.
-	self builders do: [ :each | each install ].
-	self builders do: [ :each | each ].
+	self codeJobBuilder execute.
+	self assert: (self currentSystem class hasSlotDefinitionNamed: 'foos')
+]
+
+{ #category : #private }
+LcsGlobalCollectionSlotTest >> useEmptyCodeJobBuilder [
+	self codeJobBuilder: LcsCodeBuilderJob new
 ]
