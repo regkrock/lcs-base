@@ -116,6 +116,43 @@
 				"string" : "{{gtClass:LcsTestCase}}Is the super class from which all Lcs test classes should be subclassed from.\n\nThis class has a subject instance variable that can be used by subclasses to store the object that is being tested. This allows for a common variable to store the subject of the tests. An example of this is {{gtMethod:LcsSystemManagerTest>>#testSystemMangerAPIsWhenCollectionIsEmpty}}"
 			},
 			{
+				"__type" : "elementSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T20:27:01.517102-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T20:27:04.098345-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "n3v3l/PoDQC4nSSrBI/n4w=="
+				},
+				"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsTestWithNoApplicationEnvironmentTest.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
+				"elementHeight" : 100,
+				"codeHeight" : 50,
+				"codeVisible" : false
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -310,43 +347,6 @@
 											"__type" : "textStyle"
 										},
 										"string" : "{{gtClass:LcsTestWithTestSystemSetUpForTest}} was created to provide the suspension ot the current system and the creation of a specified test system. An example is {{gtMethod:LcsSystemTestCase>>setupSunitSystem}} where #setupSunitSystem specifies that the Main System should be created for a complete context."
-									},
-									{
-										"__type" : "elementSnippet",
-										"children" : {
-											"__type" : "snippets",
-											"items" : [ ]
-										},
-										"createEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"createTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-01-25T20:10:00.19028-05:00"
-											}
-										},
-										"editEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"editTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-01-25T20:16:11.78457-05:00"
-											}
-										},
-										"uid" : {
-											"__type" : "uid",
-											"uidString" : "aE0XW/PoDQChU3SIBNN4Vw=="
-										},
-										"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsTestWithNoApplicationEnvironmentTest.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
-										"elementHeight" : 100,
-										"codeHeight" : 50,
-										"codeVisible" : false
 									}
 								]
 							},
