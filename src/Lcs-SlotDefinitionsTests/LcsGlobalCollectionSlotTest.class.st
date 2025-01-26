@@ -1,3 +1,6 @@
+"
+The purpose of this class is test Global Colleciton Slot where it has not installed.
+"
 Class {
 	#name : #LcsGlobalCollectionSlotTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
@@ -22,27 +25,14 @@ LcsGlobalCollectionSlotTest >> codeJobBuilder: anObject [
 	codeJobBuilder := anObject
 ]
 
-{ #category : #initialize }
-LcsGlobalCollectionSlotTest >> initialize [
-	super initialize.
-	self codeJobBuilder: self newCodeJobBuilder
-]
-
-{ #category : #initialize }
+{ #category : #running }
 LcsGlobalCollectionSlotTest >> newCodeJobBuilder [
-	"^ LcsCodeBuilderJob new  <--- If this abstracted, then this will be superclass implementation"
-	^ LcsGlobalDomainClassClassesBuilderJob new
-		classPrefix: 'Lxx';
-		installNewClassesInPackageNamed: 'Lcs-Temp';
-		createForRootName: 'Foo';
-		installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
-		installMemberSlotInDomainClass: LxxPrototypePerson;
-		buildJobSteps
+	^ LcsCodeBuilderJob new
 ]
 
 { #category : #running }
 LcsGlobalCollectionSlotTest >> setUp [
-	"self codeJobBuilder assertNotInstalled."
+	self codeJobBuilder: self newCodeJobBuilder.
 	super setUp
 ]
 
@@ -55,7 +45,6 @@ LcsGlobalCollectionSlotTest >> tearDown [
 
 { #category : #tests }
 LcsGlobalCollectionSlotTest >> testDefaultCreation [
-	self useEmptyCodeJobBuilder.
 	self createNewSubject.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject collectionMemberTypes isEmpty.
@@ -73,9 +62,4 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 LcsGlobalCollectionSlotTest >> testInstallingGlobalCollectionSlot [
 	self codeJobBuilder execute.
 	self assert: (self currentSystem class hasSlotDefinitionNamed: 'foos')
-]
-
-{ #category : #private }
-LcsGlobalCollectionSlotTest >> useEmptyCodeJobBuilder [
-	self codeJobBuilder: LcsCodeBuilderJob new
 ]
