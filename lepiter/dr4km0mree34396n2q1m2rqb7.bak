@@ -1,0 +1,486 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:26:21.554077-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:27:10.400292-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "L25u6PHoDQCXZcgqAUlQ6A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Overivew"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:01:51.697917-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:04:52.352835-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4IR0jPHoDQC1K5ZNAUlQ6A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "This system uses the S-Unit test framework for all of its tests.  The following describes several key s-unit TestCase classes that provide an important context for writing tests."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:03:08.991012-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:08:52.312692-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "haxAivHoDQC05m/wAUlQ6A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:LcsTestCase}}Is the super class from which all Lcs test classes should be subclassed from.\n\nThis class has a subject instance variable that can be used by subclasses to store the object that is being tested. This allows for a common variable to store the subject of the tests. An example of this is {{gtMethod:LcsSystemManagerTest>>#testSystemMangerAPIsWhenCollectionIsEmpty}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:10:08.771836-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T18:25:54.071031-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "kdBonPHoDQC8QSbZAUlQ6A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Testing Application Environment\n\nThe Application Environment {{gtClass:LcsApplicationEnvironment}} needs to be in place to provide the context for most tests. This is done in the test's setUp methods. \n\nHowever, to test the the Application Environment one does not want the setUp to be creating the Application Environment. In fact, the setUp should ensure that no Application Environment exists.\n\nTo support this  feature, {{gtClass:LcsTestWithNoApplicationEnvironmentTest}} was created. Its {{gtMethod:LcsTestWithNoApplicationEnvironmentTest>>#setUp}} method stashes the current Application Environment and clears the Application Environment's singleton. The {{gtMethod:LcsTestWithNoApplicationEnvironmentTest>>#tearDown}} clears any changes made during the test and the restores the original Application Environment."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T19:43:40.853045-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T19:43:42.623557-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Jnz0/PLoDQC8LkeRAUlQ6A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-01-25T19:16:05.200253-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-01-25T19:26:49.774654-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "SiromPLoDQCevvecAUlQ6A=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "For Domain Class testing, the Application Environment context and a System context must be setup. The superclass {{gtClass:LcsAbstractDomainTest}} was created.  In the {{gtMethod:LcsAbstractDomainTest>>#setUp}} the current system is suspended and saved. In {{gtMethod:LcsAbstractDomainTest>>#tearDown}} the current system created in the test is deleted and the saved system is restored."
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-25T19:03:20.865991-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-25T19:31:30.161773-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "YW22bPLoDQCYA6ysAUlQ6A=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "Similar to testing the Application Environment, the current system needs to be suspended which results in no current system.   Then in the tests in the Test Case can then test the creation of a System. Tests with this behaiour should subclass {{gtClass:LcsTestWithNoTestSystemSetupForTest}}. An example is {{gtClass:LxxPrototypeSystemTest}}"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-01-25T19:27:15.152561-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-01-25T19:27:19.211985-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "P+8zwvLoDQCwmHvpAUlQ6A=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "####Testing A System (A subclass of LcsBaseSystem)"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-25T19:36:22.714573-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-25T19:41:30.338436-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "36Yz2PLoDQC2TxaQAUlQ6A=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{gtClass:LcsTestWithTestSystemSetUpForTest}} was created to provide the suspension ot the current system and the creation of a specified test system. An example is {{gtMethod:LcsMainSystemTestCase>>setupSunitSystem}} where #setupSunitSystem specifies that the Main System should be created for a complete context."
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-25T19:43:27.143351-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-25T19:43:30.546491-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "dVMj/PLoDQC8H7s+AUlQ6A=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-01-25T19:04:58.136203-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-01-25T19:07:28.704092-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "yq6CcvLoDQCblj8uAUlQ6A=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "####Testing A Non-System Domain Class (A subclass of LcsDomainObject)"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T19:07:02.712598-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-25T19:07:13.989912-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "5JHvefLoDQCd5H7QAUlQ6A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Testing Domain Classes"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-01-25T18:00:21.004213-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-01-25T18:00:21.004213-05:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "S-Unit Tests"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "f3a7408a-f1e8-0d00-b4e5-ec38014950e8"
+	}
+}
