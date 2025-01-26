@@ -7,6 +7,6 @@ Class {
 { #category : #initialize }
 LxxFoosClassExampleBuilder >> initialize [
 	super initialize.
-	self newClassName: 'Foo'.
+	self newClassName: 'Foos'.
 	self targetPackageName: 'Lcs-Temp'
 ]

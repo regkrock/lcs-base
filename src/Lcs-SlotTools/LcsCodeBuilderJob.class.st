@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsAbstractBuilderJob,
+	#name : #LcsCodeBuilderJob,
 	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'jobSteps'
@@ -8,32 +8,32 @@ Class {
 }
 
 { #category : #configuration }
-LcsAbstractBuilderJob >> addJobStep: aBuilderJobStep [ 
+LcsCodeBuilderJob >> addJobStep: aBuilderJobStep [ 
 	self jobSteps addJobStep: aBuilderJobStep
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> addModelClassesTo: classes [ 
+LcsCodeBuilderJob >> addModelClassesTo: classes [ 
 	 self jobSteps addModelClassesTo: classes 
 ]
 
 { #category : #refactorings }
-LcsAbstractBuilderJob >> addRefactoringsTo: aCollection [ 
+LcsCodeBuilderJob >> addRefactoringsTo: aCollection [ 
 	self jobSteps addRefactoringsTo: aCollection 
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> buildJobSteps [
-	self subclassResponsibility
+LcsCodeBuilderJob >> buildJobSteps [
+	"subclasses can override this"
 ]
 
 { #category : #asking }
-LcsAbstractBuilderJob >> builderJob [
+LcsCodeBuilderJob >> builderJob [
 	^self
 ]
 
 { #category : #refactorings }
-LcsAbstractBuilderJob >> completedRefactorings [
+LcsCodeBuilderJob >> completedRefactorings [
 	| allRefactorings |
 	allRefactorings := OrderedCollection new.
 	self addRefactoringsTo: allRefactorings.
@@ -41,7 +41,7 @@ LcsAbstractBuilderJob >> completedRefactorings [
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> execute [
+LcsCodeBuilderJob >> execute [
 	self jobSteps isEmpty ifTrue: [self buildJobSteps].
 	self installCode.
 	self verifyCodeInstallation.
@@ -54,7 +54,7 @@ LcsAbstractBuilderJob >> execute [
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> gtClassBuilderViewFor: aView [
+LcsCodeBuilderJob >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
 		title: 'Steps List';
@@ -76,7 +76,7 @@ LcsAbstractBuilderJob >> gtClassBuilderViewFor: aView [
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> gtConstructionTreeFor: aView [
+LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView mondrian
 		title: 'Steps Tree';
@@ -85,12 +85,12 @@ LcsAbstractBuilderJob >> gtConstructionTreeFor: aView [
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> gtPaintUMLWith: aMondrian [ 
+LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [ 
 	aMondrian initialize: #LcsSlotModelDiagramExamples asClass new domainObjectSlotModel
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> gtUMLFor: aView [
+LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
 	| model classes associations positions |
 	(classes := self modelClasses) ifEmpty: [ ^ aView empty ]. "examples domainObjectSlotModelClasses."
@@ -114,18 +114,18 @@ LcsAbstractBuilderJob >> gtUMLFor: aView [
 ]
 
 { #category : #initialize }
-LcsAbstractBuilderJob >> initialize [
+LcsCodeBuilderJob >> initialize [
 	super initialize.
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> installCode [
+LcsCodeBuilderJob >> installCode [
 	self jobSteps installCode
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> jobStepDescription [
+LcsCodeBuilderJob >> jobStepDescription [
 	| stream |
 	stream := WriteStream on: String new.
 	self printJobStreamDetailsOn: stream.
@@ -133,17 +133,17 @@ LcsAbstractBuilderJob >> jobStepDescription [
 ]
 
 { #category : #accessing }
-LcsAbstractBuilderJob >> jobSteps [
+LcsCodeBuilderJob >> jobSteps [
 	^ jobSteps
 ]
 
 { #category : #accessing }
-LcsAbstractBuilderJob >> jobSteps: anObject [
+LcsCodeBuilderJob >> jobSteps: anObject [
 	jobSteps := anObject
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> modelAssociations [
+LcsCodeBuilderJob >> modelAssociations [
 	| associations |
 	associations := OrderedCollection new.
 	[ self jobSteps addModelAssociationsTo: associations ] 
@@ -155,7 +155,7 @@ LcsAbstractBuilderJob >> modelAssociations [
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> modelClasses [
+LcsCodeBuilderJob >> modelClasses [
 	| classes |
 	classes := OrderedCollection new.
 	[ self jobSteps addModelClassesTo: classes ] 
@@ -171,39 +171,39 @@ LcsAbstractBuilderJob >> modelClasses [
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> populateSlotModel [
+LcsCodeBuilderJob >> populateSlotModel [
 	"subclasses can implement this method"
 ]
 
 { #category : #'gt view' }
-LcsAbstractBuilderJob >> printJobStreamDetailsOn: aStream [
+LcsCodeBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream nextPutAll: self printString
 
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> uninstall [
+LcsCodeBuilderJob >> uninstall [
 	self jobSteps uninstall.
 	self currentUnitOfWork applyChanges
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> updateSlotModel [
+LcsCodeBuilderJob >> updateSlotModel [
 	self jobSteps updateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges	
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> verifyCodeInstallation [
+LcsCodeBuilderJob >> verifyCodeInstallation [
 	self jobSteps verifyCodeInstallation
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> verifyPopulateSlotModel [
+LcsCodeBuilderJob >> verifyPopulateSlotModel [
 	self jobSteps verifyPopulateSlotModel
 ]
 
 { #category : #command }
-LcsAbstractBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
+LcsCodeBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]

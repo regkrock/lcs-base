@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDomainClassWithGlobalCollectionBuilderJob,
-	#superclass : #LcsAbstractBuilderJob,
+	#superclass : #LcsCodeBuilderJob,
 	#instVars : [
 		'classPrefix',
 		'targetPackageName',

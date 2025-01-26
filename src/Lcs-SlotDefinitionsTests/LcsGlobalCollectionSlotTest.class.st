@@ -90,7 +90,7 @@ LcsGlobalCollectionSlotTest >> tearDown [
 	self builders do: [ :each | each assertNotInstalled ]
 ]
 
-{ #category : #test }
+{ #category : #tests }
 LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self createNewSubject.
 	self assert: self subject slotTypes isEmpty.
@@ -103,9 +103,12 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self assert: self subject validator isNil
 ]
 
-{ #category : #test }
-LcsGlobalCollectionSlotTest >> testInstallingAGlobalCollectionSlot [
-	self createFooClass.
-	self createFoosClass.
-	self foosGlobalCollectionSlotBuilder
+{ #category : #tests }
+LcsGlobalCollectionSlotTest >> testInstallingGlobalCollectionSlot [
+	self builders 
+		add: LxxFooClassExampleBuilder new;
+		add: LxxFoosClassExampleBuilder new;
+		add: self foosGlobalCollectionSlotBuilder.
+	self builders do: [ :each | each install ].
+	self builders do: [ :each | each ].
 ]
