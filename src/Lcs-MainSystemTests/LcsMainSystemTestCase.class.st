@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsSystemTestCase,
+	#name : #LcsMainSystemTestCase,
 	#superclass : #LcsTestWithTestSystemSetUpForTest,
 	#category : #'Lcs-MainSystemTests'
 }
 
 { #category : #running }
-LcsSystemTestCase >> setupSunitSystem [
+LcsMainSystemTestCase >> setupSunitSystem [
 	LcsMainSystem new
 ]

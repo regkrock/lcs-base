@@ -7,7 +7,7 @@ Class {
 		'targetClass',
 		'slotBuilderClass'
 	],
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }

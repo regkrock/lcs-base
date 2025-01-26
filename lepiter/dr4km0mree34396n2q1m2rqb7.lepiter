@@ -140,15 +140,15 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T20:27:04.098345-05:00"
+						"dateAndTimeString" : "2025-01-25T20:53:41.522347-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "n3v3l/PoDQC4nSSrBI/n4w=="
 				},
-				"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsTestWithNoApplicationEnvironmentTest.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
-				"elementHeight" : 179,
+				"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsTestWithNoApplicationEnvironmentTest; add: LcsWithPrototypeSystemSetUpForTest; add: LcsMainSystemTestCase.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
+				"elementHeight" : 260,
 				"codeHeight" : 50,
 				"codeVisible" : false
 			},
@@ -336,7 +336,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-01-25T20:08:40.027452-05:00"
+												"dateAndTimeString" : "2025-01-25T20:53:16.59189-05:00"
 											}
 										},
 										"uid" : {
@@ -346,7 +346,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtClass:LcsTestWithTestSystemSetUpForTest}} was created to provide the suspension ot the current system and the creation of a specified test system. An example is {{gtMethod:LcsSystemTestCase>>setupSunitSystem}} where #setupSunitSystem specifies that the Main System should be created for a complete context."
+										"string" : "{{gtClass:LcsTestWithTestSystemSetUpForTest}} was created to provide the suspension ot the current system and the creation of a specified test system. An example is {{gtMethod:LcsMainSystemTestCase>>setupSunitSystem}} where #setupSunitSystem specifies that the Main System should be created for a complete context."
 									}
 								]
 							},

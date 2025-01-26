@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'builder'
 	],
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #test }

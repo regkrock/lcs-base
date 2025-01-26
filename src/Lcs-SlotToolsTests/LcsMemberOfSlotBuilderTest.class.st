@@ -5,7 +5,7 @@ Class {
 		'slotName',
 		'targetClass'
 	],
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #private }

@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDomainClassClassesBuilderJobTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }

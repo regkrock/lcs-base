@@ -5,7 +5,7 @@ Class {
 		'builder',
 		'superclassBuilder'
 	],
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #accessing }
