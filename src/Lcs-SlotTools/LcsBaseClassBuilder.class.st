@@ -37,6 +37,16 @@ LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self classCreationString
 ]
 
+{ #category : #asserting }
+LcsBaseClassBuilder >> assertInstalled [
+	self shouldnt: [ self newClassName asClass ] raise: NotFound
+]
+
+{ #category : #asserting }
+LcsBaseClassBuilder >> assertNotInstalled [
+	self should: [ self newClassName asClass ] raise: NotFound
+]
+
 { #category : #'method code source' }
 LcsBaseClassBuilder >> classCreationString [
 	^ '<1s> subclass: #<2s>
@@ -58,6 +68,12 @@ LcsBaseClassBuilder >> clearTargetClass: aClass [
 { #category : #refactorings }
 LcsBaseClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
+]
+
+{ #category : #asserting }
+LcsBaseClassBuilder >> executeShould: aBlock inScopeOf: anExceptionalEvent [
+	^ [ aBlock value.
+		false ] on: anExceptionalEvent do: [ :ex | ex return: true ]
 ]
 
 { #category : #'gt view' }
@@ -149,6 +165,16 @@ LcsBaseClassBuilder >> rootName: aString [
 	rootName := aString
 ]
 
+{ #category : #asserting }
+LcsBaseClassBuilder >> should: aBlock raise: anExceptionalEvent [
+	^ self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent)
+]
+
+{ #category : #asserting }
+LcsBaseClassBuilder >> shouldnt: aBlock raise: anExceptionalEvent [
+	self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
+]
+
 { #category : #asking }
 LcsBaseClassBuilder >> stepNumber [
 	^ self parent isNil 
@@ -174,6 +200,11 @@ LcsBaseClassBuilder >> targetSuperclassName [
 { #category : #accessing }
 LcsBaseClassBuilder >> targetSuperclassName: aString [
 	targetSuperclassName := aString
+]
+
+{ #category : #running }
+LcsBaseClassBuilder >> tearDown [
+	self uninstall
 ]
 
 { #category : #command }

@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#instVars : [
 		'fooBuilder',
-		'foosBuilder'
+		'foosBuilder',
+		'builders'
 	],
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
@@ -13,14 +14,19 @@ LcsGlobalCollectionSlotTest class >> subjectClass [
 	^ LcsGlobalCollectionSlot
 ]
 
+{ #category : #accessing }
+LcsGlobalCollectionSlotTest >> builders [
+	^ builders
+]
+
+{ #category : #accessing }
+LcsGlobalCollectionSlotTest >> builders: anObject [
+	builders := anObject
+]
+
 { #category : #private }
 LcsGlobalCollectionSlotTest >> createFooClass [
-	self fooBuilder: (
-		LcsDomainClassBuilder new
-			newClassName: 'Foo';
-			targetPackageName: 'Lcs-Temp';
-			yourself).
-	fooBuilder fullyInstall
+	self fooBuilder: LxxFooClassExampleBuilder new fullyInstall
 ]
 
 { #category : #private }
@@ -63,28 +69,29 @@ LcsGlobalCollectionSlotTest >> foosGlobalCollectionSlotBuilder [
 		yourself
 ]
 
+{ #category : #initialize }
+LcsGlobalCollectionSlotTest >> initialize [
+	super initialize.
+	self builders: OrderedCollection new.
+	self builders add: LxxFooClassExampleBuilder new.
+	self builders add: LxxFooClassExampleBuilder new
+]
+
 { #category : #running }
 LcsGlobalCollectionSlotTest >> setUp [
-	self fooBuilder notNil ifTrue: [
-		self should: [ self fooBuilder newClassName asClass ] raise: Error].
-	self foosBuilder notNil ifTrue: [
-		self should: [ self foosBuilder newClassName asClass ] raise: Error ].
+	self builders do: [ :each | each assertNotInstalled ].
 	super setUp
 ]
 
 { #category : #running }
 LcsGlobalCollectionSlotTest >> tearDown [
-	self fooBuilder ifNotNil: [ self fooBuilder uninstall ].
-	self foosBuilder ifNotNil: [ self foosBuilder uninstall ].
+	self builders do: [ :each | each tearDown ].
 	super tearDown.
-	self fooBuilder ifNotNil: [
-		self should: [ self fooBuilder newClassName asClass ] raise: NotFound].
-	self foosBuilder ifNotNil: [
-		self should: [ self foosBuilder newClassName asClass ] raise: NotFound ]
+	self builders do: [ :each | each assertNotInstalled ]
 ]
 
 { #category : #test }
-LcsGlobalCollectionSlotTest >> testCreation [
+LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self createNewSubject.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject collectionMemberTypes isEmpty.
