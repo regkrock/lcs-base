@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-06T12:55:01.131463-04:00"
+						"dateAndTimeString" : "2025-01-27T13:06:29.591976-05:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Link to paper on can-can permissions system in Ruby [Ultimate Guide to Designing Permissions Systems](https://www.missionkontrol.io/ultimate-guide-to-designing-user-permissions-in-saas-apps/)"
+				"string" : "[RBAC or ABAC](https://www.nikhilajain.com/post/user-role-permission-model)\n\n**ABAC** - Attribute Based Access Control is an advanced access model that provides dynamic, context-aware, and risk-intelligent access control.\n- this allows security to be added to a method - via annotation - ( ex: @Secured(\"ROLE_VIEWER\") )\n- implemented as a cross-cutting conern - ??\n\n**RBAC** - Roles Base Access Control - traditional\n\nIdentity management protects your digital identities and sensitive data associated with it. But which methodology will be best for your implementation.\n\nYou can take a calculated decision based on some factors:\n\n**When to Use RBAC**\n\nRules defined in RBAC are simple and easy to use. The evaluation using RBAC are fast and less process intensive.\n\n**Use Case for RBAC**\n\nWhen you have small workgroups or applications where defining work by role is simple then that would be an ideal use case for implementing RBAC.\n\nFor example - You work for a retail shop with a handful of employees, then manage user role permission model with RBAC.\n\n**When to Use ABAC**\n\nWhen you are dealing with complex business functions and a lot of hierarchical processes and the permission model deals with the granularity of data then you should opt for ABAC.\n\n**Use Case for ABAC**\n\nWhen your organization is focused on time-sensitive data, location-specific data access, then you should opt for ABAC.\n\nFor example - you work in an organization where you are not allowed to access files outside office premises, then go for ABAC to implement your user role permission model.\n\nThere are certain organizations who opt for a hybrid model where RBAC sits on the periphery whereas the internal processing of department is managed by ABAC.\n\n**Takeaway**\n\nAccess Control management is an integral part of today's digital world. With options to choose from role based or attribute based access modelling you can secure your sensitive data.\n\nWhat is important is to understand which modelling works the best for your organization. ABAC provides a lot of complexity and governance at the elementary level. Often RBAC is sufficient to model the access privileges for almost 80% of applications. \n\nConsider that **ABAC implementation still needs modelling of RBAC** at the core and as it is more complex, it requires more power, processing and time."
 			},
 			{
 				"__type" : "textSnippet",
@@ -77,6 +77,154 @@
 					"__type" : "textStyle"
 				},
 				"string" : "[RACF](https://en.wikipedia.org/wiki/Resource_Access_Control_Facility)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T11:38:06.089201-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T11:38:56.637257-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sA0ScBTpDQCSI+CpA8uYfw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "[User Roles - UML Options](https://medium.com/@kamalmeet/designing-role-based-access-control-63c17a32894)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T11:41:12.480037-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T11:41:28.911076-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "6CYuexTpDQCS62iOA8uYfw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "[Good overview of User Roles](https://medium.muz.li/how-to-design-access-control-system-for-saas-application-b6455c944186)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T12:00:21.686931-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T12:01:00.751055-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "GaKtvxTpDQCTklEHA8uYfw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "[Front Egg Roles and Permissions](https://frontegg.com/guides/user-role-and-permission)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T12:03:34.853895-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T12:03:39.367791-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "YykxyxTpDQCUvs6+A8uYfw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "[](https://medium.com/design-bootcamp/designing-roles-and-permissions-ux-case-study-b1940f5a9aa)"
 			}
 		]
 	},
