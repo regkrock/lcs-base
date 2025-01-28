@@ -46,20 +46,20 @@ LcsLibraryCategory class >> subcategoriesSlotDefinition [
 
 { #category : #accessing }
 LcsLibraryCategory >> categoryName [
-		^ self getValueOfSlotNamed: 'categoryName'
+		^ self slotVarNamed: 'categoryName'
 ]
 
 { #category : #accessing }
 LcsLibraryCategory >> categoryName: anObject [
-	self setValueOfSlotNamed: 'categoryName' to: anObject
+	self slotVarNamed: 'categoryName' put: anObject
 ]
 
 { #category : #accessing }
 LcsLibraryCategory >> subcategories [
-	^ self getValueOfSlotNamed: 'subcategories'
+	^ self slotVarNamed: 'subcategories'
 ]
 
 { #category : #accessing }
 LcsLibraryCategory >> subcategories: anObject [
-	^ self setValueOfSlotNamed: 'subcategories' to: anObject
+	^ self slotVarNamed: 'subcategories' put: anObject
 ]

@@ -97,7 +97,7 @@ LcsBaseSystem >> _restoreSystem [
 
 { #category : #environment }
 LcsBaseSystem >> _suspendSystem [
-	(self slotDefinitionNamed: 'status') setPersistedValueTo: self newSuspendedState in: self.
+	(self slotDefinitionNamed: 'status') slotVarDirectlyPut: self newSuspendedState in: self.
 	self
 		releaseSlotModel;
 		suspendUnitOfWork.
@@ -175,12 +175,12 @@ LcsBaseSystem >> currentUnitOfWork [
 
 { #category : #accessing }
 LcsBaseSystem >> globalCollections [
-	^ self getValueOfSlotNamed: 'globalCollections' 
+	^ self slotVarNamed: 'globalCollections' 
 ]
 
 { #category : #accessing }
 LcsBaseSystem >> globalCollections: anObject [
-	self setValueOfSlotNamed: 'globalCollections' to: anObject
+	self slotVarNamed: 'globalCollections' put: anObject
 ]
 
 { #category : #'slot model' }
@@ -421,13 +421,13 @@ LcsBaseSystem >> restoreUnitOfWork [
 { #category : #accessing }
 LcsBaseSystem >> status [
 	^ self isSlotModelDefined 
-		ifTrue: [^ self getValueOfSlotNamed: 'status' ]
+		ifTrue: [^ self slotVarNamed: 'status' ]
 		ifFalse: [ self instVarNamed: 'status' ]
 ]
 
 { #category : #accessing }
 LcsBaseSystem >> status: aSystemStatus [ 
-	self setValueOfSlotNamed: 'status' to: aSystemStatus
+	self slotVarNamed: 'status' put: aSystemStatus
 ]
 
 { #category : #asking }

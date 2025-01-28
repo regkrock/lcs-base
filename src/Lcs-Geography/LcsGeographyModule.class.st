@@ -34,10 +34,10 @@ LcsGeographyModule class >> owningModules [
 
 { #category : #accessing }
 LcsGeographyModule >> countries [
-	^ self getValueOfSlotNamed: 'countries'
+	^ self slotVarNamed: 'countries'
 ]
 
 { #category : #accessing }
 LcsGeographyModule >> countries: anObject [
-	self setValueOfSlotNamed: 'countries' to: anObject
+	self slotVarNamed: 'countries' put: anObject
 ]

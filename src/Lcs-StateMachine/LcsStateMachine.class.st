@@ -343,22 +343,22 @@ LcsStateMachine >> stateTransitionNamed: aTransitionId ifNone: aBlock [
 
 { #category : #accessing }
 LcsStateMachine >> stateTransitions [
-	^ self getValueOfSlotNamed: 'stateTransitions'
+	^ self slotVarNamed: 'stateTransitions'
 ]
 
 { #category : #accessing }
 LcsStateMachine >> stateTransitions: anObject [
-	self setValueOfSlotNamed: 'stateTransitions' to: anObject
+	self slotVarNamed: 'stateTransitions' put: anObject
 ]
 
 { #category : #accessing }
 LcsStateMachine >> states [
-	^ self getValueOfSlotNamed: 'states'
+	^ self slotVarNamed: 'states'
 ]
 
 { #category : #accessing }
 LcsStateMachine >> states: aCollection [
-	^ self setValueOfSlotNamed: 'states' to: aCollection
+	^ self slotVarNamed: 'states' put: aCollection
 ]
 
 { #category : #'actions-basic' }

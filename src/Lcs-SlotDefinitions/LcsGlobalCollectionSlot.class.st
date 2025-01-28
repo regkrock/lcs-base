@@ -19,12 +19,12 @@ LcsGlobalCollectionSlot >> isGlobalCollectionSlot [
 
 { #category : #'slot model' }
 LcsGlobalCollectionSlot >> persistValue: anObject contextObject: aContextDomainObject [
-	(self getValueIn: self slotName asString) persistValue: anObject contextObject: aContextDomainObject
+	(self currentSlotVarIn: self slotName asString) persistValue: anObject contextObject: aContextDomainObject
 ]
 
 { #category : #'slot model' }
 LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
-	(self getValueIn: aModule) add: anObject
+	(self currentSlotVarIn: aModule) add: anObject
 ]
 
 { #category : #'as yet unclassified' }

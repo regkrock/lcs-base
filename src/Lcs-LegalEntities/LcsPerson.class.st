@@ -52,40 +52,40 @@ LcsPerson class >> surnameSlotDefinition [
 
 { #category : #accessing }
 LcsPerson >> dateOfBirth [
-	^ self getValueOfSlotNamed: 'dateOfBirth'
+	^ self slotVarNamed: 'dateOfBirth'
 ]
 
 { #category : #accessing }
 LcsPerson >> dateOfBirth: anObject [
-	self setValueOfSlotNamed: 'dateOfBirth' to: anObject
+	self slotVarNamed: 'dateOfBirth' put: anObject
 ]
 
 { #category : #accessing }
 LcsPerson >> firstName [
-	^ self getValueOfSlotNamed: 'firstName'
+	^ self slotVarNamed: 'firstName'
 ]
 
 { #category : #accessing }
 LcsPerson >> firstName: anObject [
-	self setValueOfSlotNamed: 'firstName' to: anObject
+	self slotVarNamed: 'firstName' put: anObject
 ]
 
 { #category : #accessing }
 LcsPerson >> middleNames [
-	^ self getValueOfSlotNamed: 'middleNames'
+	^ self slotVarNamed: 'middleNames'
 ]
 
 { #category : #accessing }
 LcsPerson >> middleNames: anObject [
-	self setValueOfSlotNamed: 'middleNames' to: anObject
+	self slotVarNamed: 'middleNames' put: anObject
 ]
 
 { #category : #accessing }
 LcsPerson >> surname [
-	^ self getValueOfSlotNamed: 'surname'
+	^ self slotVarNamed: 'surname'
 ]
 
 { #category : #accessing }
 LcsPerson >> surname: anObject [
-	self setValueOfSlotNamed: 'surname' to: anObject
+	self slotVarNamed: 'surname' put: anObject
 ]

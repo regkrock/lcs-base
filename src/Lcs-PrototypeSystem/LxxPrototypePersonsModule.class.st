@@ -29,10 +29,10 @@ LxxPrototypePersonsModule class >> personsSlotDefinition [
 
 { #category : #accessing }
 LxxPrototypePersonsModule >> persons [
-	^ self getValueOfSlotNamed: 'persons'
+	^ self slotVarNamed: 'persons'
 ]
 
 { #category : #accessing }
 LxxPrototypePersonsModule >> persons: aCollection [
-	^ self setValueOfSlotNamed: 'persons' to: aCollection
+	^ self slotVarNamed: 'persons' put: aCollection
 ]

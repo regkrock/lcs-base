@@ -121,12 +121,12 @@ LcsBaseModule >> buildModules [
 
 { #category : #accessing }
 LcsBaseModule >> configuration [
-	^ self getValueOfSlotNamed: 'configuration'
+	^ self slotVarNamed: 'configuration'
 ]
 
 { #category : #accessing }
 LcsBaseModule >> configuration: anObject [
-	self setValueOfSlotNamed: 'configuration' to: anObject
+	self slotVarNamed: 'configuration' put: anObject
 ]
 
 { #category : #accessing }
@@ -254,7 +254,7 @@ LcsBaseModule >> moduleViewChildren [
 
 { #category : #accessing }
 LcsBaseModule >> modules [
-	^ self getValueOfSlotNamed: 'modules'
+	^ self slotVarNamed: 'modules'
 ]
 
 { #category : #accessing }

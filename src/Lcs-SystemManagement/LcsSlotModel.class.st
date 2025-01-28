@@ -71,7 +71,7 @@ LcsSlotModel >> domainClass: anObject [
 
 { #category : #'as yet unclassified' }
 LcsSlotModel >> getPersistedValueOf: aString in: anObject [
-	^ (self slotDefinitionNamed: aString) getPersistedValueIn: anObject
+	^ (self slotDefinitionNamed: aString) persistedSlotVarIn: anObject
 ]
 
 { #category : #query }

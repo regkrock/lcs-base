@@ -35,20 +35,20 @@ LxxPrototypePerson class >> parentSlotDefinition [
 
 { #category : #accessing }
 LxxPrototypePerson >> dateOfBirth [
-	^ self getValueOfSlotNamed: 'dateOfBirth'
+	^ self slotVarNamed: 'dateOfBirth'
 ]
 
 { #category : #accessing }
 LxxPrototypePerson >> dateOfBirth: anObject [
-	self setValueOfSlotNamed: 'dateOfBirth' to: anObject
+	self slotVarNamed: 'dateOfBirth' put: anObject
 ]
 
 { #category : #accessing }
 LxxPrototypePerson >> lastName [
-	^ self getValueOfSlotNamed: 'lastName'
+	^ self slotVarNamed: 'lastName'
 ]
 
 { #category : #accessing }
 LxxPrototypePerson >> lastName: anObject [
-	self setValueOfSlotNamed: 'lastName' to: anObject
+	self slotVarNamed: 'lastName' put: anObject
 ]

@@ -45,20 +45,20 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> organizations [
-	^ self getValueOfSlotNamed: 'organizations'
+	^ self slotVarNamed: 'organizations'
 ]
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> organizations: anObject [
-	self setValueOfSlotNamed: 'organizations' to: anObject
+	self slotVarNamed: 'organizations' put: anObject
 ]
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> persons [
-	^ self getValueOfSlotNamed: 'persons'
+	^ self slotVarNamed: 'persons'
 ]
 
 { #category : #accessing }
 LcsLegalEntitiesModule >> persons: anObject [
-	self setValueOfSlotNamed: 'persons' to: anObject
+	self slotVarNamed: 'persons' put: anObject
 ]

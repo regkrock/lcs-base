@@ -77,20 +77,20 @@ LxxPrototypeSystem >> isSlotModelDefined [
 
 { #category : #accessing }
 LxxPrototypeSystem >> organization [
-	^ self getValueOfSlotNamed: 'organization'
+	^ self slotVarNamed: 'organization'
 ]
 
 { #category : #accessing }
 LxxPrototypeSystem >> organization: anObject [
-	self setValueOfSlotNamed: 'organization' to: anObject
+	self slotVarNamed: 'organization' put: anObject
 ]
 
 { #category : #accessing }
 LxxPrototypeSystem >> persons [
-	^ self getValueOfSlotNamed: 'persons'
+	^ self slotVarNamed: 'persons'
 ]
 
 { #category : #accessing }
 LxxPrototypeSystem >> persons: anObject [
-	self setValueOfSlotNamed: 'presons' to: anObject
+	self slotVarNamed: 'presons' put: anObject
 ]

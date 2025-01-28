@@ -44,32 +44,32 @@ LcsCode class >> shortNameSlotDefinition [
 
 { #category : #accessing }
 LcsCode >> codeDescription [
-	^ self getValueOfSlotNamed: 'codeDescription' 
+	^ self slotVarNamed: 'codeDescription' 
 ]
 
 { #category : #accessing }
 LcsCode >> codeDescription: anObject [
-	self setValueOfSlotNamed: 'codeDescription' to: anObject 
+	self slotVarNamed: 'codeDescription' put: anObject 
 ]
 
 { #category : #accessing }
 LcsCode >> codeName [
-	^ self getValueOfSlotNamed: 'codeName' 
+	^ self slotVarNamed: 'codeName' 
 ]
 
 { #category : #accessing }
 LcsCode >> codeName: anObject [
-	self setValueOfSlotNamed: 'codeName' to: anObject 
+	self slotVarNamed: 'codeName' put: anObject 
 ]
 
 { #category : #accessing }
 LcsCode >> isDefaultInstance [
-	^ self getValueOfSlotNamed: 'isDefaultInstance' 
+	^ self slotVarNamed: 'isDefaultInstance' 
 ]
 
 { #category : #accessing }
 LcsCode >> isDefaultInstance: anObject [
-	self setValueOfSlotNamed: 'isDefaultInstance' to: anObject 
+	self slotVarNamed: 'isDefaultInstance' put: anObject 
 ]
 
 { #category : #search }
@@ -79,10 +79,10 @@ LcsCode >> key [
 
 { #category : #accessing }
 LcsCode >> shortName [
-	^ self getValueOfSlotNamed: 'shortName' 
+	^ self slotVarNamed: 'shortName' 
 ]
 
 { #category : #accessing }
 LcsCode >> shortName: anObject [
-	self setValueOfSlotNamed: 'shortName' to: anObject 
+	self slotVarNamed: 'shortName' put: anObject 
 ]

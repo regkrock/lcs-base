@@ -16,10 +16,10 @@ LcsOrganization class >> parentSlotDefinition [
 
 { #category : #accessing }
 LcsOrganization >> location [
-	^ self getValueOfSlotNamed: 'location'
+	^ self slotVarNamed: 'location'
 ]
 
 { #category : #accessing }
 LcsOrganization >> location: anObject [
-	self setValueOfSlotNamed: 'location' to: anObject
+	self slotVarNamed: 'location' put: anObject
 ]

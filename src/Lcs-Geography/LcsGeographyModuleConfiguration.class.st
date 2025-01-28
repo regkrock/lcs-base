@@ -42,20 +42,20 @@ LcsGeographyModuleConfiguration class >> parentSlotDefinition [
 
 { #category : #accessing }
 LcsGeographyModuleConfiguration >> defaultPoliticalUnitName [
-	^ self getValueOfSlotNamed: 'defaultPoliticalUnitName'
+	^ self slotVarNamed: 'defaultPoliticalUnitName'
 ]
 
 { #category : #accessing }
 LcsGeographyModuleConfiguration >> defaultPoliticalUnitName: anObject [
-	^ self setValueOfSlotNamed: 'defaultPoliticalUnitName' to: anObject
+	^ self slotVarNamed: 'defaultPoliticalUnitName' put: anObject
 ]
 
 { #category : #accessing }
 LcsGeographyModuleConfiguration >> defaultPostalCodeName [
-	^ self getValueOfSlotNamed: 'defaultPostalCodeName'
+	^ self slotVarNamed: 'defaultPostalCodeName'
 ]
 
 { #category : #accessing }
 LcsGeographyModuleConfiguration >> defaultPostalCodeName: anObject [
-	^ self setValueOfSlotNamed: 'defaultPostalCodeName' to: anObject
+	^ self slotVarNamed: 'defaultPostalCodeName' put: anObject
 ]

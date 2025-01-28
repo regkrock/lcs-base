@@ -26,20 +26,20 @@ LcsLocation class >> locationNameSlotDefinition [
 
 { #category : #accessing }
 LcsLocation >> address [
-	^ self getValueOfSlotNamed: 'address'
+	^ self slotVarNamed: 'address'
 ]
 
 { #category : #accessing }
 LcsLocation >> address: anObject [ 
-	self setValueOfSlotNamed: 'address' to: anObject
+	self slotVarNamed: 'address' put: anObject
 ]
 
 { #category : #accessing }
 LcsLocation >> locationName [
-	^ self getValueOfSlotNamed: 'locationName'
+	^ self slotVarNamed: 'locationName'
 ]
 
 { #category : #accessing }
 LcsLocation >> locationName: anObject [ 
-	self setValueOfSlotNamed: 'locationName' to: anObject
+	self slotVarNamed: 'locationName' put: anObject
 ]

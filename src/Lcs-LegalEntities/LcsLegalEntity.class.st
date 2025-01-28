@@ -17,10 +17,10 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 
 { #category : #accessing }
 LcsLegalEntity >> entityName [
-	^ self getValueOfSlotNamed: 'entityName'
+	^ self slotVarNamed: 'entityName'
 ]
 
 { #category : #accessing }
 LcsLegalEntity >> entityName: anObject [
-	self setValueOfSlotNamed: 'entityName' to: anObject
+	self slotVarNamed: 'entityName' put: anObject
 ]

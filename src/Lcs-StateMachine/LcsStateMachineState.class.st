@@ -111,12 +111,12 @@ LcsStateMachineState >> activateTransitionAt: aStateTransition for: anEvent [
 
 { #category : #accessing }
 LcsStateMachineState >> activity [
-	^ self getValueOfSlotNamed: 'activity'
+	^ self slotVarNamed: 'activity'
 ]
 
 { #category : #accessing }
 LcsStateMachineState >> activity: aBlockOrMessageSend [
-	self setValueOfSlotNamed: 'activity' to: aBlockOrMessageSend
+	self slotVarNamed: 'activity' put: aBlockOrMessageSend
 ]
 
 { #category : #'actions-events-basic' }
@@ -127,12 +127,12 @@ LcsStateMachineState >> addStateTransition: aStateTransition [
 
 { #category : #accessing }
 LcsStateMachineState >> autoTransition [
-	^ self getValueOfSlotNamed: 'autoTransition'
+	^ self slotVarNamed: 'autoTransition'
 ]
 
 { #category : #accessing }
 LcsStateMachineState >> autoTransition: anObject [
-	self setValueOfSlotNamed: 'autoTransition' to: anObject
+	self slotVarNamed: 'autoTransition' put: anObject
 ]
 
 { #category : #'event handling' }
@@ -189,12 +189,12 @@ LcsStateMachineState >> enter [
 
 { #category : #accessing }
 LcsStateMachineState >> entryAction [
-	^ self getValueOfSlotNamed: 'entryAction'
+	^ self slotVarNamed: 'entryAction'
 ]
 
 { #category : #accessing }
 LcsStateMachineState >> entryAction: aBlockOrMessageSend [
-	self setValueOfSlotNamed: 'entryAction' to: aBlockOrMessageSend
+	self slotVarNamed: 'entryAction' put: aBlockOrMessageSend
 ]
 
 { #category : #'state-actions' }
@@ -209,12 +209,12 @@ LcsStateMachineState >> exit [
 
 { #category : #accessing }
 LcsStateMachineState >> exitAction [
-	^ self getValueOfSlotNamed: 'exitAction'
+	^ self slotVarNamed: 'exitAction'
 ]
 
 { #category : #accessing }
 LcsStateMachineState >> exitAction: aBlockOrMessageSend [
-	self setValueOfSlotNamed: 'exitAction' to: aBlockOrMessageSend
+	self slotVarNamed: 'exitAction' put: aBlockOrMessageSend
 ]
 
 { #category : #private }
@@ -298,12 +298,12 @@ LcsStateMachineState >> stateMachineViewChildren [
 
 { #category : #accessing }
 LcsStateMachineState >> stateTransitions [
-	^ self getValueOfSlotNamed: 'stateTransitions'
+	^ self slotVarNamed: 'stateTransitions'
 ]
 
 { #category : #accessing }
 LcsStateMachineState >> stateTransitions: anObject [
-	self setValueOfSlotNamed: 'stateTransitions' to: anObject
+	self slotVarNamed: 'stateTransitions' put: anObject
 ]
 
 { #category : #accessing }

@@ -18,7 +18,7 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsSlotDefinition >> _setValueTo: anObject in: aDomainObject [
+LcsSlotDefinition >> _slotVarPut: anObject in: aDomainObject [
 	self verifyType: anObject.
 	self currentUnitOfWork
 		setValueIn: aDomainObject
@@ -66,6 +66,14 @@ LcsSlotDefinition >> createNewInstanceOf: aClass inContext: context [
 		ifFalse: [ aClass new ]
 ]
 
+{ #category : #'slot model' }
+LcsSlotDefinition >> currentSlotVarIn: aDomainObject [
+
+	^ (self currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
+		ifNil: [ self persistedSlotVarIn: aDomainObject]
+		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
+]
+
 { #category : #defaults }
 LcsSlotDefinition >> defaultInitialValueBlock [
 	^ [ self slotTypes any new ]
@@ -74,20 +82,6 @@ LcsSlotDefinition >> defaultInitialValueBlock [
 { #category : #'slot model' }
 LcsSlotDefinition >> domainClass [
 	^ self parent domainClass
-]
-
-{ #category : #'slot model' }
-LcsSlotDefinition >> getPersistedValueIn: aDomainObject [
-
-	^ aDomainObject instVarNamed: self slotName asString
-]
-
-{ #category : #'slot model' }
-LcsSlotDefinition >> getValueIn: aDomainObject [
-
-	^ (self currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
-		ifNil: [ self getPersistedValueIn: aDomainObject]
-		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
 
 { #category : #'slot model' }
@@ -259,12 +253,12 @@ LcsSlotDefinition >> initializeSlotTypes [
 
 { #category : #accessing }
 LcsSlotDefinition >> initializeSlotValueIn: aDomainObject [
-	self setValueTo: (self initialValueFor: aDomainObject) in: aDomainObject
+	self slotVarPut: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
 { #category : #accessing }
 LcsSlotDefinition >> initializeUnintializedSlotValueIn: aDomainObject [
-	(self getValueIn: aDomainObject) ifNotNil: [ ^ self ].
+	(self currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
 	self initializeSlotValueIn: aDomainObject
 ]
 
@@ -329,6 +323,12 @@ LcsSlotDefinition >> parent: anObject [
 	parent := anObject
 ]
 
+{ #category : #'slot model' }
+LcsSlotDefinition >> persistedSlotVarIn: aDomainObject [
+
+	^ aDomainObject instVarNamed: self slotName asString
+]
+
 { #category : #printing }
 LcsSlotDefinition >> printOn: aStream [
 	super printOn: aStream.
@@ -348,13 +348,6 @@ LcsSlotDefinition >> required: anObject [
 	required := anObject
 ]
 
-{ #category : #'slot model' }
-LcsSlotDefinition >> setPersistedValueTo: anObject in: aDomainObject [
-	self verifyType: anObject.
-	aDomainObject instVarNamed: self slotName asString put: anObject
-
-]
-
 { #category : #private }
 LcsSlotDefinition >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
 	"collection slots need to implement logic here"
@@ -363,11 +356,6 @@ LcsSlotDefinition >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
 { #category : #private }
 LcsSlotDefinition >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
 	"collection slots need to implement logic here"
-]
-
-{ #category : #'slot model' }
-LcsSlotDefinition >> setValueTo: anObject in: aDomainObject [
-	self _setValueTo: anObject  in: aDomainObject
 ]
 
 { #category : #'slot model' }
@@ -417,6 +405,17 @@ LcsSlotDefinition >> slotTypes [
 { #category : #accessing }
 LcsSlotDefinition >> slotTypes: anObject [
 	slotTypes := anObject
+]
+
+{ #category : #'slot model' }
+LcsSlotDefinition >> slotVarDirectlyPut: anObject in: aDomainObject [
+	aDomainObject instVarNamed: self slotName asString put: anObject
+
+]
+
+{ #category : #'slot model' }
+LcsSlotDefinition >> slotVarPut: anObject in: aDomainObject [
+	self _slotVarPut: anObject  in: aDomainObject
 ]
 
 { #category : #accessing }

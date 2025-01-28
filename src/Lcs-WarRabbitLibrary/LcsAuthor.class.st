@@ -41,12 +41,12 @@ LcsAuthor class >> personSlotDefinition [
 
 { #category : #accessing }
 LcsAuthor >> authorship [
-	^ self getValueOfSlotNamed: 'authorship'
+	^ self slotVarNamed: 'authorship'
 ]
 
 { #category : #accessing }
 LcsAuthor >> authorship: anObject [
-	self setValueOfSlotNamed: 'authorship' to: anObject
+	self slotVarNamed: 'authorship' put: anObject
 ]
 
 { #category : #person }
@@ -61,12 +61,12 @@ LcsAuthor >> middleNames [
 
 { #category : #accessing }
 LcsAuthor >> person [
-	^ self getValueOfSlotNamed: 'person'
+	^ self slotVarNamed: 'person'
 ]
 
 { #category : #accessing }
 LcsAuthor >> person: anObject [
-	self setValueOfSlotNamed: 'person' to: anObject
+	self slotVarNamed: 'person' put: anObject
 ]
 
 { #category : #person }

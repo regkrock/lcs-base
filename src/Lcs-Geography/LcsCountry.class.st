@@ -52,30 +52,30 @@ LcsCountry class >> politicalUnitNameSlotDefinition [
 
 { #category : #accessing }
 LcsCountry >> countryName [
-	^ self getValueOfSlotNamed: 'countryName'
+	^ self slotVarNamed: 'countryName'
 ]
 
 { #category : #accessing }
 LcsCountry >> countryName: anObject [
-	self setValueOfSlotNamed: 'countryName' to: anObject
+	self slotVarNamed: 'countryName' put: anObject
 ]
 
 { #category : #accessing }
 LcsCountry >> isoCode [
-	^ self getValueOfSlotNamed: 'isoCode'
+	^ self slotVarNamed: 'isoCode'
 ]
 
 { #category : #accessing }
 LcsCountry >> isoCode: anObject [
-	self setValueOfSlotNamed: 'isoCode' to: anObject
+	self slotVarNamed: 'isoCode' put: anObject
 ]
 
 { #category : #accessing }
 LcsCountry >> politicalUnitName [
-	^ self getValueOfSlotNamed: 'politicalUnitName'
+	^ self slotVarNamed: 'politicalUnitName'
 ]
 
 { #category : #accessing }
 LcsCountry >> politicalUnitName: anObject [
-	self setValueOfSlotNamed: 'politicalUnitName' to: anObject
+	self slotVarNamed: 'politicalUnitName' put: anObject
 ]

@@ -25,10 +25,10 @@ LcsUsersModule class >> usersSlotDefinition [
 
 { #category : #accessing }
 LcsUsersModule >> users [
-	^ self getValueOfSlotNamed: 'users'
+	^ self slotVarNamed: 'users'
 ]
 
 { #category : #accessing }
 LcsUsersModule >> users: anObject [
-	self setValueOfSlotNamed: 'users' to: anObject
+	self slotVarNamed: 'users' put: anObject
 ]

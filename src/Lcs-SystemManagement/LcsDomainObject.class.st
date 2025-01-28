@@ -417,11 +417,6 @@ LcsDomainObject >> getPersistedValueOf: aString [
 	^ self class getPersistedValueOf: aString in: self
 ]
 
-{ #category : #'slot access' }
-LcsDomainObject >> getValueOfSlotNamed: aSlotName [
-	^ (self slotDefinitionNamed: aSlotName) getValueIn: self
-]
-
 { #category : #'gt view' }
 LcsDomainObject >> gtViewSlotDefinitionFor: aView [
 	<gtView>
@@ -492,12 +487,12 @@ LcsDomainObject >> isSlotModelInstantiated [
 
 { #category : #accessing }
 LcsDomainObject >> parent [
-	^ self getValueOfSlotNamed: 'parent'
+	^ self slotVarNamed: 'parent'
 ]
 
 { #category : #accessing }
 LcsDomainObject >> parent: anObject [
-	self setValueOfSlotNamed: 'parent' to: anObject
+	self slotVarNamed: 'parent' put: anObject
 ]
 
 { #category : #'slot access' }
@@ -515,11 +510,6 @@ LcsDomainObject >> parentSlotDefinition [
 	^ self slotModel parentSlotDefinition
 ]
 
-{ #category : #'slot access' }
-LcsDomainObject >> setValueOfSlotNamed: aSlotName to: onObject [
-	(self slotDefinitionNamed: aSlotName) setValueTo: onObject in: self
-]
-
 { #category : #'slot model' }
 LcsDomainObject >> slotDefinitionNamed: aString [
 	^ self class slotDefinitionNamed: aString
@@ -528,6 +518,17 @@ LcsDomainObject >> slotDefinitionNamed: aString [
 { #category : #'slot model' }
 LcsDomainObject >> slotModel [
 	^ self class slotModel
+]
+
+{ #category : #'slot access' }
+LcsDomainObject >> slotVarNamed: aSlotName [
+	"Return the value of the instance variable in me with that name"
+	^ (self slotDefinitionNamed: aSlotName) currentSlotVarIn: self
+]
+
+{ #category : #'slot access' }
+LcsDomainObject >> slotVarNamed: aSlotName put: onObject [
+	(self slotDefinitionNamed: aSlotName) slotVarPut: onObject in: self
 ]
 
 { #category : #validation }

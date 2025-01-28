@@ -100,30 +100,30 @@ LcsLibraryItem >> initializeOn: aString parts: protoItemParts [
 
 { #category : #accessing }
 LcsLibraryItem >> itemAuthors [
-	^ self getValueOfSlotNamed: 'itemAuthors'
+	^ self slotVarNamed: 'itemAuthors'
 ]
 
 { #category : #accessing }
 LcsLibraryItem >> itemAuthors: anObject [
-	self setValueOfSlotNamed: 'itemAuthors' to: anObject
+	self slotVarNamed: 'itemAuthors' put: anObject
 ]
 
 { #category : #accessing }
 LcsLibraryItem >> itemName [
-	^ self getValueOfSlotNamed: 'itemName'
+	^ self slotVarNamed: 'itemName'
 ]
 
 { #category : #accessing }
 LcsLibraryItem >> itemName: anObject [
-	self setValueOfSlotNamed: 'itemName' to: anObject
+	self slotVarNamed: 'itemName' put: anObject
 ]
 
 { #category : #accessing }
 LcsLibraryItem >> libraryCategory [
-	^ self getValueOfSlotNamed: 'libraryCategory'
+	^ self slotVarNamed: 'libraryCategory'
 ]
 
 { #category : #accessing }
 LcsLibraryItem >> libraryCategory: anObject [
-	self setValueOfSlotNamed: 'libraryCategory' to: anObject
+	self slotVarNamed: 'libraryCategory' put: anObject
 ]

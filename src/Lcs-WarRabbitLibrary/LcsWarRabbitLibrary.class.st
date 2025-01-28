@@ -41,12 +41,12 @@ LcsWarRabbitLibrary class >> libraryItemsSlotDefinition [
 
 { #category : #accessing }
 LcsWarRabbitLibrary >> authors [
-	^ self getValueOfSlotNamed: 'authors'
+	^ self slotVarNamed: 'authors'
 ]
 
 { #category : #accessing }
 LcsWarRabbitLibrary >> authors: anObject [
-	self setValueOfSlotNamed: 'authors' to: anObject
+	self slotVarNamed: 'authors' put: anObject
 ]
 
 { #category : #'slot model' }
@@ -66,12 +66,12 @@ LcsWarRabbitLibrary >> bootstrapDomainClasses [
 
 { #category : #accessing }
 LcsWarRabbitLibrary >> libraryCategories [
-	^ self getValueOfSlotNamed: 'libraryCategories'
+	^ self slotVarNamed: 'libraryCategories'
 ]
 
 { #category : #accessing }
 LcsWarRabbitLibrary >> libraryCategories: anObject [
-	self setValueOfSlotNamed: 'libraryCategories' to: anObject
+	self slotVarNamed: 'libraryCategories' put: anObject
 ]
 
 { #category : #query }
@@ -81,10 +81,10 @@ LcsWarRabbitLibrary >> libraryCategoryFor: aString [
 
 { #category : #accessing }
 LcsWarRabbitLibrary >> libraryItems [
-	^ self getValueOfSlotNamed: 'libraryItems'
+	^ self slotVarNamed: 'libraryItems'
 ]
 
 { #category : #accessing }
 LcsWarRabbitLibrary >> libraryItems: anObject [
-	self setValueOfSlotNamed: 'libraryItems' to: anObject
+	self slotVarNamed: 'libraryItems' put: anObject
 ]

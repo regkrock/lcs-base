@@ -30,20 +30,20 @@ LcsPoliticalUnitName class >> shortNameSlotDefinition [
 
 { #category : #accessing }
 LcsPoliticalUnitName >> fullName [
-	^ self getValueOfSlotNamed: 'fullName'
+	^ self slotVarNamed: 'fullName'
 ]
 
 { #category : #accessing }
 LcsPoliticalUnitName >> fullName: anObject [
-	self setValueOfSlotNamed: 'fullName' to: anObject
+	self slotVarNamed: 'fullName' put: anObject
 ]
 
 { #category : #accessing }
 LcsPoliticalUnitName >> shortName [
-	^ self getValueOfSlotNamed: 'shortName'
+	^ self slotVarNamed: 'shortName'
 ]
 
 { #category : #accessing }
 LcsPoliticalUnitName >> shortName: anObject [
-	self setValueOfSlotNamed: 'shortName' to: anObject
+	self slotVarNamed: 'shortName' put: anObject
 ]

@@ -22,10 +22,10 @@ LxxPrototypeOrganization class >> chiefExecutiveOfficerSlotDefinition [
 
 { #category : #accessing }
 LxxPrototypeOrganization >> chiefExecutiveOfficer [
-	^ self getValueOfSlotNamed: 'chiefExecutiveOfficer'
+	^ self slotVarNamed: 'chiefExecutiveOfficer'
 ]
 
 { #category : #accessing }
 LxxPrototypeOrganization >> chiefExecutiveOfficer: aPerson [
-	self setValueOfSlotNamed: 'chiefExecutiveOfficer' to: aPerson
+	self slotVarNamed: 'chiefExecutiveOfficer' put: aPerson
 ]

@@ -16,10 +16,10 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsAggregateSlot >> setValueTo: anObject in: aDomainObject [
+LcsAggregateSlot >> slotVarPut: anObject in: aDomainObject [
 	| originalObject |
 	"More work required here as the fact that they were sapped needs to be recorded"
-	originalObject := self getPersistedValueIn: aDomainObject.
-	self _setValueTo: anObject in: aDomainObject.
+	originalObject := self persistedSlotVarIn: aDomainObject.
+	self _slotVarPut: anObject in: aDomainObject.
 	"self currentUnitOfWork deleteObject: originalObject"
 ]

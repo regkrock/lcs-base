@@ -55,20 +55,20 @@ LcsUnknownLibraryItem >> initializeOn: aString parts: protoItemParts [
 
 { #category : #accessing }
 LcsUnknownLibraryItem >> originalLine [
-	^ self getValueOfSlotNamed: 'originalLine'
+	^ self slotVarNamed: 'originalLine'
 ]
 
 { #category : #accessing }
 LcsUnknownLibraryItem >> originalLine: anObject [
-	self setValueOfSlotNamed: 'originalLine' to: anObject originalLine
+	self slotVarNamed: 'originalLine' put: anObject originalLine
 ]
 
 { #category : #accessing }
 LcsUnknownLibraryItem >> parts [
-	^ self getValueOfSlotNamed: 'parts'
+	^ self slotVarNamed: 'parts'
 ]
 
 { #category : #initialize }
 LcsUnknownLibraryItem >> parts: anObject [ 
-	^ self setValueOfSlotNamed: 'parts' to: anObject
+	^ self slotVarNamed: 'parts' put: anObject
 ]

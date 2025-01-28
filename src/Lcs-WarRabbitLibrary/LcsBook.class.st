@@ -35,30 +35,30 @@ LcsBook class >> yearPublishedSlotDefinition [
 
 { #category : #'as yet unclassified' }
 LcsBook >> authors [
-	^ self getValueOfSlotNamed: 'authors'
+	^ self slotVarNamed: 'authors'
 ]
 
 { #category : #'as yet unclassified' }
 LcsBook >> authors: anObject [
-	^ self setValueOfSlotNamed: 'authors' to: anObject
+	^ self slotVarNamed: 'authors' put: anObject
 ]
 
 { #category : #'as yet unclassified' }
 LcsBook >> title [
-	^ self getValueOfSlotNamed: 'title'
+	^ self slotVarNamed: 'title'
 ]
 
 { #category : #'as yet unclassified' }
 LcsBook >> title: anObject [
-	^ self setValueOfSlotNamed: 'title' to: anObject
+	^ self slotVarNamed: 'title' put: anObject
 ]
 
 { #category : #'as yet unclassified' }
 LcsBook >> yearPublished [
-	^ self getValueOfSlotNamed: 'yearPublished'
+	^ self slotVarNamed: 'yearPublished'
 ]
 
 { #category : #'as yet unclassified' }
 LcsBook >> yearPublished: aYear [
-	^ self setValueOfSlotNamed: 'yearPublished' to: aYear
+	^ self slotVarNamed: 'yearPublished' put: aYear
 ]

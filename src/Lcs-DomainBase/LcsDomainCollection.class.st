@@ -25,12 +25,12 @@ LcsDomainCollection >> collect: aBlock [
 
 { #category : #accessing }
 LcsDomainCollection >> collection [
-	^ self getValueOfSlotNamed: 'collection'
+	^ self slotVarNamed: 'collection'
 ]
 
 { #category : #accessing }
 LcsDomainCollection >> collection: aCollection [
-	self setValueOfSlotNamed: 'collection' to: aCollection
+	self slotVarNamed: 'collection' put: aCollection
 ]
 
 { #category : #queries }

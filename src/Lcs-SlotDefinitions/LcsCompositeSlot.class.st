@@ -16,10 +16,10 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsCompositeSlot >> setValueTo: anObject in: aDomainObject [
+LcsCompositeSlot >> slotVarPut: anObject in: aDomainObject [
 	| originalObject |
-	originalObject := self getPersistedValueIn: aDomainObject.
-	self _setValueTo: anObject in: aDomainObject.
+	originalObject := self persistedSlotVarIn: aDomainObject.
+	self _slotVarPut: anObject in: aDomainObject.
 	(originalObject isDomainObject)
 		ifTrue: [ self currentUnitOfWork deleteObject: originalObject ]
 ]
