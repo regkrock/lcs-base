@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsStateMachineTransitions,
 	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }

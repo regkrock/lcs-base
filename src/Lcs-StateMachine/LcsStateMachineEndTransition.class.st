@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStateMachineEndTransition,
 	#superclass : #LcsStateMachineStateTransition,
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #actions }

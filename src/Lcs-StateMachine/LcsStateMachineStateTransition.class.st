@@ -7,7 +7,7 @@ Class {
 		'action',
 		'eventType'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #'instance creation' }

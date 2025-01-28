@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsStateMachineStates,
 	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #testing }

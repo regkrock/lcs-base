@@ -5,7 +5,7 @@ Class {
 		'context',
 		'displaySelector'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-GT View'
 }
 
 { #category : #constants }

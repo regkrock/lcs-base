@@ -5,7 +5,7 @@ Class {
 		'trueStateId',
 		'falseStateId'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #'slot definition' }

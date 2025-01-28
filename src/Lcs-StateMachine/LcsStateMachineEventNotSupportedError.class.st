@@ -5,7 +5,7 @@ Class {
 		'event',
 		'state'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Error'
 }
 
 { #category : #'instance creation' }

@@ -9,7 +9,7 @@ Class {
 		'autoTransition',
 		'stateTransitions'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #'slot definitions' }

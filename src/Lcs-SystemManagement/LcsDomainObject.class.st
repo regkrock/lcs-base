@@ -2,10 +2,10 @@ Class {
 	#name : #LcsDomainObject,
 	#superclass : #LcsObject,
 	#instVars : [
-		'parent'
-	],
-	#classInstVars : [
-		'slotModel'
+		'parent',
+		'history',
+		'uuid',
+		'version'
 	],
 	#category : #'Lcs-SystemManagement-Domain'
 }
@@ -120,6 +120,15 @@ LcsDomainObject class >> hasParentSlotDefinition [
 LcsDomainObject class >> hasSlotDefinitionNamed: aString [ 
 	self slotModel ifNil: [ ^ false ].
 	^ self slotModel hasSlotDefinitionNamed: aString
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> historySlotDefinition [
+	<slotDefinition>
+	^ LcsCompositeSlot new
+		slotName: 'history';
+		addSlotType: LcsDomainObjectHistory;
+		yourself
 ]
 
 { #category : #'application environment' }
@@ -304,6 +313,14 @@ LcsDomainObject class >> slotModelNotInitializedError [
 	LcsSlotModelNotInitializedError signalWithContext: self
 ]
 
+{ #category : #'slot definitions' }
+LcsDomainObject class >> uuidSlotDefinition [
+	<slotDefinition>
+	^ LcsIntegerSlot new
+		slotName: 'uuid';
+		yourself
+]
+
 { #category : #'slot model - verification' }
 LcsDomainObject class >> verifyClassHasDomainSlotNamed: aSlotName [
 	self assert: (self allInstVarNames includes: aSlotName).
@@ -377,6 +394,14 @@ LcsDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
 
 ]
 
+{ #category : #'slot definitions' }
+LcsDomainObject class >> versionSlotDefinition [
+	<slotDefinition>
+	^ LcsSmallIntegerSlot new
+		slotName: 'version';
+		yourself
+]
+
 { #category : #validation }
 LcsDomainObject >> addValidateConfigurationResultTo: aValidator [
 	"self isIncludedInSystemDomainClasses
@@ -431,6 +456,16 @@ LcsDomainObject >> gtViewSlotModelFor: aView [
 	^ self class gtViewSlotModelFor: aView
 ]
 
+{ #category : #accessing }
+LcsDomainObject >> history [
+	^ self slotVarNamed: 'history'
+]
+
+{ #category : #accessing }
+LcsDomainObject >> history: anObject [
+	self slotVarNamed: 'history' put: anObject
+]
+
 { #category : #initialize }
 LcsDomainObject >> initialize [
 	super initialize.
@@ -460,6 +495,17 @@ LcsDomainObject >> initializeUninitializedSlotValues [
 
 ]
 
+{ #category : #'as yet unclassified' }
+LcsDomainObject >> isAdding [
+	"The object has been created but has not been committed. When committed the version will be incremented to 1"
+	^ self version isZero
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObject >> isDeleted [
+	^ self version = SmallInteger minVal
+]
+
 { #category : #testing }
 LcsDomainObject >> isDomainObject [
 	^true
@@ -473,6 +519,14 @@ LcsDomainObject >> isIncludedInSystemDomainClasses [
 { #category : #testing }
 LcsDomainObject >> isMemberOfGlobalCollectionIn: aSlotName [
 	^ self parentSlotDefinition isGlobalCollectionRefenceSlotTo: aSlotName
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObject >> isPendingDeletion [
+	"This will only be -1 from the time the object is marked as deleted until the transaction is complete.
+	 When the transaction is completed, the value of version with be low values"
+
+	^ self version = -1
 ]
 
 { #category : #testing }
@@ -534,4 +588,14 @@ LcsDomainObject >> slotVarNamed: aSlotName put: onObject [
 { #category : #validation }
 LcsDomainObject >> verifySlotModelInitialized [
 	self class verifySlotModelInitialized
+]
+
+{ #category : #accessing }
+LcsDomainObject >> version [
+	^ self slotVarNamed: 'version'
+]
+
+{ #category : #accessing }
+LcsDomainObject >> version: anObject [
+	self slotVarNamed: 'version' put: anObject
 ]

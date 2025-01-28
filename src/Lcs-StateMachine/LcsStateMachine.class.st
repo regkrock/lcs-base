@@ -10,17 +10,13 @@ Class {
 		'context',
 		'id'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #'slot definitions' }
 LcsStateMachine class >> contextSlotDefinition [
 	<slotDefinition>
-	^ LcsAggregateSlot new
-		slotName: 'context';
-		addSlotType: Object;
-		allowNil;
-		yourself
+	^ LcsContextSlot new
 ]
 
 { #category : #'slot definitions' }
@@ -34,11 +30,7 @@ LcsStateMachine class >> currentStateSlotDefinition [
 { #category : #'slot definitions' }
 LcsStateMachine class >> idSlotDefinition [
 	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'id';
-		addSlotType: String; 
-		allowNil;
-		yourself
+	^ LcsIdSlot new
 ]
 
 { #category : #'slot definitions' }
@@ -52,9 +44,8 @@ LcsStateMachine class >> listenersSlotDefinition [
 { #category : #'slot definitions' }
 LcsStateMachine class >> startStateSlotDefinition [
 	<slotDefinition>
-	^ LcsAggregateSlot new
+	^ LcsStateMachineStateSlot new
 		slotName: 'startState';
-		addSlotType: LcsStateMachineState;
 		allowNil;
 		yourself
 ]

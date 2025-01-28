@@ -8,7 +8,7 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #'class initialization' }

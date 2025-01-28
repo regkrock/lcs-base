@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsStateMachineNoSuchStateError,
 	#superclass : #LcsError,
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Error'
 }

@@ -6,7 +6,7 @@ Class {
 		'arguments',
 		'type'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #'slot definition\t' }

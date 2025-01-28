@@ -6,7 +6,7 @@ Class {
 		'stateMachine',
 		'currentEvent'
 	],
-	#category : #'Lcs-StateMachine'
+	#category : #'Lcs-StateMachine-Core'
 }
 
 { #category : #'slot definition' }
