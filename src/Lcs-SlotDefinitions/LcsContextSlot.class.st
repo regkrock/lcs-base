@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotDefinitions'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialize }
 LcsContextSlot >> initialize [
 	super initialize.
 	self
