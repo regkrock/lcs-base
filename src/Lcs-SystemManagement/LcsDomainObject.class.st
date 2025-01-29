@@ -64,8 +64,8 @@ LcsDomainObject class >> getPersistedValueOf: aString in: anObject [
 LcsDomainObject class >> gtViewSlotDefinitionFor: aView [
 	<gtView>
 	<gtClassView>
-	^ aView empty
-	"^ aView columnedList
+	"^ aView empty"
+	^ aView columnedList
 		title: 'Slot Definitions';
 		priority: 3;
 		items: [ self slotDefinitionPragmasAndInstVarNames ];
@@ -79,7 +79,7 @@ LcsDomainObject class >> gtViewSlotDefinitionFor: aView [
 										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; 
 		actionUpdateButton;
 		send: #value;
-		yourself"
+		yourself
 		
 ]
 
@@ -87,8 +87,8 @@ LcsDomainObject class >> gtViewSlotDefinitionFor: aView [
 LcsDomainObject class >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
-	^ aView empty.
-"	self slotModel ifNil: [ 
+	"^ aView empty."
+	self slotModel ifNil: [ 
 		^ aView list
 			title: 'Slot Model';
 			priority: 2;
@@ -99,7 +99,7 @@ LcsDomainObject class >> gtViewSlotModelFor: aView [
 		priority: 2;
 		object: [ self slotModel ];
 		view: #gtViewSlotModelFor:;
-		yourself"
+		yourself
 		
 ]
 
@@ -319,9 +319,7 @@ LcsDomainObject class >> slotModelNotInitializedError [
 { #category : #'slot definitions' }
 LcsDomainObject class >> uuidSlotDefinition [
 	<slotDefinition>
-	^ LcsIntegerSlot new
-		slotName: 'uuid';
-		yourself
+	^ LcsUuidSlot new
 ]
 
 { #category : #'slot model - verification' }

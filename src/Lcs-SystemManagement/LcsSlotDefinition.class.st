@@ -79,6 +79,11 @@ LcsSlotDefinition >> defaultInitialValueBlock [
 	^ [ self slotTypes any new ]
 ]
 
+{ #category : #printing }
+LcsSlotDefinition >> defaultInitialValueBlockSourceCode [
+	^ self defaultInitialValueBlock compiledBlock sourceNode sourceCode
+]
+
 { #category : #'slot model' }
 LcsSlotDefinition >> domainClass [
 	^ self parent domainClass
@@ -228,6 +233,11 @@ LcsSlotDefinition >> initialValueBlock [
 { #category : #accessing }
 LcsSlotDefinition >> initialValueBlock: aBlock [ 
 	initialValueBlock := aBlock
+]
+
+{ #category : #printing }
+LcsSlotDefinition >> initialValueBlockSourceCode [
+	^ self initialValueBlock compiledBlock sourceNode sourceCode
 ]
 
 { #category : #accessing }

@@ -69,8 +69,8 @@ CssVariable >> declarations: anObject [
 { #category : #'gt - views' }
 CssVariable >> gtViewSlotModelFor: aView [
 	<gtView>
-	^ aView empty
-	"^ aView columnedList
+	"^ aView empty"
+	^ aView columnedList
 		title: 'CSS Variable';
 		priority: 10;
 		items: [ Array with: self ];
@@ -82,7 +82,7 @@ CssVariable >> gtViewSlotModelFor: aView [
 										label: 'Remove';
 										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; 
 		actionUpdateButton;"
-		"yourself"
+		"yourself
 ]
 
 { #category : #accessing }
