@@ -74,7 +74,7 @@ LcsSlotDefinitionAndInstanceVariableMismatchError >> gtExtraInstVarsViewFor: aVi
 LcsSlotDefinitionAndInstanceVariableMismatchError >> gtExtraSlotDefinitionsViewFor: aView [
 	<gtView>
 	<gtExceptionView>
-	self extraInstVars isEmpty ifTrue: [ ^ aView empty ].
+	self extraSlotDefinitions isEmpty ifTrue: [ ^ aView empty ].
 	^ aView list
 		title: 'Extra Slot Definitions';
 		priority: 20;
