@@ -76,6 +76,12 @@ LcsApplicationEnvironment class >> deleteCurrentAndMakeCurrent: aSystem [
 	self applicationEnvironmentDo: [ :env | env deleteCurrentAndMakeCurrent: aSystem ]
 ]
 
+{ #category : #'instance  creation' }
+LcsApplicationEnvironment class >> ensureActiveApplicationEnvironment [
+	self hasInitializedApplicationEnvironment
+		ifFalse: [ self initializeApplicationEnvironment] 
+]
+
 { #category : #'application environment' }
 LcsApplicationEnvironment class >> ensureInitialized [
 	self hasInitializedApplicationEnvironment ifFalse: [ self initializeApplicationEnvironment ].
