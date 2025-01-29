@@ -25,8 +25,10 @@ LcsSlotModel class >> newOn: aDomainClass [
 LcsSlotModel >> _slotDefinitionNamed: aSlotName [
 	^ self slotDefinitions
 		at: aSlotName
-		ifAbsent: [ self domainClass superclass isDomainClass
-				ifTrue: [ self domainClass superclass slotModel _slotDefinitionNamed: aSlotName ]
+		ifAbsent: [ 
+			self domainSuperClass isDomainClass
+				ifTrue: [
+					self domainSuperClassSlotModel  _slotDefinitionNamed: aSlotName]
 				ifFalse: [ nil ] ]
 ]
 
@@ -67,6 +69,17 @@ LcsSlotModel >> domainClass [
 { #category : #accessing }
 LcsSlotModel >> domainClass: anObject [
 	domainClass := anObject
+]
+
+{ #category : #slots }
+LcsSlotModel >> domainSuperClass [
+	^ self domainClass superclass
+]
+
+{ #category : #slots }
+LcsSlotModel >> domainSuperClassSlotModel [
+	self domainSuperClass hasSlotModel ifTrue: [ ^ self domainSuperClass slotModel ].
+	LcsUndefinedSlotModelError signalSuperclassWithoutSlotModel: self domainSuperClass
 ]
 
 { #category : #'as yet unclassified' }

@@ -109,7 +109,7 @@ LcsBaseModule >> allSubmoduleClasses [
 
 { #category : #building }
 LcsBaseModule >> buildModule: eachModuleClass [ 
-	eachModuleClass isSlotModelDefined ifFalse: [
+	eachModuleClass hasSlotModel ifFalse: [
 		eachModuleClass initializeSlotModel.].
 	self modules buildModuleFor: eachModuleClass
 ]

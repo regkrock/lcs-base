@@ -423,7 +423,7 @@ LcsBaseSystem >> restoreUnitOfWork [
 
 { #category : #accessing }
 LcsBaseSystem >> status [
-	^ self isSlotModelDefined 
+	^ self hasSlotModel 
 		ifTrue: [^ self slotVarNamed: 'status' ]
 		ifFalse: [ self instVarNamed: 'status' ]
 ]

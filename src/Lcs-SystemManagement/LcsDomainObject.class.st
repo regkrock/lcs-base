@@ -122,6 +122,11 @@ LcsDomainObject class >> hasSlotDefinitionNamed: aString [
 	^ self slotModel hasSlotDefinitionNamed: aString
 ]
 
+{ #category : #testing }
+LcsDomainObject class >> hasSlotModel [
+	^ self slotModel notNil 
+]
+
 { #category : #'slot definitions' }
 LcsDomainObject class >> historySlotDefinition [
 	<slotDefinition>
@@ -182,11 +187,6 @@ LcsDomainObject class >> isPrototypeClass [
 { #category : #testing }
 LcsDomainObject class >> isRootDomainClass [
 	^ self name asString = 'LcsDomainObject'
-]
-
-{ #category : #testing }
-LcsDomainObject class >> isSlotModelDefined [
-	^ self slotModel notNil 
 ]
 
 { #category : #testing }
@@ -375,7 +375,7 @@ LcsDomainObject class >> verifyRemovedDomainSlotNamed: aSlotName [
 { #category : #'slot model - verification' }
 LcsDomainObject class >> verifySlotModelConsistency [
 	 self verifyClassHasSlotDefinitionsForInstVars .
-	self assert: self isSlotModelDefined.
+	self assert: self hasSlotModel.
 	self assert: self slotModel parent == self.
 
 ]

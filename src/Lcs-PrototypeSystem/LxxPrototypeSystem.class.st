@@ -54,25 +54,25 @@ LxxPrototypeSystem >> bootstrapDomainClasses [
 ]
 
 { #category : #testing }
+LxxPrototypeSystem >> hasSlotModel [
+	^ self class hasSlotModel
+]
+
+{ #category : #testing }
 LxxPrototypeSystem >> isInActiveStatus [
-	self isSlotModelDefined ifFalse: [ ^ false ].
+	self hasSlotModel ifFalse: [ ^ false ].
 	^ self status isInActiveStatus
 ]
 
 { #category : #testing }
 LxxPrototypeSystem >> isInSuspendedStatus [
-	self isSlotModelDefined ifFalse: [ ^ true ].
+	self hasSlotModel ifFalse: [ ^ true ].
 	^ self status isInSuspendedStatus
 ]
 
 { #category : #'as yet unclassified' }
 LxxPrototypeSystem >> isPrototypeSystem [
 	^ true
-]
-
-{ #category : #testing }
-LxxPrototypeSystem >> isSlotModelDefined [
-	^ self class isSlotModelDefined
 ]
 
 { #category : #accessing }
