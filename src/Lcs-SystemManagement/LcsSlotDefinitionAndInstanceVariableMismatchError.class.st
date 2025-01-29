@@ -90,5 +90,5 @@ LcsSlotDefinitionAndInstanceVariableMismatchError >> mismatchMessage [
 
 { #category : #'slot model - verification' }
 LcsSlotDefinitionAndInstanceVariableMismatchError >> signalMismatch [
-	self signal: self domainClass printString , ' - ' self mismatchMessage.
+	self signal: self domainClass printString , ' - ' , self mismatchMessage.
 ]
