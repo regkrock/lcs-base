@@ -585,6 +585,16 @@ LcsDomainObject >> slotVarNamed: aSlotName put: onObject [
 	(self slotDefinitionNamed: aSlotName) slotVarPut: onObject in: self
 ]
 
+{ #category : #accessing }
+LcsDomainObject >> uuid [
+	^ self slotVarNamed: 'uuid'
+]
+
+{ #category : #accessing }
+LcsDomainObject >> uuid: anObject [
+	self slotVarNamed: 'uuid' put: anObject
+]
+
 { #category : #validation }
 LcsDomainObject >> verifySlotModelInitialized [
 	self class verifySlotModelInitialized
