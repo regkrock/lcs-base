@@ -359,9 +359,7 @@ LcsDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 				(self classThatDefinesInstVarNamed: eachSlotDefintion slotName) notNil ifTrue: [
 					slotDefinitions remove: eachSlotDefintion ifAbsent: [] ] ] ].
 	(localInstVarNames notEmpty or: [slotDefinitions notEmpty]) ifTrue: [
-		LcsSlotDefinitionAndInstanceVariableMismatchError signalFrom: self unmatchInstVars: localInstVarNames slotDefinitions:  slotDefinitions].
-	"self assert: localInstVarNames isEmpty description: self class name , ' has instance variable(s) which have not slot definition'.
-	self assert: slotDefinitions isEmpty description: self class name , ' has slot definition(s) without a corresponding instance variable name(s)'"
+		LcsSlotDefinitionAndInstanceVariableMismatchError signalFrom: self unmatchInstVars: localInstVarNames slotDefinitions: slotDefinitions]
 ]
 
 { #category : #'slot definition - removal' }

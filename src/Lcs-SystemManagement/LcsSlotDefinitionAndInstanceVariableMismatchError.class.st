@@ -48,6 +48,39 @@ LcsSlotDefinitionAndInstanceVariableMismatchError >> extraSlotDefinitions: anObj
 	extraSlotDefinitions := anObject
 ]
 
+{ #category : #'gt views' }
+LcsSlotDefinitionAndInstanceVariableMismatchError >> gtDomainClassViewFor: aView [
+	<gtView>
+	<gtExceptionView>
+	^ aView forward
+		title: 'Domain Class';
+		priority: 20;
+		object: [ self domainClass ];
+		view: #gtMetaFor:
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinitionAndInstanceVariableMismatchError >> gtExtraInstVarsViewFor: aView [
+	<gtView>
+	<gtExceptionView>
+	self extraInstVars isEmpty ifTrue: [ ^ aView empty ].
+	^ aView list
+		title: 'Extra Inst Vars';
+		priority: 20;
+		items: [ self extraInstVars ]
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinitionAndInstanceVariableMismatchError >> gtExtraSlotDefinitionsViewFor: aView [
+	<gtView>
+	<gtExceptionView>
+	self extraInstVars isEmpty ifTrue: [ ^ aView empty ].
+	^ aView list
+		title: 'Extra Slot Definitions';
+		priority: 20;
+		items: [ self extraSlotDefinitions ]
+]
+
 { #category : #'slot model - verification' }
 LcsSlotDefinitionAndInstanceVariableMismatchError >> mismatchMessage [
 	self extraInstVars isEmpty ifTrue: [ ^ 'Has slot definitions that have no matching instance variable'].
@@ -57,5 +90,5 @@ LcsSlotDefinitionAndInstanceVariableMismatchError >> mismatchMessage [
 
 { #category : #'slot model - verification' }
 LcsSlotDefinitionAndInstanceVariableMismatchError >> signalMismatch [
-	self signal: self mismatchMessage.
+	self signal: self domainClass printString , ' - ' self mismatchMessage.
 ]
