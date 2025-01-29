@@ -107,6 +107,7 @@ LcsSlotModel >> gtViewSlotModelChildren [
 LcsSlotModel >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
+	^ aView empty
 	"^ aView columnedList
 		title: 'Domain Slot Definitions';
 		priority: 10;
