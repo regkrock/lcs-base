@@ -68,6 +68,8 @@ LcsSlotModel >> domainClass [
 
 { #category : #accessing }
 LcsSlotModel >> domainClass: anObject [
+	self logEntry.
+	self traceCr: 'Setting domainClass/Parent to: ' , anObject printString.
 	domainClass := anObject
 ]
 
