@@ -263,9 +263,14 @@ LcsBaseSystem >> initialize [
 
 { #category : #initialize }
 LcsBaseSystem >> initializeBasicSystem [
+	self logEntry.
+	"Transcript show: 'about to enter initializeBasicSystem' ;cr."
 	self inititalizeSlotModelFor: self prebootstrapDomainClasses 
-			instantiateBlock: [ :eachClass | eachClass  instantiateSlotModel ].
-
+			instantiateBlock: [ :eachClass |
+				self traceCr: 'About to instntiate ' , eachClass name. 
+				eachClass  instantiateSlotModel.
+				self traceCr: 'Finished instntiating ' , eachClass name.  ].
+	self traceCr: 'About to add self to unit of work'.
 	self unitOfWork addObject: self.
 	
 	(self slotDefinitionNamed: 'status') initializeSlotValueIn: self.
@@ -309,9 +314,13 @@ LcsBaseSystem >> inititalizeSlotModelFor: aCollection [
 
 { #category : #initialize }
 LcsBaseSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBlock: aBlock [
+	self logEntry.
 	aDomainClassesCollection do: aBlock.
+	self traceCr: 'About to verify Slot Model consistency'.
 	self verifySlotModelConsistencyFor: aDomainClassesCollection.
-	self installSlotDefinitionsIn: aDomainClassesCollection
+	self traceCr: 'About to install Slot Model'.
+	self installSlotDefinitionsIn: aDomainClassesCollection.
+	self logExit
 ]
 
 { #category : #initialize }

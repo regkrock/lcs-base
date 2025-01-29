@@ -171,7 +171,8 @@ LcsDomainObject class >> installSlotModelIn: aSystem [
 { #category : #'slot model - install' }
 LcsDomainObject class >> instantiateSlotModel [
 	self  verifySuperclassesHaveInitializedSlotModel.
-	self slotModel: (LcsSlotModel newOn: self)
+	self slotModel: (LcsSlotModel newOn: self).
+	self traceCr: self printString , ' slot model parent set to ' , self slotModel parent printString
 ]
 
 { #category : #testing }
@@ -374,10 +375,12 @@ LcsDomainObject class >> verifyRemovedDomainSlotNamed: aSlotName [
 
 { #category : #'slot model - verification' }
 LcsDomainObject class >> verifySlotModelConsistency [
+	self logEntry.
 	 self verifyClassHasSlotDefinitionsForInstVars .
 	self assert: self hasSlotModel.
+	self traceCr: 'Slot Model Parent ' , self slotModel parent printString.
 	self assert: self slotModel parent == self.
-
+	self logExit.
 ]
 
 { #category : #'slot model - verification' }

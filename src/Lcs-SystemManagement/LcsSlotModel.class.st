@@ -140,8 +140,7 @@ LcsSlotModel >> initialize [
 
 { #category : #initialize }
 LcsSlotModel >> initializeOn: aDomainClass [ 
-	self domainClass: aDomainClass.
-	self parent: aDomainClass
+	self domainClass: aDomainClass
 ]
 
 { #category : #model }
