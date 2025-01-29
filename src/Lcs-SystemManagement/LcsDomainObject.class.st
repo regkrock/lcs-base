@@ -387,10 +387,10 @@ LcsDomainObject class >> verifySlotModelInitialized [
 
 { #category : #'slot model - verification' }
 LcsDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
-	self superclass == LcsObject ifTrue: [ ^ self ].
+	"self superclass == LcsObject ifTrue: [ ^ self ].
 	self superclass isSlotModelDefined
 		ifFalse: [ LcsSlotModelNotInitializedError signalWithContext: self ].
-	self superclass verifySuperclassesHaveInitializedSlotModel
+	self superclass verifySuperclassesHaveInitializedSlotModel"
 
 ]
 

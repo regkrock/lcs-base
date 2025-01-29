@@ -46,6 +46,9 @@ LcsBaseSystem class >> prebootstrapDomainClasses [
 	prebootstrapClasses := 
 		OrderedCollection new
 			add: LcsDomainObject;
+			add: LcsDomainObjectChangeRecord;
+			add: LcsDomainObjectHistory;
+			add: LcsDomainObjectSlotChange;
 			add: LcsSystemSlotModel;
 			add: LcsBaseSystemStatus;
 			addAll: LcsBaseSystemStatus subclasses;
