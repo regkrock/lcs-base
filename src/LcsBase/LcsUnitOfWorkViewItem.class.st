@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsUnitOfWorkViewItem,
 	#superclass : #LcsViewItem,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #default }

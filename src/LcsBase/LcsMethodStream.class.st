@@ -5,7 +5,7 @@ Class {
 		'stream',
 		'indentLevel'
 	],
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #accessing }

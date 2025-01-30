@@ -6,7 +6,7 @@ Class {
 		'item',
 		'childrenSelector'
 	],
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #default }

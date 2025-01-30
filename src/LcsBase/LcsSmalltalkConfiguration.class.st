@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSmalltalkConfiguration,
 	#superclass : #LcsObject,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #accessing }

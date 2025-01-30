@@ -1,5 +1,5 @@
 Class {
 	#name : #UndefinedInteger,
 	#superclass : #UndefinedObject,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }

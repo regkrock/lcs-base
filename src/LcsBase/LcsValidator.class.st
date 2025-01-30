@@ -7,7 +7,7 @@ Class {
 		'validationIssues',
 		'visitationStack'
 	],
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #validation }

@@ -6,7 +6,7 @@ Class {
 		'extraInstVars',
 		'extraSlotDefinitions'
 	],
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : #'Lcs-SystemManagement-Error'
 }
 
 { #category : #'slot model - verification' }

@@ -5,7 +5,7 @@ Class {
 		'numberOfTabs',
 		'stream'
 	],
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #'stream protocol' }

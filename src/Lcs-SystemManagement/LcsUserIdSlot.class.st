@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsUserIdSlot,
 	#superclass : #LcsStringSlot,
-	#category : #'Lcs-SystemManagement'
+	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #'as yet unclassified' }

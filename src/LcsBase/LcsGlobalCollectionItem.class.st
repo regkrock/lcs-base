@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsGlobalCollectionItem,
 	#superclass : #LcsViewItem,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #default }

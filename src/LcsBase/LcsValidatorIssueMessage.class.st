@@ -5,7 +5,7 @@ Class {
 		'context',
 		'message'
 	],
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #'instace creation' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDomainObjectSlotChange,
 	#superclass : #LcsDomainObject,
-	#classInstVars : [
+	#instVars : [
 		'slotName',
 		'oldValue',
 		'newValue'
@@ -9,32 +9,12 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
-{ #category : #accessing }
-LcsDomainObjectSlotChange class >> newValue [
-	^ newValue
-]
-
-{ #category : #accessing }
-LcsDomainObjectSlotChange class >> newValue: anObject [
-	newValue := anObject
-]
-
 { #category : #'slot definition' }
 LcsDomainObjectSlotChange class >> newValueSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'newValue';
 		yourself
-]
-
-{ #category : #accessing }
-LcsDomainObjectSlotChange class >> oldValue [
-	^ oldValue
-]
-
-{ #category : #accessing }
-LcsDomainObjectSlotChange class >> oldValue: anObject [
-	oldValue := anObject
 ]
 
 { #category : #'slot definition' }
@@ -45,20 +25,40 @@ LcsDomainObjectSlotChange class >> oldValueSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
-LcsDomainObjectSlotChange class >> slotName [
-	^ slotName
-]
-
-{ #category : #accessing }
-LcsDomainObjectSlotChange class >> slotName: anObject [
-	slotName := anObject
-]
-
 { #category : #'slot definition' }
 LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'slotName';
 		yourself
+]
+
+{ #category : #accessing }
+LcsDomainObjectSlotChange >> newValue [
+	^ self slotVarNamed: 'newValue'
+]
+
+{ #category : #accessing }
+LcsDomainObjectSlotChange >> newValue: anObject [
+	self slotVarNamed: 'newValue' put: anObject
+]
+
+{ #category : #accessing }
+LcsDomainObjectSlotChange >> oldValue [
+	^ self slotVarNamed: 'oldValue'
+]
+
+{ #category : #accessing }
+LcsDomainObjectSlotChange >> oldValue: anObject [
+	self slotVarNamed: 'oldValue' put: anObject
+]
+
+{ #category : #accessing }
+LcsDomainObjectSlotChange >> slotName [
+	^ self slotVarNamed: 'slotName'
+]
+
+{ #category : #accessing }
+LcsDomainObjectSlotChange >> slotName: anObject [
+	self slotVarNamed: 'slotName' put: anObject
 ]

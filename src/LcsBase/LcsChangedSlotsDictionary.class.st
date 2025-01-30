@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsChangedSlotsDictionary,
 	#superclass : #LcsCollection,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #conf }

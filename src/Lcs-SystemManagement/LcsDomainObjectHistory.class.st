@@ -1,13 +1,41 @@
+"
+This has the following information:
+1) Created timestamp.
+2) User who created the instance of a domain object.
+3) Change Log - this is a log of all changes. For each change a new change log is created.
+"
 Class {
 	#name : #LcsDomainObjectHistory,
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'created',
-		'userid',
-		'changeLog'
+		'userId',
+		'changeRecords'
 	],
 	#category : #'Lcs-SystemManagement-Domain'
 }
+
+{ #category : #'slot definitions' }
+LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotName: 'changeRecords';
+		addSlotType: LcsDomainObjectChangeRecords;
+		addCollectionMemberType: LcsDomainObjectChangeRecord;
+		beRequired;
+		"beReadOnly;"
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObjectHistory class >> createdSlotDefinition [
+	<slotDefinition>
+	^ LcsTimestampSlot new
+		slotName: 'created';
+		beRequired;
+		"beReadOnly;"
+		yourself
+]
 
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> userIdSlotDefinition [
@@ -21,7 +49,7 @@ LcsDomainObjectHistory class >> userIdSlotDefinition [
 
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> userSlotDefinition [
-	<slotDefinition>
+	"<slotDefinition>"
 	^ LcsFacadeSlot new
 		slotName: 'user';
 		targetSlotName: 'userId';
@@ -31,14 +59,24 @@ LcsDomainObjectHistory class >> userSlotDefinition [
 		yourself
 ]
 
-{ #category : #acccessing }
-LcsDomainObjectHistory >> user [
-	^ self slotVarNamed: 'user'
+{ #category : #accessing }
+LcsDomainObjectHistory >> changeRecords [
+	^ self slotVarNamed: 'changeRecords'
 ]
 
 { #category : #accessing }
-LcsDomainObjectHistory >> user: aUser [
-	self slotVarNamed: 'user' put: aUser
+LcsDomainObjectHistory >> changeRecords: anObject [
+	self slotVarNamed: 'changeRecords' put: anObject
+]
+
+{ #category : #accessing }
+LcsDomainObjectHistory >> created [
+	^ self slotVarNamed: 'created'
+]
+
+{ #category : #accessing }
+LcsDomainObjectHistory >> created: anObject [
+	self slotVarNamed: 'created' put: anObject
 ]
 
 { #category : #acccessing }

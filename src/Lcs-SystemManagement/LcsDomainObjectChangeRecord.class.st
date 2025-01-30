@@ -3,7 +3,7 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'userId',
-		'timestamp',
+		'created',
 		'changes'
 	],
 	#category : #'Lcs-SystemManagement-Domain'
@@ -11,19 +11,32 @@ Class {
 
 { #category : #'slot definition' }
 LcsDomainObjectChangeRecord class >> changesSlotDefinition [
+	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
 		slotName: 'changes';
 		yourself
 ]
 
 { #category : #'slot definition' }
-LcsDomainObjectChangeRecord class >> timestampSlotDefinition [
+LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 	<slotDefinition>
 	^ LcsTimestampSlot new
+		slotName: 'created';
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsDomainObjectChangeRecord class >> parentSlotDefinition [
+	<slotDefinition>
+	^ LcsCollectionReferenceSlot new
+		slotName: 'parent';
+		addSlotType: LcsDomainObjectChangeRecords
+		yourself
 ]
 
 { #category : #'slot definition' }
 LcsDomainObjectChangeRecord class >> userIdSlotDefinition [
+	<slotDefinition>
 	^ LcsUserIdSlot new
 ]
 
@@ -38,13 +51,13 @@ LcsDomainObjectChangeRecord >> changes: anObject [
 ]
 
 { #category : #accessing }
-LcsDomainObjectChangeRecord >> timestamp [
-	^ timestamp
+LcsDomainObjectChangeRecord >> created [
+	^ created
 ]
 
 { #category : #accessing }
-LcsDomainObjectChangeRecord >> timestamp: anObject [
-	timestamp := anObject
+LcsDomainObjectChangeRecord >> created: anObject [
+	created := anObject
 ]
 
 { #category : #accessing }

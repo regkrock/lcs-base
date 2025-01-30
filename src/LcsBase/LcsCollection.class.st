@@ -5,7 +5,7 @@ Class {
 		'collection',
 		'parent'
 	],
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #defaults }

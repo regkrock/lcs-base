@@ -1,20 +1,27 @@
 "
-This class and its subclasses define a slot:
+This class and its subclasses define a slot (instance variable or a GemStone dynamic instance variable)
+Accessing and Updating the instance variable is done via the slot definition. It encapsulates the acutal slot (instance variable).
 
 slotName - this is the name of the slot and is the same as the instvarName. 
+parent -        this points to the parent of the slot defintion. This is normally an instance of LcsSlotModel.
+slotTypes -  this is a collection of the class types that can be stored in the slot (instance variable).	
+						 Ex: UndefinedObject - means a nil can be store here
+						        LcsPerson - means that an instance of LcsPerson can be stored in the slot.
+required -   The contents of this slot must be set rather than be left was being nil or null before the owning 
+					    object can be persisted.
+initialValueBlock - The slot will be initialized to evaluated value of this block when an instance of its associated
+						class is created.  
+validator - ?????
 "
 Class {
 	#name : #LcsSlotDefinition,
-	#superclass : #LcsApplicationObject,
+	#superclass : #LcsBaseSlotDefinition,
 	#instVars : [
-		'slotName',
-		'parent',
-		'slotTypes',
 		'required',
 		'validator',
 		'initialValueBlock'
 	],
-	#category : #'Lcs-SystemManagement-Core'
+	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #'slot model' }
@@ -26,11 +33,6 @@ LcsSlotDefinition >> _slotVarPut: anObject in: aDomainObject [
 		to: anObject
 ]
 
-{ #category : #configuration }
-LcsSlotDefinition >> addSlotType: aClass [
-	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
-]
-
 { #category : #validation }
 LcsSlotDefinition >> addValidateConfigurationResultTo: aValidator [
 	(self domainClass allInstVarNames includes: self slotName)
@@ -38,7 +40,7 @@ LcsSlotDefinition >> addValidateConfigurationResultTo: aValidator [
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #command }
 LcsSlotDefinition >> allowNil [
 	self addSlotType: UndefinedObject.
 	self initialValue: nil
@@ -52,11 +54,6 @@ LcsSlotDefinition >> beOptional [
 { #category : #configuration }
 LcsSlotDefinition >> beRequired [
 	self required: true
-]
-
-{ #category : #configuration }
-LcsSlotDefinition >> clearSlotTypes [
-	self slotTypes removeAll.
 ]
 
 { #category : #defaults }
@@ -82,11 +79,6 @@ LcsSlotDefinition >> defaultInitialValueBlock [
 { #category : #printing }
 LcsSlotDefinition >> defaultInitialValueBlockSourceCode [
 	^ self defaultInitialValueBlock compiledBlock sourceNode sourceCode
-]
-
-{ #category : #'slot model' }
-LcsSlotDefinition >> domainClass [
-	^ self parent domainClass
 ]
 
 { #category : #'slot model' }
@@ -312,25 +304,10 @@ LcsSlotDefinition >> isRequired [
 	^ self required == true
 ]
 
-{ #category : #'slot model' }
-LcsSlotDefinition >> label [
-	^self labelForSelector: self slotName
-]
-
 { #category : #'gt view' }
 LcsSlotDefinition >> newDomainClassName [
 	self parent ifNil: [ ^ self parent class name].
 	^self parent domainClass
-]
-
-{ #category : #accessing }
-LcsSlotDefinition >> parent [
-	^ parent
-]
-
-{ #category : #accessing }
-LcsSlotDefinition >> parent: anObject [
-	parent := anObject
 ]
 
 { #category : #'slot model' }
@@ -374,47 +351,10 @@ LcsSlotDefinition >> setterSelector [
 		
 ]
 
-{ #category : #defaults }
-LcsSlotDefinition >> slotClass [
-	^ self slotTypes any
-]
-
 { #category : #validation }
 LcsSlotDefinition >> slotDoesNotExistMessage [
 	^ 'Slot name ' , self slotName asString , ' does not exist in '
 		, self domainClass name
-]
-
-{ #category : #accessing }
-LcsSlotDefinition >> slotName [
-	^ slotName
-]
-
-{ #category : #accessing }
-LcsSlotDefinition >> slotName: anObject [
-	slotName := anObject
-]
-
-{ #category : #'gt view' }
-LcsSlotDefinition >> slotTypeClassNames [
-	| stream |
-	stream := WriteStream on: String new.
-	self slotTypes do: [ :eachClass |
-		stream nextPutAll: (
-			eachClass isClass 
-				ifTrue: [ eachClass name displayString ] 
-				ifFalse: [ eachClass printString ])  ] separatedBy: [ stream nextPutAll: ', '].
-	^stream contents
-]
-
-{ #category : #accessing }
-LcsSlotDefinition >> slotTypes [
-	^ slotTypes
-]
-
-{ #category : #accessing }
-LcsSlotDefinition >> slotTypes: anObject [
-	slotTypes := anObject
 ]
 
 { #category : #'slot model' }

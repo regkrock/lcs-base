@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSlotModelViewItem,
 	#superclass : #LcsViewItem,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #deafult }

@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsWebComponent,
 	#superclass : #WAComponent,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
 
 { #category : #accessing }

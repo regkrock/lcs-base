@@ -5,7 +5,7 @@ Class {
 		'domainClass',
 		'slotDefinitions'
 	],
-	#category : #'Lcs-SystemManagement-Core'
+	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #configuration }
@@ -25,11 +25,11 @@ LcsSlotModel class >> newOn: aDomainClass [
 LcsSlotModel >> _slotDefinitionNamed: aSlotName [
 	^ self slotDefinitions
 		at: aSlotName
-		ifAbsent: [ 
-			self domainSuperClass isDomainClass
+		ifAbsent: [ nil
+			"self domainSuperClass isDomainClass
 				ifTrue: [
 					self domainSuperClassSlotModel  _slotDefinitionNamed: aSlotName]
-				ifFalse: [ nil ] ]
+				ifFalse: [ nil ]" ]
 ]
 
 { #category : #slots }

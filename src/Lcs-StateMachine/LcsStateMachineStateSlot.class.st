@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStateMachineStateSlot,
-	#superclass : #LcsSlotDefinition,
+	#superclass : #LcsDomainObjectSlot,
 	#traits : 'LtAggregateComponent',
 	#classTraits : 'LtAggregateComponent classTrait',
 	#category : #'Lcs-StateMachine-Slot'

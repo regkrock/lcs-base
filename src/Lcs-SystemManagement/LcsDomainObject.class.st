@@ -1,3 +1,6 @@
+"
+All instances of this class have a Domain Object History. It is created when the instance of a LcsDomainObject is created.
+"
 Class {
 	#name : #LcsDomainObject,
 	#superclass : #LcsObject,
@@ -87,7 +90,6 @@ LcsDomainObject class >> gtViewSlotDefinitionFor: aView [
 LcsDomainObject class >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
-	"^ aView empty."
 	self slotModel ifNil: [ 
 		^ aView list
 			title: 'Slot Model';

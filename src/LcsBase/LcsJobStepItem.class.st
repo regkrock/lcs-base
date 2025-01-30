@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsJobStepItem,
 	#superclass : #LcsViewItem,
-	#category : #LcsBase
+	#category : #'LcsBase-Core'
 }
