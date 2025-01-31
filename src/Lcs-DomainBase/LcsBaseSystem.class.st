@@ -264,19 +264,14 @@ LcsBaseSystem >> initialize [
 { #category : #initialize }
 LcsBaseSystem >> initializeBasicSystem [
 	self logEntry.
-	"Transcript show: 'about to enter initializeBasicSystem' ;cr."
-	self inititalizeSlotModelFor: self prebootstrapDomainClasses 
-			instantiateBlock: [ :eachClass |
-				self traceCr: 'About to instntiate ' , eachClass name. 
-				eachClass  instantiateSlotModel.
-				self traceCr: 'Finished instntiating ' , eachClass name.  ].
+	self instiateSlotModelForBootstrapClasses.
 	self traceCr: 'About to add self to unit of work'.
 	self unitOfWork addObject: self.
-	
+
 	(self slotDefinitionNamed: 'status') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'systemSlotModel') initializeSlotValueIn: self.
-	self prebootstrapDomainClasses do: [ :eachDomainClass | 
-		self addToSlotModel: eachDomainClass slotModel ]
+	self prebootstrapDomainClasses
+		do: [ :eachDomainClass | self addToSlotModel: eachDomainClass slotModel ]
 ]
 
 { #category : #initialize }
@@ -326,6 +321,30 @@ LcsBaseSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBl
 { #category : #initialize }
 LcsBaseSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
 	aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]
+]
+
+{ #category : #initialize }
+LcsBaseSystem >> instiateSlotModelForBootstrapClasses [
+	self logEntry.
+	
+	self prebootstrapDomainClasses doWithIndex: [ :eachClass :index | eachClass instantiateSlotModel ].
+
+	self traceCr: 'About to verify Slot Model consistency'.
+
+	self prebootstrapDomainClasses  doWithIndex: [ :eachClass :index | eachClass verifySlotModelConsistency].
+
+	self traceCr: 'About to install Slot Model'.
+
+	self prebootstrapDomainClasses  doWithIndex: [ :eachClass :index | eachClass installSlotDefinitions ].
+
+	self logExit.
+
+		"self
+		inititalizeSlotModelFor: self prebootstrapDomainClasses
+		instantiateBlock: [ :eachClass | 
+			self traceCr: 'About to instntiate ' , eachClass name.
+			eachClass instantiateSlotModel.
+			self traceCr: 'Finished instntiating ' , eachClass name ]"
 ]
 
 { #category : #testing }

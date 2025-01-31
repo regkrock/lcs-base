@@ -68,8 +68,6 @@ LcsSlotModel >> domainClass [
 
 { #category : #accessing }
 LcsSlotModel >> domainClass: anObject [
-	self logEntry.
-	self traceCr: 'Setting domainClass/Parent to: ' , anObject printString.
 	domainClass := anObject
 ]
 
@@ -180,7 +178,7 @@ LcsSlotModel >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPutAll: '(';
-		nextPutAll: self domainClass name;
+		nextPutAll: (self domainClass ifNotNil: [ self domainClass name ]) asString ;
 		nextPutAll: ')'
 ]
 

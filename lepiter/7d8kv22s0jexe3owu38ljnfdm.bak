@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-29T09:08:14.6331-05:00"
+						"dateAndTimeString" : "2025-01-30T14:28:20.381472-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ED9SizrpDQCawZfRCChzfA=="
 				},
-				"code" : "LcsApplicationEnvironment ensureActiveApplicationEnvironment"
+				"code" : "LcsApplicationEnvironment ensureActiveApplicationEnvironment.\rsystem := LcsApplicationEnvironment currentSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -208,14 +208,48 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-29T09:08:41.510791-05:00"
+						"dateAndTimeString" : "2025-01-30T14:28:16.227107-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "C76WezrpDQCYfX52CChzfA=="
 				},
-				"code" : "system := LcsApplicationEnvironment currentSystem"
+				"code" : ""
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-29T09:10:07.933752-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-29T09:10:07.933752-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DeqSmjrpDQCbyKH2CChzfA=="
+				},
+				"code" : ""
 			}
 		]
 	},

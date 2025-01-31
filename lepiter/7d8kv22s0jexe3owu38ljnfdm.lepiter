@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-29T09:08:14.6331-05:00"
+						"dateAndTimeString" : "2025-01-30T14:28:46.219371-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ED9SizrpDQCawZfRCChzfA=="
 				},
-				"code" : "LcsApplicationEnvironment ensureActiveApplicationEnvironment"
+				"code" : "LcsApplicationEnvironment ensureActiveApplicationEnvironment.\r"
 			},
 			{
 				"__type" : "textSnippet",
@@ -208,7 +208,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-29T09:08:41.510791-05:00"
+						"dateAndTimeString" : "2025-01-30T14:28:48.694323-05:00"
 					}
 				},
 				"uid" : {
