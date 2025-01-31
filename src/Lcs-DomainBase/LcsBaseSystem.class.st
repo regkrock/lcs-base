@@ -40,23 +40,6 @@ LcsBaseSystem class >> new [
 		yourself
 ]
 
-{ #category : #'slot model' }
-LcsBaseSystem class >> prebootstrapDomainClasses [
-	| prebootstrapClasses |
-	prebootstrapClasses := 
-		OrderedCollection new
-			add: LcsDomainObject;
-			add: LcsDomainObjectChangeRecord;
-			add: LcsDomainObjectHistory;
-			add: LcsDomainObjectSlotChange;
-			add: LcsSystemSlotModel;
-			add: LcsBaseSystemStatus;
-			addAll: LcsBaseSystemStatus subclasses;
-			yourself.
-	self addMyDomainClassHeirarchyTo: prebootstrapClasses.
-	^ prebootstrapClasses
-]
-
 { #category : #'slot definition' }
 LcsBaseSystem class >> statusSlotDefinition [
 	<slotDefinition>
@@ -65,6 +48,26 @@ LcsBaseSystem class >> statusSlotDefinition [
 		addSlotType: LcsBaseSystemStatus;
 		initialValueBlock: [ LcsSystemActiveStatus new];
 		yourself
+]
+
+{ #category : #'slot model' }
+LcsBaseSystem class >> systemBootstrapDomainClasses [
+	| prebootstrapClasses |
+	prebootstrapClasses := 
+		OrderedCollection new
+			add: LcsDomainObject;
+			add: LcsDomainCollection;
+			add: LcsDomainObjectHistory;
+			add: LcsDomainObjectChangeRecord;
+			add: LcsDomainObjectChangeRecords;
+			add: LcsDomainObjectSlotChange;
+			add: LcsDomainObjectSlotChanges;
+			add: LcsSystemSlotModel;
+			add: LcsBaseSystemStatus;
+			addAll: LcsBaseSystemStatus subclasses;
+			yourself.
+	self addMyDomainClassHeirarchyTo: prebootstrapClasses.
+	^ prebootstrapClasses
 ]
 
 { #category : #'slot definition' }
@@ -115,9 +118,9 @@ LcsBaseSystem >> addToSlotModel: aSlotModel [
 { #category : #'slot model' }
 LcsBaseSystem >> allBootstrapDomainClasses [
 	^ OrderedCollection new
-		addAll: self prebootstrapDomainClasses;
+		addAll: self systemBootstrapDomainClasses;
 		add: self;
-		addAll: self bootstrapDomainClasses;
+		addAll: self systemDomainClasses;
 		yourself
 
 ]
@@ -125,30 +128,6 @@ LcsBaseSystem >> allBootstrapDomainClasses [
 { #category : #'unit of work' }
 LcsBaseSystem >> applyChanges [
 	^ self unitOfWork applyChanges
-]
-
-{ #category : #'slot model' }
-LcsBaseSystem >> bootstrapDomainClasses [
-	^OrderedCollection new
-		"add: LcsDomainObject;
-		add: LcsBaseModule;
-		add: LcsBaseSystem;
-		add: LcsSystemSlotModel;"
-		add: LcsModule;
-		add: LcsDomainCollection;
-		add: LcsGlobalCollections;
-		add: LcsModules;
-		add: LcsBaseConfiguration;
-		add: LcsCode;
-		add: LcsSingletonCode;
-		add: LcsCodes;
-		add: #LcsStateMachine asClass;
-		add: #LcsStateMachineObject asClass;
-		addAll: #LcsStateMachineObject asClass allSubclasses;
-		add: #LcsStateMachineEvent asClass;
-		add: #LcsStateMachineStates asClass;
-		add: #LcsStateMachineTransitions asClass;
-		yourself
 ]
 
 { #category : #'slot model' }
@@ -264,13 +243,12 @@ LcsBaseSystem >> initialize [
 { #category : #initialize }
 LcsBaseSystem >> initializeBasicSystem [
 	self logEntry.
-	self instiateSlotModelForBootstrapClasses.
-	self traceCr: 'About to add self to unit of work'.
+	self instantiateAndInstallSlotModelForBootstrapClasses.
 	self unitOfWork addObject: self.
 
 	(self slotDefinitionNamed: 'status') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'systemSlotModel') initializeSlotValueIn: self.
-	self prebootstrapDomainClasses
+	self systemBootstrapDomainClasses
 		do: [ :eachDomainClass | self addToSlotModel: eachDomainClass slotModel ]
 ]
 
@@ -297,7 +275,7 @@ LcsBaseSystem >> initializeSystemSlotModelVariable [
 LcsBaseSystem >> inititalizeSlotModel [
 	self initializeBasicSystem.
 	self addToSlotModel: self slotModel.
-	self inititalizeSlotModelFor: self bootstrapDomainClasses
+	self inititalizeSlotModelFor: self systemDomainClasses
 ]
 
 { #category : #initialize }
@@ -309,13 +287,9 @@ LcsBaseSystem >> inititalizeSlotModelFor: aCollection [
 
 { #category : #initialize }
 LcsBaseSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBlock: aBlock [
-	self logEntry.
 	aDomainClassesCollection do: aBlock.
-	self traceCr: 'About to verify Slot Model consistency'.
 	self verifySlotModelConsistencyFor: aDomainClassesCollection.
-	self traceCr: 'About to install Slot Model'.
-	self installSlotDefinitionsIn: aDomainClassesCollection.
-	self logExit
+	self installSlotDefinitionsIn: aDomainClassesCollection
 ]
 
 { #category : #initialize }
@@ -324,27 +298,24 @@ LcsBaseSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
 ]
 
 { #category : #initialize }
-LcsBaseSystem >> instiateSlotModelForBootstrapClasses [
+LcsBaseSystem >> installSlotModelForBootstrapClasses [
+	self systemBootstrapDomainClasses
+		doWithIndex: [ :eachClass :index | eachClass installSlotDefinitions ]
+]
+
+{ #category : #initialize }
+LcsBaseSystem >> instantiateAndInstallSlotModelForBootstrapClasses [
 	self logEntry.
-	
-	self prebootstrapDomainClasses doWithIndex: [ :eachClass :index | eachClass instantiateSlotModel ].
+	self instantiateSlotModelForBootstrapClasses.
+	self verifySlotModelForBootstrapClasses.
+	self installSlotModelForBootstrapClasses.
+	self logExit
+]
 
-	self traceCr: 'About to verify Slot Model consistency'.
-
-	self prebootstrapDomainClasses  doWithIndex: [ :eachClass :index | eachClass verifySlotModelConsistency].
-
-	self traceCr: 'About to install Slot Model'.
-
-	self prebootstrapDomainClasses  doWithIndex: [ :eachClass :index | eachClass installSlotDefinitions ].
-
-	self logExit.
-
-		"self
-		inititalizeSlotModelFor: self prebootstrapDomainClasses
-		instantiateBlock: [ :eachClass | 
-			self traceCr: 'About to instntiate ' , eachClass name.
-			eachClass instantiateSlotModel.
-			self traceCr: 'Finished instntiating ' , eachClass name ]"
+{ #category : #initialize }
+LcsBaseSystem >> instantiateSlotModelForBootstrapClasses [
+	self systemBootstrapDomainClasses
+		doWithIndex: [ :eachClass :index | eachClass instantiateSlotModel ]
 ]
 
 { #category : #testing }
@@ -384,11 +355,6 @@ LcsBaseSystem >> newSuspendedState [
 	^ LcsSystemSuspendedStatus new
 		parent: self;
 		yourself
-]
-
-{ #category : #initialize }
-LcsBaseSystem >> prebootstrapDomainClasses [
-	^ self class prebootstrapDomainClasses
 ]
 
 { #category : #printing }
@@ -483,6 +449,30 @@ LcsBaseSystem >> suspendUnitOfWork [
 	self systemManager suspendUnitOfWorkFor: self
 ]
 
+{ #category : #initialize }
+LcsBaseSystem >> systemBootstrapDomainClasses [
+	^ self class systemBootstrapDomainClasses
+]
+
+{ #category : #'slot model' }
+LcsBaseSystem >> systemDomainClasses [
+	^OrderedCollection new
+		add: LcsModule;
+		add: LcsGlobalCollections;
+		add: LcsModules;
+		add: LcsBaseConfiguration;
+		add: LcsCode;
+		add: LcsSingletonCode;
+		add: LcsCodes;
+		add: #LcsStateMachine asClass;
+		add: #LcsStateMachineObject asClass;
+		addAll: #LcsStateMachineObject asClass allSubclasses;
+		add: #LcsStateMachineEvent asClass;
+		add: #LcsStateMachineStates asClass;
+		add: #LcsStateMachineTransitions asClass;
+		yourself
+]
+
 { #category : #accessing }
 LcsBaseSystem >> systemManager [
 	^ self _parent
@@ -527,4 +517,10 @@ LcsBaseSystem >> unitOfWork [
 LcsBaseSystem >> verifySlotModelConsistencyFor: aDomainClassesCollection [
 	aDomainClassesCollection
 		do: [ :eachClass | eachClass verifySlotModelConsistency ]
+]
+
+{ #category : #initialize }
+LcsBaseSystem >> verifySlotModelForBootstrapClasses [
+	self systemBootstrapDomainClasses
+		doWithIndex: [ :eachClass :index | eachClass verifySlotModelConsistency ]
 ]

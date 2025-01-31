@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'collection'
 	],
-	#category : #'Lcs-SystemManagement-Core'
+	#category : #'Lcs-SystemManagement-Domain'
 }
 
 { #category : #'slot definition' }

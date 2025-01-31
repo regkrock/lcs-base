@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsTimestampSlot,
 	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #defaults }

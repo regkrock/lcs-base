@@ -41,18 +41,6 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #initialize }
-LxxPrototypeSystem >> bootstrapDomainClasses [
-	^super bootstrapDomainClasses
-		"add: LxxPrototypeSystem;"
-		add: LxxPrototypeOrganization;
-		add: LxxPrototypePerson;
-		add: LxxPrototypePersons;
-		add: LxxPrototypeSystemConfiguration;
-		addAll: LxxPrototypeSystem submoduleClasses;
-		yourself
-]
-
 { #category : #testing }
 LxxPrototypeSystem >> hasSlotModel [
 	^ self class hasSlotModel
@@ -93,4 +81,15 @@ LxxPrototypeSystem >> persons [
 { #category : #accessing }
 LxxPrototypeSystem >> persons: anObject [
 	self slotVarNamed: 'presons' put: anObject
+]
+
+{ #category : #initialize }
+LxxPrototypeSystem >> systemDomainClasses [
+	^super systemDomainClasses
+		add: LxxPrototypeOrganization;
+		add: LxxPrototypePerson;
+		add: LxxPrototypePersons;
+		add: LxxPrototypeSystemConfiguration;
+		addAll: LxxPrototypeSystem submoduleClasses;
+		yourself
 ]

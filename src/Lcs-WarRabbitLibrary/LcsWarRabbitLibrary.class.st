@@ -49,21 +49,6 @@ LcsWarRabbitLibrary >> authors: anObject [
 	self slotVarNamed: 'authors' put: anObject
 ]
 
-{ #category : #'slot model' }
-LcsWarRabbitLibrary >> bootstrapDomainClasses [
-	<todo: 'Refactor to make this more efficient'>
-	^ super bootstrapDomainClasses
-		add: LcsAuthor;
-		add: LcsAuthors;
-		add: LcsItemAuthors;
-		add: LcsLibraryCategory;
-		add: LcsLibraryCategories;
-		add: LcsLibraryItem ;
-		addAll: LcsLibraryItem subclasses;
-		add: LcsLibraryItems;
-		yourself
-]
-
 { #category : #accessing }
 LcsWarRabbitLibrary >> libraryCategories [
 	^ self slotVarNamed: 'libraryCategories'
@@ -87,4 +72,19 @@ LcsWarRabbitLibrary >> libraryItems [
 { #category : #accessing }
 LcsWarRabbitLibrary >> libraryItems: anObject [
 	self slotVarNamed: 'libraryItems' put: anObject
+]
+
+{ #category : #'slot model' }
+LcsWarRabbitLibrary >> systemDomainClasses [
+	<todo: 'Refactor to make this more efficient'>
+	^ super systemDomainClasses
+		add: LcsAuthor;
+		add: LcsAuthors;
+		add: LcsItemAuthors;
+		add: LcsLibraryCategory;
+		add: LcsLibraryCategories;
+		add: LcsLibraryItem ;
+		addAll: LcsLibraryItem subclasses;
+		add: LcsLibraryItems;
+		yourself
 ]
