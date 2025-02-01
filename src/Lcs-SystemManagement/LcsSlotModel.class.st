@@ -105,20 +105,20 @@ LcsSlotModel >> gtViewSlotModelChildren [
 LcsSlotModel >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
-	^ aView empty
-	"^ aView columnedList
+	"^ aView empty"
+	^ aView columnedList
 		title: 'Domain Slot Definitions';
 		priority: 10;
 		items: [ self allSlotDefinitions ];
 		column: 'Name' text: [ :each | each slotName ];
 		column: 'Class' text: [ :each | each class name ];
 		column: 'Defined In' text: [ :each | each domainClass name ];
-		column: '' stencil: [ :each | BrButton new
+		"column: '' stencil: [ :each | BrButton new
 										aptitude: BrGlamorousButtonWithLabelAptitude new;
 										label: 'Remove';
-										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; 
+										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; "
 		actionUpdateButton;
-		yourself"
+		yourself
 
 ]
 
