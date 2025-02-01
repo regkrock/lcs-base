@@ -315,7 +315,9 @@ LcsBaseSystem >> instantiateAndInstallSlotModelForBootstrapClasses [
 { #category : #initialize }
 LcsBaseSystem >> instantiateSlotModelForBootstrapClasses [
 	self systemBootstrapDomainClasses
-		doWithIndex: [ :eachClass :index | eachClass instantiateSlotModel ]
+		doWithIndex: [ :eachClass :index | 
+			eachClass instantiateSlotModel.
+			self assert: eachClass slotModel parent == eachClass ]
 ]
 
 { #category : #testing }

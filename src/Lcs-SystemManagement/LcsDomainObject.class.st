@@ -10,6 +10,9 @@ Class {
 		'uuid',
 		'version'
 	],
+	#classInstVars : [
+		'slotModel'
+	],
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
@@ -175,8 +178,7 @@ LcsDomainObject class >> installSlotModelIn: aSystem [
 { #category : #'slot model - install' }
 LcsDomainObject class >> instantiateSlotModel [
 	self  verifySuperclassesHaveInitializedSlotModel.
-	self slotModel: (LcsSlotModel newOn: self).
-	self traceCr: self printString , ' slot model parent set to ' , self slotModel parent printString
+	self slotModel: (LcsSlotModel newOn: self)
 ]
 
 { #category : #testing }
@@ -380,8 +382,7 @@ LcsDomainObject class >> verifySlotModelConsistency [
 	self logEntry.
 	 self verifyClassHasSlotDefinitionsForInstVars .
 	self assert: self hasSlotModel.
-	self traceCr: 'Slot Model Parent ' , self slotModel parent printString.
-	"self assert: self slotModel parent == self."
+	self assert: self slotModel parent == self.
 	self logExit.
 ]
 

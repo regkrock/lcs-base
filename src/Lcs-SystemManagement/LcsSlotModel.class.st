@@ -25,11 +25,11 @@ LcsSlotModel class >> newOn: aDomainClass [
 LcsSlotModel >> _slotDefinitionNamed: aSlotName [
 	^ self slotDefinitions
 		at: aSlotName
-		ifAbsent: [ nil
-			"self domainSuperClass isDomainClass
+		ifAbsent: [
+			self domainSuperClass isDomainClass
 				ifTrue: [
 					self domainSuperClassSlotModel  _slotDefinitionNamed: aSlotName]
-				ifFalse: [ nil ]" ]
+				ifFalse: [ nil ] ]
 ]
 
 { #category : #slots }
@@ -173,6 +173,11 @@ LcsSlotModel >> parentSlotDefinition [
 	^ self slotDefinitionNamed: 'parent'
 ]
 
+{ #category : #slots }
+LcsSlotModel >> parentSuperclass [
+	^ self parent superclass
+]
+
 { #category : #printing }
 LcsSlotModel >> printOn: aStream [
 	super printOn: aStream.
@@ -189,13 +194,10 @@ LcsSlotModel >> removeSlotDefinitionNamed: aSlotName [
 
 { #category : #slots }
 LcsSlotModel >> slotDefinitionNamed: aSlotName [
-	| slotDefinition |
-	slotDefinition := self _slotDefinitionNamed: aSlotName.
-	slotDefinition
-		ifNil: [ LcsSlotDoesNotExistInSlotModelError
+	^ (self _slotDefinitionNamed: aSlotName) ifNil: [
+			LcsSlotDoesNotExistInSlotModelError
 				signalWithContext: self
-				slotName: aSlotName ].
-	^ slotDefinition
+				slotName: aSlotName ]
 ]
 
 { #category : #model }
