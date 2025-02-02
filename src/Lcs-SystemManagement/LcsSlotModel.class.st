@@ -82,7 +82,7 @@ LcsSlotModel >> domainSuperClassSlotModel [
 	LcsUndefinedSlotModelError signalSuperclassWithoutSlotModel: self domainSuperClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'slot access' }
 LcsSlotModel >> getPersistedValueOf: aString in: anObject [
 	^ (self slotDefinitionNamed: aString) persistedSlotVarIn: anObject
 ]
