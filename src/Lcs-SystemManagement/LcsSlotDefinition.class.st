@@ -124,6 +124,7 @@ LcsSlotDefinition >> gtCreateClassAndValueElementFor: aColumn [
 { #category : #'gt view' }
 LcsSlotDefinition >> gtDomainMetaFor: aView [
 	<gtView>
+	self parent isNil ifTrue: [ ^ aView empty ].
 	^ aView explicit
 		title: 'Domain Meta';
 		priority: 200;
@@ -137,7 +138,7 @@ LcsSlotDefinition >> gtSlotDefinitionAttributes [
 		add: 'slotDefinitionClass' -> self class;
 		add: 'domainClass' -> self newDomainClassName;
 		add: 'slotName' -> self slotName;
-		add: 'slotTypes' -> self slotTypes;
+		add: 'slotTypes' -> self slotTypesList;
 		add: 'required' -> self isRequired;
 		yourself
 ]
@@ -160,6 +161,7 @@ LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 { #category : #'gt view' }
 LcsSlotDefinition >> gtSlotModelFor: aView [
 	<gtView>
+	self parent ifNil: [ ^ aView empty ].
 	^ aView forward
 		title: 'Slot Model';
 		priority: 200;
@@ -306,13 +308,14 @@ LcsSlotDefinition >> isRequired [
 
 { #category : #'gt view' }
 LcsSlotDefinition >> newDomainClassName [
-	self parent ifNil: [ ^ self parent class name].
+	self parent ifNil: [ ^ '<not initialized>'].
 	^self parent domainClass
 ]
 
 { #category : #'slot model' }
 LcsSlotDefinition >> persistedSlotVarIn: aDomainObject [
-	aDomainObject isAdding ifTrue: [ ^ nil ].
+	"self traceCr: 'persistedSlotVarIn: ' , aDomainObject printString."
+	"aDomainObject isInAddingState ifTrue: [ ^ nil ]."
 	^ aDomainObject instVarNamed: self slotName asString
 ]
 

@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #'as yet unclassified' }
+LcsSymbolSlot >> defaultInitialValueBlock [
+	^ [ #'' ]
+]
+
 { #category : #'slot definition' }
 LcsSymbolSlot >> inputConversionBlock: aBlock [ 
 	inputConversionBlock := aBlock

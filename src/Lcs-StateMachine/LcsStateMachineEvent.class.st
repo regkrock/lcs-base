@@ -56,7 +56,7 @@ LcsStateMachineEvent >> arguments: anArray [
 
 { #category : #accessing }
 LcsStateMachineEvent >> handled [
-	handled
+	^ handled
 ]
 
 { #category : #accessing }

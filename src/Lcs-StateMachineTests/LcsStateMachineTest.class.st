@@ -7,6 +7,14 @@ Class {
 	#category : #'Lcs-StateMachineTests-Tests'
 }
 
+{ #category : #setUp }
+LcsStateMachineTest >> domainModelTestClasses [
+	^ super domainModelTestClasses
+		add: LxxCompositeStateMachine;
+		add: LxxSubStateMachine;
+		yourself
+]
+
 { #category : #private }
 LcsStateMachineTest >> incrementCounter [
 	counter := counter + 1.
@@ -71,7 +79,7 @@ LcsStateMachineTest >> testAddingNewState [
 	self assert: newState id = #stateA.
 	self assert: (newState isKindOf: LcsStateMachineState).
 	self assert: newState subStateMachine isNil.
-	self assert: newState parent identicalTo: stateMachine.
+	self assert: newState parent identicalTo: stateMachine states.
 	self assert: newState entryAction isBlock.
 	self assert: newState entryAction displayString equals: '[ ]' .
 	self assert: newState exitAction isBlock.
@@ -132,9 +140,7 @@ LcsStateMachineTest >> testCompositeStateMachine [
 
 { #category : #testing }
 LcsStateMachineTest >> testCreation [
-	| stateMachine |
-	self assert: self currentSystem notNil.
-	stateMachine := self newStateMachine.	
+	self newStateMachine
 ]
 
 { #category : #testing }

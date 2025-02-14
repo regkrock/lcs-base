@@ -1,13 +1,10 @@
 Class {
 	#name : #LcsUnitsOfWork,
-	#superclass : #LcsCollection,
+	#superclass : #LcsParentObject,
+	#traits : 'LtOrderedCollection',
+	#classTraits : 'LtOrderedCollection classTrait',
 	#category : #'Lcs-SystemManagement-Environment'
 }
-
-{ #category : #collection }
-LcsUnitsOfWork class >> collectionClass [
-	^ OrderedCollection
-]
 
 { #category : #'gt view' }
 LcsUnitsOfWork >> applicationEnvironmentViewChildren [

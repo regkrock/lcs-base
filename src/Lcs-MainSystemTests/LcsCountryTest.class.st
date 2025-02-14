@@ -19,7 +19,7 @@ LcsCountryTest >> testCreation [
 	self currentSystem currentUnitOfWork applyChanges.
 	
 	countries := self currentSystem geographyModule countries.
-	self assert: countries size equals: 1.
+	self assert: countries collectionSize equals: 1.
 	self assert: (countries includes: country)
 	
 ]

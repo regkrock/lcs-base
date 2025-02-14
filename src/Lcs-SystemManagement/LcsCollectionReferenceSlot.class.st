@@ -21,7 +21,7 @@ LcsCollectionReferenceSlot >> collectionSlotName: anObject [
 { #category : #'gt view' }
 LcsCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
-		add: 'collectionSlotModuleName' -> self collectionSlotModuleName;
+		"add: 'collectionSlotModuleName' -> self collectionSlotModuleName;"
 		add: 'collectionSlotName' -> self collectionSlotName;
 		yourself
 ]

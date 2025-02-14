@@ -7,3 +7,8 @@ Class {
 { #category : #testing }
 LcsStateMachineStates class >> isBaseSystemClass [
 ]
+
+{ #category : #'as yet unclassified' }
+LcsStateMachineStates >> stateMachine [
+	^ self parent
+]

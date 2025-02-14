@@ -4,7 +4,12 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
+LcsStateMachineEventTypeSlot >> defaultInitialValueBlock [
+	^ [ #'' ]
+]
+
+{ #category : #initialize }
 LcsStateMachineEventTypeSlot >> initialize [
 	super initialize.
 	self
@@ -12,7 +17,7 @@ LcsStateMachineEventTypeSlot >> initialize [
 		beRequired
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 LcsStateMachineEventTypeSlot >> typeClass [
 	^ Symbol
 ]

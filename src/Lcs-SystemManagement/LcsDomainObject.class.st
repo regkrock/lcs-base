@@ -66,19 +66,21 @@ LcsDomainObject >> history: anObject [
 	self slotVarNamed: 'history' put: anObject
 ]
 
-{ #category : #'as yet unclassified' }
-LcsDomainObject >> isAdding [
+{ #category : #state }
+LcsDomainObject >> isInAddingState [
 	"The object has been created but has not been committed. When committed the version will be incremented to 1"
-	^ (self instVarNamed: 'version') isZero
+	| value |
+	value := self instVarNamed: 'version'.
+	^ value isNil or: [ value isZero ]
 ]
 
-{ #category : #'as yet unclassified' }
-LcsDomainObject >> isDeleted [
+{ #category : #state }
+LcsDomainObject >> isInDeletedState [
 	^ self version = SmallInteger minVal
 ]
 
-{ #category : #'as yet unclassified' }
-LcsDomainObject >> isPendingDeletion [
+{ #category : #state }
+LcsDomainObject >> isInPendingDeletionState [
 	"This will only be -1 from the time the object is marked as deleted until the transaction is complete.
 	 When the transaction is completed, the value of version with be low values"
 

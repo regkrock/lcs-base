@@ -10,11 +10,6 @@ Class {
 	#category : #'Lcs-BaseTests-Tests'
 }
 
-{ #category : #subject }
-LcsTestCase class >> subjectClass [
-	^ self subclassResponsibility
-]
-
 { #category : #running }
 LcsTestCase >> abortTransaction [
 	System abortTransaction
@@ -53,16 +48,6 @@ LcsTestCase >> createClassName: aString superclassName: aSuperclassName category
 				category: aCategory asSymbol) execute ]
 ]
 
-{ #category : #subject }
-LcsTestCase >> createNewSubject [
-	self subject: self newSubject
-]
-
-{ #category : #subject }
-LcsTestCase >> newSubject [
-	^ self subjectClass new
-]
-
 { #category : #refactoring }
 LcsTestCase >> removeClassName: aString [
 	(self classNamed: aString)
@@ -82,9 +67,4 @@ LcsTestCase >> subject [
 { #category : #accessing }
 LcsTestCase >> subject: anObject [
 	subject := anObject
-]
-
-{ #category : #subject }
-LcsTestCase >> subjectClass [
-	^ self class subjectClass
 ]

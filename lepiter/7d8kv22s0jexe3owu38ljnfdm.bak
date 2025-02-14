@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-30T14:28:20.381472-05:00"
+						"dateAndTimeString" : "2025-01-30T14:28:46.219371-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ED9SizrpDQCawZfRCChzfA=="
 				},
-				"code" : "LcsApplicationEnvironment ensureActiveApplicationEnvironment.\rsystem := LcsApplicationEnvironment currentSystem"
+				"code" : "LcsApplicationEnvironment ensureActiveApplicationEnvironment.\r"
 			},
 			{
 				"__type" : "textSnippet",
@@ -208,14 +208,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-30T14:28:16.227107-05:00"
+						"dateAndTimeString" : "2025-01-30T14:28:48.694323-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "C76WezrpDQCYfX52CChzfA=="
 				},
-				"code" : ""
+				"code" : "system := LcsApplicationEnvironment currentSystem"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -242,14 +242,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-29T09:10:07.933752-05:00"
+						"dateAndTimeString" : "2025-02-14T12:42:55.126698-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "DeqSmjrpDQCbyKH2CChzfA=="
 				},
-				"code" : ""
+				"code" : "\"Force\rLcsApplicationEnvironment singleton: nil"
 			}
 		]
 	},

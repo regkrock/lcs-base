@@ -65,6 +65,7 @@ LcsStateMachineState class >> parentSlotDefinition [
 	^ LcsCollectionReferenceSlot new
 		slotName: 'parent';
 		collectionSlotName: 'states';
+		addSlotType: LcsStateMachineStates;
 		yourself
 ]
 

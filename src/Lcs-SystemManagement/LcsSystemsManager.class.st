@@ -169,7 +169,7 @@ LcsSystemsManager >> parent: anObject [
 { #category : #private }
 LcsSystemsManager >> releaseApplicationEnvironment [
 	self removeCurrentSystem.
-	self systems: OrderedCollection new
+	self systems removeAll
 ]
 
 { #category : #api }

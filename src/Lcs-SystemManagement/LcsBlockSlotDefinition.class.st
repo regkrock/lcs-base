@@ -12,7 +12,7 @@ LcsBlockSlotDefinition >> defaultInitialValueBlock [
 { #category : #'as yet unclassified' }
 LcsBlockSlotDefinition >> initialValueFor: aDomainObject [
 	^ self initialValueBlock 
-		ifNil: [ [ ] ] 
+		ifNil: [ [ true ] ] 
 		ifNotNil: [ self initialValueBlock ]
 ]
 

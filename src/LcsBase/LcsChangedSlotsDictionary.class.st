@@ -1,10 +1,7 @@
 Class {
 	#name : #LcsChangedSlotsDictionary,
-	#superclass : #LcsCollection,
+	#superclass : #LcsParentObject,
+	#traits : 'LtDictionaryCollection',
+	#classTraits : 'LtDictionaryCollection classTrait',
 	#category : #'LcsBase-Core'
 }
-
-{ #category : #conf }
-LcsChangedSlotsDictionary class >> collectionClass [
-	^ Dictionary
-]

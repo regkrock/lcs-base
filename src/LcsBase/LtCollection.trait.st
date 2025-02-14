@@ -84,7 +84,6 @@ LtCollection >> remove: anObject ifAbsent: aBlock [
 
 { #category : #collection }
 LtCollection >> removeAll [
-	self collection ifNil: [ ^ self ].
 	^self collection removeAll
 ]
 

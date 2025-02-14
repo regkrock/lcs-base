@@ -10,11 +10,6 @@ Class {
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
 
-{ #category : #subject }
-LcsGlobalCollectionSlotTest class >> subjectClass [
-	^ LcsGlobalCollectionSlot
-]
-
 { #category : #accessing }
 LcsGlobalCollectionSlotTest >> codeJobBuilder [
 	^ codeJobBuilder
@@ -26,26 +21,15 @@ LcsGlobalCollectionSlotTest >> codeJobBuilder: anObject [
 ]
 
 { #category : #running }
-LcsGlobalCollectionSlotTest >> newCodeJobBuilder [
-	^ LcsCodeBuilderJob new
-]
-
-{ #category : #running }
-LcsGlobalCollectionSlotTest >> setUp [
-	self codeJobBuilder: self newCodeJobBuilder.
-	super setUp
-]
-
-{ #category : #running }
 LcsGlobalCollectionSlotTest >> tearDown [
-	self codeJobBuilder uninstall.
+	self codeJobBuilder ifNotNil: [ :builder | builder uninstall].
 	super tearDown.
-	self codeJobBuilder verifyUninstall
+	self codeJobBuilder ifNotNil: [ :builder | builder verifyUninstall]
 ]
 
 { #category : #tests }
 LcsGlobalCollectionSlotTest >> testDefaultCreation [
-	self createNewSubject.
+	self subject: LcsGlobalCollectionSlot new.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject collectionMemberTypes isEmpty.
 	self assert: self subject collectionClass isNil.
@@ -60,6 +44,15 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 
 { #category : #tests }
 LcsGlobalCollectionSlotTest >> testInstallingGlobalCollectionSlot [
+	self codeJobBuilder: LcsCodeBuilderJob new.
+	self codeJobBuilder addJobStep: (
+		LcsGlobalSlotDefinitionBuilder new
+			slotClassName: LxxPrototypePersons name;
+			slotName: 'foos';
+			targetClassName: self currentSystem class name;
+			targetModuleClass: self currentSystem class name;
+			collectionElementTypes: { LxxPrototypePerson name };
+			yourself).
 	self codeJobBuilder execute.
 	self assert: (self currentSystem class hasSlotDefinitionNamed: 'foos')
 ]

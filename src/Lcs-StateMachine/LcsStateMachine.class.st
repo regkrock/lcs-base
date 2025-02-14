@@ -77,7 +77,8 @@ LcsStateMachine >> addListener: aStatechart [
 
 { #category : #adding }
 LcsStateMachine >> addState: aState [
-	"aState parent: self."
+	aState parent: self states.
+	aState stateMachine: self.
 	^ self states add: aState
 ]
 
@@ -179,7 +180,7 @@ LcsStateMachine >> gtStateMachineViewFor: aView [
 
 { #category : #'event handling' }
 LcsStateMachine >> handleEvent: anEventSymbolOrEvent [ 
-	^self handleEvent: anEventSymbolOrEvent ifFailed: []
+	^ self handleEvent: anEventSymbolOrEvent ifFailed: []
 ]
 
 { #category : #'event handling' }

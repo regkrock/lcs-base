@@ -4,15 +4,10 @@ Class {
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
-LcsSlotDefinitionTest class >> subjectClass [
-	^ LcsSlotDefinition
-]
-
 { #category : #tests }
 LcsSlotDefinitionTest >> testCreation [
 
-	self createNewSubject.
+	self subject: LcsSlotDefinition new.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject slotName isNil.
 	self subject slotName: #test.

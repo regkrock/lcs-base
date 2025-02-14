@@ -27,6 +27,7 @@ LcsTestWithNoApplicationEnvironmentTest >> setUp [
 	self abortTransaction. 
 	super setUp.
 	self currentApplicationEnvironment: LcsApplicationEnvironment suspendApplicationEnvironment.
+	self deny: LcsApplicationEnvironment hasInitializedApplicationEnvironment.
 	self commitTransaction
 ]
 

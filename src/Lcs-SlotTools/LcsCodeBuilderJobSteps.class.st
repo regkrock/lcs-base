@@ -306,6 +306,11 @@ LcsCodeBuilderJobSteps >> verifyCodeInstallation [
 ]
 
 { #category : #command }
+LcsCodeBuilderJobSteps >> verifyPopulateSlotModel [
+	self collection do: [ :each | each verifyPopulateSlotModel ]
+]
+
+{ #category : #command }
 LcsCodeBuilderJobSteps >> verifySlotModelUpdatesMadeByBuilder [
 	self collection do: [ :each | each verifySlotModelUpdatesMadeByBuilder ]
 ]

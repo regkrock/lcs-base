@@ -42,12 +42,6 @@ LcsDomainObjectHistory class >> createdSlotDefinition [
 		yourself
 ]
 
-{ #category : #'instance  creation' }
-LcsDomainObjectHistory class >> new [ 
-	self traceCr: ' new ' , self name.
-	^ super new
-]
-
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> userIdSlotDefinition [
 	<slotDefinition>

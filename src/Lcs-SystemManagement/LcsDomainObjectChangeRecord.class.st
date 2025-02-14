@@ -30,12 +30,6 @@ LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 		yourself
 ]
 
-{ #category : #'instance  creation' }
-LcsDomainObjectChangeRecord class >> new [ 
-	self traceCr: ' new ' , self name.
-	^ super new
-]
-
 { #category : #'slot definition' }
 LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 	<slotDefinition>

@@ -126,9 +126,9 @@ LcsStateMachineStateTransition >> changeStateToStateNamed: aStateSymbol [
 
 { #category : #actions }
 LcsStateMachineStateTransition >> checkGuard [
-	self guardCondition ifNil: [ ^true ].
+	self guardCondition ifNil: [ ^ true ].
 	
-	^self guardCondition cull: self context	cull: self currentEvent
+	^ self guardCondition cull: self context cull: self currentEvent
 	
 ]
 

@@ -242,14 +242,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-29T09:10:07.933752-05:00"
+						"dateAndTimeString" : "2025-02-14T12:43:19.25354-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "DeqSmjrpDQCbyKH2CChzfA=="
 				},
-				"code" : ""
+				"code" : "\"Force clearing of environment\"\rLcsApplicationEnvironment singleton: nil"
 			}
 		]
 	},
