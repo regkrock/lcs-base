@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'collection'
 	],
-	#category : #'Lcs-SystemManagement-Traits'
+	#category : #'LcsBase-Traits'
 }
 
 { #category : #collection }
