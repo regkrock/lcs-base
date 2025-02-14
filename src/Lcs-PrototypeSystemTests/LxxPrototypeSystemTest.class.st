@@ -40,6 +40,18 @@ LxxPrototypeSystemTest >> addtionalSubject: anObject [
 	additionalSubject := anObject
 ]
 
+{ #category : #tests }
+LxxPrototypeSystemTest >> bootstrapClasses [
+	^ self subject allBootstrapDomainClasses
+		asSortedCollection: [ :a :b | a name <= b name ]
+]
+
+{ #category : #tests }
+LxxPrototypeSystemTest >> classesWithInitializeSlotModel [
+	^ self subject systemSlotModel slotModels keys
+		asSortedCollection: [ :a :b | a name <= b name ]
+]
+
 { #category : #private }
 LxxPrototypeSystemTest >> newPrototypeSystem [
 	| numberOfSystems numberOfUnitsOfWork |
@@ -54,7 +66,7 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: self currentUnitOfWork hasNoChanges.
 	self assert: self subject status isInActiveStatus.
 	self assert: self subject status parent identicalTo: self subject.
-	self assert: LcsDomainObject isSlotModelReleased not.
+	self assert: LcsBaseDomainObject isSlotModelReleased not.
 	self assert: (self subject systemSlotModel hasSlotModelFor: self subject).
 	self assert: (self unitsOfWorkManager unitOfWorkFor: self subject) system identicalTo: self subject.
 	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
@@ -67,7 +79,7 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
 	self assert: self currentSystem configuration class name equals: #LxxPrototypeSystemConfiguration.
 
-	self assert: LcsDomainObject isSlotModelReleased not
+	self assert: LcsBaseDomainObject isSlotModelReleased not
 ]
 
 { #category : #running }
@@ -152,11 +164,11 @@ LxxPrototypeSystemTest >> testCreatingNewDomainObject [
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	domainObject := LcsDomainObject new.
-	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
+	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 2.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
-	self assert: self currentSystem currentUnitOfWork addedObjects any domainObject identicalTo: domainObject
+	self assert: (self currentSystem currentUnitOfWork addedObjects keys includes:  domainObject)
 ]
 
 { #category : #tests }
@@ -211,20 +223,25 @@ LxxPrototypeSystemTest >> testNewUnitOfWorkInSystem [
 
 { #category : #tests }
 LxxPrototypeSystemTest >> testPrototypeSystemCreation [
-	| allDomainClasses |
-
+	| allDomainClasses classesWithInitializeSlotModel bootstrapClasses |
 	self newPrototypeSystem.
 	self assert: self subject currentUnitOfWork hasNoChanges.
 	self assert: (self subject slotDefinitionNamed: 'persons') notNil.
-	self assert: self subject persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
-	
+	self
+		assert: self subject persons collection class
+		identicalTo: LcsSmalltalkConfiguration identitySetClass.
+
 	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
 	self assert: self subject configuration class equals: LxxPrototypeSystemConfiguration.
-	self assert: self subject hasSystemSlotModels .
-	self assert: self subject systemSlotModel slotModels size equals: self subject allBootstrapDomainClasses size.
-	allDomainClasses := LcsDomainObject withAllSubclasses asOrderedCollection.
-	self subject systemSlotModel slotModels keysDo: [ :each | allDomainClasses remove: each ifAbsent: [ ] ].
-	self assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotModel isNil ])
+	self assert: self subject hasSystemSlotModels.
+
+	self assertSortedCollection: self classesWithInitializeSlotModel equals: self bootstrapClasses.
+
+	allDomainClasses := LcsBaseDomainObject withAllSubclasses asOrderedCollection.
+	self subject systemSlotModel slotModels
+		keysDo: [ :each | allDomainClasses remove: each ifAbsent: [  ] ].
+	self
+		assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotModel isNil ])
 ]
 
 { #category : #tests }

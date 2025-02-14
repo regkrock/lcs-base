@@ -19,7 +19,7 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModel [
 		
 	model layout custom: BlBasicLayout new.
 
-	model root children withIndexDo: [ :child :n | child relocate: (positions at: n) ].
+	"model root children withIndexDo: [ :child :n | child relocate: (positions at: n) ]."
 	
 	^ model
 
@@ -35,20 +35,20 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModelAssociationsWithLabels [
 			-> {{'parent'.
 						LcsSlotModel}.
 					{'domainClass'.
-						LcsDomainObject}}.
-		LcsDomainObject
+						LcsBaseDomainObject}}.
+		LcsBaseDomainObject
 			-> {{'slotModel'.
 						LcsSlotModel}}.
 		LcsSlotModel
 			-> {{'domainClass'.
-						LcsDomainObject}}}
+						LcsBaseDomainObject}}}
 ]
 
 { #category : #pirvate }
 LcsSlotModelDiagramExamples >> domainObjectSlotModelClasses [
 	| classes |
 	classes := OrderedCollection new
-			addAll: LcsDomainObject withAllSuperclasses;
+			addAll: LcsBaseDomainObject withAllSuperclasses;
 			addAll: LcsSlotModel withAllSuperclasses;
 			addAll: LcsSlotDefinition withAllSuperclasses;
 			yourself.
@@ -129,7 +129,7 @@ LcsSlotModelDiagramExamples >> systemSlotModelAssociationsWithLabels [
 		LcsSystemSlotModel
 			-> {{'parent'.
 						LcsBaseSystem}}.
-		LcsDomainObject
+		LcsBaseDomainObject
 			-> {{'slotModel'.
 						LcsSlotModel}}.
 		LcsSystemSlotModel

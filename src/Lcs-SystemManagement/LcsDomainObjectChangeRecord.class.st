@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDomainObjectChangeRecord,
-	#superclass : #LcsDomainObject,
+	#superclass : #LcsSupportDomainObject,
 	#instVars : [
 		'userId',
 		'created',
@@ -8,6 +8,11 @@ Class {
 	],
 	#category : #'Lcs-SystemManagement-Domain'
 }
+
+{ #category : #'application environment' }
+LcsDomainObjectChangeRecord class >> addToUnitOfWork: newObject [
+	"this is not saved in the Unit of Work as it is part of the unit of work"
+]
 
 { #category : #'slot definition' }
 LcsDomainObjectChangeRecord class >> changesSlotDefinition [
@@ -20,9 +25,15 @@ LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 { #category : #'slot definition' }
 LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 	<slotDefinition>
-	^ LcsTimestampSlot new
+	^ LcsChangeRecordTimestampSlot new
 		slotName: 'created';
 		yourself
+]
+
+{ #category : #'instance  creation' }
+LcsDomainObjectChangeRecord class >> new [ 
+	self traceCr: ' new ' , self name.
+	^ super new
 ]
 
 { #category : #'slot definition' }
@@ -37,7 +48,7 @@ LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 { #category : #'slot definition' }
 LcsDomainObjectChangeRecord class >> userIdSlotDefinition [
 	<slotDefinition>
-	^ LcsUserIdSlot new
+	^ LcsChangeRecordUserIdSlot new
 ]
 
 { #category : #accessing }

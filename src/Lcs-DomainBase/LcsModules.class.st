@@ -13,11 +13,6 @@ LcsModules class >> collectionSlotDefinition [
 		yourself
 ]
 
-{ #category : #'application environment' }
-LcsModules >> applicationEnvironment [
-	^ self parent applicationEnvironment
-]
-
 { #category : #build }
 LcsModules >> buildModuleFor: eachModuleClass [
 

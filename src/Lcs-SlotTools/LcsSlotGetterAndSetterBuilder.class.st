@@ -33,7 +33,7 @@ LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
 LcsSlotGetterAndSetterBuilder >> getterAndSetterMethodsFilter [
 	| classFilter |
 	classFilter := (GtSearchInheritedMethodsFilter forClass: self target)
-			withSuperclassesUpTo: #LcsDomainObject asClass.
+			withSuperclassesUpTo: #LcsBaseDomainObject asClass.
 	^ classFilter & (self getterSelector gtImplementors | self setterSelector gtImplementors)
 ]
 

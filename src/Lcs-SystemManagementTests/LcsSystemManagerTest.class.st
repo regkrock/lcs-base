@@ -60,7 +60,7 @@ LcsSystemManagerTest >> testSystemMangerAPIsWhenCollectionIsEmpty [
 	self assert: subject parent equals: LcsApplicationEnvironment singleton.
 	self assert: subject numberOfSystems equals: 0.
 	self assert:subject currentSystem isNil.
-	self assert: subject systems isEmpty.
+	self assert: subject systems hasNoElements.
 	subject removeCurrentSystem.
 	self assert: subject numberOfSystems equals: 0.
 	subject suspendCurrentSystem.

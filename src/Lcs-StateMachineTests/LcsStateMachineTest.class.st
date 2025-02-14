@@ -24,7 +24,7 @@ LcsStateMachineTest >> newStateMachine [
 	stateMachine := LcsStateMachine new.
 	self assert: stateMachine context isEmpty.
 	self assert: stateMachine currentState isNil.
-	self assert: stateMachine id isNil.
+	self assert: stateMachine id equals: #''.
 	self assert: stateMachine startState isNil.
 	self assert: stateMachine parent isNil.
 	self assert: stateMachine hasStates.

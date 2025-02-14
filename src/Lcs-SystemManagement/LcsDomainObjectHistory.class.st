@@ -6,7 +6,7 @@ This has the following information:
 "
 Class {
 	#name : #LcsDomainObjectHistory,
-	#superclass : #LcsDomainObject,
+	#superclass : #LcsSupportDomainObject,
 	#instVars : [
 		'created',
 		'userId',
@@ -14,6 +14,11 @@ Class {
 	],
 	#category : #'Lcs-SystemManagement-Domain'
 }
+
+{ #category : #'application environment' }
+LcsDomainObjectHistory class >> addToUnitOfWork: newObject [
+	"this is not saved in the Unit of Work as it is part of the unit of work"
+]
 
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
@@ -30,21 +35,23 @@ LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> createdSlotDefinition [
 	<slotDefinition>
-	^ LcsTimestampSlot new
+	^ LcsChangeRecordTimestampSlot new
 		slotName: 'created';
 		beRequired;
 		"beReadOnly;"
 		yourself
 ]
 
+{ #category : #'instance  creation' }
+LcsDomainObjectHistory class >> new [ 
+	self traceCr: ' new ' , self name.
+	^ super new
+]
+
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> userIdSlotDefinition [
 	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'userId';
-		beRequired;
-		"beReadOnly;"
-		yourself
+	^ LcsChangeRecordUserIdSlot new
 ]
 
 { #category : #'slot definitions' }

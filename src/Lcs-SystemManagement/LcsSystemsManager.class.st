@@ -126,7 +126,7 @@ LcsSystemsManager >> hasNoSystems [
 
 { #category : #testing }
 LcsSystemsManager >> hasSystems [
-	^ self systems notEmpty
+	^ self systems hasElements
 ]
 
 { #category : #initialize }
@@ -152,7 +152,8 @@ LcsSystemsManager >> makeSystemCurrent: aSystem [
 
 { #category : #querry }
 LcsSystemsManager >> numberOfSystems [
-	^ self systems size
+	(self systems isKindOf: OrderedCollection) ifTrue: [ ^ self systems size ].
+	^ self systems collectionSize
 ]
 
 { #category : #accessing }
@@ -173,7 +174,7 @@ LcsSystemsManager >> releaseApplicationEnvironment [
 
 { #category : #api }
 LcsSystemsManager >> releaseSlotModel [
-	LcsDomainObject releaseSlotModel
+	LcsBaseDomainObject releaseSlotModel
 ]
 
 { #category : #api }

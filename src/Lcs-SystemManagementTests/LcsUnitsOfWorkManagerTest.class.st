@@ -12,7 +12,7 @@ LcsUnitsOfWorkManagerTest >> testCreation [
 	self assert: subject notNil.
 	self assert: subject currentUnitOfWork isNil.
 	self deny: subject hasCurrentUnitOfWork.
-	self assert: subject unitsOfWork isEmpty.
+	self assert: subject unitsOfWork hasNoElements.
 	self assert: subject parent == LcsApplicationEnvironment singleton.
 	self assert: subject numberOfUnitsOfWork equals: 0
 
@@ -30,5 +30,5 @@ LcsUnitsOfWorkManagerTest >> testRemoveCurrentUnitOfWork [
 	self assert: subject numberOfUnitsOfWork equals: 1.
 	subject removeCurrentUnitOfWork.
 	self assert: subject currentUnitOfWork identicalTo:nil.
-	self assert: subject unitsOfWork isEmpty
+	self assert: subject unitsOfWork hasNoElements
 ]

@@ -83,6 +83,11 @@ LcsUnitsOfWorkManager >> hasCurrentUnitOfWork [
 	^self currentUnitOfWork notNil
 ]
 
+{ #category : #testing }
+LcsUnitsOfWorkManager >> hasUnitsOfWork [
+	^ self unitsOfWork hasElements
+]
+
 { #category : #initialize }
 LcsUnitsOfWorkManager >> initialize [
 	super initialize.
@@ -96,7 +101,7 @@ LcsUnitsOfWorkManager >> initializeOn: anApplicationEnvironment [
 
 { #category : #querry }
 LcsUnitsOfWorkManager >> numberOfUnitsOfWork [
-	^ self unitsOfWork size
+	^ self unitsOfWork collectionSize
 ]
 
 { #category : #accessing }

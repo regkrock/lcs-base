@@ -8,6 +8,10 @@ Class {
 LcsObjectVersionSlot >> initialize [
 	super initialize.
 	self slotName: 'version'.
-	self initialValue: 0.
-	self addSlotType: SmallInteger
+	self initialValue: 0
+]
+
+{ #category : #initialize }
+LcsObjectVersionSlot >> typeClass [
+	^ SmallInteger
 ]

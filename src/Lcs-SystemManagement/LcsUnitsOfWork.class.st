@@ -17,12 +17,12 @@ LcsUnitsOfWork >> applicationEnvironmentViewChildren [
 { #category : #collection }
 LcsUnitsOfWork >> removeUnitsOfWorkFor: aSystem [
 	self collection copy
-		do: [ :each | each system == aSystem ifTrue: [ self collection remove: each ] ].
+		do: [ :each | each system == aSystem ifTrue: [ self remove: each ] ].
 ]
 
 { #category : #collection }
 LcsUnitsOfWork >> unitOfWorkFor: aSystem [
-	^ self collection
+	^ self
 		detect: [ :each | each system == aSystem ]
 		ifNone: [ LcsSystemHasNoUnitOfWorkError
 				signal: 'No unit of work found for requested system' ]

@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-07T14:51:40.73882-04:00"
+						"dateAndTimeString" : "2025-01-21T14:46:29.516985-05:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The application can have many systems, but only one can be active at a time. The system manger manages the creation, activation, suspension and removal of systems.\n\nThere is only one instance of {{gtClass:LcsSystemManager}}.  The single insatance is rooted in {{gtClass:name=LcsApplicationEnvironment}}"
+				"string" : "The application can have many systems, but only one can be active at a time. The system manger manages the creation, activation, suspension and removal of systems.\n\nThere is only one instance of {{gtClass:LcsSystemsManager}}.  The single insatance is rooted in {{gtClass:name=LcsApplicationEnvironment}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -550,7 +550,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-07T14:49:40.24309-04:00"
+												"dateAndTimeString" : "2025-01-21T14:46:29.533374-05:00"
 											}
 										},
 										"uid" : {
@@ -560,7 +560,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "The code that instantiates the new system is {{gtMethod:LcsSystemManager>>createCurrentSystemFor:}}"
+										"string" : "The code that instantiates the new system is {{gtMethod:LcsSystemsManager>>createCurrentSystemFor:}}"
 									}
 								]
 							},

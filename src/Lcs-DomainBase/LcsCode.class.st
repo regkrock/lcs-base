@@ -31,12 +31,6 @@ LcsCode class >> isDefaultInstanceSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsCode class >> parentSlotDefinition [
-	<slotDefinition>
-	^ LcsParentSlot new
-]
-
-{ #category : #'slot definitions' }
 LcsCode class >> shortNameSlotDefinition [
 	<slotDefinition>
 	^ LcsShortNameSlot new

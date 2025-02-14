@@ -9,6 +9,10 @@ LcsStateMachineEventTypeSlot >> initialize [
 	super initialize.
 	self
 		slotName: 'type';
-		addSlotType: Symbol;
 		beRequired
+]
+
+{ #category : #'as yet unclassified' }
+LcsStateMachineEventTypeSlot >> typeClass [
+	^ Symbol
 ]

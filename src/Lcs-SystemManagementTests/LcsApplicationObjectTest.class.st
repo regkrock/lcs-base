@@ -18,5 +18,5 @@ LcsApplicationObjectTest >> testCurrentUnitOfWorkDoesNotExist [
 
 { #category : #'as yet unclassified' }
 LcsApplicationObjectTest >> testLcsObjectHasNoninitializedSlotModel [
-	self assert: LcsDomainObject hasNoninitializedSlotModel equals: true
+	self assert: LcsBaseDomainObject hasNoninitializedSlotModel equals: true
 ]

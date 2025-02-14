@@ -207,7 +207,7 @@ LcsStateMachine >> hasStateTransitions [
 
 { #category : #testing }
 LcsStateMachine >> hasStates [
-	^self states size > 0
+	^ self states hasElements
 ]
 
 { #category : #accessing }
@@ -251,7 +251,7 @@ LcsStateMachine >> listeners: anOrderedCollection [
 
 { #category : #testing }
 LcsStateMachine >> numberOfStates [
-	^self states size
+	^self states collectionSize
 ]
 
 { #category : #accessing }

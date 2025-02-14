@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDomainObjectSlotChange,
-	#superclass : #LcsDomainObject,
+	#superclass : #LcsSupportDomainObject,
 	#instVars : [
 		'slotName',
 		'oldValue',
@@ -8,6 +8,17 @@ Class {
 	],
 	#category : #'Lcs-SystemManagement-Domain'
 }
+
+{ #category : #'application environment' }
+LcsDomainObjectSlotChange class >> addToUnitOfWork: newObject [
+	"this is not saved in the Unit of Work as it is part of the unit of work"
+]
+
+{ #category : #'instance creation' }
+LcsDomainObjectSlotChange class >> new [ 
+	self traceCr: ' new ' , self name.
+	^ super new
+]
 
 { #category : #'slot definition' }
 LcsDomainObjectSlotChange class >> newValueSlotDefinition [

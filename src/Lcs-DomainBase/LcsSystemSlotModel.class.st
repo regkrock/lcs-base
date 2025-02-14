@@ -93,7 +93,7 @@ LcsSystemSlotModel >> removeFromSlotModel: aSlotModel [
 
 { #category : #'slot model' }
 LcsSystemSlotModel >> restoreSlotModel [
-	LcsDomainObject releaseApplicationEnvironment.
+	LcsBaseDomainObject releaseApplicationEnvironment.
 	self slotModels keysAndValuesDo: [ :eachDomainClass :eachSlotModel | eachDomainClass slotModel: eachSlotModel ]
 
 ]

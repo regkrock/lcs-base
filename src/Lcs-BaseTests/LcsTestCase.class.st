@@ -20,6 +20,13 @@ LcsTestCase >> abortTransaction [
 	System abortTransaction
 ]
 
+{ #category : #'as yet unclassified' }
+LcsTestCase >> assertSortedCollection: actual equals: expected [
+	self assert: actual size equals: expected size.
+	actual with: expected do: [ :actualItem : expectedItem |
+		self assert: actualItem equals: expectedItem ]
+]
+
 { #category : #running }
 LcsTestCase >> beginTransaction [
 	System beginTransaction

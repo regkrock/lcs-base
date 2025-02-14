@@ -24,7 +24,7 @@ LcsStringSlotTest >> testSlotSetter [
 	person := LxxPrototypePerson new.
 	self assert: person lastName isEmpty.
 	person lastName: 'Schmidt'.
-	self assert: person isAdd.
+	self assert: person isAdding.
 	self assert: person lastName equals: 'Schmidt'.
 	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: ''
 ]

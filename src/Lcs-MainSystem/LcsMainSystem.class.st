@@ -21,7 +21,7 @@ LcsMainSystem >> systemDomainClasses [
 	domainClasses addAll: super systemDomainClasses.
 	^ super systemDomainClasses
 		addAll: (
-			LcsDomainObject withAllSubclasses
+			LcsBaseDomainObject withAllSubclasses
 				reject: [ :eachDomainClass | 
 					(eachDomainClass name beginsWith: 'Lxx')
 						or: [ domainClasses includes: eachDomainClass ] ]);

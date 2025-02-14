@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsBaseUnitOfWork,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'addedObjects',
 		'changedObjects',

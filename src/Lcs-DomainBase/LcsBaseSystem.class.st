@@ -55,6 +55,8 @@ LcsBaseSystem class >> systemBootstrapDomainClasses [
 	| prebootstrapClasses |
 	prebootstrapClasses := 
 		OrderedCollection new
+			add: LcsBaseDomainObject;
+			add: LcsSupportDomainObject;
 			add: LcsDomainObject;
 			add: LcsDomainCollection;
 			add: LcsDomainObjectHistory;
@@ -119,7 +121,6 @@ LcsBaseSystem >> addToSlotModel: aSlotModel [
 LcsBaseSystem >> allBootstrapDomainClasses [
 	^ OrderedCollection new
 		addAll: self systemBootstrapDomainClasses;
-		add: self;
 		addAll: self systemDomainClasses;
 		yourself
 
@@ -472,6 +473,7 @@ LcsBaseSystem >> systemDomainClasses [
 		add: #LcsStateMachineEvent asClass;
 		add: #LcsStateMachineStates asClass;
 		add: #LcsStateMachineTransitions asClass;
+		add: LxxPrototype2Submodule;
 		yourself
 ]
 

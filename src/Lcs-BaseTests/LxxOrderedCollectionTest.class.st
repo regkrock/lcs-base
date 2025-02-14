@@ -8,16 +8,12 @@ Class {
 LxxOrderedCollectionTest >> testAdd [
 	| anLxxCollection addedObject |
 	anLxxCollection := LxxOrderedCollection new.
-	self assert: anLxxCollection isEmpty.
-	self deny: anLxxCollection isNotEmpty.
 	self assert: anLxxCollection hasNoElements.
 	self deny: anLxxCollection hasElements.
 	
 	addedObject := anLxxCollection add: 1.
 	
 	self assert: addedObject equals: 1.
-	self deny: anLxxCollection isEmpty.
-	self assert: anLxxCollection isNotEmpty.
 	self deny: anLxxCollection hasNoElements.
 	self assert: anLxxCollection hasElements.
 
@@ -106,8 +102,6 @@ LxxOrderedCollectionTest >> testRemove [
 	self assert: addedObject equals: 1.
 	self assert: removedOjbect equals: 1.
 
-	self assert: anLxxCollection isEmpty.
-	self deny: anLxxCollection isNotEmpty.
 	self assert: anLxxCollection hasNoElements.
 	self deny: anLxxCollection hasElements.
 	

@@ -312,7 +312,7 @@ LcsSlotDefinition >> newDomainClassName [
 
 { #category : #'slot model' }
 LcsSlotDefinition >> persistedSlotVarIn: aDomainObject [
-
+	aDomainObject isAdding ifTrue: [ ^ nil ].
 	^ aDomainObject instVarNamed: self slotName asString
 ]
 
@@ -355,6 +355,16 @@ LcsSlotDefinition >> setterSelector [
 LcsSlotDefinition >> slotDoesNotExistMessage [
 	^ 'Slot name ' , self slotName asString , ' does not exist in '
 		, self domainClass name
+]
+
+{ #category : #printing }
+LcsSlotDefinition >> slotTypesList [
+	| stream |
+	stream := WriteStream on: String new.
+	self slotTypes 
+		do: [ :each | stream nextPutAll: each name ] 
+		separatedBy: [stream nextPutAll: ', ' ].
+	^ stream contents
 ]
 
 { #category : #'slot model' }

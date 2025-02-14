@@ -387,7 +387,7 @@ LcsApplicationEnvironment >> makeSystemCurrent: aSystem [
 LcsApplicationEnvironment >> releaseApplicationEnvironment [
 	self systemManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].
 	self unitsOfWorkManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].
-	LcsDomainObject releaseApplicationEnvironment  
+	LcsBaseDomainObject releaseApplicationEnvironment  
 ]
 
 { #category : #system }
