@@ -1,7 +1,17 @@
 Class {
 	#name : #LcsDomainObjectChangeRecords,
 	#superclass : #LcsSupportDomainObject,
-	#traits : 'LtDomainCollection',
-	#classTraits : 'LtDomainCollection classTrait',
+	#traits : 'LtOrderedCollectionDomainCollection',
+	#classTraits : 'LtOrderedCollectionDomainCollection classTrait',
 	#category : #'Lcs-SystemManagement-Domain'
 }
+
+{ #category : #acccessing }
+LcsDomainObjectChangeRecords >> collection [
+	^ self slotVarNamed: 'collection'
+]
+
+{ #category : #accessing }
+LcsDomainObjectChangeRecords >> collection: aCollection [
+	self slotVarNamed: 'collection' put: aCollection
+]

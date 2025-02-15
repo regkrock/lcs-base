@@ -1,8 +1,8 @@
 Class {
 	#name : #LcsDomainCollection,
 	#superclass : #LcsDomainObject,
-	#traits : 'LtCollection',
-	#classTraits : 'LtCollection classTrait',
+	#traits : 'LtIdentitySetDomainCollection',
+	#classTraits : 'LtIdentitySetDomainCollection classTrait',
 	#category : #'Lcs-SystemManagement-Domain'
 }
 

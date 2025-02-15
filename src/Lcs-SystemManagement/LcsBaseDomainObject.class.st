@@ -353,11 +353,9 @@ LcsBaseDomainObject class >> verifyRemovedDomainSlotNamed: aSlotName [
 
 { #category : #'slot model - verification' }
 LcsBaseDomainObject class >> verifySlotModelConsistency [
-	self logEntry.
 	 self verifyClassHasSlotDefinitionsForInstVars .
 	self assert: self hasSlotModel.
-	self assert: self slotModel parent == self.
-	self logExit.
+	self assert: self slotModel parent == self
 ]
 
 { #category : #'slot model - verification' }

@@ -7,9 +7,22 @@ Class {
 	#category : #'Lcs-StateMachineTests-Support'
 }
 
+{ #category : #'slot definition' }
+LxxCompositeStateMachine class >> changesSlotDefinition [
+	<slotDefinition>
+	^ LcsOrderedCollectionSlot new
+		slotName: 'changes';
+		yourself
+]
+
 { #category : #accessing }
 LxxCompositeStateMachine >> changes [
-	^changes
+	^ self slotVarNamed: 'changes'
+]
+
+{ #category : #'initialize-release' }
+LxxCompositeStateMachine >> changes: anObject [
+	self slotVarNamed: 'changes' put: anObject
 ]
 
 { #category : #'initialize-release' }
@@ -18,7 +31,7 @@ LxxCompositeStateMachine >> initialize [
 	| state2 |
 	super initialize.
 	
-	changes := OrderedCollection new.
+	"self changes: OrderedCollection new."
 	
 	(self addStateNamed: #state1) when: #event12 do: [self changes add: 's1->s2'] to: #state2.
 	

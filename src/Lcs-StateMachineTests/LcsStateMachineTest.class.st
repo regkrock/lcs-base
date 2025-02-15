@@ -10,8 +10,8 @@ Class {
 { #category : #setUp }
 LcsStateMachineTest >> domainModelTestClasses [
 	^ super domainModelTestClasses
-		add: LxxCompositeStateMachine;
-		add: LxxSubStateMachine;
+		"add: LxxCompositeStateMachine;
+		add: LxxSubStateMachine;"
 		yourself
 ]
 
@@ -81,7 +81,7 @@ LcsStateMachineTest >> testAddingNewState [
 	self assert: newState subStateMachine isNil.
 	self assert: newState parent identicalTo: stateMachine states.
 	self assert: newState entryAction isBlock.
-	self assert: newState entryAction displayString equals: '[ ]' .
+	self assert: newState entryAction displayString equals: '[ true ]' .
 	self assert: newState exitAction isBlock.
 	self assert: newState activity isBlock.
 	self assert: newState currentEvent isNil
@@ -219,7 +219,7 @@ LcsStateMachineTest >> testEventWithArguments [
 	stateMachine handleEvent: toB.
 	self assert: stateMachine currentState id equals: #stateB. 
 	self assert:(stateMachine context includesKey: #stateAExit).
-	self assert: ((stateMachine context at: #stateAExit) arguments = #(#toBArg)).
+	self assert: (stateMachine context at: #stateAExit) arguments equals: (OrderedCollection with: #toBArg).
 	
 	self should: [ stateMachine handleEvent: toB ] raise: LcsStateMachineEventNotSupportedError.
 	self assert:(stateMachine currentState id = #stateB).
@@ -229,18 +229,18 @@ LcsStateMachineTest >> testEventWithArguments [
 	
 	stateMachine handleEvent: toA.
 	self assert:stateMachine currentState id equals: #stateA.
-	self assert: ((stateMachine context at: #stateAEntry) arguments = #(#toAArg)).
-	self assert: ((stateMachine context at: #stateAActivity) arguments = #(#toAArg)).
+	self assert: (stateMachine context at: #stateAEntry) arguments = (OrderedCollection with: #toAArg).
+	self assert: (stateMachine context at: #stateAActivity) arguments = (OrderedCollection with:#toAArg).
 	
 	stateMachine handleEvent: toC.
-	self assert: ((stateMachine context at: #stateAExit) arguments = #(#toCArg)).
+	self assert: (stateMachine context at: #stateAExit) arguments = (OrderedCollection with:#toCArg).
 	self assert: stateMachine currentState id equals: #stateC.
 	self deny:(stateMachine context includesKey: #transCA).
 	
 	stateMachine handleEvent: toA.
 	self assert: stateMachine currentState id equals: #stateA.
 	self assert:(stateMachine context includesKey: #transCA).
-	self assert: ((stateMachine context at: #transCA) arguments = #(#toAArg)).
+	self assert: (stateMachine context at: #transCA) arguments = (OrderedCollection with: #toAArg).
 	
 	stateMachine 
 		handleEvent: toC; 

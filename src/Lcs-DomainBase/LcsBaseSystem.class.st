@@ -243,7 +243,6 @@ LcsBaseSystem >> initialize [
 
 { #category : #initialize }
 LcsBaseSystem >> initializeBasicSystem [
-	self logEntry.
 	self instantiateAndInstallSlotModelForBootstrapClasses.
 	self unitOfWork addObject: self.
 
@@ -306,11 +305,9 @@ LcsBaseSystem >> installSlotModelForBootstrapClasses [
 
 { #category : #initialize }
 LcsBaseSystem >> instantiateAndInstallSlotModelForBootstrapClasses [
-	self logEntry.
 	self instantiateSlotModelForBootstrapClasses.
 	self verifySlotModelForBootstrapClasses.
-	self installSlotModelForBootstrapClasses.
-	self logExit
+	self installSlotModelForBootstrapClasses
 ]
 
 { #category : #initialize }
