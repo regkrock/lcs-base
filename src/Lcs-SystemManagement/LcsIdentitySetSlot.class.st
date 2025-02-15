@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsIdentityCollectionSlot,
+	#name : #LcsIdentitySetSlot,
 	#superclass : #LcsCollectionSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #iniitialize }
-LcsIdentityCollectionSlot >> typeClass [
+LcsIdentitySetSlot >> typeClass [
 	^ IdentitySet 
 ]

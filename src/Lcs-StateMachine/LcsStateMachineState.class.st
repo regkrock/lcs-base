@@ -82,7 +82,7 @@ LcsStateMachineState class >> stateTransitionsSlotDefinition [
 { #category : #'slot definitions' }
 LcsStateMachineState class >> statesTransitionsSlotDefinition [
 	<slotDefinition>
-	^ LcsIdentityCollectionSlot new
+	^ LcsIdentitySetSlot new
 		slotName: 'stateTransitions';
 		addSlotType: LcsStateMachineState;
 		yourself

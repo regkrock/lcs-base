@@ -9,7 +9,7 @@ Class {
 { #category : #'slot definition' }
 LcsDomainCollection class >> collectionSlotDefinition [
 	<slotDefinition>
-	^ LcsIdentityCollectionSlot new
+	^ LcsIdentitySetSlot new
 ]
 
 { #category : #accessing }

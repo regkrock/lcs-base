@@ -5,12 +5,6 @@ Trait {
 	#category : #'Lcs-SystemManagement-Traits'
 }
 
-{ #category : #'slot definition' }
-LtDomainCollection classSide >> collectionSlotDefinition [
-	<slotDefinition>
-	^ LcsIdentityCollectionSlot new
-]
-
 { #category : #'as yet unclassified' }
 LtDomainCollection >> collection [
 	^ self slotVarNamed: 'collection'
