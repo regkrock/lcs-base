@@ -44,7 +44,7 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModelAssociationsWithLabels [
 						LcsBaseDomainObject}}}
 ]
 
-{ #category : #pirvate }
+{ #category : #private }
 LcsSlotModelDiagramExamples >> domainObjectSlotModelClasses [
 	| classes |
 	classes := OrderedCollection new
@@ -137,7 +137,7 @@ LcsSlotModelDiagramExamples >> systemSlotModelAssociationsWithLabels [
 						LcsSlotModel}}}
 ]
 
-{ #category : #pirvate }
+{ #category : #private }
 LcsSlotModelDiagramExamples >> systemSlotModelClasses [
 	| classes |
 	classes := OrderedCollection new

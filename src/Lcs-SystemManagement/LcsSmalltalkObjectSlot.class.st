@@ -26,7 +26,7 @@ LcsSmalltalkObjectSlot >> initialValueFor: aDomainObject [
 	^ self initialValueBlock cull: aDomainObject class
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsSmalltalkObjectSlot >> initialize [
 	super initialize.
 	self addSlotType: self typeClass.

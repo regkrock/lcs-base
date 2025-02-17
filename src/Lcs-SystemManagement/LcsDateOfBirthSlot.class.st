@@ -9,7 +9,7 @@ LcsDateOfBirthSlot >> defaultInputComponentClassName [
 	^ #'LuiDatePicker'
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsDateOfBirthSlot >> initialize [
 	super initialize.
 	self slotName: 'dateOfBirth'

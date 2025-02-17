@@ -15,7 +15,7 @@ LcsSupportDomainObject class >> new [
 	^ newObject
 ]
 
-{ #category : #initialization }
+{ #category : #initialize }
 LcsSupportDomainObject >> initialize [
 	"Subclasses should redefine this method to perform initializations on instance creation"
 ]

@@ -54,7 +54,7 @@ LcsObject >> printOn: aStream [
 
 ]
 
-{ #category : #pirvate }
+{ #category : #private }
 LcsObject >> removerProtoObjectFrom: classes [
 	([ 'ProtoObject' asClass ] on: NotFound do: [ nil ])
 		ifNotNil: [ :class | classes remove: class ifAbsent: [  ] ]
