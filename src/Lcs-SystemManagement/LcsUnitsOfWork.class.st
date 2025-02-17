@@ -6,7 +6,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Environment'
 }
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsUnitsOfWork >> applicationEnvironmentViewChildren [
 	^ self collect: [ :each | LcsApplicationEnvironmentViewItem newOn: self label: '' item: each]
 ]

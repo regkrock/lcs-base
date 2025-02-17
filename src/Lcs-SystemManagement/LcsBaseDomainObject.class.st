@@ -55,7 +55,7 @@ LcsBaseDomainObject class >> getPersistedValueOf: aString in: anObject [
 	^ self slotModel getPersistedValueOf: aString in: anObject 
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 	<gtView>
 	<gtClassView>
@@ -79,7 +79,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 		
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
@@ -406,14 +406,14 @@ LcsBaseDomainObject >> getPersistedValueOf: aString [
 	^ self class getPersistedValueOf: aString in: self
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseDomainObject >> gtViewSlotDefinitionFor: aView [
 	<gtView>
 	<gtClassView>
 	^ self class gtViewSlotDefinitionFor: aView
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseDomainObject >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>

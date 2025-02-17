@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLocation class >> addressSlotDefinition [
 	<slotDefinition>
 	^ LcsAggregateSlot new
@@ -16,7 +16,7 @@ LcsLocation class >> addressSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLocation class >> locationNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

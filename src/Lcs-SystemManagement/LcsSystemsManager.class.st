@@ -33,12 +33,12 @@ LcsSystemsManager >> addSystem: aBasicSystem [
 	"self currentUnitOfWork addObject: aBasicSystem"
 ]
 
-{ #category : #querry }
+{ #category : #query }
 LcsSystemsManager >> applicationEnvironment [
 	^self parent applicationEnvironment
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSystemsManager >> applicationEnvironmentViewChildren [
 	^ {
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Current System' item: self currentSystem.
@@ -46,7 +46,7 @@ LcsSystemsManager >> applicationEnvironmentViewChildren [
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Available Systems' item: '' "self availableSystemClasses". }
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSystemsManager >> applicationEnvironmentViewaAvailableSystemsChildren [
 	^ self availableSystemClasses
 		collect: [ :eachClass | LcsApplicationEnvironmentViewItem newOn: self label: eachClass name item: eachClass ]
@@ -68,12 +68,12 @@ LcsSystemsManager >> currentSystem: anObject [
 	currentSystem := anObject
 ]
 
-{ #category : #querry }
+{ #category : #query }
 LcsSystemsManager >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSystemsManager >> gtAllSystemsFor: aView [
 	<gtView>
 	^ aView columnedTree 
@@ -90,7 +90,7 @@ LcsSystemsManager >> gtAllSystemsFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSystemsManager >> gtSystemManagerFor: aView [
 		<gtView>
 	^ aView columnedList
@@ -150,7 +150,7 @@ LcsSystemsManager >> makeSystemCurrent: aSystem [
 	aSystem restoreSystem
 ]
 
-{ #category : #querry }
+{ #category : #query }
 LcsSystemsManager >> numberOfSystems [
 	(self systems isKindOf: OrderedCollection) ifTrue: [ ^ self systems size ].
 	^ self systems collectionSize
@@ -220,7 +220,7 @@ LcsSystemsManager >> systems: anObject [
 	systems := anObject
 ]
 
-{ #category : #querry }
+{ #category : #query }
 LcsSystemsManager >> unitsOfWorkManager [
 	^ self parent unitsOfWorkManager
 ]

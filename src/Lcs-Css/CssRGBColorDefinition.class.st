@@ -10,7 +10,7 @@ Class {
 	#category : #'Lcs-Css'
 }
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 CssRGBColorDefinition class >> red: aRedNumber green: aGreenNumber blue: aBlueNumber [ 
 
 	^ self new
@@ -22,7 +22,7 @@ CssRGBColorDefinition >> blue [
 	^ blue
 ]
 
-{ #category : #initialialize }
+{ #category : #initialize }
 CssRGBColorDefinition >> blue: aBlueNumber [ 
 	blue := aBlueNumber
 ]
@@ -32,12 +32,12 @@ CssRGBColorDefinition >> green [
 	^ green
 ]
 
-{ #category : #initialialize }
+{ #category : #initialize }
 CssRGBColorDefinition >> green: aGreenNumber [ 
 	green := aGreenNumber
 ]
 
-{ #category : #initialialize }
+{ #category : #initialize }
 CssRGBColorDefinition >> initializeRed: aRedNumber green: aGreenNumber blue: aBlueNumber [ 
 	self 
 		red: aRedNumber;
@@ -62,7 +62,7 @@ CssRGBColorDefinition >> red [
 	^ red
 ]
 
-{ #category : #acessing }
+{ #category : #accessing }
 CssRGBColorDefinition >> red: aRedNumber [ 
 	red := aRedNumber
 ]

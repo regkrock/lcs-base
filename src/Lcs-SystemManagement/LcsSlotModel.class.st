@@ -92,7 +92,7 @@ LcsSlotModel >> globalCollectionSlots [
 	^ self slotDefinitions values select: [ :each | each isGlobalCollectionSlot ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotModel >> gtViewSlotModelChildren [
 	| children |
 	children := OrderedCollection new.
@@ -101,7 +101,7 @@ LcsSlotModel >> gtViewSlotModelChildren [
 	^ children
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotModel >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>

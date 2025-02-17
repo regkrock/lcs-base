@@ -58,7 +58,7 @@ LcsMethodStream >> indentLevel: anObject [
 	indentLevel := anObject
 ]
 
-{ #category : #initiailize }
+{ #category : #initialize }
 LcsMethodStream >> initialize [
 	super initialize.
 	self stream: (WriteStream on: String new).

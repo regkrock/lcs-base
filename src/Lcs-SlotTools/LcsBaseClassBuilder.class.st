@@ -11,7 +11,7 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 LcsBaseClassBuilder class >> newOn: aString [ 
 	^ self new
 		initializeOn: aString;
@@ -23,11 +23,11 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 	^ nil
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseClassBuilder >> addModelAssociationsTo: aCollection [
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseClassBuilder >> addModelClassesTo: aCollection [
 	aCollection addAll: self newClassName asClass withAllSuperclasses
 ]
@@ -76,7 +76,7 @@ LcsBaseClassBuilder >> executeShould: aBlock inScopeOf: anExceptionalEvent [
 		false ] on: anExceptionalEvent do: [ :ex | ex return: true ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseClassBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self installedClass isNil ifTrue: [ 
@@ -92,7 +92,7 @@ LcsBaseClassBuilder >> gtClassViewOn: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -240,7 +240,7 @@ LcsBaseClassBuilder >> verifyUninstall [
 	self assert: self installedClass isNil
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseClassBuilder >> viewCodeButton [
 	self installedClass isNil ifTrue: [ ^ BrButton new ].
 	^ self viewClassButtonFor: self installedClass 

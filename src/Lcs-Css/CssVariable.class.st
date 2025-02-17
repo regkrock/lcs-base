@@ -10,7 +10,7 @@ Class {
 	#category : #'Lcs-Css'
 }
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 CssVariable class >> newName: aString value: aValue [
 	^ self new 
 		initializeName: aString value: aValue;
@@ -66,7 +66,7 @@ CssVariable >> declarations: anObject [
 	declarations := anObject
 ]
 
-{ #category : #'gt - views' }
+{ #category : #'gt views' }
 CssVariable >> gtViewSlotModelFor: aView [
 	<gtView>
 	"^ aView empty"

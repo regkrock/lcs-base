@@ -90,7 +90,7 @@ LcsSlotDefinition >> getterSelector [
 		
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> gtCreateClassAndValueElementFor: aColumn [
 	^ aColumn
 		cellStencil: [ BrHorizontalPane new
@@ -121,7 +121,7 @@ LcsSlotDefinition >> gtCreateClassAndValueElementFor: aColumn [
 							vFitContent) ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> gtDomainMetaFor: aView [
 	<gtView>
 	self parent isNil ifTrue: [ ^ aView empty ].
@@ -131,7 +131,7 @@ LcsSlotDefinition >> gtDomainMetaFor: aView [
 		stencil: [ (GtCoderElement forObject: self domainClass) disablePlayPage beNormalLevel ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> gtSlotDefinitionAttributes [
 	^ OrderedCollection new
 		add: 'slotDefinition' -> self;
@@ -143,7 +143,7 @@ LcsSlotDefinition >> gtSlotDefinitionAttributes [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -158,7 +158,7 @@ LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> gtSlotModelFor: aView [
 	<gtView>
 	self parent ifNil: [ ^ aView empty ].
@@ -170,7 +170,7 @@ LcsSlotDefinition >> gtSlotModelFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> gtSlotTypesViewFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -199,7 +199,7 @@ LcsSlotDefinition >> gtSlotTypesViewFor: aView [
 
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> gtViewSlotModelChildren [
 	^ {
 		LcsSlotModelViewItem newLabel: 'domainClass' item: self domainClass.
@@ -306,7 +306,7 @@ LcsSlotDefinition >> isRequired [
 	^ self required == true
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinition >> newDomainClassName [
 	self parent ifNil: [ ^ '<not initialized>'].
 	^self parent domainClass

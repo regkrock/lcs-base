@@ -31,7 +31,7 @@ LcsValidator >> hasValidationIssues [
 	^ self validationIssues notEmpty
 ]
 
-{ #category : #initiailize }
+{ #category : #initialize }
 LcsValidator >> initialize [
 	super initialize.
 	self visitationStack: OrderedCollection new.

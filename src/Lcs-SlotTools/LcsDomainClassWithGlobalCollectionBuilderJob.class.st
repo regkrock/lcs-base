@@ -92,7 +92,7 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionSlotName: aStrin
 	globalCollectionSlotName := aString
 ]
 
-{ #category : #iniitialize }
+{ #category : #initialize }
 LcsDomainClassWithGlobalCollectionBuilderJob >> initialize [
 	super initialize.
 	self classPrefix: 'Lcs'.

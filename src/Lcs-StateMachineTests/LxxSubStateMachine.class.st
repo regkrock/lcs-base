@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-StateMachineTests-Support'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LxxSubStateMachine class >> changesSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new

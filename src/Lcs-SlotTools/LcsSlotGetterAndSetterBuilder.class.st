@@ -29,7 +29,7 @@ LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
 		nextPutAll: self protoGetterAndSetterRefactoring slotGetterMethodSource
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> getterAndSetterMethodsFilter [
 	| classFilter |
 	classFilter := (GtSearchInheritedMethodsFilter forClass: self target)
@@ -42,7 +42,7 @@ LcsSlotGetterAndSetterBuilder >> getterSelector [
 	^ self slotName asString asSymbol
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -51,7 +51,7 @@ LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 		text: [ self refactoringText asRopedText ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 	<gtView>
 	self target isNil ifTrue: [ ^ aView empty ].

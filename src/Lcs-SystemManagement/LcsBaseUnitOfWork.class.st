@@ -146,7 +146,7 @@ LcsBaseUnitOfWork >> deletedObjects: anObject [
 	deletedObjects := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseUnitOfWork >> gtUnitOfWorkChildren [
 	^ {
 		LcsUnitOfWorkViewItem newLabel: 'Added' item: self addedObjects values.
@@ -155,7 +155,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkChildren [
 		}
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 	<gtView>
 	^ aView columnedTree 
@@ -172,7 +172,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseUnitOfWork >> gtUnitOfWorkItems [
 	^ {
 		LcsUnitOfWorkViewItem newLabel: 'Unit Of Work' item: self.

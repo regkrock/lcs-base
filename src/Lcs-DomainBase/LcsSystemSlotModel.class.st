@@ -27,7 +27,7 @@ LcsSystemSlotModel >> addToSlotModel: aSlotModel [
 	self slotModels at: aSlotModel parent put: aSlotModel
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSystemSlotModel >> gtSystemSlotModelFor: aView [
 	<gtView>
 	self slotModels ifEmpty: [ ^ aView empty ].
@@ -45,7 +45,7 @@ LcsSystemSlotModel >> gtSystemSlotModelFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSystemSlotModel >> gtViewSlotModelChildren [
 	| children |
 	children := OrderedCollection new.

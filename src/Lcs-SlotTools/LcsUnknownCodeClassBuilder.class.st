@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #ini }
+{ #category : #initialize }
 LcsUnknownCodeClassBuilder >> initialize [
 	super initialize.
 	self defaultInstance: true.

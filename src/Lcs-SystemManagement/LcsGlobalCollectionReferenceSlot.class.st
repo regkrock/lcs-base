@@ -38,7 +38,7 @@ LcsGlobalCollectionReferenceSlot >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'collectionSlotModuleName' -> self collectionSlotModuleName;

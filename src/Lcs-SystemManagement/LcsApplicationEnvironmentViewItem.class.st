@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-SystemManagement-View'
 }
 
-{ #category : #default }
+{ #category : #defaults }
 LcsApplicationEnvironmentViewItem class >> defaultChildrenSelector [
 	^ #applicationEnvironmentViewChildren
 ]
@@ -19,13 +19,13 @@ LcsApplicationEnvironmentViewItem class >> newOn: anObject label: aLabel item: a
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> action2Button [
 	self isInstantiatedSystem ifTrue: [ ^ self stopSystemButton ].
 	^ BrButton new
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> actionButton [
 	self label = 'Initialized' ifTrue: [ ^ self startStopApplicationEnvironmentButton ].
 	self isSystemClass ifTrue: [ ^ self startSystemButton ].
@@ -34,7 +34,7 @@ LcsApplicationEnvironmentViewItem >> actionButton [
 	^ BrButton new
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> activateSuspendSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -52,7 +52,7 @@ LcsApplicationEnvironmentViewItem >> context: anObject [
 	context := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: anItem [ 
 	self
 		context: anObject;
@@ -60,7 +60,7 @@ LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: 
 		item: anItem
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> isInstantiatedSystem [
 	(self item respondsTo: #isApplicationSystem) ifFalse: [ ^ false ].
 	^ self item isApplicationSystem
@@ -80,7 +80,7 @@ LcsApplicationEnvironmentViewItem >> itemChildren: anItemChildrenSelector [
 	^ super itemChildren: anItemChildrenSelector
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> startNewSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -88,7 +88,7 @@ LcsApplicationEnvironmentViewItem >> startNewSystemButton [
 		action: [ :aButton | self item new ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> startStopApplicationEnvironmentButton [
 	^ self item == true
 		ifTrue: [ BrButton new
@@ -101,7 +101,7 @@ LcsApplicationEnvironmentViewItem >> startStopApplicationEnvironmentButton [
 				action: [ :aButton | LcsApplicationEnvironment initializeApplicationEnvironment ] ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> startSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -109,7 +109,7 @@ LcsApplicationEnvironmentViewItem >> startSystemButton [
 		action: [ :aButton | self item new ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> stopSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;

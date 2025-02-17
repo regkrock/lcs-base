@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #iniitialize }
+{ #category : #initialize }
 LcsIdentitySetSlot >> typeClass [
 	^ IdentitySet 
 ]

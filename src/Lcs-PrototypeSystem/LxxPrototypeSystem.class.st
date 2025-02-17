@@ -42,11 +42,6 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 ]
 
 { #category : #testing }
-LxxPrototypeSystem >> hasSlotModel [
-	^ self class hasSlotModel
-]
-
-{ #category : #testing }
 LxxPrototypeSystem >> isInActiveStatus [
 	self hasSlotModel ifFalse: [ ^ false ].
 	^ self status isInActiveStatus
@@ -58,7 +53,7 @@ LxxPrototypeSystem >> isInSuspendedStatus [
 	^ self status isInSuspendedStatus
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 LxxPrototypeSystem >> isPrototypeSystem [
 	^ true
 ]

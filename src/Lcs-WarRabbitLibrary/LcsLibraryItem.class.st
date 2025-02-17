@@ -12,7 +12,7 @@ Class {
 	#category : #'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryItem class >> authorsSlotDefinition [
 	"<slotDefinition>"
 	^LcsSecondaryCollectionSlot new
@@ -23,12 +23,12 @@ LcsLibraryItem class >> authorsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryItem class >> collectionSlotName [
 	^ collectionSlotName
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryItem class >> itemAuthorsSlotDefinition [
 	<slotDefinition>
 	^LcsSecondaryCollectionSlot new
@@ -39,7 +39,7 @@ LcsLibraryItem class >> itemAuthorsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryItem class >> itemNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -48,7 +48,7 @@ LcsLibraryItem class >> itemNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryItem class >> libraryCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new
@@ -59,7 +59,7 @@ LcsLibraryItem class >> libraryCategorySlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryItem class >> librearyCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new
@@ -70,7 +70,7 @@ LcsLibraryItem class >> librearyCategorySlotDefinition [
 		yourself
 ]
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 LcsLibraryItem class >> newFor: line [ 
 ]
 
@@ -81,7 +81,7 @@ LcsLibraryItem class >> newOn: aString parts: protoItemParts [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryItem class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new

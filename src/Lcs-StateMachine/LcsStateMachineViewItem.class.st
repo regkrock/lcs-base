@@ -13,14 +13,14 @@ LcsStateMachineViewItem class >> defaultChildrenSelector [
 	^ #stateMachineViewChildren
 ]
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 LcsStateMachineViewItem class >> newOn: anObject label: aLabel item: anItem [ 
 	^ self new
 		initializeOn: anObject label: aLabel item: anItem;
 		yourself
 ]
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 LcsStateMachineViewItem class >> newOn: anObject label: aLabel item: anItem displaySelector: aSelector [
 	^ self new
 		initializeOn: anObject label: aLabel item: anItem displaySelector: aSelector;

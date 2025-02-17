@@ -9,17 +9,17 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #deafult }
+{ #category : #defaults }
 LcsMemberOfSlotBuilder class >> slotDefinitionClass [
 	^ LcsMemberOfSlot
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addModelAssociationsTo: aCollection [
 	aCollection add: self targetClass-> {{self slotName. self domainClass}}
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
 	self slotTypes isEmpty
 		ifTrue: [
@@ -57,7 +57,7 @@ LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsMemberOfSlotBuilder >> domainClass [
 	^ self newDomainClassName asClass
 ]
@@ -68,7 +68,7 @@ LcsMemberOfSlotBuilder >> initialize [
 	self slotTypes: OrderedCollection new
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsMemberOfSlotBuilder >> newDomainClassName [
 	^ self parent parent newDomainClassName
 ]

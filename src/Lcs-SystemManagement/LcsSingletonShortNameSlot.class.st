@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #initialialize }
+{ #category : #initialize }
 LcsSingletonShortNameSlot >> initialize [
 	super initialize.
 	self initialValueBlock: [ :domainClass | domainClass defaultShortName ]

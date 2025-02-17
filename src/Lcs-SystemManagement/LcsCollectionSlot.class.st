@@ -4,12 +4,12 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #default }
+{ #category : #defaults }
 LcsCollectionSlot >> defaultInitialValueBlaock [
 	^ [ self typeClass new ]
 ]
 
-{ #category : #iniitialize }
+{ #category : #initialize }
 LcsCollectionSlot >> initialize [
 	super initialize.
 	self slotName: 'collection'

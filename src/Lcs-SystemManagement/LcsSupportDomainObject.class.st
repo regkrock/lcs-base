@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
-{ #category : #'instance  creation\t' }
+{ #category : #'instance creation' }
 LcsSupportDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.

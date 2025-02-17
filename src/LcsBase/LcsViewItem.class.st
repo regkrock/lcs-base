@@ -9,12 +9,12 @@ Class {
 	#category : #'LcsBase-Core'
 }
 
-{ #category : #default }
+{ #category : #defaults }
 LcsViewItem class >> defaultChildrenSelector [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 LcsViewItem class >> newLabel: aString item: anObject [ 
 	^ self new
 		initializeLabel: aString value: anObject;
@@ -36,12 +36,12 @@ LcsViewItem >> childrenSelector: anObject [
 	childrenSelector := anObject
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 LcsViewItem >> defaultChildrenSelector [
 	^ self class defaultChildrenSelector
 ]
 
-{ #category : #initalize }
+{ #category : #initialize }
 LcsViewItem >> initialize [
 	super initialize.
 	self childrenSelector: self defaultChildrenSelector

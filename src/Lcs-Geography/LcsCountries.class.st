@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCountries >> gtItemsFor: aView [
 	<gtView>
 	self collection isNil ifTrue: [ ^ aView empty ].

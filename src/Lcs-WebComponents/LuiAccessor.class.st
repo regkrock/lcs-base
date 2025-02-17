@@ -33,7 +33,7 @@ LuiAccessor >> handlesSelector: aSelector [
 	^ false
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 LuiAccessor >> name [
 	^ nil
 ]

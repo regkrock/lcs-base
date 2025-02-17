@@ -6,7 +6,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainCollection class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsIdentitySetSlot new

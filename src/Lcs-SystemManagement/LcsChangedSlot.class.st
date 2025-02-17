@@ -22,7 +22,7 @@ LcsChangedSlot >> applyChange [
 	self parent domainObject instVarNamed: self slotName asString put: self newValue
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsChangedSlot >> gtUnitOfWorkChildren [
 	^ LcsUnitOfWorkViewItem newLabel: self slotName item: self newValue
 ]

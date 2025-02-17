@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-Css'
 }
 
-{ #category : #'istance creation' }
+{ #category : #'instance creation' }
 CssPropertyDeclaration class >> on: aRuleSet [
 	^ self new
 		initializeOn: aRuleSet;

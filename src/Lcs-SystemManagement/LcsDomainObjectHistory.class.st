@@ -80,7 +80,7 @@ LcsDomainObjectHistory >> created: anObject [
 	self slotVarNamed: 'created' put: anObject
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 LcsDomainObjectHistory >> userId [
 	^ self slotVarNamed: 'userId'
 ]

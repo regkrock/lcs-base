@@ -13,7 +13,7 @@ LcsSmalltalkObjectSlot >> defaultInputComponentClassName [
 	"self subclassResponsibility"
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSmalltalkObjectSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'initialValueBlock' -> self initialValueBlock;

@@ -9,7 +9,7 @@ Class {
 	#category : #'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBook class >> authorsSlotDefinition [
 	<slotDefinition>
 	^LcsStringSlot new
@@ -17,7 +17,7 @@ LcsBook class >> authorsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBook class >> titleSlotDefinition [
 	<slotDefinition>
 	^LcsStringSlot new
@@ -25,7 +25,7 @@ LcsBook class >> titleSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBook class >> yearPublishedSlotDefinition [
 	<slotDefinition>
 	^LcsIntegerSlot new

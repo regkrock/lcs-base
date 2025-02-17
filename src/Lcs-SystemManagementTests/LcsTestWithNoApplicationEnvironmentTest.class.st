@@ -17,7 +17,7 @@ LcsTestWithNoApplicationEnvironmentTest >> currentApplicationEnvironment [
 	^currentApplicationEnvironment
 ]
 
-{ #category : #acccessing }
+{ #category : #accessing }
 LcsTestWithNoApplicationEnvironmentTest >> currentApplicationEnvironment: anApplicationEnvironment [ 
 	currentApplicationEnvironment := anApplicationEnvironment
 ]

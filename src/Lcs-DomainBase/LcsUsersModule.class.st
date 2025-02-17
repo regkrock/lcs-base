@@ -12,7 +12,7 @@ LcsUsersModule class >> moduleName [
 	^ 'Users Module'
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsUsersModule class >> usersSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new

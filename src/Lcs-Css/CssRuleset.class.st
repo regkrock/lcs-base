@@ -9,7 +9,7 @@ Class {
 	#category : #'Lcs-Css'
 }
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 CssRuleset class >> on: aParent [
 	^ self new
 		initializeOn: aParent;

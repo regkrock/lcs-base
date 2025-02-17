@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsAuthor class >> authorshipSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -18,7 +18,7 @@ LcsAuthor class >> authorshipSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsAuthor class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -29,7 +29,7 @@ LcsAuthor class >> parentSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsAuthor class >> personSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new

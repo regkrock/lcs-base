@@ -14,12 +14,12 @@ LcsGlobalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionReferenceSlot
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
 	aCollection add: (self target -> {{self slotName. self collectionClass.}})
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	self collectionClassName isNil ifTrue: [ self error: 'Missing collection class name'].
 	aCodeStream 

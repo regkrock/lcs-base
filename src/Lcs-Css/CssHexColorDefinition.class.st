@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-Css'
 }
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 CssHexColorDefinition class >> hex: aString [ 
 	^ self new
 		hex: aString;
@@ -19,7 +19,7 @@ CssHexColorDefinition >> hex [
 	^ hex
 ]
 
-{ #category : #iniitialize }
+{ #category : #initialize }
 CssHexColorDefinition >> hex: aString [ 
 	hex := aString
 ]

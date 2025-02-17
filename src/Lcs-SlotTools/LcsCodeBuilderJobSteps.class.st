@@ -29,12 +29,12 @@ LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 	"StringSignal emit: 'add job step'"
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> addModelAssociationsTo: aCollection [
 	self collection do: [ :eachStep | eachStep addModelAssociationsTo: aCollection ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> addModelClassesTo: classes [
 	self collection do: [ :eachStep | eachStep addModelClassesTo: classes ]
 ]
@@ -102,7 +102,7 @@ LcsCodeBuilderJobSteps >> do: aDoBlock separatedBy: aBlock [
 	self collection do: aDoBlock separatedBy: aBlock
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
@@ -123,7 +123,7 @@ LcsCodeBuilderJobSteps >> gtClassBuilderViewFor: aView [
 			text: [ :step | step state asString asRopedText ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -132,7 +132,7 @@ LcsCodeBuilderJobSteps >> gtConstructionTreeFor: aView [
 		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> gtPaintTreeWith: aMondrian [
 	self
 		withDeep: [ :each | each jobSteps collect: [ :eachStep | eachStep ] ]
@@ -209,7 +209,7 @@ LcsCodeBuilderJobSteps >> jobStepAt: anIndex [
 	^ self collection at: anIndex
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> jobStepDescription [
 	| stream |
 	stream := WriteStream on: String new.
@@ -217,7 +217,7 @@ LcsCodeBuilderJobSteps >> jobStepDescription [
 	^ stream contents
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> jobStepPane: eachJobStep [
 	^ BrVerticalPane new
 		fitContent;
@@ -231,7 +231,7 @@ LcsCodeBuilderJobSteps >> jobStepPane: eachJobStep [
 				aptitude: BrGlamorousLabelAptitude new)
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> jobStepPaneAssociation [
 	^ BlParabollaArcElement new
 		zIndex: 0;
@@ -264,7 +264,7 @@ LcsCodeBuilderJobSteps >> populateSlotModel [
 	self collection reverse do: [ :each | each populateSlotModel ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJobSteps >> printJobStreamDetailsOn: aStream [
 	aStream nextPutAll: 'Job Steps'
 ]

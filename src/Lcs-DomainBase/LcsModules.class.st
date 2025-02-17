@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-DomainBase-Core'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsModules class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsDirectAssignmentSlot new
@@ -46,7 +46,7 @@ LcsModules >> findModuleNamed: aString [
 	^ nil
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsModules >> gtApplicationModulesFor: aView [
 	<gtView>
 	self hasNoElements ifTrue: [ ^ aView empty ].
@@ -75,7 +75,7 @@ LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 	^ self collection at: aString ifAbsent: aBlock
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsModules >> moduleViewChildren [
 	^ self collect: [ :each | LcsModuleViewItem newLabel: each moduleName item: each ]
 ]

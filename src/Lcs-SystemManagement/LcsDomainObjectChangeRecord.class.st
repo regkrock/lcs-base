@@ -14,7 +14,7 @@ LcsDomainObjectChangeRecord class >> addToUnitOfWork: newObject [
 	"this is not saved in the Unit of Work as it is part of the unit of work"
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
@@ -22,7 +22,7 @@ LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordTimestampSlot new
@@ -30,7 +30,7 @@ LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsCollectionReferenceSlot new
@@ -39,7 +39,7 @@ LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainObjectChangeRecord class >> userIdSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordUserIdSlot new

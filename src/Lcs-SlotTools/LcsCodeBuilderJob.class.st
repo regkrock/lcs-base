@@ -12,7 +12,7 @@ LcsCodeBuilderJob >> addJobStep: aBuilderJobStep [
 	self jobSteps addJobStep: aBuilderJobStep
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> addModelClassesTo: classes [ 
 	 self jobSteps addModelClassesTo: classes 
 ]
@@ -53,7 +53,7 @@ LcsCodeBuilderJob >> execute [
 	self currentUnitOfWork applyChanges
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
@@ -75,7 +75,7 @@ LcsCodeBuilderJob >> gtClassBuilderViewFor: aView [
 
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -84,12 +84,12 @@ LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [ 
 	aMondrian initialize: #LcsSlotModelDiagramExamples asClass new domainObjectSlotModel
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
 	| model classes associations positions |
@@ -124,7 +124,7 @@ LcsCodeBuilderJob >> installCode [
 	self jobSteps installCode
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> jobStepDescription [
 	| stream |
 	stream := WriteStream on: String new.
@@ -142,7 +142,7 @@ LcsCodeBuilderJob >> jobSteps: anObject [
 	jobSteps := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> modelAssociations [
 	| associations |
 	associations := OrderedCollection new.
@@ -154,7 +154,7 @@ LcsCodeBuilderJob >> modelAssociations [
 	^ associations
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> modelClasses [
 	| classes |
 	classes := OrderedCollection new.
@@ -175,7 +175,7 @@ LcsCodeBuilderJob >> populateSlotModel [
 	"subclasses can implement this method"
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream nextPutAll: self printString
 

@@ -12,7 +12,7 @@ Class {
 	#category : #'Lcs-DomainBase-Core'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBaseSystem class >> globalCollectionsSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -40,7 +40,7 @@ LcsBaseSystem class >> new [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBaseSystem class >> statusSlotDefinition [
 	<slotDefinition>
 	^ LcsCompositeSlot new
@@ -72,7 +72,7 @@ LcsBaseSystem class >> systemBootstrapDomainClasses [
 	^ prebootstrapClasses
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBaseSystem class >> systemSlotModelSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -179,7 +179,7 @@ LcsBaseSystem >> gtAllSystemsFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseSystem >> gtConfigurationIssuesFor: aView [
 	<gtView>
 	self configurationValidator hasNoValidationIssues
@@ -216,6 +216,11 @@ LcsBaseSystem >> gtUnitOfWorkFor: aView [
 		object: [ self relatedUnitOfWork ];
 		view: #gtUnitOfWorkFor:;
 		yourself
+]
+
+{ #category : #testing }
+LcsBaseSystem >> hasSlotModel [
+	^ self class hasSlotModel
 ]
 
 { #category : #testing }

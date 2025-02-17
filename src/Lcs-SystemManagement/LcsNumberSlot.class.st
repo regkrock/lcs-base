@@ -9,7 +9,7 @@ LcsNumberSlot >> defaultInitialValueBlock [
 	^ [ 0 ]
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 LcsNumberSlot >> typeClass [
 	^ Number
 ]

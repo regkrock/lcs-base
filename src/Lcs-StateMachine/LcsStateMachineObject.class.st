@@ -9,7 +9,7 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineObject class >> currentEventSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineEventSlot new
@@ -22,7 +22,7 @@ LcsStateMachineObject class >> id: anId [
 	^self new id: anId
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineObject class >> idSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -32,7 +32,7 @@ LcsStateMachineObject class >> idSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineObject class >> stateMachineSlotDefinition [
 	<slotDefinition>
 	^ LcsAggregateSlot new

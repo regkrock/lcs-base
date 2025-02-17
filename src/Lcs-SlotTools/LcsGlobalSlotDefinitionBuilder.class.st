@@ -12,18 +12,18 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #default }
+{ #category : #defaults }
 LcsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionSlot
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
 	self collectionElementTypes add: aClass
 
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 	aCollection 
 		add: (self targetModuleClass -> {{self slotName. self slotTypeClass.}});

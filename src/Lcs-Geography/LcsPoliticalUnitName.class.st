@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-Geography'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsPoliticalUnitName class >> fullNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -18,7 +18,7 @@ LcsPoliticalUnitName class >> fullNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsPoliticalUnitName class >> shortNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

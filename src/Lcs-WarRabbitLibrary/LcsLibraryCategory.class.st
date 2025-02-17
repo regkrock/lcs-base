@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryCategory class >> categoryNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -25,7 +25,7 @@ LcsLibraryCategory class >> newFor: aString [
 	
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryCategory class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -36,7 +36,7 @@ LcsLibraryCategory class >> parentSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLibraryCategory class >> subcategoriesSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

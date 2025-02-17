@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineTransitionDecision class >> falseStateIdSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineEventTypeSlot new
@@ -17,7 +17,7 @@ LcsStateMachineTransitionDecision class >> falseStateIdSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineTransitionDecision class >> trueStateIdSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineEventTypeSlot new

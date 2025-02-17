@@ -68,7 +68,7 @@ LcsObject >> selectorNameFrom: aString [
 	^ (newString at: 1) asLowercase asString , (newString copyFrom: 2 to: newString size)
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsObject >> testGemstone [
 	^ 1 = 2
 ]

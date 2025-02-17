@@ -4,12 +4,12 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #'gt v' }
+{ #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self slotDefinitionSource
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -18,7 +18,7 @@ LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 		text: [ self refactoringText asRopedText ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 	<gtView>
 	self target isNil ifTrue: [ ^ aView empty ].

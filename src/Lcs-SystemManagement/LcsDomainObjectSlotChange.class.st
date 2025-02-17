@@ -14,7 +14,7 @@ LcsDomainObjectSlotChange class >> addToUnitOfWork: newObject [
 	"this is not saved in the Unit of Work as it is part of the unit of work"
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainObjectSlotChange class >> newValueSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -22,7 +22,7 @@ LcsDomainObjectSlotChange class >> newValueSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainObjectSlotChange class >> oldValueSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -30,7 +30,7 @@ LcsDomainObjectSlotChange class >> oldValueSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

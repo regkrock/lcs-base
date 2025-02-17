@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-Css'
 }
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 CssHSLColorDefinition class >> hue: aHue saturation: aSaturation lightness: aLightness [
 	^ self new 
 		initializeHue: aHue saturation: aSaturation lightness: aLightness;

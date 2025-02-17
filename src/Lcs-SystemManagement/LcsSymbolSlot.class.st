@@ -12,7 +12,7 @@ LcsSymbolSlot >> defaultInitialValueBlock [
 	^ [ #'' ]
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsSymbolSlot >> inputConversionBlock: aBlock [ 
 	inputConversionBlock := aBlock
 ]

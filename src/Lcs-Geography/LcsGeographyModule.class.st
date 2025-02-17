@@ -17,7 +17,7 @@ LcsGeographyModule class >> countriesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsGeographyModule class >> moduleConfigurationClass [
 	^ LcsGeographyModuleConfiguration
 ]

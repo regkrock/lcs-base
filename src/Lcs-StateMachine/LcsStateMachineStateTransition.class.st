@@ -18,7 +18,7 @@ LcsStateMachineStateTransition class >> action: aBlockOrMessageSend to: nextStat
 	^inst
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineStateTransition class >> actionSlotDefinition [
 	<slotDefinition>
 	^ LcsBlockSlotDefinition new
@@ -26,7 +26,7 @@ LcsStateMachineStateTransition class >> actionSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineStateTransition class >> eventTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsSymbolSlot new
@@ -36,7 +36,7 @@ LcsStateMachineStateTransition class >> eventTypeSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineStateTransition class >> guardConditionSlotDefinition [
 	<slotDefinition>
 	^ LcsBlockSlotDefinition new
@@ -72,7 +72,7 @@ LcsStateMachineStateTransition class >> nextStateId: aStateSymbol [
 	^self new nextStateId: aStateSymbol
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsStateMachineStateTransition class >> nextStateIdSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-DomainBase-Core'
 }
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSystemConfigurationValidator >> gtConfigurationIssuesFor: aView [
 	<gtView>
 	self hasNoValidationIssues ifTrue: [ ^ aView empty ].

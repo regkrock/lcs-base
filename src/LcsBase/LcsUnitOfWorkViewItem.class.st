@@ -4,7 +4,7 @@ Class {
 	#category : #'LcsBase-Core'
 }
 
-{ #category : #default }
+{ #category : #defaults }
 LcsUnitOfWorkViewItem class >> defaultChildrenSelector [
 	^ #gtUnitOfWorkChildren
 ]

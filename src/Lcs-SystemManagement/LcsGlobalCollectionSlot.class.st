@@ -12,7 +12,7 @@ LcsGlobalCollectionSlot >> add: aDomainObject [
 	self slotTypes do: [ :eachTypeClass | (aDomainObject inheritsFrom: eachTypeClass) ifTrue: [ ^ true ] ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsGlobalCollectionSlot >> collectionMemberTypesList [
 	| stream |
 	stream := WriteStream on: String new.
@@ -22,7 +22,7 @@ LcsGlobalCollectionSlot >> collectionMemberTypesList [
 	^ stream contents
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsGlobalCollectionSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'collectionClass' -> (self collectionClass ifNil: [ '<undefined>' ] ifNotNil: [ self collectionClass name]);

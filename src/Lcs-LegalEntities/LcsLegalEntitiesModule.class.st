@@ -8,7 +8,7 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> moduleConfigurationClass [
 	^ LcsLegalEntitiesModuleConfiguration
 ]
@@ -28,7 +28,7 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 		yourself
 ]
 
-{ #category : #configur }
+{ #category : #configuration }
 LcsLegalEntitiesModule class >> owningModules [
 	<owningModule: 'LcsMainSystem'>
 ]

@@ -37,13 +37,13 @@ LcsBaseModule class >> allSubmoduleClasses [
 	^ collection
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBaseModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBaseModule class >> domainCollectionsSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -73,7 +73,7 @@ LcsBaseModule class >> moduleClassNamed: aString [
 		ifNone: []
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBaseModule class >> moduleConfigurationClass [
 	^ LcsBaseConfiguration
 ]
@@ -83,7 +83,7 @@ LcsBaseModule class >> moduleName [
 	^ self name
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsBaseModule class >> modulesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -172,7 +172,7 @@ LcsBaseModule >> gtApplicationModulesFor: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseModule >> gtGlobalCollectionsFor: aView [
 	<gtView>
 	 self domainCollections isEmpty ifTrue: [ ^ aView empty]. 

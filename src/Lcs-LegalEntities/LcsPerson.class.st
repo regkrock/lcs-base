@@ -16,7 +16,7 @@ LcsPerson class >> dateOfBirthSlotDefinition [
 	^ LcsDateOfBirthSlot new
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsPerson class >> firstNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -24,7 +24,7 @@ LcsPerson class >> firstNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsPerson class >> middleNamesSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -42,7 +42,7 @@ LcsPerson class >> parentSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsPerson class >> surnameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

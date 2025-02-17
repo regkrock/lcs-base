@@ -11,7 +11,7 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
 	^ self new
 		initializeOn: aBuilderOrBuilderJob;
@@ -28,12 +28,12 @@ LcsSlotDefinitionBuilder >> _target [
 	^ target
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinitionBuilder >> addModelClassesTo: aCollection [
 	aCollection addAll: self target withAllSuperclasses
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinitionBuilder >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
@@ -83,7 +83,7 @@ LcsSlotDefinitionBuilder >> getterSelector [
 	^ self slotName asSymbol
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinitionBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self doesTargetClassExist ifFalse: [
@@ -99,7 +99,7 @@ LcsSlotDefinitionBuilder >> gtClassViewOn: aView [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinitionBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -274,7 +274,7 @@ LcsSlotDefinitionBuilder >> verifyUninstall [
 	self jobSteps verifyUninstall
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotDefinitionBuilder >> viewCodeButton [
 	self _target isNil ifTrue: [ ^ BrButton new ].
 	^ self viewClassButtonFor: self target 

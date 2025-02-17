@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-Css'
 }
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 CssNamedColorDefinition class >> newNamedColor: aString [ 
 	^ self new
 		colorName: aString;

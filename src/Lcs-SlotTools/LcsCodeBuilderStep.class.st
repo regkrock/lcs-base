@@ -66,7 +66,7 @@ LcsCodeBuilderStep >> fullyInstall [
 		verifyPopulateSlotModel
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
 	<gtView>
 	self jobSteps isEmpty ifTrue: [^ aView empty ].
@@ -76,7 +76,7 @@ LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
 		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> gtPaintTreeWith: aMondrian [
 	self
 		withDeep: [ :each | 
@@ -127,7 +127,7 @@ LcsCodeBuilderStep >> jobStepDescriptionStream [
 			yourself 
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> jobStepPane: aJobStep [
 	^ BrVerticalPane new
 		fitContent;
@@ -141,7 +141,7 @@ LcsCodeBuilderStep >> jobStepPane: aJobStep [
 				aptitude: BrGlamorousLabelAptitude new)
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> jobStepPaneAssociation [
 	^ BlParabollaArcElement new
 		zIndex: 0;
@@ -253,7 +253,7 @@ LcsCodeBuilderStep >> verifyUnistall [
 	"Subclasses should implement as needed"
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> viewClassButtonFor: aClass [
 	^ BrButton new
 		id: GtCoderBrowseCoderButtonId;
@@ -264,7 +264,7 @@ LcsCodeBuilderStep >> viewClassButtonFor: aClass [
 			aButton phlow spawnTool: (GtClassCoderTool forClass: aClass) ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> viewCodeButton [
 	^ BrButton new
 ]

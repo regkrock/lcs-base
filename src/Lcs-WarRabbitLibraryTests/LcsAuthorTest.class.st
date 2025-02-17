@@ -13,10 +13,10 @@ LcsAuthorTest >> setupSunitSystem [
 LcsAuthorTest >> testCreationAndAddingToParentCollection [
 	| author |
 	author := LcsAuthor new 
-						surname: 'Freeman';
-						firstName: 'Jack';
-						middleNames: 'Edward';
-						yourself.
+					surname: 'Freeman';
+					firstName: 'Jack';
+					middleNames: 'Edward';
+					yourself.
 	self assert: author surname equals: 'Freeman'.
 	self assert: author firstName equals: 'Jack'.
 	self assert: author middleNames equals: 'Edward'.

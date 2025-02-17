@@ -4,7 +4,7 @@ Class {
 	#category : #'LcsBase-Core'
 }
 
-{ #category : #deafult }
+{ #category : #defaults }
 LcsSlotModelViewItem class >> defaultChildrenSelector [
 	^ #gtViewSlotModelChildren
 ]

@@ -14,28 +14,28 @@ CssColor class >> doesNotUnderstand: aMessage [
 		ifFalse: [ ^ self named: aMessage selector asString ]
 ]
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 CssColor class >> hex: aString [ 
 	^ self new 
 		initializeHex: aString;
 		yourself
 ]
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 CssColor class >> hue: aHue saturation: aSaturation lightness: aLightness [
 	^self new 
 		initializeHue: aHue saturation: aSaturation lightness: aLightness;
 		yourself
 ]
 
-{ #category : #'instance  creation' }
+{ #category : #'instance creation' }
 CssColor class >> named: aString [
 	^ self new
 		initializeNamedColor: aString;
 		yourself 
 ]
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 CssColor class >> red: aRedNumber green: aGreenNumber blue: aBlueNumber [
 	^self new 
 		initializeRed: aRedNumber green: aGreenNumber blue: aBlueNumber;
@@ -57,7 +57,7 @@ CssColor >> displayString [
 	^self colorDefinition displayString
 ]
 
-{ #category : #iniitialize }
+{ #category : #initialize }
 CssColor >> initializeHex: aString [ 
 	self colorDefinition: (CssHexColorDefinition hex: aString) 
 ]
@@ -71,13 +71,13 @@ CssColor >> initializeHue: aHue saturation: aSaturation lightness: aLightness [
 			lightness: aLightness)
 ]
 
-{ #category : #iniitialize }
+{ #category : #initialize }
 CssColor >> initializeNamedColor: aString [ 
 	self colorDefinition: (
 		CssNamedColorDefinition newNamedColor: aString)
 ]
 
-{ #category : #initialialize }
+{ #category : #initialize }
 CssColor >> initializeRed: aRedNumber green: aGreenNumber blue: aBlueNumber [ 
 	^ self colorDefinition: (
 		CssRGBColorDefinition 

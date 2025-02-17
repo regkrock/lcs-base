@@ -26,7 +26,7 @@ LcsUnitsOfWorkManager class >> newOn: anApplicationEnvironment [
 		yourself
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsUnitsOfWorkManager >> applicationEnvironmentViewChildren [
 	^ {
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Current Unit Of Work' item: self currentUnitOfWork.
@@ -60,7 +60,7 @@ LcsUnitsOfWorkManager >> currentUnitOfWork: anObject [
 	currentUnitOfWork := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsUnitsOfWorkManager >> gtUnitsOfWorkManagerFor: aView [
 		<gtView>
 	^ aView columnedList
@@ -99,7 +99,7 @@ LcsUnitsOfWorkManager >> initializeOn: anApplicationEnvironment [
 	self parent: anApplicationEnvironment
 ]
 
-{ #category : #querry }
+{ #category : #query }
 LcsUnitsOfWorkManager >> numberOfUnitsOfWork [
 	^ self unitsOfWork collectionSize
 ]

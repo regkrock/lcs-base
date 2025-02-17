@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-PrototypeSystem-Base'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LxxPrototypeOrganization class >> chiefExecutiveOfficerSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new

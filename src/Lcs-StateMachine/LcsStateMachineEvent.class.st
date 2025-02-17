@@ -9,7 +9,7 @@ Class {
 	#category : #'Lcs-StateMachine-Core'
 }
 
-{ #category : #'slot definition\t' }
+{ #category : #'slot definitions' }
 LcsStateMachineEvent class >> argumentsSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
@@ -17,7 +17,7 @@ LcsStateMachineEvent class >> argumentsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition\t' }
+{ #category : #'slot definitions' }
 LcsStateMachineEvent class >> handledSlotDefinition [
 	<slotDefinition>
 	^ LcsBooleanSlot new
@@ -38,7 +38,7 @@ LcsStateMachineEvent class >> newType: aSymbol arguments: args [
 		yourself
 ]
 
-{ #category : #'slot definition\t' }
+{ #category : #'slot definitions' }
 LcsStateMachineEvent class >> typeSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineEventTypeSlot new

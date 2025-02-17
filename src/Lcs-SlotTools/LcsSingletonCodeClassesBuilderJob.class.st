@@ -61,13 +61,13 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 	codeSubclassBuilders := aCollection
 ]
 
-{ #category : #iniitialize }
+{ #category : #initialize }
 LcsSingletonCodeClassesBuilderJob >> initialize [
 	super initialize.
 	self codeSubclassBuilders: OrderedCollection new
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSingletonCodeClassesBuilderJob >> overview [
 	| collection |
 	collection := OrderedCollection new.

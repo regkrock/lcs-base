@@ -14,7 +14,7 @@ CssRGBSColorDefinition >> alpha: anObject [
 	alpha := anObject
 ]
 
-{ #category : #initialialize }
+{ #category : #initialize }
 CssRGBSColorDefinition >> initializeRed: aRedNumber green: aGreenNumber blue: aBlueNumber alpha: anAlphaNumber [
 	super initializeRed: aRedNumber green: aGreenNumber blue: aBlueNumber.
 	self alpha: anAlphaNumber

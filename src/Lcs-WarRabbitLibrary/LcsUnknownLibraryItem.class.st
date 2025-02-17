@@ -8,14 +8,14 @@ Class {
 	#category : #'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'instace creation' }
+{ #category : #'instance creation' }
 LcsUnknownLibraryItem class >> newOn: aString [ 
 	^ self new
 		initializeOn: aString;
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsUnknownLibraryItem class >> originalLineSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -23,7 +23,7 @@ LcsUnknownLibraryItem class >> originalLineSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsUnknownLibraryItem class >> partsSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

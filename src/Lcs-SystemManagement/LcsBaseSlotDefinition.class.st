@@ -54,7 +54,7 @@ LcsBaseSlotDefinition >> slotName: anObject [
 	slotName := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsBaseSlotDefinition >> slotTypeClassNames [
 	| stream |
 	stream := WriteStream on: String new.

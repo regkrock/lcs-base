@@ -9,7 +9,7 @@ Class {
 	#category : #'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsWarRabbitLibrary class >> authorsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
@@ -19,7 +19,7 @@ LcsWarRabbitLibrary class >> authorsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsWarRabbitLibrary class >> libraryCategoriesSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
@@ -29,7 +29,7 @@ LcsWarRabbitLibrary class >> libraryCategoriesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsWarRabbitLibrary class >> libraryItemsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new

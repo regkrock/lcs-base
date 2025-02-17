@@ -14,7 +14,7 @@ LcsParentObject class >> newOn: anOjbect [
 		yourself
 ]
 
-{ #category : #inititialize }
+{ #category : #initialize }
 LcsParentObject >> initializeOn: anObject [ 
 	self parent: anObject
 ]

@@ -15,7 +15,7 @@ LcsTimestampSlot >> initialize [
 	self slotName: 'timestamp'
 ]
 
-{ #category : #default }
+{ #category : #defaults }
 LcsTimestampSlot >> typeClass [
 	^ DateAndTime 
 ]

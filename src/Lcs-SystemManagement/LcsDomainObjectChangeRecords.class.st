@@ -6,7 +6,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
-{ #category : #acccessing }
+{ #category : #accessing }
 LcsDomainObjectChangeRecords >> collection [
 	^ self slotVarNamed: 'collection'
 ]
