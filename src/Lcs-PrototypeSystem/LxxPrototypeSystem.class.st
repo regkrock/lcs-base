@@ -81,6 +81,7 @@ LxxPrototypeSystem >> persons: anObject [
 { #category : #initialize }
 LxxPrototypeSystem >> systemDomainClasses [
 	^super systemDomainClasses
+		add: LxxPrototype2Submodule;
 		add: LxxPrototypeOrganization;
 		add: LxxPrototypePerson;
 		add: LxxPrototypePersons;

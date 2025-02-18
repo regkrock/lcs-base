@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsWarRabbitLibrayImporter,
-	#superclass : #LcsObject,
+	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'library',
 		'currentCategory',

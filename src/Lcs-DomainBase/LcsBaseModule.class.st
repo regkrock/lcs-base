@@ -157,7 +157,7 @@ LcsBaseModule >> globalCollectionItems [
 { #category : #'gt views' }
 LcsBaseModule >> gtApplicationModulesFor: aView [
 	<gtView>
-	(self modules isNil or: [ self modules isEmpty ])
+	(self modules isNil or: [ self modules hasNoElements ])
 		ifTrue: [ 
 			^ aView list
 				title: 'Modules';
@@ -186,7 +186,7 @@ LcsBaseModule >> gtGlobalCollectionsFor: aView [
 		column: 'Size'
 			text: [ :item | item item 
 								ifNil: [ '' ] 
-								ifNotNil: [ item item size printString ] ]
+								ifNotNil: [ item item collectionSize printString ] ]
 			width: 50;
 		column: 'Class'
 			text: [ :item | item item class asString ]

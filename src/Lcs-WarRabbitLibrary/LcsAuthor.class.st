@@ -25,7 +25,7 @@ LcsAuthor class >> parentSlotDefinition [
 		slotName: 'parent';
 		collectionSlotName: 'authors';
 		collectionSlotModuleName: LcsWarRabbitLibrary moduleName;
-		addSlotType: LcsAuthor
+		addSlotType: LcsAuthors
 		yourself
 ]
 

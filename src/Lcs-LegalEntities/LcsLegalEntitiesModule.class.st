@@ -31,6 +31,7 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 { #category : #configuration }
 LcsLegalEntitiesModule class >> owningModules [
 	<owningModule: 'LcsMainSystem'>
+	<owningModule: 'LcsWarRabbitLibrary'>
 ]
 
 { #category : #'slot definitions' }

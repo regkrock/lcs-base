@@ -32,7 +32,7 @@ LcsLibraryCategory class >> parentSlotDefinition [
 		slotName: 'parent';
 		collectionSlotModuleName: LcsWarRabbitLibrary moduleName;
 		collectionSlotName: 'libraryCategories';
-		addSlotType: self;
+		addSlotType: LcsLibraryCategories;
 		yourself
 ]
 

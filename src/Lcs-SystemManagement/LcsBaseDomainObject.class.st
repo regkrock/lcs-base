@@ -11,13 +11,6 @@ Class {
 }
 
 { #category : #'meta data' }
-LcsBaseDomainObject class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
-	self allClassBetweenMyselfAndLcsDomainObject
-		do: [ :each | (prebootstrapClasses includes: each) ifFalse: [ prebootstrapClasses add: each ] ].
-	prebootstrapClasses add: self
-]
-
-{ #category : #'meta data' }
 LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 	^ self allSuperclasses reverse
 		reject: [ :each | (each inheritsFrom: LcsBaseDomainObject) not ]
@@ -62,7 +55,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 	"^ aView empty"
 	^ aView columnedList
 		title: 'Slot Definitions';
-		priority: 3;
+		priority: 20;
 		items: [ self slotDefinitionPragmasAndInstVarNames ];
 		column: 'Slot' text: [ :each | each value slotName ] width: 100;
 		column: 'InstVar' text: [ :each | each key ] width: 100;
@@ -86,12 +79,12 @@ LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 	self slotModel ifNil: [ 
 		^ aView list
 			title: 'Slot Model';
-			priority: 2;
+			priority: 10;
 			items: [ Array with: 'Not initialized' ];
 			yourself].	
 	^ aView forward
 		title: 'Slot Model';
-		priority: 2;
+		priority: 10;
 		object: [ self slotModel ];
 		view: #gtViewSlotModelFor:;
 		yourself

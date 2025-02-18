@@ -1,6 +1,8 @@
 Class {
 	#name : #LcsViewItem,
 	#superclass : #LcsObject,
+	#traits : 'LtApplicationEnvironment',
+	#classTraits : 'LtApplicationEnvironment classTrait',
 	#instVars : [
 		'label',
 		'item',

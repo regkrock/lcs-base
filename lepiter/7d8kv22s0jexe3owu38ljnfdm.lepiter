@@ -250,6 +250,40 @@
 					"uidString" : "DeqSmjrpDQCbyKH2CChzfA=="
 				},
 				"code" : "\"Force clearing of environment\"\rLcsApplicationEnvironment singleton: nil"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-17T19:07:03.715169-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-17T19:07:13.339222-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "EH5YKMHqDQC5TE2HDEhxag=="
+				},
+				"code" : "LcsWarRabbitLibrary new"
 			}
 		]
 	},

@@ -78,6 +78,8 @@ LcsWarRabbitLibrary >> libraryItems: anObject [
 LcsWarRabbitLibrary >> systemDomainClasses [
 	<todo: 'Refactor to make this more efficient'>
 	^ super systemDomainClasses
+		addAll: ('Lcs-Geography' asPackage classes);
+		addAll: ('Lcs-LegalEntities' asPackage classes);
 		add: LcsAuthor;
 		add: LcsAuthors;
 		add: LcsItemAuthors;

@@ -30,6 +30,7 @@ LcsGeographyModule class >> moduleName [
 { #category : #configuration }
 LcsGeographyModule class >> owningModules [
 	<owningModule: 'LcsMainSystem'>
+	<owningModule: 'LcsWarRabbitLibrary'>
 ]
 
 { #category : #accessing }

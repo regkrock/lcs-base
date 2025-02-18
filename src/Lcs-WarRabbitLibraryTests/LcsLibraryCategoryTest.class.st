@@ -14,7 +14,7 @@ LcsLibraryCategoryTest >> testCreationAndAddingToParentCollection [
 	| libraryCategory |
 	libraryCategory := LcsLibraryCategory new categoryName: 'Test'.
 	self assert: libraryCategory categoryName equals: 'Test'.
-	self assert: libraryCategory parent isNil.
+	self assert: libraryCategory parent notNil.
 	
 	self currentSystem relatedUnitOfWork applyChanges.
 	

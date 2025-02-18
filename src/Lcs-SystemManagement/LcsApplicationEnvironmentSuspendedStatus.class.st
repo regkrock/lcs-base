@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Environment'
 }
 
+{ #category : #'gt views' }
+LcsApplicationEnvironmentSuspendedStatus >> gtLiveBackground [
+	^ BrGlamorousColors newsBackgroundColor
+]
+
 { #category : #testing }
 LcsApplicationEnvironmentSuspendedStatus >> isInSuspendedStatus [
 	^ true

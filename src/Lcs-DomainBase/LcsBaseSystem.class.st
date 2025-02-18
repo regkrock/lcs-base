@@ -12,6 +12,19 @@ Class {
 	#category : #'Lcs-DomainBase-Core'
 }
 
+{ #category : #'system model' }
+LcsBaseSystem class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
+	self allClassBetweenMyselfAndLcsDomainObject
+		do: [ :each | (prebootstrapClasses includes: each) ifFalse: [ prebootstrapClasses add: each ] ].
+	prebootstrapClasses add: self.
+	prebootstrapClasses addAll: self allSubmodules
+]
+
+{ #category : #'system model' }
+LcsBaseSystem class >> allSubmodules [
+	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
+]
+
 { #category : #'slot definitions' }
 LcsBaseSystem class >> globalCollectionsSlotDefinition [
 	<slotDefinition>
@@ -72,7 +85,7 @@ LcsBaseSystem class >> systemBootstrapDomainClasses [
 	^ prebootstrapClasses
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #'system model' }
 LcsBaseSystem class >> systemSlotModelSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -471,11 +484,10 @@ LcsBaseSystem >> systemDomainClasses [
 		add: LcsCodes;
 		add: #LcsStateMachine asClass;
 		add: #LcsStateMachineObject asClass;
-		addAll: #LcsStateMachineObject asClass allSubclasses;
+		addAll: #LcsStateMachineObject  asClass allSubclasses;
 		add: #LcsStateMachineEvent asClass;
 		add: #LcsStateMachineStates asClass;
 		add: #LcsStateMachineTransitions asClass;
-		add: LxxPrototype2Submodule;
 		yourself
 ]
 

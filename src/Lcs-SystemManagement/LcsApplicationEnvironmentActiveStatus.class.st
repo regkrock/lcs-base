@@ -9,6 +9,11 @@ LcsApplicationEnvironmentActiveStatus >> displayString [
 	^ self statusName
 ]
 
+{ #category : #'gt views' }
+LcsApplicationEnvironmentActiveStatus >> gtLiveBackground [
+	^ BrGlamorousColors successBackgroundColor
+]
+
 { #category : #testing }
 LcsApplicationEnvironmentActiveStatus >> isInActiveStatus [
 	^ true
