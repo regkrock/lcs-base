@@ -18,6 +18,11 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
+{ #category : #'system model' }
+LcsDomainObject class >> allSubmodules [
+	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
+]
+
 { #category : #'slot definitions' }
 LcsDomainObject class >> historySlotDefinition [
 	<slotDefinition>

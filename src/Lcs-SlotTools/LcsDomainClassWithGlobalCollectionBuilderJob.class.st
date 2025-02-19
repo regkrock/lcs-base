@@ -152,7 +152,7 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> newDomainClassName: anObject [
 
 { #category : #accessing }
 LcsDomainClassWithGlobalCollectionBuilderJob >> newGlobalCollectionClassName: anObject [ 
-	globalCollectionClassName := self classPrefix , anObject
+	self globalCollectionClassName: self classPrefix , anObject
 ]
 
 { #category : #accessing }

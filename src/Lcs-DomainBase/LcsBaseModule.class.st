@@ -13,35 +13,15 @@ Class {
 }
 
 { #category : #modules }
-LcsBaseModule class >> addSubmoduleClassesFor: aModuleClass to: aCollection [
-	| submduleClasses |
-	submduleClasses := self submoduleClasses.
-	aCollection addAll: submduleClasses.
-	submduleClasses do: [ :each | self addSubmoduleClassesFor: each to: aCollection ]
-	
-]
-
-{ #category : #modules }
-LcsBaseModule class >> addSubmoduleClassesTo: moduleClasses [ 
-	moduleClasses add: self.
-	self submoduleClasses do: [ :each |
-		each addSubmoduleClassesTo: moduleClasses ]
-]
-
-{ #category : #modules }
 LcsBaseModule class >> allOwnedModuleCandidates [
 	^ self allSubclasses select: [ :eachModuleClass | 
 		eachModuleClass class pragmas anySatisfy: [ :eachPragma | 
 			eachPragma selector = 'owningModule:'] ]
 ]
 
-{ #category : #modules }
-LcsBaseModule class >> allSubmoduleClasses [
-	| collection |
-	self error: 'This is recursive and needs to be fixewd'.
-	collection := OrderedCollection new.
-	self addSubmoduleClassesFor: self to: collection.
-	^ collection
+{ #category : #'system model' }
+LcsBaseModule class >> allSubmodules [
+	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
 ]
 
 { #category : #'slot definitions' }
@@ -101,17 +81,8 @@ LcsBaseModule class >> modulesSlotDefinition [
 ]
 
 { #category : #modules }
-LcsBaseModule class >> submoduleClasses [
-	| submoduleClasses |
-	submoduleClasses := OrderedCollection new.
-	LcsBaseModule allSubclassesDo: [ :eachClass | 
-		(eachClass isSubmoduleOf: self) ifTrue: [ submoduleClasses add: eachClass ] ].
-	^ submoduleClasses
-]
-
-{ #category : #modules }
-LcsBaseModule >> allSubmoduleClasses [
-	^ self class allSubmoduleClasses
+LcsBaseModule >> allSubmodules [
+	^ self class allSubmodules
 ]
 
 { #category : #building }
@@ -123,7 +94,7 @@ LcsBaseModule >> buildModule: eachModuleClass [
 
 { #category : #building }
 LcsBaseModule >> buildModules [
-	self submoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
+	self allSubmodules do: [ :eachModuleClass | self buildModule: eachModuleClass ]
 ]
 
 { #category : #accessing }
@@ -291,9 +262,4 @@ LcsBaseModule >> printOn: aStream [
 		nextPutAll: ' (';
 		nextPutAll: self objectId asString;
 		nextPutAll: ')'
-]
-
-{ #category : #modules }
-LcsBaseModule >> submoduleClasses [
-	^ self class submoduleClasses
 ]

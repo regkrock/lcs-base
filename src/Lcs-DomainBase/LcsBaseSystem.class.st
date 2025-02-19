@@ -20,11 +20,6 @@ LcsBaseSystem class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
 	prebootstrapClasses addAll: self allSubmodules
 ]
 
-{ #category : #'system model' }
-LcsBaseSystem class >> allSubmodules [
-	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
-]
-
 { #category : #'slot definitions' }
 LcsBaseSystem class >> globalCollectionsSlotDefinition [
 	<slotDefinition>
@@ -414,7 +409,7 @@ LcsBaseSystem >> requiredSystemDomainClasses [
 	^OrderedCollection new
 		addAll: self baseDomainModelClasses;
 		add: self class;
-		addAll: self submoduleClasses;
+		addAll: self allSubmodules;
 		yourself
 ]
 

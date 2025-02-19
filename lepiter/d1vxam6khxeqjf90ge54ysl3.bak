@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-19T14:16:40.343476-05:00"
+						"dateAndTimeString" : "2025-02-19T14:16:48.444304-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Dcaz/OTqDQCFZrLrCMsfBg=="
 				},
-				"code" : "job := LcsGlobalDomainClassClassesBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tglobalCollectionSlotName: _\r\tglobalCollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
+				"code" : "job := LcsGlobalDomainClassClassesBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tglobalCollectionSlotName: 'users';\r\tglobalCollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
 			},
 			{
 				"__type" : "textSnippet",

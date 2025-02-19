@@ -711,7 +711,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-02-19T13:50:08.065727-05:00"
+															"dateAndTimeString" : "2025-02-19T13:50:21.651015-05:00"
 														}
 													},
 													"uid" : {
@@ -721,7 +721,7 @@
 													"paragraphStyle" : {
 														"__type" : "textStyle"
 													},
-													"string" : "[[[[Add 1 to Many Global Collection (Ex: User and some subclasses and Users)]"
+													"string" : "[[Add 1 to Many Global Collection (Ex: User and some subclasses and Users)]]"
 												}
 											]
 										},
