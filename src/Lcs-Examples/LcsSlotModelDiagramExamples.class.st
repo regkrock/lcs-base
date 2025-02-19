@@ -54,7 +54,7 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModelClasses [
 			yourself.
 	classes removeDuplicates.
 	classes remove: Object.
-	self removerProtoObjectFrom: classes.
+	self removeProtoObjectFrom: classes.
 	^ classes
 ]
 
@@ -102,7 +102,7 @@ LcsSlotModelDiagramExamples >> slotDefinitionsHierarchy [
 { #category : #example }
 LcsSlotModelDiagramExamples >> systemSlotModel [
 	<gtExample>
-	| model classes associations positions |
+	| model classes associations positions tempChildren |
 
 	classes := self systemSlotModelClasses.
 	associations := self systemSlotModelAssociationsWithLabels.
@@ -114,7 +114,9 @@ LcsSlotModelDiagramExamples >> systemSlotModel [
 		
 	model layout custom: BlBasicLayout new.
 
-	model root children withIndexDo: [ :child :n | child relocate: (positions at: n) ].
+	"tempChildren := model root children copy.
+	tempChildren array: (tempChildren array copyFrom: 1 to: 35).
+	tempChildren withIndexDo: [ :child :n | child relocate: (positions at: n) ]."
 	
 	^ model
 
@@ -149,7 +151,7 @@ LcsSlotModelDiagramExamples >> systemSlotModelClasses [
 			yourself.
 	classes removeDuplicates.
 	classes remove: Object.
-	self removerProtoObjectFrom: classes.
+	self removeProtoObjectFrom: classes.
 	^ classes
 ]
 

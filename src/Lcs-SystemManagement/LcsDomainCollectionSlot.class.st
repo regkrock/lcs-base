@@ -47,7 +47,8 @@ LcsDomainCollectionSlot >> collectionMemberTypes: anObject [
 { #category : #initialize }
 LcsDomainCollectionSlot >> initialize [
 	super initialize.
-	self collectionMemberTypes: OrderedCollection new
+	self collectionMemberTypes: OrderedCollection new.
+	self beIdentitySetCollection
 ]
 
 { #category : #accessing }

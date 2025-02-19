@@ -87,7 +87,7 @@ LxxPrototypeSystem >> systemDomainClasses [
 		add: LxxPrototypePersons;
 		add: LxxPrototypeSystemConfiguration;
 		addAll: LxxPrototypeSystem submoduleClasses;
-		add: LxxCompositeStateMachine;
-		add: LxxSubStateMachine;
+		add: #LxxCompositeStateMachine asClass;
+		add: #LxxSubStateMachine asClass;
 		yourself
 ]

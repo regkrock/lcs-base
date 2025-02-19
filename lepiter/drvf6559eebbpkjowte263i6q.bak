@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T19:08:02.013378-04:00"
+						"dateAndTimeString" : "2024-05-14T19:08:07.459473-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The slot definition class and its subclsses define the properties of a slot. These include the following: \n- The name of the slot (#slotName).\n2. Parent - the parent of the slot definition instance. Its parent  - an instance of {{gtClass:name=LcsSlotModel}}\n3. Domain Class - It knows the domain class that it is associated with. This is done via its parent.\n4. Type - this is the type of object that can be stored in the slot.\n5. Initial value - this is the value that will populate .\n6. Required - Indicates the initial value must be changed before the instance is saved.\n7. Validator - This is the object that is used to validate slot's value.\n8. Access Permission - Used to manage access to a slot - ex: Read, Write, etc.\n9. Slot Dependencies - It knows which other slots are dependent on it.  This is used to propogate changes to dependent slots.\n10. Logging - The slot can have a logger added to log changes/access to a slot."
+				"string" : "The slot definition class and its subclsses define the properties of a slot. These include the following: \n1. The name of the slot (#slotName).\n2. Parent - the parent of the slot definition instance. Its parent  - an instance of {{gtClass:name=LcsSlotModel}}\n3. Domain Class - It knows the domain class that it is associated with. This is done via its parent.\n4. Type - this is the type of object that can be stored in the slot.\n5. Initial value - this is the value that will populate .\n6. Required - Indicates the initial value must be changed before the instance is saved.\n7. Validator - This is the object that is used to validate slot's value.\n8. Access Permission - Used to manage access to a slot - ex: Read, Write, etc.\n9. Slot Dependencies - It knows which other slots are dependent on it.  This is used to propogate changes to dependent slots.\n10. Logging - The slot can have a logger added to log changes/access to a slot."
 			},
 			{
 				"__type" : "textSnippet",

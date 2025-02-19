@@ -1,0 +1,218 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:50:44.988357-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:51:33.780094-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "69bO+OTqDQCDmj6KCMsfBg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "This will do the following:\n1) Create a new detail class (Ex: LxxBaseUser  with 3 subclasses: LxxUser, LxxSystemUser, LxxGuest)\n2) Create a collection class (Ex: LxxUsers)\n3) Add a 'users' slot definition in the  appropriate module (ex: LcsSecurity)\n4) In LxxUser, create a parent slot definition which points to the global collection."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:51:50.323153-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T14:16:40.343476-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Dcaz/OTqDQCFZrLrCMsfBg=="
+				},
+				"code" : "job := LcsGlobalDomainClassClassesBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tglobalCollectionSlotName: _\r\tglobalCollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:54:47.197089-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:54:47.972629-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sKk+B+XqDQCG0TTXCMsfBg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Inspect 'job' to see the steps that will be executed."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:55:09.80612-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:55:10.516527-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "fKKXCOXqDQCG3vl+CMsfBg=="
+				},
+				"code" : "\"Do the installation\"\rjob execute"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:55:28.091695-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-19T13:55:28.681213-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "eaquCeXqDQCG6qoMCMsfBg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Inspect 'job' to see the Installed Classes,  Slot Definitions and instance variable."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-02-19T13:50:28.244291-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-02-19T13:50:28.244291-05:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Add 1 to Many Global Collection (Ex: User and some subclasses and Users)"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "375dcff7-e4ea-0d00-838e-dbac08cb1f06"
+	}
+}

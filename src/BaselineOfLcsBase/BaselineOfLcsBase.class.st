@@ -30,6 +30,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-SlotTools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
 			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SlotTools') ].
 			spec package: 'Lcs-StateMachine' with: [ spec requires: #('Lcs-DomainBase') ].
+			spec package: 'Lcs-Security' with: [ spec requires: #('Lcs-DomainBase') ].
 
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
 			spec package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Geography') ].

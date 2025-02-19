@@ -11,8 +11,8 @@ Class {
 		'targetModuleName',
 		'targetModuleClass',
 		'newDomainClassName',
-		'newGlobalCollectionClassName',
-		'globalCollectionModuleClass'
+		'globalCollectionModuleClass',
+		'globalCollectionClassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -44,12 +44,18 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> classRootName: aString [
 ]
 
 { #category : #configuration }
+LcsDomainClassWithGlobalCollectionBuilderJob >> createForPrefix: aPrefix rootName: aRootName [
+	self classPrefix: aPrefix.
+	self createForRootName: aRootName
+]
+
+{ #category : #configuration }
 LcsDomainClassWithGlobalCollectionBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
 	self domainInstanceSlotName: self classRootName asValidSelector.
 	self globalCollectionSlotName: self domainInstanceSlotName asEnglishPlural.
 	self newDomainClassName: self classPrefix , aRootName.
-	self newGlobalCollectionClassName: self newDomainClassName asEnglishPlural
+	self globalCollectionClassName: self newDomainClassName asEnglishPlural
 ]
 
 { #category : #accessing }
@@ -60,6 +66,16 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> domainInstanceSlotName [
 { #category : #accessing }
 LcsDomainClassWithGlobalCollectionBuilderJob >> domainInstanceSlotName: aString [ 
 	domainInstanceSlotName := aString
+]
+
+{ #category : #accessing }
+LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionClassName [
+	^ globalCollectionClassName
+]
+
+{ #category : #accessing }
+LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionClassName: anObject [ 
+	globalCollectionClassName := anObject
 ]
 
 { #category : #accessing }
@@ -78,7 +94,7 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionReferenceSlotBui
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self globalCollectionSlotName;
 		collectionSlotModuleName: self globalCollectionModuleClass moduleName;
-		collectionClassName: self newGlobalCollectionClassName;
+		collectionClassName: self globalCollectionClassName;
 		yourself
 ]
 
@@ -135,13 +151,8 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> newDomainClassName: anObject [
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> newGlobalCollectionClassName [
-	^ newGlobalCollectionClassName
-]
-
-{ #category : #accessing }
 LcsDomainClassWithGlobalCollectionBuilderJob >> newGlobalCollectionClassName: anObject [ 
-	newGlobalCollectionClassName := anObject
+	globalCollectionClassName := self classPrefix , anObject
 ]
 
 { #category : #accessing }

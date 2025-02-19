@@ -72,7 +72,7 @@ LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
 	self jobSteps isEmpty ifTrue: [^ aView empty ].
 	^ aView mondrian
 		title: 'Steps Tree';
-		priority: 2;
+		priority: 1;
 		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
 ]
 

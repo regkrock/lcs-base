@@ -648,6 +648,80 @@
 														"__type" : "textStyle"
 													},
 													"string" : "[[Add Singleton Domain Code Classes]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-19T11:52:11.361201-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-19T12:43:41.198762-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "pIPNUOPqDQCuykyRCMsfBg=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[Add 1 to Many Global Collection (Ex: User and Users)]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-19T12:48:17.474893-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-19T13:50:21.651015-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "AFRwGeTqDQCCzPWSCMsfBg=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[Add 1 to Many Global Collection (Ex: User and some subclasses and Users)]]"
 												}
 											]
 										},

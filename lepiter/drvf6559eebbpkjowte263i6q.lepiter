@@ -113,7 +113,7 @@
 				"code" : "LcsSlotModelDiagramExamples new slotDefinitionsHierarchy",
 				"elementHeight" : 214,
 				"codeHeight" : 50,
-				"codeVisible" : false
+				"codeVisible" : true
 			},
 			{
 				"__type" : "textSnippet",

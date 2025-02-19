@@ -62,6 +62,7 @@ LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
+	self currentSystem isNil ifTrue: [ ^ self ].
 	self assert: (self target slotModel slotDefinitionNamed: self slotName) notNil
 ]
 

@@ -27,19 +27,49 @@ Class {
 	#superclass : #LcsDomainClassWithGlobalCollectionBuilderJob,
 	#instVars : [
 		'protoInstances',
-		'unknownClassName'
+		'unknownClassName',
+		'buildUnknownClass',
+		'subclassNames'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #command }
+LcsGlobalDomainClassClassesBuilderJob >> addSubclassBuilders [
+	self subclassNames do: [ :eachName |
+		self addJobStep: (
+			LcsDomainClassBuilder new
+				newClassName: self classPrefix , eachName;
+				targetSuperclassName: self newDomainClassName;
+				targetPackageName: self targetPackageName)]
+]
+
+{ #category : #command }
 LcsGlobalDomainClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self domainClassBuilder.
-	self addJobStep: self domainUnknownClassBuilder.
+	self buildUnknownClass ifTrue: [
+		self addJobStep: self domainUnknownClassBuilder].
+	self addSubclassBuilders.
 	self addJobStep: self domainCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self globalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
+]
+
+{ #category : #accessing }
+LcsGlobalDomainClassClassesBuilderJob >> buildUnknownClass [
+	^ buildUnknownClass
+]
+
+{ #category : #accessing }
+LcsGlobalDomainClassClassesBuilderJob >> buildUnknownClass: aBoolean [ 
+	buildUnknownClass := aBoolean
+]
+
+{ #category : #accessing }
+LcsGlobalDomainClassClassesBuilderJob >> createForPrefix: aPrefix rootName: aRootName withSubclasses: aCollection [ 
+	self createForPrefix: aPrefix rootName: aRootName.
+	self subclassNames addAll: aCollection
 ]
 
 { #category : #configuration }
@@ -81,7 +111,7 @@ LcsGlobalDomainClassClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTarg
 { #category : #builders }
 LcsGlobalDomainClassClassesBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
-		newClassName: self newGlobalCollectionClassName;
+		newClassName: self globalCollectionClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -101,14 +131,14 @@ LcsGlobalDomainClassClassesBuilderJob >> globalCollectionReferenceSlotBuilder [
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self globalCollectionSlotName;
 		collectionSlotModuleName: self globalCollectionModuleClass moduleName;
-		collectionClassName: self newGlobalCollectionClassName; 
+		collectionClassName: self globalCollectionClassName; 
 		yourself
 ]
 
 { #category : #'builder step' }
 LcsGlobalDomainClassClassesBuilderJob >> globalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
-		slotClassName: self newGlobalCollectionClassName;
+		slotClassName: self globalCollectionClassName;
 		slotName: self globalCollectionSlotName;
 		targetClassName: self globalCollectionModuleClass name;
 		targetModuleClass: self globalCollectionModuleClass;
@@ -125,7 +155,9 @@ LcsGlobalDomainClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 LcsGlobalDomainClassClassesBuilderJob >> initialize [
 	super initialize.
 	self protoInstances: OrderedCollection new.
-	self targetDomainClasses: Set new
+	self targetDomainClasses: Set new.
+	self buildUnknownClass: false.
+	self subclassNames: OrderedCollection new
 ]
 
 { #category : #command }
@@ -146,7 +178,7 @@ LcsGlobalDomainClassClassesBuilderJob >> printJobStreamDetailsOn: aStream [
 		nextPutAll: 'Install ';
 		nextPutAll: self newDomainClassName ; cr;
 		nextPutAll: ' with instances stored in ';
-		nextPutAll: self newGlobalCollectionClassName
+		nextPutAll: self globalCollectionClassName
 ]
 
 { #category : #accessing }
@@ -157,6 +189,16 @@ LcsGlobalDomainClassClassesBuilderJob >> protoInstances [
 { #category : #accessing }
 LcsGlobalDomainClassClassesBuilderJob >> protoInstances: aCollection [
 	protoInstances := aCollection
+]
+
+{ #category : #accessing }
+LcsGlobalDomainClassClassesBuilderJob >> subclassNames [
+	^ subclassNames
+]
+
+{ #category : #accessing }
+LcsGlobalDomainClassClassesBuilderJob >> subclassNames: anObject [
+	subclassNames := anObject
 ]
 
 { #category : #accessing }

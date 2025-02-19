@@ -70,6 +70,27 @@ LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
 	collectionSlotName := aString
 ]
 
+{ #category : #'gt views' }
+LcsGlobalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
+	<gtView>
+	^ aView columnedTree
+		title: 'Steps List';
+		priority: 2;
+		expandUpTo: 3;
+		items: [ self jobSteps ];
+		children: [ :step | step jobSteps ];
+		"column: 'Number'
+			text: [ :step | step stepNumber ] width: 55;"
+		column: 'Step'
+			text: [ :step | step jobStepDescription ] width: 400;
+		column: 'Step Class'
+			text: [ :step | step class name ];
+		column: ''
+			stencil: [ :step | step viewCodeButton ];
+		column: 'Status'
+			text: [ :step | step state asString asRopedText ]
+]
+
 { #category : #initialize }
 LcsGlobalCollectionReferenceSlotBuilder >> initialize [
 	super initialize.
@@ -95,7 +116,7 @@ LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
 	self target removeDomainSlotNamed: self slotName
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #verification }
 LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
 	| slotDefinition |
 	super verifyCodeInstallation.
@@ -107,7 +128,7 @@ LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #verification }
 LcsGlobalCollectionReferenceSlotBuilder >> verifyUninstall [
 	| slotDefinition |
 	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) ifNil: [ ^ self ].

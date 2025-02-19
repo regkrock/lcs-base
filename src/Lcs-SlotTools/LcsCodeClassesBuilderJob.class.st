@@ -26,7 +26,7 @@ LcsCodeClassesBuilderJob >> codeClassBuilder [
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
 	^ LcsCodeCollectionClassBuilder new
-		newClassName: self newGlobalCollectionClassName;
+		newClassName: self globalCollectionClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -40,7 +40,7 @@ LcsCodeClassesBuilderJob >> codeDescriptionFrom: anArray [
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
-		slotClassName: self newGlobalCollectionClassName;
+		slotClassName: self globalCollectionClassName;
 		slotName: self globalCollectionSlotName;
 		targetClassName: self globalCollectionModuleClass name;
 		targetModuleClass: self globalCollectionModuleClass;

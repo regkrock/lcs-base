@@ -47,6 +47,7 @@ LcsCodeBuilderJob >> execute [
 	self verifyCodeInstallation.
 	self updateSlotModel.
 	self verifySlotModelUpdatesMadeByBuilder.
+	self currentSystem isNil ifTrue: [ ^ self ].
 	self currentUnitOfWork applyChanges.
 	self populateSlotModel.
 	self verifyPopulateSlotModel.
@@ -190,6 +191,7 @@ LcsCodeBuilderJob >> uninstall [
 { #category : #command }
 LcsCodeBuilderJob >> updateSlotModel [
 	self jobSteps updateSlotModel.
+	self currentSystem isNil ifTrue: [ ^ self ].
 	self currentSystem currentUnitOfWork applyChanges	
 ]
 

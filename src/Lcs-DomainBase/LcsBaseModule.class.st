@@ -29,6 +29,13 @@ LcsBaseModule class >> addSubmoduleClassesTo: moduleClasses [
 ]
 
 { #category : #modules }
+LcsBaseModule class >> allOwnedModuleCandidates [
+	^ self allSubclasses select: [ :eachModuleClass | 
+		eachModuleClass class pragmas anySatisfy: [ :eachPragma | 
+			eachPragma selector = 'owningModule:'] ]
+]
+
+{ #category : #modules }
 LcsBaseModule class >> allSubmoduleClasses [
 	| collection |
 	self error: 'This is recursive and needs to be fixewd'.

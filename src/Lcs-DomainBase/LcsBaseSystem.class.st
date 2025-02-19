@@ -63,7 +63,7 @@ LcsBaseSystem class >> statusSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : #conf }
 LcsBaseSystem class >> systemBootstrapDomainClasses [
 	| prebootstrapClasses |
 	prebootstrapClasses := 

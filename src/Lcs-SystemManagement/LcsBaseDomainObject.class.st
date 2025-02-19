@@ -129,6 +129,7 @@ LcsBaseDomainObject class >> initializeSlotModel [
 
 { #category : #'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
+	self currentSystem isNil ifTrue: [ ^ self ].
 	self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
@@ -140,7 +141,8 @@ LcsBaseDomainObject class >> installSlotDefinitions [
 
 { #category : #'slot model - install' }
 LcsBaseDomainObject class >> installSlotModel [
-	self installSlotModelIn: self currentSystem
+	self currentSystem notNil ifTrue: [
+		self installSlotModelIn: self currentSystem ]
 ]
 
 { #category : #'slot model - install' }
