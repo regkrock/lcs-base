@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-PrototypeSystem-Base'
 }
 
-{ #category : #configuration }
+{ #category : #temp }
 LxxPrototype2Submodule class >> owningModules [
 	<owningModule: 'LxxPrototype2Module'>
 ]
