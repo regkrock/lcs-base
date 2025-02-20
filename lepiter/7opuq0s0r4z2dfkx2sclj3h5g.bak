@@ -39,7 +39,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-02-18T09:14:00.417909-05:00"
+												"dateAndTimeString" : "2025-02-18T09:14:23.075087-05:00"
 											}
 										},
 										"uid" : {
@@ -49,44 +49,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtTodo:label=refactor submoduleClasses}}\n{{gtTodo:label=write sunit tests}}\n{{gtTodo:}}"
-									},
-									{
-										"__type" : "textSnippet",
-										"children" : {
-											"__type" : "snippets",
-											"items" : [ ]
-										},
-										"createEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"createTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-11-08T21:29:48.134398-05:00"
-											}
-										},
-										"editEmail" : {
-											"__type" : "email",
-											"emailString" : "<unknown>"
-										},
-										"editTime" : {
-											"__type" : "time",
-											"time" : {
-												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-02-18T09:12:57.824748-05:00"
-											}
-										},
-										"uid" : {
-											"__type" : "uid",
-											"uidString" : "YEraYNPiDQCNV251AcXF1w=="
-										},
-										"paragraphStyle" : {
-											"__type" : "textStyle"
-										},
-										"string" : " submoduleClasses <---- need to complete refactoring and write sunit test cases. Also add documentation page."
+										"string" : "{{gtTodo:label=refactor submoduleClasses}}\n{{gtTodo:label=write sunit tests|completed=}}\n{{gtTodo:label=add documentation page}}"
 									}
 								]
 							},

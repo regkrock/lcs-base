@@ -711,7 +711,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-02-19T13:50:21.651015-05:00"
+															"dateAndTimeString" : "2025-02-19T14:42:03.01125-05:00"
 														}
 													},
 													"uid" : {
@@ -721,7 +721,7 @@
 													"paragraphStyle" : {
 														"__type" : "textStyle"
 													},
-													"string" : "[[Add 1 to Many Global Collection (Ex: User and some subclasses and Users)]]"
+													"string" : "[[Add 1 to Many Global Collection (Ex: User with subclasses and Users)]]"
 												}
 											]
 										},
@@ -1053,6 +1053,118 @@
 											"__type" : "textStyle"
 										},
 										"string" : "[[Geography Module]]"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-20T11:57:05.06769-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-20T11:57:12.250665-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "RHUmgPfqDQCgM3DsBzrbyg=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[Application Permissions]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-20T11:57:25.410118-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-20T11:57:31.016694-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "xeVcgffqDQCgVBnNBzrbyg=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[User]]"
+												}
+											]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-02-20T11:56:09.145166-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-02-20T11:56:17.986926-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "WS7RfPfqDQCf0MELBzrbyg=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "[[Security Module]]"
 									}
 								]
 							},

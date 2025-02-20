@@ -17,7 +17,7 @@ LcsBaseSystem class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
 	self allClassBetweenMyselfAndLcsDomainObject
 		do: [ :each | (prebootstrapClasses includes: each) ifFalse: [ prebootstrapClasses add: each ] ].
 	prebootstrapClasses add: self.
-	prebootstrapClasses addAll: self allSubmodules
+	prebootstrapClasses addAll: self allSubmoduleClasses
 ]
 
 { #category : #'slot definitions' }
@@ -402,15 +402,6 @@ LcsBaseSystem >> removeFromSlotModel: aSlotDefinitions [
 { #category : #remove }
 LcsBaseSystem >> removeSystem [ 
 	self _parent removeSystem: self
-]
-
-{ #category : #'slot model' }
-LcsBaseSystem >> requiredSystemDomainClasses [
-	^OrderedCollection new
-		addAll: self baseDomainModelClasses;
-		add: self class;
-		addAll: self allSubmodules;
-		yourself
 ]
 
 { #category : #restore }

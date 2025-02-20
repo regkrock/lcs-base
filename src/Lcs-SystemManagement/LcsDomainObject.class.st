@@ -19,7 +19,7 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 ]
 
 { #category : #'system model' }
-LcsDomainObject class >> allSubmodules [
+LcsDomainObject class >> allSubmoduleClasses [
 	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
 ]
 

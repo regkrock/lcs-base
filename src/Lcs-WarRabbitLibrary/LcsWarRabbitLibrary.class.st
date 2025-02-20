@@ -76,17 +76,9 @@ LcsWarRabbitLibrary >> libraryItems: anObject [
 
 { #category : #'slot model' }
 LcsWarRabbitLibrary >> systemDomainClasses [
-	<todo: 'Refactor to make this more efficient'>
-	^ super systemDomainClasses
-		addAll: ('Lcs-Geography' asPackage classes);
-		addAll: ('Lcs-LegalEntities' asPackage classes);
-		add: LcsAuthor;
-		add: LcsAuthors;
-		add: LcsItemAuthors;
-		add: LcsLibraryCategory;
-		add: LcsLibraryCategories;
-		add: LcsLibraryItem ;
-		addAll: LcsLibraryItem subclasses;
-		add: LcsLibraryItems;
-		yourself
+	| collection |
+	collection := super systemDomainClasses.
+	self allSubmoduleClasses do: [ :eachModule | collection addAll: eachModule package classes ].
+	collection addAll: self package classes.
+	^ collection
 ]

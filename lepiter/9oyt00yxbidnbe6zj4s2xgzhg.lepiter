@@ -108,14 +108,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-27T11:04:21.044538-04:00"
+									"dateAndTimeString" : "2025-02-20T12:25:28.876359-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "i4UDA3fTDQCnzRA1Cf7Kuw=="
 							},
-							"code" : "| classes |\rclasses := LcsBaseSystem withAllSuperclasses.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
+							"code" : "| classes |\rclasses := LcsMainSystem withAllSuperclasses.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
 							"elementHeight" : 336,
 							"codeHeight" : 46,
 							"codeVisible" : true
@@ -183,7 +183,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-19T18:49:14.458659-05:00"
+									"dateAndTimeString" : "2025-02-20T12:21:52.833368-05:00"
 								}
 							},
 							"uid" : {
@@ -193,7 +193,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "For example, if the new sysem supports people and organizations and addrees, the {{gtClass:name=LcsLegalEntity}}  and the {{gtClass:name=LcsGeographyModule}} modules should be added to the system. In the new class implement the class method #owningModules which contains a pragma indicating which module (s) the module belongs to. Example {{gtMethod:LxxPrototype2Module class>>owningModules}}   \n"
+							"string" : "For example, if the new sysem supports people and organizations and addrees, the {{gtMethod:LcsGeographyModule class>>owningModules}},  and the {{gtMethod:LcsLegalEntitiesModule class>>owningModules}}  modules should be added to the system. In the new class implement the class method #owningModules which contains a pragma indicating which module (s) the module belongs to.    \n\nBy sending the method allSubmoduleClasses to a module, one will see a list of all of the modules that belong to it. This includes direct and indirect descendents.\n"
 						},
 						{
 							"__type" : "pharoSnippet",
@@ -220,7 +220,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T10:56:38.653712-05:00"
+									"dateAndTimeString" : "2025-02-20T12:00:47.890144-05:00"
 								}
 							},
 							"uid" : {
@@ -228,40 +228,6 @@
 								"uidString" : "VkKCnK3jDQCCxo8wAxlSQw=="
 							},
 							"code" : "LcsMainSystem allSubmoduleClasses"
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T11:02:26.838457-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-01-01T14:42:02.880313-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "1y5aA7zjDQCyh9sLAuq82g=="
-							},
-							"code" : "LcsMainSystem submoduleClasses"
 						},
 						{
 							"__type" : "pharoSnippet",
@@ -311,40 +277,6 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T11:03:17.792851-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-01-01T14:42:02.90795-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "86pjBrzjDQCC8y5fAuq82g=="
-							},
-							"code" : "LxxPrototypeSystem submoduleClasses"
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
 									"dateAndTimeString" : "2024-11-19T18:10:41.936424-05:00"
 								}
 							},
@@ -364,40 +296,6 @@
 								"uidString" : "++IO4a3jDQCKViEaAxlSQw=="
 							},
 							"code" : "LxxPrototype2Module allSubmoduleClasses"
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T11:04:33.983906-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-01-01T14:42:02.874272-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "rUDuCrzjDQCEjBSdAuq82g=="
-							},
-							"code" : "LxxPrototype2Module submoduleClasses"
 						}
 					]
 				},
@@ -462,7 +360,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-27T11:40:25.78133-04:00"
+									"dateAndTimeString" : "2025-02-20T12:42:12.452547-05:00"
 								}
 							},
 							"uid" : {
@@ -472,41 +370,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "See the mehtod {{gtMethod:LcsBaseSystem>>initialSystemDomainClasses}} and implement it in the new system. The domain classes must be defined here so that they will be included in the system's slot model."
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-19T18:53:39.681461-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-19T18:56:58.881285-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "2CW0eq7jDQC49153AxlSQw=="
-							},
-							"code" : "LxxPrototypeSystem new requiredSystemDomainClasses"
+							"string" : "See the method {{gtMethod:LcsBaseSystem>>allBootstrapDomainClasses}} and implement it in the new system. The domain classes must be defined here so that they will be included in the system's slot model. An example is the {{gtMethod:LcsMainSystem>>systemDomainClasses}}. This method references the package to see which classes are part of the domain model and need to be initialized."
 						}
 					]
 				},

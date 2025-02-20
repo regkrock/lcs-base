@@ -39,7 +39,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-02-18T09:14:23.075087-05:00"
+												"dateAndTimeString" : "2025-02-20T11:33:57.100675-05:00"
 											}
 										},
 										"uid" : {
@@ -49,7 +49,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtTodo:label=refactor submoduleClasses}}\n{{gtTodo:label=write sunit tests|completed=}}\n{{gtTodo:label=add documentation page}}"
+										"string" : "{{gtTodo:label=refactor submoduleClasses|completed=2025-02-20}}\n{{gtTodo:label=write sunit tests|completed=2025-02-20}}\n{{gtTodo:label=add documentation page}}"
 									}
 								]
 							},

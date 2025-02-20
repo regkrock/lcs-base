@@ -5,6 +5,43 @@
 		"__type" : "snippets",
 		"items" : [
 			{
+				"__type" : "elementSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-26T22:45:10.882786-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-20T11:41:43.126696-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Zcj0vmzTDQCwp3DnDqasIg=="
+				},
+				"code" : "GtMondrianDomainExamples new classHierarchyFor: LcsBaseModule baseWithNonLxxSubclasses ",
+				"elementHeight" : 513,
+				"codeHeight" : 101,
+				"codeVisible" : true
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -40,43 +77,6 @@
 					"__type" : "textStyle"
 				},
 				"string" : "This software is partiioned into sections using modules. A moduel contains classes and data for a logical entity"
-			},
-			{
-				"__type" : "elementSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-26T22:45:10.882786-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-26T22:46:11.887309-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "Zcj0vmzTDQCwp3DnDqasIg=="
-				},
-				"code" : "GtMondrianDomainExamples new classHierarchyFor:\r\t((LcsBaseModule withAllSuperclasses , LcsBaseModule withAllSubclasses)\r\t\t removeDuplicates;\r\t\t remove: ProtoObject;\r\t\t yourself)",
-				"elementHeight" : 513,
-				"codeHeight" : 101,
-				"codeVisible" : true
 			}
 		]
 	},

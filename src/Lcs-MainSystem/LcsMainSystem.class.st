@@ -15,15 +15,9 @@ LcsMainSystem class >> configurationSlotDefinition [
 
 { #category : #'slot model' }
 LcsMainSystem >> systemDomainClasses [
-	<todo: 'Refactor to make this mor efficient'>
-	| domainClasses |
-	domainClasses := self systemBootstrapDomainClasses copy.
-	domainClasses addAll: super systemDomainClasses.
-	^ super systemDomainClasses
-		addAll: (
-			LcsBaseDomainObject withAllSubclasses
-				reject: [ :eachDomainClass | 
-					(eachDomainClass name beginsWith: 'Lxx')
-						or: [ domainClasses includes: eachDomainClass ] ]);
-		yourself
+	| collection |
+	collection := super systemDomainClasses.
+	self allSubmoduleClasses do: [ :eachModule | collection addAll: eachModule package classes ].
+	collection addAll: self class package classes.
+	^ collection
 ]

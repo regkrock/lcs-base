@@ -12,7 +12,7 @@ Class {
 
 { #category : #'instance creation' }
 LcsAllSubmodulesVisitor class >> allSubmodulesFor: aModule [
-	^ (self newOn: aModule) allSubmodules
+	^ (self newOn: aModule) allSubmoduleClasses
 ]
 
 { #category : #'instance creation' }
@@ -31,7 +31,7 @@ LcsAllSubmodulesVisitor >> _submodulesFor: aModuleClass [
 ]
 
 { #category : #api }
-LcsAllSubmodulesVisitor >> allSubmodules [
+LcsAllSubmodulesVisitor >> allSubmoduleClasses [
 	self submodulesFor: self targetModule.
 	^ self submodules
 ]

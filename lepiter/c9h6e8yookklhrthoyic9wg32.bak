@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-26T22:46:11.887309-04:00"
+						"dateAndTimeString" : "2025-02-20T11:41:43.126696-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Zcj0vmzTDQCwp3DnDqasIg=="
 				},
-				"code" : "GtMondrianDomainExamples new classHierarchyFor:\r\t((LcsBaseModule withAllSuperclasses , LcsBaseModule withAllSubclasses)\r\t\t removeDuplicates;\r\t\t remove: ProtoObject;\r\t\t yourself)",
+				"code" : "GtMondrianDomainExamples new classHierarchyFor: LcsBaseModule baseWithNonLxxSubclasses ",
 				"elementHeight" : 513,
 				"codeHeight" : 101,
-				"codeVisible" : false
+				"codeVisible" : true
 			}
 		]
 	},

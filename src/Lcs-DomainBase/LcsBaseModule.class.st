@@ -20,8 +20,21 @@ LcsBaseModule class >> allOwnedModuleCandidates [
 ]
 
 { #category : #'system model' }
-LcsBaseModule class >> allSubmodules [
+LcsBaseModule class >> allSubmoduleClasses [
 	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
+]
+
+{ #category : #'gt views' }
+LcsBaseModule class >> baseWithNonLxxSubclasses [
+	| classes |
+	classes := (LcsBaseModule withAllSuperclasses , LcsBaseModule withAllSubclasses)
+		 removeDuplicates;
+		 yourself.
+	classes remove: Object.
+	#ProtoObject asClass ifNotNil: [ :proto | classes remove: proto ].
+	(classes select: [ :each | (each name copyFrom: 1 to: 3) = 'Lxx' ]) do: [ :eachClass |
+		classes remove: eachClass ].
+	^classes
 ]
 
 { #category : #'slot definitions' }
@@ -83,8 +96,8 @@ LcsBaseModule class >> modulesSlotDefinition [
 ]
 
 { #category : #modules }
-LcsBaseModule >> allSubmodules [
-	^ self class allSubmodules
+LcsBaseModule >> allSubmoduleClasses [
+	^ self class allSubmoduleClasses
 ]
 
 { #category : #building }
@@ -96,7 +109,7 @@ LcsBaseModule >> buildModule: eachModuleClass [
 
 { #category : #building }
 LcsBaseModule >> buildModules [
-	self allSubmodules do: [ :eachModuleClass | self buildModule: eachModuleClass ]
+	self allSubmoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
 ]
 
 { #category : #accessing }
