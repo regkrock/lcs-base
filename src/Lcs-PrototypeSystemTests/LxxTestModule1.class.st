@@ -1,10 +1,10 @@
 Class {
-	#name : #LxxModule2,
+	#name : #LxxTestModule1,
 	#superclass : #LcsBaseModule,
 	#category : #'Lcs-PrototypeSystemTests-Support'
 }
 
 { #category : #configuration }
-LxxModule2 class >> owningModules [
-	<owningModule: 'LxxModule1'>
+LxxTestModule1 class >> owningModules [
+	<owningModule: 'LxxTestSubModule111'>
 ]

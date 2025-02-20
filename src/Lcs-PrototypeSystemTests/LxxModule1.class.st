@@ -2,12 +2,13 @@
 Do not use - this is for a specific test
 "
 Class {
-	#name : #LxxModuleWithOwningModuleBeingItself,
+	#name : #LxxModule1,
 	#superclass : #LcsBaseModule,
 	#category : #'Lcs-PrototypeSystemTests-Support'
 }
 
 { #category : #configuration }
-LxxModuleWithOwningModuleBeingItself class >> owningModules [
-	<owningModule: 'LxxModuleWithOwningModuleBeingItself'>
+LxxModule1 class >> owningModules [
+	<owningModule: 'LxxModule0'>
+	<owningModule: 'LxxModule2'>
 ]
