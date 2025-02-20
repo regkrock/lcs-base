@@ -43,6 +43,8 @@ LcsBaseModule class >> domainCollectionsSlotDefinition [
 { #category : #modules }
 LcsBaseModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
 	(aPragma selector = 'owningModule:') ifFalse: [ ^ false ].
+	self = aModuleClass ifTrue: [ 
+		LcsError signal: 'Pragma ''owningModule:'' pointing to itself in ' , self name ].
 	^ (aPragma arguments at: 1) = aModuleClass name asString 
 ]
 

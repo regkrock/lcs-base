@@ -2,18 +2,11 @@ Class {
 	#name : #LcsAllSubmodulesVisitorTest,
 	#superclass : #LcsTestWithNoTestSystemSetupForTest,
 	#instVars : [
-		'refactoring'
+		'refactoring',
+		'originalSource'
 	],
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
-
-{ #category : #setUp }
-LcsAllSubmodulesVisitorTest >> tearDown [
-	refactoring notNil ifTrue: [
-		refactoring asUndoOperation execute
-		"(RBRemoveMethodChange remove: #owningModules from: LxxPrototype2Submodule class) execute"].
-	super tearDown
-]
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testNestedSubmodules [
@@ -24,16 +17,8 @@ LcsAllSubmodulesVisitorTest >> testNestedSubmodules [
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodules [
-	(refactoring := RBAddMethodChange
-		compile: 'owningModules
-	<owningModule: ''LxxPrototype2Module''>
-	<owningModule: ''LxxPrototypeSystem''>'
-		in: LxxPrototype2Submodule class
-		classified: #temp).
-	refactoring execute.
-	
-	subject := LcsAllSubmodulesVisitor newOn: LxxPrototypeSystem.
-	self assert: subject allSubmodules size equals: 1
+	subject := LcsAllSubmodulesVisitor newOn: LxxModuleWithOwningModuleBeingItself.
+	self should: [ subject allSubmodules ] raise: LcsError
 ]
 
 { #category : #tests }
