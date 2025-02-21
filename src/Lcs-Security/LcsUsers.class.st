@@ -1,0 +1,15 @@
+Class {
+	#name : #LcsUsers,
+	#superclass : #LcsDomainCollection,
+	#category : #'Lcs-Security-Core'
+}
+
+{ #category : #query }
+LcsUsers >> guestUser [
+	^ self collection detect: [ :each | each class = LcsGuestUser ] ifNone: [ LcsGuestUser new ] 
+]
+
+{ #category : #query }
+LcsUsers >> superUser [
+	^ self collection detect: [ :each | each class = LcsSuperUser ] ifNone: [ LcsSuperUser new ] 
+]
