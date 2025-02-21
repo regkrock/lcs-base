@@ -8,7 +8,7 @@ Class {
 		'item',
 		'childrenSelector'
 	],
-	#category : #'LcsBase-Core'
+	#category : #'Lcs-SystemManagement-Core'
 }
 
 { #category : #defaults }

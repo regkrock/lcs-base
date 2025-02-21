@@ -30,13 +30,13 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-SlotTools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
 			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SlotTools') ].
 			spec package: 'Lcs-StateMachine' with: [ spec requires: #('Lcs-DomainBase') ].
-			spec package: 'Lcs-Security' with: [ spec requires: #('Lcs-DomainBase') ].
 
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
 			spec package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Geography') ].
-			spec package: 'Lcs-MainSystem' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' ) ].
+			spec package: 'Lcs-Security' with: [ spec requires: #('Lcs-DomainBase') ].
+			spec package: 'Lcs-MainSystem' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' 'Lcs-Security' ) ].
 
-			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-StateMachine') ].  
+			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-DomainBase') ].  
 
 			spec package: 'Lcs-BaseTests' with: [ spec requires: #('LcsBase')  ].
 			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests') ].  
