@@ -376,7 +376,7 @@ LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 		ifTrue: [
 			 aValidator addIssueMessage: 'Slot Model is not defined' ]
 		ifFalse: [
-			(self currentSystem systemSlotModel includes: self)
+			(self currentSystem systemSlotModel hasSlotModelFor: self)
 				ifFalse: [ aValidator addIssueMessage: 'Slot Model is defined but not in the systemSlotModel' ].
 		aValidator validate: self slotModel]
 ]
@@ -399,6 +399,60 @@ LcsBaseDomainObject >> currentUnitOfWork [
 { #category : #'slot access' }
 LcsBaseDomainObject >> getPersistedValueOf: aString [
 	^ self class getPersistedValueOf: aString in: self
+]
+
+{ #category : #'gt views' }
+LcsBaseDomainObject >> gtSlotChangesFor: aView [
+	<gtView>
+	^ aView columnedTree
+		title: 'Changes';
+		priority: 101;
+		items: [ | variableNodes |
+			variableNodes := OrderedCollection new: self class allSlots size.
+			variableNodes add: (GtInspectorSelfNode hostObject: self).
+			self gtInspectorVariableNodesIn: variableNodes.
+			variableNodes ];
+		children: [ :aNode | aNode childrenNodes ];
+		column: 'Variable'
+			do: [ :aColumn | 
+				aColumn
+					cellStencil: [ BrHorizontalPane new
+							hMatchParent;
+							vFitContent;
+							alignCenter ];
+					dataBinder: [ :itemElement :aNode | 
+						| nodeIcon |
+						nodeIcon := [ aNode rawValue gtInspectorIcon
+								ifNil: [ aNode rawValue class iconNamed: aNode rawValue class systemIconName ] ]
+								on: Error
+								do: [ :error | Smalltalk ui icons iconNamed: #smallWarningIcon ].
+
+						itemElement
+							removeChildren;
+							addChild: nodeIcon asElement;
+							addChild: (BrLabel new
+									aptitude: BrGlamorousListLabelAptitude;
+									text: aNode label;
+									alignCenterLeft;
+									hMatchParent;
+									vFitContent) ] ];
+		column: 'Value'
+			text: [ :aNode | 
+				[ aNode rawValue gtDisplayText ]
+					on: Error , Halt
+					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
+		send: #value;
+		dynamicContextItems: [ :aTreeNode | 
+			aTreeNode value isSlotNode
+				ifTrue: [ (GtViewCreator
+						viewCreatorsForObject: aTreeNode value rawValue
+						andSource: aTreeNode value key
+						in: aTreeNode value hostObject class)
+						collect: [ :creator | 
+							creator selfObject: self.
+							creator asMenuItem ] ]
+				ifFalse: [ #() ] ];
+		actionUpdateButton
 ]
 
 { #category : #'gt views' }

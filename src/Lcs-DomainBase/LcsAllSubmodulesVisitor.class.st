@@ -5,7 +5,8 @@ Class {
 		'visited',
 		'submodules',
 		'targetModule',
-		'potentialModules'
+		'potentialModules',
+		'collectionPolicy'
 	],
 	#category : #'Lcs-DomainBase-Core'
 }
@@ -13,6 +14,11 @@ Class {
 { #category : #'instance creation' }
 LcsAllSubmodulesVisitor class >> allSubmodulesFor: aModule [
 	^ (self newOn: aModule) allSubmoduleClasses
+]
+
+{ #category : #'instance creation' }
+LcsAllSubmodulesVisitor class >> immediateSubmodulesFor: aModule [
+	^ (self newOn: aModule) immediateSubmoduleClasses
 ]
 
 { #category : #'instance creation' }
@@ -27,7 +33,8 @@ LcsAllSubmodulesVisitor >> _submodulesFor: aModuleClass [
 	self potentialModules do: [ :eachClass | 
 		(eachClass isSubmoduleOf: aModuleClass) ifTrue: [ 
 			self submodules add: eachClass ] ].
-	self searchForSubmodulesOfFoundSubmodules.
+	self hasCollectAllPolicy ifTrue: [
+		self searchForSubmodulesOfFoundSubmodules].
 ]
 
 { #category : #api }
@@ -36,9 +43,41 @@ LcsAllSubmodulesVisitor >> allSubmoduleClasses [
 	^ self submodules
 ]
 
+{ #category : #configuration }
+LcsAllSubmodulesVisitor >> beCollectAllModules [
+	self collectionPolicy: #all 
+]
+
+{ #category : #configuration }
+LcsAllSubmodulesVisitor >> beCollectOnlyImmediateModules [
+	self collectionPolicy: #immediate 
+]
+
+{ #category : #accessing }
+LcsAllSubmodulesVisitor >> collectionPolicy [
+	^ collectionPolicy
+]
+
+{ #category : #accessing }
+LcsAllSubmodulesVisitor >> collectionPolicy: aString [ 
+	collectionPolicy := aString
+]
+
+{ #category : #testing }
+LcsAllSubmodulesVisitor >> hasCollectAllPolicy [
+	^ self collectionPolicy == #all 
+]
+
 { #category : #testing }
 LcsAllSubmodulesVisitor >> hasRecursiveModules [
 	^ self submodules includes: self targetModule
+]
+
+{ #category : #api }
+LcsAllSubmodulesVisitor >> immediateSubmoduleClasses [
+	self beCollectOnlyImmediateModules.
+	self submodulesFor: self targetModule.
+	^ self submodules
 ]
 
 { #category : #initialize }
@@ -47,6 +86,7 @@ LcsAllSubmodulesVisitor >> initialize [
 	self visited: Set new.
 	self submodules: OrderedCollection new.
 	potentialModules := LcsBaseModule allOwnedModuleCandidates.
+	self beCollectAllModules.
 ]
 
 { #category : #initialize }

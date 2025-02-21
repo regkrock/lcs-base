@@ -18,6 +18,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #'slot model' }
+LcsMemberOfSlot >> assignParent: aDomainObject to: newValue [
+	"Parent has already been assigned"
+]
+
 { #category : #'application environment' }
 LcsMemberOfSlot >> collectionModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName

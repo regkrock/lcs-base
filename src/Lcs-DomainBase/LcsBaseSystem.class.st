@@ -75,6 +75,7 @@ LcsBaseSystem class >> systemBootstrapDomainClasses [
 			add: LcsSystemSlotModel;
 			add: LcsBaseSystemStatus;
 			addAll: LcsBaseSystemStatus subclasses;
+			add: LcsModules;
 			yourself.
 	self addMyDomainClassHeirarchyTo: prebootstrapClasses.
 	^ prebootstrapClasses
@@ -261,8 +262,10 @@ LcsBaseSystem >> initializeBasicSystem [
 
 	(self slotDefinitionNamed: 'status') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'systemSlotModel') initializeSlotValueIn: self.
+	(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self.
 	self systemBootstrapDomainClasses
-		do: [ :eachDomainClass | self addToSlotModel: eachDomainClass slotModel ]
+		do: [ :eachDomainClass | self addToSlotModel: eachDomainClass slotModel ].
+	self addToSlotModel: self slotModel
 ]
 
 { #category : #initialize }

@@ -18,6 +18,7 @@ LcsSystemConfigurationValidator >> gtConfigurationIssuesFor: aView [
 		column: 'Message'
 			text: #message;
 		send: #value;
+		actionUpdateButton;
 		yourself
 ]
 

@@ -46,6 +46,12 @@ LcsSlotDefinition >> allowNil [
 	self initialValue: nil
 ]
 
+{ #category : #'slot model' }
+LcsSlotDefinition >> assignParent: aDomainObject to: newValue [
+	newValue isDomainObject ifTrue: [
+		newValue parent: aDomainObject ]
+]
+
 { #category : #configuration }
 LcsSlotDefinition >> beOptional [
 	self required: false
@@ -239,8 +245,10 @@ LcsSlotDefinition >> initialValueFor: aDomainObject [
 	| newValue |
 	newValue := self initialValueBlock cull: aDomainObject.
 	(newValue isDomainObject and: [ self currentSystem notNil ])
-		ifNotNil: [ self currentUnitOfWork addObject: newValue context: aDomainObject ].
-	^newValue
+		ifTrue: [ 
+			self assignParent: aDomainObject to: newValue.
+			self currentUnitOfWork addObject: newValue context: aDomainObject ].
+	^ newValue
 ]
 
 { #category : #initialize }

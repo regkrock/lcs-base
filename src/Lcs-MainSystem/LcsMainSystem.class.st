@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsMainSystem,
 	#superclass : #LcsBaseSystem,
-	#classVars : [
-		'Singleton'
-	],
 	#category : #'Lcs-MainSystem'
 }
 

@@ -17,9 +17,11 @@ LcsModules class >> collectionSlotDefinition [
 LcsModules >> buildModuleFor: eachModuleClass [
 
 	| module |
-	module := eachModuleClass new.
+	module := eachModuleClass basicNew.
+	self currentUnitOfWork addObject: module.
 	module parent: self.
 	self collection at: module moduleName put: module.
+	module initialize.
 	module buildModules
 ]
 

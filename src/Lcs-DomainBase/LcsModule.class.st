@@ -6,3 +6,8 @@ Class {
 	#superclass : #LcsBaseModule,
 	#category : #'Lcs-DomainBase-Core'
 }
+
+{ #category : #'as yet unclassified' }
+LcsModule >> parentSlotDefinition [
+	^ LcsParentSlot new
+]

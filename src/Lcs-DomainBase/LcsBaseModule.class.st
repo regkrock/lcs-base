@@ -61,6 +61,11 @@ LcsBaseModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
 	^ moduleName = aModuleClass name asString 
 ]
 
+{ #category : #'system model' }
+LcsBaseModule class >> immediateSubmoduleClasses [
+	^ LcsAllSubmodulesVisitor immediateSubmodulesFor: self
+]
+
 { #category : #testing }
 LcsBaseModule class >> isSubmoduleOf: aModuleClass [
 	self class pragmas do:  [ :eachPragma | 
@@ -91,7 +96,7 @@ LcsBaseModule class >> modulesSlotDefinition [
 	^ LcsLocalCollectionSlot new
 		slotName: 'modules';
 		addSlotType: LcsModules;
-		addCollectionMemberType: LcsModule;
+		addCollectionMemberType: LcsBaseModule;
 		yourself
 ]
 
@@ -109,7 +114,7 @@ LcsBaseModule >> buildModule: eachModuleClass [
 
 { #category : #building }
 LcsBaseModule >> buildModules [
-	self allSubmoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
+	self immediateSubmoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
 ]
 
 { #category : #accessing }
@@ -204,10 +209,15 @@ LcsBaseModule >> hasNoModules [
 	^ self modules hasNoElements
 ]
 
+{ #category : #modules }
+LcsBaseModule >> immediateSubmoduleClasses [
+	^ self class immediateSubmoduleClasses
+]
+
 { #category : #initialize }
 LcsBaseModule >> initializeModel [
 	super initializeModel.
-	self modules initializeModel
+	"self modules initializeModel"
 ]
 
 { #category : #modules }
