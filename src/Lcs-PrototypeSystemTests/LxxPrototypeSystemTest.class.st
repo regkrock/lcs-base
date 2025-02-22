@@ -177,7 +177,7 @@ LxxPrototypeSystemTest >> testCreationNew [
 	self assert: self currentSystem identicalTo: self subject.
 	self assert: (self subject moduleNamed: LxxPrototypePersonsModule moduleName) class name equals: #LxxPrototypePersonsModule.
 	self assert: (self subject moduleNamed: LxxPrototype2Module moduleName) class equals: LxxPrototype2Module.
-	self assert: self subject numberOfChildModules equals: 3. 
+	self assert: self subject numberOfChildModules equals: 2. 
 	self assert: (self subject moduleNamed: LxxPrototypePersonsModule moduleName) numberOfChildModules equals: 0.
 	self assert: (self subject moduleNamed: LxxPrototype2Module moduleName) numberOfChildModules equals: 1.
 	self assert: (self subject moduleNamed: LxxPrototype2Submodule moduleName) numberOfChildModules equals: 0.

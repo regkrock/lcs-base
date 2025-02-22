@@ -78,7 +78,6 @@ LcsWarRabbitLibrary >> libraryItems: anObject [
 LcsWarRabbitLibrary >> systemDomainClasses [
 	| collection |
 	collection := super systemDomainClasses.
-	self allSubmoduleClasses do: [ :eachModule | collection addAll: eachModule package classes ].
-	collection addAll: self package classes.
+	self addClasses: self class package classes to: collection.
 	^ collection
 ]

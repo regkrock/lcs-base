@@ -80,14 +80,18 @@ LxxPrototypeSystem >> persons: anObject [
 
 { #category : #initialize }
 LxxPrototypeSystem >> systemDomainClasses [
-	^super systemDomainClasses
+	| collection |
+	collection := super systemDomainClasses.
+	"self addClasses: self class package classes to: collection.
+	collection
+		add: #LxxCompositeStateMachine asClass;
+		add: #LxxSubStateMachine asClass."
+	^ collection
 		add: LxxPrototype2Submodule;
 		add: LxxPrototypeOrganization;
 		add: LxxPrototypePerson;
 		add: LxxPrototypePersons;
 		add: LxxPrototypeSystemConfiguration;
 		addAll: LxxPrototypeSystem allSubmoduleClasses;
-		add: #LxxCompositeStateMachine asClass;
-		add: #LxxSubStateMachine asClass;
 		yourself
 ]

@@ -32,7 +32,7 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self subject: LcsGlobalCollectionSlot new.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject collectionMemberTypes isEmpty.
-	self assert: self subject collectionClass isNil.
+	self assert: self subject collectionClass = IdentitySet.
 	self assert: self subject slotName isNil.
 	self assert: self subject parent isNil.
 	self assert: self subject required isNil.

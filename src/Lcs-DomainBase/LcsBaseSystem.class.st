@@ -122,6 +122,11 @@ LcsBaseSystem >> _suspendSystem [
 ]
 
 { #category : #'slot model' }
+LcsBaseSystem >> addClasses: classes to: collection [ 
+	collection addAll: (classes reject: [ :each | each isDomainClass not ]).
+]
+
+{ #category : #'slot model' }
 LcsBaseSystem >> addToSlotModel: aSlotModel [
 	self systemSlotModel addToSlotModel: aSlotModel
 ]
@@ -463,7 +468,9 @@ LcsBaseSystem >> systemBootstrapDomainClasses [
 
 { #category : #'slot model' }
 LcsBaseSystem >> systemDomainClasses [
-	^OrderedCollection new
+	| systemDomainClasses |
+	systemDomainClasses := OrderedCollection new.
+	systemDomainClasses
 		add: LcsModule;
 		add: LcsGlobalCollections;
 		add: LcsModules;
@@ -476,8 +483,10 @@ LcsBaseSystem >> systemDomainClasses [
 		addAll: #LcsStateMachineObject  asClass allSubclasses;
 		add: #LcsStateMachineEvent asClass;
 		add: #LcsStateMachineStates asClass;
-		add: #LcsStateMachineTransitions asClass;
-		yourself
+		add: #LcsStateMachineTransitions asClass.
+	self allSubmoduleClasses do: [ :eachModule | 
+		self addClasses: eachModule package classes to: systemDomainClasses].
+	^ systemDomainClasses
 ]
 
 { #category : #accessing }
