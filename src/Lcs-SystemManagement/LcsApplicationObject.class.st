@@ -5,3 +5,8 @@ Class {
 	#classTraits : 'LtApplicationEnvironment classTrait',
 	#category : #'Lcs-SystemManagement-Environment'
 }
+
+{ #category : #testing }
+LcsApplicationObject class >> isDomainClass [
+	^ false
+]

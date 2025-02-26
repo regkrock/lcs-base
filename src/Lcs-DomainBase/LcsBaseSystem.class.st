@@ -127,6 +127,14 @@ LcsBaseSystem >> addClasses: classes to: collection [
 ]
 
 { #category : #'slot model' }
+LcsBaseSystem >> addDomainClassesFromSubmodulesTo: systemDomainClasses [
+	self allSubmoduleClasses do: [ :eachModule | 
+		self
+			addClasses: (eachModule package classes reject: [ :each | each isMeta ])
+			to: systemDomainClasses ]
+]
+
+{ #category : #'slot model' }
 LcsBaseSystem >> addToSlotModel: aSlotModel [
 	self systemSlotModel addToSlotModel: aSlotModel
 ]
@@ -480,12 +488,11 @@ LcsBaseSystem >> systemDomainClasses [
 		add: LcsCodes;
 		add: #LcsStateMachine asClass;
 		add: #LcsStateMachineObject asClass;
-		addAll: #LcsStateMachineObject  asClass allSubclasses;
+		addAll: #LcsStateMachineObject asClass allSubclasses;
 		add: #LcsStateMachineEvent asClass;
 		add: #LcsStateMachineStates asClass;
 		add: #LcsStateMachineTransitions asClass.
-	self allSubmoduleClasses do: [ :eachModule | 
-		self addClasses: eachModule package classes to: systemDomainClasses].
+	self addDomainClassesFromSubmodulesTo: systemDomainClasses.
 	^ systemDomainClasses
 ]
 
