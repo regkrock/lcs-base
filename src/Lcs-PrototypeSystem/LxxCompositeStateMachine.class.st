@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'changes'
 	],
-	#category : #'Lcs-StateMachineTests-Support'
+	#category : #'Lcs-PrototypeSystem-Support'
 }
 
 { #category : #'slot definitions' }

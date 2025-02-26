@@ -199,6 +199,7 @@ LcsBaseDomainObject class >> new [
 
 { #category : #'slot model' }
 LcsBaseDomainObject class >> parentSlot [
+	self slotModel isNil ifTrue: [ LcsUndefinedSlotModelError signalClassWithoutSlotModel: self ].
 	^ self slotModel slotDefinitionNamed: 'parent'
 ]
 

@@ -11,6 +11,7 @@ Class {
 LcsSupportDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.
+	"These objects bypass the unit of work"
 	newObject initialize.
 	^ newObject
 ]

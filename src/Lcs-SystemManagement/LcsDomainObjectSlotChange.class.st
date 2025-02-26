@@ -9,11 +9,6 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
-{ #category : #'application environment' }
-LcsDomainObjectSlotChange class >> addToUnitOfWork: newObject [
-	"this is not saved in the Unit of Work as it is part of the unit of work"
-]
-
 { #category : #'slot definitions' }
 LcsDomainObjectSlotChange class >> newValueSlotDefinition [
 	<slotDefinition>

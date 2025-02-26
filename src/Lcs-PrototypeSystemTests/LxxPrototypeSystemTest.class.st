@@ -164,7 +164,7 @@ LxxPrototypeSystemTest >> testCreatingNewDomainObject [
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	domainObject := LcsDomainObject new.
-	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 2.
+	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).

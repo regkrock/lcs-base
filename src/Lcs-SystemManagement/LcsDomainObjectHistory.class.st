@@ -15,11 +15,6 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
-{ #category : #'application environment' }
-LcsDomainObjectHistory class >> addToUnitOfWork: newObject [
-	"this is not saved in the Unit of Work as it is part of the unit of work"
-]
-
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
 	<slotDefinition>
