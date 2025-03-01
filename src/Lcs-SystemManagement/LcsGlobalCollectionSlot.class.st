@@ -47,9 +47,11 @@ LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
 
 { #category : #'as yet unclassified' }
 LcsGlobalCollectionSlot >> verifyCollectionItemType: anObject [
-	self slotTypes
+	self collectionMemberTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
-		ifNone: [ 
-			self currentUnitOfWork removeAddOf: anObject.
-			LcsInvalidSlotType newInvalidParentTypeObject: anObject forSlot: self ]
+		ifNone: [ self currentUnitOfWork removeAddOf: anObject.
+			LcsInvalidSlotType
+				signalInvalidType: anObject
+				forSlot: self
+				for: nil ]
 ]

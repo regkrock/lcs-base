@@ -26,7 +26,7 @@ Class {
 
 { #category : #'slot model' }
 LcsSlotDefinition >> _slotVarPut: anObject in: aDomainObject [
-	self verifyType: anObject.
+	self verifyType: anObject for: aDomainObject.
 	self currentUnitOfWork
 		setValueIn: aDomainObject
 		slot: self
@@ -138,19 +138,7 @@ LcsSlotDefinition >> gtDomainMetaFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinition >> gtSlotDefinitionAttributes [
-	^ OrderedCollection new
-		add: 'slotDefinition' -> self;
-		add: 'slotDefinitionClass' -> self class;
-		add: 'domainClass' -> self newDomainClassName;
-		add: 'slotName' -> self slotName;
-		add: 'slotTypes' -> self slotTypesList;
-		add: 'required' -> self isRequired;
-		yourself
-]
-
-{ #category : #'gt views' }
-LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
+LcsSlotDefinition >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	^ aView columnedList
 		title: 'Attributes';
@@ -161,6 +149,18 @@ LcsSlotDefinition >> gtSlotDefinitionViewFor: aView [
 			width: 200;
 		column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];
 		send: #value;
+		yourself
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinition >> gtSlotDefinitionAttributes [
+	^ OrderedCollection new
+		add: 'slotDefinition' -> self;
+		add: 'slotDefinitionClass' -> self class;
+		add: 'domainClass' -> self newDomainClassName;
+		add: 'slotName' -> self slotName;
+		add: 'slotTypes' -> self slotTypesList;
+		add: 'required' -> self isRequired;
 		yourself
 ]
 
@@ -400,10 +400,12 @@ LcsSlotDefinition >> validator: anObject [
 ]
 
 { #category : #'slot model' }
-LcsSlotDefinition >> verifyType: anObject [
+LcsSlotDefinition >> verifyType: anObject for: aDomainObject [
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
-		ifNone: [ 
-			self currentUnitOfWork removeAddOf: anObject.
-			LcsInvalidSlotType newInvalidParentTypeObject: anObject forSlot: self ]
+		ifNone: [ self currentUnitOfWork removeAddOf: anObject.
+			LcsInvalidSlotType
+				signalInvalidType: anObject
+				forSlot: self
+				for: aDomainObject ]
 ]

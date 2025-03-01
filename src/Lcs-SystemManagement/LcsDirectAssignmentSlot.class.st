@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsDirectAssignmentSlot >> _slotVarPut: anObject in: aDomainObject [ 
-	self verifyType: anObject.
+LcsDirectAssignmentSlot >> _slotVarPut: anObject in: aDomainObject [
+	self verifyType: anObject for: nil.
 	aDomainObject instVarNamed: self slotName put: anObject
 ]
 

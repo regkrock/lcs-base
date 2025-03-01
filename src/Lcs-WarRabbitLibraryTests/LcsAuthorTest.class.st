@@ -18,11 +18,11 @@ LcsAuthorTest >> testCreationAndAddingToParentCollection [
 					middleNames: 'Edward';
 					yourself.
 	author := LcsAuthor new .
-	
+	author person: person.
 	self assert: author surname equals: 'Freeman'.
 	self assert: author firstName equals: 'Jack'.
 	self assert: author middleNames equals: 'Edward'.
-	self assert: author parent isNil.
+	self assert: (author parent isKindOf: LcsAuthors).
 	
 	self currentSystem relatedUnitOfWork applyChanges.
 	

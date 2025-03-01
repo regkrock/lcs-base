@@ -36,6 +36,8 @@ LcsAuthor class >> personSlotDefinition [
 		slotName: 'person';
 		collectionSlotName: 'persons';
 		collectionSlotModuleName: LcsLegalEntitiesModule moduleName;
+		addSlotType: LcsUnknownPerson;
+		addSlotType: LcsPerson;
 		yourself
 ]
 
