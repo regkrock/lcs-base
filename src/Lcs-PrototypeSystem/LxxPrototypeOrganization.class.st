@@ -15,8 +15,8 @@ LxxPrototypeOrganization class >> chiefExecutiveOfficerSlotDefinition [
 		collectionSlotName: 'persons';
 		collectionSlotModuleName: LxxPrototypePersonsModule moduleName;
 		addSlotType: LxxPrototypePerson;
-		"addSlotType: UndefinedObject;"
-		addSlotType: LxxPrototypeUnknownPerson;
+		addSlotType: UndefinedObject;
+		"addSlotType: LxxPrototypeUnknownPerson;"
 		beRequired;
 		yourself
 ]

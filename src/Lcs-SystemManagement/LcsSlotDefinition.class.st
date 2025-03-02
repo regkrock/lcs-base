@@ -404,7 +404,7 @@ LcsSlotDefinition >> verifyType: anObject for: aDomainObject [
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
 		ifNone: [ self currentUnitOfWork removeAddOf: anObject.
-			LcsInvalidSlotType
+			LcsInvalidSlotTypeError
 				signalInvalidType: anObject
 				forSlot: self
 				for: aDomainObject ]

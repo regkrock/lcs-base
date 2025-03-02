@@ -50,7 +50,7 @@ LcsGlobalCollectionSlot >> verifyCollectionItemType: anObject [
 	self collectionMemberTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
 		ifNone: [ self currentUnitOfWork removeAddOf: anObject.
-			LcsInvalidSlotType
+			LcsInvalidSlotTypeError
 				signalInvalidType: anObject
 				forSlot: self
 				for: nil ]

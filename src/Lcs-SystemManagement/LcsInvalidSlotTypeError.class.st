@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsInvalidSlotType,
+	#name : #LcsInvalidSlotTypeError,
 	#superclass : #LcsError,
 	#instVars : [
 		'object',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #'instance  creation' }
-LcsInvalidSlotType class >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
+LcsInvalidSlotTypeError class >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
 	self new
 		signalInvalidType: anObject
 		forSlot: aSlotDefinition
@@ -18,34 +18,34 @@ LcsInvalidSlotType class >> signalInvalidType: anObject forSlot: aSlotDefinition
 ]
 
 { #category : #signal }
-LcsInvalidSlotType >> domainClassName [
+LcsInvalidSlotTypeError >> domainClassName [
 	^ self slotDefinition domainClass name
 ]
 
 { #category : #'gt view' }
-LcsInvalidSlotType >> gtSlotAttributesViewFor: aView [
+LcsInvalidSlotTypeError >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	<gtExceptionView>
 	^ aView forward
 		title: 'Slot Attributes';
-		priority: 11;
+		priority: 15;
 		object: [ self slotDefinition ];
 		view: #gtSlotAttributesViewFor:
 ]
 
 { #category : #'gt view' }
-LcsInvalidSlotType >> gtSlotDefinitionViewFor: aView [
+LcsInvalidSlotTypeError >> gtSlotDefinitionViewFor: aView [
 	<gtView>
 	<gtExceptionView>
 	^ aView forward
 		title: 'Slot Definition';
-		priority: 12;
+		priority: 18;
 		object: [ self slotDefinition ];
 		view: #gtViewsFor:
 ]
 
 { #category : #'gt view' }
-LcsInvalidSlotType >> gtSlotTypesViewFor: aView [
+LcsInvalidSlotTypeError >> gtSlotTypesViewFor: aView [
 	<gtView>
 	<gtExceptionView>
 	^ aView forward
@@ -56,7 +56,7 @@ LcsInvalidSlotType >> gtSlotTypesViewFor: aView [
 ]
 
 { #category : #'gt view' }
-LcsInvalidSlotType >> gtTargetSlotModelViewsFor: aView [
+LcsInvalidSlotTypeError >> gtTargetSlotModelViewsFor: aView [
 	<gtView>
 	<gtExceptionView>
 	^ aView forward
@@ -67,7 +67,7 @@ LcsInvalidSlotType >> gtTargetSlotModelViewsFor: aView [
 ]
 
 { #category : #'gt view' }
-LcsInvalidSlotType >> gtTargetViewsFor: aView [
+LcsInvalidSlotTypeError >> gtTargetViewsFor: aView [
 	<gtView>
 	<gtExceptionView>
 	^ aView forward
@@ -78,56 +78,56 @@ LcsInvalidSlotType >> gtTargetViewsFor: aView [
 ]
 
 { #category : #signal }
-LcsInvalidSlotType >> invalidSlotTypeMessage [
+LcsInvalidSlotTypeError >> invalidSlotTypeMessage [
 	^ 'Attempt to update ' , self slotName printString , '  slot("'
 		, self slotDefinition class name , '") in '
 		, self slotDefinition domainClass name , ' with: ' , self object printString
 ]
 
 { #category : #accessing }
-LcsInvalidSlotType >> object [
+LcsInvalidSlotTypeError >> object [
 	^ object
 ]
 
 { #category : #accessing }
-LcsInvalidSlotType >> object: anObject [ 
+LcsInvalidSlotTypeError >> object: anObject [ 
 	object := anObject
 ]
 
 { #category : #signal }
-LcsInvalidSlotType >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
+LcsInvalidSlotTypeError >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
 	self object: anObject.
 	self slotDefinition: aSlotDefinition.
 	self target: aDomainObject.
-	self signal: self invalidSlotTypeMessage
+	self signal: (self messageText: self invalidSlotTypeMessage)
 ]
 
 { #category : #accessing }
-LcsInvalidSlotType >> slotDefinition [
+LcsInvalidSlotTypeError >> slotDefinition [
 	^ slotDefinition
 ]
 
 { #category : #accessing }
-LcsInvalidSlotType >> slotDefinition: aSlotDefinition [ 
+LcsInvalidSlotTypeError >> slotDefinition: aSlotDefinition [ 
 	slotDefinition := aSlotDefinition
 ]
 
 { #category : #signal }
-LcsInvalidSlotType >> slotDefinitionClassName [
+LcsInvalidSlotTypeError >> slotDefinitionClassName [
 	^ self slotDefinition class name
 ]
 
 { #category : #signal }
-LcsInvalidSlotType >> slotName [
+LcsInvalidSlotTypeError >> slotName [
 	^ self slotDefinition slotName
 ]
 
 { #category : #accessing }
-LcsInvalidSlotType >> target [
+LcsInvalidSlotTypeError >> target [
 	^ target
 ]
 
 { #category : #signal }
-LcsInvalidSlotType >> target: aDomainObject [ 
+LcsInvalidSlotTypeError >> target: aDomainObject [ 
 	target := aDomainObject
 ]
