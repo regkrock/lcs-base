@@ -216,6 +216,43 @@
 					"uidString" : "ztx0JF7ODQCTMqW+A9JQPg=="
 				},
 				"code" : "RBCreateDomainSlotAcccessorsForVariableRefactoring.\r\rdefineGetterMethod\r\r\tself definingClass \r\t\tcompile: ('<1s><r><t>^ self getValueOfSlotNamed: ''<2s>''' \r\t\t\texpandMacrosWith: self selector \r\t\t\twith: variableName)\r\t\tclassified: #(#accessing).\r\t^selector.\r\t\rdefineSetterMethod\r\r\t| definingClass string |\r\tdefiningClass := self definingClass.\r\tstring := self needsReturnForSetter \r\t\t\t\tifTrue: ['<1s> anObject<r><t>^ self setValueOfSlotNamed: ''<2s>'' to: anObject']\r\t\t\t\tifFalse: ['<1s> anObject<r><t>self setValueOfSlotNamed: ''<2s>'' to: anObject'].\r\t\t\t\t\r\tselector := self safeMethodNameFor: definingClass\r\t\t\t\tbasedOn: variableName asString , ':'.\r\tdefiningClass \r\t\tcompile: (string expandMacrosWith: selector with: variableName)\r\t\tclassified: #accessing.\r\t^selector"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-03T22:57:27.3284-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-03T22:57:49.744651-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "u1QTAt7rDQCMxForCs2Ghw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtMethod:LxxPrototy}}"
 			}
 		]
 	},
@@ -238,12 +275,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-02-22T13:09:33.085456-05:00"
+			"dateAndTimeString" : "2024-03-23T15:33:47.351201-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Lcs Tools - Generate Domain Slots"
+		"title" : "Generate Domain Slots"
 	},
 	"uid" : {
 		"__type" : "uuid",

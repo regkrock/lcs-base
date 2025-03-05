@@ -23,6 +23,26 @@ LcsInvalidSlotTypeError >> domainClassName [
 ]
 
 { #category : #'gt view' }
+LcsInvalidSlotTypeError >> gtNewValueViewFor: aView [
+	<gtView>
+	<gtExceptionView>
+	^ aView forward
+		title: 'New Value';
+		priority: 20;
+		object: [ self object ];
+		view: #gtRawFor:;
+		actionButtonIcon: BrGlamorousVectorIcons inspect 
+			tooltip: 'Inspect ' , self object printString
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self object ];
+		actionButtonIcon: BrGlamorousVectorIcons browse 
+			tooltip: 'Browse ' , self object class name
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self object class ]
+		"view: #gtViewsFor:"
+]
+
+{ #category : #'gt view' }
 LcsInvalidSlotTypeError >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -30,18 +50,30 @@ LcsInvalidSlotTypeError >> gtSlotAttributesViewFor: aView [
 		title: 'Slot Attributes';
 		priority: 15;
 		object: [ self slotDefinition ];
-		view: #gtSlotAttributesViewFor:
+		view: #gtSlotAttributesViewFor:;
+		actionButtonIcon: BrGlamorousVectorIcons inspect 
+			tooltip: 'Inspect ' , self slotDefinition printString
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self slotDefinition ];
+		actionButtonIcon: BrGlamorousVectorIcons browse 
+			tooltip: 'Browse ' , self slotDefinition class name
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self slotDefinition class ]
+
 ]
 
 { #category : #'gt view' }
-LcsInvalidSlotTypeError >> gtSlotDefinitionViewFor: aView [
+LcsInvalidSlotTypeError >> gtSlotDefinitionMethods: aView [
 	<gtView>
 	<gtExceptionView>
-	^ aView forward
-		title: 'Slot Definition';
-		priority: 18;
-		object: [ self slotDefinition ];
-		view: #gtViewsFor:
+	^ aView explicit
+		title: 'Slot Definition Method' translated;
+		priority: 16;
+		stencil: [  GtPharoMethodsCoder forItems: self slotDefinitionMethods ];
+		actionButtonIcon: BrGlamorousVectorIcons repair 
+			tooltip: 'Install ' , self slotDefinition printString
+			action: [ :aButton :aTab | self reinstallSlotDefinition ]
+
 ]
 
 { #category : #'gt view' }
@@ -52,18 +84,16 @@ LcsInvalidSlotTypeError >> gtSlotTypesViewFor: aView [
 		title: 'Valid Slot Types';
 		priority: 10;
 		object: [ slotDefinition ];
-		view: #gtSlotTypesViewFor:
-]
-
-{ #category : #'gt view' }
-LcsInvalidSlotTypeError >> gtTargetSlotModelViewsFor: aView [
-	<gtView>
-	<gtExceptionView>
-	^ aView forward
-		title: 'Target Slot Model';
-		priority: 21;
-		object: [ self target slotModel ];
-		view: #gtViewsFor:
+		view: #gtSlotTypesViewFor:;
+		actionButtonIcon: BrGlamorousVectorIcons inspect 
+			tooltip: 'Inspect ' , self slotDefinition printString
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self slotDefinition ];
+		actionButtonIcon: BrGlamorousVectorIcons browse 
+			tooltip: 'Browse ' , self slotDefinition class name
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self slotDefinition class ];
+		actionUpdateButton
 ]
 
 { #category : #'gt view' }
@@ -74,7 +104,26 @@ LcsInvalidSlotTypeError >> gtTargetViewsFor: aView [
 		title: 'Target';
 		priority: 20;
 		object: [ self target ];
-		view: #gtViewsFor:
+		view: #gtRawFor:;
+		actionButtonIcon: BrGlamorousVectorIcons inspect 
+			tooltip: 'Inspect ' , self target printString
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self target ];
+		actionButtonIcon: BrGlamorousVectorIcons browse 
+			tooltip: 'Browse ' , self target class name
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self target class ]
+		"view: #gtViewsFor:"
+]
+
+{ #category : #'gt view' }
+LcsInvalidSlotTypeError >> gtUpdateSlotModelFor: anAction [
+	<gtAction>
+	^ anAction button
+		priority: 11;
+		tooltip: 'Update Slot Model';
+		icon: BrGlamorousVectorIcons play;
+		action: [ :aButton | self reinstallSlotDefinition ]
 ]
 
 { #category : #signal }
@@ -94,12 +143,18 @@ LcsInvalidSlotTypeError >> object: anObject [
 	object := anObject
 ]
 
+{ #category : #'gt view' }
+LcsInvalidSlotTypeError >> reinstallSlotDefinition [
+	^ self target class installSlotDefinition: self slotDefinitionSelector
+]
+
 { #category : #signal }
 LcsInvalidSlotTypeError >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
 	self object: anObject.
 	self slotDefinition: aSlotDefinition.
 	self target: aDomainObject.
-	self signal: (self messageText: self invalidSlotTypeMessage)
+	self messageText: self invalidSlotTypeMessage.
+	self signal: self messageText
 ]
 
 { #category : #accessing }
@@ -115,6 +170,19 @@ LcsInvalidSlotTypeError >> slotDefinition: aSlotDefinition [
 { #category : #signal }
 LcsInvalidSlotTypeError >> slotDefinitionClassName [
 	^ self slotDefinition class name
+]
+
+{ #category : #'gt view' }
+LcsInvalidSlotTypeError >> slotDefinitionMethods [
+	| method |
+	method := self target class class lookupSelector: self slotDefinitionSelector.
+	method ifNil: [ ^ #() ].
+	^ Array with: method
+]
+
+{ #category : #'gt view' }
+LcsInvalidSlotTypeError >> slotDefinitionSelector [
+	^ (self slotName , 'SlotDefinition')  asSymbol
 ]
 
 { #category : #signal }

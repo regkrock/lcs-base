@@ -27,7 +27,6 @@ LcsApplicationEnvironmentViewItem >> action2Button [
 
 { #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> actionButton [
-	self label = 'Initialized' ifTrue: [ ^ self startStopApplicationEnvironmentButton ].
 	self isSystemClass ifTrue: [ ^ self startSystemButton ].
 	self isInstantiatedSystem ifTrue: [ ^ self activateSuspendSystemButton ].
 

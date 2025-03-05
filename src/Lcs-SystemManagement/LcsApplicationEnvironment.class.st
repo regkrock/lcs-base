@@ -35,7 +35,7 @@ LcsApplicationEnvironment class >> applicationEnvironmentObject: aBlock [
 { #category : #'gt views' }
 LcsApplicationEnvironment class >> applicationEnvironmentViewChildren [
 	^ {
-		LcsApplicationEnvironmentViewItem newOn: self label: 'Initialized' item: self currentApplicationEnvironment notNil.
+		"LcsApplicationEnvironmentViewItem newOn: self label: 'Initialized' item: self currentApplicationEnvironment notNil."
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Current' item: self currentApplicationEnvironment}
 ]
 
@@ -104,8 +104,23 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 		column: '' stencil: [ :viewItem | viewItem actionButton] width: 70;
 		column: '' stencil: [ :viewItem | viewItem action2Button] width: 70; 
 		send: #item;
+		actionButtonIcon: BrGlamorousVectorIcons shutdown 
+			tooltip: 'Start/Stop environment'
+			action: [ :aButton :aTab | 
+				self toggleStartStop.
+				aTab viewContentElement phlow update ];
 		actionUpdateButton;
 		yourself
+]
+
+{ #category : #'gt views' }
+LcsApplicationEnvironment class >> gtStartStopActionFor: anAction [
+	"<gtClassAction>"
+	^ anAction button
+		icon: BrGlamorousVectorIcons shutdown;
+		tooltip: 'Start/stop the application environment';
+		priority: 10;
+		action: [ self toggleStartStop ]
 ]
 
 { #category : #testing }
@@ -160,6 +175,11 @@ LcsApplicationEnvironment class >> initializeApplicationEnvironment [
 { #category : #testing }
 LcsApplicationEnvironment class >> isInActiveStatus [
 	^ self applicationEnvironmentHas: [ :env | env isInActiveStatus]
+]
+
+{ #category : #'start-stop' }
+LcsApplicationEnvironment class >> isRunning [
+	^ self hasInitializedApplicationEnvironment
 ]
 
 { #category : #'application environment - system' }
@@ -240,6 +260,13 @@ LcsApplicationEnvironment class >> systemManager [
 	^ self applicationEnvironmentObject: [ :env | env systemManager ]
 ]
 
+{ #category : #'start-stop' }
+LcsApplicationEnvironment class >> toggleStartStop [
+	self isRunning
+		ifTrue: [ self releaseApplicationEnvironment ]
+		ifFalse: [ self initializeApplicationEnvironment ]
+]
+
 { #category : #'application environment - system' }
 LcsApplicationEnvironment class >> unitsOfWorkManager [
 	^ self applicationEnvironmentObject: [ :env | env unitsOfWorkManager ]
@@ -314,7 +341,6 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 		column: '' stencil: [ :viewItem | viewItem actionButton] width: 70;
 		column: '' stencil: [ :viewItem | viewItem action2Button] width: 70;
 		send: #item;
-		actionUpdateButton;
 		yourself
 ]
 

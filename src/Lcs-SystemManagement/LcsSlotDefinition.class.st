@@ -149,6 +149,7 @@ LcsSlotDefinition >> gtSlotAttributesViewFor: aView [
 			width: 200;
 		column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];
 		send: #value;
+		actionUpdateButton;		
 		yourself
 ]
 
@@ -403,7 +404,8 @@ LcsSlotDefinition >> validator: anObject [
 LcsSlotDefinition >> verifyType: anObject for: aDomainObject [
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
-		ifNone: [ self currentUnitOfWork removeAddOf: anObject.
+		ifNone: [ 
+			self currentUnitOfWork removeAddOf: anObject.
 			LcsInvalidSlotTypeError
 				signalInvalidType: anObject
 				forSlot: self
