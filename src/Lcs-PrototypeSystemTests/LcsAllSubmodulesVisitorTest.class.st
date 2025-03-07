@@ -14,7 +14,7 @@ LcsAllSubmodulesVisitorTest >> testNestedSubmodules [
 	subject := LcsAllSubmodulesVisitor newOn: LxxPrototypeSystem.
 	modules := subject allSubmoduleClasses.
 	self assert: modules notEmpty.
-	self assert: modules size = 3.
+	self assert: modules size equals: 4.
 ]
 
 { #category : #tests }

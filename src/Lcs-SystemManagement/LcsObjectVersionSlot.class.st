@@ -4,11 +4,15 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #initialize }
+{ #category : #defaults }
+LcsObjectVersionSlot >> defaultInitialValueBlock [
+	^ [ 0 ]
+]
+
+{ #category : #defaults }
 LcsObjectVersionSlot >> initialize [
 	super initialize.
-	self slotName: 'version'.
-	self initialValue: 0
+	self slotName: 'version'
 ]
 
 { #category : #initialize }
