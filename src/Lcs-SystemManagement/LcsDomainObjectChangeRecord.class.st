@@ -2,7 +2,7 @@ Class {
 	#name : #LcsDomainObjectChangeRecord,
 	#superclass : #LcsSupportDomainObject,
 	#instVars : [
-		'userId',
+		'userUuid',
 		'created',
 		'changes'
 	],
@@ -35,9 +35,9 @@ LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsDomainObjectChangeRecord class >> userIdSlotDefinition [
+LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 	<slotDefinition>
-	^ LcsChangeRecordUserIdSlot new
+	^ LcsChangeRecordUserUuidSlot new
 ]
 
 { #category : #accessing }
@@ -61,11 +61,11 @@ LcsDomainObjectChangeRecord >> created: anObject [
 ]
 
 { #category : #accessing }
-LcsDomainObjectChangeRecord >> userId [
-	^ userId
+LcsDomainObjectChangeRecord >> userUuid [
+	^ userUuid
 ]
 
 { #category : #accessing }
-LcsDomainObjectChangeRecord >> userId: anObject [
-	userId := anObject
+LcsDomainObjectChangeRecord >> userUuid: anObject [
+	userUuid := anObject
 ]

@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'status',
 		'systemSlotModel',
-		'globalCollections'
+		'globalCollections',
+		'uuidGenerator'
 	],
 	#category : #'Lcs-DomainBase-Core'
 }
@@ -54,11 +55,11 @@ LcsBaseSystem class >> statusSlotDefinition [
 	^ LcsCompositeSlot new
 		slotName: 'status';
 		addSlotType: LcsBaseSystemStatus;
-		initialValueBlock: [ LcsSystemActiveStatus new];
+		initialValueBlock: [ :domainParent | LcsSystemActiveStatus new];
 		yourself
 ]
 
-{ #category : #conf }
+{ #category : #configuration }
 LcsBaseSystem class >> systemBootstrapDomainClasses [
 	| prebootstrapClasses |
 	prebootstrapClasses := 
@@ -91,7 +92,13 @@ LcsBaseSystem class >> systemSlotModelSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'slot definitions' }
+LcsBaseSystem class >> uuidGeneratorSlotDefinition [
+	<slotDefinition>
+	^ LcsUuidGeneratorSlot new
+]
+
+{ #category : #security }
 LcsBaseSystem >> _parent [
 	"Do not use in normal situations"
 	^ parent
@@ -176,6 +183,11 @@ LcsBaseSystem >> configurationValidator [
 { #category : #'unit of work' }
 LcsBaseSystem >> currentUnitOfWork [
 	^ self _parent currentUnitOfWork
+]
+
+{ #category : #security }
+LcsBaseSystem >> currentUser [
+	^ self securityModule currentUser
 ]
 
 { #category : #accessing }
@@ -273,9 +285,11 @@ LcsBaseSystem >> initializeBasicSystem [
 	self instantiateAndInstallSlotModelForBootstrapClasses.
 	self unitOfWork addObject: self.
 
+	(self slotDefinitionNamed: 'uuidGenerator') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'status') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'systemSlotModel') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self.
+	(self slotDefinitionNamed: 'uuid') initializeSlotValueIn: self.
 	self systemBootstrapDomainClasses
 		do: [ :eachDomainClass | self addToSlotModel: eachDomainClass slotModel ].
 	self addToSlotModel: self slotModel
@@ -362,7 +376,7 @@ LcsBaseSystem >> isPrototypeSystem [
 	^ false
 ]
 
-{ #category : #initialize }
+{ #category : #environment }
 LcsBaseSystem >> makeCurrentSystem [
 	LcsApplicationEnvironment systemManager addSystem: self
 ]
@@ -435,6 +449,11 @@ LcsBaseSystem >> restoreUnitOfWork [
 	self systemManager restoreUnitOfWorkFor: self
 ]
 
+{ #category : #modules }
+LcsBaseSystem >> securityModule [
+	^ self moduleNamed: 'Security Module'
+]
+
 { #category : #accessing }
 LcsBaseSystem >> status [
 	^ self hasSlotModel 
@@ -469,7 +488,7 @@ LcsBaseSystem >> suspendUnitOfWork [
 	self systemManager suspendUnitOfWorkFor: self
 ]
 
-{ #category : #initialize }
+{ #category : #configuration }
 LcsBaseSystem >> systemBootstrapDomainClasses [
 	^ self class systemBootstrapDomainClasses
 ]
@@ -534,6 +553,16 @@ LcsBaseSystem >> toggleStatus [
 { #category : #'unit of work' }
 LcsBaseSystem >> unitOfWork [
 	^ self currentUnitOfWork
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> uuidGenerator [
+	^ self slotVarNamed: 'uuidGenerator'
+]
+
+{ #category : #accessing }
+LcsBaseSystem >> uuidGenerator: anObject [
+	self slotVarNamed: 'uuidGenerator' put: anObject
 ]
 
 { #category : #initialize }

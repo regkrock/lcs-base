@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #defaults }
-LcsCollectionSlot >> defaultInitialValueBlaock [
+LcsCollectionSlot >> defaultInitialValueBlock [
 	^ [ self typeClass new ]
 ]
 

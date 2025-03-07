@@ -4,9 +4,9 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #accessing }
+{ #category : #defaults }
 LcsDateSlot >> defaultInitialValueBlock [ 
-	^ [ Date today ]
+	^ [ self typeClass today ]
 ]
 
 { #category : #configuration }

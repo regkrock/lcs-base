@@ -15,20 +15,22 @@ LcsSecurityModule class >> currentUserSlotDefinition [
 		slotName: 'currentUser';
 		collectionSlotName: 'users';
 		collectionSlotModuleName: self moduleName;
-		initialValueBlock: [ :securityModule |  securityModule users superUser];
+		initialValueBlock: [ :securityModule | securityModule users superUser ];
 		addSlotType: LcsBaseUser;
-		yourself 
+		yourself
 ]
 
 { #category : #configuration }
 LcsSecurityModule class >> moduleName [
-	^ 'Security Module' 
+	^ 'Security Module'
 ]
 
 { #category : #configuration }
 LcsSecurityModule class >> owningModules [
 	<owningModule: 'LcsMainSystem'>
-	<owningModule: 'LcsWarRabbitLibrary'> 
+	<owningModule: 'LcsWarRabbitLibrary'>
+	<owningModule: 'LxxPrototypeSystem'>
+	
 ]
 
 { #category : #'slot definitions' }
@@ -38,7 +40,7 @@ LcsSecurityModule class >> usersSlotDefinition [
 		slotName: 'users';
 		addSlotType: LcsUsers;
 		addCollectionMemberType: LcsBaseUser;
-		yourself 
+		yourself
 ]
 
 { #category : #accessing }
@@ -49,6 +51,11 @@ LcsSecurityModule >> currentUser [
 { #category : #accessing }
 LcsSecurityModule >> currentUser: anObject [
 	self slotVarNamed: 'currentUser' put: anObject 
+]
+
+{ #category : #security }
+LcsSecurityModule >> userWithUuid: aUserUuid [
+	^ self users userWithUuid: aUserUuid
 ]
 
 { #category : #accessing }

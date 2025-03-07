@@ -49,7 +49,7 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 { #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
-	| targetModule targetSlotDefinition domainCollectonClass|
+	| targetModule |
 	targetModule := self moduleNamed: self collectionSlotModuleName. 
 	"targetSlotDefinition := (targetModule slotDefinitionNamed: self collectionSlotName).
 	domainCollectonClass := targetSlotDefinition getValueIn: targetModule.

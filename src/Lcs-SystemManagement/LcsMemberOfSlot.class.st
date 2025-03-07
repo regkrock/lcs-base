@@ -57,7 +57,7 @@ LcsMemberOfSlot >> defaultInstance [
 LcsMemberOfSlot >> initialize [
 	super initialize.
 	self beRequired.
-	self initialValueBlock: [ self defaultInstance ]
+	self initialValueBlock: [:domainParent | self defaultInstance ]
 ]
 
 { #category : #accessing }

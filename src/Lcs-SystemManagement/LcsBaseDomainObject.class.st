@@ -524,6 +524,11 @@ LcsBaseDomainObject >> isSlotModelInstantiated [
 	^ self class isSlotModelInstantiated
 ]
 
+{ #category : #testing }
+LcsBaseDomainObject >> isSupportDomainObject [
+	^false
+]
+
 { #category : #accessing }
 LcsBaseDomainObject >> parent [
 	^ self slotVarNamed: 'parent'

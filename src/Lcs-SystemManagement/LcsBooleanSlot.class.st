@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #accessing }
+{ #category : #defaults }
 LcsBooleanSlot >> defaultInitialValueBlock [ 
 	^ [ false ]
 ]

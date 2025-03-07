@@ -154,12 +154,13 @@ LcsSlotModel >> initializeOn: aDomainClass [
 
 { #category : #model }
 LcsSlotModel >> initializeSlotNamed: aSlotName in: aDomainObject [
-	(self slotDefinitionNamed: aSlotName) initializeSlotValueIn: aDomainObject 
+	(self slotDefinitionNamed: aSlotName) initializeSlotValueIn: aDomainObject
 ]
 
 { #category : #model }
 LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
-	self allSlotDefinitions do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
+	self allSlotDefinitions
+		do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
 ]
 
 { #category : #model }

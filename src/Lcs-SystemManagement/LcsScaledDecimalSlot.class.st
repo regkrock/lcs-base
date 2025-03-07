@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #accessing }
+{ #category : #defaults }
 LcsScaledDecimalSlot >> defaultInitialValueBlock [ 
 	^ [ 0 asScaledDecimal: self numberOfDecimals ]
 ]

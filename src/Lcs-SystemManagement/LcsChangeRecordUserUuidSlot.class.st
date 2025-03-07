@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsChangeRecordUserIdSlot,
+	#name : #LcsChangeRecordUserUuidSlot,
 	#superclass : #LcsUserIdSlot,
 	#traits : 'LtDirectSlotAccess',
 	#classTraits : 'LtDirectSlotAccess classTrait',
@@ -7,9 +7,9 @@ Class {
 }
 
 { #category : #initialize }
-LcsChangeRecordUserIdSlot >> initialize [
+LcsChangeRecordUserUuidSlot >> initialize [
 	super initialize.
 	self 
-		slotName: 'userId';
+		slotName: 'userUuid';
 		beRequired
 ]

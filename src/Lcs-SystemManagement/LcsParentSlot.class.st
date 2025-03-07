@@ -14,7 +14,6 @@ LcsParentSlot >> initialize [
 
 { #category : #accessing }
 LcsParentSlot >> initializeSlotValueIn: aDomainObject [
-	"Do nothing - this will be set by its parent"
 ]
 
 { #category : #accessing }

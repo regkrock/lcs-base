@@ -9,7 +9,7 @@ Class {
 	#superclass : #LcsSupportDomainObject,
 	#instVars : [
 		'created',
-		'userId',
+		'userUuid',
 		'changeRecords'
 	],
 	#category : #'Lcs-SystemManagement-Domain'
@@ -38,21 +38,21 @@ LcsDomainObjectHistory class >> createdSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsDomainObjectHistory class >> userIdSlotDefinition [
-	<slotDefinition>
-	^ LcsChangeRecordUserIdSlot new
+LcsDomainObjectHistory class >> userSlotDefinition [
+	<facadeSlotDefinition>
+	^ LcsFacadeSlot new
+		slotName: 'user';
+		targetSlotName: 'userUuid';
+		convertFromTarget: [ :userUuid | self accessControlModule userWithUuid: userUuid ];
+		convertToTarget: [ :user | user userUuid ];
+		"beReadOnly;"
+		yourself
 ]
 
 { #category : #'slot definitions' }
-LcsDomainObjectHistory class >> userSlotDefinition [
-	"<slotDefinition>"
-	^ LcsFacadeSlot new
-		slotName: 'user';
-		targetSlotName: 'userId';
-		convertFromTarget: [ :userId | self accessControlModule userWithId: userId ];
-		convertToTarget: [ :user | user userId ];
-		"beReadOnly;"
-		yourself
+LcsDomainObjectHistory class >> userUuidSlotDefinition [
+	<slotDefinition>
+	^ LcsChangeRecordUserUuidSlot new
 ]
 
 { #category : #accessing }
@@ -76,11 +76,11 @@ LcsDomainObjectHistory >> created: anObject [
 ]
 
 { #category : #accessing }
-LcsDomainObjectHistory >> userId [
-	^ self slotVarNamed: 'userId'
+LcsDomainObjectHistory >> userUuid [
+	^ self slotVarNamed: 'userUuid'
 ]
 
 { #category : #accessing }
-LcsDomainObjectHistory >> userId: aString [
-	self slotVarNamed: 'userId' put: aString
+LcsDomainObjectHistory >> userUuid: aString [
+	self slotVarNamed: 'userUuid' put: aString
 ]

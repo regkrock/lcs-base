@@ -6,7 +6,7 @@ Class {
 
 { #category : #api }
 LcsDeletedObjectRecord >> applyChanges [
-
+	self domainObject version: SmallInteger minVal.
 	self error: 'Needs to be implemented'
 ]
 

@@ -10,7 +10,10 @@ Class {
 { #category : #api }
 LcsChangedObjectRecord >> applyChanges [
 
-	self changedSlots do: [ :each | each applyChange ]
+	self changedSlots do: [ :each | each applyChange ].
+	self domainObject isSupportDomainObject ifFalse: [
+		self domainObject version: self domainObject version + 1 .
+		self domainObject "history" ].
 ]
 
 { #category : #api }

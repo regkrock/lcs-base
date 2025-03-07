@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 LcsSymbolSlot >> defaultInitialValueBlock [
 	^ [ #'' ]
 ]

@@ -57,3 +57,8 @@ LcsObjectChangeRecord >> parent [
 LcsObjectChangeRecord >> parent: anObject [
 	parent := anObject
 ]
+
+{ #category : #system }
+LcsObjectChangeRecord >> system [
+	^ self parent system
+]

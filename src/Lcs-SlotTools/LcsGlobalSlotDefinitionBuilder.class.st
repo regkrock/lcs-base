@@ -74,7 +74,7 @@ LcsGlobalSlotDefinitionBuilder >> initialize [
 
 { #category : #initialize }
 LcsGlobalSlotDefinitionBuilder >> initializeModel [
-	(self target slotDefinitionNamed: self slotName) 
+	(self target slotDefinitionNamed: self slotName)
 		initializeSlotValueIn: (self currentSystem moduleNamed: self targetModuleName)
 ]
 

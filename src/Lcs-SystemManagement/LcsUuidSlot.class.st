@@ -4,14 +4,18 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #initialize }
+{ #category : #defaults }
+LcsUuidSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject | parentDomainObject currentSystem uuidGenerator next asInteger  ]
+]
+
+{ #category : #defaults }
 LcsUuidSlot >> initialize [
 	super initialize.
-	self slotName: 'uuid'.
-	self allowNil
+	self slotName: 'uuid'
 ]
 
 { #category : #configuration }
 LcsUuidSlot >> typeClass [
-	^ SmallInteger
+	^ Integer
 ]

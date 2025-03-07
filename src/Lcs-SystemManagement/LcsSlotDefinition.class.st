@@ -79,7 +79,10 @@ LcsSlotDefinition >> currentSlotVarIn: aDomainObject [
 
 { #category : #defaults }
 LcsSlotDefinition >> defaultInitialValueBlock [
-	^ [ self slotTypes any new ]
+	^ [ :parentDomainObject | 
+		(self slotTypes any new)
+			parent: parentDomainObject;
+			yourself ]
 ]
 
 { #category : #printing }
@@ -223,7 +226,7 @@ LcsSlotDefinition >> initialValue [
 
 { #category : #accessing }
 LcsSlotDefinition >> initialValue: anObject [
-	self initialValueBlock: [ anObject ]
+	self initialValueBlock: [ :parentDomainObject | anObject ]
 ]
 
 { #category : #accessing }

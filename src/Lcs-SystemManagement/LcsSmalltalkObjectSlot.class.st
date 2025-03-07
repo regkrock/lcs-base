@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #defaults }
+LcsSmalltalkObjectSlot >> defaultInitialValueBlock [
+	self subclassResponsibility
+]
+
+{ #category : #defaults }
 LcsSmalltalkObjectSlot >> defaultInputComponentClassName [
 	^ #'NeedsToBeDefined'
 	"self subclassResponsibility"
@@ -23,7 +28,7 @@ LcsSmalltalkObjectSlot >> gtSlotDefinitionAttributes [
 
 { #category : #accessing }
 LcsSmalltalkObjectSlot >> initialValueFor: aDomainObject [
-	^ self initialValueBlock cull: aDomainObject class
+	^ self initialValueBlock cull: aDomainObject
 ]
 
 { #category : #initialize }

@@ -10,6 +10,15 @@ LcsDirectAssignmentSlot >> _slotVarPut: anObject in: aDomainObject [
 	aDomainObject instVarNamed: self slotName put: anObject
 ]
 
+{ #category : #defaults }
+LcsDirectAssignmentSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject | | newValue |
+		newValue := self slotTypes any new.
+		newValue isDomainObject ifTrue: [
+			newValue parent: parentDomainObject ].
+		newValue ]
+]
+
 { #category : #'as yet unclassified' }
 LcsDirectAssignmentSlot >> initialValueFor: aDomainObject [
 	| newValue |

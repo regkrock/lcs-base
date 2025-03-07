@@ -71,7 +71,7 @@ LcsInvalidSlotTypeError >> gtSlotDefinitionMethods: aView [
 		priority: 16;
 		stencil: [  GtPharoMethodsCoder forItems: self slotDefinitionMethods ];
 		actionButtonIcon: BrGlamorousVectorIcons repair 
-			tooltip: 'Install ' , self slotDefinition printString
+			tooltip: 'Install ' , self slotName , ' Slot Definition'
 			action: [ :aButton :aTab | self reinstallSlotDefinition ]
 
 ]
