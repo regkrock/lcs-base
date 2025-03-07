@@ -159,12 +159,14 @@ LxxPrototypeSystemTest >> testChangedSlotInDomainObject [
 { #category : #tests }
 LxxPrototypeSystemTest >> testCreatingNewDomainObject [
 	| domainObject |
+	
 	self newPrototypeSystem.
-	self assert: self currentSystem currentUnitOfWork addedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
+	
+	self assert: self currentSystem currentUnitOfWork hasNoChanges.
+
 	domainObject := LcsDomainObject new.
-	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
+
+		self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
 	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
 	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).

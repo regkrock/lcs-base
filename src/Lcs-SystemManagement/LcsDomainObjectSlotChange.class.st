@@ -14,6 +14,7 @@ LcsDomainObjectSlotChange class >> newValueSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'newValue';
+		makeDirectVariableUpdate;
 		yourself
 ]
 
@@ -22,6 +23,7 @@ LcsDomainObjectSlotChange class >> oldValueSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'oldValue';
+		makeDirectVariableUpdate;
 		yourself
 ]
 
@@ -30,6 +32,7 @@ LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'slotName';
+		makeDirectVariableUpdate;
 		yourself
 ]
 

@@ -6,6 +6,14 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
+{ #category : #'slot definition' }
+LcsDomainObjectChangeRecords class >> collectionSlotDefinition [
+	<slotDefinition>
+	^ LcsOrderedCollectionSlot new
+		makeDirectVariableUpdate;
+		yourself
+]
+
 { #category : #accessing }
 LcsDomainObjectChangeRecords >> collection [
 	^ self slotVarNamed: 'collection'

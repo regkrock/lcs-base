@@ -159,7 +159,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkChildren [
 LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 	<gtView>
 	^ aView columnedTree 
-		title: 'Unit Of Work';
+		title: 'Live';
 		priority: 2.5;
 		expandUpTo: 1;
 		items: [ self gtUnitOfWorkItems ];
@@ -169,6 +169,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 			width: 200;
 		column: 'Value' text: [ :each | each gtItemDisplayString ];
 		send: #item;
+		actionUpdateButton;
 		yourself
 ]
 

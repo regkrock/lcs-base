@@ -14,6 +14,7 @@ LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
 		slotName: 'changes';
+		makeDirectVariableUpdate;
 		yourself
 ]
 
@@ -22,6 +23,7 @@ LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordTimestampSlot new
 		slotName: 'created';
+		makeDirectVariableUpdate;
 		yourself
 ]
 
@@ -38,6 +40,8 @@ LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
+		makeDirectVariableUpdate;
+		yourself
 ]
 
 { #category : #accessing }

@@ -19,7 +19,8 @@ Class {
 	#instVars : [
 		'required',
 		'validator',
-		'initialValueBlock'
+		'initialValueBlock',
+		'variableUpdatePolicy'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -259,6 +260,7 @@ LcsSlotDefinition >> initialValueFor: aDomainObject [
 LcsSlotDefinition >> initialize [
 	super initialize.
 	self initializeSlotTypes.
+	self makeUnitOfWorkVariableUpdate.
 	self initialValueBlock: self defaultInitialValueBlock
 ]
 
@@ -316,6 +318,16 @@ LcsSlotDefinition >> isOptional [
 { #category : #testing }
 LcsSlotDefinition >> isRequired [
 	^ self required == true
+]
+
+{ #category : #configuration }
+LcsSlotDefinition >> makeDirectVariableUpdate [
+	self variableUpdatePolicy: (LcsDirectVariableUpdatePolicy newOn: self)
+]
+
+{ #category : #configuration }
+LcsSlotDefinition >> makeUnitOfWorkVariableUpdate [
+	self variableUpdatePolicy: (LcsUnitOfWorkVariableUpdatePolicy newOn: self)
 ]
 
 { #category : #'gt views' }
@@ -390,7 +402,7 @@ LcsSlotDefinition >> slotVarDirectlyPut: anObject in: aDomainObject [
 
 { #category : #'slot model' }
 LcsSlotDefinition >> slotVarPut: anObject in: aDomainObject [
-	self _slotVarPut: anObject  in: aDomainObject
+	self variableUpdatePolicy slotVarPut: anObject  in: aDomainObject
 ]
 
 { #category : #accessing }
@@ -401,6 +413,16 @@ LcsSlotDefinition >> validator [
 { #category : #accessing }
 LcsSlotDefinition >> validator: anObject [
 	validator := anObject
+]
+
+{ #category : #accessing }
+LcsSlotDefinition >> variableUpdatePolicy [
+	^ variableUpdatePolicy
+]
+
+{ #category : #accessing }
+LcsSlotDefinition >> variableUpdatePolicy: anObject [
+	variableUpdatePolicy := anObject
 ]
 
 { #category : #'slot model' }
