@@ -7,6 +7,15 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
+{ #category : #'slot definitions\t' }
+LcsSupportDomainObject class >> parentSlotDefinition [
+	<slotDefinition>
+	^ super parentSlotDefinition
+		makeDirectVariableUpdate;
+		yourself
+
+]
+
 { #category : #testing }
 LcsSupportDomainObject >> isSupportDomainObject [
 	^ true

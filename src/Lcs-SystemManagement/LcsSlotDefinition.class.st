@@ -249,10 +249,10 @@ LcsSlotDefinition >> initialValueBlockSourceCode [
 LcsSlotDefinition >> initialValueFor: aDomainObject [
 	| newValue |
 	newValue := self initialValueBlock cull: aDomainObject.
-	(newValue isDomainObject and: [ self currentSystem notNil ])
+	"(newValue isDomainObject and: [ self currentSystem notNil ])
 		ifTrue: [ 
 			self assignParent: aDomainObject to: newValue.
-			self currentUnitOfWork addObject: newValue context: aDomainObject ].
+			self currentUnitOfWork addObject: newValue context: aDomainObject ]."
 	^ newValue
 ]
 

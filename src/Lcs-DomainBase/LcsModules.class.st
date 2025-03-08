@@ -7,9 +7,8 @@ Class {
 { #category : #'slot definitions' }
 LcsModules class >> collectionSlotDefinition [
 	<slotDefinition>
-	^ LcsDirectAssignmentSlot new
+	^ LcsDictionarySlot new
 		slotName: 'collection';
-		addSlotType: LcsSmalltalkConfiguration stringDictionaryClass;
 		yourself
 ]
 

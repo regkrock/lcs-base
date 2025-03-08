@@ -6,6 +6,14 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
+{ #category : #'slot definition\t' }
+LcsDomainObjectSlotChanges class >> collectionSlotDefinition [
+	<slotDefinition>
+	^ LcsDictionarySlot new
+		makeDirectVariableUpdate;
+		yourself
+]
+
 { #category : #accessing }
 LcsDomainObjectSlotChanges >> collection [
 	^ self slotVarNamed: 'collection'

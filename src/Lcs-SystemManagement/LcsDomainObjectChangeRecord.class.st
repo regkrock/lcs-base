@@ -32,7 +32,8 @@ LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsCollectionReferenceSlot new
 		slotName: 'parent';
-		addSlotType: LcsDomainObjectChangeRecords
+		addSlotType: LcsDomainObjectChangeRecords;
+		makeDirectVariableUpdate;
 		yourself
 ]
 

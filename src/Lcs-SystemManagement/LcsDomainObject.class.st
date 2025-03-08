@@ -21,9 +21,10 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 { #category : #'slot definitions' }
 LcsDomainObject class >> historySlotDefinition [
 	<slotDefinition>
-	^ LcsDirectAssignmentSlot new
+	^ LcsCompositeSlot new
 		slotName: 'history';
 		addSlotType: LcsDomainObjectHistory;
+		makeDirectVariableUpdate;
 		yourself
 ]
 

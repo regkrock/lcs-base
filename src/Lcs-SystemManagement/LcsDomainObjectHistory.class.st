@@ -23,6 +23,7 @@ LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
 		addSlotType: LcsDomainObjectChangeRecords;
 		addCollectionMemberType: LcsDomainObjectChangeRecord;
 		beRequired;
+		makeDirectVariableUpdate;
 		"beReadOnly;"
 		yourself
 ]
