@@ -5,6 +5,6 @@ Trait {
 
 { #category : #'slot model' }
 LtDirectSlotAccess >> slotVarPut: anObject in: aDomainObject [
-	self verifyType: anObject for: nil.
+	self verifyType: anObject for: aDomainObject.
 	aDomainObject instVarNamed: self slotName put: anObject
 ]

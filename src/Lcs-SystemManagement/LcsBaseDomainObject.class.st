@@ -382,6 +382,11 @@ LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 		aValidator validate: self slotModel]
 ]
 
+{ #category : #'slot model' }
+LcsBaseDomainObject >> allSlotDefinitions [
+	^ self slotModel allSlotDefinitions
+]
+
 { #category : #'application environment' }
 LcsBaseDomainObject >> applicationEnvironment [
 	^ self parent applicationEnvironment
@@ -395,6 +400,11 @@ LcsBaseDomainObject >> currentSystem [
 { #category : #'application environment' }
 LcsBaseDomainObject >> currentUnitOfWork [
 	^ self parent currentUnitOfWork
+]
+
+{ #category : #'application environment' }
+LcsBaseDomainObject >> currentUser [
+	^ self currentSystem currentUser
 ]
 
 { #category : #'slot access' }

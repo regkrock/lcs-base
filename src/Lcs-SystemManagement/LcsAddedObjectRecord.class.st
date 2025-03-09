@@ -16,7 +16,16 @@ LcsAddedObjectRecord >> applyChanges [
 		(self domainObject slotDefinitionNamed: 'parent') persistValue: self domainObject  contextObject: self creationContext ].
 	self domainObject isSupportDomainObject ifFalse: [
 		self domainObject version: self domainObject version + 1 .
-		self domainObject history ].
+		self domainObject history recordCreation ].
+		"userUuid: self currentUser uuid.
+		self domainObject history addCreationChangeRecord.
+		LcsDomainObjectChangeRecord new
+			parent: self domainObject history changes
+		self domainObject class slotModel allSlotDefinitions do: [ :eachSlotDefinition |
+			 LcsDomainObjectSlotChange new
+			 	slotName: eachSlotDefinition slotName;
+			 	oldValue: nil;
+			 	newValue: (eachSlotDefinition slotHistoricalRepresentationFor: self domainObject)]."
 	
 ]
 

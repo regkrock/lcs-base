@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsChangeRecordUserUuidSlot,
-	#superclass : #LcsUserIdSlot,
+	#superclass : #LcsIntegerSlot,
 	#traits : 'LtDirectSlotAccess',
 	#classTraits : 'LtDirectSlotAccess classTrait',
 	#category : #'Lcs-SystemManagement-Slot'

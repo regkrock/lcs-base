@@ -20,6 +20,11 @@ LcsObjectChangeRecord >> applyChanges [
 	self subclassResponsibility
 ]
 
+{ #category : #system }
+LcsObjectChangeRecord >> currentUser [
+	^ self system currentUser
+]
+
 { #category : #accessing }
 LcsObjectChangeRecord >> domainObject [
 	^ domainObject

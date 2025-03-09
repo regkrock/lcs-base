@@ -79,6 +79,21 @@ LcsDomainObjectHistory >> created: anObject [
 	self slotVarNamed: 'created' put: anObject
 ]
 
+{ #category : #'domain object' }
+LcsDomainObjectHistory >> domainObject [
+	^ self parent
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectHistory >> recordCreation [
+	self changeRecords hasElements 
+		ifTrue: [ LcsError signal: 'Attempt to record creation when it has already been recorded' ].
+	self userUuid: self parent currentUser uuid.
+	self changeRecords newChangeRecord
+		userUuid: self parent currentUser uuid;
+		addInitialChanges
+]
+
 { #category : #accessing }
 LcsDomainObjectHistory >> userUuid [
 	^ self slotVarNamed: 'userUuid'

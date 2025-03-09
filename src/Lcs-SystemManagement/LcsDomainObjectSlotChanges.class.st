@@ -23,3 +23,27 @@ LcsDomainObjectSlotChanges >> collection [
 LcsDomainObjectSlotChanges >> collection: aCollection [
 	self slotVarNamed: 'collection' put: aCollection
 ]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectSlotChanges >> createInitialSlotChangeFor: eachSlotDefinition [
+	| changeRecord |
+	changeRecord := 
+		LcsDomainObjectSlotChange new
+			parent: self;
+			slotName: eachSlotDefinition slotName;
+			oldValue: nil;
+			newValue:  eachSlotDefinition;
+			yourself.
+	^ self collection at: changeRecord slotName put: changeRecord
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectSlotChanges >> nexSlotChangeRecord [
+	| changeRecord |
+	changeRecord := 
+		LcsDomainObjectSlotChange new
+			parent: self;
+			yourself.
+	self collection add: changeRecord.
+	^ changeRecord
+]

@@ -176,7 +176,7 @@ LcsInvalidSlotTypeError >> slotDefinitionClassName [
 LcsInvalidSlotTypeError >> slotDefinitionMethods [
 	| method |
 	method := self target class class lookupSelector: self slotDefinitionSelector.
-	method ifNil: [ ^ #() ].
+	method ifNil: [ ^ self error: '#' , self slotDefinitionSelector , ' method not found' ].
 	^ Array with: method
 ]
 

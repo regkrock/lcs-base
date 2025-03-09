@@ -12,8 +12,10 @@ Class {
 { #category : #'slot definitions' }
 LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 	<slotDefinition>
-	^ LcsOrderedCollectionSlot new
+	^ LcsLocalCollectionSlot new
 		slotName: 'changes';
+		addSlotType: LcsDomainObjectSlotChanges;
+		addCollectionMemberType: LcsDomainObjectSlotChange;
 		makeDirectVariableUpdate;
 		yourself
 ]
@@ -45,6 +47,11 @@ LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 		yourself
 ]
 
+{ #category : #'history saving' }
+LcsDomainObjectChangeRecord >> addInitialChanges [
+	self domainObject allSlotDefinitions do: [ :eachSlotDefinition |  self createInitialSlotChangeFor:  eachSlotDefinition ]
+]
+
 { #category : #accessing }
 LcsDomainObjectChangeRecord >> changes [
 	^ changes
@@ -55,6 +62,11 @@ LcsDomainObjectChangeRecord >> changes: anObject [
 	changes := anObject
 ]
 
+{ #category : #'history saving' }
+LcsDomainObjectChangeRecord >> createInitialSlotChangeFor: eachSlotDefinition [ 
+	self changes createInitialSlotChangeFor: eachSlotDefinition 
+]
+
 { #category : #accessing }
 LcsDomainObjectChangeRecord >> created [
 	^ created
@@ -63,6 +75,11 @@ LcsDomainObjectChangeRecord >> created [
 { #category : #accessing }
 LcsDomainObjectChangeRecord >> created: anObject [
 	created := anObject
+]
+
+{ #category : #'domain object' }
+LcsDomainObjectChangeRecord >> domainObject [
+	^ self parent domainObject
 ]
 
 { #category : #accessing }

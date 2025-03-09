@@ -23,3 +23,19 @@ LcsDomainObjectChangeRecords >> collection [
 LcsDomainObjectChangeRecords >> collection: aCollection [
 	self slotVarNamed: 'collection' put: aCollection
 ]
+
+{ #category : #'history saving' }
+LcsDomainObjectChangeRecords >> domainObject [
+	^ self parent domainObject
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectChangeRecords >> newChangeRecord [
+	| newRecord |
+	newRecord :=
+		LcsDomainObjectChangeRecord new
+			parent: self;
+			yourself.
+	self collection add: newRecord.
+	^ newRecord
+]
