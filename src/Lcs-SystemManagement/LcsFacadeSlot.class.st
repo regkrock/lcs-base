@@ -41,15 +41,15 @@ LcsFacadeSlot >> convertToTarget: anObject [
 { #category : #'as yet unclassified' }
 LcsFacadeSlot >> currentSlotVarIn: aDomainObject [
 	^ self convertFromTarget 
-		cull: (aDomainObject perform: #slotVarNamed: with: self targetSlotName) 
+		cull: (aDomainObject slotVarNamed: self targetSlotName) 
 		cull: aDomainObject
 ]
 
-{ #category : #'as yet unclassified' }
-LcsFacadeSlot >> currentSlotVarIn: aDomainObject put: anObject [
-	aDomainObject perform: #slotVarNamed:put: 
-		with: self targetSlotName
-		with: (self convertToTarget cull: anObject cull: aDomainObject)
+{ #category : #'slot access' }
+LcsFacadeSlot >> slotVarPut: anObject in: aTargetDomainObject [
+	aTargetDomainObject
+		slotVarNamed: self targetSlotName
+		put: (self convertToTarget cull: anObject  cull: aTargetDomainObject)
 ]
 
 { #category : #accessing }

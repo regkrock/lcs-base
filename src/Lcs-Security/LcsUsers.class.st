@@ -16,5 +16,5 @@ LcsUsers >> superUser [
 
 { #category : #queries }
 LcsUsers >> userWithUuid: aUserUuid [
-	^ self collection detect: [ :each | each userUuid = aUserUuid ] ifNone: [ LcsError signal: 'No User found for userUuid' ]
+	^ self collection detect: [ :each | each uuid = aUserUuid ] ifNone: [ LcsError signal: 'No User found for userUuid' ]
 ]

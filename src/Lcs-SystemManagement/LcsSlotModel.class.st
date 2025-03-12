@@ -3,7 +3,9 @@ Class {
 	#superclass : #LcsObject,
 	#instVars : [
 		'domainClass',
-		'slotDefinitions'
+		'slotDefinitions',
+		'virtualSlotDefinitions',
+		'facadeSlotDefinitions'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -22,6 +24,17 @@ LcsSlotModel class >> newOn: aDomainClass [
 ]
 
 { #category : #slots }
+LcsSlotModel >> _facadeSlotDefinitionNamed: aSlotName [
+	^ self facadeSlotDefinitions
+		at: aSlotName
+		ifAbsent: [
+			self domainSuperClass isDomainClass
+				ifTrue: [
+					self domainSuperClassSlotModel  _facadeSlotDefinitionNamed: aSlotName]
+				ifFalse: [ nil ] ]
+]
+
+{ #category : #slots }
 LcsSlotModel >> _slotDefinitionNamed: aSlotName [
 	^ self slotDefinitions
 		at: aSlotName
@@ -30,6 +43,24 @@ LcsSlotModel >> _slotDefinitionNamed: aSlotName [
 				ifTrue: [
 					self domainSuperClassSlotModel  _slotDefinitionNamed: aSlotName]
 				ifFalse: [ nil ] ]
+]
+
+{ #category : #slots }
+LcsSlotModel >> _virtualSlotDefinitionNamed: aSlotName [
+	^ self virtualSlotDefinitions
+		at: aSlotName
+		ifAbsent: [
+			self domainSuperClass isDomainClass
+				ifTrue: [
+					self domainSuperClassSlotModel  _virtualSlotDefinitionNamed: aSlotName]
+				ifFalse: [ nil ] ]
+]
+
+{ #category : #slots }
+LcsSlotModel >> addFacadeSlotDefinition: aSlotDefinition [
+
+	aSlotDefinition parent: self.
+	self facadeSlotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
 ]
 
 { #category : #slots }
@@ -51,6 +82,13 @@ LcsSlotModel >> addSlotDefinitionsTo: aCollection [
 { #category : #validation }
 LcsSlotModel >> addValidateConfigurationResultTo: aValidator [
 	self slotDefinitions do: [ :eachSlotDefintion | aValidator validate: eachSlotDefintion ]
+]
+
+{ #category : #slots }
+LcsSlotModel >> addVirtualSlotDefinition: aSlotDefinition [
+
+	aSlotDefinition parent: self.
+	self virtualSlotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
 ]
 
 { #category : #model }
@@ -80,6 +118,16 @@ LcsSlotModel >> domainSuperClass [
 LcsSlotModel >> domainSuperClassSlotModel [
 	self domainSuperClass hasSlotModel ifTrue: [ ^ self domainSuperClass slotModel ].
 	LcsUndefinedSlotModelError signalSuperclassWithoutSlotModel: self domainSuperClass
+]
+
+{ #category : #accessing }
+LcsSlotModel >> facadeSlotDefinitions [
+	^ facadeSlotDefinitions
+]
+
+{ #category : #accessing }
+LcsSlotModel >> facadeSlotDefinitions: anObject [
+	facadeSlotDefinitions := anObject
 ]
 
 { #category : #'slot access' }
@@ -145,6 +193,8 @@ LcsSlotModel >> hasSlotDefinitions [
 LcsSlotModel >> initialize [
 	super initialize.
 	self slotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
+	self virtualSlotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
+	self facadeSlotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
 ]
 
 { #category : #initialize }
@@ -204,10 +254,13 @@ LcsSlotModel >> removeSlotDefinitionNamed: aSlotName [
 
 { #category : #slots }
 LcsSlotModel >> slotDefinitionNamed: aSlotName [
-	^ (self _slotDefinitionNamed: aSlotName) ifNil: [
-			LcsSlotDoesNotExistInSlotModelError
-				signalWithContext: self
-				slotName: aSlotName ]
+	(self _slotDefinitionNamed: aSlotName) ifNotNil: [ :definition | ^ definition ].
+	(self _virtualSlotDefinitionNamed: aSlotName) ifNotNil: [ :definition | ^ definition ].
+	(self _facadeSlotDefinitionNamed: aSlotName) ifNotNil: [ :definition | ^ definition ].
+
+	LcsSlotDoesNotExistInSlotModelError
+		signalWithContext: self
+		slotName: aSlotName
 ]
 
 { #category : #model }
@@ -223,4 +276,14 @@ LcsSlotModel >> slotDefinitions: aCollection [
 { #category : #model }
 LcsSlotModel >> superClassSlotModel [
 	^ self domainClass superclass slotModel
+]
+
+{ #category : #accessing }
+LcsSlotModel >> virtualSlotDefinitions [
+	^ virtualSlotDefinitions
+]
+
+{ #category : #accessing }
+LcsSlotModel >> virtualSlotDefinitions: anObject [
+	virtualSlotDefinitions := anObject
 ]

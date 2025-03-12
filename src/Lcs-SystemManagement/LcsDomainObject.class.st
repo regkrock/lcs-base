@@ -19,12 +19,62 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 ]
 
 { #category : #'slot definitions' }
+LcsDomainObject class >> creationDateSlotDefinition [
+	<virtualSlotDefinition>
+	^ LcsVirtualSlotDefinition new
+		slotName: 'creationDate';
+		valueAccessor: #historyCreationDate;
+		addSlotType: Date;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> creationTimestampSlotDefinition [
+	<virtualSlotDefinition>
+	^ LcsVirtualSlotDefinition new
+		slotName: 'creationTimestamp';
+		valueAccessor: #historyCreationTimestamp;
+		addSlotType: DateAndTime;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> creatorSlotDefinition [
+	<virtualSlotDefinition>
+	^ LcsVirtualSlotDefinition new
+		slotName: 'creator';
+		valueAccessor: #historyCreator;
+		addSlotType: LcsUser;
+		yourself
+]
+
+{ #category : #'slot definitions' }
 LcsDomainObject class >> historySlotDefinition [
 	<slotDefinition>
 	^ LcsCompositeSlot new
 		slotName: 'history';
 		addSlotType: LcsDomainObjectHistory;
 		makeDirectVariableUpdate;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> lastUpdatedDateSlotDefinition [
+	<virtualSlotDefinition>
+	^ LcsVirtualSlotDefinition new
+		slotName: 'lastUpdatedDate';
+		valueAccessor: #historyLastUpdatedDate;
+		addSlotType: Date;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
+	<virtualSlotDefinition>
+	^ LcsVirtualSlotDefinition new
+		slotName: 'lastUpdatedTimestamp';
+		valueAccessor: #historyLastUpdatedTimestamp;
+		addSlotType: DateAndTime;
 		yourself
 ]
 
@@ -51,6 +101,21 @@ LcsDomainObject class >> versionSlotDefinition [
 		yourself
 ]
 
+{ #category : #history }
+LcsDomainObject >> creationDate [
+	^ self slotVarNamed: 'creationDate'
+]
+
+{ #category : #'accessing - virtual slot' }
+LcsDomainObject >> creationTimestamp [
+	^ self slotVarNamed: 'creationTimestamp'
+]
+
+{ #category : #'accessing - virtual slot' }
+LcsDomainObject >> creator [
+	^ self slotVarNamed: 'creator'
+]
+
 { #category : #'unit of work' }
 LcsDomainObject >> delete [
 
@@ -65,6 +130,36 @@ LcsDomainObject >> history [
 { #category : #accessing }
 LcsDomainObject >> history: anObject [
 	self slotVarNamed: 'history' put: anObject
+]
+
+{ #category : #history }
+LcsDomainObject >> historyCreationDate [
+	^ self history creationDate
+]
+
+{ #category : #history }
+LcsDomainObject >> historyCreationTimestamp [
+	^ self history creationTimestamp
+]
+
+{ #category : #history }
+LcsDomainObject >> historyCreator [
+	^ self history user
+]
+
+{ #category : #history }
+LcsDomainObject >> historyLastUpdatedDate [
+	^ self history lastUpdatedDate
+]
+
+{ #category : #history }
+LcsDomainObject >> historyLastUpdatedTimestamp [
+	^ self history lastUpdatedTimestamp
+]
+
+{ #category : #'unit of work' }
+LcsDomainObject >> incrementVersionNumber [
+	self version: self version + 1
 ]
 
 { #category : #state }
@@ -86,6 +181,16 @@ LcsDomainObject >> isInPendingDeletionState [
 	 When the transaction is completed, the value of version with be low values"
 
 	^ self version = -1
+]
+
+{ #category : #'accessing - virtual slot' }
+LcsDomainObject >> lastUpdatedDate [
+	^ self slotVarNamed: 'lastUpdatedDate'
+]
+
+{ #category : #'accessing - virtual slot' }
+LcsDomainObject >> lastUpdatedTimestamp [
+	^ self slotVarNamed: 'lastUpdatedTimestamp'
 ]
 
 { #category : #accessing }

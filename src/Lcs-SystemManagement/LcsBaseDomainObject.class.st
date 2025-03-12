@@ -43,6 +43,11 @@ LcsBaseDomainObject class >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
+{ #category : #'slot model' }
+LcsBaseDomainObject class >> facadeSlotDefinitionPragmas [
+	^ Pragma allNamed: 'facadeSlotDefinition' in: self class
+]
+
 { #category : #'slot access' }
 LcsBaseDomainObject class >> getPersistedValueOf: aString in: anObject [ 
 	^ self slotModel getPersistedValueOf: aString in: anObject 
@@ -128,6 +133,12 @@ LcsBaseDomainObject class >> initializeSlotModel [
 ]
 
 { #category : #'slot model - install' }
+LcsBaseDomainObject class >> installFacadeSlotDefinition: aSlotDefinitionSelector [
+	self currentSystem isNil ifTrue: [ ^ self ].
+	self slotModel addFacadeSlotDefinition: (self perform: aSlotDefinitionSelector)
+]
+
+{ #category : #'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
@@ -135,8 +146,12 @@ LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 
 { #category : #'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinitions [
-	self slotDefinitionPragmas do: [ :eachPragma | 
-		self installSlotDefinition: eachPragma methodSelector ]
+	self slotDefinitionPragmas
+		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ].
+	self virtualSlotDefinitionPragmas
+		do: [ :eachPragma | self installVirtualSlotDefinition: eachPragma methodSelector ].
+	self facadeSlotDefinitionPragmas
+		do: [ :eachPragma | self installFacadeSlotDefinition: eachPragma methodSelector ]
 ]
 
 { #category : #'slot model - install' }
@@ -149,6 +164,12 @@ LcsBaseDomainObject class >> installSlotModel [
 LcsBaseDomainObject class >> installSlotModelIn: aSystem [
 	aSystem addToSlotModel: self slotModel.
 	self installSlotDefinitions
+]
+
+{ #category : #'slot model - install' }
+LcsBaseDomainObject class >> installVirtualSlotDefinition: aSlotDefinitionSelector [
+	self currentSystem isNil ifTrue: [ ^ self ].
+	self slotModel addVirtualSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
 { #category : #'slot model - install' }
@@ -368,6 +389,11 @@ LcsBaseDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
 
 ]
 
+{ #category : #'slot model' }
+LcsBaseDomainObject class >> virtualSlotDefinitionPragmas [
+	^ Pragma allNamed: 'virtualSlotDefinition' in: self class
+]
+
 { #category : #validation }
 LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 	"self isIncludedInSystemDomainClasses
@@ -480,6 +506,11 @@ LcsBaseDomainObject >> gtViewSlotModelFor: aView [
 	^ self class gtViewSlotModelFor: aView
 ]
 
+{ #category : #'unit of work' }
+LcsBaseDomainObject >> incrementVersionNumber [
+	"subclasses should implement as needed"
+]
+
 { #category : #initialize }
 LcsBaseDomainObject >> initialize [
 	super initialize.
@@ -511,7 +542,7 @@ LcsBaseDomainObject >> initializeUninitializedSlotValues [
 
 { #category : #testing }
 LcsBaseDomainObject >> isDomainObject [
-	^true
+	^ true
 ]
 
 { #category : #testing }
@@ -536,7 +567,7 @@ LcsBaseDomainObject >> isSlotModelInstantiated [
 
 { #category : #testing }
 LcsBaseDomainObject >> isSupportDomainObject [
-	^false
+	^ false
 ]
 
 { #category : #accessing }

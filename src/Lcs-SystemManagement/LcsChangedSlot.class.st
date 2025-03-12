@@ -18,8 +18,15 @@ LcsChangedSlot class >> newFor: aSlotName parent: aChangedObjectRecord [
 ]
 
 { #category : #api }
-LcsChangedSlot >> applyChange [
-	self parent domainObject instVarNamed: self slotName asString put: self newValue
+LcsChangedSlot >> applyChangeRecordingHistoryIn: aChangeRecord [
+	(aChangeRecord changes newSlotChangeRecord: self slotName)
+		newValue: self newValue.
+	self domainObject instVarNamed: self slotName asString put: self newValue
+]
+
+{ #category : #api }
+LcsChangedSlot >> domainObject [
+	^ self parent domainObject
 ]
 
 { #category : #'gt views' }

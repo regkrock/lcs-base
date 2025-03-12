@@ -24,6 +24,17 @@ LcsBaseSlotDefinition >> domainClass [
 	^ self parent domainClass
 ]
 
+{ #category : #initialize }
+LcsBaseSlotDefinition >> initialize [
+	super initialize.
+	self initializeSlotTypes.
+]
+
+{ #category : #initialize }
+LcsBaseSlotDefinition >> initializeSlotTypes [
+	self slotTypes: OrderedCollection new
+]
+
 { #category : #'slot model' }
 LcsBaseSlotDefinition >> label [
 	^self labelForSelector: self slotName
@@ -74,4 +85,9 @@ LcsBaseSlotDefinition >> slotTypes [
 { #category : #accessing }
 LcsBaseSlotDefinition >> slotTypes: anObject [
 	slotTypes := anObject
+]
+
+{ #category : #'slot model' }
+LcsBaseSlotDefinition >> slotVarPut: anObject in: aDomainObject [
+	^ LcsError signal: 'Attempt to update a read only slot'
 ]

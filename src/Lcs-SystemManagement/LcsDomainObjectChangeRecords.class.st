@@ -35,6 +35,7 @@ LcsDomainObjectChangeRecords >> newChangeRecord [
 	newRecord :=
 		LcsDomainObjectChangeRecord new
 			parent: self;
+			userUuid: self parent currentUser uuid;
 			yourself.
 	self collection add: newRecord.
 	^ newRecord

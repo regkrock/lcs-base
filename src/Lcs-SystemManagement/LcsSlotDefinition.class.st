@@ -63,6 +63,11 @@ LcsSlotDefinition >> beRequired [
 	self required: true
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotDefinition >> changeHistoryRepresentationIn: aNewObject [
+	^ aNewObject isDomainObject ifTrue: [ aNewObject uuid ] ifFalse: [ aNewObject ]
+]
+
 { #category : #defaults }
 LcsSlotDefinition >> createNewInstanceOf: aClass inContext: context [
 	aClass isDomainClass
@@ -262,11 +267,6 @@ LcsSlotDefinition >> initialize [
 	self initializeSlotTypes.
 	self makeUnitOfWorkVariableUpdate.
 	self initialValueBlock: self defaultInitialValueBlock
-]
-
-{ #category : #initialize }
-LcsSlotDefinition >> initializeSlotTypes [
-	self slotTypes: OrderedCollection new
 ]
 
 { #category : #accessing }

@@ -26,15 +26,30 @@ LcsDomainObjectSlotChanges >> collection: aCollection [
 
 { #category : #'as yet unclassified' }
 LcsDomainObjectSlotChanges >> createInitialSlotChangeFor: eachSlotDefinition [
-	| changeRecord |
-	changeRecord := 
-		LcsDomainObjectSlotChange new
+	| changeRecord newObject |
+	newObject := eachSlotDefinition persistedSlotVarIn: self domainObject.
+	(newObject isDomainObject and: [ newObject isSupportDomainObject ])
+		ifTrue: [ ^ self ].
+	changeRecord := LcsDomainObjectSlotChange new
 			parent: self;
 			slotName: eachSlotDefinition slotName;
-			oldValue: nil;
-			newValue:  eachSlotDefinition;
+			newValue: (eachSlotDefinition changeHistoryRepresentationIn: newObject);
 			yourself.
 	^ self collection at: changeRecord slotName put: changeRecord
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectSlotChanges >> domainObject [
+	^ self parent domainObject
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectSlotChanges >> newSlotChangeRecord: aSlotName [
+	^ self collection at: aSlotName put: (
+		LcsDomainObjectSlotChange new
+			parent: self;
+			slotName: aSlotName;
+			yourself)
 ]
 
 { #category : #'as yet unclassified' }

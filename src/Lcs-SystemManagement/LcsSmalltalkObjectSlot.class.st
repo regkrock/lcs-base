@@ -22,7 +22,7 @@ LcsSmalltalkObjectSlot >> defaultInputComponentClassName [
 LcsSmalltalkObjectSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'initialValueBlock' -> self initialValueBlock;
-		add: 'initialValue' -> initialValueBlock value;
+		"add: 'initialValue' -> initialValueBlock value;"
 		yourself
 ]
 

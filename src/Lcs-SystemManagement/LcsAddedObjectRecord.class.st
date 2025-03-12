@@ -10,22 +10,13 @@ Class {
 { #category : #api }
 LcsAddedObjectRecord >> applyChanges [
 	<todo: 'This was put in becaue a member of slot had a value of nil and caused this problem. Fixing this is related to the null object pattern which has not yet been implemented.'>
-	self domainObject isNil ifTrue: [ ^self ].
+	"self domainObject isNil ifTrue: [ ^self ]."
 	self domainObject isNil ifTrue: [ LcsError signal: 'Cannot apply changes because domain object is nil'].
-	self domainObject parent isNil ifTrue: [
-		(self domainObject slotDefinitionNamed: 'parent') persistValue: self domainObject  contextObject: self creationContext ].
+	self domainObject parent isNil ifTrue: [ LcsError signal: 'Cannot apply changes because domain object''s parent slot is nil'.
+		"(self domainObject slotDefinitionNamed: 'parent') persistValue: self domainObject  contextObject: self creationContext "].
+	self domainObject incrementVersionNumber.
 	self domainObject isSupportDomainObject ifFalse: [
-		self domainObject version: self domainObject version + 1 .
-		self domainObject history recordCreation ].
-		"userUuid: self currentUser uuid.
-		self domainObject history addCreationChangeRecord.
-		LcsDomainObjectChangeRecord new
-			parent: self domainObject history changes
-		self domainObject class slotModel allSlotDefinitions do: [ :eachSlotDefinition |
-			 LcsDomainObjectSlotChange new
-			 	slotName: eachSlotDefinition slotName;
-			 	oldValue: nil;
-			 	newValue: (eachSlotDefinition slotHistoricalRepresentationFor: self domainObject)]."
+		self domainObject history recordSlotChanges ]
 	
 ]
 

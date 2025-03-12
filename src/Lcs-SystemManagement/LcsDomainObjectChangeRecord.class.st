@@ -48,8 +48,9 @@ LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 ]
 
 { #category : #'history saving' }
-LcsDomainObjectChangeRecord >> addInitialChanges [
-	self domainObject allSlotDefinitions do: [ :eachSlotDefinition |  self createInitialSlotChangeFor:  eachSlotDefinition ]
+LcsDomainObjectChangeRecord >> addChanges [
+	self halt.
+	"self domainObject allSlotDefinitions do: [ :eachSlotDefinition |  self createInitialSlotChangeFor:  eachSlotDefinition ]"
 ]
 
 { #category : #accessing }

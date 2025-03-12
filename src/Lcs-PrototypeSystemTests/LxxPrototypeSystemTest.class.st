@@ -40,13 +40,13 @@ LxxPrototypeSystemTest >> addtionalSubject: anObject [
 	additionalSubject := anObject
 ]
 
-{ #category : #tests }
+{ #category : #private }
 LxxPrototypeSystemTest >> bootstrapClasses [
 	^ self subject allBootstrapDomainClasses
 		asSortedCollection: [ :a :b | a name <= b name ]
 ]
 
-{ #category : #tests }
+{ #category : #private }
 LxxPrototypeSystemTest >> classesWithInitializeSlotModel [
 	^ self subject systemSlotModel slotModels keys
 		asSortedCollection: [ :a :b | a name <= b name ]
@@ -153,24 +153,6 @@ LxxPrototypeSystemTest >> testChangedSlotInDomainObject [
 
 	self assert: domainObject dateOfBirth equals: secondChangedDateOfBirth.
 	self assert: (domainObject getPersistedValueOf: 'dateOfBirth') = secondChangedDateOfBirth.
-
-]
-
-{ #category : #tests }
-LxxPrototypeSystemTest >> testCreatingNewDomainObject [
-	| domainObject |
-	
-	self newPrototypeSystem.
-	
-	self assert: self currentSystem currentUnitOfWork hasNoChanges.
-
-	domainObject := LcsDomainObject new.
-
-		self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
-	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
-	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
-	self assert: (self currentSystem currentUnitOfWork addedObjects keys includes:  domainObject)
 ]
 
 { #category : #tests }

@@ -45,9 +45,8 @@ LcsDomainObjectHistory class >> userSlotDefinition [
 	^ LcsFacadeSlot new
 		slotName: 'user';
 		targetSlotName: 'userUuid';
-		convertFromTarget: [ :userUuid | self accessControlModule userWithUuid: userUuid ];
-		convertToTarget: [ :user | user userUuid ];
-		"beReadOnly;"
+		convertFromTarget: [ :userUuid | self currentSystem securityModule userWithUuid: userUuid ];
+		convertToTarget: [ :user | user uuid ];
 		yourself
 ]
 
@@ -57,6 +56,12 @@ LcsDomainObjectHistory class >> userUuidSlotDefinition [
 	^ LcsChangeRecordUserUuidSlot new
 		makeDirectVariableUpdate;
 		yourself
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectHistory >> addChangesTo: aChangeRecord [ 
+	self domainObject allSlotDefinitions
+		do: [ :eachSlotDefinition | aChangeRecord createInitialSlotChangeFor: eachSlotDefinition ]
 ]
 
 { #category : #accessing }
@@ -79,19 +84,63 @@ LcsDomainObjectHistory >> created: anObject [
 	self slotVarNamed: 'created' put: anObject
 ]
 
+{ #category : #history }
+LcsDomainObjectHistory >> creationDate [
+	^ self created asDate
+]
+
+{ #category : #history }
+LcsDomainObjectHistory >> creationTimestamp [
+	^ self created
+]
+
 { #category : #'domain object' }
 LcsDomainObjectHistory >> domainObject [
 	^ self parent
 ]
 
+{ #category : #history }
+LcsDomainObjectHistory >> lastUpdatedDate [
+	^ self creationDate
+]
+
+{ #category : #history }
+LcsDomainObjectHistory >> lastUpdatedTimestamp [
+	^ self created
+]
+
 { #category : #'as yet unclassified' }
-LcsDomainObjectHistory >> recordCreation [
+LcsDomainObjectHistory >> newChangeRecord [
+	^ self changeRecords newChangeRecord
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectHistory >> recordChanges [
+	self changeRecords hasNoElements
+		ifTrue: [ LcsError
+				signal: 'Attempt to record changes to an object that has not been created' ].
+	self newChangeRecord
+		userUuid: self parent currentUser uuid;
+		addChanges
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectHistory >> recordSlotChanges [
 	self changeRecords hasElements 
 		ifTrue: [ LcsError signal: 'Attempt to record creation when it has already been recorded' ].
 	self userUuid: self parent currentUser uuid.
-	self changeRecords newChangeRecord
-		userUuid: self parent currentUser uuid;
-		addInitialChanges
+	self user: self parent currentUser.
+	"self addChangesTo: self newChangeRecord"
+]
+
+{ #category : #accessing }
+LcsDomainObjectHistory >> user [
+	^ self slotVarNamed: 'user'
+]
+
+{ #category : #accessing }
+LcsDomainObjectHistory >> user: aUser [
+	self slotVarNamed: 'user' put: aUser
 ]
 
 { #category : #accessing }
