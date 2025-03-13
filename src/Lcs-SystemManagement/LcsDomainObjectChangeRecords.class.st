@@ -30,12 +30,22 @@ LcsDomainObjectChangeRecords >> domainObject [
 ]
 
 { #category : #'as yet unclassified' }
+LcsDomainObjectChangeRecords >> lastUpdateTimestamp [
+	^ self collection last created
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectChangeRecords >> lastUpdatedUser [
+	^ self collection last user
+]
+
+{ #category : #'as yet unclassified' }
 LcsDomainObjectChangeRecords >> newChangeRecord [
 	| newRecord |
 	newRecord :=
 		LcsDomainObjectChangeRecord new
 			parent: self;
-			userUuid: self parent currentUser uuid;
+			user: self parent currentUser;
 			yourself.
 	self collection add: newRecord.
 	^ newRecord

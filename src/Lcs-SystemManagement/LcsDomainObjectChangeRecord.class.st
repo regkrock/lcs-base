@@ -40,6 +40,17 @@ LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
+LcsDomainObjectChangeRecord class >> userSlotDefinition [
+	<facadeSlotDefinition>
+	^ LcsFacadeSlot new
+		slotName: 'user';
+		targetSlotName: 'userUuid';
+		convertFromTarget: [ :userUuid | self currentSystem securityModule userWithUuid: userUuid ];
+		convertToTarget: [ :user | user uuid ];
+		yourself
+]
+
+{ #category : #'slot definitions' }
 LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
@@ -81,6 +92,16 @@ LcsDomainObjectChangeRecord >> created: anObject [
 { #category : #'domain object' }
 LcsDomainObjectChangeRecord >> domainObject [
 	^ self parent domainObject
+]
+
+{ #category : #accessing }
+LcsDomainObjectChangeRecord >> user [
+	^ self slotVarNamed: 'user'
+]
+
+{ #category : #accessing }
+LcsDomainObjectChangeRecord >> user: aUser [
+	self slotVarNamed: 'user' put: aUser
 ]
 
 { #category : #accessing }

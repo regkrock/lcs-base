@@ -78,6 +78,16 @@ LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LcsDomainObject class >> lastUpdatedUserSlotDefinition [
+	<virtualSlotDefinition>
+	^ LcsVirtualSlotDefinition new
+		slotName: 'lastUpdatedUser';
+		valueAccessor: #historyLastUpdatedUser;
+		addSlotType: LcsUser;
+		yourself
+]
+
 { #category : #'instance creation' }
 LcsDomainObject class >> new [
 	| newObject |
@@ -157,6 +167,11 @@ LcsDomainObject >> historyLastUpdatedTimestamp [
 	^ self history lastUpdatedTimestamp
 ]
 
+{ #category : #history }
+LcsDomainObject >> historyLastUpdatedUser [
+	^ self history lastUpdatedUser
+]
+
 { #category : #'unit of work' }
 LcsDomainObject >> incrementVersionNumber [
 	self version: self version + 1
@@ -191,6 +206,11 @@ LcsDomainObject >> lastUpdatedDate [
 { #category : #'accessing - virtual slot' }
 LcsDomainObject >> lastUpdatedTimestamp [
 	^ self slotVarNamed: 'lastUpdatedTimestamp'
+]
+
+{ #category : #'accessing - virtual slot' }
+LcsDomainObject >> lastUpdatedUser [
+	^ self slotVarNamed: 'lastUpdatedUser'
 ]
 
 { #category : #accessing }

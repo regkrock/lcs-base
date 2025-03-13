@@ -101,12 +101,19 @@ LcsDomainObjectHistory >> domainObject [
 
 { #category : #history }
 LcsDomainObjectHistory >> lastUpdatedDate [
-	^ self creationDate
+	^ self lastUpdatedTimestamp asDate
 ]
 
 { #category : #history }
 LcsDomainObjectHistory >> lastUpdatedTimestamp [
-	^ self created
+	self changeRecords hasNoElements ifTrue: [ ^ self created ].
+	^ self changeRecords lastUpdateTimestamp
+]
+
+{ #category : #history }
+LcsDomainObjectHistory >> lastUpdatedUser [
+	self changeRecords hasNoElements ifTrue: [ ^ self user ].
+	^ self changeRecords lastUpdatedUser
 ]
 
 { #category : #'as yet unclassified' }
