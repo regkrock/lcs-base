@@ -58,10 +58,19 @@ LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 		yourself
 ]
 
-{ #category : #'history saving' }
-LcsDomainObjectChangeRecord >> addChanges [
-	self halt.
-	"self domainObject allSlotDefinitions do: [ :eachSlotDefinition |  self createInitialSlotChangeFor:  eachSlotDefinition ]"
+{ #category : #'as yet unclassified' }
+LcsDomainObjectChangeRecord >> addOriginalValueFor: aSlotName [
+	self createInitialSlotChangeFor: (self domainObject slotDefinitionNamed: aSlotName) 
+]
+
+{ #category : #history }
+LcsDomainObjectChangeRecord >> addSlotChangesOf: aSlotName to: slotChangeHistory [
+	self changes addSlotChangesOf: aSlotName to: slotChangeHistory
+]
+
+{ #category : #history }
+LcsDomainObjectChangeRecord >> changeForSlot: aSlotName [
+	^ self changes changeForSlot: aSlotName
 ]
 
 { #category : #accessing }
@@ -92,6 +101,16 @@ LcsDomainObjectChangeRecord >> created: anObject [
 { #category : #'domain object' }
 LcsDomainObjectChangeRecord >> domainObject [
 	^ self parent domainObject
+]
+
+{ #category : #history }
+LcsDomainObjectChangeRecord >> domainObjectHistory [
+	^ self parent domainObjectHistory
+]
+
+{ #category : #testing }
+LcsDomainObjectChangeRecord >> hasChangeHistoryFor: aSlotName [
+	^ self changes hasChangeHistoryFor: aSlotName
 ]
 
 { #category : #accessing }

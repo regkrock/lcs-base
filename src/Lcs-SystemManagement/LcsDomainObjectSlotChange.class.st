@@ -25,6 +25,20 @@ LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
 		yourself
 ]
 
+{ #category : #history }
+LcsDomainObjectSlotChange >> addSlotChangesOf: aSlotName to: slotChangeHistory [
+	slotChangeHistory add: (
+		Array 
+			with: aSlotName
+			with: self newValue printString
+			with: self created printString)
+]
+
+{ #category : #history }
+LcsDomainObjectSlotChange >> created [
+	^ self parent created
+]
+
 { #category : #accessing }
 LcsDomainObjectSlotChange >> newValue [
 	^ self slotVarNamed: 'newValue'

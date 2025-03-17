@@ -9,11 +9,8 @@ Class {
 
 { #category : #api }
 LcsChangedObjectRecord >> applyChanges [
-	| changeRecord |
 	self domainObject incrementVersionNumber.
-	changeRecord := self domainObject history newChangeRecord.
-	self changedSlots
-		do: [ :each | each applyChangeRecordingHistoryIn: changeRecord ]
+	self domainObject history recordSlotChanges: self
 ]
 
 { #category : #api }

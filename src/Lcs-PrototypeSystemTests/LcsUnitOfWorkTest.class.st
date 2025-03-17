@@ -9,7 +9,7 @@ LcsUnitOfWorkTest >> setupSunitSystem [
 	LxxPrototypeSystem new
 ]
 
-{ #category : #test }
+{ #category : #tests }
 LcsUnitOfWorkTest >> testCreation [
 
 	| unitOfWork |
@@ -21,7 +21,7 @@ LcsUnitOfWorkTest >> testCreation [
 	self assert: unitOfWork changedObjects isEmpty.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	"| domainObject |
 	LxxPrototypeSystem new. 
@@ -40,7 +40,7 @@ LcsUnitOfWorkTest >> testDeleteDomainObject [
 	self assert: LcsApplicationEnvironment currentUnitOfWork deletedObjects any domainObject == domainObject"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsUnitOfWorkTest >> testHistoryCreationWithNewDomainObject [
 	| domainObject |
 		
@@ -57,6 +57,62 @@ LcsUnitOfWorkTest >> testHistoryCreationWithNewDomainObject [
 	self assert: domainObject lastUpdatedTimestamp equals: domainObject history creationTimestamp.
 	self assert: domainObject creator equals: self currentSystem currentUser.
 	self assert: domainObject history userUuid isInteger
+]
+
+{ #category : #tests }
+LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
+	| person slotChangeHistory |
+	person := LxxPrototypePerson new.
+	
+	self currentSystem applyChanges.
+	"self assert: person history."
+	self assert: person history changeRecords collection size equals: 1.
+	slotChangeHistory := person historyOfAllSlotChanges.
+	self assert: slotChangeHistory size = person allSlotDefinitions size.
+	
+	Delay forMilliseconds: 100.
+	person dateOfBirth: Date yesterday.
+
+	self currentSystem applyChanges.
+	slotChangeHistory := person historyOfAllSlotChanges.
+	self assert: slotChangeHistory size equals: person allSlotDefinitions size + 2.
+
+	
+	Delay forMilliseconds: 100.
+	person dateOfBirth: (Date yesterday subtractDays: 1).
+	
+	self currentSystem applyChanges.
+	slotChangeHistory := person historyOfAllSlotChanges.
+	self assert: slotChangeHistory size equals: person allSlotDefinitions size + 4.
+
+]
+
+{ #category : #tests }
+LcsUnitOfWorkTest >> testHistoryOfSlotChange [
+	| person slotChangeHistory |
+	person := LxxPrototypePerson new.
+	
+	self currentSystem applyChanges.
+	"self assert: person history."
+	self assert: person history changeRecords collection size equals: 1.
+	slotChangeHistory := person historyOfChangesToSlot: 'dateOfBirth'.
+	self assert: slotChangeHistory size = 1.
+	
+	Delay forMilliseconds: 100.
+	person dateOfBirth: Date yesterday.
+
+	self currentSystem applyChanges.
+	slotChangeHistory := person historyOfChangesToSlot: 'dateOfBirth'.
+	self assert: slotChangeHistory size = 2.
+
+	
+	Delay forMilliseconds: 100.
+	person dateOfBirth: (Date yesterday subtractDays: 1).
+	
+	self currentSystem applyChanges.
+	slotChangeHistory := person historyOfChangesToSlot: 'dateOfBirth'.
+	self assert: slotChangeHistory size = 3.
+
 ]
 
 { #category : #tests }

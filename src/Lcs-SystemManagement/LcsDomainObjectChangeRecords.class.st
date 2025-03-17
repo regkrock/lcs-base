@@ -14,6 +14,23 @@ LcsDomainObjectChangeRecords class >> collectionSlotDefinition [
 		yourself
 ]
 
+{ #category : #history }
+LcsDomainObjectChangeRecords >> addChangeRecord [
+	^ self collection first
+]
+
+{ #category : #history }
+LcsDomainObjectChangeRecords >> addSlotChangesOf: aSlotName to: slotChangeHistory [
+	self collection reverseDo: [ :eachChangeRecord |
+		eachChangeRecord addSlotChangesOf: aSlotName to: slotChangeHistory ].
+	slotChangeHistory isEmpty ifTrue: [
+		slotChangeHistory add: (
+				Array 
+					with: aSlotName 
+					with: (self domainObject perform: aSlotName asSymbol) printString 
+					with: self  parent created printString)]
+]
+
 { #category : #accessing }
 LcsDomainObjectChangeRecords >> collection [
 	^ self slotVarNamed: 'collection'
@@ -29,7 +46,12 @@ LcsDomainObjectChangeRecords >> domainObject [
 	^ self parent domainObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
+LcsDomainObjectChangeRecords >> domainObjectHistory [
+	^ self parent domainObjectHistory
+]
+
+{ #category : #history }
 LcsDomainObjectChangeRecords >> lastUpdateTimestamp [
 	^ self collection last created
 ]

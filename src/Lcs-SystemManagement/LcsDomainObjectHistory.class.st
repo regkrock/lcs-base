@@ -59,6 +59,11 @@ LcsDomainObjectHistory class >> userUuidSlotDefinition [
 ]
 
 { #category : #'as yet unclassified' }
+LcsDomainObjectHistory >> addChangeRecord [
+	^ self changeRecords addChangeRecord
+]
+
+{ #category : #'as yet unclassified' }
 LcsDomainObjectHistory >> addChangesTo: aChangeRecord [ 
 	self domainObject allSlotDefinitions
 		do: [ :eachSlotDefinition | aChangeRecord createInitialSlotChangeFor: eachSlotDefinition ]
@@ -100,6 +105,33 @@ LcsDomainObjectHistory >> domainObject [
 ]
 
 { #category : #history }
+LcsDomainObjectHistory >> domainObjectHistory [
+	^ self
+]
+
+{ #category : #testing }
+LcsDomainObjectHistory >> hasChangeHistoryFor: aSlotName [ 
+	^ self addChangeRecord hasChangeHistoryFor: aSlotName
+]
+
+{ #category : #history }
+LcsDomainObjectHistory >> historyOfAllSlotChanges [
+	| allSlotChangesHistory|
+	allSlotChangesHistory := OrderedCollection new.
+	self domainObject allSlotDefinitions do: [ :eachSlotDefinition | 
+		allSlotChangesHistory addAll: (self historyOfChangesToSlot: eachSlotDefinition slotName)].
+	^ allSlotChangesHistory
+]
+
+{ #category : #history }
+LcsDomainObjectHistory >> historyOfChangesToSlot: aSlotName [
+	| slotChangeHistory |
+	slotChangeHistory := OrderedCollection new.
+	self changeRecords addSlotChangesOf: aSlotName to: slotChangeHistory.
+	^ slotChangeHistory
+]
+
+{ #category : #history }
 LcsDomainObjectHistory >> lastUpdatedDate [
 	^ self lastUpdatedTimestamp asDate
 ]
@@ -116,28 +148,35 @@ LcsDomainObjectHistory >> lastUpdatedUser [
 	^ self changeRecords lastUpdatedUser
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 LcsDomainObjectHistory >> newChangeRecord [
 	^ self changeRecords newChangeRecord
 ]
 
-{ #category : #'as yet unclassified' }
-LcsDomainObjectHistory >> recordChanges [
-	self changeRecords hasNoElements
-		ifTrue: [ LcsError
-				signal: 'Attempt to record changes to an object that has not been created' ].
-	self newChangeRecord
-		userUuid: self parent currentUser uuid;
-		addChanges
+{ #category : #history }
+LcsDomainObjectHistory >> recordOriginalSlotValue: aSlotName [
+	(self hasChangeHistoryFor: aSlotName)
+		ifFalse: [ self addChangeRecord addOriginalValueFor: aSlotName ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #history }
 LcsDomainObjectHistory >> recordSlotChanges [
 	self changeRecords hasElements 
 		ifTrue: [ LcsError signal: 'Attempt to record creation when it has already been recorded' ].
 	self userUuid: self parent currentUser uuid.
 	self user: self parent currentUser.
-	"self addChangesTo: self newChangeRecord"
+	self newChangeRecord 
+		created: self created.
+]
+
+{ #category : #history }
+LcsDomainObjectHistory >> recordSlotChanges: aChangesRecord [
+	| changeRecord |
+	changeRecord := self newChangeRecord.
+	aChangesRecord changedSlots
+		do: [ :each | 
+			self recordOriginalSlotValue: each slotName.
+			each applyChangeRecordingHistoryIn: changeRecord ]
 ]
 
 { #category : #accessing }

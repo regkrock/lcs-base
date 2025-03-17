@@ -172,6 +172,16 @@ LcsDomainObject >> historyLastUpdatedUser [
 	^ self history lastUpdatedUser
 ]
 
+{ #category : #history }
+LcsDomainObject >> historyOfAllSlotChanges [
+	^ self history historyOfAllSlotChanges
+]
+
+{ #category : #history }
+LcsDomainObject >> historyOfChangesToSlot: aSlotName [
+	^ self history historyOfChangesToSlot: aSlotName
+]
+
 { #category : #'unit of work' }
 LcsDomainObject >> incrementVersionNumber [
 	self version: self version + 1
@@ -203,7 +213,7 @@ LcsDomainObject >> lastUpdatedDate [
 	^ self slotVarNamed: 'lastUpdatedDate'
 ]
 
-{ #category : #'accessing - virtual slot' }
+{ #category : #history }
 LcsDomainObject >> lastUpdatedTimestamp [
 	^ self slotVarNamed: 'lastUpdatedTimestamp'
 ]

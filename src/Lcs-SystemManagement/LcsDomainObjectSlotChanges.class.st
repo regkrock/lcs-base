@@ -14,6 +14,13 @@ LcsDomainObjectSlotChanges class >> collectionSlotDefinition [
 		yourself
 ]
 
+{ #category : #testing }
+LcsDomainObjectSlotChanges >> addSlotChangesOf: aSlotName to: slotChangeHistory [
+	(self collection at: aSlotName ifAbsent: [ ^ self ])
+		addSlotChangesOf: aSlotName to: slotChangeHistory
+
+]
+
 { #category : #accessing }
 LcsDomainObjectSlotChanges >> collection [
 	^ self slotVarNamed: 'collection'
@@ -38,9 +45,24 @@ LcsDomainObjectSlotChanges >> createInitialSlotChangeFor: eachSlotDefinition [
 	^ self collection at: changeRecord slotName put: changeRecord
 ]
 
+{ #category : #history }
+LcsDomainObjectSlotChanges >> created [
+	^ self parent created
+]
+
 { #category : #'as yet unclassified' }
 LcsDomainObjectSlotChanges >> domainObject [
 	^ self parent domainObject
+]
+
+{ #category : #'as yet unclassified' }
+LcsDomainObjectSlotChanges >> domainObjectHistory [
+	^ self parent domainObjectHistory
+]
+
+{ #category : #testing }
+LcsDomainObjectSlotChanges >> hasChangeHistoryFor: aSlotName [
+	^ (self collection at: aSlotName ifAbsent: [ nil ]) notNil
 ]
 
 { #category : #'as yet unclassified' }
