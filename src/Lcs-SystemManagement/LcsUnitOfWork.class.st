@@ -32,6 +32,12 @@ LcsUnitOfWork >> hasAddedRecordFor: aDomainObject [
 ]
 
 { #category : #testing }
+LcsUnitOfWork >> hasChangeRecordFor: anItem [
+	self changedObjects at: anItem ifAbsent: [ ^ false ].
+	^ true
+]
+
+{ #category : #testing }
 LcsUnitOfWork >> hasChanges [
 	self changedObjects notEmpty ifTrue: [ ^ true ].
 	self deletedObjects notEmpty ifTrue: [ ^ true ].

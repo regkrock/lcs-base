@@ -418,6 +418,16 @@ LcsBaseDomainObject >> applicationEnvironment [
 	^ self parent applicationEnvironment
 ]
 
+{ #category : #'slot model' }
+LcsBaseDomainObject >> changeRecordForSlot: aSlotName [
+	^ (self slotDefinitionNamed: aSlotName) changedSlotRecordFor: self
+]
+
+{ #category : #'slot model' }
+LcsBaseDomainObject >> changeValueForSlot: aSlotName [
+	^ (self changeRecordForSlot: aSlotName) ifNil: [ '' ] ifNotNil: [ :slotChangeRecord | slotChangeRecord newValue]
+]
+
 { #category : #'application environment' }
 LcsBaseDomainObject >> currentSystem [
 	^ self class currentSystem
@@ -439,11 +449,15 @@ LcsBaseDomainObject >> getPersistedValueOf: aString [
 ]
 
 { #category : #'gt views' }
-LcsBaseDomainObject >> gtSlotChangesFor: aView [
+LcsBaseDomainObject >> gtRawFor: aView [
 	<gtView>
+	self currentSystem ifNil: [ ^ super gtRawFor: aView ].
+	self currentSystem unitOfWork isNil ifTrue: [ ^ super gtRawFor: aView ].
+	"(self currentSystem unitOfWork hasChangeRecordFor: self) 
+		ifFalse: [ ^ super gtRawFor: aView ]."
 	^ aView columnedTree
-		title: 'Changes';
-		priority: 101;
+		title: 'Raw';
+		priority: 100;
 		items: [ | variableNodes |
 			variableNodes := OrderedCollection new: self class allSlots size.
 			variableNodes add: (GtInspectorSelfNode hostObject: self).
@@ -478,6 +492,13 @@ LcsBaseDomainObject >> gtSlotChangesFor: aView [
 				[ aNode rawValue gtDisplayText ]
 					on: Error , Halt
 					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
+		column: 'Pending Change'
+			text: [ :aNode | 
+				[ aNode changeValue gtDisplayText ]
+					on: Error , Halt
+					do: [ 
+						aNode inspect.
+						aNode errorMessage asRopedText foreground: Color red ] ];
 		send: #value;
 		dynamicContextItems: [ :aTreeNode | 
 			aTreeNode value isSlotNode

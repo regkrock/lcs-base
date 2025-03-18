@@ -8,15 +8,15 @@ Class {
 LcsDomainObjectTest >> testCreatingNewDomainObject [
 	| domainObject |
 	
-	self assert: self currentSystem currentUnitOfWork hasNoChanges.
+	self assert: self currentUnitOfWork hasNoChanges.
 
 	domainObject := LcsDomainObject new.
 
-	self assert: self currentSystem currentUnitOfWork addedObjects size equals: 1.
-	self assert: self currentSystem currentUnitOfWork deletedObjects isEmpty.
-	self assert: self currentSystem currentUnitOfWork changedObjects isEmpty.
-	self assert: (self currentSystem currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
-	self assert: (self currentSystem currentUnitOfWork addedObjects keys includes:  domainObject)
+	self assert: self currentUnitOfWork addedObjects size equals: 1.
+	self assert: self currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentUnitOfWork changedObjects isEmpty.
+	self assert: (self currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
+	self assert: (self currentUnitOfWork addedObjects keys includes:  domainObject)
 ]
 
 { #category : #tests }

@@ -18,6 +18,12 @@ LcsAbstractDomainTest >> currentSystem [
 ]
 
 { #category : #'application environment' }
+LcsAbstractDomainTest >> currentSystemUnitOfWork [
+	^ (LcsApplicationEnvironment currentSystem)
+		ifNotNil: [ :cur | cur unitOfWork ]
+]
+
+{ #category : #'application environment' }
 LcsAbstractDomainTest >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]

@@ -68,6 +68,13 @@ LcsSlotDefinition >> changeHistoryRepresentationIn: aNewObject [
 	^ aNewObject isDomainObject ifTrue: [ aNewObject uuid ] ifFalse: [ aNewObject ]
 ]
 
+{ #category : #testing }
+LcsSlotDefinition >> changedSlotRecordFor: aDomainObject [
+	^ self currentUnitOfWork
+		changedSlotRecordFor: aDomainObject
+		slotNamed: self slotName
+]
+
 { #category : #defaults }
 LcsSlotDefinition >> createNewInstanceOf: aClass inContext: context [
 	aClass isDomainClass
@@ -75,11 +82,10 @@ LcsSlotDefinition >> createNewInstanceOf: aClass inContext: context [
 		ifFalse: [ aClass new ]
 ]
 
-{ #category : #'slot model' }
+{ #category : #testing }
 LcsSlotDefinition >> currentSlotVarIn: aDomainObject [
-
-	^ (self currentUnitOfWork changedSlotRecordFor: aDomainObject slotNamed: self slotName)
-		ifNil: [ self persistedSlotVarIn: aDomainObject]
+	^ (self changedSlotRecordFor: aDomainObject)
+		ifNil: [ self persistedSlotVarIn: aDomainObject ]
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
 
