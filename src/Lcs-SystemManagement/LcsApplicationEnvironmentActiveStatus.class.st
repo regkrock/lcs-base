@@ -28,7 +28,7 @@ LcsApplicationEnvironmentActiveStatus >> statusName [
 LcsApplicationEnvironmentActiveStatus >> suspendApplicationEnvironment [
 	self parent status: (
 		(LcsApplicationEnvironmentSuspendedStatus newOn: self parent)
-			suspendedSystem: self parent systemManager suspendCurrentSystem;
+			suspendedSystem: self parent systemsManager suspendCurrentSystem;
 			yourself)
 ]
 

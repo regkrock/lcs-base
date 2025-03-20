@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsWarRabbitLibrary,
-	#superclass : #LcsBaseSystem,
+	#superclass : #LcsSystem,
 	#instVars : [
 		'libraryCategories',
 		'libraryItems',

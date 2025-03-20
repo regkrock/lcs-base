@@ -76,7 +76,7 @@
 				"code" : "LcsSlotModelDiagramExamples new systemSlotModel",
 				"elementHeight" : 458,
 				"codeHeight" : 40,
-				"codeVisible" : false
+				"codeVisible" : true
 			}
 		]
 	},

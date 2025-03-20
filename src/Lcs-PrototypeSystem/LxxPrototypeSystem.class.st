@@ -3,7 +3,7 @@ This is a system with no modules, etc. It is used for basic testing of the syste
 "
 Class {
 	#name : #LxxPrototypeSystem,
-	#superclass : #LcsBaseSystem,
+	#superclass : #LcsSystem,
 	#instVars : [
 		'persons',
 		'organization'

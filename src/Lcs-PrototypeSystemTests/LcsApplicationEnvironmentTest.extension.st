@@ -4,9 +4,9 @@ Extension { #name : #LcsApplicationEnvironmentTest }
 LcsApplicationEnvironmentTest >> testAddingSystenToApplicationEnvironment [
 	subject := LcsApplicationEnvironment.
 	subject initializeApplicationEnvironment.
-	self assert: subject systemManager numberOfSystems equals: 0.
+	self assert: subject systemsManager numberOfSystems equals: 0.
 	subject createCurrentSystemFor: LxxPrototypeSystem.
-	self assert: subject systemManager numberOfSystems equals: 1.
+	self assert: subject systemsManager numberOfSystems equals: 1.
 	self assert: subject currentSystem class identicalTo: LxxPrototypeSystem.
 	self assert: subject unitsOfWorkManager numberOfUnitsOfWork equals: 1.
 	self assert: subject currentUnitOfWork class identicalTo: LcsUnitOfWork.
@@ -27,8 +27,8 @@ LcsApplicationEnvironmentTest >> testDeletingCurrentSystemAndMakingSuspendedSyst
 	subject deleteCurrentAndMakeCurrent: system.
 	self assert: subject currentSystem identicalTo: system.
 	self assert: system isInActiveStatus.
-	self assert: (subject systemManager systems includes: system).
-	self deny:(subject systemManager systems includes: temporarySystem).
+	self assert: (subject systemsManager systems includes: system).
+	self deny:(subject systemsManager systems includes: temporarySystem).
 ]
 
 { #category : #'*Lcs-PrototypeSystemTests' }

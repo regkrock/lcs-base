@@ -27,7 +27,7 @@ LcsSystemsManager class >> newOn: anObject [
 LcsSystemsManager >> addSystem: aBasicSystem [
 	self suspendCurrentSystem.
 	self currentSystem: aBasicSystem.
-	self currentSystem systemManager: self.
+	self currentSystem systemsManager: self.
 	self systems add: self currentSystem.
 	self unitsOfWorkManager createUnitOfWorkForCurrentSystem. 
 	"self currentUnitOfWork addObject: aBasicSystem"
@@ -91,7 +91,7 @@ LcsSystemsManager >> gtAllSystemsFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsSystemsManager >> gtSystemManagerFor: aView [
+LcsSystemsManager >> gtSystemsManagerFor: aView [
 		<gtView>
 	^ aView columnedList
 		title: 'System Manager';

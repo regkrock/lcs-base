@@ -56,7 +56,7 @@ LxxPrototypeSystemTest >> classesWithInitializeSlotModel [
 LxxPrototypeSystemTest >> newPrototypeSystem [
 	| numberOfSystems numberOfUnitsOfWork |
 	self assert: LcsApplicationEnvironment isInActiveStatus.
-	numberOfSystems := self systemManager numberOfSystems.
+	numberOfSystems := self systemsManager numberOfSystems.
 	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
 	
 	self subject: LxxPrototypeSystem new.
@@ -69,7 +69,7 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: LcsBaseDomainObject isSlotModelReleased not.
 	self assert: (self subject systemSlotModel hasSlotModelFor: self subject).
 	self assert: (self unitsOfWorkManager unitOfWorkFor: self subject) system identicalTo: self subject.
-	self assert: self systemManager numberOfSystems equals: numberOfSystems + 1.
+	self assert: self systemsManager numberOfSystems equals: numberOfSystems + 1.
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
 
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
@@ -265,9 +265,9 @@ LxxPrototypeSystemTest >> testSystemRemoval [
 	
 	self assert: self subject isInSuspendedStatus.
 
-	self assert: self systemManager hasNoCurrentSystem.
+	self assert: self systemsManager hasNoCurrentSystem.
 	
-	self assert: (self systemManager systems includes: self subject) not
+	self assert: (self systemsManager systems includes: self subject) not
 ]
 
 { #category : #tests }
@@ -282,10 +282,10 @@ LxxPrototypeSystemTest >> testSystemRemovalWhenTwoSystemsExist [
 	
 	self assert: self subject isInSuspendedStatus.
 
-	self assert: self systemManager hasNoCurrentSystem.
+	self assert: self systemsManager hasNoCurrentSystem.
 	
-	self assert: (self systemManager systems includes: self subject).
-	self assert: (self systemManager systems includes: self additionalSubject) not.
+	self assert: (self systemsManager systems includes: self subject).
+	self assert: (self systemsManager systems includes: self additionalSubject) not.
 	
 	LcsApplicationEnvironment makeSystemCurrent: self subject.
 	self assert: self subject isInActiveStatus.

@@ -734,7 +734,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-07T15:31:16.416283-04:00"
+												"dateAndTimeString" : "2025-03-20T16:27:58.563963-04:00"
 											}
 										},
 										"uid" : {
@@ -744,7 +744,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "To activate a suspended system, go the 'Application Environment' tab and click the 'Activate' button for the system. Or send the message {{gtMethod:LcsBaseSystem>>restoreSystem}}to the instance of the suspended system."
+										"string" : "To activate a suspended system, go the 'Application Environment' tab and click the 'Activate' button for the system. Or send the message {{gtMethod:LcsSystem>>restoreSystem}}to the instance of the suspended system."
 									}
 								]
 							},

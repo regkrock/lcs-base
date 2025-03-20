@@ -7,13 +7,13 @@ Class {
 { #category : #accessing }
 LcsSystemManagerTest >> testAccessingApplicationEnvironment [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
-	self assert: LcsApplicationEnvironment systemManager applicationEnvironment equals:  LcsApplicationEnvironment singleton.
+	self assert: LcsApplicationEnvironment systemsManager applicationEnvironment equals:  LcsApplicationEnvironment singleton.
 ]
 
 { #category : #tests }
 LcsSystemManagerTest >> testAccessingUnitOfWorkManager [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
-	subject := LcsApplicationEnvironment systemManager.
+	subject := LcsApplicationEnvironment systemsManager.
 	self assert: subject unitsOfWorkManager == LcsApplicationEnvironment unitsOfWorkManager
 ]
 
@@ -55,7 +55,7 @@ LcsSystemManagerTest >> testRemoveCurrentUnitOfWork [
 { #category : #tests }
 LcsSystemManagerTest >> testSystemMangerAPIsWhenCollectionIsEmpty [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
-	subject := LcsApplicationEnvironment systemManager.
+	subject := LcsApplicationEnvironment systemsManager.
 	
 	self assert: subject parent equals: LcsApplicationEnvironment singleton.
 	self assert: subject numberOfSystems equals: 0.

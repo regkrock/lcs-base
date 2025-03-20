@@ -54,8 +54,8 @@ LcsAbstractDomainTest >> setUpTestSystem [
 ]
 
 { #category : #'application environment' }
-LcsAbstractDomainTest >> systemManager [
-	^ LcsApplicationEnvironment systemManager
+LcsAbstractDomainTest >> systemsManager [
+	^ LcsApplicationEnvironment systemsManager
 ]
 
 { #category : #running }

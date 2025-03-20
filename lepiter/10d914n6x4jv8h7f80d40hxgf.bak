@@ -108,7 +108,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-07T14:41:45.218986-04:00"
+									"dateAndTimeString" : "2025-02-13T13:37:55.496266-05:00"
 								}
 							},
 							"uid" : {
@@ -118,7 +118,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "A convenience method, {{gtMethod:LcsObject>>currentSystem}} has been implemented so in any application code, the current system can be accessed."
+							"string" : "A convenience method, {{gtMethod:LcsBaseDomainObject>>currentSystem}} has been implemented so in any application code, the current system can be accessed."
 						},
 						{
 							"__type" : "pharoSnippet",

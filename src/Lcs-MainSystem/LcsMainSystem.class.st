@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsMainSystem,
-	#superclass : #LcsBaseSystem,
+	#superclass : #LcsSystem,
 	#category : #'Lcs-MainSystem'
 }
 

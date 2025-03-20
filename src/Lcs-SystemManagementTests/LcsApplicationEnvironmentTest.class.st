@@ -16,11 +16,11 @@ LcsApplicationEnvironmentTest >> testInitializedApplicationEnvironment [
 	self assert: LcsApplicationEnvironment hasNoCurrentSystem.
 	self assert: LcsApplicationEnvironment hasNoCurrentUnitOfWork.
 	self deny: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment.
-	self assert: LcsApplicationEnvironment hasSystemManager.
+	self assert: LcsApplicationEnvironment hasSystemsManager.
 	self assert: LcsApplicationEnvironment hasUnitsOfWorkManager.
 	self assert: LcsApplicationEnvironment isInActiveStatus.
 	
-	self assert: (LcsApplicationEnvironment systemManager isKindOf: LcsSystemsManager).
+	self assert: (LcsApplicationEnvironment systemsManager isKindOf: LcsSystemsManager).
 	self assert: (LcsApplicationEnvironment unitsOfWorkManager isKindOf: LcsUnitsOfWorkManager)
 ]
 
@@ -34,12 +34,12 @@ LcsApplicationEnvironmentTest >> testNoninitializedApplicationEnvironment [
 	self assert: LcsApplicationEnvironment hasNoCurrentSystem.
 	self assert: LcsApplicationEnvironment hasNoCurrentUnitOfWork.
 	self assert: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment.
-	self deny: LcsApplicationEnvironment hasSystemManager.
+	self deny: LcsApplicationEnvironment hasSystemsManager.
 	self deny: LcsApplicationEnvironment hasUnitsOfWorkManager.
 	self deny: LcsApplicationEnvironment isInActiveStatus.
 	
 	self assert: LcsApplicationEnvironment currentSystem isNil.
-	self assert: LcsApplicationEnvironment systemManager isNil.
+	self assert: LcsApplicationEnvironment systemsManager isNil.
 	self assert: LcsApplicationEnvironment unitsOfWorkManager isNil
 ]
 
@@ -96,7 +96,7 @@ LcsApplicationEnvironmentTest >> testSuspendingAnApplicationEnvironment [
 LcsApplicationEnvironmentTest >> testSuspendingCurrentSystemWhenNoSystemExists [
 	| suspendedSystem |
 	LcsApplicationEnvironment initializeApplicationEnvironment.
-	self assert: LcsApplicationEnvironment systemManager hasNoSystems.
+	self assert: LcsApplicationEnvironment systemsManager hasNoSystems.
 
 	suspendedSystem := LcsApplicationEnvironment suspendCurrentSystem.
 	self assert: suspendedSystem isNil.
