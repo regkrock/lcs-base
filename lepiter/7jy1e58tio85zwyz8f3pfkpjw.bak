@@ -39,7 +39,7 @@
 				"code" : "(GtCoderElement forClass: LcsApplicationEnvironment) disablePlayPage beNormalLevel",
 				"elementHeight" : 898,
 				"codeHeight" : 50,
-				"codeVisible" : true
+				"codeVisible" : false
 			}
 		]
 	},

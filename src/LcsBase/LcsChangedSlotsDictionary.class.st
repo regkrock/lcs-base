@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsChangedSlotsDictionary,
-	#superclass : #LcsParentObject,
-	#traits : 'LtDictionaryCollection',
-	#classTraits : 'LtDictionaryCollection classTrait',
+	#superclass : #LcsObject,
+	#traits : 'LtDictionaryCollection + LtParentTrait',
+	#classTraits : 'LtDictionaryCollection classTrait + LtParentTrait classTrait',
 	#category : #'LcsBase-Core'
 }

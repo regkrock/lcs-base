@@ -1,8 +1,9 @@
 Class {
 	#name : #LcsSystemsManager,
 	#superclass : #LcsApplicationObject,
+	#traits : 'LtParentTrait',
+	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
-		'parent',
 		'systems',
 		'currentSystem'
 	],
@@ -16,10 +17,9 @@ LcsSystemsManager class >> new [
 ]
 
 { #category : #'instance creation' }
-LcsSystemsManager class >> newOn: anAppicaltionEnvironment [
-	^ self basicNew 
-		initialize;
-		initializeOn: anAppicaltionEnvironment;
+LcsSystemsManager class >> newOn: anObject [
+	^ self basicNew initialize;
+		initializeOn: anObject;
 		yourself
 ]
 
@@ -135,11 +135,6 @@ LcsSystemsManager >> initialize [
 	self systems: (LcsSystems newOn: self)
 ]
 
-{ #category : #initialize }
-LcsSystemsManager >> initializeOn: anAppicaltionEnvironment [ 
-	self parent: anAppicaltionEnvironment 
-]
-
 { #category : #api }
 LcsSystemsManager >> makeSystemCurrent: aSystem [
 	"self currentSystem: aSystem.
@@ -154,16 +149,6 @@ LcsSystemsManager >> makeSystemCurrent: aSystem [
 LcsSystemsManager >> numberOfSystems [
 	(self systems isKindOf: OrderedCollection) ifTrue: [ ^ self systems size ].
 	^ self systems collectionSize
-]
-
-{ #category : #accessing }
-LcsSystemsManager >> parent [
-	^ parent
-]
-
-{ #category : #accessing }
-LcsSystemsManager >> parent: anObject [
-	parent := anObject
 ]
 
 { #category : #private }

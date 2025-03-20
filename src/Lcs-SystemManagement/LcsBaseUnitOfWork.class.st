@@ -1,6 +1,8 @@
 Class {
 	#name : #LcsBaseUnitOfWork,
 	#superclass : #LcsApplicationObject,
+	#traits : 'LtParentTrait',
+	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
 		'addedObjects',
 		'changedObjects',
@@ -11,13 +13,6 @@ Class {
 	],
 	#category : #'Lcs-SystemManagement-UnitOfWork'
 }
-
-{ #category : #'instance creation' }
-LcsBaseUnitOfWork class >> newOn: aSystem [ 
-	^self new
-		initializeOn: aSystem;
-		yourself
-]
 
 { #category : #api }
 LcsBaseUnitOfWork >> _pendingAddsIn: aTargetCollection [
@@ -205,11 +200,6 @@ LcsBaseUnitOfWork >> initialize [
 	self clearUnitOfWork
 ]
 
-{ #category : #initialize }
-LcsBaseUnitOfWork >> initializeOn: aSystem [ 
-	self system: aSystem
-]
-
 { #category : #private }
 LcsBaseUnitOfWork >> newCollectionChaangesDictionary [
 	^ Dictionary new
@@ -262,12 +252,12 @@ LcsBaseUnitOfWork >> setValueIn: aDomainObject slot: aSlotDefiniton to: anObject
 
 { #category : #accessing }
 LcsBaseUnitOfWork >> system [
-	^ system
+	^ self parent
 ]
 
 { #category : #accessing }
 LcsBaseUnitOfWork >> system: aSystem [ 
-	system := aSystem	
+	self parent: aSystem	
 ]
 
 { #category : #accessing }

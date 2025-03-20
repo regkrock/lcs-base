@@ -1,10 +1,11 @@
 Class {
 	#name : #LcsUnitsOfWorkManager,
 	#superclass : #LcsApplicationObject,
+	#traits : 'LtParentTrait',
+	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
 		'currentUnitOfWork',
-		'unitsOfWork',
-		'parent'
+		'unitsOfWork'
 	],
 	#classInstVars : [
 		'Singleton'
@@ -20,9 +21,9 @@ LcsUnitsOfWorkManager class >> new [
 ]
 
 { #category : #'instance creation' }
-LcsUnitsOfWorkManager class >> newOn: anApplicationEnvironment [
+LcsUnitsOfWorkManager class >> newOn: anObject [
 	^ self basicNew initialize
-		initializeOn: anApplicationEnvironment;
+		initializeOn: anObject;
 		yourself
 ]
 
@@ -94,24 +95,9 @@ LcsUnitsOfWorkManager >> initialize [
 	self unitsOfWork: (LcsUnitsOfWork newOn: self)
 ]
 
-{ #category : #initialize }
-LcsUnitsOfWorkManager >> initializeOn: anApplicationEnvironment [ 
-	self parent: anApplicationEnvironment
-]
-
 { #category : #query }
 LcsUnitsOfWorkManager >> numberOfUnitsOfWork [
 	^ self unitsOfWork collectionSize
-]
-
-{ #category : #accessing }
-LcsUnitsOfWorkManager >> parent [
-	^ parent
-]
-
-{ #category : #accessing }
-LcsUnitsOfWorkManager >> parent: anApplicationEnvironment [ 
-	parent := anApplicationEnvironment
 ]
 
 { #category : #release }

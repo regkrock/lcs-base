@@ -82,45 +82,7 @@
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [
-						{
-							"__type" : "elementSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-27T11:00:02.371493-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-02-20T12:25:28.876359-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "i4UDA3fTDQCnzRA1Cf7Kuw=="
-							},
-							"code" : "| classes |\rclasses := LcsMainSystem withAllSuperclasses.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
-							"elementHeight" : 336,
-							"codeHeight" : 46,
-							"codeVisible" : true
-						}
-					]
+					"items" : [ ]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -158,6 +120,43 @@
 				"children" : {
 					"__type" : "snippets",
 					"items" : [
+						{
+							"__type" : "elementSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-04-27T11:00:02.371493-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-02-20T12:25:28.876359-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "i4UDA3fTDQCnzRA1Cf7Kuw=="
+							},
+							"code" : "| classes |\rclasses := LcsMainSystem withAllSuperclasses.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
+							"elementHeight" : 336,
+							"codeHeight" : 46,
+							"codeVisible" : true
+						},
 						{
 							"__type" : "textSnippet",
 							"children" : {
@@ -360,7 +359,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-02-20T12:41:47.064872-05:00"
+									"dateAndTimeString" : "2025-02-20T12:42:12.452547-05:00"
 								}
 							},
 							"uid" : {
@@ -370,7 +369,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "See the method {{gtMethod:LcsBaseSystem>>allBootstrapDomainClasses}} and implement it in the new system. The domain classes must be defined here so that they will be included in the system's slot model. An example is the {{gtMethod:LcsMainSystem>>systemDomainClasses}}. This method referen"
+							"string" : "See the method {{gtMethod:LcsBaseSystem>>allBootstrapDomainClasses}} and implement it in the new system. The domain classes must be defined here so that they will be included in the system's slot model. An example is the {{gtMethod:LcsMainSystem>>systemDomainClasses}}. This method references the package to see which classes are part of the domain model and need to be initialized."
 						}
 					]
 				},

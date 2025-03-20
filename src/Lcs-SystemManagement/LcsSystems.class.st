@@ -1,8 +1,8 @@
 Class {
 	#name : #LcsSystems,
-	#superclass : #LcsParentObject,
-	#traits : 'LtOrderedCollection',
-	#classTraits : 'LtOrderedCollection classTrait',
+	#superclass : #LcsApplicationObject,
+	#traits : 'LtOrderedCollection + LtParentTrait',
+	#classTraits : 'LtOrderedCollection classTrait + LtParentTrait classTrait',
 	#category : #'Lcs-SystemManagement-Environment'
 }
 
