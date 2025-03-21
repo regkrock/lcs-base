@@ -3,7 +3,7 @@ Do not use - this is for a specific test
 "
 Class {
 	#name : #LxxModuleWithOwningModuleBeingItself,
-	#superclass : #LcsBaseModule,
+	#superclass : #LcsModule,
 	#category : #'Lcs-PrototypeSystemTests-Support'
 }
 

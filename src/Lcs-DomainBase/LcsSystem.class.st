@@ -3,7 +3,7 @@ This is the base class for defining systems. A system class can have zero to man
 "
 Class {
 	#name : #LcsSystem,
-	#superclass : #LcsBaseModule,
+	#superclass : #LcsModule,
 	#instVars : [
 		'status',
 		'systemSlotModel',
@@ -501,7 +501,6 @@ LcsSystem >> systemDomainClasses [
 	| systemDomainClasses |
 	systemDomainClasses := OrderedCollection new.
 	systemDomainClasses
-		add: LcsModule;
 		add: LcsGlobalCollections;
 		add: LcsModules;
 		add: LcsBaseConfiguration;

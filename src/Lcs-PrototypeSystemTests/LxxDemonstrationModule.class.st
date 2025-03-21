@@ -1,6 +1,6 @@
 Class {
 	#name : #LxxDemonstrationModule,
-	#superclass : #LcsBaseModule,
+	#superclass : #LcsModule,
 	#category : #'Lcs-PrototypeSystemTests-Support'
 }
 

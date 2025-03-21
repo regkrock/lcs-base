@@ -85,7 +85,7 @@ LcsAllSubmodulesVisitor >> initialize [
 	super initialize.
 	self visited: Set new.
 	self submodules: OrderedCollection new.
-	potentialModules := LcsBaseModule allOwnedModuleCandidates.
+	potentialModules := LcsModule allOwnedModuleCandidates.
 	self beCollectAllModules.
 ]
 
