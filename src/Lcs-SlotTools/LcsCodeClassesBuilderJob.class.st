@@ -83,5 +83,5 @@ LcsCodeClassesBuilderJob >> targetGlobalCollection [
 
 { #category : #accessing }
 LcsCodeClassesBuilderJob >> targetModuleName [
-	^ targetModuleName ifNil: [ targetModuleName :=  self targetModuleClass moduleName ]
+	^ targetModuleName ifNil: [ targetModuleName :=  self targetModuleClass defaultModuleName ]
 ]

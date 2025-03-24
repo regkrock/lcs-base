@@ -34,7 +34,7 @@ LcsCountry class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
-		collectionSlotModuleName: LcsGeographyModule moduleName;
+		collectionSlotModuleName: LcsGeographyModule defaultModuleName;
 		collectionSlotName: 'countries';
 		addSlotType: LcsCountries;
 		yourself

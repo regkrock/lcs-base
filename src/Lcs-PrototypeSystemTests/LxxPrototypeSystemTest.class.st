@@ -79,7 +79,8 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
 	self assert: self currentSystem configuration class name equals: #LxxPrototypeSystemConfiguration.
 
-	self assert: LcsBaseDomainObject isSlotModelReleased not
+	self assert: LcsBaseDomainObject isSlotModelReleased not.
+	self assert: self subject moduleName equals: LxxPrototypeSystem defaultModuleName
 ]
 
 { #category : #running }
@@ -104,12 +105,12 @@ LxxPrototypeSystemTest >> tearDown [
 LxxPrototypeSystemTest >> testCreationNew [
 	self newPrototypeSystem.
 	self assert: self currentSystem identicalTo: self subject.
-	self assert: (self subject moduleNamed: LxxPrototypePersonsModule moduleName) class name equals: #LxxPrototypePersonsModule.
-	self assert: (self subject moduleNamed: LxxPrototype2Module moduleName) class equals: LxxPrototype2Module.
+	self assert: (self subject moduleNamed: LxxPrototypePersonsModule defaultModuleName) class name equals: #LxxPrototypePersonsModule.
+	self assert: (self subject moduleNamed: LxxPrototype2Module defaultModuleName) class equals: LxxPrototype2Module.
 	self assert: self subject numberOfChildModules equals: 3. 
-	self assert: (self subject moduleNamed: LxxPrototypePersonsModule moduleName) numberOfChildModules equals: 0.
-	self assert: (self subject moduleNamed: LxxPrototype2Module moduleName) numberOfChildModules equals: 1.
-	self assert: (self subject moduleNamed: LxxPrototype2Submodule moduleName) numberOfChildModules equals: 0.
+	self assert: (self subject moduleNamed: LxxPrototypePersonsModule defaultModuleName) numberOfChildModules equals: 0.
+	self assert: (self subject moduleNamed: LxxPrototype2Module defaultModuleName) numberOfChildModules equals: 1.
+	self assert: (self subject moduleNamed: LxxPrototype2Submodule defaultModuleName) numberOfChildModules equals: 0.
 	"self assert:system hasValidConfiguration. "
 ]
 

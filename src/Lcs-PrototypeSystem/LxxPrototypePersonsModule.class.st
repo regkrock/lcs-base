@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #configuration }
-LxxPrototypePersonsModule class >> moduleName [
+LxxPrototypePersonsModule class >> defaultModuleName [
 	^ 'Persons Module'
 ]
 

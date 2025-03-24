@@ -24,7 +24,7 @@ LcsAuthor class >> parentSlotDefinition [
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		collectionSlotName: 'authors';
-		collectionSlotModuleName: LcsWarRabbitLibrary moduleName;
+		collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
 		addSlotType: LcsAuthors
 		yourself
 ]
@@ -35,7 +35,7 @@ LcsAuthor class >> personSlotDefinition [
 	^ LcsMemberOfSlot new
 		slotName: 'person';
 		collectionSlotName: 'persons';
-		collectionSlotModuleName: LcsLegalEntitiesModule moduleName;
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		addSlotType: LcsUnknownPerson;
 		addSlotType: LcsPerson;
 		yourself

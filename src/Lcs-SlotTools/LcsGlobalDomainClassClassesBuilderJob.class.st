@@ -130,7 +130,7 @@ LcsGlobalDomainClassClassesBuilderJob >> globalCollectionReferenceSlotBuilder [
 	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self globalCollectionSlotName;
-		collectionSlotModuleName: self globalCollectionModuleClass moduleName;
+		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
 		collectionClassName: self globalCollectionClassName; 
 		yourself
 ]

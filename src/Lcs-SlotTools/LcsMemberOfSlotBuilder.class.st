@@ -93,7 +93,7 @@ LcsMemberOfSlotBuilder >> slotTypesNames [
 
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> targetModuleName [
-	^ self targetModuleClass moduleName
+	^ self targetModuleClass defaultModuleName
 ]
 
 { #category : #command }

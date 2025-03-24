@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #configuration }
-LxxDemonstrationModule class >> moduleName [
+LxxDemonstrationModule class >> defaultModuleName [
 	^ 'Demonstration Module'
 ]

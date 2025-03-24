@@ -17,14 +17,14 @@ LcsGeographyModule class >> countriesSlotDefinition [
 		yourself
 ]
 
+{ #category : #configuration }
+LcsGeographyModule class >> defaultModuleName [
+	^ 'Geography Module'
+]
+
 { #category : #'slot definitions' }
 LcsGeographyModule class >> moduleConfigurationClass [
 	^ LcsGeographyModuleConfiguration
-]
-
-{ #category : #configuration }
-LcsGeographyModule class >> moduleName [
-	^ 'Geography Module'
 ]
 
 { #category : #configuration }

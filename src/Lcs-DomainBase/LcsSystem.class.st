@@ -21,6 +21,11 @@ LcsSystem class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
 	prebootstrapClasses addAll: self allSubmoduleClasses
 ]
 
+{ #category : #configuration }
+LcsSystem class >> defaultModuleName [
+	^ 'System'
+]
+
 { #category : #'slot definitions' }
 LcsSystem class >> globalCollectionsSlotDefinition [
 	<slotDefinition>
@@ -34,11 +39,6 @@ LcsSystem class >> globalCollectionsSlotDefinition [
 { #category : #testing }
 LcsSystem class >> isApplicationSystemClass [
 	^ true
-]
-
-{ #category : #configuration }
-LcsSystem class >> moduleName [
-	^ 'System'
 ]
 
 { #category : #'instance creation' }

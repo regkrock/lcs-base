@@ -14,14 +14,14 @@ LcsSecurityModule class >> currentUserSlotDefinition [
 	^ LcsMemberOfSlot new
 		slotName: 'currentUser';
 		collectionSlotName: 'users';
-		collectionSlotModuleName: self moduleName;
+		collectionSlotModuleName: self defaultModuleName;
 		initialValueBlock: [ :securityModule | securityModule users superUser ];
 		addSlotType: LcsBaseUser;
 		yourself
 ]
 
 { #category : #configuration }
-LcsSecurityModule class >> moduleName [
+LcsSecurityModule class >> defaultModuleName [
 	^ 'Security Module'
 ]
 

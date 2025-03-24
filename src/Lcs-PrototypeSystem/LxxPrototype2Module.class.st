@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #configuration }
-LxxPrototype2Module class >> moduleName [
+LxxPrototype2Module class >> defaultModuleName [
 	^ 'Prototype 2 Module'
 ]
 

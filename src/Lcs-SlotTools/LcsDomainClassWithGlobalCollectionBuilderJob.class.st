@@ -93,7 +93,7 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionReferenceSlotBui
 	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self globalCollectionSlotName;
-		collectionSlotModuleName: self globalCollectionModuleClass moduleName;
+		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
 		collectionClassName: self globalCollectionClassName;
 		yourself
 ]
@@ -135,7 +135,7 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> memberOfSlotBuilderFor: aTargetC
 		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;
 		collectionSlotName: self globalCollectionSlotName;
-		collectionSlotModuleName: self globalCollectionModuleClass moduleName;
+		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
 		addSlotType: self newDomainClassName;
 		yourself
 ]
@@ -167,7 +167,7 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> targetDomainClasses: aCollection
 
 { #category : #asking }
 LcsDomainClassWithGlobalCollectionBuilderJob >> targetModule [
-	^ self currentSystem moduleNamed: self globalCollectionModuleClass moduleName
+	^ self currentSystem moduleNamed: self globalCollectionModuleClass defaultModuleName
 ]
 
 { #category : #accessing }

@@ -8,14 +8,14 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
+{ #category : #configuration }
+LcsLegalEntitiesModule class >> defaultModuleName [
+	^ 'Legal Entities Module'
+]
+
 { #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> moduleConfigurationClass [
 	^ LcsLegalEntitiesModuleConfiguration
-]
-
-{ #category : #configuration }
-LcsLegalEntitiesModule class >> moduleName [
-	^ 'Legal Entities Module'
 ]
 
 { #category : #'slot definitions' }

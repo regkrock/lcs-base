@@ -80,7 +80,7 @@ LcsGlobalSlotDefinitionBuilder >> initializeModel [
 
 { #category : #command }
 LcsGlobalSlotDefinitionBuilder >> module [
-	^ self currentSystem moduleNamed: self target moduleName
+	^ self currentSystem moduleNamed: self target defaultModuleName
 ]
 
 { #category : #command }
@@ -124,7 +124,7 @@ LcsGlobalSlotDefinitionBuilder >> target [
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> targetModule [
-	^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass moduleName ])
+	^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass defaultModuleName ])
 ]
 
 { #category : #accessing }

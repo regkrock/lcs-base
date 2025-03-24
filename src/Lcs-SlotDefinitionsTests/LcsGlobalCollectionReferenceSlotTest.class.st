@@ -28,12 +28,12 @@ LcsGlobalCollectionReferenceSlotTest >> testSlotDefinition [
 	<slotDefinition>"
 	self subject: (LcsGlobalCollectionReferenceSlot new
 						slotName: 'parent';
-						collectionSlotModuleName: LxxPrototypeSystem moduleName;
+						collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;
 						addSlotType: LxxPrototypePersons;
 						collectionSlotName: 'persons';
 						yourself).
 	self assert: self subject slotName equals: 'parent'.
-	self assert: self subject collectionSlotModuleName equals: LxxPrototypeSystem moduleName.
+	self assert: self subject collectionSlotModuleName equals: LxxPrototypeSystem defaultModuleName.
 	self assert: (self subject slotTypes includes: LxxPrototypePersons).
 	self assert: self subject slotTypes size equals: 1.
 	self assert: self subject collectionSlotName equals: 'persons'

@@ -9,7 +9,7 @@ LcsBaseUser class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
-		collectionSlotModuleName: LcsSecurityModule moduleName;
+		collectionSlotModuleName: LcsSecurityModule defaultModuleName;
 		collectionSlotName: 'users';
 		addSlotType: LcsUsers;
 		yourself 

@@ -19,6 +19,7 @@ LcsModules >> buildModuleFor: eachModuleClass [
 	module := eachModuleClass basicNew.
 	self currentUnitOfWork addObject: module.
 	module parent: self.
+	(module slotDefinitionNamed: 'moduleName') initializeSlotValueIn: module.
 	self collection at: module moduleName put: module.
 	module initialize.
 	module buildModules

@@ -11,5 +11,5 @@ LcsModuleTest >> testAddingAModule [
 	existingNumberOfModules := self currentSystem modules collectionSize.
 	self currentSystem installModule: LxxDemonstrationModule.
 	self assert: self currentSystem modules collectionSize equals: existingNumberOfModules + 1.
-	self assert: (( self currentSystem moduleNamed: LxxDemonstrationModule moduleName) isKindOf: LxxDemonstrationModule) 
+	self assert: (( self currentSystem moduleNamed: LxxDemonstrationModule defaultModuleName) isKindOf: LxxDemonstrationModule) 
 ]

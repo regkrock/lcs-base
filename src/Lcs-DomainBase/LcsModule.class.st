@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'modules',
 		'domainCollections',
-		'configuration'
+		'configuration',
+		'moduleName'
 	],
 	#category : #'Lcs-DomainBase-Core'
 }
@@ -43,6 +44,11 @@ LcsModule class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
 ]
 
+{ #category : #configuration }
+LcsModule class >> defaultModuleName [
+	^ self name
+]
+
 { #category : #'slot definitions' }
 LcsModule class >> domainCollectionsSlotDefinition [
 	<slotDefinition>
@@ -76,7 +82,7 @@ LcsModule class >> isSubmoduleOf: aModuleClass [
 { #category : #asking }
 LcsModule class >> moduleClassNamed: aString [
 	^ self allSubclasses detect: [ :eachClass |
-		eachClass moduleName = aString ]
+		eachClass defaultModuleName = aString ]
 		ifNone: []
 ]
 
@@ -85,9 +91,13 @@ LcsModule class >> moduleConfigurationClass [
 	^ LcsBaseConfiguration
 ]
 
-{ #category : #configuration }
-LcsModule class >> moduleName [
-	^ self name
+{ #category : #'slot definitions' }
+LcsModule class >> moduleNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'moduleName';
+		initialValueBlock: [ :module | module class defaultModuleName ];
+		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -235,9 +245,14 @@ LcsModule >> legalEntitiesModule [
 	^ self moduleNamed: 'Legal Entities Module'
 ]
 
-{ #category : #configuration }
+{ #category : #accessing }
 LcsModule >> moduleName [
-	^ self class moduleName
+	^ self slotVarNamed: 'moduleName'
+]
+
+{ #category : #accessing }
+LcsModule >> moduleName: anObject [
+	self slotVarNamed: 'moduleName' put: anObject
 ]
 
 { #category : #modules }

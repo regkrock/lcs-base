@@ -18,7 +18,7 @@ LxxPrototypeSystem class >> configurationSlotDefinition [
 ]
 
 { #category : #configuration }
-LxxPrototypeSystem class >> moduleName [
+LxxPrototypeSystem class >> defaultModuleName [
 	^ 'Prototype System'
 ]
 

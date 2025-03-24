@@ -19,5 +19,5 @@ LcsMainSystemTest >> testCreation [
 	self assert: currentUnitOfWork system identicalTo: self currentSystem.
 	self assert: self currentSystem notNil.
 	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth.
-	self assert: (self currentSystem moduleNamed: LcsGeographyModule moduleName) notNil
+	self assert: (self currentSystem moduleNamed: LcsGeographyModule defaultModuleName) notNil
 ]
