@@ -14,6 +14,22 @@ LcsObject class >> abortTransaction [
 	System abortTransaction
 ]
 
+{ #category : #'slot model' }
+LcsObject class >> addClassMethodNamed: aSelectorName to: collection [ 
+	(self class includesSelector: aSelectorName) ifTrue: [
+		collection add: (self class methodDict at: aSelectorName)].
+	self = LcsObject ifFalse: [		
+		self superclass addClassMethodNamed: aSelectorName to: collection ] 
+]
+
+{ #category : #'slot model' }
+LcsObject class >> addInstanceMethodNamed: aSelectorName to: collection [ 
+	(self includesSelector: aSelectorName) ifTrue: [
+		collection add: (self methodDict at: aSelectorName)].
+	self = LcsObject ifFalse: [		
+		self superclass addInstanceMethodNamed: aSelectorName to: collection ] 
+]
+
 { #category : #transactions }
 LcsObject class >> beginTransaction [
 	System beginTransaction
@@ -32,6 +48,14 @@ LcsObject class >> isApplicationSystemClass [
 { #category : #testing }
 LcsObject class >> isDomainClass [
 	^ false
+]
+
+{ #category : #'slot model' }
+LcsObject class >> slotDefinitionMethodsNamed: aSelectorName [ 
+	| collection |
+	collection := OrderedCollection new.
+	self addClassMethodNamed: aSelectorName to: collection.
+	^ collection
 ]
 
 { #category : #testing }

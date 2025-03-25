@@ -14,12 +14,17 @@ Class {
 { #category : #'slot definitions' }
 LxxPrototypeSystem class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LxxPrototypeSystemConfiguration
+	^ super configurationSlotDefinition
 ]
 
 { #category : #configuration }
 LxxPrototypeSystem class >> defaultModuleName [
 	^ 'Prototype System'
+]
+
+{ #category : #'slot definitions' }
+LxxPrototypeSystem class >> moduleConfigurationClass [
+	^ LxxPrototypeSystemConfiguration
 ]
 
 { #category : #'slot definitions' }

@@ -157,7 +157,7 @@ LcsSlotDefinition >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	^ aView columnedList
 		title: 'Attributes';
-		priority: 10;
+		priority: 15;
 		items: [ self gtSlotDefinitionAttributes ];
 		column: 'Option' 
 			text: #key 
@@ -178,6 +178,21 @@ LcsSlotDefinition >> gtSlotDefinitionAttributes [
 		add: 'slotTypes' -> self slotTypesList;
 		add: 'required' -> self isRequired;
 		yourself
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinition >> gtSlotDefinitionMethodViewFor: aView [
+	<gtView>
+
+	^ aView explicit
+		title: 'Methods';
+		priority: 20;
+		stencil: [ 
+			| methods |
+			methods := self domainClass slotDefinitionMethodsNamed: self slotDefinitionSelector.
+			self domainClass addInstanceMethodNamed: self getterSelector asSymbol to: methods.
+			self domainClass addInstanceMethodNamed: self setterSelector asSymbol to: methods.
+			GtPharoMethodsCoder forItems: methods]
 ]
 
 { #category : #'gt views' }
@@ -338,8 +353,7 @@ LcsSlotDefinition >> makeUnitOfWorkVariableUpdate [
 
 { #category : #'gt views' }
 LcsSlotDefinition >> newDomainClassName [
-	self parent ifNil: [ ^ '<not initialized>'].
-	^self parent domainClass
+	^ self domainClass ifNil: [ ^ '<not initialized>']
 ]
 
 { #category : #'slot model' }
@@ -382,6 +396,11 @@ LcsSlotDefinition >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
 LcsSlotDefinition >> setterSelector [
 	^ (self getterSelector , ':') asSymbol
 		
+]
+
+{ #category : #'slot model' }
+LcsSlotDefinition >> slotDefinitionSelector [
+	^ (self slotName , 'SlotDefinition') asSymbol
 ]
 
 { #category : #validation }

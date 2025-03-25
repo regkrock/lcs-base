@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'slotName',
 		'parent',
-		'slotTypes'
+		'slotTypes',
+		'domainClass'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -21,7 +22,12 @@ LcsBaseSlotDefinition >> clearSlotTypes [
 
 { #category : #'slot model' }
 LcsBaseSlotDefinition >> domainClass [
-	^ self parent domainClass
+	^ domainClass ifNil: [ self parent domainClass ]
+]
+
+{ #category : #'slot model' }
+LcsBaseSlotDefinition >> domainClass: aDomainClass [
+	domainClass := aDomainClass
 ]
 
 { #category : #initialize }

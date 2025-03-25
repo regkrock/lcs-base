@@ -101,7 +101,8 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 			text: [ :each | each label displayString ]
 			width: 200;
 		column: 'Value' translated text: [ :each | each item displayString ] width: 300;
-		column: '' stencil: [ :viewItem | viewItem actionButton] width: 70;
+		column: '' stencil: [ :viewItem :row :column | 
+			viewItem actionButton] width: 70;
 		column: '' stencil: [ :viewItem | viewItem action2Button] width: 70; 
 		send: #item;
 		actionButtonIcon: BrGlamorousVectorIcons shutdown 

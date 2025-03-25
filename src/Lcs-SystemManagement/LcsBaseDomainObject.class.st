@@ -57,7 +57,6 @@ LcsBaseDomainObject class >> getPersistedValueOf: aString in: anObject [
 LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 	<gtView>
 	<gtClassView>
-	"^ aView empty"
 	^ aView columnedList
 		title: 'Slot Definitions';
 		priority: 20;
@@ -67,12 +66,13 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 		column: 'Getter' text: [ :each | each value getterSelector ] width: 100;
 		column: 'Setter' text: [ :each | each value setterSelector ] width: 100;
 		column: 'Type(s)' text: [ :each | each value slotTypesList ] width: 100;
-		column: '' stencil: [ :each | BrButton new
-										aptitude: BrGlamorousButtonWithLabelAptitude new;
-										label: 'Remove';
-										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; 
+		column: '' stencil: [ :each | 
+			BrButton new
+				aptitude: BrGlamorousButtonWithLabelAptitude new;
+				label: 'Remove';
+				action: [ :aButton | each value domainClass removeDomainSlotNamed: each key ]] width: 70; 
 		actionUpdateButton;
-		send: #value;
+		send: [ :each | each value ] ;
 		yourself
 		
 ]
@@ -243,7 +243,7 @@ LcsBaseDomainObject class >> releaseSlotModel [
 
 { #category : #'slot definition - removal' }
 LcsBaseDomainObject class >> removeDomainSlotNamed: aSlotName [
-	self slotModel removeSlotDefinitionNamed: aSlotName.
+	self slotModel ifNotNil: [ :model | model removeSlotDefinitionNamed: aSlotName ].
 	self removeInstVar: aSlotName.
 	self removeGetter: aSlotName asSymbol.
 	self removeSetter: (aSlotName , ':') asSymbol.
@@ -286,19 +286,19 @@ LcsBaseDomainObject class >> slotDefinitionPragmas [
 LcsBaseDomainObject class >> slotDefinitionPragmasAndInstVarNames [
 	" self slotDefinitionPragmasAndInstVarNames "
 	| instVarNamesAndSlotDefinitions slotDefinition slotDefinitions |
-	slotDefinitions := (self slotDefinitionPragmas collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection.
+	slotDefinitions := (self slotDefinitionPragmas collect: [ :eachPragma | (self perform: eachPragma method selector) domainClass: self. ]) asOrderedCollection.
 	instVarNamesAndSlotDefinitions := OrderedCollection new.
 	self instVarNames do: [:eachName |
 		slotDefinition := slotDefinitions
 			detect: [ :eachSlotDefinition | eachSlotDefinition slotName = eachName ]
 			ifNone: [ LcsSlotDefinition new slotName: 'missing' ].
-		instVarNamesAndSlotDefinitions add: (Association key: eachName value: slotDefinition).
+		instVarNamesAndSlotDefinitions add: (eachName -> slotDefinition).
 		slotDefinitions remove: slotDefinition ifAbsent: []].
 	slotDefinitions do: [ :eachSlotDefinition |
 		instVarNamesAndSlotDefinitions add: (
 			(self classThatDefinesInstVarNamed: eachSlotDefinition slotName)
-				ifNil: [ Association key: 'missing' value: eachSlotDefinition ]
-				ifNotNil: [ :class | Association key: eachSlotDefinition slotName , '(' , class name asString , ')' value: eachSlotDefinition ]) ] .
+				ifNil: [ 'missing' -> eachSlotDefinition ]
+				ifNotNil: [ :class | eachSlotDefinition slotName -> eachSlotDefinition ]) ] .
 	^ instVarNamesAndSlotDefinitions
 ]
 
