@@ -3,7 +3,9 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'dateOfBirth',
-		'lastName'
+		'lastName',
+		'firstName',
+		'middleName'
 	],
 	#category : #'Lcs-PrototypeSystem-Base'
 }
@@ -14,11 +16,27 @@ LxxBasePrototypePerson class >> dateOfBirthSlotDefinition [
 	^ LcsDateOfBirthSlot new
 ]
 
+{ #category : #'slot definition' }
+LxxBasePrototypePerson class >> firstNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'firstName';
+		yourself
+]
+
 { #category : #'slot definitions' }
 LxxBasePrototypePerson class >> lastNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'lastName';
+		yourself
+]
+
+{ #category : #'slot definition' }
+LxxBasePrototypePerson class >> middleNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'middleName';
 		yourself
 ]
 
@@ -33,6 +51,16 @@ LxxBasePrototypePerson >> dateOfBirth: anObject [
 ]
 
 { #category : #accessing }
+LxxBasePrototypePerson >> firstName [
+	^ self getValueOfSlotNamed: 'firstName'
+]
+
+{ #category : #accessing }
+LxxBasePrototypePerson >> firstName: anObject [
+	self setValueOfSlotNamed: 'firstName' to: anObject
+]
+
+{ #category : #accessing }
 LxxBasePrototypePerson >> lastName [
 	^ self slotVarNamed: 'lastName'
 ]
@@ -40,4 +68,14 @@ LxxBasePrototypePerson >> lastName [
 { #category : #accessing }
 LxxBasePrototypePerson >> lastName: anObject [
 	self slotVarNamed: 'lastName' put: anObject
+]
+
+{ #category : #accessing }
+LxxBasePrototypePerson >> middleName [
+	^ self getValueOfSlotNamed: 'middleName'
+]
+
+{ #category : #accessing }
+LxxBasePrototypePerson >> middleName: anObject [
+	self setValueOfSlotNamed: 'middleName' to: anObject
 ]

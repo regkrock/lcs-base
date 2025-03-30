@@ -282,14 +282,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-29T17:06:35.044793-04:00"
+						"dateAndTimeString" : "2024-04-29T17:07:01.544981-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "NBVbKpDTDQCtpPo/AdNVqw=="
 				},
-				"code" : "importer := LcsWarRabbitLibrayImporter newOn: stream.\r[stream atEnd] whileFalse: [\r\timporter importLine:  stream nextLine\r\t].\rself \rimporter"
+				"code" : "importer := LcsWarRabbitLibrayImporter newOn: stream.\r[stream atEnd] whileFalse: [\r\timporter importLine:  stream nextLine\r\t].\rLcsApplicationEnvironment currentUnitOfWork applyChanges.\rimporter"
 			}
 		]
 	},

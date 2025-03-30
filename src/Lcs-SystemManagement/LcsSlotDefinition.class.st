@@ -34,6 +34,16 @@ LcsSlotDefinition >> _slotVarPut: anObject in: aDomainObject [
 		to: anObject
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotDefinition >> addCondition: aCondition labelled: aString [
+	"Add ==aCondition== as an additional validation condition to the receiver and give it the label ==aString==. The first argument is either a block-context or any other object that responds to ==#value:== with ==true== or ==false==."
+
+	self conditions: (self conditions
+		copyWith: (Association
+			key: aCondition
+			value: aString))
+]
+
 { #category : #validation }
 LcsSlotDefinition >> addValidateConfigurationResultTo: aValidator [
 	(self domainClass allInstVarNames includes: self slotName)
@@ -430,14 +440,9 @@ LcsSlotDefinition >> slotVarPut: anObject in: aDomainObject [
 	self variableUpdatePolicy slotVarPut: anObject  in: aDomainObject
 ]
 
-{ #category : #accessing }
+{ #category : #validating }
 LcsSlotDefinition >> validator [
-	^ validator
-]
-
-{ #category : #accessing }
-LcsSlotDefinition >> validator: anObject [
-	validator := anObject
+	^ LcsConditionsValidator new
 ]
 
 { #category : #accessing }

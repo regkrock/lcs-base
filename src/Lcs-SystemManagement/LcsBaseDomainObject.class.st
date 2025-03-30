@@ -71,6 +71,9 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 				aptitude: BrGlamorousButtonWithLabelAptitude new;
 				label: 'Remove';
 				action: [ :aButton | each value domainClass removeDomainSlotNamed: each key ]] width: 70; 
+		actionDropdownButtonIcon: BrGlamorousVectorIcons add 
+			tooltip: 'Create Slot'
+			content: [ :aDropdown | (LcsAddSlotDefinitionFormElement newOn: aDropdown targetClass: self) element];
 		actionUpdateButton;
 		send: [ :each | each value ] ;
 		yourself
@@ -496,9 +499,7 @@ LcsBaseDomainObject >> gtRawFor: aView [
 			text: [ :aNode | 
 				[ aNode changeValue gtDisplayText ]
 					on: Error , Halt
-					do: [ 
-						aNode inspect.
-						aNode errorMessage asRopedText foreground: Color red ] ];
+					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
 		send: #value;
 		dynamicContextItems: [ :aTreeNode | 
 			aTreeNode value isSlotNode

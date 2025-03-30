@@ -15,7 +15,7 @@ LcsCountry class >> countryNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'countryName';
 		beRequired;
-		validator: [ :string | string size > 2 ];
+		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -25,8 +25,7 @@ LcsCountry class >> isoCodeSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'isoCode';
 		beRequired;
-		validator: [ :string | string size = 2 ];
-		yourself
+		addValidationCondition: [ :string | string size = 2 ] description: 'Code must be at least 2 characters long';		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -46,7 +45,7 @@ LcsCountry class >> politicalUnitNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'politicalUnitName';
 		beRequired;
-		validator: [ :string | string size = 2 ];
+		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 

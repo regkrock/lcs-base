@@ -178,7 +178,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-26T09:01:33.73493-04:00"
+						"dateAndTimeString" : "2025-03-25T14:37:04.497526-04:00"
 					}
 				},
 				"uid" : {
@@ -188,7 +188,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "#Desing Heuristics"
+				"string" : "#Design Heuristics"
 			},
 			{
 				"__type" : "textSnippet",

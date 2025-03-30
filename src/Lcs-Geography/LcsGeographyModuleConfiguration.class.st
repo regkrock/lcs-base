@@ -17,7 +17,7 @@ LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefinition 
 	^ LcsStringSlot new
 		slotName: 'defaultPoliticalUnitName';
 		beRequired;
-		validator: [ :string | string size >= 2 ];
+		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -27,7 +27,7 @@ LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'defaultPostalCodeName';
 		beRequired;
-		validator: [ :string | string size >= 2 ];
+		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 

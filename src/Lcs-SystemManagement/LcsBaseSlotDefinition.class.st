@@ -5,7 +5,8 @@ Class {
 		'slotName',
 		'parent',
 		'slotTypes',
-		'domainClass'
+		'domainClass',
+		'validationConditions'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -13,6 +14,16 @@ Class {
 { #category : #configuration }
 LcsBaseSlotDefinition >> addSlotType: aClass [
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
+]
+
+{ #category : #validations }
+LcsBaseSlotDefinition >> addValidationCondition: aValidationCondition [
+	self validationConditions addValidationCondition: aValidationCondition
+]
+
+{ #category : #validations }
+LcsBaseSlotDefinition >> addValidationCondition: aBlock description: aString [
+	self validationConditions addValidationCondition: aBlock description: aString
 ]
 
 { #category : #configuration }
@@ -34,6 +45,7 @@ LcsBaseSlotDefinition >> domainClass: aDomainClass [
 LcsBaseSlotDefinition >> initialize [
 	super initialize.
 	self initializeSlotTypes.
+	self validationConditions: (LcsValidationConditions newOn: self)
 ]
 
 { #category : #initialize }
@@ -54,6 +66,16 @@ LcsBaseSlotDefinition >> parent [
 { #category : #accessing }
 LcsBaseSlotDefinition >> parent: anObject [
 	parent := anObject
+]
+
+{ #category : #validations }
+LcsBaseSlotDefinition >> removeValidationCondition: aValidationCondition [
+	self validationConditions removeValidationCondition: aValidationCondition
+]
+
+{ #category : #validations }
+LcsBaseSlotDefinition >> removeValidationConditionWithDescription: aString [
+	self validationConditions removeValidationConditionWithDescription: aString
 ]
 
 { #category : #defaults }
@@ -96,4 +118,26 @@ LcsBaseSlotDefinition >> slotTypes: anObject [
 { #category : #'slot model' }
 LcsBaseSlotDefinition >> slotVarPut: anObject in: aDomainObject [
 	^ LcsError signal: 'Attempt to update a read only slot'
+]
+
+{ #category : #validations }
+LcsBaseSlotDefinition >> validate: aValue [
+	(LcsConditionsValidator newOn: self)
+		validate: aValue
+]
+
+{ #category : #validations }
+LcsBaseSlotDefinition >> validate: aValue context: aDomainObject [
+	(LcsConditionsValidator newOn: self)
+		validate: aValue context: aDomainObject
+]
+
+{ #category : #accessing }
+LcsBaseSlotDefinition >> validationConditions [
+	^ validationConditions
+]
+
+{ #category : #accessing }
+LcsBaseSlotDefinition >> validationConditions: anObject [
+	validationConditions := anObject
 ]

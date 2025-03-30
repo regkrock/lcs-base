@@ -622,7 +622,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-21T14:52:43.071403-04:00"
+						"dateAndTimeString" : "2024-09-21T14:52:47.633248-04:00"
 					}
 				},
 				"uid" : {
@@ -632,7 +632,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "[[https://cln.co/]"
+				"string" : "https://cln.co/"
 			}
 		]
 	},

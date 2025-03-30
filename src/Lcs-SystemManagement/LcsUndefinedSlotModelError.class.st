@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsUndefinedSlotModelError,
-	#superclass : #LcsError,
+	#superclass : #LcsSlotModelError,
 	#instVars : [
 		'domainClass'
 	],

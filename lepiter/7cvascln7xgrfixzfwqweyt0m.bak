@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-25T14:25:59.392587-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-25T14:26:16.265349-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "tjndlpDtDQCWIlFfANlGfA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Allen Holub - BlueSky"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-25T14:25:33.320712-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-25T14:28:00.067977-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "IWZPlZDtDQCWG/SgANlGfA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Periodic reminder: Microservices are neither a good default architecture nor something to avoid. Netflix, for example, is a microservice system and the architecture is a great choice for them, but most of us are not Netflix.\n\nLike any architecture you must think like an architect, not a programmer, to decide whether or not any architecture is appropriate for your system. \n\nThe system characteristics of a microservice include: scalability, elasticity, fault tolerance, hot deployment and updating, etc.\n\nIn addition, the hard service boundaries enforce good practices such as hiding implementation details.\n\nThe downside is: considerable complexity, they're slow, it's difficult to build them (e.g. all of Deutch's Fallacies have to be addressed and error recovery across multiple services is a very hard problem). Also, the surrounding tooling (e.g., Kubernetes) can be difficult.\n\nEach service must have its own database, which can make systemwide reporting difficult, and many people have a hard time getting their heads around not having a centralized database).\n\nYou need to make a decision based on those pros and cons.\n\nNetflix, for example, was willing to pay for additional (virtual) hardware to compensate for the speed problem because fault tolerance and elasticity are essential in their system.\n\nThe choice has nothing at all to do with system size or the size of the problem being solved. It's based on system characteristics and whether the architecture is suited to your specific needs."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-03-25T14:25:33.275881-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-03-25T14:25:33.275881-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Micro Services - Pros and Cons"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "66b54e95-90ed-0d00-961a-128500d9467c"
+	}
+}

@@ -14,7 +14,7 @@ LcsPoliticalUnitName class >> fullNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'fullName';
 		beRequired;
-		validator: [ :string | string size > 2 ];
+		addValidationCondition: [ :string | string size > 2 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -24,7 +24,7 @@ LcsPoliticalUnitName class >> shortNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'shortName';
 		beRequired;
-		validator: [ :string | string size > 2 ];
+		addValidationCondition: [ :string | string size > 2 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
