@@ -52,12 +52,12 @@ LxxBasePrototypePerson >> dateOfBirth: anObject [
 
 { #category : #accessing }
 LxxBasePrototypePerson >> firstName [
-	^ self getValueOfSlotNamed: 'firstName'
+	^ self slotVarNamed: 'firstName'
 ]
 
 { #category : #accessing }
 LxxBasePrototypePerson >> firstName: anObject [
-	self setValueOfSlotNamed: 'firstName' to: anObject
+	self slotVarNamed: 'firstName' to: anObject
 ]
 
 { #category : #accessing }
@@ -72,10 +72,10 @@ LxxBasePrototypePerson >> lastName: anObject [
 
 { #category : #accessing }
 LxxBasePrototypePerson >> middleName [
-	^ self getValueOfSlotNamed: 'middleName'
+	^ self slotVarNamed: 'middleName'
 ]
 
 { #category : #accessing }
 LxxBasePrototypePerson >> middleName: anObject [
-	self setValueOfSlotNamed: 'middleName' to: anObject
+	self slotVarNamed: 'middleName' put: anObject
 ]

@@ -42,7 +42,7 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 		(self slotTypes any new)
 			parent: parentDomainObject;
 			yourself ]'.
-	self assert: self subject validator isNil
+	self assert: (self subject validator isKindOf: LcsConditionsValidator)
 ]
 
 { #category : #tests }
