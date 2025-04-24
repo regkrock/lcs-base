@@ -58,16 +58,16 @@ LcsStandardCodeClassesBuilderJob >> populateSlotModel [
 	self protoCodes
 		do: [ :each | 
 			self codeClass new
-				codeName: each code;
-				codeDescription: each description;
-				shortName: (each label);
+				code: each code;
+				description: each description;
+				label: (each label);
 				isDefaultInstance: each isDefaultInstance ].
 	self currentSystem currentUnitOfWork applyChanges.
 	self targetGlobalCollection hasUnknownInstance ifFalse: [
 		self codeClass new
-				codeName: 'unknown';
-				codeDescription: 'Unknown';
-				shortName: '';
+				code: 'unknown';
+				description: 'Unknown';
+				label: '';
 				isDefaultInstance: self targetGlobalCollection hasDefaultInstance not].
 	self currentSystem currentUnitOfWork applyChanges.
 

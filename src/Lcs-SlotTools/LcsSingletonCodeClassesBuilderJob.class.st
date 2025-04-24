@@ -44,7 +44,7 @@ LcsSingletonCodeClassesBuilderJob >> codeClassBuilder [
 LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsSingletonCodeClassBuilder new
 		rootName: aString;
-		codeDescription: aString;
+		description: aString;
 		newClassName: self classPrefix , aString;
 		targetSuperclassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
@@ -103,6 +103,6 @@ LcsSingletonCodeClassesBuilderJob >> verifyPopulateSlotModel [
 	self assert: self targetGlobalCollection collectionSize = self singletonClassBuilders size.
 	self singletonClassBuilders
 		do: [ :eachStep | 
-			self assert: (self targetGlobalCollection findWithKey: eachStep codeName) notNil ].
+			self assert: (self targetGlobalCollection findWithKey: eachStep code) notNil ].
 	self assert: self targetGlobalCollection defaultInstance notNil
 ]

@@ -8,7 +8,7 @@ Class {
 LcsUnknownCodeClassBuilder >> initialize [
 	super initialize.
 	self defaultInstance: true.
-	self codeDescription: ''.
-	self shortName: ''.
-	self codeName: 'unknown'
+	self description: ''.
+	self label: ''.
+	self code: 'unknown'
 ]

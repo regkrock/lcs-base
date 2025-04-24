@@ -82,17 +82,17 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> initialize [
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self unknownClass new
-		codeName: 'unknown';
-		codeDescription: 'Unknown';
-		shortName: 'Unknown';
+		code: 'unknown';
+		description: 'Unknown';
+		label: 'Unknown';
 		isDefaultInstance: true.
 	self currentSystem currentUnitOfWork applyChanges.
 	self protoCodes
 		do: [ :each | 
 			self codeClass new
-				codeName: each code;
-				codeDescription: each description;
-				shortName: each label;
+				code: each code;
+				description: each description;
+				label: each label;
 				isDefaultInstance: each isDefaultInstance ].
 	self currentSystem currentUnitOfWork applyChanges
 ]

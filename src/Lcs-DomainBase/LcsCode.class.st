@@ -2,24 +2,24 @@ Class {
 	#name : #LcsCode,
 	#superclass : #LcsDomainObject,
 	#instVars : [
-		'codeName',
-		'shortName',
-		'codeDescription',
+		'code',
+		'label',
+		'description',
 		'isDefaultInstance'
 	],
 	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'slot definitions' }
-LcsCode class >> codeDescriptionSlotDefinition [
+LcsCode class >> codeSlotDefinition [
 	<slotDefinition>
-	^ LcsCodeDescriptionSlot new
+	^ LcsCodeSlot new
 ]
 
 { #category : #'slot definitions' }
-LcsCode class >> codeNameSlotDefinition [
+LcsCode class >> descriptionSlotDefinition [
 	<slotDefinition>
-	^ LcsCodeNameSlot new
+	^ LcsDescriptionSlot new
 ]
 
 { #category : #'slot definitions' }
@@ -31,29 +31,29 @@ LcsCode class >> isDefaultInstanceSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsCode class >> shortNameSlotDefinition [
+LcsCode class >> labelSlotDefinition [
 	<slotDefinition>
-	^ LcsShortNameSlot new
+	^ LcsLabelSlot new
 ]
 
 { #category : #accessing }
-LcsCode >> codeDescription [
-	^ self slotVarNamed: 'codeDescription' 
+LcsCode >> code [
+	^ self slotVarNamed: 'code' 
 ]
 
 { #category : #accessing }
-LcsCode >> codeDescription: anObject [
-	self slotVarNamed: 'codeDescription' put: anObject 
+LcsCode >> code: anObject [
+	self slotVarNamed: 'code' put: anObject 
 ]
 
 { #category : #accessing }
-LcsCode >> codeName [
-	^ self slotVarNamed: 'codeName' 
+LcsCode >> description [
+	^ self slotVarNamed: 'description' 
 ]
 
 { #category : #accessing }
-LcsCode >> codeName: anObject [
-	self slotVarNamed: 'codeName' put: anObject 
+LcsCode >> description: anObject [
+	self slotVarNamed: 'description' put: anObject 
 ]
 
 { #category : #accessing }
@@ -68,15 +68,15 @@ LcsCode >> isDefaultInstance: anObject [
 
 { #category : #search }
 LcsCode >> key [
-	^ self codeName
+	^ self code
 ]
 
 { #category : #accessing }
-LcsCode >> shortName [
-	^ self slotVarNamed: 'shortName' 
+LcsCode >> label [ 
+	^ self slotVarNamed: 'label' 
 ]
 
 { #category : #accessing }
-LcsCode >> shortName: anObject [
-	self slotVarNamed: 'shortName' put: anObject 
+LcsCode >> label: anObject [
+	self slotVarNamed: 'label' put: anObject 
 ]

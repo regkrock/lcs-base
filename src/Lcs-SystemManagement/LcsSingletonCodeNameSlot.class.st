@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSingletonCodeNameSlot,
-	#superclass : #LcsCodeNameSlot,
+	#superclass : #LcsCodeSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -8,5 +8,5 @@ Class {
 LcsSingletonCodeNameSlot >> initialize [
 	super initialize.
 	self 
-		initialValueBlock: [ :anInstance | anInstance class defaultCodeName ]
+		initialValueBlock: [ :anInstance | anInstance class defaultCode ]
 ]

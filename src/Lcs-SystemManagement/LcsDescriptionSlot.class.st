@@ -1,12 +1,12 @@
 Class {
-	#name : #LcsShortNameSlot,
+	#name : #LcsDescriptionSlot,
 	#superclass : #LcsStringSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #initialize }
-LcsShortNameSlot >> initialize [
+LcsDescriptionSlot >> initialize [
 	super initialize.
 	self 
-		slotName: 'shortName'
+		slotName: 'description'
 ]

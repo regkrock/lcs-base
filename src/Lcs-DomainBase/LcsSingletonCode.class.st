@@ -5,24 +5,18 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LcsSingletonCode class >> codeDescriptionSlotDefinition [
-	<slotDefinition>
-	^ LcsSingletonCodeDescriptionSlot new
-]
-
-{ #category : #'slot definitions' }
-LcsSingletonCode class >> codeNameSlotDefinition [
+LcsSingletonCode class >> codeSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonCodeNameSlot new
 ]
 
 { #category : #defaults }
-LcsSingletonCode class >> defaultCodeDescription [
+LcsSingletonCode class >> defaultCode [
 	self subclassResponsibility
 ]
 
 { #category : #defaults }
-LcsSingletonCode class >> defaultCodeName [
+LcsSingletonCode class >> defaultCodeDescription [
 	self subclassResponsibility
 ]
 
@@ -37,6 +31,12 @@ LcsSingletonCode class >> defaultShortName [
 ]
 
 { #category : #'slot definitions' }
+LcsSingletonCode class >> descriptionSlotDefinition [
+	<slotDefinition>
+	^ LcsSingletonCodeDescriptionSlot new
+]
+
+{ #category : #'slot definitions' }
 LcsSingletonCode class >> isDefaultInstanceSlotDefinition [
 	<slotDefinition>
 	^ super isDefaultInstanceSlotDefinition
@@ -45,7 +45,7 @@ LcsSingletonCode class >> isDefaultInstanceSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsSingletonCode class >> shortNameSlotDefinition [
+LcsSingletonCode class >> labelSlotDefinition [
 	<slotDefinition>
-	^ LcsSingletonShortNameSlot new
+	^ LcsSingletonLabelSlot new
 ]

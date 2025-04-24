@@ -2,25 +2,25 @@ Class {
 	#name : #LcsSingletonCodeClassBuilder,
 	#superclass : #LcsCodeClassBuilder,
 	#instVars : [
-		'shortName',
-		'codeName',
-		'codeDescription'
+		'label',
+		'code',
+		'description'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #refactoring }
-LcsSingletonCodeClassBuilder >> addDefaultCodeDescriptionRefactoring [
+LcsSingletonCodeClassBuilder >> addDefaultCodeRefactoring [
 	^ RBAddMethodChange
-		compile: self defaultCodeDescriptionSource
+		compile: self defaultCodeSource
 		in: self installedClass class
 		classified: #defaults
 ]
 
 { #category : #refactoring }
-LcsSingletonCodeClassBuilder >> addDefaultCodeNameRefactoring [
+LcsSingletonCodeClassBuilder >> addDefaultDescriptionRefactoring [
 	^ RBAddMethodChange
-		compile: self defaultCodeNameSource
+		compile: self defaultDescriptionSource
 		in: self installedClass class
 		classified: #defaults
 ]
@@ -34,9 +34,9 @@ LcsSingletonCodeClassBuilder >> addDefaultInstanceRefactoring [
 ]
 
 { #category : #refactoring }
-LcsSingletonCodeClassBuilder >> addDefaultShortNameRefactoring [
+LcsSingletonCodeClassBuilder >> addDefaultLabelRefactoring [
 	^ RBAddMethodChange
-		compile: self defaultShortNameSource
+		compile: self defaultLabelSource
 		in: self installedClass class
 		classified: #defaults
 ]
@@ -46,50 +46,40 @@ LcsSingletonCodeClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	super addRefactoringTextDetailsTo: aStream.
 	aStream 
 		cr; cr; nextPutAll: 'Create Class Methods:';
-		cr; cr; nextPutAll: self defaultCodeNameSource;
-		cr; cr; nextPutAll: self defaultCodeDescriptionSource;
-		cr; cr; nextPutAll: self defaultShortNameSource;
-		cr; cr; nextPutAll: self defaultCodeDescriptionSource
+		cr; cr; nextPutAll: self defaultCodeSource;
+		cr; cr; nextPutAll: self defaultDescriptionSource;
+		cr; cr; nextPutAll: self defaultLabelSource;
+		cr; cr; nextPutAll: self defaultDescriptionSource
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> codeDescription [
-	^ codeDescription ifNil: [ codeDescription := self rootName ]
+LcsSingletonCodeClassBuilder >> code [
+	^ code
+		ifNil: [ self description first asLowercase asString
+				, (self description copyFrom: 2 to: self rootName size) ]
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> codeDescription: aString [
-	codeDescription := aString
-]
-
-{ #category : #accessing }
-LcsSingletonCodeClassBuilder >> codeName [
-	^ codeName
-		ifNil: [ self codeDescription first asLowercase asString
-				, (self codeDescription copyFrom: 2 to: self rootName size) ]
-]
-
-{ #category : #accessing }
-LcsSingletonCodeClassBuilder >> codeName: aString [
-	codeName := aString
-]
-
-{ #category : #'method code source' }
-LcsSingletonCodeClassBuilder >> defaultCodeDescriptionSource [
-	^ 'defaultCodeDescription
-	^ ''' , self codeDescription , ''''
+LcsSingletonCodeClassBuilder >> code: aString [
+	code := aString
 ]
 
 { #category : #private }
-LcsSingletonCodeClassBuilder >> defaultCodeName [
-	^ self codeName first asLowercase asString
-		, (self codeName copyFrom: 2 to: self codeName size)
+LcsSingletonCodeClassBuilder >> defaultCode [
+	^ self code first asLowercase asString
+		, (self code copyFrom: 2 to: self code size)
 ]
 
 { #category : #'method code source' }
-LcsSingletonCodeClassBuilder >> defaultCodeNameSource [
-	^ 'defaultCodeName
-	^ ' ,self defaultCodeName printString
+LcsSingletonCodeClassBuilder >> defaultCodeSource [
+	^ 'defaultCode
+	^ ' ,self defaultCode printString
+]
+
+{ #category : #'method code source' }
+LcsSingletonCodeClassBuilder >> defaultDescriptionSource [
+	^ 'defaultDescription
+	^ ''' , self description , ''''
 ]
 
 { #category : #'method code source' }
@@ -99,19 +89,39 @@ LcsSingletonCodeClassBuilder >> defaultInstanceSource [
 ]
 
 { #category : #'method code source' }
-LcsSingletonCodeClassBuilder >> defaultShortNameSource [
-	^ 'defaultShortName
-	^ ''' , self shortName , ''''
+LcsSingletonCodeClassBuilder >> defaultLabelSource [
+	^ 'defaultLabel
+	^ ''' , self label , ''''
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> description [
+	^ description ifNil: [ description := self rootName ]
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> description: aString [
+	description := aString
 ]
 
 { #category : #install }
 LcsSingletonCodeClassBuilder >> installCode [
 	super installCode.
-	self addRefactoring: self addDefaultShortNameRefactoring execute.
-	self addRefactoring: self addDefaultCodeDescriptionRefactoring execute.
-	self addRefactoring: self addDefaultCodeNameRefactoring execute.
+	self addRefactoring: self addDefaultLabelRefactoring execute.
+	self addRefactoring: self addDefaultDescriptionRefactoring execute.
+	self addRefactoring: self addDefaultCodeRefactoring execute.
 	self addRefactoring: self addDefaultInstanceRefactoring execute.
 	self beCodeInstalled
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> label [ 
+	^ label ifNil: [ label := self description ]
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassBuilder >> label: aString [
+	label := aString
 ]
 
 { #category : #command }
@@ -119,21 +129,11 @@ LcsSingletonCodeClassBuilder >> populateSlotModel [
 	self installedClass new
 ]
 
-{ #category : #accessing }
-LcsSingletonCodeClassBuilder >> shortName [
-	^ shortName ifNil: [ shortName := self codeDescription ]
-]
-
-{ #category : #accessing }
-LcsSingletonCodeClassBuilder >> shortName: aString [
-	shortName := aString
-]
-
 { #category : #verification }
 LcsSingletonCodeClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName.
-	self assert: self installedClass defaultCodeDescription equals: self codeDescription.
-	self assert: self installedClass defaultCodeName equals: self codeName.
-	self assert: self installedClass defaultShortName equals: self shortName.
+	self assert: self installedClass defaultDescription equals: self description.
+	self assert: self installedClass defaultCode equals: self code.
+	self assert: self installedClass defaultLabel equals: self label.
 ]

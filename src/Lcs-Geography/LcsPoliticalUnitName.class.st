@@ -3,10 +3,20 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'fullName',
-		'shortName'
+		'code'
 	],
 	#category : #'Lcs-Geography'
 }
+
+{ #category : #'slot definitions' }
+LcsPoliticalUnitName class >> codeSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: #'code';
+		beRequired;
+		addValidationCondition: [ :string | string size > 2 ] description: 'Name must be at least 3 characters long';
+		yourself
+]
 
 { #category : #'slot definitions' }
 LcsPoliticalUnitName class >> fullNameSlotDefinition [
@@ -18,14 +28,14 @@ LcsPoliticalUnitName class >> fullNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
-LcsPoliticalUnitName class >> shortNameSlotDefinition [
-	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: #'shortName';
-		beRequired;
-		addValidationCondition: [ :string | string size > 2 ] description: 'Name must be at least 3 characters long';
-		yourself
+{ #category : #accessing }
+LcsPoliticalUnitName >> code [ 
+	^ self slotVarNamed: 'code'
+]
+
+{ #category : #accessing }
+LcsPoliticalUnitName >> code: anObject [
+	self slotVarNamed: 'code' put: anObject
 ]
 
 { #category : #accessing }
@@ -36,14 +46,4 @@ LcsPoliticalUnitName >> fullName [
 { #category : #accessing }
 LcsPoliticalUnitName >> fullName: anObject [
 	self slotVarNamed: 'fullName' put: anObject
-]
-
-{ #category : #accessing }
-LcsPoliticalUnitName >> shortName [
-	^ self slotVarNamed: 'shortName'
-]
-
-{ #category : #accessing }
-LcsPoliticalUnitName >> shortName: anObject [
-	self slotVarNamed: 'shortName' put: anObject
 ]
