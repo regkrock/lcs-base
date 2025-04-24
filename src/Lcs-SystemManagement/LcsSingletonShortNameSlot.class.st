@@ -7,5 +7,5 @@ Class {
 { #category : #initialize }
 LcsSingletonShortNameSlot >> initialize [
 	super initialize.
-	self initialValueBlock: [ :domainClass | domainClass defaultShortName ]
+	self initialValueBlock: [ :anInstance | anInstance class defaultShortName ]
 ]

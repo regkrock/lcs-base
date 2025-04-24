@@ -8,5 +8,5 @@ Class {
 LcsSingletonCodeDescriptionSlot >> initialize [
 	super initialize.
 	self 
-		initialValueBlock: [ :domainClass | domainClass defaultCodeDescription ]
+		initialValueBlock: [ :anInstance | anInstance class defaultCodeDescription ]
 ]

@@ -13,7 +13,119 @@
 							"__type" : "textSnippet",
 							"children" : {
 								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-04-21T15:22:12.854152-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-04-21T15:37:37.474982-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "/UKnhbDvDQCiS88KBf0hyQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "{{gtTodo:label=Composite Slot|completed=2025-04-21}} \n\t\t- the parent of the contained item is the object that defines the slot (wholly owned)\n\t\t- replacing the contents of the slot with a new object results in the existing object being deleted\n{{gtTodo:label=Aggregation Slot}}\n\t\t- the aggregated item's life cycle is independent of the object it is beeing associated with.\n\t\t- if the the aggregated item is removed or replaced, it is not deleted/garbage collected because of \n\t\t  the removal. Removal must be done independently. (Ex: Car Engine/Car)\n{{gtTodo:label=Association Slot|completed=}}\n\t\t- In this model an example would be Eye Colour: #blue <- a "
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
 								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-18T09:12:57.802336-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-02-20T11:33:57.100675-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "jWOG+czqDQCmvBfwC+znuQ=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "{{gtTodo:label=refactor submoduleClasses|completed=2025-02-20}}\n{{gtTodo:label=write sunit tests|completed=2025-02-20}}\n{{gtTodo:label=add documentation page}}"
+												}
+											]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-02T09:49:17.090483-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-02-18T09:12:04.343903-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "GgfhABznDQCS9lXpDsa+vA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "#Submodules"
+									},
 									{
 										"__type" : "textSnippet",
 										"children" : {
@@ -28,7 +140,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-02-18T09:12:57.802336-05:00"
+												"dateAndTimeString" : "2024-11-08T21:29:38.961258-05:00"
 											}
 										},
 										"editEmail" : {
@@ -39,17 +151,233 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-02-18T09:14:23.075087-05:00"
+												"dateAndTimeString" : "2024-11-08T21:29:38.961258-05:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
-											"uidString" : "jWOG+czqDQCmvBfwC+znuQ=="
+											"uidString" : "wk1OYNPiDQCJJ6f7AcXF1w=="
 										},
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtTodo:label=refactor submoduleClasses}}\n{{gtTodo:label=write sunit tests|completed=}}\n{{gtTodo:label=add documentation page}}"
+										"string" : ""
+									},
+									{
+										"__type" : "pharoSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-02-27T15:29:46.651317-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-02-27T15:30:25.067308-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "WCXFn8TODQCN/wJkAQ/WgQ=="
+										},
+										"code" : "NaturalLanguageTranslator translate: 'example'"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-02-27T15:48:39.905736-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-02-27T15:48:46.548296-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "tUNR48TODQCS2aXkAQ/WgQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### Unit Of Work"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-02-27T15:36:05.163414-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-01-02T10:12:21.089835-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "4IiZtMTODQCQyJb2AQ/WgQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{gtTodo:label=Add object to global collection|completed=}}"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-02-27T15:37:18.093823-05:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-02-18T09:12:26.325759-05:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "hqatusTODQCSoTKYAQ/WgQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{gtTodo:label=Delete Object|completed=}}"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-01T11:05:36.420973-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-01T11:05:48.257969-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "W/YMD2zRDQCv9ZT3CrHlHw=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "####All pages with open to dos"
+									},
+									{
+										"__type" : "pharoSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-01T11:04:52.784599-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-04-01T11:04:53.722913-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "PRxzDGzRDQCv6MGtCrHlHw=="
+										},
+										"code" : "thisSnippet database pages select: #hasUncompletedGtTodo"
 									}
 								]
 							},
@@ -61,7 +389,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-01-02T09:49:17.090483-05:00"
+									"dateAndTimeString" : "2024-11-08T21:29:52.358632-05:00"
 								}
 							},
 							"editEmail" : {
@@ -72,270 +400,17 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-02-18T09:12:04.343903-05:00"
+									"dateAndTimeString" : "2025-04-21T15:22:12.86169-04:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
-								"uidString" : "GgfhABznDQCS9lXpDsa+vA=="
+								"uidString" : "1on4q8TODQCPDhSdAQ/WgQ=="
 							},
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "#Submodules"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-08T21:29:38.961258-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-08T21:29:38.961258-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "wk1OYNPiDQCJJ6f7AcXF1w=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : ""
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-27T15:29:46.651317-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-27T15:30:25.067308-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "WCXFn8TODQCN/wJkAQ/WgQ=="
-							},
-							"code" : "NaturalLanguageTranslator translate: 'example'"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-27T15:48:39.905736-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-27T15:48:46.548296-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "tUNR48TODQCS2aXkAQ/WgQ=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "### Unit Of Work"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-27T15:36:05.163414-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-01-02T10:12:21.089835-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "4IiZtMTODQCQyJb2AQ/WgQ=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "{{gtTodo:label=Add object to global collection|completed=}}"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-02-27T15:37:18.093823-05:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-02-18T09:12:26.325759-05:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "hqatusTODQCSoTKYAQ/WgQ=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "{{gtTodo:label=Delete Object|completed=}}"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T11:05:36.420973-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T11:05:48.257969-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "W/YMD2zRDQCv9ZT3CrHlHw=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "####All pages with open to dos"
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T11:04:52.784599-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-01T11:04:53.722913-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "PRxzDGzRDQCv6MGtCrHlHw=="
-							},
-							"code" : "thisSnippet database pages select: #hasUncompletedGtTodo"
+							"string" : "{{gtTodo:label=Collection Slots|completed=}}\n\t- Theses slots are Composite slots.\n\t- Three types:\n\t\t\t- Primary \n\t\t\t\t- parent of the items is the collection\n\t\t\t\t- items are persisted in a collection\n\t\t\t- Secondary \n\t\t\t\t- parent of the items is not the collection\n\t\t\t\t- items are persisted in a collection\n\t\t\t- Virtual\n\t\t\t\t- parent of the items is not the collection\n\t\t\t\t- the collection is recalculated everytime and is not persisted.\n\t- add add/remove logic\n\t\t- primary collection - item is removed from the collection and the item's parent is set to nil\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(Removing the key so it will be garbaged collected)\n\t\t- secondary collection - item is removed from the collection but the item parent is unchanged\n"
 						}
 					]
 				},
@@ -347,7 +422,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-08T21:29:52.358632-05:00"
+						"dateAndTimeString" : "2025-04-21T15:21:28.647109-04:00"
 					}
 				},
 				"editEmail" : {
@@ -358,17 +433,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-02T10:24:31.248544-05:00"
+						"dateAndTimeString" : "2025-04-21T15:21:28.647109-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "1on4q8TODQCPDhSdAQ/WgQ=="
+					"uidString" : "MrcEg7DvDQCiPUWIBf0hyQ=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "##Slots\n{{gtTodo:label=Composite Slot|completed=}} \n\t\t- the parent of the contained item is the object that defines the slot (wholly owned)\n\t\t- replacing the contents of the slot with a new object results in the existing object being deleted\n{{gtTodo:label=Collection Slots|completed=}}\n\t- Theses slots are Composite slots.\n\t- Three types:\n\t\t\t- Primary \n\t\t\t\t- parent of the items is the collection\n\t\t\t\t- items are persisted in a collection\n\t\t\t- Secondary \n\t\t\t\t- parent of the items is not the collection\n\t\t\t\t- items are persisted in a collection\n\t\t\t- Virtual\n\t\t\t\t- parent of the items is not the collection\n\t\t\t\t- the collection is recalculated everytime and is not persisted.\n\t- add add/remove logic\n\t\t- primary collection - item is removed from the collection and the item's parent is set to nil\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(Removing the key so it will be garbaged collected)\n\t\t- secondary collection - item is removed from the collection but the item parent is unchanged\n"
+				"string" : "##Slots\nAssociation Slots:"
 			}
 		]
 	},

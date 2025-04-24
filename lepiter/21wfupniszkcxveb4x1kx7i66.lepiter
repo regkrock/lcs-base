@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-27T11:30:29.196388-05:00"
+						"dateAndTimeString" : "2025-04-24T09:29:18.758225-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "FxQQ2jrTDQCwRQ8jDqasIg=="
 				},
-				"code" : "builder := \r\tLcsStandardCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateCodeInstances: #('Mr' 'Ms' 'Unknown');\r\t\ttargetModuleClass: LxxPrototypeSystem ;\r\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\tyourself"
+				"code" : "builder := \r\tLcsStandardCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateProtoCodesFromLabels: #('Mr' 'Ms' 'Unknown');\r\t\ttargetModuleClass: LxxPrototypeSystem ;\r\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",

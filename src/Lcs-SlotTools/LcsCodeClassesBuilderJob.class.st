@@ -31,12 +31,6 @@ LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
 		yourself
 ]
 
-{ #category : #private }
-LcsCodeClassesBuilderJob >> codeDescriptionFrom: anArray [
-	anArray size < 2 ifTrue: [ ^ (anArray at: 1) capitalized ].
-	^ anArray at: 2
-]
-
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
@@ -68,12 +62,6 @@ LcsCodeClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 LcsCodeClassesBuilderJob >> initialize [
 	super initialize.
 	self targetDomainClasses: OrderedCollection new
-]
-
-{ #category : #private }
-LcsCodeClassesBuilderJob >> shortNameFrom: anArray [
-	anArray size < 3 ifTrue: [ ^ self codeDescriptionFrom: anArray ].
-	^ anArray at: 3
 ]
 
 { #category : #'slot model' }

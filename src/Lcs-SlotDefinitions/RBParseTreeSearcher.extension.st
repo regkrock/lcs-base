@@ -14,7 +14,7 @@ RBParseTreeSearcher class >> returnSlotSetterMethod: aVarName [
 	^(self new)
 		matchesAnyMethodOf: (
 			Array 
-				with: '`method: `Arg ^ self setValueOfSlotNamed: ''' , aVarName , ''' to: `Arg')
+				with: '`method: `Arg ^ self slotVarNamed: ''' , aVarName , ''' put: `Arg')
 			do: [:aNode :ans | aNode selector];
 		yourself
 ]
@@ -31,7 +31,7 @@ RBParseTreeSearcher class >> setterMethod: aVarName [
 { #category : #'*Lcs-SlotDefinitions' }
 RBParseTreeSearcher class >> slotGetterMethod: aVarName [ 
 	^ self new
-		matchesMethod: '`method ^ self getValueOfSlotNamed: ''' , aVarName , '''' do: [:aNode :ans | aNode selector];
+		matchesMethod: '`method ^ self slotVarNamed: ''' , aVarName , '''' do: [:aNode :ans | aNode selector];
 		yourself
 ]
 
@@ -40,7 +40,7 @@ RBParseTreeSearcher class >> slotSetterMethod: aVarName [
 	^(self new)
 		matchesAnyMethodOf: (
 			Array 
-				with: '`method: `Arg ' , 'self setValueOfSlotNamed: ''' , aVarName , ''' to: `Arg')
+				with: '`method: `Arg ' , 'self slotVarNamed: ''' , aVarName , ''' put: `Arg')
 			do: [:aNode :ans | aNode selector];
 		yourself
 ]

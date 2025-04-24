@@ -497,7 +497,10 @@ LcsBaseDomainObject >> gtRawFor: aView [
 					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
 		column: 'Pending Change'
 			text: [ :aNode | 
-				[ aNode changeValue gtDisplayText ]
+				[ aNode ifNil: [ '' ] ifNotNil: [
+					(aNode class canUnderstand: #changeValue) 
+						ifTrue: [ aNode changeValue gtDisplayText ] 
+						ifFalse: [ '' ] ] ] 
 					on: Error , Halt
 					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
 		send: #value;

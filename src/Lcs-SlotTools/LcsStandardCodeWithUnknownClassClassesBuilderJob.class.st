@@ -2,8 +2,8 @@ Class {
 	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJob,
 	#superclass : #LcsCodeClassesBuilderJob,
 	#instVars : [
-		'codeInstances',
-		'unknownClassName'
+		'unknownClassName',
+		'protoCodes'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -33,24 +33,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsCodeSuperClassBuilder) first
 ]
 
-{ #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeInstances [
-	^ codeInstances
-]
-
-{ #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeInstances: aCollection [
-	codeInstances := aCollection
-]
-
-{ #category : #populate }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeNameFrom: anArray [ 
-	| protoCode |
-	protoCode := anArray at: 1.
-	protoCode size = 1 ifTrue: [ ^protoCode ].
-	^ protoCode asCamelCase asValidSelector asString
-]
-
 { #category : #builders }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsCodeClassBuilder new
@@ -70,15 +52,19 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeSuperclassBuilder [
 	^ self jobSteps at: 1
 ]
 
-{ #category : #tests }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> createCodeInstances: aCollection [ 
-	self codeInstances addAll: aCollection
-]
-
 { #category : #configuration }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> createForRootName: aRootName [
 	super createForRootName: aRootName.
 	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
+]
+
+{ #category : #tests }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> createProtoCodesFromLabels: aCollection [ 
+	aCollection do: [ :eachLabel | 
+		self protoCodes add: (
+			eachLabel isEmpty 
+				ifTrue: [ LcsProtoCode unknown]
+				ifFalse: [ LcsProtoCode newFromLabel: eachLabel]) ]
 ]
 
 { #category : #'job steps' }
@@ -89,13 +75,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> globalCollectionSlotDefiniti
 { #category : #initialize }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> initialize [
 	super initialize.
-	self codeInstances: OrderedCollection new
-]
-
-{ #category : #populate }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> isDefaultInstanceFrom: anArray [ 
-	anArray size < 4 ifTrue: [ ^ false ].
-	^ anArray at: 4
+	self protoCodes: OrderedCollection new
 ]
 
 { #category : #populate }
@@ -107,14 +87,24 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 		shortName: 'Unknown';
 		isDefaultInstance: true.
 	self currentSystem currentUnitOfWork applyChanges.
-	self codeInstances
+	self protoCodes
 		do: [ :each | 
 			self codeClass new
-				codeName: (self codeNameFrom: each);
-				codeDescription: (self codeDescriptionFrom: each);
-				shortName: (self shortNameFrom: each);
-				isDefaultInstance: (self isDefaultInstanceFrom: each) ].
+				codeName: each code;
+				codeDescription: each description;
+				shortName: each label;
+				isDefaultInstance: each isDefaultInstance ].
 	self currentSystem currentUnitOfWork applyChanges
+]
+
+{ #category : #accessing }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> protoCodes [
+	^ protoCodes
+]
+
+{ #category : #accessing }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> protoCodes: aCollection [
+	protoCodes := aCollection
 ]
 
 { #category : #accessing }
@@ -149,9 +139,9 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownCodeClassBuilderStep 
 { #category : #verification }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> verifyPopulateSlotModel [
 	self assert: self targetGlobalCollection parent == self targetModule.
-	self assert: self targetGlobalCollection size = (self codeInstances size + 1).
-	self codeInstances
+	self assert: self targetGlobalCollection collectionSize = (self protoCodes size + 1).
+	self protoCodes
 		do: [ :each | 
-			self assert: (self targetGlobalCollection findWithKey: (self codeNameFrom: each)) notNil ].
+			self assert: (self targetGlobalCollection findWithKey: each code) notNil ].
 	self assert: self targetGlobalCollection defaultInstance notNil
 ]

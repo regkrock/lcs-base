@@ -78,7 +78,7 @@ RBCreateDomainSlotAcccessorsForVariableRefactoring >> possibleSetterSelectors [
 
 { #category : #accessing }
 RBCreateDomainSlotAcccessorsForVariableRefactoring >> slotGetterMethodSource [
-	^ '<1s><r><t>^ self getValueOfSlotNamed: ''<2s>'''
+	^ '<1s><r><t>^ self slotVarNamed: ''<2s>'''
 		expandMacrosWith: self selector
 		with: variableName
 ]
@@ -87,8 +87,8 @@ RBCreateDomainSlotAcccessorsForVariableRefactoring >> slotGetterMethodSource [
 RBCreateDomainSlotAcccessorsForVariableRefactoring >> slotSetterMethodSource [
 	| string |
 	string :=  self needsReturnForSetter
-		ifTrue: [ '<1s> anObject<r><t>^ self setValueOfSlotNamed: ''<2s>'' to: anObject' ]
-		ifFalse: [ '<1s> anObject<r><t>self setValueOfSlotNamed: ''<2s>'' to: anObject' ].
+		ifTrue: [ '<1s> anObject<r><t>^ self slotVarNamed: ''<2s>'' put: anObject' ]
+		ifFalse: [ '<1s> anObject<r><t>self slotVarNamed: ''<2s>'' put: anObject' ].
 		
 	selector := self
 			safeMethodNameFor: self definingClass

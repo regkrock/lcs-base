@@ -11,9 +11,7 @@ Class {
 { #category : #'slot definitions' }
 LcsLocation class >> addressSlotDefinition [
 	<slotDefinition>
-	^ LcsAggregateSlot new
-		slotName: 'address';
-		yourself
+	^ LcsAddressSlot new
 ]
 
 { #category : #'slot definitions' }

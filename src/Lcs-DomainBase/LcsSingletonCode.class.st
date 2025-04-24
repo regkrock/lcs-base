@@ -40,7 +40,7 @@ LcsSingletonCode class >> defaultShortName [
 LcsSingletonCode class >> isDefaultInstanceSlotDefinition [
 	<slotDefinition>
 	^ super isDefaultInstanceSlotDefinition
-		initialValueBlock: [ :codeClass | codeClass  defaultInstance ]; 
+		initialValueBlock: [ :anInstance | anInstance class  defaultInstance ]; 
 		yourself
 ]
 

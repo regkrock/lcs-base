@@ -2,7 +2,8 @@ Class {
 	#name : #LcsStandardCodeClassesBuilderJob,
 	#superclass : #LcsCodeClassesBuilderJob,
 	#instVars : [
-		'codeInstances'
+		'defaultInstance',
+		'prtoCodes'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -26,68 +27,68 @@ LcsStandardCodeClassesBuilderJob >> codeClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsCodeSuperClassBuilder) first
 ]
 
-{ #category : #accessing }
-LcsStandardCodeClassesBuilderJob >> codeInstances [
-	^ codeInstances
-]
-
-{ #category : #accessing }
-LcsStandardCodeClassesBuilderJob >> codeInstances: aCollection [
-	codeInstances := aCollection
-]
-
-{ #category : #private }
-LcsStandardCodeClassesBuilderJob >> codeNameFrom: anArray [ 
-	| protoCode |
-	protoCode := anArray at: 1.
-	protoCode size = 1 ifTrue: [ ^protoCode ].
-	^ protoCode asCamelCase asValidSelector asString
-]
-
 { #category : #populate }
-LcsStandardCodeClassesBuilderJob >> createCodeInstances: aCollection [ 
-	self codeInstances addAll: aCollection
+LcsStandardCodeClassesBuilderJob >> createProtoCodesFromLabels: aCollection [ 
+	aCollection do: [ :eachLabel | 
+		self protoCodes add: (
+			eachLabel isEmpty 
+				ifTrue: [ LcsProtoCode unknown]
+				ifFalse: [ LcsProtoCode newFromLabel: eachLabel]) ]
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> defaultInstance [
+	^defaultInstance
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> defaultInstance: aString [ 
+	defaultInstance := aString
 ]
 
 { #category : #initialize }
 LcsStandardCodeClassesBuilderJob >> initialize [
 	super initialize.
-	self codeInstances: OrderedCollection new
-]
-
-{ #category : #testing }
-LcsStandardCodeClassesBuilderJob >> isDefaultInstanceFrom: anArray [
-	anArray size < 4 ifTrue: [ ^ false ].
-	^ anArray at: 4
+	self protoCodes: OrderedCollection new
 ]
 
 { #category : #command }
 LcsStandardCodeClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
-	self codeInstances
+	self protoCodes
 		do: [ :each | 
 			self codeClass new
-				codeName: (self codeNameFrom: each);
-				codeDescription: (self codeDescriptionFrom: each);
-				shortName: (self shortNameFrom: each);
-				isDefaultInstance: (self isDefaultInstanceFrom: each) ].
+				codeName: each code;
+				codeDescription: each description;
+				shortName: (each label);
+				isDefaultInstance: each isDefaultInstance ].
 	self currentSystem currentUnitOfWork applyChanges.
 	self targetGlobalCollection hasUnknownInstance ifFalse: [
 		self codeClass new
 				codeName: 'unknown';
-				codeDescription: '';
+				codeDescription: 'Unknown';
 				shortName: '';
 				isDefaultInstance: self targetGlobalCollection hasDefaultInstance not].
 	self currentSystem currentUnitOfWork applyChanges.
 
 ]
 
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> protoCodes [
+	^ prtoCodes
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJob >> protoCodes: aCollection [
+	prtoCodes := aCollection
+]
+
 { #category : #command }
 LcsStandardCodeClassesBuilderJob >> verifyPopulateSlotModel [
 	self assert: self targetGlobalCollection parent == self targetModule.
-	self assert: self targetGlobalCollection size = (self codeInstances size + 1).
-	self codeInstances
+	self assert: self targetGlobalCollection collectionSize = self protoCodes size.
+	self protoCodes
 		do: [ :each | 
-			self assert: (self targetGlobalCollection findWithKey: (self codeNameFrom: each)) notNil ].
+			self assert: (self targetGlobalCollection findWithKey: each code) notNil ].
 	self assert: self targetGlobalCollection defaultInstance notNil
 ]

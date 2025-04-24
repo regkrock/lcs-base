@@ -354,40 +354,6 @@
 				"code" : "BlGlutinHostSpace zoomFactor: 0.9"
 			},
 			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-03-20T12:29:20.539392-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-03-20T12:32:47.353489-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "YFB+YCrtDQC8DWQ3D62HaA=="
-				},
-				"code" : "LcsApplicationEnvironment singleton: nil"
-			},
-			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -482,12 +448,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-01-29T08:59:42.84838-05:00"
+			"dateAndTimeString" : "2025-04-21T15:44:05.757585-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Prototype System Playpen"
+		"title" : "Environment Playpen"
 	},
 	"uid" : {
 		"__type" : "uuid",

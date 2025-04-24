@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-29T09:05:46.613198-05:00"
+						"dateAndTimeString" : "2025-04-21T17:37:23.862275-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Ensure Application Environment is running, if not start it"
+				"string" : "‘Ensure Application Environment is running, if not start it"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -448,12 +448,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-01-29T08:59:42.84838-05:00"
+			"dateAndTimeString" : "2025-04-21T15:44:05.757585-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Prototype System Playpen"
+		"title" : "Environment Playpen"
 	},
 	"uid" : {
 		"__type" : "uuid",
