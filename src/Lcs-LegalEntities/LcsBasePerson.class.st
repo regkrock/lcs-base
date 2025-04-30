@@ -5,7 +5,8 @@ Class {
 		'dateOfBirth',
 		'firstName',
 		'surname',
-		'middleNames'
+		'middleNames',
+		'gender'
 	],
 	#category : #'Lcs-LegalEntities'
 }
@@ -21,6 +22,17 @@ LcsBasePerson class >> firstNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'firstName';
+		yourself
+]
+
+{ #category : #'slot definition' }
+LcsBasePerson class >> genderSlotDefinition [
+	<slotDefinition>
+	^ LcsMemberOfSlot new
+		slotName: 'gender';
+		addSlotType: LcsGender;
+		collectionSlotName: 'genders';
+		collectionSlotModuleName: 'Legal Entities Module';
 		yourself
 ]
 
@@ -58,6 +70,16 @@ LcsBasePerson >> firstName [
 { #category : #accessing }
 LcsBasePerson >> firstName: anObject [
 	self slotVarNamed: 'firstName' put: anObject
+]
+
+{ #category : #accessing }
+LcsBasePerson >> gender [
+	^ self slotVarNamed: 'gender'
+]
+
+{ #category : #accessing }
+LcsBasePerson >> gender: anObject [
+	self slotVarNamed: 'gender' put: anObject
 ]
 
 { #category : #accessing }

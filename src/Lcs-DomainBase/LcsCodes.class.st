@@ -5,8 +5,20 @@ Class {
 }
 
 { #category : #testing }
+LcsCodes >> collectionWithPendingChanges [
+	| actualCollection |
+	actualCollection := self collection copy.
+	actualCollection addAll: self pendingAdds.
+	actualCollection removeAll: self pendingDeletes.
+	^ actualCollection
+]
+
+{ #category : #testing }
 LcsCodes >> defaultInstance [
-	^self collection detect: [ :each | each isDefaultInstance == true]
+	^ self collectionWithPendingChanges
+		detect: [ :each | each isDefaultInstance == true ]
+		ifNone: [ LcsCodeCollectionDefaultInstanceNotDefined
+				signal: 'No default instance defined for codes collection - ' , self class name ]
 ]
 
 { #category : #testing }

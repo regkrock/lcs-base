@@ -96,7 +96,7 @@ LcsSlotModel >> allSlotDefinitions [
 	| allSlotDefinitions |
 	allSlotDefinitions := OrderedCollection new.
 	self addSlotDefinitionsTo:allSlotDefinitions.
-	^ allSlotDefinitions
+	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
 { #category : #accessing }

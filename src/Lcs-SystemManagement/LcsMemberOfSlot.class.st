@@ -50,7 +50,9 @@ LcsMemberOfSlot >> collectionSlotName: aString [
 
 { #category : #accessing }
 LcsMemberOfSlot >> defaultInstance [
-	^ self targetCollection defaultInstance
+	^ self targetCollection 
+		ifNil: [ LcsMemberOfSlotSourceCollectionNotInitialized signalWithContext: self ] 
+		ifNotNil: [ :collection | collection defaultInstance ]
 ]
 
 { #category : #initialize }
@@ -58,6 +60,13 @@ LcsMemberOfSlot >> initialize [
 	super initialize.
 	self beRequired.
 	self initialValueBlock: [:domainParent | self defaultInstance ]
+]
+
+{ #category : #message }
+LcsMemberOfSlot >> sourceCollectionNotPopulatedMessage [
+	^'Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized' 
+			expandMacrosWith: self collectionSlotModuleName 
+			with: self collectionSlotName
 ]
 
 { #category : #accessing }

@@ -6,7 +6,8 @@ Class {
 		'parent',
 		'slotTypes',
 		'domainClass',
-		'validationConditions'
+		'validationConditions',
+		'priority'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -33,7 +34,7 @@ LcsBaseSlotDefinition >> clearSlotTypes [
 
 { #category : #'slot model' }
 LcsBaseSlotDefinition >> domainClass [
-	^ domainClass ifNil: [ self parent domainClass ]
+	^ domainClass ifNil: [ domainClass := self parent domainClass ]
 ]
 
 { #category : #'slot model' }
@@ -45,7 +46,8 @@ LcsBaseSlotDefinition >> domainClass: aDomainClass [
 LcsBaseSlotDefinition >> initialize [
 	super initialize.
 	self initializeSlotTypes.
-	self validationConditions: (LcsValidationConditions newOn: self)
+	self validationConditions: (LcsValidationConditions newOn: self).
+	self priority: 50
 ]
 
 { #category : #initialize }
@@ -66,6 +68,16 @@ LcsBaseSlotDefinition >> parent [
 { #category : #accessing }
 LcsBaseSlotDefinition >> parent: anObject [
 	parent := anObject
+]
+
+{ #category : #accessing }
+LcsBaseSlotDefinition >> priority [
+	^ priority
+]
+
+{ #category : #accessing }
+LcsBaseSlotDefinition >> priority: anObject [
+	priority := anObject
 ]
 
 { #category : #validations }
