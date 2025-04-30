@@ -32,7 +32,7 @@ LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
 ]
 
 { #category : #builders }
-LcsCodeClassesBuilderJob >> codeGlobalCollectionSlotBuilder [
+LcsCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
 		slotClassName: self globalCollectionClassName;
 		slotName: self globalCollectionSlotName;

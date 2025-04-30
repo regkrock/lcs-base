@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsCodesGlobalCollectionSlot,
+	#name : #LcsSingletonCodesGlobalCollectionSlot,
 	#superclass : #LcsGlobalCollectionSlot,
 	#instVars : [
 		'codeSuperclass'
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #accessing }
-LcsCodesGlobalCollectionSlot >> codeSuperclass [
+LcsSingletonCodesGlobalCollectionSlot >> codeSuperclass [
 	^ codeSuperclass
 ]
 
 { #category : #accessing }
-LcsCodesGlobalCollectionSlot >> codeSuperclass: aCodeClass [ 
+LcsSingletonCodesGlobalCollectionSlot >> codeSuperclass: aCodeClass [
 	codeSuperclass := aCodeClass
 ]
 
 { #category : #'as yet unclassified' }
-LcsCodesGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
+LcsSingletonCodesGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
 	self codeSuperclass allSubclassesDo: [ :each | each new ]
 ]

@@ -206,6 +206,7 @@ LcsModule >> gtGlobalCollectionsFor: aView [
 			text: [ :item | item numberOfPendingRemovals asString ]
 			width: 125;
 		send: #item;
+		actionUpdateButton;
 		yourself
 ]
 

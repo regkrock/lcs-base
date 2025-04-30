@@ -29,7 +29,7 @@ LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 	self addCodeSubclassBuilders.
 	self addJobStep: self codeCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
-	self addJobStep: self codeGlobalCollectionSlotBuilder.
+	self addJobStep: self codesGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 ]
 
@@ -61,6 +61,22 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 	codeSubclassBuilders := aCollection
 ]
 
+{ #category : #builders }
+LcsSingletonCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
+	^ LcsCodesGlobalSlotDefinitionBuilder new
+		slotClassName: self globalCollectionClassName;
+		slotName: self globalCollectionSlotName;
+		targetClassName: self globalCollectionModuleClass name;
+		targetModuleClass: self globalCollectionModuleClass;
+		codeSuperclassName: self newDomainClassName;
+		yourself
+]
+
+{ #category : #'builder step' }
+LcsSingletonCodeClassesBuilderJob >> globalCollectionSlotDefinitionStep [
+	^ (self jobSteps stepsWithClass: LcsCodesGlobalSlotDefinitionBuilder) first
+]
+
 { #category : #initialize }
 LcsSingletonCodeClassesBuilderJob >> initialize [
 	super initialize.
@@ -81,8 +97,8 @@ LcsSingletonCodeClassesBuilderJob >> overview [
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
-	self singletonClassBuilders do: [ :eachStep | eachStep populateSlotModel ].
-	self currentSystem currentUnitOfWork applyChanges
+	"self singletonClassBuilders do: [ :eachStep | eachStep populateSlotModel ].
+	self currentSystem currentUnitOfWork applyChanges"
 ]
 
 { #category : #printing }
