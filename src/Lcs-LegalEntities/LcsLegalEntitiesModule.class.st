@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'persons',
 		'organizations',
-		'genders'
+		'genders',
+		'titles'
 	],
 	#category : #'Lcs-LegalEntities'
 }
@@ -58,6 +59,17 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definition' }
+LcsLegalEntitiesModule class >> titlesSlotDefinition [
+	<slotDefinition>
+	^ LcsCodesGlobalCollectionSlot new
+		slotName: 'titles';
+		addSlotType: LcsTitles;
+		collectionClass: IdentitySet;
+		loaderClass: LcsTitlesLoader;
+		yourself
+]
+
 { #category : #accessing }
 LcsLegalEntitiesModule >> genders [
 	^ self slotVarNamed: 'genders'
@@ -86,4 +98,14 @@ LcsLegalEntitiesModule >> persons [
 { #category : #accessing }
 LcsLegalEntitiesModule >> persons: anObject [
 	self slotVarNamed: 'persons' put: anObject
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> titles [
+	^ self slotVarNamed: 'titles'
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> titles: anObject [
+	self slotVarNamed: 'titles' put: anObject
 ]
