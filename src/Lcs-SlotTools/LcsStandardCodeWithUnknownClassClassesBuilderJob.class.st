@@ -19,7 +19,8 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
-	self addMemberOfSlotBuilderForTargetClasses
+	self addMemberOfSlotBuilderForTargetClasses.
+	self addJobStep: self codesLoaderBuilder
 ]
 
 { #category : #populate }
@@ -86,14 +87,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 		label: 'Unknown';
 		isDefaultInstance: true.
 	self currentSystem currentUnitOfWork applyChanges.
-	self protoCodes
-		do: [ :each | 
-			self codeClass new
-				code: each code;
-				description: each description;
-				label: each label;
-				isDefaultInstance: each isDefaultInstance ].
-	self currentSystem currentUnitOfWork applyChanges
 ]
 
 { #category : #accessing }
