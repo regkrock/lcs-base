@@ -2,20 +2,21 @@ Class {
 	#name : #LcsCodesGlobalSlotDefinitionBuilder,
 	#superclass : #LcsGlobalSlotDefinitionBuilder,
 	#instVars : [
-		'codeSuperclassName'
+		'codeSuperclassName',
+		'loaderClassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #defaults }
 LcsCodesGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
-	^ LcsSingletonCodesGlobalCollectionSlot
+	^ LcsCodesGlobalCollectionSlot
 ]
 
 { #category : #'code generation' }
 LcsCodesGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
-	aCodeStream addSetter: 'codeSuperclass' contents: self codeSuperclassName
+	aCodeStream addSetter: 'loaderClass' contents: self loaderClassName
 
 ]
 
@@ -32,4 +33,19 @@ LcsCodesGlobalSlotDefinitionBuilder >> codeSuperclassName [
 { #category : #accessing }
 LcsCodesGlobalSlotDefinitionBuilder >> codeSuperclassName: aClassName [
 	codeSuperclassName := aClassName
+]
+
+{ #category : #accessing }
+LcsCodesGlobalSlotDefinitionBuilder >> laderClass [
+	^ self loaderClassName asClass
+]
+
+{ #category : #accessing }
+LcsCodesGlobalSlotDefinitionBuilder >> loaderClassName [
+	^ loaderClassName
+]
+
+{ #category : #accessing }
+LcsCodesGlobalSlotDefinitionBuilder >> loaderClassName: anObject [
+	loaderClassName := anObject
 ]

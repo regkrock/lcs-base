@@ -2,8 +2,7 @@ Class {
 	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJob,
 	#superclass : #LcsCodeClassesBuilderJob,
 	#instVars : [
-		'unknownClassName',
-		'protoCodes'
+		'unknownClassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -69,7 +68,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> createProtoCodesFromLabels: 
 
 { #category : #'job steps' }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
-	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
+	^ (self jobSteps stepsWithClass: LcsCodesGlobalSlotDefinitionBuilder) first
 ]
 
 { #category : #initialize }
@@ -95,16 +94,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 				label: each label;
 				isDefaultInstance: each isDefaultInstance ].
 	self currentSystem currentUnitOfWork applyChanges
-]
-
-{ #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> protoCodes [
-	^ protoCodes
-]
-
-{ #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> protoCodes: aCollection [
-	protoCodes := aCollection
 ]
 
 { #category : #accessing }

@@ -342,6 +342,43 @@
 								"__type" : "textStyle"
 							},
 							"string" : "[[Micro Services - Pros and Cons]]"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-05-01T11:12:41.607688-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-05-01T11:12:45.836226-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "f+u1M3bwDQC1ph6CDu/6bg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "[[Oterh"
 						}
 					]
 				},
@@ -1495,7 +1532,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-04-23T10:13:42.96852-04:00"
+															"dateAndTimeString" : "2025-04-23T10:14:01.71428-04:00"
 														}
 													},
 													"uid" : {
@@ -1505,7 +1542,7 @@
 													"paragraphStyle" : {
 														"__type" : "textStyle"
 													},
-													"string" : "[[Generate LcsMale"
+													"string" : "[[Example: Generate LcsGender classes]]"
 												}
 											]
 										},

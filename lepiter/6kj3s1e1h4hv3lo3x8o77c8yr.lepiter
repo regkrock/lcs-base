@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-01T11:13:02.50847-04:00"
+						"dateAndTimeString" : "2025-05-01T11:13:29.018115-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-01T11:13:02.50847-04:00"
+						"dateAndTimeString" : "2025-05-01T11:28:46.395578-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "5930NHbwDQC2Ox2xDu/6bg=="
+					"uidString" : "ZuVfNXbwDQC2PjjzDu/6bg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "[Article on Architecture Fitness Functions](https://www.infoq.com/articles/fitness-functions-architecture/?forceSponsorshipId=999b3bed-b010-4184-aa98-7cb5ba75aae2) - ideas of measuring if Archictecture is bein adhered to.\n\n[Architeture Is Knowledge Flow](https://www.infoq.com/news/2025/04/designing-knowledge-flow/?forceSponsorshipId=999b3bed-b010-4184-aa98-7cb5ba75aae2)"
 			}
 		]
 	},
@@ -51,7 +51,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-24T08:44:24.129253-04:00"
+			"dateAndTimeString" : "2025-05-01T11:13:09.473221-04:00"
 		}
 	},
 	"editEmail" : {
@@ -62,15 +62,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-24T08:44:24.129253-04:00"
+			"dateAndTimeString" : "2025-05-01T11:13:09.473221-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Application Architecture"
+		"title" : "Other Design Issues"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "4cb269c4-38d3-0d00-a6f9-c9b00ea6ac22"
+		"uuid" : "631b5f35-76f0-0d00-b63d-1eec0eeffa6e"
 	}
 }

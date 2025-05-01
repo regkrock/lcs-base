@@ -114,9 +114,14 @@ LcsBaseClassBuilder >> initializeOn: aBuilder [
 ]
 
 { #category : #build }
-LcsBaseClassBuilder >> installCode [
+LcsBaseClassBuilder >> installClass [
 	self addRefactoring: (RBAddClassChange definition: self classCreationString) execute.
-	self installedClass: self refactorings last changeClass.
+	self installedClass: self refactorings last changeClass
+]
+
+{ #category : #build }
+LcsBaseClassBuilder >> installCode [
+	self installClass.
 	self beCodeInstalled
 ]
 
@@ -222,12 +227,19 @@ LcsBaseClassBuilder >> updateSlotModel [
 ]
 
 { #category : #command }
+LcsBaseClassBuilder >> verifyClassAddedToSystemModel [
+	self currentSystem notNil
+		ifTrue: [ self
+				assert: self installedClass slotModel isNil
+				description: 'The class has been created but not yet installed in a system' ]
+]
+
+{ #category : #command }
 LcsBaseClassBuilder >> verifyCodeInstallation [
 	self assert: self installedClass notNil description: 'Class has been created'.
 	self assert: self installedClass name equals: self newClassName.
-	self currentSystem notNil ifTrue: [
-		self assert: self installedClass slotModel isNil description: 'The class has been created but not yet installed in a system'].
-	self assert: self installedClass package name equals: self targetPackageName.
+	self verifyClassAddedToSystemModel.
+	self assert: self installedClass package name equals: self targetPackageName
 ]
 
 { #category : #command }

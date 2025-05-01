@@ -17,8 +17,13 @@ LcsSingletonCodesGlobalCollectionSlot >> codeSuperclass: aCodeClass [
 	codeSuperclass := aCodeClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'object initialization' }
 LcsSingletonCodesGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
+	self populateCollection 
+]
+
+{ #category : #'as yet unclassified' }
+LcsSingletonCodesGlobalCollectionSlot >> populateCollection [
 	self codeSuperclass allSubclassesDo: [ :each | each new ]
 ]

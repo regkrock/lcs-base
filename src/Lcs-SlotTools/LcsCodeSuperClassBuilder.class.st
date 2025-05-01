@@ -4,29 +4,24 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #accessing }
+{ #category : #configuration }
 LcsCodeSuperClassBuilder class >> targetSuperclassName [
 	^ 'LcsCode'
 ]
 
-{ #category : #'gt views' }
-LcsCodeSuperClassBuilder >> addModelClassesTo: aCollection [
-	aCollection addAll: self targetSuperclassName asClass withAllSuperclasses
-]
-
-{ #category : #accessing }
+{ #category : #initialize }
 LcsCodeSuperClassBuilder >> initialize [
 	super initialize.
 	self targetSuperclassName: self class targetSuperclassName
 ]
 
-{ #category : #accessing }
+{ #category : #verification }
 LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]
 
-{ #category : #accessing }
+{ #category : #verification }
 LcsCodeSuperClassBuilder >> verifyUnistall [
 	super verifyUnistall.
 	self assert: self installedClass isNil

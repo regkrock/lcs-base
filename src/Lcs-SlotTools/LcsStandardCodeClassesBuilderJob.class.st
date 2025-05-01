@@ -2,8 +2,7 @@ Class {
 	#name : #LcsStandardCodeClassesBuilderJob,
 	#superclass : #LcsCodeClassesBuilderJob,
 	#instVars : [
-		'defaultInstance',
-		'prtoCodes'
+		'defaultInstance'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -14,7 +13,8 @@ LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
-	self addMemberOfSlotBuilderForTargetClasses
+	self addMemberOfSlotBuilderForTargetClasses.
+	self addJobStep: self codesLoaderBuilder
 ]
 
 { #category : #accessing }
@@ -32,8 +32,10 @@ LcsStandardCodeClassesBuilderJob >> createProtoCodesFromLabels: aCollection [
 	aCollection do: [ :eachLabel | 
 		self protoCodes add: (
 			eachLabel isEmpty 
-				ifTrue: [ LcsProtoCode unknown]
-				ifFalse: [ LcsProtoCode newFromLabel: eachLabel]) ]
+				ifTrue: [ LcsProtoCode unknown ]
+				ifFalse: [ LcsProtoCode newFromLabel: eachLabel]) ].
+	self protoCodes detect: [ :each | each code = 'unknown' ] ifNone: [ 
+		aCollection add: LcsProtoCode unknown ]
 ]
 
 { #category : #accessing }
@@ -46,6 +48,11 @@ LcsStandardCodeClassesBuilderJob >> defaultInstance: aString [
 	defaultInstance := aString
 ]
 
+{ #category : #'as yet unclassified' }
+LcsStandardCodeClassesBuilderJob >> globalCollectionSlotDefinitionStep [
+	^ (self jobSteps stepsWithClass: LcsCodesGlobalSlotDefinitionBuilder) first
+]
+
 { #category : #initialize }
 LcsStandardCodeClassesBuilderJob >> initialize [
 	super initialize.
@@ -55,32 +62,8 @@ LcsStandardCodeClassesBuilderJob >> initialize [
 { #category : #command }
 LcsStandardCodeClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
-	self protoCodes
-		do: [ :each | 
-			self codeClass new
-				code: each code;
-				description: each description;
-				label: (each label);
-				isDefaultInstance: each isDefaultInstance ].
-	self currentSystem currentUnitOfWork applyChanges.
-	self targetGlobalCollection hasUnknownInstance ifFalse: [
-		self codeClass new
-				code: 'unknown';
-				description: 'Unknown';
-				label: '';
-				isDefaultInstance: self targetGlobalCollection hasDefaultInstance not].
 	self currentSystem currentUnitOfWork applyChanges.
 
-]
-
-{ #category : #accessing }
-LcsStandardCodeClassesBuilderJob >> protoCodes [
-	^ prtoCodes
-]
-
-{ #category : #accessing }
-LcsStandardCodeClassesBuilderJob >> protoCodes: aCollection [
-	prtoCodes := aCollection
 ]
 
 { #category : #command }

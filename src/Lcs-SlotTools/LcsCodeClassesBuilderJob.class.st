@@ -2,7 +2,8 @@ Class {
 	#name : #LcsCodeClassesBuilderJob,
 	#superclass : #LcsDomainClassWithGlobalCollectionBuilderJob,
 	#instVars : [
-		'moduleClass'
+		'moduleClass',
+		'protoCodes'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -33,11 +34,22 @@ LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
 
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
-	^ LcsGlobalSlotDefinitionBuilder new
+	^ LcsCodesGlobalSlotDefinitionBuilder new
 		slotClassName: self globalCollectionClassName;
 		slotName: self globalCollectionSlotName;
 		targetClassName: self globalCollectionModuleClass name;
 		targetModuleClass: self globalCollectionModuleClass;
+		loaderClassName: self globalCollectionClassName , 'Loader';
+		yourself
+]
+
+{ #category : #builders }
+LcsCodeClassesBuilderJob >> codesLoaderBuilder [
+	^ LcsCodesLoaderClassBuilder new
+		newClassName: self globalCollectionClassName , 'Loader';
+		codeClassName: self newDomainClassName;
+		targetPackageName: self targetPackageName;
+		protoCodes: self protoCodes;
 		yourself
 ]
 
@@ -61,7 +73,18 @@ LcsCodeClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 { #category : #initialize }
 LcsCodeClassesBuilderJob >> initialize [
 	super initialize.
-	self targetDomainClasses: OrderedCollection new
+	self targetDomainClasses: OrderedCollection new.
+	self protoCodes: OrderedCollection new
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> protoCodes [
+	^ protoCodes
+]
+
+{ #category : #accessing }
+LcsCodeClassesBuilderJob >> protoCodes: aCollection [
+	protoCodes := aCollection
 ]
 
 { #category : #'slot model' }

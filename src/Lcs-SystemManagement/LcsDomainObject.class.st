@@ -132,6 +132,17 @@ LcsDomainObject >> delete [
 	self currentUnitOfWork deleteObject: self
 ]
 
+{ #category : #'gt views' }
+LcsDomainObject >> gtUnitOfWorkFor: aView [
+	<gtView>
+	 self currentUnitOfWork isNil ifTrue: [ ^ aView empty]. 
+	^ aView forward
+		title: 'Unit Of Work';
+		priority: 99;
+		object: [ self currentUnitOfWork ];
+		view: #gtUnitOfWorkFor:
+]
+
 { #category : #accessing }
 LcsDomainObject >> history [
 	^ self slotVarNamed: 'history'

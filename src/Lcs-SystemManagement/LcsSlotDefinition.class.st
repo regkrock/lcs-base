@@ -300,7 +300,7 @@ LcsSlotDefinition >> initialize [
 	self initialValueBlock: self defaultInitialValueBlock
 ]
 
-{ #category : #accessing }
+{ #category : #'object initialization' }
 LcsSlotDefinition >> initializeSlotValueIn: aDomainObject [
 	self slotVarPut: (self initialValueFor: aDomainObject) in: aDomainObject
 ]

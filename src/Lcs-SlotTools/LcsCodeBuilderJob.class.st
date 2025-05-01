@@ -86,6 +86,15 @@ LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 ]
 
 { #category : #'gt views' }
+LcsCodeBuilderJob >> gtExecutionViewFor: aView [
+	<gtView>
+	^ (LcsCodeBuilderJob>>#execute gtSourceFor: aView)
+			title: 'Execution';
+			priority: 15
+
+]
+
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [ 
 	aMondrian initialize: #LcsSlotModelDiagramExamples asClass new domainObjectSlotModel
 ]
