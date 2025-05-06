@@ -6,20 +6,22 @@ Class {
 
 { #category : #tests }
 LcsCountryTest >> testCreation [
-	| country countries |
+	| country countries countriesSize|
+	countries := self currentSystem geographyModule countries.
+	countriesSize := countries collectionSize.
 	self assert: LcsCountry slotModel hasSlotDefinitions.
+
 	country := LcsCountry new.
 	country 
-		countryName: 'Canada';
-		isoCode: 'CA'.
+		formalName: 'Xxxxx';
+		isoCode: 'XX'.
 		
-	self assert: country countryName equals: 'Canada'.
-	self assert: country isoCode equals: 'CA'.
+	self assert: country formalName equals: 'Xxxxx'.
+	self assert: country isoCode equals: 'XX'.
 
 	self currentSystem currentUnitOfWork applyChanges.
 	
-	countries := self currentSystem geographyModule countries.
-	self assert: countries collectionSize equals: 1.
+	self assert: countries collectionSize equals: countriesSize + 1.
 	self assert: (countries includes: country)
 	
 ]

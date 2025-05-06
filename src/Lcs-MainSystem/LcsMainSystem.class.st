@@ -10,6 +10,12 @@ LcsMainSystem class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: LcsSystemConfiguration"
 ]
 
+{ #category : #'as yet unclassified' }
+LcsMainSystem >> loadData [
+	LcsCountryLoader new load.
+	self applyChanges
+]
+
 { #category : #'slot model' }
 LcsMainSystem >> systemDomainClasses [
 	| collection |

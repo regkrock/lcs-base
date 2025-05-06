@@ -438,7 +438,7 @@ LcsBaseDomainObject >> currentSystem [
 
 { #category : #'application environment' }
 LcsBaseDomainObject >> currentUnitOfWork [
-	^ self parent currentUnitOfWork
+	^ self class currentUnitOfWork
 ]
 
 { #category : #'application environment' }

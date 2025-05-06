@@ -43,6 +43,13 @@ LcsBaseUnitOfWork >> addObject: aDomainObject context: aDomainContextObject [
 				yourself)
 ]
 
+{ #category : #api }
+LcsBaseUnitOfWork >> addObject: aDomainObject toCollection: aTargetCollection [
+
+	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self).
+	aDomainObject parentSlot setUpPendingAddOf: aDomainObject in: self toCollection: aTargetCollection
+]
+
 { #category : #private }
 LcsBaseUnitOfWork >> addPendingAddOf: aDomainObject to: aTargetCollection [
 	(self _pendingAddsIn: aTargetCollection) add: aDomainObject

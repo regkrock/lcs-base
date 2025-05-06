@@ -137,8 +137,8 @@ LcsDomainObject >> gtUnitOfWorkFor: aView [
 	<gtView>
 	 self currentUnitOfWork isNil ifTrue: [ ^ aView empty]. 
 	^ aView forward
-		title: 'Unit Of Work';
-		priority: 99;
+		title: 'Unit Of Work (' , self currentSystem class name , ')';
+		priority: 999;
 		object: [ self currentUnitOfWork ];
 		view: #gtUnitOfWorkFor:
 ]

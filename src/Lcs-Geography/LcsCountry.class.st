@@ -3,20 +3,43 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'isoCode',
-		'countryName',
-		'politicalUnitName'
+		'formalName',
+		'subdivisionName',
+		'isoCode3',
+		'commonName',
+		'subdivisions',
+		'isoNumber'
 	],
 	#category : #'Lcs-Geography'
 }
 
 { #category : #'slot definitions' }
-LcsCountry class >> countryNameSlotDefinition [
+LcsCountry class >> commonNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: #'countryName';
+		slotName: #commonName;
 		beRequired;
 		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
 		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsCountry class >> formalNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: #formalName;
+		beRequired;
+		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsCountry class >> isoCode3SlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: #'isoCode3';
+		beRequired;
+		addValidationCondition: [ :string | string size = 3 ] description: 'Code must be 3 characters long';		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -25,7 +48,17 @@ LcsCountry class >> isoCodeSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'isoCode';
 		beRequired;
-		addValidationCondition: [ :string | string size = 2 ] description: 'Code must be at least 2 characters long';		yourself
+		addValidationCondition: [ :string | string size = 2 ] description: 'Code must be 2 characters long';		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsCountry class >> isoNumberSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: #'isoNumber';
+		"beRequired;
+		addValidationCondition: [ :string | string size = 3 ] description: 'Code must be 3 characters long';"
+		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -40,23 +73,43 @@ LcsCountry class >> parentSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsCountry class >> politicalUnitNameSlotDefinition [
+LcsCountry class >> subdivisionNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: #'politicalUnitName';
+		slotName: #subdivisionName;
 		beRequired;
 		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
-{ #category : #accessing }
-LcsCountry >> countryName [
-	^ self slotVarNamed: 'countryName'
+{ #category : #'slot definitions' }
+LcsCountry class >> subdivisionsSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotName: 'subdivisions';
+		addSlotType: LcsCountrySubdivisions;
+		addCollectionMemberType: LcsBaseCountrySubdivision ;
+		yourself
 ]
 
 { #category : #accessing }
-LcsCountry >> countryName: anObject [
-	self slotVarNamed: 'countryName' put: anObject
+LcsCountry >> commonName [
+	^ self slotVarNamed: 'commonName'
+]
+
+{ #category : #accessing }
+LcsCountry >> commonName: anObject [
+	self slotVarNamed: 'commonName' put: anObject
+]
+
+{ #category : #accessing }
+LcsCountry >> formalName [
+	^ self slotVarNamed: 'formalName'
+]
+
+{ #category : #accessing }
+LcsCountry >> formalName: anObject [
+	self slotVarNamed: 'formalName' put: anObject
 ]
 
 { #category : #accessing }
@@ -65,16 +118,46 @@ LcsCountry >> isoCode [
 ]
 
 { #category : #accessing }
+LcsCountry >> isoCode3 [
+	^ self slotVarNamed: 'isoCode3'
+]
+
+{ #category : #accessing }
+LcsCountry >> isoCode3: anObject [
+	self slotVarNamed: 'isoCode3' put: anObject
+]
+
+{ #category : #accessing }
 LcsCountry >> isoCode: anObject [
 	self slotVarNamed: 'isoCode' put: anObject
 ]
 
 { #category : #accessing }
-LcsCountry >> politicalUnitName [
-	^ self slotVarNamed: 'politicalUnitName'
+LcsCountry >> isoNumber [
+	^ self slotVarNamed: 'isoNumber'
 ]
 
 { #category : #accessing }
-LcsCountry >> politicalUnitName: anObject [
-	self slotVarNamed: 'politicalUnitName' put: anObject
+LcsCountry >> isoNumber: anObject [
+	self slotVarNamed: 'isoNumber' put: anObject
+]
+
+{ #category : #accessing }
+LcsCountry >> subdivisionName [
+	^ self slotVarNamed: 'subdivisionName'
+]
+
+{ #category : #accessing }
+LcsCountry >> subdivisionName: anObject [
+	self slotVarNamed: 'subdivisionName' put: anObject
+]
+
+{ #category : #accessing }
+LcsCountry >> subdivisions [
+	^ self slotVarNamed: 'subdivisions'
+]
+
+{ #category : #accessing }
+LcsCountry >> subdivisions: anObject [
+	self slotVarNamed: 'subdivisions' put: anObject
 ]

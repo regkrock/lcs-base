@@ -280,7 +280,8 @@ LcsSystem >> initialize [
 	self makeCurrentSystem.
 	self inititalizeSlotModel.
 	super initialize.
-	self currentUnitOfWork applyChanges
+	self currentUnitOfWork applyChanges.
+	self loadData.
 ]
 
 { #category : #initialize }
@@ -377,6 +378,10 @@ LcsSystem >> isIncludedInSystemDomainClasses: aDomainClass [
 { #category : #testing }
 LcsSystem >> isPrototypeSystem [
 	^ false
+]
+
+{ #category : #initialize }
+LcsSystem >> loadData [
 ]
 
 { #category : #environment }

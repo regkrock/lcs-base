@@ -44,7 +44,8 @@ LtCollection >> gtItemsFor: aView [
 		title: 'Items' translated;
 		priority: 0.5;
 		object: [ self collection ];
-		view: #gtItemsFor:
+		view: #gtItemsFor:;
+		actionUpdateButton
 ]
 
 { #category : #testing }

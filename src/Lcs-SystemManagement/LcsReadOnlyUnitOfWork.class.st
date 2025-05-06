@@ -10,6 +10,11 @@ LcsReadOnlyUnitOfWork >> addObject: aDomainObject [
 ]
 
 { #category : #api }
+LcsReadOnlyUnitOfWork >> addObject: aDomainObject toCollection: aCollection [
+	"do nothing"
+]
+
+{ #category : #api }
 LcsReadOnlyUnitOfWork >> applyChanges [
 	"do nothing"
 ]

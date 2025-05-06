@@ -82,8 +82,7 @@ LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject contextObject: a
 { #category : #'as yet unclassified' }
 LcsGlobalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
 
-	aUnitOfWork addPendingAddOf: aDomainObject to: 
-	self targetCollection 
+	aUnitOfWork addPendingAddOf: aDomainObject to: self targetCollection
 ]
 
 { #category : #'as yet unclassified' }

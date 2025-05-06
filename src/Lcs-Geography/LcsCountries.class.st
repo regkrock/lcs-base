@@ -11,17 +11,9 @@ LcsCountries >> gtItemsFor: aView [
 	^ aView columnedList
 		title: 'Items' translated;
 		priority: 0.5;
-		items: [ self collection ];
-		column: 'Country Name'
-			text: [ :item | item countryName ]
-			width: 200;
-		column: 'Iso Code'
-			text: [ :item | item isoCode ]
-			width: 40;
-		column: 'Political Unit Name'
-			text: [ :item | item politicalUnitName ]
-			width: 100
-		"send: [ :item | (self overviewSend at: item key) onErrorDo: [ '?' ] ];"
-		"actionUpdateButton;
-		updateWhen: WebLinkStatusUpdated in: self announcer"
+		items: [ self collection asOrderedCollection ];
+		column: 'Code' translated text: [ :each | each isoCode ] width: 30;
+		column: 'Name' translated text: [ :each | each commonName ];
+		"view: #gtItemsFor:;"
+		actionUpdateButton
 ]

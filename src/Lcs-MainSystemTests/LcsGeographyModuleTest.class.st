@@ -13,6 +13,7 @@ LcsGeographyModuleTest >> testCreation [
 	self currentSystem currentUnitOfWork applyChanges.
 	self assert: (module countries isKindOf: LcsCountries).
 	self assert: (module countries collection isKindOf: LcsSmalltalkConfiguration identitySetClass).
-	self assert: module countries hasNoElements.
+	self assert: module countries collectionSize equals: LcsCountryLoader new collectionSize.
+	module countries collection do: [ :each | self assert: each parent = module countries].
 	
 ]
