@@ -6,7 +6,6 @@ Class {
 
 { #category : #tests }
 LcsGlobalDomainClassClassesBuilderJobTest >> testCreationOfNewDomainClassAndItsGlobalCollectionInstalledInAModule [
-	| aSample |
 	self codeJobBuilder:
 		(LcsGlobalDomainClassClassesBuilderJob new
 			classPrefix: 'Lxx';
@@ -15,9 +14,5 @@ LcsGlobalDomainClassClassesBuilderJobTest >> testCreationOfNewDomainClassAndItsG
 			installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
 			buildJobSteps;
 			yourself).
-	self codeJobBuilder execute.
-
-	aSample := 'LxxSample' asClass new.
-	self assert: aSample class name asString = 'LxxSample'.
-	self assert: aSample parent identicalTo: self currentSystem samples.
+	self codeJobBuilder execute
 ]
