@@ -17,6 +17,16 @@ LcsSingletonCodeClassesBuilderJobTest >> builder: anObject [
 	builder := anObject
 ]
 
+{ #category : #accessing }
+LcsSingletonCodeClassesBuilderJobTest >> codeJobBuilder [
+	^ codeJobBuilder
+]
+
+{ #category : #accessing }
+LcsSingletonCodeClassesBuilderJobTest >> codeJobBuilder: anObject [
+	codeJobBuilder := anObject
+]
+
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> jobBuilder [
 	^ LcsSingletonCodeClassesBuilderJob new
@@ -193,6 +203,29 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	
 	self assert: person gender identicalTo: self currentSystem genders defaultInstance
 
+]
+
+{ #category : #tests }
+LcsSingletonCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
+	| person |
+	self codeJobBuilder:
+		(LcsSingletonCodeClassesBuilderJob new
+			classPrefix: 'Lxx';
+			createForRootName: 'Gender';
+			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
+			installGlobalCollectionSlotInModuleClass: LxxPersonsModule;
+			addCodeSubclassWithRootNamed: 'Male';
+			addCodeSubclassWithRootNamed: 'Female';
+			addCodeSubclassWithRootNamed: 'UnknownGender'
+				with: [ :classBuilder | classBuilder beDefaultInstance ];
+			targetModuleClass: LxxPrototypeSystem;
+			installMemberSlotInDomainClass: LxxBasePerson;
+			buildJobSteps;
+			yourself).
+	self codeJobBuilder execute.
+
+	person := LxxPerson new.
+	self assert: person gender identicalTo: (self currentSystem moduleNamed: 'Persons Module') genders defaultInstance
 ]
 
 { #category : #tests }

@@ -4,6 +4,16 @@ Class {
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJobTest >> codeJobBuilder [
+	^ codeJobBuilder
+]
+
+{ #category : #accessing }
+LcsStandardCodeClassesBuilderJobTest >> codeJobBuilder: anObject [
+	codeJobBuilder := anObject
+]
+
 { #category : #tests }
 LcsStandardCodeClassesBuilderJobTest >> jobBuilder [
 	^ LcsStandardCodeClassesBuilderJob new
@@ -128,4 +138,24 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 	builder populateSlotModel.
 	builder verifyPopulateSlotModel.
 
+]
+
+{ #category : #tests }
+LcsStandardCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
+	| person |
+	self codeJobBuilder:
+		(LcsStandardCodeClassesBuilderJob new
+			classPrefix: 'Lxx';
+			createForRootName: 'Title';
+			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
+			installGlobalCollectionSlotInModuleClass: LxxPersonsModule;
+			createProtoCodesFromLabels: #('Mr' 'Ms' '');
+			targetModuleClass: LxxPrototypeSystem;
+			installMemberSlotInDomainClass: LxxBasePerson;
+			buildJobSteps;
+			yourself).
+	self codeJobBuilder execute.
+
+	person := LxxPerson new.
+	self assert: person title identicalTo: (self currentSystem moduleNamed: 'Persons Module') titles defaultInstance
 ]
