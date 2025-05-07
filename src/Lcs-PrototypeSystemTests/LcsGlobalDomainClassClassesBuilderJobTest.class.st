@@ -6,18 +6,18 @@ Class {
 
 { #category : #tests }
 LcsGlobalDomainClassClassesBuilderJobTest >> testCreationOfNewDomainClassAndItsGlobalCollectionInstalledInAModule [
-	| country |
+	| aSample |
 	self codeJobBuilder:
 		(LcsGlobalDomainClassClassesBuilderJob new
 			classPrefix: 'Lxx';
-			createForRootName: 'Country';
+			createForRootName: 'Sample';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
 			installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
 			buildJobSteps;
 			yourself).
 	self codeJobBuilder execute.
 
-	country := 'LxxCountry' asClass new.
-	self assert: country class name asString = 'LxxCountry'.
-	self assert: country parent identicalTo: self currentSystem countries.
+	aSample := 'LxxSample' asClass new.
+	self assert: aSample class name asString = 'LxxSample'.
+	self assert: aSample parent identicalTo: self currentSystem samples.
 ]
