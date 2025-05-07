@@ -1,0 +1,110 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-06T13:12:00.008128-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-06T13:15:37.75785-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "21eXc9zwDQC9vKiTA0fRmA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Example: Country has subdivisions. A country has multiple subdivision and each subdivision (ex: province).\n\nThe folloiwng code snippet assumes:\n1) Country class already exists.\n2) Subdivision class does not exist.\n3) Country will have a collection added to it called: LxxCountrySubdivision"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-06T13:12:24.963683-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-06T13:19:33.663368-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "5B4UddzwDQC9xL7MA0fRmA=="
+				},
+				"code" : "\"Problem is the LcsLegalEntitiesModule is not initialized\"\r\rbuilder := \r\tLcsStandardCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Subdivision';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\t\"createProtoCodesFromLabels: #('Mr' 'Ms' '');\"\r\t\tinstallLcalCollectionSlot: 'subdivisions' inClass: LxxCountry;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-05-06T13:11:59.963437-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-05-06T13:11:59.963437-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "One To Many Local Relationship (vs Global Collection)"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "8da89673-dcf0-0d00-bdbb-c3ad0347d198"
+	}
+}

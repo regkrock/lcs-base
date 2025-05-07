@@ -32,7 +32,7 @@ LxxPrototypeSystem class >> organizationSlotDefinition [
 	<slotDefinition>
 	^ LcsDomainClassSlot new
 		slotName: 'organization';
-		addSlotType: LxxPrototypeOrganization;
+		addSlotType: LxxOrganization;
 		yourself
 ]
 
@@ -41,8 +41,8 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
 		slotName: 'persons';
-		addSlotType: LxxPrototypePersons;
-		addCollectionMemberType: LxxPrototypePerson;
+		addSlotType: LxxPersons;
+		addCollectionMemberType: LxxPerson;
 		yourself
 ]
 
@@ -93,9 +93,9 @@ LxxPrototypeSystem >> systemDomainClasses [
 		add: #LxxSubStateMachine asClass."
 	^ collection
 		add: LxxPrototype2Submodule;
-		add: LxxPrototypeOrganization;
-		add: LxxPrototypePerson;
-		add: LxxPrototypePersons;
+		add: LxxOrganization;
+		add: LxxPerson;
+		add: LxxPersons;
 		add: LxxPrototypeSystemConfiguration;
 		addAll: LxxPrototypeSystem allSubmoduleClasses;
 		yourself

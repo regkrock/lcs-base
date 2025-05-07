@@ -43,7 +43,7 @@ LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModuleIsOwnedByItself
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testSubmodulesWhereNoSubmoduleExists [
-	subject := LcsAllSubmodulesVisitor newOn: LxxPrototypePersonsModule.
+	subject := LcsAllSubmodulesVisitor newOn: LxxPersonsModule.
 	self assert: subject allSubmoduleClasses isEmpty
 ]
 

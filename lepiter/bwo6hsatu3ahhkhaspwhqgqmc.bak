@@ -134,7 +134,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-04-21T15:45:20.793952-04:00"
+						"dateAndTimeString" : "2025-04-21T17:38:31.179484-04:00"
 					}
 				},
 				"uid" : {
@@ -144,7 +144,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Add Person"
+				"string" : "Add Person to the system"
 			},
 			{
 				"__type" : "pharoSnippet",

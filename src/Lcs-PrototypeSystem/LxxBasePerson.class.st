@@ -1,5 +1,5 @@
 Class {
-	#name : #LxxBasePrototypePerson,
+	#name : #LxxBasePerson,
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'dateOfBirth',
@@ -11,13 +11,13 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LxxBasePrototypePerson class >> dateOfBirthSlotDefinition [
+LxxBasePerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
 	^ LcsDateOfBirthSlot new
 ]
 
 { #category : #'slot definition' }
-LxxBasePrototypePerson class >> firstNameSlotDefinition [
+LxxBasePerson class >> firstNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'firstName';
@@ -25,7 +25,7 @@ LxxBasePrototypePerson class >> firstNameSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LxxBasePrototypePerson class >> lastNameSlotDefinition [
+LxxBasePerson class >> lastNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'lastName';
@@ -33,7 +33,7 @@ LxxBasePrototypePerson class >> lastNameSlotDefinition [
 ]
 
 { #category : #'slot definition' }
-LxxBasePrototypePerson class >> middleNameSlotDefinition [
+LxxBasePerson class >> middleNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'middleName';
@@ -41,41 +41,41 @@ LxxBasePrototypePerson class >> middleNameSlotDefinition [
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> dateOfBirth [
+LxxBasePerson >> dateOfBirth [
 	^ self slotVarNamed: 'dateOfBirth'
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> dateOfBirth: anObject [
+LxxBasePerson >> dateOfBirth: anObject [
 	self slotVarNamed: 'dateOfBirth' put: anObject
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> firstName [
+LxxBasePerson >> firstName [
 	^ self slotVarNamed: 'firstName'
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> firstName: anObject [
+LxxBasePerson >> firstName: anObject [
 	self slotVarNamed: 'firstName' to: anObject
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> lastName [
+LxxBasePerson >> lastName [
 	^ self slotVarNamed: 'lastName'
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> lastName: anObject [
+LxxBasePerson >> lastName: anObject [
 	self slotVarNamed: 'lastName' put: anObject
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> middleName [
+LxxBasePerson >> middleName [
 	^ self slotVarNamed: 'middleName'
 ]
 
 { #category : #accessing }
-LxxBasePrototypePerson >> middleName: anObject [
+LxxBasePerson >> middleName: anObject [
 	self slotVarNamed: 'middleName' put: anObject
 ]

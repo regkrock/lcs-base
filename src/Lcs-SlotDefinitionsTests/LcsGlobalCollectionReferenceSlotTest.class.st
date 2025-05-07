@@ -10,7 +10,7 @@ LcsGlobalCollectionReferenceSlotTest >> testAddingNewDomainObjectToDomainCollect
 	 persons collection"
 	 
 	| domainObject |
-	domainObject := LxxPrototypePerson new.
+	domainObject := LxxPerson new.
 	self assert: (self currentSystem persons pendingAdds includes: domainObject).
 	self deny: (self currentSystem persons includes: domainObject).
 	
@@ -29,12 +29,12 @@ LcsGlobalCollectionReferenceSlotTest >> testSlotDefinition [
 	self subject: (LcsGlobalCollectionReferenceSlot new
 						slotName: 'parent';
 						collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;
-						addSlotType: LxxPrototypePersons;
+						addSlotType: LxxPersons;
 						collectionSlotName: 'persons';
 						yourself).
 	self assert: self subject slotName equals: 'parent'.
 	self assert: self subject collectionSlotModuleName equals: LxxPrototypeSystem defaultModuleName.
-	self assert: (self subject slotTypes includes: LxxPrototypePersons).
+	self assert: (self subject slotTypes includes: LxxPersons).
 	self assert: self subject slotTypes size equals: 1.
 	self assert: self subject collectionSlotName equals: 'persons'
 ]

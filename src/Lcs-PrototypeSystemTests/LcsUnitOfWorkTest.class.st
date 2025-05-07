@@ -62,7 +62,7 @@ LcsUnitOfWorkTest >> testHistoryCreationWithNewDomainObject [
 { #category : #tests }
 LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
 	| person slotChangeHistory |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
 	"self assert: person history."
@@ -90,7 +90,7 @@ LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
 { #category : #tests }
 LcsUnitOfWorkTest >> testHistoryOfSlotChange [
 	| person slotChangeHistory |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
 	"self assert: person history."
@@ -118,7 +118,7 @@ LcsUnitOfWorkTest >> testHistoryOfSlotChange [
 { #category : #tests }
 LcsUnitOfWorkTest >> testLastUpdatedDate [
 	| person creationTimestamp |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
 	

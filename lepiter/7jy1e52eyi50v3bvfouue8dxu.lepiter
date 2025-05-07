@@ -29,14 +29,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-27T14:18:39.229653-05:00"
+						"dateAndTimeString" : "2025-05-07T08:40:30.039595-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "kOBgmBbpDQCcEJX4A8uYfw=="
 				},
-				"code" : "system := LcsApplicationEnvironment currentSystem.\rpersonsModule := system moduleNamed: LxxPrototypePersonsModule "
+				"code" : "system := LcsApplicationEnvironment currentSystem.\rpersonsModule := system moduleNamed: LxxPersonsModule "
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -63,14 +63,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-27T14:18:00.374625-05:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.85737-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "F7ufnhbpDQCddbO7A8uYfw=="
 				},
-				"code" : "person := LxxPrototypePerson new .\rperson lastName: 'Schmidt'.\rself assert: person lastName = 'Schmidt'"
+				"code" : "person := LxxPerson new .\rperson lastName: 'Schmidt'.\rself assert: person lastName = 'Schmidt'"
 			},
 			{
 				"__type" : "pharoSnippet",

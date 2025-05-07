@@ -242,7 +242,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-03-03T22:58:04.42978-05:00"
+						"dateAndTimeString" : "2025-05-07T08:39:57.995033-04:00"
 					}
 				},
 				"uid" : {
@@ -252,7 +252,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtMethod:LxxPrototypeOrganization class>>chiefExecutiveOfficerSlotDefinition}}"
+				"string" : "{{gtMethod:LxxOrganization class>>chiefExecutiveOfficerSlotDefinition}}"
 			}
 		]
 	},

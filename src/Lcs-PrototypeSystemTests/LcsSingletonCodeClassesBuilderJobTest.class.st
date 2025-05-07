@@ -32,17 +32,17 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
 			classPrefix: 'Lxx';
 			createForRootName: 'Gender';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
-			installGlobalCollectionSlotInModuleClass: LxxPrototypePersonsModule;
+			installGlobalCollectionSlotInModuleClass: LxxPersonsModule;
 			addCodeSubclassWithRootNamed: 'Male';
 			addCodeSubclassWithRootNamed: 'Female';
 			addCodeSubclassWithRootNamed: 'UnknownGender'
 				with: [ :classBuilder | classBuilder beDefaultInstance ];
 			targetModuleClass: LxxPrototypeSystem;
-			installMemberSlotInDomainClass: LxxBasePrototypePerson;
+			installMemberSlotInDomainClass: LxxBasePerson;
 			buildJobSteps;
 			yourself).
 	self codeJobBuilder execute.
 
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	self assert: person gender identicalTo: (self currentSystem moduleNamed: 'Persons Module') genders defaultInstance
 ]

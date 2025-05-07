@@ -177,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T21:58:14.65562-04:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.87229-04:00"
 					}
 				},
 				"uid" : {
@@ -187,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "1. Create the new domain class. (Ex: {{gtClass:name=LxxPrototypePerson}} )"
+				"string" : "1. Create the new domain class. (Ex: {{gtClass:name=LxxPerson}} )"
 			},
 			{
 				"__type" : "textSnippet",
@@ -214,7 +214,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T19:28:04.03003-04:00"
+						"dateAndTimeString" : "2025-05-07T08:40:12.190145-04:00"
 					}
 				},
 				"uid" : {
@@ -224,7 +224,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "2. Create a new domain collection class. The naming convention is that collection class name is the english plural of the new domain class. (Ex: {{gtClass:name=LxxPrototypePersons}} )"
+				"string" : "2. Create a new domain collection class. The naming convention is that collection class name is the english plural of the new domain class. (Ex: {{gtClass:name=LxxPersons}} )"
 			},
 			{
 				"__type" : "textSnippet",
@@ -256,7 +256,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-14T19:26:08.232539-04:00"
+									"dateAndTimeString" : "2025-05-07T08:39:25.797453-04:00"
 								}
 							},
 							"uid" : {
@@ -266,7 +266,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtMethod:name=LxxPrototypePerson class>>parentSlotDefinition}}"
+							"string" : "{{gtMethod:name=LxxPerson class>>parentSlotDefinition}}"
 						}
 					]
 				},
@@ -480,7 +480,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-14T19:34:26.984176-04:00"
+									"dateAndTimeString" : "2025-05-07T08:40:29.889014-04:00"
 								}
 							},
 							"uid" : {
@@ -490,7 +490,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtMethod:name=LxxPrototypePersonsModule class>>personsSlotDefinition}}"
+							"string" : "{{gtMethod:name=LxxPersonsModule class>>personsSlotDefinition}}"
 						}
 					]
 				},
@@ -560,7 +560,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-14T21:52:12.700092-04:00"
+												"dateAndTimeString" : "2025-05-07T08:40:29.990716-04:00"
 											}
 										},
 										"uid" : {
@@ -570,7 +570,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtMethod:LxxPrototypePersonsModule>>persons}}"
+										"string" : "{{gtMethod:LxxPersonsModule>>persons}}"
 									}
 								]
 							},
@@ -635,7 +635,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-14T21:52:56.532058-04:00"
+												"dateAndTimeString" : "2025-05-07T08:40:30.012938-04:00"
 											}
 										},
 										"uid" : {
@@ -645,7 +645,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtMethod:LxxPrototypePersonsModule>>persons:}}"
+										"string" : "{{gtMethod:LxxPersonsModule>>persons:}}"
 									}
 								]
 							},
@@ -705,7 +705,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-14T22:07:00.802481-04:00"
+									"dateAndTimeString" : "2025-05-07T08:40:29.912991-04:00"
 								}
 							},
 							"uid" : {
@@ -715,7 +715,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "6.3 add **slotName** instance variable to the class (ex: 'persons') {{gtClass:LxxPrototypePersonsModule}}"
+							"string" : "6.3 add **slotName** instance variable to the class (ex: 'persons') {{gtClass:LxxPersonsModule}}"
 						}
 					]
 				},

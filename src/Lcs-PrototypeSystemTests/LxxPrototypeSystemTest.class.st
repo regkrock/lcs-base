@@ -73,10 +73,10 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
 
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
-	self assert: self currentSystem persons class identicalTo: LxxPrototypePersons.
+	self assert: self currentSystem persons class identicalTo: LxxPersons.
 	self assert: self currentSystem persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 		
-	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
+	self assert: LxxPerson slotModel hasSlotDefinitions.
 	self assert: self currentSystem configuration class name equals: #LxxPrototypeSystemConfiguration.
 
 	self assert: LcsBaseDomainObject isSlotModelReleased not.
@@ -105,10 +105,10 @@ LxxPrototypeSystemTest >> tearDown [
 LxxPrototypeSystemTest >> testCreationNew [
 	self newPrototypeSystem.
 	self assert: self currentSystem identicalTo: self subject.
-	self assert: (self subject moduleNamed: LxxPrototypePersonsModule defaultModuleName) class name equals: #LxxPrototypePersonsModule.
+	self assert: (self subject moduleNamed: LxxPersonsModule defaultModuleName) class name equals: #LxxPersonsModule.
 	self assert: (self subject moduleNamed: LxxPrototype2Module defaultModuleName) class equals: LxxPrototype2Module.
 	self assert: self subject numberOfChildModules equals: 3. 
-	self assert: (self subject moduleNamed: LxxPrototypePersonsModule defaultModuleName) numberOfChildModules equals: 0.
+	self assert: (self subject moduleNamed: LxxPersonsModule defaultModuleName) numberOfChildModules equals: 0.
 	self assert: (self subject moduleNamed: LxxPrototype2Module defaultModuleName) numberOfChildModules equals: 1.
 	self assert: (self subject moduleNamed: LxxPrototype2Submodule defaultModuleName) numberOfChildModules equals: 0.
 	"self assert:system hasValidConfiguration. "
@@ -119,10 +119,10 @@ LxxPrototypeSystemTest >> testCreationOfNewSystem [
 	self newPrototypeSystem.
 	self assert: self currentSystem class identicalTo: LxxPrototypeSystem.
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
-	self assert: self currentSystem persons class identicalTo: LxxPrototypePersons.
+	self assert: self currentSystem persons class identicalTo: LxxPersons.
 	self assert: self currentSystem persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
 	
-	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
+	self assert: LxxPerson slotModel hasSlotDefinitions.
 	self assert: self currentSystem configuration class equals: LxxPrototypeSystemConfiguration
 ]
 
@@ -139,10 +139,10 @@ LxxPrototypeSystemTest >> testCreationWithPrototypeSystem [
 
 { #category : #tests }
 LxxPrototypeSystemTest >> testInstallingFirstNameSlotInPerson [
-	self deny: (LxxPrototypePerson instVarNames includes: 'firstName').
-	self deny: (LxxPrototypePerson respondsTo: #firstName).
-	self deny: (LxxPrototypePerson respondsTo: #firstName:).
-	self deny: (LxxPrototypePerson class respondsTo: #firstNameSlotDefinition).
+	self deny: (LxxPerson instVarNames includes: 'firstName').
+	self deny: (LxxPerson respondsTo: #firstName).
+	self deny: (LxxPerson respondsTo: #firstName:).
+	self deny: (LxxPerson class respondsTo: #firstNameSlotDefinition).
 ]
 
 { #category : #tests }
@@ -161,7 +161,7 @@ LxxPrototypeSystemTest >> testPrototypeSystemCreation [
 		assert: self subject persons collection class
 		identicalTo: LcsSmalltalkConfiguration identitySetClass.
 
-	self assert: LxxPrototypePerson slotModel hasSlotDefinitions.
+	self assert: LxxPerson slotModel hasSlotDefinitions.
 	self assert: self subject configuration class equals: LxxPrototypeSystemConfiguration.
 	self assert: self subject hasSystemSlotModels.
 

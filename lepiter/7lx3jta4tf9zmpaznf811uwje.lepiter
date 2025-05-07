@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-27T09:17:17.122849-05:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.730862-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "4VfTd8HSDQCNAS+8CeOFgA=="
 				},
-				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Gender';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\taddCodeSubclassWithRootNamed: 'Male';\r\t\taddCodeSubclassWithRootNamed: 'Female';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\tbuildJobSteps;\r\t\tyourself"
+				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Gender';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\taddCodeSubclassWithRootNamed: 'Male';\r\t\taddCodeSubclassWithRootNamed: 'Female';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\tinstallMemberSlotInDomainClass: LxxPerson;\r\t\tbuildJobSteps;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",
@@ -353,14 +353,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:34:56.533831-04:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.930148-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ON1NGevSDQCdhWRqBZZkmw=="
 				},
-				"code" : " LxxPrototypePerson removeDomainSlotNamed: 'genders'"
+				"code" : " LxxPerson removeDomainSlotNamed: 'genders'"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -387,14 +387,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:34:41.820268-04:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.839814-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "nADwG+vSDQCdjn1TBZZkmw=="
 				},
-				"code" : "LxxPrototypePerson removeDomainSlotNamed: 'gender'"
+				"code" : "LxxPerson removeDomainSlotNamed: 'gender'"
 			},
 			{
 				"__type" : "pharoSnippet",

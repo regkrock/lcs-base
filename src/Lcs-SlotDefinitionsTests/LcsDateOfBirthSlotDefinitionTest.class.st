@@ -12,7 +12,7 @@ LcsDateOfBirthSlotDefinitionTest >> testChangedSlotInDomainObject [
 	firstChangedDateOfBirth := Date newDay: 1 month: 1 year: 2000.
 	secondChangedDateOfBirth := Date newDay: 1 month: 1 year: 2010.
 
-	domainObject := LxxPrototypePerson new.
+	domainObject := LxxPerson new.
 	"Test initial date of birth when new person is created"
 	self assert: domainObject dateOfBirth equals: initialDateOfBirth.
 	self assert: (domainObject getPersistedValueOf: 'dateOfBirth') = initialDateOfBirth.

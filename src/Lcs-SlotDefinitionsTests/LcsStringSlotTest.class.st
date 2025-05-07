@@ -6,7 +6,7 @@ Class {
 
 { #category : #tests }
 LcsStringSlotTest >> testInstallation [
-	subject := LxxPrototypePerson slotModel slotDefinitionNamed: 'lastName'.
+	subject := LxxPerson slotModel slotDefinitionNamed: 'lastName'.
 	self assert: subject slotName equals: 'lastName'.
 	self assert: subject class == LcsStringSlot
 ]
@@ -14,14 +14,14 @@ LcsStringSlotTest >> testInstallation [
 { #category : #'as yet unclassified' }
 LcsStringSlotTest >> testSlotGetter [
 	| person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	self assert: person lastName isEmpty.
 ]
 
 { #category : #'as yet unclassified' }
 LcsStringSlotTest >> testSlotSetter [
 	| person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	self assert: person lastName isEmpty.
 	person lastName: 'Schmidt'.
 	self assert: person isInAddingState.

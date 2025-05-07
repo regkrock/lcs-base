@@ -1543,6 +1543,43 @@
 														"__type" : "textStyle"
 													},
 													"string" : "[[Example: Generate LcsGender classes]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-05-06T13:11:15.877218-04:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-05-06T13:11:57.194359-04:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "+fH1cNzwDQC8fH3gA0fRmA=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[One To Many Local Relationship (vs Global Collection)]]"
 												}
 											]
 										},

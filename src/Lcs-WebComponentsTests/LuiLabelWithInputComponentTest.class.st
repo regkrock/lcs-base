@@ -22,10 +22,10 @@ LuiLabelWithInputComponentTest >> setupSunitSystem [
 { #category : #'as yet unclassified' }
 LuiLabelWithInputComponentTest >> testAddingSlotModel [
 	| component person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
 	person lastName: 'Smith'.
-	component := LuiLabelWithInputComponent onSlot: LxxPrototypePerson lastNameSlotDefinition.
+	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
 	component model: person.
 	self assert: component valueAccessor slotName equals: 'lastName'.
 	self assert: component labelComponent labelString equals: 'Last Name'.
@@ -36,9 +36,9 @@ LuiLabelWithInputComponentTest >> testAddingSlotModel [
 { #category : #'as yet unclassified' }
 LuiLabelWithInputComponentTest >> testAddingSlotModelWithUndefinedLastName [
 	| component person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
-	component := LuiLabelWithInputComponent onSlot: LxxPrototypePerson lastNameSlotDefinition.
+	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
 	component model: person.
 	self assert: component valueAccessor slotName equals: 'lastName'.
 	self assert: component labelComponent labelString equals: 'Last Name'.
@@ -58,10 +58,10 @@ LuiLabelWithInputComponentTest >> testCreation [
 { #category : #'as yet unclassified' }
 LuiLabelWithInputComponentTest >> testRendering [
 	| component person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
 	person lastName: 'Smith'.
-	component := LuiLabelWithInputComponent onSlot: LxxPrototypePerson lastNameSlotDefinition.
+	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
 	component model: person.
 
 	self

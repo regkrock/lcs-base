@@ -22,10 +22,10 @@ LuiLabelWithDatePickerComponentTest >> setupSunitSystem [
 { #category : #'as yet unclassified' }
 LuiLabelWithDatePickerComponentTest >> testAddingSlotModel [
 	| component person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
 	person lastName: 'Smith'.
-	component := LuiLabelWithInputComponent onSlot: LxxPrototypePerson dateOfBirthSlotDefinition.
+	component := LuiLabelWithInputComponent onSlot: LxxPerson dateOfBirthSlotDefinition.
 	component model: person.
 	self assert: component valueAccessor slotName equals: 'dateOfBirth'.
 	self assert: component labelComponent labelString equals: 'Date of Birth'.
@@ -36,9 +36,9 @@ LuiLabelWithDatePickerComponentTest >> testAddingSlotModel [
 { #category : #'as yet unclassified' }
 LuiLabelWithDatePickerComponentTest >> testAddingSlotModelWithUndefinedDateOfBirth [
 	| component person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	"person dateOfBirth: (Date newDay: 1 month: 1 year: 1870)."
-	component := LuiLabelWithInputComponent onSlot: LxxPrototypePerson dateOfBirthSlotDefinition.
+	component := LuiLabelWithInputComponent onSlot: LxxPerson dateOfBirthSlotDefinition.
 	component model: person.
 	self assert: component valueAccessor slotName equals: 'dateOfBirth'.
 	self assert: component labelComponent labelString equals: 'Date of Birth'.
@@ -58,10 +58,10 @@ LuiLabelWithDatePickerComponentTest >> testCreation [
 { #category : #'as yet unclassified' }
 LuiLabelWithDatePickerComponentTest >> testRendering [
 	| component person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
 	person lastName: 'Smith'.
-	component := LuiLabelWithInputComponent onSlot: LxxPrototypePerson dateOfBirthSlotDefinition.
+	component := LuiLabelWithInputComponent onSlot: LxxPerson dateOfBirthSlotDefinition.
 	component model: person.
 	self
 		assert: [ :html | html render: component ]

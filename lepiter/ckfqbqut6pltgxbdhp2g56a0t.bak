@@ -211,14 +211,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:29:42.95346-04:00"
+						"dateAndTimeString" : "2025-01-18T07:41:31.047784-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "5Tb7KnXWDQCzM+VnC5BI1A=="
 				},
-				"code" : "jobBuilder := LcsDomainClassClassesBuilderJob new\r\t\t\t\tclassPrefix: 'Lxx';\r\t\t\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\t\t\tcreateForRootName: 'Country';\r\t\t\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\t\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\t\t\tbuildJobSteps."
+				"code" : "jobBuilder := LcsGlobalDomainClassClassesBuilderJob new\r\t\t\t\tclassPrefix: 'Lxx';\r\t\t\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\t\t\tcreateForRootName: 'Country';\r\t\t\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\t\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\t\t\tbuildJobSteps."
 			},
 			{
 				"__type" : "textSnippet",

@@ -1,16 +1,16 @@
 Class {
-	#name : #LxxPrototypePerson,
-	#superclass : #LxxBasePrototypePerson,
+	#name : #LxxPerson,
+	#superclass : #LxxBasePerson,
 	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #'slot definitions' }
-LxxPrototypePerson class >> parentSlotDefinition [
+LxxPerson class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;
-		addSlotType: LxxPrototypePersons;
+		addSlotType: LxxPersons;
 		collectionSlotName: 'persons';
 		yourself
 ]

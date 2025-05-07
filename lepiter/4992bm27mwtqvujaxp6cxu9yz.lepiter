@@ -105,14 +105,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-20T14:40:43.142303-05:00"
+									"dateAndTimeString" : "2025-05-07T08:39:25.822173-04:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "8jyPBqjiDQC+qIYrAd/nRw=="
 							},
-							"code" : "builder := LcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateForRootName: 'GenderExample';\r\t\taddCodeSubclassWithRootNamed: 'MaleExample';\r\t\taddCodeSubclassWithRootNamed: 'FemaleExample';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGenderExample'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\tbuildJobSteps;\r\t\tyourself."
+							"code" : "builder := LcsSingletonCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateForRootName: 'GenderExample';\r\t\taddCodeSubclassWithRootNamed: 'MaleExample';\r\t\taddCodeSubclassWithRootNamed: 'FemaleExample';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGenderExample'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\tinstallMemberSlotInDomainClass: LxxPerson;\r\t\tbuildJobSteps;\r\t\tyourself."
 						}
 					]
 				},
@@ -627,14 +627,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-11-08T16:04:49.534112-05:00"
+									"dateAndTimeString" : "2025-05-07T08:39:25.77907-04:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "ANr71c7iDQCWMYJWAd/nRw=="
 							},
-							"code" : "LxxPrototypePerson new"
+							"code" : "LxxPerson new"
 						}
 					]
 				},

@@ -1,5 +1,5 @@
 Class {
-	#name : #LxxPrototypePersonsModule,
+	#name : #LxxPersonsModule,
 	#superclass : #LcsModule,
 	#instVars : [
 		'persons'
@@ -8,31 +8,31 @@ Class {
 }
 
 { #category : #configuration }
-LxxPrototypePersonsModule class >> defaultModuleName [
+LxxPersonsModule class >> defaultModuleName [
 	^ 'Persons Module'
 ]
 
 { #category : #configuration }
-LxxPrototypePersonsModule class >> owningModules [
+LxxPersonsModule class >> owningModules [
 	<owningModule: 'LxxPrototypeSystem'>
 ]
 
 { #category : #'slot definitions' }
-LxxPrototypePersonsModule class >> personsSlotDefinition [
+LxxPersonsModule class >> personsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
-		addSlotType: LxxPrototypePersons;
-		addCollectionMemberType: LxxPrototypePerson;
+		addSlotType: LxxPersons;
+		addCollectionMemberType: LxxPerson;
 		yourself
 ]
 
 { #category : #accessing }
-LxxPrototypePersonsModule >> persons [
+LxxPersonsModule >> persons [
 	^ self slotVarNamed: 'persons'
 ]
 
 { #category : #accessing }
-LxxPrototypePersonsModule >> persons: aCollection [
+LxxPersonsModule >> persons: aCollection [
 	^ self slotVarNamed: 'persons' put: aCollection
 ]

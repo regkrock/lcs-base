@@ -32,14 +32,14 @@ LcsStandardCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
 			classPrefix: 'Lxx';
 			createForRootName: 'Title';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
-			installGlobalCollectionSlotInModuleClass: LxxPrototypePersonsModule;
+			installGlobalCollectionSlotInModuleClass: LxxPersonsModule;
 			createProtoCodesFromLabels: #('Mr' 'Ms' '');
 			targetModuleClass: LxxPrototypeSystem;
-			installMemberSlotInDomainClass: LxxBasePrototypePerson;
+			installMemberSlotInDomainClass: LxxBasePerson;
 			buildJobSteps;
 			yourself).
 	self codeJobBuilder execute.
 
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	self assert: person title identicalTo: (self currentSystem moduleNamed: 'Persons Module') titles defaultInstance
 ]

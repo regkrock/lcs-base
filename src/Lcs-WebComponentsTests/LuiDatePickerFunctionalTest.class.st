@@ -12,7 +12,7 @@ LuiDatePickerFunctionalTest >> initialize [
 	| item person button label |
 	super initialize.
 	self switchToPrototypeSystem.
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 2 month: 8 year: 1955).
 	person lastName: 'Freeman'.
 	self componentName: 'root'.

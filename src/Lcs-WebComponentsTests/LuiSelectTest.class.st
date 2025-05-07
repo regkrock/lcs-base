@@ -41,7 +41,7 @@ LuiSelectTest >> testPopulatedSelect [
 { #category : #tests }
 LuiSelectTest >> testRendering [
 	| component person |
-	person := LxxPrototypePerson new.
+	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
 	person lastName: 'Smith'.
 	component := (LuiSelect named: 'select' on: nil)

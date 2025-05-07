@@ -177,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T21:58:14.65562-04:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.87229-04:00"
 					}
 				},
 				"uid" : {
@@ -187,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "1. Create the new domain class. (Ex: {{gtClass:name=LxxPrototypePerson}} )"
+				"string" : "1. Create the new domain class. (Ex: {{gtClass:name=LxxPerson}} )"
 			},
 			{
 				"__type" : "textSnippet",
@@ -256,7 +256,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-14T19:26:08.232539-04:00"
+									"dateAndTimeString" : "2025-05-07T08:39:25.797453-04:00"
 								}
 							},
 							"uid" : {
@@ -266,7 +266,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtMethod:name=LxxPrototypePerson class>>parentSlotDefinition}}"
+							"string" : "{{gtMethod:name=LxxPerson class>>parentSlotDefinition}}"
 						}
 					]
 				},
@@ -920,12 +920,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-05-22T11:06:45.964086-04:00"
+			"dateAndTimeString" : "2024-06-04T13:01:17.863471-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Add new Domain Object which is stored in Global collection"
+		"title" : "Add new Domain Class whose instances are stored in global collection"
 	},
 	"uid" : {
 		"__type" : "uuid",

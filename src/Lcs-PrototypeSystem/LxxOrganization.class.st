@@ -1,5 +1,5 @@
 Class {
-	#name : #LxxPrototypeOrganization,
+	#name : #LxxOrganization,
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'chiefExecutiveOfficer'
@@ -8,25 +8,25 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LxxPrototypeOrganization class >> chiefExecutiveOfficerSlotDefinition [
+LxxOrganization class >> chiefExecutiveOfficerSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new
 		slotName: 'chiefExecutiveOfficer';
 		collectionSlotName: 'persons';
-		collectionSlotModuleName: LxxPrototypePersonsModule defaultModuleName;
-		addSlotType: LxxPrototypePerson;
+		collectionSlotModuleName: LxxPersonsModule defaultModuleName;
+		addSlotType: LxxPerson;
 		"addSlotType: UndefinedObject;"
-		addSlotType: LxxPrototypeUnknownPerson;
+		addSlotType: LxxUnknownPerson;
 		beRequired;
 		yourself
 ]
 
 { #category : #accessing }
-LxxPrototypeOrganization >> chiefExecutiveOfficer [
+LxxOrganization >> chiefExecutiveOfficer [
 	^ self slotVarNamed: 'chiefExecutiveOfficer'
 ]
 
 { #category : #accessing }
-LxxPrototypeOrganization >> chiefExecutiveOfficer: aPerson [
+LxxOrganization >> chiefExecutiveOfficer: aPerson [
 	self slotVarNamed: 'chiefExecutiveOfficer' put: aPerson
 ]

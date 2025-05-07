@@ -1,5 +1,5 @@
 Class {
-	#name : #LxxPrototypePersons,
+	#name : #LxxPersons,
 	#superclass : #LcsDomainCollection,
 	#instVars : [
 		'unknown'
@@ -8,25 +8,25 @@ Class {
 }
 
 { #category : #'slot definition' }
-LxxPrototypePersons class >> unknownSlotDefinition [
+LxxPersons class >> unknownSlotDefinition [
 	<slotDefinition>
 	^ LcsCompositeSlot new
 		slotName: 'unknown';
-		addSlotType: LxxPrototypeUnknownPerson;
+		addSlotType: LxxUnknownPerson;
 		yourself
 ]
 
 { #category : #queries }
-LxxPrototypePersons >> defaultInstance [
+LxxPersons >> defaultInstance [
 	^ self unknown
 ]
 
 { #category : #accessing }
-LxxPrototypePersons >> unknown [
+LxxPersons >> unknown [
 	^ self slotVarNamed: 'unknown'
 ]
 
 { #category : #accessing }
-LxxPrototypePersons >> unknown: anObject [
+LxxPersons >> unknown: anObject [
 	^ self slotVarNamed: 'unknown' put: anObject
 ]

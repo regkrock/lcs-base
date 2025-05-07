@@ -50,11 +50,11 @@ LcsGlobalCollectionSlotTest >> testInstallingGlobalCollectionSlot [
 	self codeJobBuilder: LcsCodeBuilderJob new.
 	self codeJobBuilder addJobStep: (
 		LcsGlobalSlotDefinitionBuilder new
-			slotClassName: LxxPrototypePersons name;
+			slotClassName: LxxPersons name;
 			slotName: 'foos';
 			targetClassName: self currentSystem class name;
 			targetModuleClass: self currentSystem class name;
-			collectionElementTypes: { LxxPrototypePerson name };
+			collectionElementTypes: { LxxPerson name };
 			yourself).
 	self codeJobBuilder execute.
 	self assert: (self currentSystem class hasSlotDefinitionNamed: 'foos')
