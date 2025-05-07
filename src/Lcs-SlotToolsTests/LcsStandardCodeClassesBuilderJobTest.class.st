@@ -94,7 +94,7 @@ LcsStandardCodeClassesBuilderJobTest >> testCreatingJobToAddTalentCodeAndInstall
 
 	builderJobStep := builder jobSteps jobStepAt: 5.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
-	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
+	self assert: builderJobStep target identicalTo: LxxPerson.
 	self assert: builderJobStep collectionSlotModuleName identicalTo: LxxPrototypeSystem moduleName.
 	self assert: builderJobStep collectionSlotName equals: 'talents'.
 	self assert: builderJobStep slotName equals: 'talent'.

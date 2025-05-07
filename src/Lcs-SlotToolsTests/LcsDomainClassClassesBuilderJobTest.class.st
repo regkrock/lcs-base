@@ -12,7 +12,7 @@ LcsDomainClassClassesBuilderJobTest >> jobBuilder [
 		createForRootName: 'Country';
 		createInstances: #( #('CA' 'Canada') #('US' 'United States Of America'));
 		installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
-		installMemberSlotInDomainClass: LxxPrototypePerson;
+		installMemberSlotInDomainClass: LxxPerson;
 		yourself
 ]
 
@@ -92,7 +92,7 @@ LcsDomainClassClassesBuilderJobTest >> testCreatingCountryDomainClass_Phase2_Bui
 
 	builderJobStep := builder jobSteps jobStepAt: 6.
 	self assert: builderJobStep class identicalTo: LcsMemberOfSlotBuilder.
-	self assert: builderJobStep target identicalTo: LxxPrototypePerson.
+	self assert: builderJobStep target identicalTo: LxxPerson.
 	self assert: builderJobStep collectionSlotModuleName identicalTo: LxxPrototypeSystem moduleName.
 	self assert: builderJobStep collectionSlotName equals: 'countries'.
 	self assert: builderJobStep slotName equals: 'country'.

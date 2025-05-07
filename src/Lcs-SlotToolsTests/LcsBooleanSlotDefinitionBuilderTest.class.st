@@ -9,7 +9,7 @@ LcsBooleanSlotDefinitionBuilderTest >> testInstallingBooleanInPerson [
 	| person |
 	self slotName: 'hasBlueEyes'.
 	self initialValue: true.
-	self targetClass: LxxPrototypePerson.
+	self targetClass: LxxPerson.
 	self slotBuilderClass: LcsBooleanSlotDefinitionBuilder. 
 	
 	self buildAndInstallNewSlot.

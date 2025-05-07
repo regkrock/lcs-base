@@ -146,9 +146,8 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase3_InstallCode [
-	| builder |
 
-	LxxPrototypePerson verifyClassHasNoDomainSlotNamed: 'gender'.
+	LxxPerson verifyClassHasNoDomainSlotNamed: 'gender'.
 	LxxPrototypeSystem verifyClassHasNoDomainSlotNamed: 'genders'.
 
 	builder := self jobBuilder.
@@ -161,14 +160,13 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	self should: [ self currentSystem slotDefinitionNamed: 'genders' ] raise: LcsSlotDoesNotExistInSlotModelError.
 	self assert: (self currentSystem respondsTo: #genders).
 	
-	self should: [ LxxPrototypePerson slotDefinitionNamed: 'gender' ] raise: LcsSlotDoesNotExistInSlotModelError.
-	self assert: (LxxPrototypePerson canUnderstand: #gender).
+	self should: [ LxxPerson slotDefinitionNamed: 'gender' ] raise: LcsSlotDoesNotExistInSlotModelError.
+	self assert: (LxxPerson canUnderstand: #gender).
 ]
 
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase4_UpdateSlotModel [
-	| builder |
-	
+
 	self removeAllArtifacts.
 	
 	builder := self jobBuilder.
@@ -182,7 +180,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInstallGenderSlotInPerson_Phase5_Populate [
-	| builder person |
+	| person |
 	
 	self removeAllArtifacts.
 	
@@ -199,7 +197,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreatingJobToAddGenderCodesAndInsta
 	builder populateSlotModel.
 	builder verifyPopulateSlotModel.
 
-	person := 'LxxPrototypePerson' asClass new.
+	person := 'LxxPerson' asClass new.
 	
 	self assert: person gender identicalTo: self currentSystem genders defaultInstance
 

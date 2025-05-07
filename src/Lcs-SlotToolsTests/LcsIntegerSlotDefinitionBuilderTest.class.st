@@ -25,7 +25,7 @@ LcsIntegerSlotDefinitionBuilderTest >> testInstallingHeightSlotInPerson [
 	| person |
 	self slotName: 'height'.
 	self initialValue: 180.
-	self targetClass: LxxPrototypePerson.
+	self targetClass: LxxPerson.
 	self slotBuilderClass: LcsIntegerSlotDefinitionBuilder.
 	
 	self buildAndInstallNewSlot.

@@ -182,6 +182,40 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Inspect 'job' to see the Installed Classes,  Slot Definitions and instance variable."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-07T10:39:35.134531-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-07T10:39:36.304322-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MP9acO7wDQCsscPlDrsQnQ=="
+				},
+				"code" : "job := LcsGlobalDomainClassClassesBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tglobalCollectionSlotName: 'users';\r\tglobalCollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
 			}
 		]
 	},

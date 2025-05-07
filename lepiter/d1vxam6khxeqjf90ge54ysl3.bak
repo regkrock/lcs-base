@@ -204,12 +204,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-02-19T13:50:28.244291-05:00"
+			"dateAndTimeString" : "2025-02-19T14:42:01.783148-05:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Add 1 to Many Global Collection (Ex: User and some subclasses and Users)"
+		"title" : "Add 1 to Many Global Collection (Ex: User with subclasses and Users)"
 	},
 	"uid" : {
 		"__type" : "uuid",

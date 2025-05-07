@@ -65,7 +65,7 @@ LcsMemberOfSlotBuilderTest >> testBuilderSetup [
 	self assert: builder collectionSlotName equals: 'persons'.
 	self
 		assert: builder collectionSlotModuleName
-		equals: LxxPrototypePersonsModule moduleName.
+		equals: LxxPersonsModule defaultModuleName.
 	self assert: builder slotTypes notEmpty.
 	self
 		assert: builder slotDefinitionSource
@@ -73,7 +73,7 @@ LcsMemberOfSlotBuilderTest >> testBuilderSetup [
 	<slotDefinition>
 	^ LcsMemberOfSlot new
 		slotName: ''person'';
-		addSlotType: LxxPrototypePerson;
+		addSlotType: LxxPerson;
 		collectionSlotName: ''persons'';
 		collectionSlotModuleName: ''Persons Module'';
 		yourself'

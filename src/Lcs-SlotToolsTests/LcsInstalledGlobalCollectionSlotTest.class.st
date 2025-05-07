@@ -36,7 +36,7 @@ LcsInstalledGlobalCollectionSlotTest >> newCodeJobBuilder [
 		installNewClassesInPackageNamed: 'Lcs-Temp';
 		createForRootName: 'Foo';
 		installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
-		installMemberSlotInDomainClass: LxxPrototypePerson;
+		installMemberSlotInDomainClass: LxxPerson;
 		buildJobSteps
 ]
 
