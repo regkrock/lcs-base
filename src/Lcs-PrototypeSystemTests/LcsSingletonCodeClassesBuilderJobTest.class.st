@@ -4,13 +4,6 @@ Class {
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
-LcsSingletonCodeClassesBuilderJobTest >> tearDown [
-	self codeJobBuilder ifNotNil: [ :builder | builder uninstall].
-	super tearDown.
-	self codeJobBuilder ifNotNil: [ :builder | builder verifyUninstall]
-]
-
 { #category : #tests }
 LcsSingletonCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	| person |
