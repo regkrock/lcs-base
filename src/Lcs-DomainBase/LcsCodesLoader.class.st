@@ -4,11 +4,6 @@ Class {
 	#category : #'Lcs-DomainBase'
 }
 
-{ #category : #'as yet unclassified' }
-LcsCodesLoader class >> initializeSlotModel [ 
-	"Not part of the model"
-]
-
 { #category : #configuration }
 LcsCodesLoader >> data [
 	^ ''

@@ -53,7 +53,8 @@ LcsGlobalDomainClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self domainCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self globalCollectionSlotBuilder.
-	self addMemberOfSlotBuilderForTargetClasses
+	self addMemberOfSlotBuilderForTargetClasses.
+	self addJobStep: self loaderBuilder.
 ]
 
 { #category : #accessing }
@@ -158,6 +159,15 @@ LcsGlobalDomainClassClassesBuilderJob >> initialize [
 	self targetDomainClasses: Set new.
 	self buildUnknownClass: false.
 	self subclassNames: OrderedCollection new
+]
+
+{ #category : #'as yet unclassified' }
+LcsGlobalDomainClassClassesBuilderJob >> loaderBuilder [
+	^ LcsLoaderClassBuilder new
+		newClassName: self globalCollectionClassName , 'Loader';
+		instanceClassName: self newDomainClassName;
+		targetPackageName: self targetPackageName;
+		yourself
 ]
 
 { #category : #command }

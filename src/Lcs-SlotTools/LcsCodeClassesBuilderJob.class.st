@@ -47,7 +47,7 @@ LcsCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 LcsCodeClassesBuilderJob >> codesLoaderBuilder [
 	^ LcsCodesLoaderClassBuilder new
 		newClassName: self globalCollectionClassName , 'Loader';
-		codeClassName: self newDomainClassName;
+		instanceClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		protoCodes: self protoCodes;
 		yourself

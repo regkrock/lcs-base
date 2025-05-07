@@ -1,21 +1,8 @@
 Class {
 	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJobTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
-	#instVars : [
-		'codeJobBuilder'
-	],
+	#superclass : #LcsCodeJobBuilderTest,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
-
-{ #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> codeJobBuilder [
-	^ codeJobBuilder
-]
-
-{ #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> codeJobBuilder: anObject [
-	codeJobBuilder := anObject
-]
 
 { #category : #'as yet unclassified' }
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> tearDown [
