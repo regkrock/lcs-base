@@ -174,7 +174,7 @@ LcsGlobalDomainClassClassesBuilderJob >> loaderBuilder [
 LcsGlobalDomainClassClassesBuilderJob >> populateSlotModel [
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
-	self unknownClass new.
+	self unknownClass ifNotNil: [ :unknownClass | unknownClass new ].
 	"self protoInstances do: [ :each | 
 		self domainClassBuilderStep installedClass new
 			isoCode: (each at: 1);
@@ -218,12 +218,12 @@ LcsGlobalDomainClassClassesBuilderJob >> undefinedClassName: anObject [
 
 { #category : #accessing }
 LcsGlobalDomainClassClassesBuilderJob >> unknownClass [
-	^ self unknownClassBuilderStep installedClass
+	^ self unknownClassBuilderStep ifNotNil: [ :step | step installedClass ]
 ]
 
 { #category : #'builder step' }
 LcsGlobalDomainClassClassesBuilderJob >> unknownClassBuilderStep [
-	^ (self jobSteps stepsWithClass: LcsUnknownClassBuilder) first
+	^ (self jobSteps stepsWithClass: LcsUnknownClassBuilder) ifEmpty: [ nil ] ifNotEmpty: [ :coll | coll first ]
 ]
 
 { #category : #accessing }
