@@ -6,7 +6,8 @@ Class {
 	#superclass : #LcsSystem,
 	#instVars : [
 		'persons',
-		'organization'
+		'organization',
+		'countries'
 	],
 	#category : #'Lcs-PrototypeSystem-Base'
 }
@@ -15,6 +16,17 @@ Class {
 LxxPrototypeSystem class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ super configurationSlotDefinition
+]
+
+{ #category : #'slot definition' }
+LxxPrototypeSystem class >> countriesSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionSlot new
+		slotName: 'countries';
+		addSlotType: LxxCountries;
+		collectionClass: IdentitySet;
+		addCollectionMemberType: LxxCountry;
+		yourself
 ]
 
 { #category : #configuration }
@@ -44,6 +56,16 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 		addSlotType: LxxPersons;
 		addCollectionMemberType: LxxPerson;
 		yourself
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> countries [
+	^ self slotVarNamed: 'countries'
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> countries: anObject [
+	self slotVarNamed: 'countries' put: anObject
 ]
 
 { #category : #testing }
