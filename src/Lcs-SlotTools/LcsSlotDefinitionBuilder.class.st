@@ -292,10 +292,10 @@ LcsSlotDefinitionBuilder >> verifyCodeInstallation [
 	| slotDefinition |
 	self assert: (self target class includesLocalSelector: self slotDefinitionSelector).
 	slotDefinition := self targetSlotDefinition.
-	self assert: slotDefinition class == self class slotDefinitionClass.
+	self assert: slotDefinition class == self slotDefinitionClassName asClass.
 	self assert: slotDefinition slotName = self slotName.
 	self assert: slotDefinition slotTypes notEmpty.
-	self assert: (slotDefinition slotTypes allSatisfy: [ :each | each asClass isClass ]).
+	self assert: (slotDefinition slotTypes allSatisfy: [ :each | each isClass ]).
 	self jobSteps verifyCodeInstallation
 ]
 
