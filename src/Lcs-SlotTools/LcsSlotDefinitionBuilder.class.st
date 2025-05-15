@@ -44,12 +44,6 @@ LcsSlotDefinitionBuilder >> addRefactoringTextDetailsTo: aStream [
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
-	self slotTypes isEmpty
-		ifTrue: [ aCodeStream addKeyword: 'addSlotType' argument: '<no slot types defined>' printString ]
-		ifFalse: [ 
-			self slotTypes do: [ :eachName | 
-				aCodeStream addKeyword: 'addSlotType' argument: eachName ] ].
-
 ]
 
 { #category : #initialize }
@@ -181,7 +175,7 @@ LcsSlotDefinitionBuilder >> slotDefinitionClassName: anObject [
 
 { #category : #'job steps' }
 LcsSlotDefinitionBuilder >> slotDefinitionMetodBuilderStep [
-	^( self jobSteps stepsWithClass: LcsSlotDefintionMethodBuilder) first
+	^ ( self jobSteps stepsWithClass: LcsSlotDefintionMethodBuilder) first
 ]
 
 { #category : #accessing }
