@@ -3,7 +3,6 @@ Class {
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'collectionSlotName',
-		'slotTypes',
 		'collectionSlotModuleName'
 	],
 	#category : #'Lcs-SlotTools'
@@ -20,21 +19,11 @@ LcsMemberOfSlotBuilder >> addModelAssociationsTo: aCollection [
 ]
 
 { #category : #'gt views' }
-LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: codeStream [
-	self slotTypes isEmpty
-		ifTrue: [
-			codeStream addSetter: 'addSlotType' contents: '<no slot types defined>' printString ]
-		ifFalse: [ 
-			self slotTypesNames do: [ :eachName | 
-				codeStream addSetter: 'addSlotType' contents: eachName ] ].
-	codeStream
-		addSetter: 'collectionSlotName' contents: (self collectionSlotName ifNil: [ '<missing>' ]) printString;
-		addSetter: 'collectionSlotModuleName' contents: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
-]
-
-{ #category : #initialize }
-LcsMemberOfSlotBuilder >> addSlotType: aClass [
-	self slotTypes add: aClass
+LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
+	super addSlotDefinitionSourceDetailsTo: aCodeStream.
+	aCodeStream
+		addKeyword: 'collectionSlotName' argument: (self collectionSlotName ifNil: [ '<missing>' ]) printString;
+		addKeyword: 'collectionSlotModuleName' argument: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
 ]
 
 { #category : #accessing }
@@ -62,33 +51,9 @@ LcsMemberOfSlotBuilder >> domainClass [
 	^ self newDomainClassName asClass
 ]
 
-{ #category : #initialize }
-LcsMemberOfSlotBuilder >> initialize [
-	super initialize.
-	self slotTypes: OrderedCollection new
-]
-
 { #category : #'gt views' }
 LcsMemberOfSlotBuilder >> newDomainClassName [
 	^ self parent parent newDomainClassName
-]
-
-{ #category : #accessing }
-LcsMemberOfSlotBuilder >> slotTypes [
-	^ slotTypes
-]
-
-{ #category : #accessing }
-LcsMemberOfSlotBuilder >> slotTypes: anObject [
-	slotTypes := anObject
-]
-
-{ #category : #asking }
-LcsMemberOfSlotBuilder >> slotTypesNames [
-	^ self slotTypes collect: [ :each |
-		each isClass 
-			ifTrue: [ each name ]
-			ifFalse: [ each] ]
 ]
 
 { #category : #accessing }

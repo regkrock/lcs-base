@@ -1,6 +1,8 @@
 Class {
 	#name : #LcsCommodoreSlot,
 	#superclass : #LcsDomainObjectSlot,
+	#traits : 'LtAggregateAssociation',
+	#classTraits : 'LtAggregateAssociation classTrait',
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -8,6 +10,6 @@ Class {
 LcsCommodoreSlot >> initialize [
 	super initialize.
 	self slotName: 'commodore'.
-	self addSlotType: LcsAddress
+	self addSlotType: LcsPerson
 
 ]

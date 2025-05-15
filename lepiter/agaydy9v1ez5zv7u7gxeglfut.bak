@@ -1,0 +1,258 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T09:32:21.551509-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T09:32:43.710676-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sA3TUHrxDQCD9TgcCN+PsA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The following are some of the predefined slot types:"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T09:32:56.16852-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T10:06:13.550269-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "elIuUnrxDQCFiMf6CN+PsA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsBooleanSlot}} - This is a slot that contains a boolean value - true or false\n{{gtClass:name=LcsStringSlot}}\n{{gtClass:name=LcsNumberSlot}} - This can contain any number - integer, fraction, floating point, etc.\n{{gtClass:name=LcsIntegerSlot}} - This can conaint only integers.\n{{gtClass:name=LcsSymbolSlot}}\n{{gtClass:name=LcsTimeSlot}}\n{{gtClass:name=LcsTimestampSlot}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T11:39:59.906307-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T13:35:13.43782-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Wm3+F3zxDQCRU6jgCN+PsA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**Update Slot Variable** - This can be done immediately or via unit of work. Specification of this is done using the {{gtMethod:LcsSlotDefinition>>#makeDirectUpdateOfVariable}} or the {{gtMethod:LcsSlotDefinition>>#makeUpdateOfVariableViaUnitOfWork}}. An example of using the direct is when updating the history slots as one does not want this to become part of the unit of work since it occurs while persisting the Unit Of Work changes. \n\nNote: {{gtMethod:LcsSlotDefinition>>#initialize}} set the default to using Unit Of Work for updates."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T13:37:18.021196-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T13:42:57.356841-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "h1XNvH3xDQCyesJUCP3peg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**Life cycle of object stored in the slot variable**\n*Aggregate* - The object in the slot is still 'alive' after it is removed from the slot variable.\n*Composite* - The object is effectively deleted and should automaticall be garbage collected.\n\nNote: Smalltalk objects that are store in the slot are currently allowed to live their own lifecycle. They will be garbage collected unless they are referenced by another object. In this relationship, they are considered to be "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T11:57:30.917636-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T12:28:36.689062-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sGfxV3zxDQCcIPjDCN+PsA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**Replace Contents Of Slot Variable** - When removing the exisiting object from the slot variable, the existing object may need to be deleted if it is a domain composite object.  \n\n"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T13:22:23.043756-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T13:36:26.16381-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MBl1h33xDQCqenq1CP3peg=="
+				},
+				"code" : "\"List all traits being used in LsBaseSlotDefinition and its subclasses\"\rLcsBaseSlotDefinition withAllSubclassesDo: [ :each | each traits notEmpty ifTrue: [\r\tTranscript show: each name; tab; nextPutAll: (each traits printString); cr ] ] "
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-05-14T09:32:21.506201-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-05-14T09:32:21.506201-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Slot Types"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "855bd250-7af1-0d00-83f4-970a08df8fb0"
+	}
+}

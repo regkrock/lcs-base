@@ -296,7 +296,7 @@ LcsSlotDefinition >> initialValueFor: aDomainObject [
 LcsSlotDefinition >> initialize [
 	super initialize.
 	self initializeSlotTypes.
-	self makeUnitOfWorkVariableUpdate.
+	self makeUpdateOfVariableViaUnitOfWork.
 	self initialValueBlock: self defaultInitialValueBlock
 ]
 
@@ -352,12 +352,12 @@ LcsSlotDefinition >> isRequired [
 ]
 
 { #category : #configuration }
-LcsSlotDefinition >> makeDirectVariableUpdate [
+LcsSlotDefinition >> makeDirectUpdateOfVariable [
 	self variableUpdatePolicy: (LcsDirectVariableUpdatePolicy newOn: self)
 ]
 
 { #category : #configuration }
-LcsSlotDefinition >> makeUnitOfWorkVariableUpdate [
+LcsSlotDefinition >> makeUpdateOfVariableViaUnitOfWork [
 	self variableUpdatePolicy: (LcsUnitOfWorkVariableUpdatePolicy newOn: self)
 ]
 

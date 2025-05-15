@@ -1,0 +1,110 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-07T16:44:00.2404-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-07T16:44:00.2404-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "OQ+eh/PwDQCCdDC5C30jwg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-07T16:44:27.987762-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-15T08:21:11.662484-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "/2tFifPwDQCCfmqvC30jwg=="
+				},
+				"code" : "job := LcsSlotDefinitionsBuilderJob new \r\t\t\ttargetClassName: 'LxxCountry';\r\t\t\ttargetPackageName: 'Lcs-PrototypeSystem';\r\t\t\taddSlotBuilder: (\r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode'; \r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 2 characters';\r\t\t\t\t\t\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'formalName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode3';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode3';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoNumber';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=3 ]' description: 'Must be 3 characters. Example: 001';\r\t\t\t\t\taddValidationCondition: '[ :value | value asInteger > 0 and value asInteger < 1000 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\tbuildJobSteps;\r\t\t\tyourself"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-05-07T16:44:00.196958-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-05-07T16:44:00.196958-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Add isoCode, isoNumber, formalName, commonName slots to LxxSample"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "3b649d87-f3f0-0d00-8273-28610b7d23c2"
+	}
+}

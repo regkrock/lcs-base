@@ -15,7 +15,7 @@ LcsSingletonCodesGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 { #category : #'code generation' }
 LcsSingletonCodesGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
-	aCodeStream addSetter: 'codeSuperclass' contents: self codeSuperclassName
+	aCodeStream addKeyword: 'codeSuperclass' argument: self codeSuperclassName
 
 ]
 

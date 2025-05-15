@@ -9,5 +9,5 @@ LtAggregateAssociation >> slotVarPut: anObject in: aDomainObject [
 	"More work required here as the fact that they were sapped needs to be recorded"
 	originalObject := self persistedSlotVarIn: aDomainObject.
 	super slotVarPut: anObject in: aDomainObject.
-	"self currentUnitOfWork deleteObject: originalObject"
+	"self history recordChangeFrom: originalObject to: aDomainObject"
 ]

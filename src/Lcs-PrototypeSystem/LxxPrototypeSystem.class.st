@@ -42,7 +42,7 @@ LxxPrototypeSystem class >> moduleConfigurationClass [
 { #category : #'slot definitions' }
 LxxPrototypeSystem class >> organizationSlotDefinition [
 	<slotDefinition>
-	^ LcsDomainClassSlot new
+	^ LcsDomainObjectSlot new
 		slotName: 'organization';
 		addSlotType: LxxOrganization;
 		yourself
@@ -83,6 +83,12 @@ LxxPrototypeSystem >> isInSuspendedStatus [
 { #category : #testing }
 LxxPrototypeSystem >> isPrototypeSystem [
 	^ true
+]
+
+{ #category : #'as yet unclassified' }
+LxxPrototypeSystem >> loadData [
+	LxxCountriesLoader new load.
+	self applyChanges
 ]
 
 { #category : #accessing }

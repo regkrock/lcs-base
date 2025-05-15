@@ -16,7 +16,7 @@ LcsCodesGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 { #category : #'code generation' }
 LcsCodesGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
-	aCodeStream addSetter: 'loaderClass' contents: self loaderClassName
+	aCodeStream addKeyword: 'loaderClass' argument: self loaderClassName
 
 ]
 

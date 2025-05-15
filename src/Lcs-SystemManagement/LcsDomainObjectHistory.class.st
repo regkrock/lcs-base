@@ -23,7 +23,7 @@ LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
 		addSlotType: LcsDomainObjectChangeRecords;
 		addCollectionMemberType: LcsDomainObjectChangeRecord;
 		beRequired;
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		"beReadOnly;"
 		yourself
 ]
@@ -34,7 +34,7 @@ LcsDomainObjectHistory class >> createdSlotDefinition [
 	^ LcsChangeRecordTimestampSlot new
 		slotName: 'created';
 		beRequired;
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		"beReadOnly;"
 		yourself
 ]
@@ -54,7 +54,7 @@ LcsDomainObjectHistory class >> userSlotDefinition [
 LcsDomainObjectHistory class >> userUuidSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		yourself
 ]
 

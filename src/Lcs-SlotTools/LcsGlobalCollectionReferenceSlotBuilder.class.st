@@ -23,9 +23,9 @@ LcsGlobalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
 LcsGlobalCollectionReferenceSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	self collectionClassName isNil ifTrue: [ self error: 'Missing collection class name'].
 	aCodeStream 
-		addSetter: 'collectionSlotName' contents: self collectionSlotName printString;
-		addSetter: 'collectionSlotModuleName' contents: self collectionSlotModuleName printString;
-		addSetter: 'addSlotType' contents: self collectionClassName
+		addKeyword: 'collectionSlotName' argument: self collectionSlotName printString;
+		addKeyword: 'collectionSlotModuleName' argument: self collectionSlotModuleName printString;
+		addKeyword: 'addSlotType' argument: self collectionClassName
 	
 
 ]

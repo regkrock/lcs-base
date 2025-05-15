@@ -11,7 +11,7 @@ Class {
 LcsSupportDomainObject class >> parentSlotDefinition [
 	<slotDefinition>
 	^ super parentSlotDefinition
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		yourself
 
 ]

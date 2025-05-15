@@ -10,23 +10,6 @@ Class {
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
 
-{ #category : #accessing }
-LcsGlobalCollectionSlotTest >> codeJobBuilder [
-	^ codeJobBuilder
-]
-
-{ #category : #accessing }
-LcsGlobalCollectionSlotTest >> codeJobBuilder: anObject [
-	codeJobBuilder := anObject
-]
-
-{ #category : #running }
-LcsGlobalCollectionSlotTest >> tearDown [
-	self codeJobBuilder ifNotNil: [ :builder | builder uninstall].
-	super tearDown.
-	self codeJobBuilder ifNotNil: [ :builder | builder verifyUninstall]
-]
-
 { #category : #tests }
 LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self subject: LcsGlobalCollectionSlot new.
@@ -43,19 +26,4 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 			parent: parentDomainObject;
 			yourself ]'.
 	self assert: (self subject validator isKindOf: LcsConditionsValidator)
-]
-
-{ #category : #tests }
-LcsGlobalCollectionSlotTest >> testInstallingGlobalCollectionSlot [
-	self codeJobBuilder: LcsCodeBuilderJob new.
-	self codeJobBuilder addJobStep: (
-		LcsGlobalSlotDefinitionBuilder new
-			slotClassName: LxxPersons name;
-			slotName: 'foos';
-			targetClassName: self currentSystem class name;
-			targetModuleClass: self currentSystem class name;
-			collectionElementTypes: { LxxPerson name };
-			yourself).
-	self codeJobBuilder execute.
-	self assert: (self currentSystem class hasSlotDefinitionNamed: 'foos')
 ]

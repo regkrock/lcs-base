@@ -10,7 +10,7 @@ Class {
 LcsDomainObjectSlotChanges class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsDictionarySlot new
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		yourself
 ]
 

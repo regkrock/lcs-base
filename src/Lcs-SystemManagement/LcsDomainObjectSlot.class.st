@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDomainObjectSlot,
 	#superclass : #LcsSlotDefinition,
-	#traits : 'LtAggregateComponent',
-	#classTraits : 'LtAggregateComponent classTrait',
+	#traits : 'LtAggregateAssociation',
+	#classTraits : 'LtAggregateAssociation classTrait',
 	#category : #'Lcs-SystemManagement-Slot'
 }

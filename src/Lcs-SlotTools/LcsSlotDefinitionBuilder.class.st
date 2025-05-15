@@ -6,7 +6,9 @@ Class {
 		'target',
 		'slotDefinitionSelector',
 		'targetClassName',
-		'targetModuleClass'
+		'targetModuleClass',
+		'slotDefinitionClassName',
+		'slotTypes'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -20,7 +22,8 @@ LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
 
 { #category : #configuration }
 LcsSlotDefinitionBuilder class >> slotDefinitionClass [
-	self subclassResponsibility
+	"Subclasses can override this method to provide a default"
+	^ nil
 ]
 
 { #category : #accessing }
@@ -41,11 +44,27 @@ LcsSlotDefinitionBuilder >> addRefactoringTextDetailsTo: aStream [
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+	self slotTypes isEmpty
+		ifTrue: [ aCodeStream addKeyword: 'addSlotType' argument: '<no slot types defined>' printString ]
+		ifFalse: [ 
+			self slotTypes do: [ :eachName | 
+				aCodeStream addKeyword: 'addSlotType' argument: eachName ] ].
+
+]
+
+{ #category : #initialize }
+LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
+	self slotTypes add: (aClassOrClassName isClass ifTrue: [ aClassOrClassName name ] ifFalse: [ aClassOrClassName ])
 ]
 
 { #category : #printing }
 LcsSlotDefinitionBuilder >> addStepNumberTo: aString [
 	^ self stepNumber , '.' , aString
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> addValidationCondition: aStringBlock description: aDescription [
+	self slotDefinitionMetodBuilderStep addValidationCondition: aStringBlock description: aDescription
 ]
 
 { #category : #uninstall }
@@ -111,6 +130,9 @@ LcsSlotDefinitionBuilder >> gtRefactoringChangeOn: aView [
 { #category : #initialize }
 LcsSlotDefinitionBuilder >> initialize [
 	super initialize.
+	self slotTypes: OrderedCollection new.
+	self class slotDefinitionClass notNil 
+		ifTrue: [ self slotDefinitionClassName: self class slotDefinitionClass name ].
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self).
 	self jobSteps addJobStep: LcsSlotInstanceVariableBuilder new.
 	self jobSteps addJobStep: LcsSlotDefintionMethodBuilder new.
@@ -128,7 +150,7 @@ LcsSlotDefinitionBuilder >> installCode [
 	self jobSteps installCode
 ]
 
-{ #category : #command }
+{ #category : #'job steps' }
 LcsSlotDefinitionBuilder >> installSlotDefinition [
 	self target installSlotDefinition: self slotDefinitionSelector
 ]
@@ -147,9 +169,19 @@ LcsSlotDefinitionBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ self target ifNotNil: [ self target name ] ]) asString
 ]
 
-{ #category : #configuration }
-LcsSlotDefinitionBuilder >> slotDefinitionClass [
-	^ self class slotDefinitionClass
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> slotDefinitionClassName [
+	^ slotDefinitionClassName
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> slotDefinitionClassName: anObject [
+	slotDefinitionClassName := anObject
+]
+
+{ #category : #'job steps' }
+LcsSlotDefinitionBuilder >> slotDefinitionMetodBuilderStep [
+	^( self jobSteps stepsWithClass: LcsSlotDefintionMethodBuilder) first
 ]
 
 { #category : #accessing }
@@ -165,7 +197,8 @@ LcsSlotDefinitionBuilder >> slotDefinitionSelector: aSymbol [
 
 { #category : #'code generation' }
 LcsSlotDefinitionBuilder >> slotDefinitionSource [
-	| codeStream |	
+	1 halt.
+	"| codeStream |	
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector; 
@@ -176,7 +209,7 @@ LcsSlotDefinitionBuilder >> slotDefinitionSource [
 		
 	^codeStream 
 		addYourself;
-		contents
+		contents"
 
 ]
 
@@ -189,6 +222,16 @@ LcsSlotDefinitionBuilder >> slotName [
 LcsSlotDefinitionBuilder >> slotName: anObject [
 	.
 	slotName := (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size))
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> slotTypes [
+	^ slotTypes
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> slotTypes: anObject [
+	slotTypes := anObject
 ]
 
 { #category : #printing }
@@ -258,7 +301,7 @@ LcsSlotDefinitionBuilder >> verifyCodeInstallation [
 	self assert: slotDefinition class == self class slotDefinitionClass.
 	self assert: slotDefinition slotName = self slotName.
 	self assert: slotDefinition slotTypes notEmpty.
-	self assert: (slotDefinition slotTypes allSatisfy: [ :each | each isClass ]).
+	self assert: (slotDefinition slotTypes allSatisfy: [ :each | each asClass isClass ]).
 	self jobSteps verifyCodeInstallation
 ]
 

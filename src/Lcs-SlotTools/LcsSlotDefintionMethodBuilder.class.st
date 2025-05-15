@@ -1,12 +1,21 @@
 Class {
 	#name : #LcsSlotDefintionMethodBuilder,
 	#superclass : #LcsSlotDetailBuilder,
+	#instVars : [
+		'validationConditions',
+		'slotDefinitionClass'
+	],
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self slotDefinitionSource
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefintionMethodBuilder >> addValidationCondition: aStringBlock description: aDescription [
+	self validationConditions add: aStringBlock -> aDescription
 ]
 
 { #category : #'gt views' }
@@ -30,6 +39,12 @@ LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 			self slotDefinitionSelector gtImplementors  ]
 ]
 
+{ #category : #'initialize\t' }
+LcsSlotDefintionMethodBuilder >> initialize [ 
+	super initialize.
+	self validationConditions: OrderedCollection new
+]
+
 { #category : #building }
 LcsSlotDefintionMethodBuilder >> installCode [
 	self addRefactoring: (
@@ -45,14 +60,63 @@ LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 	^ 'Install slot definition for'
 ]
 
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotDefinitionClass [
+	^ slotDefinitionClass
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotDefinitionClass: anObject [
+	slotDefinitionClass := anObject
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
+	^ self slotDefinitionClass
+		ifNil: [ '<missing>' ]
+		ifNotNil: [ :class | class name ]
+]
+
 { #category : #'as yet unclassified' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 	^ (self slotName , 'SlotDefinition') asSymbol
 ]
 
 { #category : #'as yet unclassified' }
+LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
+	| codeStream |
+	codeStream := LcsMethodStream new.
+	codeStream
+		startSlotDefintionSource: self slotDefinitionSelector;
+		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName;
+		addKeyword: 'slotName' argument: self slotNameDisplayName.
+	self validationConditions do: [ :eachAssociation | 
+		codeStream addKeyword: 'addValidationCondition' argument: eachAssociation key keyword: 'description' argument: eachAssociation value printString].
+	self parent parent addSlotDefinitionSourceDetailsTo: codeStream.
+
+	^ codeStream
+		addYourself;
+		contents
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefintionMethodBuilder >> slotNameDisplayName [
+	^ (self slotName ifNil: [ '<missing>' ]) printString
+]
+
+{ #category : #'as yet unclassified' }
 LcsSlotDefintionMethodBuilder >> targetClassName [
 	^ self parent targetClassName
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> validationConditions [
+	^ validationConditions
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> validationConditions: anObject [
+	validationConditions := anObject
 ]
 
 { #category : #verification }

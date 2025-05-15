@@ -54,7 +54,7 @@ LcsDomainObject class >> historySlotDefinition [
 	^ LcsCompositeSlot new
 		slotName: 'history';
 		addSlotType: LcsDomainObjectHistory;
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		yourself
 ]
 

@@ -1,7 +1,11 @@
 Class {
 	#name : #LcsChangeRecordTimestampSlot,
 	#superclass : #LcsTimestampSlot,
-	#traits : 'LtDirectSlotAccess',
-	#classTraits : 'LtDirectSlotAccess classTrait',
 	#category : #'Lcs-SystemManagement-Slot'
 }
+
+{ #category : #initialize }
+LcsChangeRecordTimestampSlot >> initialize [
+	super initialize.
+	self makeDirectUpdateOfVariable
+]

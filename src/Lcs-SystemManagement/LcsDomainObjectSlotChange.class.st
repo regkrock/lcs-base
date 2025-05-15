@@ -21,7 +21,7 @@ LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'slotName';
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		yourself
 ]
 

@@ -34,14 +34,14 @@ LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 { #category : #'code generation' }
 LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	aCodeStream 
-		addSetter: 'addSlotType' contents: self slotTypeClassName.
+		addKeyword: 'addSlotType' argument: self slotTypeClassName.
 	self collectionClass notNil ifTrue: [
 		aCodeStream
-			addSetter: 'collectionClass' contents: self collectionClass name].
+			addKeyword: 'collectionClass' argument: self collectionClass name].
 	self collectionElementTypes do: [ :eachClass |
-		aCodeStream addSetter: 'addCollectionMemberType' contents: (eachClass isString ifTrue: [ eachClass ] ifFalse: [ eachClass name ] )].
+		aCodeStream addKeyword: 'addCollectionMemberType' argument: (eachClass isString ifTrue: [ eachClass ] ifFalse: [ eachClass name ] )].
 	self collectionClass isNil ifTrue: [
-		aCodeStream addCommand: 'beIdentitySetCollection']
+		aCodeStream addUnaryMessage: 'beIdentitySetCollection']
 
 ]
 

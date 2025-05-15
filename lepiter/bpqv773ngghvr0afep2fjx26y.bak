@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T07:57:54.078852-05:00"
+						"dateAndTimeString" : "2025-05-14T09:27:35.88576-04:00"
 					}
 				},
 				"uid" : {
@@ -100,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T07:53:40.670209-05:00"
+						"dateAndTimeString" : "2025-05-14T09:28:46.41644-04:00"
 					}
 				},
 				"uid" : {
@@ -110,7 +110,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:LcsPerson}}gtClass:}}"
+				"string" : "{{gtClass:LcsPerson}}gtClass:LcsPerson}}   {{LxxPerson}}"
 			}
 		]
 	},

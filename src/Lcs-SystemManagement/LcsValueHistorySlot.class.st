@@ -9,6 +9,6 @@ LcsValueHistorySlot >> initialize [
 	super initialize.
 	self
 		addSlotType: Object;
-		makeDirectVariableUpdate;
+		makeDirectUpdateOfVariable;
 		allowNil
 ]

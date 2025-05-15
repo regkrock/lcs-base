@@ -8,7 +8,118 @@
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-07T16:26:40.205331-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-14T21:00:21.108966-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "a2KgSfPwDQC9C4/HC30jwg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "- Add instvars to LxxCountry - isoCode, formalName, commonName, subdivisions - this needs to be done in order to start the test\n- Setup Unit Test to do do this - uses {{gtClass:name=LcsSlotDefinitionBuilder}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
 					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-05-07T16:26:34.244173-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-05-07T16:26:34.244173-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "v2lFSfPwDQC9BqSuC30jwg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : ""
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-05-07T16:26:26.121265-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-05-07T16:26:26.121265-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "KnLJSPPwDQC9AAifC30jwg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : ""
+						},
 						{
 							"__type" : "textSnippet",
 							"children" : {
@@ -34,7 +145,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-04-21T15:37:37.474982-04:00"
+									"dateAndTimeString" : "2025-04-21T15:38:05.667383-04:00"
 								}
 							},
 							"uid" : {
@@ -44,7 +155,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtTodo:label=Composite Slot|completed=2025-04-21}} \n\t\t- the parent of the contained item is the object that defines the slot (wholly owned)\n\t\t- replacing the contents of the slot with a new object results in the existing object being deleted\n{{gtTodo:label=Aggregation Slot}}\n\t\t- the aggregated item's life cycle is independent of the object it is beeing associated with.\n\t\t- if the the aggregated item is removed or replaced, it is not deleted/garbage collected because of \n\t\t  the removal. Removal must be done independently. (Ex: Car Engine/Car)\n{{gtTodo:label=Association Slot|completed=}}\n\t\t- In this model an example would be Eye Colour: #blue <- a "
+							"string" : "{{gtTodo:label=Composite Slot|completed=2025-04-21}} \n\t\t- the parent of the contained item is the object that defines the slot (wholly owned)\n\t\t- replacing the contents of the slot with a new object results in the existing object being deleted\n{{gtTodo:label=Aggregation Slot}}\n\t\t- the aggregated item's life cycle is independent of the object it is beeing associated with.\n\t\t- if the the aggregated item is removed or replaced, it is not deleted/garbage collected because of \n\t\t  the removal. Removal must be done independently. (Ex: Car Engine/Car)\n{{gtTodo:label=Association Slot|completed=}}\n\t\t- In this model an example would be Eye Colour: #blue <- a 1 to 1 relationship - no dependency"
 						},
 						{
 							"__type" : "textSnippet",
