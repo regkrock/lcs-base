@@ -18,6 +18,77 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-15T10:54:43.307597-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-15T10:56:34.35374-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "qaQ3lY/xDQCsXkO3C4PfRw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "This creates the LxxCountry class and LxxCountries classes and installs the countries global collection in the LxxPrototypeSystem. The LxxCountry class "
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-15T11:10:38.539063-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-15T11:12:42.384122-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xEknzo/xDQCvrQPjC4PfRw=="
+				},
+				"code" : "job := LcsGlobalDomainClassClassesBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'Country' \"withSubclasses: #('User' 'SystemUser' 'GuestUser')\";\r\tglobalCollectionSlotName: 'countries';\r\tglobalCollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2025-05-07T16:44:00.2404-04:00"
 					}
 				},
@@ -29,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-07T16:44:00.2404-04:00"
+						"dateAndTimeString" : "2025-05-15T10:54:35.810097-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +110,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "This creates the slots for LxxCountry"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -66,14 +137,119 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-15T09:33:29.079687-04:00"
+						"dateAndTimeString" : "2025-05-16T12:09:08.112235-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "/2tFifPwDQCCfmqvC30jwg=="
 				},
-				"code" : "job := LcsSlotDefinitionsBuilderJob new \r\t\t\ttargetClassName: 'LxxCountry';\r\t\t\ttargetPackageName: 'Lcs-PrototypeSystem';\r\t\t\t\"addSlotBuilder: (\r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode'; \r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 2 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'formalName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode3';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode3';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoNumber';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=3 ]' description: 'Must be 3 characters. Example: 001';\r\t\t\t\t\taddValidationCondition: '[ :value | value asInteger > 0 and value asInteger < 1000 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\"\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'commonName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size <= 2 ]' description: 'Must be at least 3 characters';\r\t\t\tbuildJobSteps;\r\t\t\tyourself.\rjob execute"
+				"code" : "job := LcsSlotDefinitionsBuilderJob new \r\t\t\ttargetClassName: 'LxxCountry';\r\t\t\ttargetPackageName: 'Lcs-PrototypeSystem';\r\t\t\taddSlotBuilder: (\r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode'; \r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size != 2 ]' description: 'Must be 2 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'formalName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size != 2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode3';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size != 2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode3';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size != 2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoNumber';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size !=3 ]' description: 'Must be 3 characters. Example: 001';\r\t\t\t\t\taddValidationCondition: '[ :value | value asInteger > 0 and value asInteger < 1000 ]' description: 'Must e 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'commonName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size <= 2 ]' description: 'Must be at least 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: (\r\t\t\t\tLcsLocalSlotDefinitionBuilder new\r\t\t\t\t\tslotDefinitionClassName: LcsLocalCollectionSlot name;\r\t\t\t\t\tslotName: 'subdivisions';\r\t\t\t\t\taddSlotType: 'LxxCountrySubdivisions';\r\t\t\t\t\taddCollectionElementType: 'LxxBaseCountrySubdivision' ;\r\t\t\t\t\tyourself);\r\t\t\tbuildJobSteps;\r\t\t\tyourself."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-16T13:07:54.562909-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-16T13:08:15.821369-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "buJfj6XxDQCXZ0yCDHZWPw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Add slot definitions to LxxBaseCountrySubdivision"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-16T13:07:45.048109-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-16T13:10:04.169346-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Ta/OjqXxDQCXYpEEDHZWPw=="
+				},
+				"code" : "job := LcsSlotDefinitionsBuilderJob new \r\t\t\ttargetClassName: 'LxxBaseCountrySubdivision';\r\t\t\ttargetPackageName: 'Lcs-PrototypeSystem';\r\t\t\taddSlotBuilder: (\r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'isoCode'; \r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size != 2 ]' description: 'Must be 2 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'formalName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size <= 2 ]' description: 'Must be 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'subdivisionName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size <= 2 ]' description: 'Must be at least 2 characters. Example: 001';\r\t\t\t\t\taddValidationCondition: '[ :value | value asInteger > 0 and value asInteger < 1000 ]' description: 'Must e 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: ( \r\t\t\t\tLcsSlotDefinitionBuilder new\r\t\t\t\t\tslotName: 'commonName';\r\t\t\t\t\tslotDefinitionClassName: 'LcsStringSlot';\r\t\t\t\t\taddValidationCondition: '[ :value | value size <= 2 ]' description: 'Must be at least 3 characters';\r\t\t\t\t\tyourself);\r\t\t\taddSlotBuilder: (\r\t\t\t\tLcsLocalSlotDefinitionBuilder new\r\t\t\t\t\tslotDefinitionClassName: LcsLocalCollectionSlot name;\r\t\t\t\t\tslotName: 'subdivisions';\r\t\t\t\t\taddSlotType: 'LxxCountrySubdivisions';\r\t\t\t\t\taddCollectionElementType: 'LxxBaseCountrySubdivision' ;\r\t\t\t\t\tyourself);\r\t\t\tbuildJobSteps;\r\t\t\tyourself."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-15T17:15:29.723733-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-15T17:15:40.347861-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "jUb45pTxDQCxppFZC4PfRw=="
+				},
+				"code" : "job execute"
 			}
 		]
 	},

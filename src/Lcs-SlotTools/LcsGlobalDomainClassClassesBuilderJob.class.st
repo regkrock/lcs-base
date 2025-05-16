@@ -55,6 +55,7 @@ LcsGlobalDomainClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self globalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses.
 	self addJobStep: self loaderBuilder.
+	self jobSteps buildJobSteps
 ]
 
 { #category : #accessing }
@@ -133,6 +134,7 @@ LcsGlobalDomainClassClassesBuilderJob >> globalCollectionReferenceSlotBuilder [
 		collectionSlotName: self globalCollectionSlotName;
 		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
 		collectionClassName: self globalCollectionClassName; 
+		addSlotType: self globalCollectionClassName;
 		yourself
 ]
 
@@ -144,6 +146,7 @@ LcsGlobalDomainClassClassesBuilderJob >> globalCollectionSlotBuilder [
 		targetClassName: self globalCollectionModuleClass name;
 		targetModuleClass: self globalCollectionModuleClass;
 		collectionElementTypes: { self newDomainClassName};
+		addSlotType: self globalCollectionClassName;
 		yourself
 ]
 

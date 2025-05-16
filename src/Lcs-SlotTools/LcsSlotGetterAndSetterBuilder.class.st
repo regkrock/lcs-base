@@ -5,34 +5,48 @@ Class {
 }
 
 { #category : #printing }
+LcsSlotGetterAndSetterBuilder >> addGetterAndSetterSourceCodeTo: aStream [
+	aStream
+		nextPutAll: self getterSource;
+		cr;
+		cr;
+		nextPutAll: self setterSource
+]
+
+{ #category : #printing }
 LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
-	self slotName isNil ifTrue: [
-		aStream nextPutAll: '<missing> slot name - no getter and setter will be implemented'.
-		^self].
-	self isAlreadyImplementedInTargetClass
+	self slotName isNil
+		ifTrue: [ aStream
+				nextPutAll: '<missing> slot name - no getter and setter will be implemented'.
+			^ self ].
+	self targetClass isNil
 		ifTrue: [ 
-			aStream 
+			aStream
+				nextPutAll: self targetClassName asString , ' not yet created. This is the proposed code:';
+				cr;
+				cr.
+			self addGetterAndSetterSourceCodeTo: aStream.
+			^ self ].
+
+	self isAlreadyImplementedInTargetClass
+		ifTrue: [ aStream
 				nextPutAll: (self slotName ifNil: [ '<missing>' ]);
-				nextPutAll: ' getter and setter are already implemented in ';
-				nextPutAll: self target name displayString.
-			^self].
+				nextPutAll: ' - getter and setter are already implemented in ';
+				nextPutAll: self targetClassName displayString.
+			^ self ].
 	self isAlreadyImplementedInSuperclass
-		ifTrue: [
-			aStream 
-				nextPutAll:  self slotName asString;
-				nextPutAll: ' getter and setter are already implemented in superclass'.
-			^self ].
-	^ aStream
-		nextPutAll: self protoGetterAndSetterRefactoring slotSetterMethodSource;
-		cr;
-		cr;
-		nextPutAll: self protoGetterAndSetterRefactoring slotGetterMethodSource
+		ifTrue: [ aStream
+				nextPutAll: 'The getter and setter for ''';
+				nextPutAll: self slotName asString;
+				nextPutAll: '''are already implemented in superclass'.
+			^ self ].
+	self addGetterAndSetterSourceCodeTo: aStream
 ]
 
 { #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> getterAndSetterMethodsFilter [
 	| classFilter |
-	classFilter := (GtSearchInheritedMethodsFilter forClass: self target)
+	classFilter := (GtSearchInheritedMethodsFilter forClass: self targetClass)
 			withSuperclassesUpTo: #LcsBaseDomainObject asClass.
 	^ classFilter & (self getterSelector gtImplementors | self setterSelector gtImplementors)
 ]
@@ -40,6 +54,12 @@ LcsSlotGetterAndSetterBuilder >> getterAndSetterMethodsFilter [
 { #category : #selector }
 LcsSlotGetterAndSetterBuilder >> getterSelector [
 	^ self slotName asString asSymbol
+]
+
+{ #category : #command }
+LcsSlotGetterAndSetterBuilder >> getterSource [
+	^'<1s>
+	^ self slotVarNamed: ''<1s>''' expandMacrosWith: self slotName
 ]
 
 { #category : #'gt views' }
@@ -54,7 +74,7 @@ LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 { #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 	<gtView>
-	self target isNil ifTrue: [ ^ aView empty ].
+	self targetClass isNil ifTrue: [ ^ aView empty ].
 	^ aView explicit
 		title: 'Implementor(Slot Accessors)';
 		priority: 200;
@@ -65,22 +85,30 @@ LcsSlotGetterAndSetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 LcsSlotGetterAndSetterBuilder >> installCode [
 	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
 	self addRefactoring: (
-		RBCreateDomainSlotAcccessorsForVariableRefactoring
-			instanceVariable: self slotName
-			class: self target) execute.
+		RBAddMethodChange
+			compile: self getterSource
+			in: self targetClass
+			classified: #accessing)
+				execute.
+	self addRefactoring: (
+		RBAddMethodChange
+			compile: self setterSource
+			in: self targetClass
+			classified: #accessing)
+				execute.
 	self beCodeInstalled
 ]
 
 { #category : #testing }
 LcsSlotGetterAndSetterBuilder >> isAlreadyImplementedInSuperclass [
-	self _target isNil ifTrue: [ ^ false ].
-	^ self target superclass canUnderstand: self getterSelector
+	self targetClass isNil ifTrue: [ ^ false ].
+	^ self targetClass superclass canUnderstand: self getterSelector
 ]
 
 { #category : #testing }
 LcsSlotGetterAndSetterBuilder >> isAlreadyImplementedInTargetClass [
-	self _target isNil ifTrue: [ ^ false ].
-	^ self target canUnderstand: self slotName asSymbol
+	self targetClass isNil ifTrue: [ ^ false ].
+	^ self targetClass canUnderstand: self slotName asSymbol
 ]
 
 { #category : #printing }
@@ -88,32 +116,26 @@ LcsSlotGetterAndSetterBuilder >> jobStepActionDescription [
 	^ 'Install getter and setter for'
 ]
 
-{ #category : #building }
-LcsSlotGetterAndSetterBuilder >> protoGetterAndSetterRefactoring [
-	^ RBCreateDomainSlotAcccessorsForVariableRefactoring
-		instanceVariable: self slotName
-		class: ([ self target ] on: Error do: [ :s | s return: #UndefinedClass asClass ] )
-]
-
 { #category : #selector }
 LcsSlotGetterAndSetterBuilder >> setterSelector [
 	^ (self slotName asString , ':') asSymbol
 ]
 
-{ #category : #accessing }
-LcsSlotGetterAndSetterBuilder >> targetClassName [
-	^ self parent targetClassName
+{ #category : #command }
+LcsSlotGetterAndSetterBuilder >> setterSource [
+	^'<1s>: anObject
+	self slotVarNamed: ''<1s>'' put: anObject' expandMacrosWith: self slotName
 ]
 
 { #category : #command }
 LcsSlotGetterAndSetterBuilder >> verifyCodeInstallation [
-	self assert: (self target canUnderstand: self getterSelector).
-	self assert: (self target canUnderstand: self setterSelector).
+	self assert: (self targetClass canUnderstand: self getterSelector).
+	self assert: (self targetClass canUnderstand: self setterSelector).
 ]
 
 { #category : #command }
 LcsSlotGetterAndSetterBuilder >> verifyUninstall [
-	([ self target ] on: NotFound do: [ :s | s return: nil ]) ifNil: [ ^ self ].
-	self assert: (self target canUnderstand: self getterSelector) not.
-	self assert: (self target canUnderstand: self setterSelector) not.
+	targetClass ifNil: [ ^ self ].
+	self assert: (self targetClass canUnderstand: self getterSelector) not.
+	self assert: (self targetClass canUnderstand: self setterSelector) not.
 ]

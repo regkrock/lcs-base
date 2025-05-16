@@ -63,7 +63,7 @@ LxxCountriesLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray 
 		(self respondsTo: subdivisionSelector) ifTrue: [
 			self 
 				loadSubdivisionsFrom: (self perform:  subdivisionSelector) readStream 
-				class: LcsBaseCountrySubdivision 
+				class: LxxBaseCountrySubdivision 
 				schema: self usSubdivisionDataSchema 
 				context: instance ] ] 
 ]

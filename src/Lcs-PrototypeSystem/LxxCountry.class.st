@@ -6,7 +6,8 @@ Class {
 		'formalName',
 		'isoCode3',
 		'isoNumber',
-		'commonName'
+		'commonName',
+		'subdivisions'
 	],
 	#category : #'Lcs-PrototypeSystem'
 }
@@ -68,6 +69,16 @@ LxxCountry class >> parentSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definition' }
+LxxCountry class >> subdivisionsSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotName: 'subdivisions';
+		addSlotType: LxxCountrySubdivisions;
+		addCollectionMemberType: LxxBaseCountrySubdivision;
+		yourself
+]
+
 { #category : #accessing }
 LxxCountry >> commonName [
 	^ self slotVarNamed: 'commonName'
@@ -116,4 +127,14 @@ LxxCountry >> isoNumber [
 { #category : #accessing }
 LxxCountry >> isoNumber: anObject [
 	self slotVarNamed: 'isoNumber' put: anObject
+]
+
+{ #category : #accessing }
+LxxCountry >> subdivisions [
+	^ self slotVarNamed: 'subdivisions'
+]
+
+{ #category : #accessing }
+LxxCountry >> subdivisions: anObject [
+	self slotVarNamed: 'subdivisions' put: anObject
 ]

@@ -10,6 +10,11 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #building }
+LcsCodeBuilderStep >> addJobStep: aJobStep [
+	^ self jobSteps addJobStep: aJobStep
+]
+
 { #category : #refactorings }
 LcsCodeBuilderStep >> addRefactoring: aRefactoring [ 
 	self refactorings add: aRefactoring
@@ -42,6 +47,11 @@ LcsCodeBuilderStep >> beSlotModelUpdated [
 { #category : #state }
 LcsCodeBuilderStep >> beSlotModelUpdatedVerified [
 	self state: 'Slot Model Verified'
+]
+
+{ #category : #building }
+LcsCodeBuilderStep >> buildJobSteps [
+	^ self jobSteps buildJobSteps
 ]
 
 { #category : #'builder job' }
@@ -154,7 +164,7 @@ LcsCodeBuilderStep >> jobStepPaneAssociation [
 						build))
 ]
 
-{ #category : #accessing }
+{ #category : #building }
 LcsCodeBuilderStep >> jobSteps [
 	^ jobSteps
 ]

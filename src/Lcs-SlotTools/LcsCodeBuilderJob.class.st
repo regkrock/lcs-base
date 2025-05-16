@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #configuration }
-LcsCodeBuilderJob >> addJobStep: aBuilderJobStep [ 
-	self jobSteps addJobStep: aBuilderJobStep
+LcsCodeBuilderJob >> addJobStep: aJobStep [ 
+	^ self jobSteps addJobStep: aJobStep
 ]
 
 { #category : #'gt views' }

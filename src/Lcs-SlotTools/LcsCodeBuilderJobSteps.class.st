@@ -25,8 +25,7 @@ LcsCodeBuilderJobSteps class >> newOn: anObject [
 { #category : #steps }
 LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 	aJobStep parent: self.
-	self collection add: aJobStep.
-	"StringSignal emit: 'add job step'"
+	self collection add: aJobStep
 ]
 
 { #category : #'gt views' }
@@ -50,6 +49,11 @@ LcsCodeBuilderJobSteps >> allStepsAfter: aJobStep [
 	^ self collection
 		copyFrom: (self collection indexOf: aJobStep) + 1
 		to: self collection size
+]
+
+{ #category : #collection }
+LcsCodeBuilderJobSteps >> buildJobSteps [
+	^ self collection do: [ :each | each buildJobSteps ]
 ]
 
 { #category : #asking }

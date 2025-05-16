@@ -8,7 +8,9 @@ Class {
 		'targetClassName',
 		'targetModuleClass',
 		'slotDefinitionClassName',
-		'slotTypes'
+		'slotTypes',
+		'validationConditions',
+		'targetPackageName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -29,6 +31,10 @@ LcsSlotDefinitionBuilder class >> slotDefinitionClass [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> _target [
 	^ target
+]
+
+{ #category : #initialize }
+LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 ]
 
 { #category : #'gt views' }
@@ -58,7 +64,14 @@ LcsSlotDefinitionBuilder >> addStepNumberTo: aString [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> addValidationCondition: aStringBlock description: aDescription [
-	self slotDefinitionMetodBuilderStep addValidationCondition: aStringBlock description: aDescription
+	self validationConditions add: aStringBlock -> aDescription
+]
+
+{ #category : #'job steps' }
+LcsSlotDefinitionBuilder >> buildJobSteps [
+	self addJobStep: self slotInstanceVariableBuilder.
+	self addJobStep: self slotDefinitionMethodBuilder.
+	self addJobStep: self getterAndSetterMethodsBuilder
 ]
 
 { #category : #uninstall }
@@ -85,10 +98,12 @@ LcsSlotDefinitionBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
 		ifTrue: [ self error: 'Slot definition already exists' ]
 ]
 
-{ #category : #validation }
-LcsSlotDefinitionBuilder >> ensureSlotDoesNotAlreadyExist [
-	self isInstanceVariableAlreadyCreated
-		ifTrue: [ self error: 'Slot ' , self slotName , 'already exists' ]
+{ #category : #initialize }
+LcsSlotDefinitionBuilder >> getterAndSetterMethodsBuilder [
+	^ LcsSlotGetterAndSetterBuilder new
+		slotName: self slotName;
+		targetClassName: self targetClassName;
+		yourself
 ]
 
 { #category : #accessing }
@@ -125,13 +140,10 @@ LcsSlotDefinitionBuilder >> gtRefactoringChangeOn: aView [
 LcsSlotDefinitionBuilder >> initialize [
 	super initialize.
 	self slotTypes: OrderedCollection new.
-	self class slotDefinitionClass notNil 
+	self validationConditions: OrderedCollection new.
+	self class slotDefinitionClass notNil
 		ifTrue: [ self slotDefinitionClassName: self class slotDefinitionClass name ].
-	self jobSteps: (LcsCodeBuilderJobSteps newOn: self).
-	self jobSteps addJobStep: LcsSlotInstanceVariableBuilder new.
-	self jobSteps addJobStep: LcsSlotDefintionMethodBuilder new.
-	self jobSteps addJobStep: LcsSlotGetterAndSetterBuilder new.
-
+	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
 { #category : #initialize }
@@ -147,11 +159,6 @@ LcsSlotDefinitionBuilder >> installCode [
 { #category : #'job steps' }
 LcsSlotDefinitionBuilder >> installSlotDefinition [
 	self target installSlotDefinition: self slotDefinitionSelector
-]
-
-{ #category : #testing }
-LcsSlotDefinitionBuilder >> isInstanceVariableAlreadyCreated [
-	^ self target allInstVarNames includes: self slotName
 ]
 
 { #category : #printing }
@@ -171,6 +178,11 @@ LcsSlotDefinitionBuilder >> slotDefinitionClassName [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotDefinitionClassName: anObject [
 	slotDefinitionClassName := anObject
+]
+
+{ #category : #initialize }
+LcsSlotDefinitionBuilder >> slotDefinitionMethodBuilder [
+	^ LcsSlotDefintionMethodBuilder newFrom: self
 ]
 
 { #category : #'job steps' }
@@ -205,6 +217,14 @@ LcsSlotDefinitionBuilder >> slotDefinitionSource [
 		addYourself;
 		contents"
 
+]
+
+{ #category : #initialize }
+LcsSlotDefinitionBuilder >> slotInstanceVariableBuilder [
+	^ LcsSlotInstanceVariableBuilder new
+		slotName: self slotName;
+		targetClassName: self targetClassName;
+		yourself
 ]
 
 { #category : #accessing }
@@ -277,6 +297,16 @@ LcsSlotDefinitionBuilder >> targetModuleClass: aModuleClass [
 	targetModuleClass := aModuleClass
 ]
 
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> targetPackageName [
+	^ targetPackageName
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> targetPackageName: anObject [
+	targetPackageName := anObject
+]
+
 { #category : #verification }
 LcsSlotDefinitionBuilder >> targetSlotDefinition [
 	^ self target perform: self slotDefinitionSelector
@@ -285,6 +315,16 @@ LcsSlotDefinitionBuilder >> targetSlotDefinition [
 { #category : #command }
 LcsSlotDefinitionBuilder >> updateSlotModel [
 	self installSlotDefinition
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> validationConditions [
+	^ validationConditions
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> validationConditions: anObject [
+	validationConditions := anObject
 ]
 
 { #category : #command }
@@ -313,6 +353,6 @@ LcsSlotDefinitionBuilder >> verifyUninstall [
 
 { #category : #'gt views' }
 LcsSlotDefinitionBuilder >> viewCodeButton [
-	self _target isNil ifTrue: [ ^ BrButton new ].
-	^ self viewClassButtonFor: self target 
+	self targetClass isNil ifTrue: [ ^ BrButton new ].
+	^ self viewClassButtonFor: self targetClass 
 ]

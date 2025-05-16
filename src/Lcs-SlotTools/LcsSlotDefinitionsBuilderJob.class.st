@@ -18,12 +18,10 @@ LcsSlotDefinitionsBuilderJob >> addSlotBuilder: aSlotBuilderDefinition [
 { #category : #'job steps' }
 LcsSlotDefinitionsBuilderJob >> buildJobSteps [
 		self slotBuilders do: [ :each |
+			self addJobStep: each.
 			each targetClassName: self targetClassName.
-			"each targetPackageName: self targetPackageName" .
-			each slotDefinitionMetodBuilderStep 
-				slotDefinitionClass: each slotDefinitionClassName asClass;
-				slotTypes: each slotTypes copy.
-			self addJobStep: each ]
+			each targetPackageName: self targetPackageName.
+			each buildJobSteps ]
 ]
 
 { #category : #initialize }

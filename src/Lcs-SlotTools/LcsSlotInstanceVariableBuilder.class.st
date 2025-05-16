@@ -26,13 +26,13 @@ LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 { #category : #command }
 LcsSlotInstanceVariableBuilder >> installCode [
 	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
-	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self target) execute.
+	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self targetClass) execute.
 	self beCodeInstalled
 ]
 
 { #category : #'gt views' }
 LcsSlotInstanceVariableBuilder >> isInstanceVariableAlreadyCreated [
-	^ self slotBuilder isInstanceVariableAlreadyCreated
+	^ self targetClass allInstVarNames includes: self slotName
 ]
 
 { #category : #printing }
@@ -42,11 +42,11 @@ LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 
 { #category : #command }
 LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
-	self assert: (self target allInstVarNames includes: self slotName).
+	self assert: (self targetClass allInstVarNames includes: self slotName).
 ]
 
 { #category : #command }
 LcsSlotInstanceVariableBuilder >> verifyUninstall [
-	([ self target ] on: NotFound do: [ :s | s return: nil ]) isNil ifTrue: [ ^ self  ].
-	self assert: (self target allInstVarNames includes: self slotName) not.
+	self targetClass isNil ifTrue: [ ^ self  ].
+	self assert: (self targetClass allInstVarNames includes: self slotName) not.
 ]

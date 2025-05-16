@@ -2,19 +2,17 @@ Class {
 	#name : #LcsSlotDetailBuilder,
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
-		'refactoring'
+		'refactoring',
+		'slotName',
+		'targetClassName',
+		'targetClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #building }
-LcsSlotDetailBuilder >> _target [
-	^ self slotBuilder _target
-]
-
 { #category : #printing }
 LcsSlotDetailBuilder >> jobStepActionDescription [
-	^ 'Install instVar'
+	self subclassResponsibility
 ]
 
 { #category : #printing }
@@ -22,9 +20,9 @@ LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: self jobStepActionDescription;
 		nextPutAll: ' "';
-		nextPutAll: (self slotName ifNil: [ '<missing>' ]);
+		nextPutAll: (self slotName ifNil: [ '<missing slotName>' ]);
 		nextPutAll: '" in ';
-		nextPutAll: self slotBuilder targetClassName
+		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>' ])
 ]
 
 { #category : #building }
@@ -37,9 +35,14 @@ LcsSlotDetailBuilder >> slotDefinitionSource [
 	^ self slotBuilder slotDefinitionSource
 ]
 
-{ #category : #building }
+{ #category : #accessing }
 LcsSlotDetailBuilder >> slotName [
-	^ self slotBuilder slotName
+	^ slotName
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> slotName: anObject [
+	slotName := anObject
 ]
 
 { #category : #printing }
@@ -51,9 +54,27 @@ LcsSlotDetailBuilder >> stepNumber [
 	^ self slotBuilder addStepNumberTo: stepNumber.
 ]
 
-{ #category : #building }
-LcsSlotDetailBuilder >> target [
-	^ self slotBuilder target
+{ #category : #accessing }
+LcsSlotDetailBuilder >> targetClass [
+	^ targetClass ifNil: [ 
+		targetClass := [ self targetClassName asString asClass ] 
+							on: NotFound 
+							do: [ :s | s return: nil ] ]
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> targetClass: anObject [
+	targetClass := anObject
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> targetClassName [
+	^ targetClassName
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> targetClassName: anObject [
+	targetClassName := anObject
 ]
 
 { #category : #verification }

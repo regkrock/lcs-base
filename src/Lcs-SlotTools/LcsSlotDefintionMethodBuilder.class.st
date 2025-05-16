@@ -4,14 +4,30 @@ Class {
 	#instVars : [
 		'validationConditions',
 		'slotDefinitionClass',
-		'slotTypes'
+		'slotTypes',
+		'properties'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #'instance  creation' }
+LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
+	^ self new
+		initializeFrom: aSlotDefinitionBuilder;
+		yourself
+]
+
+{ #category : #'initialize\t' }
+LcsSlotDefintionMethodBuilder >> addProperty: aString value: anObject [
+	self properties add: aString->anObject
+]
+
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
-	aStream nextPutAll: self slotDefinitionSource
+	aStream 
+		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>']); 
+		nextPutAll:' class >>';
+		nextPutAll: self slotDefinitionSource
 ]
 
 { #category : #'code generation' }
@@ -42,12 +58,12 @@ LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 	<gtView>
-	self target isNil ifTrue: [ ^ aView empty ].
+	self targetClass isNil ifTrue: [ ^ aView empty ].
 	^ aView explicit
 		title: 'Implementor(Slot Definition)';
 		priority: 200;
 		stencil: [  
-			self target name gtClassMatches &
+			self targetClassName gtClassMatches &
 			self slotDefinitionSelector gtImplementors  ]
 ]
 
@@ -61,6 +77,18 @@ LcsSlotDefintionMethodBuilder >> initialize [
 	super initialize.
 	self validationConditions: OrderedCollection new.
 	self slotTypes: OrderedCollection new.
+	self properties: OrderedCollection new
+]
+
+{ #category : #'instance  creation' }
+LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
+	self 
+		slotName: aSlotDefinitionBuilder slotName;
+		slotDefinitionClass: aSlotDefinitionBuilder slotDefinitionClassName asClass;
+		targetClassName: aSlotDefinitionBuilder targetClassName;
+		slotTypes: aSlotDefinitionBuilder slotTypes copy;
+		validationConditions: aSlotDefinitionBuilder validationConditions.
+	aSlotDefinitionBuilder addExtraPropertiesTo: self
 ]
 
 { #category : #building }
@@ -68,7 +96,7 @@ LcsSlotDefintionMethodBuilder >> installCode [
 	self addRefactoring: (
 		RBAddMethodChange
 			compile: self slotDefinitionSource
-			in: self target class
+			in: self targetClass class
 			classified: #'slot definition') execute.
 	self beCodeInstalled
 ]
@@ -76,6 +104,16 @@ LcsSlotDefintionMethodBuilder >> installCode [
 { #category : #printing }
 LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 	^ 'Install slot definition for'
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> properties [
+	^ properties
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> properties: anObject [
+	properties := anObject
 ]
 
 { #category : #accessing }
@@ -122,6 +160,8 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 				keyword: 'description'
 				argument: eachAssociation value printString ].
 	self addSlotTypesSourceCodeTo: codeStream.
+	self properties do: [ :each |
+		codeStream addKeyword: each key argument: each value ].
 
 
 	^ codeStream
@@ -144,11 +184,6 @@ LcsSlotDefintionMethodBuilder >> slotTypes: anObject [
 	slotTypes := anObject
 ]
 
-{ #category : #asking }
-LcsSlotDefintionMethodBuilder >> targetClassName [
-	^ self parent targetClassName
-]
-
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> validationConditions [
 	^ validationConditions
@@ -161,17 +196,17 @@ LcsSlotDefintionMethodBuilder >> validationConditions: anObject [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
-	self assert: (self target class canUnderstand: self slotBuilder slotDefinitionSelector)
+	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector)
 ]
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	self currentSystem isNil ifTrue: [ ^ self ].
-	self assert: (self target slotModel slotDefinitionNamed: self slotName) notNil
+	self assert: (self targetClass slotModel slotDefinitionNamed: self slotName) notNil
 ]
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyUninstall [
-	([ self target ] on: NotFound do: [ :s | s return: nil ]) ifNil: [ ^ self ].
-	self assert: (self target class canUnderstand: self slotBuilder slotDefinitionSelector) not
+	([ self targetClass ] on: NotFound do: [ :s | s return: nil ]) ifNil: [ ^ self ].
+	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector) not
 ]

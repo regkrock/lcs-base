@@ -50,7 +50,6 @@ LcsBaseCountrySubdivision class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
 		slotName: 'parent';
-		"collectionSlotModuleName: LcsGeographyModule defaultModuleName;"
 		collectionSlotName: 'subdivisions';
 		addSlotType: LcsCountrySubdivisions;
 		yourself

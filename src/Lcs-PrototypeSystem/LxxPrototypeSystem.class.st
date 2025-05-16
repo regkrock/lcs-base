@@ -24,7 +24,6 @@ LxxPrototypeSystem class >> countriesSlotDefinition [
 	^ LcsGlobalCollectionSlot new
 		slotName: 'countries';
 		addSlotType: LxxCountries;
-		collectionClass: IdentitySet;
 		addCollectionMemberType: LxxCountry;
 		yourself
 ]
@@ -124,6 +123,10 @@ LxxPrototypeSystem >> systemDomainClasses [
 		add: LxxOrganization;
 		add: LxxPerson;
 		add: LxxPersons;
+		add: LxxCountry;
+		add: LxxCountries;
+		add: LxxCountrySubdivisions;
+		add: LxxBaseCountrySubdivision;
 		add: LxxPrototypeSystemConfiguration;
 		addAll: LxxPrototypeSystem allSubmoduleClasses;
 		yourself

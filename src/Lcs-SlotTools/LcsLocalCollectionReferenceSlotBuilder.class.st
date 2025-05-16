@@ -1,74 +1,57 @@
 Class {
-	#name : #LcsGlobalCollectionReferenceSlotBuilder,
+	#name : #LcsLocalCollectionReferenceSlotBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'collectionSlotName',
-		'collectionSlotModuleName',
 		'collectionClassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #configuration }
-LcsGlobalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
-	^ LcsGlobalCollectionReferenceSlot
+LcsLocalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
+	^ LcsLocalCollectionReferenceSlot
 ]
 
 { #category : #'code generation' }
-LcsGlobalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsLocalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
 	aSlotDefinitionMethodBuilder 
-		addProperty: 'collectionSlotName' value: self collectionSlotName printString;
-		addProperty: 'collectionSlotModuleName' value: self collectionSlotModuleName printString
+		addProperty: 'collectionSlotName' value: self collectionSlotName printString
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
+LcsLocalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
 	aCollection add: (self target -> {{self slotName. self collectionClass.}})
 ]
 
 { #category : #'code generation' }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionClass [
+LcsLocalCollectionReferenceSlotBuilder >> collectionClass [
 	^self collectionClassName asClass
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionClassName [
+LcsLocalCollectionReferenceSlotBuilder >> collectionClassName [
 	^ collectionClassName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionClassName: anObject [
+LcsLocalCollectionReferenceSlotBuilder >> collectionClassName: anObject [
 	collectionClassName := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModule [
-	^ self currentSystem moduleNamed: self collectionSlotModuleName
-]
-
-{ #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName [
-	^ collectionSlotModuleName
-]
-
-{ #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName: aString [
-	collectionSlotModuleName := aString
-]
-
-{ #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName [
+LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName [
 	^ collectionSlotName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
+LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
 	collectionSlotName := aString
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
+LcsLocalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
 		title: 'Steps List';
@@ -89,13 +72,13 @@ LcsGlobalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
 ]
 
 { #category : #initialize }
-LcsGlobalCollectionReferenceSlotBuilder >> initialize [
+LcsLocalCollectionReferenceSlotBuilder >> initialize [
 	super initialize.
 	self slotName: 'parent'
 ]
 
 { #category : #printing }
-LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
+LcsLocalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Install slot "';
 		nextPutAll: self slotName;
@@ -104,36 +87,30 @@ LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> target [
+LcsLocalCollectionReferenceSlotBuilder >> target [
 	^ target ifNil: [ target := self targetClassName asClass ]
 ]
 
 { #category : #command }
-LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
+LcsLocalCollectionReferenceSlotBuilder >> uninstall [
 	self target removeDomainSlotNamed: self slotName
 ]
 
 { #category : #verification }
-LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
+LcsLocalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
 	| slotDefinition |
 	super verifyCodeInstallation.
 	slotDefinition := self targetSlotDefinition.
 	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
-	self assert: slotDefinition collectionSlotName isString.
-	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
-	self assert: slotDefinition collectionSlotModuleName isString.
-
+	self assert: slotDefinition collectionSlotName isString
 ]
 
 { #category : #verification }
-LcsGlobalCollectionReferenceSlotBuilder >> verifyUninstall [
+LcsLocalCollectionReferenceSlotBuilder >> verifyUninstall [
 	| slotDefinition |
 	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) ifNil: [ ^ self ].
 	super verifyUninstall.
 	slotDefinition := self targetSlotDefinition.
 	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
 	self assert: slotDefinition collectionSlotName isString.
-	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
-	self assert: slotDefinition collectionSlotModuleName isString.
-
 ]

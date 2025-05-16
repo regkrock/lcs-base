@@ -20,7 +20,15 @@ LcsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 { #category : #'gt views' }
 LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
 	self collectionElementTypes add: aClass
+]
 
+{ #category : #initialize }
+LcsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
+	self collectionElementTypes do: [ :each |
+		aSlotDefinitionMethodBuilder 
+			addProperty: 'addCollectionMemberType' 
+			value: each ]
 ]
 
 { #category : #'gt views' }
@@ -31,18 +39,8 @@ LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 
 ]
 
-{ #category : #'code generation' }
-LcsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
-	aCodeStream 
-		addKeyword: 'addSlotType' argument: self slotTypeClassName.
-	self collectionClass notNil ifTrue: [
-		aCodeStream
-			addKeyword: 'collectionClass' argument: self collectionClass name].
-	self collectionElementTypes do: [ :eachClass |
-		aCodeStream addKeyword: 'addCollectionMemberType' argument: (eachClass isString ifTrue: [ eachClass ] ifFalse: [ eachClass name ] )].
-	self collectionClass isNil ifTrue: [
-		aCodeStream addUnaryMessage: 'beIdentitySetCollection']
-
+{ #category : #initialize }
+LcsGlobalSlotDefinitionBuilder >> addPropertiesTo: step [ 
 ]
 
 { #category : #accessing }
