@@ -184,6 +184,11 @@ LcsSlotDefintionMethodBuilder >> slotTypes: anObject [
 	slotTypes := anObject
 ]
 
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> uninstall [
+	self targetClass class removeSelector: self slotDefinitionSelector
+]
+
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> validationConditions [
 	^ validationConditions
@@ -196,7 +201,14 @@ LcsSlotDefintionMethodBuilder >> validationConditions: anObject [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
-	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector)
+	| slotDefinition |
+	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
+	"self assert: (self target class includesLocalSelector: self slotDefinitionSelector)."
+	slotDefinition := self targetClass perform: self slotDefinitionSelector asSymbol.
+	self assert: slotDefinition class == self slotDefinitionClass.
+	self assert: slotDefinition slotName = self slotName.
+	self assert: slotDefinition slotTypes notEmpty.
+	self assert: (slotDefinition slotTypes allSatisfy: [ :each | each isClass ])
 ]
 
 { #category : #verification }
@@ -207,6 +219,6 @@ LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyUninstall [
-	([ self targetClass ] on: NotFound do: [ :s | s return: nil ]) ifNil: [ ^ self ].
+	self targetClass isNil ifTrue: [ ^ self ].
 	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector) not
 ]

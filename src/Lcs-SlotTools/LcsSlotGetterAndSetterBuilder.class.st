@@ -128,6 +128,13 @@ LcsSlotGetterAndSetterBuilder >> setterSource [
 ]
 
 { #category : #command }
+LcsSlotGetterAndSetterBuilder >> uninstall [
+	self targetClass ifNil: [ ^ self ].
+	self targetClass removeSelector: self getterSelector.
+	self targetClass removeSelector: self setterSelector
+]
+
+{ #category : #command }
 LcsSlotGetterAndSetterBuilder >> verifyCodeInstallation [
 	self assert: (self targetClass canUnderstand: self getterSelector).
 	self assert: (self targetClass canUnderstand: self setterSelector).
@@ -135,7 +142,7 @@ LcsSlotGetterAndSetterBuilder >> verifyCodeInstallation [
 
 { #category : #command }
 LcsSlotGetterAndSetterBuilder >> verifyUninstall [
-	targetClass ifNil: [ ^ self ].
+	self targetClass ifNil: [ ^ self ].
 	self assert: (self targetClass canUnderstand: self getterSelector) not.
 	self assert: (self targetClass canUnderstand: self setterSelector) not.
 ]

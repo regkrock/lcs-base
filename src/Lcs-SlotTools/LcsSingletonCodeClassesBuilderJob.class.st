@@ -10,12 +10,11 @@ Class {
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> addCodeSubclassBuilders [
 	self codeSubclassBuilders
-		do: [ :eachBuilder | 
-			self
-				addJobStep: (eachBuilder
-						targetSuperclassName: self newDomainClassName;
-						targetPackageName: self targetPackageName;
-						yourself) ]
+		do: [ :eachBuilder | self addJobStep: (
+				eachBuilder
+					targetSuperclassName: self newDomainClassName;
+					targetPackageName: self targetPackageName;
+					yourself) ]
 ]
 
 { #category : #configuration }
@@ -69,6 +68,7 @@ LcsSingletonCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 		targetClassName: self globalCollectionModuleClass name;
 		targetModuleClass: self globalCollectionModuleClass;
 		codeSuperclassName: self newDomainClassName;
+		addSlotType: self globalCollectionClassName;
 		yourself
 ]
 
@@ -95,7 +95,8 @@ LcsSingletonCodeClassesBuilderJob >> overview [
 
 { #category : #command }
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
-	self globalCollectionSlotDefinitionStep populateSlotModel.
+	self jobSteps populateSlotModel.
+	"self globalCollectionSlotDefinitionStep populateSlotModel."
 	self currentSystem currentUnitOfWork applyChanges.
 	"self singletonClassBuilders do: [ :eachStep | eachStep populateSlotModel ].
 	self currentSystem currentUnitOfWork applyChanges"

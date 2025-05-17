@@ -12,6 +12,12 @@ LcsSingletonCodesGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsSingletonCodesGlobalCollectionSlot
 ]
 
+{ #category : #initialize }
+LcsSingletonCodesGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aBuilder [
+	super addExtraPropertiesTo: aBuilder.
+	aBuilder addProperty: 'codeSuperclass' value: self codeSuperclassName
+]
+
 { #category : #'code generation' }
 LcsSingletonCodesGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .

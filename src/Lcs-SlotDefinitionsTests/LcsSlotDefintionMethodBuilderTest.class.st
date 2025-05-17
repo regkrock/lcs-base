@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsSlotDefinitionBuilderTest,
+	#name : #LcsSlotDefintionMethodBuilderTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#instVars : [
 		'codeBuilder'
@@ -8,33 +8,30 @@ Class {
 }
 
 { #category : #accessing }
-LcsSlotDefinitionBuilderTest >> codeBuilder [
+LcsSlotDefintionMethodBuilderTest >> codeBuilder [
 	^ codeBuilder
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilderTest >> codeBuilder: anObject [
+LcsSlotDefintionMethodBuilderTest >> codeBuilder: anObject [
 	codeBuilder := anObject
 ]
 
 { #category : #running }
-LcsSlotDefinitionBuilderTest >> tearDown [
+LcsSlotDefintionMethodBuilderTest >> tearDown [
 	self codeBuilder ifNotNil: [ :builder | builder uninstall].
 	super tearDown.
 	self codeBuilder ifNotNil: [ :builder | builder verifyUninstall]
 ]
 
 { #category : #tests }
-LcsSlotDefinitionBuilderTest >> testInstallingSlot [
+LcsSlotDefintionMethodBuilderTest >> testInstallingSlotDefinitionMethod [
 	self codeBuilder: (
-		LcsSlotDefinitionBuilder new
+		LcsSlotDefintionMethodBuilder new
 			slotName: 'foos';
-			slotDefinitionClassName: LcsStringSlot name;
+			slotDefinitionClass: LcsStringSlot;
 			targetClassName: self currentSystem class name;
-			"targetModuleClass: self currentSystem class name;"
-			addSlotType: LxxPerson name ;
 			yourself).
-	self codeBuilder buildJobSteps.
 	self codeBuilder installCode.
-	self codeBuilder verifyCodeInstallation
+	self assert: (self currentSystem class respondsTo: ('foos' , 'SlotDefinition') asSymbol)
 ]

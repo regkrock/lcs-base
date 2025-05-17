@@ -11,14 +11,14 @@ LcsStringSlotTest >> testInstallation [
 	self assert: subject class == LcsStringSlot
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsStringSlotTest >> testSlotGetter [
 	| person |
 	person := LxxPerson new.
 	self assert: person lastName isEmpty.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsStringSlotTest >> testSlotSetter [
 	| person |
 	person := LxxPerson new.

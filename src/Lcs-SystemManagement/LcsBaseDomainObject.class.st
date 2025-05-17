@@ -246,11 +246,17 @@ LcsBaseDomainObject class >> releaseSlotModel [
 
 { #category : #'slot definition - removal' }
 LcsBaseDomainObject class >> removeDomainSlotNamed: aSlotName [
-	self slotModel ifNotNil: [ :model | model removeSlotDefinitionNamed: aSlotName ].
+	self removeDomainSlotNamedFromSlotModel: aSlotName.
 	self removeInstVar: aSlotName.
 	self removeGetter: aSlotName asSymbol.
 	self removeSetter: (aSlotName , ':') asSymbol.
 	self removeSlotDefinition: (aSlotName , 'SlotDefinition') asSymbol
+]
+
+{ #category : #'slot definition - removal' }
+LcsBaseDomainObject class >> removeDomainSlotNamedFromSlotModel: aSlotName [
+	self slotModel
+		ifNotNil: [ :model | model removeSlotDefinitionNamed: aSlotName asString ]
 ]
 
 { #category : #'slot definition - removal' }

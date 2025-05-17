@@ -25,7 +25,9 @@ LcsCodeBuilderJobSteps class >> newOn: anObject [
 { #category : #steps }
 LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 	aJobStep parent: self.
-	self collection add: aJobStep
+	self collection add: aJobStep.
+	aJobStep buildJobSteps.
+	^ aJobStep
 ]
 
 { #category : #'gt views' }

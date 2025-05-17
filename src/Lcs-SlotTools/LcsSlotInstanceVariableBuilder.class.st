@@ -40,6 +40,11 @@ LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 	^ 'Install instVar '
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotInstanceVariableBuilder >> uninstall [
+	self targetClass removeInstVar: self slotName
+]
+
 { #category : #command }
 LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
 	self assert: (self targetClass allInstVarNames includes: self slotName).

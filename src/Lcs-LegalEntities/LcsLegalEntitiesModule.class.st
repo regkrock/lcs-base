@@ -22,7 +22,6 @@ LcsLegalEntitiesModule class >> gendersSlotDefinition [
 		slotName: 'genders';
 		priority: 10;
 		addSlotType: LcsGenders;
-		collectionClass: IdentitySet;
 		codeSuperclass: LcsGender;
 		yourself
 ]

@@ -19,8 +19,8 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
 				with: [ :classBuilder | classBuilder beDefaultInstance ];
 			targetModuleClass: LxxPrototypeSystem;
 			installMemberSlotInDomainClass: LxxBasePerson;
-			buildJobSteps;
 			yourself).
+	self codeJobBuilder buildJobSteps.
 	self codeJobBuilder execute.
 
 	person := LxxPerson new.

@@ -94,7 +94,7 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionReferenceSlotBui
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self globalCollectionSlotName;
 		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
-		collectionClassName: self globalCollectionClassName;
+		addSlotType: self globalCollectionClassName;
 		yourself
 ]
 

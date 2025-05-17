@@ -2,39 +2,40 @@ Class {
 	#name : #LcsGlobalSlotDefinitionBuilderTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#instVars : [
-		'codeJobBuilder'
+		'codeBuilder'
 	],
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilderTest >> codeJobBuilder [
-	^ codeJobBuilder
+LcsGlobalSlotDefinitionBuilderTest >> codeBuilder [
+	^ codeBuilder
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilderTest >> codeJobBuilder: anObject [
-	codeJobBuilder := anObject
+LcsGlobalSlotDefinitionBuilderTest >> codeBuilder: anObject [
+	codeBuilder := anObject
 ]
 
 { #category : #running }
 LcsGlobalSlotDefinitionBuilderTest >> tearDown [
-	self codeJobBuilder ifNotNil: [ :builder | builder uninstall].
+	self codeBuilder ifNotNil: [ :builder | builder uninstall].
 	super tearDown.
-	self codeJobBuilder ifNotNil: [ :builder | builder verifyUninstall]
+	self codeBuilder ifNotNil: [ :builder | builder verifyUninstall]
 ]
 
 { #category : #tests }
 LcsGlobalSlotDefinitionBuilderTest >> testInstallingGlobalCollectionSlot [
-	self codeJobBuilder: LcsCodeBuilderJob new.
-	self codeJobBuilder addJobStep: (
+	self codeBuilder: (
 		LcsGlobalSlotDefinitionBuilder new
 			slotClassName: LxxPersons name;
 			slotName: 'foos';
 			targetClassName: self currentSystem class name;
 			targetModuleClass: self currentSystem class name;
 			collectionElementTypes: { LxxPerson name };
+			slotTypes: { LxxPersons name };
 			yourself).
-	self codeJobBuilder execute.
-	self assert: (self currentSystem class hasSlotDefinitionNamed: 'foos')
+	self codeBuilder buildJobSteps.
+	self codeBuilder installCode.
+	self codeBuilder verifyCodeInstallation
 ]

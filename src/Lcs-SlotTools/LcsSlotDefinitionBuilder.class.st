@@ -185,11 +185,6 @@ LcsSlotDefinitionBuilder >> slotDefinitionMethodBuilder [
 	^ LcsSlotDefintionMethodBuilder newFrom: self
 ]
 
-{ #category : #'job steps' }
-LcsSlotDefinitionBuilder >> slotDefinitionMetodBuilderStep [
-	^ ( self jobSteps stepsWithClass: LcsSlotDefintionMethodBuilder) first
-]
-
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotDefinitionSelector [
 	^ slotDefinitionSelector
@@ -313,6 +308,11 @@ LcsSlotDefinitionBuilder >> targetSlotDefinition [
 ]
 
 { #category : #command }
+LcsSlotDefinitionBuilder >> uninstall [
+	self jobSteps uninstall
+]
+
+{ #category : #command }
 LcsSlotDefinitionBuilder >> updateSlotModel [
 	self installSlotDefinition
 ]
@@ -329,13 +329,6 @@ LcsSlotDefinitionBuilder >> validationConditions: anObject [
 
 { #category : #command }
 LcsSlotDefinitionBuilder >> verifyCodeInstallation [
-	| slotDefinition |
-	self assert: (self target class includesLocalSelector: self slotDefinitionSelector).
-	slotDefinition := self targetSlotDefinition.
-	self assert: slotDefinition class == self slotDefinitionClassName asClass.
-	self assert: slotDefinition slotName = self slotName.
-	self assert: slotDefinition slotTypes notEmpty.
-	self assert: (slotDefinition slotTypes allSatisfy: [ :each | each isClass ]).
 	self jobSteps verifyCodeInstallation
 ]
 
