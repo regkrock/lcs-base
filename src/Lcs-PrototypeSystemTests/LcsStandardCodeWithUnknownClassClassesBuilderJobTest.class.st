@@ -16,8 +16,8 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreationOfSingletonC
 			createProtoCodesFromLabels: #('Mr' 'Ms');
 			targetModuleClass: LxxPrototypeSystem;
 			installMemberSlotInDomainClass: LxxBasePerson;
-			buildJobSteps;
 			yourself).
+	self codeJobBuilder buildJobSteps.
 	self codeJobBuilder execute.
 
 	person := LxxPerson new.
