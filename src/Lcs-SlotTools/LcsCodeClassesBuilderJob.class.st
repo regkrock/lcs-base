@@ -40,6 +40,8 @@ LcsCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 		targetClassName: self globalCollectionModuleClass name;
 		targetModuleClass: self globalCollectionModuleClass;
 		loaderClassName: self globalCollectionClassName , 'Loader';
+		addCollectionElementType: self newDomainClassName;
+		addSlotType: self globalCollectionClassName;
 		yourself
 ]
 

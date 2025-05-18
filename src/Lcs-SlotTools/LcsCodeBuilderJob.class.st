@@ -82,7 +82,8 @@ LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 	^ aView mondrian
 		title: 'Steps Tree';
 		priority: 2;
-		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
+		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ];
+		actionUpdateButton
 ]
 
 { #category : #'gt views' }

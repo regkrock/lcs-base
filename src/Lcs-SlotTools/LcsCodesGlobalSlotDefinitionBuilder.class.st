@@ -13,6 +13,17 @@ LcsCodesGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsCodesGlobalCollectionSlot
 ]
 
+{ #category : #initialize }
+LcsCodesGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
+	aSlotDefinitionMethodBuilder.
+		self collectionElementTypes do: [ :each |
+			aSlotDefinitionMethodBuilder 
+				addProperty: 'addCollectionMemberType' 
+				value: each ].
+	aSlotDefinitionMethodBuilder addProperty: 'loaderClass' value: self loaderClassName
+]
+
 { #category : #'code generation' }
 LcsCodesGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
