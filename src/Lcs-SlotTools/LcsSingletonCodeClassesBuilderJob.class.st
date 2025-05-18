@@ -116,6 +116,7 @@ LcsSingletonCodeClassesBuilderJob >> singletonClassBuilders [
 
 { #category : #command }
 LcsSingletonCodeClassesBuilderJob >> verifyPopulateSlotModel [
+	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection collectionSize = self singletonClassBuilders size.
 	self singletonClassBuilders

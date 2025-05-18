@@ -186,7 +186,7 @@ LcsCodeBuilderStep >> parent: anObject [
 
 { #category : #command }
 LcsCodeBuilderStep >> populateSlotModel [
-	"Subclasses should implement as needed"
+	self jobSteps populateSlotModel
 ]
 
 { #category : #printing }

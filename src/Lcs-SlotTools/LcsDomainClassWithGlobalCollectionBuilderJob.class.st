@@ -199,8 +199,3 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> targetPackageName [
 LcsDomainClassWithGlobalCollectionBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]
-
-{ #category : #command }
-LcsDomainClassWithGlobalCollectionBuilderJob >> verifyPopulateSlotModel [
-	self subclassResponsibility
-]

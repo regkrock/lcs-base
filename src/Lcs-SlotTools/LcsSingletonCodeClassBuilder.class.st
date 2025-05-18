@@ -126,6 +126,7 @@ LcsSingletonCodeClassBuilder >> label: aString [
 
 { #category : #command }
 LcsSingletonCodeClassBuilder >> populateSlotModel [
+	super populateSlotModel.
 	self installedClass new
 ]
 

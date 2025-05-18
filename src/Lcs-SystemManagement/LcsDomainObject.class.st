@@ -195,7 +195,7 @@ LcsDomainObject >> historyOfChangesToSlot: aSlotName [
 
 { #category : #'unit of work' }
 LcsDomainObject >> incrementVersionNumber [
-	self version: self version + 1
+	self version: (self version ifNil: [ 0 ]) + 1
 ]
 
 { #category : #state }

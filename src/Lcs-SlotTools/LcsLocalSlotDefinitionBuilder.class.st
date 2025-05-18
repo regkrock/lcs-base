@@ -138,6 +138,7 @@ LcsLocalSlotDefinitionBuilder >> module [
 { #category : #command }
 LcsLocalSlotDefinitionBuilder >> populateSlotModel [
 	| aModule |
+	super populateSlotModel.
 	aModule := self module.
 	(aModule perform: self getterSelector)
 		ifNil: [ aModule initializeSlotNamed: self slotName ]

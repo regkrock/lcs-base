@@ -13,6 +13,14 @@ LcsMemberOfSlotBuilder class >> slotDefinitionClass [
 	^ LcsMemberOfSlot
 ]
 
+{ #category : #initialize }
+LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
+	super addExtraPropertiesTo: aBuilder.
+	aBuilder 
+		addProperty: 'collectionSlotName' value: self collectionSlotName printString;
+		addProperty: 'collectionSlotModuleName' value: self collectionSlotModuleName printString
+]
+
 { #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addModelAssociationsTo: aCollection [
 	aCollection add: self targetClass-> {{self slotName. self domainClass}}
