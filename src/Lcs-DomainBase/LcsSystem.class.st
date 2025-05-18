@@ -380,10 +380,6 @@ LcsSystem >> isPrototypeSystem [
 	^ false
 ]
 
-{ #category : #initialize }
-LcsSystem >> loadData [
-]
-
 { #category : #environment }
 LcsSystem >> makeCurrentSystem [
 	LcsApplicationEnvironment systemsManager addSystem: self

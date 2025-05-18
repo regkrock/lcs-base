@@ -86,6 +86,7 @@ LxxPrototypeSystem >> isPrototypeSystem [
 
 { #category : #'as yet unclassified' }
 LxxPrototypeSystem >> loadData [
+	super loadData.
 	LxxCountriesLoader new load.
 	self applyChanges
 ]

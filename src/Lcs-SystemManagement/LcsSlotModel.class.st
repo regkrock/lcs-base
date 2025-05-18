@@ -218,6 +218,12 @@ LcsSlotModel >> initializeUnintializedSlotValuesIn: aDomainObject [
 	self allSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ]
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotModel >> loadSingletonCodeCollections [
+	self slotDefinitions do: [ :eachSlotDefinition |
+		eachSlotDefinition class = LcsSingletonCodesGlobalCollectionSlot ifTrue: [ eachSlotDefinition populateCollection  ] ]
+]
+
 { #category : #accessing }
 LcsSlotModel >> parent [
 	^ self domainClass

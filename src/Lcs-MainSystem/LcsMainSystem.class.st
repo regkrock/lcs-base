@@ -12,6 +12,7 @@ LcsMainSystem class >> configurationSlotDefinition [
 
 { #category : #'as yet unclassified' }
 LcsMainSystem >> loadData [
+	super loadData.
 	LcsCountryLoader new load.
 	self applyChanges
 ]

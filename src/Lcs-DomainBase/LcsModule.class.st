@@ -246,6 +246,17 @@ LcsModule >> legalEntitiesModule [
 	^ self moduleNamed: 'Legal Entities Module'
 ]
 
+{ #category : #initialize }
+LcsModule >> loadData [
+	self loadSingletonCodeCollections
+]
+
+{ #category : #initialize }
+LcsModule >> loadSingletonCodeCollections [
+	self slotModel loadSingletonCodeCollections.
+	self modules do: [ :eachModule | eachModule loadSingletonCodeCollections ]
+]
+
 { #category : #accessing }
 LcsModule >> moduleName [
 	^ self slotVarNamed: 'moduleName'
