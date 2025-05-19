@@ -223,6 +223,7 @@ LcsBaseClassBuilder >> uninstall [
 	self installedClass ifNil: [ ^ self ].
 	self currentSystem removeClassFromSlotModel: self installedClass.
 	self removeReferencesFromSubsequentSteps.
+	self currentUnitOfWork removeAddOf: self installedClass.
 	self reverseRefactorings.
 	self installedClass: nil
 ]
