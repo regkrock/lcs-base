@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsGlobalLocalCollectionBuilderJob,
-	#superclass : #LcsDomainClassWithGlobalCollectionBuilderJob,
+	#name : #LcsDomainClassAndLocalCollectionClassBuilderJob,
+	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
 	#instVars : [
 		'protoInstances',
 		'unknownClassName',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #command }
-LcsGlobalLocalCollectionBuilderJob >> addSubclassBuilders [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> addSubclassBuilders [
 	self subclassNames do: [ :eachName |
 		self addJobStep: (
 			LcsDomainClassBuilder new
@@ -21,7 +21,7 @@ LcsGlobalLocalCollectionBuilderJob >> addSubclassBuilders [
 ]
 
 { #category : #command }
-LcsGlobalLocalCollectionBuilderJob >> buildJobSteps [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> buildJobSteps [
 	self addJobStep: self domainClassBuilder.
 	self buildUnknownClass ifTrue: [
 		self addJobStep: self domainUnknownClassBuilder].
@@ -33,34 +33,34 @@ LcsGlobalLocalCollectionBuilderJob >> buildJobSteps [
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> buildUnknownClass [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> buildUnknownClass [
 	^ buildUnknownClass
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> buildUnknownClass: aBoolean [ 
+LcsDomainClassAndLocalCollectionClassBuilderJob >> buildUnknownClass: aBoolean [ 
 	buildUnknownClass := aBoolean
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> createForPrefix: aPrefix rootName: aRootName withSubclasses: aCollection [ 
+LcsDomainClassAndLocalCollectionClassBuilderJob >> createForPrefix: aPrefix rootName: aRootName withSubclasses: aCollection [ 
 	self createForPrefix: aPrefix rootName: aRootName.
 	self subclassNames addAll: aCollection
 ]
 
 { #category : #configuration }
-LcsGlobalLocalCollectionBuilderJob >> createForRootName: aRootName [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> createForRootName: aRootName [
 	super createForRootName: aRootName.
 	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> createInstances: aCollection [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> createInstances: aCollection [
 	aCollection do: [ :each | self protoInstances add: each ]
 ]
 
 { #category : #builders }
-LcsGlobalLocalCollectionBuilderJob >> domainClassBuilder [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> domainClassBuilder [
 	^ LcsDomainClassBuilder new
 		newClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
@@ -68,12 +68,12 @@ LcsGlobalLocalCollectionBuilderJob >> domainClassBuilder [
 ]
 
 { #category : #'builder step' }
-LcsGlobalLocalCollectionBuilderJob >> domainClassBuilderStep [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> domainClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsDomainClassBuilder) first
 ]
 
 { #category : #builders }
-LcsGlobalLocalCollectionBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 	^ LcsMemberOfSlotBuilder new
 		target: aTargetClass;
 		targetClassName: aTargetClass name;
@@ -85,7 +85,7 @@ LcsGlobalLocalCollectionBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetC
 ]
 
 { #category : #builders }
-LcsGlobalLocalCollectionBuilderJob >> domainCollectionClassBuilder [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
 		newClassName: self globalCollectionClassName;
 		targetPackageName: self targetPackageName;
@@ -93,7 +93,7 @@ LcsGlobalLocalCollectionBuilderJob >> domainCollectionClassBuilder [
 ]
 
 { #category : #builders }
-LcsGlobalLocalCollectionBuilderJob >> domainUnknownClassBuilder [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> domainUnknownClassBuilder [
 	^ LcsUnknownClassBuilder new
 		newClassName: self unknownClassName;
 		targetSuperclassName: self newDomainClassName;
@@ -102,7 +102,7 @@ LcsGlobalLocalCollectionBuilderJob >> domainUnknownClassBuilder [
 ]
 
 { #category : #builders }
-LcsGlobalLocalCollectionBuilderJob >> globalCollectionReferenceSlotBuilder [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> globalCollectionReferenceSlotBuilder [
 	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self globalCollectionSlotName;
@@ -112,7 +112,7 @@ LcsGlobalLocalCollectionBuilderJob >> globalCollectionReferenceSlotBuilder [
 ]
 
 { #category : #'builder step' }
-LcsGlobalLocalCollectionBuilderJob >> globalCollectionSlotBuilder [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> globalCollectionSlotBuilder [
 	^ LcsGlobalSlotDefinitionBuilder new
 		slotClassName: self globalCollectionClassName;
 		slotName: self globalCollectionSlotName;
@@ -123,12 +123,12 @@ LcsGlobalLocalCollectionBuilderJob >> globalCollectionSlotBuilder [
 ]
 
 { #category : #'builder step' }
-LcsGlobalLocalCollectionBuilderJob >> globalCollectionSlotDefinitionStep [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
 ]
 
 { #category : #initialize }
-LcsGlobalLocalCollectionBuilderJob >> initialize [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> initialize [
 	super initialize.
 	self protoInstances: OrderedCollection new.
 	self targetDomainClasses: Set new.
@@ -137,7 +137,8 @@ LcsGlobalLocalCollectionBuilderJob >> initialize [
 ]
 
 { #category : #command }
-LcsGlobalLocalCollectionBuilderJob >> populateSlotModel [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> populateSlotModel [
+	super populateSlotModel.
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
 	self unknownClass new.
@@ -149,7 +150,7 @@ LcsGlobalLocalCollectionBuilderJob >> populateSlotModel [
 ]
 
 { #category : #printing }
-LcsGlobalLocalCollectionBuilderJob >> printJobStreamDetailsOn: aStream [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: 'Install ';
 		nextPutAll: self newDomainClassName ; cr;
@@ -158,47 +159,48 @@ LcsGlobalLocalCollectionBuilderJob >> printJobStreamDetailsOn: aStream [
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> protoInstances [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> protoInstances [
 	^ protoInstances
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> protoInstances: aCollection [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> protoInstances: aCollection [
 	protoInstances := aCollection
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> subclassNames [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> subclassNames [
 	^ subclassNames
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> subclassNames: anObject [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> subclassNames: anObject [
 	subclassNames := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> undefinedClassName: anObject [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> undefinedClassName: anObject [
 	unknownClassName := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> unknownClass [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClass [
 	^ self unknownClassBuilderStep installedClass
 ]
 
 { #category : #'builder step' }
-LcsGlobalLocalCollectionBuilderJob >> unknownClassBuilderStep [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsUnknownClassBuilder) first
 ]
 
 { #category : #accessing }
-LcsGlobalLocalCollectionBuilderJob >> unknownClassName [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClassName [
 	^ unknownClassName
 ]
 
 { #category : #verification }
-LcsGlobalLocalCollectionBuilderJob >> verifyPopulateSlotModel [
+LcsDomainClassAndLocalCollectionClassBuilderJob >> verifyPopulateSlotModel [
+	super verifyPopulateSlotModel.
 	self protoInstances isEmpty 
 		ifTrue: [ ]
 		ifFalse: [ self subclassResponsibility ]

@@ -61,6 +61,7 @@ LcsStandardCodeClassesBuilderJob >> initialize [
 
 { #category : #command }
 LcsStandardCodeClassesBuilderJob >> populateSlotModel [
+	super populateSlotModel.
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
 
@@ -68,6 +69,7 @@ LcsStandardCodeClassesBuilderJob >> populateSlotModel [
 
 { #category : #command }
 LcsStandardCodeClassesBuilderJob >> verifyPopulateSlotModel [
+	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection collectionSize = self protoCodes size.
 	self protoCodes

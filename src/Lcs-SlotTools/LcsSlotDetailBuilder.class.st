@@ -80,7 +80,3 @@ LcsSlotDetailBuilder >> targetClassName: anObject [
 { #category : #verification }
 LcsSlotDetailBuilder >> verifyCodeInstallation [
 ]
-
-{ #category : #verification }
-LcsSlotDetailBuilder >> verifySlotModelUpdatesMadeByBuilder [
-]

@@ -100,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-19T12:46:07.444587-05:00"
+						"dateAndTimeString" : "2025-02-19T12:47:37.263053-05:00"
 					}
 				},
 				"uid" : {
@@ -110,7 +110,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Inspect 'job' to see the steps that will be executed"
+				"string" : "Inspect 'job' to see the steps that will be executed."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -171,7 +171,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-19T12:46:22.570282-05:00"
+						"dateAndTimeString" : "2025-02-19T12:47:40.193599-05:00"
 					}
 				},
 				"uid" : {
@@ -181,7 +181,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Inspect 'job' to see the Installed Classes,  Slot Definitions and instance variable"
+				"string" : "Inspect 'job' to see the Installed Classes,  Slot Definitions and instance variable."
 			}
 		]
 	},

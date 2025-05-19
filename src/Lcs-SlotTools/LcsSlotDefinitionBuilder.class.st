@@ -28,11 +28,6 @@ LcsSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ nil
 ]
 
-{ #category : #accessing }
-LcsSlotDefinitionBuilder >> _target [
-	^ target
-]
-
 { #category : #initialize }
 LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 ]
@@ -310,11 +305,6 @@ LcsSlotDefinitionBuilder >> targetSlotDefinition [
 ]
 
 { #category : #command }
-LcsSlotDefinitionBuilder >> uninstall [
-	self jobSteps uninstall
-]
-
-{ #category : #command }
 LcsSlotDefinitionBuilder >> updateSlotModel [
 	self installSlotDefinition
 ]
@@ -335,15 +325,10 @@ LcsSlotDefinitionBuilder >> verifyCodeInstallation [
 ]
 
 { #category : #command }
-LcsSlotDefinitionBuilder >> verifySlotModelUpdatesMadeByBuilder [
-	self jobSteps verifySlotModelUpdatesMadeByBuilder
-]
-
-{ #category : #command }
 LcsSlotDefinitionBuilder >> verifyUninstall [
+	super verifyUninstall.
 	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) 
-		ifNil: [ ^ self ].
-	self jobSteps verifyUninstall
+		ifNil: [ ^ self ]
 ]
 
 { #category : #'gt views' }

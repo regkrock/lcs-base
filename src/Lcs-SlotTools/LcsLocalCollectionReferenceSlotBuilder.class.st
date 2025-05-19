@@ -93,6 +93,7 @@ LcsLocalCollectionReferenceSlotBuilder >> target [
 
 { #category : #command }
 LcsLocalCollectionReferenceSlotBuilder >> uninstall [
+	super uninstall.
 	self target removeDomainSlotNamed: self slotName
 ]
 
@@ -108,6 +109,7 @@ LcsLocalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
 { #category : #verification }
 LcsLocalCollectionReferenceSlotBuilder >> verifyUninstall [
 	| slotDefinition |
+	super verifyUninstall.
 	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) ifNil: [ ^ self ].
 	super verifyUninstall.
 	slotDefinition := self targetSlotDefinition.

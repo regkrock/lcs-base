@@ -144,5 +144,6 @@ LcsGlobalSlotDefinitionBuilder >> uninstall [
 
 { #category : #command }
 LcsGlobalSlotDefinitionBuilder >> verifyUninstall [
+	super verifyUninstall.
 	self target verifyRemovedDomainSlotNamed: self slotName.
 ]

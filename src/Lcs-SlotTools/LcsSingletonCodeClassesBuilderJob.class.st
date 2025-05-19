@@ -95,7 +95,7 @@ LcsSingletonCodeClassesBuilderJob >> overview [
 
 { #category : #command }
 LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
-	self jobSteps populateSlotModel.
+	super populateSlotModel.
 	"self globalCollectionSlotDefinitionStep populateSlotModel."
 	self currentSystem currentUnitOfWork applyChanges.
 	"self singletonClassBuilders do: [ :eachStep | eachStep populateSlotModel ].

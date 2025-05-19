@@ -230,7 +230,7 @@ LcsCodeBuilderStep >> state: anObject [
 
 { #category : #install }
 LcsCodeBuilderStep >> uninstall [
-	"Subclass can override"
+	self jobSteps uninstall
 ]
 
 { #category : #install }
@@ -245,17 +245,18 @@ LcsCodeBuilderStep >> verifyCodeInstallation [
 
 { #category : #command }
 LcsCodeBuilderStep >> verifyPopulateSlotModel [
-	"Subclasses should implement as needed"
+	self jobSteps verifyPopulateSlotModel
 ]
 
 { #category : #uninstall }
 LcsCodeBuilderStep >> verifySlotModelUpdatesMadeByBuilder [
-	self subclassResponsibility
+	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
 
 { #category : #install }
 LcsCodeBuilderStep >> verifyUninstall [
-	self subclassResponsibility
+	self jobSteps verifyUninstall
+
 ]
 
 { #category : #command }

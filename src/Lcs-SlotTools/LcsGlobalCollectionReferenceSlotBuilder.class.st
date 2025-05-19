@@ -110,24 +110,27 @@ LcsGlobalCollectionReferenceSlotBuilder >> target [
 
 { #category : #command }
 LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
+	super uninstall.
 	self target removeDomainSlotNamed: self slotName
 ]
 
 { #category : #verification }
 LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
-	| slotDefinition |
 	super verifyCodeInstallation.
+
+	"| slotDefinition |
 	slotDefinition := self targetSlotDefinition.
 	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
 	self assert: slotDefinition collectionSlotName isString.
 	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
-	self assert: slotDefinition collectionSlotModuleName isString.
+	self assert: slotDefinition collectionSlotModuleName isString."
 
 ]
 
 { #category : #verification }
 LcsGlobalCollectionReferenceSlotBuilder >> verifyUninstall [
 	| slotDefinition |
+	super verifyUninstall.
 	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) ifNil: [ ^ self ].
 	super verifyUninstall.
 	slotDefinition := self targetSlotDefinition.

@@ -267,7 +267,7 @@ LcsCodeBuilderJobSteps >> parent: anObject [
 
 { #category : #command }
 LcsCodeBuilderJobSteps >> populateSlotModel [
-	self collection reverse do: [ :each | each populateSlotModel ]
+	self collection reverseDo: [ :each | each populateSlotModel ]
 ]
 
 { #category : #'gt views' }

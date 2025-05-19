@@ -8,8 +8,3 @@ Class {
 LcsScaledDecimalSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsScaledDecimalSlot
 ]
-
-{ #category : #'code generation' }
-LcsScaledDecimalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: stream [ 
-	stream 
-]

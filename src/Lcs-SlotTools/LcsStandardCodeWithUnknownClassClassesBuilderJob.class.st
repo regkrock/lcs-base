@@ -80,6 +80,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> initialize [
 
 { #category : #populate }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
+	super populateSlotModel.
 	self globalCollectionSlotDefinitionStep populateSlotModel.
 	self unknownClass new
 		code: 'unknown';
@@ -120,6 +121,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownCodeClassBuilderStep 
 
 { #category : #verification }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> verifyPopulateSlotModel [
+	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection collectionSize = (self protoCodes size + 1).
 	self protoCodes

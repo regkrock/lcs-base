@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsDomainClassWithGlobalCollectionBuilderJob,
+	#name : #LcsDomainClassAndDomainCollectionClassBuilderJob,
 	#superclass : #LcsCodeBuilderJob,
 	#instVars : [
 		'classPrefix',
@@ -18,39 +18,39 @@ Class {
 }
 
 { #category : #builders }
-LcsDomainClassWithGlobalCollectionBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
 	self targetDomainClasses
 		do: [ :eachClass | self addJobStep: (self memberOfSlotBuilderFor: eachClass) ]
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> classPrefix [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> classPrefix [
 	^ classPrefix
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> classPrefix: aString [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> classPrefix: aString [
 	classPrefix := aString
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> classRootName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> classRootName [
 	^ classRootName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> classRootName: aString [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> classRootName: aString [
 	classRootName := aString
 ]
 
 { #category : #configuration }
-LcsDomainClassWithGlobalCollectionBuilderJob >> createForPrefix: aPrefix rootName: aRootName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> createForPrefix: aPrefix rootName: aRootName [
 	self classPrefix: aPrefix.
 	self createForRootName: aRootName
 ]
 
 { #category : #configuration }
-LcsDomainClassWithGlobalCollectionBuilderJob >> createForRootName: aRootName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
 	self domainInstanceSlotName: self classRootName asValidSelector.
 	self globalCollectionSlotName: self domainInstanceSlotName asEnglishPlural.
@@ -59,37 +59,37 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> createForRootName: aRootName [
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> domainInstanceSlotName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> domainInstanceSlotName [
 	^ domainInstanceSlotName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> domainInstanceSlotName: aString [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> domainInstanceSlotName: aString [ 
 	domainInstanceSlotName := aString
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionClassName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionClassName [
 	^ globalCollectionClassName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionClassName: anObject [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionClassName: anObject [ 
 	globalCollectionClassName := anObject
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionModuleClass [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionModuleClass [
 	^ globalCollectionModuleClass
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionModuleClass: aClass [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionModuleClass: aClass [
 	globalCollectionModuleClass := aClass
 ]
 
 { #category : #builders }
-LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionReferenceSlotBuilder [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionReferenceSlotBuilder [
 	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self globalCollectionSlotName;
@@ -99,38 +99,38 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionReferenceSlotBui
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionSlotName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionSlotName [
 	^ globalCollectionSlotName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> globalCollectionSlotName: aString [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionSlotName: aString [
 	globalCollectionSlotName := aString
 ]
 
 { #category : #initialize }
-LcsDomainClassWithGlobalCollectionBuilderJob >> initialize [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> initialize [
 	super initialize.
 	self classPrefix: 'Lcs'.
 ]
 
 { #category : #initialize }
-LcsDomainClassWithGlobalCollectionBuilderJob >> installGlobalCollectionSlotInModuleClass: aClass [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> installGlobalCollectionSlotInModuleClass: aClass [
 	self globalCollectionModuleClass: aClass 
 ]
 
 { #category : #configuration }
-LcsDomainClassWithGlobalCollectionBuilderJob >> installMemberSlotInDomainClass: aClass [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> installMemberSlotInDomainClass: aClass [ 
 	self targetDomainClasses add: aClass
 ]
 
 { #category : #configuration }
-LcsDomainClassWithGlobalCollectionBuilderJob >> installNewClassesInPackageNamed: aString [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> installNewClassesInPackageNamed: aString [ 
 	self targetPackageName: aString
 ]
 
 { #category : #builders }
-LcsDomainClassWithGlobalCollectionBuilderJob >> memberOfSlotBuilderFor: aTargetClass [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> memberOfSlotBuilderFor: aTargetClass [ 
 	^ LcsMemberOfSlotBuilder new
 		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;
@@ -141,61 +141,61 @@ LcsDomainClassWithGlobalCollectionBuilderJob >> memberOfSlotBuilderFor: aTargetC
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> newDomainClassName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassName [
 	^ newDomainClassName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> newDomainClassName: anObject [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassName: anObject [ 
 	newDomainClassName := anObject
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> newGlobalCollectionClassName: anObject [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> newGlobalCollectionClassName: anObject [ 
 	self globalCollectionClassName: self classPrefix , anObject
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetDomainClasses [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetDomainClasses [
 	^ targetDomainClasses
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetDomainClasses: aCollection [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetDomainClasses: aCollection [
 	targetDomainClasses := aCollection
 ]
 
 { #category : #asking }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetModule [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModule [
 	^ self currentSystem moduleNamed: self globalCollectionModuleClass defaultModuleName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetModuleClass [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleClass [
 	^ targetModuleClass
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetModuleClass: aModuleClass [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleClass: aModuleClass [
 	targetModuleClass := aModuleClass
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetModuleName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleName [
 	^ targetModuleName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetModuleName: aString [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleName: aString [
 	targetModuleName := aString
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetPackageName [
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName [
 	^ targetPackageName
 ]
 
 { #category : #accessing }
-LcsDomainClassWithGlobalCollectionBuilderJob >> targetPackageName: aString [ 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]

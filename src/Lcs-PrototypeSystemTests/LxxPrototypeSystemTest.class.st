@@ -121,9 +121,9 @@ LxxPrototypeSystemTest >> testCreationOfNewSystem [
 	self assert: (self currentSystem slotDefinitionNamed: 'persons') notNil.
 	self assert: self currentSystem persons class identicalTo: LxxPersons.
 	self assert: self currentSystem persons collection class identicalTo: LcsSmalltalkConfiguration identitySetClass.
-	
 	self assert: LxxPerson slotModel hasSlotDefinitions.
-	self assert: self currentSystem configuration class equals: LxxPrototypeSystemConfiguration
+	self assert: self currentSystem configuration class equals: LxxPrototypeSystemConfiguration.
+	self assert: self currentSystem countries collectionSize = 3 description: 'Test country codes are being initialized'
 ]
 
 { #category : #tests }

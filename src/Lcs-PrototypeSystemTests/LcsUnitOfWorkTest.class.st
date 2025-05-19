@@ -1,13 +1,8 @@
 Class {
 	#name : #LcsUnitOfWorkTest,
-	#superclass : #LcsTestWithTestSystemSetUpForTest,
+	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
-
-{ #category : #setUp }
-LcsUnitOfWorkTest >> setupSunitSystem [
-	LxxPrototypeSystem new
-]
 
 { #category : #tests }
 LcsUnitOfWorkTest >> testCreation [

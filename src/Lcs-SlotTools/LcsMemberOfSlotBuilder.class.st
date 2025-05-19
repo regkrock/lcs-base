@@ -71,5 +71,6 @@ LcsMemberOfSlotBuilder >> targetModuleName [
 
 { #category : #command }
 LcsMemberOfSlotBuilder >> uninstall [
+	super uninstall.
 	self target removeDomainSlotNamed: self slotName.
 ]

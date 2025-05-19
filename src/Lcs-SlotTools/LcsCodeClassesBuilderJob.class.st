@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeClassesBuilderJob,
-	#superclass : #LcsDomainClassWithGlobalCollectionBuilderJob,
+	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
 	#instVars : [
 		'moduleClass',
 		'protoCodes'

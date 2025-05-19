@@ -49,6 +49,11 @@ LcsBaseClassBuilder >> assertNotInstalled [
 
 { #category : #'method code source' }
 LcsBaseClassBuilder >> classCreationString [
+
+	self assert: self targetSuperclassName isString.
+	self assert: self newClassName isString.
+	self assert: self targetPackageName isString.
+	
 	^ '<1s> subclass: #<2s>
 		instanceVariableNames: ''''
 		classVariableNames: ''''
@@ -214,6 +219,7 @@ LcsBaseClassBuilder >> tearDown [
 
 { #category : #command }
 LcsBaseClassBuilder >> uninstall [
+	super uninstall.
 	self installedClass ifNil: [ ^ self ].
 	self currentSystem removeClassFromSlotModel: self installedClass.
 	self removeReferencesFromSubsequentSteps.
@@ -244,6 +250,7 @@ LcsBaseClassBuilder >> verifyCodeInstallation [
 
 { #category : #command }
 LcsBaseClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
+	super verifySlotModelUpdatesMadeByBuilder.
 	self assert: self installedClass slotModel  notNil.
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self assert: (self currentSystem systemSlotModel hasSlotModelForClass: self installedClass)
@@ -251,6 +258,7 @@ LcsBaseClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 
 { #category : #command }
 LcsBaseClassBuilder >> verifyUninstall [
+	super verifyUninstall.
 	self assert: self installedClass isNil
 ]
 

@@ -183,7 +183,7 @@ LcsCodeBuilderJob >> modelClasses [
 
 { #category : #command }
 LcsCodeBuilderJob >> populateSlotModel [
-	"subclasses can implement this method"
+	self jobSteps populateSlotModel.
 ]
 
 { #category : #'gt views' }
@@ -200,8 +200,8 @@ LcsCodeBuilderJob >> uninstall [
 
 { #category : #command }
 LcsCodeBuilderJob >> updateSlotModel [
-	self jobSteps updateSlotModel.
 	self currentSystem isNil ifTrue: [ ^ self ].
+	self jobSteps updateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges	
 ]
 

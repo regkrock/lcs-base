@@ -8,8 +8,3 @@ Class {
 LcsStringSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsStringSlot
 ]
-
-{ #category : #'code generation' }
-LcsStringSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: stream [ 
-	stream 
-]

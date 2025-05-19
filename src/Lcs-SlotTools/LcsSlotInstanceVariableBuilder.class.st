@@ -42,6 +42,7 @@ LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 
 { #category : #'as yet unclassified' }
 LcsSlotInstanceVariableBuilder >> uninstall [
+	super uninstall.
 	self targetClass removeInstVar: self slotName
 ]
 
@@ -52,6 +53,7 @@ LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
 
 { #category : #command }
 LcsSlotInstanceVariableBuilder >> verifyUninstall [
+	super verifyUninstall.
 	self targetClass isNil ifTrue: [ ^ self  ].
 	self assert: (self targetClass allInstVarNames includes: self slotName) not.
 ]
