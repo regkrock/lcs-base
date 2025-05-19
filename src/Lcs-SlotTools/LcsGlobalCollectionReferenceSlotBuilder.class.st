@@ -24,7 +24,7 @@ LcsGlobalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinition
 
 { #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
-	aCollection add: (self target -> {{self slotName. self collectionClass.}})
+	aCollection add: (self targetClass -> {{self slotName. self collectionClass.}})
 ]
 
 { #category : #'code generation' }
@@ -103,15 +103,10 @@ LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class>' ])
 ]
 
-{ #category : #accessing }
-LcsGlobalCollectionReferenceSlotBuilder >> target [
-	^ target ifNil: [ target := self targetClassName asClass ]
-]
-
 { #category : #command }
 LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
 	super uninstall.
-	self target removeDomainSlotNamed: self slotName
+	self targetClass removeDomainSlotNamed: self slotName
 ]
 
 { #category : #verification }
@@ -129,14 +124,14 @@ LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
 
 { #category : #verification }
 LcsGlobalCollectionReferenceSlotBuilder >> verifyUninstall [
-	| slotDefinition |
+	"| slotDefinition |"
 	super verifyUninstall.
-	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) ifNil: [ ^ self ].
-	super verifyUninstall.
-	slotDefinition := self targetSlotDefinition.
+	self targetClass ifNil: [ ^ self ].
+
+	'slotDefinition := self targetSlotDefinition.
 	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
 	self assert: slotDefinition collectionSlotName isString.
 	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
-	self assert: slotDefinition collectionSlotModuleName isString.
+	self assert: slotDefinition collectionSlotModuleName isString.'
 
 ]

@@ -42,7 +42,7 @@ LcsSlotDefinitionsBuilderJob >> slotBuilders: anObject [
 
 { #category : #accessing }
 LcsSlotDefinitionsBuilderJob >> targetClass [
-	^ self targetClassName asClass
+	^ [ self targetClassName asClass ] on: NotFound on: [ :s | s return: nil ]
 ]
 
 { #category : #accessing }

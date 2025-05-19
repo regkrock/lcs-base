@@ -3,14 +3,14 @@ Class {
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
 		'slotName',
-		'target',
 		'slotDefinitionSelector',
 		'targetClassName',
 		'targetModuleClass',
 		'slotDefinitionClassName',
 		'slotTypes',
 		'validationConditions',
-		'targetPackageName'
+		'targetPackageName',
+		'targetClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -34,7 +34,7 @@ LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 
 { #category : #'gt views' }
 LcsSlotDefinitionBuilder >> addModelClassesTo: aCollection [
-	aCollection addAll: self target withAllSuperclasses
+	aCollection addAll: self targetClass withAllSuperclasses
 ]
 
 { #category : #'gt views' }
@@ -71,20 +71,18 @@ LcsSlotDefinitionBuilder >> buildJobSteps [
 
 { #category : #uninstall }
 LcsSlotDefinitionBuilder >> clearTargetClass: aClass [
-	self target == aClass
-		ifTrue: [ self target: nil ]
+	self targetClass == aClass
+		ifTrue: [ self targetClassName: nil ]
 ]
 
 { #category : #testing }
 LcsSlotDefinitionBuilder >> doesSlotDefinitionMethodExist [
-	^ self target class includesSelector: self slotDefinitionSelector
+	^ self targetClass class includesSelector: self slotDefinitionSelector
 ]
 
 { #category : #testing }
 LcsSlotDefinitionBuilder >> doesTargetClassExist [
-	^ [ self target isClass ] 
-			on: NotFound 
-			do: [ :s | s return: false ]
+	^ self targetClass isClass
 ]
 
 { #category : #validation }
@@ -116,9 +114,9 @@ LcsSlotDefinitionBuilder >> gtClassViewOn: aView [
 			items: [ {'Not yet created'} ];
 			yourself ].
 	^ aView explicit
-		title: self target name;
+		title: self targetClass name;
 		priority: 200;
-		stencil: [ (GtCoderElement forObject: self target) disablePlayPage beNormalLevel ];
+		stencil: [ (GtCoderElement forObject: self targetClass) disablePlayPage beNormalLevel ];
 		yourself
 ]
 
@@ -155,7 +153,7 @@ LcsSlotDefinitionBuilder >> installCode [
 
 { #category : #'job steps' }
 LcsSlotDefinitionBuilder >> installSlotDefinition [
-	self target installSlotDefinition: self slotDefinitionSelector
+	self targetClass installSlotDefinition: self slotDefinitionSelector
 ]
 
 { #category : #printing }
@@ -164,7 +162,7 @@ LcsSlotDefinitionBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: 'Install slot "';
 		nextPutAll: (self slotName ifNil: [ '<missing>' ]);
 		nextPutAll: '" in ';
-		nextPutAll: (self targetClassName ifNil: [ self target ifNotNil: [ self target name ] ]) asString
+		nextPutAll: (self targetClassName ifNil: [ self targetClass ifNotNil: [ self targetClass name ] ]) asString
 ]
 
 { #category : #accessing }
@@ -248,23 +246,15 @@ LcsSlotDefinitionBuilder >> stepNumber [
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> target [
-	^target
-]
-
-{ #category : #accessing }
-LcsSlotDefinitionBuilder >> target: aClass [ 
-	target := aClass
-]
-
-{ #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClass [
-	^ self target
+	^ self targetClassName ifNotNil: [ 
+		[ self targetClassName asClass ] 
+			on: NotFound 
+			do: [ :s | s return: nil ] ]
 ]
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClass: aClass [
-	self target: aClass.
 	self targetClassName: aClass name
 ]
 
@@ -275,8 +265,7 @@ LcsSlotDefinitionBuilder >> targetClassName [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClassName: aString [
-	targetClassName := aString.
-	self target: ([ aString asClass ] on: NotFound do: [:s | s return: nil ]).
+	targetClassName := aString
 ]
 
 { #category : #accessing }
@@ -301,7 +290,7 @@ LcsSlotDefinitionBuilder >> targetPackageName: anObject [
 
 { #category : #verification }
 LcsSlotDefinitionBuilder >> targetSlotDefinition [
-	^ self target perform: self slotDefinitionSelector
+	^ self targetClass perform: self slotDefinitionSelector
 ]
 
 { #category : #command }

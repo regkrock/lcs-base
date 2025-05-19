@@ -22,7 +22,7 @@ LcsLocalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionM
 
 { #category : #'gt views' }
 LcsLocalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
-	aCollection add: (self target -> {{self slotName. self collectionClass.}})
+	aCollection add: (self targetClass -> {{self slotName. self collectionClass.}})
 ]
 
 { #category : #'code generation' }
@@ -86,15 +86,10 @@ LcsLocalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class>' ])
 ]
 
-{ #category : #accessing }
-LcsLocalCollectionReferenceSlotBuilder >> target [
-	^ target ifNil: [ target := self targetClassName asClass ]
-]
-
 { #category : #command }
 LcsLocalCollectionReferenceSlotBuilder >> uninstall [
 	super uninstall.
-	self target removeDomainSlotNamed: self slotName
+	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamed: self slotName ]
 ]
 
 { #category : #verification }

@@ -56,10 +56,9 @@ LcsSlotDetailBuilder >> stepNumber [
 
 { #category : #accessing }
 LcsSlotDetailBuilder >> targetClass [
-	^ targetClass ifNil: [ 
-		targetClass := [ self targetClassName asString asClass ] 
-							on: NotFound 
-							do: [ :s | s return: nil ] ]
+	^ [ self targetClassName asString asClass ] 
+			on: NotFound 
+			do: [ :s | s return: nil ]
 ]
 
 { #category : #accessing }

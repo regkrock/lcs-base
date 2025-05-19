@@ -72,13 +72,13 @@ LcsGlobalSlotDefinitionBuilder >> initialize [
 
 { #category : #initialize }
 LcsGlobalSlotDefinitionBuilder >> initializeModel [
-	(self target slotDefinitionNamed: self slotName)
+	(self targetClass slotDefinitionNamed: self slotName)
 		initializeSlotValueIn: (self currentSystem moduleNamed: self targetModuleName)
 ]
 
 { #category : #command }
 LcsGlobalSlotDefinitionBuilder >> module [
-	^ self currentSystem moduleNamed: self target defaultModuleName
+	^ self currentSystem moduleNamed: self targetClass defaultModuleName
 ]
 
 { #category : #command }
@@ -115,12 +115,6 @@ LcsGlobalSlotDefinitionBuilder >> slotTypeClassName [
 	^ slotTypeClassName ifNil: [ self slotClass name ]
 ]
 
-{ #category : #configuration }
-LcsGlobalSlotDefinitionBuilder >> target [
-	^ target ifNil: [ 
-		target := self targetClassName ifNotNil: [ self targetClassName asClass ] ]
-]
-
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> targetModule [
 	^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass defaultModuleName ])
@@ -139,11 +133,11 @@ LcsGlobalSlotDefinitionBuilder >> targetModuleName: anObject [
 { #category : #command }
 LcsGlobalSlotDefinitionBuilder >> uninstall [
 	super uninstall.
-	self target removeDomainSlotNamedFromSlotModel: self slotName.
+	self targetClass ifNotNil: [ targetClass removeDomainSlotNamedFromSlotModel: self slotName].
 ]
 
 { #category : #command }
 LcsGlobalSlotDefinitionBuilder >> verifyUninstall [
 	super verifyUninstall.
-	self target verifyRemovedDomainSlotNamed: self slotName.
+	self targetClass ifNotNil: [ targetClass verifyRemovedDomainSlotNamed: self slotName ]
 ]
