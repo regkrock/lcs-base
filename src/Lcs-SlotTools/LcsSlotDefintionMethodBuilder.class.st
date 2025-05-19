@@ -187,7 +187,7 @@ LcsSlotDefintionMethodBuilder >> slotTypes: anObject [
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> uninstall [
 	super uninstall.
-	self targetClass class removeSelector: self slotDefinitionSelector
+	self targetClass ifNotNil: [ self targetClass class removeSelector: self slotDefinitionSelector ]
 ]
 
 { #category : #verification }

@@ -313,13 +313,6 @@ LcsSlotDefinitionBuilder >> verifyCodeInstallation [
 	self jobSteps verifyCodeInstallation
 ]
 
-{ #category : #command }
-LcsSlotDefinitionBuilder >> verifyUninstall [
-	super verifyUninstall.
-	([self targetClassName asClass ] on: NotFound do: [ :s | s return: nil ] ) 
-		ifNil: [ ^ self ]
-]
-
 { #category : #'gt views' }
 LcsSlotDefinitionBuilder >> viewCodeButton [
 	self targetClass isNil ifTrue: [ ^ BrButton new ].
