@@ -107,6 +107,14 @@ RBParseTreeSearcher class >> buildTree: aString method: aBoolean [
 ]
 
 { #category : #'instance creation' }
+RBParseTreeSearcher class >> getterMethod: aVarName [
+	^ self new
+		matchesMethod: '`method ^' , aVarName do: [:aNode :ans | aNode selector];
+		matchesMethod: '`method ^' , aVarName, ' ifNil:[ `@expr]' do: [:aNode :ans | aNode selector];
+		yourself
+]
+
+{ #category : #'instance creation' }
 RBParseTreeSearcher class >> justSendsSuper [
 	^ self new
 		matchesAnyMethodOf: #(
@@ -120,6 +128,15 @@ RBParseTreeSearcher class >> justSendsSuper [
 RBParseTreeSearcher class >> returnSetterMethod: aVarName [
 	^(self new)
 		matchesMethod: '`method: `Arg ^' , aVarName , ' := `Arg'
+			do: [:aNode :ans | aNode selector];
+		yourself
+]
+
+{ #category : #'instance creation' }
+RBParseTreeSearcher class >> setterMethod: aVarName [
+	^(self new)
+		matchesAnyMethodOf: (Array with: '`method: `Arg ' , aVarName , ' := `Arg'
+					with: '`method: `Arg ^' , aVarName , ' := `Arg')
 			do: [:aNode :ans | aNode selector];
 		yourself
 ]
