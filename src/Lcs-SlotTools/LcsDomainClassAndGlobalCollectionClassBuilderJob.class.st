@@ -49,10 +49,10 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildJobSteps [
 		self addJobStep: self unknownClassBuilder].
 	self addSubclassBuilders.
 	self addJobStep: self domainCollectionClassBuilder.
+	self addJobStep: self loaderBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self globalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses.
-	self addJobStep: self loaderBuilder
 ]
 
 { #category : #accessing }
