@@ -7,6 +7,5 @@ Class {
 { #category : #initialize }
 LcsSingletonCodeDescriptionSlot >> initialize [
 	super initialize.
-	self 
-		initialValueBlock: [ :anInstance | anInstance class defaultDescription ]
+	self initialValueBlock: [ :anInstance | anInstance class defaultDescription ]
 ]

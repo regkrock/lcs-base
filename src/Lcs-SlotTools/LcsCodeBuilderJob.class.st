@@ -2,7 +2,8 @@ Class {
 	#name : #LcsCodeBuilderJob,
 	#superclass : #LcsApplicationObject,
 	#instVars : [
-		'jobSteps'
+		'jobSteps',
+		'buildUnknownClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -25,6 +26,16 @@ LcsCodeBuilderJob >> addRefactoringsTo: aCollection [
 { #category : #command }
 LcsCodeBuilderJob >> buildJobSteps [
 	"subclasses can override this"
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJob >> buildUnknownClass [
+	^ buildUnknownClass
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJob >> buildUnknownClass: aBoolean [ 
+	buildUnknownClass := aBoolean
 ]
 
 { #category : #asking }
@@ -132,6 +143,7 @@ LcsCodeBuilderJob >> initialize [
 
 { #category : #command }
 LcsCodeBuilderJob >> installCode [
+	self traceStep: 'installCode'.
 	self jobSteps installCode
 ]
 
@@ -183,6 +195,7 @@ LcsCodeBuilderJob >> modelClasses [
 
 { #category : #command }
 LcsCodeBuilderJob >> populateSlotModel [
+	self traceStep: 'populateSlotModel'.
 	self jobSteps populateSlotModel.
 ]
 
@@ -192,14 +205,26 @@ LcsCodeBuilderJob >> printJobStreamDetailsOn: aStream [
 
 ]
 
+{ #category : #'as yet unclassified' }
+LcsCodeBuilderJob >> stepNumber [
+	^ ''
+]
+
+{ #category : #command }
+LcsCodeBuilderJob >> traceStep: aMethodName [
+	self traceCr: aMethodName , '-' , self printString
+]
+
 { #category : #command }
 LcsCodeBuilderJob >> uninstall [
+	self traceStep: 'uninstall'.
 	self jobSteps uninstall.
 	self currentUnitOfWork applyChanges
 ]
 
 { #category : #command }
 LcsCodeBuilderJob >> updateSlotModel [
+	self traceStep: 'updateSlotModel'.
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self jobSteps updateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges	
@@ -207,6 +232,7 @@ LcsCodeBuilderJob >> updateSlotModel [
 
 { #category : #command }
 LcsCodeBuilderJob >> verifyCodeInstallation [
+	self traceStep: 'verifyCodeInstallation'.
 	self jobSteps verifyCodeInstallation
 ]
 
@@ -217,6 +243,7 @@ LcsCodeBuilderJob >> verifyPopulateSlotModel [
 
 { #category : #command }
 LcsCodeBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
+	self traceStep: 'verifySlotModelUpdatesMadeByBuilder'.
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
 

@@ -9,12 +9,6 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #accessing }
-LcsSlotDefinitionsBuilderJob >> addSlotBuilder: aSlotBuilderDefinition [
-	"aSlotBuilderDefinition parent: self."
-	self  slotBuilders add: aSlotBuilderDefinition
-]
-
 { #category : #'job steps' }
 LcsSlotDefinitionsBuilderJob >> buildJobSteps [
 		self slotBuilders do: [ :each |

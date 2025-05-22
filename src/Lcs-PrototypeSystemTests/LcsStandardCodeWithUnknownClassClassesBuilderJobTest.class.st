@@ -13,9 +13,10 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreationOfSingletonC
 			createForRootName: 'Title';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
 			installGlobalCollectionSlotInModuleClass: LxxPersonsModule;
-			createProtoCodesFromLabels: #('Mr' 'Ms');
+			createProtoCodesFromLabels: #('Mr' 'Ms' '');
 			targetModuleClass: LxxPrototypeSystem;
 			installMemberSlotInDomainClass: LxxBasePerson;
+			buildUnknownClass: true;
 			yourself).
 	self codeJobBuilder buildJobSteps.
 	self codeJobBuilder execute.

@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T21:00:21.108966-04:00"
+						"dateAndTimeString" : "2025-05-14T21:00:24.718542-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "- Add instvars to LxxCountry - isoCode, formalName, commonName, subdivisions - this needs to be done in order to start the test\n- Setup Unit Test to do do this - uses {{gtClass:name=LcsSlotDefinitionBuilder}}"
+				"string" : "- Add instvars to LxxCountry - isoCode, formalName, commonName, subdivisions - this needs to be done in order to start the test system!\n- Setup Unit Test to do do this - uses {{gtClass:name=LcsSlotDefinitionBuilder}}"
 			},
 			{
 				"__type" : "textSnippet",

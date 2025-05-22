@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsUnknownCodeClassBuilder,
+	#name : #LcsSingletonUnknownCodeClassBuilder,
 	#superclass : #LcsSingletonCodeClassBuilder,
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #initialize }
-LcsUnknownCodeClassBuilder >> initialize [
+LcsSingletonUnknownCodeClassBuilder >> initialize [
 	super initialize.
 	self defaultInstance: true.
 	self description: ''.

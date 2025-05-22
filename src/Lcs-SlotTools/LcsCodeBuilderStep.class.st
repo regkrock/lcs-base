@@ -118,7 +118,8 @@ LcsCodeBuilderStep >> initialize [
 
 { #category : #install }
 LcsCodeBuilderStep >> installCode [
-	self subclassResponsibility
+	self traceStep: 'installCode'.
+	self jobSteps installCode
 ]
 
 { #category : #printing }
@@ -186,6 +187,7 @@ LcsCodeBuilderStep >> parent: anObject [
 
 { #category : #command }
 LcsCodeBuilderStep >> populateSlotModel [
+	self traceStep: 'populateSlotModel'.
 	self jobSteps populateSlotModel
 ]
 
@@ -228,40 +230,51 @@ LcsCodeBuilderStep >> state: anObject [
 	state := anObject
 ]
 
+{ #category : #trace }
+LcsCodeBuilderStep >> stepNumber [
+	self parent isNil ifTrue: [ ^'1'].
+	^self parent stepNumberFor: self 
+]
+
+{ #category : #trace }
+LcsCodeBuilderStep >> traceStep: aString [
+	self traceCr: aString , '- ' ,self jobStepDescription.
+]
+
 { #category : #install }
 LcsCodeBuilderStep >> uninstall [
+	self traceStep: 'uninstall'.
 	self jobSteps uninstall
 ]
 
 { #category : #install }
 LcsCodeBuilderStep >> updateSlotModel [
-	self subclassResponsibility
+	self traceStep: 'updateSlotModel'.
+	self jobSteps updateSlotModel
 ]
 
 { #category : #install }
 LcsCodeBuilderStep >> verifyCodeInstallation [
-	self subclassResponsibility
+	self traceStep: 'verifyCodeInstallation'.
+	self jobSteps verifyCodeInstallation
 ]
 
 { #category : #command }
 LcsCodeBuilderStep >> verifyPopulateSlotModel [
+	self traceStep: 'verifyPopulateSlotModel'.
 	self jobSteps verifyPopulateSlotModel
 ]
 
 { #category : #uninstall }
 LcsCodeBuilderStep >> verifySlotModelUpdatesMadeByBuilder [
+	self traceStep: 'verifySlotModelUpdatesMadeByBuilder'.
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
 
 { #category : #install }
 LcsCodeBuilderStep >> verifyUninstall [
+	self traceStep: 'verifyUninstall'.
 	self jobSteps verifyUninstall
-
-]
-
-{ #category : #command }
-LcsCodeBuilderStep >> verifyUnistall [
-	"Subclasses should implement as needed"
 ]
 
 { #category : #'gt views' }

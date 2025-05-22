@@ -7,6 +7,5 @@ Class {
 { #category : #initialize }
 LcsCodeSlot >> initialize [
 	super initialize.
-	self 
-		slotName: 'code'
+	self slotName: 'code'
 ]

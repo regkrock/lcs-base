@@ -126,6 +126,7 @@ LcsBaseClassBuilder >> installClass [
 
 { #category : #build }
 LcsBaseClassBuilder >> installCode [
+	super installCode.
 	self installClass.
 	self beCodeInstalled
 ]
@@ -185,13 +186,6 @@ LcsBaseClassBuilder >> shouldnt: aBlock raise: anExceptionalEvent [
 	self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
 ]
 
-{ #category : #asking }
-LcsBaseClassBuilder >> stepNumber [
-	^ self parent isNil 
-		ifTrue: [ '1']
-		ifFalse: [ (self parent indexOf: self) printString ]
-]
-
 { #category : #accessing }
 LcsBaseClassBuilder >> targetPackageName [
 	^ targetPackageName
@@ -230,6 +224,7 @@ LcsBaseClassBuilder >> uninstall [
 
 { #category : #command }
 LcsBaseClassBuilder >> updateSlotModel [
+	super updateSlotModel.
 	self installedClass initializeSlotModel
 ]
 
@@ -243,6 +238,7 @@ LcsBaseClassBuilder >> verifyClassAddedToSystemModel [
 
 { #category : #command }
 LcsBaseClassBuilder >> verifyCodeInstallation [
+	super verifyCodeInstallation.
 	self assert: self installedClass notNil description: 'Class has been created'.
 	self assert: self installedClass name equals: self newClassName.
 	self verifyClassAddedToSystemModel.

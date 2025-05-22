@@ -26,7 +26,7 @@ LcsSingletonCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString [
 LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addCodeSubclassBuilders.
-	self addJobStep: self codeCollectionClassBuilder.
+	self addJobStep: self codesCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses

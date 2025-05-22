@@ -24,7 +24,7 @@ LcsProtoCode class >> newFromLabel: aLabel [
 LcsProtoCode class >> unknown [
 	^ self new
 		code: 'unknown';
-		description: 'Unknown';
+		description: '';
 		label: '';
 		isDefaultInstance: true;
 		yourself

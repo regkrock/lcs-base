@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 LcsUnknownCodeClassBuilderTest >> testCreation [
-	self subject: LcsUnknownCodeClassBuilder new.
+	self subject: LcsSingletonUnknownCodeClassBuilder new.
 	self subject newClassName: 'XxxTest'.
 	self subject targetSuperclassName: 'LcsObject'.
 	self subject targetPackageName: 'PkgName'.

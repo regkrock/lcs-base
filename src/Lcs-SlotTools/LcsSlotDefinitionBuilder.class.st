@@ -148,6 +148,7 @@ LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [
 
 { #category : #command }
 LcsSlotDefinitionBuilder >> installCode [
+	self traceStep: 'installCode'.
 	self jobSteps installCode
 ]
 
@@ -238,13 +239,6 @@ LcsSlotDefinitionBuilder >> slotTypes: anObject [
 	slotTypes := anObject
 ]
 
-{ #category : #printing }
-LcsSlotDefinitionBuilder >> stepNumber [
-	^ self parent isNil 
-		ifTrue: [ '1']
-		ifFalse: [ (self parent indexOf: self) printString ]
-]
-
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> targetClass [
 	^ self targetClassName ifNotNil: [ 
@@ -295,6 +289,7 @@ LcsSlotDefinitionBuilder >> targetSlotDefinition [
 
 { #category : #command }
 LcsSlotDefinitionBuilder >> updateSlotModel [
+	super updateSlotModel.
 	self installSlotDefinition
 ]
 
@@ -306,11 +301,6 @@ LcsSlotDefinitionBuilder >> validationConditions [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> validationConditions: anObject [
 	validationConditions := anObject
-]
-
-{ #category : #command }
-LcsSlotDefinitionBuilder >> verifyCodeInstallation [
-	self jobSteps verifyCodeInstallation
 ]
 
 { #category : #'gt views' }

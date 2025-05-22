@@ -93,6 +93,7 @@ LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [
 
 { #category : #building }
 LcsSlotDefintionMethodBuilder >> installCode [
+	super installCode.
 	self addRefactoring: (
 		RBAddMethodChange
 			compile: self slotDefinitionSource
@@ -215,6 +216,7 @@ LcsSlotDefintionMethodBuilder >> validationConditions: anObject [
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
 	| slotDefinition |
+	super verifyCodeInstallation.
 	self
 		assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
 	slotDefinition := self targetClass
@@ -228,8 +230,8 @@ LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
-	self currentSystem isNil ifTrue: [ ^ self ].
 	super verifySlotModelUpdatesMadeByBuilder.
+	self currentSystem isNil ifTrue: [ ^ self ].
 	self assert: (self targetClass slotModel slotDefinitionNamed: self slotName) notNil
 ]
 

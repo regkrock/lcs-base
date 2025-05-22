@@ -12,7 +12,8 @@ Class {
 		'targetModuleClass',
 		'newDomainClassName',
 		'globalCollectionModuleClass',
-		'globalCollectionClassName'
+		'globalCollectionClassName',
+		'unknownClassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -198,4 +199,9 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName [
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> unknownClassName [
+	^ nil
 ]

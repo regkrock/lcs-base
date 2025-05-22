@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJob,
 	#superclass : #LcsCodeClassesBuilderJob,
-	#instVars : [
-		'unknownClassName'
-	],
 	#category : #'Lcs-SlotTools'
 }
 
@@ -15,12 +12,13 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> addCodeSubclassWithRootNamed
 { #category : #command }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
-	self addJobStep: self undefinedCodeClassBuilder.
-	self addJobStep: self codeCollectionClassBuilder.
+	self buildUnknownClass ifTrue: [
+		self addJobStep: self unknownClassBuilder].
+	self addJobStep: self codesCollectionClassBuilder.
+	self addJobStep: self codesLoaderBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
-	self addMemberOfSlotBuilderForTargetClasses.
-	self addJobStep: self codesLoaderBuilder
+	self addMemberOfSlotBuilderForTargetClasses
 ]
 
 { #category : #populate }
@@ -55,7 +53,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeSuperclassBuilder [
 { #category : #configuration }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> createForRootName: aRootName [
 	super createForRootName: aRootName.
-	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
+	self unknownClassName: self classPrefix , 'Unknown' , aRootName
 ]
 
 { #category : #tests }
@@ -81,7 +79,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> initialize [
 { #category : #populate }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 	super populateSlotModel.
-	self globalCollectionSlotDefinitionStep populateSlotModel.
+	"self globalCollectionSlotDefinitionStep populateSlotModel."
 	"self unknownClass new
 		code: 'unknown';
 		description: 'Unknown';
@@ -90,23 +88,18 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
 	self currentSystem currentUnitOfWork applyChanges.
 ]
 
-{ #category : #accessing }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedClassName: anObject [ 
-	unknownClassName := anObject
+{ #category : #populate }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClass [
+	^ self unknownCodeClassBuilderStep installedClass
 ]
 
 { #category : #builders }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> undefinedCodeClassBuilder [
-	^ LcsUnknownCodeClassBuilder new
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClassBuilder [
+	^ LcsUnknownClassBuilder new
 		newClassName: self unknownClassName;
 		targetSuperclassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
-]
-
-{ #category : #populate }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClass [
-	^ self unknownCodeClassBuilderStep installedClass
 ]
 
 { #category : #accessing }
@@ -114,16 +107,21 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClassName [
 	^ unknownClassName
 ]
 
+{ #category : #accessing }
+LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClassName: anObject [ 
+	unknownClassName := anObject
+]
+
 { #category : #populate }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownCodeClassBuilderStep [
-	^ (self jobSteps stepsWithClass: LcsUnknownCodeClassBuilder) first
+	^ (self jobSteps stepsWithClass: LcsSingletonUnknownCodeClassBuilder) first
 ]
 
 { #category : #verification }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> verifyPopulateSlotModel [
 	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.
-	self assert: self targetGlobalCollection collectionSize = (self protoCodes size + 1).
+	self assert: self targetGlobalCollection collectionSize = self protoCodes size.
 	self protoCodes
 		do: [ :each | 
 			self assert: (self targetGlobalCollection findWithKey: each code) notNil ].

@@ -275,6 +275,16 @@ LcsCodeBuilderJobSteps >> printJobStreamDetailsOn: aStream [
 	aStream nextPutAll: 'Job Steps'
 ]
 
+{ #category : #'gt - views' }
+LcsCodeBuilderJobSteps >> stepNumberFor: aStep [
+	| localStepNumber |
+	localStepNumber := (self indexOf: aStep) printString.
+	self parent ifNil: [ ^ localStepNumber ].
+	^ self parent stepNumber 
+		ifEmpty: [ localStepNumber ] 
+		ifNotEmpty: [ :parentStepNumber | parentStepNumber , '.' , localStepNumber ]
+]
+
 { #category : #steps }
 LcsCodeBuilderJobSteps >> stepsWithClass: aClass [
 	^ self collection select: [ :each | each class  == aClass ]

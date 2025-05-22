@@ -71,7 +71,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-05-07T16:26:34.244173-04:00"
+									"dateAndTimeString" : "2025-05-20T22:02:09.693553-04:00"
 								}
 							},
 							"uid" : {
@@ -81,7 +81,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : ""
+							"string" : "buildJobSteps\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeIsDefuultInstanceSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeIsDefuultInstanceSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeDescriptionSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeDescriptionSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonLabelSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonLabelSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeNameSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeNameSlot name;\r\t\t\tyourself)"
 						},
 						{
 							"__type" : "textSnippet",

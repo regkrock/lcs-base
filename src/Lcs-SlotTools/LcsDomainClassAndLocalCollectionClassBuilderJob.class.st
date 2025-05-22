@@ -3,8 +3,6 @@ Class {
 	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
 	#instVars : [
 		'protoInstances',
-		'unknownClassName',
-		'buildUnknownClass',
 		'subclassNames'
 	],
 	#category : #'Lcs-SlotTools'
@@ -24,22 +22,12 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> addSubclassBuilders [
 LcsDomainClassAndLocalCollectionClassBuilderJob >> buildJobSteps [
 	self addJobStep: self domainClassBuilder.
 	self buildUnknownClass ifTrue: [
-		self addJobStep: self domainUnknownClassBuilder].
+		self addJobStep: self unknownClassBuilder].
 	self addSubclassBuilders.
 	self addJobStep: self domainCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self globalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
-]
-
-{ #category : #accessing }
-LcsDomainClassAndLocalCollectionClassBuilderJob >> buildUnknownClass [
-	^ buildUnknownClass
-]
-
-{ #category : #accessing }
-LcsDomainClassAndLocalCollectionClassBuilderJob >> buildUnknownClass: aBoolean [ 
-	buildUnknownClass := aBoolean
 ]
 
 { #category : #accessing }
@@ -51,7 +39,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> createForPrefix: aPrefix root
 { #category : #configuration }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> createForRootName: aRootName [
 	super createForRootName: aRootName.
-	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
+	self unknownClassName: self classPrefix , 'Unknown' , aRootName
 ]
 
 { #category : #accessing }
@@ -88,15 +76,6 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> domainClassCodeMemberSlotBuil
 LcsDomainClassAndLocalCollectionClassBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
 		newClassName: self globalCollectionClassName;
-		targetPackageName: self targetPackageName;
-		yourself
-]
-
-{ #category : #builders }
-LcsDomainClassAndLocalCollectionClassBuilderJob >> domainUnknownClassBuilder [
-	^ LcsUnknownClassBuilder new
-		newClassName: self unknownClassName;
-		targetSuperclassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -179,13 +158,17 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> subclassNames: anObject [
 ]
 
 { #category : #accessing }
-LcsDomainClassAndLocalCollectionClassBuilderJob >> undefinedClassName: anObject [
-	unknownClassName := anObject
-]
-
-{ #category : #accessing }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClass [
 	^ self unknownClassBuilderStep installedClass
+]
+
+{ #category : #builders }
+LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClassBuilder [
+	^ LcsUnknownClassBuilder new
+		newClassName: self unknownClassName;
+		targetSuperclassName: self newDomainClassName;
+		targetPackageName: self targetPackageName;
+		yourself
 ]
 
 { #category : #'builder step' }
@@ -196,6 +179,11 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClassBuilderStep [
 { #category : #accessing }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClassName [
 	^ unknownClassName
+]
+
+{ #category : #accessing }
+LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClassName: anObject [
+	unknownClassName := anObject
 ]
 
 { #category : #verification }

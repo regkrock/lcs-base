@@ -25,11 +25,6 @@ LcsSingletonCode class >> defaultInstance [
 	^ false
 ]
 
-{ #category : #defaults }
-LcsSingletonCode class >> defaultShortName [
-	self subclassResponsibility
-]
-
 { #category : #'slot definitions' }
 LcsSingletonCode class >> descriptionSlotDefinition [
 	<slotDefinition>
@@ -39,9 +34,7 @@ LcsSingletonCode class >> descriptionSlotDefinition [
 { #category : #'slot definitions' }
 LcsSingletonCode class >> isDefaultInstanceSlotDefinition [
 	<slotDefinition>
-	^ super isDefaultInstanceSlotDefinition
-		initialValueBlock: [ :anInstance | anInstance class  defaultInstance ]; 
-		yourself
+	^ LcsSingletonCodeIsDefaultInstanceSlot new
 ]
 
 { #category : #'slot definitions' }

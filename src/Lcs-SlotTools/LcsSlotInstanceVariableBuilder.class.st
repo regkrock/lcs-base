@@ -25,6 +25,7 @@ LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 
 { #category : #command }
 LcsSlotInstanceVariableBuilder >> installCode [
+	super installCode.
 	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
 	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self targetClass) execute.
 	self beCodeInstalled
@@ -48,6 +49,7 @@ LcsSlotInstanceVariableBuilder >> uninstall [
 
 { #category : #command }
 LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
+	super verifyCodeInstallation.
 	self assert: (self targetClass allInstVarNames includes: self slotName).
 ]
 

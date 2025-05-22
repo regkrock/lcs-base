@@ -25,8 +25,8 @@ LcsCodeClassesBuilderJob >> codeClassBuilder [
 ]
 
 { #category : #builders }
-LcsCodeClassesBuilderJob >> codeCollectionClassBuilder [
-	^ LcsCodeCollectionClassBuilder new
+LcsCodeClassesBuilderJob >> codesCollectionClassBuilder [
+	^ LcsCodesCollectionClassBuilder new
 		newClassName: self globalCollectionClassName;
 		targetPackageName: self targetPackageName;
 		yourself
@@ -50,6 +50,7 @@ LcsCodeClassesBuilderJob >> codesLoaderBuilder [
 	^ LcsCodesLoaderClassBuilder new
 		newClassName: self globalCollectionClassName , 'Loader';
 		instanceClassName: self newDomainClassName;
+		unknownClassName: self unknownClassName;
 		targetPackageName: self targetPackageName;
 		protoCodes: self protoCodes;
 		yourself

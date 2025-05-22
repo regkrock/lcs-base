@@ -83,6 +83,7 @@ LcsSlotGetterAndSetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 
 { #category : #command }
 LcsSlotGetterAndSetterBuilder >> installCode [
+	super installCode.
 	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
 	self addRefactoring: (
 		RBAddMethodChange
@@ -137,6 +138,7 @@ LcsSlotGetterAndSetterBuilder >> uninstall [
 
 { #category : #command }
 LcsSlotGetterAndSetterBuilder >> verifyCodeInstallation [
+	super verifyCodeInstallation.
 	self assert: (self targetClass canUnderstand: self getterSelector).
 	self assert: (self targetClass canUnderstand: self setterSelector).
 ]

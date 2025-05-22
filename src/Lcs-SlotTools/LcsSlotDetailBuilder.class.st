@@ -45,15 +45,6 @@ LcsSlotDetailBuilder >> slotName: anObject [
 	slotName := anObject
 ]
 
-{ #category : #printing }
-LcsSlotDetailBuilder >> stepNumber [
-	| stepNumber  |
-	stepNumber := self parent 
-					ifNil: [ '1'] 
-					ifNotNil: [ (self parent indexOf: self) printString ].
-	^ self slotBuilder addStepNumberTo: stepNumber.
-]
-
 { #category : #accessing }
 LcsSlotDetailBuilder >> targetClass [
 	^ [ self targetClassName asString asClass ] 
@@ -74,8 +65,4 @@ LcsSlotDetailBuilder >> targetClassName [
 { #category : #accessing }
 LcsSlotDetailBuilder >> targetClassName: anObject [
 	targetClassName := anObject
-]
-
-{ #category : #verification }
-LcsSlotDetailBuilder >> verifyCodeInstallation [
 ]

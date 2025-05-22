@@ -25,7 +25,6 @@ LcsStateMachineState class >> autoTransitionSlotDefinition [
 	<slotDefinition>
 	^ LcsBooleanSlot new
 		slotName: 'autoTransition';
-		addSlotType: Boolean;
 		initialValue: false;
 		yourself
 ]

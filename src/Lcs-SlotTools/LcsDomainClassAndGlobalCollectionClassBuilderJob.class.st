@@ -27,8 +27,6 @@ Class {
 	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
 	#instVars : [
 		'protoInstances',
-		'unknownClassName',
-		'buildUnknownClass',
 		'subclassNames'
 	],
 	#category : #'Lcs-SlotTools'
@@ -48,23 +46,13 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> addSubclassBuilders [
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildJobSteps [
 	self addJobStep: self domainClassBuilder.
 	self buildUnknownClass ifTrue: [
-		self addJobStep: self domainUnknownClassBuilder].
+		self addJobStep: self unknownClassBuilder].
 	self addSubclassBuilders.
 	self addJobStep: self domainCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self globalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses.
 	self addJobStep: self loaderBuilder
-]
-
-{ #category : #accessing }
-LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildUnknownClass [
-	^ buildUnknownClass
-]
-
-{ #category : #accessing }
-LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildUnknownClass: aBoolean [ 
-	buildUnknownClass := aBoolean
 ]
 
 { #category : #accessing }
@@ -76,7 +64,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> createForPrefix: aPrefix roo
 { #category : #configuration }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> createForRootName: aRootName [
 	super createForRootName: aRootName.
-	self undefinedClassName: self classPrefix , 'Unknown' , aRootName
+	self unknownClassName: self classPrefix , 'Unknown' , aRootName
 ]
 
 { #category : #accessing }
@@ -113,15 +101,6 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassCodeMemberSlotBui
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
 		newClassName: self globalCollectionClassName;
-		targetPackageName: self targetPackageName;
-		yourself
-]
-
-{ #category : #builders }
-LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainUnknownClassBuilder [
-	^ LcsUnknownClassBuilder new
-		newClassName: self unknownClassName;
-		targetSuperclassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -185,9 +164,9 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> loaderBuilder [
 { #category : #command }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> populateSlotModel [
 	super populateSlotModel.
-	self globalCollectionSlotDefinitionStep populateSlotModel.
+	"self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
-	self unknownClass ifNotNil: [ :unknownClass | unknownClass new ].
+	self unknownClass ifNotNil: [ :unknownClass | unknownClass new ]."
 	"self protoInstances do: [ :each | 
 		self domainClassBuilderStep installedClass new
 			isoCode: (each at: 1);
@@ -225,13 +204,17 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> subclassNames: anObject [
 ]
 
 { #category : #accessing }
-LcsDomainClassAndGlobalCollectionClassBuilderJob >> undefinedClassName: anObject [
-	unknownClassName := anObject
-]
-
-{ #category : #accessing }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClass [
 	^ self unknownClassBuilderStep ifNotNil: [ :step | step installedClass ]
+]
+
+{ #category : #builders }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassBuilder [
+	^ LcsUnknownClassBuilder new
+		newClassName: self unknownClassName;
+		targetSuperclassName: self newDomainClassName;
+		targetPackageName: self targetPackageName;
+		yourself
 ]
 
 { #category : #'builder step' }
@@ -242,6 +225,11 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassBuilderStep [
 { #category : #accessing }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassName [
 	^ unknownClassName
+]
+
+{ #category : #accessing }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassName: anObject [
+	unknownClassName := anObject
 ]
 
 { #category : #verification }

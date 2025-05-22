@@ -10,7 +10,7 @@ Class {
 { #category : #command }
 LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
-	self addJobStep: self codeCollectionClassBuilder.
+	self addJobStep: self codesCollectionClassBuilder.
 	self addJobStep: self globalCollectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses.
