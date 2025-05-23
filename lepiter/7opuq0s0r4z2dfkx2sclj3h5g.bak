@@ -42,6 +42,40 @@
 				"string" : "- Add instvars to LxxCountry - isoCode, formalName, commonName, subdivisions - this needs to be done in order to start the test system!\n- Setup Unit Test to do do this - uses {{gtClass:name=LcsSlotDefinitionBuilder}}"
 			},
 			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-23T12:06:56.599283-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-05-23T12:07:13.517955-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "7mU7hjHyDQCUzIAjDpDPVg=="
+				},
+				"code" : "LxxrototypeSystem new"
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -71,7 +105,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-05-07T16:26:34.244173-04:00"
+									"dateAndTimeString" : "2025-05-20T22:02:09.693553-04:00"
 								}
 							},
 							"uid" : {
@@ -81,7 +115,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : ""
+							"string" : "buildJobSteps\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeIsDefuultInstanceSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeIsDefuultInstanceSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeDescriptionSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeDescriptionSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonLabelSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonLabelSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeNameSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeNameSlot name;\r\t\t\tyourself)"
 						},
 						{
 							"__type" : "textSnippet",
