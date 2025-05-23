@@ -17,6 +17,7 @@ LcsSecurityModule class >> currentUserSlotDefinition [
 		collectionSlotModuleName: self defaultModuleName;
 		initialValueBlock: [ :securityModule | securityModule users superUser ];
 		addSlotType: LcsBaseUser;
+		priority: 60;
 		yourself
 ]
 

@@ -65,6 +65,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 		column: 'InstVar' text: [ :each | each key ] width: 100;
 		column: 'Getter' text: [ :each | each value getterSelector ] width: 100;
 		column: 'Setter' text: [ :each | each value setterSelector ] width: 100;
+		column: 'Priority' text: [ :each | each value priority ] width: 30;
 		column: 'Type(s)' text: [ :each | each value slotTypesList ] width: 100;
 		column: '' stencil: [ :each | 
 			BrButton new

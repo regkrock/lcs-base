@@ -293,6 +293,7 @@ LcsSystem >> initializeBasicSystem [
 	(self slotDefinitionNamed: 'status') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'systemSlotModel') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self.
+	(self slotDefinitionNamed: 'moduleName') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'uuid') initializeSlotValueIn: self.
 	self systemBootstrapDomainClasses
 		do: [ :eachDomainClass | self addToSlotModel: eachDomainClass slotModel ].

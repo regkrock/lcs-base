@@ -161,6 +161,7 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 		column: 'Name' text: [ :each | each slotName ];
 		column: 'Class' text: [ :each | each class name ];
 		column: 'Defined In' text: [ :each | each domainClass name ];
+		column: 'Priority' text: [ :each | each priority ] width: 30;
 		column: 'Type(s)' text: [ :each | each slotTypesList];
 		"column: '' stencil: [ :each | BrButton new
 										aptitude: BrGlamorousButtonWithLabelAptitude new;
