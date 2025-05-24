@@ -187,6 +187,7 @@ LcsSlotDefinition >> gtSlotDefinitionAttributes [
 		add: 'slotName' -> self slotName;
 		add: 'slotTypes' -> self slotTypesList;
 		add: 'required' -> self isRequired;
+		add: 'initialValueBlock' -> self initialValueBlockSourceCode;
 		yourself
 ]
 

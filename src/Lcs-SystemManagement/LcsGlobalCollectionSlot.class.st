@@ -30,6 +30,12 @@ LcsGlobalCollectionSlot >> gtSlotDefinitionAttributes [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionSlot >> initialize [ 
+	super initialize.
+	self initialValueBlock: [ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ]
+]
+
 { #category : #accessing }
 LcsGlobalCollectionSlot >> isGlobalCollectionSlot [
 	^ true

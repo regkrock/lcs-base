@@ -65,7 +65,6 @@ LxxPrototypeSystem class >> skillsSlotDefinition [
 		slotName: 'skills';
 		addSlotType: LxxSkills;
 		addCollectionMemberType: LxxSkill;
-		initialValueBlock: [ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ];
 		yourself
 ]
 
@@ -120,7 +119,7 @@ LxxPrototypeSystem >> persons [
 
 { #category : #accessing }
 LxxPrototypeSystem >> persons: anObject [
-	self slotVarNamed: 'presons' put: anObject
+	self slotVarNamed: 'persons' put: anObject
 ]
 
 { #category : #accessing }
