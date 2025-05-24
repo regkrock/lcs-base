@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'persons',
 		'organization',
-		'countries'
+		'countries',
+		'skills'
 	],
 	#category : #'Lcs-PrototypeSystem-Base'
 }
@@ -54,6 +55,17 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 		slotName: 'persons';
 		addSlotType: LxxPersons;
 		addCollectionMemberType: LxxPerson;
+		yourself
+]
+
+{ #category : #'slot definition' }
+LxxPrototypeSystem class >> skillsSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionSlot new
+		slotName: 'skills';
+		addSlotType: LxxSkills;
+		addCollectionMemberType: LxxSkill;
+		initialValueBlock: [ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ];
 		yourself
 ]
 
@@ -109,6 +121,16 @@ LxxPrototypeSystem >> persons [
 { #category : #accessing }
 LxxPrototypeSystem >> persons: anObject [
 	self slotVarNamed: 'presons' put: anObject
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> skills [
+	^ self slotVarNamed: 'skills'
+]
+
+{ #category : #accessing }
+LxxPrototypeSystem >> skills: anObject [
+	self slotVarNamed: 'skills' put: anObject
 ]
 
 { #category : #initialize }

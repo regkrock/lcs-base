@@ -284,7 +284,7 @@ LcsSlotDefinition >> initialValueBlockSourceCode [
 { #category : #accessing }
 LcsSlotDefinition >> initialValueFor: aDomainObject [
 	| newValue |
-	newValue := self initialValueBlock cull: aDomainObject.
+	newValue := self initialValueBlock cull: aDomainObject cull: self.
 	"(newValue isDomainObject and: [ self currentSystem notNil ])
 		ifTrue: [ 
 			self assignParent: aDomainObject to: newValue.
@@ -364,6 +364,17 @@ LcsSlotDefinition >> makeUpdateOfVariableViaUnitOfWork [
 { #category : #'gt views' }
 LcsSlotDefinition >> newDomainClassName [
 	^ self domainClass ifNil: [ ^ '<not initialized>']
+]
+
+{ #category : #defaults }
+LcsSlotDefinition >> newObjectWithParent: parentDomainObject [
+		| newObject |
+		newObject := self slotTypes any basicNew.
+		parentDomainObject perform: self setterSelector with: newObject.
+		^ newObject
+			parent: parentDomainObject;
+			initialize;
+			yourself
 ]
 
 { #category : #'slot model' }
