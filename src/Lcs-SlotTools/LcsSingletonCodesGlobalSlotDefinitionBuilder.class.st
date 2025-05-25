@@ -39,9 +39,3 @@ LcsSingletonCodesGlobalSlotDefinitionBuilder >> codeSuperclassName [
 LcsSingletonCodesGlobalSlotDefinitionBuilder >> codeSuperclassName: aClassName [
 	codeSuperclassName := aClassName
 ]
-
-{ #category : #'as yet unclassified' }
-LcsSingletonCodesGlobalSlotDefinitionBuilder >> populateSlotModel [
-	super populateSlotModel.
-	self targetModule 
-]

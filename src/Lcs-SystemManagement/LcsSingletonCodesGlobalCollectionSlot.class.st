@@ -20,7 +20,7 @@ LcsSingletonCodesGlobalCollectionSlot >> codeSuperclass: aCodeClass [
 { #category : #'object initialization' }
 LcsSingletonCodesGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
-	"self populateCollection" 
+	self populateCollection
 ]
 
 { #category : #'as yet unclassified' }

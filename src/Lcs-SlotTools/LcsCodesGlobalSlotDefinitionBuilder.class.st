@@ -60,3 +60,12 @@ LcsCodesGlobalSlotDefinitionBuilder >> loaderClassName [
 LcsCodesGlobalSlotDefinitionBuilder >> loaderClassName: anObject [
 	loaderClassName := anObject
 ]
+
+{ #category : #command }
+LcsCodesGlobalSlotDefinitionBuilder >> populateSlotModel [
+	| aModule |
+	super populateSlotModel.
+	aModule := self module.
+	(aModule perform: self getterSelector)
+		ifNil: [ aModule initializeSlotNamed: self slotName ]
+]

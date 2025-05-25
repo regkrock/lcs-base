@@ -81,15 +81,6 @@ LcsGlobalSlotDefinitionBuilder >> module [
 	^ self currentSystem moduleNamed: self targetClass defaultModuleName
 ]
 
-{ #category : #command }
-LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
-	| aModule |
-	super populateSlotModel.
-	aModule := self module.
-	(aModule perform: self getterSelector)
-		ifNil: [ aModule initializeSlotNamed: self slotName ]
-]
-
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> slotClass [
 	^ slotClass 

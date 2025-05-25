@@ -254,8 +254,8 @@ LcsModule >> loadData [
 
 { #category : #initialize }
 LcsModule >> loadSingletonCodeCollections [
-	self slotModel loadSingletonCodeCollections.
-	self modules do: [ :eachModule | eachModule loadSingletonCodeCollections ]
+	"self slotModel loadSingletonCodeCollections.
+	self modules do: [ :eachModule | eachModule loadSingletonCodeCollections ]"
 ]
 
 { #category : #accessing }

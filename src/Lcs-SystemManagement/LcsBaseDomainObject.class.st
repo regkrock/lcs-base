@@ -510,7 +510,8 @@ LcsBaseDomainObject >> gtRawFor: aView [
 						ifFalse: [ '' ] ] ] 
 					on: Error , Halt
 					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
-		send: #value;
+		send: [ :eaRow | 
+			eaRow changeValue notNil ifTrue: [ eaRow changeValue ] ifFalse: [ eaRow rawValue ] ];
 		dynamicContextItems: [ :aTreeNode | 
 			aTreeNode value isSlotNode
 				ifTrue: [ (GtViewCreator

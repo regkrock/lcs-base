@@ -41,9 +41,3 @@ LcsCodes >> hasDefaultInstance [
 	self collection detect: [ :each | each isDefaultInstance == true] ifNone: [ ^ false ].
 	^ true
 ]
-
-{ #category : #testing }
-LcsCodes >> hasUnknownInstance [
-	self collection detect: [ :each | each code = 'unknown'] ifNone: [ ^ false ].
-	^ true
-]
