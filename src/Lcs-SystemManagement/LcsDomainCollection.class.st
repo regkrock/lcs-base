@@ -33,6 +33,30 @@ LcsDomainCollection >> findWithKey: anObject [
 	^ self collection detect: [ :each | each key = anObject ] ifNone: [  ]
 ]
 
+{ #category : #'gt view' }
+LcsDomainCollection >> gtPendingAddsView: aView [
+	<gtView>
+	self pendingAdds ifEmpty: [ ^ aView empty ].
+	^ aView forward
+		title: 'Pending Adds' translated;
+		priority: 2;
+		object: [ self pendingAdds ];
+		view: #gtItemsFor:;
+		actionUpdateButton
+]
+
+{ #category : #'gt view' }
+LcsDomainCollection >> gtPendingDeletesView: aView [
+	<gtView>
+	self pendingDeletes ifEmpty: [ ^ aView empty ].
+	^ aView forward
+		title: 'Pending Deletes' translated;
+		priority: 2;
+		object: [ self pendingDeletes ];
+		view: #gtItemsFor:;
+		actionUpdateButton
+]
+
 { #category : #'domain collection' }
 LcsDomainCollection >> pendingAdds [
 	^ self currentUnitOfWork pendingAddsIn: self

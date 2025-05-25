@@ -66,6 +66,7 @@ LcsLegalEntitiesModule class >> titlesSlotDefinition [
 		addSlotType: LcsTitles;
 		collectionClass: IdentitySet;
 		loaderClass: LcsTitlesLoader;
+		priority: 10;
 		yourself
 ]
 

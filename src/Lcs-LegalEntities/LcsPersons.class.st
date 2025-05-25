@@ -12,9 +12,8 @@ LcsPersons class >> unknownSlotDefinition [
 	<slotDefinition>
 	^ LcsCompositeSlot new
 		slotName: 'unknown';
-		addSlotType: UndefinedObject;
-		addSlotType: LcsUnknownPerson;
-		initialValueBlock: [ nil ];
+		addSlotType: LcsBasePerson;
+		initialValueBlock: [ LcsUnknownPerson new ];
 		yourself
 ]
 
