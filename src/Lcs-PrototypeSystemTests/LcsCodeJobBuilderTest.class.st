@@ -2,24 +2,42 @@ Class {
 	#name : #LcsCodeJobBuilderTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#instVars : [
-		'codeJobBuilder'
+		'codeBuilderJobs',
+		'currentCodeBuilderJob'
 	],
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #accessing }
-LcsCodeJobBuilderTest >> codeJobBuilder [
-	^ codeJobBuilder
+LcsCodeJobBuilderTest >> codeBuilderJobs [
+	^ codeBuilderJobs
 ]
 
 { #category : #accessing }
-LcsCodeJobBuilderTest >> codeJobBuilder: anObject [
-	codeJobBuilder := anObject
+LcsCodeJobBuilderTest >> codeBuilderJobs: anObject [
+	codeBuilderJobs := anObject
+]
+
+{ #category : #accessing }
+LcsCodeJobBuilderTest >> currentCodeBuilderJob [
+	^ currentCodeBuilderJob
+]
+
+{ #category : #accessing }
+LcsCodeJobBuilderTest >> currentCodeBuilderJob: anObject [
+	currentCodeBuilderJob := anObject.
+	self codeBuilderJobs add: anObject
+]
+
+{ #category : #setUp }
+LcsCodeJobBuilderTest >> setUp [ 
+	super setUp.
+	self codeBuilderJobs: OrderedCollection new
 ]
 
 { #category : #'setUp\t' }
 LcsCodeJobBuilderTest >> tearDown [
-	self codeJobBuilder ifNotNil: [ :builder | builder uninstall].
+	self codeBuilderJobs reverseDo: [ :builder | builder uninstall].
 	super tearDown.
-	self codeJobBuilder ifNotNil: [ :builder | builder verifyUninstall]
+	self codeBuilderJobs reverseDo: [ :builder | builder verifyUninstall]
 ]

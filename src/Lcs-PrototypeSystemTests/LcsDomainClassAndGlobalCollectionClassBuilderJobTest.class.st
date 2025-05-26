@@ -1,12 +1,12 @@
 Class {
-	#name : #LcsGlobalDomainClassClassesBuilderJobTest,
+	#name : #LcsDomainClassAndGlobalCollectionClassBuilderJobTest,
 	#superclass : #LcsCodeJobBuilderTest,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #tests }
-LcsGlobalDomainClassClassesBuilderJobTest >> testCreationOfNewDomainClassAndItsGlobalCollectionClassInstalledInAModule [
-	self codeJobBuilder:
+LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationOfNewDomainClassAndItsGlobalCollectionClassInstalledInAModule [
+	self currentCodeBuilderJob:
 		(LcsDomainClassAndGlobalCollectionClassBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Sample';
@@ -14,12 +14,12 @@ LcsGlobalDomainClassClassesBuilderJobTest >> testCreationOfNewDomainClassAndItsG
 			installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
 			buildJobSteps;
 			yourself).
-	self codeJobBuilder execute
+	self currentCodeBuilderJob execute
 ]
 
 { #category : #tests }
-LcsGlobalDomainClassClassesBuilderJobTest >> testCreationOfNewDomainClassWithUnknownClassAndItsGlobalCollectionInstalledInAModule [
-	self codeJobBuilder:
+LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationOfNewDomainClassWithUnknownClassAndItsGlobalCollectionInstalledInAModule [
+	self currentCodeBuilderJob:
 		(LcsDomainClassAndGlobalCollectionClassBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Sample';
@@ -28,5 +28,5 @@ LcsGlobalDomainClassClassesBuilderJobTest >> testCreationOfNewDomainClassWithUnk
 			buildUnknownClass: true;
 			buildJobSteps;
 			yourself).
-	self codeJobBuilder execute
+	self currentCodeBuilderJob execute
 ]

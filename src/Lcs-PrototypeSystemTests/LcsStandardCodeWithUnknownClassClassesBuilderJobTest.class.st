@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	| person |
-	self codeJobBuilder:
+	self currentCodeBuilderJob:
 		(LcsStandardCodeWithUnknownClassClassesBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Title';
@@ -18,8 +18,8 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreationOfSingletonC
 			installMemberSlotInDomainClass: LxxBasePerson;
 			buildUnknownClass: true;
 			yourself).
-	self codeJobBuilder buildJobSteps.
-	self codeJobBuilder execute.
+	self currentCodeBuilderJob buildJobSteps.
+	self currentCodeBuilderJob execute.
 
 	person := LxxPerson new.
 	self assert: person title identicalTo: (self currentSystem moduleNamed: 'Persons Module') titles defaultInstance

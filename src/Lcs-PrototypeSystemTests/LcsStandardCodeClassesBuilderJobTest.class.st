@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsStandardCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	| person |
-	self codeJobBuilder:
+	self currentCodeBuilderJob:
 		(LcsStandardCodeClassesBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Title';
@@ -17,8 +17,8 @@ LcsStandardCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
 			targetModuleClass: LxxPrototypeSystem;
 			installMemberSlotInDomainClass: LxxBasePerson;
 			yourself).
-	self codeJobBuilder buildJobSteps.
-	self codeJobBuilder execute.
+	self currentCodeBuilderJob buildJobSteps.
+	self currentCodeBuilderJob execute.
 
 	person := LxxPerson new.
 	self assert: person title identicalTo: (self currentSystem moduleNamed: 'Persons Module') titles defaultInstance
