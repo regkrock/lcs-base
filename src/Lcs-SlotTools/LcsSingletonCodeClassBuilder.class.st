@@ -124,12 +124,6 @@ LcsSingletonCodeClassBuilder >> label: aString [
 	label := aString
 ]
 
-{ #category : #command }
-LcsSingletonCodeClassBuilder >> populateSlotModel [
-	super populateSlotModel.
-	self installedClass new
-]
-
 { #category : #verification }
 LcsSingletonCodeClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.

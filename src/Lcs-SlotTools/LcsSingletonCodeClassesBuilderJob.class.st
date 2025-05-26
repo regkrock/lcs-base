@@ -93,15 +93,6 @@ LcsSingletonCodeClassesBuilderJob >> overview [
 	
 ]
 
-{ #category : #command }
-LcsSingletonCodeClassesBuilderJob >> populateSlotModel [
-	super populateSlotModel.
-	"self globalCollectionSlotDefinitionStep populateSlotModel."
-	self currentSystem currentUnitOfWork applyChanges.
-	"self singletonClassBuilders do: [ :eachStep | eachStep populateSlotModel ].
-	self currentSystem currentUnitOfWork applyChanges"
-]
-
 { #category : #printing }
 LcsSingletonCodeClassesBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream

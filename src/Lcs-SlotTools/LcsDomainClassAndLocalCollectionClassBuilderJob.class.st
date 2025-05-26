@@ -118,14 +118,10 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> initialize [
 { #category : #command }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> populateSlotModel [
 	super populateSlotModel.
-	self globalCollectionSlotDefinitionStep populateSlotModel.
+	"self globalCollectionSlotDefinitionStep populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges.
 	self unknownClass new.
-	"self protoInstances do: [ :each | 
-		self domainClassBuilderStep installedClass new
-			isoCode: (each at: 1);
-			countryName: (each at: 2)]."
-	self currentSystem currentUnitOfWork applyChanges.
+	self currentSystem currentUnitOfWork applyChanges."
 ]
 
 { #category : #printing }

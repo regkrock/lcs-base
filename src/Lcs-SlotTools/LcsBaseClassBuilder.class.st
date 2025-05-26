@@ -229,19 +229,10 @@ LcsBaseClassBuilder >> updateSlotModel [
 ]
 
 { #category : #command }
-LcsBaseClassBuilder >> verifyClassAddedToSystemModel [
-	self currentSystem notNil
-		ifTrue: [ self
-				assert: self installedClass slotModel isNil
-				description: 'The class has been created but not yet installed in a system' ]
-]
-
-{ #category : #command }
 LcsBaseClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass notNil description: 'Class has been created'.
 	self assert: self installedClass name equals: self newClassName.
-	self verifyClassAddedToSystemModel.
 	self assert: self installedClass package name equals: self targetPackageName
 ]
 

@@ -21,9 +21,6 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self assert: self subject required isNil.
 	self
 		assert: self subject initialValueBlock asString
-		equals: '[ :parentDomainObject | 
-		(self slotTypes any new)
-			parent: parentDomainObject;
-			yourself ]'.
+		equals: '[ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ]'.
 	self assert: (self subject validator isKindOf: LcsConditionsValidator)
 ]

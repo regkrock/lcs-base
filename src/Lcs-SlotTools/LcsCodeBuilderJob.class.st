@@ -197,6 +197,7 @@ LcsCodeBuilderJob >> modelClasses [
 LcsCodeBuilderJob >> populateSlotModel [
 	self traceStep: 'populateSlotModel'.
 	self jobSteps populateSlotModel.
+	self currentSystem currentUnitOfWork applyChanges
 ]
 
 { #category : #'gt views' }

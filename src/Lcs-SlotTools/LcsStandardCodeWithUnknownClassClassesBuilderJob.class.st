@@ -77,18 +77,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> initialize [
 ]
 
 { #category : #populate }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> populateSlotModel [
-	super populateSlotModel.
-	"self globalCollectionSlotDefinitionStep populateSlotModel."
-	"self unknownClass new
-		code: 'unknown';
-		description: 'Unknown';
-		label: 'Unknown';
-		isDefaultInstance: true."
-	self currentSystem currentUnitOfWork applyChanges.
-]
-
-{ #category : #populate }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> unknownClass [
 	^ self unknownCodeClassBuilderStep installedClass
 ]

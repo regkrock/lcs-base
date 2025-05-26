@@ -60,14 +60,6 @@ LcsStandardCodeClassesBuilderJob >> initialize [
 ]
 
 { #category : #command }
-LcsStandardCodeClassesBuilderJob >> populateSlotModel [
-	super populateSlotModel.
-	self globalCollectionSlotDefinitionStep populateSlotModel.
-	self currentSystem currentUnitOfWork applyChanges.
-
-]
-
-{ #category : #command }
 LcsStandardCodeClassesBuilderJob >> verifyPopulateSlotModel [
 	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.
