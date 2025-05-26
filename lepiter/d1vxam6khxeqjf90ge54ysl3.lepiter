@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-26T16:44:50.937686-04:00"
+						"dateAndTimeString" : "2025-05-26T17:10:46.71471-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Dcaz/OTqDQCFZrLrCMsfBg=="
 				},
-				"code" : "job := LcsDomainClassAndGlobalCollectionClassBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tcollectionSlotName: 'users';\r\tcollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
+				"code" : "job := LcsDomainClassAndGlobalCollectionClassBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tcollectionSlotName: 'users';\r\tcollectionSlotInstallationTargetClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
 			},
 			{
 				"__type" : "textSnippet",
@@ -208,14 +208,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-26T16:44:50.831414-04:00"
+						"dateAndTimeString" : "2025-05-26T17:10:46.482624-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "MP9acO7wDQCsscPlDrsQnQ=="
 				},
-				"code" : "job := LcsDomainClassAndGlobalCollectionClassBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tcollectionSlotName: 'users';\r\tcollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
+				"code" : "job := LcsDomainClassAndGlobalCollectionClassBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'BaseUser' withSubclasses: #('User' 'SystemUser' 'GuestUser');\r\tnewGlobalCollectionClassName: 'Users';\r\tcollectionSlotName: 'users';\r\tcollectionSlotInstallationTargetClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps"
 			}
 		]
 	},

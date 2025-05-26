@@ -12,7 +12,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreationOfSingletonC
 			classPrefix: 'Lxx';
 			createForRootName: 'Title';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
-			installCollectionSlotInModuleClass: LxxPersonsModule;
+			installCollectionSlotInClass: LxxPersonsModule;
 			createProtoCodesFromLabels: #('Mr' 'Ms' '');
 			targetModuleClass: LxxPrototypeSystem;
 			installMemberSlotInDomainClass: LxxBasePerson;

@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-26T16:43:27.511284-04:00"
+						"dateAndTimeString" : "2025-05-26T17:10:46.800135-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ciy0X+PqDQC3Etu5CMsfBg=="
 				},
-				"code" : "job := LcsDomainClassAndGlobalCollectionClassBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'User';\r\tcollectionModuleClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps\r\t"
+				"code" : "job := LcsDomainClassAndGlobalCollectionClassBuilderJob new\r\tcreateForPrefix: 'Lxx' rootName: 'User';\r\tcollectionSlotInstallationTargetClass: LxxPrototypeSystem;\r\ttargetPackageName: 'Lcs-PrototypeSystem';\r\tbuildJobSteps\r\t"
 			},
 			{
 				"__type" : "textSnippet",

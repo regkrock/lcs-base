@@ -12,7 +12,7 @@ LcsSingletonCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
 			classPrefix: 'Lxx';
 			createForRootName: 'Gender';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
-			installCollectionSlotInModuleClass: LxxPersonsModule;
+			installCollectionSlotInClass: LxxPersonsModule;
 			addCodeSubclassWithRootNamed: 'Male';
 			addCodeSubclassWithRootNamed: 'Female';
 			addCodeSubclassWithRootNamed: 'UnknownGender'

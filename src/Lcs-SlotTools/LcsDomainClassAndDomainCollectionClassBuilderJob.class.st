@@ -12,8 +12,8 @@ Class {
 		'newDomainClassName',
 		'unknownClassName',
 		'collectionClassName',
-		'collectionModuleClass',
-		'collectionSlotName'
+		'collectionSlotName',
+		'collectionSlotInstallationTargetClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -56,12 +56,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionClassName: anObjec
 
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionModuleClass [
-	^ collectionModuleClass
-]
-
-{ #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionModuleClass: aClass [
-	collectionModuleClass := aClass
+	^ collectionSlotInstallationTargetClass
 ]
 
 { #category : #builders }
@@ -72,6 +67,11 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionReferenceSlotBuild
 		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
 		addSlotType: self collectionClassName;
 		yourself
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTargetClass: aClass [
+	collectionSlotInstallationTargetClass := aClass
 ]
 
 { #category : #accessing }
@@ -116,8 +116,8 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> initialize [
 ]
 
 { #category : #initialize }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> installCollectionSlotInModuleClass: aClass [
-	self collectionModuleClass: aClass 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> installCollectionSlotInClass: aClass [
+	self collectionSlotInstallationTargetClass: aClass 
 ]
 
 { #category : #configuration }
