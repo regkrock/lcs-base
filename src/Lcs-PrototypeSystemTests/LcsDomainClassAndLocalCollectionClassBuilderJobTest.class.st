@@ -25,7 +25,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> testCreationOfNewDomainCl
 			classPrefix: 'Lxx';
 			createForRootName: 'InvoiceItem';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
-			installCollectionSlotInClass: LxxPrototypeSystem;
+			installCollectionSlotInClass: #LxxInvoice asClass;
 			buildJobSteps;
 			yourself).
 	self currentCodeBuilderJob execute
