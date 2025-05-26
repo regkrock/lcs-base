@@ -27,7 +27,7 @@ LcsCodeClassesBuilderJob >> codeClassBuilder [
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codesCollectionClassBuilder [
 	^ LcsCodesCollectionClassBuilder new
-		newClassName: self globalCollectionClassName;
+		newClassName: self collectionClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -35,20 +35,20 @@ LcsCodeClassesBuilderJob >> codesCollectionClassBuilder [
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 	^ LcsCodesGlobalSlotDefinitionBuilder new
-		slotClassName: self globalCollectionClassName;
-		slotName: self globalCollectionSlotName;
-		targetClassName: self globalCollectionModuleClass name;
-		targetModuleClass: self globalCollectionModuleClass;
-		loaderClassName: self globalCollectionClassName , 'Loader';
+		slotClassName: self collectionClassName;
+		slotName: self collectionSlotName;
+		targetClassName: self collectionModuleClass name;
+		targetModuleClass: self collectionModuleClass;
+		loaderClassName: self collectionClassName , 'Loader';
 		addCollectionElementType: self newDomainClassName;
-		addSlotType: self globalCollectionClassName;
+		addSlotType: self collectionClassName;
 		yourself
 ]
 
 { #category : #builders }
 LcsCodeClassesBuilderJob >> codesLoaderBuilder [
 	^ LcsCodesLoaderClassBuilder new
-		newClassName: self globalCollectionClassName , 'Loader';
+		newClassName: self collectionClassName , 'Loader';
 		instanceClassName: self newDomainClassName;
 		unknownClassName: self unknownClassName;
 		targetPackageName: self targetPackageName;
@@ -62,8 +62,8 @@ LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 		target: aTargetClass;
 		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;
-		collectionSlotName: self globalCollectionSlotName;
-		targetModuleClass: self globalCollectionModuleClass;
+		collectionSlotName: self collectionSlotName;
+		targetModuleClass: self collectionModuleClass;
 		addSlotType: self newDomainClassName;
 		yourself
 ]

@@ -27,7 +27,7 @@ LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addCodeSubclassBuilders.
 	self addJobStep: self codesCollectionClassBuilder.
-	self addJobStep: self globalCollectionReferenceSlotBuilder.
+	self addJobStep: self collectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 ]
@@ -63,12 +63,12 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 	^ LcsSingletonCodesGlobalSlotDefinitionBuilder new
-		slotClassName: self globalCollectionClassName;
-		slotName: self globalCollectionSlotName;
-		targetClassName: self globalCollectionModuleClass name;
-		targetModuleClass: self globalCollectionModuleClass;
+		slotClassName: self collectionClassName;
+		slotName: self collectionSlotName;
+		targetClassName: self collectionModuleClass name;
+		targetModuleClass: self collectionModuleClass;
 		codeSuperclassName: self newDomainClassName;
-		addSlotType: self globalCollectionClassName;
+		addSlotType: self collectionClassName;
 		yourself
 ]
 

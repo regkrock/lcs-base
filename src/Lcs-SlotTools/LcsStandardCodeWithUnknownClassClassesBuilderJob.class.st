@@ -16,7 +16,7 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> buildJobSteps [
 		self addJobStep: self unknownClassBuilder].
 	self addJobStep: self codesCollectionClassBuilder.
 	self addJobStep: self codesLoaderBuilder.
-	self addJobStep: self globalCollectionReferenceSlotBuilder.
+	self addJobStep: self collectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 ]

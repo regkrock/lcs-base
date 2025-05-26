@@ -11,7 +11,7 @@ Class {
 LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self codesCollectionClassBuilder.
-	self addJobStep: self globalCollectionReferenceSlotBuilder.
+	self addJobStep: self collectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses.
 	self addJobStep: self codesLoaderBuilder

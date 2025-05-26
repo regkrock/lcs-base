@@ -11,7 +11,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationOfNewDomainC
 			classPrefix: 'Lxx';
 			createForRootName: 'Sample';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
-			installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
+			installCollectionSlotInModuleClass: LxxPrototypeSystem;
 			buildJobSteps;
 			yourself).
 	self currentCodeBuilderJob execute
@@ -24,7 +24,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationOfNewDomainC
 			classPrefix: 'Lxx';
 			createForRootName: 'Sample';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
-			installGlobalCollectionSlotInModuleClass: LxxPrototypeSystem;
+			installCollectionSlotInModuleClass: LxxPrototypeSystem;
 			buildUnknownClass: true;
 			buildJobSteps;
 			yourself).

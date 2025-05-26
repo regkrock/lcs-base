@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-04-24T10:05:26.463649-04:00"
+						"dateAndTimeString" : "2025-05-26T16:45:11.276717-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "mhdxdNTvDQC5YbcIBf0hyQ=="
 				},
-				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Gender';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tinstallGlobalCollectionSlotInModuleClass: LcsLegalEntitiesModule;\r\t\taddCodeSubclassWithRootNamed: 'Male';\r\t\taddCodeSubclassWithRootNamed: 'Female';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
+				"code" : "builder := \r\tLcsSingletonCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Gender';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tinstallCollectionSlotInModuleClass: LcsLegalEntitiesModule;\r\t\taddCodeSubclassWithRootNamed: 'Male';\r\t\taddCodeSubclassWithRootNamed: 'Female';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -100,14 +100,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-01T19:30:11.190106-04:00"
+						"dateAndTimeString" : "2025-05-26T16:45:11.304224-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "f4Hj93zwDQCLp1tOD76b1A=="
 				},
-				"code" : "\"Problem is the LcsLegalEntitiesModule is not initialized\"\r\rbuilder := \r\tLcsStandardCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tcreateProtoCodesFromLabels: #('Mr' 'Ms' '');\r\t\tinstallGlobalCollectionSlotInModuleClass: LcsLegalEntitiesModule;\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
+				"code" : "\"Problem is the LcsLegalEntitiesModule is not initialized\"\r\rbuilder := \r\tLcsStandardCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tcreateProtoCodesFromLabels: #('Mr' 'Ms' '');\r\t\tinstallCollectionSlotInModuleClass: LcsLegalEntitiesModule;\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
 			}
 		]
 	},

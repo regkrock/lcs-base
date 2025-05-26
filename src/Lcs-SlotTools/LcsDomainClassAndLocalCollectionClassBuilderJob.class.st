@@ -25,8 +25,29 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> buildJobSteps [
 		self addJobStep: self unknownClassBuilder].
 	self addSubclassBuilders.
 	self addJobStep: self domainCollectionClassBuilder.
-	self addJobStep: self localCollectionReferenceSlotBuilder.
-	self addJobStep: self localCollectionSlotBuilder
+	self addJobStep: self collectionReferenceSlotBuilder.
+	self addJobStep: self collectionSlotBuilder
+]
+
+{ #category : #builders }
+LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionReferenceSlotBuilder [
+	^ LcsLocalCollectionReferenceSlotBuilder new
+		targetClassName: self newDomainClassName;
+		collectionSlotName: self collectionSlotName;
+		"collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;"
+		collectionClassName: self collectionClassName; 
+		yourself
+]
+
+{ #category : #'builder step' }
+LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionSlotBuilder [
+	^ LcsLocalSlotDefinitionBuilder new
+		slotClassName: self collectionClassName;
+		slotName: self collectionSlotName;
+		targetClassName: self collectionModuleClass name;
+		targetModuleClass: self collectionModuleClass;
+		collectionElementTypes: { self newDomainClassName};
+		yourself
 ]
 
 { #category : #accessing }
@@ -57,7 +78,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> domainClassBuilder [
 { #category : #builders }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
-		newClassName: self globalCollectionClassName;
+		newClassName: self collectionClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -71,34 +92,13 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> initialize [
 	self subclassNames: OrderedCollection new
 ]
 
-{ #category : #builders }
-LcsDomainClassAndLocalCollectionClassBuilderJob >> localCollectionReferenceSlotBuilder [
-	^ LcsLocalCollectionReferenceSlotBuilder new
-		targetClassName: self newDomainClassName;
-		collectionSlotName: self globalCollectionSlotName;
-		"collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;"
-		collectionClassName: self globalCollectionClassName; 
-		yourself
-]
-
-{ #category : #'builder step' }
-LcsDomainClassAndLocalCollectionClassBuilderJob >> localCollectionSlotBuilder [
-	^ LcsLocalSlotDefinitionBuilder new
-		slotClassName: self globalCollectionClassName;
-		slotName: self globalCollectionSlotName;
-		targetClassName: self globalCollectionModuleClass name;
-		targetModuleClass: self globalCollectionModuleClass;
-		collectionElementTypes: { self newDomainClassName};
-		yourself
-]
-
 { #category : #printing }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: 'Install ';
 		nextPutAll: self newDomainClassName ; cr;
 		nextPutAll: ' with instances stored in ';
-		nextPutAll: self globalCollectionClassName
+		nextPutAll: self collectionClassName
 ]
 
 { #category : #accessing }

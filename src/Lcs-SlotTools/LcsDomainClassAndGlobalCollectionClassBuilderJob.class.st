@@ -50,9 +50,42 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildJobSteps [
 	self addSubclassBuilders.
 	self addJobStep: self domainCollectionClassBuilder.
 	self addJobStep: self loaderBuilder.
-	self addJobStep: self globalCollectionReferenceSlotBuilder.
-	self addJobStep: self globalCollectionSlotBuilder.
+	self addJobStep: self collectionReferenceSlotBuilder.
+	self addJobStep: self collectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses.
+]
+
+{ #category : #builders }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionReferenceSlotBuilder [
+	^ LcsGlobalCollectionReferenceSlotBuilder new
+		targetClassName: self newDomainClassName;
+		collectionSlotName: self collectionSlotName;
+		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
+		collectionClassName: self collectionClassName; 
+		addSlotType: self collectionClassName;
+		yourself
+]
+
+{ #category : #'builder step' }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionSlotBuilder [
+	| builder |
+	builder := LcsGlobalSlotDefinitionBuilder new
+					slotClassName: self collectionClassName;
+					slotName: self collectionSlotName;
+					targetClassName: self collectionModuleClass name;
+					targetModuleClass: self collectionModuleClass;
+					collectionElementTypes: { self newDomainClassName};
+					addSlotType: self collectionClassName;
+					yourself.
+	self buildUnknownClass ifTrue: [
+		builder addJobStep: (
+			LcsSlotDefinitionBuilder new
+				slotDefinitionClassName: LcsSlotDefinition name;
+				slotName: 'unknown';
+				targetClassName: self collectionClassName;
+				addSlotType: self unknownClassName;
+				yourself)].
+	^ builder
 ]
 
 { #category : #accessing }
@@ -91,8 +124,8 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassCodeMemberSlotBui
 		target: aTargetClass;
 		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;
-		collectionSlotName: self globalCollectionSlotName;
-		targetModuleClass: self globalCollectionModuleClass;
+		collectionSlotName: self collectionSlotName;
+		targetModuleClass: self collectionModuleClass;
 		addSlotType: self newDomainClassName;
 		yourself
 ]
@@ -100,42 +133,9 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassCodeMemberSlotBui
 { #category : #builders }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
-		newClassName: self globalCollectionClassName;
+		newClassName: self collectionClassName;
 		targetPackageName: self targetPackageName;
 		yourself
-]
-
-{ #category : #builders }
-LcsDomainClassAndGlobalCollectionClassBuilderJob >> globalCollectionReferenceSlotBuilder [
-	^ LcsGlobalCollectionReferenceSlotBuilder new
-		targetClassName: self newDomainClassName;
-		collectionSlotName: self globalCollectionSlotName;
-		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
-		collectionClassName: self globalCollectionClassName; 
-		addSlotType: self globalCollectionClassName;
-		yourself
-]
-
-{ #category : #'builder step' }
-LcsDomainClassAndGlobalCollectionClassBuilderJob >> globalCollectionSlotBuilder [
-	| builder |
-	builder := LcsGlobalSlotDefinitionBuilder new
-					slotClassName: self globalCollectionClassName;
-					slotName: self globalCollectionSlotName;
-					targetClassName: self globalCollectionModuleClass name;
-					targetModuleClass: self globalCollectionModuleClass;
-					collectionElementTypes: { self newDomainClassName};
-					addSlotType: self globalCollectionClassName;
-					yourself.
-	self buildUnknownClass ifTrue: [
-		builder addJobStep: (
-			LcsSlotDefinitionBuilder new
-				slotDefinitionClassName: LcsSlotDefinition name;
-				slotName: 'unknown';
-				targetClassName: self globalCollectionClassName;
-				addSlotType: self unknownClassName;
-				yourself)].
-	^ builder
 ]
 
 { #category : #'builder step' }
@@ -155,7 +155,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> initialize [
 { #category : #'as yet unclassified' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> loaderBuilder [
 	^ LcsLoaderClassBuilder new
-		newClassName: self globalCollectionClassName , 'Loader';
+		newClassName: self collectionClassName , 'Loader';
 		instanceClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
@@ -167,7 +167,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> printJobStreamDetailsOn: aSt
 		nextPutAll: 'Install ';
 		nextPutAll: self newDomainClassName ; cr;
 		nextPutAll: ' with instances stored in ';
-		nextPutAll: self globalCollectionClassName
+		nextPutAll: self collectionClassName
 ]
 
 { #category : #accessing }

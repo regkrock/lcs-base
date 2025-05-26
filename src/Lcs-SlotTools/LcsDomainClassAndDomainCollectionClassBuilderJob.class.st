@@ -6,14 +6,14 @@ Class {
 		'targetPackageName',
 		'domainInstanceSlotName',
 		'classRootName',
-		'globalCollectionSlotName',
 		'targetDomainClasses',
 		'targetModuleName',
 		'targetModuleClass',
 		'newDomainClassName',
-		'globalCollectionModuleClass',
-		'globalCollectionClassName',
-		'unknownClassName'
+		'unknownClassName',
+		'collectionClassName',
+		'collectionModuleClass',
+		'collectionSlotName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -44,6 +44,46 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> classRootName: aString [
 	classRootName := aString
 ]
 
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionClassName [
+	^ collectionClassName
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionClassName: anObject [ 
+	collectionClassName := anObject
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionModuleClass [
+	^ collectionModuleClass
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionModuleClass: aClass [
+	collectionModuleClass := aClass
+]
+
+{ #category : #builders }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionReferenceSlotBuilder [
+	^ LcsGlobalCollectionReferenceSlotBuilder new
+		targetClassName: self newDomainClassName;
+		collectionSlotName: self collectionSlotName;
+		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
+		addSlotType: self collectionClassName;
+		yourself
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotName [
+	^ collectionSlotName
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotName: aString [
+	collectionSlotName := aString
+]
+
 { #category : #configuration }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> createForPrefix: aPrefix rootName: aRootName [
 	self classPrefix: aPrefix.
@@ -54,9 +94,9 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> createForPrefix: aPrefix roo
 LcsDomainClassAndDomainCollectionClassBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
 	self domainInstanceSlotName: self classRootName asValidSelector.
-	self globalCollectionSlotName: self domainInstanceSlotName asEnglishPlural.
+	self collectionSlotName: self domainInstanceSlotName asEnglishPlural.
 	self newDomainClassName: self classPrefix , aRootName.
-	self globalCollectionClassName: self newDomainClassName asEnglishPlural
+	self collectionClassName: self newDomainClassName asEnglishPlural
 ]
 
 { #category : #accessing }
@@ -69,46 +109,6 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> domainInstanceSlotName: aStr
 	domainInstanceSlotName := aString
 ]
 
-{ #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionClassName [
-	^ globalCollectionClassName
-]
-
-{ #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionClassName: anObject [ 
-	globalCollectionClassName := anObject
-]
-
-{ #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionModuleClass [
-	^ globalCollectionModuleClass
-]
-
-{ #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionModuleClass: aClass [
-	globalCollectionModuleClass := aClass
-]
-
-{ #category : #builders }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionReferenceSlotBuilder [
-	^ LcsGlobalCollectionReferenceSlotBuilder new
-		targetClassName: self newDomainClassName;
-		collectionSlotName: self globalCollectionSlotName;
-		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
-		addSlotType: self globalCollectionClassName;
-		yourself
-]
-
-{ #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionSlotName [
-	^ globalCollectionSlotName
-]
-
-{ #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> globalCollectionSlotName: aString [
-	globalCollectionSlotName := aString
-]
-
 { #category : #initialize }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> initialize [
 	super initialize.
@@ -116,8 +116,8 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> initialize [
 ]
 
 { #category : #initialize }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> installGlobalCollectionSlotInModuleClass: aClass [
-	self globalCollectionModuleClass: aClass 
+LcsDomainClassAndDomainCollectionClassBuilderJob >> installCollectionSlotInModuleClass: aClass [
+	self collectionModuleClass: aClass 
 ]
 
 { #category : #configuration }
@@ -135,8 +135,8 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> memberOfSlotBuilderFor: aTar
 	^ LcsMemberOfSlotBuilder new
 		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;
-		collectionSlotName: self globalCollectionSlotName;
-		collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;
+		collectionSlotName: self collectionSlotName;
+		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
 		addSlotType: self newDomainClassName;
 		yourself
 ]
@@ -152,11 +152,6 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassName: anObject
 ]
 
 { #category : #accessing }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> newGlobalCollectionClassName: anObject [ 
-	self globalCollectionClassName: self classPrefix , anObject
-]
-
-{ #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetDomainClasses [
 	^ targetDomainClasses
 ]
@@ -168,7 +163,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> targetDomainClasses: aCollec
 
 { #category : #asking }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModule [
-	^ self currentSystem moduleNamed: self globalCollectionModuleClass defaultModuleName
+	^ self currentSystem moduleNamed: self collectionModuleClass defaultModuleName
 ]
 
 { #category : #accessing }

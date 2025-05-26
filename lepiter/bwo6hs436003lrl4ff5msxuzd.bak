@@ -100,14 +100,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-01T19:29:56.67505-04:00"
+						"dateAndTimeString" : "2025-05-01T19:30:11.190106-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "f4Hj93zwDQCLp1tOD76b1A=="
 				},
-				"code" : "\"Problem is the \r\rbuilder := \r\tLcsStandardCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tcreateProtoCodesFromLabels: #('Mr' 'Ms' '');\r\t\tinstallGlobalCollectionSlotInModuleClass: LcsLegalEntitiesModule;\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
+				"code" : "\"Problem is the LcsLegalEntitiesModule is not initialized\"\r\rbuilder := \r\tLcsStandardCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tcreateProtoCodesFromLabels: #('Mr' 'Ms' '');\r\t\tinstallGlobalCollectionSlotInModuleClass: LcsLegalEntitiesModule;\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
 			}
 		]
 	},
