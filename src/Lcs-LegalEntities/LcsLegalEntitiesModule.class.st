@@ -20,7 +20,6 @@ LcsLegalEntitiesModule class >> gendersSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonCodesGlobalCollectionSlot new
 		slotName: 'genders';
-		priority: 10;
 		addSlotType: LcsGenders;
 		codeSuperclass: LcsGender;
 		yourself

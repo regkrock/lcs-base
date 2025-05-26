@@ -51,9 +51,6 @@ LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 	| targetModule |
 	targetModule := self moduleNamed: self collectionSlotModuleName. 
-	"targetSlotDefinition := (targetModule slotDefinitionNamed: self collectionSlotName).
-	domainCollectonClass := targetSlotDefinition getValueIn: targetModule.
-	aDomainObject parent: domainCollectonClass."
 	aDomainObject parent: (targetModule perform: self collectionSlotName asSymbol)
 ]
 

@@ -17,6 +17,12 @@ LcsSingletonCodesGlobalCollectionSlot >> codeSuperclass: aCodeClass [
 	codeSuperclass := aCodeClass
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSingletonCodesGlobalCollectionSlot >> initialize [ 
+	super initialize.
+	self priority: 10
+]
+
 { #category : #'object initialization' }
 LcsSingletonCodesGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
