@@ -57,5 +57,5 @@ LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
 LcsSlotInstanceVariableBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass isNil ifTrue: [ ^ self  ].
-	self assert: (self targetClass allInstVarNames includes: self slotName) not.
+	self assert: (self targetClass instVarNames includes: self slotName asSymbol) not.
 ]

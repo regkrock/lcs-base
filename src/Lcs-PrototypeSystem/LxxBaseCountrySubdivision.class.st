@@ -31,7 +31,6 @@ LxxBaseCountrySubdivision class >> isoCodeSlotDefinition [
 LxxBaseCountrySubdivision class >> newInContextOf: anObject [
 	| newObject parentCollectionSlot|
 	newObject := self basicNew.
-	"self addToUnitOfWork: newObject."
 	self currentSystem ifNotNil: [
 		"parentCollectionSlot := self collectionSlotIn: anObject."
 		parentCollectionSlot := anObject perform: self parentSlotDefinition collectionSlotName asSymbol.

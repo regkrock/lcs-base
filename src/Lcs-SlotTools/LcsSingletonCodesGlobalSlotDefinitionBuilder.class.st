@@ -39,10 +39,3 @@ LcsSingletonCodesGlobalSlotDefinitionBuilder >> codeSuperclassName [
 LcsSingletonCodesGlobalSlotDefinitionBuilder >> codeSuperclassName: aClassName [
 	codeSuperclassName := aClassName
 ]
-
-{ #category : #command }
-LcsSingletonCodesGlobalSlotDefinitionBuilder >> populateSlotModel [
-	super populateSlotModel.
-	(self targetClass slotDefinitionNamed: self slotName)
-	 	initializeSlotValueIn: self targetModule
-]

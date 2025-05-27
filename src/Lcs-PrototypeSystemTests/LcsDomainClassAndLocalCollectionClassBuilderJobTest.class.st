@@ -21,7 +21,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> createLxxInvoiceAndLxxInv
 
 { #category : #tests }
 LcsDomainClassAndLocalCollectionClassBuilderJobTest >> testCreationOfNewDomainClassAndItsLocalCollectionClassInstalledInAModule [
-	| newInvoice |
+	| newInvoice newInvoiceItem |
 	self createLxxInvoiceAndLxxInvoices.
 	self currentCodeBuilderJob:
 		(LcsDomainClassAndLocalCollectionClassBuilderJob new
@@ -34,6 +34,16 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> testCreationOfNewDomainCl
 	self currentCodeBuilderJob execute.
 	
 	newInvoice := #LxxInvoice asClass new.
+
 	self assert: newInvoice invoiceItems collectionSize = 0.
-	self assert: (newInvoice invoiceItems isKindOf: (#LxxInvoiceItems asClass))
+	self assert: (newInvoice invoiceItems isKindOf: (#LxxInvoiceItems asClass)).
+
+	self currentSystem applyChanges.
+
+	newInvoiceItem := #LxxInvoiceItem asClass newInContextOf: newInvoice.
+	self assert: newInvoiceItem parent == newInvoice invoiceItems.
+
+	self currentSystem applyChanges.
+
+	self assert: (newInvoice invoiceItems includes: newInvoiceItem)
 ]

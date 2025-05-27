@@ -250,5 +250,6 @@ LcsCodeBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
 
 { #category : #command }
 LcsCodeBuilderJob >> verifyUninstall [
+	self traceStep: 'verifyUninstall'.
 	self jobSteps verifyUninstall
 ]

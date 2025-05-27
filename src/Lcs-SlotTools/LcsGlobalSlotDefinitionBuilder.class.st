@@ -63,6 +63,11 @@ LcsGlobalSlotDefinitionBuilder >> collectionElementTypes: anObject [
 	collectionElementTypes := anObject
 ]
 
+{ #category : #command }
+LcsGlobalSlotDefinitionBuilder >> globalCollectionHome [
+	^ self module
+]
+
 { #category : #initialize }
 LcsGlobalSlotDefinitionBuilder >> initialize [
 	super initialize.
@@ -79,6 +84,12 @@ LcsGlobalSlotDefinitionBuilder >> initializeModel [
 { #category : #command }
 LcsGlobalSlotDefinitionBuilder >> module [
 	^ self currentSystem moduleNamed: self targetClass defaultModuleName
+]
+
+{ #category : #command }
+LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
+	super populateSlotModel.
+	self globalCollectionHome initializeSlotNamed: self slotName 
 ]
 
 { #category : #accessing }

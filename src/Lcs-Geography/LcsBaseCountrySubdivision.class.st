@@ -35,9 +35,8 @@ LcsBaseCountrySubdivision class >> isoCodeSlotDefinition [
 
 { #category : #'instance creation' }
 LcsBaseCountrySubdivision class >> newInContextOf: anObject [
-	| newObject parentCollectionSlot|
+	| newObject parentCollectionSlot |
 	newObject := self basicNew.
-	"self addToUnitOfWork: newObject."
 	self currentSystem ifNotNil: [
 		parentCollectionSlot := self collectionSlotIn: anObject.
 		self currentUnitOfWork addObject: newObject toCollection: parentCollectionSlot ].
