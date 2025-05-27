@@ -58,12 +58,11 @@ LcsLocalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 LcsLocalSlotDefinitionBuilder >> buildJobSteps [
 	self slotTypes do: [ :eachClassName | 
 		(self classFor: eachClassName) ifNil: [ 
-			(self jobSteps addJobStep: (self domainCollectionClassBuilder: eachClassName))
-				buildJobSteps ] ].
+			(self addJobStep: (self domainCollectionClassBuilder: eachClassName)) ] ].
 	self collectionElementTypes do: [ :eachClassName | 
 		(self classFor: eachClassName) ifNil: [ 
-			(self addJobStep: (self domainClassBuilder: eachClassName)) buildJobSteps.
-			(self addJobStep: (self localCollectionReferenceSlotBuilder: eachClassName)) buildJobSteps ] ].
+			(self addJobStep: (self domainClassBuilder: eachClassName)).
+			(self addJobStep: (self localCollectionReferenceSlotBuilder: eachClassName)) ] ].
 	super buildJobSteps
 ]
 
@@ -137,11 +136,12 @@ LcsLocalSlotDefinitionBuilder >> module [
 
 { #category : #command }
 LcsLocalSlotDefinitionBuilder >> populateSlotModel [
-	| aModule |
 	super populateSlotModel.
+
+		"| aModule |
 	aModule := self module.
 	(aModule perform: self getterSelector)
-		ifNil: [ aModule initializeSlotNamed: self slotName ]
+		ifNil: [ aModule initializeSlotNamed: self slotName ]"
 ]
 
 { #category : #accessing }

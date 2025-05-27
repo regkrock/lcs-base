@@ -20,12 +20,6 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> addSubclassBuilders [
 
 { #category : #command }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> buildJobSteps [
-	self addJobStep: self domainClassBuilder.
-	self buildUnknownClass ifTrue: [
-		self addJobStep: self unknownClassBuilder].
-	self addSubclassBuilders.
-	self addJobStep: self domainCollectionClassBuilder.
-	self addJobStep: self collectionReferenceSlotBuilder.
 	self addJobStep: self collectionSlotBuilder
 ]
 
@@ -34,7 +28,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionReferenceSlotBuilde
 	^ LcsLocalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self collectionSlotName;
-		"collectionSlotModuleName: self globalCollectionModuleClass defaultModuleName;"
+		addSlotType: self collectionClassName;
 		collectionClassName: self collectionClassName; 
 		yourself
 ]
@@ -44,8 +38,10 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionSlotBuilder [
 	^ LcsLocalSlotDefinitionBuilder new
 		slotClassName: self collectionClassName;
 		slotName: self collectionSlotName;
+		addSlotType: self collectionClassName;
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;
+		targetPackageName: self targetPackageName;
 		collectionElementTypes: { self newDomainClassName};
 		yourself
 ]

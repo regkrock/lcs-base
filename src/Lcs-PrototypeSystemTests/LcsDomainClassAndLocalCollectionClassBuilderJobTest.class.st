@@ -14,11 +14,14 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> createLxxInvoiceAndLxxInv
 			installCollectionSlotInClass: LxxPrototypeSystem;
 			buildJobSteps;
 			yourself).
-	self currentCodeBuilderJob execute
+	self currentCodeBuilderJob execute.
+	self assert: self currentSystem invoices notNil.
+	self assert: (self currentSystem invoices isKindOf: #LxxInvoices asClass)
 ]
 
 { #category : #tests }
 LcsDomainClassAndLocalCollectionClassBuilderJobTest >> testCreationOfNewDomainClassAndItsLocalCollectionClassInstalledInAModule [
+	| newInvoice |
 	self createLxxInvoiceAndLxxInvoices.
 	self currentCodeBuilderJob:
 		(LcsDomainClassAndLocalCollectionClassBuilderJob new
@@ -28,5 +31,9 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> testCreationOfNewDomainCl
 			installCollectionSlotInClass: #LxxInvoice asClass;
 			buildJobSteps;
 			yourself).
-	self currentCodeBuilderJob execute
+	self currentCodeBuilderJob execute.
+	
+	newInvoice := #LxxInvoice asClass new.
+	self assert: newInvoice invoiceItems collectionSize = 0.
+	self assert: (newInvoice invoiceItems isKindOf: (#LxxInvoiceItems asClass))
 ]
