@@ -1,51 +1,45 @@
 Class {
-	#name : #LcsCodeClassBuilderTest,
+	#name : #LcsCodesLoaderClassBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #private }
-LcsCodeClassBuilderTest >> newClassName [
+LcsCodesLoaderClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
 { #category : #private }
-LcsCodeClassBuilderTest >> targetSuperclassName [
-	^ 'LcsCode'
+LcsCodesLoaderClassBuilderTest >> targetSuperclassName [
+	^ 'LcsDomainObject'
 ]
 
 { #category : #tests }
-LcsCodeClassBuilderTest >> testClassCreationString [
-	self subject: LcsCodeClassBuilder new.
+LcsCodesLoaderClassBuilderTest >> testClassCreationString [
+	self subject: LcsCodesLoaderClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
+		instanceClassName: 'LxxPerson'.
 	
-	self assert: self subject isDefaultInstance not.
-	self should: [ self subject description ] raise: Error.
-	self should: [ self subject code ] raise: Error.
-	self should: [ self subject label ] raise: Error.
-
 	self
 		assert: self subject classCreationString
 		equals: 
-'LcsCode subclass: #LxxMale1
+'LcsCodesLoader subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
 		package: ''Lcs-Temp'' '
 ]
 
-{ #category : #tests }
-LcsCodeClassBuilderTest >> testInstallClass [
-	self subject: LcsCodeClassBuilder new.
+{ #category : #'as yet unclassified' }
+LcsCodesLoaderClassBuilderTest >> testInstallClass [
+	self subject: LcsCodesLoaderClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
+		"targetSuperclassName: self targetSuperclassName;;"
+		instanceClassName: 'LxxPerson'..
 
 	self subject buildJobSteps.
 	self assert: self subject jobSteps hasNoJobSteps .

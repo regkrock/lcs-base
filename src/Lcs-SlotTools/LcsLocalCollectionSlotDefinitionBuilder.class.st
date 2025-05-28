@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsLocalSlotDefinitionBuilder,
+	#name : #LcsLocalCollectionSlotDefinitionBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'slotClass',
@@ -13,18 +13,18 @@ Class {
 }
 
 { #category : #defaults }
-LcsLocalSlotDefinitionBuilder class >> slotDefinitionClass [
+LcsLocalCollectionSlotDefinitionBuilder class >> slotDefinitionClass [
 	^ LcsLocalCollectionSlot
 ]
 
 { #category : #'gt views' }
-LcsLocalSlotDefinitionBuilder >> addCollectionElementType: aClassName [
+LcsLocalCollectionSlotDefinitionBuilder >> addCollectionElementType: aClassName [
 	self collectionElementTypes add: aClassName
 
 ]
 
 { #category : #'code generation' }
-LcsLocalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsLocalCollectionSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
 	self collectionElementTypes do: [ :each |
 		aSlotDefinitionMethodBuilder 
@@ -33,7 +33,7 @@ LcsLocalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuil
 ]
 
 { #category : #'gt views' }
-LcsLocalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
+LcsLocalCollectionSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 	aCollection 
 		add: (self targetModuleClass -> {{self slotName. self slotTypeClass.}});
 		add: (self slotTypeClass -> {{'parent'. self targetModuleClass.}})
@@ -41,7 +41,7 @@ LcsLocalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 ]
 
 { #category : #'code generation' }
-LcsLocalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+LcsLocalCollectionSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	aCodeStream 
 		addKeyword: 'addSlotType' argument: self slotTypeClassName.
 	self collectionClass notNil ifTrue: [
@@ -55,7 +55,7 @@ LcsLocalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 ]
 
 { #category : #'job steps' }
-LcsLocalSlotDefinitionBuilder >> buildJobSteps [
+LcsLocalCollectionSlotDefinitionBuilder >> buildJobSteps [
 	self slotTypes do: [ :eachClassName | 
 		(self classFor: eachClassName) ifNil: [ 
 			(self addJobStep: (self domainCollectionClassBuilder: eachClassName)) ] ].
@@ -67,32 +67,32 @@ LcsLocalSlotDefinitionBuilder >> buildJobSteps [
 ]
 
 { #category : #'job steps' }
-LcsLocalSlotDefinitionBuilder >> classFor: eachClassName [
+LcsLocalCollectionSlotDefinitionBuilder >> classFor: eachClassName [
 	^ [ eachClassName asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> collectionClass [
+LcsLocalCollectionSlotDefinitionBuilder >> collectionClass [
 	^ collectionClass
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> collectionClass: anObject [
+LcsLocalCollectionSlotDefinitionBuilder >> collectionClass: anObject [
 	collectionClass := anObject
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> collectionElementTypes [
+LcsLocalCollectionSlotDefinitionBuilder >> collectionElementTypes [
 	^ collectionElementTypes
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> collectionElementTypes: anObject [
+LcsLocalCollectionSlotDefinitionBuilder >> collectionElementTypes: anObject [
 	collectionElementTypes := anObject
 ]
 
 { #category : #'job steps' }
-LcsLocalSlotDefinitionBuilder >> domainClassBuilder: aClassName [ 
+LcsLocalCollectionSlotDefinitionBuilder >> domainClassBuilder: aClassName [ 
 	^ LcsDomainClassBuilder new
 		newClassName: aClassName;
 		targetPackageName: self targetPackageName;
@@ -100,7 +100,7 @@ LcsLocalSlotDefinitionBuilder >> domainClassBuilder: aClassName [
 ]
 
 { #category : #'job steps' }
-LcsLocalSlotDefinitionBuilder >> domainCollectionClassBuilder: aClassName [ 
+LcsLocalCollectionSlotDefinitionBuilder >> domainCollectionClassBuilder: aClassName [ 
 	^ LcsDomainCollectionClassBuilder new
 		newClassName: aClassName;
 		targetPackageName: self targetPackageName;
@@ -108,20 +108,20 @@ LcsLocalSlotDefinitionBuilder >> domainCollectionClassBuilder: aClassName [
 ]
 
 { #category : #initialize }
-LcsLocalSlotDefinitionBuilder >> initialize [
+LcsLocalCollectionSlotDefinitionBuilder >> initialize [
 	super initialize.
 	self collectionElementTypes:	OrderedCollection new.
 	self collectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
 { #category : #initialize }
-LcsLocalSlotDefinitionBuilder >> initializeModel [
+LcsLocalCollectionSlotDefinitionBuilder >> initializeModel [
 	(self targetClass slotDefinitionNamed: self slotName)
 		initializeSlotValueIn: (self currentSystem moduleNamed: self targetModuleName)
 ]
 
 { #category : #'job steps' }
-LcsLocalSlotDefinitionBuilder >> localCollectionReferenceSlotBuilder: aClassName [
+LcsLocalCollectionSlotDefinitionBuilder >> localCollectionReferenceSlotBuilder: aClassName [
 	^ LcsLocalCollectionReferenceSlotBuilder new
 		targetClassName: aClassName;
 		collectionSlotName: self slotName;
@@ -130,12 +130,12 @@ LcsLocalSlotDefinitionBuilder >> localCollectionReferenceSlotBuilder: aClassName
 ]
 
 { #category : #command }
-LcsLocalSlotDefinitionBuilder >> module [
+LcsLocalCollectionSlotDefinitionBuilder >> module [
 	^ self currentSystem moduleNamed: self targetClass defaultModuleName
 ]
 
 { #category : #command }
-LcsLocalSlotDefinitionBuilder >> populateSlotModel [
+LcsLocalCollectionSlotDefinitionBuilder >> populateSlotModel [
 	super populateSlotModel.
 
 		"| aModule |
@@ -145,53 +145,53 @@ LcsLocalSlotDefinitionBuilder >> populateSlotModel [
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> slotClass [
+LcsLocalCollectionSlotDefinitionBuilder >> slotClass [
 	^ slotClass 
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> slotClass: anObject [
+LcsLocalCollectionSlotDefinitionBuilder >> slotClass: anObject [
 	slotClass := anObject
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> slotClassName: aName [
+LcsLocalCollectionSlotDefinitionBuilder >> slotClassName: aName [
 	slotTypeClassName := aName
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> slotTypeClass [
+LcsLocalCollectionSlotDefinitionBuilder >> slotTypeClass [
 	^ self slotTypeClassName asClass
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> slotTypeClassName [
+LcsLocalCollectionSlotDefinitionBuilder >> slotTypeClassName [
 	^ slotTypeClassName ifNil: [ self slotClass name ]
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> targetModule [
+LcsLocalCollectionSlotDefinitionBuilder >> targetModule [
 	^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass defaultModuleName ])
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> targetModuleName [
+LcsLocalCollectionSlotDefinitionBuilder >> targetModuleName [
 	^ targetModuleName
 ]
 
 { #category : #accessing }
-LcsLocalSlotDefinitionBuilder >> targetModuleName: anObject [
+LcsLocalCollectionSlotDefinitionBuilder >> targetModuleName: anObject [
 	targetModuleName := anObject
 ]
 
 { #category : #command }
-LcsLocalSlotDefinitionBuilder >> uninstall [
+LcsLocalCollectionSlotDefinitionBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamed: self slotName ]
 ]
 
 { #category : #command }
-LcsLocalSlotDefinitionBuilder >> verifyUninstall [
+LcsLocalCollectionSlotDefinitionBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass ifNotNil: [ self targetClass verifyRemovedDomainSlotNamed: self slotName ]
 ]

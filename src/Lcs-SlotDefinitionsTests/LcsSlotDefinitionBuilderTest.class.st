@@ -31,7 +31,6 @@ LcsSlotDefinitionBuilderTest >> testInstallingSlot [
 			slotName: 'foos';
 			slotDefinitionClassName: LcsStringSlot name;
 			targetClassName: self currentSystem class name;
-			"targetModuleClass: self currentSystem class name;"
 			addSlotType: LxxPerson name ;
 			yourself).
 	self codeBuilder buildJobSteps.
