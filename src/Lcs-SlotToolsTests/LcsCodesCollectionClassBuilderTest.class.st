@@ -15,7 +15,7 @@ LcsCodesCollectionClassBuilderTest >> targetSuperclassName [
 ]
 
 { #category : #tests }
-LcsCodesCollectionClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
+LcsCodesCollectionClassBuilderTest >> testClassCreationString [
 	self subject: LcsCodesCollectionClassBuilder new.
 	self subject
 		newClassName: self newClassName asEnglishPlural;

@@ -15,7 +15,7 @@ LcsSingletonCodeClassBuilderTest >> targetSuperclassName [
 ]
 
 { #category : #tests }
-LcsSingletonCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
+LcsSingletonCodeClassBuilderTest >> testClassCreationString [
 	| builder |
 	builder := LcsSingletonCodeClassBuilder new.
 	builder

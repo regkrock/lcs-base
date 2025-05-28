@@ -15,7 +15,7 @@ LcsCodeSuperClassBuilderTest >> targetSuperclassName [
 ]
 
 { #category : #tests }
-LcsCodeSuperClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
+LcsCodeSuperClassBuilderTest >> testClassCreationString [
 	self subject: LcsCodeSuperClassBuilder new.
 	self subject
 		newClassName: self newClassName;

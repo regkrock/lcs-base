@@ -15,7 +15,7 @@ LcsUnknownClassBuilderTest >> targetSuperclassName [
 ]
 
 { #category : #tests }
-LcsUnknownClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
+LcsUnknownClassBuilderTest >> testClassCreationString [
 	self subject: LcsUnknownClassBuilder new.
 	self subject
 		newClassName: self newClassName;

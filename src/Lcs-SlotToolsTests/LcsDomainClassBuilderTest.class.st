@@ -9,23 +9,17 @@ LcsDomainClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
-{ #category : #private }
-LcsDomainClassBuilderTest >> targetSuperclassName [
-	^ 'LcsObjectLoader'
-]
-
 { #category : #tests }
-LcsDomainClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
-	self subject: LcsLoaderClassBuilder new.
+LcsDomainClassBuilderTest >> testClassCreationString [
+	self subject: LcsDomainClassBuilder new.
 	self subject
 		newClassName: self newClassName;
-		targetPackageName: 'Lcs-Temp';
-		instanceClassName: 'LxxPerson'.
+		targetPackageName: 'Lcs-Temp'.
 	
 	self
 		assert: self subject classCreationString
 		equals: 
-'LcsObjectLoader subclass: #LxxMale1
+'LcsDomainObject subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
@@ -34,11 +28,10 @@ LcsDomainClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGe
 
 { #category : #'as yet unclassified' }
 LcsDomainClassBuilderTest >> testInstallClass [
-	self subject: LcsLoaderClassBuilder new.
+	self subject: LcsDomainClassBuilder new.
 	self subject
 		newClassName: self newClassName;
-		targetPackageName: 'Lcs-Temp';
-		instanceClassName: 'LxxPerson'.
+		targetPackageName: 'Lcs-Temp'.
 
 	self subject buildJobSteps.
 	self assert: self subject jobSteps hasNoJobSteps .

@@ -15,18 +15,17 @@ LcsLoaderClassBuilderTest >> targetSuperclassName [
 ]
 
 { #category : #tests }
-LcsLoaderClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
-	self subject: LcsCodeClassBuilder new.
+LcsLoaderClassBuilderTest >> testClassCreationString [
+	self subject: LcsLoaderClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
+		instanceClassName: 'LxxPerson'.
 	
 	self
 		assert: self subject classCreationString
 		equals: 
-'LcsDomainObject subclass: #LxxMale1
+'LcsObjectLoader subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
@@ -35,12 +34,12 @@ LcsLoaderClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGe
 
 { #category : #'as yet unclassified' }
 LcsLoaderClassBuilderTest >> testInstallClass [
-	self subject: LcsDomainClassBuilder new.
+	self subject: LcsLoaderClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
+		"targetSuperclassName: self targetSuperclassName;;"
+		instanceClassName: 'LxxPerson'..
 
 	self subject buildJobSteps.
 	self assert: self subject jobSteps hasNoJobSteps .
