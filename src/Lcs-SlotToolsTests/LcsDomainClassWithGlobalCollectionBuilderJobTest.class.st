@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDomainClassWithGlobalCollectionBuilderJobTest,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsCodeJobBuilderTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 

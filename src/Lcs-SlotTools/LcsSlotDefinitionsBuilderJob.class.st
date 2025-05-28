@@ -1,3 +1,6 @@
+"
+This was creataed to generate multiple slot definitions. Is this still needed?
+"
 Class {
 	#name : #LcsSlotDefinitionsBuilderJob,
 	#superclass : #LcsCodeBuilderJob,

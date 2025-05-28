@@ -117,11 +117,6 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> subclassNames: anObject [
 	subclassNames := anObject
 ]
 
-{ #category : #accessing }
-LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClass [
-	^ self unknownClassBuilderStep installedClass
-]
-
 { #category : #builders }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> unknownClassBuilder [
 	^ LcsUnknownClassBuilder new

@@ -1,37 +1,31 @@
 Class {
-	#name : #LcsCodeClassBuilderTest,
+	#name : #LcsUnknownClassBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #private }
-LcsCodeClassBuilderTest >> newClassName [
+LcsUnknownClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
 { #category : #private }
-LcsCodeClassBuilderTest >> targetSuperclassName [
-	^ 'LcsCode'
+LcsUnknownClassBuilderTest >> targetSuperclassName [
+	^ 'LcsDomainObject'
 ]
 
 { #category : #tests }
-LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
-	self subject: LcsCodeClassBuilder new.
+LcsUnknownClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
+	self subject: LcsUnknownClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
+		targetSuperclassName: self targetSuperclassName.
 	
-	self assert: self subject isDefaultInstance not.
-	self should: [ self subject description ] raise: Error.
-	self should: [ self subject code ] raise: Error.
-	self should: [ self subject label ] raise: Error.
-
 	self
 		assert: self subject classCreationString
 		equals: 
-'LcsCode subclass: #LxxMale1
+'LcsDomainObject subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
@@ -39,14 +33,13 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 ]
 
 { #category : #'as yet unclassified' }
-LcsCodeClassBuilderTest >> testInstallClass [
-	self subject: LcsCodeClassBuilder new.
+LcsUnknownClassBuilderTest >> testInstallClass [
+	self subject: LcsUnknownClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
-
+		targetSuperclassName: self targetSuperclassName.
+		
 	self subject buildJobSteps.
 	self assert: self subject jobSteps hasNoJobSteps .
 	

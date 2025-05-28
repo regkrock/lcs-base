@@ -1,35 +1,36 @@
 Class {
-	#name : #LcsCodeClassBuilderTest,
+	#name : #LcsSingletonCodeClassBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #private }
-LcsCodeClassBuilderTest >> newClassName [
+LcsSingletonCodeClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
 { #category : #private }
-LcsCodeClassBuilderTest >> targetSuperclassName [
+LcsSingletonCodeClassBuilderTest >> targetSuperclassName [
 	^ 'LcsCode'
 ]
 
 { #category : #tests }
-LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
-	self subject: LcsCodeClassBuilder new.
-	self subject
+LcsSingletonCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
+	| builder |
+	builder := LcsSingletonCodeClassBuilder new.
+	builder
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
 		targetSuperclassName: self targetSuperclassName;
 		rootName: 'Male'.
-	
-	self assert: self subject isDefaultInstance not.
-	self should: [ self subject description ] raise: Error.
-	self should: [ self subject code ] raise: Error.
-	self should: [ self subject label ] raise: Error.
+
+	self assert: builder isDefaultInstance not.
+	self assert: builder description = 'Male'.
+	self assert: builder code = #male.
+	self assert: builder label = 'Male'.
 
 	self
-		assert: self subject classCreationString
+		assert: builder classCreationString
 		equals: 
 'LcsCode subclass: #LxxMale1
 		instanceVariableNames: ''''
@@ -38,9 +39,9 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 		package: ''Lcs-Temp'' '
 ]
 
-{ #category : #'as yet unclassified' }
-LcsCodeClassBuilderTest >> testInstallClass [
-	self subject: LcsCodeClassBuilder new.
+{ #category : #tests }
+LcsSingletonCodeClassBuilderTest >> testInstallClass [
+	self subject: LcsSingletonCodeClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';

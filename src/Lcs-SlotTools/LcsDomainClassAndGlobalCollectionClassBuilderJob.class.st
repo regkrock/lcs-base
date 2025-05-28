@@ -190,11 +190,6 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> subclassNames: anObject [
 	subclassNames := anObject
 ]
 
-{ #category : #accessing }
-LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClass [
-	^ self unknownClassBuilderStep ifNotNil: [ :step | step installedClass ]
-]
-
 { #category : #builders }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassBuilder [
 	^ LcsUnknownClassBuilder new

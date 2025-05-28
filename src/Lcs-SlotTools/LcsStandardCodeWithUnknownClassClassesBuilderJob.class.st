@@ -21,16 +21,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJob >> buildJobSteps [
 	self addMemberOfSlotBuilderForTargetClasses
 ]
 
-{ #category : #populate }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeClass [
-	^ self codeClassBuilderStep installedClass
-]
-
-{ #category : #populate }
-LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeClassBuilderStep [
-	^ (self jobSteps stepsWithClass: LcsCodeSuperClassBuilder) first
-]
-
 { #category : #builders }
 LcsStandardCodeWithUnknownClassClassesBuilderJob >> codeSubclassBuilderFor: aString [
 	^ LcsCodeClassBuilder new

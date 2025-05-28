@@ -1,29 +1,29 @@
 Class {
-	#name : #LcsCodeClassBuilderTest,
+	#name : #LcsCodeSuperClassBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #private }
-LcsCodeClassBuilderTest >> newClassName [
+LcsCodeSuperClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
 { #category : #private }
-LcsCodeClassBuilderTest >> targetSuperclassName [
+LcsCodeSuperClassBuilderTest >> targetSuperclassName [
 	^ 'LcsCode'
 ]
 
 { #category : #tests }
-LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
-	self subject: LcsCodeClassBuilder new.
+LcsCodeSuperClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
+	self subject: LcsCodeSuperClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
 		targetSuperclassName: self targetSuperclassName;
 		rootName: 'Male'.
 	
-	self assert: self subject isDefaultInstance not.
+	self should: [ self subject isDefaultInstance ] raise: Error.
 	self should: [ self subject description ] raise: Error.
 	self should: [ self subject code ] raise: Error.
 	self should: [ self subject label ] raise: Error.
@@ -39,8 +39,8 @@ LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGend
 ]
 
 { #category : #'as yet unclassified' }
-LcsCodeClassBuilderTest >> testInstallClass [
-	self subject: LcsCodeClassBuilder new.
+LcsCodeSuperClassBuilderTest >> testInstallClass [
+	self subject: LcsCodeSuperClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';

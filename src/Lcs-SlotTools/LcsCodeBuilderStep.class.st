@@ -79,7 +79,6 @@ LcsCodeBuilderStep >> fullyInstall [
 { #category : #'gt views' }
 LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
 	<gtView>
-	self jobSteps isEmpty ifTrue: [^ aView empty ].
 	^ aView mondrian
 		title: 'Steps Tree';
 		priority: 1;

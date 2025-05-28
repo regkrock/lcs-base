@@ -17,16 +17,6 @@ LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codesLoaderBuilder
 ]
 
-{ #category : #accessing }
-LcsStandardCodeClassesBuilderJob >> codeClass [
-	^ self codeClassBuilderStep installedClass
-]
-
-{ #category : #'builder step' }
-LcsStandardCodeClassesBuilderJob >> codeClassBuilderStep [
-	^ (self jobSteps stepsWithClass: LcsCodeSuperClassBuilder) first
-]
-
 { #category : #populate }
 LcsStandardCodeClassesBuilderJob >> createProtoCodesFromLabels: aCollection [ 
 	aCollection do: [ :eachLabel | 

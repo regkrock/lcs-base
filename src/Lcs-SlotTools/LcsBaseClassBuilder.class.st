@@ -215,9 +215,10 @@ LcsBaseClassBuilder >> tearDown [
 LcsBaseClassBuilder >> uninstall [
 	super uninstall.
 	self installedClass ifNil: [ ^ self ].
-	self currentSystem removeClassFromSlotModel: self installedClass.
-	self removeReferencesFromSubsequentSteps.
-	self currentUnitOfWork removeAddOf: self installedClass.
+	self currentSystem ifNotNil: [
+		self currentSystem removeClassFromSlotModel: self installedClass.
+		self removeReferencesFromSubsequentSteps.
+		self currentUnitOfWork removeAddOf: self installedClass].
 	self reverseRefactorings.
 	self installedClass: nil
 ]
