@@ -34,6 +34,12 @@ LcsLoaderClassBuilder >> dataString [
 	^''
 ]
 
+{ #category : #initialize }
+LcsLoaderClassBuilder >> initialize [
+	super initialize.
+	self targetSuperclassName: self targetSuperclassName
+]
+
 { #category : #build }
 LcsLoaderClassBuilder >> installCode [
 	super installCode.
@@ -55,6 +61,7 @@ LcsLoaderClassBuilder >> installDataMethod [
 
 { #category : #build }
 LcsLoaderClassBuilder >> installTargetClassMethod [
+	self assert: self instanceClassName notNil.
 	self addRefactoring: (
 		RBAddMethodChange
 			compile: self targetClassMethodSource
