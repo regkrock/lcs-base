@@ -5,7 +5,7 @@ Class {
 		'codeBuilderJobs',
 		'currentCodeBuilderJob'
 	],
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #accessing }

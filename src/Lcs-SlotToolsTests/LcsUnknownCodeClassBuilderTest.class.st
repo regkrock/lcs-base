@@ -1,10 +1,10 @@
 Class {
 	#name : #LcsUnknownCodeClassBuilderTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsUnknownCodeClassBuilderTest >> testCreation [
 	self subject: LcsSingletonUnknownCodeClassBuilder new.
 	self subject newClassName: 'XxxTest'.

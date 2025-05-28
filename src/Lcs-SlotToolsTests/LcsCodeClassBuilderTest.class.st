@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsCodeClassBuilderTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #private }
@@ -14,7 +14,7 @@ LcsCodeClassBuilderTest >> targetSuperclassName [
 	^ 'LxxGender1'
 ]
 
-{ #category : #test }
+{ #category : #tests }
 LcsCodeClassBuilderTest >> testCreationStringForCreatingLxxMaleSubclassOfLxxGender [
 	| builder |
 	builder := LcsCodeClassBuilder new.
