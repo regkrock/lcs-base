@@ -22,7 +22,7 @@ LcsCodeSuperClassBuilder >> verifyCodeInstallation [
 ]
 
 { #category : #verification }
-LcsCodeSuperClassBuilder >> verifyUnistall [
-	super verifyUnistall.
+LcsCodeSuperClassBuilder >> verifyUninstall [
+	super verifyUninstall.
 	self assert: self installedClass isNil
 ]

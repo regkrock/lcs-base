@@ -122,7 +122,7 @@ LcsLoaderClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 ]
 
 { #category : #verification }
-LcsLoaderClassBuilder >> verifyUnistall [
-	super verifyUnistall.
+LcsLoaderClassBuilder >> verifyUninstall [
+	super verifyUninstall.
 	self assert: self installedClass isNil
 ]
