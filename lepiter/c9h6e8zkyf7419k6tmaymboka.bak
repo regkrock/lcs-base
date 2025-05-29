@@ -1788,7 +1788,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-05-14T13:32:26.365474-04:00"
+												"dateAndTimeString" : "2025-05-14T13:32:28.954538-04:00"
 											}
 										},
 										"uid" : {
@@ -1798,7 +1798,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "[[Tr"
+										"string" : "[[Traits]]"
 									},
 									{
 										"__type" : "textSnippet",
@@ -1947,6 +1947,43 @@
 											"__type" : "textStyle"
 										},
 										"string" : "[[Generate Domain Slots]]"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-05-29T06:46:50.667327-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-05-29T06:46:54.100217-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "qWOEwKXyDQCoBvkLBnCsTA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "[[Pragmas}}"
 									}
 								]
 							},

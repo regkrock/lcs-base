@@ -63,7 +63,6 @@ LcsSingletonCodeClassesBuilderJob >> codeSubclassBuilders: aCollection [
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 	^ LcsSingletonCodesGlobalSlotDefinitionBuilder new
-		slotClassName: self collectionClassName;
 		slotName: self collectionSlotName;
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;

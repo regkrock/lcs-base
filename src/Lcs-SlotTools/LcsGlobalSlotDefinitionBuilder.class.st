@@ -103,23 +103,24 @@ LcsGlobalSlotDefinitionBuilder >> slotClass: anObject [
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotClassName: aName [
-	slotTypeClassName := aName
-]
-
-{ #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> slotTypeClass [
 	^ self slotTypeClassName asClass
 ]
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> slotTypeClassName [
-	^ slotTypeClassName ifNil: [ self slotClass name ]
+	^ slotTypeClassName
+]
+
+{ #category : #accessing }
+LcsGlobalSlotDefinitionBuilder >> slotTypeClassName: aName [
+	slotTypeClassName := aName
 ]
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> targetModule [
-	^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass defaultModuleName ])
+	^ targetModule
+	"^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass defaultModuleName ])"
 ]
 
 { #category : #accessing }

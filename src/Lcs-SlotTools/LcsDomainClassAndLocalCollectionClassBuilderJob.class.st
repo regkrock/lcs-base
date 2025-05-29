@@ -36,13 +36,13 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionReferenceSlotBuilde
 { #category : #'builder step' }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionSlotBuilder [
 	^ LcsLocalCollectionSlotDefinitionBuilder new
-		slotClassName: self collectionClassName;
 		slotName: self collectionSlotName;
 		addSlotType: self collectionClassName;
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;
 		targetPackageName: self targetPackageName;
 		collectionElementTypes: { self newDomainClassName};
+		addSlotType: self collectionClassName;
 		yourself
 ]
 

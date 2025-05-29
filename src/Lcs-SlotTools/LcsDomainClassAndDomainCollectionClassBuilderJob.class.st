@@ -61,7 +61,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionModuleClass [
 
 { #category : #builders }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionReferenceSlotBuilder [
-	^ LcsGlobalCollectionReferenceSlotBuilder new
+	^ LcsGlobalCollectionReferenceDefinitionSlotBuilder new
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self collectionSlotName;
 		collectionSlotModuleName: self collectionModuleClass defaultModuleName;

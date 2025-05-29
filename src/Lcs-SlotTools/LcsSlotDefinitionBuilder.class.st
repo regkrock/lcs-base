@@ -184,7 +184,7 @@ LcsSlotDefinitionBuilder >> slotDefinitionMethodBuilder [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotDefinitionSelector [
 	^ slotDefinitionSelector
-		ifNil: [ slotDefinitionSelector := ((self slotName ifNil: [ 'undefined' ]) , 'SlotDefinition') asSymbol ]
+		"ifNil: [ slotDefinitionSelector := ((self slotName ifNil: [ 'undefined' ]) , 'SlotDefinition') asSymbol ]"
 ]
 
 { #category : #accessing }
@@ -226,7 +226,8 @@ LcsSlotDefinitionBuilder >> slotName [
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotName: anObject [
 	.
-	slotName := (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size))
+	slotName := (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size)).
+	self slotDefinitionSelector: slotName , 'SlotDefinition'
 ]
 
 { #category : #accessing }

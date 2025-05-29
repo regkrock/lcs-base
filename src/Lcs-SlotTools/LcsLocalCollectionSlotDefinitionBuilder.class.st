@@ -42,8 +42,8 @@ LcsLocalCollectionSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 
 { #category : #'code generation' }
 LcsLocalCollectionSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
-	aCodeStream 
-		addKeyword: 'addSlotType' argument: self slotTypeClassName.
+	self slotTypes do: [ :each |
+		aCodeStream addKeyword: 'addSlotType' argument: each ].
 	self collectionClass notNil ifTrue: [
 		aCodeStream
 			addKeyword: 'collectionClass' argument: self collectionClass name].
@@ -155,12 +155,8 @@ LcsLocalCollectionSlotDefinitionBuilder >> slotClass: anObject [
 ]
 
 { #category : #accessing }
-LcsLocalCollectionSlotDefinitionBuilder >> slotClassName: aName [
-	slotTypeClassName := aName
-]
-
-{ #category : #accessing }
 LcsLocalCollectionSlotDefinitionBuilder >> slotTypeClass [
+	self error: 'This is deprecated'.
 	^ self slotTypeClassName asClass
 ]
 
