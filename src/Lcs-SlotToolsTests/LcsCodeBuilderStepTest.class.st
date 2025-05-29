@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeBuilderStepTest,
-	#superclass : #LcsTestCase,
+	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
