@@ -224,7 +224,7 @@
 				"code" : "LcsUml new applicationEnvironmentInstanceDiagram",
 				"elementHeight" : 311,
 				"codeHeight" : 29,
-				"codeVisible" : true
+				"codeVisible" : false
 			},
 			{
 				"__type" : "textSnippet",

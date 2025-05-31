@@ -34,7 +34,17 @@ LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 
 { #category : #'gt views' }
 LcsSlotDefinitionBuilder >> addModelClassesTo: aCollection [
-	aCollection addAll: self targetClass withAllSuperclasses
+	self targetClass 
+		ifNil: [ 
+			aCollection 
+				detect: [ :each | each isClass not and: [ each classname = self targetClassName ] ] 
+				ifNone: [
+					aCollection add: (
+						LcsProposedClass new
+							classname: self targetClassName) ] ]
+		ifNotNil: [ :class | aCollection add: class].
+	self targetModuleClass notNil ifTrue: [
+		aCollection add: self targetModuleClass]
 ]
 
 { #category : #'gt views' }

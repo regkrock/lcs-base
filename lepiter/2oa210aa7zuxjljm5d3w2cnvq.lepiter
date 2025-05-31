@@ -187,7 +187,7 @@
 				"code" : "LcsUml new applicationEnvironmentClassHierarchyDiagram",
 				"elementHeight" : 307,
 				"codeHeight" : 23,
-				"codeVisible" : false
+				"codeVisible" : true
 			},
 			{
 				"__type" : "elementSnippet",
@@ -224,7 +224,7 @@
 				"code" : "LcsUml new applicationEnvironmentInstanceDiagram",
 				"elementHeight" : 311,
 				"codeHeight" : 29,
-				"codeVisible" : false
+				"codeVisible" : true
 			},
 			{
 				"__type" : "textSnippet",

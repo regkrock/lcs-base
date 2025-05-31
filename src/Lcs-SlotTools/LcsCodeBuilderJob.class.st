@@ -114,25 +114,12 @@ LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [
 { #category : #'gt views' }
 LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
-	| model classes associations positions |
-	(classes := self modelClasses) ifEmpty: [ ^ aView empty ]. "examples domainObjectSlotModelClasses."
-	associations := self modelAssociations "examples domainObjectSlotModelAssociationsWithLabels".
-
-	positions := #(). "See: LcsSlotModelDiagramExamples>>#domainObjectSlotModelExplicitPositions".
-	model := UmlClassDiagram new
-				classHierarchyFor: classes
-				withAssociationsAndLabels: associations.
-	model layout custom: BlBasicLayout new.
-	positions notEmpty ifTrue: [
-		model root children withIndexDo: [ :child :n | child relocate: (positions at: n) ] ].		
-
+	| classes |
+	(classes := self modelClasses) ifEmpty: [ aView empty ].
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: model
-		"painting: [ :aMondrian | 
-			aMondrian initialize: model ]
-			self gtPaintUMLWith: aMondrian" 
+		initialize: (self umlModelFor: classes)
 ]
 
 { #category : #initialize }
@@ -181,11 +168,7 @@ LcsCodeBuilderJob >> modelAssociations [
 LcsCodeBuilderJob >> modelClasses [
 	| classes |
 	classes := OrderedCollection new.
-	[ self jobSteps addModelClassesTo: classes ] 
-		on: NotFound 
-		do: [:signal | 
-			classes removeAll.
-			signal return: OrderedCollection new ].
+	self jobSteps addModelClassesTo: classes.
 	classes removeDuplicates.
 	classes remove: Object ifAbsent: [ ].
 	([ 'ProtoObject' asClass ] on: NotFound do: [ nil ])
@@ -214,6 +197,23 @@ LcsCodeBuilderJob >> stepNumber [
 { #category : #command }
 LcsCodeBuilderJob >> traceStep: aMethodName [
 	self traceCr: aMethodName , '-' , self printString
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> umlModelFor: umlModelClasses [
+"	| model associations positions |
+	associations := self modelAssociations 'examples domainObjectSlotModelAssociationsWithLabels'.
+
+	positions := #(). See: LcsSlotModelDiagramExamples>>#domainObjectSlotModelExplicitPositions.
+	model := UmlClassDiagram new
+				classHierarchyFor: classes
+				withAssociationsAndLabels: associations.
+	model layout custom: BlBasicLayout new.
+	positions notEmpty ifTrue: [
+		model root children withIndexDo: [ :child :n | child relocate: (positions at: n) ] ].	"
+
+	^ LcsUml new newClassesUmlFor: umlModelClasses
+
 ]
 
 { #category : #command }

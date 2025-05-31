@@ -29,7 +29,18 @@ LcsBaseClassBuilder >> addModelAssociationsTo: aCollection [
 
 { #category : #'gt views' }
 LcsBaseClassBuilder >> addModelClassesTo: aCollection [
-	aCollection addAll: self newClassName asClass withAllSuperclasses
+	| proposedClass |
+	self targetSuperclass ifNotNil: [ :class | 
+		(aCollection includes: class) ifFalse: [ aCollection add: class ] ].
+	proposedClass := 
+		aCollection 
+			detect: [ :each | each isClass not and: [ each class name = self newClassName ] ]
+			ifNone: [
+				aCollection add: (
+					LcsProposedClass new
+						classname: self newClassName) ].
+	self targetSuperclassName notNil ifTrue: [
+		proposedClass superclassName: self targetSuperclassName ]
 ]
 
 { #category : #printing }
@@ -194,6 +205,11 @@ LcsBaseClassBuilder >> targetPackageName [
 { #category : #accessing }
 LcsBaseClassBuilder >> targetPackageName: aString [
 	targetPackageName := aString
+]
+
+{ #category : #accessing }
+LcsBaseClassBuilder >> targetSuperclass [
+	^ [ self targetSuperclassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
 { #category : #accessing }
