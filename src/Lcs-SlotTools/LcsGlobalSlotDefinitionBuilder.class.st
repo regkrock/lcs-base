@@ -34,8 +34,8 @@ LcsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBui
 { #category : #'gt views' }
 LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 	aCollection 
-		add: (self targetModuleClass -> {{self slotName. self slotTypeClass.}});
-		add: (self slotTypeClass -> {{'parent'. self targetModuleClass.}})
+		add: self targetModuleClass -> {{self slotName. self slotTypes first }};
+		add: self slotTypes first -> {{'parent'. self targetModuleClass.}}
 
 ]
 
@@ -104,7 +104,7 @@ LcsGlobalSlotDefinitionBuilder >> slotClass: anObject [
 
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> slotTypeClass [
-	^ self slotTypeClassName asClass
+	^ [ self slotTypeClassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
 { #category : #accessing }

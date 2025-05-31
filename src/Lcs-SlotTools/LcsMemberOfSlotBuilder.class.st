@@ -23,7 +23,7 @@ LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
 
 { #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addModelAssociationsTo: aCollection [
-	aCollection add: self targetClass-> {{self slotName. self domainClass}}
+	aCollection add: self targetClass ifNil: [self targetClassName ] -> {{self slotName. (self domainClass ifNil: [ self newDomainClassName]) }}
 ]
 
 { #category : #'gt views' }

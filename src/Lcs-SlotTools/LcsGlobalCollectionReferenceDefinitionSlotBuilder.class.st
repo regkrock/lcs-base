@@ -24,12 +24,12 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addExtraPropertiesTo: aSlot
 
 { #category : #'gt views' }
 LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: aCollection [
-	aCollection add: (self targetClass -> {{self slotName. self collectionClass.}})
+	aCollection add: (self targetClass ifNil: [ self targetClassName ]) -> {{self slotName. self collectionClass ifNil: [ self collectionClassName ].}}
 ]
 
 { #category : #'code generation' }
 LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionClass [
-	^self collectionClassName asClass
+	^ [ self collectionClassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
 { #category : #accessing }

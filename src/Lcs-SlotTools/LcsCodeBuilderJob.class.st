@@ -116,10 +116,11 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
 	| classes |
 	(classes := self modelClasses) ifEmpty: [ aView empty ].
+
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: (self umlModelFor: classes)
+		initialize: (self umlModelFor: classes associatons: self modelAssociations)
 ]
 
 { #category : #initialize }
@@ -156,11 +157,7 @@ LcsCodeBuilderJob >> jobSteps: anObject [
 LcsCodeBuilderJob >> modelAssociations [
 	| associations |
 	associations := OrderedCollection new.
-	[ self jobSteps addModelAssociationsTo: associations ] 
-		on: NotFound 
-		do: [:signal | 
-			associations removeAll.
-			signal return: OrderedCollection new ].
+	self jobSteps addModelAssociationsTo: associations.
 	^ associations
 ]
 
@@ -201,19 +198,12 @@ LcsCodeBuilderJob >> traceStep: aMethodName [
 
 { #category : #'gt views' }
 LcsCodeBuilderJob >> umlModelFor: umlModelClasses [
-"	| model associations positions |
-	associations := self modelAssociations 'examples domainObjectSlotModelAssociationsWithLabels'.
+	^ self umlModelFor: umlModelClasses associatons: #()
+]
 
-	positions := #(). See: LcsSlotModelDiagramExamples>>#domainObjectSlotModelExplicitPositions.
-	model := UmlClassDiagram new
-				classHierarchyFor: classes
-				withAssociationsAndLabels: associations.
-	model layout custom: BlBasicLayout new.
-	positions notEmpty ifTrue: [
-		model root children withIndexDo: [ :child :n | child relocate: (positions at: n) ] ].	"
-
-	^ LcsUml new newClassesUmlFor: umlModelClasses
-
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> umlModelFor: umlModelClasses associatons: aCollection [
+	^ LcsUml new proposedUmlModelFor: umlModelClasses associations: aCollection
 ]
 
 { #category : #command }

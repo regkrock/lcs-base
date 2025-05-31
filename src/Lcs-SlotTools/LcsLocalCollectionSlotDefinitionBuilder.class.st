@@ -35,7 +35,7 @@ LcsLocalCollectionSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinition
 { #category : #'gt views' }
 LcsLocalCollectionSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
 	aCollection 
-		add: (self targetModuleClass -> {{self slotName. self slotTypes.}})
+		add: self targetModuleClass -> {{self slotName. self slotTypes first.}}
 		"add: (self slotTypeClass -> {{'parent'. self targetModuleClass.}})
 "
 ]
