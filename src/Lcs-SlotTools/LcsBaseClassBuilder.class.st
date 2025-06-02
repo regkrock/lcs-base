@@ -38,9 +38,9 @@ LcsBaseClassBuilder >> addModelClassesTo: aCollection [
 			ifNone: [
 				aCollection add: (
 					LcsProposedClass new
-						classname: self newClassName) ].
+						modelClassname: self newClassName) ].
 	self targetSuperclassName notNil ifTrue: [
-		proposedClass superclassName: self targetSuperclassName ]
+		proposedClass modelSuperclassName: self targetSuperclassName ]
 ]
 
 { #category : #printing }

@@ -41,7 +41,7 @@ LcsSlotDefinitionBuilder >> addModelClassesTo: aCollection [
 				ifNone: [
 					aCollection add: (
 						LcsProposedClass new
-							classname: self targetClassName) ] ]
+							modelClassname: self targetClassName) ] ]
 		ifNotNil: [ :class | aCollection add: class].
 	self targetModuleClass notNil ifTrue: [
 		aCollection add: self targetModuleClass]

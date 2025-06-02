@@ -1,38 +1,38 @@
 Class {
-	#name : #LcsProposedClass,
+	#name : #LcsClassWrapper,
 	#superclass : #LcsModelClass,
 	#instVars : [
-		'classname',
-		'superclassName'
+		'realSuperclassName'
 	],
 	#category : #'LcsBase-Core'
 }
 
 { #category : #'as yet unclassified' }
-LcsProposedClass >> borderColor [
-	^ Color blue
+LcsClassWrapper >> borderColor [
+	^ Color gray
 ]
 
 { #category : #'as yet unclassified' }
-LcsProposedClass >> classnameText [
+LcsClassWrapper >> classnameText [
 	^ self modelClassname asRopedText foreground: self foregroundColor
 ]
 
 { #category : #'as yet unclassified' }
-LcsProposedClass >> foregroundColor [
-	^ Color blue
+LcsClassWrapper >> foregroundColor [
+	^ Color gray
+]
+
+{ #category : #'as yet unclassified' }
+LcsClassWrapper >> modelClass: aClass [
+	self modelClassname: aClass name.
+	self modelSuperclassName: aClass superclass name 
 ]
 
 { #category : #printing }
-LcsProposedClass >> printOn: aStream [
+LcsClassWrapper >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPutAll: ' ('; 
 		nextPutAll: self modelClassname asString;
 		nextPutAll: ')'
-]
-
-{ #category : #'as yet unclassified' }
-LcsProposedClass >> superclass [
-	^ [ self modelSuperclassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
