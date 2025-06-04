@@ -32,10 +32,11 @@ LcsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBui
 ]
 
 { #category : #'gt views' }
-LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: aCollection [
-	aCollection 
-		add: self targetModuleClass -> {{self slotName. self slotTypes first }};
-		add: self slotTypes first -> {{'parent'. self targetModuleClass.}}
+LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: classesModel [
+	(classesModel classModelForClassname: self targetModuleClass name asString)
+		addAssociation: self slotName toModelNamed: self slotTypes first.
+	(classesModel classModelForClassname: self slotTypes first asString)
+		addAssociation: 'parent' toModelNamed: self targetModuleClass name asString
 
 ]
 

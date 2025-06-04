@@ -31,13 +31,13 @@ LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addModelAssociationsTo: aCollection [
-	self collection do: [ :eachStep | eachStep addModelAssociationsTo: aCollection ]
+LcsCodeBuilderJobSteps >> addModelAssociationsTo: classesModel [
+	self collection do: [ :eachStep | eachStep addModelAssociationsTo: classesModel ]
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addModelClassesTo: classes [
-	self collection do: [ :eachStep | eachStep addModelClassesTo: classes ]
+LcsCodeBuilderJobSteps >> addModelClassesTo: classesModel [
+	self collection do: [ :eachStep | eachStep addModelClassesTo: classesModel ]
 ]
 
 { #category : #refactorings }

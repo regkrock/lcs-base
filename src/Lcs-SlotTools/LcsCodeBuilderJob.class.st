@@ -14,8 +14,13 @@ LcsCodeBuilderJob >> addJobStep: aJobStep [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJob >> addModelClassesTo: classes [ 
-	 self jobSteps addModelClassesTo: classes 
+LcsCodeBuilderJob >> addModelAssociationsTo: classesModel [ 
+	 self jobSteps addModelAssociationsTo: classesModel 
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> addModelClassesTo: classesModel [ 
+	 self jobSteps addModelClassesTo: classesModel 
 ]
 
 { #category : #refactorings }
@@ -41,6 +46,17 @@ LcsCodeBuilderJob >> buildUnknownClass: aBoolean [
 { #category : #asking }
 LcsCodeBuilderJob >> builderJob [
 	^self
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> classesModel [
+	| classesModel |
+	classesModel := LcsClassesModel new.
+	self addModelClassesTo: classesModel.
+	classesModel removeDuplicates.
+	self addModelAssociationsTo: classesModel.
+	classesModel resolveClassModelNames.
+	^ classesModel
 ]
 
 { #category : #refactorings }
@@ -114,13 +130,14 @@ LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [
 { #category : #'gt views' }
 LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
-	| classes |
-	(classes := self modelClasses) ifEmpty: [ aView empty ].
+	| classesModel |
+	(classesModel := self classesModel) collection isEmpty 
+		ifTrue: [ ^ aView empty ].
 
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: (self umlModelFor: classes associatons: self modelAssociations)
+		initialize: (self proposedUmlModelFor: classesModel "associatons: self modelAssociations")
 ]
 
 { #category : #initialize }
@@ -161,18 +178,6 @@ LcsCodeBuilderJob >> modelAssociations [
 	^ associations
 ]
 
-{ #category : #'gt views' }
-LcsCodeBuilderJob >> modelClasses [
-	| classes |
-	classes := OrderedCollection new.
-	self jobSteps addModelClassesTo: classes.
-	classes removeDuplicates.
-	classes remove: Object ifAbsent: [ ].
-	([ 'ProtoObject' asClass ] on: NotFound do: [ nil ])
-		ifNotNil: [ :class | classes remove: class ifAbsent: [  ] ].
-	^ classes
-]
-
 { #category : #command }
 LcsCodeBuilderJob >> populateSlotModel [
 	self traceStep: 'populateSlotModel'.
@@ -186,6 +191,11 @@ LcsCodeBuilderJob >> printJobStreamDetailsOn: aStream [
 
 ]
 
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> proposedUmlModelFor: umlModelClasses [
+	^ LcsUml new proposedUmlModelFor: umlModelClasses
+]
+
 { #category : #'as yet unclassified' }
 LcsCodeBuilderJob >> stepNumber [
 	^ ''
@@ -194,16 +204,6 @@ LcsCodeBuilderJob >> stepNumber [
 { #category : #command }
 LcsCodeBuilderJob >> traceStep: aMethodName [
 	self traceCr: aMethodName , '-' , self printString
-]
-
-{ #category : #'gt views' }
-LcsCodeBuilderJob >> umlModelFor: umlModelClasses [
-	^ self umlModelFor: umlModelClasses associatons: #()
-]
-
-{ #category : #'gt views' }
-LcsCodeBuilderJob >> umlModelFor: umlModelClasses associatons: aCollection [
-	^ LcsUml new proposedUmlModelFor: umlModelClasses associations: aCollection
 ]
 
 { #category : #command }

@@ -21,8 +21,9 @@ LcsLocalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionM
 ]
 
 { #category : #'gt views' }
-LcsLocalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aCollection [
-	aCollection add: (self targetClass ifNil: [ self targetClassName ]) -> {{self slotName. self collectionClass ifNil: [ self collectionClassName ].}}
+LcsLocalCollectionReferenceSlotBuilder >> addModelAssociationsTo: classesModel [
+	(classesModel classModelForClassname: self targetClassName)
+		addAssociation: self slotName toModelNamed: self collectionClassName
 ]
 
 { #category : #'code generation' }

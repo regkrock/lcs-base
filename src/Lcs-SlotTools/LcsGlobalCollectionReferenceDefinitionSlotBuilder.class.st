@@ -23,8 +23,9 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addExtraPropertiesTo: aSlot
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: aCollection [
-	aCollection add: (self targetClass ifNil: [ self targetClassName ]) -> {{self slotName. self collectionClass ifNil: [ self collectionClassName ].}}
+LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: classesModel [
+	(classesModel classModelForClassname: self targetClassName)
+		addAssociation: self slotName toModelNamed: self collectionClassName
 ]
 
 { #category : #'code generation' }
@@ -106,7 +107,7 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> printJobStreamDetailsOn: aS
 { #category : #command }
 LcsGlobalCollectionReferenceDefinitionSlotBuilder >> uninstall [
 	super uninstall.
-	self targetClass removeDomainSlotNamed: self slotName
+	self targetClass ifNotNil: [ :c | c removeDomainSlotNamed: self slotName ]
 ]
 
 { #category : #verification }

@@ -24,21 +24,15 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #'gt views' }
-LcsBaseClassBuilder >> addModelAssociationsTo: aCollection [
+LcsBaseClassBuilder >> addModelAssociationsTo: classesModel [
 ]
 
 { #category : #'gt views' }
-LcsBaseClassBuilder >> addModelClassesTo: aCollection [
+LcsBaseClassBuilder >> addModelClassesTo: classesModel [
 	| proposedClass |
 	self targetSuperclass ifNotNil: [ :class | 
-		(aCollection includes: class) ifFalse: [ aCollection add: class ] ].
-	proposedClass := 
-		aCollection 
-			detect: [ :each | each isClass not and: [ each class name = self newClassName ] ]
-			ifNone: [
-				aCollection add: (
-					LcsProposedClass new
-						modelClassname: self newClassName) ].
+		classesModel existingClassModelFor: class ] .
+	proposedClass := classesModel proposedClassModelFor: self newClassName.
 	self targetSuperclassName notNil ifTrue: [
 		proposedClass modelSuperclassName: self targetSuperclassName ]
 ]

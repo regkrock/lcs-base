@@ -15,6 +15,10 @@ LcsCodeBuilderStep >> addJobStep: aJobStep [
 	^ self jobSteps addJobStep: aJobStep
 ]
 
+{ #category : #'as yet unclassified' }
+LcsCodeBuilderStep >> addModelClassesTo: classesModel [
+]
+
 { #category : #refactorings }
 LcsCodeBuilderStep >> addRefactoring: aRefactoring [ 
 	self refactorings add: aRefactoring

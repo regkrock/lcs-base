@@ -12,3 +12,8 @@ Trait {
 LtOrderedCollection classSide >> collectionClass [
 	^ OrderedCollection
 ]
+
+{ #category : #collection }
+LtOrderedCollection >> removeDuplicates [
+	self collection removeDuplicates
+]

@@ -8,7 +8,8 @@ Class {
 		'persons',
 		'organization',
 		'countries',
-		'skills'
+		'skills',
+		'invoices'
 	],
 	#category : #'Lcs-PrototypeSystem-Base'
 }

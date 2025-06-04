@@ -1,30 +1,41 @@
 Class {
-	#name : #LcsProposedClass,
-	#superclass : #LcsModelClass,
+	#name : #LcsProposedClassModel,
+	#superclass : #LcsClassModel,
 	#instVars : [
-		'classname',
 		'superclassName'
 	],
 	#category : #'LcsBase-Core'
 }
 
+{ #category : #'instance creation' }
+LcsProposedClassModel class >> newOn: aClassname [
+	^ self new 
+		initalizeOn: aClassname;
+		yourself
+]
+
 { #category : #'as yet unclassified' }
-LcsProposedClass >> borderColor [
+LcsProposedClassModel >> borderColor [
 	^ Color blue
 ]
 
 { #category : #'as yet unclassified' }
-LcsProposedClass >> classnameText [
+LcsProposedClassModel >> classnameText [
 	^ self modelClassname asRopedText foreground: self foregroundColor
 ]
 
 { #category : #'as yet unclassified' }
-LcsProposedClass >> foregroundColor [
+LcsProposedClassModel >> foregroundColor [
 	^ Color blue
 ]
 
+{ #category : #initialize }
+LcsProposedClassModel >> initalizeOn: aClassname [ 
+	self modelClassname: aClassname
+]
+
 { #category : #printing }
-LcsProposedClass >> printOn: aStream [
+LcsProposedClassModel >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPutAll: ' ('; 
@@ -33,6 +44,6 @@ LcsProposedClass >> printOn: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-LcsProposedClass >> superclass [
+LcsProposedClassModel >> superclass [
 	^ [ self modelSuperclassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
