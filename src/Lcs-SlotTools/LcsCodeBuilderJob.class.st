@@ -137,7 +137,7 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: (self proposedUmlModelFor: classesModel "associatons: self modelAssociations")
+		initialize: (self proposedUmlModelFor: classesModel)
 ]
 
 { #category : #initialize }
