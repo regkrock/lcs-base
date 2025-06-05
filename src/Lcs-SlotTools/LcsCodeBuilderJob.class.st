@@ -15,12 +15,14 @@ LcsCodeBuilderJob >> addJobStep: aJobStep [
 
 { #category : #'gt views' }
 LcsCodeBuilderJob >> addModelAssociationsTo: classesModel [ 
+	self traceStep: 'addModelAssociationsTo:'.
 	 self jobSteps addModelAssociationsTo: classesModel 
 ]
 
 { #category : #'gt views' }
 LcsCodeBuilderJob >> addModelClassesTo: classesModel [ 
-	 self jobSteps addModelClassesTo: classesModel 
+	self traceStep: 'addModelClassesTo:'.
+	self jobSteps addModelClassesTo: classesModel 
 ]
 
 { #category : #refactorings }

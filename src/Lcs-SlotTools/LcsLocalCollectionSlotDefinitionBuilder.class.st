@@ -34,10 +34,11 @@ LcsLocalCollectionSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinition
 
 { #category : #'gt views' }
 LcsLocalCollectionSlotDefinitionBuilder >> addModelAssociationsTo: classesModel [
+	super addModelAssociationsTo: classesModel.
 	(classesModel classModelForClassname: self targetModuleClass name asString)
 		addAssociation: self slotName toModelNamed: self slotTypes first.
-	"(classesModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self newDomainClassName"
+	(classesModel classModelForClassname: self slotTypes first)
+		addAssociation: 'parent' toModelNamed: self targetClassName
 ]
 
 { #category : #'code generation' }
@@ -156,12 +157,13 @@ LcsLocalCollectionSlotDefinitionBuilder >> slotClass: anObject [
 
 { #category : #accessing }
 LcsLocalCollectionSlotDefinitionBuilder >> slotTypeClass [
-	self error: 'This is deprecated'.
+	self deprecated: 'Use slotTypes'.
 	^ self slotTypeClassName asClass
 ]
 
 { #category : #accessing }
 LcsLocalCollectionSlotDefinitionBuilder >> slotTypeClassName [
+	self deprecated: 'Use slotTypes'.
 	^ slotTypeClassName ifNil: [ self slotClass name ]
 ]
 

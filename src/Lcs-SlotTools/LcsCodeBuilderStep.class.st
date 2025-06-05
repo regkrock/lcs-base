@@ -15,8 +15,16 @@ LcsCodeBuilderStep >> addJobStep: aJobStep [
 	^ self jobSteps addJobStep: aJobStep
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> addModelAssociationsTo: classesModel [
+	self traceStep: 'addModelAssociationsTo:'.
+	self jobSteps addModelAssociationsTo: classesModel
+]
+
+{ #category : #'gt view' }
 LcsCodeBuilderStep >> addModelClassesTo: classesModel [
+	self traceStep: 'addModelClassesTo:'.
+	self jobSteps addModelClassesTo: classesModel
 ]
 
 { #category : #refactorings }
@@ -61,6 +69,17 @@ LcsCodeBuilderStep >> buildJobSteps [
 { #category : #'builder job' }
 LcsCodeBuilderStep >> builderJob [
 	^ self parent builderJob
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderStep >> classesModel [
+	| classesModel |
+	classesModel := LcsClassesModel new.
+	self addModelClassesTo: classesModel.
+	classesModel removeDuplicates.
+	self addModelAssociationsTo: classesModel.
+	classesModel resolveClassModelNames.
+	^ classesModel
 ]
 
 { #category : #uninstall }
@@ -109,6 +128,19 @@ LcsCodeBuilderStep >> gtPaintTreeWith: aMondrian [
 					levelDistance: 50;
 					nodeDistance: 20).
 	aMondrian
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderStep >> gtUMLFor: aView [
+	<gtView>
+	| classesModel |
+	(classesModel := self classesModel) collection isEmpty 
+		ifTrue: [ ^ aView empty ].
+
+	^ aView mondrian
+		title: 'UML';
+		priority: 20;
+		initialize: (self proposedUmlModelFor: classesModel)
 ]
 
 { #category : #initialize }
@@ -198,6 +230,11 @@ LcsCodeBuilderStep >> populateSlotModel [
 LcsCodeBuilderStep >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: self printString
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderStep >> proposedUmlModelFor: umlModelClasses [
+	^ LcsUml new proposedUmlModelFor: umlModelClasses
 ]
 
 { #category : #printing }

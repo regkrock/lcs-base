@@ -23,6 +23,7 @@ LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
 
 { #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addModelAssociationsTo: classesModel [
+	super addModelAssociationsTo: classesModel.
 	(classesModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self newDomainClassName
 ]

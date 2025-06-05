@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsProposedClassModel,
 	#superclass : #LcsClassModel,
-	#instVars : [
-		'superclassName'
-	],
 	#category : #'LcsBase-Core'
 }
 

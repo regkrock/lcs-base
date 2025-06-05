@@ -31,8 +31,11 @@ LcsClassModel >> addAssociation: aName toModel: aModel [
 ]
 
 { #category : #api }
-LcsClassModel >> addAssociation: aName toModelNamed: aClassModelName [
-	^ self addAssociation: aName toClassModelNamed: aClassModelName
+LcsClassModel >> addAssociation: aName toModelNamed: aModelClassname [
+	Transcript tab.
+	self traceCr: 'Adding association ' , aName , ' from ' , self modelClassname asString , ' to ' , aModelClassname. 
+	
+	^ self addAssociation: aName toClassModelNamed: aModelClassname
 ]
 
 { #category : #accessing }

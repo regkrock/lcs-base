@@ -24,12 +24,9 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #'gt views' }
-LcsBaseClassBuilder >> addModelAssociationsTo: classesModel [
-]
-
-{ #category : #'gt views' }
 LcsBaseClassBuilder >> addModelClassesTo: classesModel [
 	| proposedClass |
+	super addModelClassesTo: classesModel.
 	self targetSuperclass ifNotNil: [ :class | 
 		classesModel existingClassModelFor: class ] .
 	proposedClass := classesModel proposedClassModelFor: self newClassName.

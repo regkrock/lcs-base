@@ -34,12 +34,12 @@ LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 
 { #category : #'gt views' }
 LcsSlotDefinitionBuilder >> addModelClassesTo: classesModel [
+	super addModelClassesTo: classesModel .
 	self targetClass 
 		ifNil: [ classesModel proposedClassModelFor: self targetClassName ]
 		ifNotNil: [ :class | classesModel existingClassModelFor: class].
 	self targetModuleClass notNil ifTrue: [
-		classesModel existingClassModelFor: self targetModuleClass].
-	self jobSteps addModelClassesTo: classesModel
+		classesModel existingClassModelFor: self targetModuleClass]
 ]
 
 { #category : #'gt views' }
@@ -54,7 +54,12 @@ LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 
 { #category : #initialize }
 LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
-	self slotTypes add: (aClassOrClassName isClass ifTrue: [ aClassOrClassName name ] ifFalse: [ aClassOrClassName ])
+	| className |
+	className := aClassOrClassName isClass 
+					ifTrue: [ aClassOrClassName name asString ] 
+					ifFalse: [ aClassOrClassName asString ].
+	(self slotTypes includes: className) ifFalse: [
+		self slotTypes add: className ]
 ]
 
 { #category : #printing }
