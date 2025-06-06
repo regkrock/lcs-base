@@ -24,11 +24,13 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addExtraPropertiesTo: aSlot
 
 { #category : #'gt views' }
 LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: classesModel [
-	super addModelAssociationsTo: self slotTypes first.
+	super addModelAssociationsTo: classesModel.
 	(classesModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self slotTypes first.
+		addAssociation: self slotName
+		toModelNamed: self collectionClassName.
 	(classesModel classModelForClassname: self slotTypes first)
-		addAssociation: 'collection' toModelNamed: self targetClassName
+		addAssociation: 'collection'
+		toModelNamed: self targetClassName
 ]
 
 { #category : #'gt views' }
@@ -52,9 +54,9 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionClass [
 	^ [ self collectionClassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
-{ #category : #accessing }
+{ #category : #'gt views' }
 LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionClassName [
-	^ collectionClassName
+	^ self slotTypes first
 ]
 
 { #category : #accessing }

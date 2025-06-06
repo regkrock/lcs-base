@@ -12,10 +12,26 @@ LcsSingletonValueObjectsGlobalSlotDefinitionBuilder class >> slotDefinitionClass
 	^ LcsSingletonValueObjectsGlobalCollectionSlot
 ]
 
-{ #category : #initialize }
+{ #category : #'gt views' }
 LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aBuilder [
 	super addExtraPropertiesTo: aBuilder.
 	aBuilder addProperty: 'codeSuperclass' value: self codeSuperclassName
+]
+
+{ #category : #'gt views' }
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addModelClassesTo: classesModel [
+	super addModelClassesTo: classesModel.
+	self slotTypes isEmpty ifTrue: [ ^ self ].
+	self addParentClassTo: classesModel
+]
+
+{ #category : #'gt views' }
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addParentClassTo: classesModel [
+	[ classesModel existingClassModelFor: self slotTypes first asClass ]
+		on: NotFound
+		do: [ :s | 
+			classesModel proposedClassModelFor: self slotTypes first.
+			s return: nil ]
 ]
 
 { #category : #'code generation' }

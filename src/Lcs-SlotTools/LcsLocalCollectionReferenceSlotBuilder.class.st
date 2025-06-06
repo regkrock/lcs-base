@@ -29,6 +29,22 @@ LcsLocalCollectionReferenceSlotBuilder >> addModelAssociationsTo: classesModel [
 		addAssociation: 'collection' toModelNamed: self targetClassName asString
 ]
 
+{ #category : #'gt views' }
+LcsLocalCollectionReferenceSlotBuilder >> addModelClassesTo: classesModel [
+	super addModelClassesTo: classesModel.
+	self slotTypes isEmpty ifTrue: [ ^ self ].
+	self addParentClassTo: classesModel
+]
+
+{ #category : #'gt views' }
+LcsLocalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
+	[ classesModel existingClassModelFor: self slotTypes first asClass ]
+		on: NotFound
+		do: [ :s | 
+			classesModel proposedClassModelFor: self slotTypes first.
+			s return: nil ]
+]
+
 { #category : #'code generation' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionClass [
 	^self collectionClassName asClass

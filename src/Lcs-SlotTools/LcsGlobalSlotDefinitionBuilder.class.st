@@ -34,10 +34,10 @@ LcsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBui
 { #category : #'gt views' }
 LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: classesModel [
 	super addModelAssociationsTo: classesModel.
-	(classesModel classModelForClassname: self targetModuleClass name asString)
-		addAssociation: self slotName toModelNamed: self slotTypes first.
-	(classesModel classModelForClassname: self slotTypes first asString)
-		addAssociation: 'parent' toModelNamed: self targetModuleClass name asString
+	(classesModel classModelForClassname: self parentClassName)
+		addAssociation: self slotName toModelNamed: self collectionClassName.
+	(classesModel classModelForClassname: self collectionClassName)
+		addAssociation: 'parent' toModelNamed: self parentClassName
 ]
 
 { #category : #initialize }
@@ -52,6 +52,11 @@ LcsGlobalSlotDefinitionBuilder >> collectionClass [
 { #category : #accessing }
 LcsGlobalSlotDefinitionBuilder >> collectionClass: anObject [
 	collectionClass := anObject
+]
+
+{ #category : #'gt views' }
+LcsGlobalSlotDefinitionBuilder >> collectionClassName [
+	^ self slotTypes first asString
 ]
 
 { #category : #accessing }
@@ -85,6 +90,11 @@ LcsGlobalSlotDefinitionBuilder >> initializeModel [
 { #category : #command }
 LcsGlobalSlotDefinitionBuilder >> module [
 	^ self currentSystem moduleNamed: self targetClass defaultModuleName
+]
+
+{ #category : #'gt views' }
+LcsGlobalSlotDefinitionBuilder >> parentClassName [
+	^ self targetModuleClass name asString
 ]
 
 { #category : #command }
