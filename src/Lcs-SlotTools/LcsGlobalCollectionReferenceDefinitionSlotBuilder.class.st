@@ -26,11 +26,9 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addExtraPropertiesTo: aSlot
 LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: classesModel [
 	super addModelAssociationsTo: classesModel.
 	(classesModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName
-		toModelNamed: self collectionClassName.
-	(classesModel classModelForClassname: self slotTypes first)
-		addAssociation: 'collection'
-		toModelNamed: self targetClassName
+		addAssociation: self slotName toModelNamed: self collectionClassName.
+	(classesModel classModelForClassname: self collectionClassName)
+		addAssociation: 'collection' toModelNamed: self targetClassName
 ]
 
 { #category : #'gt views' }
