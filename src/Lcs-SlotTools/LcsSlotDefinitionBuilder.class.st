@@ -34,12 +34,9 @@ LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 
 { #category : #'gt views' }
 LcsSlotDefinitionBuilder >> addModelClassesTo: classesModel [
-	super addModelClassesTo: classesModel .
-	self targetClass 
-		ifNil: [ classesModel proposedClassModelFor: self targetClassName ]
-		ifNotNil: [ :class | classesModel existingClassModelFor: class].
-	self targetModuleClass notNil ifTrue: [
-		classesModel existingClassModelFor: self targetModuleClass]
+	super addModelClassesTo: classesModel.
+	self addTargetClassTo: classesModel.
+	self addTargetModuleClassTo: classesModel
 ]
 
 { #category : #'gt views' }
@@ -65,6 +62,19 @@ LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
 { #category : #printing }
 LcsSlotDefinitionBuilder >> addStepNumberTo: aString [
 	^ self stepNumber , '.' , aString
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinitionBuilder >> addTargetClassTo: classesModel [
+	self targetClass
+		ifNil: [ classesModel proposedClassModelFor: self targetClassName ]
+		ifNotNil: [ :class | classesModel existingClassModelFor: class ]
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinitionBuilder >> addTargetModuleClassTo: classesModel [
+	self targetModuleClass notNil
+		ifTrue: [ classesModel existingClassModelFor: self targetModuleClass ]
 ]
 
 { #category : #accessing }

@@ -25,18 +25,30 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 
 { #category : #'gt views' }
 LcsBaseClassBuilder >> addModelClassesTo: classesModel [
-	| proposedClass |
 	super addModelClassesTo: classesModel.
-	self targetSuperclass ifNotNil: [ :class | 
-		classesModel existingClassModelFor: class ] .
+	self addSuperclassTo: classesModel.
+	self addProposedClassTo: classesModel
+]
+
+{ #category : #'gt views' }
+LcsBaseClassBuilder >> addProposedClassTo: classesModel [
+	| proposedClass |
 	proposedClass := classesModel proposedClassModelFor: self newClassName.
-	self targetSuperclassName notNil ifTrue: [
-		proposedClass modelSuperclassName: self targetSuperclassName ]
+	self targetSuperclassName notNil
+		ifTrue: [ proposedClass modelSuperclassName: self targetSuperclassName ]
 ]
 
 { #category : #printing }
 LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self classCreationString
+]
+
+{ #category : #'gt views' }
+LcsBaseClassBuilder >> addSuperclassTo: classesModel [
+	self targetSuperclass
+		ifNil: [ self targetSuperclassName ifNotNil: [ 
+				classesModel proposedClassModelFor: self targetSuperclassName ] ]
+		ifNotNil: [ :class | classesModel existingClassModelFor: class ]
 ]
 
 { #category : #asserting }
