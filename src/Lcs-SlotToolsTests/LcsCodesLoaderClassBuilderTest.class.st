@@ -25,7 +25,7 @@ LcsCodesLoaderClassBuilderTest >> testClassCreationString [
 	self
 		assert: self subject classCreationString
 		equals: 
-'LcsCodesLoader subclass: #LxxMale1
+'LcsValueObjectsLoader subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''

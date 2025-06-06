@@ -6,11 +6,11 @@ Class {
 
 { #category : #accessing }
 LcsCodesCollectionClassBuilder class >> targetSuperclassName [
-	^ 'LcsCodes'
+	^ 'LcsValueObjects'
 ]
 
 { #category : #accessing }
 LcsCodesCollectionClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
-	self assert: self installedClass superclass name equals: 'LcsCodes'
+	self assert: self installedClass superclass name equals: 'LcsValueObjects'
 ]

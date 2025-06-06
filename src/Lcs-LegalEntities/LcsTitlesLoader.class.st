@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsTitlesLoader,
-	#superclass : #LcsCodesLoader,
+	#superclass : #LcsValueObjectsLoader,
 	#category : #'Lcs-LegalEntities'
 }
 

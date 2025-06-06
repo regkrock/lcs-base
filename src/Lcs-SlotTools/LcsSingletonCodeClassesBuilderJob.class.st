@@ -35,7 +35,7 @@ LcsSingletonCodeClassesBuilderJob >> buildJobSteps [
 { #category : #builders }
 LcsSingletonCodeClassesBuilderJob >> codeClassBuilder [
 	^ super codeClassBuilder
-		targetSuperclassName: 'LcsSingletonCode';
+		targetSuperclassName: 'LcsSingletonValueObject';
 		yourself
 ]
 

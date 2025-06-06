@@ -506,9 +506,9 @@ LcsSystem >> systemDomainClasses [
 		add: LcsGlobalCollections;
 		add: LcsModules;
 		add: LcsBaseConfiguration;
-		add: LcsCode;
-		add: LcsSingletonCode;
-		add: LcsCodes;
+		add: LcsValueObject;
+		add: LcsSingletonValueObject;
+		add: LcsValueObjects;
 		add: #LcsStateMachine asClass;
 		add: #LcsStateMachineObject asClass;
 		addAll: #LcsStateMachineObject asClass allSubclasses;

@@ -6,7 +6,7 @@ Class {
 
 { #category : #configuration }
 LcsCodeSuperClassBuilder class >> targetSuperclassName [
-	^ 'LcsCode'
+	^ 'LcsValueObject'
 ]
 
 { #category : #initialize }

@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsCodes,
+	#name : #LcsValueObjects,
 	#superclass : #LcsDomainCollection,
 	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #testing }
-LcsCodes >> collectionWithPendingChanges [
+LcsValueObjects >> collectionWithPendingChanges [
 	| actualCollection |
 	actualCollection := self collection copy.
 	actualCollection addAll: self pendingAdds.
@@ -14,15 +14,15 @@ LcsCodes >> collectionWithPendingChanges [
 ]
 
 { #category : #testing }
-LcsCodes >> defaultInstance [
+LcsValueObjects >> defaultInstance [
 	^ self collectionWithPendingChanges
 		detect: [ :each | each isDefaultInstance == true ]
 		ifNone: [ LcsCodeCollectionDefaultInstanceNotDefined
-				signal: 'No default instance defined for codes collection - ' , self class name ]
+				signal: 'No default instance defined for Value Objects collection - ' , self class name ]
 ]
 
 { #category : #'as yet unclassified' }
-LcsCodes >> gtItemsFor: aView [
+LcsValueObjects >> gtItemsFor: aView [
 	<gtView>
 	self collection isNil ifTrue: [ ^ aView empty ].
 	^ aView columnedList
@@ -37,7 +37,7 @@ LcsCodes >> gtItemsFor: aView [
 ]
 
 { #category : #testing }
-LcsCodes >> hasDefaultInstance [
+LcsValueObjects >> hasDefaultInstance [
 	self collection detect: [ :each | each isDefaultInstance == true] ifNone: [ ^ false ].
 	^ true
 ]

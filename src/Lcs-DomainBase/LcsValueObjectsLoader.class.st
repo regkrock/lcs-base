@@ -1,16 +1,16 @@
 Class {
-	#name : #LcsCodesLoader,
+	#name : #LcsValueObjectsLoader,
 	#superclass : #LcsObjectLoader,
 	#category : #'Lcs-DomainBase'
 }
 
 { #category : #configuration }
-LcsCodesLoader >> data [
+LcsValueObjectsLoader >> data [
 	^ ''
 ]
 
 { #category : #loading }
-LcsCodesLoader >> load [
+LcsValueObjectsLoader >> load [
 	| newClass |
 	self protoCodes do: [ :eachProtoCode | 
 		newClass := (eachProtoCode code = 'unknown' and: [ self unknownClass notNil ])
@@ -24,7 +24,7 @@ LcsCodesLoader >> load [
 ]
 
 { #category : #loading }
-LcsCodesLoader >> protoCodes [
+LcsValueObjectsLoader >> protoCodes [
 	^ (NeoJSONReader on: self data readStream)
 			mapInstVarsFor: LcsProtoCode;
 			for: #ArrayOfPrtotCodes customDo: [ :mapping | mapping listOfElementSchema: LcsProtoCode ];
@@ -32,11 +32,11 @@ LcsCodesLoader >> protoCodes [
 ]
 
 { #category : #configuration }
-LcsCodesLoader >> targetClass [
+LcsValueObjectsLoader >> targetClass [
 	^ self subclassResponsibility
 ]
 
 { #category : #configuration }
-LcsCodesLoader >> unknownClass [
+LcsValueObjectsLoader >> unknownClass [
 	^ nil
 ]

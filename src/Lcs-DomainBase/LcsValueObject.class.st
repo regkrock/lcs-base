@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsCode,
+	#name : #LcsValueObject,
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'code',
@@ -11,19 +11,19 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LcsCode class >> codeSlotDefinition [
+LcsValueObject class >> codeSlotDefinition [
 	<slotDefinition>
 	^ LcsCodeSlot new
 ]
 
 { #category : #'slot definitions' }
-LcsCode class >> descriptionSlotDefinition [
+LcsValueObject class >> descriptionSlotDefinition [
 	<slotDefinition>
 	^ LcsDescriptionSlot new
 ]
 
 { #category : #'slot definitions' }
-LcsCode class >> isDefaultInstanceSlotDefinition [
+LcsValueObject class >> isDefaultInstanceSlotDefinition [
 	<slotDefinition>
 	^ LcsBooleanSlot new
 		slotName: 'isDefaultInstance';
@@ -31,52 +31,52 @@ LcsCode class >> isDefaultInstanceSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
-LcsCode class >> labelSlotDefinition [
+LcsValueObject class >> labelSlotDefinition [
 	<slotDefinition>
 	^ LcsLabelSlot new
 ]
 
 { #category : #accessing }
-LcsCode >> code [
+LcsValueObject >> code [
 	^ self slotVarNamed: 'code' 
 ]
 
 { #category : #accessing }
-LcsCode >> code: anObject [
+LcsValueObject >> code: anObject [
 	self slotVarNamed: 'code' put: anObject 
 ]
 
 { #category : #accessing }
-LcsCode >> description [
+LcsValueObject >> description [
 	^ self slotVarNamed: 'description' 
 ]
 
 { #category : #accessing }
-LcsCode >> description: anObject [
+LcsValueObject >> description: anObject [
 	self slotVarNamed: 'description' put: anObject 
 ]
 
 { #category : #accessing }
-LcsCode >> isDefaultInstance [
+LcsValueObject >> isDefaultInstance [
 	^ self slotVarNamed: 'isDefaultInstance' 
 ]
 
 { #category : #accessing }
-LcsCode >> isDefaultInstance: anObject [
+LcsValueObject >> isDefaultInstance: anObject [
 	self slotVarNamed: 'isDefaultInstance' put: anObject 
 ]
 
 { #category : #search }
-LcsCode >> key [
+LcsValueObject >> key [
 	^ self code
 ]
 
 { #category : #accessing }
-LcsCode >> label [ 
+LcsValueObject >> label [ 
 	^ self slotVarNamed: 'label' 
 ]
 
 { #category : #accessing }
-LcsCode >> label: anObject [
+LcsValueObject >> label: anObject [
 	self slotVarNamed: 'label' put: anObject 
 ]

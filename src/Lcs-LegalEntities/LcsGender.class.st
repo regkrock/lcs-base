@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsGender,
-	#superclass : #LcsSingletonCode,
+	#superclass : #LcsSingletonValueObject,
 	#category : #'Lcs-LegalEntities'
 }
 

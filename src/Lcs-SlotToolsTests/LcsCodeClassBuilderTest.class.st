@@ -11,7 +11,7 @@ LcsCodeClassBuilderTest >> newClassName [
 
 { #category : #private }
 LcsCodeClassBuilderTest >> targetSuperclassName [
-	^ 'LcsCode'
+	^ 'LcsValueObject'
 ]
 
 { #category : #tests }
@@ -31,7 +31,7 @@ LcsCodeClassBuilderTest >> testClassCreationString [
 	self
 		assert: self subject classCreationString
 		equals: 
-'LcsCode subclass: #LxxMale1
+'LcsValueObject subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''

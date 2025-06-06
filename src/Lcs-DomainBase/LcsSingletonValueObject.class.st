@@ -1,44 +1,44 @@
 Class {
-	#name : #LcsSingletonCode,
-	#superclass : #LcsCode,
+	#name : #LcsSingletonValueObject,
+	#superclass : #LcsValueObject,
 	#category : #'Lcs-DomainBase-Core'
 }
 
 { #category : #'slot definitions' }
-LcsSingletonCode class >> codeSlotDefinition [
+LcsSingletonValueObject class >> codeSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonCodeNameSlot new
 ]
 
 { #category : #defaults }
-LcsSingletonCode class >> defaultCode [
+LcsSingletonValueObject class >> defaultCode [
 	self subclassResponsibility
 ]
 
 { #category : #defaults }
-LcsSingletonCode class >> defaultCodeDescription [
+LcsSingletonValueObject class >> defaultCodeDescription [
 	self subclassResponsibility
 ]
 
 { #category : #defaults }
-LcsSingletonCode class >> defaultInstance [
+LcsSingletonValueObject class >> defaultInstance [
 	^ false
 ]
 
 { #category : #'slot definitions' }
-LcsSingletonCode class >> descriptionSlotDefinition [
+LcsSingletonValueObject class >> descriptionSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonCodeDescriptionSlot new
 ]
 
 { #category : #'slot definitions' }
-LcsSingletonCode class >> isDefaultInstanceSlotDefinition [
+LcsSingletonValueObject class >> isDefaultInstanceSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonCodeIsDefaultInstanceSlot new
 ]
 
 { #category : #'slot definitions' }
-LcsSingletonCode class >> labelSlotDefinition [
+LcsSingletonValueObject class >> labelSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonLabelSlot new
 ]

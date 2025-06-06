@@ -9,7 +9,7 @@ Class {
 
 { #category : #configuration }
 LcsCodesLoaderClassBuilder class >> targetSuperclassName [	
-	^ 'LcsCodesLoader'
+	^ 'LcsValueObjectsLoader'
 ]
 
 { #category : #build }

@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsTitles,
-	#superclass : #LcsCodes,
+	#superclass : #LcsValueObjects,
 	#category : #'Lcs-LegalEntities'
 }

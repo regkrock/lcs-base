@@ -16,7 +16,7 @@ LcsSingletonUnknownCodeClassBuilderTest >> targetPackageName [
 
 { #category : #tests }
 LcsSingletonUnknownCodeClassBuilderTest >> targetSuperclassName [
-	^ 'LcsSingletonCode'
+	^ 'LcsSingletonValueObject'
 ]
 
 { #category : #tests }

@@ -11,7 +11,7 @@ LcsSingletonCodeClassBuilderTest >> newClassName [
 
 { #category : #private }
 LcsSingletonCodeClassBuilderTest >> targetSuperclassName [
-	^ 'LcsCode'
+	^ 'LcsValueObject'
 ]
 
 { #category : #tests }
@@ -32,7 +32,7 @@ LcsSingletonCodeClassBuilderTest >> testClassCreationString [
 	self
 		assert: builder classCreationString
 		equals: 
-'LcsCode subclass: #LxxMale1
+'LcsValueObject subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
