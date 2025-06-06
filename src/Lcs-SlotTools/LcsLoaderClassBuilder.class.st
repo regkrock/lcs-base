@@ -10,7 +10,7 @@ Class {
 
 { #category : #configuration }
 LcsLoaderClassBuilder class >> targetSuperclassName [	
-	^ 'LcsObjectLoader'
+	^ 'LcsObjectsLoader'
 ]
 
 { #category : #printing }

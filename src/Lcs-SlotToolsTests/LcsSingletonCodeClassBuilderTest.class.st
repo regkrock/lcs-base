@@ -17,7 +17,7 @@ LcsSingletonCodeClassBuilderTest >> targetSuperclassName [
 { #category : #tests }
 LcsSingletonCodeClassBuilderTest >> testClassCreationString [
 	| builder |
-	builder := LcsSingletonCodeClassBuilder new.
+	builder := LcsSingletonValueObjectClassBuilder new.
 	builder
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
@@ -41,7 +41,7 @@ LcsSingletonCodeClassBuilderTest >> testClassCreationString [
 
 { #category : #tests }
 LcsSingletonCodeClassBuilderTest >> testInstallClass [
-	self subject: LcsSingletonCodeClassBuilder new.
+	self subject: LcsSingletonValueObjectClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';

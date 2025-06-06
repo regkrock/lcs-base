@@ -1,14 +1,14 @@
 Class {
-	#name : #LcsStandardCodeWithUnknownClassClassesBuilderJobTest,
+	#name : #LcsStandardValueObjectClassesBuilderJobTest,
 	#superclass : #LcsCodeJobBuilderTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }
-LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreationOfSingletonClasses [
+LcsStandardValueObjectClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	| person |
 	self currentCodeBuilderJob:
-		(LcsStandardCodeWithUnknownClassClassesBuilderJob new
+		(LcsStandardValueObjectClassesBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Title';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
@@ -16,7 +16,6 @@ LcsStandardCodeWithUnknownClassClassesBuilderJobTest >> testCreationOfSingletonC
 			createProtoCodesFromLabels: #('Mr' 'Ms' '');
 			targetModuleClass: LxxPrototypeSystem;
 			installMemberSlotInDomainClass: LxxBasePerson;
-			buildUnknownClass: true;
 			yourself).
 	self currentCodeBuilderJob buildJobSteps.
 	self currentCodeBuilderJob execute.

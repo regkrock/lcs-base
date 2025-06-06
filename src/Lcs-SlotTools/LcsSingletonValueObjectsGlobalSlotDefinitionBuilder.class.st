@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsSingletonCodesGlobalSlotDefinitionBuilder,
+	#name : #LcsSingletonValueObjectsGlobalSlotDefinitionBuilder,
 	#superclass : #LcsGlobalSlotDefinitionBuilder,
 	#instVars : [
 		'codeSuperclassName'
@@ -8,34 +8,34 @@ Class {
 }
 
 { #category : #defaults }
-LcsSingletonCodesGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
-	^ LcsSingletonCodesGlobalCollectionSlot
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
+	^ LcsSingletonValueObjectsGlobalCollectionSlot
 ]
 
 { #category : #initialize }
-LcsSingletonCodesGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aBuilder [
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aBuilder [
 	super addExtraPropertiesTo: aBuilder.
 	aBuilder addProperty: 'codeSuperclass' value: self codeSuperclassName
 ]
 
 { #category : #'code generation' }
-LcsSingletonCodesGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
 	aCodeStream addKeyword: 'codeSuperclass' argument: self codeSuperclassName
 
 ]
 
 { #category : #accessing }
-LcsSingletonCodesGlobalSlotDefinitionBuilder >> codeSuperclass [
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclass [
 	^ self codeSuperclassName asClass
 ]
 
 { #category : #accessing }
-LcsSingletonCodesGlobalSlotDefinitionBuilder >> codeSuperclassName [
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclassName [
 	^ codeSuperclassName
 ]
 
 { #category : #accessing }
-LcsSingletonCodesGlobalSlotDefinitionBuilder >> codeSuperclassName: aClassName [
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclassName: aClassName [
 	codeSuperclassName := aClassName
 ]

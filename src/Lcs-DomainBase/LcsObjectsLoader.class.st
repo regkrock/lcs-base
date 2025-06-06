@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsObjectLoader,
+	#name : #LcsObjectsLoader,
 	#superclass : #LcsObject,
 	#category : #'Lcs-DomainBase'
 }
 
 { #category : #'as yet unclassified' }
-LcsObjectLoader class >> initializeSlotModel [ 
+LcsObjectsLoader class >> initializeSlotModel [ 
 	"Not part of the model"
 ]

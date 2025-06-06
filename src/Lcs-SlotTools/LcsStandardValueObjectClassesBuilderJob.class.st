@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsStandardCodeClassesBuilderJob,
-	#superclass : #LcsCodeClassesBuilderJob,
+	#name : #LcsStandardValueObjectClassesBuilderJob,
+	#superclass : #LcsValueObjectClassesBuilderJob,
 	#instVars : [
 		'defaultInstance'
 	],
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #command }
-LcsStandardCodeClassesBuilderJob >> buildJobSteps [
+LcsStandardValueObjectClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self codesCollectionClassBuilder.
 	self addJobStep: self collectionReferenceSlotBuilder.
@@ -18,7 +18,7 @@ LcsStandardCodeClassesBuilderJob >> buildJobSteps [
 ]
 
 { #category : #populate }
-LcsStandardCodeClassesBuilderJob >> createProtoCodesFromLabels: aCollection [ 
+LcsStandardValueObjectClassesBuilderJob >> createProtoCodesFromLabels: aCollection [ 
 	aCollection do: [ :eachLabel | 
 		self protoCodes add: (
 			eachLabel isEmpty 
@@ -29,28 +29,28 @@ LcsStandardCodeClassesBuilderJob >> createProtoCodesFromLabels: aCollection [
 ]
 
 { #category : #accessing }
-LcsStandardCodeClassesBuilderJob >> defaultInstance [
+LcsStandardValueObjectClassesBuilderJob >> defaultInstance [
 	^defaultInstance
 ]
 
 { #category : #accessing }
-LcsStandardCodeClassesBuilderJob >> defaultInstance: aString [ 
+LcsStandardValueObjectClassesBuilderJob >> defaultInstance: aString [ 
 	defaultInstance := aString
 ]
 
 { #category : #'as yet unclassified' }
-LcsStandardCodeClassesBuilderJob >> globalCollectionSlotDefinitionStep [
-	^ (self jobSteps stepsWithClass: LcsCodesGlobalSlotDefinitionBuilder) first
+LcsStandardValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
+	^ (self jobSteps stepsWithClass: LcsValueObjectsGlobalSlotDefinitionBuilder) first
 ]
 
 { #category : #initialize }
-LcsStandardCodeClassesBuilderJob >> initialize [
+LcsStandardValueObjectClassesBuilderJob >> initialize [
 	super initialize.
 	self protoCodes: OrderedCollection new
 ]
 
 { #category : #command }
-LcsStandardCodeClassesBuilderJob >> verifyPopulateSlotModel [
+LcsStandardValueObjectClassesBuilderJob >> verifyPopulateSlotModel [
 	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.
 	self assert: self targetGlobalCollection collectionSize = self protoCodes size.

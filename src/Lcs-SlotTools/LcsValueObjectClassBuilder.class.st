@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsCodeClassBuilder,
+	#name : #LcsValueObjectClassBuilder,
 	#superclass : #LcsBaseClassBuilder,
 	#instVars : [
 		'defaultInstance'
@@ -8,27 +8,27 @@ Class {
 }
 
 { #category : #configuration }
-LcsCodeClassBuilder >> beDefaultInstance [
+LcsValueObjectClassBuilder >> beDefaultInstance [
 	defaultInstance := true
 ]
 
 { #category : #accessing }
-LcsCodeClassBuilder >> defaultInstance [
+LcsValueObjectClassBuilder >> defaultInstance [
 	^ defaultInstance
 ]
 
 { #category : #accessing }
-LcsCodeClassBuilder >> defaultInstance: aBoolean [ 
+LcsValueObjectClassBuilder >> defaultInstance: aBoolean [ 
 	defaultInstance := aBoolean
 ]
 
 { #category : #initialize }
-LcsCodeClassBuilder >> initialize [
+LcsValueObjectClassBuilder >> initialize [
 	super initialize.
 	self defaultInstance: false
 ]
 
 { #category : #testing }
-LcsCodeClassBuilder >> isDefaultInstance [
+LcsValueObjectClassBuilder >> isDefaultInstance [
 	^ self defaultInstance == true
 ]

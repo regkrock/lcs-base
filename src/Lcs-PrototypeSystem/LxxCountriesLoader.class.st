@@ -1,6 +1,6 @@
 Class {
 	#name : #LxxCountriesLoader,
-	#superclass : #LcsObjectLoader,
+	#superclass : #LcsObjectsLoader,
 	#category : #'Lcs-PrototypeSystem'
 }
 

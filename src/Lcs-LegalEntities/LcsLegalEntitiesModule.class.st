@@ -18,7 +18,7 @@ LcsLegalEntitiesModule class >> defaultModuleName [
 { #category : #'slot definition' }
 LcsLegalEntitiesModule class >> gendersSlotDefinition [
 	<slotDefinition>
-	^ LcsSingletonCodesGlobalCollectionSlot new
+	^ LcsSingletonValueObjectsGlobalCollectionSlot new
 		slotName: 'genders';
 		addSlotType: LcsGenders;
 		codeSuperclass: LcsGender;

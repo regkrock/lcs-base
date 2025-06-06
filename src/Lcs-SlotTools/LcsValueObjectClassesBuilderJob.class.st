@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsCodeClassesBuilderJob,
+	#name : #LcsValueObjectClassesBuilderJob,
 	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
 	#instVars : [
 		'moduleClass',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #configuration }
-LcsCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString with: aBlock [
+LcsValueObjectClassesBuilderJob >> addCodeSubclassWithRootNamed: aString with: aBlock [
 	| classBuilder |
 	classBuilder := self codeSubclassBuilderFor: aString.
 	aBlock value: classBuilder.
@@ -17,15 +17,15 @@ LcsCodeClassesBuilderJob >> addCodeSubclassWithRootNamed: aString with: aBlock [
 ]
 
 { #category : #builders }
-LcsCodeClassesBuilderJob >> codeClassBuilder [
-	^ LcsCodeSuperClassBuilder new
+LcsValueObjectClassesBuilderJob >> codeClassBuilder [
+	^ LcsValueObjectSuperClassBuilder new
 		newClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
 
 { #category : #builders }
-LcsCodeClassesBuilderJob >> codesCollectionClassBuilder [
+LcsValueObjectClassesBuilderJob >> codesCollectionClassBuilder [
 	^ LcsCodesCollectionClassBuilder new
 		newClassName: self collectionClassName;
 		targetPackageName: self targetPackageName;
@@ -33,8 +33,8 @@ LcsCodeClassesBuilderJob >> codesCollectionClassBuilder [
 ]
 
 { #category : #builders }
-LcsCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
-	^ LcsCodesGlobalSlotDefinitionBuilder new
+LcsValueObjectClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
+	^ LcsValueObjectsGlobalSlotDefinitionBuilder new
 		slotName: self collectionSlotName;
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;
@@ -45,8 +45,8 @@ LcsCodeClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 ]
 
 { #category : #builders }
-LcsCodeClassesBuilderJob >> codesLoaderBuilder [
-	^ LcsCodesLoaderClassBuilder new
+LcsValueObjectClassesBuilderJob >> codesLoaderBuilder [
+	^ LcsValueObjectsLoaderClassBuilder new
 		newClassName: self collectionClassName , 'Loader';
 		instanceClassName: self newDomainClassName;
 		unknownClassName: self unknownClassName;
@@ -56,7 +56,7 @@ LcsCodeClassesBuilderJob >> codesLoaderBuilder [
 ]
 
 { #category : #builders }
-LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
+LcsValueObjectClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 	^ LcsMemberOfSlotBuilder new
 		target: aTargetClass;
 		targetClassName: aTargetClass name;
@@ -68,33 +68,33 @@ LcsCodeClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 ]
 
 { #category : #'builder step' }
-LcsCodeClassesBuilderJob >> globalCollectionSlotDefinitionStep [
+LcsValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
 ]
 
 { #category : #initialize }
-LcsCodeClassesBuilderJob >> initialize [
+LcsValueObjectClassesBuilderJob >> initialize [
 	super initialize.
 	self targetDomainClasses: OrderedCollection new.
 	self protoCodes: OrderedCollection new
 ]
 
 { #category : #accessing }
-LcsCodeClassesBuilderJob >> protoCodes [
+LcsValueObjectClassesBuilderJob >> protoCodes [
 	^ protoCodes
 ]
 
 { #category : #accessing }
-LcsCodeClassesBuilderJob >> protoCodes: aCollection [
+LcsValueObjectClassesBuilderJob >> protoCodes: aCollection [
 	protoCodes := aCollection
 ]
 
 { #category : #'slot model' }
-LcsCodeClassesBuilderJob >> targetGlobalCollection [
+LcsValueObjectClassesBuilderJob >> targetGlobalCollection [
 	^ self targetModule perform: self globalCollectionSlotDefinitionStep getterSelector
 ]
 
 { #category : #accessing }
-LcsCodeClassesBuilderJob >> targetModuleName [
+LcsValueObjectClassesBuilderJob >> targetModuleName [
 	^ targetModuleName ifNil: [ targetModuleName :=  self targetModuleClass defaultModuleName ]
 ]

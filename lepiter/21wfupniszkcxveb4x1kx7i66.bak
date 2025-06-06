@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-04-24T09:29:18.758225-04:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.99664-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "FxQQ2jrTDQCwRQ8jDqasIg=="
 				},
-				"code" : "builder := \r\tLcsStandardCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateProtoCodesFromLabels: #('Mr' 'Ms' 'Unknown');\r\t\ttargetModuleClass: LxxPrototypeSystem ;\r\t\tinstallMemberSlotInDomainClass: LxxPrototypePerson;\r\t\tyourself"
+				"code" : "builder := \r\tLcsStandardCodeClassesBuilderJob new\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Title';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\tcreateProtoCodesFromLabels: #('Mr' 'Ms' 'Unknown');\r\t\ttargetModuleClass: LxxPrototypeSystem ;\r\t\tinstallMemberSlotInDomainClass: LxxPerson;\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",
@@ -353,14 +353,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:35:23.581936-04:00"
+						"dateAndTimeString" : "2025-05-07T08:39:25.748657-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Hiqb+DrTDQCyhsNNDqasIg=="
 				},
-				"code" : "LxxPrototypePerson removeDomainSlotNamed: 'title'"
+				"code" : "LxxPerson removeDomainSlotNamed: 'title'"
 			},
 			{
 				"__type" : "pharoSnippet",

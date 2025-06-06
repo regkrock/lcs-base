@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-06T13:18:07.96336-04:00"
+						"dateAndTimeString" : "2025-05-06T13:19:33.663368-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "5B4UddzwDQC9xL7MA0fRmA=="
 				},
-				"code" : "\"Problem is the LcsLegalEntitiesModule is not initialized\"\r\rbuilder := \r\tLcsStandardCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Subdivision';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\t\"createProtoCodesFromLabels: #('Mr' 'Ms' '');\"\r\t\tinstallLcalCollectionSlot: 'subdivisions' inClass: LxxCountry;\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
+				"code" : "\"Problem is the LcsLegalEntitiesModule is not initialized\"\r\rbuilder := \r\tLcsStandardCodeClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lxx';\r\t\tcreateForRootName: 'Subdivision';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\t\"createProtoCodesFromLabels: #('Mr' 'Ms' '');\"\r\t\tinstallLcalCollectionSlot: 'subdivisions' inClass: LxxCountry;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
 			}
 		]
 	},

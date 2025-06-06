@@ -1,14 +1,14 @@
 Class {
-	#name : #LcsSingletonCodeClassesBuilderJobTest,
+	#name : #LcsSingletonValueObjectClassesBuilderJobTest,
 	#superclass : #LcsCodeJobBuilderTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }
-LcsSingletonCodeClassesBuilderJobTest >> testCreationOfSingletonClasses [
+LcsSingletonValueObjectClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	| person |
 	self currentCodeBuilderJob:
-		(LcsSingletonCodeClassesBuilderJob new
+		(LcsSingletonValueObjectClassesBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Gender';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';

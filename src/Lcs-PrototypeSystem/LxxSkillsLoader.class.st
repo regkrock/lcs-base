@@ -1,6 +1,6 @@
 Class {
 	#name : #LxxSkillsLoader,
-	#superclass : #LcsObjectLoader,
+	#superclass : #LcsObjectsLoader,
 	#category : #'Lcs-PrototypeSystem'
 }
 

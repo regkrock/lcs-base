@@ -8,7 +8,7 @@ Class {
 LcsDomainClassWithGlobalCollectionBuilderJobTest >> testAddingAJobStep [
 	| builderJob |
 	builderJob := LcsDomainClassAndDomainCollectionClassBuilderJob new.
-	builderJob addJobStep: LcsCodeSuperClassBuilder new.
+	builderJob addJobStep: LcsValueObjectSuperClassBuilder new.
 	self assert: builderJob jobSteps hasJobSteps.
 	self assert: builderJob jobSteps collection size equals: 1.
 	self assert: builderJob jobSteps collection any parent equals: builderJob jobSteps.

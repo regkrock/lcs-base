@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCountryLoader,
-	#superclass : #LcsObjectLoader,
+	#superclass : #LcsObjectsLoader,
 	#instVars : [
 		'schemaSetters'
 	],

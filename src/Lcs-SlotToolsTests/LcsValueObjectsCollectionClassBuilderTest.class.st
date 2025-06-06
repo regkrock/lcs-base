@@ -1,21 +1,21 @@
 Class {
-	#name : #LcsCodesCollectionClassBuilderTest,
+	#name : #LcsValueObjectsCollectionClassBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #private }
-LcsCodesCollectionClassBuilderTest >> newClassName [
+LcsValueObjectsCollectionClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
 { #category : #private }
-LcsCodesCollectionClassBuilderTest >> targetSuperclassName [
+LcsValueObjectsCollectionClassBuilderTest >> targetSuperclassName [
 	^ 'LcsValueObjects'
 ]
 
 { #category : #tests }
-LcsCodesCollectionClassBuilderTest >> testClassCreationString [
+LcsValueObjectsCollectionClassBuilderTest >> testClassCreationString [
 	self subject: LcsCodesCollectionClassBuilder new.
 	self subject
 		newClassName: self newClassName asEnglishPlural;
@@ -34,7 +34,7 @@ LcsCodesCollectionClassBuilderTest >> testClassCreationString [
 ]
 
 { #category : #'as yet unclassified' }
-LcsCodesCollectionClassBuilderTest >> testInstallClass [
+LcsValueObjectsCollectionClassBuilderTest >> testInstallClass [
 	self subject: LcsCodesCollectionClassBuilder new.
 	self subject
 		newClassName: self newClassName asEnglishPlural;

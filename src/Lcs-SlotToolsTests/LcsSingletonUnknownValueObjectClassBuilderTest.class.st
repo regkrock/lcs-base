@@ -1,27 +1,27 @@
 Class {
-	#name : #LcsSingletonUnknownCodeClassBuilderTest,
+	#name : #LcsSingletonUnknownValueObjectClassBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }
-LcsSingletonUnknownCodeClassBuilderTest >> newClassName [
+LcsSingletonUnknownValueObjectClassBuilderTest >> newClassName [
 	^ 'XxxUnknownCode'
 ]
 
 { #category : #tests }
-LcsSingletonUnknownCodeClassBuilderTest >> targetPackageName [
+LcsSingletonUnknownValueObjectClassBuilderTest >> targetPackageName [
 	^ 'Lcs-Temp'
 ]
 
 { #category : #tests }
-LcsSingletonUnknownCodeClassBuilderTest >> targetSuperclassName [
+LcsSingletonUnknownValueObjectClassBuilderTest >> targetSuperclassName [
 	^ 'LcsSingletonValueObject'
 ]
 
 { #category : #tests }
-LcsSingletonUnknownCodeClassBuilderTest >> testCreation [
-	self subject: LcsSingletonUnknownCodeClassBuilder new.
+LcsSingletonUnknownValueObjectClassBuilderTest >> testCreation [
+	self subject: LcsSingletonUnknownValueObjectClassBuilder new.
 	self subject newClassName: self newClassName.
 	self subject targetSuperclassName: self targetSuperclassName.
 	self subject targetPackageName: self targetPackageName.
@@ -33,7 +33,7 @@ LcsSingletonUnknownCodeClassBuilderTest >> testCreation [
 	self assert: self subject newClassName = self newClassName.
 	self
 		assert: self subject classCreationString
-		equals: 'LcsSingletonCode subclass: #XxxUnknownCode
+		equals: 'LcsSingletonValueObject subclass: #XxxUnknownCode
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
@@ -41,8 +41,8 @@ LcsSingletonUnknownCodeClassBuilderTest >> testCreation [
 ]
 
 { #category : #tests }
-LcsSingletonUnknownCodeClassBuilderTest >> testInstallClass [
-	self subject: LcsSingletonUnknownCodeClassBuilder new.
+LcsSingletonUnknownValueObjectClassBuilderTest >> testInstallClass [
+	self subject: LcsSingletonUnknownValueObjectClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: self targetPackageName;

@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsSingletonCodeClassBuilder,
-	#superclass : #LcsCodeClassBuilder,
+	#name : #LcsSingletonValueObjectClassBuilder,
+	#superclass : #LcsValueObjectClassBuilder,
 	#instVars : [
 		'label',
 		'code',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #refactoring }
-LcsSingletonCodeClassBuilder >> addDefaultCodeRefactoring [
+LcsSingletonValueObjectClassBuilder >> addDefaultCodeRefactoring [
 	^ RBAddMethodChange
 		compile: self defaultCodeSource
 		in: self installedClass class
@@ -18,7 +18,7 @@ LcsSingletonCodeClassBuilder >> addDefaultCodeRefactoring [
 ]
 
 { #category : #refactoring }
-LcsSingletonCodeClassBuilder >> addDefaultDescriptionRefactoring [
+LcsSingletonValueObjectClassBuilder >> addDefaultDescriptionRefactoring [
 	^ RBAddMethodChange
 		compile: self defaultDescriptionSource
 		in: self installedClass class
@@ -26,7 +26,7 @@ LcsSingletonCodeClassBuilder >> addDefaultDescriptionRefactoring [
 ]
 
 { #category : #refactoring }
-LcsSingletonCodeClassBuilder >> addDefaultInstanceRefactoring [
+LcsSingletonValueObjectClassBuilder >> addDefaultInstanceRefactoring [
 	^ RBAddMethodChange
 		compile: self defaultInstanceSource
 		in: self installedClass class
@@ -34,7 +34,7 @@ LcsSingletonCodeClassBuilder >> addDefaultInstanceRefactoring [
 ]
 
 { #category : #refactoring }
-LcsSingletonCodeClassBuilder >> addDefaultLabelRefactoring [
+LcsSingletonValueObjectClassBuilder >> addDefaultLabelRefactoring [
 	^ RBAddMethodChange
 		compile: self defaultLabelSource
 		in: self installedClass class
@@ -42,7 +42,7 @@ LcsSingletonCodeClassBuilder >> addDefaultLabelRefactoring [
 ]
 
 { #category : #printing }
-LcsSingletonCodeClassBuilder >> addRefactoringTextDetailsTo: aStream [
+LcsSingletonValueObjectClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	super addRefactoringTextDetailsTo: aStream.
 	aStream 
 		cr; cr; nextPutAll: 'Create Class Methods:';
@@ -53,59 +53,59 @@ LcsSingletonCodeClassBuilder >> addRefactoringTextDetailsTo: aStream [
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> code [
+LcsSingletonValueObjectClassBuilder >> code [
 	^ code
 		ifNil: [ self description first asLowercase asString
 				, (self description copyFrom: 2 to: self rootName size) ]
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> code: aString [
+LcsSingletonValueObjectClassBuilder >> code: aString [
 	code := aString
 ]
 
 { #category : #private }
-LcsSingletonCodeClassBuilder >> defaultCode [
+LcsSingletonValueObjectClassBuilder >> defaultCode [
 	^ self code first asLowercase asString
 		, (self code copyFrom: 2 to: self code size)
 ]
 
 { #category : #'method code source' }
-LcsSingletonCodeClassBuilder >> defaultCodeSource [
+LcsSingletonValueObjectClassBuilder >> defaultCodeSource [
 	^ 'defaultCode
 	^ ' ,self defaultCode printString
 ]
 
 { #category : #'method code source' }
-LcsSingletonCodeClassBuilder >> defaultDescriptionSource [
+LcsSingletonValueObjectClassBuilder >> defaultDescriptionSource [
 	^ 'defaultDescription
 	^ ''' , self description , ''''
 ]
 
 { #category : #'method code source' }
-LcsSingletonCodeClassBuilder >> defaultInstanceSource [
+LcsSingletonValueObjectClassBuilder >> defaultInstanceSource [
 	^ 'defaultInstance
 	^ ' , self defaultInstance asString
 ]
 
 { #category : #'method code source' }
-LcsSingletonCodeClassBuilder >> defaultLabelSource [
+LcsSingletonValueObjectClassBuilder >> defaultLabelSource [
 	^ 'defaultLabel
 	^ ''' , self label , ''''
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> description [
+LcsSingletonValueObjectClassBuilder >> description [
 	^ description ifNil: [ description := self rootName ]
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> description: aString [
+LcsSingletonValueObjectClassBuilder >> description: aString [
 	description := aString
 ]
 
 { #category : #install }
-LcsSingletonCodeClassBuilder >> installCode [
+LcsSingletonValueObjectClassBuilder >> installCode [
 	super installCode.
 	self addRefactoring: self addDefaultLabelRefactoring execute.
 	self addRefactoring: self addDefaultDescriptionRefactoring execute.
@@ -115,17 +115,17 @@ LcsSingletonCodeClassBuilder >> installCode [
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> label [ 
+LcsSingletonValueObjectClassBuilder >> label [ 
 	^ label ifNil: [ label := self description ]
 ]
 
 { #category : #accessing }
-LcsSingletonCodeClassBuilder >> label: aString [
+LcsSingletonValueObjectClassBuilder >> label: aString [
 	label := aString
 ]
 
 { #category : #verification }
-LcsSingletonCodeClassBuilder >> verifyCodeInstallation [
+LcsSingletonValueObjectClassBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName.
 	self assert: self installedClass defaultDescription equals: self description.

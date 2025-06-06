@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsCodesLoaderClassBuilder,
+	#name : #LcsValueObjectsLoaderClassBuilder,
 	#superclass : #LcsLoaderClassBuilder,
 	#instVars : [
 		'protoCodes'
@@ -8,12 +8,12 @@ Class {
 }
 
 { #category : #configuration }
-LcsCodesLoaderClassBuilder class >> targetSuperclassName [	
+LcsValueObjectsLoaderClassBuilder class >> targetSuperclassName [	
 	^ 'LcsValueObjectsLoader'
 ]
 
 { #category : #build }
-LcsCodesLoaderClassBuilder >> dataString [
+LcsValueObjectsLoaderClassBuilder >> dataString [
 	^ String streamContents: [ :stream |
 		(NeoJSONWriter on: stream)
 			mapInstVarsFor: LcsProtoCode;
@@ -21,11 +21,11 @@ LcsCodesLoaderClassBuilder >> dataString [
 ]
 
 { #category : #accessing }
-LcsCodesLoaderClassBuilder >> protoCodes [
+LcsValueObjectsLoaderClassBuilder >> protoCodes [
 	^ protoCodes
 ]
 
 { #category : #accessing }
-LcsCodesLoaderClassBuilder >> protoCodes: anObject [
+LcsValueObjectsLoaderClassBuilder >> protoCodes: anObject [
 	protoCodes := anObject
 ]
