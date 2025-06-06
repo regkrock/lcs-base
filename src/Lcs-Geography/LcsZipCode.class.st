@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsZipCode,
-	#superclass : #LcsAddressCode,
+	#superclass : #LcsBasePostCode,
 	#category : #'Lcs-Geography'
 }
