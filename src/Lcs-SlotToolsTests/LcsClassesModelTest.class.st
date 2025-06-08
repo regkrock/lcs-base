@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsClassesModelTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-SlotToolsTests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }

@@ -33,13 +33,6 @@ LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> addModelClassesTo: classesModel [
-	super addModelClassesTo: classesModel.
-	self addTargetClassTo: classesModel.
-	self addTargetModuleClassTo: classesModel
-]
-
-{ #category : #'gt views' }
 LcsSlotDefinitionBuilder >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
@@ -57,6 +50,12 @@ LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
 					ifFalse: [ aClassOrClassName asString ].
 	(self slotTypes includes: className) ifFalse: [
 		self slotTypes add: className ]
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinitionBuilder >> addStepModelClassesTo: classesModel [
+	classesModel addClassNamed: self targetClassName.	"self addTargetClassTo: classesModel."
+	self addTargetModuleClassTo: classesModel
 ]
 
 { #category : #printing }

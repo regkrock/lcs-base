@@ -16,6 +16,13 @@ LcsClassesModel >> addClassModel: aClassModel [
 		ifNotNil: [ :model | model ]
 ]
 
+{ #category : #configuration }
+LcsClassesModel >> addClassNamed: aClassname [
+	([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
+		ifNil: [ self proposedClassModelFor: aClassname ]
+		ifNotNil: [ :class | self existingClassModelFor: class ]
+]
+
 { #category : #model }
 LcsClassesModel >> allClassModelsFor: aClassname [
 	^ self collection select: [ :eachModel | eachModel modelClassname = aClassname asString ]

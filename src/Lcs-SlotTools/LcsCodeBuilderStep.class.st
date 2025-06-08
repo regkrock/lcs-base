@@ -24,7 +24,8 @@ LcsCodeBuilderStep >> addModelAssociationsTo: classesModel [
 { #category : #'gt view' }
 LcsCodeBuilderStep >> addModelClassesTo: classesModel [
 	self traceStep: 'addModelClassesTo:'.
-	self jobSteps addModelClassesTo: classesModel
+	self jobSteps addModelClassesTo: classesModel.
+	self addStepModelClassesTo: classesModel
 ]
 
 { #category : #refactorings }
@@ -39,6 +40,10 @@ LcsCodeBuilderStep >> addRefactoringTextDetailsTo: stream [
 { #category : #refactorings }
 LcsCodeBuilderStep >> addRefactoringsTo: aCollection [
 	aCollection addAll: self refactorings
+]
+
+{ #category : #'gt view' }
+LcsCodeBuilderStep >> addStepModelClassesTo: classesModel [ 
 ]
 
 { #category : #state }

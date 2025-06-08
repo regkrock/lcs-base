@@ -19,13 +19,6 @@ LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aBu
 ]
 
 { #category : #'gt views' }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addModelClassesTo: classesModel [
-	super addModelClassesTo: classesModel.
-	self slotTypes isEmpty ifTrue: [ ^ self ].
-	self addParentClassTo: classesModel
-]
-
-{ #category : #'gt views' }
 LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addParentClassTo: classesModel [
 	[ classesModel existingClassModelFor: self slotTypes first asClass ]
 		on: NotFound
@@ -39,6 +32,12 @@ LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDe
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
 	aCodeStream addKeyword: 'codeSuperclass' argument: self codeSuperclassName
 
+]
+
+{ #category : #'gt views' }
+LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addStepModelClassesTo: classesModel [
+	self slotTypes isEmpty ifTrue: [ ^ self ].
+	classesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #accessing }

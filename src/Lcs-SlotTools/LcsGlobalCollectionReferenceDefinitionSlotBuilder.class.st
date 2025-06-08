@@ -32,19 +32,18 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: cla
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelClassesTo: classesModel [
-	super addModelClassesTo: classesModel.
-	self slotTypes isEmpty ifTrue: [ ^ self ].
-	self addParentClassTo: classesModel
-]
-
-{ #category : #'gt views' }
 LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addParentClassTo: classesModel [
 	[ classesModel existingClassModelFor: self slotTypes first asClass ]
 		on: NotFound
 		do: [ :s | 
 			classesModel proposedClassModelFor: self slotTypes first.
 			s return: nil ]
+]
+
+{ #category : #'gt views' }
+LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addStepModelClassesTo: classesModel [
+	self slotTypes isEmpty ifTrue: [ ^ self ].
+	classesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #'code generation' }
