@@ -63,25 +63,10 @@ LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
-{ #category : #'gt views' }
-LcsMemberOfSlotBuilder >> domainClass [
-	^ self newDomainClassName asClass
-]
-
-{ #category : #'gt views' }
-LcsMemberOfSlotBuilder >> newDomainClassName [
-	^ self parent parent newDomainClassName
-]
-
 { #category : #'gt view' }
 LcsMemberOfSlotBuilder >> sourceCollectionClassName [
 	^ (self currentSystem moduleNamed: self collectionSlotModuleName) ifNotNil: [ :module | 
 		(module perform: collectionSlotName asSymbol) ifNotNil: [ :value | value class name asString ] ]
-]
-
-{ #category : #accessing }
-LcsMemberOfSlotBuilder >> targetModuleName [
-	^ self targetModuleClass defaultModuleName
 ]
 
 { #category : #command }
