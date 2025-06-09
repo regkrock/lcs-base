@@ -1,5 +1,5 @@
 Class {
 	#name : #LxxCountries,
 	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }

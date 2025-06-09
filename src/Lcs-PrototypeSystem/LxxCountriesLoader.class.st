@@ -1,7 +1,7 @@
 Class {
 	#name : #LxxCountriesLoader,
 	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #'as yet unclassified' }

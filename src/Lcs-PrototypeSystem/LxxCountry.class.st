@@ -9,7 +9,7 @@ Class {
 		'commonName',
 		'subdivisions'
 	],
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #'slot definition' }

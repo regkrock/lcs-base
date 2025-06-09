@@ -18,6 +18,7 @@ LcsClassesModel >> addClassModel: aClassModel [
 
 { #category : #configuration }
 LcsClassesModel >> addClassNamed: aClassname [
+	aClassname isNil ifTrue: [ ^ self ].
 	([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
 		ifNil: [ self proposedClassModelFor: aClassname ]
 		ifNotNil: [ :class | self existingClassModelFor: class ]

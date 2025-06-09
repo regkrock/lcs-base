@@ -25,7 +25,7 @@ LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
 LcsMemberOfSlotBuilder >> addModelAssociationsTo: classesModel [
 	super addModelAssociationsTo: classesModel.
 	(classesModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self newDomainClassName
+		addAssociation: self slotName toModelNamed: self sourceCollectionClassName
 ]
 
 { #category : #'gt views' }
@@ -34,6 +34,13 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 	aCodeStream
 		addKeyword: 'collectionSlotName' argument: (self collectionSlotName ifNil: [ '<missing>' ]) printString;
 		addKeyword: 'collectionSlotModuleName' argument: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
+]
+
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> addStepModelClassesTo: classesModel [
+	classesModel addClassNamed: self targetClassName.
+	self currentSystem isNil ifTrue: [ ^ self ].
+	classesModel addClassNamed: self sourceCollectionClassName
 ]
 
 { #category : #accessing }
@@ -64,6 +71,12 @@ LcsMemberOfSlotBuilder >> domainClass [
 { #category : #'gt views' }
 LcsMemberOfSlotBuilder >> newDomainClassName [
 	^ self parent parent newDomainClassName
+]
+
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> sourceCollectionClassName [
+	^ (self currentSystem moduleNamed: self collectionSlotModuleName) ifNotNil: [ :module | 
+		(module perform: collectionSlotName asSymbol) ifNotNil: [ :value | value class name asString ] ]
 ]
 
 { #category : #accessing }

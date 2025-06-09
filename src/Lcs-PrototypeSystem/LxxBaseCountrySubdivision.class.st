@@ -6,7 +6,7 @@ Class {
 		'formalName',
 		'subdivisionName'
 	],
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #'slot definition' }

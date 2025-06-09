@@ -92,6 +92,20 @@ LcsCodeBuilderStep >> clearTargetClass: aClass [
 	"subclasses can override"
 ]
 
+{ #category : #execute }
+LcsCodeBuilderStep >> execute [
+	self jobSteps isEmpty ifTrue: [self buildJobSteps].
+	self installCode.
+	self verifyCodeInstallation.
+	self updateSlotModel.
+	self verifySlotModelUpdatesMadeByBuilder.
+	self currentSystem isNil ifTrue: [ ^ self ].
+	self currentUnitOfWork applyChanges.
+	self populateSlotModel.
+	self verifyPopulateSlotModel.
+	self currentUnitOfWork applyChanges
+]
+
 { #category : #command }
 LcsCodeBuilderStep >> fullyInstall [
 	"If this is part of a builder job, then do not use this. Let the builder control the phases"
