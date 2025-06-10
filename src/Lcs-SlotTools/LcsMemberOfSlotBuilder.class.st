@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'collectionSlotName',
-		'collectionSlotModuleName'
+		'collectionSlotModuleName',
+		'collectionSourceClassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -63,8 +64,21 @@ LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
 	collectionSlotName := anObject
 ]
 
+{ #category : #accessing }
+LcsMemberOfSlotBuilder >> collectionSourceClassName [
+	^ collectionSourceClassName
+]
+
+{ #category : #accessing }
+LcsMemberOfSlotBuilder >> collectionSourceClassName: anObject [
+	collectionSourceClassName := anObject
+]
+
 { #category : #'gt view' }
 LcsMemberOfSlotBuilder >> sourceCollectionClassName [
+
+	self collectionSourceClassName ifNotNil: [ ^ self collectionSourceClassName ].
+	
 	^ (self currentSystem moduleNamed: self collectionSlotModuleName) ifNotNil: [ :module | 
 		(module perform: collectionSlotName asSymbol) ifNotNil: [ :value | value class name asString ] ]
 ]
