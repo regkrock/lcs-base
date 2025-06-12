@@ -34,7 +34,7 @@ LcsValueObjectClassesBuilderJob >> codesCollectionClassBuilder [
 
 { #category : #builders }
 LcsValueObjectClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
-	^ LcsValueObjectsGlobalSlotDefinitionBuilder new
+	^ LcsValueObjectsGlobalCollectionSlotBuilder new
 		slotName: self collectionSlotName;
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;
@@ -69,7 +69,7 @@ LcsValueObjectClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClas
 
 { #category : #'builder step' }
 LcsValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
-	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
+	^ (self jobSteps stepsWithClass: LcsGlobalCollectionSlotBuilder) first
 ]
 
 { #category : #initialize }

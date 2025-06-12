@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsGlobalSlotDefinitionBuilderTest >> testInstallingGlobalCollectionSlot [
 	self subject: (
-		LcsGlobalSlotDefinitionBuilder new
+		LcsGlobalCollectionSlotBuilder new
 			slotName: 'foos';
 			targetClassName: self currentSystem class name;
 			targetModuleClass: self currentSystem class name;

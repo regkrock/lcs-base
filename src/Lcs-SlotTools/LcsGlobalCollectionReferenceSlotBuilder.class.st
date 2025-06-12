@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsGlobalCollectionReferenceDefinitionSlotBuilder,
+	#name : #LcsGlobalCollectionReferenceSlotBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'collectionSlotName',
@@ -10,12 +10,12 @@ Class {
 }
 
 { #category : #configuration }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder class >> slotDefinitionClass [
+LcsGlobalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionReferenceSlot
 ]
 
 { #category : #'code generation' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsGlobalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
 	aSlotDefinitionMethodBuilder 
 		addProperty: 'collectionSlotName' value: self collectionSlotName printString;
@@ -23,7 +23,7 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addExtraPropertiesTo: aSlot
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: classesModel [
+LcsGlobalCollectionReferenceSlotBuilder >> addModelAssociationsTo: classesModel [
 	super addModelAssociationsTo: classesModel.
 	(classesModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
@@ -32,7 +32,7 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addModelAssociationsTo: cla
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addParentClassTo: classesModel [
+LcsGlobalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
 	[ classesModel existingClassModelFor: self slotTypes first asClass ]
 		on: NotFound
 		do: [ :s | 
@@ -41,53 +41,53 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addParentClassTo: classesMo
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> addStepModelClassesTo: classesModel [
+LcsGlobalCollectionReferenceSlotBuilder >> addStepModelClassesTo: classesModel [
 	self slotTypes isEmpty ifTrue: [ ^ self ].
 	classesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #'code generation' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionClass [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionClass [
 	^ [ self collectionClassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionClassName [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionClassName [
 	^ self slotTypes first
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionClassName: anObject [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionClassName: anObject [
 	collectionClassName := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionSlotModule [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionSlotModuleName [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName [
 	^ collectionSlotModuleName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionSlotModuleName: aString [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName: aString [
 	collectionSlotModuleName := aString
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionSlotName [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName [
 	^ collectionSlotName
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> collectionSlotName: aString [
+LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
 	collectionSlotName := aString
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> gtClassBuilderViewFor: aView [
+LcsGlobalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
 		title: 'Steps List';
@@ -108,13 +108,13 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> gtClassBuilderViewFor: aVie
 ]
 
 { #category : #initialize }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> initialize [
+LcsGlobalCollectionReferenceSlotBuilder >> initialize [
 	super initialize.
 	self slotName: 'parent'
 ]
 
 { #category : #printing }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> printJobStreamDetailsOn: aStream [
+LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Install slot "';
 		nextPutAll: self slotName;
@@ -123,13 +123,13 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> printJobStreamDetailsOn: aS
 ]
 
 { #category : #command }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> uninstall [
+LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ :c | c removeDomainSlotNamed: self slotName ]
 ]
 
 { #category : #verification }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> verifyCodeInstallation [
+LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 
 	"| slotDefinition |
@@ -142,7 +142,7 @@ LcsGlobalCollectionReferenceDefinitionSlotBuilder >> verifyCodeInstallation [
 ]
 
 { #category : #verification }
-LcsGlobalCollectionReferenceDefinitionSlotBuilder >> verifyUninstall [
+LcsGlobalCollectionReferenceSlotBuilder >> verifyUninstall [
 	"| slotDefinition |"
 	super verifyUninstall.
 	self targetClass ifNil: [ ^ self ].

@@ -62,7 +62,7 @@ LcsSingletonValueObjectClassesBuilderJob >> codeSubclassBuilders: aCollection [
 
 { #category : #builders }
 LcsSingletonValueObjectClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
-	^ LcsSingletonValueObjectsGlobalSlotDefinitionBuilder new
+	^ LcsSingletonValueObjectsGlobalCollectionSlotBuilder new
 		slotName: self collectionSlotName;
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;
@@ -73,7 +73,7 @@ LcsSingletonValueObjectClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
 
 { #category : #'builder step' }
 LcsSingletonValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
-	^ (self jobSteps stepsWithClass: LcsSingletonValueObjectsGlobalSlotDefinitionBuilder) first
+	^ (self jobSteps stepsWithClass: LcsSingletonValueObjectsGlobalCollectionSlotBuilder) first
 ]
 
 { #category : #initialize }

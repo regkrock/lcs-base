@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsIntegerSlotDefinitionBuilder,
+	#name : #LcsIntegerSlotBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #configuration }
-LcsIntegerSlotDefinitionBuilder class >> slotDefinitionClass [
+LcsIntegerSlotBuilder class >> slotDefinitionClass [
 	^ LcsIntegerSlot
 ]

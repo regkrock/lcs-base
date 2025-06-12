@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsSingletonValueObjectsGlobalSlotDefinitionBuilder,
-	#superclass : #LcsGlobalSlotDefinitionBuilder,
+	#name : #LcsSingletonValueObjectsGlobalCollectionSlotBuilder,
+	#superclass : #LcsGlobalCollectionSlotBuilder,
 	#instVars : [
 		'codeSuperclassName'
 	],
@@ -8,18 +8,18 @@ Class {
 }
 
 { #category : #defaults }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder class >> slotDefinitionClass [
 	^ LcsSingletonValueObjectsGlobalCollectionSlot
 ]
 
 { #category : #'gt views' }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aBuilder [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aBuilder [
 	super addExtraPropertiesTo: aBuilder.
 	aBuilder addProperty: 'codeSuperclass' value: self codeSuperclassName
 ]
 
 { #category : #'gt views' }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addParentClassTo: classesModel [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addParentClassTo: classesModel [
 	[ classesModel existingClassModelFor: self slotTypes first asClass ]
 		on: NotFound
 		do: [ :s | 
@@ -28,29 +28,29 @@ LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addParentClassTo: classes
 ]
 
 { #category : #'code generation' }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
 	aCodeStream addKeyword: 'codeSuperclass' argument: self codeSuperclassName
 
 ]
 
 { #category : #'gt views' }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> addStepModelClassesTo: classesModel [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addStepModelClassesTo: classesModel [
 	self slotTypes isEmpty ifTrue: [ ^ self ].
 	classesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #accessing }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclass [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> codeSuperclass [
 	^ self codeSuperclassName asClass
 ]
 
 { #category : #accessing }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclassName [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName [
 	^ codeSuperclassName
 ]
 
 { #category : #accessing }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclassName: aClassName [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName: aClassName [
 	codeSuperclassName := aClassName
 ]

@@ -8,10 +8,10 @@ Class {
 LcsValueObjectsGlobalSlotDefinitionBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
 	
-	self assert: LcsValueObjectsGlobalSlotDefinitionBuilder slotDefinitionClass equals: LcsCodesGlobalCollectionSlot.
+	self assert: LcsValueObjectsGlobalCollectionSlotBuilder slotDefinitionClass equals: LcsValueObjectsGlobalCollectionSlot.
 	
-	self subject: LcsValueObjectsGlobalSlotDefinitionBuilder new.
-	self assert: self subject slotDefinitionClassName  equals: 'LcsCodesGlobalCollectionSlot'.
+	self subject: LcsValueObjectsGlobalCollectionSlotBuilder new.
+	self assert: self subject slotDefinitionClassName  equals: 'LcsValueObjectsGlobalCollectionSlot'.
 	self assert: self subject collectionClass equals: IdentitySet.
 	self assert: self subject parent isNil.
 	self assert: self subject jobSteps hasNoJobSteps.
@@ -32,7 +32,7 @@ LcsValueObjectsGlobalSlotDefinitionBuilderTest >> testCreation [
 
 { #category : #tests }
 LcsValueObjectsGlobalSlotDefinitionBuilderTest >> testSlotName [
-	self subject: LcsValueObjectsGlobalSlotDefinitionBuilder new.
+	self subject: LcsValueObjectsGlobalCollectionSlotBuilder new.
 	
 	self subject slotName: 'foo'.
 	
@@ -50,7 +50,7 @@ LcsValueObjectsGlobalSlotDefinitionBuilderTest >> testSlotName [
 
 { #category : #tests }
 LcsValueObjectsGlobalSlotDefinitionBuilderTest >> testTargetClassName [
-	self subject: LcsValueObjectsGlobalSlotDefinitionBuilder new.
+	self subject: LcsValueObjectsGlobalCollectionSlotBuilder new.
 	
 	self subject targetClassName: 'FooBar'.
 	

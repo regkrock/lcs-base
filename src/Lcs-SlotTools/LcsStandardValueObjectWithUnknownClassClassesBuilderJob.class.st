@@ -57,7 +57,7 @@ LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> createProtoCodesFromL
 
 { #category : #'job steps' }
 LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
-	^ (self jobSteps stepsWithClass: LcsValueObjectsGlobalSlotDefinitionBuilder) first
+	^ (self jobSteps stepsWithClass: LcsValueObjectsGlobalCollectionSlotBuilder) first
 ]
 
 { #category : #initialize }

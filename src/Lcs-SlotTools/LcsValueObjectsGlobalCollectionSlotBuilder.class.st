@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsValueObjectsGlobalSlotDefinitionBuilder,
-	#superclass : #LcsGlobalSlotDefinitionBuilder,
+	#name : #LcsValueObjectsGlobalCollectionSlotBuilder,
+	#superclass : #LcsGlobalCollectionSlotBuilder,
 	#instVars : [
 		'codeSuperclassName',
 		'loaderClassName'
@@ -9,12 +9,12 @@ Class {
 }
 
 { #category : #defaults }
-LcsValueObjectsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
-	^ LcsCodesGlobalCollectionSlot
+LcsValueObjectsGlobalCollectionSlotBuilder class >> slotDefinitionClass [
+	^ LcsValueObjectsGlobalCollectionSlot
 ]
 
 { #category : #initialize }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsValueObjectsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
 	aSlotDefinitionMethodBuilder.
 		self collectionElementTypes do: [ :each |
@@ -25,43 +25,43 @@ LcsValueObjectsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinit
 ]
 
 { #category : #'code generation' }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+LcsValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
 	aCodeStream addKeyword: 'loaderClass' argument: self loaderClassName
 
 ]
 
 { #category : #'gt views' }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> addStepModelClassesTo: classesModel [
+LcsValueObjectsGlobalCollectionSlotBuilder >> addStepModelClassesTo: classesModel [
 	classesModel addClassNamed: self collectionClassName
 ]
 
 { #category : #accessing }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclass [
+LcsValueObjectsGlobalCollectionSlotBuilder >> codeSuperclass [
 	^ self codeSuperclassName asClass
 ]
 
 { #category : #accessing }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclassName [
+LcsValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName [
 	^ codeSuperclassName
 ]
 
 { #category : #accessing }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> codeSuperclassName: aClassName [
+LcsValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName: aClassName [
 	codeSuperclassName := aClassName
 ]
 
 { #category : #accessing }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> laderClass [
+LcsValueObjectsGlobalCollectionSlotBuilder >> laderClass [
 	^ self loaderClassName asClass
 ]
 
 { #category : #accessing }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> loaderClassName [
+LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName [
 	^ loaderClassName
 ]
 
 { #category : #accessing }
-LcsValueObjectsGlobalSlotDefinitionBuilder >> loaderClassName: anObject [
+LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName: anObject [
 	loaderClassName := anObject
 ]

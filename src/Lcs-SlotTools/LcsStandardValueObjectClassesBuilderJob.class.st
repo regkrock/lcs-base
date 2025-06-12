@@ -40,7 +40,7 @@ LcsStandardValueObjectClassesBuilderJob >> defaultInstance: aString [
 
 { #category : #'as yet unclassified' }
 LcsStandardValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
-	^ (self jobSteps stepsWithClass: LcsValueObjectsGlobalSlotDefinitionBuilder) first
+	^ (self jobSteps stepsWithClass: LcsValueObjectsGlobalCollectionSlotBuilder) first
 ]
 
 { #category : #initialize }

@@ -60,7 +60,7 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 { #category : #'slot definition' }
 LcsLegalEntitiesModule class >> titlesSlotDefinition [
 	<slotDefinition>
-	^ LcsCodesGlobalCollectionSlot new
+	^ LcsValueObjectsGlobalCollectionSlot new
 		slotName: 'titles';
 		addSlotType: LcsTitles;
 		collectionClass: IdentitySet;

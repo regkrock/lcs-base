@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsGlobalSlotDefinitionBuilder,
+	#name : #LcsGlobalCollectionSlotBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#instVars : [
 		'slotClass',
@@ -13,17 +13,17 @@ Class {
 }
 
 { #category : #defaults }
-LcsGlobalSlotDefinitionBuilder class >> slotDefinitionClass [
+LcsGlobalCollectionSlotBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionSlot
 ]
 
 { #category : #'gt views' }
-LcsGlobalSlotDefinitionBuilder >> addCollectionElementType: aClass [
+LcsGlobalCollectionSlotBuilder >> addCollectionElementType: aClass [
 	self collectionElementTypes add: aClass
 ]
 
 { #category : #initialize }
-LcsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
 	self collectionElementTypes do: [ :each |
 		aSlotDefinitionMethodBuilder 
@@ -32,7 +32,7 @@ LcsGlobalSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBui
 ]
 
 { #category : #'gt views' }
-LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: classesModel [
+LcsGlobalCollectionSlotBuilder >> addModelAssociationsTo: classesModel [
 	super addModelAssociationsTo: classesModel.
 	(classesModel classModelForClassname: self parentClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
@@ -41,117 +41,117 @@ LcsGlobalSlotDefinitionBuilder >> addModelAssociationsTo: classesModel [
 ]
 
 { #category : #initialize }
-LcsGlobalSlotDefinitionBuilder >> addPropertiesTo: step [ 
+LcsGlobalCollectionSlotBuilder >> addPropertiesTo: step [ 
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> collectionClass [
+LcsGlobalCollectionSlotBuilder >> collectionClass [
 	^ collectionClass
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> collectionClass: anObject [
+LcsGlobalCollectionSlotBuilder >> collectionClass: anObject [
 	collectionClass := anObject
 ]
 
 { #category : #'gt views' }
-LcsGlobalSlotDefinitionBuilder >> collectionClassName [
+LcsGlobalCollectionSlotBuilder >> collectionClassName [
 	^ self slotTypes first asString
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> collectionElementTypes [
+LcsGlobalCollectionSlotBuilder >> collectionElementTypes [
 	^ collectionElementTypes
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> collectionElementTypes: anObject [
+LcsGlobalCollectionSlotBuilder >> collectionElementTypes: anObject [
 	collectionElementTypes := anObject
 ]
 
 { #category : #command }
-LcsGlobalSlotDefinitionBuilder >> globalCollectionHome [
+LcsGlobalCollectionSlotBuilder >> globalCollectionHome [
 	^ self module
 ]
 
 { #category : #initialize }
-LcsGlobalSlotDefinitionBuilder >> initialize [
+LcsGlobalCollectionSlotBuilder >> initialize [
 	super initialize.
 	self collectionElementTypes:	OrderedCollection new.
 	self collectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
 { #category : #initialize }
-LcsGlobalSlotDefinitionBuilder >> initializeModel [
+LcsGlobalCollectionSlotBuilder >> initializeModel [
 	(self targetClass slotDefinitionNamed: self slotName)
 		initializeSlotValueIn: (self currentSystem moduleNamed: self targetModuleName)
 ]
 
 { #category : #command }
-LcsGlobalSlotDefinitionBuilder >> module [
+LcsGlobalCollectionSlotBuilder >> module [
 	^ self currentSystem moduleNamed: self targetClass defaultModuleName
 ]
 
 { #category : #'gt views' }
-LcsGlobalSlotDefinitionBuilder >> parentClassName [
+LcsGlobalCollectionSlotBuilder >> parentClassName [
 	^ self targetModuleClass name asString
 ]
 
 { #category : #command }
-LcsGlobalSlotDefinitionBuilder >> populateSlotModel [
+LcsGlobalCollectionSlotBuilder >> populateSlotModel [
 	super populateSlotModel.
 	self globalCollectionHome initializeSlotNamed: self slotName 
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotClass [
+LcsGlobalCollectionSlotBuilder >> slotClass [
 	^ slotClass 
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotClass: anObject [
+LcsGlobalCollectionSlotBuilder >> slotClass: anObject [
 	slotClass := anObject
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotTypeClass [
+LcsGlobalCollectionSlotBuilder >> slotTypeClass [
 	^ [ self slotTypeClassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotTypeClassName [
+LcsGlobalCollectionSlotBuilder >> slotTypeClassName [
 	^ slotTypeClassName
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> slotTypeClassName: aName [
+LcsGlobalCollectionSlotBuilder >> slotTypeClassName: aName [
 	slotTypeClassName := aName
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> targetModule [
+LcsGlobalCollectionSlotBuilder >> targetModule [
 	^ targetModule
 	"^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass defaultModuleName ])"
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> targetModuleName [
+LcsGlobalCollectionSlotBuilder >> targetModuleName [
 	^ targetModuleName
 ]
 
 { #category : #accessing }
-LcsGlobalSlotDefinitionBuilder >> targetModuleName: anObject [
+LcsGlobalCollectionSlotBuilder >> targetModuleName: anObject [
 	targetModuleName := anObject
 ]
 
 { #category : #command }
-LcsGlobalSlotDefinitionBuilder >> uninstall [
+LcsGlobalCollectionSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamedFromSlotModel: self slotName].
 ]
 
 { #category : #command }
-LcsGlobalSlotDefinitionBuilder >> verifyUninstall [
+LcsGlobalCollectionSlotBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass ifNotNil: [ self targetClass verifyRemovedDomainSlotNamed: self slotName ]
 ]

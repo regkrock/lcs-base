@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsScaledDecimalSlotDefinitionBuilder,
+	#name : #LcsScaledDecimalSlotBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #configuration }
-LcsScaledDecimalSlotDefinitionBuilder class >> slotDefinitionClass [
+LcsScaledDecimalSlotBuilder class >> slotDefinitionClass [
 	^ LcsScaledDecimalSlot
 ]

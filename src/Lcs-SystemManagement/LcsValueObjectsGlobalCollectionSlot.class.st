@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsCodesGlobalCollectionSlot,
+	#name : #LcsValueObjectsGlobalCollectionSlot,
 	#superclass : #LcsGlobalCollectionSlot,
 	#instVars : [
 		'loaderClass'
@@ -8,22 +8,22 @@ Class {
 }
 
 { #category : #'object initialization' }
-LcsCodesGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
+LcsValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
 	self populateCollection 
 ]
 
 { #category : #accessing }
-LcsCodesGlobalCollectionSlot >> loaderClass [
+LcsValueObjectsGlobalCollectionSlot >> loaderClass [
 	^ loaderClass
 ]
 
 { #category : #accessing }
-LcsCodesGlobalCollectionSlot >> loaderClass: aLoaderClass [
+LcsValueObjectsGlobalCollectionSlot >> loaderClass: aLoaderClass [
 	loaderClass := aLoaderClass
 ]
 
 { #category : #'as yet unclassified' }
-LcsCodesGlobalCollectionSlot >> populateCollection [
+LcsValueObjectsGlobalCollectionSlot >> populateCollection [
 	self loaderClass new load
 ]

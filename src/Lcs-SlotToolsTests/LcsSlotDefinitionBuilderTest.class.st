@@ -18,5 +18,6 @@ LcsSlotDefinitionBuilderTest >> testInstallingSlot [
 			yourself).
 	self subject buildJobSteps.
 	self subject installCode.
-	self subject verifyCodeInstallation
+	self subject verifyCodeInstallation.
+	self subject updateSlotModel
 ]

@@ -100,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T09:28:46.41644-04:00"
+						"dateAndTimeString" : "2025-05-14T09:29:16.074139-04:00"
 					}
 				},
 				"uid" : {
@@ -110,7 +110,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:LcsPerson}}gtClass:LcsPerson}}   {{LxxPerson}}"
+				"string" : "{{gtClass:LcsPerson}} {{gtClass:LxxPerson}}"
 			}
 		]
 	},

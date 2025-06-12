@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsBooleanSlotDefinitionBuilder,
+	#name : #LcsBooleanSlotBuilder,
 	#superclass : #LcsSlotDefinitionBuilder,
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #configuration }
-LcsBooleanSlotDefinitionBuilder class >> slotDefinitionClass [
+LcsBooleanSlotBuilder class >> slotDefinitionClass [
 	^ LcsBooleanSlot
 ]

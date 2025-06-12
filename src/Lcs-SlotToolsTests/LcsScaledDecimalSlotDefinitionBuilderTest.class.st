@@ -6,5 +6,5 @@ Class {
 
 { #category : #tests }
 LcsScaledDecimalSlotDefinitionBuilderTest >> testCreation [
-	self assert: LcsScaledDecimalSlotDefinitionBuilder slotDefinitionClass equals: LcsScaledDecimalSlot
+	self assert: LcsScaledDecimalSlotBuilder slotDefinitionClass equals: LcsScaledDecimalSlot
 ]

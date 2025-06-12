@@ -25,7 +25,7 @@ LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
 { #category : #configuration }
 LcsSlotDefinitionBuilder class >> slotDefinitionClass [
 	"Subclasses can override this method to provide a default"
-	^ nil
+	^ LcsSlotDefinition
 ]
 
 { #category : #initialize }

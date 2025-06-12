@@ -57,7 +57,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildJobSteps [
 
 { #category : #builders }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionReferenceSlotBuilder [
-	^ LcsGlobalCollectionReferenceDefinitionSlotBuilder new
+	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
 		collectionSlotName: self collectionSlotName;
 		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
@@ -69,7 +69,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionReferenceSlotBuild
 { #category : #'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionSlotBuilder [
 	| builder |
-	builder := LcsGlobalSlotDefinitionBuilder new
+	builder := LcsGlobalCollectionSlotBuilder new
 					slotName: self collectionSlotName;
 					targetClassName: self collectionModuleClass name;
 					targetModuleClass: self collectionModuleClass;
@@ -139,7 +139,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainCollectionClassBuilder
 
 { #category : #'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> globalCollectionSlotDefinitionStep [
-	^ (self jobSteps stepsWithClass: LcsGlobalSlotDefinitionBuilder) first
+	^ (self jobSteps stepsWithClass: LcsGlobalCollectionSlotBuilder) first
 ]
 
 { #category : #initialize }
