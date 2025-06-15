@@ -15,7 +15,7 @@ LcsScaledDecimalSlot >> defaultInitialValueBlock [
 { #category : #accessing }
 LcsScaledDecimalSlot >> initialize [
 	super initialize.
-	self numberOfDecimals: 0
+	self numberOfDecimals: 2
 ]
 
 { #category : #accessing }

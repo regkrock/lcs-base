@@ -75,6 +75,11 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 		actionDropdownButtonIcon: BrGlamorousVectorIcons add 
 			tooltip: 'Create Slot'
 			content: [ :aDropdown | (LcsAddSlotDefinitionFormElement newOn: aDropdown targetClass: self) element];
+		actionButtonDo: [ :aButtonAction | 
+			aButtonAction
+				icon: BrGlamorousVectorIcons spawn;
+				tooltip: 'Inspect view model';
+				action: [ :aButton | aButton phlow spawnObject: (LcsAccessorSlotCreationForm newOn: self)  ] ];
 		actionUpdateButton;
 		send: [ :each | each value ] ;
 		yourself

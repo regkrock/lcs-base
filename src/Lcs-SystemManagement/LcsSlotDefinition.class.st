@@ -34,7 +34,7 @@ LcsSlotDefinition >> _slotVarPut: anObject in: aDomainObject [
 		to: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 LcsSlotDefinition >> addCondition: aCondition labelled: aString [
 	"Add ==aCondition== as an additional validation condition to the receiver and give it the label ==aString==. The first argument is either a block-context or any other object that responds to ==#value:== with ==true== or ==false==."
 

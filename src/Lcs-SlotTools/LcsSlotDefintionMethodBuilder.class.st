@@ -98,7 +98,7 @@ LcsSlotDefintionMethodBuilder >> installCode [
 		RBAddMethodChange
 			compile: self slotDefinitionSource
 			in: self targetClass class
-			classified: #'slot definition') execute.
+			classified: #'slot definitions') execute.
 	self beCodeInstalled
 ]
 

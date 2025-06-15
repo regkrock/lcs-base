@@ -42,6 +42,19 @@ LcsBaseSlotDefinition >> domainClass: aDomainClass [
 	domainClass := aDomainClass
 ]
 
+{ #category : #magritte }
+LcsBaseSlotDefinition >> domainClassDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Domain Class';
+		priority: 12;
+		accessor: #'domainClass';
+		beReadOnly;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+
+]
+
 { #category : #initialize }
 LcsBaseSlotDefinition >> initialize [
 	super initialize.
@@ -80,6 +93,24 @@ LcsBaseSlotDefinition >> priority: anObject [
 	priority := anObject
 ]
 
+{ #category : #magritte }
+LcsBaseSlotDefinition >> priorityDescription [
+	<magritteDescription>
+	^ MANumberDescription new
+		label: 'Priority';
+		priority: 10;
+		accessor: #'priority';
+		kind: Object;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		beRequired
+
+]
+
 { #category : #validations }
 LcsBaseSlotDefinition >> removeValidationCondition: aValidationCondition [
 	self validationConditions removeValidationCondition: aValidationCondition
@@ -88,6 +119,23 @@ LcsBaseSlotDefinition >> removeValidationCondition: aValidationCondition [
 { #category : #validations }
 LcsBaseSlotDefinition >> removeValidationConditionWithDescription: aString [
 	self validationConditions removeValidationConditionWithDescription: aString
+]
+
+{ #category : #magritte }
+LcsBaseSlotDefinition >> requiredDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Required';
+		priority: 10;
+		accessor: #'required';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		beRequired
+
 ]
 
 { #category : #defaults }
@@ -103,6 +151,28 @@ LcsBaseSlotDefinition >> slotName [
 { #category : #accessing }
 LcsBaseSlotDefinition >> slotName: anObject [
 	slotName := anObject
+]
+
+{ #category : #magritte }
+LcsBaseSlotDefinition >> slotNameDescription [
+	<magritteDescription>
+	| existingInstvarNames |
+	existingInstvarNames := self domainClass ifNil: [ #() ] ifNotNil: [ :c | c allInstVarNames ].
+	^ GtMATextDescription new
+		label: 'Slot Name';
+		priority: 1;
+		accessor: #'slotName';
+		kind: Object;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		beRequired
+
 ]
 
 { #category : #'gt views' }
