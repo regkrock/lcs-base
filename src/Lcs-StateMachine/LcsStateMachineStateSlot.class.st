@@ -12,7 +12,8 @@ LcsStateMachineStateSlot >> initialize [
 	self 
 		slotName: 'state';
 		addSlotType: LcsStateMachineState; 
-		allowNil
+		beAllowNil;
+		initialValue: nil
 ]
 
 { #category : #accessing }

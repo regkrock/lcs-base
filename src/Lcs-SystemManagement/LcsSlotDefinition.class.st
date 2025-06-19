@@ -20,7 +20,8 @@ Class {
 		'required',
 		'validator',
 		'initialValueBlock',
-		'variableUpdatePolicy'
+		'variableUpdatePolicy',
+		'allowNil'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -51,16 +52,25 @@ LcsSlotDefinition >> addValidateConfigurationResultTo: aValidator [
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
-{ #category : #command }
-LcsSlotDefinition >> allowNil [
-	self addSlotType: UndefinedObject.
-	self initialValue: nil
+{ #category : #accessing }
+LcsSlotDefinition >> allowNil [ 
+	^ allowNil
+]
+
+{ #category : #accessing }
+LcsSlotDefinition >> allowNil: anObject [
+	allowNil := anObject
 ]
 
 { #category : #'slot model' }
 LcsSlotDefinition >> assignParent: aDomainObject to: newValue [
 	newValue isDomainObject ifTrue: [
 		newValue parent: aDomainObject ]
+]
+
+{ #category : #command }
+LcsSlotDefinition >> beAllowNil [ 
+	self allowNil: true
 ]
 
 { #category : #configuration }
@@ -264,7 +274,7 @@ LcsSlotDefinition >> initialValue [
 
 { #category : #accessing }
 LcsSlotDefinition >> initialValue: anObject [
-	self initialValueBlock: [ :parentDomainObject | anObject ]
+	self initialValueBlock: [ anObject ]
 ]
 
 { #category : #accessing }
@@ -298,7 +308,9 @@ LcsSlotDefinition >> initialize [
 	super initialize.
 	self initializeSlotTypes.
 	self makeUpdateOfVariableViaUnitOfWork.
-	self initialValueBlock: self defaultInitialValueBlock
+	self initialValueBlock: self defaultInitialValueBlock.
+	self allowNil: false.
+	self required: false.
 ]
 
 { #category : #'object initialization' }
@@ -335,6 +347,11 @@ LcsSlotDefinition >> isInstanceVariableDefined [
 { #category : #testing }
 LcsSlotDefinition >> isLocalCollectionSlot [
 	^ false
+]
+
+{ #category : #testing }
+LcsSlotDefinition >> isNilAllowed [
+	^ self allowNil == true
 ]
 
 { #category : #testing }

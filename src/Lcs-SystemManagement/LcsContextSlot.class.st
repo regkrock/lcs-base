@@ -10,5 +10,6 @@ LcsContextSlot >> initialize [
 	self
 		slotName: 'context';
 		addSlotType: Object;
-		allowNil
+		beAllowNil;
+		initialValue: nil
 ]

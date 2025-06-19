@@ -10,5 +10,6 @@ LcsValueHistorySlot >> initialize [
 	self
 		addSlotType: Object;
 		makeDirectUpdateOfVariable;
-		allowNil
+		beAllowNil;
+		initialValue: nil
 ]

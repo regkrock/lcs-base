@@ -93,7 +93,7 @@ LcsStateMachineState class >> subStateMachineSlotDefinition [
 	^LcsCompositeSlot new
 		slotName: 'subStateMachine';
 		addSlotType: LcsStateMachine; 
-		allowNil;
+		beAllowNil;
 		yourself
 ]
 

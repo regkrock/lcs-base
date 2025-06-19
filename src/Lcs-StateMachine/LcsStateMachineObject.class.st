@@ -28,7 +28,8 @@ LcsStateMachineObject class >> idSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'id';
 		addSlotType: String; 
-		allowNil;
+		beAllowNil;
+		initialValue: nil;
 		yourself
 ]
 
@@ -38,7 +39,8 @@ LcsStateMachineObject class >> stateMachineSlotDefinition [
 	^ LcsAggregateSlot new
 		slotName: 'stateMachine';
 		addSlotType: LcsStateMachine; 
-		allowNil;
+		beAllowNil;
+		initialValue: nil;
 		yourself
 ]
 

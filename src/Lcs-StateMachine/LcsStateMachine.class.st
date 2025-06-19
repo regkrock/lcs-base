@@ -46,7 +46,8 @@ LcsStateMachine class >> startStateSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineStateSlot new
 		slotName: 'startState';
-		allowNil;
+		beAllowNil;
+		initialValue: nil;
 		yourself
 ]
 

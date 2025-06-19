@@ -18,7 +18,7 @@ LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self assert: self subject collectionClass = IdentitySet.
 	self assert: self subject slotName isNil.
 	self assert: self subject parent isNil.
-	self assert: self subject required isNil.
+	self assert: self subject isNotRequired .
 	self
 		assert: self subject initialValueBlock asString
 		equals: '[ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ]'.

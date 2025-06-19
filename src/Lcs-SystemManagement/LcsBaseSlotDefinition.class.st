@@ -103,10 +103,6 @@ LcsBaseSlotDefinition >> priorityDescription [
 		kind: Object;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
-		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
 		beRequired
 
 ]
@@ -141,6 +137,20 @@ LcsBaseSlotDefinition >> requiredDescription [
 { #category : #defaults }
 LcsBaseSlotDefinition >> slotClass [
 	^ self slotTypes any
+]
+
+{ #category : #magritte }
+LcsBaseSlotDefinition >> slotDefinitionClassDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Slot Definition Class';
+		priority: 1;
+		accessor: #'className';
+		kind: Object;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		beReadOnly
+
 ]
 
 { #category : #accessing }
@@ -195,6 +205,38 @@ LcsBaseSlotDefinition >> slotTypes [
 { #category : #accessing }
 LcsBaseSlotDefinition >> slotTypes: anObject [
 	slotTypes := anObject
+]
+
+{ #category : #magritte }
+LcsBaseSlotDefinition >> slotTypesDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		label: 'Slot Types';
+		priority: 25;
+		accessor: #slotTypes;
+		classes: {String};
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		blocShortcuts: [ {BlShortcutWithAction new
+					name: 'Browse class';
+					description: 'Browses the class indicated by the editor';
+					combination: BlKeyCombination primaryB;
+					action: [ :anEvent | 
+						anEvent target phlow
+							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
+				BlShortcutWithAction new
+					name: 'Inspect class';
+					description: 'Inspects the class indicated by the editor';
+					combination: BlKeyCombination primaryG;
+					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
+				BlShortcutWithAction new
+					name: 'Browse class references';
+					description: 'Browses references to the class indicated by the editor';
+					combination: BlKeyCombination primaryN;
+					action: [ :anEvent | 
+						anEvent target phlow
+							spawnObject: anEvent target text asString asClass gtReferences ]} ];
+		beReadOnly
+
 ]
 
 { #category : #'slot model' }

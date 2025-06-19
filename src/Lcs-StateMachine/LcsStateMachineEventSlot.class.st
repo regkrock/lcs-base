@@ -10,6 +10,7 @@ Class {
 LcsStateMachineEventSlot >> initialize [
 	super initialize.
 	self addSlotType: #LcsStateMachineEvent asClass. 
-	self allowNil
+	self beAllowNil.
+	self initialValue: nil
 
 ]

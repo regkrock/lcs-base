@@ -254,9 +254,9 @@ LcsBaseDomainObject class >> releaseSlotModel [
 LcsBaseDomainObject class >> removeDomainSlotNamed: aSlotName [
 	self removeDomainSlotNamedFromSlotModel: aSlotName.
 	self removeInstVar: aSlotName.
-	self removeGetter: aSlotName asSymbol.
-	self removeSetter: (aSlotName , ':') asSymbol.
-	self removeSlotDefinition: (aSlotName , 'SlotDefinition') asSymbol
+	self removeGetter: aSlotName.
+	self removeSetter: (aSlotName , ':').
+	self removeSlotDefinition: (aSlotName , 'SlotDefinition')
 ]
 
 { #category : #'slot definition - removal' }
@@ -267,23 +267,23 @@ LcsBaseDomainObject class >> removeDomainSlotNamedFromSlotModel: aSlotName [
 
 { #category : #'slot definition - removal' }
 LcsBaseDomainObject class >> removeGetter: aGetter [
-	self removeSelector: aGetter
+	self removeSelector: aGetter asSymbol
 ]
 
 { #category : #'slot definition - removal' }
 LcsBaseDomainObject class >> removeInstVar: aSlotName [
-	(self instVarNames includes: aSlotName)
-		ifTrue: [ self removeInstVarNamed: aSlotName ]
+	(self instVarNames includes: aSlotName asSymbol)
+		ifTrue: [ self removeInstVarNamed: aSlotName asSymbol ]
 ]
 
 { #category : #'slot definition - removal' }
 LcsBaseDomainObject class >> removeSetter: aSetterSelector [
-	self removeSelector: aSetterSelector
+	self removeSelector: aSetterSelector asSymbol
 ]
 
 { #category : #'slot definition - removal' }
 LcsBaseDomainObject class >> removeSlotDefinition: aSlotDefinitionSelector [
-	self class removeSelector: aSlotDefinitionSelector
+	self class removeSelector: aSlotDefinitionSelector asSymbol
 ]
 
 { #category : #'slot model' }
