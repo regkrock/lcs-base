@@ -486,6 +486,7 @@ LcsSlotDefinition >> variableUpdatePolicy: anObject [
 
 { #category : #'slot model' }
 LcsSlotDefinition >> verifyType: anObject for: aDomainObject [
+	(self isNilAllowed and: [ anObject isNil ]) ifTrue: [ ^ true ].
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
 		ifNone: [ 
