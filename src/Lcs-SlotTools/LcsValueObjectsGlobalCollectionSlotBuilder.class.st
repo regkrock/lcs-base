@@ -33,7 +33,9 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: 
 
 { #category : #'gt views' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> addStepModelClassesTo: classesModel [
-	classesModel addClassNamed: self collectionClassName
+	classesModel 
+		addClassNamed: self collectionClassName;
+		addClassNamed: self parentClassName
 ]
 
 { #category : #accessing }

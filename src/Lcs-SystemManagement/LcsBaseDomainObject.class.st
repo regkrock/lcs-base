@@ -79,7 +79,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 			aButtonAction
 				icon: BrGlamorousVectorIcons spawn;
 				tooltip: 'Inspect view model';
-				action: [ :aButton | aButton phlow spawnObject: (LcsAccessorSlotCreationForm newOn: self)  ] ];
+				action: [ :aButton | aButton phlow spawnObject: (LcsAccessorSlotCreationForm newEditOn: self)  ] ];
 		actionUpdateButton;
 		send: [ :each | each value ] ;
 		yourself

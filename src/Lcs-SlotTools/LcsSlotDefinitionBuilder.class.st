@@ -53,9 +53,9 @@ LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> addStepModelClassesTo: classesModel [
-	classesModel addClassNamed: self targetClassName.	"self addTargetClassTo: classesModel."
-	self addTargetModuleClassTo: classesModel
+LcsSlotDefinitionBuilder >> addStepModelClassesTo: aClassesModel [
+	aClassesModel addClassNamed: self targetClassName.
+	self addTargetModuleClassTo: aClassesModel
 ]
 
 { #category : #printing }

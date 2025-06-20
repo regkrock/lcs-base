@@ -138,6 +138,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> memberOfSlotBuilderFor: aTar
 		collectionSlotName: self collectionSlotName;
 		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
 		addSlotType: self newDomainClassName;
+		collectionSourceClassName: self collectionClassName;
 		yourself
 ]
 

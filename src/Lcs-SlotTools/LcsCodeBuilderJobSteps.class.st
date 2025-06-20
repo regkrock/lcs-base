@@ -31,8 +31,8 @@ LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addModelAssociationsTo: classesModel [
-	self collection do: [ :eachStep | eachStep addModelAssociationsTo: classesModel ]
+LcsCodeBuilderJobSteps >> addModelAssociationsTo: aClassesModel [
+	self collection do: [ :eachStep | eachStep addModelAssociationsTo: aClassesModel ]
 ]
 
 { #category : #'gt views' }

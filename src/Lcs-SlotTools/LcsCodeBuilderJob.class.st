@@ -14,9 +14,9 @@ LcsCodeBuilderJob >> addJobStep: aJobStep [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJob >> addModelAssociationsTo: classesModel [ 
+LcsCodeBuilderJob >> addModelAssociationsTo: aClassesModel [ 
 	self traceStep: 'addModelAssociationsTo:'.
-	 self jobSteps addModelAssociationsTo: classesModel 
+	 self jobSteps addModelAssociationsTo: aClassesModel 
 ]
 
 { #category : #'gt views' }

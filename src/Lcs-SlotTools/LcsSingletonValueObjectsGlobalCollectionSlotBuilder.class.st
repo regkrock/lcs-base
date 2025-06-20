@@ -35,9 +35,10 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDe
 ]
 
 { #category : #'gt views' }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addStepModelClassesTo: classesModel [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addStepModelClassesTo: aClassesModel [
+	aClassesModel addClassNamed: self targetClassName.
 	self slotTypes isEmpty ifTrue: [ ^ self ].
-	classesModel addClassNamed: self slotTypes first
+	aClassesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #accessing }

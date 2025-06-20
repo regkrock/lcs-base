@@ -23,10 +23,10 @@ LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
 ]
 
 { #category : #'gt views' }
-LcsMemberOfSlotBuilder >> addModelAssociationsTo: classesModel [
-	super addModelAssociationsTo: classesModel.
-	(classesModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self sourceCollectionClassName
+LcsMemberOfSlotBuilder >> addModelAssociationsTo: aClassesModel [
+	super addModelAssociationsTo: aClassesModel.
+	(aClassesModel classModelForClassname: self targetClassName)
+		addAssociation: self slotName toModelNamed: self slotTypes any
 ]
 
 { #category : #'gt views' }
@@ -38,10 +38,10 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 ]
 
 { #category : #'gt view' }
-LcsMemberOfSlotBuilder >> addStepModelClassesTo: classesModel [
-	classesModel addClassNamed: self targetClassName.
+LcsMemberOfSlotBuilder >> addStepModelClassesTo: aClassesModel [
+	aClassesModel addClassNamed: self targetClassName.
 	self currentSystem isNil ifTrue: [ ^ self ].
-	classesModel addClassNamed: self sourceCollectionClassName
+	aClassesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #accessing }
@@ -80,7 +80,7 @@ LcsMemberOfSlotBuilder >> sourceCollectionClassName [
 	self collectionSourceClassName ifNotNil: [ ^ self collectionSourceClassName ].
 	
 	^ (self currentSystem moduleNamed: self collectionSlotModuleName) ifNotNil: [ :module | 
-		(module perform: collectionSlotName asSymbol) ifNotNil: [ :value | value class name asString ] ]
+		([ module perform: self collectionSlotName asSymbol ] on: MessageNotUnderstood do: [ :s | s return: nil ]) ifNotNil: [ :value | value class name asString ] ]
 ]
 
 { #category : #command }

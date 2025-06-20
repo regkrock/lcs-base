@@ -37,9 +37,9 @@ LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 ]
 
 { #category : #'gt views' }
-LcsBaseClassBuilder >> addStepModelClassesTo: classesModel [
-	classesModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
-	self addProposedClassTo: classesModel
+LcsBaseClassBuilder >> addStepModelClassesTo: aClassesModel [
+	aClassesModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
+	self addProposedClassTo: aClassesModel
 ]
 
 { #category : #'gt views' }

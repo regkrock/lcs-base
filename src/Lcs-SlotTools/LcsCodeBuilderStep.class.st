@@ -16,9 +16,9 @@ LcsCodeBuilderStep >> addJobStep: aJobStep [
 ]
 
 { #category : #'gt view' }
-LcsCodeBuilderStep >> addModelAssociationsTo: classesModel [
+LcsCodeBuilderStep >> addModelAssociationsTo: aClassesModel [
 	self traceStep: 'addModelAssociationsTo:'.
-	self jobSteps addModelAssociationsTo: classesModel
+	self jobSteps addModelAssociationsTo: aClassesModel
 ]
 
 { #category : #'gt view' }
@@ -43,7 +43,7 @@ LcsCodeBuilderStep >> addRefactoringsTo: aCollection [
 ]
 
 { #category : #'gt view' }
-LcsCodeBuilderStep >> addStepModelClassesTo: classesModel [ 
+LcsCodeBuilderStep >> addStepModelClassesTo: aClassesModel [ 
 ]
 
 { #category : #state }
@@ -297,7 +297,7 @@ LcsCodeBuilderStep >> stepNumber [
 
 { #category : #trace }
 LcsCodeBuilderStep >> traceStep: aString [
-	self traceCr: aString , '- ' ,self jobStepDescription.
+	self traceCr: aString , '- ' , self jobStepDescription , '(' , self class name , ')'.
 ]
 
 { #category : #install }

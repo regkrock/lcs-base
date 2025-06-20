@@ -21,11 +21,11 @@ LcsLocalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionM
 ]
 
 { #category : #'gt views' }
-LcsLocalCollectionReferenceSlotBuilder >> addModelAssociationsTo: classesModel [
-	super addModelAssociationsTo: classesModel.
-	(classesModel classModelForClassname: self targetClassName)
+LcsLocalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aClassesModel [
+	super addModelAssociationsTo: aClassesModel.
+	(aClassesModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self slotTypes first asString.
-	(classesModel classModelForClassname: self slotTypes first asString)
+	(aClassesModel classModelForClassname: self slotTypes first asString)
 		addAssociation: 'collection' toModelNamed: self targetClassName asString
 ]
 
@@ -39,9 +39,10 @@ LcsLocalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
 ]
 
 { #category : #'gt views' }
-LcsLocalCollectionReferenceSlotBuilder >> addStepModelClassesTo: classesModel [
+LcsLocalCollectionReferenceSlotBuilder >> addStepModelClassesTo: aClassesModel [
+	aClassesModel addClassNamed: self targetClassName.
 	self slotTypes isEmpty ifTrue: [ ^ self ].
-	classesModel addClassNamed: self slotTypes first
+	aClassesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #'code generation' }

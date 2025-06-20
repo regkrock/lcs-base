@@ -32,16 +32,25 @@ LcsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBui
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionSlotBuilder >> addModelAssociationsTo: classesModel [
-	super addModelAssociationsTo: classesModel.
-	(classesModel classModelForClassname: self parentClassName)
+LcsGlobalCollectionSlotBuilder >> addModelAssociationsTo: aClassesModel [
+	super addModelAssociationsTo: aClassesModel.
+	(aClassesModel classModelForClassname: self parentClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(classesModel classModelForClassname: self collectionClassName)
+	(aClassesModel classModelForClassname: self collectionClassName)
 		addAssociation: 'parent' toModelNamed: self parentClassName
 ]
 
 { #category : #initialize }
 LcsGlobalCollectionSlotBuilder >> addPropertiesTo: step [ 
+]
+
+{ #category : #'gt views' }
+LcsGlobalCollectionSlotBuilder >> addStepModelClassesTo: aClassesModel [
+	super addStepModelClassesTo: aClassesModel.
+	aClassesModel 
+		addClassNamed: self targetClassName;
+		addClassNamed: self parentClassName;
+		addClassNamed: self collectionClassName
 ]
 
 { #category : #accessing }

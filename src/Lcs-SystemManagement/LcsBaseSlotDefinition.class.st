@@ -181,6 +181,7 @@ LcsBaseSlotDefinition >> slotNameDescription [
 		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';
 		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
 		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		beReadOnly;
 		beRequired
 
 ]
@@ -212,10 +213,11 @@ LcsBaseSlotDefinition >> slotTypesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		label: 'Slot Types';
-		priority: 25;
+		priority: 6;
 		accessor: #slotTypes;
 		classes: {String};
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil);
 		blocShortcuts: [ {BlShortcutWithAction new
 					name: 'Browse class';
 					description: 'Browses the class indicated by the editor';
@@ -242,6 +244,117 @@ LcsBaseSlotDefinition >> slotTypesDescription [
 { #category : #'slot model' }
 LcsBaseSlotDefinition >> slotVarPut: anObject in: aDomainObject [
 	^ LcsError signal: 'Attempt to update a read only slot'
+]
+
+{ #category : #magritte }
+LcsBaseSlotDefinition >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
+	^ [ :aMemento :aDescription :aForm | 
+	| aTagger aTaggerAptitude |
+	aTagger := BrTagger new hFitContentLimited.
+	aForm hMatchParent.
+	aTagger
+		padding: (BlInsets top: -2 bottom: 5);
+		clipChildren: false;
+		aptitude: (aTaggerAptitude := GtCreationEditableTaggerAptitude new
+					margin: (BlInsets
+							top: 0
+							bottom: 3
+							left: 0
+							right: 5);
+					tagLabel: [ :aTag | 
+						| aLabel |
+						aLabel := BrEditor new fitContent
+								text: (aDescription displayStringFor: aTag name);
+								aptitude: (BrGlamorousEditableLabelAptitude new glamorousFormEditorCodeFontAndSize
+										defaultForeground: Color black);
+								addShortcut: (BlShortcutWithAction new
+										name: 'Move to previous form item';
+										description: 'Moves to the previous form item. If none is found, we cycle back to the last.';
+										combination: BlKeyCombination shiftTab;
+										action: [ :anEvent | 
+											BlFocusFinder new
+												direction: BlFocusSearchDirectionBackward new;
+												root: aForm;
+												referenceElement: anEvent currentTarget;
+												nextFocusDo: #requestFocus ifNone: [  ] ]);
+								addShortcut: (BlShortcutWithAction new
+										name: 'Move to next form item';
+										description: 'Moves to the next form item. If none is found, we cycle back to the first.';
+										combination: (BlKeyCombination tab or: BlKeyCombination enter);
+										action: [ :anEvent | 
+											BlFocusFinder new
+												direction: BlFocusSearchDirectionForward new;
+												root: aForm;
+												referenceElement: anEvent currentTarget;
+												nextFocusDo: #requestFocus ifNone: [  ] ]).
+
+						aDescription blocShortcuts
+							ifNotNil: [ :aBlockReturningCollection | 
+								aBlockReturningCollection value
+									do: [ :aShortcut | aLabel addShortcut: aShortcut ] ].
+
+						aCompletionStrategy
+							ifNotNil: [ (GtCompletionController on: aLabel strategy: aCompletionStrategy) install ].
+						aContextMenuBlock
+							ifNotNil: [ aLabel
+									addAptitude: (BrGlamorousWithExplicitContextMenuAptitude
+											content: [ aContextMenuBlock
+													value: aTag name
+													value: aLabel
+													value: aMemento ]) ].
+						aLabel ]).
+	aTagger
+		when: BrTaggerAddTagRequest
+		do: [ :aRequest | 
+			| aValue |
+			aRequest currentTarget addTag: aRequest tag.
+			aValue := aTagger tags collect: #name thenSelect: #isNotEmpty.
+
+			GtMagritteBuilderUtility
+				write: aValue asArray
+				using: aDescription
+				memento: aMemento
+				element: aTagger ].
+	aTagger
+		when: BrTaggerRenameTagRequest
+		do: [ :aRequest | 
+			(aRequest tag name = aRequest newName) not
+				ifTrue: [ | aValue |
+					aRequest currentTarget renameTag: aRequest tag to: aRequest newName.
+					aValue := aTagger tags collect: #name.
+
+					GtMagritteBuilderUtility
+						write: aValue asArray
+						using: aDescription
+						memento: aMemento
+						element: aTagger ] ].
+	aTagger
+		when: BrTaggerRemoveTagRequest
+		do: [ :aRequest | 
+			| aValue |
+			aRequest currentTarget removeTag: aRequest tag.
+			aValue := aTagger tags collect: #name.
+
+			GtMagritteBuilderUtility
+				write: aValue asArray
+				using: aDescription
+				memento: aMemento
+				element: aTagger ].
+	aTagger
+		withAsyncSinkDo: [ :anElementSink | 
+			anElementSink
+				sink: AsyncPeekSink new;
+				whenUpdate: [ :theTagger :aSink | 
+					| theValues |
+					(theTagger tags isEmpty or: [ aSink value isChanged not ])
+						ifTrue: [ theValues := aSink value currentValue.
+							theTagger namedTags: theValues ] ].
+			(aMemento readObservableValueUsing: aDescription) observe: anElementSink ].
+	GtMagritteBuilderUtility
+		newValidationContainerWith: aTagger
+		memento: aMemento
+		using: aDescription ]
+
 ]
 
 { #category : #validations }
