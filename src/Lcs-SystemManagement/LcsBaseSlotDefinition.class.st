@@ -34,7 +34,7 @@ LcsBaseSlotDefinition >> clearSlotTypes [
 
 { #category : #'slot model' }
 LcsBaseSlotDefinition >> domainClass [
-	^ domainClass ifNil: [ domainClass := self parent domainClass ]
+	^ domainClass ifNil: [ domainClass := self parent ifNotNil: [ :parnt | parnt domainClass ] ]
 ]
 
 { #category : #'slot model' }
@@ -115,23 +115,6 @@ LcsBaseSlotDefinition >> removeValidationCondition: aValidationCondition [
 { #category : #validations }
 LcsBaseSlotDefinition >> removeValidationConditionWithDescription: aString [
 	self validationConditions removeValidationConditionWithDescription: aString
-]
-
-{ #category : #magritte }
-LcsBaseSlotDefinition >> requiredDescription [
-	<magritteDescription>
-	^ MABooleanDescription new
-		label: 'Required';
-		priority: 10;
-		accessor: #'required';
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
-		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
-		beRequired
-
 ]
 
 { #category : #defaults }

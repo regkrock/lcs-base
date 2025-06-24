@@ -78,6 +78,10 @@ LxxPrototypeSystem >> countries: anObject [
 	self slotVarNamed: 'countries' put: anObject
 ]
 
+{ #category : #'as yet unclassified' }
+LxxPrototypeSystem >> dummySlotDefinition [
+]
+
 { #category : #testing }
 LxxPrototypeSystem >> isInActiveStatus [
 	self hasSlotModel ifFalse: [ ^ false ].

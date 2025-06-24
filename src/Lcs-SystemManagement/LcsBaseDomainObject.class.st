@@ -54,6 +54,18 @@ LcsBaseDomainObject class >> getPersistedValueOf: aString in: anObject [
 ]
 
 { #category : #'gt views' }
+LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
+	<gtClassView>
+	^ aView explicit
+		title: 'Slot Defn Methods';
+		tooltip: 'Methods that define Slot Defintions';
+		priority: 100;
+		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
+				& ( #slotDefinition gtPragmas "| #magritteActionDescription gtPragmas") ]
+		
+]
+
+{ #category : #'gt views' }
 LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 	<gtView>
 	<gtClassView>
@@ -72,13 +84,13 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 				aptitude: BrGlamorousButtonWithLabelAptitude new;
 				label: 'Remove';
 				action: [ :aButton | each value domainClass removeDomainSlotNamed: each key ]] width: 70; 
-		actionDropdownButtonIcon: BrGlamorousVectorIcons add 
+		"actionDropdownButtonIcon: BrGlamorousVectorIcons add 
 			tooltip: 'Create Slot'
-			content: [ :aDropdown | (LcsAddSlotDefinitionFormElement newOn: aDropdown targetClass: self) element];
+			content: [ :aDropdown | (LcsAddSlotDefinitionFormElement newOn: aDropdown targetClass: self) element];"
 		actionButtonDo: [ :aButtonAction | 
 			aButtonAction
 				icon: BrGlamorousVectorIcons spawn;
-				tooltip: 'Inspect view model';
+				tooltip: 'Create slot';
 				action: [ :aButton | aButton phlow spawnObject: (LcsAccessorSlotCreationForm newEditOn: self)  ] ];
 		actionUpdateButton;
 		send: [ :each | each value ] ;

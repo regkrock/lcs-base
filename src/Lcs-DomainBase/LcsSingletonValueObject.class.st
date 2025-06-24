@@ -16,11 +16,6 @@ LcsSingletonValueObject class >> defaultCode [
 ]
 
 { #category : #defaults }
-LcsSingletonValueObject class >> defaultCodeDescription [
-	self subclassResponsibility
-]
-
-{ #category : #defaults }
 LcsSingletonValueObject class >> defaultInstance [
 	^ false
 ]

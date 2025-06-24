@@ -421,6 +421,23 @@ LcsSlotDefinition >> required: anObject [
 	required := anObject
 ]
 
+{ #category : #magritte }
+LcsSlotDefinition >> requiredDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Required';
+		priority: 10;
+		accessor: #'required';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		beRequired
+
+]
+
 { #category : #private }
 LcsSlotDefinition >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
 	"collection slots need to implement logic here"
