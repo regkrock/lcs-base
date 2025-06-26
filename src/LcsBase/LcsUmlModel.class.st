@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsUmlModel2,
+	#name : #LcsUmlModel,
 	#superclass : #LcsObject,
 	#traits : 'LtOrderedCollection',
 	#classTraits : 'LtOrderedCollection classTrait',
@@ -7,12 +7,12 @@ Class {
 }
 
 { #category : #'instance creation' }
-LcsUmlModel2 class >> new [ 
+LcsUmlModel class >> new [ 
 	^ super new
 ]
 
 { #category : #model }
-LcsUmlModel2 >> addClassModel: aClassModel [
+LcsUmlModel >> addClassModel: aClassModel [
 	^ (self classModelForClassname: aClassModel modelClassname asString)
 		ifNil: [ 
 			Transcript tab.
@@ -22,7 +22,7 @@ LcsUmlModel2 >> addClassModel: aClassModel [
 ]
 
 { #category : #configuration }
-LcsUmlModel2 >> addClassNamed: aClassname [
+LcsUmlModel >> addClassNamed: aClassname [
 	aClassname isNil ifTrue: [ ^ self ].
 	([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
 		ifNil: [ self proposedClassModelFor: aClassname ]
@@ -30,12 +30,12 @@ LcsUmlModel2 >> addClassNamed: aClassname [
 ]
 
 { #category : #model }
-LcsUmlModel2 >> allClassModelsFor: aClassname [
+LcsUmlModel >> allClassModelsFor: aClassname [
 	^ self collection select: [ :eachModel | eachModel modelClassname = aClassname asString ]
 ]
 
 { #category : #configuration }
-LcsUmlModel2 >> classModelForClassname: aClassname [
+LcsUmlModel >> classModelForClassname: aClassname [
 	^ self collection 
 		detect: [ :eachModel | eachModel modelClassname = aClassname asString ]
 		ifNone: [  
@@ -44,17 +44,17 @@ LcsUmlModel2 >> classModelForClassname: aClassname [
 ]
 
 { #category : #model }
-LcsUmlModel2 >> existingClassModelFor: aClass [
+LcsUmlModel >> existingClassModelFor: aClass [
 	^ self addClassModel: (LcsExistingClassModel newOn: aClass)
 ]
 
 { #category : #model }
-LcsUmlModel2 >> proposedClassModelFor: aClassname [
+LcsUmlModel >> proposedClassModelFor: aClassname [
 	^ self addClassModel: (LcsProposedClassModel newOn: aClassname)
 ]
 
 { #category : #configuration }
-LcsUmlModel2 >> resolveClassModelNames [
+LcsUmlModel >> resolveClassModelNames [
 	self traceCr: 'Resolving super class names '.
 	self collection do: [ :eachClassModel | self resolveSuperclassFor: eachClassModel ].
 	self traceCr: 'Resolving to association class names '.
@@ -62,7 +62,7 @@ LcsUmlModel2 >> resolveClassModelNames [
 ]
 
 { #category : #configuration }
-LcsUmlModel2 >> resolveSuperclassFor: aClassModel [
+LcsUmlModel >> resolveSuperclassFor: aClassModel [
 	aClassModel modelSuperclass: (
 		self collection
 			detect: [ :potentialSuperclassModel | potentialSuperclassModel isModelSuperclassOf: aClassModel ]
@@ -73,7 +73,7 @@ LcsUmlModel2 >> resolveSuperclassFor: aClassModel [
 ]
 
 { #category : #configuration }
-LcsUmlModel2 >> resolveToClassModelAssociationFor: eachClassModel [
+LcsUmlModel >> resolveToClassModelAssociationFor: eachClassModel [
 	eachClassModel associations do: [ :eachAssociation | 
 		eachAssociation toClassModel isNil ifTrue: [ 
 			eachAssociation toClassModel: (self classModelForClassname: eachAssociation toClassModelName) ] ]

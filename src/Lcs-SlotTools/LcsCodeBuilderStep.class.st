@@ -289,7 +289,7 @@ LcsCodeBuilderStep >> traceStep: aString [
 { #category : #'gt views' }
 LcsCodeBuilderStep >> umlModel [
 	| umlModel |
-	umlModel := LcsUmlModel2 new.
+	umlModel := LcsUmlModel new.
 	self addClassesToUmlModel: umlModel.
 	umlModel removeDuplicates.
 	self addAssociationsToUmlModel: umlModel.
