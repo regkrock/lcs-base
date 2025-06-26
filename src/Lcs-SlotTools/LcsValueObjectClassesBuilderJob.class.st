@@ -9,50 +9,11 @@ Class {
 }
 
 { #category : #configuration }
-LcsValueObjectClassesBuilderJob >> addCodeSubclassWithRootNamed: aString with: aBlock [
+LcsValueObjectClassesBuilderJob >> addValueObjectSubclassWithRootNamed: aString with: aBlock [
 	| classBuilder |
-	classBuilder := self codeSubclassBuilderFor: aString.
+	classBuilder := self valueObjectSubclassBuilderFor: aString.
 	aBlock value: classBuilder.
-	self codeSubclassBuilders add: classBuilder
-]
-
-{ #category : #builders }
-LcsValueObjectClassesBuilderJob >> codeClassBuilder [
-	^ LcsValueObjectSuperClassBuilder new
-		newClassName: self newDomainClassName;
-		targetPackageName: self targetPackageName;
-		yourself
-]
-
-{ #category : #builders }
-LcsValueObjectClassesBuilderJob >> codesCollectionClassBuilder [
-	^ LcsCodesCollectionClassBuilder new
-		newClassName: self collectionClassName;
-		targetPackageName: self targetPackageName;
-		yourself
-]
-
-{ #category : #builders }
-LcsValueObjectClassesBuilderJob >> codesGlobalCollectionSlotBuilder [
-	^ LcsValueObjectsGlobalCollectionSlotBuilder new
-		slotName: self collectionSlotName;
-		targetClassName: self collectionModuleClass name;
-		targetModuleClass: self collectionModuleClass;
-		loaderClassName: self collectionClassName , 'Loader';
-		addCollectionElementType: self newDomainClassName;
-		addSlotType: self collectionClassName;
-		yourself
-]
-
-{ #category : #builders }
-LcsValueObjectClassesBuilderJob >> codesLoaderBuilder [
-	^ LcsValueObjectsLoaderClassBuilder new
-		newClassName: self collectionClassName , 'Loader';
-		instanceClassName: self newDomainClassName;
-		unknownClassName: self unknownClassName;
-		targetPackageName: self targetPackageName;
-		protoCodes: self protoCodes;
-		yourself
+	self valueObjectSubclassBuilders add: classBuilder
 ]
 
 { #category : #builders }
@@ -97,4 +58,43 @@ LcsValueObjectClassesBuilderJob >> targetGlobalCollection [
 { #category : #accessing }
 LcsValueObjectClassesBuilderJob >> targetModuleName [
 	^ targetModuleName ifNil: [ targetModuleName :=  self targetModuleClass defaultModuleName ]
+]
+
+{ #category : #builders }
+LcsValueObjectClassesBuilderJob >> valueObjectClassBuilder [
+	^ LcsValueObjectSuperClassBuilder new
+		newClassName: self newDomainClassName;
+		targetPackageName: self targetPackageName;
+		yourself
+]
+
+{ #category : #builders }
+LcsValueObjectClassesBuilderJob >> valueObjectsCollectionClassBuilder [
+	^ LcsValueObjectsCollectionClassBuilder new
+		newClassName: self collectionClassName;
+		targetPackageName: self targetPackageName;
+		yourself
+]
+
+{ #category : #builders }
+LcsValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuilder [
+	^ LcsValueObjectsGlobalCollectionSlotBuilder new
+		slotName: self collectionSlotName;
+		targetClassName: self collectionModuleClass name;
+		targetModuleClass: self collectionModuleClass;
+		loaderClassName: self collectionClassName , 'Loader';
+		addCollectionElementType: self newDomainClassName;
+		addSlotType: self collectionClassName;
+		yourself
+]
+
+{ #category : #builders }
+LcsValueObjectClassesBuilderJob >> valueObjectsLoaderBuilder [
+	^ LcsValueObjectsLoaderClassBuilder new
+		newClassName: self collectionClassName , 'Loader';
+		instanceClassName: self newDomainClassName;
+		unknownClassName: self unknownClassName;
+		targetPackageName: self targetPackageName;
+		protoCodes: self protoCodes;
+		yourself
 ]

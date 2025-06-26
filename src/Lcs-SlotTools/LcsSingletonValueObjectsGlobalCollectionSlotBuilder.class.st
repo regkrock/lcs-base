@@ -2,7 +2,7 @@ Class {
 	#name : #LcsSingletonValueObjectsGlobalCollectionSlotBuilder,
 	#superclass : #LcsGlobalCollectionSlotBuilder,
 	#instVars : [
-		'codeSuperclassName'
+		'valueObjectSuperclassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -22,7 +22,7 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: uml
 { #category : #'gt views' }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aBuilder [
 	super addExtraPropertiesTo: aBuilder.
-	aBuilder addProperty: 'codeSuperclass' value: self codeSuperclassName
+	aBuilder addProperty: 'valueObjectSuperclass' value: self valueObjectSuperclassName
 ]
 
 { #category : #'gt views' }
@@ -37,21 +37,20 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addParentClassTo: classes
 { #category : #'code generation' }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
-	aCodeStream addKeyword: 'codeSuperclass' argument: self codeSuperclassName
-
+	aCodeStream addKeyword: 'valueObjectSuperclass' argument: self valueObjectSuperclassName
 ]
 
 { #category : #accessing }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> codeSuperclass [
-	^ self codeSuperclassName asClass
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclass [
+	^ self valueObjectSuperclassName asClass
 ]
 
 { #category : #accessing }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName [
-	^ codeSuperclassName
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName [
+	^ valueObjectSuperclassName
 ]
 
 { #category : #accessing }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName: aClassName [
-	codeSuperclassName := aClassName
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName: aClassName [
+	valueObjectSuperclassName := aClassName
 ]

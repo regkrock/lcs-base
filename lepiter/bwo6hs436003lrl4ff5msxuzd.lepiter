@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-05T21:07:41.16695-04:00"
+						"dateAndTimeString" : "2025-06-26T17:56:18.915747-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "mhdxdNTvDQC5YbcIBf0hyQ=="
 				},
-				"code" : "builder := \r\tLcsSingletonValueObjectClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Gender';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tinstallCollectionSlotInClass: LcsLegalEntitiesModule;\r\t\taddCodeSubclassWithRootNamed: 'Male';\r\t\taddCodeSubclassWithRootNamed: 'Female';\r\t\taddCodeSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
+				"code" : "builder := \r\tLcsSingletonValueObjectClassesBuilderJob new\t\t\r\t\tclassPrefix: 'Lcs';\r\t\tcreateForRootName: 'Gender';\r\t\tinstallNewClassesInPackageNamed: 'Lcs-LegalEntities';\r\t\tinstallCollectionSlotInClass: LcsLegalEntitiesModule;\r\t\taddValueObjectSubclassWithRootNamed: 'Male';\r\t\taddValueObjectSubclassWithRootNamed: 'Female';\r\t\taddValueObjectSubclassWithRootNamed: 'UnknownGender'\r\t\t\twith: [ :classBuilder | classBuilder beDefaultInstance ];\r\t\ttargetModuleClass: LcsLegalEntitiesModule;\r\t\tinstallMemberSlotInDomainClass: LcsBasePerson;\r\t\tbuildJobSteps;\r\t\tyourself.\rbuilder execute."
 			},
 			{
 				"__type" : "pharoSnippet",

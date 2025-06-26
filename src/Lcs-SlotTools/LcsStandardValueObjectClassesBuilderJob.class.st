@@ -9,11 +9,11 @@ Class {
 
 { #category : #command }
 LcsStandardValueObjectClassesBuilderJob >> buildJobSteps [
-	self addJobStep: self codeClassBuilder.
-	self addJobStep: self codesCollectionClassBuilder.
-	self addJobStep: self codesLoaderBuilder.
+	self addJobStep: self valueObjectClassBuilder.
+	self addJobStep: self valueObjectsCollectionClassBuilder.
+	self addJobStep: self valueObjectsLoaderBuilder.
 	self addJobStep: self collectionReferenceSlotBuilder.
-	self addJobStep: self codesGlobalCollectionSlotBuilder.
+	self addJobStep: self valueObjectsGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
 
 ]

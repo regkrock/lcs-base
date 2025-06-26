@@ -5,39 +5,20 @@ Class {
 }
 
 { #category : #configuration }
-LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> addCodeSubclassWithRootNamed: aString [
-	self addCodeSubclassWithRootNamed: aString with: [ :classBuilder | ]
+LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> addValueObjectSubclassWithRootNamed: aString [
+	self addValueObjectSubclassWithRootNamed: aString with: [ :classBuilder | ]
 ]
 
 { #category : #command }
 LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> buildJobSteps [
-	self addJobStep: self codeClassBuilder.
+	self addJobStep: self valueObjectClassBuilder.
 	self buildUnknownClass ifTrue: [
 		self addJobStep: self unknownClassBuilder].
-	self addJobStep: self codesCollectionClassBuilder.
-	self addJobStep: self codesLoaderBuilder.
+	self addJobStep: self valueObjectsCollectionClassBuilder.
+	self addJobStep: self valueObjectsLoaderBuilder.
 	self addJobStep: self collectionReferenceSlotBuilder.
-	self addJobStep: self codesGlobalCollectionSlotBuilder.
+	self addJobStep: self valueObjectsGlobalCollectionSlotBuilder.
 	self addMemberOfSlotBuilderForTargetClasses
-]
-
-{ #category : #builders }
-LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> codeSubclassBuilderFor: aString [
-	^ LcsValueObjectClassBuilder new
-		newDomainClassName: (self classPrefix , aString);
-		targetSuperclassName: self codeSuperclassBuilder newClassName;
-		targetPackageName: self targetPackageName;
-		yourself
-]
-
-{ #category : #'job steps' }
-LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> codeSubclassesBuilderJobSteps [
-	^ self jobSteps at: 2
-]
-
-{ #category : #'job steps' }
-LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> codeSuperclassBuilder [
-	^ self jobSteps at: 1
 ]
 
 { #category : #configuration }
@@ -93,6 +74,20 @@ LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> unknownClassName: anO
 { #category : #populate }
 LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> unknownCodeClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsSingletonUnknownValueObjectClassBuilder) first
+]
+
+{ #category : #builders }
+LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> valueObjectSubclassBuilderFor: aString [
+	^ LcsValueObjectClassBuilder new
+		newDomainClassName: (self classPrefix , aString);
+		targetSuperclassName: self valueObjectSuperclassBuilder newClassName;
+		targetPackageName: self targetPackageName;
+		yourself
+]
+
+{ #category : #'job steps' }
+LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> valueObjectSuperclassBuilder [
+	^ self jobSteps at: 1
 ]
 
 { #category : #verification }

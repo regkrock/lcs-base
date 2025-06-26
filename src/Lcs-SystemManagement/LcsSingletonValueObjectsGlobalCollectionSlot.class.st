@@ -2,20 +2,10 @@ Class {
 	#name : #LcsSingletonValueObjectsGlobalCollectionSlot,
 	#superclass : #LcsGlobalCollectionSlot,
 	#instVars : [
-		'codeSuperclass'
+		'valueObjectSuperclass'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
-
-{ #category : #accessing }
-LcsSingletonValueObjectsGlobalCollectionSlot >> codeSuperclass [
-	^ codeSuperclass
-]
-
-{ #category : #accessing }
-LcsSingletonValueObjectsGlobalCollectionSlot >> codeSuperclass: aCodeClass [
-	codeSuperclass := aCodeClass
-]
 
 { #category : #'as yet unclassified' }
 LcsSingletonValueObjectsGlobalCollectionSlot >> initialize [ 
@@ -31,5 +21,15 @@ LcsSingletonValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainOb
 
 { #category : #'as yet unclassified' }
 LcsSingletonValueObjectsGlobalCollectionSlot >> populateCollection [
-	self codeSuperclass allSubclassesDo: [ :each | each new ]
+	self valueObjectSuperclass allSubclassesDo: [ :each | each new ]
+]
+
+{ #category : #accessing }
+LcsSingletonValueObjectsGlobalCollectionSlot >> valueObjectSuperclass [
+	^ valueObjectSuperclass
+]
+
+{ #category : #accessing }
+LcsSingletonValueObjectsGlobalCollectionSlot >> valueObjectSuperclass: aCodeClass [
+	valueObjectSuperclass := aCodeClass
 ]

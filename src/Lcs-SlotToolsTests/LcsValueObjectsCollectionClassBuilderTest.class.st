@@ -16,7 +16,7 @@ LcsValueObjectsCollectionClassBuilderTest >> targetSuperclassName [
 
 { #category : #tests }
 LcsValueObjectsCollectionClassBuilderTest >> testClassCreationString [
-	self subject: LcsCodesCollectionClassBuilder new.
+	self subject: LcsValueObjectsCollectionClassBuilder new.
 	self subject
 		newClassName: self newClassName asEnglishPlural;
 		targetPackageName: 'Lcs-Temp';
@@ -35,7 +35,7 @@ LcsValueObjectsCollectionClassBuilderTest >> testClassCreationString [
 
 { #category : #'as yet unclassified' }
 LcsValueObjectsCollectionClassBuilderTest >> testInstallClass [
-	self subject: LcsCodesCollectionClassBuilder new.
+	self subject: LcsValueObjectsCollectionClassBuilder new.
 	self subject
 		newClassName: self newClassName asEnglishPlural;
 		targetPackageName: 'Lcs-Temp';

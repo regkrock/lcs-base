@@ -21,7 +21,7 @@ LcsLegalEntitiesModule class >> gendersSlotDefinition [
 	^ LcsSingletonValueObjectsGlobalCollectionSlot new
 		slotName: 'genders';
 		addSlotType: LcsGenders;
-		codeSuperclass: LcsGender;
+		valueObjectSuperclass: LcsGender;
 		yourself
 ]
 

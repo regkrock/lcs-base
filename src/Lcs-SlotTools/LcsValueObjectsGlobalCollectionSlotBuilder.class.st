@@ -2,8 +2,8 @@ Class {
 	#name : #LcsValueObjectsGlobalCollectionSlotBuilder,
 	#superclass : #LcsGlobalCollectionSlotBuilder,
 	#instVars : [
-		'codeSuperclassName',
-		'loaderClassName'
+		'loaderClassName',
+		'valueObjectSuperclassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -39,21 +39,6 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: 
 ]
 
 { #category : #accessing }
-LcsValueObjectsGlobalCollectionSlotBuilder >> codeSuperclass [
-	^ self codeSuperclassName asClass
-]
-
-{ #category : #accessing }
-LcsValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName [
-	^ codeSuperclassName
-]
-
-{ #category : #accessing }
-LcsValueObjectsGlobalCollectionSlotBuilder >> codeSuperclassName: aClassName [
-	codeSuperclassName := aClassName
-]
-
-{ #category : #accessing }
 LcsValueObjectsGlobalCollectionSlotBuilder >> laderClass [
 	^ self loaderClassName asClass
 ]
@@ -66,4 +51,19 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName [
 { #category : #accessing }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName: anObject [
 	loaderClassName := anObject
+]
+
+{ #category : #accessing }
+LcsValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclass [
+	^ self valueObjectSuperclassName asClass
+]
+
+{ #category : #accessing }
+LcsValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName [
+	^ valueObjectSuperclassName
+]
+
+{ #category : #accessing }
+LcsValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName: aClassName [
+	valueObjectSuperclassName := aClassName
 ]

@@ -13,9 +13,9 @@ LcsSingletonValueObjectClassesBuilderJobTest >> testCreationOfSingletonClasses [
 			createForRootName: 'Gender';
 			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
 			installCollectionSlotInClass: LxxPersonsModule;
-			addCodeSubclassWithRootNamed: 'Male';
-			addCodeSubclassWithRootNamed: 'Female';
-			addCodeSubclassWithRootNamed: 'UnknownGender'
+			addValueObjectSubclassWithRootNamed: 'Male';
+			addValueObjectSubclassWithRootNamed: 'Female';
+			addValueObjectSubclassWithRootNamed: 'UnknownGender'
 				with: [ :classBuilder | classBuilder beDefaultInstance ];
 			targetModuleClass: LxxPrototypeSystem;
 			installMemberSlotInDomainClass: LxxBasePerson;
