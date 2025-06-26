@@ -296,9 +296,7 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 		ifTrue: [ ^ self validateValidationConditions: aValue against: actualValue ].
 
 	actualValue isClass
-		ifTrue: [ ^ self assert: actualValue equals: aValue asClass ].	"aProperty = 'codeSuperclass' ifTrue: [ 
-		self assert: (slotDefinition perform: #codeSuperclass) equals: aValue asClass.
-		^self ]."
+		ifTrue: [ ^ self assert: actualValue equals: aValue asClass ].
 
 	self assert: actualValue equals: aValue
 ]
