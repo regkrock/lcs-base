@@ -19,18 +19,25 @@ LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: aCodeStream [
 
-	(aPropertyName = 'slotName' and: [ aValue isNil]) ifTrue: [ ^ self ].
+	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
 	(self slotDefinitionClassInstance isChangedProperty: aPropertyName value: aValue) ifFalse: [ ^self ].
 	
 	aPropertyName = 'slotTypes' ifTrue: [ 
 		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
 
-	aPropertyName = 'codeSuperclass' ifTrue: [ 
-		^ aCodeStream addKeyword: aPropertyName argument: aValue asString  ].
+	"aPropertyName = 'codeSuperclass' ifTrue: [ 
+		^ aCodeStream addKeyword: aPropertyName argument: aValue asString  ]."
 
+	aValue isString ifFalse: [
+		^ aCodeStream addKeyword: aPropertyName argument: aValue asString].
+	
+	([ aValue asClass ] on: NotFound do: [ :s | s return: nil ]) notNil ifTrue: [
+		^ aCodeStream addKeyword: aPropertyName argument: aValue].
+
+	aPropertyName = 'slotName' ifTrue: [ 
+		^ aCodeStream addKeyword: aPropertyName argument: aValue printString ].
 		
-	aCodeStream addKeyword: aPropertyName argument: (
-		aValue isString ifTrue: [ aValue printString] ifFalse: [ aValue asString ])
+	aCodeStream addKeyword: aPropertyName argument: aValue
 ]
 
 { #category : #'initialize\t' }
@@ -267,18 +274,23 @@ LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: slotDefinition [
+	| actualValue |
+
 	aProperty = 'addCollectionMemberType' ifTrue: [ 
-		self assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue "asClass").
-		^self ].
+		^ self assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue "asClass")].
+	
+	actualValue := slotDefinition perform: aProperty asSymbol.
+	
 	aProperty = 'slotTypes' ifTrue: [ 
-		self assert: (slotDefinition perform: #slotTypes) equals: (aValue collect: [ :each | each asClass ]).
-		^self ].
-		
-	aProperty = 'codeSuperclass' ifTrue: [ 
+		^ self assert: actualValue equals: (aValue collect: [ :each | each asClass ]) ].
+	
+	actualValue isClass ifTrue: [ self assert: actualValue equals: aValue asClass].
+
+	"aProperty = 'codeSuperclass' ifTrue: [ 
 		self assert: (slotDefinition perform: #codeSuperclass) equals: aValue asClass.
-		^self ].
+		^self ]."
 		
-	self assert: (slotDefinition perform: aProperty asSymbol) equals: aValue
+	self assert: actualValue  equals: aValue
 ]
 
 { #category : #accessing }

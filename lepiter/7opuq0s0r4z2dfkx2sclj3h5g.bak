@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-07T16:26:40.205331-04:00"
+						"dateAndTimeString" : "2025-06-26T10:39:07.637893-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T21:00:24.718542-04:00"
+						"dateAndTimeString" : "2025-06-26T10:39:10.316404-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "a2KgSfPwDQC9C4/HC30jwg=="
+					"uidString" : "6jTIQtz0DQCwAnyuAeyPiQ=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "- Add instvars to LxxCountry - isoCode, formalName, commonName, subdivisions - this needs to be done in order to start the test system!\n- Setup Unit Test to do do this - uses {{gtClass:name=LcsSlotDefinitionBuilder}}"
+				"string" : "LcsSlotDefintionMethodBuilder>>#addKeyword:argument:to:"
 			},
 			{
 				"__type" : "pharoSnippet",
