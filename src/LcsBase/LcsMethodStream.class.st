@@ -31,19 +31,6 @@ LcsMethodStream >> addKeyword: aKeyword argument: aString keyword: aKeyword2 arg
 ]
 
 { #category : #building }
-LcsMethodStream >> addKeyword: aKeyword stringArgument: aString [
-	| formattedString |
-	formattedString := (aString isEmpty or: [ aString first ~= $' ]) 
-							ifTrue: [ aString printString] 
-							ifFalse: [ aString].
-	self newLine
-		nextPutAll: aKeyword;
-		nextPutAll: ': ';
-		nextPutAll: formattedString;
-		nextPutAll: ';'
-]
-
-{ #category : #building }
 LcsMethodStream >> addKeywords: aKeywordSelectorName arguments: aCollectionOfStrings [ 
 	| keywords count |
 	keywords := aKeywordSelectorName substrings: { Character value: 58 }.

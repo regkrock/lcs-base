@@ -3,7 +3,6 @@ Class {
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
 		'refactoring',
-		'slotName',
 		'targetClassName',
 		'targetClass',
 		'properties'

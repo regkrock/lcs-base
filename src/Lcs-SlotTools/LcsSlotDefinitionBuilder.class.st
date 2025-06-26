@@ -2,12 +2,10 @@ Class {
 	#name : #LcsSlotDefinitionBuilder,
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
-		'slotName',
 		'slotDefinitionSelector',
 		'targetClassName',
 		'targetModuleClass',
 		'slotDefinitionClassName',
-		'slotTypes',
 		'validationConditions',
 		'targetPackageName',
 		'targetClass',
@@ -218,12 +216,13 @@ LcsSlotDefinitionBuilder >> initialValueBlockDescription [
 { #category : #initialize }
 LcsSlotDefinitionBuilder >> initialize [
 	super initialize.
+	self properties: Dictionary new.
 	self slotTypes: OrderedCollection new.
 	self validationConditions: OrderedCollection new.
 	self class slotDefinitionClass notNil
 		ifTrue: [ self slotDefinitionClassName: self class slotDefinitionClass name ].
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self).
-	self properties: Dictionary new
+
 ]
 
 { #category : #initialize }
@@ -394,12 +393,12 @@ LcsSlotDefinitionBuilder >> slotNameDescription [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotTypes [
-	^ slotTypes
+	^ self propertyAt: 'slotTypes' ifAbsent: [ OrderedCollection new] 
 ]
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotTypes: anObject [
-	slotTypes := anObject
+	self propertyAt: 'slotTypes' put: anObject
 ]
 
 { #category : #margritte }

@@ -23,12 +23,8 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 		isChangedProperty: aPropertyName
 		value: aValue) ifFalse: [ ^ self ].
 
-	aPropertyName = 'slotTypes'
-		ifTrue: [ ^ self
-				addSlotTypesKeyword: aPropertyName
-				argument: aValue
-				to: aCodeStream ].	"aPropertyName = 'codeSuperclass' ifTrue: [ 
-		^ aCodeStream addKeyword: aPropertyName argument: aValue asString  ]."
+	aPropertyName = 'slotTypes' ifTrue: [ 
+		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
 
 	aValue isString
 		ifFalse: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue asString ].
@@ -36,9 +32,6 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 	([ aValue asClass ] on: NotFound do: [ :s | s return: nil ]) notNil
 		ifTrue: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue ].
 
-	( #('slotName' 'collectionSlotName') includes: aPropertyName) ifTrue: [
-		^ aCodeStream addKeyword: aPropertyName stringArgument: aValue ].
-	
 	aCodeStream addKeyword: aPropertyName argument: aValue printString
 ]
 
@@ -226,14 +219,12 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;
 		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName.
-	self validationConditions
-		do: [ :eachAssociation | 
-			codeStream
-				addKeyword: 'addValidationCondition'
-				argument: eachAssociation key
-				keyword: 'description'
-				argument: eachAssociation value printString ].
-	self addSlotTypesSourceCodeTo: codeStream.
+	self validationConditions do: [ :eachAssociation | 
+		codeStream
+			addKeyword: 'addValidationCondition'
+			argument: eachAssociation key
+			keyword: 'description'
+			argument: eachAssociation value printString ].
 	self properties keysAndValuesDo: [ :eachKey :eachValue |
 		self addKeyword: eachKey argument: eachValue to: codeStream].
 
