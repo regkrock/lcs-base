@@ -2,7 +2,6 @@ Class {
 	#name : #LcsSlotDefintionMethodBuilder,
 	#superclass : #LcsSlotDetailBuilder,
 	#instVars : [
-		'validationConditions',
 		'slotDefinitionClass',
 		'slotDefinitionClassInstance'
 	],
@@ -26,6 +25,9 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 	aPropertyName = 'slotTypes' ifTrue: [ 
 		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
 
+	aPropertyName = 'validationConditions' ifTrue: [ 
+		^ self addValidationConditionsKeyword: aPropertyName argument: aValue to: aCodeStream ].		
+		
 	aValue isString
 		ifFalse: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue asString ].
 
@@ -87,6 +89,19 @@ LcsSlotDefintionMethodBuilder >> addValidationCondition: aStringBlock descriptio
 	self validationConditions add: aStringBlock -> aDescription
 ]
 
+{ #category : #'code generation' }
+LcsSlotDefintionMethodBuilder >> addValidationConditionsKeyword: aPropertyName argument: anAssociations to: aCodeStream [
+
+	anAssociations isEmpty ifTrue: [ ^ self ].
+
+	anAssociations do: [ :each |
+	aCodeStream
+		addKeyword: 'addValidationCondition'
+		argument: each key printString
+		keyword: 'description'
+		argument: each value printString ]
+]
+
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> allowNil [
 	^ self properties at: 'allowNil' ifAbsentPut: [ false ]
@@ -95,6 +110,12 @@ LcsSlotDefintionMethodBuilder >> allowNil [
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
 	self properties at: 'allowNil' put: aBoolean
+]
+
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
+	^ self slotDefinitionClass new slotTypes
+		collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ]
 ]
 
 { #category : #'gt views' }
@@ -219,18 +240,13 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;
 		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName.
-	self validationConditions do: [ :eachAssociation | 
-		codeStream
-			addKeyword: 'addValidationCondition'
-			argument: eachAssociation key
-			keyword: 'description'
-			argument: eachAssociation value printString ].
-	self properties keysAndValuesDo: [ :eachKey :eachValue |
-		self addKeyword: eachKey argument: eachValue to: codeStream].
 
-	^ codeStream
-		addYourself;
-		contents
+	self properties keysAndValuesDo: [ :eachPropertyName :eachValue |
+		self addKeyword: eachPropertyName argument: eachValue to: codeStream].
+
+	codeStream addYourself.
+
+	^ codeStream contents
 ]
 
 { #category : #'code generation' }
@@ -267,46 +283,71 @@ LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: slotDefinition [
 	| actualValue |
+	aProperty = 'addCollectionMemberType'
+		ifTrue: [ ^ self
+				assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue asClass) ].
 
-	aProperty = 'addCollectionMemberType' ifTrue: [ 
-		^ self assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue asClass)].
-	
 	actualValue := slotDefinition perform: aProperty asSymbol.
-	
-	aProperty = 'slotTypes' ifTrue: [ 
-		^ self assert: actualValue equals: (aValue collect: [ :each | each asClass ]) ].
-	
-	actualValue isClass ifTrue: [ ^ self assert: actualValue equals: aValue asClass].
 
-	"aProperty = 'codeSuperclass' ifTrue: [ 
+	aProperty = 'slotTypes'
+		ifTrue: [ ^ self validateSlotTypes: aValue against: actualValue ].
+
+	aProperty = 'validationConditions'
+		ifTrue: [ ^ self validateValidationConditions: aValue against: actualValue ].
+
+	actualValue isClass
+		ifTrue: [ ^ self assert: actualValue equals: aValue asClass ].	"aProperty = 'codeSuperclass' ifTrue: [ 
 		self assert: (slotDefinition perform: #codeSuperclass) equals: aValue asClass.
 		^self ]."
+
+	self assert: actualValue equals: aValue
+]
+
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> validateSlotTypes: aCollection against: actualValue [
+	| expected |
+	expected := aCollection copy collect: [ :each | each asClass ].
+	expected size = actualValue size
+		ifTrue: [ ^ self assert: actualValue equals: expected ].
 		
-	self assert: actualValue  equals: aValue
+	expected addAll: self defaultSlotTypes.
+	self assert: expected size equals: actualValue size.
+	self assert: (expected allSatisfy: [ :each | actualValue includes: each ])
+]
+
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> validateValidationConditions: aValue against: actualValue [
+	self assert: actualValue collectionSize equals: aValue size.
+	aValue
+		do: [ :eachAssociation | 
+			self
+				assert: (actualValue at: eachAssociation value ifAbsent: [ nil ]) description
+				equals: eachAssociation value.
+			self
+				assert: (actualValue at: eachAssociation value ifAbsent: [ nil ]) conditionBlock
+						asString
+				equals: eachAssociation key asString ].
+	^ self
 ]
 
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> validationConditions [
-	^ validationConditions
+	^ self properties at: #validationConditions ifAbsent: [ OrderedCollection new]
 ]
 
 { #category : #accessing }
-LcsSlotDefintionMethodBuilder >> validationConditions: anObject [
-	validationConditions := anObject
+LcsSlotDefintionMethodBuilder >> validationConditions: aCollection [
+	self properties at: 'validationConditions' put: aCollection
 ]
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
 	| slotDefinition |
 	super verifyCodeInstallation.
-	self
-		assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
-	slotDefinition := self targetClass
-			perform: self slotDefinitionSelector asSymbol.
+	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
+	slotDefinition := self targetClass perform: self slotDefinitionSelector asSymbol.
 	self assert: slotDefinition class == self slotDefinitionClass.
-	self assert: slotDefinition slotName = self slotName.
-	self assert: slotDefinition slotTypes notEmpty.
-	self assert: (slotDefinition slotTypes allSatisfy: [ :each | each isClass ]).
+	
 	self validatePropertiesIn: slotDefinition
 ]
 

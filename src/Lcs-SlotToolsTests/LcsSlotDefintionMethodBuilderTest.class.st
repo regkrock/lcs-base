@@ -22,7 +22,7 @@ LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
 ]
 
 { #category : #tests }
-LcsSlotDefintionMethodBuilderTest >> testCAddingSlotTypes [
+LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
 	self subject: LcsSlotDefintionMethodBuilder new.
 	self assert: self subject slotTypes isEmpty.
 	
@@ -59,6 +59,7 @@ LcsSlotDefintionMethodBuilderTest >> testCreation [
 	self subject: LcsSlotDefintionMethodBuilder new.
 	self assert: self subject properties class = OrderedDictionary.
 	self assert: self subject slotTypes class = OrderedCollection.
+	self assert: self subject validationConditions class = OrderedCollection.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject allowNil == false.
 	self assert: self subject required == false.
@@ -125,4 +126,31 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoS
 			required: true;
 			yourself) 
 				slotDefinitionSource ] raise: LcsError
+]
+
+{ #category : #tests }
+LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidationConditions [
+	| methodSource |
+	self subject: (
+		LcsSlotDefintionMethodBuilder new
+			slotName: 'foo';
+			slotDefinitionClass: LcsStringSlot;
+			targetClassName: #LxxBasePerson;
+			addValidationCondition: [ false ] description: 'Always fails';
+			yourself).
+	self assert: self subject validationConditions size = 1.
+	self assert: self subject validationConditions first key printString = '[ false ]'.
+	self assert: self subject validationConditions first value  = 'Always fails'.
+	
+	methodSource := self subject slotDefinitionSource.
+	self assert: methodSource equals: 'fooSlotDefinition
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: ''foo'';
+		addValidationCondition: [ false ] description: ''Always fails'';
+		yourself'.
+		
+	self subject installCode.
+	self subject verifyCodeInstallation
+
 ]
