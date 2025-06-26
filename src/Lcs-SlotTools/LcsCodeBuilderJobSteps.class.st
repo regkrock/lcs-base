@@ -22,22 +22,22 @@ LcsCodeBuilderJobSteps class >> newOn: anObject [
 		yourself 
 ]
 
+{ #category : #'gt views' }
+LcsCodeBuilderJobSteps >> addAssociationsToUmlModel: aClassesModel [
+	self collection do: [ :eachStep | eachStep addAssociationsToUmlModel: aClassesModel ]
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJobSteps >> addClassesToUmlModel: umlModel [
+	self collection do: [ :eachStep | eachStep addClassesToUmlModel: umlModel ]
+]
+
 { #category : #steps }
 LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 	aJobStep parent: self.
 	self collection add: aJobStep.
 	aJobStep buildJobSteps.
 	^ aJobStep
-]
-
-{ #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addModelAssociationsTo: aClassesModel [
-	self collection do: [ :eachStep | eachStep addModelAssociationsTo: aClassesModel ]
-]
-
-{ #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addModelClassesTo: classesModel [
-	self collection do: [ :eachStep | eachStep addModelClassesTo: classesModel ]
 ]
 
 { #category : #refactorings }

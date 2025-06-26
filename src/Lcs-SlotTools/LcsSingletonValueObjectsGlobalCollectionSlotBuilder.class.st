@@ -13,6 +13,13 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder class >> slotDefinitionClass
 ]
 
 { #category : #'gt views' }
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
+	umlModel addClassNamed: self targetClassName.
+	self slotTypes isEmpty ifTrue: [ ^ self ].
+	umlModel addClassNamed: self slotTypes first
+]
+
+{ #category : #'gt views' }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aBuilder [
 	super addExtraPropertiesTo: aBuilder.
 	aBuilder addProperty: 'codeSuperclass' value: self codeSuperclassName
@@ -32,13 +39,6 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDe
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
 	aCodeStream addKeyword: 'codeSuperclass' argument: self codeSuperclassName
 
-]
-
-{ #category : #'gt views' }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addStepModelClassesTo: aClassesModel [
-	aClassesModel addClassNamed: self targetClassName.
-	self slotTypes isEmpty ifTrue: [ ^ self ].
-	aClassesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #accessing }

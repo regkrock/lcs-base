@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 LcsClassesModelTest >> testAddingExistingClass [
 	| existingClassModel |
-	self subject: LcsClassesModel new.
+	self subject: LcsUmlModel2 new.
 	self assert: self subject collection size = 0.
 	existingClassModel := self subject existingClassModelFor: OrderedCollection.
 	self assert: self subject collection size = 1.
@@ -21,7 +21,7 @@ LcsClassesModelTest >> testAddingExistingClass [
 { #category : #tests }
 LcsClassesModelTest >> testAddingExistingClassTwiceWhichShouldReturnTheFirstModel [
 	| existingClassModel newExistingClassModel |
-	self subject: LcsClassesModel new.
+	self subject: LcsUmlModel2 new.
 	self assert: self subject collection size = 0.
 	existingClassModel := self subject existingClassModelFor: OrderedCollection.
 	newExistingClassModel := self subject existingClassModelFor: OrderedCollection.
@@ -31,7 +31,7 @@ LcsClassesModelTest >> testAddingExistingClassTwiceWhichShouldReturnTheFirstMode
 { #category : #tests }
 LcsClassesModelTest >> testAddingProposedClass [
 	| proposedClassModel |
-	self subject: LcsClassesModel new.
+	self subject: LcsUmlModel2 new.
 	self assert: self subject collection size = 0.
 	proposedClassModel := self subject proposedClassModelFor: 'LxxSample'.
 	self assert: self subject collection size = 1.
@@ -45,7 +45,7 @@ LcsClassesModelTest >> testAddingProposedClass [
 { #category : #tests }
 LcsClassesModelTest >> testAddingProposedClassTwiceWhichShouldReturnTheFirstModel [
 	| proposedClassModel newProposedClassModel |
-	self subject: LcsClassesModel new.
+	self subject: LcsUmlModel2 new.
 	self assert: self subject collection size = 0.
 	proposedClassModel := self subject proposedClassModelFor: 'LxxSample'.
 	newProposedClassModel := self subject proposedClassModelFor: 'LxxSample'.
@@ -55,7 +55,7 @@ LcsClassesModelTest >> testAddingProposedClassTwiceWhichShouldReturnTheFirstMode
 
 { #category : #tests }
 LcsClassesModelTest >> testCreation [
-	self subject: LcsClassesModel new.
+	self subject: LcsUmlModel2 new.
 	self assert: (self subject collection isKindOf: OrderedCollection).
 	self assert: self subject collection size = 0
 ]

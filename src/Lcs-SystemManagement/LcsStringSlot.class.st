@@ -14,12 +14,6 @@ LcsStringSlot >> defaultInputComponentClassName [
 	^#LuiTextInput
 ]
 
-{ #category : #initialize }
-LcsStringSlot >> initialize [
-	super initialize.
-	self addSlotType: self typeClass
-]
-
 { #category : #configuration }
 LcsStringSlot >> typeClass [
 	<todo: 'This needs to use UTF-8 string calss'> 

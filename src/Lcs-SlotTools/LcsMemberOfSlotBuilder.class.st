@@ -14,6 +14,20 @@ LcsMemberOfSlotBuilder class >> slotDefinitionClass [
 	^ LcsMemberOfSlot
 ]
 
+{ #category : #'gt views' }
+LcsMemberOfSlotBuilder >> addAssociationsToUmlModel: aClassesModel [
+	super addAssociationsToUmlModel: aClassesModel.
+	(aClassesModel classModelForClassname: self targetClassName)
+		addAssociation: self slotName toModelNamed: self slotTypes any
+]
+
+{ #category : #'gt view' }
+LcsMemberOfSlotBuilder >> addClassesToUmlModel: umlModel [
+	umlModel addClassNamed: self targetClassName.
+	self currentSystem isNil ifTrue: [ ^ self ].
+	umlModel addClassNamed: self slotTypes first
+]
+
 { #category : #initialize }
 LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
 	super addExtraPropertiesTo: aBuilder.
@@ -23,25 +37,11 @@ LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
 ]
 
 { #category : #'gt views' }
-LcsMemberOfSlotBuilder >> addModelAssociationsTo: aClassesModel [
-	super addModelAssociationsTo: aClassesModel.
-	(aClassesModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self slotTypes any
-]
-
-{ #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 	super addSlotDefinitionSourceDetailsTo: aCodeStream.
 	aCodeStream
 		addKeyword: 'collectionSlotName' argument: (self collectionSlotName ifNil: [ '<missing>' ]) printString;
 		addKeyword: 'collectionSlotModuleName' argument: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
-]
-
-{ #category : #'gt view' }
-LcsMemberOfSlotBuilder >> addStepModelClassesTo: aClassesModel [
-	aClassesModel addClassNamed: self targetClassName.
-	self currentSystem isNil ifTrue: [ ^ self ].
-	aClassesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #accessing }

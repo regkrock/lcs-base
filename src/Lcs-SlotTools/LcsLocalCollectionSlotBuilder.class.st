@@ -18,6 +18,15 @@ LcsLocalCollectionSlotBuilder class >> slotDefinitionClass [
 ]
 
 { #category : #'gt views' }
+LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aClassesModel [
+	super addAssociationsToUmlModel: aClassesModel.
+	(aClassesModel classModelForClassname: self targetModuleClass name asString)
+		addAssociation: self slotName toModelNamed: self slotTypes first.
+	(aClassesModel classModelForClassname: self slotTypes first)
+		addAssociation: 'parent' toModelNamed: self targetClassName
+]
+
+{ #category : #'gt views' }
 LcsLocalCollectionSlotBuilder >> addCollectionElementType: aClassName [
 	self collectionElementTypes add: aClassName
 
@@ -30,15 +39,6 @@ LcsLocalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuil
 		aSlotDefinitionMethodBuilder 
 			addProperty: 'addCollectionMemberType' 
 			value: each ]
-]
-
-{ #category : #'gt views' }
-LcsLocalCollectionSlotBuilder >> addModelAssociationsTo: aClassesModel [
-	super addModelAssociationsTo: aClassesModel.
-	(aClassesModel classModelForClassname: self targetModuleClass name asString)
-		addAssociation: self slotName toModelNamed: self slotTypes first.
-	(aClassesModel classModelForClassname: self slotTypes first)
-		addAssociation: 'parent' toModelNamed: self targetClassName
 ]
 
 { #category : #'code generation' }

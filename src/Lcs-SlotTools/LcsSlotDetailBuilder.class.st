@@ -5,10 +5,18 @@ Class {
 		'refactoring',
 		'slotName',
 		'targetClassName',
-		'targetClass'
+		'targetClass',
+		'properties'
 	],
 	#category : #'Lcs-SlotTools'
 }
+
+{ #category : #initialize }
+LcsSlotDetailBuilder >> initialize [ 
+	super initialize.
+	self properties: OrderedDictionary new.
+	self slotName: nil
+]
 
 { #category : #printing }
 LcsSlotDetailBuilder >> jobStepActionDescription [
@@ -25,6 +33,16 @@ LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>' ])
 ]
 
+{ #category : #accessing }
+LcsSlotDetailBuilder >> properties [
+	^ properties
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> properties: anObject [
+	properties := anObject
+]
+
 { #category : #building }
 LcsSlotDetailBuilder >> slotBuilder [
 	^ self parent parent
@@ -37,19 +55,19 @@ LcsSlotDetailBuilder >> slotDefinitionSource [
 
 { #category : #accessing }
 LcsSlotDetailBuilder >> slotName [
-	^ slotName
+	^ self properties at: 'slotName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsSlotDetailBuilder >> slotName: anObject [
-	slotName := anObject
+	self properties at: 'slotName' put: anObject
 ]
 
 { #category : #accessing }
 LcsSlotDetailBuilder >> targetClass [
-	^ [ self targetClassName asString asClass ] 
+	^ targetClass ifNil: [[ self targetClassName asString asClass ] 
 			on: NotFound 
-			do: [ :s | s return: nil ]
+			do: [ :s | s return: nil ]]
 ]
 
 { #category : #accessing }
@@ -64,5 +82,6 @@ LcsSlotDetailBuilder >> targetClassName [
 
 { #category : #accessing }
 LcsSlotDetailBuilder >> targetClassName: anObject [
-	targetClassName := anObject
+	targetClassName := anObject.
+	self targetClass: nil.
 ]

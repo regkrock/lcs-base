@@ -1691,6 +1691,43 @@
 														"__type" : "textStyle"
 													},
 													"string" : "[[One To Many Local Relationship (vs Global Collection)]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-05-29T06:47:59.76418-04:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-05-29T06:48:04.594783-04:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "QbqixKXyDQCpE9RSBnCsTA=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[Pragmas]]"
 												}
 											]
 										},

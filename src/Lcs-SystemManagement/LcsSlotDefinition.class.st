@@ -140,12 +140,7 @@ LcsSlotDefinition >> gtCreateClassAndValueElementFor: aColumn [
 				alignCenter ];
 		dataBinder: [ :itemElement :aNode | 
 			| nodeIcon |
-			Transcript 
-				show: 'Item: ';
-				show: itemElement printString; tab; 
-				show: ' Node: ';
-				show: aNode printString; 
-				cr.
+			self traceCr: 'Item: ' , itemElement printString , '- Node: ' , aNode printString.
 			nodeIcon := [ aNode value gtInspectorIcon
 					ifNil: [ aNode value class iconNamed: aNode value class systemIconName ] ]
 					on: Error
@@ -306,7 +301,6 @@ LcsSlotDefinition >> initialValueFor: aDomainObject [
 { #category : #initialize }
 LcsSlotDefinition >> initialize [
 	super initialize.
-	self initializeSlotTypes.
 	self makeUpdateOfVariableViaUnitOfWork.
 	self initialValueBlock: self defaultInitialValueBlock.
 	self allowNil: false.

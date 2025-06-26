@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'validationConditions',
 		'slotDefinitionClass',
-		'slotTypes',
-		'properties'
+		'slotDefinitionClassInstance'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -15,6 +14,19 @@ LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 	^ self new
 		initializeFrom: aSlotDefinitionBuilder;
 		yourself
+]
+
+{ #category : #'code generation' }
+LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: aCodeStream [
+
+	(aPropertyName = 'slotName' and: [ aValue isNil]) ifTrue: [ ^ self ].
+	(self slotDefinitionClassInstance isChangedProperty: aPropertyName value: aValue) ifFalse: [ ^self ].
+	
+	aPropertyName = 'slotTypes' ifTrue: [ 
+		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
+
+	aCodeStream addKeyword: aPropertyName argument: (
+		aValue isString ifTrue: [ aValue printString] ifFalse: [ aValue asString ])
 ]
 
 { #category : #'initialize\t' }
@@ -28,6 +40,29 @@ LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>']); 
 		nextPutAll:' class >>';
 		nextPutAll: self slotDefinitionSource
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefintionMethodBuilder >> addSlotType: aClassorClassName [
+	| aClassName |
+	aClassName := aClassorClassName isClass 
+					ifTrue: [ aClassorClassName name asString]
+					ifFalse: [ aClassorClassName ].
+	(self slotTypes includes: aClassorClassName) ifFalse: [ 
+		self slotTypes add: aClassName ]
+]
+
+{ #category : #'code generation' }
+LcsSlotDefintionMethodBuilder >> addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream [
+	| slotTypesCollectionCreationStream |
+
+	aValue isEmpty ifTrue: [ ^ self ].
+
+	slotTypesCollectionCreationStream := WriteStream on: String new.
+	slotTypesCollectionCreationStream nextPutAll: '(OrderedCollection'.
+	aValue do: [ :eachClassName | slotTypesCollectionCreationStream nextPutAll: ' with: ' , eachClassName ].
+	slotTypesCollectionCreationStream nextPutAll: ')'.
+	aCodeStream addKeyword: aPropertyName argument: slotTypesCollectionCreationStream contents
 ]
 
 { #category : #'code generation' }
@@ -44,6 +79,16 @@ LcsSlotDefintionMethodBuilder >> addSlotTypesSourceCodeTo: codeStream [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addValidationCondition: aStringBlock description: aDescription [
 	self validationConditions add: aStringBlock -> aDescription
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> allowNil [
+	^ self properties at: 'allowNil' ifAbsentPut: [ false ]
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
+	self properties at: 'allowNil' put: aBoolean
 ]
 
 { #category : #'gt views' }
@@ -76,8 +121,10 @@ LcsSlotDefintionMethodBuilder >> hasNoSlotTypes [
 LcsSlotDefintionMethodBuilder >> initialize [ 
 	super initialize.
 	self validationConditions: OrderedCollection new.
+	self allowNil: false.
+	self required: false.
 	self slotTypes: OrderedCollection new.
-	self properties: OrderedCollection new
+
 ]
 
 { #category : #'instance  creation' }
@@ -108,13 +155,13 @@ LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 ]
 
 { #category : #accessing }
-LcsSlotDefintionMethodBuilder >> properties [
-	^ properties
+LcsSlotDefintionMethodBuilder >> required [
+	^ self properties at: 'required' ifAbsentPut: [ false ]
 ]
 
 { #category : #accessing }
-LcsSlotDefintionMethodBuilder >> properties: anObject [
-	properties := anObject
+LcsSlotDefintionMethodBuilder >> required: aBoolean [
+	self properties at: 'required' put: aBoolean
 ]
 
 { #category : #accessing }
@@ -133,6 +180,16 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
 		and: [ self slotDefinitionClass new slotTypes isEmpty ]
 ]
 
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotDefinitionClassInstance [
+	^ slotDefinitionClassInstance ifNil: [ slotDefinitionClassInstance := self slotDefinitionClass new ]
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotDefinitionClassInstance: anObject [
+	slotDefinitionClassInstance := anObject
+]
+
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
 	^ self slotDefinitionClass
@@ -142,17 +199,20 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
-	^ (self slotName , 'SlotDefinition') asSymbol
+	self slotName ifNotNil: [:s | ^ (s , 'SlotDefinition') asSymbol ].
+	self slotDefinitionClassInstance ifNil: [ ^ LcsError signal: 'slotName is undefined' ].
+	self slotDefinitionClassInstance slotName ifNotNil: [ :s | ^ (s , 'SlotDefinition') asSymbol ].
+	LcsError signal: 'slotName is undefined'
 ]
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 	| codeStream |
+	self slotDefinitionClassInstance: self slotDefinitionClass new.
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;
-		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName;
-		addKeyword: 'slotName' argument: self slotNameDisplayName.
+		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName.
 	self validationConditions
 		do: [ :eachAssociation | 
 			codeStream
@@ -161,8 +221,8 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 				keyword: 'description'
 				argument: eachAssociation value printString ].
 	self addSlotTypesSourceCodeTo: codeStream.
-	self properties do: [ :each |
-		codeStream addKeyword: each key argument: each value ].
+	self properties keysAndValuesDo: [ :eachKey :eachValue |
+		self addKeyword: eachKey argument: eachValue to: codeStream].
 
 
 	^ codeStream
@@ -175,14 +235,14 @@ LcsSlotDefintionMethodBuilder >> slotNameDisplayName [
 	^ (self slotName ifNil: [ '<missing>' ]) printString
 ]
 
-{ #category : #accessing }
+{ #category : #property }
 LcsSlotDefintionMethodBuilder >> slotTypes [
-	^ slotTypes
+	^ self properties at: 'slotTypes' ifAbsentPut: [ OrderedCollection new ]
 ]
 
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotTypes: anObject [
-	slotTypes := anObject
+{ #category : #property }
+LcsSlotDefintionMethodBuilder >> slotTypes: aCollection [
+	self properties at: 'slotTypes' put: aCollection
 ]
 
 { #category : #verification }
@@ -193,14 +253,23 @@ LcsSlotDefintionMethodBuilder >> uninstall [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
-	self properties do: [ :each | 
-		each key = 'addCollectionMemberType' 
-			ifTrue: [ 
-				self assert: ((slotDefinition perform: #collectionMemberTypes)
-									 includes: each value asClass). ]
-			ifFalse: [ self
-						assert: (slotDefinition perform: each key asSymbol) printString
-						equals: each value ] ]
+	self properties
+		keysAndValuesDo: [ :key :value | 
+			self
+				validateProperty: key
+				value: value
+				in: slotDefinition ]
+]
+
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: slotDefinition [
+	aProperty = 'addCollectionMemberType' ifTrue: [ 
+		self assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue "asClass").
+		^self ].
+	aProperty = 'slotTypes' ifTrue: [ 
+		self assert: (slotDefinition perform: #slotTypes) equals: (aValue collect: [ :each | each asClass ]).
+		^self ].
+	self assert: (slotDefinition perform: aProperty asSymbol) equals: aValue
 ]
 
 { #category : #accessing }

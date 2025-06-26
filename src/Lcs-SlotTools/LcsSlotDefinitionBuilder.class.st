@@ -11,7 +11,8 @@ Class {
 		'validationConditions',
 		'targetPackageName',
 		'targetClass',
-		'properties'
+		'properties',
+		'slotDefinitionTemplate'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -27,6 +28,12 @@ LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
 LcsSlotDefinitionBuilder class >> slotDefinitionClass [
 	"Subclasses can override this method to provide a default"
 	^ LcsSlotDefinition
+]
+
+{ #category : #'gt views' }
+LcsSlotDefinitionBuilder >> addClassesToUmlModel: umlModel [
+	umlModel addClassNamed: self targetClassName.
+	self addTargetModuleClassTo: umlModel
 ]
 
 { #category : #initialize }
@@ -51,12 +58,6 @@ LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
 					ifFalse: [ aClassOrClassName asString ].
 	(self slotTypes includes: className) ifFalse: [
 		self slotTypes add: className ]
-]
-
-{ #category : #'gt views' }
-LcsSlotDefinitionBuilder >> addStepModelClassesTo: aClassesModel [
-	aClassesModel addClassNamed: self targetClassName.
-	self addTargetModuleClassTo: aClassesModel
 ]
 
 { #category : #printing }
@@ -128,6 +129,12 @@ LcsSlotDefinitionBuilder >> clearTargetClass: aClass [
 		ifTrue: [ self targetClassName: nil ]
 ]
 
+{ #category : #'as yet unclassified' }
+LcsSlotDefinitionBuilder >> commit [
+	self buildJobSteps.
+	self execute
+]
+
 { #category : #testing }
 LcsSlotDefinitionBuilder >> doesSlotDefinitionMethodExist [
 	^ self targetClass class includesSelector: self slotDefinitionSelector
@@ -184,6 +191,30 @@ LcsSlotDefinitionBuilder >> gtRefactoringChangeOn: aView [
 
 ]
 
+{ #category : #property }
+LcsSlotDefinitionBuilder >> initialValueBlock [
+	^ self propertyAt: 'initialValueBlock' ifAbsent: [ [ ] ]
+]
+
+{ #category : #property }
+LcsSlotDefinitionBuilder >> initialValueBlock: aString [
+	^ self propertyAt: 'initialValueBlock' put: aString
+]
+
+{ #category : #margritte }
+LcsSlotDefinitionBuilder >> initialValueBlockDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Initial Value Block';
+		priority: 9;
+		accessor: (MAPluggableAccessor
+				read: [ :aModel | self initialValueBlock ]
+				write: [ :aModel :aValue | self initialValueBlock: aValue ]);
+		autoAccept: true;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
 { #category : #initialize }
 LcsSlotDefinitionBuilder >> initialize [
 	super initialize.
@@ -213,15 +244,15 @@ LcsSlotDefinitionBuilder >> installSlotDefinition [
 
 { #category : #populate }
 LcsSlotDefinitionBuilder >> populateFrom: aSlotDefinitionClassName [
-	| slotDefinitionTemplate |
 	self slotDefinitionClassName: aSlotDefinitionClassName.
-	slotDefinitionTemplate := aSlotDefinitionClassName asClass new.
-	 slotDefinitionTemplate slotName ifNotNil: [
-		self slotName: slotDefinitionTemplate slotName ].
+	self slotDefinitionTemplate: aSlotDefinitionClassName asClass new.
+	 self slotDefinitionTemplate slotName ifNotNil: [
+		self slotName: self slotDefinitionTemplate slotName ].
 	self slotTypes removeAll.
-	self slotTypes addAll: (slotDefinitionTemplate slotTypes collect: [ :each | each name asString ]).
-	self allowNil: slotDefinitionTemplate  allowNil.
-	self required: slotDefinitionTemplate required.
+	self slotTypes addAll: (self slotDefinitionTemplate slotTypes collect: [ :each | each name asString ]).
+	self allowNil: self slotDefinitionTemplate  allowNil.
+	self required: self slotDefinitionTemplate required.
+	self initialValueBlock: self slotDefinitionTemplate initialValueBlockSourceCode
 ]
 
 { #category : #printing }
@@ -255,7 +286,9 @@ LcsSlotDefinitionBuilder >> propertyAt: aName ifAbsent: aBlock [
 
 { #category : #property }
 LcsSlotDefinitionBuilder >> propertyAt: aName put: anObject [
-	self properties at: aName put: anObject
+	self properties at: aName put: anObject.
+	self jobSteps do: [ :eachStep | (eachStep respondsTo: (aName , ':' asSymbol))
+		ifTrue: [ eachStep perform: (aName , ':' asSymbol) with: anObject ] ]
 ]
 
 { #category : #property }
@@ -308,6 +341,16 @@ LcsSlotDefinitionBuilder >> slotDefinitionSelector: aSymbol [
 	slotDefinitionSelector := aSymbol asSymbol
 ]
 
+{ #category : #populate }
+LcsSlotDefinitionBuilder >> slotDefinitionTemplate [
+	^ slotDefinitionTemplate
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionBuilder >> slotDefinitionTemplate: anObject [ 
+	slotDefinitionTemplate := anObject
+]
+
 { #category : #initialize }
 LcsSlotDefinitionBuilder >> slotInstanceVariableBuilder [
 	^ LcsSlotInstanceVariableBuilder new
@@ -318,13 +361,13 @@ LcsSlotDefinitionBuilder >> slotInstanceVariableBuilder [
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotName [
-	^ slotName
+	^ self propertyAt: 'slotName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsSlotDefinitionBuilder >> slotName: anObject [
-	slotName := (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size)).
-	self slotDefinitionSelector: slotName , 'SlotDefinition'
+	self propertyAt: 'slotName' put: (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size)).
+	self slotDefinitionSelector: self slotName , 'SlotDefinition'
 ]
 
 { #category : #margritte }

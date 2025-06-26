@@ -13,6 +13,13 @@ LcsValueObjectsGlobalCollectionSlotBuilder class >> slotDefinitionClass [
 	^ LcsValueObjectsGlobalCollectionSlot
 ]
 
+{ #category : #'gt views' }
+LcsValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
+	umlModel 
+		addClassNamed: self collectionClassName;
+		addClassNamed: self parentClassName
+]
+
 { #category : #initialize }
 LcsValueObjectsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
@@ -29,13 +36,6 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
 	aCodeStream addKeyword: 'loaderClass' argument: self loaderClassName
 
-]
-
-{ #category : #'gt views' }
-LcsValueObjectsGlobalCollectionSlotBuilder >> addStepModelClassesTo: classesModel [
-	classesModel 
-		addClassNamed: self collectionClassName;
-		addClassNamed: self parentClassName
 ]
 
 { #category : #accessing }

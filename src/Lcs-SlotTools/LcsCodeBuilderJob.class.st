@@ -8,21 +8,21 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> addAssociationsToUmlModel: aClassesModel [ 
+	self traceStep: 'addAssociationsToUmlModel:'.
+	 self jobSteps addAssociationsToUmlModel: aClassesModel 
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> addClassesToUmlModel: umlModel [ 
+	self traceStep: 'addClassesToUmlModel:'.
+	self jobSteps addClassesToUmlModel: umlModel 
+]
+
 { #category : #configuration }
 LcsCodeBuilderJob >> addJobStep: aJobStep [ 
 	^ self jobSteps addJobStep: aJobStep
-]
-
-{ #category : #'gt views' }
-LcsCodeBuilderJob >> addModelAssociationsTo: aClassesModel [ 
-	self traceStep: 'addModelAssociationsTo:'.
-	 self jobSteps addModelAssociationsTo: aClassesModel 
-]
-
-{ #category : #'gt views' }
-LcsCodeBuilderJob >> addModelClassesTo: classesModel [ 
-	self traceStep: 'addModelClassesTo:'.
-	self jobSteps addModelClassesTo: classesModel 
 ]
 
 { #category : #refactorings }
@@ -48,17 +48,6 @@ LcsCodeBuilderJob >> buildUnknownClass: aBoolean [
 { #category : #asking }
 LcsCodeBuilderJob >> builderJob [
 	^self
-]
-
-{ #category : #'gt views' }
-LcsCodeBuilderJob >> classesModel [
-	| classesModel |
-	classesModel := LcsClassesModel new.
-	self addModelClassesTo: classesModel.
-	classesModel removeDuplicates.
-	self addModelAssociationsTo: classesModel.
-	classesModel resolveClassModelNames.
-	^ classesModel
 ]
 
 { #category : #refactorings }
@@ -133,7 +122,7 @@ LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [
 LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
 	| classesModel |
-	(classesModel := self classesModel) collection isEmpty 
+	(classesModel := self umlModel) collection isEmpty 
 		ifTrue: [ ^ aView empty ].
 
 	^ aView mondrian
@@ -176,7 +165,7 @@ LcsCodeBuilderJob >> jobSteps: anObject [
 LcsCodeBuilderJob >> modelAssociations [
 	| associations |
 	associations := OrderedCollection new.
-	self jobSteps addModelAssociationsTo: associations.
+	self jobSteps addAssociationsToUmlModel: associations.
 	^ associations
 ]
 
@@ -206,6 +195,17 @@ LcsCodeBuilderJob >> stepNumber [
 { #category : #command }
 LcsCodeBuilderJob >> traceStep: aMethodName [
 	self traceCr: aMethodName , '-' , self printString
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> umlModel [
+	| umlModel |
+	umlModel := LcsUmlModel2 new .
+	self addClassesToUmlModel: umlModel.
+	umlModel removeDuplicates.
+	self addAssociationsToUmlModel: umlModel.
+	umlModel resolveClassModelNames.
+	^ umlModel
 ]
 
 { #category : #command }

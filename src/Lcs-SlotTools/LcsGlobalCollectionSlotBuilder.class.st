@@ -18,6 +18,24 @@ LcsGlobalCollectionSlotBuilder class >> slotDefinitionClass [
 ]
 
 { #category : #'gt views' }
+LcsGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aClassesModel [
+	super addAssociationsToUmlModel: aClassesModel.
+	(aClassesModel classModelForClassname: self parentClassName)
+		addAssociation: self slotName toModelNamed: self collectionClassName.
+	(aClassesModel classModelForClassname: self collectionClassName)
+		addAssociation: 'parent' toModelNamed: self parentClassName
+]
+
+{ #category : #'gt views' }
+LcsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
+	super addClassesToUmlModel: umlModel.
+	umlModel 
+		addClassNamed: self targetClassName;
+		addClassNamed: self parentClassName;
+		addClassNamed: self collectionClassName
+]
+
+{ #category : #'gt views' }
 LcsGlobalCollectionSlotBuilder >> addCollectionElementType: aClass [
 	self collectionElementTypes add: aClass
 ]
@@ -31,26 +49,8 @@ LcsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBui
 			value: each ]
 ]
 
-{ #category : #'gt views' }
-LcsGlobalCollectionSlotBuilder >> addModelAssociationsTo: aClassesModel [
-	super addModelAssociationsTo: aClassesModel.
-	(aClassesModel classModelForClassname: self parentClassName)
-		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(aClassesModel classModelForClassname: self collectionClassName)
-		addAssociation: 'parent' toModelNamed: self parentClassName
-]
-
 { #category : #initialize }
 LcsGlobalCollectionSlotBuilder >> addPropertiesTo: step [ 
-]
-
-{ #category : #'gt views' }
-LcsGlobalCollectionSlotBuilder >> addStepModelClassesTo: aClassesModel [
-	super addStepModelClassesTo: aClassesModel.
-	aClassesModel 
-		addClassNamed: self targetClassName;
-		addClassNamed: self parentClassName;
-		addClassNamed: self collectionClassName
 ]
 
 { #category : #accessing }

@@ -14,6 +14,7 @@ Class {
 
 { #category : #configuration }
 LcsBaseSlotDefinition >> addSlotType: aClass [
+	self assert: aClass isClass.
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
 
@@ -66,6 +67,12 @@ LcsBaseSlotDefinition >> initialize [
 { #category : #initialize }
 LcsBaseSlotDefinition >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
+]
+
+{ #category : #testing }
+LcsBaseSlotDefinition >> isChangedProperty: aPropertyName value: aValue [
+	(self respondsTo: aPropertyName asSymbol) ifFalse: [ ^ true ].
+	^ ((self perform: aPropertyName asSymbol) = aValue) not
 ]
 
 { #category : #'slot model' }

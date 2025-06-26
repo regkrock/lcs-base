@@ -14,6 +14,22 @@ LcsGlobalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
 	^ LcsGlobalCollectionReferenceSlot
 ]
 
+{ #category : #'gt views' }
+LcsGlobalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aClassesModel [
+	super addAssociationsToUmlModel: aClassesModel.
+	(aClassesModel classModelForClassname: self targetClassName)
+		addAssociation: self slotName toModelNamed: self collectionClassName.
+	(aClassesModel classModelForClassname: self collectionClassName)
+		addAssociation: 'collection' toModelNamed: self targetClassName
+]
+
+{ #category : #'gt views' }
+LcsGlobalCollectionReferenceSlotBuilder >> addClassesToUmlModel: umlModel [
+	umlModel addClassNamed: self targetClassName.
+	self slotTypes isEmpty ifTrue: [ ^ self ].
+	umlModel addClassNamed: self slotTypes first
+]
+
 { #category : #'code generation' }
 LcsGlobalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
@@ -23,28 +39,12 @@ LcsGlobalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinition
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceSlotBuilder >> addModelAssociationsTo: aClassesModel [
-	super addModelAssociationsTo: aClassesModel.
-	(aClassesModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(aClassesModel classModelForClassname: self collectionClassName)
-		addAssociation: 'collection' toModelNamed: self targetClassName
-]
-
-{ #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
 	[ classesModel existingClassModelFor: self slotTypes first asClass ]
 		on: NotFound
 		do: [ :s | 
 			classesModel proposedClassModelFor: self slotTypes first.
 			s return: nil ]
-]
-
-{ #category : #'gt views' }
-LcsGlobalCollectionReferenceSlotBuilder >> addStepModelClassesTo: aClassesModel [
-	aClassesModel addClassNamed: self targetClassName.
-	self slotTypes isEmpty ifTrue: [ ^ self ].
-	aClassesModel addClassNamed: self slotTypes first
 ]
 
 { #category : #'code generation' }

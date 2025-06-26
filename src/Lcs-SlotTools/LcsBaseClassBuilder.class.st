@@ -24,6 +24,12 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #'gt views' }
+LcsBaseClassBuilder >> addClassesToUmlModel: umlModel [
+	umlModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
+	self addProposedClassTo: umlModel
+]
+
+{ #category : #'gt views' }
 LcsBaseClassBuilder >> addProposedClassTo: classesModel [
 	| proposedClass |
 	proposedClass := classesModel proposedClassModelFor: self newClassName.
@@ -34,12 +40,6 @@ LcsBaseClassBuilder >> addProposedClassTo: classesModel [
 { #category : #printing }
 LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self classCreationString
-]
-
-{ #category : #'gt views' }
-LcsBaseClassBuilder >> addStepModelClassesTo: aClassesModel [
-	aClassesModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
-	self addProposedClassTo: aClassesModel
 ]
 
 { #category : #'gt views' }

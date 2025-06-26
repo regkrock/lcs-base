@@ -16,7 +16,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationClassesModel
 			buildUnknownClass: true;
 			buildJobSteps;
 			yourself).
-	modelClasses := self currentCodeBuilderJob classesModel.
+	modelClasses := self currentCodeBuilderJob umlModel.
 	self assert: modelClasses collection notEmpty.
 	self assert: modelClasses collection size = 8.
 	self assert: (modelClasses allClassModelsFor: 'LxxSample') size = 1.
