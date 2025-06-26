@@ -58,6 +58,11 @@ LcsObject class >> slotDefinitionMethodsNamed: aSelectorName [
 	^ collection
 ]
 
+{ #category : #'as yet unclassified' }
+LcsObject >> classFor: aString [
+	^ [ aString asClass ] on: NotFound do: [ :s | s return: nil ]
+]
+
 { #category : #testing }
 LcsObject >> isApplicationSystem [
 	^ false

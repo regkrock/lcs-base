@@ -29,7 +29,7 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 	aValue isString
 		ifFalse: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue asString ].
 
-	([ aValue asClass ] on: NotFound do: [ :s | s return: nil ]) notNil
+	(self classFor: aValue) notNil
 		ifTrue: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue ].
 
 	aCodeStream addKeyword: aPropertyName argument: aValue printString
@@ -227,7 +227,6 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 			argument: eachAssociation value printString ].
 	self properties keysAndValuesDo: [ :eachKey :eachValue |
 		self addKeyword: eachKey argument: eachValue to: codeStream].
-
 
 	^ codeStream
 		addYourself;

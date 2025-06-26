@@ -67,11 +67,6 @@ LcsLocalCollectionSlotBuilder >> buildJobSteps [
 	super buildJobSteps
 ]
 
-{ #category : #'job steps' }
-LcsLocalCollectionSlotBuilder >> classFor: eachClassName [
-	^ [ eachClassName asClass ] on: NotFound do: [ :s | s return: nil ]
-]
-
 { #category : #accessing }
 LcsLocalCollectionSlotBuilder >> collectionClass [
 	^ collectionClass
