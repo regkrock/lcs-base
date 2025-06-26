@@ -25,6 +25,10 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 	aPropertyName = 'slotTypes' ifTrue: [ 
 		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
 
+	aPropertyName = 'codeSuperclass' ifTrue: [ 
+		^ aCodeStream addKeyword: aPropertyName argument: aValue asString  ].
+
+		
 	aCodeStream addKeyword: aPropertyName argument: (
 		aValue isString ifTrue: [ aValue printString] ifFalse: [ aValue asString ])
 ]
@@ -269,6 +273,11 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 	aProperty = 'slotTypes' ifTrue: [ 
 		self assert: (slotDefinition perform: #slotTypes) equals: (aValue collect: [ :each | each asClass ]).
 		^self ].
+		
+	aProperty = 'codeSuperclass' ifTrue: [ 
+		self assert: (slotDefinition perform: #codeSuperclass) equals: aValue asClass.
+		^self ].
+		
 	self assert: (slotDefinition perform: aProperty asSymbol) equals: aValue
 ]
 
