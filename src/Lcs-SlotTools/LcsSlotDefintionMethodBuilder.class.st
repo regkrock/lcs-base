@@ -279,7 +279,7 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 	| actualValue |
 
 	aProperty = 'addCollectionMemberType' ifTrue: [ 
-		^ self assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue "asClass")].
+		^ self assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue asClass)].
 	
 	actualValue := slotDefinition perform: aProperty asSymbol.
 	

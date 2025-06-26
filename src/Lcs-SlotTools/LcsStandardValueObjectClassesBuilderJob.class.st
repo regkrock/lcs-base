@@ -11,10 +11,11 @@ Class {
 LcsStandardValueObjectClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self codeClassBuilder.
 	self addJobStep: self codesCollectionClassBuilder.
+	self addJobStep: self codesLoaderBuilder.
 	self addJobStep: self collectionReferenceSlotBuilder.
 	self addJobStep: self codesGlobalCollectionSlotBuilder.
-	self addMemberOfSlotBuilderForTargetClasses.
-	self addJobStep: self codesLoaderBuilder
+	self addMemberOfSlotBuilderForTargetClasses
+
 ]
 
 { #category : #populate }
