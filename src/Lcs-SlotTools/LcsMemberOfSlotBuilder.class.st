@@ -32,8 +32,8 @@ LcsMemberOfSlotBuilder >> addClassesToUmlModel: umlModel [
 LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
 	super addExtraPropertiesTo: aBuilder.
 	aBuilder 
-		addProperty: 'collectionSlotName' value: self collectionSlotName printString;
-		addProperty: 'collectionSlotModuleName' value: self collectionSlotModuleName printString
+		addProperty: 'collectionSlotName' value: self collectionSlotName;
+		addProperty: 'collectionSlotModuleName' value: self collectionSlotModuleName
 ]
 
 { #category : #'gt views' }

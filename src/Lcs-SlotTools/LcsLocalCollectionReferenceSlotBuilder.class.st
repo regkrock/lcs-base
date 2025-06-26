@@ -33,7 +33,7 @@ LcsLocalCollectionReferenceSlotBuilder >> addClassesToUmlModel: umlModel [
 LcsLocalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
 	aSlotDefinitionMethodBuilder 
-		addProperty: 'collectionSlotName' value: self collectionSlotName printString
+		addProperty: 'collectionSlotName' value: self collectionSlotName
 ]
 
 { #category : #'gt views' }

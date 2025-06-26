@@ -18,31 +18,33 @@ LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: aCodeStream [
-
 	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
-	(self slotDefinitionClassInstance isChangedProperty: aPropertyName value: aValue) ifFalse: [ ^self ].
-	
-	aPropertyName = 'slotTypes' ifTrue: [ 
-		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
+	(self slotDefinitionClassInstance
+		isChangedProperty: aPropertyName
+		value: aValue) ifFalse: [ ^ self ].
 
-	"aPropertyName = 'codeSuperclass' ifTrue: [ 
+	aPropertyName = 'slotTypes'
+		ifTrue: [ ^ self
+				addSlotTypesKeyword: aPropertyName
+				argument: aValue
+				to: aCodeStream ].	"aPropertyName = 'codeSuperclass' ifTrue: [ 
 		^ aCodeStream addKeyword: aPropertyName argument: aValue asString  ]."
 
-	aValue isString ifFalse: [
-		^ aCodeStream addKeyword: aPropertyName argument: aValue asString].
-	
-	([ aValue asClass ] on: NotFound do: [ :s | s return: nil ]) notNil ifTrue: [
-		^ aCodeStream addKeyword: aPropertyName argument: aValue].
+	aValue isString
+		ifFalse: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue asString ].
 
-	aPropertyName = 'slotName' ifTrue: [ 
-		^ aCodeStream addKeyword: aPropertyName argument: aValue printString ].
-		
-	aCodeStream addKeyword: aPropertyName argument: aValue
+	([ aValue asClass ] on: NotFound do: [ :s | s return: nil ]) notNil
+		ifTrue: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue ].
+
+	( #('slotName' 'collectionSlotName') includes: aPropertyName) ifTrue: [
+		^ aCodeStream addKeyword: aPropertyName stringArgument: aValue ].
+	
+	aCodeStream addKeyword: aPropertyName argument: aValue printString
 ]
 
 { #category : #'initialize\t' }
 LcsSlotDefintionMethodBuilder >> addProperty: aString value: anObject [
-	self properties add: aString->anObject
+	self properties at: aString put: anObject
 ]
 
 { #category : #'gt views' }
@@ -284,7 +286,7 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 	aProperty = 'slotTypes' ifTrue: [ 
 		^ self assert: actualValue equals: (aValue collect: [ :each | each asClass ]) ].
 	
-	actualValue isClass ifTrue: [ self assert: actualValue equals: aValue asClass].
+	actualValue isClass ifTrue: [ ^ self assert: actualValue equals: aValue asClass].
 
 	"aProperty = 'codeSuperclass' ifTrue: [ 
 		self assert: (slotDefinition perform: #codeSuperclass) equals: aValue asClass.

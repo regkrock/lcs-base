@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-26T10:39:10.316404-04:00"
+						"dateAndTimeString" : "2025-06-26T10:46:49.303324-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "LcsSlotDefintionMethodBuilder>>#addKeyword:argument:to:"
+				"string" : "m\nLcsSlotDefintionMethodBuilder>>#validateProperty:value:in:"
 			},
 			{
 				"__type" : "pharoSnippet",
