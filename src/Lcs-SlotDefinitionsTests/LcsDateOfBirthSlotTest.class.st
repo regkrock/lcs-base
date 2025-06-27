@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsDateOfBirthSlotDefinitionTest,
+	#name : #LcsDateOfBirthSlotTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
 
 { #category : #tests }
-LcsDateOfBirthSlotDefinitionTest >> testChangedSlotInDomainObject [
+LcsDateOfBirthSlotTest >> testChangedSlotInDomainObject [
 	| domainObject firstChangedDateOfBirth secondChangedDateOfBirth initialDateOfBirth secondChanged |
 
 	initialDateOfBirth := Date today.

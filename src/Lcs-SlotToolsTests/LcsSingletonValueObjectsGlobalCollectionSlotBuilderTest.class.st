@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsSingletonValueObjectsGlobalSlotDefinitionBuilderTest,
+	#name : #LcsSingletonValueObjectsGlobalCollectionSlotBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }
-LcsSingletonValueObjectsGlobalSlotDefinitionBuilderTest >> testCreation [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
 	self assert: LcsSingletonValueObjectsGlobalCollectionSlotBuilder slotDefinitionClass equals: LcsSingletonValueObjectsGlobalCollectionSlot.
 ]

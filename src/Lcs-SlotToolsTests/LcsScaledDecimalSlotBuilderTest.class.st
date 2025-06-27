@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsScaledDecimalSlotDefinitionBuilderTest,
+	#name : #LcsScaledDecimalSlotBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }
-LcsScaledDecimalSlotDefinitionBuilderTest >> testCreation [
+LcsScaledDecimalSlotBuilderTest >> testCreation [
 	self assert: LcsScaledDecimalSlotBuilder slotDefinitionClass equals: LcsScaledDecimalSlot
 ]

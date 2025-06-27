@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsGlobalSlotDefinitionBuilderTest,
+	#name : #LcsGlobalCollectionSlotBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }
-LcsGlobalSlotDefinitionBuilderTest >> testInstallingGlobalCollectionSlot [
+LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
 	self subject: (
 		LcsGlobalCollectionSlotBuilder new
 			slotName: 'foos';

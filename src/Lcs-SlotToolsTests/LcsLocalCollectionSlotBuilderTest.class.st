@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsLocalCollectionSlotDefinitionBuilderTest,
+	#name : #LcsLocalCollectionSlotBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }
-LcsLocalCollectionSlotDefinitionBuilderTest >> testCreation [
+LcsLocalCollectionSlotBuilderTest >> testCreation [
 	self assert: LcsLocalCollectionSlotBuilder slotDefinitionClass equals: LcsLocalCollectionSlot.
 	"self error: 'Needs more work'"
 ]

@@ -15,7 +15,7 @@ Class {
 { #category : #'slot definitions' }
 LcsStateMachineState class >> activitySlotDefinition [
 	<slotDefinition>
-	^ LcsBlockSlotDefinition new
+	^ LcsBlockSlot new
 		slotName: 'activity';
 		yourself
 ]
@@ -32,7 +32,7 @@ LcsStateMachineState class >> autoTransitionSlotDefinition [
 { #category : #'slot definitions' }
 LcsStateMachineState class >> entryActionSlotDefinition [
 	<slotDefinition>
-	^ LcsBlockSlotDefinition new
+	^ LcsBlockSlot new
 		slotName: 'entryAction';
 		yourself
 ]
@@ -40,7 +40,7 @@ LcsStateMachineState class >> entryActionSlotDefinition [
 { #category : #'slot definitions' }
 LcsStateMachineState class >> exitActionSlotDefinition [
 	<slotDefinition>
-	^ LcsBlockSlotDefinition new
+	^ LcsBlockSlot new
 		slotName: 'exitAction';
 		yourself
 ]

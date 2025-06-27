@@ -21,7 +21,7 @@ LcsStateMachineStateTransition class >> action: aBlockOrMessageSend to: nextStat
 { #category : #'slot definitions' }
 LcsStateMachineStateTransition class >> actionSlotDefinition [
 	<slotDefinition>
-	^ LcsBlockSlotDefinition new
+	^ LcsBlockSlot new
 		slotName: 'action';
 		yourself
 ]
@@ -39,7 +39,7 @@ LcsStateMachineStateTransition class >> eventTypeSlotDefinition [
 { #category : #'slot definitions' }
 LcsStateMachineStateTransition class >> guardConditionSlotDefinition [
 	<slotDefinition>
-	^ LcsBlockSlotDefinition new
+	^ LcsBlockSlot new
 		slotName: 'guardCondition';
 		yourself
 ]

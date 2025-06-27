@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-26T10:39:07.637893-04:00"
+						"dateAndTimeString" : "2025-06-26T18:56:50.840502-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-26T10:46:49.303324-04:00"
+						"dateAndTimeString" : "2025-06-26T19:02:39.96445-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "m\nLcsSlotDefintionMethodBuilder>>#validateProperty:value:in:"
+				"string" : "{{gtTodo:label=Implenet initialValueBlock editting|completed=}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n"
 			},
 			{
 				"__type" : "pharoSnippet",
