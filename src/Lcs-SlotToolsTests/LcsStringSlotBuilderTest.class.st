@@ -6,5 +6,5 @@ Class {
 
 { #category : #tests }
 LcsStringSlotBuilderTest >> testCreation [
-	self assert: LcsStringSlotBuilder slotDefinitionClass equals: LcsStringSlot
+	self assert: LcsStringSlotBuilder slotClass equals: LcsStringSlot
 ]

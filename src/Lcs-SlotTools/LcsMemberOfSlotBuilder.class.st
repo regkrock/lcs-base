@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #defaults }
-LcsMemberOfSlotBuilder class >> slotDefinitionClass [
+LcsMemberOfSlotBuilder class >> slotClass [
 	^ LcsMemberOfSlot
 ]
 

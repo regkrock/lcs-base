@@ -5,8 +5,23 @@ Class {
 }
 
 { #category : #tests }
+LcsDateOfBirthSlotTest >> testChangedInitializeBlock [
+	| domainObject  initialDateOfBirth |
+
+	initialDateOfBirth := Date today.
+
+	domainObject := LxxPerson new.
+	self assert: domainObject dateOfBirth equals: initialDateOfBirth.
+
+	(LxxPerson slotDefinitionNamed: 'dateOfBirth') initialValueBlock: [ Date today subtractDays:  10 ].
+	domainObject := LxxPerson new.
+	self assert: domainObject dateOfBirth equals:  ( Date today subtractDays:  10 ).
+
+]
+
+{ #category : #tests }
 LcsDateOfBirthSlotTest >> testChangedSlotInDomainObject [
-	| domainObject firstChangedDateOfBirth secondChangedDateOfBirth initialDateOfBirth secondChanged |
+	| domainObject firstChangedDateOfBirth secondChangedDateOfBirth initialDateOfBirth |
 
 	initialDateOfBirth := Date today.
 	firstChangedDateOfBirth := Date newDay: 1 month: 1 year: 2000.

@@ -6,6 +6,6 @@ Class {
 
 { #category : #tests }
 LcsLocalCollectionSlotBuilderTest >> testCreation [
-	self assert: LcsLocalCollectionSlotBuilder slotDefinitionClass equals: LcsLocalCollectionSlot.
+	self assert: LcsLocalCollectionSlotBuilder slotClass equals: LcsLocalCollectionSlot.
 	"self error: 'Needs more work'"
 ]

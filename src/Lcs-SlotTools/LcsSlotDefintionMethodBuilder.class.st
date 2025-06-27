@@ -2,8 +2,8 @@ Class {
 	#name : #LcsSlotDefintionMethodBuilder,
 	#superclass : #LcsSlotDetailBuilder,
 	#instVars : [
-		'slotDefinitionClass',
-		'slotDefinitionClassInstance'
+		'slotDefinitionClassInstance',
+		'slotClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -114,7 +114,7 @@ LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
-	^ self slotDefinitionClass new slotTypes
+	^ self slotClass new slotTypes
 		collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ]
 ]
 
@@ -158,7 +158,7 @@ LcsSlotDefintionMethodBuilder >> initialize [
 LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
 	self 
 		slotName: aSlotDefinitionBuilder slotName;
-		slotDefinitionClass: aSlotDefinitionBuilder slotDefinitionClassName asClass;
+		slotClass: aSlotDefinitionBuilder slotDefinitionClassName asClass;
 		targetClassName: aSlotDefinitionBuilder targetClassName;
 		slotTypes: aSlotDefinitionBuilder slotTypes copy;
 		validationConditions: aSlotDefinitionBuilder validationConditions.
@@ -192,24 +192,24 @@ LcsSlotDefintionMethodBuilder >> required: aBoolean [
 ]
 
 { #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotDefinitionClass [
-	^ slotDefinitionClass
+LcsSlotDefintionMethodBuilder >> slotClass [
+	^ slotClass
 ]
 
 { #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotDefinitionClass: anObject [
-	slotDefinitionClass := anObject
+LcsSlotDefintionMethodBuilder >> slotClass: anObject [
+	slotClass := anObject
 ]
 
 { #category : #testing }
 LcsSlotDefintionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
-	^ self slotDefinitionClass notNil
-		and: [ self slotDefinitionClass new slotTypes isEmpty ]
+	^ self slotClass notNil
+		and: [ self slotClass new slotTypes isEmpty ]
 ]
 
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> slotDefinitionClassInstance [
-	^ slotDefinitionClassInstance ifNil: [ slotDefinitionClassInstance := self slotDefinitionClass new ]
+	^ slotDefinitionClassInstance ifNil: [ slotDefinitionClassInstance := self slotClass new ]
 ]
 
 { #category : #accessing }
@@ -219,7 +219,7 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionClassInstance: anObject [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
-	^ self slotDefinitionClass
+	^ self slotClass
 		ifNil: [ '<missing>' ]
 		ifNotNil: [ :class | class name ]
 ]
@@ -235,7 +235,7 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 	| codeStream |
-	self slotDefinitionClassInstance: self slotDefinitionClass new.
+	self slotDefinitionClassInstance: self slotClass new.
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;
@@ -344,7 +344,7 @@ LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
 	super verifyCodeInstallation.
 	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
 	slotDefinition := self targetClass perform: self slotDefinitionSelector asSymbol.
-	self assert: slotDefinition class == self slotDefinitionClass.
+	self assert: slotDefinition class == self slotClass.
 	
 	self validatePropertiesIn: slotDefinition
 ]

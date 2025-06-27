@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #defaults }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder class >> slotDefinitionClass [
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder class >> slotClass [
 	^ LcsSingletonValueObjectsGlobalCollectionSlot
 ]
 

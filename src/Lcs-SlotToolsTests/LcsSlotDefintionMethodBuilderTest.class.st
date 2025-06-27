@@ -74,7 +74,7 @@ LcsSlotDefintionMethodBuilderTest >> testInstallingSlotDefinitionMethod [
 	self subject: (
 		LcsSlotDefintionMethodBuilder new
 			slotName: 'foo';
-			slotDefinitionClass: LcsStringSlot;
+			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
 			yourself).
 	self subject installCode.
@@ -86,7 +86,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	| methodSource |
 	self subject: (
 		LcsSlotDefintionMethodBuilder new
-			slotDefinitionClass: LcsCodeSlot;
+			slotClass: LcsCodeSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
 			yourself).
@@ -104,7 +104,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	self subject: (
 		LcsSlotDefintionMethodBuilder new
 			slotName: 'foo';
-			slotDefinitionClass: LcsStringSlot;
+			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
 			yourself).
@@ -121,7 +121,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoSlotNameDefined [
 	self should: [
 		(LcsSlotDefintionMethodBuilder new
-			slotDefinitionClass: LcsAcessorSlot;
+			slotClass: LcsAcessorSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
 			yourself) 
@@ -134,7 +134,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidatio
 	self subject: (
 		LcsSlotDefintionMethodBuilder new
 			slotName: 'foo';
-			slotDefinitionClass: LcsStringSlot;
+			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
 			addValidationCondition: [ false ] description: 'Always fails';
 			yourself).

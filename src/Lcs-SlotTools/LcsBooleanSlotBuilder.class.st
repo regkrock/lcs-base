@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #configuration }
-LcsBooleanSlotBuilder class >> slotDefinitionClass [
+LcsBooleanSlotBuilder class >> slotClass [
 	^ LcsBooleanSlot
 ]

@@ -24,8 +24,6 @@ LcsGlobalCollectionReferenceSlotTest >> testAddingNewDomainObjectToDomainCollect
 
 { #category : #tests }
 LcsGlobalCollectionReferenceSlotTest >> testSlotDefinition [
-"parentSlotDefinition
-	<slotDefinition>"
 	self subject: (LcsGlobalCollectionReferenceSlot new
 						slotName: 'parent';
 						collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;

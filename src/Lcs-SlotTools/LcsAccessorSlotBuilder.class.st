@@ -23,7 +23,7 @@ LcsAccessorSlotBuilder class >> newOn: aBuilderOrBuilderJob [
 ]
 
 { #category : #configuration }
-LcsAccessorSlotBuilder class >> slotDefinitionClass [
+LcsAccessorSlotBuilder class >> slotClass [
 	"Subclasses can override this method to provide a default"
 	^ LcsAcessorSlot
 ]
@@ -219,8 +219,8 @@ LcsAccessorSlotBuilder >> initialize [
 	self properties: Dictionary new.
 	self slotTypes: OrderedCollection new.
 	self validationConditions: OrderedCollection new.
-	self class slotDefinitionClass notNil
-		ifTrue: [ self slotDefinitionClassName: self class slotDefinitionClass name ].
+	self class slotClass notNil
+		ifTrue: [ self slotDefinitionClassName: self class slotClass name ].
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self).
 
 ]

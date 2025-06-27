@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #configuration }
-LcsLocalCollectionReferenceSlotBuilder class >> slotDefinitionClass [
+LcsLocalCollectionReferenceSlotBuilder class >> slotClass [
 	^ LcsLocalCollectionReferenceSlot
 ]
 

@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #configuration }
-LcsIntegerSlotBuilder class >> slotDefinitionClass [
+LcsIntegerSlotBuilder class >> slotClass [
 	^ LcsIntegerSlot
 ]

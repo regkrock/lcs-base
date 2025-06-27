@@ -7,5 +7,5 @@ Class {
 { #category : #tests }
 LcsGlobalCollectionReferenceSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
-	self assert: LcsGlobalCollectionReferenceSlotBuilder slotDefinitionClass equals: LcsGlobalCollectionReferenceSlot
+	self assert: LcsGlobalCollectionReferenceSlotBuilder slotClass equals: LcsGlobalCollectionReferenceSlot
 ]

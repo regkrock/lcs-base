@@ -8,7 +8,7 @@ Class {
 LcsValueObjectsGlobalCollectionSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
 	
-	self assert: LcsValueObjectsGlobalCollectionSlotBuilder slotDefinitionClass equals: LcsValueObjectsGlobalCollectionSlot.
+	self assert: LcsValueObjectsGlobalCollectionSlotBuilder slotClass equals: LcsValueObjectsGlobalCollectionSlot.
 	
 	self subject: LcsValueObjectsGlobalCollectionSlotBuilder new.
 	self assert: self subject slotDefinitionClassName  equals: 'LcsValueObjectsGlobalCollectionSlot'.

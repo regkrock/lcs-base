@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #defaults }
-LcsValueObjectsGlobalCollectionSlotBuilder class >> slotDefinitionClass [
+LcsValueObjectsGlobalCollectionSlotBuilder class >> slotClass [
 	^ LcsValueObjectsGlobalCollectionSlot
 ]
 
