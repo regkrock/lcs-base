@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsSingletonValueObjectsGlobalCollectionSlotBuilder,
 	#superclass : #LcsGlobalCollectionSlotBuilder,
-	#instVars : [
-		'valueObjectSuperclassName'
-	],
 	#category : #'Lcs-SlotTools'
 }
 
@@ -47,10 +44,10 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclass [
 
 { #category : #accessing }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName [
-	^ valueObjectSuperclassName
+	^ self properties at: 'valueObjectSuperclassName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName: aClassName [
-	valueObjectSuperclassName := aClassName
+	self properties at: 'valueObjectSuperclassName' put: aClassName
 ]

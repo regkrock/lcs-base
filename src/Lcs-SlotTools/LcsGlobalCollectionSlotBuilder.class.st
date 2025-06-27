@@ -3,7 +3,6 @@ Class {
 	#superclass : #LcsAccessorSlotBuilder,
 	#instVars : [
 		'slotClass',
-		'collectionElementTypes',
 		'targetModule',
 		'targetModuleName',
 		'collectionClass',
@@ -44,9 +43,7 @@ LcsGlobalCollectionSlotBuilder >> addCollectionElementType: aClass [
 LcsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
 	self collectionElementTypes do: [ :each |
-		aSlotDefinitionMethodBuilder 
-			addProperty: 'addCollectionMemberType' 
-			value: each ]
+		aSlotDefinitionMethodBuilder addProperty: 'addCollectionMemberType' value: each ]
 ]
 
 { #category : #initialize }
@@ -70,12 +67,12 @@ LcsGlobalCollectionSlotBuilder >> collectionClassName [
 
 { #category : #accessing }
 LcsGlobalCollectionSlotBuilder >> collectionElementTypes [
-	^ collectionElementTypes
+	^ self properties at: 'collectionElementTypes' ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionSlotBuilder >> collectionElementTypes: anObject [
-	collectionElementTypes := anObject
+	self properties at: 'collectionElementTypes' put: anObject
 ]
 
 { #category : #command }

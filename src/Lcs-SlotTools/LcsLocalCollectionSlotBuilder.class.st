@@ -3,7 +3,6 @@ Class {
 	#superclass : #LcsAccessorSlotBuilder,
 	#instVars : [
 		'slotClass',
-		'collectionElementTypes',
 		'targetModule',
 		'targetModuleName',
 		'collectionClass',
@@ -79,12 +78,12 @@ LcsLocalCollectionSlotBuilder >> collectionClass: anObject [
 
 { #category : #accessing }
 LcsLocalCollectionSlotBuilder >> collectionElementTypes [
-	^ collectionElementTypes
+	^ self properties at: 'collectionElementTypes' ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : #accessing }
 LcsLocalCollectionSlotBuilder >> collectionElementTypes: anObject [
-	collectionElementTypes := anObject
+	self properties at: 'collectionElementTypes' put: anObject
 ]
 
 { #category : #'job steps' }

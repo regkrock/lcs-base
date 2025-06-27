@@ -2,7 +2,6 @@ Class {
 	#name : #LcsValueObjectsGlobalCollectionSlotBuilder,
 	#superclass : #LcsGlobalCollectionSlotBuilder,
 	#instVars : [
-		'loaderClassName',
 		'valueObjectSuperclassName'
 	],
 	#category : #'Lcs-SlotTools'
@@ -45,12 +44,12 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> laderClass [
 
 { #category : #accessing }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName [
-	^ loaderClassName
+	^ self properties at: 'loaderClassName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName: anObject [
-	loaderClassName := anObject
+	self properties at: 'loaderClassName' put: anObject
 ]
 
 { #category : #accessing }

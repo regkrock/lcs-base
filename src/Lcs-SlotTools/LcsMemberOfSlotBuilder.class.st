@@ -2,8 +2,6 @@ Class {
 	#name : #LcsMemberOfSlotBuilder,
 	#superclass : #LcsAccessorSlotBuilder,
 	#instVars : [
-		'collectionSlotName',
-		'collectionSlotModuleName',
 		'collectionSourceClassName'
 	],
 	#category : #'Lcs-SlotTools'
@@ -46,22 +44,22 @@ LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> collectionSlotModuleName [
-	^ collectionSlotModuleName
+	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> collectionSlotModuleName: aString [
-	collectionSlotModuleName := aString
+	self properties at: 'collectionSlotModuleName:' put: aString
 ]
 
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> collectionSlotName [
-	^ collectionSlotName
+	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
-	collectionSlotName := anObject
+	self properties at: 'collectionSlotName' put: anObject
 ]
 
 { #category : #accessing }

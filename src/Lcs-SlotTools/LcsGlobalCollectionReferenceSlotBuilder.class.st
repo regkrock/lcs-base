@@ -2,8 +2,6 @@ Class {
 	#name : #LcsGlobalCollectionReferenceSlotBuilder,
 	#superclass : #LcsAccessorSlotBuilder,
 	#instVars : [
-		'collectionSlotName',
-		'collectionSlotModuleName',
 		'collectionClassName'
 	],
 	#category : #'Lcs-SlotTools'
@@ -69,22 +67,22 @@ LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModule [
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName [
-	^ collectionSlotModuleName
+	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName: aString [
-	collectionSlotModuleName := aString
+	self properties at: 'collectionSlotModuleName' put: aString
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName [
-	^ collectionSlotName
+	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
-	collectionSlotName := aString
+	self properties at: 'collectionSlotName' put: aString
 ]
 
 { #category : #'gt views' }
