@@ -157,11 +157,11 @@ LcsSlotDefintionMethodBuilder >> initialize [
 { #category : #'instance  creation' }
 LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
 	self 
-		slotName: aSlotDefinitionBuilder slotName;
 		slotClass: aSlotDefinitionBuilder slotDefinitionClassName asClass;
-		targetClassName: aSlotDefinitionBuilder targetClassName;
+		targetClassName: aSlotDefinitionBuilder targetClassName.
+		"slotName: aSlotDefinitionBuilder slotName;
 		slotTypes: aSlotDefinitionBuilder slotTypes copy;
-		validationConditions: aSlotDefinitionBuilder validationConditions.
+		validationConditions: aSlotDefinitionBuilder validationConditions".
 	aSlotDefinitionBuilder addExtraPropertiesTo: self
 ]
 

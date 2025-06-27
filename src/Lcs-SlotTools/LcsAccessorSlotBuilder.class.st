@@ -179,6 +179,18 @@ LcsAccessorSlotBuilder >> gtClassViewOn: aView [
 ]
 
 { #category : #'gt views' }
+LcsAccessorSlotBuilder >> gtPropertiesFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Properties';
+		items: [ self properties associations ];
+		column: 'Property' text: #key;
+		column: 'Value' text: #value;
+		send: #value;
+		actionUpdateButton
+]
+
+{ #category : #'gt views' }
 LcsAccessorSlotBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
