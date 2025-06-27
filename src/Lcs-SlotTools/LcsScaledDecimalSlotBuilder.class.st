@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsScaledDecimalSlotBuilder,
-	#superclass : #LcsSlotDefinitionBuilder,
+	#superclass : #LcsAccessorSlotBuilder,
 	#category : #'Lcs-SlotTools'
 }
 

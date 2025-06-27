@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsBaseSlotDefinition,
+	#name : #LcsBaseSlot,
 	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'slotName',
@@ -13,38 +13,38 @@ Class {
 }
 
 { #category : #configuration }
-LcsBaseSlotDefinition >> addSlotType: aClass [
+LcsBaseSlot >> addSlotType: aClass [
 	self assert: aClass isClass.
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
 
 { #category : #validations }
-LcsBaseSlotDefinition >> addValidationCondition: aValidationCondition [
+LcsBaseSlot >> addValidationCondition: aValidationCondition [
 	self validationConditions addValidationCondition: aValidationCondition
 ]
 
 { #category : #validations }
-LcsBaseSlotDefinition >> addValidationCondition: aBlock description: aString [
+LcsBaseSlot >> addValidationCondition: aBlock description: aString [
 	self validationConditions addValidationCondition: aBlock description: aString
 ]
 
 { #category : #configuration }
-LcsBaseSlotDefinition >> clearSlotTypes [
+LcsBaseSlot >> clearSlotTypes [
 	self slotTypes removeAll.
 ]
 
 { #category : #'slot model' }
-LcsBaseSlotDefinition >> domainClass [
+LcsBaseSlot >> domainClass [
 	^ domainClass ifNil: [ domainClass := self parent ifNotNil: [ :parnt | parnt domainClass ] ]
 ]
 
 { #category : #'slot model' }
-LcsBaseSlotDefinition >> domainClass: aDomainClass [
+LcsBaseSlot >> domainClass: aDomainClass [
 	domainClass := aDomainClass
 ]
 
 { #category : #magritte }
-LcsBaseSlotDefinition >> domainClassDescription [
+LcsBaseSlot >> domainClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Domain Class';
@@ -57,7 +57,7 @@ LcsBaseSlotDefinition >> domainClassDescription [
 ]
 
 { #category : #initialize }
-LcsBaseSlotDefinition >> initialize [
+LcsBaseSlot >> initialize [
 	super initialize.
 	self initializeSlotTypes.
 	self validationConditions: (LcsValidationConditions newOn: self).
@@ -65,43 +65,43 @@ LcsBaseSlotDefinition >> initialize [
 ]
 
 { #category : #initialize }
-LcsBaseSlotDefinition >> initializeSlotTypes [
+LcsBaseSlot >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
 ]
 
 { #category : #testing }
-LcsBaseSlotDefinition >> isChangedProperty: aPropertyName value: aValue [
+LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
 	(self respondsTo: aPropertyName asSymbol) ifFalse: [ ^ true ].
 	^ ((self perform: aPropertyName asSymbol) = aValue) not
 ]
 
 { #category : #'slot model' }
-LcsBaseSlotDefinition >> label [
+LcsBaseSlot >> label [
 	^self labelForSelector: self slotName
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> parent [
+LcsBaseSlot >> parent [
 	^ parent
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> parent: anObject [
+LcsBaseSlot >> parent: anObject [
 	parent := anObject
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> priority [
+LcsBaseSlot >> priority [
 	^ priority
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> priority: anObject [
+LcsBaseSlot >> priority: anObject [
 	priority := anObject
 ]
 
 { #category : #magritte }
-LcsBaseSlotDefinition >> priorityDescription [
+LcsBaseSlot >> priorityDescription [
 	<magritteDescription>
 	^ MANumberDescription new
 		label: 'Priority';
@@ -115,22 +115,22 @@ LcsBaseSlotDefinition >> priorityDescription [
 ]
 
 { #category : #validations }
-LcsBaseSlotDefinition >> removeValidationCondition: aValidationCondition [
+LcsBaseSlot >> removeValidationCondition: aValidationCondition [
 	self validationConditions removeValidationCondition: aValidationCondition
 ]
 
 { #category : #validations }
-LcsBaseSlotDefinition >> removeValidationConditionWithDescription: aString [
+LcsBaseSlot >> removeValidationConditionWithDescription: aString [
 	self validationConditions removeValidationConditionWithDescription: aString
 ]
 
 { #category : #defaults }
-LcsBaseSlotDefinition >> slotClass [
+LcsBaseSlot >> slotClass [
 	^ self slotTypes any
 ]
 
 { #category : #magritte }
-LcsBaseSlotDefinition >> slotDefinitionClassDescription [
+LcsBaseSlot >> slotClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Slot Definition Class';
@@ -144,17 +144,17 @@ LcsBaseSlotDefinition >> slotDefinitionClassDescription [
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> slotName [
+LcsBaseSlot >> slotName [
 	^ slotName
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> slotName: anObject [
+LcsBaseSlot >> slotName: anObject [
 	slotName := anObject
 ]
 
 { #category : #magritte }
-LcsBaseSlotDefinition >> slotNameDescription [
+LcsBaseSlot >> slotNameDescription [
 	<magritteDescription>
 	| existingInstvarNames |
 	existingInstvarNames := self domainClass ifNil: [ #() ] ifNotNil: [ :c | c allInstVarNames ].
@@ -177,7 +177,7 @@ LcsBaseSlotDefinition >> slotNameDescription [
 ]
 
 { #category : #'gt views' }
-LcsBaseSlotDefinition >> slotTypeClassNames [
+LcsBaseSlot >> slotTypeClassNames [
 	| stream |
 	stream := WriteStream on: String new.
 	self slotTypes do: [ :eachClass |
@@ -189,17 +189,17 @@ LcsBaseSlotDefinition >> slotTypeClassNames [
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> slotTypes [
+LcsBaseSlot >> slotTypes [
 	^ slotTypes
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> slotTypes: anObject [
+LcsBaseSlot >> slotTypes: anObject [
 	slotTypes := anObject
 ]
 
 { #category : #magritte }
-LcsBaseSlotDefinition >> slotTypesDescription [
+LcsBaseSlot >> slotTypesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		label: 'Slot Types';
@@ -232,12 +232,12 @@ LcsBaseSlotDefinition >> slotTypesDescription [
 ]
 
 { #category : #'slot model' }
-LcsBaseSlotDefinition >> slotVarPut: anObject in: aDomainObject [
+LcsBaseSlot >> slotVarPut: anObject in: aDomainObject [
 	^ LcsError signal: 'Attempt to update a read only slot'
 ]
 
 { #category : #magritte }
-LcsBaseSlotDefinition >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
+LcsBaseSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
 	^ [ :aMemento :aDescription :aForm | 
 	| aTagger aTaggerAptitude |
 	aTagger := BrTagger new hFitContentLimited.
@@ -348,23 +348,23 @@ LcsBaseSlotDefinition >> taggerStencilWithCompletion: aCompletionStrategy andCon
 ]
 
 { #category : #validations }
-LcsBaseSlotDefinition >> validate: aValue [
+LcsBaseSlot >> validate: aValue [
 	(LcsConditionsValidator newOn: self)
 		validate: aValue
 ]
 
 { #category : #validations }
-LcsBaseSlotDefinition >> validate: aValue context: aDomainObject [
+LcsBaseSlot >> validate: aValue context: aDomainObject [
 	(LcsConditionsValidator newOn: self)
 		validate: aValue context: aDomainObject
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> validationConditions [
+LcsBaseSlot >> validationConditions [
 	^ validationConditions
 ]
 
 { #category : #accessing }
-LcsBaseSlotDefinition >> validationConditions: anObject [
+LcsBaseSlot >> validationConditions: anObject [
 	validationConditions := anObject
 ]

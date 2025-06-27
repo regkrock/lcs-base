@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 LxxPrototypeSystemConfiguration >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsSlotDefinition new
+	^ LcsAcessorSlot new
 		slotName: 'parent';
 		yourself
 ]

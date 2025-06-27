@@ -140,7 +140,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T13:42:57.356841-04:00"
+						"dateAndTimeString" : "2025-05-14T13:43:29.302025-04:00"
 					}
 				},
 				"uid" : {
@@ -150,7 +150,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**Life cycle of object stored in the slot variable**\n*Aggregate* - The object in the slot is still 'alive' after it is removed from the slot variable.\n*Composite* - The object is effectively deleted and should automaticall be garbage collected.\n\nNote: Smalltalk objects that are store in the slot are currently allowed to live their own lifecycle. They will be garbage collected unless they are referenced by another object. In this relationship, they are considered to be "
+				"string" : "**Life cycle of object stored in the slot variable**\n*Aggregate* - The object in the slot is still 'alive' after it is removed from the slot variable.\n*Composite* - The object is effectively deleted and should automaticall be garbage collected.\n\nNote: Smalltalk objects that are store in the slot are currently allowed to live their own lifecycle. They will be garbage collected unless they are referenced by another object. In this relationship, they are considered to be aggregate from a maintenace point of view."
 			},
 			{
 				"__type" : "textSnippet",
@@ -214,14 +214,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T13:36:26.16381-04:00"
+						"dateAndTimeString" : "2025-06-27T11:14:57.620007-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "MBl1h33xDQCqenq1CP3peg=="
 				},
-				"code" : "\"List all traits being used in LsBaseSlotDefinition and its subclasses\"\rLcsBaseSlotDefinition withAllSubclassesDo: [ :each | each traits notEmpty ifTrue: [\r\tTranscript show: each name; tab; nextPutAll: (each traits printString); cr ] ] "
+				"code" : "\"List all traits being used in LsBaseSlotDefinition and its subclasses\"\rLcsBaseSlot withAllSubclassesDo: [ :each | each traits notEmpty ifTrue: [\r\tTranscript show: each name; tab; nextPutAll: (each traits printString); cr ] ] "
 			}
 		]
 	},

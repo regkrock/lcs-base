@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsSlotDefinitionBuilder,
+	#name : #LcsAccessorSlotBuilder,
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
 		'slotDefinitionSelector',
@@ -16,40 +16,40 @@ Class {
 }
 
 { #category : #'instance creation' }
-LcsSlotDefinitionBuilder class >> newOn: aBuilderOrBuilderJob [
+LcsAccessorSlotBuilder class >> newOn: aBuilderOrBuilderJob [
 	^ self new
 		initializeOn: aBuilderOrBuilderJob;
 		yourself 
 ]
 
 { #category : #configuration }
-LcsSlotDefinitionBuilder class >> slotDefinitionClass [
+LcsAccessorSlotBuilder class >> slotDefinitionClass [
 	"Subclasses can override this method to provide a default"
-	^ LcsSlotDefinition
+	^ LcsAcessorSlot
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> addClassesToUmlModel: umlModel [
+LcsAccessorSlotBuilder >> addClassesToUmlModel: umlModel [
 	umlModel addClassNamed: self targetClassName.
 	self addTargetModuleClassTo: umlModel
 ]
 
 { #category : #initialize }
-LcsSlotDefinitionBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsAccessorSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> addRefactoringTextDetailsTo: aStream [
+LcsAccessorSlotBuilder >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
 ]
 
 { #category : #'code generation' }
-LcsSlotDefinitionBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
+LcsAccessorSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
 
 { #category : #initialize }
-LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
+LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 	| className |
 	className := aClassOrClassName isClass 
 					ifTrue: [ aClassOrClassName name asString ] 
@@ -59,40 +59,40 @@ LcsSlotDefinitionBuilder >> addSlotType: aClassOrClassName [
 ]
 
 { #category : #printing }
-LcsSlotDefinitionBuilder >> addStepNumberTo: aString [
+LcsAccessorSlotBuilder >> addStepNumberTo: aString [
 	^ self stepNumber , '.' , aString
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> addTargetClassTo: classesModel [
+LcsAccessorSlotBuilder >> addTargetClassTo: classesModel [
 	self targetClass
 		ifNil: [ classesModel proposedClassModelFor: self targetClassName ]
 		ifNotNil: [ :class | classesModel existingClassModelFor: class ]
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> addTargetModuleClassTo: classesModel [
+LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 	self targetModuleClass notNil
 		ifTrue: [ classesModel existingClassModelFor: self targetModuleClass ]
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> addValidationCondition: aStringBlock description: aDescription [
+LcsAccessorSlotBuilder >> addValidationCondition: aStringBlock description: aDescription [
 	self validationConditions add: aStringBlock -> aDescription
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> allowNil [
+LcsAccessorSlotBuilder >> allowNil [
 	^ self propertyAt: 'allowNil' ifAbsent: [ false ]
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> allowNil: anObject [ 
+LcsAccessorSlotBuilder >> allowNil: anObject [ 
 	self propertyAt: 'allowNil' put: anObject
 ]
 
 { #category : #margritte }
-LcsSlotDefinitionBuilder >> allowNilDescription [
+LcsAccessorSlotBuilder >> allowNilDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Allow Nil';
@@ -106,14 +106,14 @@ LcsSlotDefinitionBuilder >> allowNilDescription [
 ]
 
 { #category : #'job steps' }
-LcsSlotDefinitionBuilder >> buildJobSteps [
+LcsAccessorSlotBuilder >> buildJobSteps [
 	self addJobStep: self slotInstanceVariableBuilder.
 	self addJobStep: self slotDefinitionMethodBuilder.
 	self addJobStep: self getterAndSetterMethodsBuilder
 ]
 
 { #category : #'magritte - support' }
-LcsSlotDefinitionBuilder >> classesOrNilsFor: aCollectionOfClassNames [ 
+LcsAccessorSlotBuilder >> classesOrNilsFor: aCollectionOfClassNames [ 
 	"Return collection of Class. If a Class does not exist, `nil` value is used."
 
 	<return: #Collection of: #Class>
@@ -122,35 +122,35 @@ LcsSlotDefinitionBuilder >> classesOrNilsFor: aCollectionOfClassNames [
 ]
 
 { #category : #uninstall }
-LcsSlotDefinitionBuilder >> clearTargetClass: aClass [
+LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 	self targetClass == aClass
 		ifTrue: [ self targetClassName: nil ]
 ]
 
 { #category : #'as yet unclassified' }
-LcsSlotDefinitionBuilder >> commit [
+LcsAccessorSlotBuilder >> commit [
 	self buildJobSteps.
 	self execute
 ]
 
 { #category : #testing }
-LcsSlotDefinitionBuilder >> doesSlotDefinitionMethodExist [
+LcsAccessorSlotBuilder >> doesSlotDefinitionMethodExist [
 	^ self targetClass class includesSelector: self slotDefinitionSelector
 ]
 
 { #category : #testing }
-LcsSlotDefinitionBuilder >> doesTargetClassExist [
+LcsAccessorSlotBuilder >> doesTargetClassExist [
 	^ self targetClass isClass
 ]
 
 { #category : #validation }
-LcsSlotDefinitionBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
+LcsAccessorSlotBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
 	self doesSlotDefinitionMethodExist
 		ifTrue: [ self error: 'Slot definition already exists' ]
 ]
 
 { #category : #initialize }
-LcsSlotDefinitionBuilder >> getterAndSetterMethodsBuilder [
+LcsAccessorSlotBuilder >> getterAndSetterMethodsBuilder [
 	^ LcsSlotGetterAndSetterBuilder new
 		slotName: self slotName;
 		targetClassName: self targetClassName;
@@ -158,12 +158,12 @@ LcsSlotDefinitionBuilder >> getterAndSetterMethodsBuilder [
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> getterSelector [
+LcsAccessorSlotBuilder >> getterSelector [
 	^ self slotName asSymbol
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> gtClassViewOn: aView [
+LcsAccessorSlotBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self doesTargetClassExist ifFalse: [
 		^ aView list
@@ -179,7 +179,7 @@ LcsSlotDefinitionBuilder >> gtClassViewOn: aView [
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> gtRefactoringChangeOn: aView [
+LcsAccessorSlotBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
 		title: 'Refactoring';
@@ -190,17 +190,17 @@ LcsSlotDefinitionBuilder >> gtRefactoringChangeOn: aView [
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> initialValueBlock [
+LcsAccessorSlotBuilder >> initialValueBlock [
 	^ self propertyAt: 'initialValueBlock' ifAbsent: [ [ ] ]
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> initialValueBlock: aString [
+LcsAccessorSlotBuilder >> initialValueBlock: aString [
 	^ self propertyAt: 'initialValueBlock' put: aString
 ]
 
 { #category : #margritte }
-LcsSlotDefinitionBuilder >> initialValueBlockDescription [
+LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Initial Value Block';
@@ -214,7 +214,7 @@ LcsSlotDefinitionBuilder >> initialValueBlockDescription [
 ]
 
 { #category : #initialize }
-LcsSlotDefinitionBuilder >> initialize [
+LcsAccessorSlotBuilder >> initialize [
 	super initialize.
 	self properties: Dictionary new.
 	self slotTypes: OrderedCollection new.
@@ -226,23 +226,23 @@ LcsSlotDefinitionBuilder >> initialize [
 ]
 
 { #category : #initialize }
-LcsSlotDefinitionBuilder >> initializeOn: aBuilderOrBuilderJob [ 
+LcsAccessorSlotBuilder >> initializeOn: aBuilderOrBuilderJob [ 
 	self parent: aBuilderOrBuilderJob
 ]
 
 { #category : #command }
-LcsSlotDefinitionBuilder >> installCode [
+LcsAccessorSlotBuilder >> installCode [
 	self traceStep: 'installCode'.
 	self jobSteps installCode
 ]
 
 { #category : #'job steps' }
-LcsSlotDefinitionBuilder >> installSlotDefinition [
+LcsAccessorSlotBuilder >> installSlotDefinition [
 	self targetClass installSlotDefinition: self slotDefinitionSelector
 ]
 
 { #category : #populate }
-LcsSlotDefinitionBuilder >> populateFrom: aSlotDefinitionClassName [
+LcsAccessorSlotBuilder >> populateFrom: aSlotDefinitionClassName [
 	self slotDefinitionClassName: aSlotDefinitionClassName.
 	self slotDefinitionTemplate: aSlotDefinitionClassName asClass new.
 	 self slotDefinitionTemplate slotName ifNotNil: [
@@ -255,7 +255,7 @@ LcsSlotDefinitionBuilder >> populateFrom: aSlotDefinitionClassName [
 ]
 
 { #category : #printing }
-LcsSlotDefinitionBuilder >> printJobStreamDetailsOn: aStream [
+LcsAccessorSlotBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Install slot "';
 		nextPutAll: (self slotName ifNil: [ '<missing>' ]);
@@ -264,44 +264,44 @@ LcsSlotDefinitionBuilder >> printJobStreamDetailsOn: aStream [
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> properties [
+LcsAccessorSlotBuilder >> properties [
 	^ properties
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> properties: anObject [ 
+LcsAccessorSlotBuilder >> properties: anObject [ 
 	properties := Dictionary new
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> propertyAt: aName [
+LcsAccessorSlotBuilder >> propertyAt: aName [
 	self properties at: aName ifAbsent: [ nil ]
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> propertyAt: aName ifAbsent: aBlock [
+LcsAccessorSlotBuilder >> propertyAt: aName ifAbsent: aBlock [
 	^ self properties at: aName ifAbsent: aBlock
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> propertyAt: aName put: anObject [
+LcsAccessorSlotBuilder >> propertyAt: aName put: anObject [
 	self properties at: aName put: anObject.
 	self jobSteps do: [ :eachStep | (eachStep respondsTo: (aName , ':' asSymbol))
 		ifTrue: [ eachStep perform: (aName , ':' asSymbol) with: anObject ] ]
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> required [
+LcsAccessorSlotBuilder >> required [
 	^ self propertyAt: 'required' ifAbsent: [ false ]
 ]
 
 { #category : #property }
-LcsSlotDefinitionBuilder >> required: anObject [ 
+LcsAccessorSlotBuilder >> required: anObject [ 
 	self propertyAt: 'required' put: anObject
 ]
 
 { #category : #margritte }
-LcsSlotDefinitionBuilder >> requiredDescription [
+LcsAccessorSlotBuilder >> requiredDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Required';
@@ -315,43 +315,43 @@ LcsSlotDefinitionBuilder >> requiredDescription [
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotDefinitionClassName [
+LcsAccessorSlotBuilder >> slotDefinitionClassName [
 	^ slotDefinitionClassName
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotDefinitionClassName: anObject [
+LcsAccessorSlotBuilder >> slotDefinitionClassName: anObject [
 	slotDefinitionClassName := anObject
 ]
 
 { #category : #initialize }
-LcsSlotDefinitionBuilder >> slotDefinitionMethodBuilder [
+LcsAccessorSlotBuilder >> slotDefinitionMethodBuilder [
 	^ LcsSlotDefintionMethodBuilder newFrom: self
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotDefinitionSelector [
+LcsAccessorSlotBuilder >> slotDefinitionSelector [
 	^ slotDefinitionSelector
 		"ifNil: [ slotDefinitionSelector := ((self slotName ifNil: [ 'undefined' ]) , 'SlotDefinition') asSymbol ]"
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotDefinitionSelector: aSymbol [
+LcsAccessorSlotBuilder >> slotDefinitionSelector: aSymbol [
 	slotDefinitionSelector := aSymbol asSymbol
 ]
 
 { #category : #populate }
-LcsSlotDefinitionBuilder >> slotDefinitionTemplate [
+LcsAccessorSlotBuilder >> slotDefinitionTemplate [
 	^ slotDefinitionTemplate
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotDefinitionTemplate: anObject [ 
+LcsAccessorSlotBuilder >> slotDefinitionTemplate: anObject [ 
 	slotDefinitionTemplate := anObject
 ]
 
 { #category : #initialize }
-LcsSlotDefinitionBuilder >> slotInstanceVariableBuilder [
+LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 	^ LcsSlotInstanceVariableBuilder new
 		slotName: self slotName;
 		targetClassName: self targetClassName;
@@ -359,18 +359,18 @@ LcsSlotDefinitionBuilder >> slotInstanceVariableBuilder [
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotName [
+LcsAccessorSlotBuilder >> slotName [
 	^ self propertyAt: 'slotName' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotName: anObject [
+LcsAccessorSlotBuilder >> slotName: anObject [
 	self propertyAt: 'slotName' put: (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size)).
 	self slotDefinitionSelector: self slotName , 'SlotDefinition'
 ]
 
 { #category : #margritte }
-LcsSlotDefinitionBuilder >> slotNameDescription [
+LcsAccessorSlotBuilder >> slotNameDescription [
 	<magritteDescription>
 	| existingInstvarNames |
 	existingInstvarNames := self targetClass allInstVarNames.
@@ -392,17 +392,17 @@ LcsSlotDefinitionBuilder >> slotNameDescription [
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotTypes [
+LcsAccessorSlotBuilder >> slotTypes [
 	^ self propertyAt: 'slotTypes' ifAbsent: [ OrderedCollection new] 
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> slotTypes: anObject [
+LcsAccessorSlotBuilder >> slotTypes: anObject [
 	self propertyAt: 'slotTypes' put: anObject
 ]
 
 { #category : #margritte }
-LcsSlotDefinitionBuilder >> slotTypesDescription [
+LcsAccessorSlotBuilder >> slotTypesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		label: 'Slot Types';
@@ -451,7 +451,7 @@ LcsSlotDefinitionBuilder >> slotTypesDescription [
 ]
 
 { #category : #'magritte - support' }
-LcsSlotDefinitionBuilder >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
+LcsAccessorSlotBuilder >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
 	^ [ :aMemento :aDescription :aForm | 
 	| aTagger aTaggerAptitude |
 	aTagger := BrTagger new hFitContentLimited.
@@ -561,7 +561,7 @@ LcsSlotDefinitionBuilder >> taggerStencilWithCompletion: aCompletionStrategy and
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetClass [
+LcsAccessorSlotBuilder >> targetClass [
 	^ self targetClassName ifNotNil: [ 
 		[ self targetClassName asClass ] 
 			on: NotFound 
@@ -569,63 +569,63 @@ LcsSlotDefinitionBuilder >> targetClass [
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetClass: aClass [
+LcsAccessorSlotBuilder >> targetClass: aClass [
 	self targetClassName: aClass name
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetClassName [
+LcsAccessorSlotBuilder >> targetClassName [
 	^ targetClassName
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetClassName: aString [
+LcsAccessorSlotBuilder >> targetClassName: aString [
 	targetClassName := aString
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetModuleClass [
+LcsAccessorSlotBuilder >> targetModuleClass [
 	^ targetModuleClass
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetModuleClass: aModuleClass [
+LcsAccessorSlotBuilder >> targetModuleClass: aModuleClass [
 	targetModuleClass := aModuleClass
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetPackageName [
+LcsAccessorSlotBuilder >> targetPackageName [
 	^ targetPackageName
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> targetPackageName: anObject [
+LcsAccessorSlotBuilder >> targetPackageName: anObject [
 	targetPackageName := anObject
 ]
 
 { #category : #verification }
-LcsSlotDefinitionBuilder >> targetSlotDefinition [
+LcsAccessorSlotBuilder >> targetSlotDefinition [
 	^ self targetClass perform: self slotDefinitionSelector
 ]
 
 { #category : #command }
-LcsSlotDefinitionBuilder >> updateSlotModel [
+LcsAccessorSlotBuilder >> updateSlotModel [
 	super updateSlotModel.
 	self installSlotDefinition
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> validationConditions [
+LcsAccessorSlotBuilder >> validationConditions [
 	^ validationConditions
 ]
 
 { #category : #accessing }
-LcsSlotDefinitionBuilder >> validationConditions: anObject [
+LcsAccessorSlotBuilder >> validationConditions: anObject [
 	validationConditions := anObject
 ]
 
 { #category : #'gt views' }
-LcsSlotDefinitionBuilder >> viewCodeButton [
+LcsAccessorSlotBuilder >> viewCodeButton [
 	self targetClass isNil ifTrue: [ ^ BrButton new ].
 	^ self viewClassButtonFor: self targetClass 
 ]

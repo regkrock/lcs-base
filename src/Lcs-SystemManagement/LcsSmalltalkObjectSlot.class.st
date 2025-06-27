@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSmalltalkObjectSlot,
-	#superclass : #LcsSlotDefinition,
+	#superclass : #LcsAcessorSlot,
 	#instVars : [
 		'inputComponentClassName'
 	],

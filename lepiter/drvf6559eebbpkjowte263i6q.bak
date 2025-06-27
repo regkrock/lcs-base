@@ -145,7 +145,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-05-07T08:39:25.970642-04:00"
+									"dateAndTimeString" : "2025-05-07T08:40:29.938499-04:00"
 								}
 							},
 							"uid" : {
@@ -155,7 +155,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "To explain this scenario the example of the person class  {{gtClass:name=LxxPerson}} whose instances are stored in a global collection which is an instance of  {{gtClass:name=LxxPrototypePersons}} will be followed.\n\nWhen an instance of  {{gtClass:name=LxxPerson}} is created, the #parent slot is not populated and it remains with a nil value. When the apply changes is made it will be added to the persons collection and the parent of the new instance will be set to the persons collection.\n\nTo accomplish this two slots must exist. The persons collection needs to be defined within the context of the system. By convention, 'global' collections belong to their module. This requires the addition of a personsSlotDefinition added to the corresponding module. This example that module is the {{gtClass:name=LxxPrototypePersonsModule}}."
+							"string" : "To explain this scenario the example of the person class  {{gtClass:name=LxxPerson}} whose instances are stored in a global collection which is an instance of  {{gtClass:name=LxxPersons}} will be followed.\n\nWhen an instance of  {{gtClass:name=LxxPerson}} is created, the #parent slot is not populated and it remains with a nil value. When the apply changes is made it will be added to the persons collection and the parent of the new instance will be set to the persons collection.\n\nTo accomplish this two slots must exist. The persons collection needs to be defined within the context of the system. By convention, 'global' collections belong to their module. This requires the addition of a personsSlotDefinition added to the corresponding module. This example that module is the {{gtClass:name=LxxPersonsModule}}."
 						},
 						{
 							"__type" : "textSnippet",
@@ -187,7 +187,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-14T10:43:13.644978-04:00"
+												"dateAndTimeString" : "2025-05-07T08:40:29.971454-04:00"
 											}
 										},
 										"uid" : {
@@ -197,7 +197,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtMethod:name=LxxPrototypePersonsModule class>>personsSlotDefinition}}"
+										"string" : "{{gtMethod:name=LxxPersonsModule class>>personsSlotDefinition}}"
 									}
 								]
 							},

@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsSlotDefinitionBuilderTest,
+	#name : #LcsAccessorSlotBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#instVars : [
 		'codeBuilder'
@@ -8,9 +8,9 @@ Class {
 }
 
 { #category : #tests }
-LcsSlotDefinitionBuilderTest >> testInstallingSlot [
+LcsAccessorSlotBuilderTest >> testInstallingSlot [
 	self subject: (
-		LcsSlotDefinitionBuilder new
+		LcsAccessorSlotBuilder new
 			slotName: 'foos';
 			slotDefinitionClassName: LcsStringSlot name;
 			targetClassName: self currentSystem class name;

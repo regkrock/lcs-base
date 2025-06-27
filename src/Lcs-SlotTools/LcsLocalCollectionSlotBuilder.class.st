@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsLocalCollectionSlotBuilder,
-	#superclass : #LcsSlotDefinitionBuilder,
+	#superclass : #LcsAccessorSlotBuilder,
 	#instVars : [
 		'slotClass',
 		'collectionElementTypes',

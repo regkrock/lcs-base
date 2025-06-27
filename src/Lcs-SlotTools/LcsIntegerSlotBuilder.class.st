@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsIntegerSlotBuilder,
-	#superclass : #LcsSlotDefinitionBuilder,
+	#superclass : #LcsAccessorSlotBuilder,
 	#category : #'Lcs-SlotTools'
 }
 

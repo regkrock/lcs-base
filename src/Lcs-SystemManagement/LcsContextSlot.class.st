@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsContextSlot,
-	#superclass : #LcsSlotDefinition,
+	#superclass : #LcsAcessorSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 

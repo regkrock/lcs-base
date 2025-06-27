@@ -147,7 +147,7 @@
 				"code" : "LcsUml new umlForExistingAndProposedClasses",
 				"elementHeight" : 219,
 				"codeHeight" : 50,
-				"codeVisible" : true
+				"codeVisible" : false
 			},
 			{
 				"__type" : "textSnippet",
@@ -219,7 +219,7 @@
 					"uidString" : "SGIURtHyDQCCsouACV1q3Q=="
 				},
 				"code" : "LcsUml new umlForExistingAndProposedClassesWithAssociations",
-				"elementHeight" : 100,
+				"elementHeight" : 184,
 				"codeHeight" : 50,
 				"codeVisible" : true
 			}

@@ -10,7 +10,7 @@ Class {
 { #category : #'slot definition' }
 LxxSkills class >> unknownSlotDefinition [
 	<slotDefinition>
-	^ LcsSlotDefinition new
+	^ LcsAcessorSlot new
 		slotName: 'unknown';
 		addSlotType: LxxUnknownSkill;
 		yourself

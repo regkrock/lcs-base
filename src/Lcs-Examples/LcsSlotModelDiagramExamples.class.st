@@ -30,8 +30,8 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModel [
 LcsSlotModelDiagramExamples >> domainObjectSlotModelAssociationsWithLabels [
 	^ {LcsSlotModel
 			-> {{'slotDefintions'.
-						LcsSlotDefinition}}.
-		LcsSlotDefinition
+						LcsAcessorSlot}}.
+		LcsAcessorSlot
 			-> {{'parent'.
 						LcsSlotModel}.
 					{'domainClass'.
@@ -50,7 +50,7 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModelClasses [
 	classes := OrderedCollection new
 			addAll: LcsBaseDomainObject withAllSuperclasses;
 			addAll: LcsSlotModel withAllSuperclasses;
-			addAll: LcsSlotDefinition withAllSuperclasses;
+			addAll: LcsAcessorSlot withAllSuperclasses;
 			yourself.
 	classes removeDuplicates.
 	classes remove: Object.
@@ -66,9 +66,9 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModelExplicitPositions [
 ]
 
 { #category : #example }
-LcsSlotModelDiagramExamples >> slotDefinitionsHierarchy [
+LcsSlotModelDiagramExamples >> slotClassesHierarchy [
 	<gtExample>
-	^ UmlClassDiagram new classHierarchyFor: LcsSlotDefinition withAllSubclasses
+	^ UmlClassDiagram new classHierarchyFor: LcsAcessorSlot withAllSubclasses
 ]
 
 { #category : #example }

@@ -318,7 +318,7 @@ LcsBaseDomainObject class >> slotDefinitionPragmasAndInstVarNames [
 	self instVarNames do: [:eachName |
 		slotDefinition := slotDefinitions
 			detect: [ :eachSlotDefinition | eachSlotDefinition slotName = eachName ]
-			ifNone: [ LcsSlotDefinition new slotName: 'missing' ].
+			ifNone: [ LcsAcessorSlot new slotName: 'missing' ].
 		instVarNamesAndSlotDefinitions add: (eachName -> slotDefinition).
 		slotDefinitions remove: slotDefinition ifAbsent: []].
 	slotDefinitions do: [ :eachSlotDefinition |

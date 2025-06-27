@@ -121,7 +121,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoSlotNameDefined [
 	self should: [
 		(LcsSlotDefintionMethodBuilder new
-			slotDefinitionClass: LcsSlotDefinition;
+			slotDefinitionClass: LcsAcessorSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
 			yourself) 
