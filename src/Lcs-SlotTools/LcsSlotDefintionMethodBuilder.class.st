@@ -2,8 +2,8 @@ Class {
 	#name : #LcsSlotDefintionMethodBuilder,
 	#superclass : #LcsSlotDetailBuilder,
 	#instVars : [
-		'slotDefinitionClassInstance',
-		'slotClass'
+		'slotClass',
+		'slotClassInstance'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -18,7 +18,7 @@ LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: aCodeStream [
 	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
-	(self slotDefinitionClassInstance isChangedProperty: aPropertyName value: aValue) ifFalse: [ ^ self ].
+	(self slotClassInstance isChangedProperty: aPropertyName value: aValue) ifFalse: [ ^ self ].
 
 	(#('slotTypes' 'collectionMemberTypes') includes: aPropertyName) ifTrue: [ 
 		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
@@ -199,20 +199,20 @@ LcsSlotDefintionMethodBuilder >> slotClass: anObject [
 	slotClass := anObject
 ]
 
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotClassInstance [
+	^ slotClassInstance ifNil: [ slotClassInstance := self slotClass new ]
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotClassInstance: anObject [
+	slotClassInstance := anObject
+]
+
 { #category : #testing }
 LcsSlotDefintionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
 	^ self slotClass notNil
 		and: [ self slotClass new slotTypes isEmpty ]
-]
-
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotDefinitionClassInstance [
-	^ slotDefinitionClassInstance ifNil: [ slotDefinitionClassInstance := self slotClass new ]
-]
-
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotDefinitionClassInstance: anObject [
-	slotDefinitionClassInstance := anObject
 ]
 
 { #category : #'code generation' }
@@ -225,15 +225,15 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 	self slotName ifNotNil: [:s | ^ (s , 'SlotDefinition') asSymbol ].
-	self slotDefinitionClassInstance ifNil: [ ^ LcsError signal: 'slotName is undefined' ].
-	self slotDefinitionClassInstance slotName ifNotNil: [ :s | ^ (s , 'SlotDefinition') asSymbol ].
+	self slotClassInstance ifNil: [ ^ LcsError signal: 'slotName is undefined' ].
+	self slotClassInstance slotName ifNotNil: [ :s | ^ (s , 'SlotDefinition') asSymbol ].
 	LcsError signal: 'slotName is undefined'
 ]
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 	| codeStream |
-	self slotDefinitionClassInstance: self slotClass new.
+	self slotClassInstance: self slotClass new.
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;

@@ -10,6 +10,31 @@ LcsDateSlotBuilderTest >> testCreation [
 ]
 
 { #category : #tests }
+LcsDateSlotBuilderTest >> testDateChangeValidation [
+	| person |
+	self subject: (
+		LcsDateSlotBuilder new
+			slotName: 'date';
+			targetClassName: LxxPerson name;
+			initialValueBlock: [ Date today addDays: 10 ];
+			addValidationCondition: [ :value | value < Date today] description: 'Date must be >= today';
+			addValidationCondition: [ :value | value > Date today] description: 'Date must be < 20 days in the future';
+			yourself).
+	self subject buildJobSteps.
+	self subject installCode.
+	self subject verifyCodeInstallation.
+	self subject updateSlotModel.
+	
+	self currentSystem applyChanges.
+	
+	person := LxxPerson new.
+	self assert: person date equals: (Date today addDays: 10).
+	self should: [ person date: (Date today subtractDays: 1) ] raise: LcsSlotValidationError .
+	self should: [ person date: (Date today addDays: 21) ] raise: LcsSlotValidationError .
+
+]
+
+{ #category : #tests }
 LcsDateSlotBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsDateSlotBuilder new
@@ -46,6 +71,7 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithInitialValueBlockOverriden [
 
 { #category : #tests }
 LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
+	| slotDefinitionMethodBuilder |
 	self subject: (
 		LcsDateSlotBuilder new
 			slotName: 'date';
@@ -56,31 +82,15 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 			yourself).
 	self subject buildJobSteps.
 	
-	self assert: (self subject jobSteps collection at: 2).
-
-]
-
-{ #category : #tests }
-LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks2 [
-	| person |
-	self subject: (
-		LcsDateSlotBuilder new
-			slotName: 'date';
-			targetClassName: LxxPerson name;
-			initialValueBlock: [ Date today addDays: 10 ];
-			addValidationCondition: [ :value | value < Date today] description: 'Date must be >= today';
-			addValidationCondition: [ :value | value > Date today] description: 'Date must be < 20 days in the future';
-			yourself).
-	self subject buildJobSteps.
-	self subject installCode.
-	self subject verifyCodeInstallation.
-	self subject updateSlotModel.
+	slotDefinitionMethodBuilder := (self subject jobSteps collection at: 2).
 	
-	self currentSystem applyChanges.
-	
-	person := LxxPerson new.
-	self assert: person date equals: (Date today addDays: 10).
-	self should: [ person date: (Date today subtractDays: 1) ] raise: LcsSlotValidationError .
-	self should: [ person date: (Date today addDays: 21) ] raise: LcsSlotValidationError .
+	self assert: slotDefinitionMethodBuilder  slotDefinitionSource equals: 'dateSlotDefinition
+	<slotDefinition>
+	^ LcsDateSlot new
+		slotName: ''date'';
+		addValidationCondition: [ :value | value < Date today] description: ''Date must be >= today'';
+		addValidationCondition: [ :value | value > Date today] description: ''Date must be < 20 days in the future'';
+		initialValueBlock: [ Date today addDays: 10 ];
+		yourself'
 
 ]

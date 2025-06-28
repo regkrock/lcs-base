@@ -2,7 +2,6 @@ Class {
 	#name : #LcsSlotDetailBuilder,
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
-		'refactoring',
 		'targetClassName',
 		'targetClass',
 		'properties'
