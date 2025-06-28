@@ -9,7 +9,7 @@ LcsDateSlotBuilderTest >> testCreation [
 	self assert: LcsDateSlotBuilder slotClass equals: LcsDateSlot
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsDateSlotBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsDateSlotBuilder new
@@ -26,7 +26,7 @@ LcsDateSlotBuilderTest >> testInstallingSlot [
 	self assert: (LxxPerson hasSlotDefinitionNamed: 'date') 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsDateSlotBuilderTest >> testInstallingSlotWithInitialValueBlockOverriden [
 	self subject: (
 		LcsDateSlotBuilder new
@@ -44,8 +44,24 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithInitialValueBlockOverriden [
 	self assert: LxxPerson new date equals: (Date today subtractDays: 10)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
+	self subject: (
+		LcsDateSlotBuilder new
+			slotName: 'date';
+			targetClassName: LxxPerson name;
+			initialValueBlock: [ Date today addDays: 10 ];
+			addValidationCondition: [ :value | value < Date today] description: 'Date must be >= today';
+			addValidationCondition: [ :value | value > Date today] description: 'Date must be < 20 days in the future';
+			yourself).
+	self subject buildJobSteps.
+	
+	self assert: (self subject jobSteps collection at: 2).
+
+]
+
+{ #category : #tests }
+LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks2 [
 	| person |
 	self subject: (
 		LcsDateSlotBuilder new
