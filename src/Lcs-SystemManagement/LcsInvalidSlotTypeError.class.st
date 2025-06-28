@@ -157,6 +157,11 @@ LcsInvalidSlotTypeError >> signalInvalidType: anObject forSlot: aSlotDefinition 
 	self signal: self messageText
 ]
 
+{ #category : #signal }
+LcsInvalidSlotTypeError >> slotClassName [
+	^ self slotDefinition class name
+]
+
 { #category : #accessing }
 LcsInvalidSlotTypeError >> slotDefinition [
 	^ slotDefinition
@@ -165,11 +170,6 @@ LcsInvalidSlotTypeError >> slotDefinition [
 { #category : #accessing }
 LcsInvalidSlotTypeError >> slotDefinition: aSlotDefinition [ 
 	slotDefinition := aSlotDefinition
-]
-
-{ #category : #signal }
-LcsInvalidSlotTypeError >> slotDefinitionClassName [
-	^ self slotDefinition class name
 ]
 
 { #category : #'gt view' }

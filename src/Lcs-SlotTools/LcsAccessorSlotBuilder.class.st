@@ -5,12 +5,11 @@ Class {
 		'slotDefinitionSelector',
 		'targetClassName',
 		'targetModuleClass',
-		'slotDefinitionClassName',
-		'validationConditions',
 		'targetPackageName',
 		'targetClass',
 		'properties',
-		'slotDefinitionTemplate'
+		'slotDefinitionTemplate',
+		'slotClassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -238,8 +237,7 @@ LcsAccessorSlotBuilder >> initialize [
 	self slotTypes: OrderedCollection new.
 	self validationConditions: OrderedCollection new.
 	self class slotClass notNil
-		ifTrue: [ self slotDefinitionClassName: self class slotClass name ].
-	self jobSteps: (LcsCodeBuilderJobSteps newOn: self).
+		ifTrue: [ self slotClassName: self class slotClass name ]
 
 ]
 
@@ -261,7 +259,7 @@ LcsAccessorSlotBuilder >> installSlotDefinition [
 
 { #category : #populate }
 LcsAccessorSlotBuilder >> populateFrom: aSlotDefinitionClassName [
-	self slotDefinitionClassName: aSlotDefinitionClassName.
+	self slotClassName: aSlotDefinitionClassName.
 	self slotDefinitionTemplate: aSlotDefinitionClassName asClass new.
 	 self slotDefinitionTemplate slotName ifNotNil: [
 		self slotName: self slotDefinitionTemplate slotName ].
@@ -333,13 +331,13 @@ LcsAccessorSlotBuilder >> requiredDescription [
 ]
 
 { #category : #accessing }
-LcsAccessorSlotBuilder >> slotDefinitionClassName [
-	^ slotDefinitionClassName
+LcsAccessorSlotBuilder >> slotClassName [
+	^ slotClassName
 ]
 
 { #category : #accessing }
-LcsAccessorSlotBuilder >> slotDefinitionClassName: anObject [
-	slotDefinitionClassName := anObject
+LcsAccessorSlotBuilder >> slotClassName: anObject [
+	slotClassName := anObject
 ]
 
 { #category : #initialize }
@@ -634,12 +632,12 @@ LcsAccessorSlotBuilder >> updateSlotModel [
 
 { #category : #accessing }
 LcsAccessorSlotBuilder >> validationConditions [
-	^ validationConditions
+	^ self properties at: #validationConditions ifAbsent: [ OrderedCollection new]
 ]
 
 { #category : #accessing }
 LcsAccessorSlotBuilder >> validationConditions: anObject [
-	validationConditions := anObject
+	self properties at: #validationConditions put: anObject
 ]
 
 { #category : #'gt views' }

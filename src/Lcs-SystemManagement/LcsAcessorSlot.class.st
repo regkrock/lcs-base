@@ -200,6 +200,8 @@ LcsAcessorSlot >> gtSlotDefinitionAttributes [
 LcsAcessorSlot >> gtSlotDefinitionMethodViewFor: aView [
 	<gtView>
 
+	self domainClass ifNil: [ ^ aView empty ].
+	
 	^ aView explicit
 		title: 'Methods';
 		priority: 20;

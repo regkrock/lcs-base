@@ -11,7 +11,7 @@ LcsValueObjectsGlobalCollectionSlotBuilderTest >> testCreation [
 	self assert: LcsValueObjectsGlobalCollectionSlotBuilder slotClass equals: LcsValueObjectsGlobalCollectionSlot.
 	
 	self subject: LcsValueObjectsGlobalCollectionSlotBuilder new.
-	self assert: self subject slotDefinitionClassName  equals: 'LcsValueObjectsGlobalCollectionSlot'.
+	self assert: self subject slotClassName  equals: 'LcsValueObjectsGlobalCollectionSlot'.
 	self assert: self subject collectionClass equals: IdentitySet.
 	self assert: self subject parent isNil.
 	self assert: self subject jobSteps hasNoJobSteps.
