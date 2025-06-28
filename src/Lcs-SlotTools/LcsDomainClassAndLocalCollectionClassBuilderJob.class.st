@@ -41,7 +41,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionSlotBuilder [
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;
 		targetPackageName: self targetPackageName;
-		collectionElementTypes: { self newDomainClassName};
+		collectionMemberTypes: (OrderedCollection with: self newDomainClassName);
 		addSlotType: self collectionClassName;
 		yourself
 ]

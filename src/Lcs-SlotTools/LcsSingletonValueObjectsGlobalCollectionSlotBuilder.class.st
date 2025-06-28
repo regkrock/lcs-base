@@ -17,12 +17,6 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: uml
 ]
 
 { #category : #'gt views' }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aBuilder [
-	super addExtraPropertiesTo: aBuilder.
-	aBuilder addProperty: 'valueObjectSuperclass' value: self valueObjectSuperclassName
-]
-
-{ #category : #'gt views' }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addParentClassTo: classesModel [
 	[ classesModel existingClassModelFor: self slotTypes first asClass ]
 		on: NotFound
@@ -49,5 +43,5 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName
 
 { #category : #accessing }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName: aClassName [
-	self properties at: 'valueObjectSuperclassName' put: aClassName
+	self properties at: 'valueObjectSuperclass' put: aClassName
 ]

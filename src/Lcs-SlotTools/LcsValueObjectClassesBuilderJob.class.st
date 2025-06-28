@@ -83,7 +83,7 @@ LcsValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuilder [
 		targetClassName: self collectionModuleClass name;
 		targetModuleClass: self collectionModuleClass;
 		loaderClassName: self collectionClassName , 'Loader';
-		addCollectionElementType: self newDomainClassName;
+		addCollectionMemberType: self newDomainClassName;
 		addSlotType: self collectionClassName;
 		yourself
 ]

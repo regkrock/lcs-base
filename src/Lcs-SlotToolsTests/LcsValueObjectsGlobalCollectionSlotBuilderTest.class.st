@@ -15,7 +15,7 @@ LcsValueObjectsGlobalCollectionSlotBuilderTest >> testCreation [
 	self assert: self subject collectionClass equals: IdentitySet.
 	self assert: self subject parent isNil.
 	self assert: self subject jobSteps hasNoJobSteps.
-	self assert: self subject collectionElementTypes isEmpty.
+	self assert: self subject collectionMemberTypes isEmpty.
 	self assert: self subject loaderClassName isNil.
 	self assert: self subject refactorings isEmpty.
 	self assert: self subject slotClass isNil.

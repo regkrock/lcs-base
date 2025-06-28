@@ -36,6 +36,12 @@ LcsAccessorSlotBuilder >> addClassesToUmlModel: umlModel [
 
 { #category : #initialize }
 LcsAccessorSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+	"Note: The 'property' will be turned into a setter and value is argument
+		ex: property 'slotName' and argument 'foo' will become the setter for the slot name.
+		    fooSlotDefinitino new
+		    	slotName: 'foo';
+		    	yourself"
+	self properties keysAndValuesDo: [ :key :value | aSlotDefinitionMethodBuilder properties at: key put: value ]
 ]
 
 { #category : #'gt views' }

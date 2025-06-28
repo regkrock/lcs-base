@@ -35,15 +35,8 @@ LcsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionSlotBuilder >> addCollectionElementType: aClass [
-	self collectionElementTypes add: aClass
-]
-
-{ #category : #initialize }
-LcsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
-	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
-	self collectionElementTypes do: [ :each |
-		aSlotDefinitionMethodBuilder addProperty: 'addCollectionMemberType' value: each ]
+LcsGlobalCollectionSlotBuilder >> addCollectionMemberType: aClass [
+	self collectionMemberTypes add: aClass
 ]
 
 { #category : #initialize }
@@ -66,13 +59,13 @@ LcsGlobalCollectionSlotBuilder >> collectionClassName [
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlotBuilder >> collectionElementTypes [
-	^ self properties at: 'collectionElementTypes' ifAbsent: [ OrderedCollection new ]
+LcsGlobalCollectionSlotBuilder >> collectionMemberTypes [
+	^ self properties at: 'collectionMemberTypes' ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : #accessing }
-LcsGlobalCollectionSlotBuilder >> collectionElementTypes: anObject [
-	self properties at: 'collectionElementTypes' put: anObject
+LcsGlobalCollectionSlotBuilder >> collectionMemberTypes: anObject [
+	self properties at: 'collectionMemberTypes' put: anObject
 ]
 
 { #category : #command }
@@ -83,7 +76,7 @@ LcsGlobalCollectionSlotBuilder >> globalCollectionHome [
 { #category : #initialize }
 LcsGlobalCollectionSlotBuilder >> initialize [
 	super initialize.
-	self collectionElementTypes:	OrderedCollection new.
+	self collectionMemberTypes: OrderedCollection new.
 	self collectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 

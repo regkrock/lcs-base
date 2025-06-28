@@ -73,7 +73,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionSlotBuilder [
 					slotName: self collectionSlotName;
 					targetClassName: self collectionModuleClass name;
 					targetModuleClass: self collectionModuleClass;
-					collectionElementTypes: { self newDomainClassName};
+					collectionMemberTypes: (OrderedCollection with:  self newDomainClassName);
 					addSlotType: self collectionClassName;
 					yourself.
 	self buildUnknownClass ifTrue: [

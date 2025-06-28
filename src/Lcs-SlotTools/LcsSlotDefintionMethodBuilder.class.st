@@ -18,11 +18,9 @@ LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: aCodeStream [
 	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
-	(self slotDefinitionClassInstance
-		isChangedProperty: aPropertyName
-		value: aValue) ifFalse: [ ^ self ].
+	(self slotDefinitionClassInstance isChangedProperty: aPropertyName value: aValue) ifFalse: [ ^ self ].
 
-	aPropertyName = 'slotTypes' ifTrue: [ 
+	(#('slotTypes' 'collectionMemberTypes') includes: aPropertyName) ifTrue: [ 
 		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
 
 	aPropertyName = 'validationConditions' ifTrue: [ 
@@ -283,12 +281,12 @@ LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: slotDefinition [
 	| actualValue |
-	aProperty = 'addCollectionMemberType'
-		ifTrue: [ ^ self
-				assert: ((slotDefinition perform: #collectionMemberTypes) includes: aValue asClass) ].
 
 	actualValue := slotDefinition perform: aProperty asSymbol.
 
+	aProperty = 'collectionMemberTypes' ifTrue: [
+		^ self assert: actualValue  equals: (aValue collect: [ :each | each asClass ]) ].
+		
 	aProperty = 'slotTypes'
 		ifTrue: [ ^ self validateSlotTypes: aValue against: actualValue ].
 
@@ -298,6 +296,9 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 	actualValue isClass
 		ifTrue: [ ^ self assert: actualValue equals: aValue asClass ].
 
+	actualValue isBlock 
+		ifTrue: [ ^ self assert: actualValue asString equals: aValue asString].
+		
 	self assert: actualValue equals: aValue
 ]
 

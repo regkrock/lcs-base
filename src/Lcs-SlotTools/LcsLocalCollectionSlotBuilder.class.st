@@ -26,18 +26,9 @@ LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aClassesModel [
 ]
 
 { #category : #'gt views' }
-LcsLocalCollectionSlotBuilder >> addCollectionElementType: aClassName [
-	self collectionElementTypes add: aClassName
+LcsLocalCollectionSlotBuilder >> addCollectionMemberType: aClassName [
+	self collectionMemberTypes add: aClassName
 
-]
-
-{ #category : #'code generation' }
-LcsLocalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
-	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
-	self collectionElementTypes do: [ :each |
-		aSlotDefinitionMethodBuilder 
-			addProperty: 'addCollectionMemberType' 
-			value: each ]
 ]
 
 { #category : #'code generation' }
@@ -47,7 +38,7 @@ LcsLocalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 	self collectionClass notNil ifTrue: [
 		aCodeStream
 			addKeyword: 'collectionClass' argument: self collectionClass name].
-	self collectionElementTypes do: [ :eachClass |
+	self collectionMemberTypes do: [ :eachClass |
 		aCodeStream addKeyword: 'addCollectionMemberType' argument: (eachClass isString ifTrue: [ eachClass ] ifFalse: [ eachClass name ] )].
 	self collectionClass isNil ifTrue: [
 		aCodeStream addUnaryMessage: 'beIdentitySetCollection']
@@ -59,7 +50,7 @@ LcsLocalCollectionSlotBuilder >> buildJobSteps [
 	self slotTypes do: [ :eachClassName | 
 		(self classFor: eachClassName) ifNil: [ 
 			(self addJobStep: (self domainCollectionClassBuilder: eachClassName)) ] ].
-	self collectionElementTypes do: [ :eachClassName | 
+	self collectionMemberTypes do: [ :eachClassName | 
 		(self classFor: eachClassName) ifNil: [ 
 			(self addJobStep: (self domainClassBuilder: eachClassName)).
 			(self addJobStep: (self localCollectionReferenceSlotBuilder: eachClassName)) ] ].
@@ -77,13 +68,13 @@ LcsLocalCollectionSlotBuilder >> collectionClass: anObject [
 ]
 
 { #category : #accessing }
-LcsLocalCollectionSlotBuilder >> collectionElementTypes [
-	^ self properties at: 'collectionElementTypes' ifAbsent: [ OrderedCollection new ]
+LcsLocalCollectionSlotBuilder >> collectionMemberTypes [
+	^ self properties at: 'collectionMemberTypes' ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : #accessing }
-LcsLocalCollectionSlotBuilder >> collectionElementTypes: anObject [
-	self properties at: 'collectionElementTypes' put: anObject
+LcsLocalCollectionSlotBuilder >> collectionMemberTypes: anObject [
+	self properties at: 'collectionMemberTypes' put: anObject
 ]
 
 { #category : #'job steps' }
@@ -105,7 +96,7 @@ LcsLocalCollectionSlotBuilder >> domainCollectionClassBuilder: aClassName [
 { #category : #initialize }
 LcsLocalCollectionSlotBuilder >> initialize [
 	super initialize.
-	self collectionElementTypes:	OrderedCollection new.
+	self collectionMemberTypes:	OrderedCollection new.
 	self collectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 

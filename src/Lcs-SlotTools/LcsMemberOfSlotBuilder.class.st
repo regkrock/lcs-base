@@ -26,14 +26,6 @@ LcsMemberOfSlotBuilder >> addClassesToUmlModel: umlModel [
 	umlModel addClassNamed: self slotTypes first
 ]
 
-{ #category : #initialize }
-LcsMemberOfSlotBuilder >> addExtraPropertiesTo: aBuilder [
-	super addExtraPropertiesTo: aBuilder.
-	aBuilder 
-		addProperty: 'collectionSlotName' value: self collectionSlotName;
-		addProperty: 'collectionSlotModuleName' value: self collectionSlotModuleName
-]
-
 { #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 	super addSlotDefinitionSourceDetailsTo: aCodeStream.
@@ -49,7 +41,7 @@ LcsMemberOfSlotBuilder >> collectionSlotModuleName [
 
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> collectionSlotModuleName: aString [
-	self properties at: 'collectionSlotModuleName:' put: aString
+	self properties at: 'collectionSlotModuleName' put: aString
 ]
 
 { #category : #accessing }

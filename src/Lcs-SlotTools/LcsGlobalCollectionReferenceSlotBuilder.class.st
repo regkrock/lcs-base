@@ -28,14 +28,6 @@ LcsGlobalCollectionReferenceSlotBuilder >> addClassesToUmlModel: umlModel [
 	umlModel addClassNamed: self slotTypes first
 ]
 
-{ #category : #'code generation' }
-LcsGlobalCollectionReferenceSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
-	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
-	aSlotDefinitionMethodBuilder 
-		addProperty: 'collectionSlotName' value: self collectionSlotName ;
-		addProperty: 'collectionSlotModuleName' value: self collectionSlotModuleName
-]
-
 { #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
 	[ classesModel existingClassModelFor: self slotTypes first asClass ]

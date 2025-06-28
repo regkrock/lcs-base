@@ -19,17 +19,6 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
 		addClassNamed: self parentClassName
 ]
 
-{ #category : #initialize }
-LcsValueObjectsGlobalCollectionSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
-	super addExtraPropertiesTo: aSlotDefinitionMethodBuilder.
-	aSlotDefinitionMethodBuilder.
-		self collectionElementTypes do: [ :each |
-			aSlotDefinitionMethodBuilder 
-				addProperty: 'addCollectionMemberType' 
-				value: each ].
-	aSlotDefinitionMethodBuilder addProperty: 'loaderClass' value: self loaderClassName
-]
-
 { #category : #'code generation' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
@@ -44,12 +33,12 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> laderClass [
 
 { #category : #accessing }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName [
-	^ self properties at: 'loaderClassName' ifAbsent: [ nil ]
+	^ self properties at: 'loaderClass' ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName: anObject [
-	self properties at: 'loaderClassName' put: anObject
+	self properties at: 'loaderClass' put: anObject
 ]
 
 { #category : #accessing }

@@ -11,7 +11,7 @@ LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
 			slotName: 'foos';
 			targetClassName: self currentSystem class name;
 			targetModuleClass: self currentSystem class name;
-			collectionElementTypes: { LxxPerson name };
+			collectionMemberTypes: (OrderedCollection with:  LxxPerson name );
 			addSlotType: LxxPersons name ;
 			yourself).
 	self subject buildJobSteps.
