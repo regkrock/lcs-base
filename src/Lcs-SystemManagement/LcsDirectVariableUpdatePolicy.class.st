@@ -6,6 +6,6 @@ Class {
 
 { #category : #'slot model' }
 LcsDirectVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
-	self parent verifyType: anObject for: aDomainObject.
+	self validate: anObject for: aDomainObject.
 	aDomainObject instVarNamed: self parent slotName put: anObject
 ]

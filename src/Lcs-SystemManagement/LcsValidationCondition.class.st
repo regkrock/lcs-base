@@ -46,3 +46,9 @@ LcsValidationCondition >> validate: aValue [
 	(self conditionBlock value: aValue) ifFalse: [
 		LcsSlotValidationError signalInvalidValue: aValue forCondition: self inSlot: self slotDefinition ]
 ]
+
+{ #category : #validation }
+LcsValidationCondition >> validate: aValue context: aDomainObject [
+	(self conditionBlock cull: aValue cull: aDomainObject) ifTrue: [
+		LcsSlotValidationError signalInvalidValue: aValue forCondition: self inSlot: self slotDefinition context: aDomainObject ]
+]

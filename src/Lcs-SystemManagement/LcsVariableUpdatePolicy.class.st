@@ -28,3 +28,13 @@ LcsVariableUpdatePolicy >> parent [
 LcsVariableUpdatePolicy >> parent: aSlotDefinition [
 	parent := aSlotDefinition
 ]
+
+{ #category : #validation }
+LcsVariableUpdatePolicy >> validate: anObject [
+	self parent validate: anObject
+]
+
+{ #category : #validation }
+LcsVariableUpdatePolicy >> validate: anObject for: aDomainObject [
+	self parent validate: anObject for: aDomainObject
+]

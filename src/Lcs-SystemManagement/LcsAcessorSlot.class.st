@@ -482,6 +482,12 @@ LcsAcessorSlot >> slotVarPut: anObject in: aDomainObject [
 	self variableUpdatePolicy slotVarPut: anObject  in: aDomainObject
 ]
 
+{ #category : #'slot model' }
+LcsAcessorSlot >> validate: anObject for: aDomainObject [
+	self verifyType: anObject for: aDomainObject.
+	self validationConditions validate: anObject context: aDomainObject
+]
+
 { #category : #validating }
 LcsAcessorSlot >> validator [
 	^ LcsConditionsValidator new
