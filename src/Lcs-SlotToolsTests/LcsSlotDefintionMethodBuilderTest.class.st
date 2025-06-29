@@ -94,6 +94,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	self assert: methodSource equals: 'codeSlotDefinition
 	<slotDefinition>
 	^ LcsCodeSlot new
+		allowNil: false;
 		required: true;
 		yourself'
 ]
@@ -113,6 +114,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: ''foo'';
+		allowNil: false;
 		required: true;
 		yourself'
 ]
@@ -148,6 +150,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidatio
 	^ LcsStringSlot new
 		slotName: ''foo'';
 		addValidationCondition: [ false ] description: ''Always fails'';
+		allowNil: false;
 		yourself'.
 		
 	self subject installCode.

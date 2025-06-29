@@ -15,6 +15,6 @@ LcsDateOfBirthSlot >> initialize [
 	self slotName: 'dateOfBirth'.
 	self 
 		addValidationCondition: [ :newDate | 
-			newDate year < (Date today year - 120) and: [ newDate > Date today ] ] 
+			newDate year < (Date today year - 120) or: [ newDate > Date today ] ] 
 		description: 'Age must be between 0 and 120 years'
 ]

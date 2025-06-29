@@ -23,18 +23,18 @@ LuiLabelWithDatePickerComponentTest >> setupSunitSystem [
 LuiLabelWithDatePickerComponentTest >> testAddingSlotModel [
 	| component person |
 	person := LxxPerson new.
-	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
+	person dateOfBirth: (Date newDay: 1 month: 1 year: 2000).
 	person lastName: 'Smith'.
 	component := LuiLabelWithInputComponent onSlot: LxxPerson dateOfBirthSlotDefinition.
 	component model: person.
 	self assert: component valueAccessor slotName equals: 'dateOfBirth'.
 	self assert: component labelComponent labelString equals: 'Date of Birth'.
-	self assert: component inputComponent displayValue equals: '1870-01-01'
+	self assert: component inputComponent displayValue equals: (Date newDay: 1 month: 1 year: 2000) yyyymmdd
 		
 ]
 
 { #category : #'as yet unclassified' }
-LuiLabelWithDatePickerComponentTest >> testAddingSlotModelWithUndefinedDateOfBirth [
+LuiLabelWithDatePickerComponentTest >> testAddingSlotModelWithDefaultDateOfBirth [
 	| component person |
 	person := LxxPerson new.
 	"person dateOfBirth: (Date newDay: 1 month: 1 year: 1870)."
@@ -43,7 +43,7 @@ LuiLabelWithDatePickerComponentTest >> testAddingSlotModelWithUndefinedDateOfBir
 	self assert: component valueAccessor slotName equals: 'dateOfBirth'.
 	self assert: component labelComponent labelString equals: 'Date of Birth'.
 	"self assert: person dateOfBirth isNil."
-	self assert: component inputComponent displayValue equals: ''
+	self assert: component inputComponent displayValue equals: '2025-06-29'
 		
 ]
 
@@ -59,11 +59,11 @@ LuiLabelWithDatePickerComponentTest >> testCreation [
 LuiLabelWithDatePickerComponentTest >> testRendering [
 	| component person |
 	person := LxxPerson new.
-	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
+	person dateOfBirth: (Date newDay: 1 month: 1 year: 2000).
 	person lastName: 'Smith'.
 	component := LuiLabelWithInputComponent onSlot: LxxPerson dateOfBirthSlotDefinition.
 	component model: person.
 	self
 		assert: [ :html | html render: component ]
-		gives: 'div data-StClass="LuiLabelWithInputComponent"><label id="218106578" data-name="label" data-StClass="LuiModelLabel" for="dateOfBirth">Date of Birth</label><input id="44548918" data-name="input" data-StClass="LuiDatePicker" onchange="this.form.requestSubmit()" name="dateOfBirth" value="1870-01-01" type="date"/></div>'
+		gives: '<div data-StClass="LuiLabelWithInputComponent"><label id="218106578" data-name="label" data-StClass="LuiModelLabel" for="dateOfBirth">Date of Birth</label><input id="44548918" data-name="input" data-StClass="LuiDatePicker" name="1" onchange="this.form.requestSubmit()" value="2000-01-01" type="date"/></div>'
 ]

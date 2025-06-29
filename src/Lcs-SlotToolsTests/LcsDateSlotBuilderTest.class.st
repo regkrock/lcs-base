@@ -16,9 +16,9 @@ LcsDateSlotBuilderTest >> testDateChangeValidation [
 		LcsDateSlotBuilder new
 			slotName: 'date';
 			targetClassName: LxxPerson name;
-			initialValueBlock: [ Date today addDays: 10 ];
+			initialValueBlock: [ Date today addDays: 10];
 			addValidationCondition: [ :value | value < Date today] description: 'Date must be >= today';
-			addValidationCondition: [ :value | value > Date today] description: 'Date must be < 20 days in the future';
+			addValidationCondition: [ :value | value > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
 			yourself).
 	self subject buildJobSteps.
 	self subject installCode.
@@ -30,8 +30,9 @@ LcsDateSlotBuilderTest >> testDateChangeValidation [
 	person := LxxPerson new.
 	self assert: person date equals: (Date today addDays: 10).
 	self should: [ person date: (Date today subtractDays: 1) ] raise: LcsSlotValidationError .
-	self should: [ person date: (Date today addDays: 21) ] raise: LcsSlotValidationError .
-
+	self shouldnt: [ person date: Date today] raise: LcsSlotValidationError .
+	self shouldnt: [ person date: (Date today addDays: 19) ] raise: LcsSlotValidationError.
+	self should: [ person date: (Date today addDays: 20) ] raise: LcsSlotValidationError
 ]
 
 { #category : #tests }
@@ -78,7 +79,7 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 			targetClassName: LxxPerson name;
 			initialValueBlock: [ Date today addDays: 10 ];
 			addValidationCondition: [ :value | value < Date today] description: 'Date must be >= today';
-			addValidationCondition: [ :value | value > Date today] description: 'Date must be < 20 days in the future';
+			addValidationCondition: [ :value | value > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
 			yourself).
 	self subject buildJobSteps.
 	
@@ -89,7 +90,7 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 	^ LcsDateSlot new
 		slotName: ''date'';
 		addValidationCondition: [ :value | value < Date today] description: ''Date must be >= today'';
-		addValidationCondition: [ :value | value > Date today] description: ''Date must be < 20 days in the future'';
+		addValidationCondition: [ :value | value > (Date today addDays: 19)] description: ''Date must be < 20 days in the future'';
 		initialValueBlock: [ Date today addDays: 10 ];
 		yourself'
 

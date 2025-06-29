@@ -18,14 +18,6 @@ LcsSmalltalkObjectSlot >> defaultInputComponentClassName [
 	"self subclassResponsibility"
 ]
 
-{ #category : #'gt views' }
-LcsSmalltalkObjectSlot >> gtSlotDefinitionAttributes [
-	^ super gtSlotDefinitionAttributes
-		add: 'initialValueBlock' -> self initialValueBlock;
-		"add: 'initialValue' -> initialValueBlock value;"
-		yourself
-]
-
 { #category : #accessing }
 LcsSmalltalkObjectSlot >> initialValueFor: aDomainObject [
 	^ self initialValueBlock cull: aDomainObject

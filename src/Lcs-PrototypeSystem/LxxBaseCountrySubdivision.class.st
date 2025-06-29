@@ -14,7 +14,7 @@ LxxBaseCountrySubdivision class >> formalNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'formalName';
-		addValidationCondition: [ :value | value size <= 2 ] description: 'Must be 3 characters';
+		addValidationCondition: [ :value | value size < 3 ] description: 'Must be 3 characters';
 		yourself
 ]
 
@@ -23,7 +23,7 @@ LxxBaseCountrySubdivision class >> isoCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode';
-		addValidationCondition: [ :value | value size != 2 ] description: 'Must be 2 characters';
+		addValidationCondition: [ :value | value size ~= 2 ] description: 'Must be 2 characters';
 		yourself
 ]
 
@@ -54,7 +54,7 @@ LxxBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'subdivisionName';
-		addValidationCondition: [ :value | value size <= 2 ] description: 'Must be at least 2 characters';
+		addValidationCondition: [ :value | value size < 2 ] description: 'Must be at least 2 characters';
 		yourself
 ]
 

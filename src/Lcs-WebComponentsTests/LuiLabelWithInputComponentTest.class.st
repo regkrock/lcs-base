@@ -23,7 +23,7 @@ LuiLabelWithInputComponentTest >> setupSunitSystem [
 LuiLabelWithInputComponentTest >> testAddingSlotModel [
 	| component person |
 	person := LxxPerson new.
-	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
+	person dateOfBirth: (Date newDay: 1 month: 1 year: 2000).
 	person lastName: 'Smith'.
 	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
 	component model: person.
@@ -37,7 +37,7 @@ LuiLabelWithInputComponentTest >> testAddingSlotModel [
 LuiLabelWithInputComponentTest >> testAddingSlotModelWithUndefinedLastName [
 	| component person |
 	person := LxxPerson new.
-	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
+	person dateOfBirth: (Date newDay: 1 month: 1 year: 2000).
 	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
 	component model: person.
 	self assert: component valueAccessor slotName equals: 'lastName'.
@@ -59,7 +59,7 @@ LuiLabelWithInputComponentTest >> testCreation [
 LuiLabelWithInputComponentTest >> testRendering [
 	| component person |
 	person := LxxPerson new.
-	person dateOfBirth: (Date newDay: 1 month: 1 year: 1870).
+	person dateOfBirth: (Date newDay: 1 month: 1 year: 2000).
 	person lastName: 'Smith'.
 	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
 	component model: person.

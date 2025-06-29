@@ -185,15 +185,21 @@ LcsAcessorSlot >> gtSlotAttributesViewFor: aView [
 
 { #category : #'gt views' }
 LcsAcessorSlot >> gtSlotDefinitionAttributes [
-	^ OrderedCollection new
-		add: 'slotDefinition' -> self;
-		add: 'slotDefinitionClass' -> self class;
-		add: 'domainClass' -> self newDomainClassName;
-		add: 'slotName' -> self slotName;
-		add: 'slotTypes' -> self slotTypesList;
-		add: 'required' -> self isRequired;
-		add: 'initialValueBlock' -> self initialValueBlockSourceCode;
-		yourself
+	| collection |
+	collection := 
+		OrderedCollection new
+			add: 'slotDefinition' -> self;
+			add: 'slotDefinitionClass' -> self class;
+			add: 'domainClass' -> self newDomainClassName;
+			add: 'slotName' -> self slotName;
+			add: 'slotTypes' -> self slotTypesList;
+			add: 'required' -> self isRequired;
+			add: 'allowNil' -> self isNilAllowed;
+			add: 'initialValueBlock' -> self initialValueBlockSourceCode;
+			yourself.
+	self validationConditions do: [ :each |
+		collection add: each conditionBlock asString -> each description ].
+	^ collection
 ]
 
 { #category : #'gt views' }
@@ -356,6 +362,12 @@ LcsAcessorSlot >> isNotRequired [
 ]
 
 { #category : #testing }
+LcsAcessorSlot >> isNullObject: anObject [
+	<TODO: 'This needs to be flushed out'> 
+	^ false
+]
+
+{ #category : #testing }
 LcsAcessorSlot >> isOptional [
 	^ self required ~~ true
 ]
@@ -485,6 +497,7 @@ LcsAcessorSlot >> slotVarPut: anObject in: aDomainObject [
 { #category : #'slot model' }
 LcsAcessorSlot >> validate: anObject for: aDomainObject [
 	self verifyType: anObject for: aDomainObject.
+	(self isNilAllowed and: [self isNullObject: anObject]) ifTrue: [ ^ self ].
 	self validationConditions validate: anObject context: aDomainObject
 ]
 

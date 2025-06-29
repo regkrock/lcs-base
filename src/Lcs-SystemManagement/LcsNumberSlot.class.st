@@ -9,6 +9,11 @@ LcsNumberSlot >> defaultInitialValueBlock [
 	^ [ 0 ]
 ]
 
+{ #category : #'as yet unclassified' }
+LcsNumberSlot >> isNullObject: anObject [ 
+	^ anObject isZero
+]
+
 { #category : #defaults }
 LcsNumberSlot >> typeClass [
 	^ Number

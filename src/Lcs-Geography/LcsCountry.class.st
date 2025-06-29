@@ -19,7 +19,7 @@ LcsCountry class >> commonNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #commonName;
 		beRequired;
-		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :string | string size < 3 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -29,7 +29,7 @@ LcsCountry class >> formalNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #formalName;
 		beRequired;
-		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :string | string size < 3 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -39,7 +39,7 @@ LcsCountry class >> isoCode3SlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'isoCode3';
 		beRequired;
-		addValidationCondition: [ :string | string size = 3 ] description: 'Code must be 3 characters long';		yourself
+		addValidationCondition: [ :string | string size ~= 3 ] description: 'Code must be 3 characters long';		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -48,7 +48,7 @@ LcsCountry class >> isoCodeSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #'isoCode';
 		beRequired;
-		addValidationCondition: [ :string | string size = 2 ] description: 'Code must be 2 characters long';		yourself
+		addValidationCondition: [ :string | string size ~= 2 ] description: 'Code must be 2 characters long';		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -78,7 +78,7 @@ LcsCountry class >> subdivisionNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #subdivisionName;
 		beRequired;
-		addValidationCondition: [ :string | string size >= 2 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :string | string size < 3 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
