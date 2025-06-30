@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'countries'
 	],
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-Geography-Domain'
 }
 
 { #category : #'slot definitions' }

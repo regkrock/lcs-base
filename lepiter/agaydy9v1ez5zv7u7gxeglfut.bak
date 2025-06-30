@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T13:35:13.43782-04:00"
+						"dateAndTimeString" : "2025-06-27T11:15:38.352883-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**Update Slot Variable** - This can be done immediately or via unit of work. Specification of this is done using the {{gtMethod:LcsSlotDefinition>>#makeDirectUpdateOfVariable}} or the {{gtMethod:LcsSlotDefinition>>#makeUpdateOfVariableViaUnitOfWork}}. An example of using the direct is when updating the history slots as one does not want this to become part of the unit of work since it occurs while persisting the Unit Of Work changes. \n\nNote: {{gtMethod:LcsSlotDefinition>>#initialize}} set the default to using Unit Of Work for updates."
+				"string" : "**Update Slot Variable** - This can be done immediately or via unit of work. Specification of this is done using the {{gtMethod:LcsAcessorSlot>>#makeDirectUpdateOfVariable}} or the {{gtMethod:LcsAcessorSlot>>#makeUpdateOfVariableViaUnitOfWork}}. An example of using the direct is when updating the history slots as one does not want this to become part of the unit of work since it occurs while persisting the Unit Of Work changes. \n\nNote: {{gtMethod:LcsAcessorSlot>>#initialize}} set the default to using Unit Of Work for updates."
 			},
 			{
 				"__type" : "textSnippet",

@@ -24,7 +24,7 @@ LcsAccessorSlotBuilder class >> newOn: aBuilderOrBuilderJob [
 { #category : #configuration }
 LcsAccessorSlotBuilder class >> slotClass [
 	"Subclasses can override this method to provide a default"
-	^ LcsAcessorSlot
+	^ LcsAccessorSlot
 ]
 
 { #category : #'gt views' }

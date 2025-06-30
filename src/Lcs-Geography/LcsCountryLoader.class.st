@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'schemaSetters'
 	],
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-Geography-Domain'
 }
 
 { #category : #data }

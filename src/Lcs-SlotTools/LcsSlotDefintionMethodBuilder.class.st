@@ -305,7 +305,7 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> validateSlotTypes: aCollection against: actualValue [
 	| expected |
-	expected := aCollection copy collect: [ :each | each asClass ].
+	expected := aCollection asOrderedCollection collect: [ :each | each asClass ].
 	expected size = actualValue size
 		ifTrue: [ ^ self assert: actualValue equals: expected ].
 		

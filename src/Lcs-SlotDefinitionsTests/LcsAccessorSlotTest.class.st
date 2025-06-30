@@ -11,7 +11,7 @@ LcsAccessorSlotTest >> testAddingValidationCondition [
 							description: 'Test';
 							conditionBlock: [ :value | ];
 							yourself.
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: validationCondition.
 	self assert: self subject validationConditions collection size equals: 1.
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
@@ -19,7 +19,7 @@ LcsAccessorSlotTest >> testAddingValidationCondition [
 
 { #category : #tests }
 LcsAccessorSlotTest >> testAddingValidationConditionAndDescription [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: [ :value | ] description: 'Test'.
 	self assert: self subject validationConditions collection size equals: 1.
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
@@ -27,7 +27,7 @@ LcsAccessorSlotTest >> testAddingValidationConditionAndDescription [
 
 { #category : #testing }
 LcsAccessorSlotTest >> testAllowNil [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self assert: self subject allowNil == false.
 	self deny: self subject isNilAllowed.
 	self subject beAllowNil.
@@ -38,7 +38,7 @@ LcsAccessorSlotTest >> testAllowNil [
 { #category : #tests }
 LcsAccessorSlotTest >> testCreation [
 
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject slotName isNil.
 	self subject slotName: #test.
@@ -55,7 +55,7 @@ LcsAccessorSlotTest >> testCreation [
 
 { #category : #testing }
 LcsAccessorSlotTest >> testInitalValueSetToNil [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self assert: self subject initialValueBlock printString equals: '[ :parentDomainObject | 
 		(self slotTypes any new)
 			parent: parentDomainObject;
@@ -73,7 +73,7 @@ LcsAccessorSlotTest >> testRemovingValidationCondition [
 							conditionBlock: [ :value | ];
 							yourself.
 
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: validationCondition.
 	self assert: self subject validationConditions collection size equals: 1.
 	self subject removeValidationCondition: validationCondition.
@@ -82,7 +82,7 @@ LcsAccessorSlotTest >> testRemovingValidationCondition [
 
 { #category : #tests }
 LcsAccessorSlotTest >> testRemovingValidationConditionViaDescription [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: [ :value | ] description: 'Test'.
 	self assert: self subject validationConditions collection size equals: 1.
 	self subject removeValidationConditionWithDescription: 'Test'.
@@ -91,7 +91,7 @@ LcsAccessorSlotTest >> testRemovingValidationConditionViaDescription [
 
 { #category : #testing }
 LcsAccessorSlotTest >> testRequried [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self assert: self subject isRequired not.
 	self subject beRequired.
 	self assert: self subject isRequired.
@@ -101,13 +101,13 @@ LcsAccessorSlotTest >> testRequried [
 
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithNoValidationConditions [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self shouldnt: (self subject validate: 'abc') raise: LcsSlotValidationError
 ]
 
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: [:value | value isInteger ] description: 'Must be an Ingeter'.
 	self should: [ self subject validate: 'abc' ] raise: LcsSlotValidationError
 
@@ -115,7 +115,7 @@ LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
 
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithOnePassingValidationConditions [
-	self subject: LcsAcessorSlot new.
+	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: [:value | value isInteger ] description: 'Must be an Ingeter'.
 	self shouldnt: [ self subject validate: 1 ] raise: LcsSlotValidationError
 ]

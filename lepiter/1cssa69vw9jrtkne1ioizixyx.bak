@@ -140,7 +140,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-12-23T09:23:10.856655-05:00"
+						"dateAndTimeString" : "2025-06-27T11:15:38.324138-04:00"
 					}
 				},
 				"uid" : {
@@ -150,7 +150,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "In Pharo, there are already native slots defined. However GemStone there are no slots. To remedy that a class, {{gtClass:name=LcsSlotDefinition}} has been created to model the slot and to manage access to the instance variable/slot."
+				"string" : "In Pharo, there are already native slots defined. However GemStone there are no slots. To remedy that a class, {{gtClass:name=LcsAcessorSlot}} has been created to model the slot and to manage access to the instance variable/slot."
 			},
 			{
 				"__type" : "textSnippet",

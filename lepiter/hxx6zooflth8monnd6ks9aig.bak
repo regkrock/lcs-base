@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-30T11:52:04.718485-04:00"
+						"dateAndTimeString" : "2025-06-30T12:06:32.219699-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T08:59:01.736921-04:00"
+						"dateAndTimeString" : "2025-06-30T12:06:50.822796-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "xwf2Ib7yDQCJRDSIDre9XQ=="
+					"uidString" : "n6y/8i31DQCRqcFzAiRrCA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**Mapping a named relationship between classes**"
+				"string" : "\n\n"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-30T11:52:29.475869-04:00"
+						"dateAndTimeString" : "2025-06-30T12:06:48.188424-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-30T08:38:45.547679-04:00"
+						"dateAndTimeString" : "2025-06-30T12:46:52.539977-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "0MlvI77yDQCJRoXTDre9XQ=="
+					"uidString" : "SU+z8y31DQCRvRLWAiRrCA=="
 				},
-				"code" : "\"This is what needs to be returned to show a UML diagram\"\r\"Association with key: Origin Class value: (Array of arrays with (Array with (1) association name and (2) Connected Class))\"\r\t^ {\r\t\tLcsSlotModel -> {{'slotDefintions'. LcsAccessorSlot}}.\r\t\tLcsAccessorSlot -> {\r\t\t\t{'parent'. LcsSlotModel}.\r\t\t\t{'domainClass'. LcsBaseDomainObject}\r\t\t\t\t\t\t\t\t}.\r\t\tLcsBaseDomainObject -> {{'slotModel'. LcsSlotModel}}.\r\t\tLcsSlotModel -> {{'domainClass'. LcsBaseDomainObject}}\r\t\t}"
+				"code" : "'M2N 1G5' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\r'm' matchesRegex: '[:apha:]'.\r\r"
 			},
 			{
 				"__type" : "textSnippet",
@@ -89,7 +89,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T08:56:41.553063-04:00"
+						"dateAndTimeString" : "2025-06-30T12:12:02.414015-04:00"
 					}
 				},
 				"editEmail" : {
@@ -100,20 +100,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T08:58:03.081922-04:00"
+						"dateAndTimeString" : "2025-06-30T12:12:17.257215-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "uqCSzM/yDQC9PgEkCV1q3Q=="
+					"uidString" : "2QZuBi71DQCTyCt2AiRrCA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**UML hierarchy diagram with regular classes and proposed classes: LxxSample, LxxSampe2**"
+				"string" : "The following are REGEX examples that work."
 			},
 			{
-				"__type" : "elementSnippet",
+				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -126,7 +126,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T08:54:55.690152-04:00"
+						"dateAndTimeString" : "2025-06-30T12:07:00.170979-04:00"
 					}
 				},
 				"editEmail" : {
@@ -137,17 +137,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T10:44:58.303426-04:00"
+						"dateAndTimeString" : "2025-06-30T12:46:37.528203-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "oEpDxs/yDQC848SHCV1q3Q=="
+					"uidString" : "GCpq9C31DQCRy0+vAiRrCA=="
 				},
-				"code" : "LcsUml new umlForExistingAndProposedClasses",
-				"elementHeight" : 219,
-				"codeHeight" : 50,
-				"codeVisible" : false
+				"code" : "'42' matchesRegex: '\\d+'.\r'42' matchesRegex: '\\d\\d'\r\r'A' matchesRegex: '[A-Z]'.\r'K8A6W8' matchesRegex: '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'.\r'K8A6W8' matchesRegex: '[[A-Z][0-9]]+'.\r'K8A 6W8' matchesRegex: '[A-Z][0-9][A-Z]\\s[0-9][A-Z][0-9]'.\r'K8A 6W8' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\r\r' ' matchesRegex: '\\s'.\t\"Search for a space\"\r'B1A 1A1' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\t\"Search for a space\""
 			},
 			{
 				"__type" : "textSnippet",
@@ -163,7 +160,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T10:11:29.638315-04:00"
+						"dateAndTimeString" : "2025-06-30T12:43:23.570593-04:00"
 					}
 				},
 				"editEmail" : {
@@ -174,54 +171,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T10:12:05.863917-04:00"
+						"dateAndTimeString" : "2025-06-30T12:46:10.202969-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "9GAV2NDyDQCA81xeCV1q3Q=="
+					"uidString" : "oy6Odi71DQCXAKdaAiRrCA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**UML hierarchy diagram with regular classes, proposed classes and relationships"
-			},
-			{
-				"__type" : "elementSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T10:42:15.069452-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-31T10:44:31.868225-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "SGIURtHyDQCCsouACV1q3Q=="
-				},
-				"code" : "LcsUml new umlForExistingAndProposedClassesWithAssociations",
-				"elementHeight" : 184,
-				"codeHeight" : 50,
-				"codeVisible" : true
+				"string" : "**Syntax What it represents**\na \t\t\t\t\tliteral match of character a\n. \t\t\t\t\tmatch any char\n( · · · ) \t\t\tgroup subexpression\n\\ \t\t\t\t\tescape following special character\n* \t\t\t\t\tKleene star — match previous regex zero or more times\n+ \t\t\t\t\tmatch previous regex one or more times\n? \t\t\t\t\tmatch previous regex zero times or once\n| \t\t\t\t\tmatch choice of left and right regex\n[abcd] \t\tmatch choice of characters abcd\n[ˆ abcd] \tmatch negated choice of characters\n[0-9]\t\t\tmatch range of characters 0 to 9\n\\w\t\t\t\tmatch alphanumeric\n\\W \t\t\t\tmatch non-alphanumeric\n\\d \t\t\t\tmatch digit\n\\D \t\t\t\tmatch non-digit\n\\s \t\t\t\tmatch space\n\\S \t\t\t\tmatch non-space\n**Table 6.1: Regex Syntax in a Nutshell**"
 			}
 		]
 	},
@@ -233,7 +193,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-05-30T11:52:23.43001-04:00"
+			"dateAndTimeString" : "2025-06-30T12:06:38.314881-04:00"
 		}
 	},
 	"editEmail" : {
@@ -244,15 +204,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-05-30T11:52:23.43001-04:00"
+			"dateAndTimeString" : "2025-06-30T12:06:38.314881-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "UML Diagrams"
+		"title" : "Regex"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "4005f621-bef2-0d00-8943-abd10eb7bd5d"
+		"uuid" : "78a9bff2-2df5-0d00-91a8-a33c02246b08"
 	}
 }

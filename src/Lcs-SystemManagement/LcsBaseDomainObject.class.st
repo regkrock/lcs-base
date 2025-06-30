@@ -61,7 +61,8 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 		tooltip: 'Methods that define Slot Defintions';
 		priority: 100;
 		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
-				& ( #slotDefinition gtPragmas "| #magritteActionDescription gtPragmas") ]
+				& ( #slotDefinition gtPragmas "| #magritteActionDescription gtPragmas") ];
+		actionUpdateButton
 		
 ]
 
@@ -318,7 +319,7 @@ LcsBaseDomainObject class >> slotDefinitionPragmasAndInstVarNames [
 	self instVarNames do: [:eachName |
 		slotDefinition := slotDefinitions
 			detect: [ :eachSlotDefinition | eachSlotDefinition slotName = eachName ]
-			ifNone: [ LcsAcessorSlot new slotName: 'missing' ].
+			ifNone: [ LcsAccessorSlot new slotName: 'missing' ].
 		instVarNamesAndSlotDefinitions add: (eachName -> slotDefinition).
 		slotDefinitions remove: slotDefinition ifAbsent: []].
 	slotDefinitions do: [ :eachSlotDefinition |

@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsCountrySubdivision,
 	#superclass : #LcsBaseCountrySubdivision,
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-Geography-Domain'
 }

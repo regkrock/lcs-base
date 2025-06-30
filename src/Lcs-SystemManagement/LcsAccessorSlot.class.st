@@ -14,7 +14,7 @@ initialValueBlock - The slot will be initialized to evaluated value of this bloc
 validator - ?????
 "
 Class {
-	#name : #LcsAcessorSlot,
+	#name : #LcsAccessorSlot,
 	#superclass : #LcsBaseSlot,
 	#instVars : [
 		'required',
@@ -27,7 +27,7 @@ Class {
 }
 
 { #category : #'slot model' }
-LcsAcessorSlot >> _slotVarPut: anObject in: aDomainObject [
+LcsAccessorSlot >> _slotVarPut: anObject in: aDomainObject [
 	self verifyType: anObject for: aDomainObject.
 	self currentUnitOfWork
 		setValueIn: aDomainObject
@@ -36,7 +36,7 @@ LcsAcessorSlot >> _slotVarPut: anObject in: aDomainObject [
 ]
 
 { #category : #configuration }
-LcsAcessorSlot >> addCondition: aCondition labelled: aString [
+LcsAccessorSlot >> addCondition: aCondition labelled: aString [
 	"Add ==aCondition== as an additional validation condition to the receiver and give it the label ==aString==. The first argument is either a block-context or any other object that responds to ==#value:== with ==true== or ==false==."
 
 	self conditions: (self conditions
@@ -46,71 +46,71 @@ LcsAcessorSlot >> addCondition: aCondition labelled: aString [
 ]
 
 { #category : #validation }
-LcsAcessorSlot >> addValidateConfigurationResultTo: aValidator [
+LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 	(self domainClass allInstVarNames includes: self slotName)
 		ifFalse: [ aValidator
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> allowNil [ 
+LcsAccessorSlot >> allowNil [ 
 	^ allowNil
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> allowNil: anObject [
+LcsAccessorSlot >> allowNil: anObject [
 	allowNil := anObject
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> assignParent: aDomainObject to: newValue [
+LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 	newValue isDomainObject ifTrue: [
 		newValue parent: aDomainObject ]
 ]
 
 { #category : #command }
-LcsAcessorSlot >> beAllowNil [ 
+LcsAccessorSlot >> beAllowNil [ 
 	self allowNil: true
 ]
 
 { #category : #configuration }
-LcsAcessorSlot >> beOptional [
+LcsAccessorSlot >> beOptional [
 	self required: false
 ]
 
 { #category : #configuration }
-LcsAcessorSlot >> beRequired [
+LcsAccessorSlot >> beRequired [
 	self required: true
 ]
 
 { #category : #'as yet unclassified' }
-LcsAcessorSlot >> changeHistoryRepresentationIn: aNewObject [
+LcsAccessorSlot >> changeHistoryRepresentationIn: aNewObject [
 	^ aNewObject isDomainObject ifTrue: [ aNewObject uuid ] ifFalse: [ aNewObject ]
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> changedSlotRecordFor: aDomainObject [
+LcsAccessorSlot >> changedSlotRecordFor: aDomainObject [
 	^ self currentUnitOfWork
 		changedSlotRecordFor: aDomainObject
 		slotNamed: self slotName
 ]
 
 { #category : #defaults }
-LcsAcessorSlot >> createNewInstanceOf: aClass inContext: context [
+LcsAccessorSlot >> createNewInstanceOf: aClass inContext: context [
 	aClass isDomainClass
 		ifTrue: [ aClass newInContext: context ]
 		ifFalse: [ aClass new ]
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> currentSlotVarIn: aDomainObject [
+LcsAccessorSlot >> currentSlotVarIn: aDomainObject [
 	^ (self changedSlotRecordFor: aDomainObject)
 		ifNil: [ self persistedSlotVarIn: aDomainObject ]
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
 ]
 
 { #category : #defaults }
-LcsAcessorSlot >> defaultInitialValueBlock [
+LcsAccessorSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject | 
 		(self slotTypes any new)
 			parent: parentDomainObject;
@@ -118,12 +118,12 @@ LcsAcessorSlot >> defaultInitialValueBlock [
 ]
 
 { #category : #printing }
-LcsAcessorSlot >> defaultInitialValueBlockSourceCode [
+LcsAccessorSlot >> defaultInitialValueBlockSourceCode [
 	^ self defaultInitialValueBlock compiledBlock sourceNode sourceCode
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> getterSelector [
+LcsAccessorSlot >> getterSelector [
 	| substring1 substring2 |
 	substring1 := (self slotName at: 1) asLowercase asString.
 	substring2 := self slotName asCamelCase copyFrom: 2 to: self slotName size.
@@ -132,7 +132,7 @@ LcsAcessorSlot >> getterSelector [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtCreateClassAndValueElementFor: aColumn [
+LcsAccessorSlot >> gtCreateClassAndValueElementFor: aColumn [
 	^ aColumn
 		cellStencil: [ BrHorizontalPane new
 				hMatchParent;
@@ -158,7 +158,7 @@ LcsAcessorSlot >> gtCreateClassAndValueElementFor: aColumn [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtDomainMetaFor: aView [
+LcsAccessorSlot >> gtDomainMetaFor: aView [
 	<gtView>
 	self parent isNil ifTrue: [ ^ aView empty ].
 	^ aView explicit
@@ -168,7 +168,7 @@ LcsAcessorSlot >> gtDomainMetaFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtSlotAttributesViewFor: aView [
+LcsAccessorSlot >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	^ aView columnedList
 		title: 'Attributes';
@@ -184,7 +184,7 @@ LcsAcessorSlot >> gtSlotAttributesViewFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtSlotDefinitionAttributes [
+LcsAccessorSlot >> gtSlotDefinitionAttributes [
 	| collection |
 	collection := 
 		OrderedCollection new
@@ -203,7 +203,7 @@ LcsAcessorSlot >> gtSlotDefinitionAttributes [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtSlotDefinitionMethodViewFor: aView [
+LcsAccessorSlot >> gtSlotDefinitionMethodViewFor: aView [
 	<gtView>
 
 	self domainClass ifNil: [ ^ aView empty ].
@@ -220,7 +220,7 @@ LcsAcessorSlot >> gtSlotDefinitionMethodViewFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtSlotModelFor: aView [
+LcsAccessorSlot >> gtSlotModelFor: aView [
 	<gtView>
 	self parent ifNil: [ ^ aView empty ].
 	^ aView forward
@@ -232,7 +232,7 @@ LcsAcessorSlot >> gtSlotModelFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtSlotTypesViewFor: aView [
+LcsAccessorSlot >> gtSlotTypesViewFor: aView [
 	<gtView>
 	^ aView columnedList
 		title: 'Slot Types';
@@ -261,7 +261,7 @@ LcsAcessorSlot >> gtSlotTypesViewFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> gtViewSlotModelChildren [
+LcsAccessorSlot >> gtViewSlotModelChildren [
 	^ {
 		LcsSlotModelViewItem newLabel: 'domainClass' item: self domainClass.
 		LcsSlotModelViewItem newLabel: 'slotName' item: self slotName.
@@ -271,32 +271,32 @@ LcsAcessorSlot >> gtViewSlotModelChildren [
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> initialValue [
+LcsAccessorSlot >> initialValue [
 	^ self initialValueBlock value
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> initialValue: anObject [
+LcsAccessorSlot >> initialValue: anObject [
 	self initialValueBlock: [ anObject ]
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> initialValueBlock [
+LcsAccessorSlot >> initialValueBlock [
 	^ initialValueBlock
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> initialValueBlock: aBlock [ 
+LcsAccessorSlot >> initialValueBlock: aBlock [ 
 	initialValueBlock := aBlock
 ]
 
 { #category : #printing }
-LcsAcessorSlot >> initialValueBlockSourceCode [
+LcsAccessorSlot >> initialValueBlockSourceCode [
 	^ self initialValueBlock compiledBlock sourceNode sourceCode
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> initialValueFor: aDomainObject [
+LcsAccessorSlot >> initialValueFor: aDomainObject [
 	| newValue |
 	newValue := self initialValueBlock cull: aDomainObject cull: self.
 	"(newValue isDomainObject and: [ self currentSystem notNil ])
@@ -307,7 +307,7 @@ LcsAcessorSlot >> initialValueFor: aDomainObject [
 ]
 
 { #category : #initialize }
-LcsAcessorSlot >> initialize [
+LcsAccessorSlot >> initialize [
 	super initialize.
 	self makeUpdateOfVariableViaUnitOfWork.
 	self initialValueBlock: self defaultInitialValueBlock.
@@ -316,84 +316,84 @@ LcsAcessorSlot >> initialize [
 ]
 
 { #category : #'object initialization' }
-LcsAcessorSlot >> initializeSlotValueIn: aDomainObject [
+LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 	self slotVarPut: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> initializeUnintializedSlotValueIn: aDomainObject [
+LcsAccessorSlot >> initializeUnintializedSlotValueIn: aDomainObject [
 	(self currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
 	self initializeSlotValueIn: aDomainObject
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> isGlobalCollectionRefenceSlot [
+LcsAccessorSlot >> isGlobalCollectionRefenceSlot [
 	^ false
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
+LcsAccessorSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
 	^ false
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> isGlobalCollectionSlot [
+LcsAccessorSlot >> isGlobalCollectionSlot [
 	^ false
 ]
 
 { #category : #validation }
-LcsAcessorSlot >> isInstanceVariableDefined [
+LcsAccessorSlot >> isInstanceVariableDefined [
 	^ self domainClass allInstVarNames includes: self slotName
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> isLocalCollectionSlot [
+LcsAccessorSlot >> isLocalCollectionSlot [
 	^ false
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> isNilAllowed [
+LcsAccessorSlot >> isNilAllowed [
 	^ self allowNil == true
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> isNotRequired [
+LcsAccessorSlot >> isNotRequired [
 	^ self isRequired not
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> isNullObject: anObject [
+LcsAccessorSlot >> isNullObject: anObject [
 	<TODO: 'This needs to be flushed out'> 
 	^ false
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> isOptional [
+LcsAccessorSlot >> isOptional [
 	^ self required ~~ true
 ]
 
 { #category : #testing }
-LcsAcessorSlot >> isRequired [
+LcsAccessorSlot >> isRequired [
 	^ self required == true
 ]
 
 { #category : #configuration }
-LcsAcessorSlot >> makeDirectUpdateOfVariable [
+LcsAccessorSlot >> makeDirectUpdateOfVariable [
 	self variableUpdatePolicy: (LcsDirectVariableUpdatePolicy newOn: self)
 ]
 
 { #category : #configuration }
-LcsAcessorSlot >> makeUpdateOfVariableViaUnitOfWork [
+LcsAccessorSlot >> makeUpdateOfVariableViaUnitOfWork [
 	self variableUpdatePolicy: (LcsUnitOfWorkVariableUpdatePolicy newOn: self)
 ]
 
 { #category : #'gt views' }
-LcsAcessorSlot >> newDomainClassName [
+LcsAccessorSlot >> newDomainClassName [
 	^ self domainClass ifNil: [ ^ '<not initialized>']
 ]
 
 { #category : #defaults }
-LcsAcessorSlot >> newObjectWithParent: parentDomainObject [
+LcsAccessorSlot >> newObjectWithParent: parentDomainObject [
 		| newObject |
 		newObject := self slotTypes any basicNew.
 		parentDomainObject perform: self setterSelector with: newObject.
@@ -404,14 +404,14 @@ LcsAcessorSlot >> newObjectWithParent: parentDomainObject [
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> persistedSlotVarIn: aDomainObject [
+LcsAccessorSlot >> persistedSlotVarIn: aDomainObject [
 	"self traceCr: 'persistedSlotVarIn: ' , aDomainObject printString."
 	"aDomainObject isInAddingState ifTrue: [ ^ nil ]."
 	^ aDomainObject instVarNamed: self slotName asString
 ]
 
 { #category : #printing }
-LcsAcessorSlot >> printOn: aStream [
+LcsAccessorSlot >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPutAll: ' (';
@@ -420,17 +420,17 @@ LcsAcessorSlot >> printOn: aStream [
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> required [
+LcsAccessorSlot >> required [
 	^ required
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> required: anObject [
+LcsAccessorSlot >> required: anObject [
 	required := anObject
 ]
 
 { #category : #magritte }
-LcsAcessorSlot >> requiredDescription [
+LcsAccessorSlot >> requiredDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Required';
@@ -447,34 +447,34 @@ LcsAcessorSlot >> requiredDescription [
 ]
 
 { #category : #private }
-LcsAcessorSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
+LcsAccessorSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
 	"collection slots need to implement logic here"
 ]
 
 { #category : #private }
-LcsAcessorSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
+LcsAccessorSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
 	"collection slots need to implement logic here"
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> setterSelector [
+LcsAccessorSlot >> setterSelector [
 	^ (self getterSelector , ':') asSymbol
 		
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> slotDefinitionSelector [
+LcsAccessorSlot >> slotDefinitionSelector [
 	^ (self slotName , 'SlotDefinition') asSymbol
 ]
 
 { #category : #validation }
-LcsAcessorSlot >> slotDoesNotExistMessage [
+LcsAccessorSlot >> slotDoesNotExistMessage [
 	^ 'Slot name ' , self slotName asString , ' does not exist in '
 		, self domainClass name
 ]
 
 { #category : #printing }
-LcsAcessorSlot >> slotTypesList [
+LcsAccessorSlot >> slotTypesList [
 	| stream |
 	stream := WriteStream on: String new.
 	self slotTypes 
@@ -484,40 +484,40 @@ LcsAcessorSlot >> slotTypesList [
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> slotVarDirectlyPut: anObject in: aDomainObject [
+LcsAccessorSlot >> slotVarDirectlyPut: anObject in: aDomainObject [
 	aDomainObject instVarNamed: self slotName asString put: anObject
 
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> slotVarPut: anObject in: aDomainObject [
+LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
 	self variableUpdatePolicy slotVarPut: anObject  in: aDomainObject
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> validate: anObject for: aDomainObject [
+LcsAccessorSlot >> validate: anObject for: aDomainObject [
 	self verifyType: anObject for: aDomainObject.
 	(self isNilAllowed and: [self isNullObject: anObject]) ifTrue: [ ^ self ].
 	self validationConditions validate: anObject context: aDomainObject
 ]
 
 { #category : #validating }
-LcsAcessorSlot >> validator [
+LcsAccessorSlot >> validator [
 	^ LcsConditionsValidator new
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> variableUpdatePolicy [
+LcsAccessorSlot >> variableUpdatePolicy [
 	^ variableUpdatePolicy
 ]
 
 { #category : #accessing }
-LcsAcessorSlot >> variableUpdatePolicy: anObject [
+LcsAccessorSlot >> variableUpdatePolicy: anObject [
 	variableUpdatePolicy := anObject
 ]
 
 { #category : #'slot model' }
-LcsAcessorSlot >> verifyType: anObject for: aDomainObject [
+LcsAccessorSlot >> verifyType: anObject for: aDomainObject [
 	(self isNilAllowed and: [ anObject isNil ]) ifTrue: [ ^ true ].
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]

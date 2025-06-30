@@ -8,7 +8,7 @@ Class {
 		'defaultPostalCodeName',
 		'defaultPoliticalUnitName'
 	],
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-Geography-Domain'
 }
 
 { #category : #'slot definitions' }

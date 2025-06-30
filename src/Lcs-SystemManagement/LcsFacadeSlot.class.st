@@ -9,7 +9,7 @@ For performance, the facade slot can cache the retrieved object. In the user exa
 "
 Class {
 	#name : #LcsFacadeSlot,
-	#superclass : #LcsAcessorSlot,
+	#superclass : #LcsAccessorSlot,
 	#instVars : [
 		'targetSlotName',
 		'convertFromTarget',

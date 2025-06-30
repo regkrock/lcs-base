@@ -6,7 +6,7 @@ Class {
 		'formalName',
 		'subdivisionName'
 	],
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-Geography-Domain'
 }
 
 { #category : #asking }

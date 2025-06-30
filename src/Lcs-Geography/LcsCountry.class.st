@@ -10,7 +10,7 @@ Class {
 		'subdivisions',
 		'isoNumber'
 	],
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-Geography-Domain'
 }
 
 { #category : #'slot definitions' }
