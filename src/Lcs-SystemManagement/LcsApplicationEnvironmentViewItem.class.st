@@ -117,7 +117,15 @@ LcsApplicationEnvironmentViewItem >> startSystemButton [
 ]
 
 { #category : #'gt views' }
-LcsApplicationEnvironmentViewItem >> stopSystemButton [
+LcsApplicationEnvironmentViewItem >> stopButton [
 	self isInstantiatedSystem ifTrue: [ ^ self stopSystemButton ].
 	^ BrButton new
+]
+
+{ #category : #'gt views' }
+LcsApplicationEnvironmentViewItem >> stopSystemButton [
+	^ BrButton new
+		aptitude: BrGlamorousButtonWithLabelAptitude new;
+		label: 'Stop';
+		action: [ :aButton | self item removeSystem ]
 ]

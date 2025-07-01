@@ -102,8 +102,7 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 			width: 200;
 		column: 'Value' translated text: [ :each | each item displayString ] width: 300;
 		column: '' stencil: [ :viewItem :row :column | viewItem startSuspendSystemButton ] width: 70;
-		"column: '' stencil: [ :viewItem :row :column | viewItem debugSystemButton] width: 70;"
-		column: '' stencil: [ :viewItem | viewItem stopSystemButton ] width: 70; 
+		column: '' stencil: [ :viewItem | viewItem stopButton ] width: 70; 
 		send: #item;
 		actionButtonIcon: BrGlamorousVectorIcons shutdown 
 			tooltip: 'Start/Stop environment'
