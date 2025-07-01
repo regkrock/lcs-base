@@ -43,7 +43,7 @@ LuiLabelWithDatePickerComponentTest >> testAddingSlotModelWithDefaultDateOfBirth
 	self assert: component valueAccessor slotName equals: 'dateOfBirth'.
 	self assert: component labelComponent labelString equals: 'Date of Birth'.
 	"self assert: person dateOfBirth isNil."
-	self assert: component inputComponent displayValue equals: '2025-06-29'
+	self assert: component inputComponent displayValue equals: Date today yyyymmdd
 		
 ]
 
