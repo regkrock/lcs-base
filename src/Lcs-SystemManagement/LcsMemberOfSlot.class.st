@@ -10,11 +10,6 @@ Note: Currently this is defined to look up a value in a global collection.
 Class {
 	#name : #LcsMemberOfSlot,
 	#superclass : #LcsDomainObjectSlot,
-	#instVars : [
-		'collectionSourceBlock',
-		'collectionSlotName',
-		'collectionSlotModuleName'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -28,27 +23,27 @@ LcsMemberOfSlot >> collectionModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsMemberOfSlot >> collectionSlotModuleName [
-	^ collectionSlotModuleName
+	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsMemberOfSlot >> collectionSlotModuleName: aString [ 
-	collectionSlotModuleName := aString
+	self properties at: 'collectionSlotModuleName' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsMemberOfSlot >> collectionSlotName [
-	^ collectionSlotName
+	^ self properties at: 'collectionSlotName' ifAbsent: []
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsMemberOfSlot >> collectionSlotName: aString [ 
-	collectionSlotName := aString
+	self properties at: 'collectionSlotName' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsMemberOfSlot >> defaultInstance [
 	^ self targetCollection 
 		ifNil: [ LcsMemberOfSlotSourceCollectionNotInitialized signalWithContext: self ] 
@@ -69,7 +64,7 @@ LcsMemberOfSlot >> sourceCollectionNotPopulatedMessage [
 			with: self collectionSlotName
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsMemberOfSlot >> targetCollection [
 	^ self collectionModule perform: self collectionSlotName asSymbol
 ]

@@ -94,11 +94,7 @@ LcsModule class >> moduleConfigurationClass [
 { #category : #'slot definitions' }
 LcsModule class >> moduleNameSlotDefinition [
 	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'moduleName';
-		initialValueBlock: [ :module | module class defaultModuleName ];
-		priority: 1;
-		yourself
+	^ LcsModuleNameSlot new
 ]
 
 { #category : #'slot definitions' }

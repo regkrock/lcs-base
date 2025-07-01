@@ -1,13 +1,10 @@
 Class {
 	#name : #LcsLocalCollectionSlot,
 	#superclass : #LcsPrimaryCollectionSlot,
-	#instVars : [
-		'collectionSlotClass'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsLocalCollectionSlot >> isLocalCollectionSlot [
 	^ true
 ]

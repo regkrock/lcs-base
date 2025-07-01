@@ -16,7 +16,7 @@ LcsStateMachineStateSlot >> initialize [
 		initialValue: nil
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsStateMachineStateSlot >> slotVarPut: anObject in: aDomainObject [
 	| originalObject |
 	"More work required here as the fact that they were sapped needs to be recorded"

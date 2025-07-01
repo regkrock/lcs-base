@@ -9,14 +9,14 @@ LcsBlockSlot >> defaultInitialValueBlock [
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'slot model' }
 LcsBlockSlot >> initialValueFor: aDomainObject [
 	^ self initialValueBlock 
 		ifNil: [ [ true ] ] 
 		ifNotNil: [ self initialValueBlock ]
 ]
 
-{ #category : #initialize }
+{ #category : #configuration }
 LcsBlockSlot >> typeClass [
 	^ BlockClosure.
 ]

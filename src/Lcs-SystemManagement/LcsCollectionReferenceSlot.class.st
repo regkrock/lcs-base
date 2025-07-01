@@ -1,21 +1,17 @@
 Class {
 	#name : #LcsCollectionReferenceSlot,
 	#superclass : #LcsDomainObjectSlot,
-	#instVars : [
-		'collectionSlotName',
-		'collectionSlotModuleName'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsCollectionReferenceSlot >> collectionSlotName [
-	^ collectionSlotName
+	^ self properties at: 'collectionSlotName' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsCollectionReferenceSlot >> collectionSlotName: anObject [
-	collectionSlotName := anObject
+	self properties at: 'collectionSlotName' put: anObject
 ]
 
 { #category : #'gt views' }

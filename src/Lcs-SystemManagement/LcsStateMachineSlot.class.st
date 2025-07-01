@@ -11,13 +11,13 @@ LcsStateMachineSlot class >> newOn: aStateMachineClass [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsStateMachineSlot >> initialize [
 	super initialize.
 	self slotName: 'status'
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsStateMachineSlot >> initializeOn: aStateMachineClass [ 
 	self addSlotType: aStateMachineClass
 ]

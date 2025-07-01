@@ -99,6 +99,23 @@ LcsAccessorSlotTest >> testRequried [
 	self assert: self subject isRequired not
 ]
 
+{ #category : #testing }
+LcsAccessorSlotTest >> testSlotTypes [
+	self subject: LcsAccessorSlot new.
+	self assert: self subject slotTypes isEmpty.
+	self assert: self subject slotTypes class == OrderedCollection.
+	self subject slotTypes: Array new.
+	self assert: self subject slotTypes class == Array.
+
+]
+
+{ #category : #testing }
+LcsAccessorSlotTest >> testValidationConditions [
+	self subject: LcsAccessorSlot new.
+	self assert: self subject validationConditions class == LcsValidationConditions.
+	self assert: self subject validationConditions collection isEmpty.
+]
+
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithNoValidationConditions [
 	self subject: LcsAccessorSlot new.

@@ -9,7 +9,7 @@ LcsStringSlot >> defaultInitialValueBlock [
 	^ [ self typeClass new ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'default ui component' }
 LcsStringSlot >> defaultInputComponentClassName [
 	^#LuiTextInput
 ]

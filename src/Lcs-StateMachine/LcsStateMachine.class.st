@@ -172,8 +172,8 @@ LcsStateMachine >> gtStateMachineViewFor: aView [
 			text: [ :viewItem | viewItem label ]
 			width: 200;
 		column: 'Value' text: [ :viewItem | viewItem itemDisplay displayString ] width: 300;
-		column: '' stencil: [ :viewItem | viewItem actionButton] width: 70;
-		column: '' stencil: [ :viewItem | viewItem action2Button] width: 70;
+		column: '' stencil: [ :viewItem | viewItem startSuspendSystemButton] width: 70;
+		column: '' stencil: [ :viewItem | viewItem stopSystemButton ] width: 70;
 		send: #item;
 		actionUpdateButton;
 		yourself

@@ -156,6 +156,7 @@ LcsSlotDefintionMethodBuilder >> initialize [
 LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
 	self 
 		slotClass: aSlotDefinitionBuilder slotClassName asClass;
+		slotClassInstance: self slotClass new;
 		targetClassName: aSlotDefinitionBuilder targetClassName.
 		"slotName: aSlotDefinitionBuilder slotName;
 		slotTypes: aSlotDefinitionBuilder slotTypes copy;

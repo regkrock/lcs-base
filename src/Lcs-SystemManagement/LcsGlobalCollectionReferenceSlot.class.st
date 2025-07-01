@@ -1,10 +1,6 @@
 Class {
 	#name : #LcsGlobalCollectionReferenceSlot,
 	#superclass : #LcsDomainObjectSlot,
-	#instVars : [
-		'collectionSlotName',
-		'collectionSlotModuleName'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -18,24 +14,24 @@ LcsGlobalCollectionReferenceSlot >> collectionSlotModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName [
-	^ collectionSlotModuleName
+	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName: aString [
-	collectionSlotModuleName := aString
+	self properties at: 'collectionSlotModuleName' put: aString
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlot >> collectionSlotName [
-	^ collectionSlotName
+	^ self properties at: 'collectionSlotName' ifAbsent: []
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlot >> collectionSlotName: anObject [
-	collectionSlotName := anObject
+	self properties at: 'collectionSlotName' put: anObject
 ]
 
 { #category : #'gt views' }

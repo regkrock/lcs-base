@@ -1,10 +1,6 @@
 Class {
 	#name : #LcsLocalCollectionReferenceSlot,
 	#superclass : #LcsDomainObjectSlot,
-	#instVars : [
-		'collectionSlotName',
-		'collectionSlotModuleName'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -18,24 +14,24 @@ LcsLocalCollectionReferenceSlot >> collectionSlotModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsLocalCollectionReferenceSlot >> collectionSlotModuleName [
-	^ collectionSlotModuleName
+	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsLocalCollectionReferenceSlot >> collectionSlotModuleName: aString [
-	collectionSlotModuleName := aString
+	self properties at: 'collectionSlotModuleName' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsLocalCollectionReferenceSlot >> collectionSlotName [
-	^ collectionSlotName
+	^ self properties at: 'collectionSlotName' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsLocalCollectionReferenceSlot >> collectionSlotName: anObject [
-	collectionSlotName := anObject
+	self properties at: 'collectionSlotName' put: anObject
 ]
 
 { #category : #'gt views' }
@@ -74,7 +70,7 @@ LcsLocalCollectionReferenceSlot >> persistValue: aDomainObject contextObject: aC
 	self collectionSlot persistValue: aDomainObject in: self collectionSlotModule
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'unit of work' }
 LcsLocalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
 
 	"This supports an object being created without being added to a collection. 
@@ -84,20 +80,20 @@ LcsLocalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfW
 	"aUnitOfWork addPendingAddOf: aDomainObject to: self targetCollection "
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'unit of work' }
 LcsLocalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork toCollection: aCollection [
 	aDomainObject parent: aCollection.
 	aUnitOfWork addPendingAddOf: aDomainObject to: aCollection 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'unit of work' }
 LcsLocalCollectionReferenceSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
 
 	aUnitOfWork addPendingAddOf: aDomainObject to: 
 	self targetCollection 
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 LcsLocalCollectionReferenceSlot >> targetCollection [
 	^self collectionSlotModule perform: self collectionSlotName asSymbol
 ]

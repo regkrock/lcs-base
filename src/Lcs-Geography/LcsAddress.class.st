@@ -15,10 +15,10 @@ LcsAddress class >> postalCodeSlotDefinition [
 		slotName: 'postalCode';
 		required: true;
 		slotTypes: (OrderedCollection with: LcsPostalCode);
-		initialValueBlock: '[ :parentDomainObject | 
-		(self slotTypes any new)
-			parent: parentDomainObject;
-			yourself ]';
+		initialValueBlock: [ :parentDomainObject :slot | 
+			(slot slotTypes any new)
+				parent: parentDomainObject;
+				yourself ];
 		yourself
 ]
 

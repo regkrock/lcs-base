@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 LcsSmallIntegerSlot >> typeClass [
 	^ SmallInteger
 ]

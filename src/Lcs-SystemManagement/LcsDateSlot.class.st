@@ -9,6 +9,11 @@ LcsDateSlot >> defaultInitialValueBlock [
 	^ [ self typeClass today ]
 ]
 
+{ #category : #'default ui component' }
+LcsDateSlot >> defaultInputComponentClassName [
+	^ #'LuiDatePicker'
+]
+
 { #category : #configuration }
 LcsDateSlot >> typeClass [
 	^ LcsSmalltalkConfiguration dateClass

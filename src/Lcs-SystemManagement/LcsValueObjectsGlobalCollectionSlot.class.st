@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsValueObjectsGlobalCollectionSlot,
 	#superclass : #LcsGlobalCollectionSlot,
-	#instVars : [
-		'loaderClass'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -13,17 +10,17 @@ LcsValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	self populateCollection 
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass [
-	^ loaderClass
+	^ self properties at: 'loaderClass' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass: aLoaderClass [
-	loaderClass := aLoaderClass
+	self properties at: 'loaderClass' put: aLoaderClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #load }
 LcsValueObjectsGlobalCollectionSlot >> populateCollection [
 	self loaderClass new load
 ]

@@ -9,7 +9,7 @@ LcsTimeSlot >> defaultInitialValueBlock [
 	^ [ self typeClass now ]
 ]
 
-{ #category : #defaults }
+{ #category : #initialize }
 LcsTimeSlot >> initialize [
 	super initialize.
 	self slotName: 'timestamp'

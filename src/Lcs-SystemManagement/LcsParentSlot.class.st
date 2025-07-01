@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsParentSlot >> initialize [
 	super initialize.
 	self 
@@ -12,11 +12,11 @@ LcsParentSlot >> initialize [
 		addSlotType: LcsBaseDomainObject.
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsParentSlot >> initializeSlotValueIn: aDomainObject [
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsParentSlot >> persistValue: aDomainObject  contextObject: aDomainCreationContext [
 	aDomainObject instVarNamed: self slotName put: aDomainCreationContext
 ]

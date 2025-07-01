@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'slot model' }
 LcsGlobalCollectionSlot >> add: aDomainObject [
 	self slotTypes do: [ :eachTypeClass | (aDomainObject inheritsFrom: eachTypeClass) ifTrue: [ ^ true ] ]
 ]
@@ -30,13 +30,13 @@ LcsGlobalCollectionSlot >> gtSlotDefinitionAttributes [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialize }
 LcsGlobalCollectionSlot >> initialize [ 
 	super initialize.
 	self initialValueBlock: [ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ]
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsGlobalCollectionSlot >> isGlobalCollectionSlot [
 	^ true
 ]
@@ -51,7 +51,7 @@ LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
 	(self currentSlotVarIn: aModule) add: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #verification }
 LcsGlobalCollectionSlot >> verifyCollectionItemType: anObject [
 	self collectionMemberTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]

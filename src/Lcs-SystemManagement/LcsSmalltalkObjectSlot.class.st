@@ -18,7 +18,7 @@ LcsSmalltalkObjectSlot >> defaultInputComponentClassName [
 	"self subclassResponsibility"
 ]
 
-{ #category : #accessing }
+{ #category : #'object initialization' }
 LcsSmalltalkObjectSlot >> initialValueFor: aDomainObject [
 	^ self initialValueBlock cull: aDomainObject
 ]

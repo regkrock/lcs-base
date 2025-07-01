@@ -9,7 +9,7 @@ LcsNumberSlot >> defaultInitialValueBlock [
 	^ [ 0 ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 LcsNumberSlot >> isNullObject: anObject [ 
 	^ anObject isZero
 ]

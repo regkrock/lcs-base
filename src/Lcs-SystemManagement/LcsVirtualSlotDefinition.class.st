@@ -44,7 +44,7 @@ LcsVirtualSlotDefinition >> valueAccessBlock: anObject [
 	valueAccessBlock := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'slot model' }
 LcsVirtualSlotDefinition >> valueAccessor: aSymbol [
 	self valueAccessBlock: [ :domainObject | domainObject perform: aSymbol ]
 ]

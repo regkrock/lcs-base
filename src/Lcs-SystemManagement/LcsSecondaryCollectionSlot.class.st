@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsSecondaryCollectionSlot,
 	#superclass : #LcsDomainCollectionSlot,
-	#instVars : [
-		'collectionSlotClass'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 

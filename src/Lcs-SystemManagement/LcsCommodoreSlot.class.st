@@ -6,7 +6,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialize }
 LcsCommodoreSlot >> initialize [
 	super initialize.
 	self slotName: 'commodore'.

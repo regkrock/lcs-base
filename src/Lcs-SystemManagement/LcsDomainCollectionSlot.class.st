@@ -1,10 +1,6 @@
 Class {
 	#name : #LcsDomainCollectionSlot,
 	#superclass : #LcsDomainObjectSlot,
-	#instVars : [
-		'collectionMemberTypes',
-		'collectionClass'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -24,24 +20,24 @@ LcsDomainCollectionSlot >> beOrderedCollection [
 	self collectionClass: OrderedCollection
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsDomainCollectionSlot >> collectionClass [
-	^ collectionClass
+	^ self properties at: 'collectionClass' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsDomainCollectionSlot >> collectionClass: anObject [
-	collectionClass := anObject
+	self properties at: 'collectionClass' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsDomainCollectionSlot >> collectionMemberTypes [
-	^ collectionMemberTypes
+	^ self properties at: 'collectionMemberTypes' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsDomainCollectionSlot >> collectionMemberTypes: anObject [
-	collectionMemberTypes := anObject
+	self properties at: 'collectionMemberTypes' put: anObject
 ]
 
 { #category : #initialize }
@@ -51,12 +47,12 @@ LcsDomainCollectionSlot >> initialize [
 	self beIdentitySetCollection
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsDomainCollectionSlot >> isGlobalCollectionSlot [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsDomainCollectionSlot >> isLocalCollectionSlot [
 	^ false
 ]

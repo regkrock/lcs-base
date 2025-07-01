@@ -20,20 +20,6 @@ LcsApplicationEnvironmentViewItem class >> newOn: anObject label: aLabel item: a
 ]
 
 { #category : #'gt views' }
-LcsApplicationEnvironmentViewItem >> action2Button [
-	self isInstantiatedSystem ifTrue: [ ^ self stopSystemButton ].
-	^ BrButton new
-]
-
-{ #category : #'gt views' }
-LcsApplicationEnvironmentViewItem >> actionButton [
-	self isSystemClass ifTrue: [ ^ self startSystemButton ].
-	self isInstantiatedSystem ifTrue: [ ^ self activateSuspendSystemButton ].
-
-	^ BrButton new
-]
-
-{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> activateSuspendSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -49,6 +35,20 @@ LcsApplicationEnvironmentViewItem >> context [
 { #category : #accessing }
 LcsApplicationEnvironmentViewItem >> context: anObject [ 
 	context := anObject
+]
+
+{ #category : #'gt views' }
+LcsApplicationEnvironmentViewItem >> debugSystemButton [
+	^ BrButton new
+		aptitude: BrGlamorousButtonWithLabelAptitude new;
+		icon: BrGlamorousVectorIcons debug;
+		label: 'Debug';
+		action: [ :aButton | 
+			RubSmalltalkEditor new
+				textArea: (RubEditingArea new
+								editingMode: RubSmalltalkCodeMode new;
+								yourself);
+				debug: (ReadStream on: 'self item new') ]
 ]
 
 { #category : #'gt views' }
@@ -101,6 +101,14 @@ LcsApplicationEnvironmentViewItem >> startStopApplicationEnvironmentButton [
 ]
 
 { #category : #'gt views' }
+LcsApplicationEnvironmentViewItem >> startSuspendSystemButton [
+	self isSystemClass ifTrue: [ ^ self startSystemButton ].
+	self isInstantiatedSystem ifTrue: [ ^ self activateSuspendSystemButton ].
+
+	^ BrButton new
+]
+
+{ #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> startSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -110,8 +118,6 @@ LcsApplicationEnvironmentViewItem >> startSystemButton [
 
 { #category : #'gt views' }
 LcsApplicationEnvironmentViewItem >> stopSystemButton [
+	self isInstantiatedSystem ifTrue: [ ^ self stopSystemButton ].
 	^ BrButton new
-		aptitude: BrGlamorousButtonWithLabelAptitude new;
-		label: 'Stop';
-		action: [ :aButton | self item removeSystem ]
 ]

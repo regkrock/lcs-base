@@ -1,9 +1,6 @@
 Class {
 	#name : #LcsScaledDecimalSlot,
 	#superclass : #LcsNumberSlot,
-	#instVars : [
-		'numberOfDecimals'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -12,20 +9,20 @@ LcsScaledDecimalSlot >> defaultInitialValueBlock [
 	^ [ 0 asScaledDecimal: self numberOfDecimals ]
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsScaledDecimalSlot >> initialize [
 	super initialize.
 	self numberOfDecimals: 2
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsScaledDecimalSlot >> numberOfDecimals [
-	^ numberOfDecimals
+	^ self properties at: 'numberOfDecimals' ifAbsent: [ 2 ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsScaledDecimalSlot >> numberOfDecimals: anObject [
-	numberOfDecimals := anObject
+	self properties at: 'numberOfDecimals' put: anObject
 ]
 
 { #category : #configuration }

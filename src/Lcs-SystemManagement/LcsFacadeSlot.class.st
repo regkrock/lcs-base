@@ -10,35 +10,30 @@ For performance, the facade slot can cache the retrieved object. In the user exa
 Class {
 	#name : #LcsFacadeSlot,
 	#superclass : #LcsAccessorSlot,
-	#instVars : [
-		'targetSlotName',
-		'convertFromTarget',
-		'convertToTarget'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsFacadeSlot >> convertFromTarget [
-	^ convertFromTarget
+	^ self properties at: 'convertFromTarget' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsFacadeSlot >> convertFromTarget: anObject [
-	convertFromTarget := anObject
+	self properties at: 'convertFromTarget' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsFacadeSlot >> convertToTarget [
-	^ convertToTarget
+	^ self properties at: 'convertToTarget' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsFacadeSlot >> convertToTarget: anObject [
-	convertToTarget := anObject
+	self properties at: 'convertToTarget' put: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'slot access' }
 LcsFacadeSlot >> currentSlotVarIn: aDomainObject [
 	^ self convertFromTarget 
 		cull: (aDomainObject slotVarNamed: self targetSlotName) 
@@ -52,12 +47,12 @@ LcsFacadeSlot >> slotVarPut: anObject in: aTargetDomainObject [
 		put: (self convertToTarget cull: anObject  cull: aTargetDomainObject)
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsFacadeSlot >> targetSlotName [
-	^ targetSlotName
+	^ self properties at: 'targetSlotName' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsFacadeSlot >> targetSlotName: anObject [
-	targetSlotName := anObject
+	self properties at: 'targetSlotName' put: anObject
 ]

@@ -11,13 +11,13 @@ LcsModuleConfigurationSlot class >> newOn: aConfigurationClass [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsModuleConfigurationSlot >> initialize [
 	super initialize.
 	self slotName: 'configuration'
 ]
 
-{ #category : #accessing }
+{ #category : #initialize }
 LcsModuleConfigurationSlot >> initializeOn: aConfigurationClass [ 
 	self addSlotType: aConfigurationClass
 ]

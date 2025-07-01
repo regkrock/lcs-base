@@ -4,10 +4,8 @@ Class {
 	#instVars : [
 		'slotName',
 		'parent',
-		'slotTypes',
 		'domainClass',
-		'validationConditions',
-		'priority'
+		'properties'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -59,6 +57,7 @@ LcsBaseSlot >> domainClassDescription [
 { #category : #initialize }
 LcsBaseSlot >> initialize [
 	super initialize.
+	self properties: OrderedDictionary new.
 	self initializeSlotTypes.
 	self validationConditions: (LcsValidationConditions newOn: self).
 	self priority: 50
@@ -90,14 +89,14 @@ LcsBaseSlot >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> priority [
-	^ priority
+	^ self properties at: 'priority' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> priority: anObject [
-	priority := anObject
+	self properties at: 'priority' put: anObject
 ]
 
 { #category : #magritte }
@@ -112,6 +111,16 @@ LcsBaseSlot >> priorityDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		beRequired
 
+]
+
+{ #category : #accessing }
+LcsBaseSlot >> properties [
+	^ properties
+]
+
+{ #category : #accessing }
+LcsBaseSlot >> properties: anObject [
+	properties := anObject
 ]
 
 { #category : #validations }
@@ -143,14 +152,14 @@ LcsBaseSlot >> slotClassDescription [
 
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> slotName [
-	^ slotName
+	^ self properties at: 'slotName' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> slotName: anObject [
-	slotName := anObject
+	self properties at: 'slotName' put: anObject
 ]
 
 { #category : #magritte }
@@ -188,14 +197,14 @@ LcsBaseSlot >> slotTypeClassNames [
 	^stream contents
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> slotTypes [
-	^ slotTypes
+	^ self properties at: 'slotTypes' ifAbsentPut: [ OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> slotTypes: anObject [
-	slotTypes := anObject
+	self properties at: 'slotTypes' put: anObject
 ]
 
 { #category : #magritte }
@@ -359,12 +368,12 @@ LcsBaseSlot >> validate: aValue context: aDomainObject [
 		validate: aValue context: aDomainObject
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> validationConditions [
-	^ validationConditions
+	^ self properties at: 'validationConditions' ifAbsentPut: [ LcsValidationConditions newOn: self ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsBaseSlot >> validationConditions: anObject [
-	validationConditions := anObject
+	self properties at: 'validationConditions' put: anObject
 ]

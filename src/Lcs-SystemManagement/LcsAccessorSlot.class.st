@@ -17,11 +17,8 @@ Class {
 	#name : #LcsAccessorSlot,
 	#superclass : #LcsBaseSlot,
 	#instVars : [
-		'required',
 		'validator',
-		'initialValueBlock',
-		'variableUpdatePolicy',
-		'allowNil'
+		'variableUpdatePolicy'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -35,16 +32,6 @@ LcsAccessorSlot >> _slotVarPut: anObject in: aDomainObject [
 		to: anObject
 ]
 
-{ #category : #configuration }
-LcsAccessorSlot >> addCondition: aCondition labelled: aString [
-	"Add ==aCondition== as an additional validation condition to the receiver and give it the label ==aString==. The first argument is either a block-context or any other object that responds to ==#value:== with ==true== or ==false==."
-
-	self conditions: (self conditions
-		copyWith: (Association
-			key: aCondition
-			value: aString))
-]
-
 { #category : #validation }
 LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 	(self domainClass allInstVarNames includes: self slotName)
@@ -52,14 +39,14 @@ LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> allowNil [ 
-	^ allowNil
+	^ self properties at: 'allowNil' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> allowNil: anObject [
-	allowNil := anObject
+	self properties at: 'allowNil' put: anObject
 ]
 
 { #category : #'slot model' }
@@ -68,7 +55,7 @@ LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 		newValue parent: aDomainObject ]
 ]
 
-{ #category : #command }
+{ #category : #configuration }
 LcsAccessorSlot >> beAllowNil [ 
 	self allowNil: true
 ]
@@ -270,24 +257,24 @@ LcsAccessorSlot >> gtViewSlotModelChildren [
 		}
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> initialValue [
 	^ self initialValueBlock value
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> initialValue: anObject [
 	self initialValueBlock: [ anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> initialValueBlock [
-	^ initialValueBlock
+	^ self properties at: 'initialValueBlock' ifAbsentPut: [ self defaultInitialValueBlock]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> initialValueBlock: aBlock [ 
-	initialValueBlock := aBlock
+	self properties at: 'initialValueBlock' put: aBlock
 ]
 
 { #category : #printing }
@@ -295,7 +282,7 @@ LcsAccessorSlot >> initialValueBlockSourceCode [
 	^ self initialValueBlock compiledBlock sourceNode sourceCode
 ]
 
-{ #category : #accessing }
+{ #category : #'object initialization' }
 LcsAccessorSlot >> initialValueFor: aDomainObject [
 	| newValue |
 	newValue := self initialValueBlock cull: aDomainObject cull: self.
@@ -320,18 +307,18 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 	self slotVarPut: (self initialValueFor: aDomainObject) in: aDomainObject
 ]
 
-{ #category : #accessing }
+{ #category : #'object initialization' }
 LcsAccessorSlot >> initializeUnintializedSlotValueIn: aDomainObject [
 	(self currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
 	self initializeSlotValueIn: aDomainObject
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsAccessorSlot >> isGlobalCollectionRefenceSlot [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 LcsAccessorSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
 	^ false
 ]
@@ -341,7 +328,7 @@ LcsAccessorSlot >> isGlobalCollectionSlot [
 	^ false
 ]
 
-{ #category : #validation }
+{ #category : #testing }
 LcsAccessorSlot >> isInstanceVariableDefined [
 	^ self domainClass allInstVarNames includes: self slotName
 ]
@@ -387,7 +374,7 @@ LcsAccessorSlot >> makeUpdateOfVariableViaUnitOfWork [
 	self variableUpdatePolicy: (LcsUnitOfWorkVariableUpdatePolicy newOn: self)
 ]
 
-{ #category : #'gt views' }
+{ #category : #'slot model' }
 LcsAccessorSlot >> newDomainClassName [
 	^ self domainClass ifNil: [ ^ '<not initialized>']
 ]
@@ -419,14 +406,14 @@ LcsAccessorSlot >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> required [
-	^ required
+	^ self properties at: 'required' ifAbsent: [ ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlot >> required: anObject [
-	required := anObject
+	self properties at: 'required' put: anObject
 ]
 
 { #category : #magritte }
