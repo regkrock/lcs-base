@@ -34,13 +34,15 @@ LcsAccessorSlotBuilder >> addClassesToUmlModel: umlModel [
 ]
 
 { #category : #initialize }
-LcsAccessorSlotBuilder >> addExtraPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsAccessorSlotBuilder >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 	"Note: The 'property' will be turned into a setter and value is argument
 		ex: property 'slotName' and argument 'foo' will become the setter for the slot name.
 		    fooSlotDefinitino new
 		    	slotName: 'foo';
 		    	yourself"
-	self properties keysAndValuesDo: [ :key :value | aSlotDefinitionMethodBuilder properties at: key put: value ]
+	self properties keysAndValuesDo: [ :key :value |
+		(aSlotDefinitionMethodBuilder slotClassInstance at: key ifAbsent: [ ]) = (self properties at: key) ifFalse: [
+			self properties at: key put: value ] ]
 ]
 
 { #category : #'gt views' }
@@ -258,16 +260,13 @@ LcsAccessorSlotBuilder >> installSlotDefinition [
 ]
 
 { #category : #populate }
-LcsAccessorSlotBuilder >> populateFrom: aSlotDefinitionClassName [
-	self slotClassName: aSlotDefinitionClassName.
-	self slotDefinitionTemplate: aSlotDefinitionClassName asClass new.
-	 self slotDefinitionTemplate slotName ifNotNil: [
-		self slotName: self slotDefinitionTemplate slotName ].
-	self slotTypes removeAll.
-	self slotTypes addAll: (self slotDefinitionTemplate slotTypes collect: [ :each | each name asString ]).
-	self allowNil: self slotDefinitionTemplate  allowNil.
-	self required: self slotDefinitionTemplate required.
-	self initialValueBlock: self slotDefinitionTemplate initialValueBlockSourceCode
+LcsAccessorSlotBuilder >> populateFrom: aSlotClassName [
+	self properties removeAll.
+	self slotClassName: aSlotClassName.
+	self slotDefinitionTemplate: aSlotClassName asClass new.
+	self slotName: self slotDefinitionTemplate slotName.
+	self slotDefinitionTemplate properties keysAndValuesDo:  [ :key :value |
+		self propertyAt: key put: value copy ]
 ]
 
 { #category : #printing }
@@ -352,8 +351,8 @@ LcsAccessorSlotBuilder >> slotDefinitionSelector [
 ]
 
 { #category : #accessing }
-LcsAccessorSlotBuilder >> slotDefinitionSelector: aSymbol [
-	slotDefinitionSelector := aSymbol asSymbol
+LcsAccessorSlotBuilder >> slotDefinitionSelector: aSymbolOrNil [
+	slotDefinitionSelector := aSymbolOrNil
 ]
 
 { #category : #populate }
@@ -381,8 +380,18 @@ LcsAccessorSlotBuilder >> slotName [
 
 { #category : #accessing }
 LcsAccessorSlotBuilder >> slotName: anObject [
-	self propertyAt: 'slotName' put: (anObject first asLowercase asString , (anObject copyFrom: 2 to: anObject size)).
-	self slotDefinitionSelector: self slotName , 'SlotDefinition'
+	| slotName slotDefinitionName|
+	slotName := 
+		anObject isEmptyOrNil 
+			ifTrue: [ anObject ] 
+			ifFalse: [(anObject first asLowercase asString , 
+						(anObject copyFrom: 2 to: anObject size))].
+	self propertyAt: 'slotName' put: slotName.
+	slotDefinitionName := 
+		anObject isEmptyOrNil 
+			ifTrue: [ anObject ] 
+			ifFalse: [ self slotName , 'SlotDefinition' asSymbol].
+	self slotDefinitionSelector: slotDefinitionName
 ]
 
 { #category : #margritte }

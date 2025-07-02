@@ -3,11 +3,15 @@ Class {
 	#superclass : #LcsApplicationObject,
 	#traits : 'LtParentTrait + LtDictionaryCollection',
 	#classTraits : 'LtParentTrait classTrait + LtDictionaryCollection classTrait',
-	#instVars : [
-		'conditions'
-	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
+
+{ #category : #'hashing\t' }
+LcsValidationConditions >> = aValidationCollections [
+	(aValidationCollections isKindOf: LcsValidationConditions) ifFalse: [ ^ false ].
+	"self collection size = aValidationCollections collections size ifFalse: [ ^ false ]."
+	^ self collection = aValidationCollections collection
+]
 
 { #category : #conditions }
 LcsValidationConditions >> addValidationCondition: aValidationCondition [
@@ -22,6 +26,11 @@ LcsValidationConditions >> addValidationCondition: aBlock description: aString [
 			description: aString;
 			conditionBlock: aBlock;
 			yourself)
+]
+
+{ #category : #'hashing\t' }
+LcsValidationConditions >> hash [
+	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]
 ]
 
 { #category : #initialize }

@@ -2,7 +2,6 @@ Class {
 	#name : #LcsBaseSlot,
 	#superclass : #LcsApplicationObject,
 	#instVars : [
-		'slotName',
 		'parent',
 		'domainClass',
 		'properties'
@@ -58,6 +57,7 @@ LcsBaseSlot >> domainClassDescription [
 LcsBaseSlot >> initialize [
 	super initialize.
 	self properties: OrderedDictionary new.
+	self slotName: nil.
 	self initializeSlotTypes.
 	self validationConditions: (LcsValidationConditions newOn: self).
 	self priority: 50
