@@ -36,8 +36,9 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 ]
 
 { #category : #'initialize\t' }
-LcsSlotDefintionMethodBuilder >> addProperty: aString value: anObject [
-	self properties at: aString put: anObject
+LcsSlotDefintionMethodBuilder >> addProperty: aPropertyName value: anObject [
+	(self isValueOfSlotTemplateProperty: aPropertyName sameAs: anObject)
+		ifFalse: [ self properties at: aPropertyName put: anObject ]
 ]
 
 { #category : #'gt views' }
@@ -142,16 +143,6 @@ LcsSlotDefintionMethodBuilder >> hasNoSlotTypes [
 	^ self slotTypes isEmpty and: [ self slotDefinitionClassHasNoSlotTypes ]
 ]
 
-{ #category : #'initialize\t' }
-LcsSlotDefintionMethodBuilder >> initialize [ 
-	super initialize.
-	"self validationConditions: (LcsValidationConditions newOn: self).
-	self allowNil: false.
-	self required: false.
-	self slotTypes: OrderedCollection new.
-"
-]
-
 { #category : #'instance  creation' }
 LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
 	self 
@@ -170,6 +161,14 @@ LcsSlotDefintionMethodBuilder >> installCode [
 			in: self targetClass class
 			classified: #'slot definitions') execute.
 	self beCodeInstalled
+]
+
+{ #category : #'initialize\t' }
+LcsSlotDefintionMethodBuilder >> isValueOfSlotTemplateProperty: aPropertyName sameAs: anObject [
+	| templateValue |
+	templateValue := self valueOfSlotTemplateProperty: aPropertyName.
+	templateValue isBlock ifTrue: [ ^ templateValue  asString = anObject asString].
+	^ templateValue = anObject
 ]
 
 { #category : #printing }
@@ -221,7 +220,6 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 	| codeStream |
-	"self slotClassInstance: self slotClass new."
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;

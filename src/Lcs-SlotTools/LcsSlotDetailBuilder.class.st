@@ -12,8 +12,7 @@ Class {
 { #category : #initialize }
 LcsSlotDetailBuilder >> initialize [ 
 	super initialize.
-	self properties: OrderedDictionary new.
-	self slotName: nil
+	self properties: OrderedDictionary new
 ]
 
 { #category : #printing }

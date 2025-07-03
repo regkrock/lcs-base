@@ -40,10 +40,8 @@ LcsAccessorSlotBuilder >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 		    fooSlotDefinitino new
 		    	slotName: 'foo';
 		    	yourself"
-	self properties keysAndValuesDo: [ :key :value | | templateValue |
-		templateValue := aSlotDefinitionMethodBuilder slotTemplate properties at: key ifAbsent: [ ].
-		(self isValueOfProperty: key equalTo: templateValue) ifFalse: [
-			self properties at: key put: value ] ]
+	self properties keysAndValuesDo: [ :key :value | 
+		aSlotDefinitionMethodBuilder addProperty: key value: value ]
 ]
 
 { #category : #'gt views' }
@@ -258,11 +256,6 @@ LcsAccessorSlotBuilder >> installCode [
 { #category : #'job steps' }
 LcsAccessorSlotBuilder >> installSlotDefinition [
 	self targetClass installSlotDefinition: self slotDefinitionSelector
-]
-
-{ #category : #testing }
-LcsAccessorSlotBuilder >> isValueOfProperty: key equalTo: templateValue [ 
-	^ templateValue = (self properties at: key)
 ]
 
 { #category : #populate }
