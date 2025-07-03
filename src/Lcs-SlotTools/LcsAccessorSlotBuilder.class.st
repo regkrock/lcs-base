@@ -40,8 +40,9 @@ LcsAccessorSlotBuilder >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 		    fooSlotDefinitino new
 		    	slotName: 'foo';
 		    	yourself"
-	self properties keysAndValuesDo: [ :key :value |
-		(aSlotDefinitionMethodBuilder slotClassInstance at: key ifAbsent: [ ]) = (self properties at: key) ifFalse: [
+	self properties keysAndValuesDo: [ :key :value | | templateValue |
+		templateValue := aSlotDefinitionMethodBuilder slotTemplate properties at: key ifAbsent: [ ].
+		(self isValueOfProperty: key equalTo: templateValue) ifFalse: [
 			self properties at: key put: value ] ]
 ]
 
@@ -134,7 +135,7 @@ LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 		ifTrue: [ self targetClassName: nil ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #execute }
 LcsAccessorSlotBuilder >> commit [
 	self buildJobSteps.
 	self execute
@@ -257,6 +258,11 @@ LcsAccessorSlotBuilder >> installCode [
 { #category : #'job steps' }
 LcsAccessorSlotBuilder >> installSlotDefinition [
 	self targetClass installSlotDefinition: self slotDefinitionSelector
+]
+
+{ #category : #testing }
+LcsAccessorSlotBuilder >> isValueOfProperty: key equalTo: templateValue [ 
+	^ templateValue = (self properties at: key)
 ]
 
 { #category : #populate }
