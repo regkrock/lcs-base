@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-02T09:02:34.781484-04:00"
+						"dateAndTimeString" : "2025-07-03T09:25:25.919167-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtTodo:label=Implenet initialValueBlock editting|completed=}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot}}"
+				"string" : "{{gtTodo:label=Implenet initialValueBlock editting|completed=}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=2025-07-03}}"
 			},
 			{
 				"__type" : "pharoSnippet",

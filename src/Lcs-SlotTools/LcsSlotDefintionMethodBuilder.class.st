@@ -145,11 +145,11 @@ LcsSlotDefintionMethodBuilder >> hasNoSlotTypes [
 { #category : #'initialize\t' }
 LcsSlotDefintionMethodBuilder >> initialize [ 
 	super initialize.
-	self validationConditions: (LcsValidationConditions newOn: self).
+	"self validationConditions: (LcsValidationConditions newOn: self).
 	self allowNil: false.
 	self required: false.
 	self slotTypes: OrderedCollection new.
-
+"
 ]
 
 { #category : #'instance  creation' }
