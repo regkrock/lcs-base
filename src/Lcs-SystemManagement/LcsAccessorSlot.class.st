@@ -178,14 +178,8 @@ LcsAccessorSlot >> gtSlotDefinitionAttributes [
 			add: 'slotDefinition' -> self;
 			add: 'slotDefinitionClass' -> self class;
 			add: 'domainClass' -> self newDomainClassName;
-			add: 'slotName' -> self slotName;
-			add: 'slotTypes' -> self slotTypesList;
-			add: 'required' -> self isRequired;
-			add: 'allowNil' -> self isNilAllowed;
-			add: 'initialValueBlock' -> self initialValueBlockSourceCode;
 			yourself.
-	self validationConditions do: [ :each |
-		collection add: each conditionBlock asString -> each description ].
+	collection addAll: self properties associations copy.
 	^ collection
 ]
 
