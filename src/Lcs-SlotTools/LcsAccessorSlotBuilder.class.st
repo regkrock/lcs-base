@@ -292,7 +292,7 @@ LcsAccessorSlotBuilder >> propertyAt: aName ifAbsent: aBlock [
 
 { #category : #properties }
 LcsAccessorSlotBuilder >> propertyAt: aString ifAbsentPut: aBlock [ 
-	self properties at: aString ifAbsentPut: aBlock
+	^ self properties at: aString ifAbsentPut: aBlock
 ]
 
 { #category : #properties }
