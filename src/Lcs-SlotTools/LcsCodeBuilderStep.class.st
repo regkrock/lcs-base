@@ -91,7 +91,7 @@ LcsCodeBuilderStep >> execute [
 	self currentUnitOfWork applyChanges
 ]
 
-{ #category : #command }
+{ #category : #execute }
 LcsCodeBuilderStep >> fullyInstall [
 	"If this is part of a builder job, then do not use this. Let the builder control the phases"
 	self 
@@ -205,7 +205,7 @@ LcsCodeBuilderStep >> jobStepPaneAssociation [
 						build))
 ]
 
-{ #category : #building }
+{ #category : #accessing }
 LcsCodeBuilderStep >> jobSteps [
 	^ jobSteps
 ]
@@ -225,7 +225,7 @@ LcsCodeBuilderStep >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #command }
+{ #category : #install }
 LcsCodeBuilderStep >> populateSlotModel [
 	self traceStep: 'populateSlotModel'.
 	self jobSteps populateSlotModel
@@ -315,13 +315,13 @@ LcsCodeBuilderStep >> verifyCodeInstallation [
 	self jobSteps verifyCodeInstallation
 ]
 
-{ #category : #command }
+{ #category : #install }
 LcsCodeBuilderStep >> verifyPopulateSlotModel [
 	self traceStep: 'verifyPopulateSlotModel'.
 	self jobSteps verifyPopulateSlotModel
 ]
 
-{ #category : #uninstall }
+{ #category : #install }
 LcsCodeBuilderStep >> verifySlotModelUpdatesMadeByBuilder [
 	self traceStep: 'verifySlotModelUpdatesMadeByBuilder'.
 	self jobSteps verifySlotModelUpdatesMadeByBuilder

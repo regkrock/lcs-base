@@ -82,7 +82,7 @@ LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 		ifTrue: [ classesModel existingClassModelFor: self targetModuleClass ]
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsAccessorSlotBuilder >> addValidationCondition: aBlock description: aDescription [
 	self validationConditions addValidationCondition: aBlock description: aDescription
 ]
@@ -163,7 +163,7 @@ LcsAccessorSlotBuilder >> getterAndSetterMethodsBuilder [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'slot model' }
 LcsAccessorSlotBuilder >> getterSelector [
 	^ self slotName asSymbol
 ]
@@ -277,6 +277,11 @@ LcsAccessorSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ self targetClass ifNotNil: [ self targetClass name ] ]) asString
 ]
 
+{ #category : #properties }
+LcsAccessorSlotBuilder >> propertAt: aString ifAbsentPut: aBlock [ 
+	self properties at: aString ifAbsentPut: aBlock
+]
+
 { #category : #accessing }
 LcsAccessorSlotBuilder >> properties [
 	^ properties
@@ -353,7 +358,7 @@ LcsAccessorSlotBuilder >> slotDefinitionSelector: aSymbolOrNil [
 	slotDefinitionSelector := aSymbolOrNil
 ]
 
-{ #category : #populate }
+{ #category : #accessing }
 LcsAccessorSlotBuilder >> slotDefinitionTemplate [
 	^ slotDefinitionTemplate
 ]
@@ -371,12 +376,12 @@ LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> slotName [
 	^ self propertyAt: 'slotName' ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> slotName: anObject [
 	| slotName slotDefinitionName|
 	slotName := 
@@ -414,12 +419,12 @@ LcsAccessorSlotBuilder >> slotNameDescription [
 		beRequired
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> slotTypes [
 	^ self propertyAt: 'slotTypes' ifAbsent: [ OrderedCollection new] 
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> slotTypes: anObject [
 	self propertyAt: 'slotTypes' put: anObject
 ]
@@ -637,14 +642,14 @@ LcsAccessorSlotBuilder >> updateSlotModel [
 	self installSlotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> validationConditions [
-	^ self properties at: #validationConditions ifAbsent: [ LcsValidationConditions newOn: self]
+	^ self propertAt: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self]
 ]
 
-{ #category : #accessing }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> validationConditions: anObject [
-	self properties at: #validationConditions put: anObject
+	self propertyAt: #validationConditions put: anObject
 ]
 
 { #category : #'gt views' }
