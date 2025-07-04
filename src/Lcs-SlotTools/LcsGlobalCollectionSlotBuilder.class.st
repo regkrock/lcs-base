@@ -39,10 +39,6 @@ LcsGlobalCollectionSlotBuilder >> addCollectionMemberType: aClass [
 	self collectionMemberTypes add: aClass
 ]
 
-{ #category : #initialize }
-LcsGlobalCollectionSlotBuilder >> addPropertiesTo: step [ 
-]
-
 { #category : #accessing }
 LcsGlobalCollectionSlotBuilder >> collectionClass [
 	^ collectionClass
