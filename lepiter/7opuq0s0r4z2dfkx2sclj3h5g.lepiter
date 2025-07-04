@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-03T23:18:16.099173-04:00"
+						"dateAndTimeString" : "2025-07-03T23:37:00.881309-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "7mU7hjHyDQCUzIAjDpDPVg=="
 				},
-				"code" : "\"Failing Tests\"\rLcsMemberOfSlotBuilderTest.\rLcsGlobalCollectionSlotBuilderTest.\rLcsSingletonValueObjectClassesBuilderJobTest.\rLcsDomainClassAndGlobalCollectionClassBuilderJobTest"
+				"code" : "\"Failing Tests\"\rLcsMemberOfSlotBuilderTest.\rLcsGlobalCollectionSlotBuilderTest.\rLcsSingletonValueObjectClassesBuilderJobTest.\rLcsDomainClassAndGlobalCollectionClassBuilderJobTest.\r\t\"#testCreationOfNewDomainClassAndItsGlobalCollectionClassInstalledInAModule - step 5.2 <- slotName isNil and no properties are \""
 			},
 			{
 				"__type" : "textSnippet",
