@@ -13,9 +13,9 @@ LcsMemberOfSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsMemberOfSlotBuilder >> addAssociationsToUmlModel: aClassesModel [
-	super addAssociationsToUmlModel: aClassesModel.
-	(aClassesModel classModelForClassname: self targetClassName)
+LcsMemberOfSlotBuilder >> addAssociationsToUmlModel: umlModel [
+	super addAssociationsToUmlModel: umlModel.
+	(umlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self slotTypes any
 ]
 

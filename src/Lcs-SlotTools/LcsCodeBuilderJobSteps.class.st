@@ -23,8 +23,8 @@ LcsCodeBuilderJobSteps class >> newOn: anObject [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addAssociationsToUmlModel: aClassesModel [
-	self collection do: [ :eachStep | eachStep addAssociationsToUmlModel: aClassesModel ]
+LcsCodeBuilderJobSteps >> addAssociationsToUmlModel: umlModel [
+	self collection do: [ :eachStep | eachStep addAssociationsToUmlModel: umlModel ]
 ]
 
 { #category : #'gt views' }

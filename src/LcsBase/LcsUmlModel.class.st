@@ -21,12 +21,17 @@ LcsUmlModel >> addClassModel: aClassModel [
 		ifNotNil: [ :model | model ]
 ]
 
+{ #category : #model }
+LcsUmlModel >> addClassModelForExisting: aClass [
+	^ self addClassModel: (LcsExistingClassModel newOn: aClass)
+]
+
 { #category : #configuration }
 LcsUmlModel >> addClassNamed: aClassname [
 	aClassname isNil ifTrue: [ ^ self ].
 	([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
 		ifNil: [ self proposedClassModelFor: aClassname ]
-		ifNotNil: [ :class | self existingClassModelFor: class ]
+		ifNotNil: [ :class | self addClassModelForExisting: class ]
 ]
 
 { #category : #model }
@@ -41,11 +46,6 @@ LcsUmlModel >> classModelForClassname: aClassname [
 		ifNone: [  
 			"Transcript cr; show: 'Unable to find class named ' , aClassname asString."
 			nil  ] 
-]
-
-{ #category : #model }
-LcsUmlModel >> existingClassModelFor: aClass [
-	^ self addClassModel: (LcsExistingClassModel newOn: aClass)
 ]
 
 { #category : #model }

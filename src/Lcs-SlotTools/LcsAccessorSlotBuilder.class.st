@@ -73,13 +73,13 @@ LcsAccessorSlotBuilder >> addStepNumberTo: aString [
 LcsAccessorSlotBuilder >> addTargetClassTo: classesModel [
 	self targetClass
 		ifNil: [ classesModel proposedClassModelFor: self targetClassName ]
-		ifNotNil: [ :class | classesModel existingClassModelFor: class ]
+		ifNotNil: [ :class | classesModel addClassModelForExisting: class ]
 ]
 
 { #category : #'gt views' }
 LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 	self targetModuleClass notNil
-		ifTrue: [ classesModel existingClassModelFor: self targetModuleClass ]
+		ifTrue: [ classesModel addClassModelForExisting: self targetModuleClass ]
 ]
 
 { #category : #'slot model' }

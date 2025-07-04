@@ -9,9 +9,9 @@ Class {
 }
 
 { #category : #'gt views' }
-LcsCodeBuilderJob >> addAssociationsToUmlModel: aClassesModel [ 
+LcsCodeBuilderJob >> addAssociationsToUmlModel: umlModel [ 
 	self traceStep: 'addAssociationsToUmlModel:'.
-	 self jobSteps addAssociationsToUmlModel: aClassesModel 
+	 self jobSteps addAssociationsToUmlModel: umlModel 
 ]
 
 { #category : #'gt views' }

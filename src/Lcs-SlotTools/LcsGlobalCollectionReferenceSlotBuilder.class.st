@@ -13,11 +13,11 @@ LcsGlobalCollectionReferenceSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aClassesModel [
-	super addAssociationsToUmlModel: aClassesModel.
-	(aClassesModel classModelForClassname: self targetClassName)
+LcsGlobalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: umlModel [
+	super addAssociationsToUmlModel: umlModel.
+	(umlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(aClassesModel classModelForClassname: self collectionClassName)
+	(umlModel classModelForClassname: self collectionClassName)
 		addAssociation: 'collection' toModelNamed: self targetClassName
 ]
 
@@ -30,7 +30,7 @@ LcsGlobalCollectionReferenceSlotBuilder >> addClassesToUmlModel: umlModel [
 
 { #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
-	[ classesModel existingClassModelFor: self slotTypes first asClass ]
+	[ classesModel addClassModelForExisting: self slotTypes first asClass ]
 		on: NotFound
 		do: [ :s | 
 			classesModel proposedClassModelFor: self slotTypes first.

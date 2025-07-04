@@ -47,7 +47,7 @@ LcsBaseClassBuilder >> addSuperclassTo: classesModel [
 	self targetSuperclass
 		ifNil: [ self targetSuperclassName ifNotNil: [ 
 				classesModel proposedClassModelFor: self targetSuperclassName ] ]
-		ifNotNil: [ :class | classesModel existingClassModelFor: class ]
+		ifNotNil: [ :class | classesModel addClassModelForExisting: class ]
 ]
 
 { #category : #asserting }

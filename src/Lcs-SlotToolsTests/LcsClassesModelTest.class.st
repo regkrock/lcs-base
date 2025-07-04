@@ -9,7 +9,7 @@ LcsClassesModelTest >> testAddingExistingClass [
 	| existingClassModel |
 	self subject: LcsUmlModel new.
 	self assert: self subject collection size = 0.
-	existingClassModel := self subject existingClassModelFor: OrderedCollection.
+	existingClassModel := self subject addClassModelForExisting: OrderedCollection.
 	self assert: self subject collection size = 1.
 	self assert: existingClassModel modelClassname = 'OrderedCollection'.
 	self assert: existingClassModel modelClass = OrderedCollection.
@@ -23,8 +23,8 @@ LcsClassesModelTest >> testAddingExistingClassTwiceWhichShouldReturnTheFirstMode
 	| existingClassModel newExistingClassModel |
 	self subject: LcsUmlModel new.
 	self assert: self subject collection size = 0.
-	existingClassModel := self subject existingClassModelFor: OrderedCollection.
-	newExistingClassModel := self subject existingClassModelFor: OrderedCollection.
+	existingClassModel := self subject addClassModelForExisting: OrderedCollection.
+	newExistingClassModel := self subject addClassModelForExisting: OrderedCollection.
 	self assert: existingClassModel identicalTo: newExistingClassModel
 ]
 

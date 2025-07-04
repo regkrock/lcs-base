@@ -18,7 +18,7 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: uml
 
 { #category : #'gt views' }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addParentClassTo: classesModel [
-	[ classesModel existingClassModelFor: self slotTypes first asClass ]
+	[ classesModel addClassModelForExisting: self slotTypes first asClass ]
 		on: NotFound
 		do: [ :s | 
 			classesModel proposedClassModelFor: self slotTypes first.

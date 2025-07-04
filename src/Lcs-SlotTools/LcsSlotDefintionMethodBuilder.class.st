@@ -49,6 +49,22 @@ LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 		nextPutAll: self slotDefinitionSource
 ]
 
+{ #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> addSlotAssociationsToUmlModel: umlModel [ 
+	"(umlModel classModelForClassname: self parentClassName)
+		addAssociation: self slotName toModelNamed: self collectionClassName.
+	(umlModel classModelForClassname: self collectionClassName)
+		addAssociation: 'parent' toModelNamed: self parentClassName"
+]
+
+{ #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> addSlotClassesToUmlModel: umlModel [ 
+	"umlModel 
+		addClassNamed: self targetClassName;
+		addClassModelForExisting: LcsSlotModel;
+		addClassModelForExisting: self slotClass "
+]
+
 { #category : #'as yet unclassified' }
 LcsSlotDefintionMethodBuilder >> addSlotType: aClassorClassName [
 	| aClassName |
@@ -136,6 +152,19 @@ LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 		stencil: [  
 			self targetClassName gtClassMatches &
 			self slotDefinitionSelector gtImplementors  ]
+]
+
+{ #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> gtUMLFor: aView [
+	<gtView>
+	| classesModel |
+	(classesModel := self slotUmlModel) collection isEmpty 
+		ifTrue: [ ^ aView empty ].
+
+	^ aView mondrian
+		title: 'UML';
+		priority: 20;
+		initialize: (self proposedUmlModelFor: classesModel)
 ]
 
 { #category : #testing }
@@ -256,6 +285,17 @@ LcsSlotDefintionMethodBuilder >> slotTypes [
 { #category : #property }
 LcsSlotDefintionMethodBuilder >> slotTypes: aCollection [
 	self properties at: 'slotTypes' put: aCollection
+]
+
+{ #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> slotUmlModel [
+	| umlModel |
+	umlModel := LcsUmlModel new.
+	self addSlotClassesToUmlModel: umlModel.
+	umlModel removeDuplicates.
+	self addSlotAssociationsToUmlModel: umlModel.
+	umlModel resolveClassModelNames.
+	^ umlModel
 ]
 
 { #category : #verification }

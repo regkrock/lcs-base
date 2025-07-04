@@ -20,7 +20,7 @@ LcsCodeBuilderStep >> addAssociationsToUmlModel: aUmlModel [
 LcsCodeBuilderStep >> addClassesToUmlModel: aUmlModel [
 	self traceStep: 'addClassesToUmlModel:'.
 	self jobSteps addClassesToUmlModel: aUmlModel.
-	self addClassesToUmlModel: aUmlModel
+	"self addClassesToUmlModel: aUmlModel"
 ]
 
 { #category : #building }
