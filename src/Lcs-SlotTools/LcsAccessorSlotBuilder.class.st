@@ -346,7 +346,6 @@ LcsAccessorSlotBuilder >> slotDefinitionMethodBuilder [
 { #category : #accessing }
 LcsAccessorSlotBuilder >> slotDefinitionSelector [
 	^ slotDefinitionSelector
-		"ifNil: [ slotDefinitionSelector := ((self slotName ifNil: [ 'undefined' ]) , 'SlotDefinition') asSymbol ]"
 ]
 
 { #category : #accessing }
@@ -389,7 +388,7 @@ LcsAccessorSlotBuilder >> slotName: anObject [
 	slotDefinitionName := 
 		anObject isEmptyOrNil 
 			ifTrue: [ anObject ] 
-			ifFalse: [ self slotName , 'SlotDefinition' asSymbol].
+			ifFalse: [ (self slotName , 'SlotDefinition') asSymbol].
 	self slotDefinitionSelector: slotDefinitionName
 ]
 
