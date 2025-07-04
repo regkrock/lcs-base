@@ -59,7 +59,7 @@ LcsSlotDefintionMethodBuilderTest >> testCreation [
 	self subject: LcsSlotDefintionMethodBuilder new.
 	self assert: self subject properties class = OrderedDictionary.
 	self assert: self subject slotTypes class = OrderedCollection.
-	self assert: self subject validationConditions class = OrderedCollection.
+	self assert: self subject validationConditions class = LcsValidationConditions.
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject allowNil == false.
 	self assert: self subject required == false.
@@ -86,15 +86,16 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	| methodSource |
 	self subject: (
 		LcsSlotDefintionMethodBuilder new
-			slotClass: LcsCodeSlot;
+			slotName: 'foo';
+			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
 			yourself).
 	methodSource := self subject slotDefinitionSource.
-	self assert: methodSource equals: 'codeSlotDefinition
+	self assert: methodSource equals: 'fooSlotDefinition
 	<slotDefinition>
-	^ LcsCodeSlot new
-		allowNil: false;
+	^ LcsStringSlot new
+		slotName: ''foo'';
 		required: true;
 		yourself'
 ]
@@ -131,7 +132,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoS
 
 { #category : #tests }
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidationConditions [
-	| methodSource |
+| methodSource validationCondition |
 	self subject: (
 		LcsSlotDefintionMethodBuilder new
 			slotName: 'foo';
@@ -139,9 +140,10 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidatio
 			targetClassName: #LxxBasePerson;
 			addValidationCondition: [ false ] description: 'Always fails';
 			yourself).
-	self assert: self subject validationConditions size = 1.
-	self assert: self subject validationConditions first key printString = '[ false ]'.
-	self assert: self subject validationConditions first value  = 'Always fails'.
+	self assert: self subject validationConditions collectionSize = 1.
+	validationCondition := (self subject validationConditions validationConditionWithDescription: 'Always fails').
+	self assert: validationCondition conditionBlock printString equals: '[ false ]'.
+	self assert: validationCondition description  equals: 'Always fails'.
 	
 	methodSource := self subject slotDefinitionSource.
 	self assert: methodSource equals: 'fooSlotDefinition
@@ -149,7 +151,6 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidatio
 	^ LcsStringSlot new
 		slotName: ''foo'';
 		addValidationCondition: [ false ] description: ''Always fails'';
-		allowNil: false;
 		yourself'.
 		
 	self subject installCode.

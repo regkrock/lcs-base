@@ -46,7 +46,7 @@ LcsValidationConditions >> removeValidationCondition: aCondition [
 
 { #category : #conditions }
 LcsValidationConditions >> removeValidationConditionWithDescription: aString [
-	self removeKey: aString ifAbsent: []
+	^ self removeKey: aString ifAbsent: []
 ]
 
 { #category : #'slot model' }
@@ -64,4 +64,9 @@ LcsValidationConditions >> validate: aValue [
 LcsValidationConditions >> validate: aValue context: aDomainObject [
 	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject ]
 	
+]
+
+{ #category : #querying }
+LcsValidationConditions >> validationConditionWithDescription: aString [
+	^ self at: aString ifAbsent: [ ]
 ]

@@ -13,7 +13,7 @@ LcsAccessorSlotTest >> testAddingValidationCondition [
 							yourself.
 	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: validationCondition.
-	self assert: self subject validationConditions collection size equals: 1.
+	self assert: self subject validationConditions collectionSize equals: 1.
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
 ]
 
@@ -113,7 +113,7 @@ LcsAccessorSlotTest >> testSlotTypes [
 LcsAccessorSlotTest >> testValidationConditions [
 	self subject: LcsAccessorSlot new.
 	self assert: self subject validationConditions class == LcsValidationConditions.
-	self assert: self subject validationConditions collection isEmpty.
+	self assert: self subject validationConditions hasNoElements.
 ]
 
 { #category : #tests }
