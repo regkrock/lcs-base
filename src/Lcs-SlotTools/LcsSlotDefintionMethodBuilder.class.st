@@ -261,7 +261,10 @@ LcsSlotDefintionMethodBuilder >> slotTypes: aCollection [
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> uninstall [
 	super uninstall.
-	self targetClass ifNotNil: [ self targetClass class removeSelector: self slotDefinitionSelector ]
+	self targetClass ifNotNil: [ 
+		[self targetClass class removeSelector: self slotDefinitionSelector ] 
+			on: LcsError 
+			do: [ :s | s return: nil] ]
 ]
 
 { #category : #verification }
@@ -357,7 +360,9 @@ LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> verifyUninstall [
+	| selector |
 	super verifyUninstall.
 	self targetClass isNil ifTrue: [ ^ self ].
-	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector) not
+	selector := [ self slotDefinitionSelector ] on: LcsError do: [ :s | ^ self ].
+	self assert: (self targetClass class canUnderstand: selector) not
 ]

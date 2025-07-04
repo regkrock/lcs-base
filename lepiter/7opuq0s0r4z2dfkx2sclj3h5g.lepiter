@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-03T22:37:11.962667-04:00"
+						"dateAndTimeString" : "2025-07-03T23:18:16.099173-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "7mU7hjHyDQCUzIAjDpDPVg=="
 				},
-				"code" : "Failing T\rLcsMemberOfSlotBuilderTest"
+				"code" : "\"Failing Tests\"\rLcsMemberOfSlotBuilderTest.\rLcsGlobalCollectionSlotBuilderTest.\rLcsSingletonValueObjectClassesBuilderJobTest.\rLcsDomainClassAndGlobalCollectionClassBuilderJobTest"
 			},
 			{
 				"__type" : "textSnippet",
