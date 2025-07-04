@@ -23,7 +23,7 @@ LcsAccessorSlotBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsAccessorSlotBuilder new
 			slotClassName: LcsStringSlot name;
-			targetClassName: self currentSystem class name;
+			targetClassName: LxxPrototypeSystem name;
 			addSlotType: LxxPerson name ;
 			slotName: 'foos';
 			yourself).

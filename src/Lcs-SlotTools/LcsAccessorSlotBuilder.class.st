@@ -236,7 +236,7 @@ LcsAccessorSlotBuilder >> initialize [
 	super initialize.
 	self properties: Dictionary new.
 	self slotTypes: OrderedCollection new.
-	self validationConditions: OrderedCollection new.
+	self validationConditions: (LcsValidationConditions newOn: self).
 	self class slotClass notNil
 		ifTrue: [ self slotClassName: self class slotClass name ]
 

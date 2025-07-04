@@ -14,8 +14,8 @@ LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
 	self subject: (
 		LcsGlobalCollectionSlotBuilder new
 			slotName: 'foos';
-			targetClassName: self currentSystem class name;
-			targetModuleClass: self currentSystem class name;
+			targetClassName: LxxPrototypeSystem name;
+			targetModuleClass: LxxPrototypeSystem name;
 			collectionMemberTypes: (OrderedCollection with:  LxxPerson name );
 			addSlotType: LxxPersons name ;
 			yourself).
