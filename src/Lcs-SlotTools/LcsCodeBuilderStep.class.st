@@ -5,7 +5,8 @@ Class {
 		'parent',
 		'refactorings',
 		'state',
-		'jobSteps'
+		'jobSteps',
+		'properties'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -153,6 +154,7 @@ LcsCodeBuilderStep >> initialize [
 	super initialize.
 	self state: 'Initial'.
 	self refactorings: OrderedCollection new.
+	self properties: OrderedDictionary new.
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
@@ -235,6 +237,32 @@ LcsCodeBuilderStep >> populateSlotModel [
 LcsCodeBuilderStep >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: self printString
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> properties [
+	^ properties
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> properties: anObject [
+	properties := anObject
+]
+
+{ #category : #callbacks }
+LcsCodeBuilderStep >> propertyAt: aName put: anObject [ 
+	self properties at: aName put: anObject.
+	self jobSteps propogateProperty: aName valueChangedTo: anObject
+]
+
+{ #category : #callbacks }
+LcsCodeBuilderStep >> propogateProperty: aName valueChangedTo: anObject [
+	(self respondsTo: (aName , ':' asSymbol))
+		ifTrue: [ 
+			self perform: (aName , ':' asSymbol) with: anObject.
+			^ self ]. 
+	self properties at: aName ifAbsent: [ ^ self ].
+	self propertyAt: aName put: anObject 
 ]
 
 { #category : #'gt views' }

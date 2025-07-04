@@ -275,6 +275,11 @@ LcsCodeBuilderJobSteps >> printJobStreamDetailsOn: aStream [
 	aStream nextPutAll: 'Job Steps'
 ]
 
+{ #category : #callbacks }
+LcsCodeBuilderJobSteps >> propogateProperty: aName valueChangedTo: anObject [
+	self jobSteps do: [ :eachStep | eachStep propogateProperty: aName valueChangedTo: anObject ]
+]
+
 { #category : #'gt - views' }
 LcsCodeBuilderJobSteps >> stepNumberFor: aStep [
 	| localStepNumber |

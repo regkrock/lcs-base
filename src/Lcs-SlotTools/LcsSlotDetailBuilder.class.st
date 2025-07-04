@@ -3,16 +3,21 @@ Class {
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
 		'targetClassName',
-		'targetClass',
-		'properties'
+		'targetClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #initialize }
-LcsSlotDetailBuilder >> initialize [ 
-	super initialize.
-	self properties: OrderedDictionary new
+{ #category : #'gt views' }
+LcsSlotDetailBuilder >> gtPropertiesFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Properties';
+		items: [ self properties associations ];
+		column: 'Property' text: #key;
+		column: 'Value' text: #value;
+		send: #value;
+		actionUpdateButton
 ]
 
 { #category : #printing }
@@ -28,16 +33,6 @@ LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self slotName ifNil: [ '<missing slotName>' ]);
 		nextPutAll: '" in ';
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>' ])
-]
-
-{ #category : #accessing }
-LcsSlotDetailBuilder >> properties [
-	^ properties
-]
-
-{ #category : #accessing }
-LcsSlotDetailBuilder >> properties: anObject [
-	properties := anObject
 ]
 
 { #category : #building }

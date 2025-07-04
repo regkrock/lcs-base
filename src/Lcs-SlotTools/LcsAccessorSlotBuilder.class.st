@@ -7,7 +7,6 @@ Class {
 		'targetModuleClass',
 		'targetPackageName',
 		'targetClass',
-		'properties',
 		'slotDefinitionTemplate',
 		'slotClassName'
 	],
@@ -234,7 +233,6 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 { #category : #initialize }
 LcsAccessorSlotBuilder >> initialize [
 	super initialize.
-	self properties: Dictionary new.
 	self slotTypes: OrderedCollection new.
 	self validationConditions: (LcsValidationConditions newOn: self).
 	self class slotClass notNil
@@ -277,16 +275,6 @@ LcsAccessorSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ self targetClass ifNotNil: [ self targetClass name ] ]) asString
 ]
 
-{ #category : #properties }
-LcsAccessorSlotBuilder >> propertAt: aString ifAbsentPut: aBlock [ 
-	self properties at: aString ifAbsentPut: aBlock
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> properties [
-	^ properties
-]
-
 { #category : #accessing }
 LcsAccessorSlotBuilder >> properties: anObject [ 
 	properties := Dictionary new
@@ -302,11 +290,15 @@ LcsAccessorSlotBuilder >> propertyAt: aName ifAbsent: aBlock [
 	^ self properties at: aName ifAbsent: aBlock
 ]
 
-{ #category : #property }
-LcsAccessorSlotBuilder >> propertyAt: aName put: anObject [
-	self properties at: aName put: anObject.
-	self jobSteps do: [ :eachStep | (eachStep respondsTo: (aName , ':' asSymbol))
-		ifTrue: [ eachStep perform: (aName , ':' asSymbol) with: anObject ] ]
+{ #category : #properties }
+LcsAccessorSlotBuilder >> propertyAt: aString ifAbsentPut: aBlock [ 
+	self properties at: aString ifAbsentPut: aBlock
+]
+
+{ #category : #properties }
+LcsAccessorSlotBuilder >> propertyAt: aString put: anObject [ 
+	self properties at: aString put: anObject.
+	self jobSteps propogateProperty: aString valueChangedTo: anObject
 ]
 
 { #category : #property }
@@ -644,7 +636,7 @@ LcsAccessorSlotBuilder >> updateSlotModel [
 
 { #category : #properties }
 LcsAccessorSlotBuilder >> validationConditions [
-	^ self propertAt: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self]
+	^ self propertyAt: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self]
 ]
 
 { #category : #properties }

@@ -205,6 +205,21 @@ LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 	^ 'Install slot definition for'
 ]
 
+{ #category : #properties }
+LcsSlotDefintionMethodBuilder >> propertyAt: aName ifAbsentPut: aBlock [ 
+	self properties at: aName ifAbsentPut: aBlock
+]
+
+{ #category : #properties }
+LcsSlotDefintionMethodBuilder >> propogateProperty: aName valueChangedTo: anObject [
+	(self respondsTo: (aName , ':' asSymbol))
+		ifTrue: [ 
+			self perform: (aName , ':' asSymbol) with: anObject.
+			^ self ]. 
+
+	self propertyAt: aName put: anObject
+]
+
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> required [
 	^ self properties at: 'required' ifAbsentPut: [ false ]
