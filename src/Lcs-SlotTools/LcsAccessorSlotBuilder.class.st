@@ -83,8 +83,8 @@ LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 ]
 
 { #category : #accessing }
-LcsAccessorSlotBuilder >> addValidationCondition: aStringBlock description: aDescription [
-	self validationConditions add: aStringBlock -> aDescription
+LcsAccessorSlotBuilder >> addValidationCondition: aBlock description: aDescription [
+	self validationConditions addValidationCondition: aBlock description: aDescription
 ]
 
 { #category : #property }
