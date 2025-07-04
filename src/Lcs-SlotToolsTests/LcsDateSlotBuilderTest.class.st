@@ -88,10 +88,10 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 	self assert: slotDefinitionMethodBuilder  slotDefinitionSource equals: 'dateSlotDefinition
 	<slotDefinition>
 	^ LcsDateSlot new
+		initialValueBlock: [ Date today addDays: 10 ];
 		slotName: ''date'';
 		addValidationCondition: [ :value | value < Date today] description: ''Date must be >= today'';
 		addValidationCondition: [ :value | value > (Date today addDays: 19)] description: ''Date must be < 20 days in the future'';
-		initialValueBlock: [ Date today addDays: 10 ];
 		yourself'
 
 ]
