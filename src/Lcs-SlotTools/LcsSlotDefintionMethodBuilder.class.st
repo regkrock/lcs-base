@@ -85,20 +85,20 @@ LcsSlotDefintionMethodBuilder >> addSlotTypesSourceCodeTo: codeStream [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addValidationCondition: aStringBlock description: aDescription [
-	self validationConditions add: aStringBlock -> aDescription
+	self validationConditions addValidationCondition: aStringBlock description: aDescription
 ]
 
 { #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> addValidationConditionsKeyword: aPropertyName argument: anAssociations to: aCodeStream [
+LcsSlotDefintionMethodBuilder >> addValidationConditionsKeyword: aPropertyName argument: aValidationConditions to: aCodeStream [
 
-	anAssociations isEmpty ifTrue: [ ^ self ].
+	aValidationConditions hasElements ifFalse: [ ^ self ].
 
-	anAssociations do: [ :each |
-	aCodeStream
-		addKeyword: 'addValidationCondition'
-		argument: each key printString
-		keyword: 'description'
-		argument: each value printString ]
+	aValidationConditions do: [ :each |
+		aCodeStream
+			addKeyword: 'addValidationCondition'
+			argument: each conditionBlock printString
+			keyword: 'description'
+			argument: each description printString  ]
 ]
 
 { #category : #accessing }
@@ -311,23 +311,20 @@ LcsSlotDefintionMethodBuilder >> validateSlotTypes: aCollection against: actualV
 ]
 
 { #category : #verification }
-LcsSlotDefintionMethodBuilder >> validateValidationConditions: aValue against: actualValue [
-	self assert: actualValue collectionSize equals: aValue size.
-	aValue
-		do: [ :eachAssociation | 
-			self
-				assert: (actualValue at: eachAssociation value ifAbsent: [ nil ]) description
-				equals: eachAssociation value.
-			self
-				assert: (actualValue at: eachAssociation value ifAbsent: [ nil ]) conditionBlock
-						asString
-				equals: eachAssociation key asString ].
-	^ self
+LcsSlotDefintionMethodBuilder >> validateValidationConditions: aValidationConditions against: actualValidationConditions [
+	self assert: actualValidationConditions collectionSize equals: aValidationConditions collectionSize.
+	aValidationConditions
+		do: [ :eachValidationCondition | 
+			| actualValidationCondition |
+			actualValidationCondition := actualValidationConditions at: eachValidationCondition description ifAbsent: [ nil ].
+			self assert: actualValidationCondition notNil.
+			self assert: eachValidationCondition description equals: actualValidationCondition description.
+			self assert: eachValidationCondition conditionBlock asString equals: actualValidationCondition conditionBlock asString]
 ]
 
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> validationConditions [
-	^ self properties at: #validationConditions ifAbsent: [ OrderedCollection new]
+	^ self properties at: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self ]
 ]
 
 { #category : #accessing }

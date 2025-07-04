@@ -4,6 +4,11 @@ Class {
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionSlotBuilderTest >> tearDown [
+	^ super tearDown
+]
+
 { #category : #tests }
 LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
 	self subject: (

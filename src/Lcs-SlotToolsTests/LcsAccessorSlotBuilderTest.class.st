@@ -22,10 +22,10 @@ LcsAccessorSlotBuilderTest >> testCreation [
 LcsAccessorSlotBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsAccessorSlotBuilder new
-			slotName: 'foos';
 			slotClassName: LcsStringSlot name;
 			targetClassName: self currentSystem class name;
 			addSlotType: LxxPerson name ;
+			slotName: 'foos';
 			yourself).
 	self subject buildJobSteps.
 	self subject installCode.

@@ -462,7 +462,7 @@ LcsSystem >> securityModule [
 { #category : #accessing }
 LcsSystem >> status [
 	^ self hasSlotModel 
-		ifTrue: [^ self slotVarNamed: 'status' ]
+		ifTrue: [ self slotVarNamed: 'status' ]
 		ifFalse: [ self instVarNamed: 'status' ]
 ]
 

@@ -640,7 +640,7 @@ LcsAccessorSlotBuilder >> updateSlotModel [
 
 { #category : #accessing }
 LcsAccessorSlotBuilder >> validationConditions [
-	^ self properties at: #validationConditions ifAbsent: [ OrderedCollection new]
+	^ self properties at: #validationConditions ifAbsent: [ LcsValidationConditions newOn: self]
 ]
 
 { #category : #accessing }

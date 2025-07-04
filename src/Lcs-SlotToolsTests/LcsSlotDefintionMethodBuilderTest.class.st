@@ -114,7 +114,6 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: ''foo'';
-		allowNil: false;
 		required: true;
 		yourself'
 ]
