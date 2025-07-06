@@ -61,8 +61,8 @@ LcsAccessorSlotTest >> testInitalValueSetToNil [
 			parent: parentDomainObject;
 			yourself ]'.
 	self subject initialValue: nil.
-	self assert: self subject initialValueBlock printString equals: '[ anObject ]'.
-	self assert: self subject initialValueBlock value isNil
+	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | nil ]'.
+	self assert: (self subject initialValueBlock cull: self cull: self) isNil
 ]
 
 { #category : #tests }

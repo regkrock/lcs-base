@@ -77,6 +77,28 @@ LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
 	self properties at: 'collectionSlotName' put: aString
 ]
 
+{ #category : #magritte }
+LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotNameDescription [
+	<magritteDescription>
+	"| existingInstvarNames |
+	existingInstvarNames := self targetClass allInstVarNames."
+	^ MAStringDescription new
+		label: 'Collection Slot Name';
+		autoAccept: true;
+		priority: 1;
+		accessor: (MAPluggableAccessor
+				read: [ :aModel | self collectionSlotName ]
+				write: [ :aModel :aValue | self collectionSlotName: aValue ]);
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		"addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
+		addCondition: [ :aValue | aValue asString trim asSymbol allSatisfy: [ :each | each isAlphaNumeric ] ] labelled: 'Slot Names can contain only alphanumerics';
+		beRequired
+]
+
 { #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
 	<gtView>

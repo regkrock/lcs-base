@@ -114,6 +114,7 @@ LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 		priority: 10;
 		object: [ self slotModel ];
 		view: #gtViewSlotModelFor:;
+		actionUpdateButton;
 		yourself
 		
 ]

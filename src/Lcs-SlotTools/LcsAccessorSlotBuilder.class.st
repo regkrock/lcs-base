@@ -256,6 +256,11 @@ LcsAccessorSlotBuilder >> installSlotDefinition [
 	self targetClass installSlotDefinition: self slotDefinitionSelector
 ]
 
+{ #category : #querying }
+LcsAccessorSlotBuilder >> jobStep: anInteger [
+	^ self jobSteps jobStep: anInteger
+]
+
 { #category : #populate }
 LcsAccessorSlotBuilder >> populateFrom: aSlotClassName [
 	self properties removeAll.
@@ -282,7 +287,7 @@ LcsAccessorSlotBuilder >> properties: anObject [
 
 { #category : #property }
 LcsAccessorSlotBuilder >> propertyAt: aName [
-	self properties at: aName ifAbsent: [ nil ]
+	^ self properties at: aName ifAbsent: [ nil ]
 ]
 
 { #category : #property }

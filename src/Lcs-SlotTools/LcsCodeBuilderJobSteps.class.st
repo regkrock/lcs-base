@@ -210,6 +210,11 @@ LcsCodeBuilderJobSteps >> isNotEmpty [
 	^ self collection isNotEmpty
 ]
 
+{ #category : #querying }
+LcsCodeBuilderJobSteps >> jobStep: anInteger [
+	^ self collection at: anInteger
+]
+
 { #category : #steps }
 LcsCodeBuilderJobSteps >> jobStepAt: anIndex [
 	^ self collection at: anIndex

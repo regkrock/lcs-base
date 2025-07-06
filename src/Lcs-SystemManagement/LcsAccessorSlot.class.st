@@ -49,6 +49,23 @@ LcsAccessorSlot >> allowNil: anObject [
 	self properties at: 'allowNil' put: anObject
 ]
 
+{ #category : #magritte }
+LcsAccessorSlot >> allowNilDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Allow Nil';
+		priority: 10;
+		accessor: #'allowNil';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		beRequired
+
+]
+
 { #category : #'slot model' }
 LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 	newValue isDomainObject ifTrue: [
@@ -253,12 +270,12 @@ LcsAccessorSlot >> gtViewSlotModelChildren [
 
 { #category : #properties }
 LcsAccessorSlot >> initialValue [
-	^ self initialValueBlock value
+	^ self initialValueBlock cull: nil cull: self
 ]
 
 { #category : #properties }
 LcsAccessorSlot >> initialValue: anObject [
-	self initialValueBlock: [ anObject ]
+	self initialValueBlock: (self class evaluate: '[ :domainObject :slot | ' , anObject asString , ' ]')
 ]
 
 { #category : #properties }
@@ -269,6 +286,24 @@ LcsAccessorSlot >> initialValueBlock [
 { #category : #properties }
 LcsAccessorSlot >> initialValueBlock: aBlock [ 
 	self properties at: 'initialValueBlock' put: aBlock
+]
+
+{ #category : #magritte }
+LcsAccessorSlot >> initialValueBlockDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Initial Value Block';
+		priority: 10;
+		accessor: #'initialValueBlock';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+		
+"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
+		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';
+		beRequired"
+
 ]
 
 { #category : #printing }
@@ -391,6 +426,16 @@ LcsAccessorSlot >> persistedSlotVarIn: aDomainObject [
 	^ aDomainObject instVarNamed: self slotName asString
 ]
 
+{ #category : #properties }
+LcsAccessorSlot >> prevalidationTransformBlock [ 
+	^ self properties at: 'prevalidationTransformBlock' ifAbsent: [ [:value :slot | value ] ]
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> prevalidationTransformBlock: aBlock [
+	^ self properties at: 'prevalidationTransformBlock' put: aBlock
+]
+
 { #category : #printing }
 LcsAccessorSlot >> printOn: aStream [
 	super printOn: aStream.
@@ -472,7 +517,10 @@ LcsAccessorSlot >> slotVarDirectlyPut: anObject in: aDomainObject [
 
 { #category : #'slot model' }
 LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
-	self variableUpdatePolicy slotVarPut: anObject  in: aDomainObject
+	| transformedObject |
+	transformedObject := self prevalidationTransformBlock cull: anObject cull: self.
+
+	self variableUpdatePolicy slotVarPut: transformedObject in: aDomainObject
 ]
 
 { #category : #'slot model' }

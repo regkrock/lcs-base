@@ -4,6 +4,11 @@ Class {
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
+{ #category : #private }
+LcsAccessorSlotCreationFormTest >> slotModelBuilder [
+	^ self subject slotModelBuilder
+]
+
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testCreation [
 
@@ -18,8 +23,30 @@ LcsAccessorSlotCreationFormTest >> testCreation [
 ]
 
 { #category : #tests }
+LcsAccessorSlotCreationFormTest >> testCreationUsingNewEditOn [
+
+	self subject: (LcsAccessorSlotCreationForm newEditOn: LxxPerson).
+	self assert: self subject targetClass equals: LxxPerson.
+	self assert: self subject slotModelBuilder isNil.
+	self assert: self subject slotClassName isString..
+	self assert: self subject slotClassName isEmpty.
+	self assert: self subject mode = #edit
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testCreationUsingNewOn [
+
+	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self assert: self subject targetClass equals: LxxPerson.
+	self assert: self subject slotModelBuilder isNil.
+	self assert: self subject slotClassName isString..
+	self assert: self subject slotClassName isEmpty.
+	self assert: self subject mode = #add
+]
+
+{ #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
-	| slotModelBuilder builderProperties templateProperties slotDefinitionMethodBuilder |
+	| slotModelBuilder builderProperties templateProperties |
 	self subject: LcsAccessorSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
@@ -36,16 +63,61 @@ LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
 ]
 
 { #category : #tests }
-LcsAccessorSlotCreationFormTest >> testSettingUpStepsToAddFooSlotBasedOnStringSlot [
-	| slotModelBuilder slotDefinitionMethodBuilder slotInstanceVariableBuilder |
+LcsAccessorSlotCreationFormTest >> testSlotGenerationFromTemplateWithNoChanges [
+	| slotDefinitionMethodBuilder slotInstanceVariableBuilder |
+	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject slotClassChangedTo: LcsCodeSlot name.
+	slotDefinitionMethodBuilder := (self slotModelBuilder jobStep: 2).
+	
+	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'codeSlotDefinition
+	<slotDefinition>
+	^ LcsCodeSlot new
+		yourself'.
+
+	slotInstanceVariableBuilder := (self slotModelBuilder jobStep: 1).
+	self assert: slotInstanceVariableBuilder slotName equals: 'code'.
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testSlotGenerationWithAllowNilTurnedOnAndThenTurnedOff [
+	| slotDefinitionMethodBuilder slotInstanceVariableBuilder |
 	self subject: LcsAccessorSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
-	slotModelBuilder := self subject slotModelBuilder.
+	slotDefinitionMethodBuilder := self slotModelBuilder jobStep: 2.
+	self assert: self slotModelBuilder allowNil = true.
 
-	slotModelBuilder slotName: 'foo'.
+	self slotModelBuilder slotName: 'foo'.
+	self slotModelBuilder allowNil: false.
 
-	slotDefinitionMethodBuilder := slotModelBuilder slotDefinitionMethodBuilder.
+	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'fooSlotDefinition
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: ''foo'';
+		allowNil: false;
+		yourself'.
+
+	"Test that the unneccessry code is generated"
+	self slotModelBuilder allowNil: true.
+	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'fooSlotDefinition
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: ''foo'';
+		yourself'.
+
+
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testSlotGenerationWithOnlySlotNameChanged [
+	| slotDefinitionMethodBuilder slotInstanceVariableBuilder |
+	self subject: LcsAccessorSlotCreationForm new.
+	self subject targetClass: LxxPerson.
+	self subject slotClassChangedTo: LcsStringSlot name.
+
+	self slotModelBuilder slotName: 'foo'.
+
+	slotDefinitionMethodBuilder := self slotModelBuilder jobStep: 2.
 	self assert: slotDefinitionMethodBuilder properties size = 1.
 	self assert: (slotDefinitionMethodBuilder properties keys includes: 'slotName').
 	self assert: (slotDefinitionMethodBuilder properties at: 'slotName') equals: 'foo'.
@@ -55,8 +127,6 @@ LcsAccessorSlotCreationFormTest >> testSettingUpStepsToAddFooSlotBasedOnStringSl
 		slotName: ''foo'';
 		yourself'.
 
-	slotInstanceVariableBuilder := slotModelBuilder slotInstanceVariableBuilder.
+	slotInstanceVariableBuilder := self slotModelBuilder jobStep: 1.
 	self assert: slotInstanceVariableBuilder slotName equals: 'foo'.
-
-	"self subject commit"
 ]

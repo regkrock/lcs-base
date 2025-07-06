@@ -20,7 +20,7 @@ LcsSmalltalkObjectSlot >> defaultInputComponentClassName [
 
 { #category : #'object initialization' }
 LcsSmalltalkObjectSlot >> initialValueFor: aDomainObject [
-	^ self initialValueBlock cull: aDomainObject
+	^ self initialValueBlock cull: aDomainObject cull: self
 ]
 
 { #category : #initialize }

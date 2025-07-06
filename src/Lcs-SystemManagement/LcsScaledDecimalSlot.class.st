@@ -6,13 +6,17 @@ Class {
 
 { #category : #defaults }
 LcsScaledDecimalSlot >> defaultInitialValueBlock [ 
-	^ [ 0 asScaledDecimal: self numberOfDecimals ]
+	^ [:aDomainObject :slotDefinition | 0 asScaledDecimal: slotDefinition numberOfDecimals ]
 ]
 
 { #category : #initialize }
 LcsScaledDecimalSlot >> initialize [
 	super initialize.
-	self numberOfDecimals: 2
+	self numberOfDecimals: 2.
+	self prevalidationTransformBlock: [ :value :slot | 
+		value isNumber 
+			ifTrue: [value asScaledDecimal: slot numberOfDecimals ]
+			ifFalse: [ value ] ]
 ]
 
 { #category : #properties }
