@@ -115,9 +115,9 @@ LcsAccessorSlot >> currentSlotVarIn: aDomainObject [
 
 { #category : #defaults }
 LcsAccessorSlot >> defaultInitialValueBlock [
-	^ [ :parentDomainObject | 
-		(self slotTypes any new)
-			parent: parentDomainObject;
+	^ [ :domainObject :slot | 
+		(slot slotTypes any new)
+			parent: domainObject;
 			yourself ]
 ]
 
@@ -292,9 +292,9 @@ LcsAccessorSlot >> initialValueBlock: aBlock [
 LcsAccessorSlot >> initialValueBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Initial Value Block';
+		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 10;
-		accessor: #'initialValueBlock';
+		accessor: (LcsMABlockAccessor selector: #'initialValueBlock');
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 		

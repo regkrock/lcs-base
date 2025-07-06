@@ -10,13 +10,19 @@ LcsScaledDecimalSlot >> defaultInitialValueBlock [
 ]
 
 { #category : #initialize }
+LcsScaledDecimalSlot >> defaultNumberOfDecimals [
+	^ 2
+]
+
+{ #category : #initialize }
 LcsScaledDecimalSlot >> initialize [
 	super initialize.
-	self numberOfDecimals: 2.
-	self prevalidationTransformBlock: [ :value :slot | 
-		value isNumber 
-			ifTrue: [value asScaledDecimal: slot numberOfDecimals ]
-			ifFalse: [ value ] ]
+	self numberOfDecimals: self defaultNumberOfDecimals.
+	self
+		prevalidationTransformBlock: [ :value :slot | 
+			value isNumber
+				ifTrue: [ value asScaledDecimal: slot numberOfDecimals ]
+				ifFalse: [ value ] ]
 ]
 
 { #category : #properties }

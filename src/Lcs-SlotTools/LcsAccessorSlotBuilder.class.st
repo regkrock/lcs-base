@@ -138,6 +138,11 @@ LcsAccessorSlotBuilder >> commit [
 	self execute
 ]
 
+{ #category : #property }
+LcsAccessorSlotBuilder >> defaultPrevalidationTransformBlock [
+	^ [  ]
+]
+
 { #category : #testing }
 LcsAccessorSlotBuilder >> doesSlotDefinitionMethodExist [
 	^ self targetClass class includesSelector: self slotDefinitionSelector
@@ -220,11 +225,11 @@ LcsAccessorSlotBuilder >> initialValueBlock: aString [
 LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Initial Value Block';
+		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 9;
-		accessor: (MAPluggableAccessor
-				read: [ :aModel | self initialValueBlock ]
-				write: [ :aModel :aValue | self initialValueBlock: aValue ]);
+		accessor: (LcsMABlockAccessor selector: #initialValueBlock);
+				"read: [ :aModel | (LcsBlockSourceConverter innerSourceCodeOf: self initialValueBlock) ]
+				write: [ :aModel :aValue | LcsBlockSourceConverter slotBlockWithInnerSourceCode: aValue replacing: self initialValueBlock ]);"
 		autoAccept: true;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
@@ -269,6 +274,28 @@ LcsAccessorSlotBuilder >> populateFrom: aSlotClassName [
 	self slotName: self slotDefinitionTemplate slotName.
 	self slotDefinitionTemplate properties keysAndValuesDo:  [ :key :value |
 		self propertyAt: key put: value copy ]
+]
+
+{ #category : #property }
+LcsAccessorSlotBuilder >> prevalidationTransformBlock [
+	^ self propertyAt: 'prevalidationTransformBlock' ifAbsent: [ self defaultPrevalidationTransformBlock ]
+]
+
+{ #category : #property }
+LcsAccessorSlotBuilder >> prevalidationTransformBlock: aString [
+	^ self propertyAt: 'prevalidationTransformBlock' put: aString
+]
+
+{ #category : #margritte }
+LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Prevalidation Transforma Block [ :domainObject :slot | ';
+		priority: 9;
+		accessor: (LcsMABlockAccessor selector: #prevalidationTransformBlock);
+		autoAccept: true;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : #printing }
