@@ -45,6 +45,19 @@ LcsAccessorSlotCreationFormTest >> testCreationUsingNewOn [
 ]
 
 { #category : #tests }
+LcsAccessorSlotCreationFormTest >> testModifyingBlock [
+	| aDescription |
+	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject slotClassChangedTo: #LcsScaledDecimalSlot.
+	self slotModelBuilder isKindOf: LcsScaledDecimalSlot.
+	aDescription := self subject initialValueBlockDescription.
+	self assert: aDescription notNil.
+	self assert: (aDescription read: self subject) asString equals: '0 asScaledDecimal: slotDefinition numberOfDecimals'.
+	aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
+	self assert: self slotModelBuilder initialValueBlock asString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'
+]
+
+{ #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
 	| slotModelBuilder builderProperties templateProperties |
 	self subject: LcsAccessorSlotCreationForm new.

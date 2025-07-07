@@ -21,7 +21,7 @@ LcsBlockSourceConverter class >> innerSourceCodeOf: aBlock [
 { #category : #'instance creation' }
 LcsBlockSourceConverter class >> innerSourceCodeOfSlotBlock: aBlock [
 	^ self new 
-		arguments addAll: #('domainObject' 'slot');
+		arguments: #('domainObject' 'slot');
 		innerSourceCodeOf: aBlock
 ]
 
