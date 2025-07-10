@@ -15,22 +15,22 @@ Class {
 
 { #category : #properties }
 LcsFacadeSlot >> convertFromTarget [
-	^ self properties at: 'convertFromTarget' ifAbsent: [ ]
+	^ self propertyAt: 'convertFromTarget' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsFacadeSlot >> convertFromTarget: anObject [
-	self properties at: 'convertFromTarget' put: anObject
+	self propertyAt: 'convertFromTarget' put: anObject
 ]
 
 { #category : #properties }
 LcsFacadeSlot >> convertToTarget [
-	^ self properties at: 'convertToTarget' ifAbsent: [ ]
+	^ self propertyAt: 'convertToTarget' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsFacadeSlot >> convertToTarget: anObject [
-	self properties at: 'convertToTarget' put: anObject
+	self propertyAt: 'convertToTarget' put: anObject
 ]
 
 { #category : #'slot access' }
@@ -49,10 +49,10 @@ LcsFacadeSlot >> slotVarPut: anObject in: aTargetDomainObject [
 
 { #category : #properties }
 LcsFacadeSlot >> targetSlotName [
-	^ self properties at: 'targetSlotName' ifAbsent: [ ]
+	^ self propertyAt: 'targetSlotName' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsFacadeSlot >> targetSlotName: anObject [
-	self properties at: 'targetSlotName' put: anObject
+	self propertyAt: 'targetSlotName' put: anObject
 ]

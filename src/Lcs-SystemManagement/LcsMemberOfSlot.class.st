@@ -25,22 +25,22 @@ LcsMemberOfSlot >> collectionModule [
 
 { #category : #properties }
 LcsMemberOfSlot >> collectionSlotModuleName [
-	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ ]
+	^ self propertyAt: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsMemberOfSlot >> collectionSlotModuleName: aString [ 
-	self properties at: 'collectionSlotModuleName' put: aString
+	self propertyAt: 'collectionSlotModuleName' put: aString
 ]
 
 { #category : #properties }
 LcsMemberOfSlot >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: []
+	^ self propertyAt: 'collectionSlotName' ifAbsent: []
 ]
 
 { #category : #properties }
 LcsMemberOfSlot >> collectionSlotName: aString [ 
-	self properties at: 'collectionSlotName' put: aString
+	self propertyAt: 'collectionSlotName' put: aString
 ]
 
 { #category : #'slot model' }

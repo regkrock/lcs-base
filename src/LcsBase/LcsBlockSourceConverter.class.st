@@ -9,27 +9,25 @@ Class {
 
 { #category : #'instance creation' }
 LcsBlockSourceConverter class >> blockWithInnerSourceCode: aString replacing: aBlock [
-	^ self new 
+	^ self blockWithInnerSourceCode: aString replacing: aBlock parameters: #()
+]
+
+{ #category : #'instance creation' }
+LcsBlockSourceConverter class >> blockWithInnerSourceCode: aString replacing: aBlock parameters: anArray [
+	^ self new
+		arguments: anArray;
 		blockFromInnerSourceCode: aString replacing: aBlock
 ]
 
 { #category : #'instance creation' }
 LcsBlockSourceConverter class >> innerSourceCodeOf: aBlock [
-	^ self new innerSourceCodeOf: aBlock
+	^ self innerSourceCodeOf: aBlock parameters: #()
 ]
 
 { #category : #'instance creation' }
-LcsBlockSourceConverter class >> innerSourceCodeOfSlotBlock: aBlock [
+LcsBlockSourceConverter class >> innerSourceCodeOf: aBlock parameters: anArray [
 	^ self new 
-		arguments: #('domainObject' 'slot');
-		innerSourceCodeOf: aBlock
-]
-
-{ #category : #'instance creation' }
-LcsBlockSourceConverter class >> slotBlockWithInnerSourceCode: aString replacing: aBlock [
-	^ self new 
-		arguments: #('domainObject' 'slot');
-		blockFromInnerSourceCode: aString replacing: aBlock
+		innerSourceCodeOf: aBlock parameters: anArray
 ]
 
 { #category : #accessing }
@@ -81,4 +79,10 @@ LcsBlockSourceConverter >> innerSourceCodeOf: aBlock [
 			^ (sourceCode copyFrom: (leftSquareBracketIndex + 1) to: (rightSquareBracketIndex - 1)) trimBoth ].
 	(barIndex + 1) = rightSquareBracketIndex ifTrue: [ ^ '' ].
 	^ (sourceCode copyFrom: (barIndex + 1) to: (rightSquareBracketIndex - 1) ) trimBoth
+]
+
+{ #category : #converting }
+LcsBlockSourceConverter >> innerSourceCodeOf: aBlock parameters: anArray [
+	self arguments: anArray.
+	^ self  innerSourceCodeOf: aBlock
 ]

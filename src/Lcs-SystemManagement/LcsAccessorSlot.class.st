@@ -23,6 +23,16 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #configuration }
+LcsAccessorSlot class >> domainObjectParameters [
+	^ #('domainObject' 'slot')
+]
+
+{ #category : #configuration }
+LcsAccessorSlot class >> slotTransformBlockParameters [
+	^ #('value' 'slot')
+]
+
 { #category : #'slot model' }
 LcsAccessorSlot >> _slotVarPut: anObject in: aDomainObject [
 	self verifyType: anObject for: aDomainObject.
@@ -41,12 +51,12 @@ LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 
 { #category : #properties }
 LcsAccessorSlot >> allowNil [ 
-	^ self properties at: 'allowNil' ifAbsent: [ ]
+	^ self propertyAt: 'allowNil'
 ]
 
 { #category : #properties }
 LcsAccessorSlot >> allowNil: anObject [
-	self properties at: 'allowNil' put: anObject
+	self propertyAt: 'allowNil' put: anObject
 ]
 
 { #category : #magritte }
@@ -126,6 +136,16 @@ LcsAccessorSlot >> defaultInitialValueBlockSourceCode [
 	^ self defaultInitialValueBlock compiledBlock sourceNode sourceCode
 ]
 
+{ #category : #defaults }
+LcsAccessorSlot >> defaultPrevalidationTransformBlock [
+	^ [ :value :slot | value ]
+]
+
+{ #category : #configuration }
+LcsAccessorSlot >> domainObjectParameters [
+	^ self class domainObjectParameters
+]
+
 { #category : #'slot model' }
 LcsAccessorSlot >> getterSelector [
 	| substring1 substring2 |
@@ -169,6 +189,12 @@ LcsAccessorSlot >> gtDomainMetaFor: aView [
 		title: 'Domain Meta';
 		priority: 200;
 		stencil: [ (GtCoderElement forObject: self domainClass) disablePlayPage beNormalLevel ]
+]
+
+{ #category : #'gt views' }
+LcsAccessorSlot >> gtMagritteFor: aView [
+	^ (super gtMagritteFor: aView)
+		actionUpdateButton
 ]
 
 { #category : #'gt views' }
@@ -280,12 +306,12 @@ LcsAccessorSlot >> initialValue: anObject [
 
 { #category : #properties }
 LcsAccessorSlot >> initialValueBlock [
-	^ self properties at: 'initialValueBlock' ifAbsentPut: [ self defaultInitialValueBlock]
+	^ self propertyAt: 'initialValueBlock'
 ]
 
 { #category : #properties }
 LcsAccessorSlot >> initialValueBlock: aBlock [ 
-	self properties at: 'initialValueBlock' put: aBlock
+	self propertyAt: 'initialValueBlock' put: aBlock
 ]
 
 { #category : #magritte }
@@ -294,21 +320,20 @@ LcsAccessorSlot >> initialValueBlockDescription [
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 10;
-		accessor: (LcsMABlockAccessor selector: #'initialValueBlock');
+		accessor: (MAPluggableAccessor
+				read: [ :model | 
+					model 
+						innerSourceCodeOfBlock: #initialValueBlock 
+						in: model
+						parameters: LcsAccessorSlot domainObjectParameters ]
+				write: [ :model :string | 
+					model
+						replaceBlock: #initialValueBlock
+						with: string
+						in: model
+						parameters: LcsAccessorSlot domainObjectParameters ]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
-		
-"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
-		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';
-		beRequired"
-
-]
-
-{ #category : #printing }
-LcsAccessorSlot >> initialValueBlockSourceCode [
-	^ self initialValueBlock compiledBlock sourceNode sourceCode
 ]
 
 { #category : #'object initialization' }
@@ -327,6 +352,7 @@ LcsAccessorSlot >> initialize [
 	super initialize.
 	self makeUpdateOfVariableViaUnitOfWork.
 	self initialValueBlock: self defaultInitialValueBlock.
+	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
 	self allowNil: false.
 	self required: false.
 ]
@@ -340,6 +366,11 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 LcsAccessorSlot >> initializeUnintializedSlotValueIn: aDomainObject [
 	(self currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
 	self initializeSlotValueIn: aDomainObject
+]
+
+{ #category : #'block support' }
+LcsAccessorSlot >> innerSourceCodeOfBlock: aBlockAccessor in: model parameters: anArray [
+	^ LcsBlockSourceConverter innerSourceCodeOf: (model perform: aBlockAccessor asSymbol) parameters: anArray
 ]
 
 { #category : #testing }
@@ -427,13 +458,35 @@ LcsAccessorSlot >> persistedSlotVarIn: aDomainObject [
 ]
 
 { #category : #properties }
-LcsAccessorSlot >> prevalidationTransformBlock [ 
-	^ self properties at: 'prevalidationTransformBlock' ifAbsent: [ [:value :slot | value ] ]
+LcsAccessorSlot >> prevalidationTransformBlock [
+	^ self propertyAt: 'prevalidationTransformBlock'
 ]
 
 { #category : #properties }
 LcsAccessorSlot >> prevalidationTransformBlock: aBlock [
-	^ self properties at: 'prevalidationTransformBlock' put: aBlock
+	self propertyAt: 'prevalidationTransformBlock' put: aBlock
+]
+
+{ #category : #margritte }
+LcsAccessorSlot >> prevalidationTransformBlockDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Prevalidation Transform Block [ :value :slot | ';
+		priority: 11;
+		accessor: (MAPluggableAccessor 
+						read: [ :model | 
+							model 
+								innerSourceCodeOfBlock: #prevalidationTransformBlock 
+								in: model 
+								parameters: LcsAccessorSlot slotTransformBlockParameters]
+						write: [ :model :string | 
+							model 
+								replaceBlock: #prevalidationTransformBlock 
+								with: string 
+								in: model 
+								parameters: LcsAccessorSlot slotTransformBlockParameters]);
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : #printing }
@@ -445,14 +498,22 @@ LcsAccessorSlot >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
+{ #category : #'block support' }
+LcsAccessorSlot >> replaceBlock: aBlockAccessor with: code in: aSlot parameters: anArray [
+	| currentBlock newBlock |
+	currentBlock := aSlot perform: aBlockAccessor asSymbol.
+	newBlock := LcsBlockSourceConverter blockWithInnerSourceCode: code replacing: currentBlock parameters: anArray.
+	aSlot perform: (aBlockAccessor , ':') asSymbol with: newBlock
+]
+
 { #category : #properties }
 LcsAccessorSlot >> required [
-	^ self properties at: 'required' ifAbsent: [ ]
+	^ self propertyAt: 'required'
 ]
 
 { #category : #properties }
 LcsAccessorSlot >> required: anObject [
-	self properties at: 'required' put: anObject
+	self propertyAt: 'required' put: anObject
 ]
 
 { #category : #magritte }
@@ -497,6 +558,11 @@ LcsAccessorSlot >> slotDefinitionSelector [
 LcsAccessorSlot >> slotDoesNotExistMessage [
 	^ 'Slot name ' , self slotName asString , ' does not exist in '
 		, self domainClass name
+]
+
+{ #category : #configuration }
+LcsAccessorSlot >> slotTransformBlockParameters [
+	^ self class slotTransformBlockParameters
 ]
 
 { #category : #printing }

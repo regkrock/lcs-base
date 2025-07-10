@@ -16,22 +16,22 @@ LcsGlobalCollectionReferenceSlot >> collectionSlotModule [
 
 { #category : #properties }
 LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName [
-	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ ]
+	^ self propertyAt: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName: aString [
-	self properties at: 'collectionSlotModuleName' put: aString
+	self propertyAt: 'collectionSlotModuleName' put: aString
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlot >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: []
+	^ self propertyAt: 'collectionSlotName' ifAbsent: []
 ]
 
 { #category : #accessing }
 LcsGlobalCollectionReferenceSlot >> collectionSlotName: anObject [
-	self properties at: 'collectionSlotName' put: anObject
+	self propertyAt: 'collectionSlotName' put: anObject
 ]
 
 { #category : #'gt views' }

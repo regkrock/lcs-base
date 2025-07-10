@@ -12,12 +12,12 @@ LcsValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 
 { #category : #properties }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass [
-	^ self properties at: 'loaderClass' ifAbsent: [ ]
+	^ self propertyAt: 'loaderClass' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass: aLoaderClass [
-	self properties at: 'loaderClass' put: aLoaderClass
+	self propertyAt: 'loaderClass' put: aLoaderClass
 ]
 
 { #category : #load }

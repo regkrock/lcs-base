@@ -29,6 +29,19 @@ LcsScaledDecimalSlotTest >> testInstallation [
 ]
 
 { #category : #tests }
+LcsScaledDecimalSlotTest >> testModifyingBlock [
+	| aDescription |
+	self subject: (LxxPerson slotDefinitionNamed: #balance).
+	self subject isKindOf: LcsScaledDecimalSlot.
+	aDescription := self subject initialValueBlockDescription.
+	self assert: aDescription notNil.
+	self assert: (aDescription read: self subject) asString equals: '0 asScaledDecimal: slotDefinition numberOfDecimals'.
+	aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
+	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'.
+	self assert: self subject initialValueBlock isBlock
+]
+
+{ #category : #tests }
 LcsScaledDecimalSlotTest >> testSlotGetter [
 	| person |
 	person := LxxPerson new.

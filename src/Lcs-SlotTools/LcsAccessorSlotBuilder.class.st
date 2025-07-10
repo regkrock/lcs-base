@@ -227,11 +227,20 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 9;
-		accessor: (LcsMABlockAccessor selector: #initialValueBlock);
-				"read: [ :aModel | (LcsBlockSourceConverter innerSourceCodeOf: self initialValueBlock) ]
-				write: [ :aModel :aValue | LcsBlockSourceConverter slotBlockWithInnerSourceCode: aValue replacing: self initialValueBlock ]);"
+		accessor: (MAPluggableAccessor
+				read: [ :model | 
+					model
+						innerSourceCodeOfBlock: #initialValueBlock
+						in: model
+						parameters: LcsAccessorSlot domainObjectParameters ]
+				write: [ :model :string | 
+					model
+						replaceBlock: #initialValueBlock
+						with: string
+						in: model
+						parameters: LcsAccessorSlot domainObjectParameters ]);
 		autoAccept: true;
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
@@ -290,11 +299,21 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlock: aString [
 LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Prevalidation Transforma Block [ :domainObject :slot | ';
-		priority: 9;
-		accessor: (LcsMABlockAccessor selector: #prevalidationTransformBlock);
-		autoAccept: true;
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		label: 'Prevalidation Transform Block [ :value :slot | ';
+		priority: 11;
+		accessor: (MAPluggableAccessor 
+						read: [ :model | 
+							model 
+								innerSourceCodeOfBlock: #prevalidationTransformBlock 
+								in: model 
+								parameters: LcsAccessorSlot slotTransformBlockParameters]
+						write: [ :model :string | 
+							model 
+								replaceBlock: #prevalidationTransformBlock 
+								with: string 
+								in: model 
+								parameters: LcsAccessorSlot slotTransformBlockParameters]);
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 

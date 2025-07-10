@@ -36,6 +36,14 @@ LcsAccessorSlotTest >> testAllowNil [
 ]
 
 { #category : #tests }
+LcsAccessorSlotTest >> testAllowNilDescription [
+	| description |
+	self subject: LcsAccessorSlot new.
+	description := self subject allowNilDescription.
+	self assert: (description read: self subject) = false
+]
+
+{ #category : #tests }
 LcsAccessorSlotTest >> testCreation [
 
 	self subject: LcsAccessorSlot new.
@@ -56,13 +64,48 @@ LcsAccessorSlotTest >> testCreation [
 { #category : #testing }
 LcsAccessorSlotTest >> testInitalValueSetToNil [
 	self subject: LcsAccessorSlot new.
-	self assert: self subject initialValueBlock printString equals: '[ :parentDomainObject | 
-		(self slotTypes any new)
-			parent: parentDomainObject;
+	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | 
+		(slot slotTypes any new)
+			parent: domainObject;
 			yourself ]'.
 	self subject initialValue: nil.
 	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | nil ]'.
 	self assert: (self subject initialValueBlock cull: self cull: self) isNil
+]
+
+{ #category : #tests }
+LcsAccessorSlotTest >> testInitialValueBlockDescription [
+	| description |
+	self subject: LcsAccessorSlot new.
+	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 
+		(slot slotTypes any new)
+			parent: domainObject;
+			yourself ]'.
+	
+	description := self subject initialValueBlockDescription.
+	self assert: (description read: self subject) = '(slot slotTypes any new)
+			parent: domainObject;
+			yourself'.
+			
+	description write: '0' to: self subject.
+	self assert: (description read: self subject) equals: '0'.
+
+	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 ]'
+]
+
+{ #category : #tests }
+LcsAccessorSlotTest >> testPrevalidationTransformBlockDescription [
+	| description |
+	self subject: LcsAccessorSlot new.
+	self assert: self subject prevalidationTransformBlock asString equals: '[ :value :slot | value ]'.
+	
+	description := self subject prevalidationTransformBlockDescription.
+	self assert: (description read: self subject) equals: 'value'.
+			
+	description write: '0' to: self subject.
+	self assert: (description read: self subject) equals: '0'.
+
+	self assert: self subject prevalidationTransformBlock asString equals: '[ :value :slot | 0 ]'
 ]
 
 { #category : #tests }

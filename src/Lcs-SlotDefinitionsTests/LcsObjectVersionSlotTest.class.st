@@ -11,7 +11,7 @@ LcsObjectVersionSlotTest >> testCreation [
 	self assert: subject slotName equals: 'version'.
 	self assert: (subject slotTypes includes: SmallInteger).
 	self deny: (subject slotTypes includes: UndefinedObject).
-	self assert: subject initialValueBlockSourceCode equals: '^ [ 0 ]'.
+	self assert: subject initialValueBlock asString equals: '[ 0 ]'.
 	self assert: subject initialValue equals: 0.
 
 ]

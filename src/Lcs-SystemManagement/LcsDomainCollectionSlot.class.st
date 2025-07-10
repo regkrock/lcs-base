@@ -22,22 +22,22 @@ LcsDomainCollectionSlot >> beOrderedCollection [
 
 { #category : #properties }
 LcsDomainCollectionSlot >> collectionClass [
-	^ self properties at: 'collectionClass' ifAbsent: [ ]
+	^ self propertyAt: 'collectionClass' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsDomainCollectionSlot >> collectionClass: anObject [
-	self properties at: 'collectionClass' put: anObject
+	self propertyAt: 'collectionClass' put: anObject
 ]
 
 { #category : #properties }
 LcsDomainCollectionSlot >> collectionMemberTypes [
-	^ self properties at: 'collectionMemberTypes' ifAbsent: [ ]
+	^ self propertyAt: 'collectionMemberTypes' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsDomainCollectionSlot >> collectionMemberTypes: anObject [
-	self properties at: 'collectionMemberTypes' put: anObject
+	self propertyAt: 'collectionMemberTypes' put: anObject
 ]
 
 { #category : #initialize }

@@ -17,22 +17,23 @@ LcsScaledDecimalSlot >> defaultNumberOfDecimals [
 { #category : #initialize }
 LcsScaledDecimalSlot >> initialize [
 	super initialize.
-	self numberOfDecimals: self defaultNumberOfDecimals.
-	self
-		prevalidationTransformBlock: [ :value :slot | 
-			value isNumber
-				ifTrue: [ value asScaledDecimal: slot numberOfDecimals ]
-				ifFalse: [ value ] ]
+	self numberOfDecimals: self defaultNumberOfDecimals
 ]
 
 { #category : #properties }
 LcsScaledDecimalSlot >> numberOfDecimals [
-	^ self properties at: 'numberOfDecimals' ifAbsent: [ 2 ]
+	^ self propertyAt: 'numberOfDecimals' ifAbsent: [ 2 ]
 ]
 
 { #category : #properties }
 LcsScaledDecimalSlot >> numberOfDecimals: anObject [
-	self properties at: 'numberOfDecimals' put: anObject
+	self propertyAt: 'numberOfDecimals' put: anObject
+]
+
+{ #category : #initialize }
+LcsScaledDecimalSlot >> prevalidationTransformBlock [
+	^ [ :value :slot | 
+			value isNumber ifTrue: [ value asScaledDecimal: slot numberOfDecimals ] ifFalse: [ value ] ]
 ]
 
 { #category : #configuration }

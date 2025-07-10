@@ -6,12 +6,12 @@ Class {
 
 { #category : #properties }
 LcsCollectionReferenceSlot >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: [ ]
+	^ self propertyAt: 'collectionSlotName' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsCollectionReferenceSlot >> collectionSlotName: anObject [
-	self properties at: 'collectionSlotName' put: anObject
+	self propertyAt: 'collectionSlotName' put: anObject
 ]
 
 { #category : #'gt views' }

@@ -30,9 +30,19 @@ LcsBlockSourceConverterTest >> testCreatingSlotBlockWithInnerSource [
 	| existingBlock createdBlock |
 
 	existingBlock := [1].
-	createdBlock := LcsBlockSourceConverter slotBlockWithInnerSourceCode: '  1 + 3  ' replacing: existingBlock.
+	createdBlock := LcsBlockSourceConverter blockWithInnerSourceCode: '  1 + 3  ' replacing: existingBlock parameters: LcsAccessorSlot domainObjectParameters.
 	self deny: existingBlock == createdBlock.
 	self assert: createdBlock asString = '[ :domainObject :slot | 1 + 3 ]'
+]
+
+{ #category : #tests }
+LcsBlockSourceConverterTest >> testCreatingSlotBlockWithInnerSourceWithNoArguments [
+	| existingBlock createdBlock |
+
+	existingBlock := [1].
+	createdBlock := LcsBlockSourceConverter blockWithInnerSourceCode: '  1 + 3  ' replacing: existingBlock.
+	self deny: existingBlock == createdBlock.
+	self assert: createdBlock asString = '[ 1 + 3 ]'
 ]
 
 { #category : #tests }
@@ -71,6 +81,6 @@ LcsBlockSourceConverterTest >> testReturningInnerSourceCodeFromABlock [
 LcsBlockSourceConverterTest >> testReturningInnerSourceCodeFromASlotBlock [
 	| innderSourceCode |
 	
-	innderSourceCode := LcsBlockSourceConverter innerSourceCodeOfSlotBlock: [ :domainObject :slot | slot slotName ].
+	innderSourceCode := LcsBlockSourceConverter innerSourceCodeOf: [ :domainObject :slot | slot slotName ].
 	self assert: innderSourceCode equals: 'slot slotName'.
 ]

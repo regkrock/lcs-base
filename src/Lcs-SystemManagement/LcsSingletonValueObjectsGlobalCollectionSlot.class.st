@@ -23,10 +23,10 @@ LcsSingletonValueObjectsGlobalCollectionSlot >> populateCollection [
 
 { #category : #properties }
 LcsSingletonValueObjectsGlobalCollectionSlot >> valueObjectSuperclass [
-	^ self properties at: 'valueObjectSuperclass' ifAbsent: [ ]
+	^ self propertyAt: 'valueObjectSuperclass' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsSingletonValueObjectsGlobalCollectionSlot >> valueObjectSuperclass: aCodeClass [
-	self properties at: 'valueObjectSuperclass' put: aCodeClass
+	self propertyAt: 'valueObjectSuperclass' put: aCodeClass
 ]

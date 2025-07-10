@@ -53,6 +53,11 @@ LcsBaseSlot >> domainClassDescription [
 
 ]
 
+{ #category : #properties }
+LcsBaseSlot >> errorPropertyNotFound: aSelector [ 
+	LcsSlotPropertyError signal: 'Property ' , aSelector , ' not found.'
+]
+
 { #category : #initialize }
 LcsBaseSlot >> initialize [
 	super initialize.
@@ -91,12 +96,12 @@ LcsBaseSlot >> parent: anObject [
 
 { #category : #properties }
 LcsBaseSlot >> priority [
-	^ self properties at: 'priority' ifAbsent: [ ]
+	^ self propertyAt: 'priority'
 ]
 
 { #category : #properties }
 LcsBaseSlot >> priority: anObject [
-	self properties at: 'priority' put: anObject
+	self propertyAt: 'priority' put: anObject
 ]
 
 { #category : #magritte }
@@ -121,6 +126,23 @@ LcsBaseSlot >> properties [
 { #category : #accessing }
 LcsBaseSlot >> properties: anObject [
 	properties := anObject
+]
+
+{ #category : #properties }
+LcsBaseSlot >> propertyAt: aKey [
+	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
+
+	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
+]
+
+{ #category : #properties }
+LcsBaseSlot >> propertyAt: aKey ifAbsent: aBlock [
+	^ self properties at: aKey ifAbsent: aBlock 
+]
+
+{ #category : #properties }
+LcsBaseSlot >> propertyAt: aKey put: anObject [
+	^ self properties at: aKey put: anObject 
 ]
 
 { #category : #validations }
@@ -154,12 +176,12 @@ LcsBaseSlot >> slotClassDescription [
 
 { #category : #properties }
 LcsBaseSlot >> slotName [
-	^ self properties at: 'slotName' ifAbsent: [ ]
+	^ self propertyAt: 'slotName' ifAbsent: [ ]
 ]
 
 { #category : #properties }
 LcsBaseSlot >> slotName: anObject [
-	self properties at: 'slotName' put: anObject
+	self propertyAt: 'slotName' put: anObject
 ]
 
 { #category : #magritte }
@@ -199,12 +221,12 @@ LcsBaseSlot >> slotTypeClassNames [
 
 { #category : #properties }
 LcsBaseSlot >> slotTypes [
-	^ self properties at: 'slotTypes' ifAbsentPut: [ OrderedCollection new ]
+	^ self propertyAt: 'slotTypes'
 ]
 
 { #category : #properties }
 LcsBaseSlot >> slotTypes: anObject [
-	self properties at: 'slotTypes' put: anObject
+	self propertyAt: 'slotTypes' put: anObject
 ]
 
 { #category : #magritte }
@@ -370,10 +392,10 @@ LcsBaseSlot >> validate: aValue context: aDomainObject [
 
 { #category : #properties }
 LcsBaseSlot >> validationConditions [
-	^ self properties at: 'validationConditions' ifAbsentPut: [ LcsValidationConditions newOn: self ]
+	^ self propertyAt: 'validationConditions'
 ]
 
 { #category : #properties }
 LcsBaseSlot >> validationConditions: anObject [
-	self properties at: 'validationConditions' put: anObject
+	self propertyAt: 'validationConditions' put: anObject
 ]

@@ -10,6 +10,6 @@ LcsUuidSlotTest >> testCreation [
 	self assert: (subject isKindOf: LcsUuidSlot).
 	self assert: subject slotName equals: 'uuid'.
 	self assert: (subject slotTypes includes: Integer).
-	self assert: subject initialValueBlockSourceCode equals: '[ :parentDomainObject | parentDomainObject currentSystem uuidGenerator next asInteger  ]'
+	self assert: subject initialValueBlock asString equals: '[ :parentDomainObject | parentDomainObject currentSystem uuidGenerator next asInteger  ]'
 
 ]
