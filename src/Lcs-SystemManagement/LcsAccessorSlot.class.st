@@ -320,18 +320,20 @@ LcsAccessorSlot >> initialValueBlockDescription [
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 10;
-		accessor: (MAPluggableAccessor
-				read: [ :model | 
-					model 
-						innerSourceCodeOfBlock: #initialValueBlock 
-						in: model
-						parameters: LcsAccessorSlot domainObjectParameters ]
-				write: [ :model :string | 
-					model
-						replaceBlock: #initialValueBlock
-						with: string
-						in: model
-						parameters: LcsAccessorSlot domainObjectParameters ]);
+		accessor: (LcsMAPluggableAccessor 
+						accessors: #(#initialValueBlock )
+						parameters: LcsAccessorSlot domainObjectParameters
+						read: [ :model :accessors :parameters | 
+							LcsBlockSourceConverter 
+								innerSourceCodeOfBlockIn: model 
+								accessors: accessors 
+								parameters: parameters ]
+						write: [ :model :string :accessors :parameters | 
+							LcsBlockSourceConverter 
+								replaceBlockIn: model 
+								withInnerSourceCode: string 
+								accessors: accessors 
+								parameters: parameters]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -366,11 +368,6 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 LcsAccessorSlot >> initializeUnintializedSlotValueIn: aDomainObject [
 	(self currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
 	self initializeSlotValueIn: aDomainObject
-]
-
-{ #category : #'block support' }
-LcsAccessorSlot >> innerSourceCodeOfBlock: aBlockAccessor in: model parameters: anArray [
-	^ LcsBlockSourceConverter innerSourceCodeOf: (model perform: aBlockAccessor asSymbol) parameters: anArray
 ]
 
 { #category : #testing }
@@ -467,24 +464,26 @@ LcsAccessorSlot >> prevalidationTransformBlock: aBlock [
 	self propertyAt: 'prevalidationTransformBlock' put: aBlock
 ]
 
-{ #category : #margritte }
+{ #category : #magritte }
 LcsAccessorSlot >> prevalidationTransformBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Prevalidation Transform Block [ :value :slot | ';
 		priority: 11;
-		accessor: (MAPluggableAccessor 
-						read: [ :model | 
-							model 
-								innerSourceCodeOfBlock: #prevalidationTransformBlock 
-								in: model 
-								parameters: LcsAccessorSlot slotTransformBlockParameters]
-						write: [ :model :string | 
-							model 
-								replaceBlock: #prevalidationTransformBlock 
-								with: string 
-								in: model 
-								parameters: LcsAccessorSlot slotTransformBlockParameters]);
+		accessor: (LcsMAPluggableAccessor 
+						accessors: #(#prevalidationTransformBlock )
+						parameters: LcsAccessorSlot slotTransformBlockParameters
+						read: [ :model :accessors :parameters | 
+							LcsBlockSourceConverter 
+								innerSourceCodeOfBlockIn: model 
+								accessors: accessors 
+								parameters: parameters ]
+						write: [ :model :string :accessors :parameters | 
+							LcsBlockSourceConverter 
+								replaceBlockIn: model 
+								withInnerSourceCode: string 
+								accessors: accessors 
+								parameters: parameters]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -496,14 +495,6 @@ LcsAccessorSlot >> printOn: aStream [
 		nextPutAll: ' (';
 		nextPutAll: self slotName displayString; 
 		nextPutAll: ')'
-]
-
-{ #category : #'block support' }
-LcsAccessorSlot >> replaceBlock: aBlockAccessor with: code in: aSlot parameters: anArray [
-	| currentBlock newBlock |
-	currentBlock := aSlot perform: aBlockAccessor asSymbol.
-	newBlock := LcsBlockSourceConverter blockWithInnerSourceCode: code replacing: currentBlock parameters: anArray.
-	aSlot perform: (aBlockAccessor , ':') asSymbol with: newBlock
 ]
 
 { #category : #properties }

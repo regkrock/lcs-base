@@ -52,7 +52,6 @@ LcsAccessorSlotCreationFormTest >> testModifyingBlock [
 	self slotModelBuilder isKindOf: LcsScaledDecimalSlot.
 	aDescription := self subject initialValueBlockDescription.
 	self assert: aDescription notNil.
-	"aDescription accessor chainAccessor: #(slotModelBuilder initialValueBlock)."
 	self assert: (aDescription read: self subject) asString equals: '0 asScaledDecimal: slotDefinition numberOfDecimals'.
 	aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
 	self assert: self slotModelBuilder initialValueBlock asString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'

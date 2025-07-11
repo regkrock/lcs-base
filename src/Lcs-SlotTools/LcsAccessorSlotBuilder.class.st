@@ -81,6 +81,11 @@ LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 		ifTrue: [ classesModel addClassModelForExisting: self targetModuleClass ]
 ]
 
+{ #category : #property }
+LcsAccessorSlotBuilder >> addValidationCondition: aValidationCondition [
+	self validationConditions addValidationCondition: aValidationCondition
+]
+
 { #category : #'slot model' }
 LcsAccessorSlotBuilder >> addValidationCondition: aBlock description: aDescription [
 	self validationConditions addValidationCondition: aBlock description: aDescription
@@ -108,6 +113,11 @@ LcsAccessorSlotBuilder >> allowNilDescription [
 		autoAccept: true;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : #'magritte - support' }
+LcsAccessorSlotBuilder >> beAllowNil [
+	self allowNil: true
 ]
 
 { #category : #'job steps' }
@@ -227,19 +237,20 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 9;
-		accessor: (MAPluggableAccessor
-				read: [ :model | 
-					model
-						innerSourceCodeOfBlock: #initialValueBlock
-						in: model
-						parameters: LcsAccessorSlot domainObjectParameters ]
-				write: [ :model :string | 
-					model
-						replaceBlock: #initialValueBlock
-						with: string
-						in: model
-						parameters: LcsAccessorSlot domainObjectParameters ]);
-		autoAccept: true;
+		accessor: (LcsMAPluggableAccessor 
+						accessors: #(#initialValueBlock )
+						parameters: LcsAccessorSlot domainObjectParameters
+						read: [ :model :accessors :parameters | 
+							LcsBlockSourceConverter 
+								innerSourceCodeOfBlockIn: model 
+								accessors: accessors 
+								parameters: parameters ]
+						write: [ :model :string :accessors :parameters | 
+							LcsBlockSourceConverter 
+								replaceBlockIn: model 
+								withInnerSourceCode: string 
+								accessors: accessors 
+								parameters: parameters]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -268,6 +279,11 @@ LcsAccessorSlotBuilder >> installCode [
 { #category : #'job steps' }
 LcsAccessorSlotBuilder >> installSlotDefinition [
 	self targetClass installSlotDefinition: self slotDefinitionSelector
+]
+
+{ #category : #testing }
+LcsAccessorSlotBuilder >> isNilAllowed [
+	^ self allowNil == true
 ]
 
 { #category : #querying }
@@ -301,18 +317,20 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 	^ MAStringDescription new
 		label: 'Prevalidation Transform Block [ :value :slot | ';
 		priority: 11;
-		accessor: (MAPluggableAccessor 
-						read: [ :model | 
-							model 
-								innerSourceCodeOfBlock: #prevalidationTransformBlock 
-								in: model 
-								parameters: LcsAccessorSlot slotTransformBlockParameters]
-						write: [ :model :string | 
-							model 
-								replaceBlock: #prevalidationTransformBlock 
-								with: string 
-								in: model 
-								parameters: LcsAccessorSlot slotTransformBlockParameters]);
+		accessor: (LcsMAPluggableAccessor 
+						accessors: #(#prevalidationTransformBlock )
+						parameters: LcsAccessorSlot slotTransformBlockParameters
+						read: [ :model :accessors :parameters | 
+							LcsBlockSourceConverter 
+								innerSourceCodeOfBlockIn: model 
+								accessors: accessors 
+								parameters: parameters ]
+						write: [ :model :string :accessors :parameters | 
+							LcsBlockSourceConverter 
+								replaceBlockIn: model 
+								withInnerSourceCode: string 
+								accessors: accessors 
+								parameters: parameters]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -350,6 +368,16 @@ LcsAccessorSlotBuilder >> propertyAt: aString ifAbsentPut: aBlock [
 LcsAccessorSlotBuilder >> propertyAt: aString put: anObject [ 
 	self properties at: aString put: anObject.
 	self jobSteps propogateProperty: aString valueChangedTo: anObject
+]
+
+{ #category : #validations }
+LcsAccessorSlotBuilder >> removeValidationCondition: aValidationCondition [
+	self validationConditions removeValidationCondition: aValidationCondition
+]
+
+{ #category : #validations }
+LcsAccessorSlotBuilder >> removeValidationConditionWithDescription: aString [
+	self validationConditions removeValidationConditionWithDescription: aString
 ]
 
 { #category : #property }

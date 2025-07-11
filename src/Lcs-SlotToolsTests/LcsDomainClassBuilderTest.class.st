@@ -28,7 +28,9 @@ LcsDomainClassBuilderTest >> testClassCreationString [
 
 { #category : #'as yet unclassified' }
 LcsDomainClassBuilderTest >> testInstallClass [
-	self subject: LcsDomainClassBuilder new.
+	self should: [ self newClassName asClass ] raise: NotFound.
+
+		self subject: LcsDomainClassBuilder new.
 	self subject
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp'.
