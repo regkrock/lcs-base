@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsStateMachineEventTypeSlot >> defaultInitialValueBlock [
-	^ [ #'' ]
+	^ [ :domainObject :slot | #'' ]
 ]
 
 { #category : #initialize }

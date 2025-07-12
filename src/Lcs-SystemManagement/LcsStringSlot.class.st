@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsStringSlot >> defaultInitialValueBlock [
-	^ [ self typeClass new ]
+	^ [ :domainObject :slot | self typeClass new ]
 ]
 
 { #category : #'default ui component' }

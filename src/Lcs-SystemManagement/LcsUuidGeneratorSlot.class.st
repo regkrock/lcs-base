@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsUuidGeneratorSlot >> defaultInitialValueBlock [
-	^ [ self typeClass basicNew initialize ]
+	^ [ :domainObject :slot | self typeClass basicNew initialize ]
 ]
 
 { #category : #defaults }

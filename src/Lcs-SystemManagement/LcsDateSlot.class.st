@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsDateSlot >> defaultInitialValueBlock [ 
-	^ [ self typeClass today ]
+	^ [ :domainObject :slot | self typeClass today ]
 ]
 
 { #category : #'default ui component' }

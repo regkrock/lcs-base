@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsObjectVersionSlot >> defaultInitialValueBlock [
-	^ [ 0 ]
+	^ [ :domainObject :slot | 0 ]
 ]
 
 { #category : #defaults }
