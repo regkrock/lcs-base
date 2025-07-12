@@ -13,12 +13,12 @@ Class {
 }
 
 { #category : #asserting }
-LcsAbstractDomainTest >> assertObject: anActualPropertyValue equals: aExectedPropertyValue [
-	(anActualPropertyValue isBlock and: [ aExectedPropertyValue isBlock ]) 
+LcsAbstractDomainTest >> assertObject: anActualValue equals: aExectedValue [
+	(anActualValue isBlock and: [ aExectedValue isBlock ]) 
 		ifTrue: [ 
-			self assert: anActualPropertyValue asString equals: aExectedPropertyValue asString.
+			self assert: anActualValue asString equals: aExectedValue asString.
 			^self ].
-		self assert: anActualPropertyValue equals: aExectedPropertyValue
+		self assert: anActualValue equals: aExectedValue
 ]
 
 { #category : #'application environment' }
