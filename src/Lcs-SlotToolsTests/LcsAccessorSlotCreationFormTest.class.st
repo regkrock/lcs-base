@@ -45,7 +45,7 @@ LcsAccessorSlotCreationFormTest >> testCreationUsingNewOn [
 ]
 
 { #category : #tests }
-LcsAccessorSlotCreationFormTest >> testModifyingBlock [
+LcsAccessorSlotCreationFormTest >> testModifyingInitialValueBlock [
 	| aDescription |
 	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
 	self subject slotClassChangedTo: #LcsScaledDecimalSlot.
@@ -55,6 +55,19 @@ LcsAccessorSlotCreationFormTest >> testModifyingBlock [
 	self assert: (aDescription read: self subject) asString equals: '0 asScaledDecimal: slotDefinition numberOfDecimals'.
 	aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
 	self assert: self slotModelBuilder initialValueBlock asString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testModifyingPrevalidationTransformBlock [
+	| aDescription |
+	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject slotClassChangedTo: #LcsScaledDecimalSlot.
+	self slotModelBuilder isKindOf: LcsScaledDecimalSlot.
+	aDescription := self subject prevalidationTransformBlockDescription.
+	self assert: aDescription notNil.
+	self assert: (aDescription read: self subject) asString equals: 'value'.
+	aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
+	self assert: self slotModelBuilder prevalidationTransformBlock asString equals: '[ :value :slot | 0 asScaledDecimal: slot numberOfDecimals ]'
 ]
 
 { #category : #tests }
