@@ -24,7 +24,7 @@ Class {
 }
 
 { #category : #configuration }
-LcsAccessorSlot class >> domainObjectParameters [
+LcsAccessorSlot class >> domainObjectSlotParameters [
 	^ #('domainObject' 'slot')
 ]
 
@@ -142,8 +142,8 @@ LcsAccessorSlot >> defaultPrevalidationTransformBlock [
 ]
 
 { #category : #configuration }
-LcsAccessorSlot >> domainObjectParameters [
-	^ self class domainObjectParameters
+LcsAccessorSlot >> domainObjectSlotParameters [
+	^ self class domainObjectSlotParameters
 ]
 
 { #category : #'slot model' }
@@ -322,7 +322,7 @@ LcsAccessorSlot >> initialValueBlockDescription [
 		priority: 10;
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#initialValueBlock )
-						parameters: LcsAccessorSlot domainObjectParameters
+						parameters: LcsAccessorSlot domainObjectSlotParameters
 						read: [ :model :accessors :parameters | 
 							LcsBlockSourceConverter 
 								innerSourceCodeOfBlockIn: model 

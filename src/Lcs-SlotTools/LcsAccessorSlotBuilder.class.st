@@ -239,7 +239,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 		priority: 9;
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#initialValueBlock )
-						parameters: LcsAccessorSlot domainObjectParameters
+						parameters: LcsAccessorSlot domainObjectSlotParameters
 						read: [ :model :accessors :parameters | 
 							LcsBlockSourceConverter 
 								innerSourceCodeOfBlockIn: model 
