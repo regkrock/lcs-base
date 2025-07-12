@@ -72,7 +72,7 @@ LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
 	self assert: builderProperties size equals: templateProperties size.
 	self assert: builderProperties keys asSortedCollection equals: templateProperties keys asSortedCollection.
 	builderProperties keys do: [ :eachKey |
-		self assert: (builderProperties at: eachKey) value equals: (templateProperties at: eachKey) value]
+		self assertObject: (builderProperties at: eachKey) equals: (templateProperties at: eachKey)]
 ]
 
 { #category : #tests }

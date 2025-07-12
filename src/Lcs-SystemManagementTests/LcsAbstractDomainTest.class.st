@@ -12,6 +12,15 @@ Class {
 	#category : #'Lcs-SystemManagementTests-Tests'
 }
 
+{ #category : #asserting }
+LcsAbstractDomainTest >> assertObject: anActualPropertyValue equals: aExectedPropertyValue [
+	(anActualPropertyValue isBlock and: [ aExectedPropertyValue isBlock ]) 
+		ifTrue: [ 
+			self assert: anActualPropertyValue asString equals: aExectedPropertyValue asString.
+			^self ].
+		self assert: anActualPropertyValue equals: aExectedPropertyValue
+]
+
 { #category : #'application environment' }
 LcsAbstractDomainTest >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
