@@ -30,7 +30,7 @@ LcsBlockSourceConverterTest >> testCreatingSlotBlockWithInnerSource [
 	| existingBlock createdBlock |
 
 	existingBlock := [1].
-	createdBlock := LcsBlockSourceConverter blockWithInnerSourceCode: '  1 + 3  ' replacing: existingBlock parameters: LcsAccessorSlot domainObjectSlotParameters.
+	createdBlock := LcsBlockSourceConverter blockWithInnerSourceCode: '  1 + 3  ' replacing: existingBlock arguments: LcsAccessorSlot domainObjectSlotBlockArguments.
 	self deny: existingBlock == createdBlock.
 	self assert: createdBlock asString = '[ :domainObject :slot | 1 + 3 ]'
 ]

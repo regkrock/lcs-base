@@ -9,10 +9,10 @@ Class {
 }
 
 { #category : #'instance creation' }
-LcsMAPluggableAccessor class >> accessors: aCollection parameters: aParametersCollection read: aReadBlock write: aWriteBlock [
+LcsMAPluggableAccessor class >> accessors: aCollection arguments: aBlockArguments read: aReadBlock write: aWriteBlock [
 	^ self new
 		accessors: aCollection;
-		parameters: aParametersCollection;
+		parameters: aBlockArguments;
 		readBlock: aReadBlock;
 		writeBlock: aWriteBlock;
 		yourself

@@ -24,12 +24,12 @@ Class {
 }
 
 { #category : #configuration }
-LcsAccessorSlot class >> domainObjectSlotParameters [
+LcsAccessorSlot class >> domainObjectSlotBlockArguments [
 	^ #('domainObject' 'slot')
 ]
 
 { #category : #configuration }
-LcsAccessorSlot class >> slotTransformBlockParameters [
+LcsAccessorSlot class >> valueSlotBlockArguments [
 	^ #('value' 'slot')
 ]
 
@@ -142,8 +142,8 @@ LcsAccessorSlot >> defaultPrevalidationTransformBlock [
 ]
 
 { #category : #configuration }
-LcsAccessorSlot >> domainObjectSlotParameters [
-	^ self class domainObjectSlotParameters
+LcsAccessorSlot >> domainObjectSlotBlockArguments [
+	^ self class domainObjectSlotBlockArguments
 ]
 
 { #category : #'slot model' }
@@ -192,6 +192,12 @@ LcsAccessorSlot >> gtDomainMetaFor: aView [
 ]
 
 { #category : #'gt views' }
+LcsAccessorSlot >> gtLiveFor: aView [
+	^ (super gtLiveFor: aView)
+		actionUpdateButton
+]
+
+{ #category : #'gt views' }
 LcsAccessorSlot >> gtMagritteFor: aView [
 	^ (super gtMagritteFor: aView)
 		actionUpdateButton
@@ -222,6 +228,9 @@ LcsAccessorSlot >> gtSlotDefinitionAttributes [
 			add: 'slotDefinitionClass' -> self class;
 			add: 'domainClass' -> self newDomainClassName;
 			yourself.
+	collection 
+		add: '' -> '';
+		add: ('------PROPERTIES------' -> '').
 	collection addAll: self properties associations copy.
 	^ collection
 ]
@@ -322,18 +331,18 @@ LcsAccessorSlot >> initialValueBlockDescription [
 		priority: 10;
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#initialValueBlock )
-						parameters: LcsAccessorSlot domainObjectSlotParameters
+						arguments: LcsAccessorSlot domainObjectSlotBlockArguments
 						read: [ :model :accessors :parameters | 
 							LcsBlockSourceConverter 
 								innerSourceCodeOfBlockIn: model 
 								accessors: accessors 
-								parameters: parameters ]
+								arguments: parameters ]
 						write: [ :model :string :accessors :parameters | 
 							LcsBlockSourceConverter 
 								replaceBlockIn: model 
 								withInnerSourceCode: string 
 								accessors: accessors 
-								parameters: parameters]);
+								arguments: parameters]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -472,18 +481,18 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 		priority: 11;
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
-						parameters: LcsAccessorSlot slotTransformBlockParameters
-						read: [ :model :accessors :parameters | 
+						arguments: LcsAccessorSlot valueSlotBlockArguments
+						read: [ :model :accessorsPath :blockArguments | 
 							LcsBlockSourceConverter 
 								innerSourceCodeOfBlockIn: model 
-								accessors: accessors 
-								parameters: parameters ]
-						write: [ :model :string :accessors :parameters | 
+								accessors: accessorsPath 
+								arguments: blockArguments ]
+						write: [ :model :string :accessorsPath :blockArguments | 
 							LcsBlockSourceConverter 
 								replaceBlockIn: model 
 								withInnerSourceCode: string 
-								accessors: accessors 
-								parameters: parameters]);
+								accessors: accessorsPath 
+								arguments: blockArguments]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -551,11 +560,6 @@ LcsAccessorSlot >> slotDoesNotExistMessage [
 		, self domainClass name
 ]
 
-{ #category : #configuration }
-LcsAccessorSlot >> slotTransformBlockParameters [
-	^ self class slotTransformBlockParameters
-]
-
 { #category : #printing }
 LcsAccessorSlot >> slotTypesList [
 	| stream |
@@ -590,6 +594,11 @@ LcsAccessorSlot >> validate: anObject for: aDomainObject [
 { #category : #validating }
 LcsAccessorSlot >> validator [
 	^ LcsConditionsValidator new
+]
+
+{ #category : #configuration }
+LcsAccessorSlot >> valueSlotBlockArguments [
+	^ self class valueSlotBlockArguments
 ]
 
 { #category : #accessing }

@@ -238,19 +238,19 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 9;
 		accessor: (LcsMAPluggableAccessor 
-						accessors: #(#initialValueBlock )
-						parameters: LcsAccessorSlot domainObjectSlotParameters
-						read: [ :model :accessors :parameters | 
+						accessors: #(#initialValueBlock)
+						arguments: LcsAccessorSlot domainObjectSlotBlockArguments
+						read: [ :model :accessorsPath :blockArguments | 
 							LcsBlockSourceConverter 
 								innerSourceCodeOfBlockIn: model 
-								accessors: accessors 
-								parameters: parameters ]
-						write: [ :model :string :accessors :parameters | 
+								accessors: accessorsPath 
+								arguments: blockArguments ]
+						write: [ :model :string :accessorsPath :blockArguments | 
 							LcsBlockSourceConverter 
 								replaceBlockIn: model 
 								withInnerSourceCode: string 
-								accessors: accessors 
-								parameters: parameters]);
+								accessors: accessorsPath 
+								arguments: blockArguments]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -319,18 +319,18 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 		priority: 11;
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
-						parameters: LcsAccessorSlot slotTransformBlockParameters
-						read: [ :model :accessors :parameters | 
+						arguments: LcsAccessorSlot valueSlotBlockArguments
+						read: [ :model :accessorsPath :blockArguments | 
 							LcsBlockSourceConverter 
 								innerSourceCodeOfBlockIn: model 
-								accessors: accessors 
-								parameters: parameters ]
-						write: [ :model :string :accessors :parameters | 
+								accessors: accessorsPath 
+								arguments: blockArguments ]
+						write: [ :model :string :accessorsPath :blockArguments | 
 							LcsBlockSourceConverter 
 								replaceBlockIn: model 
 								withInnerSourceCode: string 
-								accessors: accessors 
-								parameters: parameters]);
+								accessors: accessorsPath 
+								arguments: blockArguments]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -472,7 +472,7 @@ LcsAccessorSlotBuilder >> slotName: anObject [
 LcsAccessorSlotBuilder >> slotNameDescription [
 	<magritteDescription>
 	| existingInstvarNames |
-	existingInstvarNames := self targetClass allInstVarNames.
+	existingInstvarNames := self targetClass ifNil: [ #() ] ifNotNil: [ :class | class allInstVarNames ].
 	^ MAStringDescription new
 		label: 'Slot Name';
 		autoAccept: true;

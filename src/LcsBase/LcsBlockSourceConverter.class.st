@@ -11,22 +11,22 @@ Class {
 
 { #category : #'instance creation' }
 LcsBlockSourceConverter class >> blockWithInnerSourceCode: aString replacing: aBlock [
-	^ self blockWithInnerSourceCode: aString replacing: aBlock parameters: #()
+	^ self blockWithInnerSourceCode: aString replacing: aBlock arguments: #()
 ]
 
 { #category : #'instance creation' }
-LcsBlockSourceConverter class >> blockWithInnerSourceCode: aString replacing: aBlock parameters: anArray [
+LcsBlockSourceConverter class >> blockWithInnerSourceCode: aString replacing: aBlock arguments: anArray [
 	^ self new
 		arguments: anArray;
 		blockFromInnerSourceCode: aString replacing: aBlock
 ]
 
 { #category : #'instance creation' }
-LcsBlockSourceConverter class >> innerSourceCodeBlockIn: aModel accessors: aCollection parameters: anArray model: aBlock [
+LcsBlockSourceConverter class >> innerSourceCodeBlockIn: aModel accessors: anAccessorsCollection arguments: aBlockArguments model: aBlock [
 	^ self new
 		innerSourceCodeBlockIn: nil
-		accessors: aCollection
-		parameters: anArray
+		accessors: anAccessorsCollection
+		arguments: aBlockArguments
 		model: aBlock
 ]
 
@@ -35,23 +35,23 @@ LcsBlockSourceConverter class >> innerSourceCodeOf: aBlock [
 	^ self
 		innerSourceCodeBlockIn: nil
 		accessors: nil
-		parameters: #()
+		arguments: #()
 		model: aBlock
 ]
 
 { #category : #'instance creation' }
-LcsBlockSourceConverter class >> innerSourceCodeOfBlockIn: aModel accessors: aCollection parameters: anArray [
+LcsBlockSourceConverter class >> innerSourceCodeOfBlockIn: aModel accessors: anAccessorsCollection arguments: aBlockArguments [
 	^ self new
-		accessors: aCollection;
-		arguments: anArray;
+		accessors: anAccessorsCollection;
+		arguments: aBlockArguments;
 		innerSourceCodeOfBlockIn: aModel
 ]
 
 { #category : #'instance creation' }
-LcsBlockSourceConverter class >> replaceBlockIn: aModel withInnerSourceCode: aString accessors: anAccessorsCollection parameters: aParametersCollection [
+LcsBlockSourceConverter class >> replaceBlockIn: aModel withInnerSourceCode: aString accessors: anAccessorsCollection arguments: aBlockArguments [
 	self new
 		accessors: anAccessorsCollection;
-		arguments: aParametersCollection;
+		arguments: aBlockArguments;
 		sourceModel: aModel;
 		replaceBlockInnerSourceCode: aString
 ]
@@ -103,9 +103,9 @@ LcsBlockSourceConverter >> initialize [
 ]
 
 { #category : #converting }
-LcsBlockSourceConverter >> innerSourceCodeBlockIn: aModel accessors: aCollection parameters: anArray model: aBlock [
-	self arguments: anArray.
-	self accessors: aCollection.
+LcsBlockSourceConverter >> innerSourceCodeBlockIn: aModel accessors: anAccessorsCollection arguments: aBlockArguments model: aBlock [
+	self arguments: aBlockArguments.
+	self accessors: anAccessorsCollection.
 	self sourceModel: aModel.
 	^ self  innerSourceCodeOf: aBlock
 ]
@@ -132,9 +132,9 @@ LcsBlockSourceConverter >> innerSourceCodeOfBlockIn: aModel [
 ]
 
 { #category : #converting }
-LcsBlockSourceConverter >> innerSourceCodeOfBlockIn: aModel accessors: anAccessors parameters: anArray [
+LcsBlockSourceConverter >> innerSourceCodeOfBlockIn: aModel accessors: anAccessors arguments: aBlockArguments [
 	| block |
-	self arguments: anArray.
+	self arguments: aBlockArguments.
 	self accessors: anAccessors.
 	self sourceModel: aModel.
 	block := anAccessors inject: aModel into: [ :currentModel :eachSelector | currentModel perform: eachSelector asSymbol ].
