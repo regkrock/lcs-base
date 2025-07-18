@@ -163,6 +163,12 @@ LcsAccessorSlotBuilder >> doesTargetClassExist [
 	^ self targetClass isClass
 ]
 
+{ #category : #'magritte - support' }
+LcsAccessorSlotBuilder >> editableLabelAptitude [
+	^ BrGlamorousEditableLabelAptitude new glamorousFormEditorCodeFontAndSize
+		defaultForeground: Color black
+]
+
 { #category : #validation }
 LcsAccessorSlotBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
 	self doesSlotDefinitionMethodExist
@@ -237,7 +243,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 9;
-		accessor: (LcsMAPluggableAccessor 
+		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#initialValueBlock)
 						arguments: LcsAccessorSlot domainObjectSlotBlockArguments
 						read: [ :model :accessorsPath :blockArguments | 
@@ -291,6 +297,34 @@ LcsAccessorSlotBuilder >> jobStep: anInteger [
 	^ self jobSteps jobStep: anInteger
 ]
 
+{ #category : #'magritte - support' }
+LcsAccessorSlotBuilder >> moveToNextItemIn: aForm [
+	^ BlShortcutWithAction new
+		name: 'Move to next form item';
+		description: 'Moves to the next form item. If none is found, we cycle back to the first.';
+		combination: (BlKeyCombination tab or: BlKeyCombination enter);
+		action: [ :anEvent | 
+			BlFocusFinder new
+				direction: BlFocusSearchDirectionForward new;
+				root: aForm;
+				referenceElement: anEvent currentTarget;
+				nextFocusDo: #requestFocus ifNone: [  ] ]
+]
+
+{ #category : #'magritte - support' }
+LcsAccessorSlotBuilder >> moveToPreviousItemIn: aForm [
+	^ BlShortcutWithAction new
+		name: 'Move to previous form item';
+		description: 'Moves to the previous form item. If none is found, we cycle back to the last.';
+		combination: BlKeyCombination shiftTab;
+		action: [ :anEvent | 
+			BlFocusFinder new
+				direction: BlFocusSearchDirectionBackward new;
+				root: aForm;
+				referenceElement: anEvent currentTarget;
+				nextFocusDo: #requestFocus ifNone: [  ] ]
+]
+
 { #category : #populate }
 LcsAccessorSlotBuilder >> populateFrom: aSlotClassName [
 	self properties removeAll.
@@ -317,7 +351,7 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 	^ MAStringDescription new
 		label: 'Prevalidation Transform Block [ :value :slot | ';
 		priority: 11;
-		accessor: (LcsMAPluggableAccessor 
+		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
 						arguments: LcsAccessorSlot valueSlotBlockArguments
 						read: [ :model :accessorsPath :blockArguments | 
@@ -506,9 +540,14 @@ LcsAccessorSlotBuilder >> slotTypesDescription [
 	^ MAToManyRelationDescription new
 		label: 'Slot Types';
 		priority: 30;
-		accessor: (MAPluggableAccessor read: [ :aModel | self slotTypes ] write: [ :aModel :aValue | self slotTypes: aValue ]);
-		classes: {String};
-		autoAccept: true;
+		accessor: (LcsMAPluggableAccessor 
+						accessors: #(#slotTypes)
+						read: [ :rawValue | rawValue collect: [ :each | each name] ] 
+						write: [ :aModel :aValue :setter | 
+							aModel perform: setter asSymbol with: (
+								aValue collect: [ :each | each asClass ] ) ]);
+		classes: { String};
+		"autoAccept: true;"
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocListStencil: (self
 				taggerStencilWithCompletion: GtClassesCompletionStrategy new
@@ -536,10 +575,12 @@ LcsAccessorSlotBuilder >> slotTypesDescription [
 						anEvent target phlow
 							spawnObject: anEvent target text asString asClass gtReferences ]} ];
 		addCondition: [ :aValue | aValue asSet size = aValue size ]
-			labelled: 'All class names must be unique';
+			labelled: 'Duplicate classes are not allowed';
 		addCondition: [ :aValue | 
 				aValue
-					allSatisfy: [ :eachClassName | (Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ]
+					allSatisfy: [ :eachClassName | 
+						self traceCr: eachClassName isClass asString , ' - ' , eachClassName asString.
+						eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
 			labelled: 'Unknown Class(s)';
 		addCondition: [ :aValue | 
 				| givenTraitsOrNils |
@@ -568,28 +609,9 @@ LcsAccessorSlotBuilder >> taggerStencilWithCompletion: aCompletionStrategy andCo
 						| aLabel |
 						aLabel := BrEditor new fitContent
 								text: (aDescription displayStringFor: aTag name);
-								aptitude: (BrGlamorousEditableLabelAptitude new glamorousFormEditorCodeFontAndSize
-										defaultForeground: Color black);
-								addShortcut: (BlShortcutWithAction new
-										name: 'Move to previous form item';
-										description: 'Moves to the previous form item. If none is found, we cycle back to the last.';
-										combination: BlKeyCombination shiftTab;
-										action: [ :anEvent | 
-											BlFocusFinder new
-												direction: BlFocusSearchDirectionBackward new;
-												root: aForm;
-												referenceElement: anEvent currentTarget;
-												nextFocusDo: #requestFocus ifNone: [  ] ]);
-								addShortcut: (BlShortcutWithAction new
-										name: 'Move to next form item';
-										description: 'Moves to the next form item. If none is found, we cycle back to the first.';
-										combination: (BlKeyCombination tab or: BlKeyCombination enter);
-										action: [ :anEvent | 
-											BlFocusFinder new
-												direction: BlFocusSearchDirectionForward new;
-												root: aForm;
-												referenceElement: anEvent currentTarget;
-												nextFocusDo: #requestFocus ifNone: [  ] ]).
+								aptitude: self editableLabelAptitude;
+								addShortcut: (self moveToPreviousItemIn: aForm);
+								addShortcut: (self moveToNextItemIn: aForm).
 
 						aDescription blocShortcuts
 							ifNotNil: [ :aBlockReturningCollection | 

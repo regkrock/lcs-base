@@ -13,12 +13,10 @@ LcsUmlModel class >> new [
 
 { #category : #model }
 LcsUmlModel >> addClassModel: aClassModel [
-	^ (self classModelForClassname: aClassModel modelClassname asString)
-		ifNil: [ 
-			Transcript tab.
-			self traceCr: 'Adding class ' , aClassModel printString.
-			self add: aClassModel]
-		ifNotNil: [ :model | model ]
+	| model |
+	model := self classModelForClassname: aClassModel modelClassname asString.
+	model := model ifNil: [ self add: aClassModel ].
+	^ model
 ]
 
 { #category : #model }

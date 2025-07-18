@@ -48,6 +48,13 @@ LcsBlockSourceConverter class >> innerSourceCodeOfBlockIn: aModel accessors: anA
 ]
 
 { #category : #'instance creation' }
+LcsBlockSourceConverter class >> innerSourceCodeOfBlockIn: aModel arguments: aBlockArguments [
+	^ self new
+		arguments: aBlockArguments;
+		innerSourceCodeOfBlockIn: aModel
+]
+
+{ #category : #'instance creation' }
 LcsBlockSourceConverter class >> replaceBlockIn: aModel withInnerSourceCode: aString accessors: anAccessorsCollection arguments: aBlockArguments [
 	self new
 		accessors: anAccessorsCollection;

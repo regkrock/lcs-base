@@ -1,0 +1,434 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-14T19:45:22.986689-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T10:23:27.789231-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "gpP3/E32DQCbKDRVA8XgbA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=BrMenuWithScripterExamples}} - examples of menus\n{{gtClass:name=BrMenuExamples}}\n\n{{gtClass:name=GtMagritteViewModel}}\nThis is the top level of Magritte based forms. The first code snippet builds the model. The second does an inspect with causes it to be populated."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T10:18:08.074483-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T15:12:07.217154-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "x+iwLlr2DQCeeRMFA8XgbA=="
+				},
+				"code" : "GtMagritteViewModel forObject: LcsCodeSlot new."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T10:22:39.910201-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T14:21:38.7048-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "6crkPlr2DQChpULXA8XgbA=="
+				},
+				"code" : "(GtMagritteViewModel forObject: LcsAccessorSlot new) inspect"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T07:01:16.04893-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T13:15:49.322015-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DhJ7jGv2DQCOQYD6A8XgbA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**GLOSSARY**\n\n**Stencil**  (See {{gtClass:BrStencil}} comment for more details) \nA stencil is a template used to draw or paint identical letters, symbols, shapes, or patterns every time it is used. The design produced by such a template is also called a stencil.\n\n**Aptitude** (See comment of {{gtClass:name=BrAptitude}})\nI define how widgets look. In addition to the BrViewModel I listen to UI events and update decoration (non meaningful) elements of the widgets.\r\rLooks install themselves on Brick graphical widgets, and are able to modify the Bloc element tree of the widget.  As such, they are very powerful, but should not be used as a hammer for all situations, in particular:\r\r- They should never affect the API of the widget.\r- They should not be used to add or remove content in the widget.  Element composition is a better solution for this."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T10:20:03.342655-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:33:53.912985-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "172PNVr2DQCfQaaVA8XgbA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**CREATING MAGRITTE FORM**\n\nA vew model {{gtClass:name=GtMagritteViewModel}} is the model from which magritte widgets are displayed.\nIt has the *object* which is the model. It has a *mememntoBlock* and a *cache* .\n\nThe following code snippet will create a view model ."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:33:57.761266-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T14:32:52.239263-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "qraPrm32DQCbyDuIA8XgbA=="
+				},
+				"code" : "LcsAccessorSlot new asGtMagritteViewModel.\r\rLcsCodeSlot  new asGtMagritteViewModel.\r"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:46:40.984159-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:49:43.145092-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nJEN3G32DQCb1HLBA8XgbA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The following code creates a memento object that the view model uses. It is run in an asynchoronous process. The memento original and changed values for each magritte dscription are stored in the is where the {{gtMethod:GtMagritteMemento>>#commit}} method exists"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:47:31.814116-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:47:42.868809-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "bioV3232DQCelFfeA8XgbA=="
+				},
+				"code" : "GtMagritteMemento model: LcsAccessorSlot new"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T10:23:09.932618-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T13:43:16.753825-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "J6emXG72DQChoET1A8XgbA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The reifiying of the **memento** includes creatioin of:\n1) magritte container : {{gtMethod:Object>>#descriptionContainer}}  - default is {{gtClass:name=MAPriorityContainer}} \n\t\tnote: pragma is 'magritteContainer'\n2) the container is then populated with instances of the methods with a 'magritteDescription' pragma\n\t\t\t\t{{gtMethod:MAPragmaBuilder>>#build:cache:}} - build priority container\n \t\t\t\t{{gtMethod:MAPragmaBuilder>>#buildDescriptions:}} - add all descriptions excluding nil.\n3) Populating the memento's cache\n\t\t\t{{gtMethod:GtMagritteMemento>>#reset}} - clears cache and populates it. \t\n\t\t\t{{gtMethod:GtMagritteMemento>>#pull}} - populates the cache.\n\t\t\t"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:33:45.691009-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-16T09:33:47.232646-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "M4jXrW32DQCbrxiBA8XgbA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "This is how the memento button is created and displayed  {{gtMethod:name=GtMagritteViewModel>>#gtLiveFor:}}\n\nThe view model class then executes: {{gtMethod:name=GtMagritteViewModel>>#initializeForm:forMemento:}} \n\n1) Stencil is created from: {{gtClass:name=GtMagritteFormStencilBuilder}} - this is the wrapper (form?)\n\t- send asElement to the builder to cause the building of the form!\n2) Build the form using : {{gtClass:name=GtMagritteElementBuilder}} \n\t- see {{gtMethod:name=GtMagritteElementBuilder>>#build}}\n\t- it then calls {{gtMethod:GtMagritteElementBuilder>>#objectDescription}} \n\t\t- this returns a collection of magritte descriptions is stored in a  {{gtClass:name=MAPriorityContainer}}\n\t\t- this gets the collection magritte descriptions from the instance of momento.\n\t\n\t{{gtClass:name=MAStringDescription}}\n\t- the defualt stencil #blockStencil is  {{gtClass:GtMagritteStringEditorElementStencilBuilder}}\n\t\t- the resulting input element is an instance of {{gtClass:GtMagritteOneLineEditorElement}}\n\t\t- optional shortcuts are then added to the instance.\n\t\t\t\tshortcusts are: \n\t\t\t\t(1) escape - discrd changes; \n\t\t\t\t(2) tab OR Return/Enter for next field;\n\t\t\t\t(3) shift-tab - go to previous field;\n\t\t\t\t(4) optional user defined shortcuts\n\t\t- blockCompletion \n\t\t\t===== The following is only built if the field is editable ====\n\t\t- build string container: {{gtClass:GtMagritteBuilderUtility}}\n\t\t\t\t- this is the class that actuall creates the container including fonts, border, colours, etc.\n\t\t\t\t- contaner has the following children:\n\t\t\t\t\t- a change element: ( aBRFrame) with at: {{gtClass:GtMagritteChangeIndicatorId}}\n\t\t\t\t\t- a field element: (a GtMargritteOneLineEditorELement) at: (\n\t\t\t\t\t\t\t\t\t\t\t\tGtMagritteFieldElementId new description: aDescription)\n\t\t\t\t\t- a error element: (a BRframe) at: {{gtClass:GtMagritteChangeErrorIndicatorId}} \n\t\t\t\t\t- an edittor element: (a BrEditor) at: #issues \n\t\t- build label container\n\t\t- then add the label container and the string container to "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T14:47:07.210254-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-07-15T15:09:16.236003-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Xh6U7132DQCI6tcxA8XgbA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**..ToManyRelationDescription**\ndefault stencil: {{gtClass:GtMagritteListElementStencilBuilder}} \n- then #build the stencil\nexectur of the build: {{gtClass:BrStencilValuableExecutor}}\n\n*For SlotTypes the Stencil is defined in {{gtMethod:LcsBaseSlot>>#slotTypesDescription}}*\n\n\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-07-14T19:45:14.18728-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-07-15T10:21:11.46342-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "UI Magritte Notes"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "16cff6fc-4df6-0d00-9b27-429403c5e06c"
+	}
+}

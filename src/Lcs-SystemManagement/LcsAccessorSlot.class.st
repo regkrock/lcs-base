@@ -61,7 +61,7 @@ LcsAccessorSlot >> allowNil: anObject [
 
 { #category : #magritte }
 LcsAccessorSlot >> allowNilDescription [
-	<magritteDescription>
+	"<magritteDescription>"
 	^ MABooleanDescription new
 		label: 'Allow Nil';
 		priority: 10;
@@ -325,24 +325,23 @@ LcsAccessorSlot >> initialValueBlock: aBlock [
 
 { #category : #magritte }
 LcsAccessorSlot >> initialValueBlockDescription [
-	<magritteDescription>
+	"<magritteDescription>"
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 10;
-		accessor: (LcsMAPluggableAccessor 
+		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#initialValueBlock )
 						arguments: LcsAccessorSlot domainObjectSlotBlockArguments
-						read: [ :model :accessors :parameters | 
+						read: [ :aBlock :accessors :blockArguments | 
 							LcsBlockSourceConverter 
-								innerSourceCodeOfBlockIn: model 
-								accessors: accessors 
-								arguments: parameters ]
-						write: [ :model :string :accessors :parameters | 
+								innerSourceCodeOfBlockIn: aBlock 
+								arguments: blockArguments ]
+						write: [ :model :string :aSetter :blockArguments | 
 							LcsBlockSourceConverter 
 								replaceBlockIn: model 
 								withInnerSourceCode: string 
-								accessors: accessors 
-								arguments: parameters]);
+								setter: aSetter 
+								arguments: blockArguments]);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -475,11 +474,11 @@ LcsAccessorSlot >> prevalidationTransformBlock: aBlock [
 
 { #category : #magritte }
 LcsAccessorSlot >> prevalidationTransformBlockDescription [
-	<magritteDescription>
+	"<magritteDescription>"
 	^ MAStringDescription new
 		label: 'Prevalidation Transform Block [ :value :slot | ';
 		priority: 11;
-		accessor: (LcsMAPluggableAccessor 
+		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
 						arguments: LcsAccessorSlot valueSlotBlockArguments
 						read: [ :model :accessorsPath :blockArguments | 
@@ -518,7 +517,7 @@ LcsAccessorSlot >> required: anObject [
 
 { #category : #magritte }
 LcsAccessorSlot >> requiredDescription [
-	<magritteDescription>
+	"<magritteDescription>"
 	^ MABooleanDescription new
 		label: 'Required';
 		priority: 10;

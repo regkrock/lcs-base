@@ -2,17 +2,16 @@ Class {
 	#name : #LcsMAPluggableAccessor,
 	#superclass : #MAPluggableAccessor,
 	#instVars : [
-		'accessors',
-		'parameters'
+		'blockArguments',
+		'chainAccessor'
 	],
 	#category : #'LcsBase-Accessor'
 }
 
 { #category : #'instance creation' }
-LcsMAPluggableAccessor class >> accessors: aCollection arguments: aBlockArguments read: aReadBlock write: aWriteBlock [
+LcsMAPluggableAccessor class >> accessors: aCollection read: aReadBlock write: aWriteBlock [
 	^ self new
 		accessors: aCollection;
-		parameters: aBlockArguments;
 		readBlock: aReadBlock;
 		writeBlock: aWriteBlock;
 		yourself
@@ -20,37 +19,39 @@ LcsMAPluggableAccessor class >> accessors: aCollection arguments: aBlockArgument
 
 { #category : #accessing }
 LcsMAPluggableAccessor >> accessors [
-	^ accessors
+	^ self chainAccessor accessors
 ]
 
 { #category : #accessing }
 LcsMAPluggableAccessor >> accessors: anObject [
-	accessors := anObject
+	self chainAccessor accessors: anObject asOrderedCollection
+]
+
+{ #category : #accessing }
+LcsMAPluggableAccessor >> chainAccessor [
+	^ chainAccessor
+]
+
+{ #category : #accessing }
+LcsMAPluggableAccessor >> chainAccessor: anObject [
+	chainAccessor := anObject
 ]
 
 { #category : #initialize }
 LcsMAPluggableAccessor >> initialize [ 
 	super initialize.
-	self accessors: OrderedCollection new.
-	self parameters: OrderedCollection new
-]
-
-{ #category : #accessing }
-LcsMAPluggableAccessor >> parameters [
-	^ parameters
-]
-
-{ #category : #accessing }
-LcsMAPluggableAccessor >> parameters: anObject [
-	parameters := anObject
+	self chainAccessor: (LcsMAChainAccesor on: self)
 ]
 
 { #category : #model }
 LcsMAPluggableAccessor >> read: aModel [
-	^ self readBlock value: aModel value: self accessors value: self parameters
+	^ self readBlock value: (self chainAccessor valueIn: aModel)
 ]
 
 { #category : #model }
 LcsMAPluggableAccessor >> write: anObject to: aModel [
-	self writeBlock value: aModel value: anObject value: self accessors value: self parameters
+	self writeBlock 
+		value: (self chainAccessor targetModelFromSourceModel: aModel) 
+		value: self chainAccessor setter
+		value: anObject 
 ]
