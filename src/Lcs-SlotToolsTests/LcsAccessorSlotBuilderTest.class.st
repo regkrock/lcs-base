@@ -155,6 +155,17 @@ LcsAccessorSlotBuilderTest >> testSlotTypes [
 ]
 
 { #category : #tests }
+LcsAccessorSlotBuilderTest >> testSlotTypesDescription [
+	| description |
+	self subject: LcsAccessorSlotBuilder new.
+	self subject slotTypes: { String }.
+	description := self subject slotTypesDescription.
+	self assert: (description read: self subject) equals: #(#String).
+	description write: #(#String #Integer) to: self subject.
+	self assert: self subject slotTypes equals: { String. Integer}.
+]
+
+{ #category : #tests }
 LcsAccessorSlotBuilderTest >> testValidationConditions [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject validationConditions class == LcsValidationConditions.

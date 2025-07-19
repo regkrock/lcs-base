@@ -245,18 +245,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 		priority: 9;
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#initialValueBlock)
-						arguments: LcsAccessorSlot domainObjectSlotBlockArguments
-						read: [ :model :accessorsPath :blockArguments | 
-							LcsBlockSourceConverter 
-								innerSourceCodeOfBlockIn: model 
-								accessors: accessorsPath 
-								arguments: blockArguments ]
-						write: [ :model :string :accessorsPath :blockArguments | 
-							LcsBlockSourceConverter 
-								replaceBlockIn: model 
-								withInnerSourceCode: string 
-								accessors: accessorsPath 
-								arguments: blockArguments]);
+						arguments: LcsAccessorSlot domainObjectSlotBlockArguments);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -353,18 +342,7 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 		priority: 11;
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
-						arguments: LcsAccessorSlot valueSlotBlockArguments
-						read: [ :model :accessorsPath :blockArguments | 
-							LcsBlockSourceConverter 
-								innerSourceCodeOfBlockIn: model 
-								accessors: accessorsPath 
-								arguments: blockArguments ]
-						write: [ :model :string :accessorsPath :blockArguments | 
-							LcsBlockSourceConverter 
-								replaceBlockIn: model 
-								withInnerSourceCode: string 
-								accessors: accessorsPath 
-								arguments: blockArguments]);
+						arguments: LcsAccessorSlot valueSlotBlockArguments);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -542,12 +520,10 @@ LcsAccessorSlotBuilder >> slotTypesDescription [
 		priority: 30;
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#slotTypes)
-						read: [ :rawValue | rawValue collect: [ :each | each name] ] 
-						write: [ :aModel :aValue :setter | 
-							aModel perform: setter asSymbol with: (
-								aValue collect: [ :each | each asClass ] ) ]);
+						read: [ :classes | classes collect: [ :each | each name] ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
 		classes: { String};
-		"autoAccept: true;"
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocListStencil: (self
 				taggerStencilWithCompletion: GtClassesCompletionStrategy new

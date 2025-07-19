@@ -7,8 +7,5 @@ Class {
 { #category : #initialize }
 LcsCodeSlot >> initialize [
 	super initialize.
-	self slotName: 'code'.
-	self addSlotType: Integer.
-	self addSlotType: ScaledDecimal.
-	self addSlotType: Object.
+	self slotName: 'code'
 ]

@@ -285,17 +285,9 @@ LcsBaseSlot >> slotTypesDescription [
 		priority: 30;
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#slotTypes)
-						read: [ :aModel :accessors | 
-							aModel traceCr: thisContext method selector.
-							aModel traceCr: 'slotTypes: ' ,aModel slotTypes displayString.
-							aModel slotTypes collect: [ :each | each name] ] 
-						write: [ :aModel :aValue :accessors | | collection |
-							aModel traceCr: thisContext method selector.
-							aModel traceCr: 'value: ' ,aValue displayString.
-							collection := aValue collect: [ :each | each asClass ].
-							aModel slotTypes: collection.
-							aModel traceCr: 'slotTypes: ' ,aValue displayString.
- ]);
+						read: [ :classes | classes collect: [ :each | each name] ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
 		classes: {String. Symbol};
 		"autoAccept: true;"
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];

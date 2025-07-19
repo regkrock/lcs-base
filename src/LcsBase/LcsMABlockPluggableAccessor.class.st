@@ -5,6 +5,14 @@ Class {
 }
 
 { #category : #'instance creation' }
+LcsMABlockPluggableAccessor class >> accessors: aCollection arguments: aBlockArguments [
+	^ self new
+		accessors: aCollection;
+		blockArguments: aBlockArguments;
+		yourself
+]
+
+{ #category : #'instance creation' }
 LcsMABlockPluggableAccessor class >> accessors: aCollection arguments: aBlockArguments read: aReadBlock write: aWriteBlock [
 	^ self new
 		accessors: aCollection;
@@ -24,18 +32,39 @@ LcsMABlockPluggableAccessor >> blockArguments: anObject [
 	blockArguments := anObject
 ]
 
+{ #category : #defaults }
+LcsMABlockPluggableAccessor >> defaultReadBlock [
+	^ [ :block :blockArguments | 
+			LcsBlockSourceConverter 
+				innerSourceCodeOf: block 
+				arguments: blockArguments ]
+]
+
+{ #category : #defaults }
+LcsMABlockPluggableAccessor >> defaultWriteBlock [
+	^ [ :blockArguments  :string :existingBlock | 
+			LcsBlockSourceConverter 
+				blockWithArguments: blockArguments  
+				innerSourceCode: string 
+				toReplace: existingBlock ]
+]
+
 { #category : #initialize }
 LcsMABlockPluggableAccessor >> initialize [ 
 	super initialize.
-	self blockArguments: OrderedCollection new
+	self blockArguments: OrderedCollection new.
+	self readBlock: self defaultReadBlock.
+	self writeBlock: self defaultWriteBlock.
 ]
 
 { #category : #model }
 LcsMABlockPluggableAccessor >> read: aModel [
-	^ self readBlock value: aModel value: self accessors value: self blockArguments
+	^ self readBlock value: (self chainAccessor valueIn: aModel) value: self blockArguments
 ]
 
 { #category : #model }
-LcsMABlockPluggableAccessor >> write: anObject to: aModel [
-	self writeBlock value: aModel value: anObject value: self accessors value: self blockArguments
+LcsMABlockPluggableAccessor >> write: aString to: aModel [
+	(self chainAccessor targetModelFromSourceModel: aModel) perform: (
+		self chainAccessor setter) with: (
+			self writeBlock value: self blockArguments value: aString value: (self chainAccessor valueIn: aModel))
 ]

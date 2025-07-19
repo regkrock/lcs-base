@@ -2,7 +2,6 @@ Class {
 	#name : #LcsMAPluggableAccessor,
 	#superclass : #MAPluggableAccessor,
 	#instVars : [
-		'blockArguments',
 		'chainAccessor'
 	],
 	#category : #'LcsBase-Accessor'
@@ -40,7 +39,8 @@ LcsMAPluggableAccessor >> chainAccessor: anObject [
 { #category : #initialize }
 LcsMAPluggableAccessor >> initialize [ 
 	super initialize.
-	self chainAccessor: (LcsMAChainAccesor on: self)
+	self chainAccessor: (LcsMAChainAccesor on: self).
+	properties := Dictionary new
 ]
 
 { #category : #model }

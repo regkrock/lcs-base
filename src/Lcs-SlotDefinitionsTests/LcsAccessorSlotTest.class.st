@@ -149,7 +149,21 @@ LcsAccessorSlotTest >> testSlotTypes [
 	self assert: self subject slotTypes class == OrderedCollection.
 	self subject slotTypes: Array new.
 	self assert: self subject slotTypes class == Array.
+	
+	self subject slotTypes: { String }.
+	self assert: self subject slotTypes = { String }.
 
+]
+
+{ #category : #testing }
+LcsAccessorSlotTest >> testSlotTypesDescription [
+	| description |
+	self subject: LcsAccessorSlot new.
+	self subject slotTypes: { String }.
+	description := self subject slotTypesDescription.
+	self assert: (description read: self subject) equals: #(#String).
+	description write: #(#String #Integer) to: self subject.
+	self assert: self subject slotTypes equals: { String. Integer}.
 ]
 
 { #category : #testing }

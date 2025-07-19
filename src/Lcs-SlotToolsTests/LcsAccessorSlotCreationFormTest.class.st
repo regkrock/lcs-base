@@ -17,7 +17,7 @@ LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuild
 	self slotModelBuilder isKindOf: LcsCodeSlot.
 	aDescription := self subject slotTypesDescription.
 	self assert: aDescription notNil.
-	self assert: (aDescription read: self subject) asString equals: '0 asScaledDecimal: slot numberOfDecimals'.
+	self assert: (aDescription read: self subject) asString equals: 'an OrderedCollection(#String)'.
 	"aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
 	self assert: self slotModelBuilder initialValueBlock asString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'"
 ]
@@ -168,4 +168,16 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationWithOnlySlotNameChanged [
 
 	slotInstanceVariableBuilder := self slotModelBuilder jobStep: 1.
 	self assert: slotInstanceVariableBuilder slotName equals: 'foo'.
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testSlotTypesDescription [
+	| description |
+	self subject: LcsAccessorSlotCreationForm new.
+	self subject targetClass: LxxPerson.
+	self subject slotClassChangedTo: LcsStringSlot name.
+	description := self subject slotTypesDescription.
+	self assert: (description read: self subject) equals: (OrderedCollection with: #String).
+	description write: #(#String #Integer) to: self subject.
+	self assert: self subject slotModelBuilder slotTypes equals: { String. Integer}.
 ]

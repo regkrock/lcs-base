@@ -331,17 +331,7 @@ LcsAccessorSlot >> initialValueBlockDescription [
 		priority: 10;
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#initialValueBlock )
-						arguments: LcsAccessorSlot domainObjectSlotBlockArguments
-						read: [ :aBlock :accessors :blockArguments | 
-							LcsBlockSourceConverter 
-								innerSourceCodeOfBlockIn: aBlock 
-								arguments: blockArguments ]
-						write: [ :model :string :aSetter :blockArguments | 
-							LcsBlockSourceConverter 
-								replaceBlockIn: model 
-								withInnerSourceCode: string 
-								setter: aSetter 
-								arguments: blockArguments]);
+						arguments: LcsAccessorSlot domainObjectSlotBlockArguments);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -480,18 +470,7 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 		priority: 11;
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
-						arguments: LcsAccessorSlot valueSlotBlockArguments
-						read: [ :model :accessorsPath :blockArguments | 
-							LcsBlockSourceConverter 
-								innerSourceCodeOfBlockIn: model 
-								accessors: accessorsPath 
-								arguments: blockArguments ]
-						write: [ :model :string :accessorsPath :blockArguments | 
-							LcsBlockSourceConverter 
-								replaceBlockIn: model 
-								withInnerSourceCode: string 
-								accessors: accessorsPath 
-								arguments: blockArguments]);
+						arguments: LcsAccessorSlot valueSlotBlockArguments);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -517,7 +496,7 @@ LcsAccessorSlot >> required: anObject [
 
 { #category : #magritte }
 LcsAccessorSlot >> requiredDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Required';
 		priority: 10;
