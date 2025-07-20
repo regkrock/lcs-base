@@ -61,7 +61,7 @@ LcsAccessorSlot >> allowNil: anObject [
 
 { #category : #magritte }
 LcsAccessorSlot >> allowNilDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Allow Nil';
 		priority: 10;
@@ -325,7 +325,7 @@ LcsAccessorSlot >> initialValueBlock: aBlock [
 
 { #category : #magritte }
 LcsAccessorSlot >> initialValueBlockDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 10;
@@ -464,7 +464,7 @@ LcsAccessorSlot >> prevalidationTransformBlock: aBlock [
 
 { #category : #magritte }
 LcsAccessorSlot >> prevalidationTransformBlockDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Prevalidation Transform Block [ :value :slot | ';
 		priority: 11;

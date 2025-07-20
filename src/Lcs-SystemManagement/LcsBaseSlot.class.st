@@ -55,7 +55,7 @@ LcsBaseSlot >> domainClass: aDomainClass [
 
 { #category : #magritte }
 LcsBaseSlot >> domainClassDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Domain Class';
 		priority: 3;
@@ -135,7 +135,7 @@ LcsBaseSlot >> priority: anObject [
 
 { #category : #magritte }
 LcsBaseSlot >> priorityDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	^ MANumberDescription new
 		label: 'Priority';
 		priority: 10;
@@ -191,7 +191,7 @@ LcsBaseSlot >> slotClass [
 
 { #category : #magritte }
 LcsBaseSlot >> slotClassDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Slot Definition Class';
 		priority: 2;
@@ -234,7 +234,7 @@ LcsBaseSlot >> slotName: anObject [
 
 { #category : #magritte }
 LcsBaseSlot >> slotNameDescription [
-	"<magritteDescription>"
+	<magritteDescription>
 	| existingInstvarNames |
 	existingInstvarNames := self domainClass ifNil: [ #() ] ifNotNil: [ :c | c allInstVarNames ].
 	^ GtMATextDescription new
@@ -306,160 +306,6 @@ LcsBaseSlot >> slotTypesDescription [
 		addCondition: [ :aValue | aValue asSet size = aValue size ]
 			labelled: 'Duplicate classes are not allowed';
 		beRequired
-]
-
-{ #category : #magritte }
-LcsBaseSlot >> slotTypesDescription_2 [
-	"<magritteDescription>"
-	^ MAToManyRelationDescription new
-		label: 'Slot Types';
-		priority: 30;
-		accessor: (MAPluggableAccessor read: [ :aModel | self slotTypes ] write: [ :aModel :aValue | self slotTypes: aValue ]);
-		classes: {String};
-		autoAccept: true;
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil);
-		blocShortcuts: [ 
-			{
-				BlShortcutWithAction new
-					name: 'Browse class';
-					description: 'Browses the class indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
-					name: 'Inspect class';
-					description: 'Inspects the class indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
-					name: 'Browse class references';
-					description: 'Browses references to the class indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]
-			} 		];
-		addCondition: [ :aValue | aValue asSet size = aValue size ]
-			labelled: 'Duplicate classes are not allowed';
-		addCondition: [ :aValue | aValue allSatisfy: [ :eachClassName | 
-					self traceCr: eachClassName isClass asString , ' - ' , eachClassName asString.
-					eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
-			labelled: 'Unknown Class(s)';
-			beRequired
-		"addCondition: [ :aValue | 
-				| givenTraitsOrNils |
-				givenTraitsOrNils := self classesOrNilsFor: aValue.
-				givenTraitsOrNils allSatisfy: [ :each | each isNil or: [ each isClass ] ] ]
-			labelled: 'Only classes are allowed';
-		beRequired"
-"	^ MAToManyRelationDescription new
-		label: 'Slot Types';
-		priority: 6;
-		accessor: #slotTypes;
-		classes: { Object };
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil);
-		blocShortcuts: [ {BlShortcutWithAction new
-					name: 'Browse class';
-					description: 'Browses the class indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
-					name: 'Inspect class';
-					description: 'Inspects the class indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
-					name: 'Browse class references';
-					description: 'Browses references to the class indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]} ];
-		beReadOnly"
-
-]
-
-{ #category : #magritte }
-LcsBaseSlot >> slotTypesDescription_old [
-	"<magritteDescription>"
-	^ MAToManyRelationDescription new
-		label: 'Slot Types';
-		priority: 30;
-		accessor: (MAPluggableAccessor read: [ :aModel | self slotTypes ] write: [ :aModel :aValue | self slotTypes: aValue ]);
-		classes: {String};
-		autoAccept: true;
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		blocListStencil: (self
-				taggerStencilWithCompletion: GtClassesCompletionStrategy new
-				andContextMenuBlock: [ :aClass :anElement :aMemento | 
-					aMemento overallStatus valueOrNil isChanged
-						ifTrue: [ GtCoderContextMenuContent new editorElement: anElement ]
-						ifFalse: [ self createClassContextMenuContentFor: aClass editor: anElement ] ]);
-		blocShortcuts: [ {BlShortcutWithAction new
-					name: 'Browse class';
-					description: 'Browses the class indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
-					name: 'Inspect class';
-					description: 'Inspects the class indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
-					name: 'Browse class references';
-					description: 'Browses references to the class indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]} ];
-		addCondition: [ :aValue | aValue asSet size = aValue size ]
-			labelled: 'Duplicate classes are not allowed';
-		addCondition: [ :aValue | aValue allSatisfy: [ :eachClassName | 
-					self traceCr: eachClassName isClass asString , ' - ' , eachClassName asString.
-					eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
-			labelled: 'Unknown Class(s)';
-			beRequired
-		"addCondition: [ :aValue | 
-				| givenTraitsOrNils |
-				givenTraitsOrNils := self classesOrNilsFor: aValue.
-				givenTraitsOrNils allSatisfy: [ :each | each isNil or: [ each isClass ] ] ]
-			labelled: 'Only classes are allowed';
-		beRequired"
-"	^ MAToManyRelationDescription new
-		label: 'Slot Types';
-		priority: 6;
-		accessor: #slotTypes;
-		classes: { Object };
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		blocListStencil: (self taggerStencilWithCompletion: nil andContextMenuBlock: nil);
-		blocShortcuts: [ {BlShortcutWithAction new
-					name: 'Browse class';
-					description: 'Browses the class indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
-					name: 'Inspect class';
-					description: 'Inspects the class indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
-					name: 'Browse class references';
-					description: 'Browses references to the class indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]} ];
-		beReadOnly"
-
 ]
 
 { #category : #'slot model' }
