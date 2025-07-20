@@ -30,7 +30,12 @@ LcsMAChainAccesor >> accessors [
 
 { #category : #accessing }
 LcsMAChainAccesor >> accessors: anObject [
-	accessors := anObject
+	accessors := anObject asOrderedCollection
+]
+
+{ #category : #'chain accessor' }
+LcsMAChainAccesor >> addSelectorToStartOfAccessChain: aSelector [
+	self accessors addFirst: aSelector
 ]
 
 { #category : #private }

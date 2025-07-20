@@ -27,10 +27,7 @@ LcsScaledDecimalSlotBuilder >> numberOfDecimalsDescription [
 		beInteger;
 		priority: 11;
 		"Using pluggable adaptor as it works with the delegation. Regular accessor does not"
-		accessor: (
-			MAPluggableAccessor
-				read: [ :aModel | self numberOfDecimals ]
-				write: [ :aModel :aValue | self numberOfDecimals: aValue ]);
+		accessor: #numberOfDecimals;
 		min: 0;
 		max: 8;
 		yourself

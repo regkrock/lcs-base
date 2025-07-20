@@ -37,9 +37,7 @@ LcsScaledDecimalSlot >> numberOfDecimalsDescription [
 		label: 'Number Of Decimals';
 		beInteger;
 		priority: 11;
-		accessor: (MAPluggableAccessor
-				read: [ :aModel | self numberOfDecimals ]
-				write: [ :aModel :aValue | self numberOfDecimals: aValue ]);
+		accessor: #numberOfDecimals;
 		min: 0;
 		max: 8;
 		yourself

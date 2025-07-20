@@ -107,10 +107,7 @@ LcsAccessorSlotBuilder >> allowNilDescription [
 	^ MABooleanDescription new
 		label: 'Allow Nil';
 		priority: 8;
-		accessor: (MAPluggableAccessor
-				read: [ :aModel | self allowNil ]
-				write: [ :aModel :aValue | self allowNil: aValue ]);
-		autoAccept: true;
+		accessor: #'allowNil';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -408,10 +405,7 @@ LcsAccessorSlotBuilder >> requiredDescription [
 	^ MABooleanDescription new
 		label: 'Required';
 		priority: 9;
-		accessor: (MAPluggableAccessor
-				read: [ :aModel | self required ]
-				write: [ :aModel :aValue | self required: aValue ]);
-		autoAccept: true;
+		accessor: #required;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -487,11 +481,8 @@ LcsAccessorSlotBuilder >> slotNameDescription [
 	existingInstvarNames := self targetClass ifNil: [ #() ] ifNotNil: [ :class | class allInstVarNames ].
 	^ MAStringDescription new
 		label: 'Slot Name';
-		autoAccept: true;
 		priority: 1;
-		accessor: (MAPluggableAccessor
-				read: [ :aModel | self slotName ]
-				write: [ :aModel :aValue | self slotName: aValue ]);
+		accessor: #slotName;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
 				"+ (BrGlamorousWithExplicitContextMenuAptitude
 						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];

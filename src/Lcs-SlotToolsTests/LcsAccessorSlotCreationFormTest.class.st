@@ -23,6 +23,17 @@ LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuild
 ]
 
 { #category : #tests }
+LcsAccessorSlotCreationFormTest >> testChainAccessor [
+	| chainAccessor |
+	self subject: LcsAccessorSlotCreationForm new.
+	"chainAccessor := self subject  chainAccessorFor: #('foo')."
+	chainAccessor := MAChainAccessor accessors: #(#'slotModelBuilder' #'foo' #'bar').
+	self assert: chainAccessor accessor selector equals: #'slotModelBuilder'.
+	self assert: chainAccessor next accessor selector equals: #'foo'.
+	self assert: chainAccessor next next selector equals: #'bar'
+]
+
+{ #category : #tests }
 LcsAccessorSlotCreationFormTest >> testCreation [
 
 	self subject: LcsAccessorSlotCreationForm new.
@@ -81,6 +92,18 @@ LcsAccessorSlotCreationFormTest >> testModifyingPrevalidationTransformBlock [
 	self assert: (aDescription read: self subject) asString equals: 'value'.
 	aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
 	self assert: self slotModelBuilder prevalidationTransformBlock asString equals: '[ :value :slot | 0 asScaledDecimal: slot numberOfDecimals ]'
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testRequiredDescription [
+	| description |
+	self subject: LcsAccessorSlotCreationForm new.
+	self subject targetClass: LxxPerson.
+	self subject slotClassChangedTo: LcsStringSlot name.
+	description := self subject requiredDescription.
+	self assert: (description read: self subject) equals: false.
+	description write: true to: self subject.
+	self assert: self subject slotModelBuilder required equals: true.
 ]
 
 { #category : #tests }

@@ -26,6 +26,11 @@ LcsMAPluggableAccessor >> accessors: anObject [
 	self chainAccessor accessors: anObject asOrderedCollection
 ]
 
+{ #category : #'chain accessor' }
+LcsMAPluggableAccessor >> addSelectorToStartOfAccessChain: aSelector [
+	self chainAccessor addSelectorToStartOfAccessChain: aSelector 
+]
+
 { #category : #accessing }
 LcsMAPluggableAccessor >> chainAccessor [
 	^ chainAccessor

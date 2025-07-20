@@ -84,11 +84,8 @@ LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotNameDescription [
 	existingInstvarNames := self targetClass allInstVarNames."
 	^ MAStringDescription new
 		label: 'Collection Slot Name';
-		autoAccept: true;
 		priority: 1;
-		accessor: (MAPluggableAccessor
-				read: [ :aModel | self collectionSlotName ]
-				write: [ :aModel :aValue | self collectionSlotName: aValue ]);
+		accessor: #collectionSlotName;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
 				"+ (BrGlamorousWithExplicitContextMenuAptitude
 						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];

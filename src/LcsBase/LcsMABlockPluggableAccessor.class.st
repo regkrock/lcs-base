@@ -62,6 +62,11 @@ LcsMABlockPluggableAccessor >> read: aModel [
 	^ self readBlock value: (self chainAccessor valueIn: aModel) value: self blockArguments
 ]
 
+{ #category : #printing }
+LcsMABlockPluggableAccessor >> storeBlock: aBlock on: aStream [ 
+	aStream nextPutAll: aBlock asString greaseString allButFirst allButLast
+]
+
 { #category : #model }
 LcsMABlockPluggableAccessor >> write: aString to: aModel [
 	(self chainAccessor targetModelFromSourceModel: aModel) perform: (

@@ -289,7 +289,6 @@ LcsBaseSlot >> slotTypesDescription [
 						write: [ :aModel :setter :collection | 
 							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
 		classes: {String. Symbol};
-		"autoAccept: true;"
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocListStencil: (
 			self
