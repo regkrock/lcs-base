@@ -30,6 +30,21 @@ LcsScaledDecimalSlot >> numberOfDecimals: anObject [
 	self propertyAt: 'numberOfDecimals' put: anObject
 ]
 
+{ #category : #'magritte\t' }
+LcsScaledDecimalSlot >> numberOfDecimalsDescription [
+	<magritteDescription>
+	^ MANumberDescription new
+		label: 'Number Of Decimals';
+		beInteger;
+		priority: 11;
+		accessor: (MAPluggableAccessor
+				read: [ :aModel | self numberOfDecimals ]
+				write: [ :aModel :aValue | self numberOfDecimals: aValue ]);
+		min: 0;
+		max: 8;
+		yourself
+]
+
 { #category : #initialize }
 LcsScaledDecimalSlot >> prevalidationTransformBlock [
 	^ [ :value :slot | 

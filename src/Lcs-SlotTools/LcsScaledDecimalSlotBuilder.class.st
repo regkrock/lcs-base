@@ -21,10 +21,14 @@ LcsScaledDecimalSlotBuilder >> numberOfDecimals: anInteger [
 
 { #category : #magritte }
 LcsScaledDecimalSlotBuilder >> numberOfDecimalsDescription [
+	<magritteDescription>
 	^ MANumberDescription new
 		label: 'Number Of Decimals';
 		beInteger;
-		accessor: (MAPluggableAccessor
+		priority: 11;
+		"Using pluggable adaptor as it works with the delegation. Regular accessor does not"
+		accessor: (
+			MAPluggableAccessor
 				read: [ :aModel | self numberOfDecimals ]
 				write: [ :aModel :aValue | self numberOfDecimals: aValue ]);
 		min: 0;
