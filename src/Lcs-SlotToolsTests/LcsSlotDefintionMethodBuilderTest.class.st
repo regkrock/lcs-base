@@ -143,7 +143,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidatio
 	self assert: self subject validationConditions collectionSize = 1.
 	validationCondition := (self subject validationConditions validationConditionWithDescription: 'Always fails').
 	self assert: validationCondition conditionBlock printString equals: '[ false ]'.
-	self assert: validationCondition description  equals: 'Always fails'.
+	self assert: validationCondition validationDescription  equals: 'Always fails'.
 	
 	methodSource := self subject slotDefinitionSource.
 	self assert: methodSource equals: 'fooSlotDefinition

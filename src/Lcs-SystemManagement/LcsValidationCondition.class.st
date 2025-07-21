@@ -4,8 +4,8 @@ Class {
 	#traits : 'LtParentTrait',
 	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
-		'description',
-		'conditionBlock'
+		'conditionBlock',
+		'validationDescription'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -20,35 +20,103 @@ LcsValidationCondition >> conditionBlock: anObject [
 	conditionBlock := anObject
 ]
 
-{ #category : #accessing }
-LcsValidationCondition >> description [
-	^ description
-]
-
-{ #category : #accessing }
-LcsValidationCondition >> description: anObject [
-	description := anObject
+{ #category : #magritte }
+LcsValidationCondition >> conditionBlockDescription [
+	^ MAStringDescription new
+		label: 'Condition';
+		priority: 10;
+		accessor: (LcsMABlockPluggableAccessor 
+						accessors: #(#conditionBlock )
+						arguments: LcsAccessorSlot domainObjectSlotBlockArguments);
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : #validation }
 LcsValidationCondition >> evaluateWith: aValidator [
 	(self conditionBlock value: aValidator domainObject) ifFalse: [
-		aValidator addErrorDescription: self description in: self ]
+		aValidator addErrorDescription: self validationDescriptionDescription in: self ]
+]
+
+{ #category : #'as yet unclassified' }
+LcsValidationCondition >> initialize [
+	super initialize.
+	self conditionBlock: [ :value | true ]
 ]
 
 { #category : #'slot model' }
 LcsValidationCondition >> slotDefinition [
-	^ self parent slotDefinition
+	^ self parent ifNotNil: [:p | p slotDefinition ]
 ]
 
 { #category : #validation }
 LcsValidationCondition >> validate: aValue [
-	(self conditionBlock value: aValue) ifFalse: [
-		LcsSlotValidationError signalInvalidValue: aValue forCondition: self inSlot: self slotDefinition ]
+	| result |
+	result := [ self conditionBlock cull: aValue ]
+					on: Error 
+					do: [ :s | 
+						LcsSlotValidationExecutionError 
+							signalInvalidValue: aValue 
+							forCondition: self 
+							inSlot: self slotDefinition
+							context: nil
+							message: s message ].
+	result isBoolean ifFalse: [ 
+		LcsSlotValidationNonBooleanResultError
+			signalBooleanNotReturnedFor: aValue
+			condition: self
+			inSlot: self slotDefinition ].
+	
+	result == true ifTrue: [ 
+				LcsSlotValidationError
+					signalInvalidValue: aValue
+					forCondition: self
+					inSlot: self slotDefinition ].
+	^ result
 ]
 
 { #category : #validation }
 LcsValidationCondition >> validate: aValue context: aDomainObject [
-	(self conditionBlock cull: aValue cull: aDomainObject) ifTrue: [
-		LcsSlotValidationError signalInvalidValue: aValue forCondition: self inSlot: self slotDefinition context: aDomainObject ]
+	| result |
+	result := [ self conditionBlock cull: aValue cull: aDomainObject ]
+					on: Error 
+					do: [ :s | 
+						LcsSlotValidationExecutionError 
+							signalInvalidValue: aValue 
+							forCondition: self 
+							inSlot: self slotDefinition
+							context: aDomainObject
+							message: s message asString ].
+	result isBoolean ifFalse: [
+		LcsSlotValidationNonBooleanResultError 
+			signalBooleanNotReturnedFor: aValue
+			condition: self
+			inSlot: self slotDefinition ].
+			
+	result == true ifTrue: [ 
+		LcsSlotValidationError
+			signalInvalidValue: aValue
+			forCondition: self
+			inSlot: self slotDefinition ].
+	^ result
+]
+
+{ #category : #accessing }
+LcsValidationCondition >> validationDescription [
+	^ validationDescription
+]
+
+{ #category : #accessing }
+LcsValidationCondition >> validationDescription: anObject [
+	validationDescription := anObject
+]
+
+{ #category : #magritte }
+LcsValidationCondition >> validationDescriptionDescription [
+	^ MAStringDescription new
+		label: 'Description';
+		priority: 10;
+		accessor: #validationDescription;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]

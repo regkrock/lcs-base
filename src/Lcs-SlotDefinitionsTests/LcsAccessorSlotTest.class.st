@@ -8,7 +8,7 @@ Class {
 LcsAccessorSlotTest >> testAddingValidationCondition [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
-							description: 'Test';
+							validationDescription: 'Test';
 							conditionBlock: [ :value | ];
 							yourself.
 	self subject: LcsAccessorSlot new.
@@ -112,7 +112,7 @@ LcsAccessorSlotTest >> testPrevalidationTransformBlockDescription [
 LcsAccessorSlotTest >> testRemovingValidationCondition [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
-							description: 'Test';
+							validationDescription: 'Test';
 							conditionBlock: [ :value | ];
 							yourself.
 
@@ -182,7 +182,7 @@ LcsAccessorSlotTest >> testValidationWithNoValidationConditions [
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
 	self subject: LcsAccessorSlot new.
-	self subject addValidationCondition: [:value | value isInteger ] description: 'Must be an Ingeter'.
+	self subject addValidationCondition: [:value | value isInteger not ] description: 'Must be an Ingeter'.
 	self should: [ self subject validate: 'abc' ] raise: LcsSlotValidationError
 
 ]
@@ -190,6 +190,6 @@ LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithOnePassingValidationConditions [
 	self subject: LcsAccessorSlot new.
-	self subject addValidationCondition: [:value | value isInteger ] description: 'Must be an Ingeter'.
+	self subject addValidationCondition: [:value | value isInteger not ] description: 'Must be an Ingeter'.
 	self shouldnt: [ self subject validate: 1 ] raise: LcsSlotValidationError
 ]

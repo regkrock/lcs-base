@@ -114,7 +114,7 @@ LcsSlotDefintionMethodBuilder >> addValidationConditionsKeyword: aPropertyName a
 			addKeyword: 'addValidationCondition'
 			argument: each conditionBlock printString
 			keyword: 'description'
-			argument: each description printString  ]
+			argument: each validationDescription printString  ]
 ]
 
 { #category : #accessing }
@@ -374,9 +374,9 @@ LcsSlotDefintionMethodBuilder >> validateValidationConditions: aValidationCondit
 	aValidationConditions
 		do: [ :eachValidationCondition | 
 			| actualValidationCondition |
-			actualValidationCondition := actualValidationConditions at: eachValidationCondition description ifAbsent: [ nil ].
+			actualValidationCondition := actualValidationConditions at: eachValidationCondition validationDescription ifAbsent: [ nil ].
 			self assert: actualValidationCondition notNil.
-			self assert: eachValidationCondition description equals: actualValidationCondition description.
+			self assert: eachValidationCondition validationDescription equals: actualValidationCondition validationDescription.
 			self assert: eachValidationCondition conditionBlock asString equals: actualValidationCondition conditionBlock asString]
 ]
 

@@ -11,7 +11,7 @@ Class {
 LcsAccessorSlotBuilderTest >> testAddingValidationCondition [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
-							description: 'Test';
+							validationDescription: 'Test';
 							conditionBlock: [ :value | ];
 							yourself.
 	self subject: LcsAccessorSlotBuilder new.
@@ -117,7 +117,7 @@ LcsAccessorSlotBuilderTest >> testPrevalidationTransformBlockDescription [
 LcsAccessorSlotBuilderTest >> testRemovingValidationCondition [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
-							description: 'Test';
+							validationDescription: 'Test';
 							conditionBlock: [ :value | ];
 							yourself.
 

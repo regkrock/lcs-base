@@ -16,14 +16,14 @@ LcsValidationConditions >> = aValidationCollections [
 { #category : #conditions }
 LcsValidationConditions >> addValidationCondition: aValidationCondition [
 	aValidationCondition parent: self.
-	self at: aValidationCondition description put: aValidationCondition
+	self at: aValidationCondition validationDescription put: aValidationCondition
 ]
 
 { #category : #conditions }
 LcsValidationConditions >> addValidationCondition: aBlock description: aString [
 	self addValidationCondition: (
 		LcsValidationCondition new
-			description: aString;
+			validationDescription: aString;
 			conditionBlock: aBlock;
 			yourself)
 ]
@@ -41,7 +41,7 @@ LcsValidationConditions >> initialize [
 
 { #category : #conditions }
 LcsValidationConditions >> removeValidationCondition: aCondition [
-	self removeValidationConditionWithDescription: aCondition description
+	self removeValidationConditionWithDescription: aCondition validationDescription
 ]
 
 { #category : #conditions }
