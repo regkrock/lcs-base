@@ -669,6 +669,14 @@ LcsBaseDomainObject >> slotVarNamed: aSlotName put: onObject [
 ]
 
 { #category : #validation }
+LcsBaseDomainObject >> validateSlots [
+	<TODO: 'This needs more work'>
+	| validator |
+	validator :=  LcsConditionsValidatorVisitor newOn: self.
+	validator validate: self
+]
+
+{ #category : #validation }
 LcsBaseDomainObject >> verifySlotModelInitialized [
 	self class verifySlotModelInitialized
 ]

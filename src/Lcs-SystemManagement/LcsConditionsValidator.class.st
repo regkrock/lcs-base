@@ -40,6 +40,23 @@ LcsConditionsValidator >> errorDescriptions: anObject [
 	errorDescriptions := anObject
 ]
 
+{ #category : #testing }
+LcsConditionsValidator >> hasError: aDescription [
+	| result |
+	result := self errorDescriptions detect: [ :each | each = aDescription ] ifNone: [ ].
+	^ result notNil
+]
+
+{ #category : #testing }
+LcsConditionsValidator >> hasErrors [
+	^ self errorDescriptions notEmpty
+]
+
+{ #category : #testing }
+LcsConditionsValidator >> hasNoErrors [
+	^ self errorDescriptions isEmpty
+]
+
 { #category : #api }
 LcsConditionsValidator >> initialize [ 
 	super initialize.
@@ -63,7 +80,7 @@ LcsConditionsValidator >> slotDefinition: aSlotDefinition [
 
 { #category : #api }
 LcsConditionsValidator >> validate: aValue [ 
-	self slotDefinition validationConditions validate: aValue
+	self slotDefinition validate: aValue withValidator: self
 ]
 
 { #category : #api }

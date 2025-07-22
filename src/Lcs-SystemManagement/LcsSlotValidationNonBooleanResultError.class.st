@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsSlotValidationNonBooleanResultError,
 	#superclass : #LcsSlotValidationBaseError,
-	#category : #'Lcs-SystemManagement-Tests'
+	#category : #'Lcs-SystemManagement-Error'
 }
 
 { #category : #'instance creation' }

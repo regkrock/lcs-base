@@ -285,6 +285,11 @@ LcsSlotModel >> superClassSlotModel [
 	^ self domainClass superclass slotModel
 ]
 
+{ #category : #validation }
+LcsSlotModel >> validate: anObject visitor: aValidationVisitor [
+	self slotDefinitions do: [ :each |  each validate: anObject visitor: aValidationVisitor ]
+]
+
 { #category : #accessing }
 LcsSlotModel >> virtualSlotDefinitions [
 	^ virtualSlotDefinitions

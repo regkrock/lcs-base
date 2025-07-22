@@ -51,8 +51,8 @@ LcsValidationCondition >> slotDefinition [
 
 { #category : #validation }
 LcsValidationCondition >> validate: aValue [
-	| result |
-	result := [ self conditionBlock cull: aValue ]
+	| isError |
+	isError := [ self conditionBlock cull: aValue ]
 					on: Error 
 					do: [ :s | 
 						LcsSlotValidationExecutionError 
@@ -61,24 +61,24 @@ LcsValidationCondition >> validate: aValue [
 							inSlot: self slotDefinition
 							context: nil
 							message: s message ].
-	result isBoolean ifFalse: [ 
+	isError isBoolean ifFalse: [ 
 		LcsSlotValidationNonBooleanResultError
 			signalBooleanNotReturnedFor: aValue
 			condition: self
 			inSlot: self slotDefinition ].
 	
-	result == true ifTrue: [ 
+	isError == true ifTrue: [ 
 				LcsSlotValidationError
 					signalInvalidValue: aValue
 					forCondition: self
 					inSlot: self slotDefinition ].
-	^ result
+	^ isError
 ]
 
 { #category : #validation }
 LcsValidationCondition >> validate: aValue context: aDomainObject [
-	| result |
-	result := [ self conditionBlock cull: aValue cull: aDomainObject ]
+	| isError |
+	isError := [ self conditionBlock cull: aValue cull: aDomainObject ]
 					on: Error 
 					do: [ :s | 
 						LcsSlotValidationExecutionError 
@@ -87,18 +87,18 @@ LcsValidationCondition >> validate: aValue context: aDomainObject [
 							inSlot: self slotDefinition
 							context: aDomainObject
 							message: s message asString ].
-	result isBoolean ifFalse: [
+	isError isBoolean ifFalse: [
 		LcsSlotValidationNonBooleanResultError 
 			signalBooleanNotReturnedFor: aValue
 			condition: self
 			inSlot: self slotDefinition ].
 			
-	result == true ifTrue: [ 
+	isError == true ifTrue: [ 
 		LcsSlotValidationError
 			signalInvalidValue: aValue
 			forCondition: self
 			inSlot: self slotDefinition ].
-	^ result
+	^ isError
 ]
 
 { #category : #accessing }

@@ -6,7 +6,7 @@ Class {
 		'validationCondition',
 		'value'
 	],
-	#category : #'Lcs-SystemManagement-Tests'
+	#category : #'Lcs-SystemManagement-Error'
 }
 
 { #category : #'gt view' }

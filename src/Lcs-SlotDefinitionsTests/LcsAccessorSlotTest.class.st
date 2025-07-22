@@ -181,9 +181,12 @@ LcsAccessorSlotTest >> testValidationWithNoValidationConditions [
 
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
+	| validator |
 	self subject: LcsAccessorSlot new.
 	self subject addValidationCondition: [:value | value isInteger not ] description: 'Must be an Ingeter'.
-	self should: [ self subject validate: 'abc' ] raise: LcsSlotValidationError
+	validator := self subject validate: 'abc'.
+	self assert: validator hasErrors.
+	self assert: (validator hasError: 'Must be an Ingeter')
 
 ]
 

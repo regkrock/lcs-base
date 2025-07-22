@@ -57,13 +57,22 @@ LcsValidationConditions >> slotDefinition [
 { #category : #conditions }
 LcsValidationConditions >> validate: aValue [
 	self collection do: [ :eachCondition | eachCondition validate: aValue ]
-	
 ]
 
 { #category : #conditions }
 LcsValidationConditions >> validate: aValue context: aDomainObject [
 	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject ]
 	
+]
+
+{ #category : #conditions }
+LcsValidationConditions >> validate: aValue withValidator: aValidator [
+	self collection do: [ :eachCondition | 
+		[ eachCondition validate: aValue ]
+			on: LcsSlotValidationError
+			do: [ :s | 
+				aValidator errorDescriptions add: eachCondition validationDescription.
+				s return: nil ] ]
 ]
 
 { #category : #querying }

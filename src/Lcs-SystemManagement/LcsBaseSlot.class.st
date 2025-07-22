@@ -425,14 +425,25 @@ LcsBaseSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBl
 
 { #category : #validations }
 LcsBaseSlot >> validate: aValue [
-	(LcsConditionsValidator newOn: self)
-		validate: aValue
+	^ (LcsConditionsValidator newOn: self)
+		validate: aValue;
+		yourself
 ]
 
 { #category : #validations }
 LcsBaseSlot >> validate: aValue context: aDomainObject [
 	(LcsConditionsValidator newOn: self)
 		validate: aValue context: aDomainObject
+]
+
+{ #category : #validation }
+LcsBaseSlot >> validate: anObject visitor: aValidationVisitor [
+	self validationConditions do: [ :eachCondition | ]
+]
+
+{ #category : #validations }
+LcsBaseSlot >> validate: aValue withValidator: aValidator [
+	self validationConditions validate: aValue withValidator: aValidator
 ]
 
 { #category : #properties }
