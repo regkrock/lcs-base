@@ -4,6 +4,13 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionReferenceSlot >> audit: anObject withAuditor: anAuditor [
+	super audit: anObject withAuditor: anAuditor.
+	(self targetCollection includes: anObject) ifFalse: [
+		anAuditor addErrorDescription: ('''<1s>'' slot("<2s>") in <3s> is not in its global collection' expandMacrosWith: self slotName with: self class printString with: anObject class name) ]
+]
+
 { #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> collectionSlot [
 	^ self collectionSlotModule slotDefinitionNamed: self collectionSlotName

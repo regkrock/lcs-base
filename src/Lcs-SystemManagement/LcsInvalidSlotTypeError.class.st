@@ -127,6 +127,13 @@ LcsInvalidSlotTypeError >> gtUpdateSlotModelFor: anAction [
 ]
 
 { #category : #signal }
+LcsInvalidSlotTypeError >> invalidAuditMessage [
+	^ self slotName printString , '  slot("'
+		, self slotDefinition class name , '") in '
+		, self slotDefinition domainClass name , ' contains invalid: ' , self object printString
+]
+
+{ #category : #signal }
 LcsInvalidSlotTypeError >> invalidSlotTypeMessage [
 	^ 'Attempt to update ' , self slotName printString , '  slot("'
 		, self slotDefinition class name , '") in '

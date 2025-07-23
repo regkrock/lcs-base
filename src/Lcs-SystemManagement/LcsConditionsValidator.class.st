@@ -16,6 +16,16 @@ LcsConditionsValidator class >> newOn: aSlotDefinition [
 		yourself
 ]
 
+{ #category : #errors }
+LcsConditionsValidator >> addError: aMessage [
+	self errorDescriptions add: aMessage
+]
+
+{ #category : #errors }
+LcsConditionsValidator >> addErrorDescription: aMessage [
+	self errorDescriptions add: aMessage
+]
+
 { #category : #validation }
 LcsConditionsValidator >> addErrorDescription: aDescription in: aValidationCondition [
 ]
@@ -81,10 +91,4 @@ LcsConditionsValidator >> slotDefinition: aSlotDefinition [
 { #category : #api }
 LcsConditionsValidator >> validate: aValue [ 
 	self slotDefinition validate: aValue withValidator: self
-]
-
-{ #category : #api }
-LcsConditionsValidator >> validte: aValue [ 
-	self slotDefinition validationConditions do: [ :each |
-		each validate: aValue ]
 ]

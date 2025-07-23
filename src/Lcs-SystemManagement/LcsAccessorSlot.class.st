@@ -35,7 +35,7 @@ LcsAccessorSlot class >> valueSlotBlockArguments [
 
 { #category : #'slot model' }
 LcsAccessorSlot >> _slotVarPut: anObject in: aDomainObject [
-	self verifyType: anObject for: aDomainObject.
+	self verifySlotType: anObject for: aDomainObject.
 	self currentUnitOfWork
 		setValueIn: aDomainObject
 		slot: self
@@ -564,7 +564,7 @@ LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
 
 { #category : #'slot model' }
 LcsAccessorSlot >> validate: anObject for: aDomainObject [
-	self verifyType: anObject for: aDomainObject.
+	self verifySlotType: anObject for: aDomainObject.
 	(self isNilAllowed and: [self isNullObject: anObject]) ifTrue: [ ^ self ].
 	self validationConditions validate: anObject context: aDomainObject
 ]
@@ -590,12 +590,20 @@ LcsAccessorSlot >> variableUpdatePolicy: anObject [
 ]
 
 { #category : #'slot model' }
+LcsAccessorSlot >> verifySlotType: anObject for: aDomainObject [
+	[ self verifyType: anObject for: aDomainObject ]
+		on: LcsInvalidSlotTypeError
+		do: [ :signal |
+			self currentUnitOfWork removeAddOf: anObject.
+			signal signal ]
+]
+
+{ #category : #'slot model' }
 LcsAccessorSlot >> verifyType: anObject for: aDomainObject [
 	(self isNilAllowed and: [ anObject isNil ]) ifTrue: [ ^ true ].
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
 		ifNone: [ 
-			self currentUnitOfWork removeAddOf: anObject.
 			LcsInvalidSlotTypeError
 				signalInvalidType: anObject
 				forSlot: self

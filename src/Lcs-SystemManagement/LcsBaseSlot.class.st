@@ -25,6 +25,23 @@ LcsBaseSlot >> addValidationCondition: aBlock description: aString [
 	self validationConditions addValidationCondition: aBlock description: aString
 ]
 
+{ #category : #validations }
+LcsBaseSlot >> audit: anObject withAuditor: anAuditor [
+	| value |
+	value := self currentSlotVarIn: anObject.
+	[ self verifyType: value for: anObject ]
+		on: LcsInvalidSlotTypeError
+		do: [ :signal |
+			anAuditor addErrorDescription: signal invalidAuditMessage.
+			signal return: nil ].
+	self validationConditions do: [ :eachCondition | 
+		[ eachCondition cull: value cull: anObject ]
+			on: LcsInvalidSlotTypeError
+			do: [ :signal |
+				anAuditor addErrorDescription: signal invalidAuditMessage.
+				signal return: nil ] ]
+]
+
 { #category : #configuration }
 LcsBaseSlot >> clearSlotTypes [
 	self slotTypes removeAll.
@@ -436,8 +453,9 @@ LcsBaseSlot >> validate: aValue context: aDomainObject [
 		validate: aValue context: aDomainObject
 ]
 
-{ #category : #validation }
+{ #category : #validations }
 LcsBaseSlot >> validate: anObject visitor: aValidationVisitor [
+	<TODO: 'this needs work or should be removed'>
 	self validationConditions do: [ :eachCondition | ]
 ]
 

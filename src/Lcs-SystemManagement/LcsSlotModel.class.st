@@ -99,6 +99,11 @@ LcsSlotModel >> allSlotDefinitions [
 	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
+{ #category : #validation }
+LcsSlotModel >> audit: anObject withAuditor: anAuditor [
+	self slotDefinitions do: [ :each |  each audit: anObject withAuditor: anAuditor ]
+]
+
 { #category : #accessing }
 LcsSlotModel >> domainClass [
 	^ domainClass

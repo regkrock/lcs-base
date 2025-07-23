@@ -447,6 +447,15 @@ LcsBaseDomainObject >> applicationEnvironment [
 	^ self parent applicationEnvironment
 ]
 
+{ #category : #validation }
+LcsBaseDomainObject >> auditSlots [
+	<TODO: 'This needs more work'>
+	| auditor |
+	auditor :=  LcsConditionsValidator newOn: self.
+	self slotModel audit: self withAuditor: auditor.
+	^ auditor
+]
+
 { #category : #'slot model' }
 LcsBaseDomainObject >> changeRecordForSlot: aSlotName [
 	^ (self slotDefinitionNamed: aSlotName) changedSlotRecordFor: self
@@ -666,14 +675,6 @@ LcsBaseDomainObject >> slotVarNamed: aSlotName [
 { #category : #'slot access' }
 LcsBaseDomainObject >> slotVarNamed: aSlotName put: onObject [
 	(self slotDefinitionNamed: aSlotName) slotVarPut: onObject in: self
-]
-
-{ #category : #validation }
-LcsBaseDomainObject >> validateSlots [
-	<TODO: 'This needs more work'>
-	| validator |
-	validator :=  LcsConditionsValidatorVisitor newOn: self.
-	validator validate: self
 ]
 
 { #category : #validation }
