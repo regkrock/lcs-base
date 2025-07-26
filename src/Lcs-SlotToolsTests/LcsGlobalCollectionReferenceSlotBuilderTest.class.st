@@ -29,9 +29,9 @@ LcsGlobalCollectionReferenceSlotBuilderTest >> testDefinitionSourceCode [
 	self assert: (self subject jobStep: 2) slotDefinitionSource equals: 'parentSlotDefinition
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		collectionSlotName: ''persons'';
-		slotName: ''parent'';
 		slotTypes: (OrderedCollection with: LxxPersons);
+		slotName: ''parent'';
 		collectionSlotModuleName: ''Prototype System'';
+		collectionSlotName: ''persons'';
 		yourself'
 ]

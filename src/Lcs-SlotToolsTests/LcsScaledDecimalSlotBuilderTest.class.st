@@ -20,7 +20,7 @@ LcsScaledDecimalSlotBuilderTest >> testSlotDefinitionSourceCode [
 		self assert: (self subject jobStep: 2) slotDefinitionSource equals: 'fooSlotDefinition
 	<slotDefinition>
 	^ LcsScaledDecimalSlot new
-		numberOfDecimals: 4;
 		slotName: ''foo'';
+		numberOfDecimals: 4;
 		yourself'
 ]
