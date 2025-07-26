@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsAuditorTest,
 	#superclass : #LcsWithPrototypeSystemSetUpForTest,
-	#category : #'Lcs-SystemManagementTests'
+	#category : #'Lcs-PrototypeSystemTests'
 }
 
 { #category : #'as yet unclassified' }
