@@ -29,6 +29,11 @@ LcsAccessorSlot class >> domainObjectSlotBlockArguments [
 ]
 
 { #category : #configuration }
+LcsAccessorSlot class >> valueDomainObjectOldValueBlockArguments [
+	^ #('value' 'domainObject' 'oldValue')
+]
+
+{ #category : #configuration }
 LcsAccessorSlot class >> valueSlotBlockArguments [
 	^ #('value' 'slot')
 ]
@@ -557,7 +562,7 @@ LcsAccessorSlot >> slotVarDirectlyPut: anObject in: aDomainObject [
 { #category : #'slot model' }
 LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
 	| transformedObject |
-	transformedObject := self prevalidationTransformBlock cull: anObject cull: self.
+	transformedObject := self prevalidationTransformBlock cull: anObject cull: self cull: nil.
 
 	self variableUpdatePolicy slotVarPut: transformedObject in: aDomainObject
 ]
@@ -569,9 +574,43 @@ LcsAccessorSlot >> validate: anObject for: aDomainObject [
 	self validationConditions validate: anObject context: aDomainObject
 ]
 
+{ #category : #magritte }
+LcsAccessorSlot >> validationConditionsDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  accessor: (MAChainAccessor accessors: #(#validationConditions #collection));
+		  label: 'Validation Conditions';
+		  default: #(  );
+		  classes: { LcsValidationCondition };
+		  priority: 35;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [ LcsValidationCondition new
+		  						parent: self validationConditions;
+		  						yourself ]
+]
+
 { #category : #validating }
 LcsAccessorSlot >> validator [
 	^ LcsConditionsValidator new
+]
+
+{ #category : #configuration }
+LcsAccessorSlot >> valueDomainObjectOldValueBlockArguments [
+	^ self class valueDomainObjectOldValueBlockArguments
 ]
 
 { #category : #configuration }

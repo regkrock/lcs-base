@@ -1,8 +1,8 @@
 Class {
 	#name : #LcsValidationConditions,
 	#superclass : #LcsApplicationObject,
-	#traits : 'LtParentTrait + LtDictionaryCollection',
-	#classTraits : 'LtParentTrait classTrait + LtDictionaryCollection classTrait',
+	#traits : 'LtParentTrait + LtOrderedCollection',
+	#classTraits : 'LtParentTrait classTrait + LtOrderedCollection classTrait',
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -16,7 +16,7 @@ LcsValidationConditions >> = aValidationCollections [
 { #category : #conditions }
 LcsValidationConditions >> addValidationCondition: aValidationCondition [
 	aValidationCondition parent: self.
-	self at: aValidationCondition validationDescription put: aValidationCondition
+	^ self add: aValidationCondition
 ]
 
 { #category : #conditions }
@@ -36,17 +36,19 @@ LcsValidationConditions >> hash [
 { #category : #initialize }
 LcsValidationConditions >> initialize [ 
 	super initialize.
-	self collection: OrderedDictionary new
+	self collection: OrderedCollection new
 ]
 
 { #category : #conditions }
 LcsValidationConditions >> removeValidationCondition: aCondition [
-	self removeValidationConditionWithDescription: aCondition validationDescription
+	^ self remove: aCondition ifAbsent: []
 ]
 
 { #category : #conditions }
-LcsValidationConditions >> removeValidationConditionWithDescription: aString [
-	^ self removeKey: aString ifAbsent: []
+LcsValidationConditions >> removeValidationConditionWithDescription: aDescription [
+	| condition |
+	condition := self detect: [ :each | each validationDescription = aDescription ] ifNone: [ nil ].
+	^ condition ifNotNil: [ self removeValidationCondition: condition ]
 ]
 
 { #category : #'slot model' }
@@ -77,5 +79,34 @@ LcsValidationConditions >> validate: aValue withValidator: aValidator [
 
 { #category : #querying }
 LcsValidationConditions >> validationConditionWithDescription: aString [
-	^ self at: aString ifAbsent: [ ]
+	^ self detect: [ :each | each validationDescription = aString ] ifNone: [ ]
+]
+
+{ #category : #magritte }
+LcsValidationConditions >> validationConditionsDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  accessor: #collection;
+		  label: 'Validation Conditions';
+		  default: #(  );
+		  classes: { LcsValidationCondition };
+		  priority: 25;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [ LcsValidationCondition new
+		  						parent: self;
+		  						yourself ]
 ]

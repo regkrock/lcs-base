@@ -374,7 +374,7 @@ LcsSlotDefintionMethodBuilder >> validateValidationConditions: aValidationCondit
 	aValidationConditions
 		do: [ :eachValidationCondition | 
 			| actualValidationCondition |
-			actualValidationCondition := actualValidationConditions at: eachValidationCondition validationDescription ifAbsent: [ nil ].
+			actualValidationCondition := actualValidationConditions validationConditionWithDescription: eachValidationCondition validationDescription.
 			self assert: actualValidationCondition notNil.
 			self assert: eachValidationCondition validationDescription equals: actualValidationCondition validationDescription.
 			self assert: eachValidationCondition conditionBlock asString equals: actualValidationCondition conditionBlock asString]

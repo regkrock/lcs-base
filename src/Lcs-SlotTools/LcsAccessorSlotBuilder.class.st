@@ -353,11 +353,6 @@ LcsAccessorSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ self targetClass ifNotNil: [ self targetClass name ] ]) asString
 ]
 
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> properties: anObject [ 
-	properties := Dictionary new
-]
-
 { #category : #property }
 LcsAccessorSlotBuilder >> propertyAt: aName [
 	^ self properties at: aName ifAbsent: [ nil ]
@@ -661,6 +656,34 @@ LcsAccessorSlotBuilder >> targetClass: aClass [
 	self targetClassName: aClass name
 ]
 
+{ #category : #margritte }
+LcsAccessorSlotBuilder >> targetClassDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Domain Class';
+		priority: 3;
+		accessor: #'targetClass';
+		beReadOnly;
+		blocShortcuts: [ 
+			{BlShortcutWithAction new
+				name: 'Browse class';
+				description: 'Browses the class indicated by the editor';
+				combination: BlKeyCombination primaryB;
+				action: [ :anEvent | anEvent target phlow spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
+			BlShortcutWithAction new
+				name: 'Inspect class';
+				description: 'Inspects the class indicated by the editor';
+				combination: BlKeyCombination primaryG;
+				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
+			BlShortcutWithAction new
+				name: 'Browse class references';
+				description: 'Browses references to the class indicated by the editor';
+				combination: BlKeyCombination primaryN;
+				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
 { #category : #accessing }
 LcsAccessorSlotBuilder >> targetClassName [
 	^ targetClassName
@@ -710,6 +733,34 @@ LcsAccessorSlotBuilder >> validationConditions [
 { #category : #properties }
 LcsAccessorSlotBuilder >> validationConditions: anObject [
 	self propertyAt: #validationConditions put: anObject
+]
+
+{ #category : #margritte }
+LcsAccessorSlotBuilder >> validationConditionsDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  accessor: (MAChainAccessor accessors: #(#validationConditions #collection));
+		  "accessor: #validationConditions;"
+		  label: 'Validation Conditions';
+		  default: #(  );
+		  classes: { LcsValidationCondition };
+		  priority: 25;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [  LcsValidationCondition new ]
 ]
 
 { #category : #'gt views' }

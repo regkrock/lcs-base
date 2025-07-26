@@ -22,12 +22,17 @@ LcsValidationCondition >> conditionBlock: anObject [
 
 { #category : #magritte }
 LcsValidationCondition >> conditionBlockDescription [
+	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Condition';
+		label: 'Condition [:value :domainObject :oldValue | ';
 		priority: 10;
 		accessor: (LcsMABlockPluggableAccessor 
-						accessors: #(#conditionBlock )
-						arguments: LcsAccessorSlot domainObjectSlotBlockArguments);
+						accessors: #(#conditionBlock)
+						arguments: LcsAccessorSlot valueDomainObjectOldValueBlockArguments);
+		addCondition: [:aValue | aValue notNil ] labelled: 'Enter a non-nil value2';
+		addCondition: [:aValue | (aValue = 'nil') not ] labelled: 'Enter a non-nil value';
+		addCondition: [:aValue | (aValue = 'true') not ] labelled: 'Enter a new value, this will always evaluate to show the error message';
+		addCondition: [:aValue | (aValue = 'false') not ] labelled: 'Enter a new value, this will always evaluate to never show the error message';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
@@ -78,7 +83,7 @@ LcsValidationCondition >> validate: aValue [
 { #category : #validation }
 LcsValidationCondition >> validate: aValue context: aDomainObject [
 	| isError |
-	isError := [ self conditionBlock cull: aValue cull: aDomainObject ]
+	isError := [ self conditionBlock cull: aValue cull: aDomainObject cull: nil ]
 					on: Error 
 					do: [ :s | 
 						LcsSlotValidationExecutionError 
@@ -113,10 +118,14 @@ LcsValidationCondition >> validationDescription: anObject [
 
 { #category : #magritte }
 LcsValidationCondition >> validationDescriptionDescription [
+	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Description';
 		priority: 10;
 		accessor: #validationDescription;
+		addCondition: [:aValue | (aValue isNil) not ] labelled: 'Enter a non-nil value';
+		addCondition: [:aValue | (aValue = 'nil') not ] labelled: 'Enter a non-nil value';
+		addCondition: [:aValue | (aValue trimBoth isEmpty) not ] labelled: 'A description is required';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]

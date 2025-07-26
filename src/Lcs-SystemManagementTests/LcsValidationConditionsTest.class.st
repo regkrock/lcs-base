@@ -22,7 +22,7 @@ LcsValidationConditionsTest >> testCreation [
 	self subject: LcsValidationConditions new.
 	self assert: self subject collection isEmpty.
 	self assert: self subject parent isNil.
-	self assert: (self subject collection isKindOf: OrderedDictionary)
+	self assert: (self subject collection isKindOf: OrderedCollection)
 ]
 
 { #category : #tests }
@@ -33,15 +33,15 @@ LcsValidationConditionsTest >> testRemovingValidationCondition [
 	self subject: LcsValidationConditions new.
 	self subject addValidationCondition: conditionBlock description: validationDescription.
 	self assert: self subject collection size equals: 1.
-	validationCondition := self subject at: validationDescription.
+	validationCondition := self subject collection at: 1.
 	
-	self subject removeValidationConditionWithDescription: validationDescription.
+	self subject removeValidationCondition: validationCondition.
 	self assert: self subject collection isEmpty.
 
 	self subject addValidationCondition: conditionBlock description: validationDescription.
-	validationCondition := self subject at: validationDescription.
+	validationCondition := self subject detect: [ :each | each validationDescription = validationDescription ].
 	self assert: self subject collection size equals: 1.
-	self subject removeValidationCondition:validationCondition.
+	self subject removeValidationCondition: validationCondition.
 	self assert: self subject collection isEmpty.
 ]
 

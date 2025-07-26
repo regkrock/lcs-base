@@ -256,7 +256,7 @@ LcsBaseSlot >> slotNameDescription [
 	existingInstvarNames := self domainClass ifNil: [ #() ] ifNotNil: [ :c | c allInstVarNames ].
 	^ GtMATextDescription new
 		label: 'Slot Name';
-		priority: 1;
+		priority: 4;
 		accessor: #'slotName';
 		kind: Object;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
