@@ -334,6 +334,7 @@ LcsAccessorSlot >> initialValueBlockDescription [
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 10;
+		default: '';
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#initialValueBlock )
 						arguments: LcsAccessorSlot domainObjectSlotBlockArguments);
@@ -473,6 +474,7 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 	^ MAStringDescription new
 		label: 'Prevalidation Transform Block [ :value :slot | ';
 		priority: 11;
+		default: '';
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
 						arguments: LcsAccessorSlot valueSlotBlockArguments);

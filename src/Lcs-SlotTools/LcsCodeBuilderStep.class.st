@@ -11,13 +11,13 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> addAssociationsToUmlModel: aUmlModel [
 	self traceStep: 'addAssociationsToUmlModel:'.
 	self jobSteps addAssociationsToUmlModel: aUmlModel
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> addClassesToUmlModel: aUmlModel [
 	self traceStep: 'addClassesToUmlModel:'.
 	self jobSteps addClassesToUmlModel: aUmlModel.
@@ -105,6 +105,16 @@ LcsCodeBuilderStep >> fullyInstall [
 ]
 
 { #category : #'gt views' }
+LcsCodeBuilderStep >> gtClassViewOn: aView [
+	<gtView>
+	^ aView text
+		title: 'No Target Class';
+		priority: 200;
+		text: 'No target class';
+		actionUpdateButton
+]
+
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -137,16 +147,36 @@ LcsCodeBuilderStep >> gtPaintTreeWith: aMondrian [
 ]
 
 { #category : #'gt views' }
+LcsCodeBuilderStep >> gtPropertiesFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Properties';
+		items: [ self properties associations ];
+		column: 'Property' text: #key;
+		column: 'Value' text: #value;
+		send: #value;
+		actionUpdateButton
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderStep >> gtRefactoringChangeOn: aView [
+	<gtView>
+	^ aView text
+		title: 'Refactoring';
+		priority: 3;
+		text: [ self refactoringText asRopedText ];
+		actionUpdateButton
+
+]
+
+{ #category : #'gt views' }
 LcsCodeBuilderStep >> gtUMLFor: aView [
 	<gtView>
-	| umlModel |
-	(umlModel := self umlModel) collection isEmpty 
-		ifTrue: [ ^ aView empty ].
-
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: (self proposedUmlModelFor: umlModel)
+		initialize: (self proposedUmlModelFor: self umlModel);
+		actionUpdateButton
 ]
 
 { #category : #initialize }

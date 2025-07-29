@@ -119,16 +119,23 @@ LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [
 ]
 
 { #category : #'gt views' }
+LcsCodeBuilderJob >> gtRefactoringChangeOn: aView [
+	<gtView>
+	^ aView empty
+"		title: 'Steps Tree';
+		priority: 2;
+		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ];
+		actionUpdateButton"
+]
+
+{ #category : #'gt views' }
 LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
-	| classesModel |
-	(classesModel := self umlModel) collection isEmpty 
-		ifTrue: [ ^ aView empty ].
-
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: (self proposedUmlModelFor: classesModel)
+		initialize: (self proposedUmlModelFor: self umlModel);
+		actionUpdateButton
 ]
 
 { #category : #initialize }

@@ -8,18 +8,6 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
-{ #category : #'gt views' }
-LcsSlotDetailBuilder >> gtPropertiesFor: aView [
-	<gtView>
-	^ aView columnedList
-		title: 'Properties';
-		items: [ self properties associations ];
-		column: 'Property' text: #key;
-		column: 'Value' text: #value;
-		send: #value;
-		actionUpdateButton
-]
-
 { #category : #printing }
 LcsSlotDetailBuilder >> jobStepActionDescription [
 	self subclassResponsibility

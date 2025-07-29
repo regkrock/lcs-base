@@ -119,6 +119,7 @@ LcsAccessorSlotBuilder >> beAllowNil [
 
 { #category : #'job steps' }
 LcsAccessorSlotBuilder >> buildJobSteps [
+	self jobSteps removeAll.
 	self addJobStep: self slotInstanceVariableBuilder.
 	self addJobStep: self slotDefinitionMethodBuilder.
 	self addJobStep: self getterAndSetterMethodsBuilder
@@ -201,29 +202,6 @@ LcsAccessorSlotBuilder >> gtClassViewOn: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
-LcsAccessorSlotBuilder >> gtPropertiesFor: aView [
-	<gtView>
-	^ aView columnedList
-		title: 'Properties';
-		items: [ self properties associations ];
-		column: 'Property' text: #key;
-		column: 'Value' text: #value;
-		send: #value;
-		actionUpdateButton
-]
-
-{ #category : #'gt views' }
-LcsAccessorSlotBuilder >> gtRefactoringChangeOn: aView [
-	<gtView>
-	^ aView text
-		title: 'Refactoring';
-		priority: 3;
-		text: [ self refactoringText asRopedText ];
-		actionUpdateButton
-
-]
-
 { #category : #property }
 LcsAccessorSlotBuilder >> initialValueBlock [
 	^ self propertyAt: 'initialValueBlock' ifAbsent: [ [ ] ]
@@ -240,6 +218,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	^ MAStringDescription new
 		label: 'Initial Value Block [ :domainObject :slot | ';
 		priority: 9;
+		default: '';
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#initialValueBlock)
 						arguments: LcsAccessorSlot domainObjectSlotBlockArguments);
@@ -337,6 +316,7 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 	^ MAStringDescription new
 		label: 'Prevalidation Transform Block [ :value :slot | ';
 		priority: 11;
+		default: '';
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#prevalidationTransformBlock )
 						arguments: LcsAccessorSlot valueSlotBlockArguments);
@@ -726,13 +706,54 @@ LcsAccessorSlotBuilder >> updateSlotModel [
 ]
 
 { #category : #properties }
+LcsAccessorSlotBuilder >> validationConditionItems [
+	^ self propertyAt: #validationConditionItems ifAbsentPut: [ OrderedCollection new]
+]
+
+{ #category : #properties }
+LcsAccessorSlotBuilder >> validationConditionItems: aCollection [
+	self propertyAt: #validationConditionItems put: aCollection.
+	self validationConditions removeAll.
+	aCollection do: [:each | self validationConditions addValidationCondition: each ]
+]
+
+{ #category : #margritte }
+LcsAccessorSlotBuilder >> validationConditionItemsDescription [
+	"<magritteDescription>"
+	^ MAToManyRelationDescription new
+		  accessor: #validationConditionItems;
+		  "accessor: #validationConditions;"
+		  label: 'Validation Conditions';
+"		  default: #( LcsValidationCondition );"
+		  classes: { LcsValidationCondition };
+		  priority: 25;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [  LcsValidationCondition new ]
+]
+
+{ #category : #properties }
 LcsAccessorSlotBuilder >> validationConditions [
 	^ self propertyAt: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self]
 ]
 
 { #category : #properties }
 LcsAccessorSlotBuilder >> validationConditions: anObject [
-	self propertyAt: #validationConditions put: anObject
+	self propertyAt: #validationConditions put: anObject.
+	"self validationConditionItems: anObject collection copy"
 ]
 
 { #category : #margritte }
@@ -760,6 +781,7 @@ LcsAccessorSlotBuilder >> validationConditionsDescription [
 						   left: 0);
 				  padding: (BlInsets all: 5);
 				  background: Color white ];
+		  "addCondition: [ :aValue | true ] labelled: 'Individual Conditions Are Not Valid';"
 		  newItemStencil: [  LcsValidationCondition new ]
 ]
 

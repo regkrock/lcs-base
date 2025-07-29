@@ -26,11 +26,12 @@ LcsValidationCondition >> conditionBlockDescription [
 	^ MAStringDescription new
 		label: 'Condition [:value :domainObject :oldValue | ';
 		priority: 10;
+		default: '';
+		autoAccept: true;
 		accessor: (LcsMABlockPluggableAccessor 
 						accessors: #(#conditionBlock)
 						arguments: LcsAccessorSlot valueDomainObjectOldValueBlockArguments);
-		addCondition: [:aValue | aValue notNil ] labelled: 'Enter a non-nil value2';
-		addCondition: [:aValue | (aValue = 'nil') not ] labelled: 'Enter a non-nil value';
+		"addCondition: [:aValue | aValue isEmpty ] labelled: 'Enter a Smalltalk expression';"
 		addCondition: [:aValue | (aValue = 'true') not ] labelled: 'Enter a new value, this will always evaluate to show the error message';
 		addCondition: [:aValue | (aValue = 'false') not ] labelled: 'Enter a new value, this will always evaluate to never show the error message';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
@@ -47,6 +48,20 @@ LcsValidationCondition >> evaluateWith: aValidator [
 LcsValidationCondition >> initialize [
 	super initialize.
 	self conditionBlock: [ :value | true ]
+]
+
+{ #category : #magritte }
+LcsValidationCondition >> magritteInspectAction [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		priority: 30;
+		label: 'Inspect';
+		blocIcon: BrGlamorousVectorIcons inspect;
+		action: (GtMagritteAction new
+				beInUIProcess;
+				action: [ :aModel :aButton :aMemento :aDescription | 
+					aButton phlow spawnObject: aMemento ]);
+		beToolbarAction
 ]
 
 { #category : #'slot model' }
@@ -121,11 +136,14 @@ LcsValidationCondition >> validationDescriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Description';
-		priority: 10;
+		priority: 9;
 		accessor: #validationDescription;
-		addCondition: [:aValue | (aValue isNil) not ] labelled: 'Enter a non-nil value';
-		addCondition: [:aValue | (aValue = 'nil') not ] labelled: 'Enter a non-nil value';
-		addCondition: [:aValue | (aValue trimBoth isEmpty) not ] labelled: 'A description is required';
+		autoAccept: true;
+		default: '';
+		"addCondition: [:aValue | (aValue isNil) not ] labelled: 'Enter a non-nil value';
+		addCondition: [:aValue | (aValue = 'nil') not ] labelled: 'Enter a non-nil value';"
+		addCondition: [:aValue | 
+			(aValue trimBoth isEmpty) not ] labelled: 'A description is required';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]

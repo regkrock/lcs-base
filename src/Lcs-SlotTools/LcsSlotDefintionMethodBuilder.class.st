@@ -83,7 +83,7 @@ LcsSlotDefintionMethodBuilder >> addSlotTypesKeyword: aPropertyName argument: aV
 
 	slotTypesCollectionCreationStream := WriteStream on: String new.
 	slotTypesCollectionCreationStream nextPutAll: '(OrderedCollection'.
-	aValue do: [ :eachClassName | slotTypesCollectionCreationStream nextPutAll: ' with: ' , eachClassName ].
+	aValue do: [ :eachClassName | slotTypesCollectionCreationStream nextPutAll: ' with: ' , eachClassName asString ].
 	slotTypesCollectionCreationStream nextPutAll: ')'.
 	aCodeStream addKeyword: aPropertyName argument: slotTypesCollectionCreationStream contents
 ]
@@ -157,14 +157,11 @@ LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> gtUMLFor: aView [
 	<gtView>
-	| classesModel |
-	(classesModel := self slotUmlModel) collection isEmpty 
-		ifTrue: [ ^ aView empty ].
-
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: (self proposedUmlModelFor: classesModel)
+		initialize: (self proposedUmlModelFor: self slotUmlModel);
+		actionUpdateButton
 ]
 
 { #category : #testing }

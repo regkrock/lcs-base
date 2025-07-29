@@ -285,6 +285,11 @@ LcsCodeBuilderJobSteps >> propogateProperty: aName valueChangedTo: anObject [
 	self jobSteps do: [ :eachStep | eachStep propogateProperty: aName valueChangedTo: anObject ]
 ]
 
+{ #category : #'as yet unclassified' }
+LcsCodeBuilderJobSteps >> removeAll [
+	self collection removeAll
+]
+
 { #category : #'gt - views' }
 LcsCodeBuilderJobSteps >> stepNumberFor: aStep [
 	| localStepNumber |
