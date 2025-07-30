@@ -84,7 +84,9 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 			BrButton new
 				aptitude: BrGlamorousButtonWithLabelAptitude new;
 				label: 'Remove';
-				action: [ :aButton | each value domainClass removeDomainSlotNamed: each key ]] width: 70; 
+				action: [ :aButton | 
+					each value domainClass removeDomainSlotNamed: each key.
+					aButton phlow fireViewUpdateWish ]] width: 70; 
 		"actionDropdownButtonIcon: BrGlamorousVectorIcons add 
 			tooltip: 'Create Slot'
 			content: [ :aDropdown | (LcsAddSlotDefinitionFormElement newOn: aDropdown targetClass: self) element];"
@@ -114,7 +116,6 @@ LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 		priority: 10;
 		object: [ self slotModel ];
 		view: #gtViewSlotModelFor:;
-		actionUpdateButton;
 		yourself
 		
 ]

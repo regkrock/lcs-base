@@ -24,7 +24,9 @@ LcsApplicationEnvironmentViewItem >> activateSuspendSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
 		label: self item toggleActionButtonLabel;
-		action: [ :aButton | self item toggleStatus ]
+		action: [ :aButton | 
+			self item toggleStatus.
+			aButton phlow fireViewUpdateWish ]
 ]
 
 { #category : #accessing }
@@ -113,7 +115,9 @@ LcsApplicationEnvironmentViewItem >> startSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
 		label: 'Start';
-		action: [ :aButton | self item new ]
+		action: [ :aButton | 
+			self item new.
+			aButton phlow fireViewUpdateWish ]
 ]
 
 { #category : #'gt views' }
@@ -127,5 +131,7 @@ LcsApplicationEnvironmentViewItem >> stopSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
 		label: 'Stop';
-		action: [ :aButton | self item removeSystem ]
+		action: [ :aButton | 
+			self item removeSystem.
+			aButton phlow fireViewUpdateWish ]
 ]
