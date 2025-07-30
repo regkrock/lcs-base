@@ -9,6 +9,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #testing }
+LcsBaseSlot class >> isAbstract [
+	^ self name = #LcsBaseSlot
+]
+
 { #category : #configuration }
 LcsBaseSlot >> addSlotType: aClass [
 	self assert: aClass isClass.
@@ -258,6 +263,7 @@ LcsBaseSlot >> slotNameDescription [
 		label: 'Slot Name';
 		priority: 4;
 		accessor: #'slotName';
+		default: '';
 		kind: Object;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
 				"+ (BrGlamorousWithExplicitContextMenuAptitude

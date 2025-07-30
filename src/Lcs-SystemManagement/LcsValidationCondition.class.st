@@ -10,6 +10,13 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #testing }
+LcsValidationCondition >> = anObject [
+	anObject class name = self class name ifFalse: [ ^ false ].
+	anObject conditionBlock asString = self conditionBlock asString ifFalse: [ ^ false ].
+	^ anObject validationDescription = self validationDescription
+]
+
 { #category : #accessing }
 LcsValidationCondition >> conditionBlock [
 	^ conditionBlock
@@ -42,6 +49,11 @@ LcsValidationCondition >> conditionBlockDescription [
 LcsValidationCondition >> evaluateWith: aValidator [
 	(self conditionBlock value: aValidator domainObject) ifFalse: [
 		aValidator addErrorDescription: self validationDescriptionDescription in: self ]
+]
+
+{ #category : #hashing }
+LcsValidationCondition >> hash [
+	^ self conditionBlock hash bitXor: self validationDescription hash
 ]
 
 { #category : #'as yet unclassified' }

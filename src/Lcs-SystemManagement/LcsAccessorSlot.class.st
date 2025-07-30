@@ -28,6 +28,11 @@ LcsAccessorSlot class >> domainObjectSlotBlockArguments [
 	^ #('domainObject' 'slot')
 ]
 
+{ #category : #testing }
+LcsAccessorSlot class >> isAbstract [
+	^ self name = #LcsAccessorSlot
+]
+
 { #category : #configuration }
 LcsAccessorSlot class >> valueDomainObjectOldValueBlockArguments [
 	^ #('value' 'domainObject' 'oldValue')

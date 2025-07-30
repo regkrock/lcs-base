@@ -458,6 +458,7 @@ LcsAccessorSlotBuilder >> slotNameDescription [
 		label: 'Slot Name';
 		priority: 1;
 		accessor: #slotName;
+		default: '';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
 				"+ (BrGlamorousWithExplicitContextMenuAptitude
 						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];

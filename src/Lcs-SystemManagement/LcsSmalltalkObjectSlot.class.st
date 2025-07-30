@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #testing }
+LcsSmalltalkObjectSlot class >> isAbstract [
+	^ self name = #LcsSmalltalkObjectSlot
+]
+
 { #category : #defaults }
 LcsSmalltalkObjectSlot >> defaultInitialValueBlock [
 	self subclassResponsibility
