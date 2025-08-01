@@ -11,6 +11,24 @@ LcsAccessorSlotCreationFormTest >> slotModelBuilder [
 	^ self subject slotModelBuilder
 ]
 
+{ #category : #examples }
+LcsAccessorSlotCreationFormTest >> subjectScripter [
+	<gtExample>
+	<return: #BlScripter>
+	| aScripter |
+	aScripter := self
+			scripterWithModel: [ LcsAccessorSlotCreationForm new ]
+			element: [ :aModel | aModel asGtMagritteViewModel asElement ].
+
+	self
+		assert: aScripter
+		model: aScripter model
+		acceptEnabled: false
+		cancelEnabled: true.
+
+	^ aScripter
+]
+
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuilder [
 	| aDescription |
