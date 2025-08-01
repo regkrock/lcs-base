@@ -1,8 +1,6 @@
 Class {
 	#name : #LcsValidationConditionTest,
 	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#traits : 'LctDevScripterExamples',
-	#classTraits : 'LctDevScripterExamples classTrait',
 	#category : #'Lcs-SystemManagementTests-Tests'
 }
 
