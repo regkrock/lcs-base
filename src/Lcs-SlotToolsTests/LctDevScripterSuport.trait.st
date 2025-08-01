@@ -1,12 +1,12 @@
 Trait {
-	#name : #LctDevScripterExamples,
+	#name : #LctDevScripterSuport,
 	#traits : 'TBlDevScripterExamples',
 	#classTraits : 'TBlDevScripterExamples classTrait',
 	#category : #'Lcs-SlotToolsTests-Scripter'
 }
 
 { #category : #'scripter - assertion' }
-LctDevScripterExamples >> assert: aStep model: aModel acceptEnabled: isAcceptEnabled cancelEnabled: isCancelEnabled [
+LctDevScripterSuport >> assert: aStep model: aModel acceptEnabled: isAcceptEnabled cancelEnabled: isCancelEnabled [
 	| anAcceptId anCancelId |
 	anAcceptId := GtMagritteActionElementId new
 			description: aModel magritteAcceptAction.
