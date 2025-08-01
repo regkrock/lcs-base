@@ -1,8 +1,8 @@
 Class {
 	#name : #LcsAccessorSlotCreationFormTest,
 	#superclass : #LcsCodeBuilderTest,
-	#traits : 'LctDevScripterSuport',
-	#classTraits : 'LctDevScripterSuport classTrait',
+	#traits : 'TBlDevScripterExamples',
+	#classTraits : 'TBlDevScripterExamples classTrait',
 	#category : #'Lcs-Magritte-Tests-Tests'
 }
 
