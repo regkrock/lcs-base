@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsMethodStreamTest,
 	#superclass : #LcsTestCase,
-	#category : #'Lcs-BaseTests'
+	#category : #'Lcs-BaseTests-Tests'
 }
 
 { #category : #test }

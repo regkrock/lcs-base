@@ -1,7 +1,9 @@
 Class {
 	#name : #LcsValidationConditionTest,
 	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#traits : 'LctDevScripterSuport',
+	#classTraits : 'LctDevScripterSuport classTrait',
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #tests }

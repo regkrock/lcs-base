@@ -28,6 +28,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-SystemManagement' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-SlotDefinitions' with: [ spec requires: #('Lcs-SystemManagement') ].
 			spec package: 'Lcs-SlotTools' with: [ spec requires: #( 'Lcs-SlotDefinitions') ].
+			spec package: 'Lcs-Magritte-Base' with: [ spec requires: #( 'Lcs-SlotTools') ].
 			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SlotTools') ].
 			spec package: 'Lcs-StateMachine' with: [ spec requires: #('Lcs-DomainBase') ].
 
@@ -38,11 +39,12 @@ BaselineOfLcsBase >> baseline: spec [
 
 			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-DomainBase' 'Lcs-StateMachine') ].  
 
-			spec package: 'Lcs-BaseTests' with: [ spec requires: #('LcsBase')  ].
+			spec package: 'Lcs-BaseTests' with: [ spec requires: #('Lcs-SystemManagement')  ].
 			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests') ].  
 			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
 			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystemTests') ].
 			spec package: 'Lcs-SlotToolsTests' with: [ spec requires: #('Lcs-PrototypeSystemTests') ].
+			spec package: 'Lcs-Magritte-Tests' with: [ spec requires: #('Lcs-SlotToolsTests') ].
 			spec package: 'Lcs-StateMachineTests' with: [ spec requires: #('Lcs-StateMachine' 'Lcs-PrototypeSystem' 'Lcs-PrototypeSystemTests') ].
 			spec package: 'Lcs-MainSystemTests' with: [ spec requires: #('Lcs-MainSystem' 'Lcs-SlotDefinitionsTests') ].  
 
