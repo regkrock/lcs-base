@@ -1,7 +1,5 @@
 Trait {
 	#name : #LctDevScripterSuport,
-	#traits : 'TBlDevScripterExamples',
-	#classTraits : 'TBlDevScripterExamples classTrait',
 	#category : #'Lcs-SlotToolsTests-Scripter'
 }
 
