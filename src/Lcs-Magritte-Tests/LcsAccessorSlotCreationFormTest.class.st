@@ -1,8 +1,8 @@
 Class {
 	#name : #LcsAccessorSlotCreationFormTest,
 	#superclass : #LcsCodeBuilderTest,
-	#traits : 'TBlDevScripterExamples',
-	#classTraits : 'TBlDevScripterExamples classTrait',
+	#traits : 'TBlDevScripterExamples + LctDevScripterSuport',
+	#classTraits : 'TBlDevScripterExamples classTrait + LctDevScripterSuport classTrait',
 	#category : #'Lcs-Magritte-Tests-Tests'
 }
 
@@ -223,4 +223,9 @@ LcsAccessorSlotCreationFormTest >> testSlotTypesDescription [
 	self assert: (description read: self subject) equals: (OrderedCollection with: #String).
 	description write: #(#String #Integer) to: self subject.
 	self assert: self subject slotModelBuilder slotTypes equals: { String. Integer}.
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testSubjectScripter [
+	self subjectScripter
 ]

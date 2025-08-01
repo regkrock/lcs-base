@@ -1,8 +1,8 @@
 Class {
 	#name : #LcsValidationConditionTest,
 	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#traits : 'TBlDevScripterExamples',
-	#classTraits : 'TBlDevScripterExamples classTrait',
+	#traits : 'TBlDevScripterExamples + LctDevScripterSuport',
+	#classTraits : 'TBlDevScripterExamples classTrait + LctDevScripterSuport classTrait',
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
@@ -79,7 +79,7 @@ LcsValidationConditionTest >> testMagritteForm [
 	<return: #BlScripter>
 	| aScripter aValidationDescriptionId aConditionBlockId anAcceptId aCancelId |
 	
-	aScripter := self validationConditionScripter.
+	aScripter := self subjectScripter.
 
 	aValidationDescriptionId := GtMagritteFieldElementId new description: aScripter model validationDescriptionDescription.
 	aConditionBlockId := GtMagritteFieldElementId new description: aScripter model conditionBlockDescription.
@@ -171,6 +171,11 @@ LcsValidationConditionTest >> testNonBooleanCondition [
 ]
 
 { #category : #tests }
+LcsValidationConditionTest >> testSubjectScripter [
+	self subjectScripter
+]
+
+{ #category : #tests }
 LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -178,22 +183,4 @@ LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	self subject conditionBlock: [ :value :domainObject | value == true ].
 	self assert: (self subject validate: false context: 'aString') equals: false.
 	self should: [ self subject validate: true context: 'aString' ] raise:  LcsSlotValidationError
-]
-
-{ #category : #scripter }
-LcsValidationConditionTest >> validationConditionScripter [
-	<gtExample>
-	<return: #BlScripter>
-	| aScripter |
-	aScripter := self
-			scripterWithModel: [ LcsValidationCondition new ]
-			element: [ :aModel | aModel asGtMagritteViewModel asElement ].
-
-	self
-		assert: aScripter
-		model: aScripter model
-		acceptEnabled: false
-		cancelEnabled: true.
-
-	^ aScripter
 ]
