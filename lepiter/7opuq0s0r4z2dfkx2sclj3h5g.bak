@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-03T22:36:11.146105-04:00"
+						"dateAndTimeString" : "2025-07-30T12:59:08.113265-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtTodo:label=Implenet initialValueBlock editting|completed=}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=2025-07-03}}"
+				"string" : "{{gtTodo:label=LcsSlotBlock}}\n{{gtTodo:label=Implenet initialValueBlock editting|completed=2025-07-30}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=2025-07-03}}"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-03T23:32:50.127153-04:00"
+						"dateAndTimeString" : "2025-07-03T23:37:00.881309-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "7mU7hjHyDQCUzIAjDpDPVg=="
 				},
-				"code" : "\"Failing Tests\"\rLcsMemberOfSlotBuilderTest.\rLcsGlobalCollectionSlotBuilderTest.\rLcsSingletonValueObjectClassesBuilderJobTest.\rLcsDomainClassAndGlobalCollectionClassBuilderJobTest.\r\t#testCreationOfNewDomainClassAndItsGlobalCollectionClassInstalledInAModule - step 5.2 <- slotName isNil and no properties are "
+				"code" : "\"Failing Tests\"\rLcsMemberOfSlotBuilderTest.\rLcsGlobalCollectionSlotBuilderTest.\rLcsSingletonValueObjectClassesBuilderJobTest.\rLcsDomainClassAndGlobalCollectionClassBuilderJobTest.\r\t\"#testCreationOfNewDomainClassAndItsGlobalCollectionClassInstalledInAModule - step 5.2 <- slotName isNil and no properties are \""
 			},
 			{
 				"__type" : "textSnippet",

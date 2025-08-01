@@ -1,7 +1,9 @@
 Class {
 	#name : #LcsValidationConditionTest,
 	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#category : #'Lcs-SystemManagementTests'
+	#traits : 'LctDevScripterExamples',
+	#classTraits : 'LctDevScripterExamples classTrait',
+	#category : #'Lcs-SystemManagementTests-Tests'
 }
 
 { #category : #tests }
@@ -54,6 +56,93 @@ LcsValidationConditionTest >> testInvalidConditionWithValueAndRelatedObject [
 ]
 
 { #category : #tests }
+LcsValidationConditionTest >> testMagritteForm [
+	<gtExample>
+	<return: #BlScripter>
+	| aScripter aValidationDescriptionId aConditionBlockId anAcceptId aCancelId |
+	
+	aScripter := self validationConditionScripter.
+
+	aValidationDescriptionId := GtMagritteFieldElementId new description: aScripter model validationDescriptionDescription.
+	aConditionBlockId := GtMagritteFieldElementId new description: aScripter model conditionBlockDescription.
+	anAcceptId := GtMagritteActionElementId new description: aScripter model magritteAcceptAction.
+	aCancelId := GtMagritteActionElementId new description: aScripter model magritteCancelAction.
+
+	aScripter
+		substeps: 'Change validation description value'
+		do: [ :aStep | 
+
+			aStep requestFocus
+				// aValidationDescriptionId;
+				play.
+
+			aStep
+				typeStep: [ :s | 
+					s
+						text: 'invalid condition description';
+						// aValidationDescriptionId ].
+
+			"aStep
+				assertStep: [ :s | 
+					s
+						label: 'Assert model validation description value';
+						value: [ :aModel | aModel validationDescription ] equals: [ 'invalid condition description' ];
+						onModel ]."
+						
+			self
+				assert: aStep
+				model: aScripter model
+				acceptEnabled: false
+				cancelEnabled: true ].
+
+	aScripter
+		substeps: 'Change condition block value'
+		do: [ :aStep | 
+
+			aStep requestFocus
+				// aConditionBlockId;
+				play.
+
+			aStep
+				typeStep: [ :s | 
+					s
+						text: 'value size < 1';
+						// aConditionBlockId ].
+						
+			self
+				assert: aStep
+				model: aScripter model
+				acceptEnabled: true
+				cancelEnabled: true ].
+				
+	aScripter
+		substeps: 'Accept changed values'
+		do: [ :aStep | 
+			aStep clickStep: [ :s | s // anAcceptId ].
+
+			self
+				assert: aStep
+				model: aScripter model
+				acceptEnabled: false
+				cancelEnabled: false.
+				
+			aStep
+				assertStep: [ :s | 
+					s
+						label: 'Assert model condition block value';
+						value: [ :aModel | aModel validationDescription ] equals: [ 'invalid condition description' ];
+						onModel ].
+			aStep
+				assertStep: [ :s | 
+					s
+						label: 'Assert model condition block value';
+						value: [ :aModel | aModel conditionBlock asString ] equals: [ '[ :value :domainObject :oldValue | value size < 1 ]' ];
+						onModel ]].
+
+	^ aScripter
+]
+
+{ #category : #tests }
 LcsValidationConditionTest >> testNonBooleanCondition [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -71,4 +160,22 @@ LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	self subject conditionBlock: [ :value :domainObject | value == true ].
 	self assert: (self subject validate: false context: 'aString') equals: false.
 	self should: [ self subject validate: true context: 'aString' ] raise:  LcsSlotValidationError
+]
+
+{ #category : #scripter }
+LcsValidationConditionTest >> validationConditionScripter [
+	<gtExample>
+	<return: #BlScripter>
+	| aScripter |
+	aScripter := self
+			scripterWithModel: [ LcsValidationCondition new ]
+			element: [ :aModel | aModel asGtMagritteViewModel asElement ].
+
+	self
+		assert: aScripter
+		model: aScripter model
+		acceptEnabled: false
+		cancelEnabled: true.
+
+	^ aScripter
 ]

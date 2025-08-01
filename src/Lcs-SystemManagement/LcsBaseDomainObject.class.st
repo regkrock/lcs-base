@@ -72,7 +72,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 	<gtClassView>
 	^ aView columnedList
 		title: 'Slot Definitions';
-		priority: 20;
+		priority: 19;
 		items: [ self slotDefinitionPragmasAndInstVarNames ];
 		column: 'Slot' text: [ :each | each value slotName ] width: 100;
 		column: 'InstVar' text: [ :each | each key ] width: 100;
@@ -87,9 +87,6 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 				action: [ :aButton | 
 					each value domainClass removeDomainSlotNamed: each key.
 					aButton phlow fireViewUpdateWish ]] width: 70; 
-		"actionDropdownButtonIcon: BrGlamorousVectorIcons add 
-			tooltip: 'Create Slot'
-			content: [ :aDropdown | (LcsAddSlotDefinitionFormElement newOn: aDropdown targetClass: self) element];"
 		actionButtonDo: [ :aButtonAction | 
 			aButtonAction
 				icon: BrGlamorousVectorIcons spawn;

@@ -139,7 +139,8 @@ LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 	^ aView text
 		title: 'Refactoring';
 		priority: 1;
-		text: [ self refactoringText asRopedText ]
+		text: [ self refactoringText asRopedText ];
+		actionUpdateButton
 ]
 
 { #category : #'gt views' }
