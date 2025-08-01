@@ -1,8 +1,8 @@
 Class {
 	#name : #LcsValidationConditionTest,
 	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#traits : 'LctDevScripterSuport',
-	#classTraits : 'LctDevScripterSuport classTrait',
+	#traits : 'TBlDevScripterExamples',
+	#classTraits : 'TBlDevScripterExamples classTrait',
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
