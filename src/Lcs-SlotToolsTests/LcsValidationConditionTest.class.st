@@ -59,7 +59,7 @@ LcsValidationConditionTest >> testInvalidConditionWithValueAndRelatedObject [
 LcsValidationConditionTest >> testMagritteForm [
 	<gtExample>
 	<return: #BlScripter>
-	| aScripter aValidationDescriptionId aConditionBlockId anAcceptId aCancelId |
+	| aValidationDescriptionId aConditionBlockId anAcceptId aCancelId |
 	
 	self subjectScripter: self validationConditionScripter.
 
@@ -91,7 +91,7 @@ LcsValidationConditionTest >> testMagritteForm [
 						
 			self
 				assert: aStep
-				model: aScripter model
+				model: self subjectScripter model
 				acceptEnabled: false
 				cancelEnabled: true ].
 
@@ -111,7 +111,7 @@ LcsValidationConditionTest >> testMagritteForm [
 						
 			self
 				assert: aStep
-				model: aScripter model
+				model: self subjectScripter model
 				acceptEnabled: true
 				cancelEnabled: true ].
 				
@@ -122,7 +122,7 @@ LcsValidationConditionTest >> testMagritteForm [
 
 			self
 				assert: aStep
-				model: aScripter model
+				model: self subjectScripter model
 				acceptEnabled: false
 				cancelEnabled: false.
 				
