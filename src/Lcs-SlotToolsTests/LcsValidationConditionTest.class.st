@@ -6,24 +6,6 @@ Class {
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
-{ #category : #scripter }
-LcsValidationConditionTest >> subjectScripter [
-	<gtExample>
-	<return: #BlScripter>
-	| aScripter |
-	aScripter := self
-			scripterWithModel: [ LcsValidationCondition new ]
-			element: [ :aModel | aModel asGtMagritteViewModel asElement ].
-
-	self
-		assert: aScripter
-		model: aScripter model
-		acceptEnabled: false
-		cancelEnabled: true.
-
-	^ aScripter
-]
-
 { #category : #tests }
 LcsValidationConditionTest >> testCreatingOnValidationConditions [
 	| validationConditions |
