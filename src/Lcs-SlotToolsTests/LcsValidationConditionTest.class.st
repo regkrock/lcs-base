@@ -61,14 +61,14 @@ LcsValidationConditionTest >> testMagritteForm [
 	<return: #BlScripter>
 	| aScripter aValidationDescriptionId aConditionBlockId anAcceptId aCancelId |
 	
-	aScripter := self subjectScripter.
+	self subjectScripter: self validationConditionScripter.
 
-	aValidationDescriptionId := GtMagritteFieldElementId new description: aScripter model validationDescriptionDescription.
-	aConditionBlockId := GtMagritteFieldElementId new description: aScripter model conditionBlockDescription.
-	anAcceptId := GtMagritteActionElementId new description: aScripter model magritteAcceptAction.
-	aCancelId := GtMagritteActionElementId new description: aScripter model magritteCancelAction.
+	aValidationDescriptionId := GtMagritteFieldElementId new description: self subjectScripter model validationDescriptionDescription.
+	aConditionBlockId := GtMagritteFieldElementId new description: self subjectScripter model conditionBlockDescription.
+	anAcceptId := GtMagritteActionElementId new description: self subjectScripter model magritteAcceptAction.
+	aCancelId := GtMagritteActionElementId new description: self subjectScripter model magritteCancelAction.
 
-	aScripter
+	self subjectScripter
 		substeps: 'Change validation description value'
 		do: [ :aStep | 
 
@@ -95,7 +95,7 @@ LcsValidationConditionTest >> testMagritteForm [
 				acceptEnabled: false
 				cancelEnabled: true ].
 
-	aScripter
+	self subjectScripter
 		substeps: 'Change condition block value'
 		do: [ :aStep | 
 
@@ -115,7 +115,7 @@ LcsValidationConditionTest >> testMagritteForm [
 				acceptEnabled: true
 				cancelEnabled: true ].
 				
-	aScripter
+	self subjectScripter
 		substeps: 'Accept changed values'
 		do: [ :aStep | 
 			aStep clickStep: [ :s | s // anAcceptId ].
@@ -139,7 +139,7 @@ LcsValidationConditionTest >> testMagritteForm [
 						value: [ :aModel | aModel conditionBlock asString ] equals: [ '[ :value :domainObject :oldValue | value size < 1 ]' ];
 						onModel ]].
 
-	^ aScripter
+	^ self subjectScripter
 ]
 
 { #category : #tests }
@@ -153,11 +153,6 @@ LcsValidationConditionTest >> testNonBooleanCondition [
 ]
 
 { #category : #tests }
-LcsValidationConditionTest >> testSubjectScripter [
-	self subjectScripter
-]
-
-{ #category : #tests }
 LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -165,4 +160,27 @@ LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	self subject conditionBlock: [ :value :domainObject | value == true ].
 	self assert: (self subject validate: false context: 'aString') equals: false.
 	self should: [ self subject validate: true context: 'aString' ] raise:  LcsSlotValidationError
+]
+
+{ #category : #examples }
+LcsValidationConditionTest >> validationConditionExample [
+	<gtExample>
+	^ LcsValidationCondition new
+]
+
+{ #category : #scripter }
+LcsValidationConditionTest >> validationConditionScripter [
+	<gtExample>
+	<return: #BlScripter>
+	self subjectScripter: (self
+			scripterWithModel: [ self validationConditionExample ]
+			element: [ :aModel | aModel asGtMagritteViewModel asElement ]).
+
+	self
+		assert: self subjectScripter
+		model: self subjectScripter model
+		acceptEnabled: false
+		cancelEnabled: true.
+
+	^ self subjectScripter
 ]
