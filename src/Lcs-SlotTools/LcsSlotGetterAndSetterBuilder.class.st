@@ -63,6 +63,16 @@ LcsSlotGetterAndSetterBuilder >> getterSource [
 ]
 
 { #category : #'gt views' }
+LcsSlotGetterAndSetterBuilder >> gtClassViewOn: aView [
+	<gtView>
+	^ aView text
+		title: 'No Target Class';
+		priority: 200;
+		text: 'No target class';
+		actionUpdateButton
+]
+
+{ #category : #'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text

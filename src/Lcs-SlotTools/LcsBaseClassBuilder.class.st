@@ -102,11 +102,13 @@ LcsBaseClassBuilder >> gtClassViewOn: aView [
 			title: self newClassName;
 			priority: 200;
 			items: [ {'Not yet created'} ];
+			actionUpdateButton;
 			yourself ].
 	^ aView explicit
 		title: 'Installed(' , self installedClass name , ')';
 		priority: 200;
 		stencil: [ (GtCoderElement forObject: self installedClass) disablePlayPage beNormalLevel ];
+		actionUpdateButton;
 		yourself
 ]
 

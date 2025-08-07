@@ -8,6 +8,24 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #'as yet unclassified' }
+LcsSlotDetailBuilder >> gtClassViewOn: aView [
+	<gtView>
+	self targetClass isNil ifTrue: [ 
+		^ aView list
+			title: self targetClassName;
+			priority: 200;
+			items: [ {'Not yet created'} ];
+			actionUpdateButton;
+			yourself ].
+	^ aView explicit
+		title: 'Installed(' , self targetClass name , ')';
+		priority: 200;
+		stencil: [ (GtCoderElement forObject: self targetClass) disablePlayPage beNormalLevel ];
+		actionUpdateButton;
+		yourself
+]
+
 { #category : #printing }
 LcsSlotDetailBuilder >> jobStepActionDescription [
 	self subclassResponsibility

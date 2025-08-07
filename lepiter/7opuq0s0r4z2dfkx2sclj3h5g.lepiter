@@ -76,7 +76,7 @@
 				"code" : "LcsValidationCondition new"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -89,7 +89,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-23T12:06:56.599283-04:00"
+						"dateAndTimeString" : "2025-08-04T13:00:21.809043-04:00"
 					}
 				},
 				"editEmail" : {
@@ -100,14 +100,54 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-03T23:37:00.881309-04:00"
+						"dateAndTimeString" : "2025-08-04T13:00:26.862312-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "7mU7hjHyDQCUzIAjDpDPVg=="
+					"uidString" : "12ixx+73DQCSn2erBscWFQ=="
 				},
-				"code" : "\"Failing Tests\"\rLcsMemberOfSlotBuilderTest.\rLcsGlobalCollectionSlotBuilderTest.\rLcsSingletonValueObjectClassesBuilderJobTest.\rLcsDomainClassAndGlobalCollectionClassBuilderJobTest.\r\t\"#testCreationOfNewDomainClassAndItsGlobalCollectionClassInstalledInAModule - step 5.2 <- slotName isNil and no properties are \""
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "\"Interesting Script Examples\""
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T12:59:51.585356-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-04T13:00:11.040008-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "szvkxe73DQCSbjcfBscWFQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtMethod:GtWorldByScripterExamples>>#selectClassInSecondPane}} "
 			},
 			{
 				"__type" : "textSnippet",

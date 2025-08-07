@@ -87,6 +87,14 @@ LcsSlotCreationForm >> commitPackage [
 				ifNotEmpty: [ :aTagName | aPackage addClassTag: aTagName ] ]
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> commitSlotBuilderChangesAction [
+	^ GtMagritteAction new
+		beInFutureProcess;
+		beWithFutureResponse;
+		action: [ :aModel :aButton :aMemento :aDescription | aMemento commit ]
+]
+
 { #category : #private }
 LcsSlotCreationForm >> contextMenuItemsForSuperclass [
 	^ {'Browse references'
@@ -227,7 +235,7 @@ LcsSlotCreationForm >> isSlotModelBuilderNotReified [
 
 { #category : #testing }
 LcsSlotCreationForm >> isSlotModelBuilderReified [
-	^ self slotModelBuilder class ~= LcsCodeBuilderStep
+	^ self slotModelBuilder  class ~= LcsCodeBuilderStep
 ]
 
 { #category : #magritte }
@@ -253,13 +261,7 @@ LcsSlotCreationForm >> magritteCancelAction [
 LcsSlotCreationForm >> magritteOpenSlotModelBuilderAcceptAction [
 	^ super magritteAcceptAction
 		label: 'Open Builder';
-		action: (
-			GtMagritteAction new
-				beInFutureProcess;
-				beWithFutureResponse;
-				action: [ :aModel :aButton :aMemento :aDescription | 
-					aModel reifySlotModelBuilder.
-					aButton phlow fireViewUpdateWish ]);
+		action: self openSpecifiedSlotBuilderFormAction;
 		beEnabledOnValidOverallStatus
 ]
 
@@ -267,12 +269,7 @@ LcsSlotCreationForm >> magritteOpenSlotModelBuilderAcceptAction [
 LcsSlotCreationForm >> magritteUpdateSlotModelBuilderAcceptAction [
 	^ super magritteAcceptAction
 		label: 'Update Builder';
-		action: (
-			GtMagritteAction new
-				beInFutureProcess;
-				beWithFutureResponse;
-				action: [ :aModel :aButton :aMemento :aDescription | 
-					aMemento commit ]);
+		action: self commitSlotBuilderChangesAction;
 		beEnabledOnValidOverallStatus
 ]
 
@@ -316,6 +313,16 @@ LcsSlotCreationForm >> onReset [
 { #category : #accessing }
 LcsSlotCreationForm >> onReset: aBlock [
 	onReset := aBlock
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> openSpecifiedSlotBuilderFormAction [
+	^ GtMagritteAction new
+		beInFutureProcess;
+		beWithFutureResponse;
+		action: [ :aModel :aButton :aMemento :aDescription | 
+			aModel reifySlotModelBuilder.
+			aButton phlow fireViewUpdateWish ]
 ]
 
 { #category : #magritte }

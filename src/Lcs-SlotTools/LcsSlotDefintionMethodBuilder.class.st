@@ -134,6 +134,16 @@ LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
 ]
 
 { #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> gtClassViewOn: aView [
+	<gtView>
+	^ aView text
+		title: 'No Target Class';
+		priority: 200;
+		text: 'No target class';
+		actionUpdateButton
+]
+
+{ #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text

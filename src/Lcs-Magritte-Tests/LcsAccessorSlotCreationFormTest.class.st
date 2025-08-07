@@ -1,32 +1,22 @@
 Class {
 	#name : #LcsAccessorSlotCreationFormTest,
 	#superclass : #LcsCodeBuilderTest,
-	#traits : 'TBlDevScripterExamples + LctDevScripterSuport',
-	#classTraits : 'TBlDevScripterExamples classTrait + LctDevScripterSuport classTrait',
 	#category : #'Lcs-Magritte-Tests-Tests'
 }
+
+{ #category : #form }
+LcsAccessorSlotCreationFormTest >> model [
+	^self subjectScripter model
+]
 
 { #category : #private }
 LcsAccessorSlotCreationFormTest >> slotModelBuilder [
 	^ self subject slotModelBuilder
 ]
 
-{ #category : #examples }
-LcsAccessorSlotCreationFormTest >> subjectScripter [
-	<gtExample>
-	<return: #BlScripter>
-	| aScripter |
-	aScripter := self
-			scripterWithModel: [ LcsAccessorSlotCreationForm new ]
-			element: [ :aModel | aModel asGtMagritteViewModel asElement ].
-
-	self
-		assert: aScripter
-		model: aScripter model
-		acceptEnabled: false
-		cancelEnabled: true.
-
-	^ aScripter
+{ #category : #form }
+LcsAccessorSlotCreationFormTest >> stringSlotAccessorSlotCreationForm [
+	^ LcsAccessorSlotCreationFormExamples new stringSlotAccessorSlotCreationForm
 ]
 
 { #category : #tests }
@@ -38,8 +28,6 @@ LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuild
 	aDescription := self subject slotTypesDescription.
 	self assert: aDescription notNil.
 	self assert: (aDescription read: self subject) asString equals: 'an OrderedCollection(#String)'.
-	"aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
-	self assert: self slotModelBuilder initialValueBlock asString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'"
 ]
 
 { #category : #tests }
@@ -223,9 +211,4 @@ LcsAccessorSlotCreationFormTest >> testSlotTypesDescription [
 	self assert: (description read: self subject) equals: (OrderedCollection with: #String).
 	description write: #(#String #Integer) to: self subject.
 	self assert: self subject slotModelBuilder slotTypes equals: { String. Integer}.
-]
-
-{ #category : #tests }
-LcsAccessorSlotCreationFormTest >> testSubjectScripter [
-	self subjectScripter
 ]
