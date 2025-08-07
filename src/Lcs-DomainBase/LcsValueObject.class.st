@@ -13,7 +13,7 @@ Class {
 { #category : #'slot definitions' }
 LcsValueObject class >> codeSlotDefinition [
 	<slotDefinition>
-	^ LcsCodeSlot new
+	^ LcsValueCodeSlot new
 ]
 
 { #category : #'slot definitions' }

@@ -1,11 +1,11 @@
 Class {
-	#name : #LcsCodeSlot,
+	#name : #LcsValueCodeSlot,
 	#superclass : #LcsStringSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #initialize }
-LcsCodeSlot >> initialize [
+LcsValueCodeSlot >> initialize [
 	super initialize.
 	self slotName: 'code'
 ]

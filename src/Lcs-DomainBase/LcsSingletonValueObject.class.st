@@ -7,7 +7,7 @@ Class {
 { #category : #'slot definitions' }
 LcsSingletonValueObject class >> codeSlotDefinition [
 	<slotDefinition>
-	^ LcsSingletonCodeNameSlot new
+	^ LcsSingletonValueCodeNameSlot new
 ]
 
 { #category : #defaults }

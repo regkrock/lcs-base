@@ -23,8 +23,8 @@ LcsAccessorSlotCreationFormTest >> stringSlotAccessorSlotCreationForm [
 LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuilder [
 	| aDescription |
 	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
-	self subject slotClassChangedTo: #LcsCodeSlot.
-	self slotModelBuilder isKindOf: LcsCodeSlot.
+	self subject slotClassChangedTo: #LcsValueCodeSlot.
+	self slotModelBuilder isKindOf: LcsValueCodeSlot.
 	aDescription := self subject slotTypesDescription.
 	self assert: aDescription notNil.
 	self assert: (aDescription read: self subject) asString equals: 'an OrderedCollection(#String)'.
@@ -136,7 +136,7 @@ LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
 LcsAccessorSlotCreationFormTest >> testSlotGenerationFromTemplateWithNoChanges [
 	| slotDefinitionMethodBuilder slotInstanceVariableBuilder |
 	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
-	self subject slotClassChangedTo: LcsCodeSlot name.
+	self subject slotClassChangedTo: LcsValueCodeSlot name.
 	slotDefinitionMethodBuilder := (self slotModelBuilder jobStep: 2).
 	
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'codeSlotDefinition

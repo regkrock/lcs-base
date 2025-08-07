@@ -24,10 +24,67 @@ LcsAccessorSlotCreationFormExamples >> actionIdFor: aDescriptionSymbol [
 	^ GtMagritteActionElementId new description: (self subjectScripterModel perform: aDescriptionSymbol)
 ]
 
+{ #category : #form }
+LcsAccessorSlotCreationFormExamples >> booleanSlotAccessorSlotCreationForm [
+	<gtExample>
+	| form |
+	form := LcsAccessorSlotCreationFormExamples new accessorSlotCreationForm
+				slotClassChangedTo: 'LcsBooleanSlot'.
+	self assert: form slotClassName equals: 'LcsBooleanSlot'.
+	self assert: form slotModelBuilder class equals: LcsBooleanSlotBuilder.
+	self assert: form slotClassDescription notNil.
+	self assert: form targetClassDescription notNil.
+	self assert: form slotNameDescription notNil.
+	self assert: form allowNilDescription notNil.
+	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
+		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
+	#() 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
+	^ form
+]
+
 { #category : #asking }
 LcsAccessorSlotCreationFormExamples >> currentCacheValueOf: slotClassDescription [ 
 	^ (((self subjectScripter element userData at: #gtmemento) cache
 		at: slotClassDescription) ifSome: [ :aValue | aValue ]) currentValue.
+]
+
+{ #category : #form }
+LcsAccessorSlotCreationFormExamples >> dateOfBirthSlotAccessorSlotCreationForm [
+	<gtExample>
+	| form |
+	form := LcsAccessorSlotCreationFormExamples new accessorSlotCreationForm
+				slotClassChangedTo: 'LcsDateOfBirthSlot'.
+	self assert: form slotClassName equals: 'LcsDateOfBirthSlot'.
+	self assert: form slotModelBuilder class equals: LcsDateSlotBuilder.
+	self assert: form slotClassDescription notNil.
+	self assert: form targetClassDescription notNil.
+	self assert: form slotNameDescription notNil.
+	self assert: form allowNilDescription notNil.
+	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
+		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
+	#() 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
+	^ form
+]
+
+{ #category : #form }
+LcsAccessorSlotCreationFormExamples >> dateSlotAccessorSlotCreationForm [
+	<gtExample>
+	| form |
+	form := LcsAccessorSlotCreationFormExamples new accessorSlotCreationForm
+				slotClassChangedTo: 'LcsDateSlot'.
+	self assert: form slotClassName equals: 'LcsDateSlot'.
+	self assert: form slotModelBuilder class equals: LcsDateSlotBuilder.
+	self assert: form slotClassDescription notNil.
+	self assert: form targetClassDescription notNil.
+	self assert: form slotNameDescription notNil.
+	self assert: form allowNilDescription notNil.
+	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
+		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
+	#() 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
+	^ form
 ]
 
 { #category : #asking }
@@ -219,10 +276,48 @@ LcsAccessorSlotCreationFormExamples >> inStep: aStep enterText: aString in: anId
 		cancelId: aCancelId 
 ]
 
+{ #category : #form }
+LcsAccessorSlotCreationFormExamples >> integerSlotAccessorSlotCreationForm [
+	<gtExample>
+	| form |
+	form := LcsAccessorSlotCreationFormExamples new accessorSlotCreationForm
+				slotClassChangedTo: 'LcsIntegerSlot'.
+	self assert: form slotClassName equals: 'LcsIntegerSlot'.
+	self assert: form slotModelBuilder class equals: LcsIntegerSlotBuilder.
+	self assert: form slotClassDescription notNil.
+	self assert: form targetClassDescription notNil.
+	self assert: form slotNameDescription notNil.
+	self assert: form allowNilDescription notNil.
+	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription) 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) notNil ].
+	#(numberOfDecimalsDescription) 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
+	^ form
+]
+
 { #category : #asking }
 LcsAccessorSlotCreationFormExamples >> originalCacheValueOf: slotClassDescription [ 
 	^ (((self subjectScripter element userData at: #gtmemento) cache
 		at: slotClassDescription) ifSome: [ :aValue | aValue ]) originalValue.
+]
+
+{ #category : #form }
+LcsAccessorSlotCreationFormExamples >> scaledDecimalSlotAccessorSlotCreationForm [
+	<gtExample>
+	| form |
+	form := LcsAccessorSlotCreationFormExamples new accessorSlotCreationForm
+				slotClassChangedTo: 'LcsScaledDecimalSlot'.
+	self assert: form slotClassName equals: 'LcsScaledDecimalSlot'.
+	self assert: form slotModelBuilder class equals: LcsScaledDecimalSlotBuilder.
+	self assert: form slotClassDescription notNil.
+	self assert: form targetClassDescription notNil.
+	self assert: form slotNameDescription notNil.
+	self assert: form allowNilDescription notNil.
+	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
+		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
+	#() 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
+	^ form
 ]
 
 { #category : #form }
@@ -233,6 +328,14 @@ LcsAccessorSlotCreationFormExamples >> stringSlotAccessorSlotCreationForm [
 				slotClassChangedTo: 'LcsStringSlot'.
 	self assert: form slotClassName equals: 'LcsStringSlot'.
 	self assert: form slotModelBuilder class equals: LcsStringSlotBuilder.
+	self assert: form slotClassDescription notNil.
+	self assert: form targetClassDescription notNil.
+	self assert: form slotNameDescription notNil.
+	self assert: form allowNilDescription notNil.
+	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) 
+		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
+	#(numberOfDecimalsDescription) 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
 	^ form
 ]
 
@@ -278,4 +381,23 @@ LcsAccessorSlotCreationFormExamples >> subjectScripter: aScripter [
 { #category : #accessing }
 LcsAccessorSlotCreationFormExamples >> subjectScripterModel [
 	^ self subjectScripter model
+]
+
+{ #category : #form }
+LcsAccessorSlotCreationFormExamples >> symbolSlotAccessorSlotCreationForm [
+	<gtExample>
+	| form |
+	form := LcsAccessorSlotCreationFormExamples new accessorSlotCreationForm
+				slotClassChangedTo: 'LcsSymbolSlot'.
+	self assert: form slotClassName equals: 'LcsSymbolSlot'.
+	self assert: form slotModelBuilder class equals: LcsStringSlotBuilder.
+	self assert: form slotClassDescription notNil.
+	self assert: form targetClassDescription notNil.
+	self assert: form slotNameDescription notNil.
+	self assert: form allowNilDescription notNil.
+	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) 
+		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
+	#(numberOfDecimalsDescription) 
+		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
+	^ form
 ]

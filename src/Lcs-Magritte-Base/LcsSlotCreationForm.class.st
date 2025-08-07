@@ -373,9 +373,10 @@ LcsSlotCreationForm >> selectInNavigationModel: aNavigationModel anInstance: anI
 
 { #category : #private }
 LcsSlotCreationForm >> slotBuilderClass [
-	LcsAccessorSlotBuilder withAllSubclasses do: [ :each |
-		each slotClass = self slotClassName asClass 
-			ifTrue: [ ^ each ]].
+	self slotClassWithSuperclasses do: [ :eachTargetSlotClass |
+		LcsAccessorSlotBuilder withAllSubclasses do: [ :eachSlotBuilderClass |
+			eachSlotBuilderClass slotClass = eachTargetSlotClass
+				ifTrue: [ ^ eachSlotBuilderClass ] ] ].
 	^ LcsAccessorSlotBuilder
 ]
 
