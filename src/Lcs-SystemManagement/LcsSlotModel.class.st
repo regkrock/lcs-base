@@ -56,11 +56,28 @@ LcsSlotModel >> _virtualSlotDefinitionNamed: aSlotName [
 				ifFalse: [ nil ] ]
 ]
 
+{ #category : #model }
+LcsSlotModel >> addCollectionViewSlotDefinitionsTo: aCollection [
+	self addLocalCollectionViewSlotDefinitionsTo: aCollection.
+	self domainClass isRootDomainClass
+		ifFalse: [ self superClassSlotModel addCollectionViewSlotDefinitionsTo: aCollection ]
+]
+
 { #category : #slots }
 LcsSlotModel >> addFacadeSlotDefinition: aSlotDefinition [
 
 	aSlotDefinition parent: self.
 	self facadeSlotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
+]
+
+{ #category : #model }
+LcsSlotModel >> addLocalCollectionViewSlotDefinitionsTo: aCollection [
+	self slotDefinitions
+		keysAndValuesDo: [ :eachSlotName :eachSlotDefinition | 
+			aCollection
+				detect: [ :each | each slotName = eachSlotName ]
+				ifNone: [ (self isNotExlcudedFromCollectionView: eachSlotName)
+								ifTrue: [ aCollection add: eachSlotDefinition ] ] ]
 ]
 
 { #category : #slots }
@@ -102,6 +119,14 @@ LcsSlotModel >> allSlotDefinitions [
 { #category : #validation }
 LcsSlotModel >> audit: anObject withAuditor: anAuditor [
 	self slotDefinitions do: [ :each |  each audit: anObject withAuditor: anAuditor ]
+]
+
+{ #category : #model }
+LcsSlotModel >> collectionViewSlotDefinitions [
+	| slotDefs |
+	slotDefs := OrderedCollection new.
+	self addCollectionViewSlotDefinitionsTo:slotDefs.
+	^ (slotDefs asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -224,10 +249,21 @@ LcsSlotModel >> initializeUnintializedSlotValuesIn: aDomainObject [
 	self allSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ]
 ]
 
+{ #category : #model }
+LcsSlotModel >> isNotExlcudedFromCollectionView: eachSlotName [
+	^ (self domainClass slotNamesExcludedFromCollectionViewSlotDefinitions
+		includes: eachSlotName) not
+]
+
 { #category : #'as yet unclassified' }
 LcsSlotModel >> loadSingletonCodeCollections [
 	self slotDefinitions do: [ :eachSlotDefinition |
 		eachSlotDefinition class = LcsSingletonValueObjectsGlobalCollectionSlot ifTrue: [ eachSlotDefinition populateCollection  ] ]
+]
+
+{ #category : #query }
+LcsSlotModel >> localCollectionSlots [
+	^ self slotDefinitions values select: [ :each | each isLocalCollectionSlot ]
 ]
 
 { #category : #accessing }

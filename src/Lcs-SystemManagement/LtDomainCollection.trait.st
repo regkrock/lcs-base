@@ -5,12 +5,12 @@ Trait {
 	#category : #'Lcs-SystemManagement-Traits'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 LtDomainCollection >> collection [
 	^ self slotVarNamed: 'collection'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 LtDomainCollection >> collection: aCollection [
 	self slotVarNamed: 'collection' put: aCollection
 ]
@@ -19,4 +19,24 @@ LtDomainCollection >> collection: aCollection [
 LtDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
 	^nil
+]
+
+{ #category : #'gt views' }
+LtDomainCollection >> gtItemsFor: aView [
+	<gtView>
+	| columnedListView |
+	self collection isNil ifTrue: [ ^ aView empty ].
+	columnedListView := 
+		aView columnedList
+			title: 'Items' translated;
+			priority: 0.5;
+			items: [ self collection asOrderedCollection ];
+			actionUpdateButton.
+	self collection notEmpty ifTrue: [
+		self collection any collectionViewSlotDefinitions do: [ :eachSlotDefinition |
+			columnedListView 
+				column: eachSlotDefinition label 
+				text: [:domainObject | (domainObject perform: eachSlotDefinition getterSelector) asString ] 
+				width: 100 ] ].
+	^ columnedListView
 ]

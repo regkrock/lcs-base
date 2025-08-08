@@ -141,7 +141,7 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationFromTemplateWithNoChanges [
 	
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'codeSlotDefinition
 	<slotDefinition>
-	^ LcsCodeSlot new
+	^ LcsValueCodeSlot new
 		yourself'.
 
 	slotInstanceVariableBuilder := (self slotModelBuilder jobStep: 1).

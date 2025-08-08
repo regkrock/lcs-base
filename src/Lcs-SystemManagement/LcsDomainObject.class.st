@@ -110,6 +110,11 @@ LcsDomainObject class >> newInContextOf: anObject [
 	^ newObject 
 ]
 
+{ #category : #'gt views' }
+LcsDomainObject class >> slotNamesExcludedFromCollectionViewSlotDefinitions [
+	^#('parent' 'history' 'uuid' 'version')
+]
+
 { #category : #'slot definitions' }
 LcsDomainObject class >> uuidSlotDefinition [
 	<slotDefinition>
@@ -143,6 +148,36 @@ LcsDomainObject >> creator [
 LcsDomainObject >> delete [
 
 	self currentUnitOfWork deleteObject: self
+]
+
+{ #category : #'gt views' }
+LcsDomainObject >> gtLocalCollectionsFor: aView [
+	<gtView>
+	 self localCollections isEmpty ifTrue: [ ^ aView empty]. 
+	^ aView columnedTree
+		title: 'Local Collections';
+		priority: 9;
+		items: [ self localCollectionItems ];
+		column: 'Slot'
+			text: [ :item | item  label asString ]
+			width: 100;
+		column: 'Size'
+			text: [ :item | item item 
+								ifNil: [ '' ] 
+								ifNotNil: [ item item collectionSize printString ] ]
+			width: 50;
+		column: 'Class'
+			text: [ :item | item item class asString ]
+			width: 200;
+		column: 'Pending Adds'
+			text: [ :item | item numberOfPendingAdds asString ]
+			width: 100;
+		column: 'Pending Removals'
+			text: [ :item | item numberOfPendingRemovals asString ]
+			width: 125;
+		send: #item;
+		actionUpdateButton;
+		yourself
 ]
 
 { #category : #'gt views' }
@@ -245,6 +280,20 @@ LcsDomainObject >> lastUpdatedTimestamp [
 { #category : #'accessing - virtual slot' }
 LcsDomainObject >> lastUpdatedUser [
 	^ self slotVarNamed: 'lastUpdatedUser'
+]
+
+{ #category : #'gt views' }
+LcsDomainObject >> localCollectionItems [
+	^ self slotModel localCollectionSlots
+		collect: [ :eachSlotDefinition | 
+			LcsLocalCollectionItem
+				newLabel: eachSlotDefinition slotName
+				item: (self perform: eachSlotDefinition slotName asSymbol) ]
+]
+
+{ #category : #'gt views' }
+LcsDomainObject >> localCollections [
+	^ self slotModel localCollectionSlots collect: [ :each | self perform: each slotName asSymbol ]
 ]
 
 { #category : #accessing }

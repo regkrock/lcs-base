@@ -344,6 +344,11 @@ LcsBaseDomainObject class >> slotModelNotInitializedError [
 	LcsSlotModelNotInitializedError signalWithContext: self
 ]
 
+{ #category : #'gt views' }
+LcsBaseDomainObject class >> slotNamesExcludedFromCollectionViewSlotDefinitions [
+	^ #('parent')
+]
+
 { #category : #'slot model - verification' }
 LcsBaseDomainObject class >> verifyClassHasDomainSlotNamed: aSlotName [
 	self assert: (self allInstVarNames includes: aSlotName).
@@ -462,6 +467,11 @@ LcsBaseDomainObject >> changeRecordForSlot: aSlotName [
 { #category : #'slot model' }
 LcsBaseDomainObject >> changeValueForSlot: aSlotName [
 	^ (self changeRecordForSlot: aSlotName) ifNil: [ '' ] ifNotNil: [ :slotChangeRecord | slotChangeRecord newValue]
+]
+
+{ #category : #'slot model' }
+LcsBaseDomainObject >> collectionViewSlotDefinitions [
+	^ self slotModel collectionViewSlotDefinitions
 ]
 
 { #category : #'application environment' }

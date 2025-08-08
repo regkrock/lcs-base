@@ -5,7 +5,7 @@ Trait {
 	#category : #'Lcs-SystemManagement-Traits'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 LtIdentitySetDomainCollection classSide >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsIdentitySetSlot new

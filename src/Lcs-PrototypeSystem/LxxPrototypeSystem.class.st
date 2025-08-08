@@ -19,7 +19,7 @@ LxxPrototypeSystem class >> configurationSlotDefinition [
 	^ super configurationSlotDefinition
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LxxPrototypeSystem class >> countriesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -58,7 +58,7 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LxxPrototypeSystem class >> skillsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new

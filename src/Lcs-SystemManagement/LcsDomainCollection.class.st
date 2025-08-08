@@ -12,16 +12,6 @@ LcsDomainCollection class >> collectionSlotDefinition [
 	^ LcsIdentitySetSlot new
 ]
 
-{ #category : #accessing }
-LcsDomainCollection >> collection [
-	^ self slotVarNamed: 'collection'
-]
-
-{ #category : #accessing }
-LcsDomainCollection >> collection: aCollection [
-	self slotVarNamed: 'collection' put: aCollection
-]
-
 { #category : #queries }
 LcsDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
@@ -33,7 +23,7 @@ LcsDomainCollection >> findWithKey: anObject [
 	^ self collection detect: [ :each | each key = anObject ] ifNone: [  ]
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsDomainCollection >> gtPendingAddsView: aView [
 	<gtView>
 	self pendingAdds ifEmpty: [ ^ aView empty ].
@@ -45,7 +35,7 @@ LcsDomainCollection >> gtPendingAddsView: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsDomainCollection >> gtPendingDeletesView: aView [
 	<gtView>
 	self pendingDeletes ifEmpty: [ ^ aView empty ].
