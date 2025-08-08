@@ -36,7 +36,7 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 	^ LcsGlobalCollectionSlot new
 		slotName: 'organizations';
 		addSlotType: LcsOrganizations;
-		addCollectionMemberType: LcsCountry;
+		addCollectionMemberType: LcsOrganization;
 		yourself
 ]
 

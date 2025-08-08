@@ -39,6 +39,13 @@ LcsGlobalCollectionSlotBuilder >> addCollectionMemberType: aClass [
 	self collectionMemberTypes add: aClass
 ]
 
+{ #category : #magritte }
+LcsGlobalCollectionSlotBuilder >> allowNilDescription [
+	^ super allowNilDescription
+		beReadOnly;
+		yourself
+]
+
 { #category : #accessing }
 LcsGlobalCollectionSlotBuilder >> collectionClass [
 	^ collectionClass

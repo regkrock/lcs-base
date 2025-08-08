@@ -16,6 +16,16 @@ LtCollection >> collect: aBlock [
 	^ self collection collect: aBlock
 ]
 
+{ #category : #accessing }
+LtCollection >> collection [
+	^ collection
+]
+
+{ #category : #accessing }
+LtCollection >> collection: anObject [
+	collection := anObject
+]
+
 { #category : #collection }
 LtCollection >> collectionSize [
 	^ self collection size
@@ -44,8 +54,7 @@ LtCollection >> gtItemsFor: aView [
 		title: 'Items' translated;
 		priority: 0.5;
 		object: [ self collection ];
-		view: #gtItemsFor:;
-		actionUpdateButton
+		view: #gtItemsFor:
 ]
 
 { #category : #testing }
