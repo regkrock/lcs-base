@@ -10,9 +10,9 @@ Class {
 
 { #category : #'slot definitions' }
 LxxPerson class >> ageSlotDefinition [
-	<slotDefinition>
+	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'weight';
+		slotName: 'age';
 		yourself
 ]
 
