@@ -14,6 +14,21 @@ LcsBaseSlot class >> isAbstract [
 	^ self name = #LcsBaseSlot
 ]
 
+{ #category : #testing }
+LcsBaseSlot class >> isAccessorSlot [
+	^ false
+]
+
+{ #category : #testing }
+LcsBaseSlot class >> isVirtualSlot [
+	^ false
+]
+
+{ #category : #convenience }
+LcsBaseSlot class >> slotKind [
+	^ 'Base'
+]
+
 { #category : #configuration }
 LcsBaseSlot >> addSlotType: aClass [
 	self assert: aClass isClass.
@@ -109,6 +124,120 @@ LcsBaseSlot >> errorPropertyNotFound: aSelector [
 	LcsSlotPropertyError signal: 'Property ' , aSelector , ' not found.'
 ]
 
+{ #category : #'slot model' }
+LcsBaseSlot >> getterSelector [
+	| substring1 substring2 |
+	substring1 := (self slotName at: 1) asLowercase asString.
+	substring2 := self slotName asCamelCase copyFrom: 2 to: self slotName size.
+	^ (substring1 , substring2) asSymbol
+		
+]
+
+{ #category : #'gt views' }
+LcsBaseSlot >> gtCreateClassAndValueElementFor: aColumn [
+	^ aColumn
+		cellStencil: [ BrHorizontalPane new
+				hMatchParent;
+				vFitContent;
+				alignCenter ];
+		dataBinder: [ :itemElement :aNode | 
+			| nodeIcon |
+			self traceCr: 'Item: ' , itemElement printString , '- Node: ' , aNode printString.
+			nodeIcon := [ aNode value gtInspectorIcon
+					ifNil: [ aNode value class iconNamed: aNode value class systemIconName ] ]
+					on: Error
+					do: [ :error | Smalltalk ui icons iconNamed: #smallWarningIcon ].
+					
+			itemElement
+				removeChildren;
+				addChild: nodeIcon asElement;
+				addChild: (BrLabel new
+							aptitude: BrGlamorousListLabelAptitude;
+							text: aNode value displayString;
+							alignCenterLeft;
+							hMatchParent;
+							vFitContent) ]
+]
+
+{ #category : #'gt views' }
+LcsBaseSlot >> gtSlotAttributesViewFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Attributes';
+		priority: 15;
+		items: [ self gtSlotDefinitionAttributes ];
+		column: 'Option' 
+			text: #key 
+			width: 200;
+		column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];
+		send: #value;
+		actionUpdateButton;		
+		yourself
+]
+
+{ #category : #'gt views' }
+LcsBaseSlot >> gtSlotDefinitionAttributes [
+	| collection |
+	collection := 
+		OrderedCollection new
+			add: 'slotDefinition' -> self;
+			add: 'slotDefinitionClass' -> self class;
+			add: 'domainClass' -> self newDomainClassName;
+			yourself.
+	collection 
+		add: '' -> '';
+		add: ('------PROPERTIES------' -> '').
+	collection addAll: self properties associations copy.
+	^ collection
+]
+
+{ #category : #'gt views' }
+LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
+	<gtView>
+
+	self domainClass ifNil: [ ^ aView empty ].
+	
+	^ aView explicit
+		title: 'Methods';
+		priority: 20;
+		stencil: [ 
+			| methods |
+			methods := self domainClass slotDefinitionMethodsNamed: self slotDefinitionSelector.
+			self domainClass addInstanceMethodNamed: self getterSelector asSymbol to: methods.
+			self isVirtualSlot ifFalse: [
+				self domainClass addInstanceMethodNamed: self setterSelector asSymbol to: methods].
+			GtPharoMethodsCoder forItems: methods]
+]
+
+{ #category : #'gt views' }
+LcsBaseSlot >> gtSlotTypesViewFor: aView [
+	<gtView>
+	^ aView columnedList
+		title: 'Slot Types';
+		priority: 10;
+		items: [ self slotTypes];
+		column: 'Index' 
+			text: [ :eachItem :eachIndex | 
+				eachIndex asRopedText foreground: Color gray ]
+			width: 45;
+		column: 'Item' do: [ :aColumn | 
+			aColumn
+				cellStencil: [ :eachItem | GtPhlowLabelWithIcon new ];
+				dataBinder: [ :aCellElement :eachItem | | icon class label |
+					class := eachItem isClass 
+								ifTrue: [ eachItem ] 
+								ifFalse: [ eachItem class ].
+					icon := aCellElement gtSafeIconNamed: class gtSystemIconName.
+					label := eachItem isClass 
+								ifTrue: [eachItem name asString ] 
+								ifFalse: [ eachItem gtDisplayText ].
+					aCellElement 
+						initializeWithIcon: icon
+						label: label ] ];
+		yourself
+
+]
+
 { #category : #initialize }
 LcsBaseSlot >> initialize [
 	super initialize.
@@ -125,14 +254,29 @@ LcsBaseSlot >> initializeSlotTypes [
 ]
 
 { #category : #testing }
+LcsBaseSlot >> isAccessorSlot [
+	^ self class isAccessorSlot
+]
+
+{ #category : #testing }
 LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
 	(self respondsTo: aPropertyName asSymbol) ifFalse: [ ^ true ].
 	^ ((self perform: aPropertyName asSymbol) = aValue) not
 ]
 
+{ #category : #testing }
+LcsBaseSlot >> isVirtualSlot [
+	^ self class isVirtualSlot
+]
+
 { #category : #'slot model' }
 LcsBaseSlot >> label [
 	^self labelForSelector: self slotName
+]
+
+{ #category : #'slot model' }
+LcsBaseSlot >> newDomainClassName [
+	^ self domainClass ifNil: [ ^ '<not initialized>']
 ]
 
 { #category : #accessing }
@@ -244,6 +388,16 @@ LcsBaseSlot >> slotClassDescription [
 
 ]
 
+{ #category : #'slot model' }
+LcsBaseSlot >> slotDefinitionSelector [
+	^ (self slotName , 'SlotDefinition') asSymbol
+]
+
+{ #category : #defaults }
+LcsBaseSlot >> slotKind [
+	^ self class slotKind
+]
+
 { #category : #properties }
 LcsBaseSlot >> slotName [
 	^ self propertyAt: 'slotName' ifAbsent: [ ]
@@ -328,6 +482,16 @@ LcsBaseSlot >> slotTypesDescription [
 		addCondition: [ :aValue | aValue asSet size = aValue size ]
 			labelled: 'Duplicate classes are not allowed';
 		beRequired
+]
+
+{ #category : #printing }
+LcsBaseSlot >> slotTypesList [
+	| stream |
+	stream := WriteStream on: String new.
+	self slotTypes 
+		do: [ :each | stream nextPutAll: each name ] 
+		separatedBy: [stream nextPutAll: ', ' ].
+	^ stream contents
 ]
 
 { #category : #'slot model' }

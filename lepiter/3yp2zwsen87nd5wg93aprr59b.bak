@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T12:53:43.249497-04:00"
+						"dateAndTimeString" : "2025-08-10T12:19:32.264114-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-30T08:38:45.495451-04:00"
+						"dateAndTimeString" : "2025-08-10T12:20:03.721182-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "f7yVYvrRDQC0z2zLAqAYSw=="
+					"uidString" : "z5S86Gb4DQCn3AJUCA30Qg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "In Pharo, there are already native slots defined. However GemStone there are no slots. To remedy that a class, {{gtClass:name=LcsAccessorSlot}} has been created to model the slot and to manage access to the instance variable/slot."
+				"string" : "###Interesting Script Examples"
 			},
 			{
 				"__type" : "textSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T12:56:57.443039-04:00"
+						"dateAndTimeString" : "2025-08-10T12:20:20.672475-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,20 +66,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T13:00:34.028568-04:00"
+						"dateAndTimeString" : "2025-08-10T12:20:37.192392-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "1uQobvrRDQC2eVg9AqAYSw=="
+					"uidString" : "JTaf62b4DQCoCW3vCA30Qg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "In a domain class, there is a class instance variable, {{gtMethod:LcsDomainObject>>slotModel}} which has the responsibility of refrencing the class' slot model ({{gtClass:name=LcsSlotModel}}). The slot model is populated from the class side slot definition methods in the domian object. "
+				"string" : "{{gtMethod:GtWorldByScripterExamples>>#selectClassInSecondPane}}"
 			},
 			{
-				"__type" : "textSnippet",
+				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -92,7 +92,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T13:04:16.822312-04:00"
+						"dateAndTimeString" : "2025-08-10T12:20:16.032521-04:00"
 					}
 				},
 				"editEmail" : {
@@ -103,20 +103,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:30:35.56353-04:00"
+						"dateAndTimeString" : "2025-08-10T13:00:07.285458-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "s0lZiPrRDQC/qK5rAqAYSw=="
+					"uidString" : "WmxY62b4DQCoBIxcCA30Qg=="
 				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "{{gtMethod:name=LxxPrototypeSystem class>>personsSlotDefinition}}"
+				"code" : "LxxBasePerson definitionString"
 			},
 			{
-				"__type" : "textSnippet",
+				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -129,7 +126,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T13:06:28.690348-04:00"
+						"dateAndTimeString" : "2025-08-10T15:33:24.424552-04:00"
 					}
 				},
 				"editEmail" : {
@@ -140,17 +137,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-07T07:30:32.547369-04:00"
+						"dateAndTimeString" : "2025-08-10T15:47:44.433889-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "Vmg1kPrRDQCA8Je8AqAYSw=="
+					"uidString" : "4UARnmn4DQCK0YIiCA30Qg=="
 				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "The instance of {{gtClass:name=LcsGlobalCollectionSlot}} both defines the attributes of the slot and also is used to access the instance variable/slot. \n{{gtMethod:LxxPrototypeSystem>>persons}} and {{gtMethod:LxxPrototypeSystem>>persons:}} are examples of how the getter and setter are modified to redirect the accessing of the instance variable/slot to be via the slot definition instance."
+				"code" : "| today birthDate |\rtoday := Date today .\rbirthDate := Date newDay: 30 month: 10 year: 2000.\r(today monthI > birthDate month or: [ today month = birthDate month and: [ today day >= birthDate day] ])\r\tifTrue: [ ^ today year - birthDate year ]\r\tifFalse: [  ^ today year - birthDate year - 1] \r"
 			}
 		]
 	},
@@ -162,7 +156,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-13T08:40:59.070468-04:00"
+			"dateAndTimeString" : "2025-08-10T12:19:32.206446-04:00"
 		}
 	},
 	"editEmail" : {
@@ -173,15 +167,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-03-13T08:40:59.070468-04:00"
+			"dateAndTimeString" : "2025-08-10T12:19:32.206446-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Slots"
+		"title" : "Playpen"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "7907a1cf-ebcf-0d00-935c-65a50393e516"
+		"uuid" : "5fb2bbe8-66f8-0d00-a7db-407d080df442"
 	}
 }

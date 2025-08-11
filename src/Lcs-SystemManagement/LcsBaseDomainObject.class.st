@@ -10,6 +10,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Domain'
 }
 
+{ #category : #'slot model' }
+LcsBaseDomainObject class >> accessorSlotDefinitionPragmas [
+	^ Pragma allNamed: 'slotDefinition' in: self class
+]
+
 { #category : #'meta data' }
 LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 	^ self allSuperclasses reverse
@@ -73,19 +78,21 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 	^ aView columnedList
 		title: 'Slot Definitions';
 		priority: 19;
-		items: [ self slotDefinitionPragmasAndInstVarNames ];
-		column: 'Slot' text: [ :each | each value slotName ] width: 100;
-		column: 'InstVar' text: [ :each | each key ] width: 100;
-		column: 'Getter' text: [ :each | each value getterSelector ] width: 100;
-		column: 'Setter' text: [ :each | each value setterSelector ] width: 100;
-		column: 'Priority' text: [ :each | each value priority ] width: 30;
-		column: 'Type(s)' text: [ :each | each value slotTypesList ] width: 100;
+		items: [ self slotDefinitionViewItems ];
+		column: 'Slot' text: [ :each | each slotName ] width: 100;
+		column: 'Kind' text: [ :each | each slotKind ] width: 70;
+		column: 'InstVar' text: [ :each | each instVarName ] width: 100;
+		column: 'Getter' text: [ :each | each getterSelector ] width: 100;
+		column: 'Setter' text: [ :each | each setterSelector ] width: 100;
+		column: 'Priority' text: [ :each | each priority ] width: 30;
+		column: 'Type(s)' text: [ :each | each slotTypesList ] width: 100;
+		column: 'Class' text: [ :each | each domainClass name ] width: 100;
 		column: '' stencil: [ :each | 
 			BrButton new
 				aptitude: BrGlamorousButtonWithLabelAptitude new;
 				label: 'Remove';
 				action: [ :aButton | 
-					each value domainClass removeDomainSlotNamed: each key.
+					each remove.
 					aButton phlow fireViewUpdateWish ]] width: 70; 
 		actionButtonDo: [ :aButtonAction | 
 			aButtonAction
@@ -93,7 +100,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 				tooltip: 'Create slot';
 				action: [ :aButton | aButton phlow spawnObject: (LcsAccessorSlotCreationForm newEditOn: self)  ] ];
 		actionUpdateButton;
-		send: [ :each | each value ] ;
+		send: [ :each | each slotDefinitionInformation ] ;
 		yourself
 		
 ]
@@ -310,23 +317,27 @@ LcsBaseDomainObject class >> slotDefinitionPragmas [
 ]
 
 { #category : #'slot model' }
-LcsBaseDomainObject class >> slotDefinitionPragmasAndInstVarNames [
+LcsBaseDomainObject class >> slotDefinitionViewItems [
 	" self slotDefinitionPragmasAndInstVarNames "
-	| instVarNamesAndSlotDefinitions slotDefinition slotDefinitions |
-	slotDefinitions := (self slotDefinitionPragmas collect: [ :eachPragma | (self perform: eachPragma method selector) domainClass: self. ]) asOrderedCollection.
-	instVarNamesAndSlotDefinitions := OrderedCollection new.
-	self instVarNames do: [:eachName |
-		slotDefinition := slotDefinitions
-			detect: [ :eachSlotDefinition | eachSlotDefinition slotName = eachName ]
-			ifNone: [ LcsAccessorSlot new slotName: 'missing' ].
-		instVarNamesAndSlotDefinitions add: (eachName -> slotDefinition).
-		slotDefinitions remove: slotDefinition ifAbsent: []].
-	slotDefinitions do: [ :eachSlotDefinition |
-		instVarNamesAndSlotDefinitions add: (
-			(self classThatDefinesInstVarNamed: eachSlotDefinition slotName)
-				ifNil: [ 'missing' -> eachSlotDefinition ]
-				ifNotNil: [ :class | eachSlotDefinition slotName -> eachSlotDefinition ]) ] .
-	^ instVarNamesAndSlotDefinitions
+	| slotDefinitionViewItems accessorSlotDefinitionViewItems allInstVarNames localInstVarNames|
+	slotDefinitionViewItems := (self accessorSlotDefinitionPragmas collect: [ :eachPragma | 
+		LcsExtantSlotDefinitionViewItem on: ((self perform: eachPragma method selector) domainClass: self) ]) asOrderedCollection.
+	accessorSlotDefinitionViewItems := slotDefinitionViewItems select: [ :each | each isAccessorSlot ].
+	allInstVarNames := self allInstVarNames.
+	localInstVarNames := self instVarNames asOrderedCollection.
+	localInstVarNames copy do: [:eachInstVarName |
+		accessorSlotDefinitionViewItems 
+			detect: [ :eachSlotDefinitionViewItem | 
+				eachSlotDefinitionViewItem slotName asSymbol = eachInstVarName 
+					ifTrue: [ 
+						eachSlotDefinitionViewItem instVarName: eachInstVarName.
+						localInstVarNames remove: eachInstVarName ifAbsent: [].
+						true ]
+					ifFalse: [  false ] ]
+			ifNone: [ slotDefinitionViewItems add: (LcsMissingSlotDefinitionViewItem on: eachInstVarName domainClass: self) ] ].
+	(accessorSlotDefinitionViewItems select: [ :each | each instVarName isEmptyOrNil])
+		do: [ :each | (allInstVarNames includes: each slotName asSymbol) ifTrue: [ each instVarName: each slotName asSymbol  ]].
+	^ slotDefinitionViewItems
 ]
 
 { #category : #accessing }
@@ -376,7 +387,7 @@ LcsBaseDomainObject class >> verifyClassHasSlotDefinitionsForInstVars [
 LcsBaseDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 	| localInstVarNames slotDefinitions |
 	localInstVarNames := self instVarNames asOrderedCollection.
-	slotDefinitions := (self slotDefinitionPragmas collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection.
+	slotDefinitions := (self accessorSlotDefinitionPragmas collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection.
 	slotDefinitions copy do: [ :eachSlotDefintion |
 		(localInstVarNames includes: eachSlotDefintion slotName) 
 			ifTrue: [
@@ -688,4 +699,10 @@ LcsBaseDomainObject >> slotVarNamed: aSlotName put: onObject [
 { #category : #validation }
 LcsBaseDomainObject >> verifySlotModelInitialized [
 	self class verifySlotModelInitialized
+]
+
+{ #category : #'slot access' }
+LcsBaseDomainObject >> virtualSlotVarNamed: aSlotName [
+	"Return the value of the instance variable in me with that name"
+	^ (self slotDefinitionNamed: aSlotName) currentSlotVarIn: self
 ]

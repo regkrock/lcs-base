@@ -1,0 +1,188 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-08-10T09:25:03.347755-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-08-10T12:23:17.891316-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "mJC9eGT4DQCmt1UrCA30Qg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "buildJobSteps\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeIsDefaultInstanceSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeIsDefaultInstanceSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeDescriptionSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeDescriptionSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonLabelSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonLabelSlot name;\r\t\t\tyourself).\r\tself addJobStep: (\r\t\tLcsSlotDefinitionBuilder new\r\t\t\tslotName: LcsSingletonCodeNameSlot new slotName;\r\t\t\ttargetClassName: self newClassName;\r\t\t\tslotDefinitionClassName: LcsSingletonCodeNameSlot name;\r\t\t\tyourself)"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-08-10T09:25:44.837977-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-08-10T09:25:45.916542-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "Dqw2e2T4DQCmy8GjCA30Qg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "{{gtTodo:label=Composite Slot|completed=2025-04-21}} \n\t\t- the parent of the contained item is the object that defines the slot (wholly owned)\n\t\t- replacing the contents of the slot with a new object results in the existing object being deleted\n{{gtTodo:label=Aggregation Slot}}\n\t\t- the aggregated item's life cycle is independent of the object it is beeing associated with.\n\t\t- if the the aggregated item is removed or replaced, it is not deleted/garbage collected because of \n\t\t  the removal. Removal must be done independently. (Ex: Car Engine/Car)\n{{gtTodo:label=Association Slot|completed=}}\n\t\t- In this model an example would be Eye Colour: #blue <- a 1 to 1 relationship - no dependency"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-08-10T09:26:02.243273-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-08-10T12:27:19.602484-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "hkFAfGT4DQCm2hIJCA30Qg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "{{gtTodo:label=Collection Slots|completed=}}\n\t\t{{gtTodo:label=Global Collection|completed=}}\n\t\t\t- Slot is defin\n\t\t{{gtTodo:label=Local Collection|completed=}}\n\t\t\n\t- Three types:\n\t\t\t- Primary \n\t\t\t\t- parent of the items is the collection\n\t\t\t\t- items are persisted in a collection\n\t\t\t- Secondary \n\t\t\t\t- parent of the items is not the collection\n\t\t\t\t- items are persisted in a collection\n\t\t\t- Virtual\n\t\t\t\t- parent of the items is not the collection\n\t\t\t\t- the collection is recalculated everytime and is not persisted.\n\t- add add/remove logic\n\t\t- primary collection - item is removed from the collection and the item's parent is set to nil\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(Removing the key so it will be garbaged collected)\n\t\t- secondary collection - item is removed from the collection but the item parent is unchanged\n"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T09:22:57.410486-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:22:01.255155-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sDg9YWT4DQCmOVPYCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtTodo:label=Assoication Slots}} "
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-10T09:18:29.010725-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-10T09:18:29.010725-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "TODO Slots"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "137c3c61-64f8-0d00-a638-d857080df442"
+	}
+}

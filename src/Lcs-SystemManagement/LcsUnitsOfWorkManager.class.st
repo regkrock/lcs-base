@@ -114,6 +114,7 @@ LcsUnitsOfWorkManager >> removeAllUnitsOfWork [
 
 { #category : #api }
 LcsUnitsOfWorkManager >> removeCurrentUnitOfWork [
+	self currentUnitOfWork clearUnitOfWork.
 	self unitsOfWork remove: self currentUnitOfWork ifAbsent: [ nil ]. 
 	self currentUnitOfWork: nil
 ]

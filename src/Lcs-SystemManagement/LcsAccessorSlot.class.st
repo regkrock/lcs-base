@@ -33,6 +33,16 @@ LcsAccessorSlot class >> isAbstract [
 	^ self name = #LcsAccessorSlot
 ]
 
+{ #category : #testing }
+LcsAccessorSlot class >> isAccessorSlot [
+	^ true
+]
+
+{ #category : #querying }
+LcsAccessorSlot class >> slotKind [
+	^ 'Accessor'
+]
+
 { #category : #configuration }
 LcsAccessorSlot class >> valueDomainObjectOldValueBlockArguments [
 	^ #('value' 'domainObject' 'oldValue')
@@ -156,41 +166,6 @@ LcsAccessorSlot >> domainObjectSlotBlockArguments [
 	^ self class domainObjectSlotBlockArguments
 ]
 
-{ #category : #'slot model' }
-LcsAccessorSlot >> getterSelector [
-	| substring1 substring2 |
-	substring1 := (self slotName at: 1) asLowercase asString.
-	substring2 := self slotName asCamelCase copyFrom: 2 to: self slotName size.
-	^ (substring1 , substring2) asSymbol
-		
-]
-
-{ #category : #'gt views' }
-LcsAccessorSlot >> gtCreateClassAndValueElementFor: aColumn [
-	^ aColumn
-		cellStencil: [ BrHorizontalPane new
-				hMatchParent;
-				vFitContent;
-				alignCenter ];
-		dataBinder: [ :itemElement :aNode | 
-			| nodeIcon |
-			self traceCr: 'Item: ' , itemElement printString , '- Node: ' , aNode printString.
-			nodeIcon := [ aNode value gtInspectorIcon
-					ifNil: [ aNode value class iconNamed: aNode value class systemIconName ] ]
-					on: Error
-					do: [ :error | Smalltalk ui icons iconNamed: #smallWarningIcon ].
-					
-			itemElement
-				removeChildren;
-				addChild: nodeIcon asElement;
-				addChild: (BrLabel new
-							aptitude: BrGlamorousListLabelAptitude;
-							text: aNode value displayString;
-							alignCenterLeft;
-							hMatchParent;
-							vFitContent) ]
-]
-
 { #category : #'gt views' }
 LcsAccessorSlot >> gtDomainMetaFor: aView [
 	<gtView>
@@ -214,55 +189,6 @@ LcsAccessorSlot >> gtMagritteFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsAccessorSlot >> gtSlotAttributesViewFor: aView [
-	<gtView>
-	^ aView columnedList
-		title: 'Attributes';
-		priority: 15;
-		items: [ self gtSlotDefinitionAttributes ];
-		column: 'Option' 
-			text: #key 
-			width: 200;
-		column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];
-		send: #value;
-		actionUpdateButton;		
-		yourself
-]
-
-{ #category : #'gt views' }
-LcsAccessorSlot >> gtSlotDefinitionAttributes [
-	| collection |
-	collection := 
-		OrderedCollection new
-			add: 'slotDefinition' -> self;
-			add: 'slotDefinitionClass' -> self class;
-			add: 'domainClass' -> self newDomainClassName;
-			yourself.
-	collection 
-		add: '' -> '';
-		add: ('------PROPERTIES------' -> '').
-	collection addAll: self properties associations copy.
-	^ collection
-]
-
-{ #category : #'gt views' }
-LcsAccessorSlot >> gtSlotDefinitionMethodViewFor: aView [
-	<gtView>
-
-	self domainClass ifNil: [ ^ aView empty ].
-	
-	^ aView explicit
-		title: 'Methods';
-		priority: 20;
-		stencil: [ 
-			| methods |
-			methods := self domainClass slotDefinitionMethodsNamed: self slotDefinitionSelector.
-			self domainClass addInstanceMethodNamed: self getterSelector asSymbol to: methods.
-			self domainClass addInstanceMethodNamed: self setterSelector asSymbol to: methods.
-			GtPharoMethodsCoder forItems: methods]
-]
-
-{ #category : #'gt views' }
 LcsAccessorSlot >> gtSlotModelFor: aView [
 	<gtView>
 	self parent ifNil: [ ^ aView empty ].
@@ -272,35 +198,6 @@ LcsAccessorSlot >> gtSlotModelFor: aView [
 		object: [ self parent ];
 		view: #gtRawFor:;
 		yourself
-]
-
-{ #category : #'gt views' }
-LcsAccessorSlot >> gtSlotTypesViewFor: aView [
-	<gtView>
-	^ aView columnedList
-		title: 'Slot Types';
-		priority: 10;
-		items: [ self slotTypes];
-		column: 'Index' 
-			text: [ :eachItem :eachIndex | 
-				eachIndex asRopedText foreground: Color gray ]
-			width: 45;
-		column: 'Item' do: [ :aColumn | 
-			aColumn
-				cellStencil: [ :eachItem | GtPhlowLabelWithIcon new ];
-				dataBinder: [ :aCellElement :eachItem | | icon class label |
-					class := eachItem isClass 
-								ifTrue: [ eachItem ] 
-								ifFalse: [ eachItem class ].
-					icon := aCellElement gtSafeIconNamed: class gtSystemIconName.
-					label := eachItem isClass 
-								ifTrue: [eachItem name asString ] 
-								ifFalse: [ eachItem gtDisplayText ].
-					aCellElement 
-						initializeWithIcon: icon
-						label: label ] ];
-		yourself
-
 ]
 
 { #category : #'gt views' }
@@ -440,11 +337,6 @@ LcsAccessorSlot >> makeUpdateOfVariableViaUnitOfWork [
 	self variableUpdatePolicy: (LcsUnitOfWorkVariableUpdatePolicy newOn: self)
 ]
 
-{ #category : #'slot model' }
-LcsAccessorSlot >> newDomainClassName [
-	^ self domainClass ifNil: [ ^ '<not initialized>']
-]
-
 { #category : #defaults }
 LcsAccessorSlot >> newObjectWithParent: parentDomainObject [
 		| newObject |
@@ -539,25 +431,10 @@ LcsAccessorSlot >> setterSelector [
 		
 ]
 
-{ #category : #'slot model' }
-LcsAccessorSlot >> slotDefinitionSelector [
-	^ (self slotName , 'SlotDefinition') asSymbol
-]
-
 { #category : #validation }
 LcsAccessorSlot >> slotDoesNotExistMessage [
 	^ 'Slot name ' , self slotName asString , ' does not exist in '
 		, self domainClass name
-]
-
-{ #category : #printing }
-LcsAccessorSlot >> slotTypesList [
-	| stream |
-	stream := WriteStream on: String new.
-	self slotTypes 
-		do: [ :each | stream nextPutAll: each name ] 
-		separatedBy: [stream nextPutAll: ', ' ].
-	^ stream contents
 ]
 
 { #category : #'slot model' }

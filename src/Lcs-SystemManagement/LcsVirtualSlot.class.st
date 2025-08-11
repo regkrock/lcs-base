@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsVirtualSlotDefinition,
+	#name : #LcsVirtualSlot,
 	#superclass : #LcsBaseSlot,
 	#instVars : [
 		'valueAccessBlock'
@@ -7,49 +7,59 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #testing }
+LcsVirtualSlot class >> isVirtualSlot [
+	^ true
+]
+
+{ #category : #convenience }
+LcsVirtualSlot class >> slotKind [
+	^ 'Virutal'
+]
+
 { #category : #'slot model' }
-LcsVirtualSlotDefinition >> currentSlotVarIn: aDomainObject [
+LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 
 	^ self valueAccessBlock value: aDomainObject
 ]
 
 { #category : #configuration }
-LcsVirtualSlotDefinition >> defaultValueAccessBlock [
+LcsVirtualSlot >> defaultValueAccessBlock [
 	[ :domainObject | LcsError signal: 'defaultValueAccessBlock not overriden or not initialized']
 ]
 
 { #category : #initiailize }
-LcsVirtualSlotDefinition >> initialize [
+LcsVirtualSlot >> initialize [
 	super initialize.
 	self valueAccessBlock: self defaultValueAccessBlock
 ]
 
 { #category : #'slot model' }
-LcsVirtualSlotDefinition >> slotVarNamed: anObject in: aDomainObject [
+LcsVirtualSlot >> slotVarNamed: anObject in: aDomainObject [
 	self error: 'This is a read only slot'
 ]
 
 { #category : #'slot model' }
-LcsVirtualSlotDefinition >> slotVarPut: anObject in: aDomainObject [
+LcsVirtualSlot >> slotVarPut: anObject in: aDomainObject [
 	self error: 'This is a read only slot'
 ]
 
 { #category : #accessing }
-LcsVirtualSlotDefinition >> valueAccessBlock [
+LcsVirtualSlot >> valueAccessBlock [
 	^ valueAccessBlock
 ]
 
 { #category : #accessing }
-LcsVirtualSlotDefinition >> valueAccessBlock: anObject [
+LcsVirtualSlot >> valueAccessBlock: anObject [
 	valueAccessBlock := anObject
 ]
 
 { #category : #'slot model' }
-LcsVirtualSlotDefinition >> valueAccessor: aSymbol [
+LcsVirtualSlot >> valueAccessor: aSymbol [
 	self valueAccessBlock: [ :domainObject | domainObject perform: aSymbol ]
 ]
 
 { #category : #'slot model' }
-LcsVirtualSlotDefinition >> valueIn: aDomainObject [
+LcsVirtualSlot >> valueIn: aDomainObject [
 	^ self valueAccessBlock value: aDomainObject
 ]

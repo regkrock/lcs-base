@@ -6,7 +6,7 @@ Class {
 
 { #category : #tests }
 LcsNumberSlotTest >> testInitialValue [
-	self subject: (LxxPerson slotModel slotDefinitionNamed: 'age').
+	self subject: (LxxPerson slotModel slotDefinitionNamed: 'weight').
 	self assert: (self subject isKindOf: LcsNumberSlot).
 	self assert: self subject initialValue equals: 0.
 
@@ -16,8 +16,8 @@ LcsNumberSlotTest >> testInitialValue [
 
 { #category : #tests }
 LcsNumberSlotTest >> testInstallation [
-	subject := LxxPerson slotModel slotDefinitionNamed: 'age'.
-	self assert: subject slotName equals: 'age'.
+	subject := LxxPerson slotModel slotDefinitionNamed: 'weight'.
+	self assert: subject slotName equals: 'weight'.
 	self assert: subject class == LcsNumberSlot
 ]
 
@@ -25,17 +25,17 @@ LcsNumberSlotTest >> testInstallation [
 LcsNumberSlotTest >> testSlotGetter [
 	| person |
 	person := LxxPerson new.
-	self assert: person age isZero.
+	self assert: person weight isZero.
 ]
 
 { #category : #tests }
 LcsNumberSlotTest >> testSlotSetter [
 	| person |
 	person := LxxPerson new.
-	self assert: person age isZero.
-	person age: 20.5.
+	self assert: person weight isZero.
+	person weight: 100.5.
 	self assert: person isInAddingState.
-	self assert: person age equals: 20.5.
+	self assert: person weight equals: 100.5.
 	"This may be wrong. Should it return nil as we are in add state"
-	self assert: ((person slotDefinitionNamed: 'age') persistedSlotVarIn: person) equals: 20.5
+	self assert: ((person slotDefinitionNamed: 'weight') persistedSlotVarIn: person) equals: 100.5
 ]

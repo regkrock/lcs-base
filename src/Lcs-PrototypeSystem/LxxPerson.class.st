@@ -2,8 +2,8 @@ Class {
 	#name : #LxxPerson,
 	#superclass : #LxxBasePerson,
 	#instVars : [
-		'age',
-		'balance'
+		'balance',
+		'weight'
 	],
 	#category : #'Lcs-PrototypeSystem-Base'
 }
@@ -11,9 +11,8 @@ Class {
 { #category : #'slot definitions' }
 LxxPerson class >> ageSlotDefinition [
 	<slotDefinition>
-	^ LcsNumberSlot new
-		slotName: 'age';
-		slotTypes: (OrderedCollection with: Number);
+	^ LcsVirtualSlot new
+		slotName: 'weight';
 		yourself
 ]
 
@@ -36,14 +35,17 @@ LxxPerson class >> parentSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
-LxxPerson >> age [
-	^ self slotVarNamed: 'age'
+{ #category : #'slot definitions' }
+LxxPerson class >> weightSlotDefinition [
+	<slotDefinition>
+	^ LcsNumberSlot new
+		slotName: 'weight';
+		yourself
 ]
 
 { #category : #accessing }
-LxxPerson >> age: anObject [
-	self slotVarNamed: 'age' put: anObject
+LxxPerson >> age [
+	^ self virtualSlotVarNamed: 'age'
 ]
 
 { #category : #accessing }
@@ -54,4 +56,14 @@ LxxPerson >> balance [
 { #category : #accessing }
 LxxPerson >> balance: anObject [
 	self slotVarNamed: 'balance' put: anObject
+]
+
+{ #category : #accessing }
+LxxPerson >> weight [
+	^ self slotVarNamed: 'weight'
+]
+
+{ #category : #accessing }
+LxxPerson >> weight: anObject [
+	self slotVarNamed: 'weight' put: anObject
 ]

@@ -55,6 +55,80 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:33:29.329568-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:35:51.161684-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "VSahGmf4DQCs9vNRCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsAccessorSlot}} This is the supper class of all slot definitions which represent an instance variable. All Slot types below inherit from this calass."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:36:50.801212-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T13:06:24.768841-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4YF2JGf4DQCwec/rCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "A slot normally contains (1) a Smalltlak Object (ex: integer, text, etc.) or it contains (2) a adomain object ( an object whose ancesstor is LcsDomainObject).\n\nSlots have the following properties:\n- slot name (slotName) this is an unique name. Based on the slot name, three things occur\n\t\t1) An instance variable with the same name is created. (ex: {{gtClass:LxxBasePerson}}\n\t\t2) A getter method is created (ex: {{gtMethod:name=LxxBasePerson>>firstName}})\n\t\t3) A setter method is created (ex: {{gtMethod:name=LxxBasePerson>>firstName:}})\n- the slot definition is defined in a class side method. ({{gtMethod:LxxBasePerson class}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2025-05-14T09:32:56.16852-04:00"
 					}
 				},
@@ -66,7 +140,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T10:06:13.550269-04:00"
+						"dateAndTimeString" : "2025-08-10T12:29:24.848746-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +150,229 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:name=LcsBooleanSlot}} - This is a slot that contains a boolean value - true or false\n{{gtClass:name=LcsStringSlot}}\n{{gtClass:name=LcsNumberSlot}} - This can contain any number - integer, fraction, floating point, etc.\n{{gtClass:name=LcsIntegerSlot}} - This can conaint only integers.\n{{gtClass:name=LcsSymbolSlot}}\n{{gtClass:name=LcsTimeSlot}}\n{{gtClass:name=LcsTimestampSlot}}"
+				"string" : "{{gtClass:name=LcsBooleanSlot}} - This is a slot that contains a boolean value - true or false"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:29:50.642473-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:29:55.415816-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "LD2YDWf4DQCslcmYCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsIntegerSlot}} - This can conaint only integers."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:29:31.971357-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:14.577861-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "/lx7DGf4DQCshgXVCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsNumberSlot}} - This can contain any number - integer, fraction, floating point, etc."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:19.009062-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:26.67426-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oBpJD2f4DQCsrj8MCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsStringSlot}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:30.505675-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:36.682705-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "eIf4D2f4DQCswsJwCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsSymbolSlot}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:40.156832-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:45.727188-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "+s2LEGf4DQCs1pE2CA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsTimeSlot}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:52.271174-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T12:30:52.892526-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "tp1EEWf4DQCs6fKjCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsTimestampSlot}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -103,7 +399,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-27T11:15:38.352883-04:00"
+						"dateAndTimeString" : "2025-06-30T08:38:45.437665-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +409,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**Update Slot Variable** - This can be done immediately or via unit of work. Specification of this is done using the {{gtMethod:LcsAcessorSlot>>#makeDirectUpdateOfVariable}} or the {{gtMethod:LcsAcessorSlot>>#makeUpdateOfVariableViaUnitOfWork}}. An example of using the direct is when updating the history slots as one does not want this to become part of the unit of work since it occurs while persisting the Unit Of Work changes. \n\nNote: {{gtMethod:LcsAcessorSlot>>#initialize}} set the default to using Unit Of Work for updates."
+				"string" : "**Update Slot Variable** - This can be done immediately or via unit of work. Specification of this is done using the {{gtMethod:LcsAccessorSlot>>#makeDirectUpdateOfVariable}} or the {{gtMethod:LcsAccessorSlot>>#makeUpdateOfVariableViaUnitOfWork}}. An example of using the direct is when updating the history slots as one does not want this to become part of the unit of work since it occurs while persisting the Unit Of Work changes. \n\nNote: {{gtMethod:LcsAccessorSlot>>#initialize}} set the default to using Unit Of Work for updates."
 			},
 			{
 				"__type" : "textSnippet",

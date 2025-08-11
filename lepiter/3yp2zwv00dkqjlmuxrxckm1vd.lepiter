@@ -1,0 +1,150 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T14:55:02.350598-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T15:01:00.960261-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "QGfaFGn4DQC/F+TsCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "##Definition\nA slot has several meanings depending on context:\n1) A *slot* is another word for intance variable. An instance variable takes up a slot of memory.\n2) A slot can also refer to **an object whose responsiblity is to encapsulate the behaviour associated with an instance variable. This includes accessing the contents of the instance variable.**\n\nThe later concept was introduced by Marvin Minksy and colleagues in his work on Frames and Slots at MIT. Basically, a Frame is composed on one to may slots which help describe the Frame. This work was expressed in [LISP](https://en.wikipedia.org/wiki/Lisp_(programming_language))  related languges such as [CLOS](https://en.wikipedia.org/wiki/Common_Lisp_Object_System)."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T13:47:24.516303-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T14:58:09.363222-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "cr78Imj4DQCdKAWGCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Slots In Smalltalk Implementations\nOnly Pharo has implemented shots at the language level. However for performance reasons they are desinged to to be optionally used. A major factor in not making them the default feature is performance."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T13:50:27.317088-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-10T14:06:50.037679-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4A/iLWj4DQCj9KXeCA30Qg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Known Smalltalk Applications Using Application Level Slots\nAt an an application level, 'frames' and 'slots' are known to be build into the design of several application systems including: (1) JP Morgan's *Kapital System*, (2) Florida Power and LIght's *Power Billing System*, (3) some systems in Vancouver were developed by [Big Server Software](https://opengovca.com/vancouver-business/02-102192). \n\nSystems making heavy use of meta data that were similar to a frame and slot system were OOCL's container shipping system which was also used by NYK Lines, and HTS  in Toronto.\n\nIn converstion with *Marin Kraft*, one of the architects of the *Power Billing System*, slots are not a performance problem for most systems at an application level. He said the ICE (Inter-Contintental Excahnge) would not be suitable because of the performance requirements. They had even turned garbage collection off while trading was in progresss.\n\nIt is important to note that all of the systems described above were using GemStone by GemTalk Systems."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-10T13:12:54.49733-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-10T13:12:54.49733-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "What is a Slot"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "f9c69aa7-67f8-0d00-8624-b0d3080df442"
+	}
+}

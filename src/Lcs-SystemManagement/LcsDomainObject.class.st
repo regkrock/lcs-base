@@ -21,7 +21,7 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 { #category : #'slot definitions' }
 LcsDomainObject class >> creationDateSlotDefinition [
 	<virtualSlotDefinition>
-	^ LcsVirtualSlotDefinition new
+	^ LcsVirtualSlot new
 		slotName: 'creationDate';
 		valueAccessor: #historyCreationDate;
 		addSlotType: Date;
@@ -31,7 +31,7 @@ LcsDomainObject class >> creationDateSlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObject class >> creationTimestampSlotDefinition [
 	<virtualSlotDefinition>
-	^ LcsVirtualSlotDefinition new
+	^ LcsVirtualSlot new
 		slotName: 'creationTimestamp';
 		valueAccessor: #historyCreationTimestamp;
 		addSlotType: DateAndTime;
@@ -41,7 +41,7 @@ LcsDomainObject class >> creationTimestampSlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObject class >> creatorSlotDefinition [
 	<virtualSlotDefinition>
-	^ LcsVirtualSlotDefinition new
+	^ LcsVirtualSlot new
 		slotName: 'creator';
 		valueAccessor: #historyCreator;
 		addSlotType: LcsUser;
@@ -61,7 +61,7 @@ LcsDomainObject class >> historySlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObject class >> lastUpdatedDateSlotDefinition [
 	<virtualSlotDefinition>
-	^ LcsVirtualSlotDefinition new
+	^ LcsVirtualSlot new
 		slotName: 'lastUpdatedDate';
 		valueAccessor: #historyLastUpdatedDate;
 		addSlotType: Date;
@@ -71,7 +71,7 @@ LcsDomainObject class >> lastUpdatedDateSlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
 	<virtualSlotDefinition>
-	^ LcsVirtualSlotDefinition new
+	^ LcsVirtualSlot new
 		slotName: 'lastUpdatedTimestamp';
 		valueAccessor: #historyLastUpdatedTimestamp;
 		addSlotType: DateAndTime;
@@ -81,7 +81,7 @@ LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObject class >> lastUpdatedUserSlotDefinition [
 	<virtualSlotDefinition>
-	^ LcsVirtualSlotDefinition new
+	^ LcsVirtualSlot new
 		slotName: 'lastUpdatedUser';
 		valueAccessor: #historyLastUpdatedUser;
 		addSlotType: LcsUser;

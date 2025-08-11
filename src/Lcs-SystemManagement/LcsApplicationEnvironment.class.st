@@ -100,7 +100,7 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 		column: 'Option' translated
 			text: [ :each | each label displayString ]
 			width: 200;
-		column: 'Value' translated text: [ :each | each item displayString ] width: 300;
+		column: 'Value' translated text: [ :each | each item displayString ] width: 400;
 		column: '' stencil: [ :viewItem :row :column | viewItem startSuspendSystemButton ] width: 70;
 		column: '' stencil: [ :viewItem | viewItem stopButton ] width: 70; 
 		send: #item;

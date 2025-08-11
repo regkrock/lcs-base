@@ -152,6 +152,7 @@ LcsModule >> geographyModule [
 
 { #category : #accessing }
 LcsModule >> globalCollectionItems [
+	self slotModel ifNil: [ ^ OrderedCollection new ].
 	^ self slotModel globalCollectionSlots
 		collect: [ :eachSlotDefinition | 
 			LcsGlobalCollectionItem

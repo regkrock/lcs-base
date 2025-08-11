@@ -11,7 +11,8 @@ LcsGlobalCollectionItem class >> defaultChildrenSelector [
 
 { #category : #accessing }
 LcsGlobalCollectionItem >> numberOfPendingAdds [
-	^ (self currentSystem unitOfWork pendingAddsFor: self) size
+	^ (self currentSystem ifNil: [ 0 ]
+		ifNotNil: [ :s | s unitOfWork pendingAddsFor: self ]) size
 ]
 
 { #category : #accessing }

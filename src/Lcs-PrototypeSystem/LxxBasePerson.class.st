@@ -40,6 +40,18 @@ LxxBasePerson class >> middleNameSlotDefinition [
 		yourself
 ]
 
+{ #category : #cal }
+LxxBasePerson >> _age [
+	| today birthDate |
+	today := Date today .
+	birthDate := self dateOfBirth.
+	^ (today monthIndex > birthDate monthIndex or: [ 
+			today monthIndex = birthDate monthIndex and: [ today day >= birthDate day ] ])
+		ifTrue: [ today year - birthDate year ]
+		ifFalse: [  today year - birthDate year - 1] 
+ 
+]
+
 { #category : #accessing }
 LxxBasePerson >> dateOfBirth [
 	^ self slotVarNamed: 'dateOfBirth'

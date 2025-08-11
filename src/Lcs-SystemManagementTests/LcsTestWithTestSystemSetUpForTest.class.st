@@ -21,7 +21,8 @@ LcsTestWithTestSystemSetUpForTest >> domainModelTestClasses [
 LcsTestWithTestSystemSetUpForTest >> setUpTestSystem [
 	self setupSunitSystem.
 	self currentSystem notNil ifTrue: [
-		self currentSystem buildSlotDefinitionsFor: self domainModelTestClasses ]
+		self currentSystem buildSlotDefinitionsFor: self domainModelTestClasses ].
+	self assert: self currentSystem ~~ self savedSystem
 ]
 
 { #category : #running }

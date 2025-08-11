@@ -18,80 +18,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T08:41:31.869789-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T08:55:01.539996-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "/nahz+vPDQCTXWRDA5PlFg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "This is an overview of the understanding of slots in this application. The deployment and execution target of this application is GemStone. Therefore the Pharo definition of slots cannot be used."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T08:55:31.477337-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T12:53:20.920335-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "McJxDffRDQCsuzI0DslOlg=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Slots, as used in this application, originates in the 'Frame and Slot' models developed in the AI field in the 1980's. {{gtTodo:label=(Reference needed)}}.  In Smalltalk a Frame is similar to a class. The new construct is a first class object, Slot, which manages access to the class' instance variable/slot.  "
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-04-08T12:53:05.772024-04:00"
 					}
 				},
@@ -140,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-27T11:15:38.324138-04:00"
+						"dateAndTimeString" : "2025-06-30T08:38:45.495451-04:00"
 					}
 				},
 				"uid" : {
@@ -150,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "In Pharo, there are already native slots defined. However GemStone there are no slots. To remedy that a class, {{gtClass:name=LcsAcessorSlot}} has been created to model the slot and to manage access to the instance variable/slot."
+				"string" : "In Pharo, there are already native slots defined. However GemStone there are no slots. To remedy that a class, {{gtClass:name=LcsAccessorSlot}} has been created to model the slot and to manage access to the instance variable/slot."
 			},
 			{
 				"__type" : "textSnippet",

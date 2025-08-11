@@ -7,7 +7,7 @@ Class {
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsAccessorSlotBuilderTest >> testAddingValidationCondition [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
@@ -20,7 +20,7 @@ LcsAccessorSlotBuilderTest >> testAddingValidationCondition [
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsAccessorSlotBuilderTest >> testAddingValidationConditionAndDescription [
 	self subject: LcsAccessorSlotBuilder new.
 	self subject addValidationCondition: [ :value | ] description: 'Test'.
@@ -28,7 +28,7 @@ LcsAccessorSlotBuilderTest >> testAddingValidationConditionAndDescription [
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsAccessorSlotBuilderTest >> testAllowNil [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject allowNil == false.
@@ -38,7 +38,7 @@ LcsAccessorSlotBuilderTest >> testAllowNil [
 	self assert: self subject isNilAllowed
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 LcsAccessorSlotBuilderTest >> testAllowNilDescription [
 	| description |
 	self subject: LcsAccessorSlotBuilder new.
