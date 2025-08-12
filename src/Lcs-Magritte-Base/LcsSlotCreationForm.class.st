@@ -57,6 +57,29 @@ LcsSlotCreationForm >> classNamed: aValue [
 	^ Smalltalk classNamed: aValue trim
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> classShortcuts [
+	^ {BlShortcutWithAction new
+			name: 'Browse class';
+			description: 'Browses the class indicated by the editor';
+			combination: BlKeyCombination primaryB;
+			action: [ :anEvent | 
+				anEvent target phlow
+					spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
+		BlShortcutWithAction new
+			name: 'Inspect class';
+			description: 'Inspects the class indicated by the editor';
+			combination: BlKeyCombination primaryG;
+			action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
+		BlShortcutWithAction new
+			name: 'Browse class references';
+			description: 'Browses references to the class indicated by the editor';
+			combination: BlKeyCombination primaryN;
+			action: [ :anEvent | 
+				anEvent target phlow
+					spawnObject: anEvent target text asString asClass gtReferences ]}
+]
+
 { #category : #private }
 LcsSlotCreationForm >> classesOrNilsFor: aCollectionOfClassNames [ 
 	"Return collection of Class. If a Class does not exist, `nil` value is used."
@@ -224,8 +247,7 @@ LcsSlotCreationForm >> isSlotClass: aValue [
 	| class |
 	class := self classNamed: aValue.
 	class isNil ifTrue: [ ^ false ].
-	class = self defaultSlotClass ifTrue: [ ^ true ]. 
-	^ class inheritsFrom: self defaultSlotClass
+	^ class inheritsFrom: LcsBaseSlot
 ]
 
 { #category : #testing }
@@ -374,7 +396,7 @@ LcsSlotCreationForm >> selectInNavigationModel: aNavigationModel anInstance: anI
 { #category : #private }
 LcsSlotCreationForm >> slotBuilderClass [
 	self slotClassWithSuperclasses do: [ :eachTargetSlotClass |
-		LcsAccessorSlotBuilder withAllSubclasses do: [ :eachSlotBuilderClass |
+		LcsBaseSlotBuilder allSubclasses do: [ :eachSlotBuilderClass |
 			eachSlotBuilderClass slotClass = eachTargetSlotClass
 				ifTrue: [ ^ eachSlotBuilderClass ] ] ].
 	^ LcsAccessorSlotBuilder
@@ -382,7 +404,8 @@ LcsSlotCreationForm >> slotBuilderClass [
 
 { #category : #callbacks }
 LcsSlotCreationForm >> slotClassChangedTo: aClassName [
-
+	self slotClassName: aClassName.
+	self reifySlotModelBuilder
 ]
 
 { #category : #magritte }
@@ -396,25 +419,7 @@ LcsSlotCreationForm >> slotClassDescription [
 		accessor: (MASelectorAccessor read: #slotClassName write: #slotClassChangedTo:);
 		readOnly: self isSlotModelBuilderReified;
 		blocCompletion: [ GtStringsCompletionStrategy new completions: self slotClasses ];
-		blocShortcuts: [ {BlShortcutWithAction new
-					name: 'Browse class';
-					description: 'Browses the class indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
-					name: 'Inspect class';
-					description: 'Inspects the class indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
-					name: 'Browse class references';
-					description: 'Browses references to the class indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]} ];
+		blocShortcuts: [ self classShortcuts ];
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
 				+ (BrGlamorousWithExplicitContextMenuAptitude
 						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ]) ];
@@ -434,10 +439,16 @@ LcsSlotCreationForm >> slotClassName: anObject [
 	slotClassName := anObject
 ]
 
+{ #category : #private }
+LcsSlotCreationForm >> slotClassWithSuperclasses [
+	^ (self slotClassName asClass withAllSuperclasses) reject: [ :each |
+		LcsBaseSlot inheritsFrom: each ]
+]
+
 { #category : #magritte }
 LcsSlotCreationForm >> slotClasses [
 	^ GtPrefixTree
-		withAll: ((LcsAccessorSlot withAllSubclasses reject: [ :each | each isAbstract ])
+		withAll: ((LcsBaseSlot withAllSubclasses reject: [ :each | each isAbstract ])
 				collect: [ :each | each name ])
 ]
 

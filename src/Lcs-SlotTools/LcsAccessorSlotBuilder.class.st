@@ -1,15 +1,6 @@
 Class {
 	#name : #LcsAccessorSlotBuilder,
-	#superclass : #LcsCodeBuilderStep,
-	#instVars : [
-		'slotDefinitionSelector',
-		'targetClassName',
-		'targetModuleClass',
-		'targetPackageName',
-		'targetClass',
-		'slotDefinitionTemplate',
-		'slotClassName'
-	],
+	#superclass : #LcsBaseSlotBuilder,
 	#category : #'Lcs-SlotTools'
 }
 
@@ -47,10 +38,6 @@ LcsAccessorSlotBuilder >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 LcsAccessorSlotBuilder >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
-]
-
-{ #category : #'code generation' }
-LcsAccessorSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
 
 { #category : #initialize }
@@ -138,12 +125,6 @@ LcsAccessorSlotBuilder >> classesOrNilsFor: aCollectionOfClassNames [
 LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 	self targetClass == aClass
 		ifTrue: [ self targetClassName: nil ]
-]
-
-{ #category : #execute }
-LcsAccessorSlotBuilder >> commit [
-	self buildJobSteps.
-	self execute
 ]
 
 { #category : #property }
@@ -241,12 +222,6 @@ LcsAccessorSlotBuilder >> initializeOn: aBuilderOrBuilderJob [
 	self parent: aBuilderOrBuilderJob
 ]
 
-{ #category : #command }
-LcsAccessorSlotBuilder >> installCode [
-	self traceStep: 'installCode'.
-	self jobSteps installCode
-]
-
 { #category : #'job steps' }
 LcsAccessorSlotBuilder >> installSlotDefinition [
 	self targetClass installSlotDefinition: self slotDefinitionSelector
@@ -288,16 +263,6 @@ LcsAccessorSlotBuilder >> moveToPreviousItemIn: aForm [
 				root: aForm;
 				referenceElement: anEvent currentTarget;
 				nextFocusDo: #requestFocus ifNone: [  ] ]
-]
-
-{ #category : #populate }
-LcsAccessorSlotBuilder >> populateFrom: aSlotClassName [
-	self properties removeAll.
-	self slotClassName: aSlotClassName.
-	self slotDefinitionTemplate: aSlotClassName asClass new.
-	self slotName: self slotDefinitionTemplate slotName.
-	self slotDefinitionTemplate properties keysAndValuesDo:  [ :key :value |
-		self propertyAt: key put: value copy ]
 ]
 
 { #category : #property }
@@ -385,39 +350,9 @@ LcsAccessorSlotBuilder >> requiredDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> slotClassName [
-	^ slotClassName
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> slotClassName: anObject [
-	slotClassName := anObject
-]
-
 { #category : #initialize }
 LcsAccessorSlotBuilder >> slotDefinitionMethodBuilder [
 	^ LcsSlotDefintionMethodBuilder newFrom: self
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> slotDefinitionSelector [
-	^ slotDefinitionSelector
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> slotDefinitionSelector: aSymbolOrNil [
-	slotDefinitionSelector := aSymbolOrNil
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> slotDefinitionTemplate [
-	^ slotDefinitionTemplate
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> slotDefinitionTemplate: anObject [ 
-	slotDefinitionTemplate := anObject
 ]
 
 { #category : #initialize }
@@ -431,22 +366,6 @@ LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 { #category : #properties }
 LcsAccessorSlotBuilder >> slotName [
 	^ self propertyAt: 'slotName' ifAbsent: [ nil ]
-]
-
-{ #category : #properties }
-LcsAccessorSlotBuilder >> slotName: anObject [
-	| slotName slotDefinitionName|
-	slotName := 
-		anObject isEmptyOrNil 
-			ifTrue: [ anObject ] 
-			ifFalse: [(anObject first asLowercase asString , 
-						(anObject copyFrom: 2 to: anObject size))].
-	self propertyAt: 'slotName' put: slotName.
-	slotDefinitionName := 
-		anObject isEmptyOrNil 
-			ifTrue: [ anObject ] 
-			ifFalse: [ (self slotName , 'SlotDefinition') asSymbol].
-	self slotDefinitionSelector: slotDefinitionName
 ]
 
 { #category : #margritte }
@@ -624,19 +543,6 @@ LcsAccessorSlotBuilder >> taggerStencilWithCompletion: aCompletionStrategy andCo
 		using: aDescription ]
 ]
 
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetClass [
-	^ self targetClassName ifNotNil: [ 
-		[ self targetClassName asClass ] 
-			on: NotFound 
-			do: [ :s | s return: nil ] ]
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetClass: aClass [
-	self targetClassName: aClass name
-]
-
 { #category : #margritte }
 LcsAccessorSlotBuilder >> targetClassDescription [
 	<magritteDescription>
@@ -663,36 +569,6 @@ LcsAccessorSlotBuilder >> targetClassDescription [
 				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetClassName [
-	^ targetClassName
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetClassName: aString [
-	targetClassName := aString
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetModuleClass [
-	^ targetModuleClass
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetModuleClass: aModuleClass [
-	targetModuleClass := aModuleClass
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetPackageName [
-	^ targetPackageName
-]
-
-{ #category : #accessing }
-LcsAccessorSlotBuilder >> targetPackageName: anObject [
-	targetPackageName := anObject
 ]
 
 { #category : #verification }

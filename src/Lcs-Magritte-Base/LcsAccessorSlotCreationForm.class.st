@@ -142,18 +142,6 @@ LcsAccessorSlotCreationForm >> requiredDescription [
 	^ self magritteDescriptionFor: #required
 ]
 
-{ #category : #callbacks }
-LcsAccessorSlotCreationForm >> slotClassChangedTo: aClassName [
-	self slotClassName: aClassName.
-	self reifySlotModelBuilder
-]
-
-{ #category : #private }
-LcsAccessorSlotCreationForm >> slotClassWithSuperclasses [
-	^ (self slotClassName asClass withAllSuperclasses) reject: [ :each |
-		LcsAccessorSlot inheritsFrom: each ]
-]
-
 { #category : #magritte }
 LcsAccessorSlotCreationForm >> slotNameDescription [
 	<magritteDescription>

@@ -42,6 +42,14 @@ LcsAccessorSlotCreationFormTest >> testChainAccessor [
 ]
 
 { #category : #tests }
+LcsAccessorSlotCreationFormTest >> testChangeSlotClassTo [
+	self subject: LcsAccessorSlotCreationForm new.
+	self subject targetClass: LxxPerson.
+	self subject slotClassChangedTo: LcsStringSlot name.
+	self subject slotClassChangedTo: LcsVirtualSlot name.
+]
+
+{ #category : #tests }
 LcsAccessorSlotCreationFormTest >> testCreation [
 
 	self subject: LcsAccessorSlotCreationForm new.
@@ -74,6 +82,14 @@ LcsAccessorSlotCreationFormTest >> testCreationUsingNewOn [
 	self assert: self subject slotClassName isString..
 	self assert: self subject slotClassName isEmpty.
 	self assert: self subject mode = #add
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testIsSlotClass [
+	self subject: LcsAccessorSlotCreationForm new.
+	self assert: (self subject isSlotClass: 'LcsStringSlot').
+	self assert: (self subject isSlotClass: 'LcsAccessorSlot').
+	self assert: (self subject isSlotClass: 'LcsVirtualSlot').
 ]
 
 { #category : #tests }
@@ -130,6 +146,18 @@ LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
 	self assert: builderProperties keys asSortedCollection equals: templateProperties keys asSortedCollection.
 	builderProperties keys do: [ :eachKey |
 		self assertObject: (builderProperties at: eachKey) equals: (templateProperties at: eachKey)]
+]
+
+{ #category : #tests }
+LcsAccessorSlotCreationFormTest >> testSlotClassConvertedToSlotBuilder [
+	self subject: LcsAccessorSlotCreationForm new.
+	self subject targetClass: LxxPerson.
+	self subject slotClassName: 'LcsStringSlot'.
+	self assert: self subject slotBuilderClass equals: LcsStringSlotBuilder.
+	self subject slotClassName: 'LcsAccessorSlot'.
+	self assert: self subject slotBuilderClass equals: LcsAccessorSlotBuilder.
+	self subject slotClassName: 'LcsVirtualSlot'.
+	self assert: self subject slotBuilderClass equals: LcsVirtualSlotBuilder
 ]
 
 { #category : #tests }
