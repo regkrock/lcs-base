@@ -145,6 +145,40 @@
 					"uidString" : "4UARnmn4DQCK0YIiCA30Qg=="
 				},
 				"code" : "| today birthDate |\rtoday := Date today .\rbirthDate := Date newDay: 30 month: 1 year: 2000.\r(today monthIndex > birthDate monthIndex or: [ today monthIndex = birthDate monthIndex and: [ today day >= birthDate day] ])\r\tifTrue: [ ^ today year - birthDate year ]\r\tifFalse: [  ^ today year - birthDate year - 1] \r"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-12T12:02:47.951806-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-12T12:02:48.738355-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "8bqO6I74DQCnAUG9A3HkFA=="
+				},
+				"code" : "GtPagerSettings useTreePager"
 			}
 		]
 	},

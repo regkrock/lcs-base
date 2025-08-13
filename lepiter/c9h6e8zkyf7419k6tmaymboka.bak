@@ -819,7 +819,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-08-10T15:07:12.204045-04:00"
+												"dateAndTimeString" : "2025-08-10T15:08:51.984037-04:00"
 											}
 										},
 										"uid" : {
@@ -829,7 +829,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "[[Slot Artifacts]]"
+										"string" : "[[Slot Components]]"
 									},
 									{
 										"__type" : "textSnippet",

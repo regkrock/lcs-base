@@ -35,33 +35,6 @@ LcsBaseSlot >> addSlotType: aClass [
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
 
-{ #category : #validations }
-LcsBaseSlot >> addValidationCondition: aValidationCondition [
-	self validationConditions addValidationCondition: aValidationCondition
-]
-
-{ #category : #validations }
-LcsBaseSlot >> addValidationCondition: aBlock description: aString [
-	self validationConditions addValidationCondition: aBlock description: aString
-]
-
-{ #category : #validations }
-LcsBaseSlot >> audit: anObject withAuditor: anAuditor [
-	| value |
-	value := self currentSlotVarIn: anObject.
-	[ self verifyType: value for: anObject ]
-		on: LcsInvalidSlotTypeError
-		do: [ :signal |
-			anAuditor addErrorDescription: signal invalidAuditMessage.
-			signal return: nil ].
-	self validationConditions do: [ :eachCondition | 
-		[ eachCondition cull: value cull: anObject ]
-			on: LcsInvalidSlotTypeError
-			do: [ :signal |
-				anAuditor addErrorDescription: signal invalidAuditMessage.
-				signal return: nil ] ]
-]
-
 { #category : #configuration }
 LcsBaseSlot >> clearSlotTypes [
 	self slotTypes removeAll.
@@ -244,7 +217,6 @@ LcsBaseSlot >> initialize [
 	self properties: OrderedDictionary new.
 	self slotName: nil.
 	self initializeSlotTypes.
-	self validationConditions: (LcsValidationConditions newOn: self).
 	self priority: 50
 ]
 
@@ -338,16 +310,6 @@ LcsBaseSlot >> propertyAt: aKey ifAbsent: aBlock [
 { #category : #properties }
 LcsBaseSlot >> propertyAt: aKey put: anObject [
 	^ self properties at: aKey put: anObject 
-]
-
-{ #category : #validations }
-LcsBaseSlot >> removeValidationCondition: aValidationCondition [
-	self validationConditions removeValidationCondition: aValidationCondition
-]
-
-{ #category : #validations }
-LcsBaseSlot >> removeValidationConditionWithDescription: aString [
-	self validationConditions removeValidationConditionWithDescription: aString
 ]
 
 { #category : #defaults }
@@ -608,38 +570,4 @@ LcsBaseSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBl
 		memento: aMemento
 		using: aDescription ]
 
-]
-
-{ #category : #validations }
-LcsBaseSlot >> validate: aValue [
-	^ (LcsConditionsValidator newOn: self)
-		validate: aValue;
-		yourself
-]
-
-{ #category : #validations }
-LcsBaseSlot >> validate: aValue context: aDomainObject [
-	(LcsConditionsValidator newOn: self)
-		validate: aValue context: aDomainObject
-]
-
-{ #category : #validations }
-LcsBaseSlot >> validate: anObject visitor: aValidationVisitor [
-	<TODO: 'this needs work or should be removed'>
-	self validationConditions do: [ :eachCondition | ]
-]
-
-{ #category : #validations }
-LcsBaseSlot >> validate: aValue withValidator: aValidator [
-	self validationConditions validate: aValue withValidator: aValidator
-]
-
-{ #category : #properties }
-LcsBaseSlot >> validationConditions [
-	^ self propertyAt: 'validationConditions'
-]
-
-{ #category : #properties }
-LcsBaseSlot >> validationConditions: anObject [
-	self propertyAt: 'validationConditions' put: anObject
 ]

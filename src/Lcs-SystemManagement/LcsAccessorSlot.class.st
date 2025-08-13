@@ -69,6 +69,16 @@ LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
+{ #category : #validations }
+LcsAccessorSlot >> addValidationCondition: aValidationCondition [
+	self validationConditions addValidationCondition: aValidationCondition
+]
+
+{ #category : #validations }
+LcsAccessorSlot >> addValidationCondition: aBlock description: aString [
+	self validationConditions addValidationCondition: aBlock description: aString
+]
+
 { #category : #properties }
 LcsAccessorSlot >> allowNil [ 
 	^ self propertyAt: 'allowNil'
@@ -100,6 +110,23 @@ LcsAccessorSlot >> allowNilDescription [
 LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 	newValue isDomainObject ifTrue: [
 		newValue parent: aDomainObject ]
+]
+
+{ #category : #validations }
+LcsAccessorSlot >> audit: anObject withAuditor: anAuditor [
+	| value |
+	value := self currentSlotVarIn: anObject.
+	[ self verifyType: value for: anObject ]
+		on: LcsInvalidSlotTypeError
+		do: [ :signal |
+			anAuditor addErrorDescription: signal invalidAuditMessage.
+			signal return: nil ].
+	self validationConditions do: [ :eachCondition | 
+		[ eachCondition cull: value cull: anObject ]
+			on: LcsInvalidSlotTypeError
+			do: [ :signal |
+				anAuditor addErrorDescription: signal invalidAuditMessage.
+				signal return: nil ] ]
 ]
 
 { #category : #configuration }
@@ -259,6 +286,7 @@ LcsAccessorSlot >> initialValueFor: aDomainObject [
 LcsAccessorSlot >> initialize [
 	super initialize.
 	self makeUpdateOfVariableViaUnitOfWork.
+	self validationConditions: (LcsValidationConditions newOn: self).
 	self initialValueBlock: self defaultInitialValueBlock.
 	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
 	self allowNil: false.
@@ -388,6 +416,16 @@ LcsAccessorSlot >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
+{ #category : #validations }
+LcsAccessorSlot >> removeValidationCondition: aValidationCondition [
+	self validationConditions removeValidationCondition: aValidationCondition
+]
+
+{ #category : #validations }
+LcsAccessorSlot >> removeValidationConditionWithDescription: aString [
+	self validationConditions removeValidationConditionWithDescription: aString
+]
+
 { #category : #properties }
 LcsAccessorSlot >> required [
 	^ self propertyAt: 'required'
@@ -451,11 +489,45 @@ LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
 	self variableUpdatePolicy slotVarPut: transformedObject in: aDomainObject
 ]
 
+{ #category : #validations }
+LcsAccessorSlot >> validate: aValue [
+	^ (LcsConditionsValidator newOn: self)
+		validate: aValue;
+		yourself
+]
+
+{ #category : #validations }
+LcsAccessorSlot >> validate: aValue context: aDomainObject [
+	(LcsConditionsValidator newOn: self)
+		validate: aValue context: aDomainObject
+]
+
 { #category : #'slot model' }
 LcsAccessorSlot >> validate: anObject for: aDomainObject [
 	self verifySlotType: anObject for: aDomainObject.
 	(self isNilAllowed and: [self isNullObject: anObject]) ifTrue: [ ^ self ].
 	self validationConditions validate: anObject context: aDomainObject
+]
+
+{ #category : #validations }
+LcsAccessorSlot >> validate: anObject visitor: aValidationVisitor [
+	<TODO: 'this needs work or should be removed'>
+	self validationConditions do: [ :eachCondition | ]
+]
+
+{ #category : #validations }
+LcsAccessorSlot >> validate: aValue withValidator: aValidator [
+	self validationConditions validate: aValue withValidator: aValidator
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> validationConditions [
+	^ self propertyAt: 'validationConditions'
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> validationConditions: anObject [
+	self propertyAt: 'validationConditions' put: anObject
 ]
 
 { #category : #magritte }

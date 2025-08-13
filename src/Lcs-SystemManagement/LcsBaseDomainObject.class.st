@@ -98,7 +98,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
 			aButtonAction
 				icon: BrGlamorousVectorIcons spawn;
 				tooltip: 'Create slot';
-				action: [ :aButton | aButton phlow spawnObject: (LcsAccessorSlotCreationForm newEditOn: self)  ] ];
+				action: [ :aButton | aButton phlow spawnObject: (LcsSlotCreationForm newEditOn: self)  ] ];
 		actionUpdateButton;
 		send: [ :each | each slotDefinitionInformation ] ;
 		yourself
@@ -449,6 +449,11 @@ LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 			(self currentSystem systemSlotModel hasSlotModelFor: self)
 				ifFalse: [ aValidator addIssueMessage: 'Slot Model is defined but not in the systemSlotModel' ].
 		aValidator validate: self slotModel]
+]
+
+{ #category : #'slot model' }
+LcsBaseDomainObject >> allAccessorSlotDefinitions [
+	^ self slotModel allAccessorSlotDefinitions
 ]
 
 { #category : #'slot model' }

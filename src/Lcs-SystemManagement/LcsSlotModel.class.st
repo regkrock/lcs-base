@@ -57,6 +57,15 @@ LcsSlotModel >> _virtualSlotDefinitionNamed: aSlotName [
 ]
 
 { #category : #model }
+LcsSlotModel >> addAccessorSlotDefinitionsTo: aCollection [
+	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
+		aCollection detect: [ :each | each slotName = eachSlotName ]
+			ifNone: [ aCollection add: eachSlotDefinition ] ].
+	self domainClass isRootDomainClass
+		ifFalse: [ self superClassSlotModel addAccessorSlotDefinitionsTo: aCollection ]
+]
+
+{ #category : #model }
 LcsSlotModel >> addCollectionViewSlotDefinitionsTo: aCollection [
 	self addLocalCollectionViewSlotDefinitionsTo: aCollection.
 	self domainClass isRootDomainClass
@@ -92,6 +101,9 @@ LcsSlotModel >> addSlotDefinitionsTo: aCollection [
 	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
 		aCollection detect: [ :each | each slotName = eachSlotName ]
 			ifNone: [ aCollection add: eachSlotDefinition ] ].
+	self virtualSlotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
+		aCollection detect: [ :each | each slotName = eachSlotName ]
+			ifNone: [ aCollection add: eachSlotDefinition ] ].
 	self domainClass isRootDomainClass
 		ifFalse: [ self superClassSlotModel addSlotDefinitionsTo: aCollection ]
 ]
@@ -106,6 +118,14 @@ LcsSlotModel >> addVirtualSlotDefinition: aSlotDefinition [
 
 	aSlotDefinition parent: self.
 	self virtualSlotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
+]
+
+{ #category : #model }
+LcsSlotModel >> allAccessorSlotDefinitions [
+	| allSlotDefinitions |
+	allSlotDefinitions := OrderedCollection new.
+	self addAccessorSlotDefinitionsTo:allSlotDefinitions.
+	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
 { #category : #model }
@@ -217,7 +237,7 @@ LcsSlotModel >> hasSlotDefinitionNamed: aSlotName [
 
 { #category : #testing }
 LcsSlotModel >> hasSlotDefinitions [
-	^ self allSlotDefinitions notEmpty
+	^ self allAccessorSlotDefinitions notEmpty
 ]
 
 { #category : #accessing }
@@ -240,13 +260,13 @@ LcsSlotModel >> initializeSlotNamed: aSlotName in: aDomainObject [
 
 { #category : #model }
 LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
-	self allSlotDefinitions
+	self allAccessorSlotDefinitions
 		do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
 ]
 
 { #category : #model }
 LcsSlotModel >> initializeUnintializedSlotValuesIn: aDomainObject [
-	self allSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ]
+	self allAccessorSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ]
 ]
 
 { #category : #model }

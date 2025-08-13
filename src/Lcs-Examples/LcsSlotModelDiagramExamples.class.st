@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsSlotModelDiagramExamples,
-	#superclass : #LcsObject,
+	#superclass : #LcsObjectExamples,
 	#category : #'Lcs-Examples'
 }
 

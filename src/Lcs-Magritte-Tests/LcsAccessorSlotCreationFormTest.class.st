@@ -16,13 +16,13 @@ LcsAccessorSlotCreationFormTest >> slotModelBuilder [
 
 { #category : #form }
 LcsAccessorSlotCreationFormTest >> stringSlotAccessorSlotCreationForm [
-	^ LcsAccessorSlotCreationFormExamples new stringSlotAccessorSlotCreationForm
+	^ LcsSlotCreationFormExamples new stringSlotAccessorSlotCreationForm
 ]
 
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuilder [
 	| aDescription |
-	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject: (LcsSlotCreationForm newOn: LxxPerson).
 	self subject slotClassChangedTo: #LcsValueCodeSlot.
 	self slotModelBuilder isKindOf: LcsValueCodeSlot.
 	aDescription := self subject slotTypesDescription.
@@ -33,7 +33,7 @@ LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuild
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testChainAccessor [
 	| chainAccessor |
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	"chainAccessor := self subject  chainAccessorFor: #('foo')."
 	chainAccessor := MAChainAccessor accessors: #(#'slotModelBuilder' #'foo' #'bar').
 	self assert: chainAccessor accessor selector equals: #'slotModelBuilder'.
@@ -43,16 +43,18 @@ LcsAccessorSlotCreationFormTest >> testChainAccessor [
 
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testChangeSlotClassTo [
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
+	self assert: self subject slotClassName equals: 'LcsStringSlot'.
 	self subject slotClassChangedTo: LcsVirtualSlot name.
+	self assert: self subject slotClassName equals: 'LcsVirtualSlot'
 ]
 
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testCreation [
 
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self assert: self subject targetClass isNil.
 	self assert: self subject isSlotModelBuilderNotReified.
 	self assert: self subject slotClassName isString..
@@ -65,7 +67,7 @@ LcsAccessorSlotCreationFormTest >> testCreation [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testCreationUsingNewEditOn [
 
-	self subject: (LcsAccessorSlotCreationForm newEditOn: LxxPerson).
+	self subject: (LcsSlotCreationForm newEditOn: LxxPerson).
 	self assert: self subject targetClass equals: LxxPerson.
 	self assert: self subject isSlotModelBuilderNotReified.
 	self assert: self subject slotClassName isString..
@@ -76,7 +78,7 @@ LcsAccessorSlotCreationFormTest >> testCreationUsingNewEditOn [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testCreationUsingNewOn [
 
-	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject: (LcsSlotCreationForm newOn: LxxPerson).
 	self assert: self subject targetClass equals: LxxPerson.
 	self assert: self subject isSlotModelBuilderNotReified.
 	self assert: self subject slotClassName isString..
@@ -86,7 +88,7 @@ LcsAccessorSlotCreationFormTest >> testCreationUsingNewOn [
 
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testIsSlotClass [
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self assert: (self subject isSlotClass: 'LcsStringSlot').
 	self assert: (self subject isSlotClass: 'LcsAccessorSlot').
 	self assert: (self subject isSlotClass: 'LcsVirtualSlot').
@@ -95,7 +97,7 @@ LcsAccessorSlotCreationFormTest >> testIsSlotClass [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testModifyingInitialValueBlock [
 	| aDescription |
-	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject: (LcsSlotCreationForm newOn: LxxPerson).
 	self subject slotClassChangedTo: #LcsScaledDecimalSlot.
 	self slotModelBuilder isKindOf: LcsScaledDecimalSlot.
 	aDescription := self subject initialValueBlockDescription.
@@ -108,7 +110,7 @@ LcsAccessorSlotCreationFormTest >> testModifyingInitialValueBlock [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testModifyingPrevalidationTransformBlock [
 	| aDescription |
-	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject: (LcsSlotCreationForm newOn: LxxPerson).
 	self subject slotClassChangedTo: #LcsScaledDecimalSlot.
 	self slotModelBuilder isKindOf: LcsScaledDecimalSlot.
 	aDescription := self subject prevalidationTransformBlockDescription.
@@ -121,7 +123,7 @@ LcsAccessorSlotCreationFormTest >> testModifyingPrevalidationTransformBlock [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testRequiredDescription [
 	| description |
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
 	description := self subject requiredDescription.
@@ -133,7 +135,7 @@ LcsAccessorSlotCreationFormTest >> testRequiredDescription [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
 	| slotModelBuilder builderProperties templateProperties |
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
 	self assert: self subject slotClassName equals: LcsStringSlot name.
@@ -150,7 +152,7 @@ LcsAccessorSlotCreationFormTest >> testSettingTargetAndTemplateSlot [
 
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSlotClassConvertedToSlotBuilder [
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassName: 'LcsStringSlot'.
 	self assert: self subject slotBuilderClass equals: LcsStringSlotBuilder.
@@ -163,7 +165,7 @@ LcsAccessorSlotCreationFormTest >> testSlotClassConvertedToSlotBuilder [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSlotGenerationFromTemplateWithNoChanges [
 	| slotDefinitionMethodBuilder slotInstanceVariableBuilder |
-	self subject: (LcsAccessorSlotCreationForm newOn: LxxPerson).
+	self subject: (LcsSlotCreationForm newOn: LxxPerson).
 	self subject slotClassChangedTo: LcsValueCodeSlot name.
 	slotDefinitionMethodBuilder := (self slotModelBuilder jobStep: 2).
 	
@@ -178,8 +180,8 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationFromTemplateWithNoChanges [
 
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSlotGenerationWithAllowNilTurnedOnAndThenTurnedOff [
-	| slotDefinitionMethodBuilder slotInstanceVariableBuilder |
-	self subject: LcsAccessorSlotCreationForm new.
+	| slotDefinitionMethodBuilder |
+	self subject: LcsSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
 	slotDefinitionMethodBuilder := self slotModelBuilder jobStep: 2.
@@ -209,7 +211,7 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationWithAllowNilTurnedOnAndThen
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSlotGenerationWithOnlySlotNameChanged [
 	| slotDefinitionMethodBuilder slotInstanceVariableBuilder |
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
 
@@ -232,7 +234,7 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationWithOnlySlotNameChanged [
 { #category : #tests }
 LcsAccessorSlotCreationFormTest >> testSlotTypesDescription [
 	| description |
-	self subject: LcsAccessorSlotCreationForm new.
+	self subject: LcsSlotCreationForm new.
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
 	description := self subject slotTypesDescription.

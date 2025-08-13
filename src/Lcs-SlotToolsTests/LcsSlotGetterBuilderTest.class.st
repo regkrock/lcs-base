@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsSlotGetterAndSetterBuilderTest,
+	#name : #LcsSlotGetterBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
 	#instVars : [
 		'codeBuilder'
@@ -8,15 +8,17 @@ Class {
 }
 
 { #category : #tests }
-LcsSlotGetterAndSetterBuilderTest >> testInstallingGetterAndSetter [
+LcsSlotGetterBuilderTest >> testInstallingGetter [
 	self deny: (self currentSystem class canUnderstand: 'foos' asSymbol).
 	self deny: (self currentSystem class canUnderstand: 'foos:' asSymbol).
 	self subject: (
-		LcsSlotGetterAndSetterBuilder new
+		LcsSlotGetterBuilder new
 			slotName: 'foos';
 			targetClassName: self currentSystem class name;
 			yourself).
 	self subject installCode.
 	self assert: (self currentSystem class canUnderstand: 'foos' asSymbol).
-	self assert: (self currentSystem class canUnderstand: 'foos:' asSymbol)
+	self deny: (self currentSystem class canUnderstand: 'foos:' asSymbol).
+	self assert: self subject getterSource equals: 'foos
+	^ self slotVarNamed: ''foos'''
 ]

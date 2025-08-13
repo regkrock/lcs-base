@@ -114,11 +114,7 @@ LcsAddSlotDefinitionFormElement >> parentElement: anObject [
 
 { #category : #'gt views' }
 LcsAddSlotDefinitionFormElement >> tabClasses [
-	^ (LcsSlotCreationForm allSubclasses
-		select: [ :aClass | 
-			(aClass isAbstract or: [ aClass hasAbstractMethods ]) not
-				and: [ aClass isAdditionForm ] ])
-		asSortedCollection: [ :a :b | a priority < b priority ]
+	^ { LcsSlotCreationForm}
 ]
 
 { #category : #accessing }

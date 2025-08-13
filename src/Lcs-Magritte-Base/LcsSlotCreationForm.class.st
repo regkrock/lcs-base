@@ -16,7 +16,7 @@ Class {
 
 { #category : #configuration }
 LcsSlotCreationForm class >> defaultSlotClass [
-	^ LcsAcessorSlot
+	^ LcsAccessorSlot
 ]
 
 { #category : #testing }
@@ -40,7 +40,51 @@ LcsSlotCreationForm class >> newOn: aTargetClass [
 
 { #category : #configuration }
 LcsSlotCreationForm class >> priority [
-	^ self subclassResponsibility
+	^ 10
+]
+
+{ #category : #configuration }
+LcsSlotCreationForm class >> slotComponentName [
+	^ 'Accessor'
+]
+
+{ #category : #private }
+LcsSlotCreationForm >> accessPathFrom: anMAChainAccessor [
+	| accessor path|
+	path := OrderedCollection new.
+	accessor := anMAChainAccessor. 
+	[ accessor respondsTo: #next ] whileTrue: [
+		path add: accessor accessor selector.
+		accessor := accessor next ]. 
+	path add: accessor selector.
+	^ path
+]
+
+{ #category : #'magritte - support' }
+LcsSlotCreationForm >> addAccessorToBeginningOfAccessPath: aDescription [
+	(aDescription accessor isKindOf: LcsMAPluggableAccessor) ifTrue: [ 
+		aDescription accessor addSelectorToStartOfAccessChain: #slotModelBuilder.
+		^aDescription ].
+			
+	(aDescription accessor isKindOf: MASelectorAccessor) ifTrue: [ 
+		aDescription accessor: (MAChainAccessor accessors: {#slotModelBuilder. aDescription accessor selector}).
+		^ aDescription ].
+		
+	(aDescription accessor isKindOf: MAChainAccessor) ifTrue: [ 
+		aDescription accessor: (
+			MAChainAccessor accessors: ( 
+				(self accessPathFrom: aDescription accessor )
+					addFirst: #slotModelBuilder;
+					yourself)).
+		^ aDescription ].
+		
+	^ aDescription
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> allowNilDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #allowNil
 ]
 
 { #category : #converting }
@@ -89,9 +133,16 @@ LcsSlotCreationForm >> classesOrNilsFor: aCollectionOfClassNames [
 		collect: [ :eachClasstName | Smalltalk classOrTraitNamed: eachClasstName asString trimBoth ]
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> collectionSlotNameDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #collectionSlotName
+]
+
 { #category : #callbacks }
 LcsSlotCreationForm >> commit [
-	^ self subclassResponsibility
+	self error: 'Do not use this'.
+	"self slotModelBuilder commit"
 ]
 
 { #category : #callbacks }
@@ -204,6 +255,12 @@ LcsSlotCreationForm >> hasPackageAndTag [
 	^ true
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> initialValueBlockDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #initialValueBlock
+]
+
 { #category : #initialize }
 LcsSlotCreationForm >> initialize [
 	super initialize.
@@ -269,6 +326,28 @@ LcsSlotCreationForm >> magritteAcceptAction [
 ]
 
 { #category : #magritte }
+LcsSlotCreationForm >> magritteBuildAction [
+	<magritteActionDescription>
+	self isSlotModelBuilderNotReified ifTrue: [ ^ nil ].
+	^ MAActionDescription new
+		priority: 30;
+		label: 'Build';
+		beToolbarAction;
+		blocIcon: BrGlamorousVectorIcons play;
+		action: (GtMagritteAction new
+				beInUIProcess;
+				action: [ :aModel :aButton :aMemento :aDescription | 
+					aModel slotModelBuilder execute.
+					aModel initializeSlotTypeClassAndBuilderClass.
+					aButton phlow fireViewUpdateWish ]);
+		onOverallStatusChanged: (GtMagritteBasicAction new
+			action: [ :aStatus :aButton :aMemento :aDescription |
+				aStatus isChanged
+					ifTrue: [ aDescription enabled: false ]
+					ifFalse: [ aDescription enabled: aStatus isValidAndInactive ] ])
+]
+
+{ #category : #magritte }
 LcsSlotCreationForm >> magritteCancelAction [
 	<magritteActionDescription>
 	^ super magritteCancelAction
@@ -277,6 +356,32 @@ LcsSlotCreationForm >> magritteCancelAction [
 					[ onReset ifNotNil: [ onReset value ] ] 
 						on: Error do: #debug ]);
 		beAlwaysEnabled
+]
+
+{ #category : #'magritte - support' }
+LcsSlotCreationForm >> magritteDescriptionFor: aSlotNameSymbol [
+	| aDescription |
+	
+	(self slotModelBuilder respondsTo: aSlotNameSymbol) ifFalse: [ ^ nil ].
+	
+	aDescription := self slotModelBuilder perform: (aSlotNameSymbol , 'Description') asSymbol.
+	
+	self addAccessorToBeginningOfAccessPath: aDescription.
+	^ aDescription
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> magritteInspectAction [
+	"<magritteActionDescription>"
+	^ MAActionDescription new
+		priority: 30;
+		label: 'Inspect';
+		blocIcon: BrGlamorousVectorIcons inspect;
+		action: (GtMagritteAction new
+				beInUIProcess;
+				action: [ :aModel :aButton :aMemento :aDescription | 
+					aButton phlow spawnObject: aMemento ]);
+		beToolbarAction
 ]
 
 { #category : #magritte }
@@ -303,6 +408,12 @@ LcsSlotCreationForm >> mode [
 { #category : #accessing }
 LcsSlotCreationForm >> mode: aString [ 
 	mode := aString
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> numberOfDecimalsDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #numberOfDecimals
 ]
 
 { #category : #accessing }
@@ -371,6 +482,12 @@ LcsSlotCreationForm >> packageAndTagName: anObject [
 	packageAndTagName := anObject
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> prevalidationTransformBlockDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #prevalidationTransformBlock
+]
+
 { #category : #callbacks }
 LcsSlotCreationForm >> reifySlotModelBuilder [
 	self
@@ -380,6 +497,12 @@ LcsSlotCreationForm >> reifySlotModelBuilder [
 				populateFrom: self slotClassName;
 				buildJobSteps;
 				yourself)
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> requiredDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #required
 ]
 
 { #category : #private }
@@ -462,6 +585,21 @@ LcsSlotCreationForm >> slotModelBuilder: anObject [
 	slotModelBuilder := anObject
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> slotNameDescription [
+	<magritteDescription>
+	^ (self magritteDescriptionFor: #slotName) ifNotNil: [ :description |
+		description
+			priority: 4;
+			yourself ]
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> slotTypesDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #slotTypes
+]
+
 { #category : #accessing }
 LcsSlotCreationForm >> targetClass [
 	^ targetClass
@@ -472,9 +610,30 @@ LcsSlotCreationForm >> targetClass: anObject [
 	targetClass := anObject
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> targetClassDescription [
+	<magritteDescription>
+	^ (self magritteDescriptionFor: #targetClass) ifNotNil: [ :description |
+		description
+			priority: 3;
+			yourself ]
+]
+
 { #category : #private }
 LcsSlotCreationForm >> toolFor: anInstance [
 	^ GtClassCoderTool forClass: anInstance
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> validationConditionItemsDescription [
+	"<magritteDescription>"
+	^ self magritteDescriptionFor: #validationConditionItems
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> validationConditionsDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #validationConditions
 ]
 
 { #category : #magritte }

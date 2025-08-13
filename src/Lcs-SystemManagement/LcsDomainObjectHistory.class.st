@@ -65,7 +65,7 @@ LcsDomainObjectHistory >> addChangeRecord [
 
 { #category : #'as yet unclassified' }
 LcsDomainObjectHistory >> addChangesTo: aChangeRecord [ 
-	self domainObject allSlotDefinitions
+	self domainObject allAccessorSlotDefinitions
 		do: [ :eachSlotDefinition | aChangeRecord createInitialSlotChangeFor: eachSlotDefinition ]
 ]
 
@@ -118,7 +118,7 @@ LcsDomainObjectHistory >> hasChangeHistoryFor: aSlotName [
 LcsDomainObjectHistory >> historyOfAllSlotChanges [
 	| allSlotChangesHistory|
 	allSlotChangesHistory := OrderedCollection new.
-	self domainObject allSlotDefinitions do: [ :eachSlotDefinition | 
+	self domainObject allAccessorSlotDefinitions do: [ :eachSlotDefinition | 
 		allSlotChangesHistory addAll: (self historyOfChangesToSlot: eachSlotDefinition slotName)].
 	^ allSlotChangesHistory
 ]

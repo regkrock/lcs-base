@@ -24,23 +24,6 @@ LcsAccessorSlotBuilder >> addClassesToUmlModel: umlModel [
 ]
 
 { #category : #initialize }
-LcsAccessorSlotBuilder >> addPropertiesTo: aSlotDefinitionMethodBuilder [
-	"Note: The 'property' will be turned into a setter and value is argument
-		ex: property 'slotName' and argument 'foo' will become the setter for the slot name.
-		    fooSlotDefinitino new
-		    	slotName: 'foo';
-		    	yourself"
-	self properties keysAndValuesDo: [ :key :value | 
-		aSlotDefinitionMethodBuilder addProperty: key value: value ]
-]
-
-{ #category : #'gt views' }
-LcsAccessorSlotBuilder >> addRefactoringTextDetailsTo: aStream [
-	self jobSteps do: [ :each |
-		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
-]
-
-{ #category : #initialize }
 LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 	| className |
 	className := aClassOrClassName isClass 
@@ -48,11 +31,6 @@ LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 					ifFalse: [ aClassOrClassName asString ].
 	(self slotTypes includes: className) ifFalse: [
 		self slotTypes add: className ]
-]
-
-{ #category : #printing }
-LcsAccessorSlotBuilder >> addStepNumberTo: aString [
-	^ self stepNumber , '.' , aString
 ]
 
 { #category : #'gt views' }
@@ -68,7 +46,7 @@ LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 		ifTrue: [ classesModel addClassModelForExisting: self targetModuleClass ]
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> addValidationCondition: aValidationCondition [
 	self validationConditions addValidationCondition: aValidationCondition
 ]
@@ -78,12 +56,12 @@ LcsAccessorSlotBuilder >> addValidationCondition: aBlock description: aDescripti
 	self validationConditions addValidationCondition: aBlock description: aDescription
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> allowNil [
 	^ self propertyAt: 'allowNil' ifAbsent: [ false ]
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> allowNil: anObject [ 
 	self propertyAt: 'allowNil' put: anObject
 ]
@@ -112,46 +90,15 @@ LcsAccessorSlotBuilder >> buildJobSteps [
 	self addJobStep: self getterAndSetterMethodsBuilder
 ]
 
-{ #category : #'magritte - support' }
-LcsAccessorSlotBuilder >> classesOrNilsFor: aCollectionOfClassNames [ 
-	"Return collection of Class. If a Class does not exist, `nil` value is used."
-
-	<return: #Collection of: #Class>
-	^ aCollectionOfClassNames
-		collect: [ :eachClasstName | Smalltalk classOrTraitNamed: eachClasstName asString trimBoth ]
-]
-
 { #category : #uninstall }
 LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 	self targetClass == aClass
 		ifTrue: [ self targetClassName: nil ]
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> defaultPrevalidationTransformBlock [
 	^ [  ]
-]
-
-{ #category : #testing }
-LcsAccessorSlotBuilder >> doesSlotDefinitionMethodExist [
-	^ self targetClass class includesSelector: self slotDefinitionSelector
-]
-
-{ #category : #testing }
-LcsAccessorSlotBuilder >> doesTargetClassExist [
-	^ self targetClass isClass
-]
-
-{ #category : #'magritte - support' }
-LcsAccessorSlotBuilder >> editableLabelAptitude [
-	^ BrGlamorousEditableLabelAptitude new glamorousFormEditorCodeFontAndSize
-		defaultForeground: Color black
-]
-
-{ #category : #validation }
-LcsAccessorSlotBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
-	self doesSlotDefinitionMethodExist
-		ifTrue: [ self error: 'Slot definition already exists' ]
 ]
 
 { #category : #initialize }
@@ -167,28 +114,12 @@ LcsAccessorSlotBuilder >> getterSelector [
 	^ self slotName asSymbol
 ]
 
-{ #category : #'gt views' }
-LcsAccessorSlotBuilder >> gtClassViewOn: aView [
-	<gtView>
-	self doesTargetClassExist ifFalse: [
-		^ aView list
-			title: (self targetClassName ifNil: ['No Target Class']) displayString;
-			priority: 200;
-			items: [ {'Not yet created'} ];
-			yourself ].
-	^ aView explicit
-		title: self targetClass name;
-		priority: 200;
-		stencil: [ (GtCoderElement forObject: self targetClass) disablePlayPage beNormalLevel ];
-		yourself
-]
-
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> initialValueBlock [
 	^ self propertyAt: 'initialValueBlock' ifAbsent: [ [ ] ]
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> initialValueBlock: aString [
 	^ self propertyAt: 'initialValueBlock' put: aString
 ]
@@ -210,11 +141,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 { #category : #initialize }
 LcsAccessorSlotBuilder >> initialize [
 	super initialize.
-	self slotTypes: OrderedCollection new.
 	self validationConditions: (LcsValidationConditions newOn: self).
-	self class slotClass notNil
-		ifTrue: [ self slotClassName: self class slotClass name ]
-
 ]
 
 { #category : #initialize }
@@ -237,40 +164,12 @@ LcsAccessorSlotBuilder >> jobStep: anInteger [
 	^ self jobSteps jobStep: anInteger
 ]
 
-{ #category : #'magritte - support' }
-LcsAccessorSlotBuilder >> moveToNextItemIn: aForm [
-	^ BlShortcutWithAction new
-		name: 'Move to next form item';
-		description: 'Moves to the next form item. If none is found, we cycle back to the first.';
-		combination: (BlKeyCombination tab or: BlKeyCombination enter);
-		action: [ :anEvent | 
-			BlFocusFinder new
-				direction: BlFocusSearchDirectionForward new;
-				root: aForm;
-				referenceElement: anEvent currentTarget;
-				nextFocusDo: #requestFocus ifNone: [  ] ]
-]
-
-{ #category : #'magritte - support' }
-LcsAccessorSlotBuilder >> moveToPreviousItemIn: aForm [
-	^ BlShortcutWithAction new
-		name: 'Move to previous form item';
-		description: 'Moves to the previous form item. If none is found, we cycle back to the last.';
-		combination: BlKeyCombination shiftTab;
-		action: [ :anEvent | 
-			BlFocusFinder new
-				direction: BlFocusSearchDirectionBackward new;
-				root: aForm;
-				referenceElement: anEvent currentTarget;
-				nextFocusDo: #requestFocus ifNone: [  ] ]
-]
-
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> prevalidationTransformBlock [
 	^ self propertyAt: 'prevalidationTransformBlock' ifAbsent: [ self defaultPrevalidationTransformBlock ]
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> prevalidationTransformBlock: aString [
 	^ self propertyAt: 'prevalidationTransformBlock' put: aString
 ]
@@ -289,36 +188,6 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #printing }
-LcsAccessorSlotBuilder >> printJobStreamDetailsOn: aStream [
-	aStream
-		nextPutAll: 'Install slot "';
-		nextPutAll: (self slotName ifNil: [ '<missing>' ]);
-		nextPutAll: '" in ';
-		nextPutAll: (self targetClassName ifNil: [ self targetClass ifNotNil: [ self targetClass name ] ]) asString
-]
-
-{ #category : #property }
-LcsAccessorSlotBuilder >> propertyAt: aName [
-	^ self properties at: aName ifAbsent: [ nil ]
-]
-
-{ #category : #property }
-LcsAccessorSlotBuilder >> propertyAt: aName ifAbsent: aBlock [
-	^ self properties at: aName ifAbsent: aBlock
-]
-
-{ #category : #properties }
-LcsAccessorSlotBuilder >> propertyAt: aString ifAbsentPut: aBlock [ 
-	^ self properties at: aString ifAbsentPut: aBlock
-]
-
-{ #category : #properties }
-LcsAccessorSlotBuilder >> propertyAt: aString put: anObject [ 
-	self properties at: aString put: anObject.
-	self jobSteps propogateProperty: aString valueChangedTo: anObject
-]
-
 { #category : #validations }
 LcsAccessorSlotBuilder >> removeValidationCondition: aValidationCondition [
 	self validationConditions removeValidationCondition: aValidationCondition
@@ -329,12 +198,12 @@ LcsAccessorSlotBuilder >> removeValidationConditionWithDescription: aString [
 	self validationConditions removeValidationConditionWithDescription: aString
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> required [
 	^ self propertyAt: 'required' ifAbsent: [ false ]
 ]
 
-{ #category : #property }
+{ #category : #properties }
 LcsAccessorSlotBuilder >> required: anObject [ 
 	self propertyAt: 'required' put: anObject
 ]
@@ -351,224 +220,11 @@ LcsAccessorSlotBuilder >> requiredDescription [
 ]
 
 { #category : #initialize }
-LcsAccessorSlotBuilder >> slotDefinitionMethodBuilder [
-	^ LcsSlotDefintionMethodBuilder newFrom: self
-]
-
-{ #category : #initialize }
 LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 	^ LcsSlotInstanceVariableBuilder new
 		slotName: self slotName;
 		targetClassName: self targetClassName;
 		yourself
-]
-
-{ #category : #properties }
-LcsAccessorSlotBuilder >> slotName [
-	^ self propertyAt: 'slotName' ifAbsent: [ nil ]
-]
-
-{ #category : #margritte }
-LcsAccessorSlotBuilder >> slotNameDescription [
-	<magritteDescription>
-	| existingInstvarNames |
-	existingInstvarNames := self targetClass ifNil: [ #() ] ifNotNil: [ :class | class allInstVarNames ].
-	^ MAStringDescription new
-		label: 'Slot Name';
-		priority: 1;
-		accessor: #slotName;
-		default: '';
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
-				"+ (BrGlamorousWithExplicitContextMenuAptitude
-						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
-		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';
-		addCondition: [ :aValue | aValue asString trim asSymbol allSatisfy: [ :each | each isAlphaNumeric ] ] labelled: 'Slot Names can contain only alphanumerics';
-		beRequired
-]
-
-{ #category : #properties }
-LcsAccessorSlotBuilder >> slotTypes [
-	^ self propertyAt: 'slotTypes' ifAbsent: [ OrderedCollection new] 
-]
-
-{ #category : #properties }
-LcsAccessorSlotBuilder >> slotTypes: anObject [
-	self propertyAt: 'slotTypes' put: anObject
-]
-
-{ #category : #margritte }
-LcsAccessorSlotBuilder >> slotTypesDescription [
-	<magritteDescription>
-	^ MAToManyRelationDescription new
-		label: 'Slot Types';
-		priority: 30;
-		accessor: (LcsMAPluggableAccessor 
-						accessors: #(#slotTypes)
-						read: [ :classes | classes collect: [ :each | each name] ] 
-						write: [ :aModel :setter :collection | 
-							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
-		classes: { String};
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		blocListStencil: (self
-				taggerStencilWithCompletion: GtClassesCompletionStrategy new
-				andContextMenuBlock: [ :aClass :anElement :aMemento | 
-					aMemento overallStatus valueOrNil isChanged
-						ifTrue: [ GtCoderContextMenuContent new editorElement: anElement ]
-						ifFalse: [ self createClassContextMenuContentFor: aClass editor: anElement ] ]);
-		blocShortcuts: [ {BlShortcutWithAction new
-					name: 'Browse class';
-					description: 'Browses the class indicated by the editor';
-					combination: BlKeyCombination primaryB;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-				BlShortcutWithAction new
-					name: 'Inspect class';
-					description: 'Inspects the class indicated by the editor';
-					combination: BlKeyCombination primaryG;
-					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-				BlShortcutWithAction new
-					name: 'Browse class references';
-					description: 'Browses references to the class indicated by the editor';
-					combination: BlKeyCombination primaryN;
-					action: [ :anEvent | 
-						anEvent target phlow
-							spawnObject: anEvent target text asString asClass gtReferences ]} ];
-		addCondition: [ :aValue | aValue asSet size = aValue size ]
-			labelled: 'Duplicate classes are not allowed';
-		addCondition: [ :aValue | 
-				aValue
-					allSatisfy: [ :eachClassName | 
-						self traceCr: eachClassName isClass asString , ' - ' , eachClassName asString.
-						eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
-			labelled: 'Unknown Class(s)';
-		addCondition: [ :aValue | 
-				| givenTraitsOrNils |
-				givenTraitsOrNils := self classesOrNilsFor: aValue.
-				givenTraitsOrNils allSatisfy: [ :each | each isNil or: [ each isClass ] ] ]
-			labelled: 'Only classes are allowed';
-		beRequired
-]
-
-{ #category : #'magritte - support' }
-LcsAccessorSlotBuilder >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
-	^ [ :aMemento :aDescription :aForm | 
-	| aTagger aTaggerAptitude |
-	aTagger := BrTagger new hFitContentLimited.
-	aForm hMatchParent.
-	aTagger
-		padding: (BlInsets top: -2 bottom: 5);
-		clipChildren: false;
-		aptitude: (aTaggerAptitude := GtCreationEditableTaggerAptitude new
-					margin: (BlInsets
-							top: 0
-							bottom: 3
-							left: 0
-							right: 5);
-					tagLabel: [ :aTag | 
-						| aLabel |
-						aLabel := BrEditor new fitContent
-								text: (aDescription displayStringFor: aTag name);
-								aptitude: self editableLabelAptitude;
-								addShortcut: (self moveToPreviousItemIn: aForm);
-								addShortcut: (self moveToNextItemIn: aForm).
-
-						aDescription blocShortcuts
-							ifNotNil: [ :aBlockReturningCollection | 
-								aBlockReturningCollection value
-									do: [ :aShortcut | aLabel addShortcut: aShortcut ] ].
-
-						aCompletionStrategy
-							ifNotNil: [ (GtCompletionController on: aLabel strategy: aCompletionStrategy) install ].
-						aContextMenuBlock
-							ifNotNil: [ aLabel
-									addAptitude: (BrGlamorousWithExplicitContextMenuAptitude
-											content: [ aContextMenuBlock
-													value: aTag name
-													value: aLabel
-													value: aMemento ]) ].
-						aLabel ]).
-	aTagger
-		when: BrTaggerAddTagRequest
-		do: [ :aRequest | 
-			| aValue |
-			aRequest currentTarget addTag: aRequest tag.
-			aValue := aTagger tags collect: #name thenSelect: #isNotEmpty.
-
-			GtMagritteBuilderUtility
-				write: aValue asArray
-				using: aDescription
-				memento: aMemento
-				element: aTagger ].
-	aTagger
-		when: BrTaggerRenameTagRequest
-		do: [ :aRequest | 
-			(aRequest tag name = aRequest newName) not
-				ifTrue: [ | aValue |
-					aRequest currentTarget renameTag: aRequest tag to: aRequest newName.
-					aValue := aTagger tags collect: #name.
-
-					GtMagritteBuilderUtility
-						write: aValue asArray
-						using: aDescription
-						memento: aMemento
-						element: aTagger ] ].
-	aTagger
-		when: BrTaggerRemoveTagRequest
-		do: [ :aRequest | 
-			| aValue |
-			aRequest currentTarget removeTag: aRequest tag.
-			aValue := aTagger tags collect: #name.
-
-			GtMagritteBuilderUtility
-				write: aValue asArray
-				using: aDescription
-				memento: aMemento
-				element: aTagger ].
-	aTagger
-		withAsyncSinkDo: [ :anElementSink | 
-			anElementSink
-				sink: AsyncPeekSink new;
-				whenUpdate: [ :theTagger :aSink | 
-					| theValues |
-					(theTagger tags isEmpty or: [ aSink value isChanged not ])
-						ifTrue: [ theValues := aSink value currentValue.
-							theTagger namedTags: theValues ] ].
-			(aMemento readObservableValueUsing: aDescription) observe: anElementSink ].
-	GtMagritteBuilderUtility
-		newValidationContainerWith: aTagger
-		memento: aMemento
-		using: aDescription ]
-]
-
-{ #category : #margritte }
-LcsAccessorSlotBuilder >> targetClassDescription [
-	<magritteDescription>
-	^ MAStringDescription new
-		label: 'Domain Class';
-		priority: 3;
-		accessor: #'targetClass';
-		beReadOnly;
-		blocShortcuts: [ 
-			{BlShortcutWithAction new
-				name: 'Browse class';
-				description: 'Browses the class indicated by the editor';
-				combination: BlKeyCombination primaryB;
-				action: [ :anEvent | anEvent target phlow spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
-			BlShortcutWithAction new
-				name: 'Inspect class';
-				description: 'Inspects the class indicated by the editor';
-				combination: BlKeyCombination primaryG;
-				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
-			BlShortcutWithAction new
-				name: 'Browse class references';
-				description: 'Browses references to the class indicated by the editor';
-				combination: BlKeyCombination primaryN;
-				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : #verification }

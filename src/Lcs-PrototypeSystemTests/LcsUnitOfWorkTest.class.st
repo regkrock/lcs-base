@@ -63,14 +63,14 @@ LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
 	"self assert: person history."
 	self assert: person history changeRecords collection size equals: 1.
 	slotChangeHistory := person historyOfAllSlotChanges.
-	self assert: slotChangeHistory size = person allSlotDefinitions size.
+	self assert: slotChangeHistory size = person allAccessorSlotDefinitions size.
 	
 	Delay forMilliseconds: 100.
 	person dateOfBirth: Date yesterday.
 
 	self currentSystem applyChanges.
 	slotChangeHistory := person historyOfAllSlotChanges.
-	self assert: slotChangeHistory size equals: person allSlotDefinitions size + 2.
+	self assert: slotChangeHistory size equals: person allAccessorSlotDefinitions size + 2.
 
 	
 	Delay forMilliseconds: 100.
@@ -78,7 +78,7 @@ LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
 	
 	self currentSystem applyChanges.
 	slotChangeHistory := person historyOfAllSlotChanges.
-	self assert: slotChangeHistory size equals: person allSlotDefinitions size + 4.
+	self assert: slotChangeHistory size equals: person allAccessorSlotDefinitions size + 4.
 
 ]
 
