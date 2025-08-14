@@ -64,7 +64,7 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 	^ aView explicit
 		title: 'Slot Defn Methods';
 		tooltip: 'Methods that define Slot Defintions';
-		priority: 100;
+		priority: 19;
 		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
 				& ( #slotDefinition gtPragmas "| #magritteActionDescription gtPragmas") ];
 		actionUpdateButton
@@ -77,7 +77,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 	<gtClassView>
 	^ aView columnedList
 		title: 'Slot Definitions';
-		priority: 19;
+		priority: 18;
 		items: [ self slotDefinitionViewItems ];
 		column: 'Slot' text: [ :each | each slotName ] width: 100;
 		column: 'Kind' text: [ :each | each slotKind ] width: 70;
@@ -89,11 +89,23 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 		column: 'Class' text: [ :each | each domainClass name ] width: 100;
 		column: '' stencil: [ :each | 
 			BrButton new
-				aptitude: BrGlamorousButtonWithLabelAptitude new;
-				label: 'Remove';
+				icon: BrGlamorousVectorIcons remove;
+				aptitude: BrGlamorousButtonWithIconAptitude new;
+				fitContent;
+				beTinySize;
+				label: 'Remove Slot';
 				action: [ :aButton | 
 					each remove.
-					aButton phlow fireViewUpdateWish ]] width: 70; 
+					aButton phlow fireViewUpdateWish ]] width: 40; 
+		actionButtonIcon: BrGlamorousVectorIcons inspect 
+			tooltip: 'Inspect Slot Model'
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self slotModel ];
+		actionButtonIcon: BrGlamorousVectorIcons browse 
+			tooltip: 'Browse ' , self class name
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self class ];
+
 		actionButtonDo: [ :aButtonAction | 
 			aButtonAction
 				icon: BrGlamorousVectorIcons spawn;

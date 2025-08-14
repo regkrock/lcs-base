@@ -218,7 +218,7 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 										label: 'Remove';
 										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; "
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
-			tooltip: 'Inspect ' , self printString
+			tooltip: 'Inspect Slot Model'
 			action: [ :aButton :aTab | 
 				aButton phlow spawnObject: self ];
 		actionButtonIcon: BrGlamorousVectorIcons browse 

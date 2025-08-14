@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-13T14:36:08.481351-04:00"
+						"dateAndTimeString" : "2025-08-14T08:21:53.173924-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,152 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "View with filters or other decorations see example:\n{{gtMethod:name=Behavior>>#gtCoderStreamingMethodsFor:context:}}\n{{gtMethod:LcsBaseDomainObject class>>#gtViewSlotDefinitionFor:context:}}\n\nTo change an existing method to being a custom vew, add 'context: aPhlow Context\n1) Create a model class - ex: {{gtClass:GtPharoStreamingMethodsCoder}}\n2) Creeate a view model class ex: {{gtClass:GtPharoStreamingMethodsCoderViewModel}}\n\nNote: Can store a created from in the phlow's options dictionary. This is how the popup(dropdown) window can be reopened at the same place. (ex:: {{gtMethod:TGtOptions>>optionAt:ifPresent:ifAbsent:}} \n\n\n\n"
+				"string" : "##The following has to do with defining buttons on the Tab Bar\nView with filters or other decorations see example:\n{{gtMethod:name=Behavior>>#gtCoderStreamingMethodsFor:context:}}\n{{gtMethod:LcsBaseDomainObject class>>#gtViewSlotDefinitionFor:context:}}\n\nTo change an existing method to being a custom vew, add 'context: aPhlow Context\n1) Create a model class - ex: {{gtClass:GtPharoStreamingMethodsCoder}}\n2) Creeate a view model class ex: {{gtClass:GtPharoStreamingMethodsCoderViewModel}}\n\nNote: Can store a created from in the phlow's options dictionary. This is how the popup(dropdown) window can be reopened. (ex:: {{gtMethod:TGtOptions>>optionAt:ifPresent:ifAbsent:}} )\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T08:47:49.957462-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T08:49:33.658652-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "/z38arT4DQCWuwelDxubNQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "##Create new phlow view\nThe following is an exmple of how to create a new view. The key is to create a new empty view and then tell it what type of view it contains. "
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T08:48:19.536176-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T08:48:20.293932-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xpa/bLT4DQCXTBqqDxubNQ=="
+				},
+				"code" : "GtPhlowView empty composite"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T08:23:31.01498-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T11:15:22.649564-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Vo4GFLT4DQCRB7xRDxubNQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "##Predefined Forms\n{{gtMethod:GtPhlowProtoView>>#canvassable}}\n{{gtMethod:GtPhlowProtoView>>#columnedList}}\n{{gtMethod:GtPhlowProtoView>>#columnedTree}}\n{{gtMethod:GtPhlowProtoView>>#composite}} - composite forms ( ex: sub tabs)\n{{gtMethod:GtPhlowProtoView>>#diff}}  - this is used to show the differences of two strings\n{{gtMethod:GtPhlowProtoView>>#empty}} - this returns an empty phlow view for displaying in the tab.\n{{gtMethod:GtPhlowProtoView>>#explicit}} - the developer supplies the layout of the form\n\t\t\t\tex: {{gtMethod:GtDPrice>>#gtOverviewFor:}}\n                        {{gtMethod:GtDPriceExamples>>#dividedPrice}}\n{{gtMethod:GtPhlowProtoView>>#forward}}\n{{gtMethod:GtPhlowProtoView>>#groupedList}} \n\t\t\t\tex: {{gtMethod:GtPhlowGroupedListViewExamples>>#viewWithItems}}\n{{gtMethod:GtPhlowProtoView>>#labelled}}\n{{gtMethod:GtPhlowProtoView>>#labelled:}}\n\t\t\t\tex: {{gtMethod:GtInspectorViews>>#explicitViewExplanationWithLinks}}\n\t\t\t\t        This is a very interesting example of a complex explicit view with a subvier\n\t\t\t\t        that uses labelled:\n{{gtMethod:GtPhlowProtoView>>#list}}\n{{gtMethod:GtPhlowProtoView>>#mondrian}}\n{{gtMethod:GtPhlowProtoView>>#pannable}} - can pan (move) the form around by grabing with the mouse\n\t\t\t\tex: {{gtMethod:GtPhlowPannableViewExamples>>#pannable}}\n\t\t\t\t\n{{gtMethod:GtPhlowProtoView>>#sparta}} - need to do own rendering \n\t\t\t\tex: {{gtMethod:BlTextParagraphSpan>>#gtPositionsAtIndicesFor:}}\n{{gtMethod:GtPhlowProtoView>>#table}}\n\n{{gtMethod:GtPhlowProtoView>>#text}}\n{{gtMethod:GtPhlowProtoView>>#textEditor}}\n{{gtMethod:GtPhlowProtoView>>#tree}}\n\t\t\tex: {{gtMethod:GtDebuggerStackElementOnUpdateSessionSignal>>#gtDebuggingSessionStackFor:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T10:53:28.711122-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-14T10:53:28.711122-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "fOGxDrT4DQCP2xXJDxubNQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
 			}
 		]
 	},
