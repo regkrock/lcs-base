@@ -69,7 +69,7 @@ LxxBasePerson >> firstName [
 
 { #category : #accessing }
 LxxBasePerson >> firstName: anObject [
-	self slotVarNamed: 'firstName' to: anObject
+	self slotVarNamed: 'firstName' put: anObject
 ]
 
 { #category : #accessing }

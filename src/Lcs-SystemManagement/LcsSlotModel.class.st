@@ -66,6 +66,18 @@ LcsSlotModel >> addAccessorSlotDefinitionsTo: aCollection [
 ]
 
 { #category : #model }
+LcsSlotModel >> addAllSlotDefinitionsTo: aCollection [
+	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
+		aCollection detect: [ :each | each slotName = eachSlotName ]
+			ifNone: [ aCollection add: eachSlotDefinition ] ].
+	self virtualSlotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
+		aCollection detect: [ :each | each slotName = eachSlotName ]
+			ifNone: [ aCollection add: eachSlotDefinition ] ].
+	self domainClass isRootDomainClass
+		ifFalse: [ self superClassSlotModel addAllSlotDefinitionsTo: aCollection ]
+]
+
+{ #category : #model }
 LcsSlotModel >> addCollectionViewSlotDefinitionsTo: aCollection [
 	self addLocalCollectionViewSlotDefinitionsTo: aCollection.
 	self domainClass isRootDomainClass
@@ -96,18 +108,6 @@ LcsSlotModel >> addSlotDefinition: aSlotDefinition [
 	self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
 ]
 
-{ #category : #model }
-LcsSlotModel >> addSlotDefinitionsTo: aCollection [
-	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
-		aCollection detect: [ :each | each slotName = eachSlotName ]
-			ifNone: [ aCollection add: eachSlotDefinition ] ].
-	self virtualSlotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
-		aCollection detect: [ :each | each slotName = eachSlotName ]
-			ifNone: [ aCollection add: eachSlotDefinition ] ].
-	self domainClass isRootDomainClass
-		ifFalse: [ self superClassSlotModel addSlotDefinitionsTo: aCollection ]
-]
-
 { #category : #validation }
 LcsSlotModel >> addValidateConfigurationResultTo: aValidator [
 	self slotDefinitions do: [ :eachSlotDefintion | aValidator validate: eachSlotDefintion ]
@@ -132,7 +132,7 @@ LcsSlotModel >> allAccessorSlotDefinitions [
 LcsSlotModel >> allSlotDefinitions [
 	| allSlotDefinitions |
 	allSlotDefinitions := OrderedCollection new.
-	self addSlotDefinitionsTo:allSlotDefinitions.
+	self addAllSlotDefinitionsTo:allSlotDefinitions.
 	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
@@ -208,9 +208,9 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 		title: 'Domain Slot Definitions';
 		priority: 10;
 		items: [ self allSlotDefinitions ];
-		column: 'Name' text: [ :each | each slotName ];
-		column: 'Class' text: [ :each | each class name ];
-		column: 'Defined In' text: [ :each | each domainClass name ];
+		column: 'Name' text: [ :each | each slotName ] width: 150;
+		column: 'Slot Class' text: [ :each | each class name ] width: 140;
+		column: 'Defined In' text: [ :each | each domainClass name ] width: 140;
 		column: 'Priority' text: [ :each | each priority ] width: 30;
 		column: 'Type(s)' text: [ :each | each slotTypesList];
 		"column: '' stencil: [ :each | BrButton new

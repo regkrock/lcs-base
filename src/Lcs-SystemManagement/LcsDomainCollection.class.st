@@ -26,13 +26,28 @@ LcsDomainCollection >> findWithKey: anObject [
 { #category : #'gt views' }
 LcsDomainCollection >> gtPendingAddsView: aView [
 	<gtView>
+	| columnedListView |
 	self pendingAdds ifEmpty: [ ^ aView empty ].
-	^ aView forward
+	"^ aView forward
 		title: 'Pending Adds' translated;
 		priority: 2;
 		object: [ self pendingAdds ];
 		view: #gtItemsFor:;
-		actionUpdateButton
+		actionUpdateButton"
+	self collection isNil ifTrue: [ ^ aView empty ].
+	columnedListView := 
+		aView columnedList
+			title: 'Pending Adds' translated;
+			priority: 0.5;
+			items: [ self pendingAdds asOrderedCollection ];
+			actionUpdateButton.
+	self pendingAdds notEmpty ifTrue: [
+		self pendingAdds any collectionViewSlotDefinitions do: [ :eachSlotDefinition |
+			columnedListView 
+				column: eachSlotDefinition label 
+				text: [:domainObject | (domainObject perform: eachSlotDefinition getterSelector) asString ] 
+				width: 100 ] ].
+	^ columnedListView
 ]
 
 { #category : #'gt views' }

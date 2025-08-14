@@ -1,5 +1,5 @@
 Class {
 	#name : #LxxUnknownSkill,
 	#superclass : #LxxSkill,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }

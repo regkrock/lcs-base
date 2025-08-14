@@ -1,7 +1,7 @@
 Class {
 	#name : #LxxSkill,
 	#superclass : #LcsDomainObject,
-	#category : #'Lcs-PrototypeSystem'
+	#category : #'Lcs-PrototypeSystem-Base'
 }
 
 { #category : #'slot definition' }

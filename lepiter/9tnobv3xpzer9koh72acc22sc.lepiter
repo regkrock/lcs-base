@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-13T14:16:09.221454-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-13T14:36:30.537437-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "c85Z4aT4DQCQHSSWBarvpQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "View with filters or other decorations see example:\n{{gtMethod:name=Behavior>>#gtCoderStreamingMethodsFor:context:}}\n{{gtMethod:LcsBaseDomainObject class>>#gtViewSlotDefinitionFor:context:}}\n\nTo change an existing method to being a custom vew, add 'context: aPhlow Context\n1) Create a model class - ex: {{gtClass:GtPharoStreamingMethodsCoder}}\n2) Creeate a view model class ex: {{gtClass:GtPharoStreamingMethodsCoderViewModel}}\n\nNote: Can store a created from in the phlow's options dictionary. This is how the popup(dropdown) window can be reopened. (ex:: {{gtMethod:TGtOptions>>optionAt:ifPresent:ifAbsent:}} )\n\n\n\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-13T14:15:35.86624-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-08-13T14:15:35.86624-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Tab Form With Filters"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "9cd652e1-a4f8-0d00-901c-ce4d05aaefa5"
+	}
+}

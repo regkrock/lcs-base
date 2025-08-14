@@ -72,7 +72,7 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView [
+LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowContext [
 	<gtView>
 	<gtClassView>
 	^ aView columnedList
@@ -578,10 +578,10 @@ LcsBaseDomainObject >> gtRawFor: aView [
 ]
 
 { #category : #'gt views' }
-LcsBaseDomainObject >> gtViewSlotDefinitionFor: aView [
+LcsBaseDomainObject >> gtViewSlotDefinitionFor: aView context: aPhlowContext [
 	<gtView>
 	<gtClassView>
-	^ self class gtViewSlotDefinitionFor: aView
+	^ self class gtViewSlotDefinitionFor: aView context: aPhlowContext
 ]
 
 { #category : #'gt views' }
