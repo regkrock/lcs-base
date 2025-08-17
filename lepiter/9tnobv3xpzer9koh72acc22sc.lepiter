@@ -174,7 +174,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-14T10:53:28.711122-04:00"
+						"dateAndTimeString" : "2025-08-14T14:28:19.520563-04:00"
 					}
 				},
 				"uid" : {
@@ -184,7 +184,189 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "##Filters\n\nExamples - GtFilterModelExamples:\nShort Drop Down FIlter {{gtMethod:GtFilterModelExamples>>#itemsModelWithAddingShortListModelWithoutSelectedValue}}\n\nGtFilterModelExamples"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-16T10:55:21.52265-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-16T10:55:44.692064-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "b568bt74DQC/rOmnCFicQQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "#Building the Methods Tab"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-16T10:55:53.685583-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-16T11:08:57.212733-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DGCncN74DQCAODmBCFicQQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "- custom tab view using explicit: {{gtMethod:Behavior>>#gtCoderStreamingMethodsFor:context:}}\n- the stencil requires an element\n- in this case \n- stencil: [  {{gtClass:GtPharoStreamingMethodsCoderElement}} new\r\t\t\t\t\t\tstreamingCodersViewModel: (\r\t\t\t\t\t\t\t{{gtClass:GtPharoStreamingMethodsCoderViewModel}} new\r\t\t\t\t\t\t\t\tstreamingCodersModel: (\r\t\t\t\t\t\t\t\t\t{{gtClass:name=GtPharoStreamingMethodsCoder}} forBehavior: self)) ]"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-16T14:13:47.823235-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-16T14:32:42.608112-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sVdoNOH4DQCE6kL0CFicQQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "##Text Editor\n- explicit view\nBrVerticalPane\nBrEditor  <--- this initializes the model\nBrEditorModel\nBlText\n\nExample: {{gtMethod:BlFocusFinder>>#gtPreviewFor:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-17T10:50:41.935604-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-17T12:37:20.004-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "kdXpe/L4DQCLtn6TCFicQQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### GtFilterItemsModel composed of two boolean filters"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-17T10:37:04.396953-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-17T14:50:42.454885-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "/y8vS/L4DQCIF2AGCFicQQ=="
+				},
+				"code" : "LcsFilterExamples new filtersModel"
 			}
 		]
 	},
