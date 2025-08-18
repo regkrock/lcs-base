@@ -322,7 +322,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-17T12:37:20.004-04:00"
+						"dateAndTimeString" : "2025-08-18T07:33:59.682393-04:00"
 					}
 				},
 				"uid" : {
@@ -332,7 +332,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "### GtFilterItemsModel composed of two boolean filters"
+				"string" : "### GtFilterItemsModel composed of several filters"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -359,48 +359,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-17T14:50:42.454885-04:00"
+						"dateAndTimeString" : "2025-08-18T07:50:22.082269-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "/y8vS/L4DQCIF2AGCFicQQ=="
 				},
-				"code" : "LcsFilterExamples new filtersModel"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-17T11:24:36.926649-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-17T13:07:44.196924-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "oFU19fL4DQCQqjUrCFicQQ=="
-				},
-				"code" : "startedBooleanModel := GtFilterBooleanModel new\n  \t\t\t\t\t  switchedOn: true;\n  \t\t\t\t\t  name: 'Not Started'.\r\rfElement := startedBooleanModel asFilterLabeledElement.\r\rstartedBooleanModel announcer\r\tsubscribe: GtFilterBooleanModelSwitchChanged\r\tsend: #value\r\tto: [ Transcript crShow: startedBooleanModel switchedOn asString] .\r\t\r^ startedBooleanModel"
+				"code" : "LcsFilterExamples new filterItemsModel. \"Filter models - if inspect, then an element wrapper is added\"\rLcsFilterExamples new filtersItemsElement. \"Element holding the view model holding the filter models\"\rLcsFilterExamples new filtersItemsElement_FiltersViewModel. \"Inspects the view model which holds the filter models\""
 			}
 		]
 	},

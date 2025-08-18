@@ -174,7 +174,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-14T14:28:19.520563-04:00"
+						"dateAndTimeString" : "2025-08-18T07:52:48.839221-04:00"
 					}
 				},
 				"uid" : {
@@ -184,7 +184,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "##Filters\n\nExamples - GtFilterModelExamples:\nShort Drop Down FIlter {{gtMethod:GtFilterModelExamples>>#itemsModelWithAddingShortListModelWithoutSelectedValue}}\n\nGtFilterModelExamples"
+				"string" : "##Filters\n\nExamples - GtFilterModelExamples:\nShort Drop Down FIlter {{gtMethod:GtFilterModelExamples>>#itemsModelWithAddingShortListModelWithoutSelectedValue}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -248,7 +248,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-16T11:08:57.212733-04:00"
+						"dateAndTimeString" : "2025-08-18T07:53:14.781904-04:00"
 					}
 				},
 				"uid" : {
@@ -258,7 +258,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "- custom tab view using explicit: {{gtMethod:Behavior>>#gtCoderStreamingMethodsFor:context:}}\n- the stencil requires an element\n- in this case \n- stencil: [  {{gtClass:GtPharoStreamingMethodsCoderElement}} new\r\t\t\t\t\t\tstreamingCodersViewModel: (\r\t\t\t\t\t\t\t{{gtClass:GtPharoStreamingMethodsCoderViewModel}} new\r\t\t\t\t\t\t\t\tstreamingCodersModel: (\r\t\t\t\t\t\t\t\t\t{{gtClass:name=GtPharoStreamingMethodsCoder}} forBehavior: self)) ]"
+				"string" : "- custom tab view using explicit: {{gtMethod:Behavior>>#gtCoderStreamingMethodsFor:context:}}\n- the stencil requires an element\n- in this caseb \n- stencil: [  {{gtClass:GtPharoStreamingMethodsCoderElement}} new\r\t\t\t\t\t\tstreamingCodersViewModel: (\r\t\t\t\t\t\t\t{{gtClass:GtPharoStreamingMethodsCoderViewModel}} new\r\t\t\t\t\t\t\t\tstreamingCodersModel: (\r\t\t\t\t\t\t\t\t\t{{gtClass:name=GtPharoStreamingMethodsCoder}} forBehavior: self)) ]"
 			},
 			{
 				"__type" : "textSnippet",
@@ -322,7 +322,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-17T12:37:20.004-04:00"
+						"dateAndTimeString" : "2025-08-18T07:33:59.682393-04:00"
 					}
 				},
 				"uid" : {
@@ -332,7 +332,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "### GtFilterItemsModel composed of two boolean filters"
+				"string" : "### GtFilterItemsModel composed of several filters"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -359,14 +359,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-17T14:50:42.454885-04:00"
+						"dateAndTimeString" : "2025-08-18T07:50:22.082269-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "/y8vS/L4DQCIF2AGCFicQQ=="
 				},
-				"code" : "LcsFilterExamples new filtersModel"
+				"code" : "LcsFilterExamples new filterItemsModel. \"Filter models - if inspect, then an element wrapper is added\"\rLcsFilterExamples new filtersItemsElement. \"Element holding the view model holding the filter models\"\rLcsFilterExamples new filtersItemsElement_FiltersViewModel. \"Inspects the view model which holds the filter models\""
 			}
 		]
 	},
