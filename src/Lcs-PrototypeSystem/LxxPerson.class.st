@@ -13,6 +13,7 @@ LxxPerson class >> ageSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 		slotName: 'age';
+		addSlotType: Integer;
 		yourself
 ]
 

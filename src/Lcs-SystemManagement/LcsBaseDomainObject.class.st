@@ -75,7 +75,8 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowContext [
 	<gtView>
 	<gtClassView>
-	"^ aView columnedList
+	| element |
+	element := aView filteredColumnedList
 		title: 'Slot Definitions';
 		priority: 18;
 		items: [ self slotDefinitionViewItems ];
@@ -97,6 +98,10 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 				action: [ :aButton | 
 					each remove.
 					aButton phlow fireViewUpdateWish ]] width: 40; 
+		actionButtonIcon: BrGlamorousVectorIcons driller 
+			tooltip: 'Inspect View'
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: element ];
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
 			tooltip: 'Inspect Slot Model'
 			action: [ :aButton :aTab | 
@@ -112,13 +117,8 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 				tooltip: 'Create slot';
 				action: [ :aButton | aButton phlow spawnObject: (LcsSlotCreationForm newEditOn: self)  ] ];
 		actionUpdateButton;
-		send: [ :each | each slotDefinitionInformation ] ;
-		yourself"
-		
-	^ aView explicit
-		title: 'Slot Definitions';
-		priority: 18;
-		stencil: [ LcsSlotDefinitionsListForm new asCollectionElement]
+		send: [ :each | each slotDefinitionInformation ].
+	^ element
 ]
 
 { #category : #'gt views' }

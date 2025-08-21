@@ -179,6 +179,77 @@
 					"uidString" : "8bqO6I74DQCnAUG9A3HkFA=="
 				},
 				"code" : "GtPagerSettings useTreePager"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-18T10:36:57.85728-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-18T11:12:06.680229-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4MaiaAb5DQCCCjgXCpuItw=="
+				},
+				"code" : "GtLudoGame new"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-18T10:58:50.29115-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-18T11:10:41.382587-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "We3ctgb5DQCCjP0bCpuItw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The inspection of the game results in teh Element classes being instantiated. Starts from the live tab where the board is converted to an element in the stencil block.\n{{gtMethod:GtLudoGame>>#gtPositionsFor:}}\n\nThe initialization of the rest of the visible parts on the board is done in\n{{gtMethod:GtLudoGameElement>>#initializeFor:}}\n\nThe {{gtClass:GtLudoGameElement}} creates an element for the game and then all of the visible parts in the game."
 			}
 		]
 	},

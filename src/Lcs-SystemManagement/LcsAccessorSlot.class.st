@@ -40,7 +40,7 @@ LcsAccessorSlot class >> isAccessorSlot [
 
 { #category : #querying }
 LcsAccessorSlot class >> slotKind [
-	^ 'Accessor'
+	^ 'accessor'
 ]
 
 { #category : #configuration }

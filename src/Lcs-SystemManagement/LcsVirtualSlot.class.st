@@ -14,7 +14,7 @@ LcsVirtualSlot class >> isVirtualSlot [
 
 { #category : #convenience }
 LcsVirtualSlot class >> slotKind [
-	^ 'Virutal'
+	^ 'virtual'
 ]
 
 { #category : #'slot model' }

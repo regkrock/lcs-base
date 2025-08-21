@@ -203,9 +203,8 @@ LcsSlotModel >> gtViewSlotModelChildren [
 LcsSlotModel >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
-	"^ aView empty"
-	^ aView columnedList
-		title: 'Domain Slot Definitions';
+	^ aView filteredColumnedList
+		title: 'Slot Model';
 		priority: 10;
 		items: [ self allSlotDefinitions ];
 		column: 'Name' text: [ :each | each slotName ] width: 150;

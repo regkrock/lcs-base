@@ -9,6 +9,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #querying }
+LcsBaseSlot class >> classNamesPrefixTree [
+	^ GtPrefixTree withAll: (self allSubclasses collect: #name)
+]
+
 { #category : #testing }
 LcsBaseSlot class >> isAbstract [
 	^ self name = #LcsBaseSlot
@@ -26,7 +31,7 @@ LcsBaseSlot class >> isVirtualSlot [
 
 { #category : #convenience }
 LcsBaseSlot class >> slotKind [
-	^ 'Base'
+	^ 'base'
 ]
 
 { #category : #configuration }

@@ -56,6 +56,11 @@ LcsExtantSlotDefinitionViewItem >> setterSelector [
 		ifFalse: [ self slotDefinition getterSelector ]
 ]
 
+{ #category : #'as yet unclassified' }
+LcsExtantSlotDefinitionViewItem >> slotClass [
+	^ self slotDefinition class
+]
+
 { #category : #accessing }
 LcsExtantSlotDefinitionViewItem >> slotDefinition [
 	^ slotDefinition

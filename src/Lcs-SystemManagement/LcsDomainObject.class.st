@@ -18,6 +18,11 @@ LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentUnitOfWork addObject: newObject
 ]
 
+{ #category : #querying }
+LcsDomainObject class >> classNamesPrefixTree [
+	^ GtPrefixTree withAll: (self allSubclasses collect: #name)
+]
+
 { #category : #'slot definitions' }
 LcsDomainObject class >> creationDateSlotDefinition [
 	<virtualSlotDefinition>
