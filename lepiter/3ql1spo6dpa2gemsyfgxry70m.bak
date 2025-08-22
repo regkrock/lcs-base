@@ -171,14 +171,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-13T10:21:49.237219-04:00"
+						"dateAndTimeString" : "2025-08-13T10:22:00.638051-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "+W+jhKH4DQCxHSqQAJnPzw=="
 				},
-				"code" : "Pragma allNamed: #gtExample \"This uses the cache to "
+				"code" : "Pragma allNamed: #gtExample \t\"This uses the cache to find its results\""
 			}
 		]
 	},

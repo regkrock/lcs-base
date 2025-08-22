@@ -8,7 +8,8 @@ Class {
 LxxPersonExample >> johnFreeman [
 	<gtExample>
 	| person |
-	self assert: self currentSystem isPrototypeSystem.
+	self ensureCurrentsystemIsPrototypeSystem.
+	self assert: (self currentSystem ifNil: [ false ] ifNotNil: [:system | system isPrototypeSystem ]).
 	person := LxxPerson new.
 	person
 			firstName: 'John';
