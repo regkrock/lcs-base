@@ -18,6 +18,7 @@ LcsSlotCreationFormExamples >> actionIdFor: aDescriptionSymbol [
 LcsSlotCreationFormExamples >> booleanSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsBooleanSlot'.
 	self assert: form slotClassName equals: 'LcsBooleanSlot'.
@@ -39,6 +40,7 @@ LcsSlotCreationFormExamples >> currentCacheValueOf: slotClassDescription [
 LcsSlotCreationFormExamples >> dateOfBirthSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsDateOfBirthSlot'.
 	self assert: form slotClassName equals: 'LcsDateOfBirthSlot'.
@@ -54,6 +56,7 @@ LcsSlotCreationFormExamples >> dateOfBirthSlotAccessorSlotCreationForm [
 LcsSlotCreationFormExamples >> dateSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsDateSlot'.
 	self assert: form slotClassName equals: 'LcsDateSlot'.
@@ -75,6 +78,8 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	<gtExample>
 	<return: #BlScripter>
 	| anAcceptId anCancelId fieldId slotClassDescription margritteAcceptAction |
+	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentsystemIsPrototypeSystem.
 	self subjectScripter: self formScripter.
 
 	anAcceptId := self actionIdFor: #magritteAcceptAction.
@@ -146,6 +151,7 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 LcsSlotCreationFormExamples >> formScripter [
 	<gtExample>
 	<return: #BlScripter>
+	self ensureCurrentsystemIsPrototypeSystem.
 	self
 		subjectScripter: (self
 				scripterWithModel: [ self slotCreationForm ]
@@ -165,6 +171,7 @@ LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
 	| aSlotClassDescriptionId anAcceptId anCancelId |
+	self ensureCurrentsystemIsPrototypeSystem.
 	self subjectScripter: self formScripter.
 
 	aSlotClassDescriptionId := self fieldIdFor: #slotClassDescription.
@@ -190,6 +197,7 @@ LcsSlotCreationFormExamples >> formWithValidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
 	| aSlotClassDescriptionId |
+	self ensureCurrentsystemIsPrototypeSystem.
 	self subjectScripter: self formScripter.
 
 	aSlotClassDescriptionId := self fieldIdFor: #slotClassDescription.
@@ -258,6 +266,7 @@ LcsSlotCreationFormExamples >> inStep: aStep enterText: aString in: anId acceptE
 LcsSlotCreationFormExamples >> integerSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsIntegerSlot'.
 	self assert: form slotClassName equals: 'LcsIntegerSlot'.
@@ -279,6 +288,7 @@ LcsSlotCreationFormExamples >> originalCacheValueOf: slotClassDescription [
 LcsSlotCreationFormExamples >> scaledDecimalSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsScaledDecimalSlot'.
 	self assert: form slotClassName equals: 'LcsScaledDecimalSlot'.
@@ -294,6 +304,7 @@ LcsSlotCreationFormExamples >> scaledDecimalSlotAccessorSlotCreationForm [
 LcsSlotCreationFormExamples >> slotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationForm new targetClass: LxxPerson.
 	self assert: form slotClassName isEmpty.
 	self assert: form isSlotModelBuilderNotReified.
@@ -304,6 +315,7 @@ LcsSlotCreationFormExamples >> slotCreationForm [
 LcsSlotCreationFormExamples >> stringSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsStringSlot'.
 	self assert: form slotClassName equals: 'LcsStringSlot'.
@@ -320,6 +332,7 @@ LcsSlotCreationFormExamples >> stringSlotSubjectScripter [
 	<gtExample>
 	<return: #BlScripter>
 	| aScripter |
+	self ensureCurrentsystemIsPrototypeSystem.
 	aScripter := self
 			scripterWithModel: [ self stringSlotAccessorSlotCreationForm ]
 			element: [ :aModel | aModel asGtMagritteViewModel asElement ].
@@ -363,6 +376,7 @@ LcsSlotCreationFormExamples >> subjectScripterModel [
 LcsSlotCreationFormExamples >> symbolSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsSymbolSlot'.
 	self assert: form slotClassName equals: 'LcsSymbolSlot'.
@@ -378,6 +392,7 @@ LcsSlotCreationFormExamples >> symbolSlotAccessorSlotCreationForm [
 LcsSlotCreationFormExamples >> virtualSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationFormExamples new slotCreationForm
 				slotClassChangedTo: 'LcsVirtualSlot'.
 	self assert: form slotClassName equals: 'LcsVirtualSlot'.

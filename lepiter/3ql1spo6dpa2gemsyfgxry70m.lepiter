@@ -137,14 +137,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-22T10:53:35.737911-04:00"
+						"dateAndTimeString" : "2025-08-22T12:39:41.252561-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "45YREo/4DQCnGFcyA3HkFA=="
 				},
-				"code" : "\"Lcs Examples\"\r| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ]........\rexampleResults := (GtExampleGroup withAll: gtExamples) runAll.\rexampleResults.\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
+				"code" : "\"Lcs Examples\"\r| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rexampleResults := (GtExampleGroup withAll: gtExamples) runAll.\rexampleResults.\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
 			},
 			{
 				"__type" : "pharoSnippet",
