@@ -46,7 +46,7 @@ LxxPerson class >> weightSlotDefinition [
 
 { #category : #accessing }
 LxxPerson >> age [
-	^ self virtualSlotVarNamed:  'age'
+	^ self virtualSlotVarNamed: 'age'
 ]
 
 { #category : #accessing }
