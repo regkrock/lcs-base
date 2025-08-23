@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-30T14:04:11.476834-04:00"
+						"dateAndTimeString" : "2025-08-23T15:20:09.41079-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtTodo:label=LcsSlotBlock}}\n{{gtTodo:label=Implenet initialValueBlock editting|completed=2025-07-30}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=2025-07-30}}"
+				"string" : "{{gtTodo:label=LcsSlotBlock}}\n{{gtTodo:label=Implenet initialValueBlock editting|completed=2025-07-30}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=2025-08-23}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=2025-08-23}}\n{{gtTodo:label=Add logic for 'Slots Up To' in LcsGtColumnListView}}"
 			}
 		]
 	},

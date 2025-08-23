@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-30T14:04:11.476834-04:00"
+						"dateAndTimeString" : "2025-08-23T15:19:46.730173-04:00"
 					}
 				},
 				"uid" : {
@@ -39,44 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtTodo:label=LcsSlotBlock}}\n{{gtTodo:label=Implenet initialValueBlock editting|completed=2025-07-30}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=2025-07-30}}"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-04T12:59:51.585356-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-10T12:20:09.243894-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "szvkxe73DQCSbjcfBscWFQ=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "} "
+				"string" : "{{gtTodo:label=LcsSlotBlock}}\n{{gtTodo:label=Implenet initialValueBlock editting|completed=2025-07-30}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=2025-08-23}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=}}\n{{gtTodo:label=Add logic for 'Slots Up To' in LcsGt}}"
 			}
 		]
 	},
