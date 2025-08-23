@@ -212,10 +212,6 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 		column: 'Defined In' text: [ :each | each domainClass name ] width: 140;
 		column: 'Priority' text: [ :each | each priority ] width: 30;
 		column: 'Type(s)' text: [ :each | each slotTypesList];
-		"column: '' stencil: [ :each | BrButton new
-										aptitude: BrGlamorousButtonWithLabelAptitude new;
-										label: 'Remove';
-										action: [ :aButton | self domainClass removeDomainSlotNamed: each slotName ]] width: 70; "
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
 			tooltip: 'Inspect Slot Model'
 			action: [ :aButton :aTab | 
