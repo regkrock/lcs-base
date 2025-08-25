@@ -79,7 +79,6 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	<return: #BlScripter>
 	| anAcceptId anCancelId fieldId slotClassDescription margritteAcceptAction |
 	self ensureCurrentsystemIsPrototypeSystem.
-	self ensureCurrentsystemIsPrototypeSystem.
 	self subjectScripter: self formScripter.
 
 	anAcceptId := self actionIdFor: #magritteAcceptAction.
