@@ -147,6 +147,77 @@
 				"code" : "\"Lcs Examples\"\r| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rexampleResults := (GtExampleGroup withAll: gtExamples) runAll.\rexampleResults.\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
 			},
 			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-25T11:18:16.271698-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-25T11:18:31.002919-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2/0/zZP5DQCRQyvcB+65wQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Run Example of Group size 1"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-25T11:18:36.077075-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-25T11:24:14.993649-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oTVuzpP5DQCR6Fe4B+65wQ=="
+				},
+				"code" : "| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rexampleResults := (GtExampleGroup withAll: (gtExamples copyFrom: 1 to: gtExamples size - 1  )) runAll.\rexampleResults."
+			},
+			{
 				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
