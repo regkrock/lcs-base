@@ -266,6 +266,15 @@ LcsBaseSlot >> parent: anObject [
 	parent := anObject
 ]
 
+{ #category : #printing }
+LcsBaseSlot >> printOn: aStream [
+	super printOn: aStream.
+	aStream 
+		nextPutAll: ' (';
+		nextPutAll: self slotName displayString; 
+		nextPutAll: ')'
+]
+
 { #category : #properties }
 LcsBaseSlot >> priority [
 	^ self propertyAt: 'priority'

@@ -40,7 +40,7 @@ LcsGtPhlowColumnedListViewExamples >> domainClassFilter [
 	<gtExample>
 	| filter result |
 	self ensureCurrentsystemIsPrototypeSystem.
-	filter := LcsGtPhlowColumnedListView new domainClassFilter.
+	filter := LcsGtPhlowColumnedListView new newDomainClassFilter.
 	self assert: filter selectedValue equals: ''.
 	filter text: 'LxxPerson'.
 	self assert: filter selectedValue equals: 'LxxPerson'.
@@ -49,11 +49,17 @@ LcsGtPhlowColumnedListViewExamples >> domainClassFilter [
 ]
 
 { #category : #examples }
+LcsGtPhlowColumnedListViewExamples >> filterItemsUsingDefaultFilters [
+	<gtExample>
+	^ self slotModelView filteredItems
+]
+
+{ #category : #examples }
 LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 	<gtExample>
 	| filter |
 	self ensureCurrentsystemIsPrototypeSystem.
-	filter := LcsGtPhlowColumnedListView new slotKindFilter.
+	filter := LcsGtPhlowColumnedListView new newSlotKindFilter.
 	self assert: filter notNil.
 	self assert: filter selectedItem itemValue equals: 'all'.
 	filter selectLastItem.
@@ -66,7 +72,7 @@ LcsGtPhlowColumnedListViewExamples >> slotClassFilter [
 	<gtExample>
 	| filter result |
 	self ensureCurrentsystemIsPrototypeSystem.
-	filter := LcsGtPhlowColumnedListView new slotClassFilter.
+	filter := LcsGtPhlowColumnedListView new newSlotClassFilter.
 	self assert: filter selectedValue equals: ''.
 	filter text: 'LxxPerson'.
 	self assert: filter selectedValue equals: 'LxxPerson'.
@@ -75,11 +81,21 @@ LcsGtPhlowColumnedListViewExamples >> slotClassFilter [
 ]
 
 { #category : #examples }
+LcsGtPhlowColumnedListViewExamples >> slotDefinitionItemsFilteredByAccessorSlotKind [
+	<gtExample>
+	| view  filteredItems |
+	view := self viewWithSlotDefinitionItemsFilteredByAccessorSlotKind.
+	filteredItems := view filteredItems.
+	self assert: filteredItems size equals: 3.
+	^ filteredItems
+]
+
+{ #category : #examples }
 LcsGtPhlowColumnedListViewExamples >> slotKindFilter [
 	<gtExample>
 	| filter |
 	self ensureCurrentsystemIsPrototypeSystem.
-	filter := LcsGtPhlowColumnedListView new slotKindFilter.
+	filter := LcsGtPhlowColumnedListView new newSlotKindFilter.
 	self assert: filter notNil.
 	self assert: filter selectedItem itemValue equals: 'all'.
 	^ filter
@@ -97,6 +113,14 @@ LcsGtPhlowColumnedListViewExamples >> slotModelView [
 	self assert: element phlow entity equals: view.
 	self assert: view filterItemsModel items size equals: 4.
 	self assert: view itemsProviderComputation printString equals: '[ self allSlotDefinitions ]'.
+	self assert: view slotKindFilterItemLabel equals: 'all'.
+	self assert: view superclassesFilterItemLabel equals: LxxPerson.
+	self assert: view slotClassFilterItemLabel equals: ''.
+	self assert: view domainClassFilterItemLabel equals: ''.
+	self assert: view slotKindFilterValue equals: nil.
+	self assert: view slotClassFilterValue equals: ''.
+	self assert: view domainClassFilterValue equals: ''.
+	self assert: view superclassesFilterValue equals: (OrderedCollection with: LxxPerson).
 	^ view
 ]
 
@@ -127,4 +151,43 @@ LcsGtPhlowColumnedListViewExamples >> slotsUpToFilterWithLastItemSelected [
 	filter selectLastItem.
 	self assert: (filter creator value: filter selectedItem) equals: self allClassInDomainObjectHeirarchy.
 	^ filter
+]
+
+{ #category : #examples }
+LcsGtPhlowColumnedListViewExamples >> unfilteredItems [
+	<gtExample>
+	| view unfilteredItems |
+	view := self slotModelView.
+	unfilteredItems := view unfilteredItems.
+	self assert: unfilteredItems size > 0.
+	^ unfilteredItems
+]
+
+{ #category : #examples }
+LcsGtPhlowColumnedListViewExamples >> viewWithDefaultFiltersSelectedItems [
+	<gtExample>
+	| view |
+	view :=  self slotModelView.
+	view filteredItems.
+	self assert: view filteredItems size equals: 4.
+	^ view
+]
+
+{ #category : #examples }
+LcsGtPhlowColumnedListViewExamples >> viewWithSlotDefinitionItemsFilteredByAccessorSlotKind [
+	<gtExample>
+	| view accessorItem filter filteredItems |
+	view := self viewWithDefaultFiltersSelectedItems.
+	filter := view slotKindFilter.
+	filter itemsFuture wait.
+
+	accessorItem := filter itemsBuilder items
+			detect: [ :each | each itemValue = 'accessor' ]
+			ifNone: [ nil ].
+	self assert: accessorItem itemValue equals: 'accessor'.
+	view slotKindFilter selectedItem: accessorItem.
+
+	filteredItems := view filteredItems.
+	self assert: filteredItems size equals: 3.
+	^ view
 ]

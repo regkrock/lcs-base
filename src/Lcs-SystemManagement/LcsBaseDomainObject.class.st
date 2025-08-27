@@ -15,6 +15,13 @@ LcsBaseDomainObject class >> accessorSlotDefinitionPragmas [
 	^ Pragma allNamed: 'slotDefinition' in: self class
 ]
 
+{ #category : #'slot model' }
+LcsBaseDomainObject class >> addSlotDefinitionViewItemsTo: allSlotDefinitionViewItems [ 
+	allSlotDefinitionViewItems addAll: self localSlotDefinitionViewItems.
+	self superclass = LcsObject ifFalse: [
+		self superclass addSlotDefinitionViewItemsTo: allSlotDefinitionViewItems ]
+]
+
 { #category : #'meta data' }
 LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 	^ self allSuperclasses reverse
@@ -98,10 +105,6 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 				action: [ :aButton | 
 					each remove.
 					aButton phlow fireViewUpdateWish ]] width: 40; 
-		actionButtonIcon: BrGlamorousVectorIcons driller 
-			tooltip: 'Inspect View'
-			action: [ :aButton :aTab | 
-				aButton phlow spawnObject: element ];
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
 			tooltip: 'Inspect Slot Model'
 			action: [ :aButton :aTab | 
@@ -190,7 +193,7 @@ LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 
 { #category : #'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinitions [
-	self slotDefinitionPragmas
+	self accessorSlotDefinitionPragmas
 		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ].
 	self virtualSlotDefinitionPragmas
 		do: [ :eachPragma | self installVirtualSlotDefinition: eachPragma methodSelector ].
@@ -252,6 +255,26 @@ LcsBaseDomainObject class >> isSlotModelPopulated [
 LcsBaseDomainObject class >> isSlotModelReleased [
 	self withAllSubclassesDo: [ :eachClass | eachClass slotModel notNil ifTrue: [ ^ false ] ].
 	^ true
+]
+
+{ #category : #'slot model' }
+LcsBaseDomainObject class >> localSlotDefinitionViewItems [
+	| allSlotDefinitionViewItems accessorSlotDefinitionViewItems |
+	allSlotDefinitionViewItems := OrderedCollection new.
+	accessorSlotDefinitionViewItems := self viewItemsFrom: self accessorSlotDefinitionPragmas.
+	allSlotDefinitionViewItems 
+		addAll: accessorSlotDefinitionViewItems.
+	allSlotDefinitionViewItems
+		addAll: (self viewItemsFrom: self virtualSlotDefinitionPragmas).
+	allSlotDefinitionViewItems
+		addAll: (self viewItemsFrom: self facadeSlotDefinitionPragmas).
+	self instVarNames
+		do: [ :eachInstVarName | 
+			accessorSlotDefinitionViewItems
+				detect: [ :eachItem | eachItem slotName asString = eachInstVarName asString ]
+				ifNone: [ allSlotDefinitionViewItems
+						add: (LcsMissingSlotDefinitionViewItem on: eachInstVarName domainClass: self) ] ].
+	^ allSlotDefinitionViewItems
 ]
 
 { #category : #'instance creation' }
@@ -328,32 +351,11 @@ LcsBaseDomainObject class >> slotDefinitionNamed: aString [
 ]
 
 { #category : #'slot model' }
-LcsBaseDomainObject class >> slotDefinitionPragmas [
-	^ Pragma allNamed: 'slotDefinition' in: self class
-]
-
-{ #category : #'slot model' }
 LcsBaseDomainObject class >> slotDefinitionViewItems [
-	" self slotDefinitionPragmasAndInstVarNames "
-	| slotDefinitionViewItems accessorSlotDefinitionViewItems allInstVarNames localInstVarNames|
-	slotDefinitionViewItems := (self accessorSlotDefinitionPragmas collect: [ :eachPragma | 
-		LcsExtantSlotDefinitionViewItem on: ((self perform: eachPragma method selector) domainClass: self) ]) asOrderedCollection.
-	accessorSlotDefinitionViewItems := slotDefinitionViewItems select: [ :each | each isAccessorSlot ].
-	allInstVarNames := self allInstVarNames.
-	localInstVarNames := self instVarNames asOrderedCollection.
-	localInstVarNames copy do: [:eachInstVarName |
-		accessorSlotDefinitionViewItems 
-			detect: [ :eachSlotDefinitionViewItem | 
-				eachSlotDefinitionViewItem slotName asSymbol = eachInstVarName 
-					ifTrue: [ 
-						eachSlotDefinitionViewItem instVarName: eachInstVarName.
-						localInstVarNames remove: eachInstVarName ifAbsent: [].
-						true ]
-					ifFalse: [  false ] ]
-			ifNone: [ slotDefinitionViewItems add: (LcsMissingSlotDefinitionViewItem on: eachInstVarName domainClass: self) ] ].
-	(accessorSlotDefinitionViewItems select: [ :each | each instVarName isEmptyOrNil])
-		do: [ :each | (allInstVarNames includes: each slotName asSymbol) ifTrue: [ each instVarName: each slotName asSymbol  ]].
-	^ slotDefinitionViewItems
+	| allSlotDefinitionViewItems |
+	allSlotDefinitionViewItems := OrderedCollection new.
+	self addSlotDefinitionViewItemsTo: allSlotDefinitionViewItems.
+	^ allSlotDefinitionViewItems
 ]
 
 { #category : #accessing }
@@ -395,7 +397,7 @@ LcsBaseDomainObject class >> verifyClassHasNoDomainSlotNamed: aSlotName [
 { #category : #'slot model - verification' }
 LcsBaseDomainObject class >> verifyClassHasSlotDefinitionsForInstVars [
 	self verifyNoSlotDefinitionInstanceVariableMismatch.
-	self slotDefinitionPragmas do: [ :eachPragma |
+	self accessorSlotDefinitionPragmas do: [ :eachPragma |
 		self verifyClassHasDomainSlotNamed: (self perform: eachPragma method selector) slotName]
 ]
 
@@ -446,6 +448,12 @@ LcsBaseDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
 		ifFalse: [ LcsSlotModelNotInitializedError signalWithContext: self ].
 	self superclass verifySuperclassesHaveInitializedSlotModel"
 
+]
+
+{ #category : #'slot model' }
+LcsBaseDomainObject class >> viewItemsFrom: aListOfPragmas [
+	^ aListOfPragmas collect: [ :eachPragma | 
+		((self perform: eachPragma method selector) domainClass: self) asViewItem ] 
 ]
 
 { #category : #'slot model' }

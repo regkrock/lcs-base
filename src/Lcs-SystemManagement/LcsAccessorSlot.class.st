@@ -106,6 +106,11 @@ LcsAccessorSlot >> allowNilDescription [
 
 ]
 
+{ #category : #converting }
+LcsAccessorSlot >> asViewItem [
+	^ LcsExtantSlotDefinitionViewItem on: self 
+]
+
 { #category : #'slot model' }
 LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 	newValue isDomainObject ifTrue: [
@@ -405,15 +410,6 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 						arguments: LcsAccessorSlot valueSlotBlockArguments);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
-]
-
-{ #category : #printing }
-LcsAccessorSlot >> printOn: aStream [
-	super printOn: aStream.
-	aStream 
-		nextPutAll: ' (';
-		nextPutAll: self slotName displayString; 
-		nextPutAll: ')'
 ]
 
 { #category : #validations }

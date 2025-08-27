@@ -2,29 +2,41 @@ Class {
 	#name : #LcsSlotDefinitionViewItem,
 	#superclass : #LcsObject,
 	#instVars : [
-		'instVarName'
+		'slotDefinition'
 	],
 	#category : #'Lcs-SystemManagement-Core'
 }
 
+{ #category : #'instance creation' }
+LcsSlotDefinitionViewItem class >> on: aSlotDefinition [
+	^ self new
+		initializeOn: aSlotDefinition;
+		yourself
+]
+
 { #category : #'as yet unclassified' }
+LcsSlotDefinitionViewItem >> domainClass [
+	^ self slotDefinition domainClass
+]
+
+{ #category : #'slot definition' }
+LcsSlotDefinitionViewItem >> getterSelector [
+	^ self slotDefinition getterSelector
+]
+
+{ #category : #initialize }
 LcsSlotDefinitionViewItem >> initialize [
 	super initialize.
-	self instVarName: ''
 ]
 
 { #category : #initialize }
 LcsSlotDefinitionViewItem >> initializeOn: aSlotDefinition [ 
+	self slotDefinition: aSlotDefinition
 ]
 
 { #category : #accessing }
 LcsSlotDefinitionViewItem >> instVarName [
-	^ instVarName
-]
-
-{ #category : #accessing }
-LcsSlotDefinitionViewItem >> instVarName: anObject [
-	instVarName := anObject
+	^ ''
 ]
 
 { #category : #testing }
@@ -33,6 +45,51 @@ LcsSlotDefinitionViewItem >> isAccessorSlot [
 ]
 
 { #category : #testing }
+LcsSlotDefinitionViewItem >> isSlotDefinitionFor: anInstVarName [
+	^ false
+]
+
+{ #category : #testing }
 LcsSlotDefinitionViewItem >> isVirtualSlot [
 	^ false
+]
+
+{ #category : #'slot definition' }
+LcsSlotDefinitionViewItem >> priority [
+	^ self slotDefinition priority
+]
+
+{ #category : #'slot definition' }
+LcsSlotDefinitionViewItem >> slotClass [
+	^ self slotDefinition class
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionViewItem >> slotDefinition [
+	^ slotDefinition
+]
+
+{ #category : #accessing }
+LcsSlotDefinitionViewItem >> slotDefinition: anObject [
+	slotDefinition := anObject
+]
+
+{ #category : #'as yet unclassified' }
+LcsSlotDefinitionViewItem >> slotDefinitionInformation [
+	^ self slotDefinition
+]
+
+{ #category : #'slot definition' }
+LcsSlotDefinitionViewItem >> slotKind [
+	^ self slotDefinition slotKind
+]
+
+{ #category : #'slot definition' }
+LcsSlotDefinitionViewItem >> slotName [
+	^ self slotDefinition slotName
+]
+
+{ #category : #'slot definition' }
+LcsSlotDefinitionViewItem >> slotTypesList [
+	^ self slotDefinition slotTypesList
 ]

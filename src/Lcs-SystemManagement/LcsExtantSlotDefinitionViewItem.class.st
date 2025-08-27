@@ -1,32 +1,16 @@
 Class {
 	#name : #LcsExtantSlotDefinitionViewItem,
-	#superclass : #LcsSlotDefinitionViewItem,
-	#instVars : [
-		'slotDefinition'
-	],
+	#superclass : #LcsAccessorSlotDefinitionViewItem,
 	#category : #'Lcs-SystemManagement-Core'
 }
 
-{ #category : #'as yet unclassified' }
-LcsExtantSlotDefinitionViewItem class >> on: aSlotDefinition [
-	^ self new
-		initializeOn: aSlotDefinition;
-		yourself
-]
-
-{ #category : #'as yet unclassified' }
-LcsExtantSlotDefinitionViewItem >> domainClass [
-	^ self slotDefinition domainClass
-]
-
-{ #category : #'slot definition' }
-LcsExtantSlotDefinitionViewItem >> getterSelector [
-	^ self slotDefinition getterSelector
-]
-
-{ #category : #'instance creation' }
+{ #category : #initialize }
 LcsExtantSlotDefinitionViewItem >> initializeOn: aSlotDefinition [ 
-	self slotDefinition: aSlotDefinition
+	super initializeOn: aSlotDefinition.
+	self instVarName: (
+		(self domainClass allInstVarNames includes: self slotName)
+			ifTrue: [  self slotName ]
+			ifFalse: [ '***missing***' ])
 ]
 
 { #category : #testing }
@@ -35,13 +19,13 @@ LcsExtantSlotDefinitionViewItem >> isAccessorSlot [
 ]
 
 { #category : #testing }
-LcsExtantSlotDefinitionViewItem >> isVirtualSlot [
-	^ self slotDefinition isVirtualSlot
+LcsExtantSlotDefinitionViewItem >> isSlotDefinitionFor: anInstVarName [
+	^ self slotName asString = anInstVarName asString
 ]
 
-{ #category : #'slot definition' }
-LcsExtantSlotDefinitionViewItem >> priority [
-	^ self slotDefinition priority
+{ #category : #testing }
+LcsExtantSlotDefinitionViewItem >> isVirtualSlot [
+	^ self slotDefinition isVirtualSlot
 ]
 
 { #category : #'slot model' }
@@ -54,39 +38,4 @@ LcsExtantSlotDefinitionViewItem >> setterSelector [
 	^ self slotDefinition isVirtualSlot 
 		ifTrue: [ 'n/a' ]
 		ifFalse: [ self slotDefinition getterSelector ]
-]
-
-{ #category : #'as yet unclassified' }
-LcsExtantSlotDefinitionViewItem >> slotClass [
-	^ self slotDefinition class
-]
-
-{ #category : #accessing }
-LcsExtantSlotDefinitionViewItem >> slotDefinition [
-	^ slotDefinition
-]
-
-{ #category : #accessing }
-LcsExtantSlotDefinitionViewItem >> slotDefinition: anObject [
-	slotDefinition := anObject
-]
-
-{ #category : #'as yet unclassified' }
-LcsExtantSlotDefinitionViewItem >> slotDefinitionInformation [
-	^ self slotDefinition
-]
-
-{ #category : #'slot definition' }
-LcsExtantSlotDefinitionViewItem >> slotKind [
-	^ self slotDefinition slotKind
-]
-
-{ #category : #'slot definition' }
-LcsExtantSlotDefinitionViewItem >> slotName [
-	^ self slotDefinition slotName
-]
-
-{ #category : #'slot definition' }
-LcsExtantSlotDefinitionViewItem >> slotTypesList [
-	^ self slotDefinition slotTypesList
 ]

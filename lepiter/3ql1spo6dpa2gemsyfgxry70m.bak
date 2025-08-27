@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-12T14:22:46.507501-04:00"
+						"dateAndTimeString" : "2025-08-25T16:27:55.145392-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "###Sunit Tests"
+				"string" : "2###Sunit Tests"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -208,14 +208,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-25T11:23:57.922883-04:00"
+						"dateAndTimeString" : "2025-08-25T11:24:14.993649-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "oTVuzpP5DQCR6Fe4B+65wQ=="
 				},
-				"code" : "| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rexampleResults := (GtExampleGroup withAll: gtExamples copyFrom: 1 to:   ) runAll.\rexampleResults."
+				"code" : "| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rexampleResults := (GtExampleGroup withAll: (gtExamples copyFrom: 1 to: gtExamples size - 1  )) runAll.\rexampleResults."
 			},
 			{
 				"__type" : "pharoSnippet",

@@ -13,6 +13,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #converting }
+LcsFacadeSlot >> asViewItem [
+	^ LcsFacadeSlotDefinitionViewItem on: self 
+]
+
 { #category : #properties }
 LcsFacadeSlot >> convertFromTarget [
 	^ self propertyAt: 'convertFromTarget' ifAbsent: [ ]

@@ -17,6 +17,11 @@ LcsVirtualSlot class >> slotKind [
 	^ 'virtual'
 ]
 
+{ #category : #converting }
+LcsVirtualSlot >> asViewItem [
+	^ LcsVirtualSlotDefinitionViewItem on: self 
+]
+
 { #category : #'slot model' }
 LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 

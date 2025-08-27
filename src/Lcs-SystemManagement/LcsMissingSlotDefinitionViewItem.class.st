@@ -1,13 +1,13 @@
 Class {
 	#name : #LcsMissingSlotDefinitionViewItem,
-	#superclass : #LcsSlotDefinitionViewItem,
+	#superclass : #LcsAccessorSlotDefinitionViewItem,
 	#instVars : [
 		'domainClass'
 	],
 	#category : #'Lcs-SystemManagement-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 LcsMissingSlotDefinitionViewItem class >> on: anInstVarName domainClass: aClass [
 	^ self new 
 		initializeOn: anInstVarName domainClass: aClass;
@@ -27,6 +27,10 @@ LcsMissingSlotDefinitionViewItem >> domainClass: anObject [
 { #category : #asking }
 LcsMissingSlotDefinitionViewItem >> getterSelector [
 	^ ''
+]
+
+{ #category : #initialize }
+LcsMissingSlotDefinitionViewItem >> initializeOn: aSlotDefinition [ 
 ]
 
 { #category : #'as yet unclassified' }
