@@ -196,7 +196,7 @@ LcsSlotCreationForm >> gtConstructionTreeFor: aView [
 		view: #gtConstructionTreeFor:
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsSlotCreationForm >> gtInspectView: view [
 	"<gtView>"
 	^ view
@@ -451,8 +451,8 @@ LcsSlotCreationForm >> onReset: aBlock [
 { #category : #magritte }
 LcsSlotCreationForm >> openSpecifiedSlotBuilderFormAction [
 	^ GtMagritteAction new
-		beInFutureProcess;
-		beWithFutureResponse;
+		"beInFutureProcess;
+		beWithFutureResponse;"
 		action: [ :aModel :aButton :aMemento :aDescription | 
 			aModel reifySlotModelBuilder.
 			aButton phlow fireViewUpdateWish ]

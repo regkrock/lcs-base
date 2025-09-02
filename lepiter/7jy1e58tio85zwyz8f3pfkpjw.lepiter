@@ -37,9 +37,9 @@
 					"uidString" : "a+kIXRTpDQCR8ZErA8uYfw=="
 				},
 				"code" : "(GtCoderElement forClass: LcsApplicationEnvironment) disablePlayPage beNormalLevel",
-				"elementHeight" : 1371,
+				"elementHeight" : 1429,
 				"codeHeight" : 50,
-				"codeVisible" : false
+				"codeVisible" : true
 			}
 		]
 	},

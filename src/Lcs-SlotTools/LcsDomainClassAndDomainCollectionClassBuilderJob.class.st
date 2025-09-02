@@ -56,7 +56,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionClassName: anObjec
 
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionModuleClass [
-	^ collectionSlotInstallationTargetClass
+	^ self collectionSlotInstallationTargetClass
 ]
 
 { #category : #builders }
@@ -67,6 +67,11 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionReferenceSlotBuild
 		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
 		addSlotType: self collectionClassName;
 		yourself
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTargetClass [
+	^ collectionSlotInstallationTargetClass
 ]
 
 { #category : #accessing }

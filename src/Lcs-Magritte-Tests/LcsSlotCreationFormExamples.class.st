@@ -19,7 +19,7 @@ LcsSlotCreationFormExamples >> booleanSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
+	form := self slotCreationForm
 				slotClassChangedTo: 'LcsBooleanSlot'.
 	self assert: form slotClassName equals: 'LcsBooleanSlot'.
 	self assert: form slotModelBuilder class equals: LcsBooleanSlotBuilder.
@@ -41,8 +41,7 @@ LcsSlotCreationFormExamples >> dateOfBirthSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
-				slotClassChangedTo: 'LcsDateOfBirthSlot'.
+	form := self slotCreationForm slotClassChangedTo: 'LcsDateOfBirthSlot'.
 	self assert: form slotClassName equals: 'LcsDateOfBirthSlot'.
 	self assert: form slotModelBuilder class equals: LcsDateSlotBuilder.
 	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
@@ -57,8 +56,7 @@ LcsSlotCreationFormExamples >> dateSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
-				slotClassChangedTo: 'LcsDateSlot'.
+	form := self slotCreationForm slotClassChangedTo: 'LcsDateSlot'.
 	self assert: form slotClassName equals: 'LcsDateSlot'.
 	self assert: form slotModelBuilder class equals: LcsDateSlotBuilder.
 	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
@@ -266,7 +264,7 @@ LcsSlotCreationFormExamples >> integerSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
+	form := self slotCreationForm
 				slotClassChangedTo: 'LcsIntegerSlot'.
 	self assert: form slotClassName equals: 'LcsIntegerSlot'.
 	self assert: form slotModelBuilder class equals: LcsIntegerSlotBuilder.
@@ -288,7 +286,7 @@ LcsSlotCreationFormExamples >> scaledDecimalSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
+	form := self slotCreationForm
 				slotClassChangedTo: 'LcsScaledDecimalSlot'.
 	self assert: form slotClassName equals: 'LcsScaledDecimalSlot'.
 	self assert: form slotModelBuilder class equals: LcsScaledDecimalSlotBuilder.
@@ -315,7 +313,7 @@ LcsSlotCreationFormExamples >> stringSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
+	form := self slotCreationForm
 				slotClassChangedTo: 'LcsStringSlot'.
 	self assert: form slotClassName equals: 'LcsStringSlot'.
 	self assert: form slotModelBuilder class equals: LcsStringSlotBuilder.
@@ -376,7 +374,7 @@ LcsSlotCreationFormExamples >> symbolSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
+	form := self slotCreationForm
 				slotClassChangedTo: 'LcsSymbolSlot'.
 	self assert: form slotClassName equals: 'LcsSymbolSlot'.
 	self assert: form slotModelBuilder class equals: LcsStringSlotBuilder.
@@ -392,7 +390,7 @@ LcsSlotCreationFormExamples >> virtualSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationFormExamples new slotCreationForm
+	form := self slotCreationForm
 				slotClassChangedTo: 'LcsVirtualSlot'.
 	self assert: form slotClassName equals: 'LcsVirtualSlot'.
 	self assert: form slotModelBuilder class equals: LcsVirtualSlotBuilder.

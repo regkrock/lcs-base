@@ -203,6 +203,26 @@ LcsModule >> gtGlobalCollectionsFor: aView [
 		column: 'Pending Removals'
 			text: [ :item | item numberOfPendingRemovals asString ]
 			width: 125;
+		actionDropdownButtonIcon: BrGlamorousVectorIcons spawn 
+			tooltip: 'Add Global Collection Slot'
+			content: [ :aDropdown |
+				BlElement new
+					constraintsDo: [ :c | 
+						c horizontal fitContent.
+						c vertical fitContent ];
+					layout: BlLinearLayout vertical;
+					padding: (BlInsets all: 10);
+					addChild: (
+						BrButton new
+							aptitude: BrGlamorousButtonWithLabelAptitude;
+							label: 'Add Standard Global Collection';
+							action: [ aDropdown phlow spawnObject: (LcsGlobalCollectionPatternForm newOn: self) ]);
+					addChild: (
+						BrButton new
+							aptitude: BrGlamorousButtonWithLabelAptitude;
+							label: 'Add Value Global Collection';
+							action: [ aDropdown phlow spawnObject: (LcsGlobalCollectionPatternForm newOn: self) ]).
+ 						];
 		send: #item;
 		actionUpdateButton;
 		yourself

@@ -32,6 +32,13 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #'gt views' }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> addRefactoringTextDetailsTo: aStream [
+	self jobSteps do: [ :each |
+		aStream nextPutAll: '---- Step: ' , each stepNumber , ' ----'; cr; cr.
+		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
+]
+
 { #category : #command }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> addSubclassBuilders [
 	self subclassNames do: [ :eachName |
@@ -142,6 +149,16 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> globalCollectionSlotDefiniti
 	^ (self jobSteps stepsWithClass: LcsGlobalCollectionSlotBuilder) first
 ]
 
+{ #category : #'gt views' }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> gtRefactoringChangeOn: aView [
+	<gtView>
+	^ aView text
+		title: 'Refactoring';
+		priority: 1;
+		text: [ self refactoringText asRopedText ];
+		actionUpdateButton
+]
+
 { #category : #initialize }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> initialize [
 	super initialize.
@@ -164,9 +181,9 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> loaderBuilder [
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: 'Install ';
-		nextPutAll: self newDomainClassName ; cr;
+		nextPutAll: (self newDomainClassName) printString ; cr;
 		nextPutAll: ' with instances stored in ';
-		nextPutAll: self collectionClassName
+		nextPutAll: (self collectionClassName) printString
 ]
 
 { #category : #accessing }
@@ -177,6 +194,14 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> protoInstances [
 { #category : #accessing }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> protoInstances: aCollection [
 	protoInstances := aCollection
+]
+
+{ #category : #'gt views' }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> refactoringText [
+	| stream |
+	stream := WriteStream on: String new.
+	self addRefactoringTextDetailsTo: stream.
+	^ stream contents
 ]
 
 { #category : #accessing }
