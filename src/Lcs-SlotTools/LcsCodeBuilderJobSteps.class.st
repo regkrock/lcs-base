@@ -260,6 +260,11 @@ LcsCodeBuilderJobSteps >> jobSteps [
 	^ self collection
 ]
 
+{ #category : #testing }
+LcsCodeBuilderJobSteps >> numberOfSteps [
+	^ self collection size
+]
+
 { #category : #accessing }
 LcsCodeBuilderJobSteps >> parent [
 	^ parent

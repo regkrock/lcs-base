@@ -31,7 +31,8 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> classPrefix [
 
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> classPrefix: aString [
-	classPrefix := aString
+	classPrefix := aString.
+	self generateRelatedNames
 ]
 
 { #category : #accessing }
@@ -41,7 +42,8 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> classRootName [
 
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> classRootName: aString [
-	classRootName := aString
+	classRootName := aString.
+	self generateRelatedNames
 ]
 
 { #category : #accessing }
@@ -112,6 +114,21 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> domainInstanceSlotName [
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> domainInstanceSlotName: aString [ 
 	domainInstanceSlotName := aString
+]
+
+{ #category : #configuration }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> generateRelatedNames [
+	(self classRootName isNil or: [ self classPrefix isNil ])
+		ifTrue: [
+			self domainInstanceSlotName: nil.
+			self collectionSlotName: nil.
+			self newDomainClassName: nil.
+			self collectionClassName: nil.
+			^ self ].
+	self domainInstanceSlotName: self classRootName asValidSelector.
+	self collectionSlotName: self domainInstanceSlotName asEnglishPlural.
+	self newDomainClassName: self classPrefix , self classRootName.
+	self collectionClassName: self newDomainClassName asEnglishPlural
 ]
 
 { #category : #initialize }

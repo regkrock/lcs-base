@@ -1,11 +1,6 @@
 Class {
 	#name : #LcsSlotCreationFormExamples,
-	#superclass : #LcsObjectExamples,
-	#traits : 'TBlDevScripterExamples + LctDevScripterSuport',
-	#classTraits : 'TBlDevScripterExamples classTrait + LctDevScripterSuport classTrait',
-	#instVars : [
-		'subject'
-	],
+	#superclass : #LcsMagritteFormExamples,
 	#category : #'Lcs-Magritte-Tests-Examples'
 }
 
@@ -303,6 +298,7 @@ LcsSlotCreationFormExamples >> slotCreationForm [
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsSlotCreationForm new targetClass: LxxPerson.
+	self assert: form targetClass equals: LxxPerson.
 	self assert: form slotClassName isEmpty.
 	self assert: form isSlotModelBuilderNotReified.
 	^form
@@ -342,31 +338,6 @@ LcsSlotCreationFormExamples >> stringSlotSubjectScripter [
 		buildEnabled: false.
 		
 	^ aScripter
-]
-
-{ #category : #accessing }
-LcsSlotCreationFormExamples >> subject [
-	^ subject
-]
-
-{ #category : #accessing }
-LcsSlotCreationFormExamples >> subject: aScripter [
-	subject := aScripter
-]
-
-{ #category : #accessing }
-LcsSlotCreationFormExamples >> subjectScripter [
-	^ self subject
-]
-
-{ #category : #accessing }
-LcsSlotCreationFormExamples >> subjectScripter: aScripter [
-	self subject: aScripter
-]
-
-{ #category : #accessing }
-LcsSlotCreationFormExamples >> subjectScripterModel [
-	^ self subjectScripter model
 ]
 
 { #category : #form }

@@ -116,10 +116,46 @@ LctDevScripterSuport >> assert: aStep model: aModel acceptEnabled: isAcceptEnabl
 		buildId: aBuildId
 ]
 
+{ #category : #private }
+LctDevScripterSuport >> cackeKeyOf: aDescriptionSymbol [
+	^ self subjectScripterMemento cache
+		at: (self targetDescriptionFor: aDescriptionSymbol)
+]
+
+{ #category : #'scripter - assertion' }
+LctDevScripterSuport >> clickOn: anId [
+	self subjectScripter
+		substeps: ('Click on an element: ' , anId asSymbol)
+		do: [ :aStep | 
+
+			aStep requestFocus
+				// anId;
+				play.
+
+			aStep
+				clickStep: [ :s | 
+					s
+						// anId;
+						onChildAt: 1 ] ]
+]
+
+{ #category : #asking }
+LctDevScripterSuport >> currentValueOf: aDescriptionSymbol [
+	^ (self cackeKeyOf: aDescriptionSymbol)
+		ifSome: [ :item | item value currentValue ]
+		ifNone: [ nil ]
+]
+
 { #category : #asking }
 LctDevScripterSuport >> fieldIdFor: aDescriptionSymbol [
-	^ GtMagritteFieldElementId new
-		description: (self subjectScripter model perform: aDescriptionSymbol)
+	^ GtMagritteFieldElementId new description: (self subjectScripter model perform: aDescriptionSymbol)
+]
+
+{ #category : #asking }
+LctDevScripterSuport >> previousValueOf: aDescriptionSymbol [
+	^ (self cackeKeyOf: aDescriptionSymbol)
+		ifSome: [ :item | item value originalValue ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }
@@ -130,6 +166,24 @@ LctDevScripterSuport >> subjectScripter [
 { #category : #accessing }
 LctDevScripterSuport >> subjectScripter: aScripter [
 	self subject: aScripter
+]
+
+{ #category : #'scripter - model' }
+LctDevScripterSuport >> subjectScripterMemento [
+	^self subjectScripter element userData at: GtMagritteViewModel gtMementoSymbol
+]
+
+{ #category : #'scripter - model' }
+LctDevScripterSuport >> subjectScripterModel [
+	^ self subjectScripter model
+]
+
+{ #category : #asking }
+LctDevScripterSuport >> targetDescriptionFor: aDescriptionSymbol [
+	| keys descriptionLabel |
+	keys := self subjectScripterMemento cache keys.
+	descriptionLabel := (self subjectScripter model perform: aDescriptionSymbol) label.
+	^ keys detect: [ :each | each label = descriptionLabel ] ifNone: [ ^nil ].
 ]
 
 { #category : #'scripter - assertion' }

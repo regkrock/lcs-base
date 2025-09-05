@@ -23,6 +23,7 @@ LcsAccessorSlotCreationFormTest >> stringSlotAccessorSlotCreationForm [
 LcsAccessorSlotCreationFormTest >> testAccessingSlotTypesFromAssociatedSlotBuilder [
 	| aDescription |
 	self subject: (LcsSlotCreationForm newOn: LxxPerson).
+	self assert: self subject targetClass equals: LxxPerson.
 	self subject slotClassChangedTo: #LcsValueCodeSlot.
 	self slotModelBuilder isKindOf: LcsValueCodeSlot.
 	aDescription := self subject slotTypesDescription.

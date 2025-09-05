@@ -144,6 +144,16 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainCollectionClassBuilder
 		yourself
 ]
 
+{ #category : #configuration }
+LcsDomainClassAndGlobalCollectionClassBuilderJob >> generateRelatedNames [
+	super generateRelatedNames.
+	(self classRootName isNil or: [ self classPrefix isNil ])
+		ifTrue: [
+			self unknownClassName: nil.
+			^self ].
+	self unknownClassName: self classPrefix , 'Unknown' , self classRootName
+]
+
 { #category : #'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalCollectionSlotBuilder) first

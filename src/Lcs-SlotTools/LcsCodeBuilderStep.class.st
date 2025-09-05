@@ -339,6 +339,11 @@ LcsCodeBuilderStep >> stepNumber [
 	^self parent stepNumberFor: self 
 ]
 
+{ #category : #accessing }
+LcsCodeBuilderStep >> targetPackageName: anObject [
+	"Do nothing"
+]
+
 { #category : #trace }
 LcsCodeBuilderStep >> traceStep: aString [
 	self traceCr: aString , '- ' , self jobStepDescription , '(' , self class name , ')'.

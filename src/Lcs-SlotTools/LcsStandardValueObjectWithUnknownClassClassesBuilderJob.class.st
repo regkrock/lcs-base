@@ -36,6 +36,16 @@ LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> createProtoCodesFromL
 				ifFalse: [ LcsProtoCode newFromLabel: eachLabel]) ]
 ]
 
+{ #category : #configuration }
+LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> generateRelatedNames [
+	super generateRelatedNames.
+	(self classRootName isNil or: [ self classPrefix isNil ])
+		ifTrue: [
+			self unknownClassName: nil.
+			^self ].
+	self unknownClassName: self classPrefix , 'Unknown' , self classRootName
+]
+
 { #category : #'job steps' }
 LcsStandardValueObjectWithUnknownClassClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsValueObjectsGlobalCollectionSlotBuilder) first

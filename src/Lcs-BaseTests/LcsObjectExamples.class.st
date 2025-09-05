@@ -14,9 +14,8 @@ LcsObjectExamples >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #support }
 LcsObjectExamples >> ensureCurrentsystemIsPrototypeSystem [
-	<gtExample>
 	self currentSystem 
 		ifNil: [ self createNewPrototypeSystem ]
 		ifNotNil: [ self currentSystem isPrototypeSystem ifFalse: [ self createNewPrototypeSystem ] ].

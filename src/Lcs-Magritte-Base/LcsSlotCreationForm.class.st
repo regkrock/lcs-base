@@ -1,13 +1,9 @@
 Class {
 	#name : #LcsSlotCreationForm,
-	#superclass : #Object,
+	#superclass : #LcsBaseSlotCreationForm,
 	#instVars : [
-		'onAccept',
 		'packageAndTagName',
 		'onElementCreated',
-		'onReset',
-		'targetClass',
-		'slotModelBuilder',
 		'mode',
 		'slotClassName'
 	],
@@ -28,13 +24,6 @@ LcsSlotCreationForm class >> isAdditionForm [
 LcsSlotCreationForm class >> newEditOn: aTargetClass [
 	^ self new 
 		initializeEditOn: aTargetClass;
-		yourself
-]
-
-{ #category : #'instance creation' }
-LcsSlotCreationForm class >> newOn: aTargetClass [
-	^ self new 
-		initializeOn: aTargetClass;
 		yourself
 ]
 
@@ -96,12 +85,17 @@ LcsSlotCreationForm >> asElement [
 	^ viewModel asElement
 ]
 
+{ #category : #configuration }
+LcsSlotCreationForm >> builderClass [
+	^ LcsCodeBuilderStep
+]
+
 { #category : #private }
 LcsSlotCreationForm >> classNamed: aValue [
 	^ Smalltalk classNamed: aValue trim
 ]
 
-{ #category : #magritte }
+{ #category : #'magritte - support' }
 LcsSlotCreationForm >> classShortcuts [
 	^ {BlShortcutWithAction new
 			name: 'Browse class';
@@ -159,14 +153,6 @@ LcsSlotCreationForm >> commitPackage [
 			^ packageAndTagName tagName
 				ifEmpty: [ aPackage ]
 				ifNotEmpty: [ :aTagName | aPackage addClassTag: aTagName ] ]
-]
-
-{ #category : #magritte }
-LcsSlotCreationForm >> commitSlotBuilderChangesAction [
-	^ GtMagritteAction new
-		beInFutureProcess;
-		beWithFutureResponse;
-		action: [ :aModel :aButton :aMemento :aDescription | aMemento commit ]
 ]
 
 { #category : #private }
@@ -264,7 +250,7 @@ LcsSlotCreationForm >> initialValueBlockDescription [
 { #category : #initialize }
 LcsSlotCreationForm >> initialize [
 	super initialize.
-	self initializeSlotTypeClassAndBuilderClass
+	self slotClassName: ''
 ]
 
 { #category : #initialize }
@@ -276,15 +262,8 @@ LcsSlotCreationForm >> initializeEditOn: aTargetClass [
 
 { #category : #initialize }
 LcsSlotCreationForm >> initializeOn: aTargetClass [ 
-	self mode: #add.
-	self targetClass: aTargetClass
-
-]
-
-{ #category : #initialize }
-LcsSlotCreationForm >> initializeSlotTypeClassAndBuilderClass [
-	self slotClassName: ''.
-	self slotModelBuilder: LcsCodeBuilderStep new
+	super initializeOn: aTargetClass .
+	self mode: #add
 ]
 
 { #category : #testing }
@@ -308,54 +287,16 @@ LcsSlotCreationForm >> isSlotClass: aValue [
 ]
 
 { #category : #testing }
-LcsSlotCreationForm >> isSlotModelBuilderNotReified [
-	^ self slotModelBuilder class = LcsCodeBuilderStep
-]
-
-{ #category : #testing }
 LcsSlotCreationForm >> isSlotModelBuilderReified [
 	^ self slotModelBuilder  class ~= LcsCodeBuilderStep
 ]
 
-{ #category : #magritte }
+{ #category : #'magritte - support' }
 LcsSlotCreationForm >> magritteAcceptAction [
 	<magritteActionDescription>
 	^ self slotModelBuilder class = LcsCodeBuilderStep 
 		ifTrue: [ self magritteOpenSlotModelBuilderAcceptAction ]
 		ifFalse: [ self magritteUpdateSlotModelBuilderAcceptAction ]
-]
-
-{ #category : #magritte }
-LcsSlotCreationForm >> magritteBuildAction [
-	<magritteActionDescription>
-	self isSlotModelBuilderNotReified ifTrue: [ ^ nil ].
-	^ MAActionDescription new
-		priority: 30;
-		label: 'Build';
-		beToolbarAction;
-		blocIcon: BrGlamorousVectorIcons play;
-		action: (GtMagritteAction new
-				beInUIProcess;
-				action: [ :aModel :aButton :aMemento :aDescription | 
-					aModel slotModelBuilder execute.
-					aModel initializeSlotTypeClassAndBuilderClass.
-					aButton phlow fireViewUpdateWish ]);
-		onOverallStatusChanged: (GtMagritteBasicAction new
-			action: [ :aStatus :aButton :aMemento :aDescription |
-				aStatus isChanged
-					ifTrue: [ aDescription enabled: false ]
-					ifFalse: [ aDescription enabled: aStatus isValidAndInactive ] ])
-]
-
-{ #category : #magritte }
-LcsSlotCreationForm >> magritteCancelAction [
-	<magritteActionDescription>
-	^ super magritteCancelAction
-		onSuccessCallback: (GtMagritteCallback new
-				action: [ :aModel :aButton :aMemento :aDescription | 
-					[ onReset ifNotNil: [ onReset value ] ] 
-						on: Error do: #debug ]);
-		beAlwaysEnabled
 ]
 
 { #category : #'magritte - support' }
@@ -370,7 +311,7 @@ LcsSlotCreationForm >> magritteDescriptionFor: aSlotNameSymbol [
 	^ aDescription
 ]
 
-{ #category : #magritte }
+{ #category : #'magritte - support' }
 LcsSlotCreationForm >> magritteInspectAction [
 	"<magritteActionDescription>"
 	^ MAActionDescription new
@@ -384,7 +325,7 @@ LcsSlotCreationForm >> magritteInspectAction [
 		beToolbarAction
 ]
 
-{ #category : #magritte }
+{ #category : #'magritte - support' }
 LcsSlotCreationForm >> magritteOpenSlotModelBuilderAcceptAction [
 	^ super magritteAcceptAction
 		label: 'Open Builder';
@@ -417,18 +358,6 @@ LcsSlotCreationForm >> numberOfDecimalsDescription [
 ]
 
 { #category : #accessing }
-LcsSlotCreationForm >> onAccept [
-
-	^ onAccept
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> onAccept: aBlock [
-
-	onAccept := aBlock
-]
-
-{ #category : #accessing }
 LcsSlotCreationForm >> onElementCreated [
 	^ onElementCreated
 ]
@@ -438,17 +367,7 @@ LcsSlotCreationForm >> onElementCreated: aBlock [
 	onElementCreated := aBlock
 ]
 
-{ #category : #accessing }
-LcsSlotCreationForm >> onReset [
-	^ onReset
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> onReset: aBlock [
-	onReset := aBlock
-]
-
-{ #category : #magritte }
+{ #category : #'magritte - support' }
 LcsSlotCreationForm >> openSpecifiedSlotBuilderFormAction [
 	^ GtMagritteAction new
 		"beInFutureProcess;
@@ -568,21 +487,11 @@ LcsSlotCreationForm >> slotClassWithSuperclasses [
 		LcsBaseSlot inheritsFrom: each ]
 ]
 
-{ #category : #magritte }
+{ #category : #'magritte - support' }
 LcsSlotCreationForm >> slotClasses [
 	^ GtPrefixTree
 		withAll: ((LcsBaseSlot withAllSubclasses reject: [ :each | each isAbstract ])
 				collect: [ :each | each name ])
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> slotModelBuilder [
-	^ slotModelBuilder
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> slotModelBuilder: anObject [
-	slotModelBuilder := anObject
 ]
 
 { #category : #magritte }
@@ -598,16 +507,6 @@ LcsSlotCreationForm >> slotNameDescription [
 LcsSlotCreationForm >> slotTypesDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #slotTypes
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> targetClass [
-	^ targetClass
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> targetClass: anObject [
-	targetClass := anObject
 ]
 
 { #category : #magritte }
@@ -636,7 +535,7 @@ LcsSlotCreationForm >> validationConditionsDescription [
 	^ self magritteDescriptionFor: #validationConditions
 ]
 
-{ #category : #magritte }
+{ #category : #'magritte - support' }
 LcsSlotCreationForm >> visualizeSlotModelBuilderVia: aButton [
 	^ aButton "parent parent parent parent parent parent parent" phlow
 		fireViewUpdateWish

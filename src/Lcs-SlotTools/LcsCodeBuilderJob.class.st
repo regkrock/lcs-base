@@ -141,6 +141,11 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 { #category : #initialize }
 LcsCodeBuilderJob >> initialize [
 	super initialize.
+	self initializeJobSteps
+]
+
+{ #category : #initialize }
+LcsCodeBuilderJob >> initializeJobSteps [
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
