@@ -82,8 +82,7 @@ LcsGlobalCollectionPatternForm >> gtRefactoringChangeOn: aView [
 		title: 'Refactoring';
 		priority: 99.2;
 		object: [  self slotModelBuilder ];
-		view: #gtRefactoringChangeOn:;
-		actionUpdateButton
+		view: #gtRefactoringChangeOn:
 ]
 
 { #category : #'gt  views' }

@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T13:12:49.600223-04:00"
+						"dateAndTimeString" : "2025-09-08T12:39:43.618636-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Create example environment"
+				"string" : "####Ensure in running prototype environment"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -103,14 +103,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-20T20:56:26.991843-05:00"
+						"dateAndTimeString" : "2025-09-08T12:39:46.953324-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "cP5hMXXWDQCztBQAC5BI1A=="
 				},
-				"code" : "savedSystem := LcsApplicationEnvironment currentSystem.\rprototypeSystem := LcsApplicationEnvironment createNewPrototypeSystem.\rLcsApplicationEnvironment"
+				"code" : "LcsApplicationEnvironment ensureCurrentsystemIsPrototypeSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -211,14 +211,193 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-19T12:36:25.798131-04:00"
+						"dateAndTimeString" : "2025-09-08T12:41:15.071955-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "5Tb7KnXWDQCzM+VnC5BI1A=="
 				},
-				"code" : "jobBuilder := LcsDomainClassAndGlobalCollectionClassBuilderJob new\r\t\t\t\tclassPrefix: 'Lxx';\r\t\t\t\tinstallNewClassesInPackageNamed: 'Lcs-PrototypeSystem';\r\t\t\t\tcreateForRootName: 'Country';\r\t\t\t\ttargetModuleClass: LxxPrototypeSystem;\r\t\t\t\tinstallMemberSlotInDomainClass: LxxPerson;\r\t\t\t\tbuildJobSteps."
+				"code" : "form := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.\rform slotModelBuilder targetPackageName: 'Lcs-Temp'.\rform slotModelBuilder targetPackageTagName: 'Core'.\rform slotModelBuilder classPrefix: 'Lxx'.\rform slotModelBuilder classRootName: 'Foo'.\rform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r^ form"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:44:25.06496-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:45:29.82939-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "z8Qco676DQCVqTclAjkXGw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Click on the accept button. Then review the 'Steps Tree', 'UML' and 'Refactoring' tabs. This allows investigation of what will happen when the code is build."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:45:38.769949-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:49:51.378603-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "imuBp676DQCZ9RCJAjkXGw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Also review the current system before the code is built. \n- 'System Slot Model' has no reference to the new classes.\n- 'Global Collection' does not have a 'foos' collection.\n- 'Slot Definitions' tab has no reference to 'foos'."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:46:23.500417-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:46:31.544128-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "3fUrqq76DQCb0JqUAjkXGw=="
+				},
+				"code" : "LcsApplicationEnvironment currentSystem"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:50:14.040823-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:52:19.377973-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "L7rpt676DQCg7jssAjkXGw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Bring the builder back into focus by inspecting the code below. This also saves a copy of the builder."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:50:34.262421-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:51:59.167744-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "8UQeua76DQCiFSALAjkXGw=="
+				},
+				"code" : "builder := form slotModelBuilder.\rform"
 			},
 			{
 				"__type" : "textSnippet",
@@ -245,7 +424,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-05T15:43:29.958618-04:00"
+						"dateAndTimeString" : "2025-09-08T12:50:55.810691-04:00"
 					}
 				},
 				"uid" : {
@@ -255,7 +434,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Install Code and Update Slot Model"
+				"string" : "####Install The Code and Update Slot Model"
 			},
 			{
 				"__type" : "textSnippet",
@@ -271,7 +450,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-05T15:39:08.789579-04:00"
+						"dateAndTimeString" : "2025-09-08T12:51:09.05873-04:00"
 					}
 				},
 				"editEmail" : {
@@ -282,7 +461,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-05T15:43:22.976365-04:00"
+						"dateAndTimeString" : "2025-09-08T12:53:07.988594-04:00"
 					}
 				},
 				"uid" : {
@@ -292,7 +471,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Run the job to install the code and update the system model"
+				"string" : "Click on the build button (right pointing arrow) to build the code."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:53:47.900083-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:54:02.209754-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2fWoxK76DQCmjjkKAjkXGw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Examine the updated system"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -308,7 +524,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-05T15:39:44.873353-04:00"
+						"dateAndTimeString" : "2025-09-08T12:54:06.105618-04:00"
 					}
 				},
 				"editEmail" : {
@@ -319,14 +535,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-20T21:18:46.473038-05:00"
+						"dateAndTimeString" : "2025-09-08T12:54:15.178708-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "HMIjd4vWDQCMbRszBEOJIw=="
+					"uidString" : "9sC+xa76DQCnM896AjkXGw=="
 				},
-				"code" : "jobBuilder execute"
+				"code" : "LcsApplicationEnvironment currentSystem"
 			},
 			{
 				"__type" : "textSnippet",
@@ -342,7 +558,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T13:12:04.248575-04:00"
+						"dateAndTimeString" : "2025-09-08T12:54:32.687237-04:00"
 					}
 				},
 				"editEmail" : {
@@ -353,7 +569,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T13:20:39.32032-04:00"
+						"dateAndTimeString" : "2025-09-08T12:54:59.37041-04:00"
 					}
 				},
 				"uid" : {
@@ -363,7 +579,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Cleanup Classes And Methods and Restore Previous System"
+				"string" : "####Revert the changes from the system "
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -390,14 +606,51 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-20T21:19:47.763525-05:00"
+						"dateAndTimeString" : "2025-09-08T12:53:29.70721-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "MUGMosTjDQCarIfcCOwMXA=="
 				},
-				"code" : "jobBuilder uninstall"
+				"code" : "builder uninstall"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:55:59.815828-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:56:06.902595-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "N9OFzK76DQCo9dfMAjkXGw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Examine the system"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -413,7 +666,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T13:09:19.295113-04:00"
+						"dateAndTimeString" : "2025-09-08T12:55:22.582673-04:00"
 					}
 				},
 				"editEmail" : {
@@ -424,14 +677,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-20T21:56:05.461459-05:00"
+						"dateAndTimeString" : "2025-09-08T12:55:23.333535-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "agJVP3XWDQC0moagC5BI1A=="
+					"uidString" : "/7NNyq76DQCo6wCEAjkXGw=="
 				},
-				"code" : "{LxxUnknownCountry. LxxCountry. LxxCountries.}\r\rprototypeSystem"
+				"code" : "LcsApplicationEnvironment currentSystem"
 			}
 		]
 	},

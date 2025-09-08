@@ -780,7 +780,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-09-08T11:42:10.643162-04:00"
+									"dateAndTimeString" : "2025-09-08T11:42:40.776956-04:00"
 								}
 							},
 							"uid" : {
@@ -790,7 +790,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : ""
+							"string" : "If classes are in a package that is part of the system, nothing needs to be done. Code has been added to handle 'Lcs-Temp' for prototyping. If one needst to, the classes need to be manually added to the system's #systemDomainClasses method."
 						},
 						{
 							"__type" : "textSnippet",
@@ -1009,6 +1009,40 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Explore the tab in the examples to see what code will be generated. The code is not generated until the 'Build' button is clicked."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:34:19.351101-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T12:34:40.855586-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "yVECf676DQCF+i8wAjkXGw=="
+				},
+				"code" : "\t| form |\r\tLcsApplicationEnvironment ensureCurrentsystemIsPrototypeSystem.\r\tform := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.\r\tform slotModelBuilder targetPackageName: 'Lcs-Temp'.\r\tform slotModelBuilder targetPackageTagName: 'Core'.\r\tform slotModelBuilder classPrefix: 'Lxx'.\r\tform slotModelBuilder classRootName: 'Foo'.\r\tform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r\tself simulateClickOnAcceptButtonIn: form.\r\t^ form"
 			},
 			{
 				"__type" : "textSnippet",
