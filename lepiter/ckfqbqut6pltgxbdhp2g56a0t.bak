@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-04T13:03:32.708634-04:00"
+						"dateAndTimeString" : "2025-09-08T13:52:05.281864-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The following is code to create the classes, etc from the previous example."
+				"string" : "The following is code to create the classes, etc from the previous scenario."
 			},
 			{
 				"__type" : "textSnippet",
@@ -640,7 +640,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T12:55:59.815828-04:00"
+						"dateAndTimeString" : "2025-09-08T12:56:06.902595-04:00"
 					}
 				},
 				"uid" : {
@@ -650,7 +650,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "####Examine the system"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -685,43 +685,6 @@
 					"uidString" : "/7NNyq76DQCo6wCEAjkXGw=="
 				},
 				"code" : "LcsApplicationEnvironment currentSystem"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T12:55:07.654495-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T12:55:14.024927-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "ruppya76DQCoeJtyAjkXGw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "####Examine the system"
 			}
 		]
 	},
@@ -744,12 +707,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-06-04T13:02:05.262296-04:00"
+			"dateAndTimeString" : "2025-09-08T13:51:31.475087-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Add new Domain Class whose instances are stored in global collection - Example"
+		"title" : "Add new Domain Class whose instances are stored in global collection - Foos Example"
 	},
 	"uid" : {
 		"__type" : "uuid",

@@ -42,7 +42,7 @@ LcsBaseSlotCreationForm >> commitSlotBuilderChangesAction [
 { #category : #initialize }
 LcsBaseSlotCreationForm >> executeModelBuilderJob [
 	self slotModelBuilder execute.
-	self reinitialize.
+	"self reinitialize."
 ]
 
 { #category : #initialize }
@@ -104,6 +104,30 @@ LcsBaseSlotCreationForm >> magritteCancelAction [
 					[ onReset ifNotNil: [ onReset value ] ] 
 						on: Error do: #debug ]);
 		beAlwaysEnabled
+]
+
+{ #category : #'magritte - support' }
+LcsBaseSlotCreationForm >> magritteUndoBuildAction [
+	<magritteActionDescription>
+	"self isSlotModelBuilderNotReified ifTrue: [ ^ nil ]."
+	^ MAActionDescription new
+		priority: 31;
+		label: 'Undo Build';
+		isLabelVisible: false;
+		beToolbarAction;
+		blocIcon: BrGlamorousVectorIcons left;
+		action: (
+			GtMagritteAction new
+				beInUIProcess;
+				action: [ :aModel :aButton :aMemento :aDescription | 
+					aModel uninstallModelBuilderJob.
+					"aButton phlow fireViewUpdateWish" ]);
+		onOverallStatusChanged: (
+			GtMagritteBasicAction new
+				action: [ :aStatus :aButton :aMemento :aDescription |
+							aStatus isChanged
+								ifTrue: [ aDescription enabled: false ]
+								ifFalse: [ aDescription enabled: aStatus isValidAndInactive ] ])
 ]
 
 { #category : #accessing }
@@ -265,4 +289,10 @@ LcsBaseSlotCreationForm >> targetClass [
 { #category : #accessing }
 LcsBaseSlotCreationForm >> targetClass: anObject [
 	targetClass := anObject
+]
+
+{ #category : #initialize }
+LcsBaseSlotCreationForm >> uninstallModelBuilderJob [
+	self slotModelBuilder uninstall.
+	"self reinitialize."
 ]

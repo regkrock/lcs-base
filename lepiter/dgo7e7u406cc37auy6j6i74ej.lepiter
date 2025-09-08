@@ -950,43 +950,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T09:34:13.007886-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T10:20:22.680019-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "cZfm+qv6DQCAXgnSBjUbjA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "####Job to create global collection LxxFoos which contains instances of LxxFoo"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2025-09-08T10:28:25.999685-04:00"
 					}
 				},
@@ -1009,43 +972,6 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Explore the tab in the examples to see what code will be generated. The code is not generated until the 'Build' button is clicked."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T09:56:08.861867-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T09:57:37.83731-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "SvFUSaz6DQCVzeDCBjUbjA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "{{gtExample:name=LcsGlobalCollectionPatternFormExamples>>formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAcceptModel}}"
 			},
 			{
 				"__type" : "textSnippet",

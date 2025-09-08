@@ -830,12 +830,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-11-06T17:45:28.38854-05:00"
+			"dateAndTimeString" : "2025-09-08T13:50:21.017343-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Add Singleton Domain Code Classes"
+		"title" : "Add Singleton Domain Value Classes"
 	},
 	"uid" : {
 		"__type" : "uuid",
