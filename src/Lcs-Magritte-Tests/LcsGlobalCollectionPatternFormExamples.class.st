@@ -45,6 +45,21 @@ LcsGlobalCollectionPatternFormExamples >> clickOnAcceptButtonScript [
 ]
 
 { #category : #examples }
+LcsGlobalCollectionPatternFormExamples >> fooSlotCreationFormExample [
+	<gtExample>
+	| form |
+	self ensureCurrentsystemIsPrototypeSystem.
+	form := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.
+	form slotModelBuilder targetPackageName: 'Lcs-Temp'.
+	form slotModelBuilder targetPackageTagName: 'Core'.
+	form slotModelBuilder classPrefix: 'Lxx'.
+	form slotModelBuilder classRootName: 'Foo'.
+	form slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).
+	self simulateClickOnAcceptButtonIn: form.
+	^ form
+]
+
+{ #category : #examples }
 LcsGlobalCollectionPatternFormExamples >> formScripter [
 	<gtExample>
 	<return: #BlScripter>
@@ -79,7 +94,9 @@ LcsGlobalCollectionPatternFormExamples >> formScripter [
 	self assert: builder domainInstanceSlotName equals: nil.
 	self assert: builder newDomainClassName equals: nil.
 	self assert: builder collectionClassName equals: nil.
-
+	self assert: builder targetPackageName equals: 'Lcs-Temp'.
+	self assert: builder targetPackageTagName equals: 'Core'.
+	self assert: builder targetDomainClasses isEmpty.
 	^ self subjectScripter
 ]
 
@@ -164,11 +181,29 @@ LcsGlobalCollectionPatternFormExamples >> formScripterWithRootNameEnteredAndBuil
 ]
 
 { #category : #examples }
+LcsGlobalCollectionPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAcceptModel [
+	<gtExample>
+	self subjectScripter: self formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAccept.
+	^ self subjectScripterModel
+]
+
+{ #category : #examples }
+LcsGlobalCollectionPatternFormExamples >> simulateClickOnAcceptButtonIn: form [
+	self
+		subjectScripter: (self
+				scripterWithModel: [ form ]
+				element: [ :aModel | aModel asGtMagritteViewModel asElement ]).
+	self clickOn: (self actionIdFor: #magritteAcceptAction)
+]
+
+{ #category : #examples }
 LcsGlobalCollectionPatternFormExamples >> slotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
 	form := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.
+	form slotModelBuilder targetPackageName: 'Lcs-Temp'.
+	form slotModelBuilder targetPackageTagName: 'Core'.
 	self assert: form targetClass equals:  LxxPrototypeSystem.
 	self assert: form isSlotModelBuilderNotReified.
 	self assert: form slotModelBuilder class equals:  LcsDomainClassAndGlobalCollectionClassBuilderJob.

@@ -13,7 +13,8 @@ Class {
 		'unknownClassName',
 		'collectionClassName',
 		'collectionSlotName',
-		'collectionSlotInstallationTargetClass'
+		'collectionSlotInstallationTargetClass',
+		'targetPackageTagName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -217,6 +218,16 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName [
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageTagName [
+	^ targetPackageTagName
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageTagName: anObject [
+	targetPackageTagName := anObject
 ]
 
 { #category : #accessing }

@@ -68,6 +68,14 @@ LxxPrototypeSystem class >> skillsSlotDefinition [
 		yourself
 ]
 
+{ #category : #initialize }
+LxxPrototypeSystem >> addTempClassesTo: collection [
+	"This is present so starting and stopping the system with temp classes works"
+	('Lcs-Temp' asPackage classes
+		reject: [ :each | each isMeta or: [ (each inheritsFrom: LcsBaseDomainObject) not ] ])
+		do: [ :each | collection add: each ]
+]
+
 { #category : #accessing }
 LxxPrototypeSystem >> countries [
 	^ self slotVarNamed: 'countries'
@@ -139,12 +147,11 @@ LxxPrototypeSystem >> skills: anObject [
 { #category : #initialize }
 LxxPrototypeSystem >> systemDomainClasses [
 	| collection |
-	collection := super systemDomainClasses.
-	"self addClasses: self class package classes to: collection.
+	collection := super systemDomainClasses.	"self addClasses: self class package classes to: collection.
 	collection
 		add: #LxxCompositeStateMachine asClass;
 		add: #LxxSubStateMachine asClass."
-	^ collection
+	collection
 		add: LxxPrototype2Submodule;
 		add: LxxOrganization;
 		add: LxxPerson;
@@ -154,6 +161,9 @@ LxxPrototypeSystem >> systemDomainClasses [
 		add: LxxCountrySubdivisions;
 		add: LxxBaseCountrySubdivision;
 		add: LxxPrototypeSystemConfiguration;
-		addAll: LxxPrototypeSystem allSubmoduleClasses;
-		yourself
+		addAll: LxxPrototypeSystem allSubmoduleClasses.
+
+	self addTempClassesTo: collection.
+
+	^ collection
 ]

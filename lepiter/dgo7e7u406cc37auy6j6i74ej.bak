@@ -214,7 +214,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T19:28:04.03003-04:00"
+						"dateAndTimeString" : "2025-05-07T08:40:12.190145-04:00"
 					}
 				},
 				"uid" : {
@@ -224,7 +224,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "2. Create a new domain collection class. The naming convention is that collection class name is the english plural of the new domain class. (Ex: {{gtClass:name=LxxPrototypePersons}} )"
+				"string" : "2. Create a new domain collection class. The naming convention is that collection class name is the english plural of the new domain class. (Ex: {{gtClass:name=LxxPersons}} )"
 			},
 			{
 				"__type" : "textSnippet",
@@ -480,7 +480,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-14T19:34:26.984176-04:00"
+									"dateAndTimeString" : "2025-05-07T08:40:29.889014-04:00"
 								}
 							},
 							"uid" : {
@@ -490,7 +490,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtMethod:name=LxxPrototypePersonsModule class>>personsSlotDefinition}}"
+							"string" : "{{gtMethod:name=LxxPersonsModule class>>personsSlotDefinition}}"
 						}
 					]
 				},
@@ -560,7 +560,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-14T21:52:12.700092-04:00"
+												"dateAndTimeString" : "2025-05-07T08:40:29.990716-04:00"
 											}
 										},
 										"uid" : {
@@ -570,7 +570,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtMethod:LxxPrototypePersonsModule>>persons}}"
+										"string" : "{{gtMethod:LxxPersonsModule>>persons}}"
 									}
 								]
 							},
@@ -635,7 +635,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-14T21:52:56.532058-04:00"
+												"dateAndTimeString" : "2025-05-07T08:40:30.012938-04:00"
 											}
 										},
 										"uid" : {
@@ -645,7 +645,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtMethod:LxxPrototypePersonsModule>>persons:}}"
+										"string" : "{{gtMethod:LxxPersonsModule>>persons:}}"
 									}
 								]
 							},
@@ -705,7 +705,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-14T22:07:00.802481-04:00"
+									"dateAndTimeString" : "2025-05-07T08:40:29.912991-04:00"
 								}
 							},
 							"uid" : {
@@ -715,7 +715,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "6.3 add **slotName** instance variable to the class (ex: 'persons') {{gtClass:LxxPrototypePersonsModule}}"
+							"string" : "6.3 add **slotName** instance variable to the class (ex: 'persons') {{gtClass:LxxPersonsModule}}"
 						}
 					]
 				},
@@ -769,6 +769,43 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-09-08T11:42:10.643162-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-09-08T11:42:10.643162-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "EAaGxK36DQCNrCwjBjUbjA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : ""
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
 									"dateAndTimeString" : "2024-05-14T22:19:15.76871-04:00"
 								}
 							},
@@ -780,7 +817,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-05-14T22:20:26.235961-04:00"
+									"dateAndTimeString" : "2025-09-08T11:39:25.608807-04:00"
 								}
 							},
 							"uid" : {
@@ -790,7 +827,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtMethod:name=LxxPrototypeSystem>>initialSystemDomainClasses}}"
+							"string" : "{{gtMethod:name=LxxPrototypeSystem>>systemDomainClasses}}"
 						}
 					]
 				},
@@ -813,7 +850,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T22:19:11.74492-04:00"
+						"dateAndTimeString" : "2025-09-08T11:42:05.94514-04:00"
 					}
 				},
 				"uid" : {
@@ -823,7 +860,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "7. Register the classes with the system module by addding them to the list"
+				"string" : "7. Register the classes with the system module by addding them to the list."
 			},
 			{
 				"__type" : "textSnippet",
@@ -887,7 +924,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T22:30:42.591079-04:00"
+						"dateAndTimeString" : "2025-09-08T09:56:03.596884-04:00"
 					}
 				},
 				"uid" : {
@@ -897,7 +934,155 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "After the system is restarted, then one can create new instances of the new domain class and it will be added to the new domain collection. (Note: the unit of work must have its changes applied to be added to the collection."
+				"string" : "After the system is restarted, then one can create new instances of the new domain class and it will be added to the new domain collection. (Note: the unit of work must have its changes applied to be added to the collection. "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T09:34:13.007886-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T10:20:22.680019-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "cZfm+qv6DQCAXgnSBjUbjA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####Job to create global collection LxxFoos which contains instances of LxxFoo"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T10:28:25.999685-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T10:30:11.585372-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "1Dwouqz6DQCOO/FVBjUbjA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Explore the tab in the examples to see what code will be generated. The code is not generated until the 'Build' button is clicked."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T09:56:08.861867-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T09:57:37.83731-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "SvFUSaz6DQCVzeDCBjUbjA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtExample:name=LcsGlobalCollectionPatternFormExamples>>formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAcceptModel}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T10:20:56.942747-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T10:24:28.914109-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "fUAHoqz6DQCux6cjBjUbjA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "*Tabs*\nMagritte tab - where the entry is done\nSteps Tree - shows the steps that will be executed to created the and install the new code.\nUML - the relationships amongst all of the classes. Classes in blue are waiting to be created.\nRefactoring - code which will be generated"
 			}
 		]
 	},

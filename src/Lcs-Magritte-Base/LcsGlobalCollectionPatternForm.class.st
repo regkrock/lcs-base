@@ -127,3 +127,68 @@ LcsGlobalCollectionPatternForm >> initializeOn: aTarget [
 LcsGlobalCollectionPatternForm >> isSlotModelBuilderNotReified [
 	^ self slotModelBuilder class = LcsDomainClassAndGlobalCollectionClassBuilderJob
 ]
+
+{ #category : #magritte }
+LcsGlobalCollectionPatternForm >> targetDomainClassesDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		label: 'Target Domain Classes';
+		priority: 10;
+		"accessor: (MAChainAccessor accessors: #(slotModelBuilder targetDomainClasses));"
+		accessor: (LcsMAPluggableAccessor 
+						accessors: #(#slotModelBuilder targetDomainClasses)
+						read: [ :classes | classes collect: [ :each | each name] ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
+		default: #(  );
+		classes: { String. Symbol };
+		beModifiable;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		blocListStencil: (
+			self
+				taggerStencilWithCompletion: GtClassesCompletionStrategy new
+				andContextMenuBlock: [ :aClass :anElement :aMemento | 
+					aMemento overallStatus valueOrNil isChanged
+						ifTrue: [ GtCoderContextMenuContent new editorElement: anElement ]
+						ifFalse: [ self createClassContextMenuContentFor: aClass editor: anElement ] ]);
+		addCondition: [ :aValue | 
+				aValue allSatisfy: [ :eachClassName | 
+					eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
+			labelled: 'Unknown Class(s)';
+		addCondition: [ :aValue | aValue asSet size = aValue size ]
+			labelled: 'Duplicate classes are not allowed'
+
+]
+
+{ #category : #magritte }
+LcsGlobalCollectionPatternForm >> targetPackageNameDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Package';
+		priority: 8;
+		accessor: (MAChainAccessor accessors: #(slotModelBuilder targetPackageName));
+		default: '';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		beRequired
+]
+
+{ #category : #magritte }
+LcsGlobalCollectionPatternForm >> targetPackageTagNameDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Package Tag';
+		priority: 9;
+		accessor: (MAChainAccessor accessors: #(slotModelBuilder targetPackageTagName));
+		default: '';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		beRequired
+]
