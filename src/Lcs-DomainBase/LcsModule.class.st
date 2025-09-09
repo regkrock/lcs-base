@@ -221,7 +221,7 @@ LcsModule >> gtGlobalCollectionsFor: aView [
 						BrButton new
 							aptitude: BrGlamorousButtonWithLabelAptitude;
 							label: 'Add Value Global Collection';
-							action: [ aDropdown phlow spawnObject: (LcsValueCollectionPatternForm newOn: self) ]).
+							action: [ aDropdown phlow spawnObject: (LcsSingletonValueCollectionPatternForm newOn: self) ]).
  						];
 		send: #item;
 		actionUpdateButton;

@@ -2,7 +2,9 @@ Class {
 	#name : #LcsSingletonValueObjectClassesBuilderJob,
 	#superclass : #LcsValueObjectClassesBuilderJob,
 	#instVars : [
-		'valueObjectSubclassBuilders'
+		'valueObjectSubclassBuilders',
+		'subclassRootNames',
+		'defaultSubclassRootName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -32,6 +34,16 @@ LcsSingletonValueObjectClassesBuilderJob >> buildJobSteps [
 	self addMemberOfSlotBuilderForTargetClasses
 ]
 
+{ #category : #accessing }
+LcsSingletonValueObjectClassesBuilderJob >> defaultSubclassRootName [
+	^ defaultSubclassRootName
+]
+
+{ #category : #accessing }
+LcsSingletonValueObjectClassesBuilderJob >> defaultSubclassRootName: anObject [
+	defaultSubclassRootName := anObject
+]
+
 { #category : #'builder step' }
 LcsSingletonValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsSingletonValueObjectsGlobalCollectionSlotBuilder) first
@@ -40,6 +52,7 @@ LcsSingletonValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 { #category : #initialize }
 LcsSingletonValueObjectClassesBuilderJob >> initialize [
 	super initialize.
+	self subclassRootNames: OrderedCollection new.
 	self valueObjectsSubclassBuilders: OrderedCollection new
 ]
 
@@ -63,6 +76,16 @@ LcsSingletonValueObjectClassesBuilderJob >> printJobStreamDetailsOn: aStream [
 { #category : #builders }
 LcsSingletonValueObjectClassesBuilderJob >> singletonClassBuilders [
 	^ self jobSteps stepsWithClass: LcsSingletonValueObjectClassBuilder
+]
+
+{ #category : #accessing }
+LcsSingletonValueObjectClassesBuilderJob >> subclassRootNames [
+	^ subclassRootNames
+]
+
+{ #category : #accessing }
+LcsSingletonValueObjectClassesBuilderJob >> subclassRootNames: anObject [
+	subclassRootNames := anObject
 ]
 
 { #category : #builders }

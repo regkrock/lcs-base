@@ -211,14 +211,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T12:41:15.071955-04:00"
+						"dateAndTimeString" : "2025-09-08T20:59:37.329584-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "5Tb7KnXWDQCzM+VnC5BI1A=="
 				},
-				"code" : "form := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.\rform slotModelBuilder targetPackageName: 'Lcs-Temp'.\rform slotModelBuilder targetPackageTagName: 'Core'.\rform slotModelBuilder classPrefix: 'Lxx'.\rform slotModelBuilder classRootName: 'Foo'.\rform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r^ form"
+				"code" : "form := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.\rform slotModelBuilder targetPackageName: 'Lcs-Temp'.\rform slotModelBuilder targetPackageTagName: 'Core'.\rform slotModelBuilder classPrefix: 'Lxx'.\rform slotModelBuilder classRootName: 'Foo'.\rform slotModelBuilder subclassRootNames: #('Male' 'Female' 'UnknownGender').\rform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r^ form"
 			},
 			{
 				"__type" : "textSnippet",

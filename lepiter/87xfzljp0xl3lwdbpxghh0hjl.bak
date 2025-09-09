@@ -174,14 +174,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T13:56:58.759817-04:00"
+						"dateAndTimeString" : "2025-09-08T15:44:17.721384-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ev6Qpq/6DQCVgvqXBZPZig=="
 				},
-				"code" : "form := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.\rform slotModelBuilder targetPackageName: 'Lcs-Temp'.\rform slotModelBuilder targetPackageTagName: 'Core'.\rform slotModelBuilder classPrefix: 'Lxx'.\rform slotModelBuilder classRootName: 'Foo'.\rform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r^ form"
+				"code" : "form := LcsSingletonValueCollectionPatternForm newOn: LxxPersonsModule.\rform slotModelBuilder targetPackageName: 'Lcs-Temp'.\rform slotModelBuilder targetPackageTagName: 'Core'.\rform slotModelBuilder classPrefix: 'Lxx'.\rform slotModelBuilder classRootName: 'Gender'.\rform slotModelBuilder subclssRootNames: #('Male' 'Female' 'UnknownGender').\rform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r^ form"
 			},
 			{
 				"__type" : "textSnippet",
@@ -258,43 +258,6 @@
 				"string" : "Also review the current system before the code is built. \n- 'System Slot Model' has no reference to the new classes.\n- 'Global Collection' does not have a 'foos' collection.\n- 'Slot Definitions' tab has no reference to 'foos'."
 			},
 			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T13:58:03.888162-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T13:58:07.17745-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "oat+qq/6DQCVuc60BZPZig=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Bring the builder back into focus by inspecting the code below. This also saves a copy of the builder."
-			},
-			{
 				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -327,6 +290,43 @@
 					"uidString" : "wu0kqa/6DQCVoOuQBZPZig=="
 				},
 				"code" : "LcsApplicationEnvironment currentSystem"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T13:58:03.888162-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-09-08T13:58:28.776864-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oat+qq/6DQCVuc60BZPZig=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Bring the builder back into focus by inspecting the code below. This also saves a copy of the builder.b"
 			}
 		]
 	},

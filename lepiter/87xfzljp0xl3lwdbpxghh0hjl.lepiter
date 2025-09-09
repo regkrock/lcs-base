@@ -174,14 +174,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T13:56:58.759817-04:00"
+						"dateAndTimeString" : "2025-09-08T20:58:50.147744-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ev6Qpq/6DQCVgvqXBZPZig=="
 				},
-				"code" : "form := LcsGlobalCollectionPatternForm newOn: LxxPrototypeSystem.\rform slotModelBuilder targetPackageName: 'Lcs-Temp'.\rform slotModelBuilder targetPackageTagName: 'Core'.\rform slotModelBuilder classPrefix: 'Lxx'.\rform slotModelBuilder classRootName: 'Foo'.\rform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r^ form"
+				"code" : "form := LcsSingletonValueCollectionPatternForm newOn: LxxPersonsModule.\rform slotModelBuilder targetPackageName: 'Lcs-Temp'.\rform slotModelBuilder targetPackageTagName: 'Core'.\rform slotModelBuilder classPrefix: 'Lxx'.\rform slotModelBuilder classRootName: 'Gender'.\rform slotModelBuilder subclassRootNames: #('Male' 'Female' 'UnknownGender').\rform slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).\r^ form"
 			},
 			{
 				"__type" : "textSnippet",

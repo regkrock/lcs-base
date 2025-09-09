@@ -446,10 +446,7 @@ LcsBaseSlot >> slotTypesDescription [
 		blocListStencil: (
 			self
 				taggerStencilWithCompletion: GtClassesCompletionStrategy new
-				andContextMenuBlock: [ :aClass :anElement :aMemento | 
-					aMemento overallStatus valueOrNil isChanged
-						ifTrue: [ GtCoderContextMenuContent new editorElement: anElement ]
-						ifFalse: [ self createClassContextMenuContentFor: aClass editor: anElement ] ]);
+				andContextMenuBlock: nil);
 		addCondition: [ :aValue | 
 				aValue allSatisfy: [ :eachClassName | 
 					eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
