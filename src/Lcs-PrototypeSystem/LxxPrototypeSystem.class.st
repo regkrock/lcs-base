@@ -71,7 +71,12 @@ LxxPrototypeSystem class >> skillsSlotDefinition [
 { #category : #initialize }
 LxxPrototypeSystem >> addTempClassesTo: collection [
 	"This is present so starting and stopping the system with temp classes works"
-	('Lcs-Temp' asPackage classes
+
+	| tempClasses |
+	tempClasses := [ 'Lcs-Temp' asPackage classes ]
+			on: NotFound
+			do: [ :s | s return: #() ].
+	(tempClasses
 		reject: [ :each | each isMeta or: [ (each inheritsFrom: LcsBaseDomainObject) not ] ])
 		do: [ :each | collection add: each ]
 ]
