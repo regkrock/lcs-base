@@ -59,6 +59,19 @@ LcsModule class >> domainCollectionsSlotDefinition [
 		yourself
 ]
 
+{ #category : #'gt views' }
+LcsModule class >> gtSlotDefinitionMethodFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView explicit
+		title: 'Slot Defn Methods';
+		tooltip: 'Methods that define Slot Defintions';
+		priority: 19;
+		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
+				& ( #slotDefinition gtPragmas "| #magritteActionDescription gtPragmas") ];
+		actionUpdateButton
+]
+
 { #category : #modules }
 LcsModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
 	| moduleName |

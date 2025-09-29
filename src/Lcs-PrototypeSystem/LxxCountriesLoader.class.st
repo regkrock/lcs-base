@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-PrototypeSystem-Base'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #data }
 LxxCountriesLoader >> caSubdivisionData [
 	^'NL	Newfoundland And Labrador	Province
 PE	Prince Edward Island	Province
@@ -21,12 +21,12 @@ YT	Yukon	Territory
 NT	Northwest Territory	Territory'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #schema }
 LxxCountriesLoader >> caSubdivisionDataSchema [
 	^#( 'code' 'formalName' 'politicalUnit' )
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 LxxCountriesLoader >> collectionSize [
 	| stream numberOfLines|
 	numberOfLines := 0.
@@ -45,12 +45,12 @@ United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kin
 United States of America (the)	US	USA	840	United States'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #loading }
 LxxCountriesLoader >> load [
 	self loadFrom: self data readStream class: self targetClass schema: self schema
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #loading }
 LxxCountriesLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray [
 	| instance line setters subdivisionSelector | 
 	setters := anArray collect: [ :each | (each , ':') asSymbol ].
@@ -68,7 +68,7 @@ LxxCountriesLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray 
 				context: instance ] ] 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #loading }
 LxxCountriesLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass schema: anArray context: aCountry [
 	| instance line setters | 
 	setters := anArray collect: [ :each | (each , ':') asSymbol ].
@@ -79,7 +79,7 @@ LxxCountriesLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass sche
 			instance perform: (setters at: index) with: value ] ] 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #schema }
 LxxCountriesLoader >> schema [
 	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' )
 ]
@@ -89,7 +89,7 @@ LxxCountriesLoader >> targetClass [
 	^ LxxCountry
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #data }
 LxxCountriesLoader >> usSubdivisionData [
 	^'AL	Alabama	State
 AK	Alaska	State
@@ -144,7 +144,7 @@ WY	Wyoming	State
 DC	District of Columbia	District'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #schema }
 LxxCountriesLoader >> usSubdivisionDataSchema [
 	^#( 'isoCode' 'formalName' 'subdivisionName' )
 ]

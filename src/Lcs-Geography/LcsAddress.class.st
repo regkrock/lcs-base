@@ -3,7 +3,9 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'streetName',
-		'postalCode'
+		'postalCode',
+		'streetNumber',
+		'unit'
 	],
 	#category : #'Lcs-Geography-Domain'
 }
@@ -32,6 +34,25 @@ LcsAddress class >> streetNameSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LcsAddress class >> streetNumberSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'streetNumber';
+		addValidationCondition: [ :value :domainObject :oldValue | value isNilOrEmpty ] description: 'Street number is required';
+		allowNil: false;
+		required: true;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsAddress class >> unitSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'unit';
+		yourself
+]
+
 { #category : #accessing }
 LcsAddress >> postalCode [
 	^ self slotVarNamed: 'postalCode'
@@ -50,4 +71,24 @@ LcsAddress >> streetName [
 { #category : #accessing }
 LcsAddress >> streetName: anObject [
 	self slotVarNamed: 'streetName' put: anObject
+]
+
+{ #category : #accessing }
+LcsAddress >> streetNumber [
+	^ self slotVarNamed: 'streetNumber'
+]
+
+{ #category : #accessing }
+LcsAddress >> streetNumber: anObject [
+	self slotVarNamed: 'streetNumber' put: anObject
+]
+
+{ #category : #accessing }
+LcsAddress >> unit [
+	^ self slotVarNamed: 'unit'
+]
+
+{ #category : #accessing }
+LcsAddress >> unit: anObject [
+	self slotVarNamed: 'unit' put: anObject
 ]

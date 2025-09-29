@@ -188,6 +188,7 @@ LcsBaseDomainObject class >> installFacadeSlotDefinition: aSlotDefinitionSelecto
 { #category : #'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
+	self slotModel isNil ifTrue: [ ^ self ].
 	self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
