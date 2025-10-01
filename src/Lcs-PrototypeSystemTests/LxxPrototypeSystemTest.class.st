@@ -14,30 +14,14 @@ Class {
 	#instVars : [
 		'system1',
 		'system2',
-		'newSystem',
-		'additionalSubject'
+		'newSystem'
 	],
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #private }
 LxxPrototypeSystemTest >> additionalNewPrototypeSystem [
-	self addtionalSubject: LxxPrototypeSystem new
-]
-
-{ #category : #accessing }
-LxxPrototypeSystemTest >> additionalSubject [
-	^ additionalSubject
-]
-
-{ #category : #accessing }
-LxxPrototypeSystemTest >> additionalSubject: anObject [
-	additionalSubject := anObject 
-]
-
-{ #category : #private }
-LxxPrototypeSystemTest >> addtionalSubject: anObject [ 
-	additionalSubject := anObject
+	self additionalSubject: LxxPrototypeSystem new
 ]
 
 { #category : #private }
@@ -81,24 +65,6 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 
 	self assert: LcsBaseDomainObject isSlotModelReleased not.
 	self assert: self subject moduleName equals: LxxPrototypeSystem defaultModuleName
-]
-
-{ #category : #running }
-LxxPrototypeSystemTest >> setUp [
-	super setUp.
-	self assert: self currentSystem isNil
-]
-
-{ #category : #running }
-LxxPrototypeSystemTest >> tearDown [
-	self subject ifNotNil: [ 
-		self subject removeSystem.
-		self subject: nil ].
-	self additionalSubject ifNotNil: [ 
-		self additionalSubject removeSystem.
-		self additionalSubject: nil ].
-	super tearDown
-
 ]
 
 { #category : #tests }

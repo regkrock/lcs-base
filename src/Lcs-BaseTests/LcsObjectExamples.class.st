@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+LcsObjectExamples >> createNewMainSystem [
+	^ LcsApplicationEnvironment createNewMainSystem
+]
+
+{ #category : #'as yet unclassified' }
 LcsObjectExamples >> createNewPrototypeSystem [
 	^ LcsApplicationEnvironment createNewPrototypeSystem
 ]
@@ -12,6 +17,40 @@ LcsObjectExamples >> createNewPrototypeSystem [
 { #category : #'as yet unclassified' }
 LcsObjectExamples >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
+]
+
+{ #category : #support }
+LcsObjectExamples >> ensureCurrentsystemIsMainSystem [
+	^ LcsApplicationEnvironment ensureCurrentsystemIsMainSystem
+]
+
+{ #category : #'as yet unclassified' }
+LcsObjectExamples >> ensureCurrentsystemIsMainSystemWithLogging [
+	"<gtExample>"
+	| callingMethodName |
+	callingMethodName := thisContext sender method selector copy.
+	Transcript crShow: thisContext method selector.
+	Transcript cr; tab; show: callingMethodName.
+	Transcript cr; tab; tab; show: 'Number of Systems: ' , LcsApplicationEnvironment systemsManager numberOfSystems asString.
+	callingMethodName asString = 'primitiveProcessExample:withEvaluationContext:'
+		ifTrue: [" Transcript show: thisContext stackString" ]
+		ifFalse: [ 
+			Transcript cr; tab; tab; show: '... about to test current system'.
+			self currentSystem
+				ifNil: [ 
+					Transcript cr; tab; tab; show: '... current system is nil - crete new system'.
+					self createNewPrototypeSystem ]
+				ifNotNil: [ 
+					self currentSystem isMainSystem
+						ifFalse: [ 
+							Transcript cr; tab; tab;
+								show: '... current system is not prototype system - crete new system'.
+							self createNewMainSystem ] ] ].
+	self assert: self currentSystem isMainSystem.
+	Transcript cr; tab; tab; show: 'Number of Systems: '
+				, LcsApplicationEnvironment systemsManager numberOfSystems asString.
+	Transcript crShow: '-----'.
+	^ self currentSystem
 ]
 
 { #category : #support }

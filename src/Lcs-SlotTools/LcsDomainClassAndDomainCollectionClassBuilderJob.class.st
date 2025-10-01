@@ -21,7 +21,7 @@ Class {
 
 { #category : #builders }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
-	self targetDomainClasses
+	(self targetDomainClasses collect: [ :each | each isString ifTrue: [ each asClass ] ifFalse: [ each ] ])
 		do: [ :eachClass | self addJobStep: (self memberOfSlotBuilderFor: eachClass) ]
 ]
 

@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCountryTest,
-	#superclass : #LcsMainSystemTestCase,
+	#superclass : #LcsMainSystemAlreadyStartedTest,
 	#category : #'Lcs-MainSystemTests'
 }
 

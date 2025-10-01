@@ -16,7 +16,7 @@ Class {
 { #category : #'slot definitions' }
 LxxPrototypeSystem class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ super configurationSlotDefinition
+	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
 ]
 
 { #category : #'slot definitions' }
@@ -34,7 +34,7 @@ LxxPrototypeSystem class >> defaultModuleName [
 	^ 'Prototype System'
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #configuration }
 LxxPrototypeSystem class >> moduleConfigurationClass [
 	^ LxxPrototypeSystemConfiguration
 ]
@@ -93,6 +93,15 @@ LxxPrototypeSystem >> countries: anObject [
 
 { #category : #'as yet unclassified' }
 LxxPrototypeSystem >> dummySlotDefinition [
+]
+
+{ #category : #views }
+LxxPrototypeSystem >> gtConfigurationFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Configuration';
+		object: [ self configuration ];
+		view: #gtMagritteFor:
 ]
 
 { #category : #testing }

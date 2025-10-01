@@ -6,11 +6,21 @@ Class {
 
 { #category : #'slot definitions' }
 LcsMainSystem class >> configurationSlotDefinition [
-	"<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: LcsSystemConfiguration"
+	<slotDefinition>
+	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
+]
+
+{ #category : #configuration }
+LcsMainSystem class >> moduleConfigurationClass [
+	^ LcsMainSystemConfiguration
 ]
 
 { #category : #'as yet unclassified' }
+LcsMainSystem >> isMainSystem [
+	^ true
+]
+
+{ #category : #'iniitialize - load data' }
 LcsMainSystem >> loadData [
 	super loadData.
 	LcsCountryLoader new load.

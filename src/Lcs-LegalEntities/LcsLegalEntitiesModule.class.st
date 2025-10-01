@@ -10,12 +10,18 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
+{ #category : #'slot definitions' }
+LcsLegalEntitiesModule class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
+]
+
 { #category : #configuration }
 LcsLegalEntitiesModule class >> defaultModuleName [
 	^ 'Legal Entities Module'
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> gendersSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonValueObjectsGlobalCollectionSlot new
@@ -25,7 +31,7 @@ LcsLegalEntitiesModule class >> gendersSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #configuration }
 LcsLegalEntitiesModule class >> moduleConfigurationClass [
 	^ LcsLegalEntitiesModuleConfiguration
 ]
@@ -57,7 +63,7 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> titlesSlotDefinition [
 	<slotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new

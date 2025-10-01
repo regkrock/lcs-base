@@ -10,6 +10,9 @@ Class {
 { #category : #command }
 LcsStandardValueObjectClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self valueObjectClassBuilder.
+	self buildUnknownClass ifTrue: [
+		self error: 'Currently the unknown class is not fully supported'.
+		self addJobStep: self unknownClassBuilder].
 	self addJobStep: self valueObjectsCollectionClassBuilder.
 	self addJobStep: self valueObjectsLoaderBuilder.
 	self addJobStep: self collectionReferenceSlotBuilder.
@@ -47,7 +50,23 @@ LcsStandardValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 { #category : #initialize }
 LcsStandardValueObjectClassesBuilderJob >> initialize [
 	super initialize.
+	self buildUnknownClass: false.
 	self protoCodes: OrderedCollection new
+]
+
+{ #category : #command }
+LcsStandardValueObjectClassesBuilderJob >> unknownClassBuilder [
+	^ LcsUnknownClassBuilder new
+		newClassName: self unknownClassName;
+		targetSuperclassName: self newDomainClassName;
+		targetPackageName: self targetPackageName;
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
+LcsStandardValueObjectClassesBuilderJob >> unknownClassName [
+	(self classPrefix isNil or: [ self classRootName isNil]) ifTrue: [ ^ 'nil' ].
+	^ self classPrefix , 'Unknown' , self classRootName
 ]
 
 { #category : #command }

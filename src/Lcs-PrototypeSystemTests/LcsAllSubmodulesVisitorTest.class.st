@@ -10,45 +10,51 @@ Class {
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testNestedSubmodules [
-	| modules |
-	subject := LcsAllSubmodulesVisitor newOn: LxxPrototypeSystem.
-	modules := subject allSubmoduleClasses.
+	| modules visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxPrototypeSystem.
+	modules := visitor allSubmoduleClasses.
 	self assert: modules notEmpty.
 	self assert: modules size equals: 4.
 ]
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModule0OwnsModule1AndModule2AreOwnedyEachOther [
-	subject := LcsAllSubmodulesVisitor newOn: LxxModule0.
-	self should: [ subject allSubmoduleClasses ] raise: LcsModuleHierarchyError
+	| visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxModule0.
+	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModule1AndModule2AndModule3AreInACircularOwnership [
-	subject := LcsAllSubmodulesVisitor newOn: LxxTestModule1.
-	self should: [ subject allSubmoduleClasses ] raise: LcsModuleHierarchyError
+	| visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxTestModule1.
+	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModule1AndModule2AreOwnedyEachOther [
-	subject := LcsAllSubmodulesVisitor newOn: LxxModule1.
-	self should: [ subject allSubmoduleClasses ] raise: LcsModuleHierarchyError
+	| visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxModule1.
+	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModuleIsOwnedByItself [
-	subject := LcsAllSubmodulesVisitor newOn: LxxModuleWithOwningModuleBeingItself.
-	self should: [ subject allSubmoduleClasses ] raise: LcsModuleHierarchyError
+	| visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxModuleWithOwningModuleBeingItself.
+	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testSubmodulesWhereNoSubmoduleExists [
-	subject := LcsAllSubmodulesVisitor newOn: LxxPersonsModule.
-	self assert: subject allSubmoduleClasses isEmpty
+	| visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxPersonsModule.
+	self assert: visitor allSubmoduleClasses isEmpty
 ]
 
 { #category : #tests }
 LcsAllSubmodulesVisitorTest >> testSubmodulesWhereOneSubmoduleExists [
-	subject := LcsAllSubmodulesVisitor newOn: LxxPrototype2Module.
-	self assert: subject allSubmoduleClasses size equals: 1
+	| visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxPrototype2Module.
+	self assert: visitor allSubmoduleClasses size equals: 1
 ]

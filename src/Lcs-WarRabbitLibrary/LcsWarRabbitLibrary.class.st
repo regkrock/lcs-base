@@ -20,6 +20,12 @@ LcsWarRabbitLibrary class >> authorsSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
+LcsWarRabbitLibrary class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
+]
+
+{ #category : #'slot definitions' }
 LcsWarRabbitLibrary class >> libraryCategoriesSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
@@ -37,6 +43,11 @@ LcsWarRabbitLibrary class >> libraryItemsSlotDefinition [
 		addSlotType: LcsLibraryItems; 
 		addCollectionMemberType: LcsLibraryItem;
 		yourself
+]
+
+{ #category : #configuration }
+LcsWarRabbitLibrary class >> moduleConfigurationClass [
+	^ LcsWarRabbitConfiguration
 ]
 
 { #category : #accessing }

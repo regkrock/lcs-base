@@ -7,7 +7,7 @@ Class {
 { #category : #'instance creation' }
 LcsModuleConfigurationSlot class >> newOn: aConfigurationClass [
 	^ self new
-		initializeOn: aConfigurationClass
+		initializeOn: aConfigurationClass;
 		yourself
 ]
 

@@ -99,7 +99,7 @@ LcsModule class >> moduleClassNamed: aString [
 		ifNone: []
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #configuration }
 LcsModule class >> moduleConfigurationClass [
 	^ LcsBaseConfiguration
 ]
@@ -194,7 +194,7 @@ LcsModule >> gtApplicationModulesFor: aView [
 { #category : #'gt views' }
 LcsModule >> gtGlobalCollectionsFor: aView [
 	<gtView>
-	 self domainCollections isEmpty ifTrue: [ ^ aView empty]. 
+	 "self domainCollections isEmpty ifTrue: [ ^ aView empty]. "
 	^ aView columnedTree
 		title: 'Global Collections';
 		priority: 9;
@@ -234,6 +234,11 @@ LcsModule >> gtGlobalCollectionsFor: aView [
 						BrButton new
 							aptitude: BrGlamorousButtonWithLabelAptitude;
 							label: 'Add Value Global Collection';
+							action: [ aDropdown phlow spawnObject: (LcsValueCollectionPatternForm newOn: self) ]);
+					addChild: (
+						BrButton new
+							aptitude: BrGlamorousButtonWithLabelAptitude;
+							label: 'Add Singleton Value Global Collection';
 							action: [ aDropdown phlow spawnObject: (LcsSingletonValueCollectionPatternForm newOn: self) ]).
  						];
 		send: #item;

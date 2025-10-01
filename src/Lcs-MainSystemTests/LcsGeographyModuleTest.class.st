@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsGeographyModuleTest,
-	#superclass : #LcsMainSystemTestCase,
+	#superclass : #LcsMainSystemAlreadyStartedTest,
 	#category : #'Lcs-MainSystemTests'
 }
 
@@ -15,5 +15,8 @@ LcsGeographyModuleTest >> testCreation [
 	self assert: (module countries collection isKindOf: LcsSmalltalkConfiguration identitySetClass).
 	self assert: module countries collectionSize equals: LcsCountryLoader new collectionSize.
 	module countries collection do: [ :each | self assert: each parent = module countries].
-	
+	self assert: LcsGeographyModule moduleConfigurationClass equals: LcsGeographyModuleConfiguration.
+	self assert: (self currentSystem geographyModule configuration isKindOf: LcsGeographyModuleConfiguration).
+	self assert: self currentSystem geographyModule configuration parent equals: self currentSystem geographyModule.
+
 ]

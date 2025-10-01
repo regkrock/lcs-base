@@ -83,6 +83,15 @@ LcsApplicationEnvironment class >> ensureActiveApplicationEnvironment [
 ]
 
 { #category : #'application environment - system' }
+LcsApplicationEnvironment class >> ensureCurrentsystemIsMainSystem [
+	self currentSystem 
+		ifNil: [ self createNewMainSystem ]
+		ifNotNil: [ self currentSystem isMainSystem ifFalse: [ self createNewMainSystem ] ].
+	self assert: self currentSystem isMainSystem.
+	^ self currentSystem
+]
+
+{ #category : #'application environment - system' }
 LcsApplicationEnvironment class >> ensureCurrentsystemIsPrototypeSystem [
 	self currentSystem 
 		ifNil: [ self createNewPrototypeSystem ]

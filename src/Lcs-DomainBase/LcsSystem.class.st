@@ -210,7 +210,7 @@ LcsSystem >> gtAllSystemsFor: aView [
 		ifFalse: [ ^ aView empty ].
 	^ aView forward
 		title: 'Systems';
-		priority: 50;
+		priority: 202;
 		object: [ LcsApplicationEnvironment systemsManager ];
 		view: #gtAllSystemsFor:;
 		yourself
@@ -236,7 +236,7 @@ LcsSystem >> gtSystemSlotModelFor: aView [
 		ifTrue: [ ^ aView empty ].
 	^ aView forward
 		title: 'System Slot Model';
-		priority: 1;
+		priority: 201;
 		object: [ self systemSlotModel ];
 		view: #gtSystemSlotModelFor:;
 		yourself
@@ -249,7 +249,7 @@ LcsSystem >> gtUnitOfWorkFor: aView [
 	self currentUnitOfWork isNil ifTrue: [ ^ aView empty ].
 	^ aView forward
 		title: 'Unit Of Work';
-		priority: 2;
+		priority: 34;
 		object: [ self relatedUnitOfWork ];
 		view: #gtUnitOfWorkFor:;
 		yourself
@@ -348,7 +348,7 @@ LcsSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
 { #category : #initialize }
 LcsSystem >> installSlotModelForBootstrapClasses [
 	self systemBootstrapDomainClasses
-		doWithIndex: [ :eachClass :index | eachClass installSlotDefinitions ]
+		do: [ :eachClass | eachClass installSlotDefinitions ]
 ]
 
 { #category : #initialize }
@@ -374,6 +374,11 @@ LcsSystem >> isApplicationSystem [
 { #category : #testing }
 LcsSystem >> isIncludedInSystemDomainClasses: aDomainClass [
 	^ self globalCollections includes: aDomainClass class
+]
+
+{ #category : #testing }
+LcsSystem >> isMainSystem [
+	^ false
 ]
 
 { #category : #testing }

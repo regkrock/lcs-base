@@ -5,10 +5,22 @@ Class {
 		'streetName',
 		'postalCode',
 		'streetNumber',
-		'unit'
+		'unit',
+		'addressType'
 	],
 	#category : #'Lcs-Geography-Domain'
 }
+
+{ #category : #'slot definitions' }
+LcsAddress class >> addressTypeSlotDefinition [
+	<slotDefinition>
+	^ LcsMemberOfSlot new
+		slotTypes: (OrderedCollection with: LcsAddressType);
+		slotName: 'addressType';
+		collectionSlotName: 'addressTypes';
+		collectionSlotModuleName: 'Geography Module';
+		yourself
+]
 
 { #category : #'slot definitions' }
 LcsAddress class >> postalCodeSlotDefinition [
@@ -30,7 +42,6 @@ LcsAddress class >> streetNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'streetName';
 		slotTypes: (OrderedCollection with: String);
-		initialValueBlock: '[ '''' ]';
 		yourself
 ]
 
@@ -39,7 +50,7 @@ LcsAddress class >> streetNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'streetNumber';
-		addValidationCondition: [ :value :domainObject :oldValue | value isNilOrEmpty ] description: 'Street number is required';
+		"addValidationCondition: [ :value :domainObject :oldValue | value isNilOrEmpty ] description: 'Street number is required';"
 		allowNil: false;
 		required: true;
 		yourself
@@ -51,6 +62,16 @@ LcsAddress class >> unitSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'unit';
 		yourself
+]
+
+{ #category : #accessing }
+LcsAddress >> addressType [
+	^ self slotVarNamed: 'addressType'
+]
+
+{ #category : #accessing }
+LcsAddress >> addressType: anObject [
+	self slotVarNamed: 'addressType' put: anObject
 ]
 
 { #category : #accessing }

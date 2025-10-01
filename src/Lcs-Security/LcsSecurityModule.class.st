@@ -8,7 +8,13 @@ Class {
 	#category : #'Lcs-Security-Core'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
+LcsSecurityModule class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
+]
+
+{ #category : #'slot definitions' }
 LcsSecurityModule class >> currentUserSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfSlot new
@@ -24,6 +30,11 @@ LcsSecurityModule class >> currentUserSlotDefinition [
 { #category : #configuration }
 LcsSecurityModule class >> defaultModuleName [
 	^ 'Security Module'
+]
+
+{ #category : #configuration }
+LcsSecurityModule class >> moduleConfigurationClass [
+	^ LcsSecurityModuleConfiguration
 ]
 
 { #category : #configuration }

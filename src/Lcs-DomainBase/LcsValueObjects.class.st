@@ -21,7 +21,7 @@ LcsValueObjects >> defaultInstance [
 				signal: 'No default instance defined for Value Objects collection - ' , self class name ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'gt views' }
 LcsValueObjects >> gtItemsFor: aView [
 	<gtView>
 	self collection isNil ifTrue: [ ^ aView empty ].
