@@ -439,6 +439,7 @@ LcsAccessorSlot >> requiredDescription [
 		label: 'Required';
 		priority: 10;
 		accessor: #'required';
+		comment: 'Indicates that this slot must have a non-nil/empty value';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 "		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';

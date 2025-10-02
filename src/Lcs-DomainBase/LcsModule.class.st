@@ -228,8 +228,13 @@ LcsModule >> gtGlobalCollectionsFor: aView [
 					addChild: (
 						BrButton new
 							aptitude: BrGlamorousButtonWithLabelAptitude;
-							label: 'Add Standard Global Collection';
+							label: 'Add Global Collection';
 							action: [ aDropdown phlow spawnObject: (LcsGlobalCollectionPatternForm newOn: self) ]);
+					addChild: (
+						BrButton new
+							aptitude: BrGlamorousButtonWithLabelAptitude;
+							label: 'Add Global Collection With Domain Having A Local Collection';
+							action: [ aDropdown phlow spawnObject: (LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm newOn: self) ]);
 					addChild: (
 						BrButton new
 							aptitude: BrGlamorousButtonWithLabelAptitude;

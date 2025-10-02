@@ -212,6 +212,16 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 		column: 'Defined In' text: [ :each | each domainClass name ] width: 140;
 		column: 'Priority' text: [ :each | each priority ] width: 30;
 		column: 'Type(s)' text: [ :each | each slotTypesList];
+		column: '' stencil: [ :each | 
+			BrButton new
+				icon: BrGlamorousVectorIcons refresh;
+				aptitude: BrGlamorousButtonWithIconAptitude new;
+				fitContent;
+				beTinySize;
+				label: 'Reinstall Slot';
+				action: [ :aButton | 
+					each domainClass installSlotDefinition: each slotDefinitionSelector.
+					aButton phlow fireViewUpdateWish ]] width: 40; 
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
 			tooltip: 'Inspect Slot Model'
 			action: [ :aButton :aTab | 

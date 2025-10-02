@@ -20,7 +20,12 @@ LcsDomainCollection >> defaultInstance [
 
 { #category : #search }
 LcsDomainCollection >> findWithKey: anObject [
-	^ self collection detect: [ :each | each key = anObject ] ifNone: [  ]
+	^ self findWithKey: anObject ifNone: [ ]
+]
+
+{ #category : #search }
+LcsDomainCollection >> findWithKey: anObject ifNone: aBlock [
+	^ self collection detect: [ :each | each key = anObject ] ifNone: aBlock
 ]
 
 { #category : #'gt views' }

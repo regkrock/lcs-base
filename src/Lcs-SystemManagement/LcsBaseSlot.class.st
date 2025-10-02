@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'parent',
 		'domainClass',
-		'properties'
+		'properties',
+		'comment'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -12,6 +13,11 @@ Class {
 { #category : #querying }
 LcsBaseSlot class >> classNamesPrefixTree [
 	^ GtPrefixTree withAll: (self allSubclasses collect: #name)
+]
+
+{ #category : #defaults }
+LcsBaseSlot class >> defaultSlotComment [
+	^ ''
 ]
 
 { #category : #testing }
@@ -29,7 +35,7 @@ LcsBaseSlot class >> isVirtualSlot [
 	^ false
 ]
 
-{ #category : #convenience }
+{ #category : #defaults }
 LcsBaseSlot class >> slotKind [
 	^ 'base'
 ]
@@ -45,6 +51,32 @@ LcsBaseSlot >> clearSlotTypes [
 	self slotTypes removeAll.
 ]
 
+{ #category : #accessing }
+LcsBaseSlot >> comment [
+	^ comment
+]
+
+{ #category : #accessing }
+LcsBaseSlot >> comment: anObject [
+	comment := anObject
+]
+
+{ #category : #magritte }
+LcsBaseSlot >> commentDescription [
+	<magritteDescription>
+	^ GtMATextDescription new
+		label: 'Comment';
+		priority: 30;
+		accessor: #'comment';
+		default: '';
+		kind: Object;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+
+]
+
 { #category : #magritte }
 LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 	| theContextMenu items |
@@ -56,6 +88,11 @@ LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 					title: 'Browse users' asText}.
 	theContextMenu items: items.
 	^ theContextMenu
+]
+
+{ #category : #defaults }
+LcsBaseSlot >> defaultSlotComment [
+	^ self class defaultSlotComment
 ]
 
 { #category : #'slot model' }
@@ -142,7 +179,7 @@ LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	^ aView columnedList
 		title: 'Attributes';
-		priority: 15;
+		priority: 5;
 		items: [ self gtSlotDefinitionAttributes ];
 		column: 'Option' 
 			text: #key 
@@ -222,7 +259,8 @@ LcsBaseSlot >> initialize [
 	self properties: OrderedDictionary new.
 	self slotName: nil.
 	self initializeSlotTypes.
-	self priority: 50
+	self priority: 50.
+	self comment: self defaultSlotComment
 ]
 
 { #category : #initialize }
@@ -339,6 +377,7 @@ LcsBaseSlot >> slotClassDescription [
 		priority: 2;
 		accessor: #'className';
 		kind: Object;
+		comment: 'The class that this slot is built from';
 		blocShortcuts: [ {BlShortcutWithAction new
 			name: 'Browse class';
 			description: 'Browses the class indicated by the editor';
@@ -436,6 +475,7 @@ LcsBaseSlot >> slotTypesDescription [
 	^ MAToManyRelationDescription new
 		label: 'Slot Types';
 		priority: 30;
+		comment: 'Objects that are allowed in this slot must be of these types';
 		accessor: (LcsMAPluggableAccessor 
 						accessors: #(#slotTypes)
 						read: [ :classes | classes collect: [ :each | each name] ] 

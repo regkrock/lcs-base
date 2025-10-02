@@ -6,10 +6,21 @@ Class {
 		'postalCode',
 		'streetNumber',
 		'unit',
-		'addressType'
+		'addressType',
+		'postBox',
+		'additionalDeliveryInformation'
 	],
 	#category : #'Lcs-Geography-Domain'
 }
+
+{ #category : #'slot definitions' }
+LcsAddress class >> additionalDeliveryInformationSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'additionalDeliveryInformation';
+		allowNil: false;
+		yourself
+]
 
 { #category : #'slot definitions' }
 LcsAddress class >> addressTypeSlotDefinition [
@@ -19,6 +30,15 @@ LcsAddress class >> addressTypeSlotDefinition [
 		slotName: 'addressType';
 		collectionSlotName: 'addressTypes';
 		collectionSlotModuleName: 'Geography Module';
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsAddress class >> postBoxSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'postBox';
+		allowNil: false;
 		yourself
 ]
 
@@ -65,6 +85,16 @@ LcsAddress class >> unitSlotDefinition [
 ]
 
 { #category : #accessing }
+LcsAddress >> additionalDeliveryInformation [
+	^ self slotVarNamed: 'additionalDeliveryInformation'
+]
+
+{ #category : #accessing }
+LcsAddress >> additionalDeliveryInformation: anObject [
+	self slotVarNamed: 'additionalDeliveryInformation' put: anObject
+]
+
+{ #category : #accessing }
 LcsAddress >> addressType [
 	^ self slotVarNamed: 'addressType'
 ]
@@ -72,6 +102,16 @@ LcsAddress >> addressType [
 { #category : #accessing }
 LcsAddress >> addressType: anObject [
 	self slotVarNamed: 'addressType' put: anObject
+]
+
+{ #category : #accessing }
+LcsAddress >> postBox [
+	^ self slotVarNamed: 'postBox'
+]
+
+{ #category : #accessing }
+LcsAddress >> postBox: anObject [
+	self slotVarNamed: 'postBox' put: anObject
 ]
 
 { #category : #accessing }

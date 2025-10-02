@@ -60,8 +60,8 @@ LcsVirtualSlot >> valueAccessBlock: anObject [
 ]
 
 { #category : #'slot model' }
-LcsVirtualSlot >> valueAccessor: aSymbol [
-	self valueAccessBlock: [ :domainObject | domainObject perform: aSymbol ]
+LcsVirtualSlot >> valueAccessor: aSelector [
+	self valueAccessBlock: [ :domainObject | domainObject perform: aSelector asSymbol]
 ]
 
 { #category : #'slot model' }

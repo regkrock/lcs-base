@@ -34,6 +34,7 @@ LcsBasePerson class >> genderSlotDefinition [
 		addSlotType: LcsGender;
 		collectionSlotName: 'genders';
 		collectionSlotModuleName: 'Legal Entities Module';
+		prevalidationTransformBlock:[ :value :slot | slot targetCollection findWithKey: value ifNone: [ slot targetCollection defaultInstance ] ];
 		yourself
 ]
 
@@ -82,6 +83,11 @@ LcsBasePerson >> firstName [
 { #category : #accessing }
 LcsBasePerson >> firstName: anObject [
 	self slotVarNamed: 'firstName' put: anObject
+]
+
+{ #category : #accessing }
+LcsBasePerson >> fullName [
+	^ self firstName , ' ' , self middleNames , ' ' , self surname
 ]
 
 { #category : #accessing }

@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsGlobalCollectionPatternForm,
+	#name : #LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm,
 	#superclass : #LcsBaseSlotCreationForm,
 	#instVars : [
 		'packageAndTagName',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #magritte }
-LcsGlobalCollectionPatternForm >> buildUnknownClassDescription [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> buildUnknownClassDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Build Unknown Class';
@@ -27,12 +27,12 @@ LcsGlobalCollectionPatternForm >> buildUnknownClassDescription [
 ]
 
 { #category : #configuration }
-LcsGlobalCollectionPatternForm >> builderClass [
-	^ LcsDomainClassAndGlobalCollectionClassBuilderJob
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> builderClass [
+	^ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob
 ]
 
 { #category : #magritte }
-LcsGlobalCollectionPatternForm >> classNamePrefixDescription [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> classNamePrefixDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Class Name Prefix';
@@ -49,7 +49,7 @@ LcsGlobalCollectionPatternForm >> classNamePrefixDescription [
 ]
 
 { #category : #magritte }
-LcsGlobalCollectionPatternForm >> classRootNameDescription [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> classRootNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Class Root Name';
@@ -66,7 +66,7 @@ LcsGlobalCollectionPatternForm >> classRootNameDescription [
 ]
 
 { #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtConstructionTreeFor: aView [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView forward
 		title: 'Steps Tree';
@@ -76,7 +76,7 @@ LcsGlobalCollectionPatternForm >> gtConstructionTreeFor: aView [
 ]
 
 { #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtRefactoringChangeOn: aView [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView forward
 		title: 'Refactoring';
@@ -86,7 +86,7 @@ LcsGlobalCollectionPatternForm >> gtRefactoringChangeOn: aView [
 ]
 
 { #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtSlotBuilderFor: aView [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> gtSlotBuilderFor: aView [
 	<gtView>
 	^ aView forward
 		title: 'Slot Builder Raw';
@@ -96,7 +96,7 @@ LcsGlobalCollectionPatternForm >> gtSlotBuilderFor: aView [
 ]
 
 { #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtSlotBuilderMetaFor: aView [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> gtSlotBuilderMetaFor: aView [
 	<gtView>
 	^ aView forward
 		title: 'Slot Builder Meta';
@@ -106,7 +106,7 @@ LcsGlobalCollectionPatternForm >> gtSlotBuilderMetaFor: aView [
 ]
 
 { #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtUMLFor: aView [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> gtUMLFor: aView [
 	<gtView>
 	^ aView forward
 		title: 'UML';
@@ -116,19 +116,19 @@ LcsGlobalCollectionPatternForm >> gtUMLFor: aView [
 ]
 
 { #category : #initialize }
-LcsGlobalCollectionPatternForm >> initializeOn: aTarget [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> initializeOn: aTarget [
 	super initializeOn: aTarget.
 	self slotModelBuilder collectionSlotInstallationTargetClass: self targetClass.
 
 ]
 
 { #category : #testing }
-LcsGlobalCollectionPatternForm >> isSlotModelBuilderNotReified [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> isSlotModelBuilderNotReified [
 	^ self slotModelBuilder class = LcsDomainClassAndGlobalCollectionClassBuilderJob
 ]
 
 { #category : #magritte }
-LcsGlobalCollectionPatternForm >> targetDomainClassesDescription [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetDomainClassesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		label: 'Target Domain Classes';
@@ -160,7 +160,7 @@ LcsGlobalCollectionPatternForm >> targetDomainClassesDescription [
 ]
 
 { #category : #magritte }
-LcsGlobalCollectionPatternForm >> targetPackageNameDescription [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetPackageNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Package';
@@ -175,7 +175,7 @@ LcsGlobalCollectionPatternForm >> targetPackageNameDescription [
 ]
 
 { #category : #magritte }
-LcsGlobalCollectionPatternForm >> targetPackageTagNameDescription [
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetPackageTagNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Package Tag';
