@@ -603,6 +603,13 @@ LcsBaseDomainObject >> gtRawFor: aView [
 ]
 
 { #category : #'gt views' }
+LcsBaseDomainObject >> gtSlotDefinitionMethodFor: aView [
+	<gtView>
+	<gtClassView>
+	^ self class gtSlotDefinitionMethodFor: aView
+]
+
+{ #category : #'gt views' }
 LcsBaseDomainObject >> gtViewSlotDefinitionFor: aView context: aPhlowContext [
 	<gtView>
 	<gtClassView>

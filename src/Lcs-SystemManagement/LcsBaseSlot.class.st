@@ -213,7 +213,7 @@ LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
 	self domainClass ifNil: [ ^ aView empty ].
 	
 	^ aView explicit
-		title: 'Methods';
+		title: 'Slot Related Methods';
 		priority: 20;
 		stencil: [ 
 			| methods |
