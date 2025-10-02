@@ -172,6 +172,10 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 		column: 'Value' text: [ :each | each gtItemDisplayString ];
 		send: #item;
 		actionUpdateButton;
+		actionButtonIcon: BrGlamorousVectorIcons save 
+			tooltip: 'Apply Changes'
+			action: [ :aButton :aTab | 
+				self value applyChanges ];
 		yourself
 ]
 
