@@ -9,6 +9,7 @@ LcsModules class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsDictionarySlot new
 		slotName: 'collection';
+		makeDirectUpdateOfVariable;
 		yourself
 ]
 

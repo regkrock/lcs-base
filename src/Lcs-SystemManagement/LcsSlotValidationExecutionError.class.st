@@ -5,22 +5,24 @@ Class {
 }
 
 { #category : #'instance creation' }
-LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forCondition: anObject inSlot: aSlotDefinition context: aDomainObject message: aString [
+LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forCondition: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
 	self new
 		signalInvalidValue: aValue
 		forCondition: anObject
 		inSlot: aSlotDefinition
 		context: aDomainObject
+		oldValue: anOldValue
 		message: aString
 ]
 
 { #category : #'instance creation' }
-LcsSlotValidationExecutionError >> signalInvalidValue: aValue forCondition: aValidationCondition inSlot: aSlotDefinition context: aDomainObject message: aString [
+LcsSlotValidationExecutionError >> signalInvalidValue: aValue forCondition: aValidationCondition inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
 	self value: aValue.
 	self validationCondition: aValidationCondition.
 	self slotDefinition: aSlotDefinition.
 	self context: aDomainObject.
-	self signal: self validationConditionErrorMessage , ' - Caused by ' , aString
+	self signal: self validationConditionErrorMessage , ' - Caused by ' , aString.
+	self oldValue: anOldValue
 ]
 
 { #category : #'instance creation' }

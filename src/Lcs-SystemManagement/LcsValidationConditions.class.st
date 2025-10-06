@@ -6,7 +6,7 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #'hashing\t' }
+{ #category : #comparing }
 LcsValidationConditions >> = aValidationCollections [
 	(aValidationCollections isKindOf: LcsValidationConditions) ifFalse: [ ^ false ].
 	"self collection size = aValidationCollections collections size ifFalse: [ ^ false ]."
@@ -28,7 +28,19 @@ LcsValidationConditions >> addValidationCondition: aBlock description: aString [
 			yourself)
 ]
 
-{ #category : #'hashing\t' }
+{ #category : #'gt views' }
+LcsValidationConditions >> gtItemsFor: aView [
+	<gtView>
+	self collection isNil ifTrue: [ ^ aView empty ].
+	^ aView forward
+		title: 'Items' translated;
+		priority: 0.5;
+		object: [ self collection ];
+		view: #gtItemsFor:;
+		actionUpdateButton
+]
+
+{ #category : #comparing }
 LcsValidationConditions >> hash [
 	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]
 ]
@@ -64,6 +76,12 @@ LcsValidationConditions >> validate: aValue [
 { #category : #conditions }
 LcsValidationConditions >> validate: aValue context: aDomainObject [
 	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject ]
+	
+]
+
+{ #category : #conditions }
+LcsValidationConditions >> validate: aValue context: aDomainObject oldValue: anOldValue [
+	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject oldValue: anOldValue ]
 	
 ]
 

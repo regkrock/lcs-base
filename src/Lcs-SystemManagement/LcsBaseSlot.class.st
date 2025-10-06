@@ -40,6 +40,18 @@ LcsBaseSlot class >> slotKind [
 	^ 'base'
 ]
 
+{ #category : #'gt views' }
+LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
+]
+
+{ #category : #'gt views' }
+LcsBaseSlot >> addPropertiesTo: collection [
+	collection
+		add: '' -> '';
+		add: '------PROPERTIES------' -> ''.
+	collection addAll: self properties associations copy
+]
+
 { #category : #configuration }
 LcsBaseSlot >> addSlotType: aClass [
 	self assert: aClass isClass.
@@ -90,6 +102,11 @@ LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 	^ theContextMenu
 ]
 
+{ #category : #initialize }
+LcsBaseSlot >> defaultPriority [
+	^ 50
+]
+
 { #category : #defaults }
 LcsBaseSlot >> defaultSlotComment [
 	^ self class defaultSlotComment
@@ -136,7 +153,9 @@ LcsBaseSlot >> domainClassDescription [
 
 { #category : #properties }
 LcsBaseSlot >> errorPropertyNotFound: aSelector [ 
-	LcsSlotPropertyError signal: 'Property ' , aSelector , ' not found.'
+	LcsSlotPropertyError new
+		slotDefinition: self;
+		signal: 'Property ' , aSelector , ' not found.'
 ]
 
 { #category : #'slot model' }
@@ -193,16 +212,13 @@ LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 { #category : #'gt views' }
 LcsBaseSlot >> gtSlotDefinitionAttributes [
 	| collection |
-	collection := 
-		OrderedCollection new
+	collection := OrderedCollection new
 			add: 'slotDefinition' -> self;
 			add: 'slotDefinitionClass' -> self class;
 			add: 'domainClass' -> self newDomainClassName;
 			yourself.
-	collection 
-		add: '' -> '';
-		add: ('------PROPERTIES------' -> '').
-	collection addAll: self properties associations copy.
+	self addPropertiesTo: collection.
+	self addOtherSlotDefinitionDetailsTo: collection.
 	^ collection
 ]
 
@@ -259,7 +275,7 @@ LcsBaseSlot >> initialize [
 	self properties: OrderedDictionary new.
 	self slotName: nil.
 	self initializeSlotTypes.
-	self priority: 50.
+	self priority: self defaultPriority.
 	self comment: self defaultSlotComment
 ]
 
@@ -275,8 +291,11 @@ LcsBaseSlot >> isAccessorSlot [
 
 { #category : #testing }
 LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
-	(self respondsTo: aPropertyName asSymbol) ifFalse: [ ^ true ].
-	^ ((self perform: aPropertyName asSymbol) = aValue) not
+	| propertyValue prepertyAccessor|
+	prepertyAccessor := aPropertyName asSymbol.
+	(self respondsTo: prepertyAccessor) ifFalse: [ ^ true ].
+	propertyValue := self perform: prepertyAccessor.
+	^ (propertyValue = aValue) not
 ]
 
 { #category : #testing }

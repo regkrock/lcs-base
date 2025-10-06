@@ -82,7 +82,7 @@ LcsInvalidSlotTypeError >> gtSlotTypesViewFor: aView [
 	<gtExceptionView>
 	^ aView forward
 		title: 'Valid Slot Types';
-		priority: 10;
+		priority: 15.5;
 		object: [ slotDefinition ];
 		view: #gtSlotTypesViewFor:;
 		actionButtonIcon: BrGlamorousVectorIcons inspect 

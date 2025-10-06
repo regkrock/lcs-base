@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'slotDefinition',
 		'validationCondition',
-		'value'
+		'value',
+		'oldValue'
 	],
 	#category : #'Lcs-SystemManagement-Error'
 }
@@ -18,14 +19,22 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 		priority: 1;
 		items: [ 
 			{
+				{'System'. self currentSystem class}.
+				{'Domain Class'. self slotDefinition domainClass}.
+				{'Slot name'. self slotDefinition slotName}.
+				{''. ''}.
 				{'Value'. self value}.
+				{'Old Value'. self oldValue}.
+				{'Domain Object'. self context}.
+				{''. ''}.
 				{'Description'. self validationCondition validationDescription}.
 				{'Condition'. self validationCondition conditionBlock}.
 			} ];
 		column: 'Name'
 			text: [ :each | each first asRopedText foreground: Color gray ]
 			width: 100;
-		column: 'Value' text: [ :each | each last gtDisplayString ]
+		column: 'Value' text: [ :each | each last gtDisplayString ];
+		send: #last
 ]
 
 { #category : #'gt view' }
@@ -37,6 +46,16 @@ LcsSlotValidationBaseError >> gtSlotDefinitionAttributes: aView [
 		priority: 2;
 		object: [ self slotDefinition ];
 		view: #gtSlotAttributesViewFor:
+]
+
+{ #category : #accessing }
+LcsSlotValidationBaseError >> oldValue [
+	^ oldValue
+]
+
+{ #category : #accessing }
+LcsSlotValidationBaseError >> oldValue: anObject [
+	oldValue := anObject
 ]
 
 { #category : #accessing }

@@ -71,9 +71,21 @@ LcsSlotCreationForm >> addAccessorToBeginningOfAccessPath: aDescription [
 ]
 
 { #category : #magritte }
+LcsSlotCreationForm >> allowEmptyIntialValueDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #allowEmptyIntialValue
+]
+
+{ #category : #magritte }
 LcsSlotCreationForm >> allowNilDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #allowNil
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> allowNullDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #allowNull
 ]
 
 { #category : #converting }
@@ -125,6 +137,12 @@ LcsSlotCreationForm >> classesOrNilsFor: aCollectionOfClassNames [
 	<return: #Collection of: #Class>
 	^ aCollectionOfClassNames
 		collect: [ :eachClasstName | Smalltalk classOrTraitNamed: eachClasstName asString trimBoth ]
+]
+
+{ #category : #magritte }
+LcsSlotCreationForm >> collectionSlotModuleNameDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #collectionSlotModuleName
 ]
 
 { #category : #magritte }

@@ -5,19 +5,22 @@ Class {
 }
 
 { #category : #'instance creation' }
-LcsSlotValidationNonBooleanResultError class >> signalBooleanNotReturnedFor: aValue condition: anObject inSlot: aSlotDefinition [
+LcsSlotValidationNonBooleanResultError class >> signalBooleanNotReturnedFor: aValue condition: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self new
 		signalBooleanNotReturnedFor: aValue
 		condition: anObject
 		inSlot: aSlotDefinition
+		context: aDomainObject
+		oldValue: anOldValue
 ]
 
 { #category : #'instance creation' }
-LcsSlotValidationNonBooleanResultError >> signalBooleanNotReturnedFor: aValue condition: aValidationCondition inSlot: aSlotDefinition [
+LcsSlotValidationNonBooleanResultError >> signalBooleanNotReturnedFor: aValue condition: aValidationCondition inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self value: aValue.
 	self validationCondition: aValidationCondition.
 	self slotDefinition: aSlotDefinition.
-	self context: nil.
+	self context: aDomainObject.
+	self oldValue: anOldValue.
 	self signal: self validationConditionErrorMessage
 ]
 

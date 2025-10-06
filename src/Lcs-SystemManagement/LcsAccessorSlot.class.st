@@ -97,12 +97,29 @@ LcsAccessorSlot >> allowNilDescription [
 		priority: 10;
 		accessor: #'allowNil';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-"		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
-		addCondition: [ :aValue | (existingInstvarNames includes: aValue asString trim asSymbol) not ] labelled: 'Slot already exists';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
-		"addCondition: [ :aValue | aValue trim isEmpty  ] labelled: 'Enter a unique slot name of at least two characters in length';"
-		beRequired
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> allowNull [
+	^ self propertyAt: 'allowNull' ifAbsent: [ false ]
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> allowNull: aBoolean [
+	^ self propertyAt: 'allowNull' ifAbsent: aBoolean
+]
+
+{ #category : #magritte }
+LcsAccessorSlot >> allowNullDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Allow Null';
+		priority: 10;
+		accessor: #'allowNull';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 
 ]
 
@@ -295,6 +312,7 @@ LcsAccessorSlot >> initialize [
 	self initialValueBlock: self defaultInitialValueBlock.
 	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
 	self allowNil: false.
+	self allowNull: false.
 	self required: false.
 ]
 
@@ -307,6 +325,11 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 LcsAccessorSlot >> initializeUnintializedSlotValueIn: aDomainObject [
 	(self currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
 	self initializeSlotValueIn: aDomainObject
+]
+
+{ #category : #configuration }
+LcsAccessorSlot >> initializeVariableUpdatePolicy [
+	self variableUpdatePolicy: (self variableUpdatePolicyClass newOn: self)
 ]
 
 { #category : #testing }
@@ -345,6 +368,11 @@ LcsAccessorSlot >> isNotRequired [
 ]
 
 { #category : #testing }
+LcsAccessorSlot >> isNullAllowed [
+	^ self allowNull == true
+]
+
+{ #category : #testing }
 LcsAccessorSlot >> isNullObject: anObject [
 	<TODO: 'This needs to be flushed out'> 
 	^ false
@@ -362,12 +390,14 @@ LcsAccessorSlot >> isRequired [
 
 { #category : #configuration }
 LcsAccessorSlot >> makeDirectUpdateOfVariable [
-	self variableUpdatePolicy: (LcsDirectVariableUpdatePolicy newOn: self)
+	self variableUpdatePolicyClassName: LcsDirectVariableUpdatePolicy name.
+	self initializeVariableUpdatePolicy
 ]
 
 { #category : #configuration }
 LcsAccessorSlot >> makeUpdateOfVariableViaUnitOfWork [
-	self variableUpdatePolicy: (LcsUnitOfWorkVariableUpdatePolicy newOn: self)
+	self variableUpdatePolicyClassName: LcsUnitOfWorkVariableUpdatePolicy name.
+	self initializeVariableUpdatePolicy
 ]
 
 { #category : #defaults }
@@ -501,9 +531,15 @@ LcsAccessorSlot >> validate: aValue context: aDomainObject [
 
 { #category : #'slot model' }
 LcsAccessorSlot >> validate: anObject for: aDomainObject [
+	| oldValue |
+	oldValue := aDomainObject perform: self getterSelector.
 	self verifySlotType: anObject for: aDomainObject.
-	(self isNilAllowed and: [self isNullObject: anObject]) ifTrue: [ ^ self ].
-	self validationConditions validate: anObject context: aDomainObject
+	(self isNilAllowed and: [ anObject isNil and: [ oldValue isNil ] ]) ifTrue: [ ^self ].
+	(self isNullAllowed and: [ (self isNullObject: anObject)]) ifTrue: [ ^ self ].
+	self validationConditions 
+		validate: anObject 
+		context: aDomainObject 
+		oldValue: oldValue
 ]
 
 { #category : #validations }
@@ -579,6 +615,21 @@ LcsAccessorSlot >> variableUpdatePolicy [
 { #category : #accessing }
 LcsAccessorSlot >> variableUpdatePolicy: anObject [
 	variableUpdatePolicy := anObject
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> variableUpdatePolicyClass [
+	^ self variableUpdatePolicyClassName asClass
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> variableUpdatePolicyClassName [
+	^ self properties at: 'variableUpdatePolicyClassName'
+]
+
+{ #category : #properties }
+LcsAccessorSlot >> variableUpdatePolicyClassName: aClassName [
+	self properties at: 'variableUpdatePolicyClassName' put: aClassName
 ]
 
 { #category : #'slot model' }

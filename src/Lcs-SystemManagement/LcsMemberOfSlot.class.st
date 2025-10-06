@@ -13,6 +13,16 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #'gt views' }
+LcsMemberOfSlot >> addOtherSlotDefinitionDetailsTo: collection [
+	super addOtherSlotDefinitionDetailsTo: collection.
+	collection
+		add: '' -> '';
+		add: '------Source Collection Info------' -> ''.
+	collection add: 'source collection' ->self targetCollection.
+	collection add: 'source module' -> self collectionModule
+]
+
 { #category : #'slot model' }
 LcsMemberOfSlot >> assignParent: aDomainObject to: newValue [
 	"Parent has already been assigned"

@@ -32,6 +32,7 @@ LcsGeographyModule class >> countriesSlotDefinition [
 		slotName: 'countries';
 		addSlotType: LcsCountries;
 		addCollectionMemberType: LcsCountry;
+		loaderClass: LcsCountryLoader;
 		yourself
 ]
 

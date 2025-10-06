@@ -137,3 +137,8 @@ LcsMethodStream >> stream [
 LcsMethodStream >> stream: anObject [
 	stream := anObject
 ]
+
+{ #category : #stream }
+LcsMethodStream >> streamPosition [
+	^ self stream position
+]

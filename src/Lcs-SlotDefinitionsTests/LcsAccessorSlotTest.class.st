@@ -58,7 +58,12 @@ LcsAccessorSlotTest >> testCreation [
 	self assert: self subject validationConditions hasNoElements.
 	self assert: self subject allowNil == false.
 	self assert: self subject required == false.
-	
+	self assert: self subject variableUpdatePolicyClass equals: LcsUnitOfWorkVariableUpdatePolicy.
+	self assert: (self subject variableUpdatePolicy isKindOf: LcsUnitOfWorkVariableUpdatePolicy).
+	self subject makeDirectUpdateOfVariable.
+	self assert: self subject variableUpdatePolicyClass equals: LcsDirectVariableUpdatePolicy.
+	self assert: (self subject variableUpdatePolicy isKindOf: LcsDirectVariableUpdatePolicy)
+
 ]
 
 { #category : #testing }
@@ -183,7 +188,8 @@ LcsAccessorSlotTest >> testValidationWithNoValidationConditions [
 LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
 	| validator |
 	self subject: LcsAccessorSlot new.
-	self subject addValidationCondition: [:value | value isInteger not ] description: 'Must be an Ingeter'.
+	self subject addValidationCondition: [ :value |  
+			value isInteger not ] description: 'Must be an Ingeter'.
 	validator := self subject validate: 'abc'.
 	self assert: validator hasErrors.
 	self assert: (validator hasError: 'Must be an Ingeter')
@@ -193,6 +199,7 @@ LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
 { #category : #tests }
 LcsAccessorSlotTest >> testValidationWithOnePassingValidationConditions [
 	self subject: LcsAccessorSlot new.
-	self subject addValidationCondition: [:value | value isInteger not ] description: 'Must be an Ingeter'.
+	self subject addValidationCondition: [ :value |  
+			value isInteger not ] description: 'Must be an Ingeter'.
 	self shouldnt: [ self subject validate: 1 ] raise: LcsSlotValidationError
 ]

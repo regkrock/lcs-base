@@ -271,16 +271,18 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
-	| codeStream |
+	| codeStream streamPosition |
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;
 		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName.
 
+	streamPosition := codeStream streamPosition.
 	self properties keysAndValuesDo: [ :eachPropertyName :eachValue |
 		self addKeyword: eachPropertyName argument: eachValue to: codeStream].
 
-	codeStream addYourself.
+	streamPosition ~= codeStream streamPosition 
+		ifTrue: [ codeStream addYourself].
 
 	^ codeStream contents
 ]
@@ -367,7 +369,7 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> validateSlotTypes: aCollection against: actualValue [
 	| expected |
-	expected := aCollection asOrderedCollection collect: [ :each | each asClass ].
+	expected := aCollection asOrderedCollection collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [each asClass ] ].
 	expected size = actualValue size
 		ifTrue: [ ^ self assert: actualValue equals: expected ].
 		

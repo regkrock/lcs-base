@@ -35,6 +35,7 @@ LcsValueObjectsCollectionClassBuilderTest >> testClassCreationString [
 
 { #category : #'as yet unclassified' }
 LcsValueObjectsCollectionClassBuilderTest >> testInstallClass [
+	self removeClassName: 'LxxMale1s'.
 	self subject: LcsValueObjectsCollectionClassBuilder new.
 	self subject
 		newClassName: self newClassName asEnglishPlural;

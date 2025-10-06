@@ -9,11 +9,6 @@ LcsNumberSlot >> defaultInitialValueBlock [
 	^ [ :domainObject :slot | 0 ]
 ]
 
-{ #category : #testing }
-LcsNumberSlot >> isNullObject: anObject [ 
-	^ anObject isZero
-]
-
 { #category : #defaults }
 LcsNumberSlot >> typeClass [
 	^ Number

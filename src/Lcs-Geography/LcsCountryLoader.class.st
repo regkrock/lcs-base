@@ -319,7 +319,7 @@ LcsCountryLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray [
 	[ aDataStream atEnd ] whileFalse: [
 		instance := aTargetClass new.
 		line := aDataStream nextLine. 
-		(line substrings: {Character tab}) doWithIndex: [ :value :index |.
+		(line substrings: {Character tab}) doWithIndex: [ :value :index |
 			instance perform: (setters at: index) with: value ].
 		subdivisionSelector := (instance isoCode asLowercase , 'SubdivisionData') asSymbol.
 		(self respondsTo: subdivisionSelector) ifTrue: [

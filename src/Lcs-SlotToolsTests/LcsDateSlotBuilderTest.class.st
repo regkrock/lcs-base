@@ -17,8 +17,10 @@ LcsDateSlotBuilderTest >> testDateChangeValidation [
 			slotName: 'date';
 			targetClassName: LxxPerson name;
 			initialValueBlock: [ Date today addDays: 10];
-			addValidationCondition: [ :value | value < Date today] description: 'Date must be >= today';
-			addValidationCondition: [ :value | value > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
+			addValidationCondition: [ :newDate :domainObject :oldValue |  
+				newDate < Date today] description: 'Date must be >= today';
+			addValidationCondition: [ :newDate :domainObject :oldValue |  
+				newDate > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
 			yourself).
 	self subject buildJobSteps.
 	self subject installCode.
@@ -78,8 +80,8 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 			slotName: 'date';
 			targetClassName: LxxPerson name;
 			initialValueBlock: [ Date today addDays: 10 ];
-			addValidationCondition: [ :value | value < Date today] description: 'Date must be >= today';
-			addValidationCondition: [ :value | value > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
+			addValidationCondition: [ :newDate :domainObject :oldValue | newDate < Date today] description: 'Date must be >= today';
+			addValidationCondition: [ :newDate :domainObject :oldValue | newDate > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
 			yourself).
 	self subject buildJobSteps.
 	
@@ -88,8 +90,8 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 	self assert: slotDefinitionMethodBuilder  slotDefinitionSource equals: 'dateSlotDefinition
 	<slotDefinition>
 	^ LcsDateSlot new
-		addValidationCondition: [ :value | value < Date today] description: ''Date must be >= today'';
-		addValidationCondition: [ :value | value > (Date today addDays: 19)] description: ''Date must be < 20 days in the future'';
+		addValidationCondition: [ :newDate :domainObject :oldValue | newDate < Date today] description: ''Date must be >= today'';
+		addValidationCondition: [ :newDate :domainObject :oldValue | newDate > (Date today addDays: 19)] description: ''Date must be < 20 days in the future'';
 		slotName: ''date'';
 		initialValueBlock: [ Date today addDays: 10 ];
 		yourself'

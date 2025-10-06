@@ -77,6 +77,27 @@ LcsAccessorSlotBuilder >> allowNilDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
+{ #category : #properties }
+LcsAccessorSlotBuilder >> allowNull [
+	^ self propertyAt: 'allowNull' ifAbsent: [ false ]
+]
+
+{ #category : #properties }
+LcsAccessorSlotBuilder >> allowNull: anObject [ 
+	self propertyAt: 'allowNull' put: anObject
+]
+
+{ #category : #margritte }
+LcsAccessorSlotBuilder >> allowNullDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Allow Null';
+		priority: 8;
+		accessor: #'allowNull';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
 { #category : #'magritte - support' }
 LcsAccessorSlotBuilder >> beAllowNil [
 	self allowNil: true
@@ -162,6 +183,11 @@ LcsAccessorSlotBuilder >> installSlotDefinition [
 { #category : #testing }
 LcsAccessorSlotBuilder >> isNilAllowed [
 	^ self allowNil == true
+]
+
+{ #category : #testing }
+LcsAccessorSlotBuilder >> isNullAllowed [
+	^ self allowNull == true
 ]
 
 { #category : #querying }

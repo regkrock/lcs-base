@@ -7,57 +7,24 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #'slot model' }
-LcsGlobalCollectionSlot >> add: aDomainObject [
-	self slotTypes do: [ :eachTypeClass | (aDomainObject inheritsFrom: eachTypeClass) ifTrue: [ ^ true ] ]
+{ #category : #'object initialization' }
+LcsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
+	super initializeSlotValueIn: aDomainObject.
+	self populateCollection 
 ]
 
-{ #category : #'gt views' }
-LcsGlobalCollectionSlot >> collectionMemberTypesList [
-	| stream |
-	stream := WriteStream on: String new.
-	self collectionMemberTypes 
-		do: [ :each | stream nextPutAll: each name ]
-		separatedBy: [ stream nextPutAll: '; '].
-	^ stream contents
+{ #category : #properties }
+LcsGlobalCollectionSlot >> loaderClass [
+	^ self propertyAt: 'loaderClass' ifAbsent: [ ]
 ]
 
-{ #category : #'gt views' }
-LcsGlobalCollectionSlot >> gtSlotDefinitionAttributes [
-	^ super gtSlotDefinitionAttributes
-		add: 'collectionClass' -> (self collectionClass ifNil: [ '<undefined>' ] ifNotNil: [ self collectionClass name]);
-		add: 'collectionMemberTypes' -> self collectionMemberTypesList ;
-		yourself
+{ #category : #properties }
+LcsGlobalCollectionSlot >> loaderClass: aLoaderClass [
+	self propertyAt: 'loaderClass' put: aLoaderClass
 ]
 
-{ #category : #initialize }
-LcsGlobalCollectionSlot >> initialize [ 
-	super initialize.
-	self initialValueBlock: [ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ]
-]
-
-{ #category : #testing }
-LcsGlobalCollectionSlot >> isGlobalCollectionSlot [
-	^ true
-]
-
-{ #category : #'slot model' }
-LcsGlobalCollectionSlot >> persistValue: anObject contextObject: aContextDomainObject [
-	(self currentSlotVarIn: self slotName asString) persistValue: anObject contextObject: aContextDomainObject
-]
-
-{ #category : #'slot model' }
-LcsGlobalCollectionSlot >> persistValue: anObject in: aModule [
-	(self currentSlotVarIn: aModule) add: anObject
-]
-
-{ #category : #verification }
-LcsGlobalCollectionSlot >> verifyCollectionItemType: anObject [
-	self collectionMemberTypes
-		detect: [ :eachClass | anObject isKindOf: eachClass ]
-		ifNone: [ self currentUnitOfWork removeAddOf: anObject.
-			LcsInvalidSlotTypeError
-				signalInvalidType: anObject
-				forSlot: self
-				for: nil ]
+{ #category : #load }
+LcsGlobalCollectionSlot >> populateCollection [
+	self loaderClass isNil ifTrue: [ ^ self ].
+	self loaderClass new load
 ]

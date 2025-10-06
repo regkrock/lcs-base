@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsValueObjectsGlobalCollectionSlot,
-	#superclass : #LcsGlobalCollectionSlot,
+	#superclass : #LcsPrimaryCollectionSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 

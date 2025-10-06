@@ -1,11 +1,6 @@
 Extension { #name : #LcsApplicationEnvironment }
 
 { #category : #'*Lcs-PrototypeSystem' }
-LcsApplicationEnvironment class >> createNewMainSystem [
-	^ self createNewSystem: LcsMainSystem
-]
-
-{ #category : #'*Lcs-PrototypeSystem' }
 LcsApplicationEnvironment class >> createNewPrototypeSystem [
 	^ self createNewSystem: LxxPrototypeSystem
 ]

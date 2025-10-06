@@ -19,7 +19,7 @@ LcsMemberOfSlotBuilder >> addAssociationsToUmlModel: umlModel [
 		addAssociation: self slotName toModelNamed: self slotTypes any
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsMemberOfSlotBuilder >> addClassesToUmlModel: umlModel [
 	umlModel addClassNamed: self targetClassName.
 	self currentSystem isNil ifTrue: [ ^ self ].
@@ -44,6 +44,18 @@ LcsMemberOfSlotBuilder >> collectionSlotModuleName: aString [
 	self properties at: 'collectionSlotModuleName' put: aString
 ]
 
+{ #category : #margritte }
+LcsMemberOfSlotBuilder >> collectionSlotModuleNameDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Collection slot module name';
+		priority: 10;
+		default: '';
+		accessor: #collectionSlotModuleName;
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		yourself
+]
+
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> collectionSlotName [
 	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
@@ -52,6 +64,18 @@ LcsMemberOfSlotBuilder >> collectionSlotName [
 { #category : #accessing }
 LcsMemberOfSlotBuilder >> collectionSlotName: anObject [
 	self properties at: 'collectionSlotName' put: anObject
+]
+
+{ #category : #margritte }
+LcsMemberOfSlotBuilder >> collectionSlotNameDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Collection slot name';
+		priority: 11;
+		default: '';
+		accessor: #collectionSlotName;
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		yourself
 ]
 
 { #category : #accessing }
@@ -64,7 +88,7 @@ LcsMemberOfSlotBuilder >> collectionSourceClassName: anObject [
 	collectionSourceClassName := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : #'gt views' }
 LcsMemberOfSlotBuilder >> sourceCollectionClassName [
 
 	self collectionSourceClassName ifNotNil: [ ^ self collectionSourceClassName ].

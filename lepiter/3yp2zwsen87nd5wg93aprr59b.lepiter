@@ -284,6 +284,40 @@
 					"uidString" : "TXrBG3T6DQC3I9JFBjUbjA=="
 				},
 				"code" : "elt := BlElement new.\nelt geometry: (BlBezierCurveGeometry controlPoints: {\n                               (0 @ 0).\r                               (50 @200).\n                              (200 @ 50).\n                                (300 @ 300) }).\nelt background: Color yellow.\nelt border: (BlBorder paint: Color red width: 1).\relt outskirts: BlOutskirtsCentered centered.\nBlSpace new\r\t\taddChild: elt;\r\t\tshow\r"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-06T13:25:21.70384-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-06T13:27:55.990072-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2Z8YeeL8DQCyyAYnAuYczw=="
+				},
+				"code" : "list := OrderedDictionary new.\rlist at: 'a' put: Object.\rlist keysAndValuesDo: [:key :value | value = Object ifFalse: [ 1 halt] ]"
 			}
 		]
 	},

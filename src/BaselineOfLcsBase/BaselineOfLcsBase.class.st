@@ -44,16 +44,17 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
 			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystemTests') ].
 			spec package: 'Lcs-SlotToolsTests' with: [ spec requires: #('Lcs-PrototypeSystemTests') ].
-			spec package: 'Lcs-Magritte-Tests' with: [ spec requires: #('Lcs-SlotToolsTests') ].
+			spec package: 'Lcs-Magritte-Tests' with: [ spec requires: #('Lcs-Magritte-Base' 'Lcs-SlotToolsTests') ].
 			spec package: 'Lcs-StateMachineTests' with: [ spec requires: #('Lcs-StateMachine' 'Lcs-PrototypeSystem' 'Lcs-PrototypeSystemTests') ].
 			spec package: 'Lcs-MainSystemTests' with: [ spec requires: #('Lcs-MainSystem' 'Lcs-SlotDefinitionsTests') ].  
 
 			spec package: 'Lcs-WarRabbitLibrary' with: [ spec requires: #('Lcs-LegalEntities') ].
 			spec package: 'Lcs-WarRabbitLibraryTests' with: [ spec requires: #('Lcs-WarRabbitLibrary' 'Lcs-SystemManagementTests') ].  
 
-			spec package: 'Lcs-Examples' with: [ spec requires: #('Lcs-DomainBase') ].
-			spec package: 'Lcs-LegalEntitiesTests' with: [ spec requires: #('Lcs-LegalEntities') ].
-			
+			spec package: 'Lcs-Examples' with: [ spec requires: #('Lcs-BaseTests' 'Lcs-DomainBase') ].
+			spec package: 'Lcs-GeographyTests' with: [ spec requires: #('Lcs-MainSystemTests' 'Lcs-Geography') ].
+			spec package: 'Lcs-LegalEntitiesTests' with: [ spec requires: #('Lcs-MainSystemTests' 'Lcs-LegalEntities') ].
+
 			spec package: 'Lcs-Css' with: [ spec requires: #('LcsBase') ].
 			spec package: 'Lcs-CssTests' with: [ spec requires: #('Lcs-BaseTests' 'Lcs-Css') ].
 

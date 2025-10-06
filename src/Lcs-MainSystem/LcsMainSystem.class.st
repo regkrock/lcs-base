@@ -23,7 +23,7 @@ LcsMainSystem >> isMainSystem [
 { #category : #'iniitialize - load data' }
 LcsMainSystem >> loadData [
 	super loadData.
-	LcsCountryLoader new load.
+	"LcsCountryLoader new load."
 	self applyChanges
 ]
 

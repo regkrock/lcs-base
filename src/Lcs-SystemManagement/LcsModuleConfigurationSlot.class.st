@@ -11,6 +11,11 @@ LcsModuleConfigurationSlot class >> newOn: aConfigurationClass [
 		yourself
 ]
 
+{ #category : #defaults }
+LcsModuleConfigurationSlot >> defaultPriority [
+	^ 75
+]
+
 { #category : #initialize }
 LcsModuleConfigurationSlot >> initialize [
 	super initialize.

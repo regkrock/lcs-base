@@ -172,8 +172,7 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationFromTemplateWithNoChanges [
 	
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'codeSlotDefinition
 	<slotDefinition>
-	^ LcsValueCodeSlot new
-		yourself'.
+	^ LcsValueCodeSlot new'.
 
 	slotInstanceVariableBuilder := (self slotModelBuilder jobStep: 1).
 	self assert: slotInstanceVariableBuilder slotName equals: 'code'.
@@ -186,7 +185,7 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationWithAllowNilTurnedOnAndThen
 	self subject targetClass: LxxPerson.
 	self subject slotClassChangedTo: LcsStringSlot name.
 	slotDefinitionMethodBuilder := self slotModelBuilder jobStep: 2.
-	self assert: self slotModelBuilder allowNil = true.
+	self deny: self slotModelBuilder allowNil.
 
 	self slotModelBuilder slotName: 'foo'.
 	self slotModelBuilder allowNil: false.
@@ -195,7 +194,6 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationWithAllowNilTurnedOnAndThen
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: ''foo'';
-		allowNil: false;
 		yourself'.
 
 	"Test that the unneccessry code is generated"
@@ -204,6 +202,7 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationWithAllowNilTurnedOnAndThen
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: ''foo'';
+		allowNil: true;
 		yourself'.
 
 

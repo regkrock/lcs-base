@@ -320,7 +320,8 @@ LcsModule >> moduleNamed: aString [
 
 { #category : #modules }
 LcsModule >> moduleViewChildren [
-	^ self modules moduleViewChildren
+	self modules ifNil: [ ^#() ].
+	^ self modules moduleViewChildren 
 ]
 
 { #category : #accessing }
