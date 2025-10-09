@@ -6,5 +6,5 @@ Class {
 
 { #category : #temp }
 LxxPrototype2Submodule class >> owningModules [
-	<owningModule: 'LxxPrototype2Module'>
+	<owningModule: 'LxxPrototype2Module' priority: 50>
 ]

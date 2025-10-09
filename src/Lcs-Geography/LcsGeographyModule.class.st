@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsModule,
 	#instVars : [
 		'countries',
-		'addressTypes'
+		'addressTypes',
+		'addresses'
 	],
 	#category : #'Lcs-Geography-Domain'
 }
@@ -16,6 +17,16 @@ LcsGeographyModule class >> addressTypesSlotDefinition [
 		collectionMemberTypes: (OrderedCollection with: LcsAddressType);
 		slotName: 'addressTypes';
 		loaderClass: LcsAddressTypesLoader;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsGeographyModule class >> addressesSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsAddresses);
+		collectionMemberTypes: (OrderedCollection with: LcsAddress);
+		slotName: 'addresses';
 		yourself
 ]
 
@@ -48,8 +59,8 @@ LcsGeographyModule class >> moduleConfigurationClass [
 
 { #category : #configuration }
 LcsGeographyModule class >> owningModules [
-	<owningModule: 'LcsMainSystem'>
-	<owningModule: 'LcsWarRabbitLibrary'>
+	<owningModule: 'LcsMainSystem' priority: 5>
+	<owningModule: 'LcsWarRabbitLibrary' priority: 5>
 ]
 
 { #category : #accessing }
@@ -60,6 +71,16 @@ LcsGeographyModule >> addressTypes [
 { #category : #accessing }
 LcsGeographyModule >> addressTypes: anObject [
 	self slotVarNamed: 'addressTypes' put: anObject
+]
+
+{ #category : #accessing }
+LcsGeographyModule >> addresses [
+	^ self slotVarNamed: 'addresses'
+]
+
+{ #category : #accessing }
+LcsGeographyModule >> addresses: anObject [
+	self slotVarNamed: 'addresses' put: anObject
 ]
 
 { #category : #accessing }

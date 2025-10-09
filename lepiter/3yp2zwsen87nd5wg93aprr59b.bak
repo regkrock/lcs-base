@@ -310,14 +310,48 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-06T13:27:37.60765-04:00"
+						"dateAndTimeString" : "2025-10-06T13:27:55.990072-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "2Z8YeeL8DQCyyAYnAuYczw=="
 				},
-				"code" : "list := OrderedDictionary new.\rlist at: 'a' put: Object.\rlist keysAndValuesDo: [:key :value | (value = Object ifFalse:) ]"
+				"code" : "list := OrderedDictionary new.\rlist at: 'a' put: Object.\rlist keysAndValuesDo: [:key :value | value = Object ifFalse: [ 1 halt] ]"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-08T15:18:53.220053-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-08T23:59:47.452359-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "6dzGSgz9DQChOYfUBO7gIQ=="
+				},
+				"code" : "#owningModule:priority: gtPragmas.\r#owningModule:priority: gtPragmasWithArguments: #(50 ).\r#owningModule:priority: gtPragmasWithArguments: #('LxxPrototypeSystem' ).\r#owningModule:priority: gtPragmasWithArguments: #('LxxPrototype2Module' ).\rGtSearchPragmasWithArgumentsFilter forPragma: #owningModule:priority: withArguments: #('LcsMainSystem' ).\r(GtSearchPragmasFilter forPragma: #owningModule:priority:) printString.\r\r\r(PragmaCollector \r\tselectors: #(owningModules) \r\tfilter: [:prg | prg methodSelector numArgs = 0] ).\r\t\r\t(PragmaCollector filter: [:prg | prg selector = #owningModule:priority:]) pragmas .\r\t\r\t(PragmaCollector filter: [:pragma | pragma= 'owningModule:priority:']) reset.\r\"LcsGeographyModule pragmasDo: \"\r\r\t((Pragma allNamed: #owningModule:priority:) select: [ :each | (each argumentAt: 1) = 'LcsMainSystem'])\r\t\tasSortedCollection: [ :a :b | (a argumentAt: 2)"
 			}
 		]
 	},

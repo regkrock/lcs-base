@@ -48,8 +48,8 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 
 { #category : #configuration }
 LcsLegalEntitiesModule class >> owningModules [
-	<owningModule: 'LcsMainSystem'>
-	<owningModule: 'LcsWarRabbitLibrary'>
+	<owningModule: 'LcsMainSystem' priority: 10>
+	<owningModule: 'LcsWarRabbitLibrary' priority: 10>
 ]
 
 { #category : #'slot definitions' }

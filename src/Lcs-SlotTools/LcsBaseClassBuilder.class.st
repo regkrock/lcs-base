@@ -6,7 +6,8 @@ Class {
 		'rootName',
 		'newClassName',
 		'targetPackageName',
-		'targetSuperclassName'
+		'targetSuperclassName',
+		'newClassAlreadyExists'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -39,7 +40,10 @@ LcsBaseClassBuilder >> addProposedClassTo: classesModel [
 
 { #category : #printing }
 LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
-	aStream nextPutAll: self classCreationString
+	aStream nextPutAll: (
+		self newClassAlreadyExists 
+			ifTrue: [self newClassName , ' Class already exists']
+			ifFalse: [self classCreationString])
 ]
 
 { #category : #'gt views' }
@@ -125,7 +129,8 @@ LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 { #category : #initialize }
 LcsBaseClassBuilder >> initialize [
 	super initialize.
-	self targetSuperclassName: self class targetSuperclassName
+	self targetSuperclassName: self class targetSuperclassName.
+	self newClassAlreadyExists: false
 ]
 
 { #category : #initialize }
@@ -135,6 +140,7 @@ LcsBaseClassBuilder >> initializeOn: aBuilder [
 
 { #category : #build }
 LcsBaseClassBuilder >> installClass [
+	self newClassAlreadyExists ifTrue: [ ^ self ].
 	self addRefactoring: (RBAddClassChange definition: self classCreationString) execute.
 	self installedClass: self refactorings last changeClass
 ]
@@ -142,8 +148,9 @@ LcsBaseClassBuilder >> installClass [
 { #category : #build }
 LcsBaseClassBuilder >> installCode [
 	super installCode.
-	self installClass.
-	self beCodeInstalled
+	self newClassAlreadyExists ifFalse: [
+		self installClass ].
+	self beCodeInstalled 
 ]
 
 { #category : #accessing }
@@ -157,6 +164,16 @@ LcsBaseClassBuilder >> installedClass: aClass [
 ]
 
 { #category : #accessing }
+LcsBaseClassBuilder >> newClassAlreadyExists [
+	^ newClassAlreadyExists
+]
+
+{ #category : #accessing }
+LcsBaseClassBuilder >> newClassAlreadyExists: anObject [
+	newClassAlreadyExists := anObject
+]
+
+{ #category : #accessing }
 LcsBaseClassBuilder >> newClassName [
 	^ newClassName
 ]
@@ -164,6 +181,17 @@ LcsBaseClassBuilder >> newClassName [
 { #category : #accessing }
 LcsBaseClassBuilder >> newClassName: aString [ 
 	newClassName := aString
+]
+
+{ #category : #accessing }
+LcsBaseClassBuilder >> newTargetClassName: aString [
+	self newClassName: aString.
+	self newClassAlreadyExists: (
+		[
+			self installedClass:self newClassName asClass.
+			true ]
+			on: NotFound
+			do: [ :s | s return: false ])  
 ]
 
 { #category : #printing }
@@ -235,6 +263,7 @@ LcsBaseClassBuilder >> tearDown [
 LcsBaseClassBuilder >> uninstall [
 	super uninstall.
 	self installedClass ifNil: [ ^ self ].
+	self newClassAlreadyExists ifTrue: [ ^ self ].
 	self currentSystem ifNotNil: [
 		self currentSystem removeClassFromSlotModel: self installedClass.
 		self removeReferencesFromSubsequentSteps.
@@ -246,6 +275,9 @@ LcsBaseClassBuilder >> uninstall [
 { #category : #command }
 LcsBaseClassBuilder >> updateSlotModel [
 	super updateSlotModel.
+	self newClassAlreadyExists ifTrue: [
+		self installedClass verifySuperclassesHaveInitializedSlotModel.
+		^ self].
 	self installedClass initializeSlotModel
 ]
 

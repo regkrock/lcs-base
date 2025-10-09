@@ -17,12 +17,14 @@ Class {
 LcsModule class >> allOwnedModuleCandidates [
 	^ self allSubclasses select: [ :eachModuleClass | 
 		eachModuleClass class pragmas anySatisfy: [ :eachPragma | 
-			eachPragma selector = 'owningModule:'] ]
+			eachPragma selector = 'owningModule:priority:'] ]
 ]
 
 { #category : #'system model' }
 LcsModule class >> allSubmoduleClasses [
-	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
+	^(((Pragma allNamed: #owningModule:priority:) select: [ :each | (each argumentAt: 1) = 'LcsMainSystem'])
+		asSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ]) collect: [ :each | each methodClass ]
+	"^ LcsAllSubmodulesVisitor allSubmodulesFor: self"
 ]
 
 { #category : #'gt views' }

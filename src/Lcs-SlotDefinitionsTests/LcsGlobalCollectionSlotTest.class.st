@@ -3,7 +3,7 @@ The purpose of this class is test Global Colleciton Slot where it has not instal
 "
 Class {
 	#name : #LcsGlobalCollectionSlotTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
+	#superclass : #LcsPrototypeSystemRunningTestCase,
 	#instVars : [
 		'codeJobBuilder'
 	],

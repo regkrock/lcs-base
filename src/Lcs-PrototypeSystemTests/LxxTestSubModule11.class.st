@@ -6,5 +6,5 @@ Class {
 
 { #category : #'as yet unclassified' }
 LxxTestSubModule11 class >> owningModules [
-	<owningModule: 'LxxTestModule1'>
+	<owningModule: 'LxxTestModule1' priority: 50>
 ]

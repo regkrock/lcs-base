@@ -31,6 +31,6 @@ LcsMainSystem >> loadData [
 LcsMainSystem >> systemDomainClasses [
 	| collection |
 	collection := super systemDomainClasses.
-	self addClasses: self class package classes to: collection.
+	self addClasses: self class package definedClasses to: collection.
 	^ collection
 ]

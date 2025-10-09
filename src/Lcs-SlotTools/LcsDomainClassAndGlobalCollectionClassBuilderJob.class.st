@@ -114,7 +114,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> createInstances: aCollection
 { #category : #builders }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassBuilder [
 	^ LcsDomainClassBuilder new
-		newClassName: self newDomainClassName;
+		newTargetClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		yourself
 ]
@@ -178,7 +178,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> initialize [
 	self subclassNames: OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> loaderBuilder [
 	^ LcsLoaderClassBuilder new
 		newClassName: self collectionClassName , 'Loader';

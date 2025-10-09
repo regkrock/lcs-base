@@ -34,6 +34,17 @@ LcsAddress class >> addressTypeSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
+LcsAddress class >> parentSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionReferenceSlot new
+		slotTypes: (OrderedCollection with: LcsAddresses);
+		slotName: 'parent';
+		collectionSlotName: 'addresses';
+		collectionSlotModuleName: 'Geography Module';
+		yourself
+]
+
+{ #category : #'slot definitions' }
 LcsAddress class >> postBoxSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new

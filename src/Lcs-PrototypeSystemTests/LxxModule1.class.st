@@ -9,6 +9,6 @@ Class {
 
 { #category : #configuration }
 LxxModule1 class >> owningModules [
-	<owningModule: 'LxxModule0'>
-	<owningModule: 'LxxModule2'>
+	<owningModule: 'LxxModule0' priority: 50>
+	<owningModule: 'LxxModule2' priority: 50>
 ]

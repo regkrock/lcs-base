@@ -14,7 +14,7 @@ LxxPersonsModule class >> defaultModuleName [
 
 { #category : #configuration }
 LxxPersonsModule class >> owningModules [
-	<owningModule: 'LxxPrototypeSystem'>
+	<owningModule: 'LxxPrototypeSystem' priority: 10>
 ]
 
 { #category : #'slot definitions' }

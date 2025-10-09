@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsStateMachineTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
+	#superclass : #LcsPrototypeSystemRunningTestCase,
 	#instVars : [
 		'counter'
 	],

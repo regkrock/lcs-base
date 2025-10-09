@@ -20,8 +20,14 @@ Class {
 }
 
 { #category : #builders }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> _targetDoainClasses [
+	^ self targetDomainClasses
+		collect: [ :each | each isString ifTrue: [ each asClass ] ifFalse: [ each ] ]
+]
+
+{ #category : #builders }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
-	(self targetDomainClasses collect: [ :each | each isString ifTrue: [ each asClass ] ifFalse: [ each ] ])
+	self _targetDoainClasses
 		do: [ :eachClass | self addJobStep: (self memberOfSlotBuilderFor: eachClass) ]
 ]
 

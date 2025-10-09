@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDomainObjectTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
+	#superclass : #LcsPrototypeSystemRunningTestCase,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 

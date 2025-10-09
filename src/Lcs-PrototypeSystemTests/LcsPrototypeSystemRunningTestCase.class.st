@@ -1,10 +1,10 @@
 Class {
-	#name : #LcsWithPrototypeSystemSetUpForTest,
+	#name : #LcsPrototypeSystemRunningTestCase,
 	#superclass : #LcsTestWithTestSystemSetUpForTest,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 
 { #category : #setUp }
-LcsWithPrototypeSystemSetUpForTest >> setupSunitSystem [
+LcsPrototypeSystemRunningTestCase >> setupSunitSystem [
 	LxxPrototypeSystem new
 ]

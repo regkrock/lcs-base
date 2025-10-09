@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsGlobalCollectionReferenceSlotTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
+	#superclass : #LcsPrototypeSystemRunningTestCase,
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
 

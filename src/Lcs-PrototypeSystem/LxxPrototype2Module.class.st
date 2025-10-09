@@ -11,5 +11,5 @@ LxxPrototype2Module class >> defaultModuleName [
 
 { #category : #configuration }
 LxxPrototype2Module class >> owningModules [
-	<owningModule: 'LxxPrototypeSystem'>
+	<owningModule: 'LxxPrototypeSystem' priority: 50>
 ]

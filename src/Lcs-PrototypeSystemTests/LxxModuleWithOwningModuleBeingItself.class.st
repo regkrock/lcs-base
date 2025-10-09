@@ -9,5 +9,5 @@ Class {
 
 { #category : #configuration }
 LxxModuleWithOwningModuleBeingItself class >> owningModules [
-	<owningModule: 'LxxModuleWithOwningModuleBeingItself'>
+	<owningModule: 'LxxModuleWithOwningModuleBeingItself' priority: 50>
 ]

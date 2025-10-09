@@ -6,5 +6,5 @@ Class {
 
 { #category : #configuration }
 LxxModule2 class >> owningModules [
-	<owningModule: 'LxxModule1'>
+	<owningModule: 'LxxModule1' priority: 50>
 ]

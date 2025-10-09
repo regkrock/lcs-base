@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsCodeBuilderTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
+	#superclass : #LcsPrototypeSystemRunningTestCase,
 	#instVars : [
 		'codeBuilderJobs',
 		'currentCodeBuilderJob'

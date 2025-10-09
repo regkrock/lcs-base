@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsDateOfBirthSlotTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
+	#superclass : #LcsPrototypeSystemRunningTestCase,
 	#category : #'Lcs-SlotDefinitionsTests-Tests'
 }
 

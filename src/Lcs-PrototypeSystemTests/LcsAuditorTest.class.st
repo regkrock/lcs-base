@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsAuditorTest,
-	#superclass : #LcsWithPrototypeSystemSetUpForTest,
+	#superclass : #LcsPrototypeSystemRunningTestCase,
 	#category : #'Lcs-PrototypeSystemTests-Tests'
 }
 

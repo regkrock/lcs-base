@@ -65,6 +65,21 @@ LcsGlobalCollectionPatternForm >> classRootNameDescription [
 		beRequired
 ]
 
+{ #category : #magritte }
+LcsGlobalCollectionPatternForm >> domainInstanceSlotNameDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Domain Slot Name';
+		priority: 11;
+		accessor: (MAChainAccessor accessors: #(slotModelBuilder domainInstanceSlotName));
+		default: '';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		beRequired
+]
+
 { #category : #'gt  views' }
 LcsGlobalCollectionPatternForm >> gtConstructionTreeFor: aView [
 	<gtView>
