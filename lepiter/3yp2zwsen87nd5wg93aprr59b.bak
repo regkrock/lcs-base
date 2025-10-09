@@ -344,14 +344,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-08T23:59:47.452359-04:00"
+						"dateAndTimeString" : "2025-10-09T10:42:49.598487-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "6dzGSgz9DQChOYfUBO7gIQ=="
 				},
-				"code" : "#owningModule:priority: gtPragmas.\r#owningModule:priority: gtPragmasWithArguments: #(50 ).\r#owningModule:priority: gtPragmasWithArguments: #('LxxPrototypeSystem' ).\r#owningModule:priority: gtPragmasWithArguments: #('LxxPrototype2Module' ).\rGtSearchPragmasWithArgumentsFilter forPragma: #owningModule:priority: withArguments: #('LcsMainSystem' ).\r(GtSearchPragmasFilter forPragma: #owningModule:priority:) printString.\r\r\r(PragmaCollector \r\tselectors: #(owningModules) \r\tfilter: [:prg | prg methodSelector numArgs = 0] ).\r\t\r\t(PragmaCollector filter: [:prg | prg selector = #owningModule:priority:]) pragmas .\r\t\r\t(PragmaCollector filter: [:pragma | pragma= 'owningModule:priority:']) reset.\r\"LcsGeographyModule pragmasDo: \"\r\r\t((Pragma allNamed: #owningModule:priority:) select: [ :each | (each argumentAt: 1) = 'LcsMainSystem'])\r\t\tasSortedCollection: [ :a :b | (a argumentAt: 2)"
+				"code" : "#owningModule:priority: gtPragmas.\r#owningModule:priority: gtPragmasWithArguments: #(50 ).\r#owningModule:priority: gtPragmasWithArguments: #('LxxPrototypeSystem' ).\r#owningModule:priority: gtPragmasWithArguments: #('LxxPrototype2Module' ).\rGtSearchPragmasWithArgumentsFilter forPragma: #owningModule:priority: withArguments: #('LcsMainSystem' ).\r(GtSearchPragmasFilter forPragma: #owningModule:priority:) printString.\r\r\r(PragmaCollector \r\tselectors: #(owningModules) \r\tfilter: [:prg | prg methodSelector numArgs = 0] ).\r\t\rPrag\r\t\r\t(PragmaCollector filter: [:prg | prg selector = #owningModule:priority:]) pragmas .\r\t\r\t(PragmaCollector filter: [:pragma | pragma= 'owningModule:priority:']) reset.\r\"LcsGeographyModule pragmasDo: \"\r\r\t((Pragma allNamed: #owningModule:priority:) select: [ :each | (each argumentAt: 1) = 'LcsMainSystem'])\r\t\tasSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ]"
 			}
 		]
 	},

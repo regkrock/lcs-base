@@ -22,9 +22,7 @@ LcsModule class >> allOwnedModuleCandidates [
 
 { #category : #'system model' }
 LcsModule class >> allSubmoduleClasses [
-	^(((Pragma allNamed: #owningModule:priority:) select: [ :each | (each argumentAt: 1) = 'LcsMainSystem'])
-		asSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ]) collect: [ :each | each methodClass ]
-	"^ LcsAllSubmodulesVisitor allSubmodulesFor: self"
+	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
 ]
 
 { #category : #'gt views' }
@@ -77,14 +75,23 @@ LcsModule class >> gtSlotDefinitionMethodFor: aView [
 { #category : #modules }
 LcsModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
 	| moduleName |
-	(aPragma selector = 'owningModule:') ifFalse: [ ^ false ].
+	(aPragma selector = 'owningModule:priority:') ifFalse: [ ^ false ].
 	moduleName := aPragma arguments at: 1.	
 	^ moduleName = aModuleClass name asString 
 ]
 
 { #category : #'system model' }
 LcsModule class >> immediateSubmoduleClasses [
-	^ LcsAllSubmodulesVisitor immediateSubmodulesFor: self
+	^ self immediateSubmoduleClassesOf: self
+]
+
+{ #category : #'system model' }
+LcsModule class >> immediateSubmoduleClassesOf: aClass [
+	| immediateSubmodulePragmas |
+	immediateSubmodulePragmas := (Pragma pragmaCache at: 'owningModule:priority:') 
+									select: [ :each | (each argumentAt: 1) = aClass name asString ].
+	^ (immediateSubmodulePragmas asSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ])
+		collect: [:eachPragma | eachPragma methodClass soleInstance ]
 ]
 
 { #category : #testing }
@@ -95,6 +102,13 @@ LcsModule class >> isSubmoduleOf: aModuleClass [
 ]
 
 { #category : #asking }
+LcsModule class >> loadPriorityInContextOf: aModuleClassName [
+	^ ((Pragma allNamed: #owningModule:priority: in: self class)
+		detect: [ :each | (each argumentAt: 1) = aModuleClassName ] ifNone: [ ^ 0 ])
+			argumentAt: 2
+]
+
+{ #category : #modules }
 LcsModule class >> moduleClassNamed: aString [
 	^ self allSubclasses detect: [ :eachClass |
 		eachClass defaultModuleName = aString ]
@@ -294,6 +308,11 @@ LcsModule >> loadData [
 	self loadSingletonCodeCollections
 ]
 
+{ #category : #building }
+LcsModule >> loadPriority [
+	^ self class loadPriorityInContextOf: self parentModuleClassName
+]
+
 { #category : #initialize }
 LcsModule >> loadSingletonCodeCollections [
 	"self slotModel loadSingletonCodeCollections.
@@ -349,6 +368,11 @@ LcsModule >> numberOfChildModules [
 { #category : #accessing }
 LcsModule >> objectId [
 	^ self hash
+]
+
+{ #category : #asking }
+LcsModule >> parentModuleClassName [
+	^ self parent parent class name asString
 ]
 
 { #category : #accessing }

@@ -61,6 +61,9 @@ LcsModules >> gtApplicationModulesFor: aView [
 		column: 'Module Name'
 			text: [ :each | each label ]
 			width: 200;
+		column: 'Load Priority'
+			text: [ :each | each item loadPriority ]
+			width: 80;
 		column: 'Value'
 			text: [ :each | each item ];
 		send: #item;
