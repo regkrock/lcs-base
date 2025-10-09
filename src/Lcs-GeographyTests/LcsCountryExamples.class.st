@@ -8,6 +8,7 @@ Class {
 LcsCountryExamples >> canada [ 
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |
+	self ensureCurrentsystemIsMainSystem.
 	commonName := 'Canada'.
 	formalName := 'Dominion of Canada'.
 	isoCode := 'CA'.
@@ -35,6 +36,7 @@ LcsCountryExamples >> canada [
 LcsCountryExamples >> error [
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |
+	self ensureCurrentsystemIsMainSystem.
 	commonName := ''.
 	formalName := 'Unknown'.
 	isoCode := ''.
@@ -62,6 +64,7 @@ LcsCountryExamples >> error [
 LcsCountryExamples >> unknown [
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |
+	self ensureCurrentsystemIsMainSystem.
 	commonName := '   '.
 	formalName := 'Unknown'.
 	isoCode := '  '.
