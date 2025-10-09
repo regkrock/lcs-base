@@ -536,14 +536,14 @@ LcsBaseDomainObject >> getPersistedValueOf: aString [
 ]
 
 { #category : #'gt views' }
-LcsBaseDomainObject >> gtRawFor: aView [
+LcsBaseDomainObject >> gtPendingChangesFor: aView [
 	<gtView>
 	self currentSystem ifNil: [ ^ super gtRawFor: aView ].
 	self currentSystem unitOfWork isNil ifTrue: [ ^ super gtRawFor: aView ].
 	"(self currentSystem unitOfWork hasChangeRecordFor: self) 
 		ifFalse: [ ^ super gtRawFor: aView ]."
 	^ aView columnedTree
-		title: 'Raw';
+		title: 'Pending Changes';
 		priority: 100;
 		items: [ | variableNodes |
 			variableNodes := OrderedCollection new: self class allSlots size.
@@ -587,8 +587,14 @@ LcsBaseDomainObject >> gtRawFor: aView [
 						ifFalse: [ '' ] ] ] 
 					on: Error , Halt
 					do: [ aNode errorMessage asRopedText foreground: Color red ] ];
-		"send: [ :eaRow | 
-			eaRow changeValue notNil ifTrue: [ eaRow changeValue ] ifFalse: [ eaRow rawValue ] ];"
+		send: [ :eaRow | 
+			(eaRow changeValue isNil 
+				ifTrue: [ eaRow rawValue ]
+				ifFalse: [ eaRow changeValue isString not
+							ifTrue: [ eaRow changeValue ]
+							ifFalse: [ eaRow changeValue isEmpty
+								ifTrue: [ eaRow rawValue ]
+								ifFalse: [ eaRow changeValue ] ] ]) ];
 		dynamicContextItems: [ :aTreeNode | 
 			aTreeNode value isSlotNode
 				ifTrue: [ (GtViewCreator

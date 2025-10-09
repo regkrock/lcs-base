@@ -182,6 +182,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 { #category : #'gt views' }
 LcsBaseUnitOfWork >> gtUnitOfWorkItems [
 	^ {
+		LcsUnitOfWorkViewItem newLabel: 'System' item: self system.
 		LcsUnitOfWorkViewItem newLabel: 'Unit Of Work' item: self.
 		LcsUnitOfWorkViewItem newLabel: 'Added' item: self addedObjects values.
 		LcsUnitOfWorkViewItem newLabel: 'Changed' item: self changedObjects values.

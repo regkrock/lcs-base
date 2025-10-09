@@ -24,5 +24,8 @@ LcsPersonExamples >> johnFreeman [
 	self assert: person gender code = 'male'.
 	self assert: person fullName = 'John Edgar Freeman'.
 	self assert: person entityName = 'John Edgar Freeman'.
+	self assert: (person mainAddress isKindOf: LcsAddress).
+	person mainAddress city: 'Godfrey'.
+	self assert: person mainAddress city equals: 'Godfrey'.
 	^ person
 ]

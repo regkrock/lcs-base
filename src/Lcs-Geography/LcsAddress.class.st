@@ -8,7 +8,8 @@ Class {
 		'unit',
 		'addressType',
 		'postBox',
-		'additionalDeliveryInformation'
+		'additionalDeliveryInformation',
+		'city'
 	],
 	#category : #'Lcs-Geography-Domain'
 }
@@ -30,6 +31,15 @@ LcsAddress class >> addressTypeSlotDefinition [
 		slotName: 'addressType';
 		collectionSlotName: 'addressTypes';
 		collectionSlotModuleName: 'Geography Module';
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsAddress class >> citySlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'city';
+		required: true;
 		yourself
 ]
 
@@ -113,6 +123,16 @@ LcsAddress >> addressType [
 { #category : #accessing }
 LcsAddress >> addressType: anObject [
 	self slotVarNamed: 'addressType' put: anObject
+]
+
+{ #category : #accessing }
+LcsAddress >> city [
+	^ self slotVarNamed: 'city'
+]
+
+{ #category : #accessing }
+LcsAddress >> city: anObject [
+	self slotVarNamed: 'city' put: anObject
 ]
 
 { #category : #accessing }
