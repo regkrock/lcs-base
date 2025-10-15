@@ -462,6 +462,12 @@ LcsBaseDomainObject class >> virtualSlotDefinitionPragmas [
 	^ Pragma allNamed: 'virtualSlotDefinition' in: self class
 ]
 
+{ #category : #'gt views' }
+LcsBaseDomainObject >> accessorSlotNameandValue [
+	^ self allAccessorSlotDefinitions collect: [ :each | 
+		each slotName -> (self perform: each slotName asSymbol) ]
+]
+
 { #category : #validation }
 LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 	"self isIncludedInSystemDomainClasses
@@ -533,6 +539,24 @@ LcsBaseDomainObject >> currentUser [
 { #category : #'slot access' }
 LcsBaseDomainObject >> getPersistedValueOf: aString [
 	^ self class getPersistedValueOf: aString in: self
+]
+
+{ #category : #'gt views' }
+LcsBaseDomainObject >> gtLiveFor: aView [
+	<gtView>
+	^ aView columnedTree
+		title: 'Live';
+		priority: 1;
+		items: [ self accessorSlotNameandValue ];
+		children: [ :each | 
+			each value isDomainObject 
+				ifTrue: [ each value accessorSlotNameandValue ]
+				ifFalse: [#()] ] ;
+		column: 'Slot' text: [ :each | each key ] width: 100;
+		column: 'Value' text: [ :each | each value displayString ] width: 200;
+		send: #value;
+		actionUpdateButton;
+		yourself
 ]
 
 { #category : #'gt views' }

@@ -383,6 +383,12 @@ LcsBaseSlot >> propertyAt: aKey put: anObject [
 	^ self properties at: aKey put: anObject 
 ]
 
+{ #category : #configuration }
+LcsBaseSlot >> removeSlotType: aClass [
+	self assert: aClass isClass.
+	(self slotTypes includes: aClass) ifTrue: [ self slotTypes remove: aClass ]
+]
+
 { #category : #defaults }
 LcsBaseSlot >> slotClass [
 	^ self slotTypes any
@@ -500,7 +506,7 @@ LcsBaseSlot >> slotTypesDescription [
 						read: [ :classes | classes collect: [ :each | each name] ] 
 						write: [ :aModel :setter :collection | 
 							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
-		classes: {String. Symbol};
+		classes: { Class};
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocListStencil: (
 			self

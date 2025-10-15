@@ -46,8 +46,8 @@ LcsConditionsValidator >> errorDescriptions [
 ]
 
 { #category : #accessing }
-LcsConditionsValidator >> errorDescriptions: anObject [
-	errorDescriptions := anObject
+LcsConditionsValidator >> errorDescriptions: anOrderedCollection [
+	errorDescriptions := anOrderedCollection
 ]
 
 { #category : #testing }

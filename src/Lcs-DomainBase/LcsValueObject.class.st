@@ -56,6 +56,11 @@ LcsValueObject >> description: anObject [
 	self slotVarNamed: 'description' put: anObject 
 ]
 
+{ #category : #printing }
+LcsValueObject >> displayString [
+	^ self code asString
+]
+
 { #category : #accessing }
 LcsValueObject >> isDefaultInstance [
 	^ self slotVarNamed: 'isDefaultInstance' 

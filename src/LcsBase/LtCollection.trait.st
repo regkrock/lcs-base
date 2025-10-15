@@ -12,6 +12,11 @@ LtCollection >> add: anObject [
 ]
 
 { #category : #collection }
+LtCollection >> any [
+	^ self collection any
+]
+
+{ #category : #collection }
 LtCollection >> collect: aBlock [
 	^ self collection collect: aBlock
 ]
@@ -46,6 +51,11 @@ LtCollection >> do: aBlock [
 	^ self collection do: aBlock
 ]
 
+{ #category : #collection }
+LtCollection >> first [
+	^ self collection first
+]
+
 { #category : #'gt view' }
 LtCollection >> gtItemsFor: aView [
 	<gtView>
@@ -76,6 +86,11 @@ LtCollection >> includes: anObject [
 { #category : #collection }
 LtCollection >> inject: anObject into: aBlock [
 	^ self collection inject: anObject into: aBlock
+]
+
+{ #category : #collection }
+LtCollection >> last [
+	^ self collection last
 ]
 
 { #category : #collection }

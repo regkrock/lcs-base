@@ -64,7 +64,7 @@ LxxCountriesLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray 
 			self 
 				loadSubdivisionsFrom: (self perform:  subdivisionSelector) readStream 
 				class: LxxBaseCountrySubdivision 
-				schema: self usSubdivisionDataSchema 
+				schema: self subdivisionDataSchema 
 				context: instance ] ] 
 ]
 
@@ -82,6 +82,11 @@ LxxCountriesLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass sche
 { #category : #schema }
 LxxCountriesLoader >> schema [
 	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' )
+]
+
+{ #category : #schema }
+LxxCountriesLoader >> subdivisionDataSchema [
+	^#( 'isoCode' 'formalName' 'subdivisionName' )
 ]
 
 { #category : #configuration }
@@ -142,9 +147,4 @@ WV	West Virginia	State
 WI	Wisconsin	State
 WY	Wyoming	State
 DC	District of Columbia	District'
-]
-
-{ #category : #schema }
-LxxCountriesLoader >> usSubdivisionDataSchema [
-	^#( 'isoCode' 'formalName' 'subdivisionName' )
 ]

@@ -77,6 +77,7 @@ LcsGlobalCollectionPatternForm >> domainInstanceSlotNameDescription [
 				"+ (BrGlamorousWithExplicitContextMenuAptitude
 						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | aValue asString trim size >= 1 ] labelled: 'Enter a unique slot name of at least one characters in length';
 		beRequired
 ]
 

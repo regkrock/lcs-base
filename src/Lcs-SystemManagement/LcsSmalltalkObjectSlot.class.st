@@ -12,6 +12,11 @@ LcsSmalltalkObjectSlot class >> isAbstract [
 	^ self name = #LcsSmalltalkObjectSlot
 ]
 
+{ #category : #initialize }
+LcsSmalltalkObjectSlot >> addDefaultSlotType [
+	self addSlotType: self typeClass
+]
+
 { #category : #defaults }
 LcsSmalltalkObjectSlot >> defaultInitialValueBlock [
 	self subclassResponsibility
@@ -31,7 +36,7 @@ LcsSmalltalkObjectSlot >> initialValueFor: aDomainObject [
 { #category : #initialize }
 LcsSmalltalkObjectSlot >> initialize [
 	super initialize.
-	self addSlotType: self typeClass.
+	self addDefaultSlotType.
 	self inputComponentClassName: self defaultInputComponentClassName
 ]
 

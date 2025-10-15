@@ -17,7 +17,7 @@ LcsSecurityModule class >> configurationSlotDefinition [
 { #category : #'slot definitions' }
 LcsSecurityModule class >> currentUserSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'currentUser';
 		collectionSlotName: 'users';
 		collectionSlotModuleName: self defaultModuleName;

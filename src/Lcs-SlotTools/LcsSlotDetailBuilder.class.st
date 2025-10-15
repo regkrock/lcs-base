@@ -33,10 +33,13 @@ LcsSlotDetailBuilder >> jobStepActionDescription [
 
 { #category : #printing }
 LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
+	| slotName |
+	slotName := self slotName.
+"	slotName isNil ifTrue: [ slotTemplate ifNil: [] ifNotNil: [ slotName := self slotTemplate slotName ] ]."
 	aStream
 		nextPutAll: self jobStepActionDescription;
 		nextPutAll: ' "';
-		nextPutAll: (self slotName ifNil: [ '<missing slotName>' ]);
+		nextPutAll: (slotName ifNil: [ '<missing slotName>' ]);
 		nextPutAll: '" in ';
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>' ])
 ]

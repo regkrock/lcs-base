@@ -55,7 +55,7 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToGl
 	| classesModel |
 	self createGenderClassesWithoutAddingMemberOfToPerson.
 	self subject: (
-		LcsMemberOfSlotBuilder new
+		LcsMemberOfGlobalCollectionSlotBuilder new
 			targetClassName: 'LxxPerson';
 			slotName: 'gender';
 			collectionSlotName: 'genders';
@@ -83,7 +83,7 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToLo
 	| classesModel |
 	self createLxxInvoiceAndLxxInvoices.
 	self subject: (
-		LcsMemberOfSlotBuilder new
+		LcsMemberOfGlobalCollectionSlotBuilder new
 			targetClassName: 'LxxPerson';
 			slotName: 'invoiceItem';
 			collectionSlotName: 'invoiceItems';
@@ -108,5 +108,5 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToLo
 { #category : #tests }
 LcsMemberOfSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
-	self assert: LcsMemberOfSlotBuilder slotClass equals: LcsMemberOfSlot
+	self assert: LcsMemberOfGlobalCollectionSlotBuilder slotClass equals: LcsMemberOfGlobalCollectionSlot
 ]

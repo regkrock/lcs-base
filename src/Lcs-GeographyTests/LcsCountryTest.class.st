@@ -13,15 +13,47 @@ LcsCountryTest >> testCreation [
 
 	country := LcsCountry new.
 	country 
-		formalName: 'Xxxxx';
-		isoCode: 'XX'.
+		formalName: 'Republic of Xxxxx';
+		commonName: 'Xxxxx';
+		isoCode: 'XX';
+		isoCode3: 'XXX';
+		subdivisionName: 'Province';
+		isoNumber: '123'.
 		
-	self assert: country formalName equals: 'Xxxxx'.
+	self assert: country formalName equals: 'Republic of Xxxxx'.
+	self assert: country commonName equals: 'Xxxxx'.
 	self assert: country isoCode equals: 'XX'.
+	self assert: country isoCode3 equals: 'XXX'.
+	self assert: country subdivisionName equals: 'Province'.
+	self assert: country isoNumber equals: '123'.
 
 	self currentSystem currentUnitOfWork applyChanges.
 	
 	self assert: countries collectionSize equals: countriesSize + 1.
-	self assert: (countries includes: country)
+	self assert: (countries includes: country).
+	self assert: country postalCodeClass = LcsGenericPostalCode.
+	self assert: country subdivisionClass = LcsCountrySubdivision.
 	
+]
+
+{ #category : #tests }
+LcsCountryTest >> testPostalCodeAssignment [
+	| country |
+	country := LcsCountry new.
+	self assert: country postalCodeClass = LcsGenericPostalCode.
+	country postalCodeClass: LcsZipCode.
+	self assert: country postalCodeClass = LcsZipCode.
+	country postalCodeClass: LcsCanadaPostalCode.
+	self assert: country postalCodeClass = LcsCanadaPostalCode.
+]
+
+{ #category : #tests }
+LcsCountryTest >> testSubdivisionClassAssignment [
+	| country |
+	country := LcsCountry new.
+	self assert: country subdivisionClass = LcsCountrySubdivision.
+	country subdivisionClass: LcsCanadaSubdivision.
+	self assert: country subdivisionClass = LcsCanadaSubdivision.
+	country subdivisionClass: LcsUnitedStatesSubdivision.
+	self assert: country subdivisionClass = LcsUnitedStatesSubdivision.
 ]

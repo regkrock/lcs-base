@@ -357,6 +357,9 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 	aProperty = 'validationConditions'
 		ifTrue: [ ^ self validateValidationConditions: aValue against: actualValue ].
 
+	(actualValue isClass and: [ aValue isClass ])
+		ifTrue: [ ^ self assert: actualValue name equals: aValue name ].
+		
 	actualValue isClass
 		ifTrue: [ ^ self assert: actualValue equals: aValue asClass ].
 

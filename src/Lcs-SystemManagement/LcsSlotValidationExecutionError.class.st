@@ -30,5 +30,5 @@ LcsSlotValidationExecutionError >> validationConditionErrorMessage [
 	^ '<1s> slot: <2s> has validation error: <3s>'
 		expandMacrosWith: self context class name asString
 		with: (self slotDefinition ifNil: [ nil ] ifNotNil: [:slotDef | slotDef slotName ]) asString
-		with: self validationCondition validationDescription asString
+		with: self validationCondition validationErrorMessage
 ]

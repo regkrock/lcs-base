@@ -9,7 +9,9 @@ Class {
 		'addressType',
 		'postBox',
 		'additionalDeliveryInformation',
-		'city'
+		'city',
+		'country',
+		'province'
 	],
 	#category : #'Lcs-Geography-Domain'
 }
@@ -20,17 +22,19 @@ LcsAddress class >> additionalDeliveryInformationSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'additionalDeliveryInformation';
 		allowNil: false;
+		priority: 8;
 		yourself
 ]
 
 { #category : #'slot definitions' }
 LcsAddress class >> addressTypeSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsAddressType);
 		slotName: 'addressType';
 		collectionSlotName: 'addressTypes';
 		collectionSlotModuleName: 'Geography Module';
+		priority: 1;
 		yourself
 ]
 
@@ -40,6 +44,29 @@ LcsAddress class >> citySlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'city';
 		required: true;
+		priority: 12;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsAddress class >> countrySlotDefinition [
+	<slotDefinition>
+	^ LcsMemberOfGlobalCollectionSlot new
+		slotName: 'country';
+		slotTypes: (OrderedCollection with: LcsCountry);
+		prevalidationTransformBlock: [ :value :slot | slot targetCollection findItemMatchingString: value ];
+		collectionSlotName: 'countries';
+		collectionSlotModuleName: 'Geography Module';
+		priority: 16;
+		addPostUpdateAction: (LcsUpdateSiblingFromCollectionDefaultAction new 
+									description: 'When country changes, update the default province';
+									siblingSlotName: 'province';
+									yourself);
+		addPostUpdateAction: (LcsUpdateSiblingFromSpecificDefaultAction new 
+									description: 'When country changes, update the default postal code';
+									siblingSlotName: 'postalCode';
+									sourceSlotName: 'defaultPostalCode';
+									yourself);
 		yourself
 ]
 
@@ -60,6 +87,7 @@ LcsAddress class >> postBoxSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'postBox';
 		allowNil: false;
+		priority: 10;
 		yourself
 ]
 
@@ -69,11 +97,27 @@ LcsAddress class >> postalCodeSlotDefinition [
 	^ LcsAccessorSlot new
 		slotName: 'postalCode';
 		required: true;
-		slotTypes: (OrderedCollection with: LcsPostalCode);
+		slotTypes: (OrderedCollection with: LcsGenericPostalCode);
 		initialValueBlock: [ :parentDomainObject :slot | 
 			(slot slotTypes any new)
 				parent: parentDomainObject;
 				yourself ];
+		priority: 18;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsAddress class >> provinceSlotDefinition [
+	<slotDefinition>
+	^ LcsAccessorSlot new
+		slotName: 'province';
+		required: true;
+		addSubclassesOf: LcsBaseCountrySubdivision;
+		"initialValueBlock: [ :parentDomainObject :slot | 
+			(slot slotTypes any new)
+				parent: parentDomainObject;
+				yourself ];"
+		priority: 14;
 		yourself
 ]
 
@@ -83,6 +127,7 @@ LcsAddress class >> streetNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'streetName';
 		slotTypes: (OrderedCollection with: String);
+		priority: 6;
 		yourself
 ]
 
@@ -94,6 +139,7 @@ LcsAddress class >> streetNumberSlotDefinition [
 		"addValidationCondition: [ :value :domainObject :oldValue | value isNilOrEmpty ] description: 'Street number is required';"
 		allowNil: false;
 		required: true;
+		priority: 5;
 		yourself
 ]
 
@@ -102,6 +148,7 @@ LcsAddress class >> unitSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'unit';
+		priority: 11;
 		yourself
 ]
 
@@ -136,6 +183,16 @@ LcsAddress >> city: anObject [
 ]
 
 { #category : #accessing }
+LcsAddress >> country [
+	^ self slotVarNamed: 'country'
+]
+
+{ #category : #accessing }
+LcsAddress >> country: anObject [
+	self slotVarNamed: 'country' put: anObject
+]
+
+{ #category : #accessing }
 LcsAddress >> postBox [
 	^ self slotVarNamed: 'postBox'
 ]
@@ -153,6 +210,16 @@ LcsAddress >> postalCode [
 { #category : #accessing }
 LcsAddress >> postalCode: anObject [
 	self slotVarNamed: 'postalCode' put: anObject
+]
+
+{ #category : #accessing }
+LcsAddress >> province [
+	^ self slotVarNamed: 'province'
+]
+
+{ #category : #accessing }
+LcsAddress >> province: anObject [
+	self slotVarNamed: 'province' put: anObject
 ]
 
 { #category : #accessing }

@@ -91,7 +91,7 @@ LcsValidationConditions >> validate: aValue withValidator: aValidator [
 		[ eachCondition validate: aValue ]
 			on: LcsSlotValidationError
 			do: [ :s | 
-				aValidator errorDescriptions add: eachCondition validationDescription.
+				aValidator errorDescriptions add: eachCondition validationErrorMessage.
 				s return: nil ] ]
 ]
 

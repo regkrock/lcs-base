@@ -8,13 +8,13 @@ The slot is responsible for:
 Note: Currently this is defined to look up a value in a global collection.
 "
 Class {
-	#name : #LcsMemberOfSlot,
-	#superclass : #LcsDomainObjectSlot,
+	#name : #LcsMemberOfGlobalCollectionSlot,
+	#superclass : #LcsMemberOfCollectionSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
 { #category : #'gt views' }
-LcsMemberOfSlot >> addOtherSlotDefinitionDetailsTo: collection [
+LcsMemberOfGlobalCollectionSlot >> addOtherSlotDefinitionDetailsTo: collection [
 	super addOtherSlotDefinitionDetailsTo: collection.
 	collection
 		add: '' -> '';
@@ -24,57 +24,38 @@ LcsMemberOfSlot >> addOtherSlotDefinitionDetailsTo: collection [
 ]
 
 { #category : #'slot model' }
-LcsMemberOfSlot >> assignParent: aDomainObject to: newValue [
-	"Parent has already been assigned"
-]
-
-{ #category : #'application environment' }
-LcsMemberOfSlot >> collectionModule [
+LcsMemberOfGlobalCollectionSlot >> collectionModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
 { #category : #properties }
-LcsMemberOfSlot >> collectionSlotModuleName [
+LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName [
 	^ self propertyAt: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
 { #category : #properties }
-LcsMemberOfSlot >> collectionSlotModuleName: aString [ 
+LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName: aString [ 
 	self propertyAt: 'collectionSlotModuleName' put: aString
 ]
 
 { #category : #properties }
-LcsMemberOfSlot >> collectionSlotName [
+LcsMemberOfGlobalCollectionSlot >> collectionSlotName [
 	^ self propertyAt: 'collectionSlotName' ifAbsent: []
 ]
 
 { #category : #properties }
-LcsMemberOfSlot >> collectionSlotName: aString [ 
+LcsMemberOfGlobalCollectionSlot >> collectionSlotName: aString [ 
 	self propertyAt: 'collectionSlotName' put: aString
 ]
 
-{ #category : #'slot model' }
-LcsMemberOfSlot >> defaultInstance [
-	^ self targetCollection 
-		ifNil: [ LcsMemberOfSlotSourceCollectionNotInitialized signalWithContext: self ] 
-		ifNotNil: [ :collection | collection defaultInstance ]
-]
-
-{ #category : #initialize }
-LcsMemberOfSlot >> initialize [
-	super initialize.
-	self beRequired.
-	self initialValueBlock: [:domainParent | self defaultInstance ]
-]
-
 { #category : #message }
-LcsMemberOfSlot >> sourceCollectionNotPopulatedMessage [
+LcsMemberOfGlobalCollectionSlot >> sourceCollectionNotPopulatedMessage [
 	^'Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized' 
 			expandMacrosWith: self collectionSlotModuleName 
 			with: self collectionSlotName
 ]
 
 { #category : #'slot model' }
-LcsMemberOfSlot >> targetCollection [
+LcsMemberOfGlobalCollectionSlot >> targetCollection [
 	^ self collectionModule perform: self collectionSlotName asSymbol
 ]

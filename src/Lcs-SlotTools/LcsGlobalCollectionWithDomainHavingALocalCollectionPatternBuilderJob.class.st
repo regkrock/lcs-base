@@ -103,7 +103,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainCl
 
 { #category : #builders }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
-	^ LcsMemberOfSlotBuilder new
+	^ LcsMemberOfGlobalCollectionSlotBuilder new
 		target: aTargetClass;
 		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;

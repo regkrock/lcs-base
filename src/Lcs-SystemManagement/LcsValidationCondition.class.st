@@ -5,7 +5,8 @@ Class {
 	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
 		'conditionBlock',
-		'validationDescription'
+		'validationDescription',
+		'errorMessage'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -42,6 +43,16 @@ LcsValidationCondition >> conditionBlockDescription [
 		addCondition: [:aValue | (aValue = 'false') not ] labelled: 'Enter a new value, this will always evaluate to never show the error message';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : #accessing }
+LcsValidationCondition >> errorMessage [
+	^ errorMessage
+]
+
+{ #category : #accessing }
+LcsValidationCondition >> errorMessage: aStringOrBlock [
+	errorMessage := aStringOrBlock 
 ]
 
 { #category : #validation }
@@ -221,4 +232,11 @@ LcsValidationCondition >> validationDescriptionDescription [
 		addCondition: [:aValue | aValue trimBoth isNotEmpty ] labelled: 'A description is required';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : #accessing }
+LcsValidationCondition >> validationErrorMessage [
+	^ self errorMessage 
+		ifNil: [ self validationDescription ifNil: [ '' ] ] 
+		ifNotNil: [ self errorMessage value ]
 ]

@@ -9,6 +9,13 @@ Class {
 	#category : #'Lcs-Magritte-Tests-Examples'
 }
 
+{ #category : #debugging }
+LcsMagritteFormExamples >> simulateClickOnAcceptButtonAction [
+	"This is to be used for debugging purposes"
+	self subjectScripterMemento commit.
+	self subjectScripter model buildJobSteps
+]
+
 { #category : #accessing }
 LcsMagritteFormExamples >> subject [
 	^ subject

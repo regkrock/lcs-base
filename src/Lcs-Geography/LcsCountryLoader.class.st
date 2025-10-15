@@ -25,11 +25,6 @@ NT	Northwest Territory	Territory'
 ]
 
 { #category : #'as yet unclassified' }
-LcsCountryLoader >> caSubdivisionDataSchema [
-	^#( 'code' 'formalName' 'politicalUnit' )
-]
-
-{ #category : #'as yet unclassified' }
 LcsCountryLoader >> collectionSize [
 	| stream numberOfLines|
 	numberOfLines := 0.
@@ -43,9 +38,9 @@ LcsCountryLoader >> collectionSize [
 
 { #category : #data }
 LcsCountryLoader >> data [
-	^ 'Canada	CA	CAN	124	Canada
-United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom
-United States of America (the)	US	USA	840	United States'
+	^ 'Canada	CA	CAN	124	Canada	LcsCanadaPostalCode	LcsCanadaSubdivision	Province
+United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom	LcsGenericPostalCode	LcsCountrySubdivision	 
+United States of America (the)	US	USA	840	United States	LcsZipCode	LcsUnitedStatesSubdivision	State'
 ]
 
 { #category : #data }
@@ -316,17 +311,19 @@ LcsCountryLoader >> load [
 LcsCountryLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray [
 	| instance line setters subdivisionSelector | 
 	setters := anArray collect: [ :each | (each , ':') asSymbol ].
+	Transcript traceCr: 'Loading Countries'.
 	[ aDataStream atEnd ] whileFalse: [
 		instance := aTargetClass new.
 		line := aDataStream nextLine. 
-		(line substrings: {Character tab}) doWithIndex: [ :value :index |
-			instance perform: (setters at: index) with: value ].
+		Transcript traceCr: '--Country--' , line.
+		setters with: (line substrings: {Character tab}) do: [ :setter :value |
+			instance perform: setter with: value ].
 		subdivisionSelector := (instance isoCode asLowercase , 'SubdivisionData') asSymbol.
 		(self respondsTo: subdivisionSelector) ifTrue: [
 			self 
 				loadSubdivisionsFrom: (self perform:  subdivisionSelector) readStream 
 				class: LcsBaseCountrySubdivision 
-				schema: self usSubdivisionDataSchema 
+				schema: self subdivisionDataSchema 
 				context: instance ] ] 
 ]
 
@@ -337,13 +334,14 @@ LcsCountryLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass schema
 	[ aDataStream atEnd ] whileFalse: [
 		instance := aTargetClass newInContextOf: aCountry.
 		line := aDataStream nextLine. 
-		(line substrings: {Character tab}) doWithIndex: [ :value :index |.
+		Transcript traceCr: '--Province--' , line.
+		(line substrings: {Character tab}) doWithIndex: [ :value :index |
 			instance perform: (setters at: index) with: value ] ] 
 ]
 
 { #category : #loading }
 LcsCountryLoader >> schema [
-	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' )
+	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' 'postalCodeClass' 'subdivisionClass' 'subdivisionName')
 ]
 
 { #category : #accessing }
@@ -354,6 +352,11 @@ LcsCountryLoader >> schemaSetters [
 { #category : #accessing }
 LcsCountryLoader >> schemaSetters: anObject [
 	schemaSetters := anObject
+]
+
+{ #category : #'as yet unclassified' }
+LcsCountryLoader >> subdivisionDataSchema [
+	^#( 'isoCode' 'formalName' 'subdivisionName' )
 ]
 
 { #category : #'as yet unclassified' }
@@ -414,9 +417,4 @@ WV	West Virginia	State
 WI	Wisconsin	State
 WY	Wyoming	State
 DC	District of Columbia	District'
-]
-
-{ #category : #'as yet unclassified' }
-LcsCountryLoader >> usSubdivisionDataSchema [
-	^#( 'isoCode' 'formalName' 'subdivisionName' )
 ]

@@ -29,7 +29,7 @@ LcsBasePerson class >> firstNameSlotDefinition [
 { #category : #'slot definition' }
 LcsBasePerson class >> genderSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'gender';
 		addSlotType: LcsGender;
 		collectionSlotName: 'genders';
@@ -57,7 +57,7 @@ LcsBasePerson class >> surnameSlotDefinition [
 { #category : #'slot definition' }
 LcsBasePerson class >> titleSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'title';
 		addSlotType: LcsTitle;
 		collectionSlotName: 'titles';

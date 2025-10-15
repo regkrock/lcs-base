@@ -15,9 +15,9 @@ Class {
 { #category : #'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultCountrySlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'defaultCountry';
-		slotTypes: (OrderedCollection with: LcsCountry);
+		slotTypes: (OrderedCollection with: LcsCountry with: LcsUnknownCountry);
 		collectionSlotModuleName: 'Geography Module';
 		collectionSlotName: 'countries';
 		yourself

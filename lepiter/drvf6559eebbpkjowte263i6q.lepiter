@@ -476,7 +476,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T13:05:02.266807-04:00"
+						"dateAndTimeString" : "2025-10-09T19:48:34.684266-04:00"
 					}
 				},
 				"uid" : {
@@ -486,7 +486,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{The purpose of {{gtClass:name=LcsMemberOfSlot}} is to defined a slot where the contents of the slot is an object which is the member of a collection. \n\nIn the prototype example, there exists and organization class which has a chiefExecutiveOfficer slot. This slot is defined to contain a person object and that person object is a member of the persons collection."
+				"string" : "{The purpose of {{gtClass:name=LcsMemberOfGlobalCollectionSlot}} is to defined a slot where the contents of the slot is an object which is the member of a collection. \n\nIn the prototype example, there exists and organization class which has a chiefExecutiveOfficer slot. This slot is defined to contain a person object and that person object is a member of the persons collection."
 			},
 			{
 				"__type" : "textSnippet",

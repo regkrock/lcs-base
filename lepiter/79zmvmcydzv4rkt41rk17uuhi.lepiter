@@ -29,14 +29,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T08:53:28.196443-05:00"
+						"dateAndTimeString" : "2025-10-09T19:49:34.420868-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "TgE1JyDoDQCwNxqtAfjseg=="
 				},
-				"code" : "^ LcsMemberOfSlotBuilder new\r\ttargetClass: LcsAuthor;\r\tslotName: 'person';\r\tcollectionSlotName: 'persons';\r\tcollectionSlotModuleName:LcsLegalEntitiesModule moduleName;\r\tfullyInstall"
+				"code" : "^ LcsMemberOfGlobalCollectionSlotBuilder new\r\ttargetClass: LcsAuthor;\r\tslotName: 'person';\r\tcollectionSlotName: 'persons';\r\tcollectionSlotModuleName:LcsLegalEntitiesModule moduleName;\r\tfullyInstall"
 			},
 			{
 				"__type" : "textSnippet",

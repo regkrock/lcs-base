@@ -32,7 +32,7 @@ LcsAuthor class >> parentSlotDefinition [
 { #category : #'slot definitions' }
 LcsAuthor class >> personSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'person';
 		collectionSlotName: 'persons';
 		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;

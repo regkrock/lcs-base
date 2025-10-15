@@ -107,10 +107,10 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> createForPrefix: aPrefix roo
 { #category : #configuration }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
-	self domainInstanceSlotName: self classRootName asValidSelector.
+	"self domainInstanceSlotName: self classRootName asValidSelector.
 	self collectionSlotName: self domainInstanceSlotName asEnglishPlural.
 	self newDomainClassName: self classPrefix , aRootName.
-	self collectionClassName: self newDomainClassName asEnglishPlural
+	self collectionClassName: self newDomainClassName asEnglishPlural"
 ]
 
 { #category : #accessing }
@@ -161,7 +161,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> installNewClassesInPackageNa
 
 { #category : #builders }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> memberOfSlotBuilderFor: aTargetClass [ 
-	^ LcsMemberOfSlotBuilder new
+	^ LcsMemberOfGlobalCollectionSlotBuilder new
 		targetClassName: aTargetClass name;
 		slotName: self domainInstanceSlotName;
 		collectionSlotName: self collectionSlotName;

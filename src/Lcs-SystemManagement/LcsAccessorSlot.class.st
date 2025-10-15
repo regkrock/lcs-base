@@ -18,7 +18,8 @@ Class {
 	#superclass : #LcsBaseSlot,
 	#instVars : [
 		'validator',
-		'variableUpdatePolicy'
+		'variableUpdatePolicy',
+		'postUpdateActions'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -62,6 +63,16 @@ LcsAccessorSlot >> _slotVarPut: anObject in: aDomainObject [
 		to: anObject
 ]
 
+{ #category : #'post update actions' }
+LcsAccessorSlot >> addPostUpdateAction: anUpdateAction [
+	self postUpdateActions addUpdateAction: anUpdateAction
+]
+
+{ #category : #'slot definitions' }
+LcsAccessorSlot >> addSubclassesOf: aClass [
+	aClass subclassesDo: [ :each | self addSlotType: each ] 
+]
+
 { #category : #validation }
 LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 	(self domainClass allInstVarNames includes: self slotName)
@@ -69,7 +80,7 @@ LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
-{ #category : #validations }
+{ #category : #val }
 LcsAccessorSlot >> addValidationCondition: aValidationCondition [
 	self validationConditions addValidationCondition: aValidationCondition
 ]
@@ -166,7 +177,7 @@ LcsAccessorSlot >> beRequired [
 	self required: true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'history saving' }
 LcsAccessorSlot >> changeHistoryRepresentationIn: aNewObject [
 	^ aNewObject isDomainObject ifTrue: [ aNewObject uuid ] ifFalse: [ aNewObject ]
 ]
@@ -309,6 +320,7 @@ LcsAccessorSlot >> initialize [
 	super initialize.
 	self makeUpdateOfVariableViaUnitOfWork.
 	self validationConditions: (LcsValidationConditions newOn: self).
+	self postUpdateActions: (LcsUpdateActions newOn: self).
 	self initialValueBlock: self defaultInitialValueBlock.
 	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
 	self allowNil: false.
@@ -418,6 +430,16 @@ LcsAccessorSlot >> persistedSlotVarIn: aDomainObject [
 	^ aDomainObject instVarNamed: self slotName asString
 ]
 
+{ #category : #accessing }
+LcsAccessorSlot >> postUpdateActions [
+	^ postUpdateActions
+]
+
+{ #category : #accessing }
+LcsAccessorSlot >> postUpdateActions: anObject [
+	postUpdateActions := anObject
+]
+
 { #category : #properties }
 LcsAccessorSlot >> prevalidationTransformBlock [
 	^ self propertyAt: 'prevalidationTransformBlock'
@@ -440,6 +462,11 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 						arguments: LcsAccessorSlot valueSlotBlockArguments);
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : #validations }
+LcsAccessorSlot >> removePostUpdateAction: anUpdateAction [
+	self postUpdateActions remove: anUpdateAction
 ]
 
 { #category : #validations }
@@ -494,6 +521,14 @@ LcsAccessorSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
 LcsAccessorSlot >> setterSelector [
 	^ (self getterSelector , ':') asSymbol
 		
+]
+
+{ #category : #'slot model' }
+LcsAccessorSlot >> signalInvalidSlotTypeError: anObject for: aDomainObject [ 
+	LcsInvalidSlotTypeError
+		signalInvalidType: anObject
+		forSlot: self
+		for: aDomainObject
 ]
 
 { #category : #validation }
@@ -642,13 +677,19 @@ LcsAccessorSlot >> verifySlotType: anObject for: aDomainObject [
 ]
 
 { #category : #'slot model' }
-LcsAccessorSlot >> verifyType: anObject for: aDomainObject [
-	(self isNilAllowed and: [ anObject isNil ]) ifTrue: [ ^ true ].
+LcsAccessorSlot >> verifySlotTypeOf: anObject for: aDomainObject [
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
-		ifNone: [ 
-			LcsInvalidSlotTypeError
-				signalInvalidType: anObject
-				forSlot: self
-				for: aDomainObject ]
+		ifNone: [ self signalInvalidSlotTypeError: anObject for: aDomainObject  ]
+]
+
+{ #category : #'slot model' }
+LcsAccessorSlot >> verifyType: anObject for: aDomainObject [
+	(self isNilAllowed and: [ anObject isNil ]) ifTrue: [ ^ true ].
+	self verifySlotTypeOf: anObject for: aDomainObject
+]
+
+{ #category : #'slot model' }
+LcsAccessorSlot >> verifyTypeBlock: anObject [
+	^ [ :eachClass | anObject isKindOf: eachClass ]
 ]

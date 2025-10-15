@@ -8,7 +8,9 @@ Class {
 		'isoCode3',
 		'commonName',
 		'subdivisions',
-		'isoNumber'
+		'isoNumber',
+		'subdivisionClass',
+		'postalCodeClass'
 	],
 	#category : #'Lcs-Geography-Domain'
 }
@@ -82,12 +84,23 @@ LcsCountry class >> parentSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
+LcsCountry class >> postalCodeClassSlotDefinition [
+	<slotDefinition>
+	^ LcsPostalCodeClassSlot new
+]
+
+{ #category : #'slot definitions' }
+LcsCountry class >> subdivisionClassSlotDefinition [
+	<slotDefinition>
+	^ LcsCountrySubdivisionClassSlot new
+]
+
+{ #category : #'slot definitions' }
 LcsCountry class >> subdivisionNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: #subdivisionName;
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :domainObject :oldValue | value size < 3 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -109,6 +122,11 @@ LcsCountry >> commonName [
 { #category : #accessing }
 LcsCountry >> commonName: anObject [
 	self slotVarNamed: 'commonName' put: anObject
+]
+
+{ #category : #printing }
+LcsCountry >> displayString [
+	^ self commonName asString
 ]
 
 { #category : #accessing }
@@ -149,6 +167,26 @@ LcsCountry >> isoNumber [
 { #category : #accessing }
 LcsCountry >> isoNumber: anObject [
 	self slotVarNamed: 'isoNumber' put: anObject
+]
+
+{ #category : #accessing }
+LcsCountry >> postalCodeClass [
+	^ self slotVarNamed: 'postalCodeClass'
+]
+
+{ #category : #accessing }
+LcsCountry >> postalCodeClass: anObject [
+	self slotVarNamed: 'postalCodeClass' put: anObject
+]
+
+{ #category : #accessing }
+LcsCountry >> subdivisionClass [
+	^ self slotVarNamed: 'subdivisionClass'
+]
+
+{ #category : #accessing }
+LcsCountry >> subdivisionClass: anObject [
+	self slotVarNamed: 'subdivisionClass' put: anObject
 ]
 
 { #category : #accessing }

@@ -103,14 +103,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-12T15:00:28.452777-04:00"
+						"dateAndTimeString" : "2025-06-27T11:33:43.652088-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "axdqHqjUDQCeiChFB96p6A=="
 				},
-				"code" : "LcsSlotModelDiagramExamples new slotDefinitionsHierarchy",
+				"code" : "LcsSlotModelDiagramExamples new slotClassesHierarchy",
 				"elementHeight" : 214,
 				"codeHeight" : 50,
 				"codeVisible" : true

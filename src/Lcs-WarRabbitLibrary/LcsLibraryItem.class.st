@@ -51,7 +51,7 @@ LcsLibraryItem class >> itemNameSlotDefinition [
 { #category : #'slot definitions' }
 LcsLibraryItem class >> libraryCategorySlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'libraryCategory';
 		collectionSlotName: 'libraryCategories';
 		collectionSlotModuleName: 'WarRabbitLibrary';
@@ -62,7 +62,7 @@ LcsLibraryItem class >> libraryCategorySlotDefinition [
 { #category : #'slot definitions' }
 LcsLibraryItem class >> librearyCategorySlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'libraryCategory';
 		collectionSlotName: 'libraryCategories';
 		collectionSlotModuleName: 'WarRabbitLibrary';

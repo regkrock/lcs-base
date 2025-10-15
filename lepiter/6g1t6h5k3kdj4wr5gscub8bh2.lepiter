@@ -387,7 +387,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-15T15:09:16.236003-04:00"
+						"dateAndTimeString" : "2025-10-15T10:05:41.866941-04:00"
 					}
 				},
 				"uid" : {
@@ -397,7 +397,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**..ToManyRelationDescription**\ndefault stencil: {{gtClass:GtMagritteListElementStencilBuilder}} \n- then #build the stencil\nexectur of the build: {{gtClass:BrStencilValuableExecutor}}\n\n*For SlotTypes the Stencil is defined in {{gtMethod:LcsBaseSlot>>#slotTypesDescription}}*\n\n\n"
+				"string" : "**..ToManyRelationDescription**\ndefault stencil: {{gtClass:GtMagritteListElementStencilBuilder}} \n- then #build the stencil\nexector of the build: {{gtClass:BrStencilValuableExecutor}}\n\n*For SlotTypes the Stencil is defined in {{gtMethod:LcsBaseSlot>>#slotTypesDescription}}*\n\n\n"
 			}
 		]
 	},

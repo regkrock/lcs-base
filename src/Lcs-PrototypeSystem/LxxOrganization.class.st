@@ -10,7 +10,7 @@ Class {
 { #category : #'slot definitions' }
 LxxOrganization class >> chiefExecutiveOfficerSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'chiefExecutiveOfficer';
 		collectionSlotName: 'persons';
 		collectionSlotModuleName: LxxPersonsModule defaultModuleName;

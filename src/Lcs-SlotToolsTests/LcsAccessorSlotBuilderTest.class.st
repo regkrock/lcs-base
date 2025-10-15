@@ -69,21 +69,6 @@ LcsAccessorSlotBuilderTest >> testInitalValueSetToNil [
 ]
 
 { #category : #tests }
-LcsAccessorSlotBuilderTest >> testInitialValueBlockDescription [
-	| description |
-	self subject: LcsAccessorSlotBuilder new.
-	self assert: self subject initialValueBlock asString equals: '[ ]'.
-	
-	description := self subject initialValueBlockDescription.
-	self assert: (description read: self subject) = ''.
-			
-	description write: '0' to: self subject.
-	self assert: (description read: self subject) equals: '0'.
-
-	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 ]'
-]
-
-{ #category : #tests }
 LcsAccessorSlotBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsAccessorSlotBuilder new
@@ -163,6 +148,21 @@ LcsAccessorSlotBuilderTest >> testSlotTypesDescription [
 	self assert: (description read: self subject) equals: #(#String).
 	description write: #(#String #Integer) to: self subject.
 	self assert: self subject slotTypes equals: { String. Integer}.
+]
+
+{ #category : #tests }
+LcsAccessorSlotBuilderTest >> testUpdatingInitialValueBlockViaMagritteDescription [
+	| description |
+	self subject: LcsAccessorSlotBuilder new.
+	self assert: self subject initialValueBlock asString equals: '[ ]'.
+	
+	description := self subject initialValueBlockDescription.
+	self assert: (description read: self subject) = ''.
+			
+	description write: '0' to: self subject.
+	self assert: (description read: self subject) equals: '0'.
+
+	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 ]'
 ]
 
 { #category : #tests }

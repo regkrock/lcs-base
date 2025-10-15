@@ -19,7 +19,7 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 { #category : #'slot definitions' }
 LcsLegalEntity class >> mainAddressSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfSlot new
+	^ LcsMemberOfGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsAddress);
 		slotName: 'mainAddress';
 		collectionSlotName: 'addresses';

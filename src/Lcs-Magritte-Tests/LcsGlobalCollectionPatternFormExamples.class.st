@@ -109,9 +109,15 @@ LcsGlobalCollectionPatternFormExamples >> formScripterWithRootNameEntered [
 	self
 		validateEntryOf: 'Foo'
 		into: (self fieldIdFor: #classRootNameDescription)
-		resultingAccept: true
+		resultingAccept: false
 		cancel: true.
 
+	self
+		validateEntryOf: 'foo'
+		into: (self fieldIdFor: #domainInstanceSlotNameDescription)
+		resultingAccept: true
+		cancel: true.
+		
 	self assert: (self currentValueOf: #classRootNameDescription) equals: 'Foo'.
 	self assert: (self previousValueOf: #classRootNameDescription) equals: nil.
 	self assert: self subjectScripterModel slotModelBuilder classRootName equals: nil.
@@ -143,7 +149,14 @@ LcsGlobalCollectionPatternFormExamples >> formScripterWithRootNameEnteredAndBuil
 	builder := self subjectScripterModel slotModelBuilder.
 	self assert: builder jobSteps isEmpty.
 
-	self clickOn: (self actionIdFor: #magritteAcceptAction).
+	"self clickOn: (self actionIdFor: #magritteAcceptAction)."
+	"self simulateClickOnAcceptButtonAction."
+	
+	self assert:  builder domainInstanceSlotName isNil.
+	self subjectScripterMemento commit.
+	self assert:  builder domainInstanceSlotName equals: 'foo'.
+
+	self subjectScripter model buildJobSteps.
 	
 	self assert: builder jobSteps isNotEmpty.
 	self assert: builder jobSteps numberOfSteps equals: 6.
