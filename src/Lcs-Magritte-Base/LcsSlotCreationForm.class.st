@@ -420,6 +420,12 @@ LcsSlotCreationForm >> packageAndTagName: anObject [
 ]
 
 { #category : #magritte }
+LcsSlotCreationForm >> postUpdateActionsDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #postUpdateActions
+]
+
+{ #category : #magritte }
 LcsSlotCreationForm >> prevalidationTransformBlockDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #prevalidationTransformBlock

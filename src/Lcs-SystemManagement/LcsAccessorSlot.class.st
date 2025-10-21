@@ -445,6 +445,35 @@ LcsAccessorSlot >> postUpdateActions: anObject [
 	self properties at: 'postUpdateActions' put:anObject
 ]
 
+{ #category : #magritte }
+LcsAccessorSlot >> postUpdateActionsDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  accessor: (MAChainAccessor accessors: #(#postUpdateActions #collection));
+		  label: 'Post Update Actions';
+		  default: #(  );
+		  classes: { LcsUpdateAction };
+		  priority: 35;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [ LcsUpdateAction new
+		  						parent: self postUpdateActions;
+		  						yourself ]
+]
+
 { #category : #properties }
 LcsAccessorSlot >> prevalidationTransformBlock [
 	^ self propertyAt: 'prevalidationTransformBlock'
@@ -556,7 +585,7 @@ LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
 { #category : #'slot model' }
 LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject oldValue: anExistingObject [
 	| transformedObject |
-	transformedObject := self prevalidationTransformBlock cull: anObject cull: self cull: anExistingObject.
+	transformedObject := self prevalidationTransformBlock cull: anObject cull: self cull: aDomainObject.
 	self variableUpdatePolicy slotVarPut: transformedObject in: aDomainObject oldValue: anExistingObject.
 	self postUpdateActions execute: transformedObject context: aDomainObject oldValue: anExistingObject
 ]

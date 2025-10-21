@@ -163,6 +163,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 LcsAccessorSlotBuilder >> initialize [
 	super initialize.
 	self validationConditions: (LcsValidationConditions newOn: self).
+	self postUpdateActions: (LcsUpdateActions newOn: self)
 ]
 
 { #category : #initialize }
@@ -188,6 +189,45 @@ LcsAccessorSlotBuilder >> isNullAllowed [
 { #category : #querying }
 LcsAccessorSlotBuilder >> jobStep: anInteger [
 	^ self jobSteps jobStep: anInteger
+]
+
+{ #category : #properties }
+LcsAccessorSlotBuilder >> postUpdateActions [
+	^ self propertyAt: #postUpdateActions ifAbsentPut: [ LcsUpdateAction newOn: self]
+]
+
+{ #category : #properties }
+LcsAccessorSlotBuilder >> postUpdateActions: anObject [
+	self propertyAt: #postUpdateActions put: anObject
+]
+
+{ #category : #margritte }
+LcsAccessorSlotBuilder >> postUpdateActionsDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  accessor: (MAChainAccessor accessors: #(#postUpdateActions #collection));
+		  label: 'Post Update Actions';
+		  default: #(  );
+		  classes: { LcsUpdateAction };
+		  priority: 35;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [ LcsUpdateAction new
+		  						parent: self postUpdateActions;
+		  						yourself ]
 ]
 
 { #category : #properties }

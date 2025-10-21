@@ -30,5 +30,12 @@ LcsAddressExamples >> canadaAddress [
 	self assert: address country equals: country.
 	self assert: address postalCode class equals: country postalCodeClass.
 	self assert: address province equals: country subdivisions defaultInstance.
+	
+	address province: 'ON'.
+	self assert: address province isoCode equals: 'ON'.
+		
+	address postalCode code: 'K8A 6W8'.
+	self assert: address postalCode code equals: 'K8A 6W8'.
+	
 	^ address
 ]

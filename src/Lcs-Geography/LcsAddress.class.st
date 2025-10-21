@@ -109,6 +109,8 @@ LcsAddress class >> provinceSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfCollectionInSiblingSlotObjectSlot new
 		slotName: 'province';
+		prevalidationTransformBlock: [ :value :slot :domainObject | 
+			(slot targetCollectionIn: domainObject) detect: [ :each | each isoCode = value ] ifNone: [ value ] ];
 		siblingSlotName: 'country';
 		siblingCollectionSlotName: 'subdivisions';
 		required: true;
