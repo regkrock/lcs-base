@@ -46,13 +46,31 @@ LcsUpdateAction >> actionBlockDescription [
 
 { #category : #'code generation' }
 LcsUpdateAction >> addCodeGenerationDetailsTo: aCodeStream [
-	| value |
+	| baseObject newValue originalValue hasDetailLines instanceVarNames|
+	hasDetailLines := false.
+	baseObject := self class new.
 	aCodeStream 
 		newLine;
 		nextPutAll: self className asString , ' new'.
 	aCodeStream indent.
-	self class allInstVarNames do: [ :eachVarName |
-		self addInstVarSetterFor: eachVarName to: aCodeStream]
+	instanceVarNames := self class allInstVarNames reject: [ :each | each = 'parent'].
+	instanceVarNames do: [ :eachVarName |
+		newValue := self instVarNamed: eachVarName.
+		originalValue := baseObject instVarNamed: eachVarName. 
+		newValue isBlock 
+			ifTrue: [ 
+				newValue displayString ~= originalValue displayString
+					ifTrue: [ 
+						hasDetailLines := true.
+						self addInstVarSetterFor: eachVarName to: aCodeStream ] ]
+			ifFalse: [
+				 newValue ~= originalValue
+				 	ifTrue: [
+				 		hasDetailLines := true.
+				 		self addInstVarSetterFor: eachVarName to: aCodeStream ] ] ].
+	hasDetailLines ifTrue: [ 
+		aCodeStream addYourself].
+
 ]
 
 { #category : #'code generation' }

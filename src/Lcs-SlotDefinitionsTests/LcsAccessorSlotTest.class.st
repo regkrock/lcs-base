@@ -24,11 +24,34 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGeneration [
 	self subject: LcsAccessorSlotExamples new accessorSlotWithPostUpdateActions.
 	aStream addKeyword: 'addPostUpdateAction' with: self subject postUpdateActions first.
 	self assert: aStream contents equals: 'addPostUpdateAction: (
-	LcsUpdateSiblingWithCollectionDefault new 
+	LcsUpdateSiblingWithCollectionDefault new
 		description: ''When country changes, update the default province'';
 		siblingSlotName: ''province'';
 		sourceCollectionSlotName: ''subdivisions'';
 		yourself).'
+]
+
+{ #category : #tests }
+LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithDifferentActionBlock [
+	| aStream |
+	aStream := LcsMethodStream new.
+	self subject: LcsAccessorSlotExamples new accessorSlotWithBasicPostUpdateActions.
+	self subject postUpdateActions first actionBlock: [ :newValue :domainObject :oldValue | ]. 
+	aStream addKeyword: 'addPostUpdateAction' with: self subject postUpdateActions first.
+	self assert: aStream contents equals: 'addPostUpdateAction: (
+	LcsUpdateSiblingWithCollectionDefault new
+		actionBlock: [ :newValue :domainObject :oldValue | ];
+		yourself).'
+]
+
+{ #category : #tests }
+LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithNoChanges [
+	| aStream |
+	aStream := LcsMethodStream new.
+	self subject: LcsAccessorSlotExamples new accessorSlotWithBasicPostUpdateActions.
+	aStream addKeyword: 'addPostUpdateAction' with: self subject postUpdateActions first.
+	self assert: aStream contents equals: 'addPostUpdateAction: (
+	LcsUpdateSiblingWithCollectionDefault new).'
 ]
 
 { #category : #tests }

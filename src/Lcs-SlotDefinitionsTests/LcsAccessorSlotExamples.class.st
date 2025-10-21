@@ -38,6 +38,17 @@ LcsAccessorSlotExamples >> accessorSlot [
 ]
 
 { #category : #examples }
+LcsAccessorSlotExamples >> accessorSlotWithBasicPostUpdateActions [
+	<gtExample>
+	| accessorSlot |
+	accessorSlot := self accessorSlot.
+	accessorSlot slotName: 'test'.
+	accessorSlot addPostUpdateAction: (LcsUpdateSiblingWithCollectionDefault new).
+	self assert: accessorSlot postUpdateActions collection size equals: 1.
+	^ accessorSlot
+]
+
+{ #category : #examples }
 LcsAccessorSlotExamples >> accessorSlotWithDummyPostUpdateAction [
 	<gtExample>
 	| accessorSlot |
