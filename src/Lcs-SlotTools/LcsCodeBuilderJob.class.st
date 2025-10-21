@@ -206,7 +206,7 @@ LcsCodeBuilderJob >> stepNumber [
 
 { #category : #command }
 LcsCodeBuilderJob >> traceStep: aMethodName [
-	self traceCr: aMethodName , '-' , self printString
+	LcsBuilderLogger log: aMethodName , '-' , self printString
 ]
 
 { #category : #'gt views' }

@@ -5,9 +5,9 @@ Class {
 }
 
 { #category : #examples }
-LcsCountryExamples >> canada [ 
+LcsCountryExamples >> canada [
 	<gtExample>
-	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |
+	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName subdivisionClass postalCodeClass |
 	self ensureCurrentsystemIsMainSystem.
 	commonName := 'Canada'.
 	formalName := 'Dominion of Canada'.
@@ -15,6 +15,8 @@ LcsCountryExamples >> canada [
 	isoCode3 := 'CAD'.
 	isoNumber := '123'.
 	subdivisionName := 'Province'.
+	subdivisionClass := LcsCanadaSubdivision.
+	postalCodeClass := LcsCanadaPostalCode.
 	country := LcsCountry new
 			commonName: commonName;
 			formalName: formalName;
@@ -22,6 +24,8 @@ LcsCountryExamples >> canada [
 			isoCode3: isoCode3;
 			isoNumber: isoNumber;
 			subdivisionName: subdivisionName;
+			subdivisionClass: subdivisionClass;
+			postalCodeClass: postalCodeClass;
 			yourself.
 	self assert: country commonName equals: commonName.
 	self assert: country formalName equals: formalName.
@@ -29,6 +33,8 @@ LcsCountryExamples >> canada [
 	self assert: country isoCode3 equals: isoCode3.
 	self assert: country isoNumber equals: isoNumber.
 	self assert: country subdivisionName equals: subdivisionName.
+	self assert: country subdivisionClass equals: subdivisionClass.
+	self assert: country postalCodeClass equals: postalCodeClass.
 	^ country
 ]
 

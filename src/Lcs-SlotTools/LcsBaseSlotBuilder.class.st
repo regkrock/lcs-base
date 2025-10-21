@@ -106,6 +106,11 @@ LcsBaseSlotBuilder >> initialize [
 
 ]
 
+{ #category : #initialize }
+LcsBaseSlotBuilder >> initializeJobSteps [
+	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
+]
+
 { #category : #command }
 LcsBaseSlotBuilder >> installCode [
 	self traceStep: 'installCode'.
@@ -306,7 +311,7 @@ LcsBaseSlotBuilder >> slotTypesDescription [
 		addCondition: [ :aValue | 
 				aValue
 					allSatisfy: [ :eachClassName | 
-						self traceCr: eachClassName isClass asString , ' - ' , eachClassName asString.
+						LcsBuilderLogger log: eachClassName isClass asString , ' - ' , eachClassName asString.
 						eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
 			labelled: 'Unknown Class(s)';
 		addCondition: [ :aValue | 

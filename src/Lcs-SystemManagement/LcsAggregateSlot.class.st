@@ -18,6 +18,7 @@ Class {
 { #category : #'slot model' }
 LcsAggregateSlot >> slotVarPut: anObject in: aDomainObject [
 	| originalObject |
+	self deprecated: 'Need to pass the old value as well'.
 	"More work required here as the fact that they were sapped needs to be recorded"
 	originalObject := self persistedSlotVarIn: aDomainObject.
 	super slotVarPut: anObject in: aDomainObject.

@@ -346,7 +346,7 @@ LcsCodeBuilderStep >> targetPackageName: anObject [
 
 { #category : #trace }
 LcsCodeBuilderStep >> traceStep: aString [
-	self traceCr: aString , '- ' , self jobStepDescription , '(' , self class name , ')'.
+	LcsBuilderLogger log: aString , '- ' , self jobStepDescription , '(' , self class name , ')'.
 ]
 
 { #category : #'gt views' }

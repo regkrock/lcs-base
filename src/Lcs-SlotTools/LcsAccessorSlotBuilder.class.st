@@ -166,11 +166,6 @@ LcsAccessorSlotBuilder >> initialize [
 ]
 
 { #category : #initialize }
-LcsAccessorSlotBuilder >> initializeJobSteps [
-	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
-]
-
-{ #category : #initialize }
 LcsAccessorSlotBuilder >> initializeOn: aBuilderOrBuilderJob [ 
 	self parent: aBuilderOrBuilderJob
 ]

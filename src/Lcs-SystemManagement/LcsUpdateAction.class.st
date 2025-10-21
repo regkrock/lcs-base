@@ -44,6 +44,33 @@ LcsUpdateAction >> actionBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
+{ #category : #'code generation' }
+LcsUpdateAction >> addCodeGenerationDetailsTo: aCodeStream [
+	| value |
+	aCodeStream 
+		newLine;
+		nextPutAll: self className asString , ' new'.
+	aCodeStream indent.
+	self class allInstVarNames do: [ :eachVarName |
+		self addInstVarSetterFor: eachVarName to: aCodeStream]
+]
+
+{ #category : #'code generation' }
+LcsUpdateAction >> addInstVarSetterFor: aVarName to: aCodeStream [
+	aVarName asString = 'parent' ifTrue: [ ^ self ].
+	aCodeStream
+		addKeyword: aVarName
+		argument: (self creationStringForValueOf: aVarName)
+]
+
+{ #category : #'code generation' }
+LcsUpdateAction >> creationStringForValueOf: aVarName [
+	| object |
+	object := self instVarNamed: aVarName.
+	object isBlock ifTrue: [ ^ object displayString ].
+	^ object printString
+]
+
 { #category : #defaults }
 LcsUpdateAction >> defaultActionBlock [
 	"do nothing"
@@ -66,11 +93,18 @@ LcsUpdateAction >> descriptionDescription [
 	^ MAStringDescription new
 		label: 'Description';
 		priority: 9;
-		accessor: #dscription;
+		accessor: #description;
 		default: '';
 		addCondition: [:aValue | aValue trimBoth isNotEmpty ] labelled: 'A description is required';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : #message }
+LcsUpdateAction >> errorDescription [
+	^ self class name asString , ' Error ' , self description
+		ifNil: [ '' ]
+		ifNotNil: ' - ' , self description
 ]
 
 { #category : #validation }
@@ -85,34 +119,16 @@ LcsUpdateAction >> execute: aValue context: aDomainObject [
 
 { #category : #validation }
 LcsUpdateAction >> execute: aValue context: aDomainObject oldValue: anOldValue [
-	| isError |
-	isError := 
-		[ self actionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
-			on: Error
-			do: [ :s | 
-				LcsSlotValidationExecutionError
-					signalInvalidValue: aValue
-					forCondition: self
-					inSlot: self slotDefinition
+	[ self actionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
+		on: Error
+		do: [ :s | 
+				LcsUpdateActionExecutionError
+					signalErrForValue: aValue
+					updateAction: self
+					slot: self slotDefinition
 					context: aDomainObject
 					oldValue: anOldValue
-					message: s message asString ].
-	isError isBoolean
-		ifFalse: [ LcsSlotValidationNonBooleanResultError
-				signalBooleanNotReturnedFor: aValue
-				condition: self
-				inSlot: self slotDefinition
-				context: aDomainObject
-				oldValue: anOldValue ].
-
-	isError == true
-		ifTrue: [ LcsSlotValidationError
-				signalInvalidValue: aValue
-				forCondition: self
-				inSlot: self slotDefinition
-				oldValue: anOldValue
-				context: aDomainObject ].
-	^ isError
+					message: s message asString ]
 ]
 
 { #category : #comparing }
@@ -165,4 +181,8 @@ LcsUpdateAction >> magritteInspectAction [
 { #category : #'slot model' }
 LcsUpdateAction >> slotDefinition [
 	^ self parent ifNotNil: [:p | p slotDefinition ]
+]
+
+{ #category : #'code generation' }
+LcsUpdateAction >> writeOnCodeStream: aCodeStream [
 ]

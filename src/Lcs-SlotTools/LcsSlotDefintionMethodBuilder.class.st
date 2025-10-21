@@ -25,6 +25,9 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 
 	aPropertyName = 'validationConditions' ifTrue: [ 
 		^ self addValidationConditionsKeyword: aPropertyName argument: aValue to: aCodeStream ].		
+
+	aPropertyName = 'postUpdateActions' ifTrue: [ 
+		^ self addPostUpdateActionsKeyword: aPropertyName argument: aValue to: aCodeStream ].		
 		
 	aValue isString
 		ifFalse: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue asString ].
@@ -33,6 +36,19 @@ LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: 
 		ifTrue: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue ].
 
 	aCodeStream addKeyword: aPropertyName argument: aValue printString
+]
+
+{ #category : #'code generation' }
+LcsSlotDefintionMethodBuilder >> addPostUpdateActionsKeyword: aPropertyName argument: aPostUpdateActions to: aCodeStream [
+
+	aPostUpdateActions hasElements ifFalse: [ ^ self ].
+
+	aPostUpdateActions do: [ :each |
+		aCodeStream
+			addKeyword: 'addPostUpdateAction'
+			argument: each conditionBlock printString
+			keyword: 'description'
+			argument: each validationDescription printString  ]
 ]
 
 { #category : #'initialize\t' }

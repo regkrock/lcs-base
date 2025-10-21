@@ -7,7 +7,10 @@ Class {
 		'isoCode3',
 		'isoNumber',
 		'commonName',
-		'subdivisions'
+		'subdivisions',
+		'subdivisionName',
+		'subdivisionClass',
+		'postalCodeClass'
 	],
 	#category : #'Lcs-PrototypeSystem-Base'
 }
@@ -71,6 +74,39 @@ LxxCountry class >> parentSlotDefinition [
 ]
 
 { #category : #'slot definition' }
+LxxCountry class >> postalCodeClassSlotDefinition [
+	<slotDefinition>
+	| slotDefinition |
+	slotDefinition := LcsPostalCodeClassSlot new.
+	slotDefinition clearSlotTypes.
+	slotDefinition superclassClass: LxxBasePostCode.
+	slotDefinition initialValue: LxxGenericPostalCode.
+	slotDefinition superclassClass subclassesDo: [ :eachClass | slotDefinition addSlotType: eachClass ].
+	^ slotDefinition
+]
+
+{ #category : #'slot definition' }
+LxxCountry class >> subdivisionClassSlotDefinition [
+	<slotDefinition>
+	| slotDefinition |
+	slotDefinition := LcsCountrySubdivisionClassSlot new.
+	slotDefinition clearSlotTypes.
+	slotDefinition superclassClass:  LxxBaseCountrySubdivision.
+	slotDefinition initialValue: LxxCountrySubdivision.
+	slotDefinition superclassClass subclassesDo: [ :eachClass | slotDefinition addSlotType: eachClass ].
+	^ slotDefinition
+]
+
+{ #category : #'slot definition' }
+LxxCountry class >> subdivisionNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: #subdivisionName;
+		allowEmptyIntialValue;
+		yourself
+]
+
+{ #category : #'slot definition' }
 LxxCountry class >> subdivisionsSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -128,6 +164,36 @@ LxxCountry >> isoNumber [
 { #category : #accessing }
 LxxCountry >> isoNumber: anObject [
 	self slotVarNamed: 'isoNumber' put: anObject
+]
+
+{ #category : #accessing }
+LxxCountry >> postalCodeClass [
+	^ self slotVarNamed: 'postalCodeClass'
+]
+
+{ #category : #accessing }
+LxxCountry >> postalCodeClass: anObject [
+	self slotVarNamed: 'postalCodeClass' put: anObject
+]
+
+{ #category : #accessing }
+LxxCountry >> subdivisionClass [
+	^ self slotVarNamed: 'subdivisionClass'
+]
+
+{ #category : #accessing }
+LxxCountry >> subdivisionClass: anObject [
+	self slotVarNamed: 'subdivisionClass' put: anObject
+]
+
+{ #category : #accessing }
+LxxCountry >> subdivisionName [
+	^ self slotVarNamed: 'subdivisionName'
+]
+
+{ #category : #accessing }
+LxxCountry >> subdivisionName: anObject [
+	self slotVarNamed: 'subdivisionName' put: anObject
 ]
 
 { #category : #accessing }

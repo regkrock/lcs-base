@@ -4,16 +4,16 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
-{ #category : #defaults }
-LcsBlockSlot >> defaultInitialValueBlock [
-	^ nil
-]
-
 { #category : #'slot model' }
-LcsBlockSlot >> initialValueFor: aDomainObject [
+LcsBlockSlot >> _initialValueFor: aDomainObject [
 	^ self initialValueBlock 
 		ifNil: [ [ true ] ] 
 		ifNotNil: [ self initialValueBlock ]
+]
+
+{ #category : #defaults }
+LcsBlockSlot >> defaultInitialValueBlock [
+	^ nil
 ]
 
 { #category : #configuration }

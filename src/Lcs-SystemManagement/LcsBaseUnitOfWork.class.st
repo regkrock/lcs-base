@@ -176,6 +176,10 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 			tooltip: 'Apply Changes'
 			action: [ :aButton :aTab | 
 				self value applyChanges ];
+		actionButtonIcon: BrGlamorousVectorIcons remove 
+			tooltip: 'Cancel Changes'
+			action: [ :aButton :aTab | 
+				self value clearUnitOfWork ];
 		yourself
 ]
 

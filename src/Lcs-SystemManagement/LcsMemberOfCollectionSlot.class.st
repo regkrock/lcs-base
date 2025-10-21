@@ -14,6 +14,11 @@ LcsMemberOfCollectionSlot >> assignParent: aDomainObject to: newValue [
 	"Parent has already been assigned"
 ]
 
+{ #category : #defaults }
+LcsMemberOfCollectionSlot >> defaultInitialValueBlock [
+	^ [:domainParent | self defaultInstance ]
+]
+
 { #category : #'slot model' }
 LcsMemberOfCollectionSlot >> defaultInstance [
 	^ self targetCollection 
@@ -21,11 +26,10 @@ LcsMemberOfCollectionSlot >> defaultInstance [
 		ifNotNil: [ :collection | collection defaultInstance ]
 ]
 
-{ #category : #initialize }
+{ #category : #defaults }
 LcsMemberOfCollectionSlot >> initialize [
 	super initialize.
-	self beRequired.
-	self initialValueBlock: [:domainParent | self defaultInstance ]
+	self beRequired
 ]
 
 { #category : #message }

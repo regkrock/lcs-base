@@ -109,7 +109,6 @@ LcsValueCollectionPatternForm >> targetDomainClassesDescription [
 		addCondition: [ :aValue | 
 				aValue
 					allSatisfy: [ :eachClassName | 
-						self traceCr: eachClassName isClass asString , ' - ' , eachClassName asString.
 						eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
 			labelled: 'Unknown Class(s)'";
 		addCondition: [ :aValue | 

@@ -218,8 +218,9 @@ LcsAccessorSlotCreationFormTest >> testSlotGenerationWithOnlySlotNameChanged [
 	self slotModelBuilder slotName: 'foo'.
 
 	slotDefinitionMethodBuilder := self slotModelBuilder jobStep: 2.
-	self assert: slotDefinitionMethodBuilder properties size = 1.
+	self assert: slotDefinitionMethodBuilder properties size = 2.
 	self assert: (slotDefinitionMethodBuilder properties keys includes: 'slotName').
+	self assert: (slotDefinitionMethodBuilder properties keys includes: 'postUpdateActions').
 	self assert: (slotDefinitionMethodBuilder properties at: 'slotName') equals: 'foo'.
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'fooSlotDefinition
 	<slotDefinition>

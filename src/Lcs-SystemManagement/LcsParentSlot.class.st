@@ -20,6 +20,8 @@ LcsParentSlot >> initialize [
 
 { #category : #'slot model' }
 LcsParentSlot >> initializeSlotValueIn: aDomainObject [
+	LcsLogger logReceiver: thisContext receiver message: thisContext message.
+	LcsLogger logIndented: 'initialization deferred until added to unit of work'
 ]
 
 { #category : #'slot model' }

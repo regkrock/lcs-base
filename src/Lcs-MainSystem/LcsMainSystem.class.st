@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsMainSystem,
 	#superclass : #LcsSystem,
-	#category : #'Lcs-MainSystem'
+	#category : #'Lcs-MainSystem-Core'
 }
 
 { #category : #'slot definitions' }

@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-04T11:07:02.636555-04:00"
+						"dateAndTimeString" : "2025-10-18T08:45:11.293706-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "LCS Code to list traits, find traits, etc"
+				"string" : "##Code to list traits, find traits, etc"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -100,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-04T11:11:34.518833-04:00"
+						"dateAndTimeString" : "2025-10-18T08:45:21.400193-04:00"
 					}
 				},
 				"uid" : {
@@ -110,7 +110,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "All classes wtih traits"
+				"string" : "##All classes wtih traits"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -171,7 +171,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-04T11:11:51.675157-04:00"
+						"dateAndTimeString" : "2025-10-18T08:45:31.923187-04:00"
 					}
 				},
 				"uid" : {
@@ -181,7 +181,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Classes with a specific trait"
+				"string" : "##Classes with a specific trait"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -208,14 +208,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-04T11:39:54.1082-04:00"
+						"dateAndTimeString" : "2025-10-18T08:47:09.304859-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "wt3upu33DQCRimygBscWFQ=="
 				},
-				"code" : "targetTrait := TBlDevScripterActionStep.\rObject withAllSubclasses select: [ :each | each traits includes: targetTrait ]"
+				"code" : "targetTrait := LtCompositeAssociation.\rObject withAllSubclasses select: [ :each | each traits includes: targetTrait ]"
 			},
 			{
 				"__type" : "pharoSnippet",

@@ -55,6 +55,22 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyValidationAction [
 	^ accessorSlot
 ]
 
+{ #category : #examples }
+LcsAccessorSlotExamples >> accessorSlotWithPostUpdateActions [
+	<gtExample>
+	| accessorSlot |
+	accessorSlot := self accessorSlot.
+	accessorSlot slotName: 'test'.
+	accessorSlot addPostUpdateAction: (
+		LcsUpdateSiblingWithCollectionDefault new 
+			description: 'When country changes, update the default province';
+			siblingSlotName: 'province';
+			sourceCollectionSlotName: 'subdivisions';
+			yourself).
+	self assert: accessorSlot postUpdateActions collection size equals: 1.
+	^ accessorSlot
+]
+
 { #category : #support }
 LcsAccessorSlotExamples >> addDummyPostUpdateActionTo: accessorSlot [
 	| updateAction |

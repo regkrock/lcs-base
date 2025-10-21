@@ -31,6 +31,17 @@ LcsMethodStream >> addKeyword: aKeyword argument: aString keyword: aKeyword2 arg
 ]
 
 { #category : #building }
+LcsMethodStream >> addKeyword: aKeyword with: anAction [
+	self newLine
+		nextPutAll: aKeyword;
+		nextPutAll: ': ('.
+	self indent.
+	anAction addCodeGenerationDetailsTo: self.
+	self nextPutAll: ').'.
+	self outdent
+]
+
+{ #category : #building }
 LcsMethodStream >> addKeywords: aKeywordSelectorName arguments: aCollectionOfStrings [ 
 	| keywords count |
 	keywords := aKeywordSelectorName substrings: { Character value: 58 }.
@@ -77,12 +88,18 @@ LcsMethodStream >> contents [
 
 { #category : #accessing }
 LcsMethodStream >> decrementIndentLevel [
-	self indentLevel: self indentLevel - 1
+	self indentLevel: self indentLevel - 1.
+	self indentLevel < 0 ifTrue: [ self indentLevel: 0]
 ]
 
 { #category : #accessing }
 LcsMethodStream >> increaseIndentLevel [
 	self indentLevel: self indentLevel + 1
+]
+
+{ #category : #accessing }
+LcsMethodStream >> indent [
+	self increaseIndentLevel
 ]
 
 { #category : #accessing }
@@ -114,6 +131,16 @@ LcsMethodStream >> newLine [
 		ifFalse: [ self isLastCharacterLineTerminationCharacter ifFalse: [ self stream cr ] ].
 	self indentLevel timesRepeat: [ stream tab ].
 	^ self stream
+]
+
+{ #category : #building }
+LcsMethodStream >> nextPutAll: aString [
+	self stream nextPutAll: aString
+]
+
+{ #category : #accessing }
+LcsMethodStream >> outdent [
+	self decrementIndentLevel
 ]
 
 { #category : #building }

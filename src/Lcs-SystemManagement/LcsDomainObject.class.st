@@ -98,7 +98,13 @@ LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.
 	self addToUnitOfWork: newObject.
+	LcsLogger 
+		log: self name , ' >> basicNew - starting';
+		indent.
 	newObject initialize.
+	LcsLogger
+		log: self name , ' >> basicNew - finished';
+		outdent.
 	^ newObject
 ]
 

@@ -19,7 +19,7 @@ Class {
 LcsCompositeSlot >> slotVarPut: anObject in: aDomainObject [
 	| originalObject |
 	originalObject := self persistedSlotVarIn: aDomainObject.
-	super slotVarPut: anObject in: aDomainObject.
+	self slotVarPut: anObject in: aDomainObject oldValue: originalObject.
 	(originalObject isDomainObject)
 		ifTrue: [ self currentUnitOfWork deleteObject: originalObject ]
 ]

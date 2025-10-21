@@ -176,7 +176,7 @@ LcsBaseSlot >> gtCreateClassAndValueElementFor: aColumn [
 				alignCenter ];
 		dataBinder: [ :itemElement :aNode | 
 			| nodeIcon |
-			self traceCr: 'Item: ' , itemElement printString , '- Node: ' , aNode printString.
+			LcsBuilderLogger log: 'Item: ' , itemElement printString , '- Node: ' , aNode printString.
 			nodeIcon := [ aNode value gtInspectorIcon
 					ifNil: [ aNode value class iconNamed: aNode value class systemIconName ] ]
 					on: Error
@@ -295,6 +295,10 @@ LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
 	prepertyAccessor := aPropertyName asSymbol.
 	(self respondsTo: prepertyAccessor) ifFalse: [ ^ true ].
 	propertyValue := self perform: prepertyAccessor.
+	(propertyValue class = LcsUpdateActions)
+		ifTrue: [ 
+			(propertyValue hasNoElements and: [ aValue hasNoElements ])
+				ifTrue: [ ^ false ]].
 	^ (propertyValue = aValue) not
 ]
 

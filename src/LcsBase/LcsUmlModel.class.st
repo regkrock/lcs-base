@@ -53,9 +53,9 @@ LcsUmlModel >> proposedClassModelFor: aClassname [
 
 { #category : #configuration }
 LcsUmlModel >> resolveClassModelNames [
-	self traceCr: 'Resolving super class names '.
+	LcsBuilderLogger log:  'Resolving super class names '.
 	self collection do: [ :eachClassModel | self resolveSuperclassFor: eachClassModel ].
-	self traceCr: 'Resolving to association class names '.
+	LcsBuilderLogger log:  'Resolving to association class names '.
 	self collection do: [ :eachClassModel | self resolveToClassModelAssociationFor: eachClassModel ]
 ]
 
@@ -65,8 +65,7 @@ LcsUmlModel >> resolveSuperclassFor: aClassModel [
 		self collection
 			detect: [ :potentialSuperclassModel | potentialSuperclassModel isModelSuperclassOf: aClassModel ]
 			ifNone: [ 
-				Transcript tab. 
-				self traceCr: 'Unable to find class named ' , aClassModel modelSuperclassName asString.
+				LcsBuilderLogger logTab: 'Unable to find class named ' , aClassModel modelSuperclassName asString.
 				nil ])
 ]
 

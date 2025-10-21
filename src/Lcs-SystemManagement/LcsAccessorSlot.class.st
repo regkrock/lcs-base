@@ -18,8 +18,7 @@ Class {
 	#superclass : #LcsBaseSlot,
 	#instVars : [
 		'validator',
-		'variableUpdatePolicy',
-		'postUpdateActions'
+		'variableUpdatePolicy'
 	],
 	#category : #'Lcs-SystemManagement-Slot'
 }
@@ -52,6 +51,11 @@ LcsAccessorSlot class >> valueDomainObjectOldValueBlockArguments [
 { #category : #configuration }
 LcsAccessorSlot class >> valueSlotBlockArguments [
 	^ #('value' 'slot')
+]
+
+{ #category : #'object initialization' }
+LcsAccessorSlot >> _initialValueFor: aDomainObject [ 
+	^ self initialValueBlock cull: aDomainObject cull: self
 ]
 
 { #category : #'slot model' }
@@ -307,11 +311,9 @@ LcsAccessorSlot >> initialValueBlockDescription [
 { #category : #'object initialization' }
 LcsAccessorSlot >> initialValueFor: aDomainObject [
 	| newValue |
-	newValue := self initialValueBlock cull: aDomainObject cull: self.
-	"(newValue isDomainObject and: [ self currentSystem notNil ])
-		ifTrue: [ 
-			self assignParent: aDomainObject to: newValue.
-			self currentUnitOfWork addObject: newValue context: aDomainObject ]."
+	LcsLogger logGettingInitialValue.
+	newValue := self _initialValueFor: aDomainObject.
+	LcsLogger logReturningInitialValue: newValue.
 	^ newValue
 ]
 
@@ -330,7 +332,10 @@ LcsAccessorSlot >> initialize [
 
 { #category : #'object initialization' }
 LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
-	self slotVarPut: (self initialValueFor: aDomainObject) in: aDomainObject
+	LcsLogger logReceiver: thisContext receiver message: thisContext message.
+	LcsLogger indent.
+	self slotVarPut: (self initialValueFor: aDomainObject) in: aDomainObject.
+	LcsLogger outdent.
 ]
 
 { #category : #'object initialization' }
@@ -432,12 +437,12 @@ LcsAccessorSlot >> persistedSlotVarIn: aDomainObject [
 
 { #category : #accessing }
 LcsAccessorSlot >> postUpdateActions [
-	^ postUpdateActions
+	^ self properties at: 'postUpdateActions'
 ]
 
 { #category : #accessing }
 LcsAccessorSlot >> postUpdateActions: anObject [
-	postUpdateActions := anObject
+	self properties at: 'postUpdateActions' put:anObject
 ]
 
 { #category : #properties }
@@ -533,22 +538,27 @@ LcsAccessorSlot >> signalInvalidSlotTypeError: anObject for: aDomainObject [
 
 { #category : #validation }
 LcsAccessorSlot >> slotDoesNotExistMessage [
-	^ 'Slot name ' , self slotName asString , ' does not exist in '
-		, self domainClass name
+	^ 'Slot name ' , self slotName asString , ' does not exist in ' , self domainClass name
 ]
 
 { #category : #'slot model' }
 LcsAccessorSlot >> slotVarDirectlyPut: anObject in: aDomainObject [
 	aDomainObject instVarNamed: self slotName asString put: anObject
-
 ]
 
 { #category : #'slot model' }
 LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
-	| transformedObject |
-	transformedObject := self prevalidationTransformBlock cull: anObject cull: self cull: nil.
+	| existingValue |
+	existingValue := aDomainObject perform: self getterSelector.
+	self slotVarPut: anObject in: aDomainObject oldValue: existingValue
+]
 
-	self variableUpdatePolicy slotVarPut: transformedObject in: aDomainObject
+{ #category : #'slot model' }
+LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject oldValue: anExistingObject [
+	| transformedObject |
+	transformedObject := self prevalidationTransformBlock cull: anObject cull: self cull: anExistingObject.
+	self variableUpdatePolicy slotVarPut: transformedObject in: aDomainObject oldValue: anExistingObject.
+	self postUpdateActions execute: transformedObject context: aDomainObject oldValue: anExistingObject
 ]
 
 { #category : #validations }
@@ -575,6 +585,17 @@ LcsAccessorSlot >> validate: anObject for: aDomainObject [
 		validate: anObject 
 		context: aDomainObject 
 		oldValue: oldValue
+]
+
+{ #category : #'slot model' }
+LcsAccessorSlot >> validate: anObject for: aDomainObject  oldValue: anOldvalue [
+	self verifySlotType: anObject for: aDomainObject.
+	(self isNilAllowed and: [ anObject isNil and: [ anOldvalue isNil ] ]) ifTrue: [ ^self ].
+	(self isNullAllowed and: [ (self isNullObject: anObject)]) ifTrue: [ ^ self ].
+	self validationConditions 
+		validate: anObject 
+		context: aDomainObject 
+		oldValue: anOldvalue
 ]
 
 { #category : #validations }

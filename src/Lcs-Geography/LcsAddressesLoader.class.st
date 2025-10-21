@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsAddressesLoader,
 	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-Geography'
+	#category : #'Lcs-Geography-Domain'
 }
 
 { #category : #data }

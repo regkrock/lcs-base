@@ -28,12 +28,12 @@ LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 	^ self valueAccessBlock value: aDomainObject
 ]
 
-{ #category : #configuration }
+{ #category : #defaults }
 LcsVirtualSlot >> defaultValueAccessBlock [
 	[ :domainObject | LcsError signal: 'defaultValueAccessBlock not overriden or not initialized']
 ]
 
-{ #category : #initiailize }
+{ #category : #initialize }
 LcsVirtualSlot >> initialize [
 	super initialize.
 	self valueAccessBlock: self defaultValueAccessBlock
@@ -46,6 +46,7 @@ LcsVirtualSlot >> slotVarNamed: anObject in: aDomainObject [
 
 { #category : #'slot model' }
 LcsVirtualSlot >> slotVarPut: anObject in: aDomainObject [
+	self deprecated: 'Need to pass the old value as well'.
 	self error: 'This is a read only slot'
 ]
 

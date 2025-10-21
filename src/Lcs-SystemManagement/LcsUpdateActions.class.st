@@ -64,6 +64,16 @@ LcsUpdateActions >> initialize [
 	self collection: OrderedCollection new
 ]
 
+{ #category : #testing }
+LcsUpdateActions >> isSameAs: anUpdateActions [
+	(anUpdateActions isKindOf: LcsUpdateActions) ifFalse: [ ^ false ].
+	self collection size = anUpdateActions collection size ifFalse: [ ^ false ].
+	self collection with: anUpdateActions collection do: [ :aUpdateAction :bUpdateAction |
+		self assert: aUpdateAction description equals: bUpdateAction description. 
+		self assert: aUpdateAction actionBlock asString equals: bUpdateAction actionBlock asString ] .
+	^ true
+]
+
 { #category : #conditions }
 LcsUpdateActions >> removePostUpdateAction: aPostUpdateAction [
 	^ self remove: aPostUpdateAction ifAbsent: []

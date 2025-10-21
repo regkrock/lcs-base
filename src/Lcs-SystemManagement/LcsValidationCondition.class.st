@@ -77,7 +77,7 @@ LcsValidationCondition >> initializeOn: anObject [
 	self parent: anObject
 ]
 
-{ #category : #margritte }
+{ #category : #magritte }
 LcsValidationCondition >> magritteAcceptAction [
 	<magritteActionDescription>
 	^ MAActionDescription new

@@ -6,12 +6,9 @@ Class {
 
 { #category : #query }
 LcsCountries >> defaultInstance [
-	| defaultCountry |
-	defaultCountry := self collection detect: [ :each | each class = LcsUnknownCountry ] ifNone: [ nil ].
-	defaultCountry notNil ifTrue: [ ^ defaultCountry ].
-	defaultCountry := self pendingAdds detect: [ :each | each class = LcsUnknownCountry ] ifNone: [ nil ].
-	defaultCountry notNil ifTrue: [ ^ defaultCountry ].
-	^ LcsUnknownCountry new
+	^ self 
+		find: [ :each | each class = LcsUnknownCountry ]
+		ifNone: [ LcsUnknownCountry new ]
 ]
 
 { #category : #query }

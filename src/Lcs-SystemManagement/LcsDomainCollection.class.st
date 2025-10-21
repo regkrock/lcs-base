@@ -18,6 +18,21 @@ LcsDomainCollection >> defaultInstance [
 	^nil
 ]
 
+{ #category : #'default instance' }
+LcsDomainCollection >> find: aBlock [
+	^ self find: aBlock ifNone: [ nil ]
+]
+
+{ #category : #'default instance' }
+LcsDomainCollection >> find: aBlock ifNone: aNoneBlock [
+	| defaultInstance |
+	defaultInstance := self collection detect: aBlock ifNone: [ nil ].
+	defaultInstance notNil ifTrue: [ ^ defaultInstance ].
+	defaultInstance := self pendingAdds detect: aBlock ifNone: [ nil ].
+	defaultInstance notNil ifTrue: [ ^ defaultInstance ].
+	^ aNoneBlock cull: self
+]
+
 { #category : #search }
 LcsDomainCollection >> findWithKey: anObject [
 	^ self findWithKey: anObject ifNone: [ ]

@@ -5,6 +5,33 @@ Class {
 }
 
 { #category : #tests }
+LcsAccessorSlotTest >> testAddingPostUpdateActions [
+	self subject: LcsAccessorSlotExamples new accessorSlot.
+	self subject addPostUpdateAction: (
+		LcsUpdateSiblingWithCollectionDefault new 
+			description: 'When country changes, update the default province';
+			siblingSlotName: 'province';
+			sourceCollectionSlotName: 'subdivisions';
+			yourself).
+	self assert: self subject postUpdateActions collection size equals: 1.
+	self assert: self subject postUpdateActions collection any parent identicalTo: self subject postUpdateActions.
+]
+
+{ #category : #tests }
+LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGeneration [
+	| aStream |
+	aStream := LcsMethodStream new.
+	self subject: LcsAccessorSlotExamples new accessorSlotWithPostUpdateActions.
+	aStream addKeyword: 'addPostUpdateAction' with: self subject postUpdateActions first.
+	self assert: aStream contents equals: 'addPostUpdateAction: (
+	LcsUpdateSiblingWithCollectionDefault new 
+		description: ''When country changes, update the default province'';
+		siblingSlotName: ''province'';
+		sourceCollectionSlotName: ''subdivisions'';
+		yourself).'
+]
+
+{ #category : #tests }
 LcsAccessorSlotTest >> testAddingValidationConditionAndDescription [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self subject addValidationCondition: [ :value | ] description: 'Test'.

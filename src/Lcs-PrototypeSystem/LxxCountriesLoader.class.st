@@ -21,11 +21,6 @@ YT	Yukon	Territory
 NT	Northwest Territory	Territory'
 ]
 
-{ #category : #schema }
-LxxCountriesLoader >> caSubdivisionDataSchema [
-	^#( 'code' 'formalName' 'politicalUnit' )
-]
-
 { #category : #query }
 LxxCountriesLoader >> collectionSize [
 	| stream numberOfLines|
@@ -40,9 +35,9 @@ LxxCountriesLoader >> collectionSize [
 
 { #category : #data }
 LxxCountriesLoader >> data [
-	^ 'Canada	CA	CAN	124	Canada
-United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom
-United States of America (the)	US	USA	840	United States'
+	^ 'Canada	CA	CAN	124	Canada	LxxCanadaPostalCode	LxxCanadaSubdivision	Province
+United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom	LxxGenericPostalCode	LxxCountrySubdivision	 
+United States of America (the)	US	USA	840	United States	LxxZipCode	LxxUnitedStatesSubdivision	State'
 ]
 
 { #category : #loading }
@@ -57,13 +52,12 @@ LxxCountriesLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray 
 	[ aDataStream atEnd ] whileFalse: [
 		instance := aTargetClass new.
 		line := aDataStream nextLine. 
-		(line substrings: {Character tab}) doWithIndex: [ :value :index |.
+		(line substrings: {Character tab}) doWithIndex: [ :value :index |
 			instance perform: (setters at: index) with: value ].
 		subdivisionSelector := (instance isoCode asLowercase , 'SubdivisionData') asSymbol.
 		(self respondsTo: subdivisionSelector) ifTrue: [
 			self 
-				loadSubdivisionsFrom: (self perform:  subdivisionSelector) readStream 
-				class: LxxBaseCountrySubdivision 
+				loadSubdivisionsFrom: (self perform:  subdivisionSelector) readStream
 				schema: self subdivisionDataSchema 
 				context: instance ] ] 
 ]
@@ -79,9 +73,20 @@ LxxCountriesLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass sche
 			instance perform: (setters at: index) with: value ] ] 
 ]
 
+{ #category : #loading }
+LxxCountriesLoader >> loadSubdivisionsFrom: aDataStream schema: anArray context: aCountry [
+	| instance line setters | 
+	setters := anArray collect: [ :each | (each , ':') asSymbol ].
+	[ aDataStream atEnd ] whileFalse: [
+		instance := aCountry subdivisionClass newInContextOf: aCountry.
+		line := aDataStream nextLine. 
+		(line substrings: {Character tab}) doWithIndex: [ :value :index |
+			instance perform: (setters at: index) with: value ] ] 
+]
+
 { #category : #schema }
 LxxCountriesLoader >> schema [
-	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' )
+	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' 'postalCodeClass' 'subdivisionClass' 'subdivisionName')
 ]
 
 { #category : #schema }

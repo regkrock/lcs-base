@@ -58,14 +58,15 @@ LcsAddress class >> countrySlotDefinition [
 		collectionSlotName: 'countries';
 		collectionSlotModuleName: 'Geography Module';
 		priority: 16;
-		addPostUpdateAction: (LcsUpdateSiblingFromCollectionDefaultAction new 
+		addPostUpdateAction: (LcsUpdateSiblingWithCollectionDefault new 
 									description: 'When country changes, update the default province';
 									siblingSlotName: 'province';
+									sourceCollectionSlotName: 'subdivisions';
 									yourself);
-		addPostUpdateAction: (LcsUpdateSiblingFromSpecificDefaultAction new 
-									description: 'When country changes, update the default postal code';
+		addPostUpdateAction: (LcsUpdateSiblingWithNewInstanceOfSourceClass new 
+									description: 'When country changes, update the new postal code';
 									siblingSlotName: 'postalCode';
-									sourceSlotName: 'defaultPostalCode';
+									sourceSlotName: 'postalCodeClass';
 									yourself);
 		yourself
 ]
@@ -96,28 +97,23 @@ LcsAddress class >> postalCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsAccessorSlot new
 		slotName: 'postalCode';
-		required: true;
-		slotTypes: (OrderedCollection with: LcsGenericPostalCode);
-		initialValueBlock: [ :parentDomainObject :slot | 
-			(slot slotTypes any new)
-				parent: parentDomainObject;
-				yourself ];
+		addSubclassesOf: LcsBasePostCode;
+		initialValueBlock: [ :domainObject :slot | domainObject country postalCodeClass new ];
 		priority: 18;
+		required: true;
 		yourself
 ]
 
 { #category : #'slot definitions' }
 LcsAddress class >> provinceSlotDefinition [
 	<slotDefinition>
-	^ LcsAccessorSlot new
+	^ LcsMemberOfCollectionInSiblingSlotObjectSlot new
 		slotName: 'province';
+		siblingSlotName: 'country';
+		siblingCollectionSlotName: 'subdivisions';
 		required: true;
 		addSubclassesOf: LcsBaseCountrySubdivision;
-		"initialValueBlock: [ :parentDomainObject :slot | 
-			(slot slotTypes any new)
-				parent: parentDomainObject;
-				yourself ];"
-		priority: 14;
+		priority: 17;
 		yourself
 ]
 

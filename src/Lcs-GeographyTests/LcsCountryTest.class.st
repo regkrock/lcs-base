@@ -37,6 +37,30 @@ LcsCountryTest >> testCreation [
 ]
 
 { #category : #tests }
+LcsCountryTest >> testInvalidTypeAssignment [
+	| country oldValue|
+	country := self currentSystem geographyModule countries defaultInstance.
+	self assert: self currentUnitOfWork hasChanges not.
+	oldValue := country postalCodeClass.
+	self should: [ country postalCodeClass: 'xxx' ] raise: LcsInvalidSlotTypeError.
+	self assert: self currentUnitOfWork hasChanges not.
+	self assert: country postalCodeClass equals: oldValue
+]
+
+{ #category : #tests }
+LcsCountryTest >> testModifyingPostalCodeClassImpactOUnitOfWork [
+	| country |
+	country := self currentSystem geographyModule countries defaultInstance.
+	self assert: country postalCodeClass equals: LcsGenericPostalCode.
+	self assert: self currentUnitOfWork hasChanges not.
+	country postalCodeClass: LcsCanadaPostalCode.
+	self assert: country postalCodeClass equals: LcsCanadaPostalCode.
+	self assert: self currentUnitOfWork hasChanges.
+	self currentSystem applyChanges.
+	self assert: self currentUnitOfWork hasChanges not.
+]
+
+{ #category : #tests }
 LcsCountryTest >> testPostalCodeAssignment [
 	| country |
 	country := LcsCountry new.

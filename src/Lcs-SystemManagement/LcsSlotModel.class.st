@@ -265,8 +265,10 @@ LcsSlotModel >> initializeSlotNamed: aSlotName in: aDomainObject [
 
 { #category : #model }
 LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
+	LcsLogger logReceiver: thisContext receiver message: thisContext message; indent.
 	self allAccessorSlotDefinitions
-		do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ]
+		do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ].
+	LcsLogger outdent
 ]
 
 { #category : #model }

@@ -18,7 +18,11 @@ LcsAbstractDomainTest >> assertObject: anActualValue equals: aExectedValue [
 		ifTrue: [ 
 			self assert: anActualValue asString equals: aExectedValue asString.
 			^self ].
-		self assert: anActualValue equals: aExectedValue
+	((anActualValue isKindOf: LcsUpdateActions) and: [ aExectedValue isKindOf: LcsUpdateActions ] ) 
+		ifTrue: [
+			self assert: (anActualValue isSameAs: aExectedValue).
+			^ self ].
+	self assert: anActualValue equals: aExectedValue
 ]
 
 { #category : #'application environment' }

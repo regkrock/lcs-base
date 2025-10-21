@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsCountryLoader,
+	#name : #LcsCountriesLoader,
 	#superclass : #LcsObjectsLoader,
 	#instVars : [
 		'schemaSetters'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #data }
-LcsCountryLoader >> caSubdivisionData [
+LcsCountriesLoader >> caSubdivisionData [
 	^'NL	Newfoundland And Labrador	Province
 PE	Prince Edward Island	Province
 NU	Nunavat	Territory
@@ -25,7 +25,7 @@ NT	Northwest Territory	Territory'
 ]
 
 { #category : #'as yet unclassified' }
-LcsCountryLoader >> collectionSize [
+LcsCountriesLoader >> collectionSize [
 	| stream numberOfLines|
 	numberOfLines := 0.
 	stream := self data readStream.
@@ -37,14 +37,14 @@ LcsCountryLoader >> collectionSize [
 ]
 
 { #category : #data }
-LcsCountryLoader >> data [
+LcsCountriesLoader >> data [
 	^ 'Canada	CA	CAN	124	Canada	LcsCanadaPostalCode	LcsCanadaSubdivision	Province
 United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom	LcsGenericPostalCode	LcsCountrySubdivision	 
 United States of America (the)	US	USA	840	United States	LcsZipCode	LcsUnitedStatesSubdivision	State'
 ]
 
 { #category : #data }
-LcsCountryLoader >> dataComplete [
+LcsCountriesLoader >> dataComplete [
 ^ 'Afghanistan	AF	AFG	004	Afghanistan
 Albania	AL	ALB	008	Albania
 Algeria	DZ	DZA	012	Algeria
@@ -297,75 +297,82 @@ Zimbabwe	ZW	ZWE	716	Zimbabwe
 ]
 
 { #category : #initialize }
-LcsCountryLoader >> initialize [ 
+LcsCountriesLoader >> initialize [ 
 	super initialize.
 	self schemaSetters: (self schema collect: [ :each | (each , ':') asSymbol ])
 ]
 
 { #category : #loading }
-LcsCountryLoader >> load [
+LcsCountriesLoader >> load [
 	self loadFrom: self data readStream class: self targetClass schema: self schema
 ]
 
 { #category : #loading }
-LcsCountryLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray [
+LcsCountriesLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray [
 	| instance line setters subdivisionSelector | 
 	setters := anArray collect: [ :each | (each , ':') asSymbol ].
-	Transcript traceCr: 'Loading Countries'.
 	[ aDataStream atEnd ] whileFalse: [
 		instance := aTargetClass new.
 		line := aDataStream nextLine. 
-		Transcript traceCr: '--Country--' , line.
 		setters with: (line substrings: {Character tab}) do: [ :setter :value |
 			instance perform: setter with: value ].
 		subdivisionSelector := (instance isoCode asLowercase , 'SubdivisionData') asSymbol.
 		(self respondsTo: subdivisionSelector) ifTrue: [
 			self 
 				loadSubdivisionsFrom: (self perform:  subdivisionSelector) readStream 
-				class: LcsBaseCountrySubdivision 
 				schema: self subdivisionDataSchema 
 				context: instance ] ] 
 ]
 
 { #category : #loading }
-LcsCountryLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass schema: anArray context: aCountry [
+LcsCountriesLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass schema: anArray context: aCountry [
 	| instance line setters | 
 	setters := anArray collect: [ :each | (each , ':') asSymbol ].
 	[ aDataStream atEnd ] whileFalse: [
 		instance := aTargetClass newInContextOf: aCountry.
-		line := aDataStream nextLine. 
-		Transcript traceCr: '--Province--' , line.
+		line := aDataStream nextLine.
 		(line substrings: {Character tab}) doWithIndex: [ :value :index |
 			instance perform: (setters at: index) with: value ] ] 
 ]
 
 { #category : #loading }
-LcsCountryLoader >> schema [
+LcsCountriesLoader >> loadSubdivisionsFrom: aDataStream schema: anArray context: aCountry [
+	| instance line setters | 
+	setters := anArray collect: [ :each | (each , ':') asSymbol ].
+	[ aDataStream atEnd ] whileFalse: [
+		instance := aCountry subdivisionClass newInContextOf: aCountry.
+		line := aDataStream nextLine. 
+		(line substrings: {Character tab}) doWithIndex: [ :value :index |
+			instance perform: (setters at: index) with: value ] ] 
+]
+
+{ #category : #loading }
+LcsCountriesLoader >> schema [
 	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' 'postalCodeClass' 'subdivisionClass' 'subdivisionName')
 ]
 
 { #category : #accessing }
-LcsCountryLoader >> schemaSetters [
+LcsCountriesLoader >> schemaSetters [
 	^ schemaSetters
 ]
 
 { #category : #accessing }
-LcsCountryLoader >> schemaSetters: anObject [
+LcsCountriesLoader >> schemaSetters: anObject [
 	schemaSetters := anObject
 ]
 
 { #category : #'as yet unclassified' }
-LcsCountryLoader >> subdivisionDataSchema [
+LcsCountriesLoader >> subdivisionDataSchema [
 	^#( 'isoCode' 'formalName' 'subdivisionName' )
 ]
 
 { #category : #'as yet unclassified' }
-LcsCountryLoader >> targetClass [
+LcsCountriesLoader >> targetClass [
 	^ LcsCountry
 ]
 
 { #category : #'as yet unclassified' }
-LcsCountryLoader >> usSubdivisionData [
+LcsCountriesLoader >> usSubdivisionData [
 	^'AL	Alabama	State
 AK	Alaska	State
 AZ	Arizona	State

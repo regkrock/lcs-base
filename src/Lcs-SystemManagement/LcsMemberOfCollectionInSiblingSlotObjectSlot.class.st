@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsMemberOfCollectionInSiblingSlotObjectSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | slot targetCollectionIn: domainObject ]
+	^ [ :domainObject :slot | (slot targetCollectionIn: domainObject) defaultInstance ]
 ]
 
 { #category : #properties }
@@ -27,11 +27,6 @@ LcsMemberOfCollectionInSiblingSlotObjectSlot >> siblingSlotName [
 { #category : #properties }
 LcsMemberOfCollectionInSiblingSlotObjectSlot >> siblingSlotName: aString [ 
 	self propertyAt: 'siblingSlotName' put: aString
-]
-
-{ #category : #'slot model' }
-LcsMemberOfCollectionInSiblingSlotObjectSlot >> targetCollection [
-	^ (self domainObject perform: self siblingSlotName asSymbol) perform: self siblingCollectionSlotName asSymbol
 ]
 
 { #category : #'slot model' }

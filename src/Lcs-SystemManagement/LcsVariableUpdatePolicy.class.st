@@ -38,3 +38,8 @@ LcsVariableUpdatePolicy >> validate: anObject [
 LcsVariableUpdatePolicy >> validate: anObject for: aDomainObject [
 	self parent validate: anObject for: aDomainObject
 ]
+
+{ #category : #validation }
+LcsVariableUpdatePolicy >> validate: anObject for: aDomainObject oldValue: anOldvalue [
+	self parent validate: anObject for: aDomainObject oldValue: anOldvalue
+]
