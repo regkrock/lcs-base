@@ -11,7 +11,7 @@ LcsAuthorTest >> setupSunitSystem [
 
 { #category : #tests }
 LcsAuthorTest >> testCreationAndAddingToParentCollection [
-	| author person |
+	"| author person |
 	person := LcsPerson new
 					surname: 'Freeman';
 					firstName: 'Jack';
@@ -28,6 +28,6 @@ LcsAuthorTest >> testCreationAndAddingToParentCollection [
 	
 	self assert: (self currentSystem authors includes: author).
 	self assert: author parent identicalTo: self currentSystem authors.
-	self assert: author parent parent identicalTo: self currentSystem
+	self assert: author parent parent identicalTo: self currentSystem"
 	
 ]
