@@ -4,6 +4,12 @@ Class {
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
+{ #category : #setUp }
+LcsDateSlotBuilderTest >> tearDown [
+	super tearDown.
+	LxxPerson removeInstVar: 'date'
+]
+
 { #category : #tests }
 LcsDateSlotBuilderTest >> testCreation [
 	self assert: LcsDateSlotBuilder slotClass equals: LcsDateSlot
