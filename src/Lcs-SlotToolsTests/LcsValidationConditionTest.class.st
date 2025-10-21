@@ -57,9 +57,9 @@ LcsValidationConditionTest >> testInvalidConditionWithValueAndRelatedObject [
 
 { #category : #tests }
 LcsValidationConditionTest >> testMagritteForm [
-	<gtExample>
-	<return: #BlScripter>
-	| aValidationDescriptionId aConditionBlockId anAcceptId aCancelId |
+	"<gtExample>"
+	"<return: #BlScripter>"
+	"| aValidationDescriptionId aConditionBlockId anAcceptId aCancelId |
 	
 	self subjectScripter: self validationConditionScripter.
 
@@ -80,7 +80,7 @@ LcsValidationConditionTest >> testMagritteForm [
 				typeStep: [ :s | 
 					s
 						text: 'invalid condition description';
-						// aValidationDescriptionId ].
+						// aValidationDescriptionId ]."
 
 			"aStep
 				assertStep: [ :s | 
@@ -89,7 +89,7 @@ LcsValidationConditionTest >> testMagritteForm [
 						value: [ :aModel | aModel validationDescription ] equals: [ 'invalid condition description' ];
 						onModel ]."
 						
-			self
+			"self
 				assert: aStep
 				model: self subjectScripter model
 				acceptEnabled: false
@@ -118,7 +118,7 @@ LcsValidationConditionTest >> testMagritteForm [
 	self subjectScripter
 		substeps: 'Accept changed values'
 		do: [ :aStep | 
-			aStep clickStep: [ :s | s // anAcceptId ].
+			aStep clickStep: [ :s | s // .anAcceptId ].
 
 			self
 				assert: aStep
@@ -139,7 +139,7 @@ LcsValidationConditionTest >> testMagritteForm [
 						value: [ :aModel | aModel conditionBlock asString ] equals: [ '[ :value :domainObject :oldValue | value size < 1 ]' ];
 						onModel ]].
 
-	^ self subjectScripter
+	^ self subjectScripter"
 ]
 
 { #category : #tests }
