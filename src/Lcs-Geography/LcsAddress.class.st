@@ -93,6 +93,16 @@ LcsAddress class >> postBoxSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
+LcsAddress class >> postCodeSlotDefinition [
+	<facadeSlotDefinition>
+	^ LcsDelegatorSlot new
+		slotName: 'postCode';
+		targetSlotPath: #('postalCode'  'code');
+		yourself
+
+]
+
+{ #category : #'slot definitions' }
 LcsAddress class >> postalCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsAccessorSlot new
@@ -198,6 +208,16 @@ LcsAddress >> postBox [
 { #category : #accessing }
 LcsAddress >> postBox: anObject [
 	self slotVarNamed: 'postBox' put: anObject
+]
+
+{ #category : #accessing }
+LcsAddress >> postCode [
+	^ self slotVarNamed: 'postCode'
+]
+
+{ #category : #accessing }
+LcsAddress >> postCode: anObject [
+	self slotVarNamed: 'postCode' put: anObject
 ]
 
 { #category : #accessing }

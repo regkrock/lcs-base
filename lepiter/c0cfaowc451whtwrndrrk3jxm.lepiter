@@ -3,7 +3,232 @@
 	"__type" : "page",
 	"children" : {
 		"__type" : "snippets",
-		"items" : [ ]
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T08:13:48.264441-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T08:38:26.930744-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "KMAuGjT+DQCImwCsCCj3OA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "####Roles\nExample:\n\tsuperuser - access to everything\n\tadmin - access to almost everything\n\tvisitor - Visit the website but not logged in.\n\tguest - very limited access - has  a userid and login but not a member\n\tstudent - guest who is taking one or more courses.\n\tmember - \n\t\taccess to general club information\n\t\tbudgets\n\t\tmonthly financial reports\n\t\ttheir own information (can edit name, address, etc)\n\texecutive (board members)\n\tfinancial"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T10:17:43.670017-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T10:37:14.986489-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "yAxy1DX+DQCm6JUyCCj3OA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "####Resource\n- need a resource string on each class <- this allows multiple classes to have same resource.\n- examples: 'Person', 'Person.add', 'Person.delete', 'Person.update', "
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T10:34:38.885529-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T10:42:21.828607-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "FHe4ETb+DQCsaIx4CCj3OA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "####Actions\n- ex: create, read, update, delete, add, remove, see button, etc."
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-23T10:33:01.037388-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-23T10:34:18.561302-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "b/MLDDb+DQCrR9THCCj3OA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "##Basic Roles, Resources, Actions"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T08:41:26.710797-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-10-23T11:05:06.457414-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "mvVBfDT+DQCVNF1rCCj3OA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "###1 Authentication Patterms\n####1.1 Basic authentication\n- Use https\n- userid/password\n####1.2 Token Based Authentication\n- issue token to user upon login - this token is used for subsequent requests\n- common in rest APIs\n- userful - stateless applications and microservices \n####1.3 Multi-factor Authtenication\n- two or more ways of doing it - \n- use this for apps requring high secruity - ex: financial, sensitive datea\n###2 Authorization Patterns\n####2.1 Role-Base Access Control (RBAC)\n- intent - assign roles to roles rather than individual users\n- use in enterprise  applications\n- define roles and permissions clearly\n- needs - user, resource, action\n###2.2 Attribute-Base Access Control (ABAC)\n- needs - user, resource, action, context\n- intent - fine grained acess\n- ex: read, write, delete, ...\n- ex: a healthcare system might grant a nurse access to patient records only if they are on duty,\n           assigned to that patient, and accessing the records from a secure location\n####2.3 Access Control Lists (ACLs)"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-23T08:39:52.536317-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-23T10:46:48.889224-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "HqVrdzT+DQCVLXkmCCj3OA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "[Authentication Article in Software Patterns](https://softwarepatternslexicon.com/mastering-design-patterns/11/1/)"
+			}
+		]
 	},
 	"createEmail" : {
 		"__type" : "email",

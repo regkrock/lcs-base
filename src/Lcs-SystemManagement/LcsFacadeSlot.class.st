@@ -19,40 +19,6 @@ LcsFacadeSlot >> asViewItem [
 ]
 
 { #category : #properties }
-LcsFacadeSlot >> convertFromTarget [
-	^ self propertyAt: 'convertFromTarget' ifAbsent: [ ]
-]
-
-{ #category : #properties }
-LcsFacadeSlot >> convertFromTarget: anObject [
-	self propertyAt: 'convertFromTarget' put: anObject
-]
-
-{ #category : #properties }
-LcsFacadeSlot >> convertToTarget [
-	^ self propertyAt: 'convertToTarget' ifAbsent: [ ]
-]
-
-{ #category : #properties }
-LcsFacadeSlot >> convertToTarget: anObject [
-	self propertyAt: 'convertToTarget' put: anObject
-]
-
-{ #category : #'slot access' }
-LcsFacadeSlot >> currentSlotVarIn: aDomainObject [
-	^ self convertFromTarget 
-		cull: (aDomainObject slotVarNamed: self targetSlotName) 
-		cull: aDomainObject
-]
-
-{ #category : #'slot access' }
-LcsFacadeSlot >> slotVarPut: anObject in: aTargetDomainObject [
-	aTargetDomainObject
-		slotVarNamed: self targetSlotName
-		put: (self convertToTarget cull: anObject  cull: aTargetDomainObject)
-]
-
-{ #category : #properties }
 LcsFacadeSlot >> targetSlotName [
 	^ self propertyAt: 'targetSlotName' ifAbsent: [ ]
 ]

@@ -349,6 +349,18 @@ LcsSlotDefintionMethodBuilder >> uninstall [
 ]
 
 { #category : #verification }
+LcsSlotDefintionMethodBuilder >> validatePostUpdateActions: aPostUpdateActions against: actualPostUpdateActions [
+	self assert: actualPostUpdateActions collectionSize equals: aPostUpdateActions collectionSize.
+	aPostUpdateActions
+		do: [ :eachPostUpdateAction | 
+			| actualPostUpdateAction |
+			actualPostUpdateAction := actualPostUpdateAction validationConditionWithDescription: eachPostUpdateAction validationDescription.
+			self assert: actualPostUpdateAction notNil.
+			self assert: eachPostUpdateAction description equals: actualPostUpdateAction description.
+			self assert: eachPostUpdateAction actionBlock asString equals: actualPostUpdateAction actionBlock asString]
+]
+
+{ #category : #verification }
 LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
 	self properties
 		keysAndValuesDo: [ :key :value | 
@@ -373,6 +385,9 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: s
 	aProperty = 'validationConditions'
 		ifTrue: [ ^ self validateValidationConditions: aValue against: actualValue ].
 
+	aProperty = 'postUpdateActions'
+		ifTrue: [ ^ self validatePostUpdateActions: aValue against: actualValue ].
+		
 	(actualValue isClass and: [ aValue isClass ])
 		ifTrue: [ ^ self assert: actualValue name equals: aValue name ].
 		

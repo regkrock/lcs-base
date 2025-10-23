@@ -36,6 +36,11 @@ LcsValueObject class >> labelSlotDefinition [
 	^ LcsLabelSlot new
 ]
 
+{ #category : #security }
+LcsValueObject class >> securityResourceName [
+	^ 'ValueObject'
+]
+
 { #category : #accessing }
 LcsValueObject >> code [
 	^ self slotVarNamed: 'code' 

@@ -42,12 +42,7 @@ LcsDomainObjectHistory class >> createdSlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObjectHistory class >> userSlotDefinition [
 	<facadeSlotDefinition>
-	^ LcsFacadeSlot new
-		slotName: 'user';
-		targetSlotName: 'userUuid';
-		convertFromTarget: [ :userUuid | self currentSystem securityModule userWithUuid: userUuid ];
-		convertToTarget: [ :user | user uuid ];
-		yourself
+	^ LcsUserToUserIdConversionSlot new
 ]
 
 { #category : #'slot definitions' }

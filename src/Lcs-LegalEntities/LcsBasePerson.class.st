@@ -46,6 +46,11 @@ LcsBasePerson class >> middleNamesSlotDefinition [
 		yourself
 ]
 
+{ #category : #security }
+LcsBasePerson class >> securityResourceName [
+	^ 'Person'
+]
+
 { #category : #'slot definitions' }
 LcsBasePerson class >> surnameSlotDefinition [
 	<slotDefinition>
