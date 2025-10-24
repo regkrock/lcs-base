@@ -137,6 +137,12 @@ LcsModule class >> modulesSlotDefinition [
 ]
 
 { #category : #modules }
+LcsModule >> _moduleNamed: aString [
+	self moduleName = aString ifTrue: [ ^ self ].
+	^ self modules findModuleNamed: aString
+]
+
+{ #category : #modules }
 LcsModule >> allSubmoduleClasses [
 	^ self class allSubmoduleClasses
 ]
@@ -331,12 +337,9 @@ LcsModule >> moduleName: anObject [
 
 { #category : #modules }
 LcsModule >> moduleNamed: aString [
-	| foundModule |
-	self moduleName = aString ifTrue: [ ^ self ].
-	foundModule := self modules findModuleNamed: aString.
-	foundModule
+	^ (self _moduleNamed: aString)
 		ifNil: [ LcsModuleNotFoundError signal: 'Module not found: ' , aString asString ]
-		ifNotNil: [ ^ foundModule ]
+		ifNotNil: [ :foundModule | foundModule ]
 ]
 
 { #category : #modules }

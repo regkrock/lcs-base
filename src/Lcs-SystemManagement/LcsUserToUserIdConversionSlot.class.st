@@ -9,6 +9,6 @@ LcsUserToUserIdConversionSlot >> initialize [
 	super initialize.
 	self slotName: 'user'.
 	self targetSlotName: 'userUuid'.
-	self convertFromTarget: [ :userUuid | self currentSystem securityModule userWithUuid: userUuid ].
+	self convertFromTarget: [ :userUuid | self securityModule userWithUuid: userUuid ].
 	self convertToTarget: [ :user | user uuid ]
 ]

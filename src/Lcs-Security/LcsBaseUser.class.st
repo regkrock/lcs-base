@@ -14,3 +14,13 @@ LcsBaseUser class >> parentSlotDefinition [
 		addSlotType: LcsUsers;
 		yourself 
 ]
+
+{ #category : #permissions }
+LcsBaseUser >> hasPermissionToReadSlot: aSlotDefinition in: aDomainObject [
+	^ true
+]
+
+{ #category : #permissions }
+LcsBaseUser >> hasPermissionToWriteSlot: aSlotDefinition in: aDomainObject [
+	^ true
+]

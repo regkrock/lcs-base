@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsModule,
 	#instVars : [
 		'users',
-		'currentUser'
+		'currentUser',
+		'securityRoles'
 	],
 	#category : #'Lcs-Security-Core'
 }
@@ -46,6 +47,17 @@ LcsSecurityModule class >> owningModules [
 ]
 
 { #category : #'slot definitions' }
+LcsSecurityModule class >> securityRolesSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionSlot new
+		slotName: 'securityRoles';
+		addSlotType: LcsSecurityRoles;
+		addCollectionMemberType: LcsSecurityRole;
+		"loaderClass: LcsSecurityRolesLoader;"
+		yourself
+]
+
+{ #category : #'slot definitions' }
 LcsSecurityModule class >> usersSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -63,6 +75,26 @@ LcsSecurityModule >> currentUser [
 { #category : #accessing }
 LcsSecurityModule >> currentUser: anObject [
 	self slotVarNamed: 'currentUser' put: anObject 
+]
+
+{ #category : #security }
+LcsSecurityModule >> hasPermissionToReadSlot: aSlotDefinition in: aDomainObject [ 
+	^ true
+]
+
+{ #category : #security }
+LcsSecurityModule >> hasPermissionToWriteSlot: aSlotDefinition in: aDomainObject [ 
+	^ true
+]
+
+{ #category : #accessing }
+LcsSecurityModule >> securityRoles [
+	^ self slotVarNamed: 'securityRoles' 
+]
+
+{ #category : #accessing }
+LcsSecurityModule >> securityRoles: anObject [
+	self slotVarNamed: 'securityRoles' put: anObject 
 ]
 
 { #category : #security }

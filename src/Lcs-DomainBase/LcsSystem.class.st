@@ -461,7 +461,7 @@ LcsSystem >> restoreUnitOfWork [
 
 { #category : #modules }
 LcsSystem >> securityModule [
-	^ self moduleNamed: 'Security Module'
+	^ self _moduleNamed: 'Security Module'
 ]
 
 { #category : #accessing }

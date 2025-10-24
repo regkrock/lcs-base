@@ -24,7 +24,6 @@ LcsVirtualSlot >> asViewItem [
 
 { #category : #'slot model' }
 LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
-
 	^ self valueAccessBlock value: aDomainObject
 ]
 

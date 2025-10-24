@@ -200,8 +200,9 @@ LcsAccessorSlot >> createNewInstanceOf: aClass inContext: context [
 		ifFalse: [ aClass new ]
 ]
 
-{ #category : #testing }
+{ #category : #'slot model' }
 LcsAccessorSlot >> currentSlotVarIn: aDomainObject [
+	self hasPermissionToReadSlotOf: aDomainObject.
 	^ (self changedSlotRecordFor: aDomainObject)
 		ifNil: [ self persistedSlotVarIn: aDomainObject ]
 		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
@@ -272,6 +273,18 @@ LcsAccessorSlot >> gtViewSlotModelChildren [
 		LcsSlotModelViewItem newLabel: 'slotTypes' item: self slotTypeClassNames.
 		LcsSlotModelViewItem newLabel: 'required' item: self isRequired.
 		}
+]
+
+{ #category : #'slot model' }
+LcsAccessorSlot >> hasPermissionToReadSlotOf: aDomainObject [
+	self securityModule
+		ifNotNil: [ :securityModule | securityModule hasPermissionToReadSlot: self in: aDomainObject ]
+]
+
+{ #category : #'slot model' }
+LcsAccessorSlot >> hasPermissionToWriteSlotOf: aDomainObject [
+	self securityModule
+		ifNotNil: [ :securityModule | securityModule hasPermissionToWriteSlot: self in: aDomainObject ]
 ]
 
 { #category : #properties }
@@ -585,9 +598,19 @@ LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
 { #category : #'slot model' }
 LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject oldValue: anExistingObject [
 	| transformedObject |
-	transformedObject := self prevalidationTransformBlock cull: anObject cull: self cull: aDomainObject.
-	self variableUpdatePolicy slotVarPut: transformedObject in: aDomainObject oldValue: anExistingObject.
-	self postUpdateActions execute: transformedObject context: aDomainObject oldValue: anExistingObject
+	transformedObject := self prevalidationTransformBlock
+			cull: anObject
+			cull: self
+			cull: aDomainObject.
+	self hasPermissionToWriteSlotOf: aDomainObject.
+	self variableUpdatePolicy
+		slotVarPut: transformedObject
+		in: aDomainObject
+		oldValue: anExistingObject.
+	self postUpdateActions
+		execute: transformedObject
+		context: aDomainObject
+		oldValue: anExistingObject
 ]
 
 { #category : #validations }
