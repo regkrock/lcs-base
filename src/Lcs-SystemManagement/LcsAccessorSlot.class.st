@@ -277,14 +277,14 @@ LcsAccessorSlot >> gtViewSlotModelChildren [
 
 { #category : #'slot model' }
 LcsAccessorSlot >> hasPermissionToReadSlotOf: aDomainObject [
-	self securityModule
-		ifNotNil: [ :securityModule | securityModule hasPermissionToReadSlot: self in: aDomainObject ]
+	"self securityModule
+		ifNotNil: [ :securityModule | securityModule hasPermissionToReadSlot: self in: aDomainObject ]"
 ]
 
 { #category : #'slot model' }
 LcsAccessorSlot >> hasPermissionToWriteSlotOf: aDomainObject [
-	self securityModule
-		ifNotNil: [ :securityModule | securityModule hasPermissionToWriteSlot: self in: aDomainObject ]
+	"self securityModule
+		ifNotNil: [ :securityModule | securityModule hasPermissionToWriteSlot: self in: aDomainObject ]"
 ]
 
 { #category : #properties }
