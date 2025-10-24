@@ -53,6 +53,13 @@ LcsAccessorSlot class >> valueSlotBlockArguments [
 	^ #('value' 'slot')
 ]
 
+{ #category : #'slot model' }
+LcsAccessorSlot >> _currentSlotVarIn: aDomainObject [
+	^ (self changedSlotRecordFor: aDomainObject)
+		ifNil: [ self persistedSlotVarIn: aDomainObject ]
+		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
+]
+
 { #category : #'object initialization' }
 LcsAccessorSlot >> _initialValueFor: aDomainObject [ 
 	^ self initialValueBlock cull: aDomainObject cull: self
@@ -152,7 +159,7 @@ LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 { #category : #validations }
 LcsAccessorSlot >> audit: anObject withAuditor: anAuditor [
 	| value |
-	value := self currentSlotVarIn: anObject.
+	value := self _currentSlotVarIn: anObject.
 	[ self verifyType: value for: anObject ]
 		on: LcsInvalidSlotTypeError
 		do: [ :signal |
@@ -203,9 +210,7 @@ LcsAccessorSlot >> createNewInstanceOf: aClass inContext: context [
 { #category : #'slot model' }
 LcsAccessorSlot >> currentSlotVarIn: aDomainObject [
 	self hasPermissionToReadSlotOf: aDomainObject.
-	^ (self changedSlotRecordFor: aDomainObject)
-		ifNil: [ self persistedSlotVarIn: aDomainObject ]
-		ifNotNil: [ :changedSlotRecord | changedSlotRecord newValue ]
+	^ self _currentSlotVarIn: aDomainObject
 ]
 
 { #category : #defaults }
@@ -277,14 +282,14 @@ LcsAccessorSlot >> gtViewSlotModelChildren [
 
 { #category : #'slot model' }
 LcsAccessorSlot >> hasPermissionToReadSlotOf: aDomainObject [
-	"self securityModule
-		ifNotNil: [ :securityModule | securityModule hasPermissionToReadSlot: self in: aDomainObject ]"
+	self securityModule
+		"ifNotNil: [ :securityModule | securityModule hasPermissionToReadSlot: self in: aDomainObject ]"
 ]
 
 { #category : #'slot model' }
 LcsAccessorSlot >> hasPermissionToWriteSlotOf: aDomainObject [
-	"self securityModule
-		ifNotNil: [ :securityModule | securityModule hasPermissionToWriteSlot: self in: aDomainObject ]"
+	self securityModule
+		ifNotNil: [ :securityModule | securityModule hasPermissionToWriteSlot: self in: aDomainObject ]
 ]
 
 { #category : #properties }
@@ -353,7 +358,7 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 
 { #category : #'object initialization' }
 LcsAccessorSlot >> initializeUnintializedSlotValueIn: aDomainObject [
-	(self currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
+	(self _currentSlotVarIn: aDomainObject) ifNotNil: [ ^ self ].
 	self initializeSlotValueIn: aDomainObject
 ]
 

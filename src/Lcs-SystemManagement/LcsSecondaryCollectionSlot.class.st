@@ -12,10 +12,10 @@ LcsSecondaryCollectionSlot >> initialize [
 
 { #category : #'slot model' }
 LcsSecondaryCollectionSlot >> persistValue: anObject contextObject: aContextDomainObject [
-	(self currentSlotVarIn: self slotName asString) persistValue: anObject  contextObject: aContextDomainObject
+	(self _currentSlotVarIn: self slotName asString) persistValue: anObject  contextObject: aContextDomainObject
 ]
 
 { #category : #'slot model' }
 LcsSecondaryCollectionSlot >> persistValue: anObject in: aModule [
-	(self currentSlotVarIn: aModule) add: anObject
+	(self _currentSlotVarIn: aModule) add: anObject
 ]

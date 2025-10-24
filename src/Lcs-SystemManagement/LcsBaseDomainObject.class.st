@@ -462,6 +462,12 @@ LcsBaseDomainObject class >> virtualSlotDefinitionPragmas [
 	^ Pragma allNamed: 'virtualSlotDefinition' in: self class
 ]
 
+{ #category : #'slot access' }
+LcsBaseDomainObject >> _slotVarNamed: aSlotName [
+	"Return the value of the instance variable in me with that name"
+	^ (self slotDefinitionNamed: aSlotName) _currentSlotVarIn: self
+]
+
 { #category : #'gt views' }
 LcsBaseDomainObject >> accessorSlotNameandValue [
 	^ self allAccessorSlotDefinitions collect: [ :each | 

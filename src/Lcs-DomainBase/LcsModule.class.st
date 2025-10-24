@@ -139,6 +139,7 @@ LcsModule class >> modulesSlotDefinition [
 { #category : #modules }
 LcsModule >> _moduleNamed: aString [
 	self moduleName = aString ifTrue: [ ^ self ].
+	self modules ifNil: [ ^ nil ].
 	^ self modules findModuleNamed: aString
 ]
 
@@ -327,7 +328,7 @@ LcsModule >> loadSingletonCodeCollections [
 
 { #category : #accessing }
 LcsModule >> moduleName [
-	^ self slotVarNamed: 'moduleName'
+	^ self _slotVarNamed: 'moduleName'
 ]
 
 { #category : #accessing }
@@ -350,7 +351,7 @@ LcsModule >> moduleViewChildren [
 
 { #category : #accessing }
 LcsModule >> modules [
-	^ self slotVarNamed: 'modules'
+	^ self _slotVarNamed: 'modules'
 ]
 
 { #category : #accessing }

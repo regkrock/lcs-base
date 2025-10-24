@@ -53,7 +53,7 @@ LcsSecurityModule class >> securityRolesSlotDefinition [
 		slotName: 'securityRoles';
 		addSlotType: LcsSecurityRoles;
 		addCollectionMemberType: LcsSecurityRole;
-		"loaderClass: LcsSecurityRolesLoader;"
+		loaderClass: LcsSecurityRolesLoader;
 		yourself
 ]
 
