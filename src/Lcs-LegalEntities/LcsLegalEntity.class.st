@@ -2,7 +2,8 @@ Class {
 	#name : #LcsLegalEntity,
 	#superclass : #LcsDomainObject,
 	#instVars : [
-		'mainAddress'
+		'mainAddress',
+		'phoneNumber'
 	],
 	#category : #'Lcs-LegalEntities'
 }
@@ -27,6 +28,17 @@ LcsLegalEntity class >> mainAddressSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LcsLegalEntity class >> phoneNumberSlotDefinition [
+	<slotDefinition>
+	^ LcsMemberOfGlobalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsPhoneNumber);
+		slotName: 'phoneNumber';
+		collectionSlotName: 'phoneNumbers';
+		collectionSlotModuleName: 'Legal Entities Module';
+		yourself
+]
+
 { #category : #accessing }
 LcsLegalEntity >> entityName [
 	^ self virtualSlotVarNamed: 'entityName'
@@ -40,4 +52,14 @@ LcsLegalEntity >> mainAddress [
 { #category : #accessing }
 LcsLegalEntity >> mainAddress: anObject [
 	self slotVarNamed: 'mainAddress' put: anObject
+]
+
+{ #category : #accessing }
+LcsLegalEntity >> phoneNumber [
+	^ self slotVarNamed: 'phoneNumber'
+]
+
+{ #category : #accessing }
+LcsLegalEntity >> phoneNumber: anObject [
+	self slotVarNamed: 'phoneNumber' put: anObject
 ]

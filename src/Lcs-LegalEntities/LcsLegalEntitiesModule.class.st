@@ -5,7 +5,9 @@ Class {
 		'persons',
 		'organizations',
 		'genders',
-		'titles'
+		'titles',
+		'phoneNumbers',
+		'phoneNumberTypes'
 	],
 	#category : #'Lcs-LegalEntities'
 }
@@ -64,6 +66,27 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
+LcsLegalEntitiesModule class >> phoneNumberTypesSlotDefinition [
+	<slotDefinition>
+	^ LcsValueObjectsGlobalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsPhoneNumberTypes);
+		collectionMemberTypes: (OrderedCollection with: LcsPhoneNumberType);
+		slotName: 'phoneNumberTypes';
+		loaderClass: LcsPhoneNumberTypesLoader;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsLegalEntitiesModule class >> phoneNumbersSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsPhoneNumbers);
+		collectionMemberTypes: (OrderedCollection with: LcsPhoneNumber);
+		slotName: 'phoneNumbers';
+		yourself
+]
+
+{ #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> titlesSlotDefinition [
 	<slotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
@@ -103,6 +126,26 @@ LcsLegalEntitiesModule >> persons [
 { #category : #accessing }
 LcsLegalEntitiesModule >> persons: anObject [
 	self slotVarNamed: 'persons' put: anObject
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> phoneNumberTypes [
+	^ self slotVarNamed: 'phoneNumberTypes'
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> phoneNumberTypes: anObject [
+	self slotVarNamed: 'phoneNumberTypes' put: anObject
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> phoneNumbers [
+	^ self slotVarNamed: 'phoneNumbers'
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> phoneNumbers: anObject [
+	self slotVarNamed: 'phoneNumbers' put: anObject
 ]
 
 { #category : #accessing }

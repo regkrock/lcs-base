@@ -14,7 +14,7 @@ LcsStringSlot >> allowEmptyIntialValue: aBoolean [
 	^ self propertyAt: 'allowEmptyIntialValue' put: aBoolean
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #magritte }
 LcsStringSlot >> allowEmptyIntialValueDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
@@ -36,7 +36,7 @@ LcsStringSlot >> defaultInputComponentClassName [
 	^#LuiTextInput
 ]
 
-{ #category : #properties }
+{ #category : #iniitialize }
 LcsStringSlot >> initialValue: anObject [
 	super initialValue:anObject printString
 ]
@@ -52,7 +52,7 @@ LcsStringSlot >> isNullAllowed [
 	^ self allowEmptyIntialValue
 ]
 
-{ #category : #'slot model' }
+{ #category : #testing }
 LcsStringSlot >> isNullObject: anObject [ 
 	^ anObject isString and: [ anObject isEmpty ]
 ]

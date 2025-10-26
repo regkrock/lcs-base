@@ -23,12 +23,17 @@ LcsProposedClassModel >> classnameText [
 
 { #category : #'as yet unclassified' }
 LcsProposedClassModel >> foregroundColor [
-	^ Color blue
+	^ self modelClass ifNil: [ Color blue ] ifNotNil: [ Color brown]
 ]
 
 { #category : #initialize }
 LcsProposedClassModel >> initalizeOn: aClassname [ 
 	self modelClassname: aClassname
+]
+
+{ #category : #accessing }
+LcsProposedClassModel >> modelClassname: aClassname [
+	super modelClassname: aClassname
 ]
 
 { #category : #printing }

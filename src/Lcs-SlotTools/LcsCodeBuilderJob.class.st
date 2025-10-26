@@ -25,6 +25,13 @@ LcsCodeBuilderJob >> addJobStep: aJobStep [
 	^ self jobSteps addJobStep: aJobStep
 ]
 
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> addRefactoringTextDetailsTo: aStream [
+	self jobSteps do: [ :each |
+		aStream nextPutAll: '---- Step: ' , each stepNumber , ' ----'; cr; cr.
+		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
+]
+
 { #category : #refactorings }
 LcsCodeBuilderJob >> addRefactoringsTo: aCollection [ 
 	self jobSteps addRefactoringsTo: aCollection 
@@ -121,11 +128,11 @@ LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [
 { #category : #'gt views' }
 LcsCodeBuilderJob >> gtRefactoringChangeOn: aView [
 	<gtView>
-	^ aView empty
-"		title: 'Steps Tree';
-		priority: 2;
-		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ];
-		actionUpdateButton"
+	^ aView text
+		title: 'Refactoring';
+		priority: 1;
+		text: [ self refactoringText asRopedText ];
+		actionUpdateButton
 ]
 
 { #category : #'gt views' }
@@ -134,7 +141,9 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
+		tooltip: 'Existing Classes: gray, Proposed Classes: blue, Newly Created: brown';
 		initialize: (self proposedUmlModelFor: self umlModel);
+		send: [ :item | item modelClass ifNil: [ item ] ];
 		actionUpdateButton
 ]
 
@@ -197,6 +206,14 @@ LcsCodeBuilderJob >> printJobStreamDetailsOn: aStream [
 { #category : #'gt views' }
 LcsCodeBuilderJob >> proposedUmlModelFor: umlModelClasses [
 	^ LcsUml new proposedUmlModelFor: umlModelClasses
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> refactoringText [
+	| stream |
+	stream := WriteStream on: String new.
+	self addRefactoringTextDetailsTo: stream.
+	^ stream contents
 ]
 
 { #category : #'as yet unclassified' }
