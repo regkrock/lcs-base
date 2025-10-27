@@ -32,6 +32,7 @@ LcsLegalEntity class >> mainAddressSlotDefinition [
 LcsLegalEntity class >> phoneNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
+		initialValueBlock: [ :domainParent :slot | slot newInstance ];
 		slotTypes: (OrderedCollection with: LcsPhoneNumber);
 		slotName: 'phoneNumber';
 		collectionSlotName: 'phoneNumbers';

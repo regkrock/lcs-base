@@ -48,6 +48,11 @@ LcsMemberOfGlobalCollectionSlot >> collectionSlotName: aString [
 	self propertyAt: 'collectionSlotName' put: aString
 ]
 
+{ #category : #'slot model' }
+LcsMemberOfGlobalCollectionSlot >> newInstance [
+	^ self targetCollectionSlotDefinition collectionMemberTypes first new
+]
+
 { #category : #message }
 LcsMemberOfGlobalCollectionSlot >> sourceCollectionNotPopulatedMessage [
 	^'Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized' 
@@ -58,4 +63,9 @@ LcsMemberOfGlobalCollectionSlot >> sourceCollectionNotPopulatedMessage [
 { #category : #'slot model' }
 LcsMemberOfGlobalCollectionSlot >> targetCollection [
 	^ self collectionModule perform: self collectionSlotName asSymbol
+]
+
+{ #category : #'slot model' }
+LcsMemberOfGlobalCollectionSlot >> targetCollectionSlotDefinition [
+	^ self collectionModule slotDefinitionNamed: self collectionSlotName asSymbol
 ]

@@ -72,6 +72,7 @@ LcsLegalEntitiesModule class >> phoneNumberTypesSlotDefinition [
 		slotTypes: (OrderedCollection with: LcsPhoneNumberTypes);
 		collectionMemberTypes: (OrderedCollection with: LcsPhoneNumberType);
 		slotName: 'phoneNumberTypes';
+		priority: 10;
 		loaderClass: LcsPhoneNumberTypesLoader;
 		yourself
 ]
