@@ -220,6 +220,17 @@ LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEnteredS
 	^ aScripter
 ]
 
+{ #category : #'examples - form' }
+LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixEntered [
+	<gtExample>
+	<return: #LcsGlobalCollectionPatternForm>
+	| form |
+	form := self mainForm.
+	form slotModelBuilder classPrefix: 'Lxx'.
+	self assert: form slotModelBuilder jobSteps isEmpty.
+	^form
+]
+
 { #category : #configuration }
 LcsMultislotPatternFormExamples >> targetClass [
 	^ LxxPrototypeSystem

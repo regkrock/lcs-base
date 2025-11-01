@@ -102,9 +102,9 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> initialize [
 LcsDomainClassAndLocalCollectionClassBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: 'Install ';
-		nextPutAll: self newDomainClassName ; cr;
+		nextPutAll: (self newDomainClassName ifNil: [ '<undefined class>' ]) ; cr;
 		nextPutAll: ' with instances stored in ';
-		nextPutAll: self collectionClassName
+		nextPutAll: (self collectionClassName ifNil: [ '<nil>' ])
 ]
 
 { #category : #accessing }

@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-30T23:23:01.295997-04:00"
+						"dateAndTimeString" : "2025-11-01T15:41:48.574499-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This is for implementing a 1 to many relationship between an object and the collection it belongs to.\nFor example, LcsPerson is stored in a collection of persons (LcsPersons). This form is for creation of needed classes and adding of the necessary slots to the existing classes."
+				"string" : "This is for implementing a 1 to many relationship between an object and the collection it belongs to.\nFor example, LcsPerson is stored in a collection of persons (LcsPersons). This form is for creation of needed classes and adding of the necessary slots to the existing classes. \n\nSince global collections can only be owned by a module, the collection class slot is installed in the  module."
 			},
 			{
 				"__type" : "textSnippet",

@@ -92,8 +92,7 @@ LcsBaseSlotCreationForm >> gtUMLFor: aView [
 		title: 'UML';
 		priority: 99;
 		object: [  self slotModelBuilder ];
-		view: #gtUMLFor:;
-		actionUpdateButton
+		view: #gtUMLFor:
 ]
 
 { #category : #initialize }
@@ -211,7 +210,7 @@ LcsBaseSlotCreationForm >> reinitialize [
 	self initializeOn: target
 ]
 
-{ #category : #callbacks }
+{ #category : #accessing }
 LcsBaseSlotCreationForm >> slotModelBuilder [
 	^ slotModelBuilder
 ]
@@ -372,6 +371,16 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 		description
 			priority: 2;
 			yourself ]"
+]
+
+{ #category : #private }
+LcsBaseSlotCreationForm >> umlModel [
+	^ self slotModelBuilder umlModel
+]
+
+{ #category : #private }
+LcsBaseSlotCreationForm >> umlMondrianModel [
+	^ self slotModelBuilder umlMondrianModel
 ]
 
 { #category : #initialize }

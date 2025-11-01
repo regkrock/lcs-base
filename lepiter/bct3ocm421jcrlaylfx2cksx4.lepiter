@@ -80,43 +80,6 @@
 				"codeExpanded" : false,
 				"previewExpanded" : true,
 				"noCode" : false
-			},
-			{
-				"__type" : "pictureSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T16:31:41.201975-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T16:34:25.890101-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "Xpp6/dv+DQCyYC/4DxvQvw=="
-				},
-				"url" : "attachments/bct3ocl984wc1vpeoox2y5mie/lcsvaluecollectionpatternformexamples-persontitlescreationform-gtviewsfo.png",
-				"caption" : "UML Diagram Of The Classes That WIll Be Generated",
-				"previewHeight" : 300,
-				"reference" : ""
 			}
 		]
 	},

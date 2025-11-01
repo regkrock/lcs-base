@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T10:25:50.450599-04:00"
+						"dateAndTimeString" : "2025-11-01T15:40:03.978079-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,54 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T10:25:50.450599-04:00"
+						"dateAndTimeString" : "2025-11-01T15:43:11.022629-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "wLcc4db+DQC+LkdWDxvQvw=="
+					"uidString" : "che2Yu/+DQCDMogdCiYRaw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "This is for implementing a 1 to many relationship between an object and the collection it belongs to.\nFor example, LcsPhoneNumber is stored in a collection of persons (LcsPhoneNumbers). This form is for creation of needed classes and adding of the necessary slots to the existing classes. \n\nLocal collections can only be owned by any subclass of LcsDomainObject."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-01T15:43:40.785582-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-01T15:45:02.027786-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "yk+ib+/+DQCH8sPnCiYRaw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "####This is an example does the following:\n1) Creates LxxPhoneNumber class\n2) Creates LxxPhoneNumbers class\n3) Creates LxxPhoneNumbersLodaer class\n4) Adds a parent to LxxPhonenUmber which points to The #phoneNumbers slot in LxxPerson.\n5) Adds #phoneNumbers slot to LxxPerson\n\nSee [[Slot Model Generation]] page for description of the Tabs that are   in the Global Colleection Pattern Form."
 			},
 			{
 				"__type" : "exampleSnippet",
@@ -55,7 +92,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T10:57:13.741374-04:00"
+						"dateAndTimeString" : "2025-11-01T16:25:38.145434-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,57 +103,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T10:57:13.741374-04:00"
+						"dateAndTimeString" : "2025-11-01T16:25:38.145434-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "WXRdUdf+DQC4Ew69DxvQvw=="
+					"uidString" : "vSyuBfD+DQCL5W6WCiYRaw=="
 				},
-				"exampleSelector" : "personTitlesCreationForm",
-				"previewHeight" : 700,
+				"exampleSelector" : "phoneNumbersAddedToPersonExample",
+				"previewHeight" : 200,
 				"previewShowSelector" : "gtViewsFor:",
-				"exampleBehaviorName" : "LcsValueCollectionPatternFormExamples",
-				"codeExpanded" : false,
-				"previewExpanded" : true,
+				"exampleBehaviorName" : "LcsLocalCollectionPatternFormExamples",
+				"codeExpanded" : true,
+				"previewExpanded" : false,
 				"noCode" : false
-			},
-			{
-				"__type" : "pictureSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T16:31:41.201975-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T16:34:25.890101-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "Xpp6/dv+DQCyYC/4DxvQvw=="
-				},
-				"url" : "attachments/bct3ocl984wc1vpeoox2y5mie/lcsvaluecollectionpatternformexamples-persontitlescreationform-gtviewsfo.png",
-				"caption" : "UML Diagram Of The Classes That WIll Be Generated",
-				"previewHeight" : 300,
-				"reference" : ""
 			}
 		]
 	},
@@ -128,7 +128,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-10-31T10:25:50.367864-04:00"
+			"dateAndTimeString" : "2025-11-01T15:40:03.905342-04:00"
 		}
 	},
 	"editEmail" : {
@@ -139,15 +139,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-10-31T10:25:50.367864-04:00"
+			"dateAndTimeString" : "2025-11-01T15:40:03.905342-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Define Value Collection"
+		"title" : "Define Local Collection And Member Class(es) Pattern Form"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "68731be1-d6fe-0d00-be2d-56750f1bd0bf"
+		"uuid" : "26fab462-effe-0d00-8331-1a4c0a26116b"
 	}
 }

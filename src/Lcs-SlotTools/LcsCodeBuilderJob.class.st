@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsApplicationObject,
 	#instVars : [
 		'jobSteps',
-		'buildUnknownClass'
+		'buildUnknownClass',
+		'umlPositions'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -142,7 +143,7 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 		title: 'UML';
 		priority: 20;
 		tooltip: 'Existing Classes: gray, Proposed Classes: blue, Newly Created: brown';
-		initialize: (self proposedUmlModelFor: self umlModel);
+		initialize: self umlMondrianModel;
 		send: [ :item | item modelClass ifNil: [ item ] ];
 		actionUpdateButton
 ]
@@ -150,6 +151,7 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 { #category : #initialize }
 LcsCodeBuilderJob >> initialize [
 	super initialize.
+	self umlPositions: OrderedCollection new.
 	self initializeJobSteps
 ]
 
@@ -230,11 +232,27 @@ LcsCodeBuilderJob >> traceStep: aMethodName [
 LcsCodeBuilderJob >> umlModel [
 	| umlModel |
 	umlModel := LcsUmlModel new .
+	umlModel positions: self umlPositions.
 	self addClassesToUmlModel: umlModel.
 	umlModel removeDuplicates.
 	self addAssociationsToUmlModel: umlModel.
 	umlModel resolveClassModelNames.
 	^ umlModel
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderJob >> umlMondrianModel [
+	^ self proposedUmlModelFor: self umlModel
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJob >> umlPositions [
+	^ umlPositions
+]
+
+{ #category : #accessing }
+LcsCodeBuilderJob >> umlPositions: anObject [
+	umlPositions := anObject
 ]
 
 { #category : #command }
