@@ -31,56 +31,6 @@ LcsGlobalCollectionPatternForm >> buildUnknownClassDescription [
 		beRequired
 ]
 
-{ #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtConstructionTreeFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'Steps Tree';
-		priority: 98;
-		object: [  self slotModelBuilder ];
-		view: #gtConstructionTreeFor:
-]
-
-{ #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtRefactoringChangeOn: aView [
-	<gtView>
-	^ aView forward
-		title: 'Refactoring';
-		priority: 99.2;
-		object: [  self slotModelBuilder ];
-		view: #gtRefactoringChangeOn:
-]
-
-{ #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtSlotBuilderFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'Slot Builder Raw';
-		priority: 99.6;
-		object: [  self slotModelBuilder ];
-		view: #gtRawFor:
-]
-
-{ #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtSlotBuilderMetaFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'Slot Builder Meta';
-		priority: 99.7;
-		object: [  self slotModelBuilder ];
-		view: #gtMetaFor:
-]
-
-{ #category : #'gt  views' }
-LcsGlobalCollectionPatternForm >> gtUMLFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'UML';
-		priority: 99;
-		object: [  self slotModelBuilder ];
-		view: #gtUMLFor:
-]
-
 { #category : #initialize }
 LcsGlobalCollectionPatternForm >> initializeOn: aTarget [
 	super initializeOn: aTarget.

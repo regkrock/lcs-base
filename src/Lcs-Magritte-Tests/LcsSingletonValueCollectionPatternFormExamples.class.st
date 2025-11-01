@@ -24,10 +24,10 @@ LcsSingletonValueCollectionPatternFormExamples >> sampleGenderCreationForm [
 	form := self mainForm.
 	form slotModelBuilder 
 		classRootName: 'SampleGender';
-		"addValueObjectSubclassWithRootNamed: 'SampleMale';
+		addValueObjectSubclassWithRootNamed: 'SampleMale';
 		addValueObjectSubclassWithRootNamed: 'SampleFemale';
 		addValueObjectSubclassWithRootNamed: 'SampleUnknownGender'
-			with: [ :classBuilder | classBuilder beDefaultInstance ];"
+			with: [ :classBuilder | classBuilder beDefaultInstance ];
 		installMemberSlotInDomainClass: LxxPerson.
 	self simulateClickOnAcceptButtonIn: form.
 	^ form

@@ -15,56 +15,6 @@ LcsSingletonValueCollectionPatternForm class >> builderClass [
 	^ LcsSingletonValueObjectClassesBuilderJob
 ]
 
-{ #category : #'gt views' }
-LcsSingletonValueCollectionPatternForm >> gtConstructionTreeFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'Steps Tree';
-		priority: 98;
-		object: [  self slotModelBuilder ];
-		view: #gtConstructionTreeFor:
-]
-
-{ #category : #'gt views' }
-LcsSingletonValueCollectionPatternForm >> gtRefactoringChangeOn: aView [
-	<gtView>
-	^ aView forward
-		title: 'Refactoring';
-		priority: 99.2;
-		object: [  self slotModelBuilder ];
-		view: #gtRefactoringChangeOn:
-]
-
-{ #category : #'gt views' }
-LcsSingletonValueCollectionPatternForm >> gtSlotBuilderFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'Slot Builder Raw';
-		priority: 99.6;
-		object: [  self slotModelBuilder ];
-		view: #gtRawFor:
-]
-
-{ #category : #'gt views' }
-LcsSingletonValueCollectionPatternForm >> gtSlotBuilderMetaFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'Slot Builder Meta';
-		priority: 99.7;
-		object: [  self slotModelBuilder ];
-		view: #gtMetaFor:
-]
-
-{ #category : #'gt views' }
-LcsSingletonValueCollectionPatternForm >> gtUMLFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'UML';
-		priority: 99;
-		object: [  self slotModelBuilder ];
-		view: #gtUMLFor:
-]
-
 { #category : #initialize }
 LcsSingletonValueCollectionPatternForm >> initializeOn: aTarget [
 	super initializeOn: aTarget.

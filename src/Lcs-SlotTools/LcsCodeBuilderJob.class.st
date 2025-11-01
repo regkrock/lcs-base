@@ -85,7 +85,7 @@ LcsCodeBuilderJob >> gtClassBuilderViewFor: aView [
 	^ aView columnedTree
 		title: 'Steps List';
 		priority: 10;
-		expandUpTo: 3;
+		expandUpTo: 2;
 		items: [ self jobSteps ];
 		children: [ :step | step jobSteps ];
 		"column: 'Number'
@@ -106,7 +106,7 @@ LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView mondrian
 		title: 'Steps Tree';
-		priority: 2;
+		priority: 1;
 		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ];
 		actionUpdateButton
 ]

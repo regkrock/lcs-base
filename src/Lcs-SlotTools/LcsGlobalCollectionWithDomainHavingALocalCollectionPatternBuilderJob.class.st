@@ -141,7 +141,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> gtRefact
 	<gtView>
 	^ aView text
 		title: 'Refactoring';
-		priority: 1;
+		priority: 5;
 		text: [ self refactoringText asRopedText ];
 		actionUpdateButton
 ]
