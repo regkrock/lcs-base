@@ -15,6 +15,19 @@ LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 		yourself
 ]
 
+{ #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	(aUmlModel classModelForClassname: self targetClassName)
+		addAssociation: (self derivedSlotName , 'SlotDefintion') toModelNamed: self slotClass name.
+]
+
+{ #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> addClassesToUmlModel: aUmlModel [
+	super addClassesToUmlModel: aUmlModel.
+	aUmlModel addClassNamed: self slotClass name
+]
+
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: aCodeStream [
 	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
@@ -66,19 +79,21 @@ LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 ]
 
 { #category : #'gt views' }
-LcsSlotDefintionMethodBuilder >> addSlotAssociationsToUmlModel: umlModel [ 
-	"(umlModel classModelForClassname: self parentClassName)
+LcsSlotDefintionMethodBuilder >> addSlotAssociationsToUmlModel: aUmlModel [ 
+	(aUmlModel classModelForClassname: self targetClassName)
+		addAssociation: self slotDefinitionSelector toModelNamed: self slotClass.
+	"(aUmlModel classModelForClassname: self parentClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(umlModel classModelForClassname: self collectionClassName)
+	(aUmlModel classModelForClassname: self collectionClassName)
 		addAssociation: 'parent' toModelNamed: self parentClassName"
 ]
 
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> addSlotClassesToUmlModel: umlModel [ 
-	"umlModel 
+	umlModel 
 		addClassNamed: self targetClassName;
-		addClassModelForExisting: LcsSlotModel;
-		addClassModelForExisting: self slotClass "
+		"addClassModelForExisting: LcsSlotModel;"
+		addClassModelForExisting: self slotClass 
 ]
 
 { #category : #'as yet unclassified' }
@@ -150,13 +165,22 @@ LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
 ]
 
 { #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> derivedSlotName [
+	self slotName ifNotNil: [ ^ self slotName ].
+	self slotTemplate ifNotNil: [ ^ self slotTemplate slotName ].
+	^ '<missing slotName>'
+]
+
+{ #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> gtClassViewOn: aView [
 	<gtView>
-	^ aView text
-		title: 'No Target Class';
-		priority: 200;
-		text: 'No target class';
-		actionUpdateButton
+	self targetClassName isNil ifTrue: [
+		^ aView text
+			title: 'No Target Class';
+			priority: 200;
+			text: 'No target class';
+			actionUpdateButton ].
+	^ super gtClassViewOn: aView
 ]
 
 { #category : #'gt views' }
@@ -172,7 +196,7 @@ LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 	<gtView>
-	self targetClass isNil ifTrue: [ ^ aView empty ].
+	self targetClassName isNil ifTrue: [ ^ aView empty ].
 	^ aView explicit
 		title: 'Implementor(Slot Definition)';
 		priority: 200;
@@ -188,6 +212,7 @@ LcsSlotDefintionMethodBuilder >> gtUMLFor: aView [
 		title: 'UML';
 		priority: 20;
 		initialize: (self proposedUmlModelFor: self slotUmlModel);
+		send: [ :item | item modelClass ifNil: [ item ] ];
 		actionUpdateButton
 ]
 
@@ -279,10 +304,9 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
-	self slotName ifNotNil: [:s | ^ (s , 'SlotDefinition') asSymbol ].
-	self slotTemplate ifNil: [ ^ LcsError signal: 'slotName is undefined' ].
-	self slotTemplate slotName ifNotNil: [ :s | ^ (s , 'SlotDefinition') asSymbol ].
-	LcsError signal: 'slotName is undefined'
+	^ self derivedSlotName 
+		ifNil: [ LcsError signal: 'slotName is undefined' ]
+		ifNotNil: [:name | (name , 'SlotDefinition') asSymbol ]
 ]
 
 { #category : #'code generation' }
@@ -304,8 +328,8 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 ]
 
 { #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> slotNameDisplayName [
-	^ (self slotName ifNil: [ '<missing>' ]) printString
+LcsSlotDefintionMethodBuilder >> slotNameDisplayString [
+	^ self derivedSlotName
 ]
 
 { #category : #accessing }

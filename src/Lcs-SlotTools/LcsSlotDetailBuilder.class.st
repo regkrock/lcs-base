@@ -8,6 +8,11 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #printing }
+LcsSlotDetailBuilder >> derivedSlotName [
+	^ self slotName ifNil: ['<missing slotName>']
+]
+
 { #category : #'as yet unclassified' }
 LcsSlotDetailBuilder >> gtClassViewOn: aView [
 	<gtView>
@@ -33,13 +38,10 @@ LcsSlotDetailBuilder >> jobStepActionDescription [
 
 { #category : #printing }
 LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
-	| slotName |
-	slotName := self slotName.
-"	slotName isNil ifTrue: [ slotTemplate ifNil: [] ifNotNil: [ slotName := self slotTemplate slotName ] ]."
 	aStream
 		nextPutAll: self jobStepActionDescription;
 		nextPutAll: ' "';
-		nextPutAll: (slotName ifNil: [ '<missing slotName>' ]);
+		nextPutAll: self derivedSlotName;
 		nextPutAll: '" in ';
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>' ])
 ]

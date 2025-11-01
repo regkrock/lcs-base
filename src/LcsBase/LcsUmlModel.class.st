@@ -3,12 +3,22 @@ Class {
 	#superclass : #LcsObject,
 	#traits : 'LtOrderedCollection',
 	#classTraits : 'LtOrderedCollection classTrait',
+	#instVars : [
+		'positions'
+	],
 	#category : #'LcsBase-Core'
 }
 
 { #category : #'instance creation' }
 LcsUmlModel class >> new [ 
 	^ super new
+]
+
+{ #category : #configuration }
+LcsUmlModel >> addClass: aClass [
+	aClass isNil ifTrue: [ ^ self ].
+	aClass isClass ifFalse: [ ^ self ].
+	self addClassModelForExisting: aClass 
 ]
 
 { #category : #model }
@@ -38,12 +48,38 @@ LcsUmlModel >> allClassModelsFor: aClassname [
 ]
 
 { #category : #configuration }
+LcsUmlModel >> classModelForClass: aClass [
+	^ self collection 
+		detect: [ :eachModel | eachModel modelClassname = aClass name asString ]
+		ifNone: [  
+			"Transcript cr; show: 'Unable to find class named ' , aClassname asString."
+			nil  ] 
+]
+
+{ #category : #configuration }
 LcsUmlModel >> classModelForClassname: aClassname [
 	^ self collection 
 		detect: [ :eachModel | eachModel modelClassname = aClassname asString ]
 		ifNone: [  
 			"Transcript cr; show: 'Unable to find class named ' , aClassname asString."
 			nil  ] 
+]
+
+{ #category : #'initialize\t' }
+LcsUmlModel >> initialize [ 
+	super initialize.
+	self collection: self collectionClass new.
+	self positions: OrderedCollection new
+]
+
+{ #category : #accessing }
+LcsUmlModel >> positions [
+	^ positions
+]
+
+{ #category : #accessing }
+LcsUmlModel >> positions: anObject [
+	positions := anObject
 ]
 
 { #category : #model }
@@ -70,8 +106,8 @@ LcsUmlModel >> resolveSuperclassFor: aClassModel [
 ]
 
 { #category : #configuration }
-LcsUmlModel >> resolveToClassModelAssociationFor: eachClassModel [
-	eachClassModel associations do: [ :eachAssociation | 
+LcsUmlModel >> resolveToClassModelAssociationFor: aClassModel [
+	aClassModel associations do: [ :eachAssociation | 
 		eachAssociation toClassModel isNil ifTrue: [ 
 			eachAssociation toClassModel: (self classModelForClassname: eachAssociation toClassModelName) ] ]
 ]

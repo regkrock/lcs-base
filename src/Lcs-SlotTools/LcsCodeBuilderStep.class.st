@@ -176,7 +176,7 @@ LcsCodeBuilderStep >> gtUMLFor: aView [
 		title: 'UML';
 		priority: 20;
 		initialize: (self proposedUmlModelFor: self umlModel);
-		actionUpdateButton
+		send: [ :item | item modelClass ifNil: [ item ] ]
 ]
 
 { #category : #initialize }
@@ -296,8 +296,8 @@ LcsCodeBuilderStep >> propogateProperty: aName valueChangedTo: anObject [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderStep >> proposedUmlModelFor: umlModelClasses [
-	^ LcsUml new proposedUmlModelFor: umlModelClasses
+LcsCodeBuilderStep >> proposedUmlModelFor: aUmlModel [
+	^ LcsUml new proposedUmlModelFor: aUmlModel
 ]
 
 { #category : #printing }

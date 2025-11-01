@@ -21,8 +21,11 @@ LcsPrimaryCollectionSlot >> collectionMemberTypesList [
 
 { #category : #'gt views' }
 LcsPrimaryCollectionSlot >> gtSlotDefinitionAttributes [
-	^ super gtSlotDefinitionAttributes
-		add: 'collectionClass' -> (self collectionClass ifNil: [ '<undefined>' ] ifNotNil: [ self collectionClass name]);
+	| attributes |
+	attributes := super gtSlotDefinitionAttributes.
+	attributes detect: [ :each | each key = 'collectionClass' ] ifNone: [
+		attributes add: 'collectionClass' -> nil].
+	^ attributes
 		add: 'collectionMemberTypes' -> self collectionMemberTypesList ;
 		yourself
 ]

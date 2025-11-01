@@ -25,9 +25,9 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #'gt views' }
-LcsBaseClassBuilder >> addClassesToUmlModel: umlModel [
-	umlModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
-	self addProposedClassTo: umlModel
+LcsBaseClassBuilder >> addClassesToUmlModel: aUmlModel [
+	aUmlModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
+	self addProposedClassTo: aUmlModel
 ]
 
 { #category : #'gt views' }

@@ -16,7 +16,7 @@ LcsAccessorSlotCreationFormTest >> slotModelBuilder [
 
 { #category : #form }
 LcsAccessorSlotCreationFormTest >> stringSlotAccessorSlotCreationForm [
-	^ LcsSlotCreationFormExamples new stringSlotAccessorSlotCreationForm
+	^ LcsStringSlotCreationFormExamples new slotAccessorSlotCreationForm
 ]
 
 { #category : #tests }

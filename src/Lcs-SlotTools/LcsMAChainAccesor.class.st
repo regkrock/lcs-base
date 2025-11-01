@@ -68,5 +68,5 @@ LcsMAChainAccesor >> targetModelFromSourceModel: aModel [
 { #category : #model }
 LcsMAChainAccesor >> valueIn: aModel [
 	^ self accessors inject: aModel into: [ :targetModel :eachSelector |
-		targetModel perform: eachSelector asSymbol ]
+		targetModel ifNotNil: [ targetModel perform: eachSelector asSymbol ] ]
 ]

@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-10T13:06:24.768841-04:00"
+						"dateAndTimeString" : "2025-08-10T13:06:46.987029-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "A slot normally contains (1) a Smalltlak Object (ex: integer, text, etc.) or it contains (2) a adomain object ( an object whose ancesstor is LcsDomainObject).\n\nSlots have the following properties:\n- slot name (slotName) this is an unique name. Based on the slot name, three things occur\n\t\t1) An instance variable with the same name is created. (ex: {{gtClass:LxxBasePerson}}\n\t\t2) A getter method is created (ex: {{gtMethod:name=LxxBasePerson>>firstName}})\n\t\t3) A setter method is created (ex: {{gtMethod:name=LxxBasePerson>>firstName:}})\n- the slot definition is defined in a class side method. ({{gtMethod:LxxBasePerson class}}"
+				"string" : "A slot normally contains (1) a Smalltlak Object (ex: integer, text, etc.) or it contains (2) a adomain object ( an object whose ancesstor is LcsDomainObject).\n\nSlots have the following properties:\n- slot name (slotName) this is an unique name. Based on the slot name, three things occur\n\t\t1) An instance variable with the same name is created. (ex: {{gtClass:LxxBasePerson}}\n\t\t2) A getter method is created (ex: {{gtMethod:name=LxxBasePerson>>firstName}})\n\t\t3) A setter method is created (ex: {{gtMethod:name=LxxBasePerson>>firstName:}})\n- the slot definition is defined in a class side method. \n\t\tex: ({{gtMethod:LxxBasePerson class>>firstNameSlotDefinition}}"
 			},
 			{
 				"__type" : "textSnippet",

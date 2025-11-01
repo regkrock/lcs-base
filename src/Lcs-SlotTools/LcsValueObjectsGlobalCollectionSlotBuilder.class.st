@@ -13,8 +13,8 @@ LcsValueObjectsGlobalCollectionSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
-	umlModel 
+LcsValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
+	aUmlModel 
 		addClassNamed: self collectionClassName;
 		addClassNamed: self parentClassName
 ]

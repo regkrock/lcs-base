@@ -9,56 +9,10 @@ LcsSlotCreationFormExamples >> actionIdFor: aDescriptionSymbol [
 	^ GtMagritteActionElementId new description: (self subjectScripterModel perform: aDescriptionSymbol)
 ]
 
-{ #category : #form }
-LcsSlotCreationFormExamples >> booleanSlotAccessorSlotCreationForm [
-	<gtExample>
-	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm
-				slotClassChangedTo: 'LcsBooleanSlot'.
-	self assert: form slotClassName equals: 'LcsBooleanSlot'.
-	self assert: form slotModelBuilder class equals: LcsBooleanSlotBuilder.
-	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) 
-		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
-	#(numberOfDecimalsDescription) 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
-	^ form
-]
-
 { #category : #asking }
 LcsSlotCreationFormExamples >> currentCacheValueOf: slotClassDescription [ 
 	^ (((self subjectScripter element userData at: #gtmemento) cache
 		at: slotClassDescription) ifSome: [ :aValue | aValue ]) currentValue.
-]
-
-{ #category : #form }
-LcsSlotCreationFormExamples >> dateOfBirthSlotAccessorSlotCreationForm [
-	<gtExample>
-	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm slotClassChangedTo: 'LcsDateOfBirthSlot'.
-	self assert: form slotClassName equals: 'LcsDateOfBirthSlot'.
-	self assert: form slotModelBuilder class equals: LcsDateSlotBuilder.
-	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
-		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
-	#() 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
-	^ form
-]
-
-{ #category : #form }
-LcsSlotCreationFormExamples >> dateSlotAccessorSlotCreationForm [
-	<gtExample>
-	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm slotClassChangedTo: 'LcsDateSlot'.
-	self assert: form slotClassName equals: 'LcsDateSlot'.
-	self assert: form slotModelBuilder class equals: LcsDateSlotBuilder.
-	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
-		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
-	#() 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
-	^ form
 ]
 
 { #category : #asking }
@@ -66,7 +20,7 @@ LcsSlotCreationFormExamples >> fieldIdFor: aDescriptionSymbol [
 	^ GtMagritteFieldElementId new description: (self subjectScripterModel perform: aDescriptionSymbol)
 ]
 
-{ #category : #examples }
+{ #category : #'examples - scripter' }
 LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	<gtExample>
 	<return: #BlScripter>
@@ -139,14 +93,14 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	^ self subjectScripter
 ]
 
-{ #category : #examples }
+{ #category : #'examples - scripter' }
 LcsSlotCreationFormExamples >> formScripter [
 	<gtExample>
 	<return: #BlScripter>
 	self ensureCurrentsystemIsPrototypeSystem.
 	self
 		subjectScripter: (self
-				scripterWithModel: [ self slotCreationForm ]
+				scripterWithModel: [ self slotCreationFormOnLxxPerson ]
 				element: [ :aModel | aModel asGtMagritteViewModel asElement ]).
 
 	self
@@ -158,7 +112,7 @@ LcsSlotCreationFormExamples >> formScripter [
 	^ self subjectScripter
 ]
 
-{ #category : #examples }
+{ #category : #'examples - scripter' }
 LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
@@ -184,7 +138,7 @@ LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 	^ self subjectScripter
 ]
 
-{ #category : #examples }
+{ #category : #'examples - scripter' }
 LcsSlotCreationFormExamples >> formWithValidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
@@ -254,45 +208,13 @@ LcsSlotCreationFormExamples >> inStep: aStep enterText: aString in: anId acceptE
 		cancelId: aCancelId 
 ]
 
-{ #category : #form }
-LcsSlotCreationFormExamples >> integerSlotAccessorSlotCreationForm [
-	<gtExample>
-	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm
-				slotClassChangedTo: 'LcsIntegerSlot'.
-	self assert: form slotClassName equals: 'LcsIntegerSlot'.
-	self assert: form slotModelBuilder class equals: LcsIntegerSlotBuilder.
-	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription) 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) notNil ].
-	#(numberOfDecimalsDescription) 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
-	^ form
-]
-
 { #category : #asking }
 LcsSlotCreationFormExamples >> originalCacheValueOf: slotClassDescription [ 
 	^ (((self subjectScripter element userData at: #gtmemento) cache
 		at: slotClassDescription) ifSome: [ :aValue | aValue ]) originalValue.
 ]
 
-{ #category : #form }
-LcsSlotCreationFormExamples >> scaledDecimalSlotAccessorSlotCreationForm [
-	<gtExample>
-	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm
-				slotClassChangedTo: 'LcsScaledDecimalSlot'.
-	self assert: form slotClassName equals: 'LcsScaledDecimalSlot'.
-	self assert: form slotModelBuilder class equals: LcsScaledDecimalSlotBuilder.
-	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription numberOfDecimalsDescription) 
-		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
-	#() 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
-	^ form
-]
-
-{ #category : #form }
+{ #category : #'examples - form' }
 LcsSlotCreationFormExamples >> slotCreationForm [
 	<gtExample>
 	| form |
@@ -304,64 +226,31 @@ LcsSlotCreationFormExamples >> slotCreationForm [
 	^form
 ]
 
-{ #category : #form }
-LcsSlotCreationFormExamples >> stringSlotAccessorSlotCreationForm [
-	<gtExample>
+{ #category : #'examples - support' }
+LcsSlotCreationFormExamples >> slotCreationFormOn: aDomainClass [
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm
-				slotClassChangedTo: 'LcsStringSlot'.
-	self assert: form slotClassName equals: 'LcsStringSlot'.
-	self assert: form slotModelBuilder class equals: LcsStringSlotBuilder.
-	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) 
-		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
-	#(numberOfDecimalsDescription) 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
+	form := LcsSlotCreationForm new targetClass: aDomainClass.
+	self assert: form targetClass equals: aDomainClass.
+	self assert: form slotClassName isEmpty.
+	self assert: form isSlotModelBuilderNotReified.
+	^form
+]
+
+{ #category : #'example - form' }
+LcsSlotCreationFormExamples >> slotCreationFormOnLxxPerson [
+	<gtExample>
+	| form |
+	form := self slotCreationFormOn: LxxPerson.
 	^ form
 ]
 
-{ #category : #examples }
-LcsSlotCreationFormExamples >> stringSlotSubjectScripter [
-	<gtExample>
-	<return: #BlScripter>
-	| aScripter |
-	self ensureCurrentsystemIsPrototypeSystem.
-	aScripter := self
-			scripterWithModel: [ self stringSlotAccessorSlotCreationForm ]
-			element: [ :aModel | aModel asGtMagritteViewModel asElement ].
-
-	self
-		assert: aScripter
-		model: aScripter model
-		acceptEnabled: false
-		cancelEnabled: true
-		buildEnabled: false.
-		
-	^ aScripter
-]
-
-{ #category : #form }
-LcsSlotCreationFormExamples >> symbolSlotAccessorSlotCreationForm [
-	<gtExample>
-	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm
-				slotClassChangedTo: 'LcsSymbolSlot'.
-	self assert: form slotClassName equals: 'LcsSymbolSlot'.
-	self assert: form slotModelBuilder class equals: LcsStringSlotBuilder.
-	#(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) 
-		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
-	#(numberOfDecimalsDescription) 
-		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
-	^ form
-]
-
-{ #category : #form }
+{ #category : #'example - form' }
 LcsSlotCreationFormExamples >> virtualSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := self slotCreationForm
+	form := self slotCreationFormOnLxxPerson
 				slotClassChangedTo: 'LcsVirtualSlot'.
 	self assert: form slotClassName equals: 'LcsVirtualSlot'.
 	self assert: form slotModelBuilder class equals: LcsVirtualSlotBuilder.

@@ -7,7 +7,9 @@ Class {
 		'genders',
 		'titles',
 		'phoneNumbers',
-		'phoneNumberTypes'
+		'phoneNumberTypes',
+		'emailAddresses',
+		'emailAddressTypes'
 	],
 	#category : #'Lcs-LegalEntities'
 }
@@ -24,12 +26,35 @@ LcsLegalEntitiesModule class >> defaultModuleName [
 ]
 
 { #category : #'slot definitions' }
+LcsLegalEntitiesModule class >> emailAddressTypesSlotDefinition [
+	<slotDefinition>
+	^ LcsValueObjectsGlobalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsEmailAddressTypes);
+		collectionMemberTypes: (OrderedCollection with: LcsEmailAddressType);
+		slotName: 'emailAddressTypes';
+		loaderClass: LcsEmailAddressTypesLoader;
+		priority: 10;
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsLegalEntitiesModule class >> emailAddressesSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsEmailAddresses);
+		collectionMemberTypes: (OrderedCollection with: LcsEmailAddress);
+		slotName: 'emailAddresses';
+		yourself
+]
+
+{ #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> gendersSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonValueObjectsGlobalCollectionSlot new
 		slotName: 'genders';
 		addSlotType: LcsGenders;
 		valueObjectSuperclass: LcsGender;
+		priority: 10;
 		yourself
 ]
 
@@ -97,6 +122,26 @@ LcsLegalEntitiesModule class >> titlesSlotDefinition [
 		loaderClass: LcsTitlesLoader;
 		priority: 10;
 		yourself
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> emailAddressTypes [
+	^ self slotVarNamed: 'emailAddressTypes'
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> emailAddressTypes: anObject [
+	self slotVarNamed: 'emailAddressTypes' put: anObject
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> emailAddresses [
+	^ self slotVarNamed: 'emailAddresses'
+]
+
+{ #category : #accessing }
+LcsLegalEntitiesModule >> emailAddresses: anObject [
+	self slotVarNamed: 'emailAddresses' put: anObject
 ]
 
 { #category : #accessing }

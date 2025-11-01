@@ -10,10 +10,10 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
-	umlModel addClassNamed: self targetClassName.
+LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
+	aUmlModel addClassNamed: self targetClassName.
 	self slotTypes isEmpty ifTrue: [ ^ self ].
-	umlModel addClassNamed: self slotTypes first
+	aUmlModel addClassNamed: self slotTypes first
 ]
 
 { #category : #'gt views' }

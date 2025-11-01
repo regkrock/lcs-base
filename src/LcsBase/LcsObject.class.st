@@ -59,8 +59,9 @@ LcsObject class >> slotDefinitionMethodsNamed: aSelectorName [
 ]
 
 { #category : #'as yet unclassified' }
-LcsObject >> classFor: aString [
-	^ [ aString asClass ] on: NotFound do: [ :s | s return: nil ]
+LcsObject >> classFor: aStringOrClass [
+	aStringOrClass isClass ifTrue: [ ^ aStringOrClass ].
+	^ [ aStringOrClass asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
 { #category : #testing }

@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T08:04:14.356914-05:00"
+						"dateAndTimeString" : "2025-10-30T23:20:49.242562-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,51 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T08:04:32.13589-05:00"
+						"dateAndTimeString" : "2025-10-30T23:23:01.295997-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "F+IkDSDoDQCtzpFNAfjseg=="
+					"uidString" : "F5rQls3+DQCylm/iDxvQvw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "TODO: This needs to have a full system to work"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:54:13.75576-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-11T20:23:25.291871-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "rTdManHSDQC4DDN7ByYYXA=="
-				},
-				"code" : "LcsGlobalCollectionSlotBuilder new\r\tslotName: 'users';\r\ttargetModuleClass: LcsSecurityModule;\r\tslotClass: LcsUsers;\r\tcollectionClass: LcsSmalltalkConfiguration identitySetClass;\r\tcollectionElementTypes: {LcsUser};\r\tfullyInstall"
+				"string" : "This is for implementing a 1 to many relationship between an object and the collection it belongs to.\nFor example, LcsPerson is stored in a collection of persons (LcsPersons). This form is for creation of needed classes and adding of the necessary slots to the existing classes."
 			},
 			{
 				"__type" : "textSnippet",
@@ -89,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:53:37.360831-04:00"
+						"dateAndTimeString" : "2025-10-30T11:33:06.488514-04:00"
 					}
 				},
 				"editEmail" : {
@@ -100,17 +66,94 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:53:37.360831-04:00"
+						"dateAndTimeString" : "2025-10-30T23:19:07.952331-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "2t8gaHHSDQC4C56QByYYXA=="
+					"uidString" : "F+IkDSDoDQCtzpFNAfjseg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "####This is an example does the following:\n1) Creates LxxFoo class\n2) Creates LxxFoos class\n3) Creates LxxFoosLodaer class\n4) Adds a parent to LxxFoo which points to The #foos slot in LxxPrototypeSystem\n5) Adds #foos slot to LxxPrototypeSystem\n6) Installs slot #foo in LxxPerson\n\nSee [[Slot Model Generation]] page for description of the Tabs that are   in the Global Colleection Pattern Form."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-30T11:24:30.076809-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-30T23:18:57.649858-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "0JMOlcP+DQC6he2ZBnAuYQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The **'Domain Slot Name'** is normally generated from the Class Root Name. Ex: from Foo, the slot name is foo. This allows the overriding of the default."
+			},
+			{
+				"__type" : "exampleSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-30T11:27:37.65987-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-30T11:27:37.65987-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Gd48oMP+DQC6r/I+BnAuYQ=="
+				},
+				"exampleSelector" : "addFoosGlobalCollectionWithPersonHavingAFooInstanceForm",
+				"previewHeight" : 700,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "LcsGlobalCollectionPatternFormExamples",
+				"codeExpanded" : false,
+				"previewExpanded" : true,
+				"noCode" : false
 			}
 		]
 	},
@@ -133,12 +176,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-14T10:54:04.709515-04:00"
+			"dateAndTimeString" : "2025-10-30T11:39:28.96863-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Define Global Collection Slot"
+		"title" : "Define Global Collection And Member Class(es) Pattern Form"
 	},
 	"uid" : {
 		"__type" : "uuid",

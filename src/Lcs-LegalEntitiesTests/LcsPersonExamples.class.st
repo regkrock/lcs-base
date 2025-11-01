@@ -25,6 +25,8 @@ LcsPersonExamples >> johnFreeman [
 	self assert: person fullName = 'John Edgar Freeman'.
 	self assert: person entityName = 'John Edgar Freeman'.
 	self assert: (person mainAddress isKindOf: LcsAddress).
+	self assert: (person emailAddress isKindOf: LcsEmailAddress).
+	self assert: person emailAddress email isEmpty.
 	
 	^ person
 ]

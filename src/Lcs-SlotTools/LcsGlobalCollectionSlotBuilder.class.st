@@ -17,18 +17,18 @@ LcsGlobalCollectionSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: umlModel [
-	super addAssociationsToUmlModel: umlModel.
-	(umlModel classModelForClassname: self parentClassName)
+LcsGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	(aUmlModel classModelForClassname: self parentClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(umlModel classModelForClassname: self collectionClassName)
+	(aUmlModel classModelForClassname: self collectionClassName)
 		addAssociation: 'parent' toModelNamed: self parentClassName
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
-	super addClassesToUmlModel: umlModel.
-	umlModel 
+LcsGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
+	super addClassesToUmlModel: aUmlModel.
+	aUmlModel 
 		addClassNamed: self targetClassName;
 		addClassNamed: self parentClassName;
 		addClassNamed: self collectionClassName

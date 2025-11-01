@@ -18,9 +18,10 @@ LcsAccessorSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsAccessorSlotBuilder >> addClassesToUmlModel: umlModel [
-	umlModel addClassNamed: self targetClassName.
-	self addTargetModuleClassTo: umlModel
+LcsAccessorSlotBuilder >> addClassesToUmlModel: aUmlModel [
+	aUmlModel addClassNamed: self targetClassName.
+	self jobSteps addClassesToUmlModel: aUmlModel.
+	self addTargetModuleClassTo: aUmlModel
 ]
 
 { #category : #initialize }

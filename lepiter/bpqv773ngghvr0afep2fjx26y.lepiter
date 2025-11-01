@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T08:00:06.119919-05:00"
+						"dateAndTimeString" : "2025-10-30T23:13:56.578944-04:00"
 					}
 				},
 				"uid" : {
@@ -39,10 +39,10 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The following code will do the following:\n1) Create a slot named 'firstName' in LcsPerson\n2) Add #firstName and #firstName: methods.\n3) Add a firstNameSlotDefinition class method to LcsPerson "
+				"string" : "The following code will do the following:\n1) Create a slot named 'myString' in LcsPerson\n2) Add #myString and #firstName: methods.\n3) Add a myStringSlotDefinition class method to LcsPerson \n\nSee [[Slot Model Generation]] page for description of the Tabs that are   in the Slot Creation Form"
 			},
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "exampleSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-15T10:27:40.358201-04:00"
+						"dateAndTimeString" : "2025-10-30T12:33:59.95444-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,14 +66,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-11T20:21:30.074757-04:00"
+						"dateAndTimeString" : "2025-10-30T12:33:59.95444-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "Bj8qKYXSDQCa1RUQDiXixQ=="
+					"uidString" : "RdyZjcT+DQCVh4ipBnAuYQ=="
 				},
-				"code" : "LcsStringSlotBuilder new\r\tslotName: 'firstName';\r\ttargetClassName: 'LcsPerson';\r\tfullyInstall\t"
+				"exampleSelector" : "myStringSlotCreationForm",
+				"previewHeight" : 500,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "LcsStringSlotCreationFormExamples",
+				"codeExpanded" : false,
+				"previewExpanded" : true,
+				"noCode" : false
 			},
 			{
 				"__type" : "textSnippet",
@@ -89,7 +95,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-15T07:53:30.970947-05:00"
+						"dateAndTimeString" : "2025-10-30T12:29:42.886937-04:00"
 					}
 				},
 				"editEmail" : {
@@ -100,7 +106,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T09:29:16.074139-04:00"
+						"dateAndTimeString" : "2025-10-30T12:29:42.886937-04:00"
 					}
 				},
 				"uid" : {
@@ -110,7 +116,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:LcsPerson}} {{gtClass:LxxPerson}}"
+				"string" : ""
 			}
 		]
 	},

@@ -23,13 +23,13 @@ LcsCodeBuilderJobSteps class >> newOn: anObject [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addAssociationsToUmlModel: umlModel [
-	self collection do: [ :eachStep | eachStep addAssociationsToUmlModel: umlModel ]
+LcsCodeBuilderJobSteps >> addAssociationsToUmlModel: aUmlModel [
+	self collection do: [ :eachStep | eachStep addAssociationsToUmlModel: aUmlModel ]
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJobSteps >> addClassesToUmlModel: umlModel [
-	self collection do: [ :eachStep | eachStep addClassesToUmlModel: umlModel ]
+LcsCodeBuilderJobSteps >> addClassesToUmlModel: aUmlModel [
+	self collection do: [ :eachStep | eachStep addClassesToUmlModel: aUmlModel ]
 ]
 
 { #category : #steps }

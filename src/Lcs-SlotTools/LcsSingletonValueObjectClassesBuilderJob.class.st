@@ -21,7 +21,7 @@ LcsSingletonValueObjectClassesBuilderJob >> addValueObjectSubclassBuilders [
 
 { #category : #configuration }
 LcsSingletonValueObjectClassesBuilderJob >> addValueObjectSubclassWithRootNamed: aString [
-	self addValueObjectSubclassWithRootNamed: aString with: [ :classBuilder | ]
+	^ self addValueObjectSubclassWithRootNamed: aString with: [ :classBuilder | ]
 ]
 
 { #category : #command }
@@ -53,7 +53,7 @@ LcsSingletonValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 LcsSingletonValueObjectClassesBuilderJob >> initialize [
 	super initialize.
 	self subclassRootNames: OrderedCollection new.
-	self valueObjectsSubclassBuilders: OrderedCollection new
+	self valueObjectSubclassBuilders: OrderedCollection new
 ]
 
 { #category : #'gt views' }
@@ -111,6 +111,11 @@ LcsSingletonValueObjectClassesBuilderJob >> valueObjectSubclassBuilders [
 	^ valueObjectSubclassBuilders
 ]
 
+{ #category : #accessing }
+LcsSingletonValueObjectClassesBuilderJob >> valueObjectSubclassBuilders: aCollection [
+	valueObjectSubclassBuilders := aCollection
+]
+
 { #category : #builders }
 LcsSingletonValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuilder [
 	^ LcsSingletonValueObjectsGlobalCollectionSlotBuilder new
@@ -120,11 +125,6 @@ LcsSingletonValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuil
 		valueObjectSuperclassName: self newDomainClassName;
 		addSlotType: self collectionClassName;
 		yourself
-]
-
-{ #category : #accessing }
-LcsSingletonValueObjectClassesBuilderJob >> valueObjectsSubclassBuilders: aCollection [
-	valueObjectSubclassBuilders := aCollection
 ]
 
 { #category : #command }

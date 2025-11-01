@@ -13,17 +13,17 @@ LcsMemberOfGlobalCollectionSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsMemberOfGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: umlModel [
-	super addAssociationsToUmlModel: umlModel.
-	(umlModel classModelForClassname: self targetClassName)
+LcsMemberOfGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	(aUmlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self slotTypes any
 ]
 
 { #category : #'gt views' }
-LcsMemberOfGlobalCollectionSlotBuilder >> addClassesToUmlModel: umlModel [
-	umlModel addClassNamed: self targetClassName.
+LcsMemberOfGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
+	aUmlModel addClassNamed: self targetClassName.
 	self currentSystem isNil ifTrue: [ ^ self ].
-	umlModel addClassNamed: self slotTypes first
+	aUmlModel addClassNamed: self slotTypes first
 ]
 
 { #category : #'gt views' }

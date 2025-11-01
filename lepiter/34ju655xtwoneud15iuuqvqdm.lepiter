@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-16T13:57:05.531109-04:00"
+						"dateAndTimeString" : "2025-10-30T23:11:41.307842-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-15T10:36:49.644476-04:00"
+						"dateAndTimeString" : "2025-10-30T23:13:52.674582-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,47 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Explain how to define a date slot"
+				"string" : "See [[Slot Model Generation]] page for description of the Tabs that are   in the Slot Creation Form"
+			},
+			{
+				"__type" : "exampleSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-30T23:09:19.596986-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-30T23:09:19.596986-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "/3G1bc3+DQCpuCphDxvQvw=="
+				},
+				"exampleSelector" : "myDateSlotCreationForm",
+				"previewHeight" : 500,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "LcsDateSlotCreationFormExamples",
+				"codeExpanded" : false,
+				"previewExpanded" : true,
+				"noCode" : false
 			}
 		]
 	},

@@ -18,7 +18,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationClassesModel
 			yourself).
 	modelClasses := self currentCodeBuilderJob umlModel.
 	self assert: modelClasses collection notEmpty.
-	self assert: modelClasses collection size = 8.
+	self assert: modelClasses collection size = 10.
 	self assert: (modelClasses allClassModelsFor: 'LxxSample') size = 1.
 	self assert: (modelClasses allClassModelsFor: 'LxxUnknownSample') size = 1.
 	self assert: (modelClasses allClassModelsFor: 'LcsDomainObject') size = 1.
@@ -27,6 +27,8 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationClassesModel
 	self assert: (modelClasses allClassModelsFor: 'LxxPrototypeSystem') size = 1.
 	self assert: (modelClasses allClassModelsFor: 'LcsObjectsLoader') size = 1.
 	self assert: (modelClasses allClassModelsFor: 'LxxSamplesLoader') size = 1.
+	self assert: (modelClasses allClassModelsFor: 'LcsGlobalCollectionSlot') size = 1.
+	self assert: (modelClasses allClassModelsFor: 'LcsAccessorSlot') size = 1.
 ]
 
 { #category : #tests }

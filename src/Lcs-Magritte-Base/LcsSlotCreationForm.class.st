@@ -305,6 +305,11 @@ LcsSlotCreationForm >> isSlotClass: aValue [
 ]
 
 { #category : #testing }
+LcsSlotCreationForm >> isSlotModelBuilderNotReified [
+	^ self slotModelBuilder class = LcsCodeBuilderStep
+]
+
+{ #category : #testing }
 LcsSlotCreationForm >> isSlotModelBuilderReified [
 	^ self slotModelBuilder  class ~= LcsCodeBuilderStep
 ]
@@ -480,7 +485,7 @@ LcsSlotCreationForm >> slotClassDescription [
 	^ MAStringDescription new
 		label: 'Slot Definition Class';
 		autoAccept: true;
-		priority: 2;
+		priority: 3;
 		default: '';
 		accessor: (MASelectorAccessor read: #slotClassName write: #slotClassChangedTo:);
 		readOnly: self isSlotModelBuilderReified;
@@ -531,15 +536,6 @@ LcsSlotCreationForm >> slotNameDescription [
 LcsSlotCreationForm >> slotTypesDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #slotTypes
-]
-
-{ #category : #magritte }
-LcsSlotCreationForm >> targetClassDescription [
-	<magritteDescription>
-	^ (self magritteDescriptionFor: #targetClass) ifNotNil: [ :description |
-		description
-			priority: 3;
-			yourself ]
 ]
 
 { #category : #private }

@@ -17,11 +17,11 @@ LcsLocalCollectionSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: umlModel [
-	super addAssociationsToUmlModel: umlModel.
-	(umlModel classModelForClassname: self targetModuleClass name asString)
+LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	(aUmlModel classModelForClassname: self targetModuleClass name asString)
 		addAssociation: self slotName toModelNamed: self slotTypes first.
-	(umlModel classModelForClassname: self slotTypes first)
+	(aUmlModel classModelForClassname: self slotTypes first)
 		addAssociation: 'parent' toModelNamed: self targetClassName
 ]
 

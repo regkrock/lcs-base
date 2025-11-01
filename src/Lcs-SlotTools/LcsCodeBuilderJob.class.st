@@ -9,15 +9,15 @@ Class {
 }
 
 { #category : #'gt views' }
-LcsCodeBuilderJob >> addAssociationsToUmlModel: umlModel [ 
+LcsCodeBuilderJob >> addAssociationsToUmlModel: aUmlModel [ 
 	self traceStep: 'addAssociationsToUmlModel:'.
-	 self jobSteps addAssociationsToUmlModel: umlModel 
+	 self jobSteps addAssociationsToUmlModel: aUmlModel 
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJob >> addClassesToUmlModel: umlModel [ 
+LcsCodeBuilderJob >> addClassesToUmlModel: aUmlModel [ 
 	self traceStep: 'addClassesToUmlModel:'.
-	self jobSteps addClassesToUmlModel: umlModel 
+	self jobSteps addClassesToUmlModel: aUmlModel 
 ]
 
 { #category : #configuration }
@@ -204,8 +204,8 @@ LcsCodeBuilderJob >> printJobStreamDetailsOn: aStream [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJob >> proposedUmlModelFor: umlModelClasses [
-	^ LcsUml new proposedUmlModelFor: umlModelClasses
+LcsCodeBuilderJob >> proposedUmlModelFor: aUmlModel [
+	^ LcsUml new proposedUmlModelFor: aUmlModel
 ]
 
 { #category : #'gt views' }

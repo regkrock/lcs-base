@@ -13,19 +13,19 @@ LcsGlobalCollectionReferenceSlotBuilder class >> slotClass [
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: umlModel [
-	super addAssociationsToUmlModel: umlModel.
-	(umlModel classModelForClassname: self targetClassName)
+LcsGlobalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	(aUmlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(umlModel classModelForClassname: self collectionClassName)
+	(aUmlModel classModelForClassname: self collectionClassName)
 		addAssociation: 'collection' toModelNamed: self targetClassName
 ]
 
 { #category : #'gt views' }
-LcsGlobalCollectionReferenceSlotBuilder >> addClassesToUmlModel: umlModel [
-	umlModel addClassNamed: self targetClassName.
+LcsGlobalCollectionReferenceSlotBuilder >> addClassesToUmlModel: aUmlModel [
+	aUmlModel addClassNamed: self targetClassName.
 	self slotTypes isEmpty ifTrue: [ ^ self ].
-	umlModel addClassNamed: self slotTypes first
+	aUmlModel addClassNamed: self slotTypes first
 ]
 
 { #category : #'gt views' }

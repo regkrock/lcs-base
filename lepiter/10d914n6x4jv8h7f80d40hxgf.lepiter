@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T14:46:29.516985-05:00"
+						"dateAndTimeString" : "2025-10-30T10:28:36.191635-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The application can have many systems, but only one can be active at a time. The system manger manages the creation, activation, suspension and removal of systems.\n\nThere is only one instance of {{gtClass:LcsSystemsManager}}.  The single insatance is rooted in {{gtClass:name=LcsApplicationEnvironment}}"
+				"string" : "The application can have many systems, but only one can be active at a time. The system manger manages the creation, activation, suspension and removal of systems.\n\nThere is only one instance of {{gtClass:LcsSystemsManager}}.  The single insatance is rooted in the class instance varaible 'singleton' in {{gtClass:name=LcsApplicationEnvironment}}"
 			},
 			{
 				"__type" : "textSnippet",

@@ -14,6 +14,18 @@ Class {
 }
 
 { #category : #'gt views' }
+LcsMemberOfGlobalCollectionSlot >> addAssociationsToUmlModel: umlModel [ 
+]
+
+{ #category : #'gt views' }
+LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [ 
+	aUmlModel addClass: self class.
+	aUmlModel addClass: self targetCollection class.
+	"(aUmlModel classModelForClass: self targetClassName)
+		addAssociation: self slotName toModelNamed: self collectionClassName."
+]
+
+{ #category : #'gt views' }
 LcsMemberOfGlobalCollectionSlot >> addOtherSlotDefinitionDetailsTo: collection [
 	super addOtherSlotDefinitionDetailsTo: collection.
 	collection
@@ -48,9 +60,26 @@ LcsMemberOfGlobalCollectionSlot >> collectionSlotName: aString [
 	self propertyAt: 'collectionSlotName' put: aString
 ]
 
+{ #category : #'gt views' }
+LcsMemberOfGlobalCollectionSlot >> gtUMLFor: aView [
+	<gtView>
+	^ aView mondrian
+		title: 'UML';
+		priority: 20;
+		tooltip: 'Existing Classes: gray, Proposed Classes: blue, Newly Created: brown';
+		initialize: (self proposedUmlModelFor: self umlModel);
+		send: [ :item | item modelClass ifNil: [ item ] ];
+		actionUpdateButton
+]
+
 { #category : #'slot model' }
 LcsMemberOfGlobalCollectionSlot >> newInstance [
 	^ self targetCollectionSlotDefinition collectionMemberTypes first new
+]
+
+{ #category : #'gt views' }
+LcsMemberOfGlobalCollectionSlot >> proposedUmlModelFor: aUmlModel [
+	^ LcsUml new proposedUmlModelFor: aUmlModel
 ]
 
 { #category : #message }
@@ -68,4 +97,15 @@ LcsMemberOfGlobalCollectionSlot >> targetCollection [
 { #category : #'slot model' }
 LcsMemberOfGlobalCollectionSlot >> targetCollectionSlotDefinition [
 	^ self collectionModule slotDefinitionNamed: self collectionSlotName asSymbol
+]
+
+{ #category : #'gt views' }
+LcsMemberOfGlobalCollectionSlot >> umlModel [
+	| umlModel |
+	umlModel := LcsUmlModel new .
+	self addClassesToUmlModel: umlModel.
+	umlModel removeDuplicates.
+	self addAssociationsToUmlModel: umlModel.
+	umlModel resolveClassModelNames.
+	^ umlModel
 ]

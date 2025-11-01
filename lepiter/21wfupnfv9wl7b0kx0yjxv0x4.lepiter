@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-05-14T09:25:27.706932-04:00"
+						"dateAndTimeString" : "2025-10-30T11:46:36.435364-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "In the examples in this section, the following tabs exist on the :\n1) **Magritte** - the entry form for generating the pattern into code and installing it in the running system.\n2) **Steps Tree** - this is the steps that will be executed to implement the pattern\n3) **UML** - This is the UML diagram of the changes.\n4) **Refactoring** - The code which will be generated.\n5) **Slot Builder Tabs** - View of the raw slot builder job and the slot builder class."
 			}
 		]
 	},

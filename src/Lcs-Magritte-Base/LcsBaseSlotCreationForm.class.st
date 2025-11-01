@@ -291,6 +291,38 @@ LcsBaseSlotCreationForm >> targetClass: anObject [
 	targetClass := anObject
 ]
 
+{ #category : #magritte }
+LcsBaseSlotCreationForm >> targetClassDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Install Slot In Domain Class';
+		priority: 1;
+		accessor: #'targetClass';
+		beReadOnly;
+		blocShortcuts: [ 
+			{BlShortcutWithAction new
+				name: 'Browse class';
+				description: 'Browses the class indicated by the editor';
+				combination: BlKeyCombination primaryB;
+				action: [ :anEvent | anEvent target phlow spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
+			BlShortcutWithAction new
+				name: 'Inspect class';
+				description: 'Inspects the class indicated by the editor';
+				combination: BlKeyCombination primaryG;
+				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
+			BlShortcutWithAction new
+				name: 'Browse class references';
+				description: 'Browses references to the class indicated by the editor';
+				combination: BlKeyCombination primaryN;
+				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+	"^ (self magritteDescriptionFor: #targetClass) ifNotNil: [ :description |
+		description
+			priority: 2;
+			yourself ]"
+]
+
 { #category : #initialize }
 LcsBaseSlotCreationForm >> uninstallModelBuilderJob [
 	self slotModelBuilder uninstall.

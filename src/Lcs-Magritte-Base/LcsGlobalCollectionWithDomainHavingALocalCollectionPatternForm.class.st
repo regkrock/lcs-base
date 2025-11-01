@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm,
-	#superclass : #LcsBaseSlotCreationForm,
+	#superclass : #LcsMultislotPatternForm,
 	#instVars : [
 		'packageAndTagName',
 		'onElementCreated',
@@ -10,6 +10,11 @@ Class {
 	#category : #'Lcs-Magritte-Base-Forms - Models'
 }
 
+{ #category : #configuration }
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm class >> builderClass [
+	^ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob
+]
+
 { #category : #magritte }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> buildUnknownClassDescription [
 	<magritteDescription>
@@ -17,45 +22,6 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> buildUnknownCl
 		label: 'Build Unknown Class';
 		priority: 3;
 		accessor: (MAChainAccessor accessors: #(slotModelBuilder buildUnknownClass));
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
-				"+ (BrGlamorousWithExplicitContextMenuAptitude
-						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		addCondition: [ :aValue | aValue asString trim size >= 3 ] labelled: 'Enter a unique class prefix name of at least two characters in length';
-		addCondition: [ :aValue | aValue asString trim asSymbol allSatisfy: [ :each | each isCharacter ] ] labelled: 'Slot Names can contain only alphas';
-		beRequired
-]
-
-{ #category : #configuration }
-LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> builderClass [
-	^ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob
-]
-
-{ #category : #magritte }
-LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> classNamePrefixDescription [
-	<magritteDescription>
-	^ MAStringDescription new
-		label: 'Class Name Prefix';
-		priority: 1;
-		accessor: (MAChainAccessor accessors: #(slotModelBuilder classPrefix));
-		default: '';
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
-				"+ (BrGlamorousWithExplicitContextMenuAptitude
-						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique class prefix name of at least two characters in length';
-		addCondition: [ :aValue | aValue asString trim asSymbol allSatisfy: [ :each | each isCharacter ] ] labelled: 'Slot Names can contain only alphas';
-		beRequired
-]
-
-{ #category : #magritte }
-LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> classRootNameDescription [
-	<magritteDescription>
-	^ MAStringDescription new
-		label: 'Class Root Name';
-		priority: 2;
-		accessor: (MAChainAccessor accessors: #(slotModelBuilder classRootName));
-		default: '';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
 				"+ (BrGlamorousWithExplicitContextMenuAptitude
 						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
@@ -122,11 +88,6 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> initializeOn: 
 
 ]
 
-{ #category : #testing }
-LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> isSlotModelBuilderNotReified [
-	^ self slotModelBuilder class = LcsDomainClassAndGlobalCollectionClassBuilderJob
-]
-
 { #category : #magritte }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetDomainClassesDescription [
 	<magritteDescription>
@@ -157,34 +118,4 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetDomainCl
 		addCondition: [ :aValue | aValue asSet size = aValue size ]
 			labelled: 'Duplicate classes are not allowed'
 
-]
-
-{ #category : #magritte }
-LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetPackageNameDescription [
-	<magritteDescription>
-	^ MAStringDescription new
-		label: 'Package';
-		priority: 8;
-		accessor: (MAChainAccessor accessors: #(slotModelBuilder targetPackageName));
-		default: '';
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
-				"+ (BrGlamorousWithExplicitContextMenuAptitude
-						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		beRequired
-]
-
-{ #category : #magritte }
-LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetPackageTagNameDescription [
-	<magritteDescription>
-	^ MAStringDescription new
-		label: 'Package Tag';
-		priority: 9;
-		accessor: (MAChainAccessor accessors: #(slotModelBuilder targetPackageTagName));
-		default: '';
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
-				"+ (BrGlamorousWithExplicitContextMenuAptitude
-						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		beRequired
 ]

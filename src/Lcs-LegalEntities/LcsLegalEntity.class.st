@@ -3,10 +3,33 @@ Class {
 	#superclass : #LcsDomainObject,
 	#instVars : [
 		'mainAddress',
-		'phoneNumber'
+		'phoneNumber',
+		'emailAddress',
+		'emailAddresses'
 	],
 	#category : #'Lcs-LegalEntities'
 }
+
+{ #category : #'slot definitions' }
+LcsLegalEntity class >> emailAddressSlotDefinition [
+	<slotDefinition>
+	^ LcsMemberOfGlobalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsEmailAddress);
+		slotName: 'emailAddress';
+		collectionSlotName: 'emailAddresses';
+		collectionSlotModuleName: 'Legal Entities Module';
+		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsLegalEntity class >> emailAddressesSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotName: 'emailAddresses';
+		slotTypes: (OrderedCollection with: LcsEmailAddresses);
+		collectionClass: IdentitySet;
+		yourself
+]
 
 { #category : #'slot definitions' }
 LcsLegalEntity class >> entityNameSlotDefinition [
@@ -38,6 +61,26 @@ LcsLegalEntity class >> phoneNumberSlotDefinition [
 		collectionSlotName: 'phoneNumbers';
 		collectionSlotModuleName: 'Legal Entities Module';
 		yourself
+]
+
+{ #category : #accessing }
+LcsLegalEntity >> emailAddress [
+	^ self slotVarNamed: 'emailAddress'
+]
+
+{ #category : #accessing }
+LcsLegalEntity >> emailAddress: anObject [
+	self slotVarNamed: 'emailAddress' put: anObject
+]
+
+{ #category : #accessing }
+LcsLegalEntity >> emailAddresses [
+	^ self slotVarNamed: 'emailAddresses'
+]
+
+{ #category : #accessing }
+LcsLegalEntity >> emailAddresses: anObject [
+	self slotVarNamed: 'emailAddresses' put: anObject
 ]
 
 { #category : #accessing }
