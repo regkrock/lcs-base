@@ -4,14 +4,9 @@ Class {
 	#category : #'Lcs-Magritte-Base-Forms - Models'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 LcsMultislotPatternForm class >> builderClass [
 	self subclassResponsibility
-]
-
-{ #category : #configuration }
-LcsMultislotPatternForm >> builderClass [
-	^ self class builderClass
 ]
 
 { #category : #magritte }

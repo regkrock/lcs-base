@@ -26,7 +26,7 @@ LcsBaseSlotCreationForm >> buildJobSteps [
 
 { #category : #configuration }
 LcsBaseSlotCreationForm >> builderClass [
-	self subclassResponsibility
+	^ self class builderClass
 ]
 
 { #category : #'magritte - support' }

@@ -11,6 +11,11 @@ Class {
 }
 
 { #category : #configuration }
+LcsSlotCreationForm class >> builderClass [
+	^ LcsCodeBuilderStep
+]
+
+{ #category : #configuration }
 LcsSlotCreationForm class >> defaultSlotClass [
 	^ LcsAccessorSlot
 ]
@@ -95,11 +100,6 @@ LcsSlotCreationForm >> asElement [
 	self onElementCreated
 		ifNotNil: [ :aCallback | viewModel onElementCreated: aCallback ].
 	^ viewModel asElement
-]
-
-{ #category : #configuration }
-LcsSlotCreationForm >> builderClass [
-	^ LcsCodeBuilderStep
 ]
 
 { #category : #private }
