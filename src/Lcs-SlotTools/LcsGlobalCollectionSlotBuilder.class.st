@@ -146,6 +146,13 @@ LcsGlobalCollectionSlotBuilder >> targetModuleName: anObject [
 	targetModuleName := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionSlotBuilder >> umlModel [
+	^ super umlModel
+		positions: {(419.4818950229221@572.4021606445313). (412.3888888888889@645.0). (662.712894015842@576.0). (486.81529752443134@602.0). (486.81529752443134@602.0). (486.81529752443134@602.0). (553.0038905673557@567.3765194971581). (553.0038905673557@567.3765194971581). (553.0038905673557@567.3765194971581). (553.0038905673557@588.363342093737). (553.0038905673557@588.363342093737). (553.0038905673557@588.363342093737)};
+		yourself
+]
+
 { #category : #command }
 LcsGlobalCollectionSlotBuilder >> uninstall [
 	super uninstall.

@@ -25,7 +25,9 @@ LcsSlotDefintionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> addClassesToUmlModel: aUmlModel [
 	super addClassesToUmlModel: aUmlModel.
-	aUmlModel addClassNamed: self slotClass name
+	aUmlModel 
+		addClassNamed: self targetClassName;
+		addClassNamed: self slotClass name
 ]
 
 { #category : #'code generation' }
@@ -203,17 +205,6 @@ LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 		stencil: [  
 			self targetClassName gtClassMatches &
 			self slotDefinitionSelector gtImplementors  ]
-]
-
-{ #category : #'gt views' }
-LcsSlotDefintionMethodBuilder >> gtUMLFor: aView [
-	<gtView>
-	^ aView mondrian
-		title: 'UML';
-		priority: 20;
-		initialize: (self proposedUmlModelFor: self slotUmlModel);
-		send: [ :item | item modelClass ifNil: [ item ] ];
-		actionUpdateButton
 ]
 
 { #category : #testing }

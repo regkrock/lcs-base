@@ -4,7 +4,7 @@ Class {
 	#traits : 'LtOrderedCollection',
 	#classTraits : 'LtOrderedCollection classTrait',
 	#instVars : [
-		'positions'
+		'layoutPolicy'
 	],
 	#category : #'LcsBase-Core'
 }
@@ -47,6 +47,11 @@ LcsUmlModel >> allClassModelsFor: aClassname [
 	^ self collection select: [ :eachModel | eachModel modelClassname = aClassname asString ]
 ]
 
+{ #category : #api }
+LcsUmlModel >> applyLayoutTo: mondrianModel [
+	self layoutPolicy applyLayoutTo: mondrianModel
+]
+
 { #category : #configuration }
 LcsUmlModel >> classModelForClass: aClass [
 	^ self collection 
@@ -69,17 +74,26 @@ LcsUmlModel >> classModelForClassname: aClassname [
 LcsUmlModel >> initialize [ 
 	super initialize.
 	self collection: self collectionClass new.
-	self positions: OrderedCollection new
+	self positions: OrderedCollection new.
+	self layoutPolicy: LcsUmlMondrianTreeLayoutPolicy new
 ]
 
 { #category : #accessing }
-LcsUmlModel >> positions [
-	^ positions
+LcsUmlModel >> layoutPolicy [
+	^ layoutPolicy
 ]
 
 { #category : #accessing }
-LcsUmlModel >> positions: anObject [
-	positions := anObject
+LcsUmlModel >> layoutPolicy: anObject [
+	layoutPolicy := anObject
+]
+
+{ #category : #accessing }
+LcsUmlModel >> positions: aCollection [
+	aCollection isEmpty ifTrue: [ ^ self ].
+	self layoutPolicy: (LcsUmlMondrianCustomLayoutPolicy new
+							positions: aCollection;
+							yourself)
 ]
 
 { #category : #model }

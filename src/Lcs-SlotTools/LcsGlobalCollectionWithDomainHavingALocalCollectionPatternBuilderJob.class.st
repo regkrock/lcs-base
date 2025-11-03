@@ -32,11 +32,11 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> buildJob
 		self addJobStep: self unknownClassBuilder].
 	self addSubclassBuilders.
 	self addJobStep: self domainCollectionClassBuilder.
-	self addJobStep: self localCollectionSlotBuilder.
+	"self addJobStep: self localCollectionSlotBuilder."
 	self addJobStep: self loaderBuilder.
 	self addJobStep: self collectionReferenceSlotBuilder.
 	self addJobStep: self collectionSlotBuilder.
-	self addMemberOfSlotBuilderForTargetClasses.
+	self addLocalCollectionSlotBuildersForTargetClasses.
 ]
 
 { #category : #builders }

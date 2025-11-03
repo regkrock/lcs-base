@@ -26,6 +26,12 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> _targetDoainClasses [
 ]
 
 { #category : #builders }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> addLocalCollectionSlotBuildersForTargetClasses [
+	self _targetDoainClasses
+		do: [ :eachClass | self addJobStep: (self localCollectionSlotBuilderFor:  eachClass) ]
+]
+
+{ #category : #builders }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
 	self _targetDoainClasses
 		do: [ :eachClass | self addJobStep: (self memberOfSlotBuilderFor: eachClass) ]
@@ -157,6 +163,18 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> installMemberSlotInDomainCla
 { #category : #configuration }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> installNewClassesInPackageNamed: aString [ 
 	self targetPackageName: aString
+]
+
+{ #category : #builders }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> localCollectionSlotBuilderFor: aTargetClass [ 
+	^ LcsLocalCollectionSlotBuilder new
+		slotName: self collectionSlotName;
+		addSlotType: self collectionClassName;
+		targetClassName: aTargetClass name;
+		"targetModuleClass: self collectionModuleClass;"
+		targetPackageName: self targetPackageName;
+		collectionMemberTypes: (OrderedCollection with: self newDomainClassName);
+		yourself
 ]
 
 { #category : #builders }

@@ -67,7 +67,7 @@ LcsMemberOfGlobalCollectionSlot >> gtUMLFor: aView [
 		title: 'UML';
 		priority: 20;
 		tooltip: 'Existing Classes: gray, Proposed Classes: blue, Newly Created: brown';
-		initialize: (self proposedUmlModelFor: self umlModel);
+		initialize: self umlModelMondrianView;
 		send: [ :item | item modelClass ifNil: [ item ] ];
 		actionUpdateButton
 ]
@@ -108,4 +108,9 @@ LcsMemberOfGlobalCollectionSlot >> umlModel [
 	self addAssociationsToUmlModel: umlModel.
 	umlModel resolveClassModelNames.
 	^ umlModel
+]
+
+{ #category : #'gt views' }
+LcsMemberOfGlobalCollectionSlot >> umlModelMondrianView [
+	^ self proposedUmlModelFor: self umlModel
 ]

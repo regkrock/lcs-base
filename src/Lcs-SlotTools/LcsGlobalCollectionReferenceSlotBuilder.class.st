@@ -132,6 +132,14 @@ LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class>' ])
 ]
 
+{ #category : #'as yet unclassified' }
+LcsGlobalCollectionReferenceSlotBuilder >> umlModel [
+	^ super umlModel
+		positions: {(296.68288951449927@311.40216064453125). (499.3888888888889@308.0). (350.47889094882544@294.7452011869667). (350.47889094882544@294.7452011869667). (350.47889094882544@323.29755093379276). (350.47889094882544@323.29755093379276)};
+		yourself
+		
+]
+
 { #category : #command }
 LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
 	super uninstall.

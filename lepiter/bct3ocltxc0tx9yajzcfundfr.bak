@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T10:31:25.398957-04:00"
+						"dateAndTimeString" : "2025-11-02T07:54:26.393613-05:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-31T10:31:25.398957-04:00"
+						"dateAndTimeString" : "2025-11-02T08:03:35.84644-05:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "The scenario is:\n1) Have a primay global collection of all addresses. (Ex: LxxAddresses and LxxAddress)\n2) Each person has a secondary (local) collection (ex: LxxAddress ?) which can have 0 to many  addresses (LxxAddress).\n3) The parent of LxxAddress is the primary collection.\n4) When an address is deleted it must be deleted from the global and the secondary collection."
 			},
 			{
 				"__type" : "exampleSnippet",
@@ -73,12 +73,12 @@
 					"__type" : "uid",
 					"uidString" : "7FWuTdf+DQC4BWj0DxvQvw=="
 				},
-				"exampleSelector" : "mainForm",
-				"previewHeight" : 200,
+				"exampleSelector" : "globalAddressCollectionWithLocalPersonAddressCollection",
+				"previewHeight" : 700,
 				"previewShowSelector" : "gtViewsFor:",
-				"exampleBehaviorName" : "LcsValueCollectionPatternFormExamples",
-				"codeExpanded" : true,
-				"previewExpanded" : false,
+				"exampleBehaviorName" : "LcsGlobalCollectionWithDomainHavingALocalCollectionPatternFormExamples",
+				"codeExpanded" : false,
+				"previewExpanded" : true,
 				"noCode" : false
 			}
 		]

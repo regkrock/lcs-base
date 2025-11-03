@@ -20,8 +20,8 @@ LcsLocalCollectionSlotBuilder class >> slotClass [
 LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	(aUmlModel classModelForClassname: self targetModuleClass name asString)
-		addAssociation: self slotName toModelNamed: self slotTypes first.
-	(aUmlModel classModelForClassname: self slotTypes first)
+		addAssociation: self slotName toModelNamed: self slotTypes first."
+	"(aUmlModel classModelForClassname: self slotTypes first)
 		addAssociation: 'parent' toModelNamed: self targetClassName
 ]
 

@@ -175,8 +175,9 @@ LcsCodeBuilderStep >> gtUMLFor: aView [
 	^ aView mondrian
 		title: 'UML';
 		priority: 20;
-		initialize: (self proposedUmlModelFor: self umlModel);
-		send: [ :item | item modelClass ifNil: [ item ] ]
+		initialize: self umlModelMondrianView;
+		send: [ :item | item modelClass ifNil: [ item ] ];
+		actionUpdateButton
 ]
 
 { #category : #initialize }
@@ -358,6 +359,11 @@ LcsCodeBuilderStep >> umlModel [
 	self addAssociationsToUmlModel: umlModel.
 	umlModel resolveClassModelNames.
 	^ umlModel
+]
+
+{ #category : #'gt views' }
+LcsCodeBuilderStep >> umlModelMondrianView [
+	^ self proposedUmlModelFor: self umlModel
 ]
 
 { #category : #install }

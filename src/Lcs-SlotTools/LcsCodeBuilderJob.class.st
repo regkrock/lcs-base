@@ -143,7 +143,7 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 		title: 'UML';
 		priority: 20;
 		tooltip: 'Existing Classes: gray, Proposed Classes: blue, Newly Created: brown';
-		initialize: self umlMondrianModel;
+		initialize: self umlModelMondrianView;
 		send: [ :item | item modelClass ifNil: [ item ] ];
 		actionUpdateButton
 ]
@@ -241,7 +241,7 @@ LcsCodeBuilderJob >> umlModel [
 ]
 
 { #category : #'gt views' }
-LcsCodeBuilderJob >> umlMondrianModel [
+LcsCodeBuilderJob >> umlModelMondrianView [
 	^ self proposedUmlModelFor: self umlModel
 ]
 

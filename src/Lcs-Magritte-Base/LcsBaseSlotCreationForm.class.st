@@ -379,8 +379,8 @@ LcsBaseSlotCreationForm >> umlModel [
 ]
 
 { #category : #private }
-LcsBaseSlotCreationForm >> umlMondrianModel [
-	^ self slotModelBuilder umlMondrianModel
+LcsBaseSlotCreationForm >> umlModelMondrianView [
+	^ self slotModelBuilder umlModelMondrianView
 ]
 
 { #category : #initialize }

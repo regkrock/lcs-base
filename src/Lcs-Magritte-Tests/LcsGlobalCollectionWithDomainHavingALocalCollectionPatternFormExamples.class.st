@@ -10,6 +10,20 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternFormExamples >> formCl
 ]
 
 { #category : #'examples - form' }
+LcsGlobalCollectionWithDomainHavingALocalCollectionPatternFormExamples >> globalAddressCollectionWithLocalPersonAddressCollection [
+	<gtExample>
+	<return: #LcsGlobalCollectionPatternForm>
+	| form |
+	form := self mainForm.
+	form slotModelBuilder
+		classRootName: 'Address';
+		installMemberSlotInDomainClass: LxxPerson;
+		installMemberSlotInDomainClass: LxxOrganization.
+	self simulateClickOnAcceptButtonIn: form.
+	^ form
+]
+
+{ #category : #'examples - form' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternFormExamples >> mainForm [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
