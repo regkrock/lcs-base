@@ -90,11 +90,7 @@ LcsStateMachineState class >> statesTransitionsSlotDefinition [
 { #category : #'slot definitions' }
 LcsStateMachineState class >> subStateMachineSlotDefinition [
 	<slotDefinition>
-	^LcsCompositeSlot new
-		slotName: 'subStateMachine';
-		addSlotType: LcsStateMachine; 
-		beAllowNil;
-		yourself
+	^LcsSubstateMachineSlot new
 ]
 
 { #category : #private }

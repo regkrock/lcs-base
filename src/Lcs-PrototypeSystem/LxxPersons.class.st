@@ -10,8 +10,7 @@ Class {
 { #category : #'slot definition' }
 LxxPersons class >> unknownSlotDefinition [
 	<slotDefinition>
-	^ LcsCompositeSlot new
-		slotName: 'unknown';
+	^ LcsUnknownSlot new
 		addSlotType: LxxUnknownPerson;
 		yourself
 ]

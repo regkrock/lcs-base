@@ -52,14 +52,7 @@ LcsSystem class >> new [
 { #category : #'slot definitions' }
 LcsSystem class >> statusSlotDefinition [
 	<slotDefinition>
-	^ LcsCompositeSlot new
-		slotName: 'status';
-		addSlotType: LcsBaseSystemStatus;
-		initialValueBlock: [ :domainParent | 
-			(LcsSystemActiveStatus new)
-				parent: domainParent;
-				yourself];
-		yourself
+	^ LcsSystemStatusSlot new
 ]
 
 { #category : #configuration }

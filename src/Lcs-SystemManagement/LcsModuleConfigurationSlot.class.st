@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsModuleConfigurationSlot,
-	#superclass : #LcsCompositeSlot,
+	#superclass : #LcsDomainObjectSlot,
 	#category : #'Lcs-SystemManagement-Slot'
 }
 

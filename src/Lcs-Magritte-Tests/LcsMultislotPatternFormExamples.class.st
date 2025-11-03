@@ -26,8 +26,6 @@ LcsMultislotPatternFormExamples >> builderJobClass [
 
 { #category : #'sciprter - support' }
 LcsMultislotPatternFormExamples >> clickOnAcceptButtonScript [
-	<gtExample>
-	<return: #BlScripter>
 	| anAcceptId anCancelId |
 	self subject: self slotCreationFormWithPrefixAndRootNameEnteredScripter.
 	anAcceptId := self actionIdFor: #magritteAcceptAction.
@@ -57,9 +55,6 @@ LcsMultislotPatternFormExamples >> formClass [
 
 { #category : #'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEntered [
-	<gtExample>
-	<return: #BlScripter>
-
 	self subjectScripter: self mainFormScripter.
 	self
 		validateEntryOf: 'Foo'
@@ -83,8 +78,8 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEntered [
 
 { #category : #'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknownClassChecked [
-	<gtExample>
-	<return: #BlScripter>
+	"<gtExample>
+	<return: #BlScripter>"
 	self subjectScripter: self formScripterWithRootNameEntered.
 	self clickOn: (self fieldIdFor: #buildUnknownClassDescription).
 	self assert: (self currentValueOf: #buildUnknownClassDescription) equals: true.
@@ -96,8 +91,8 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknow
 
 { #category : #'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAccept [
-	<gtExample>
-	<return: #BlScripter>
+	"<gtExample>
+	<return: #BlScripter>"
 	| builder |
 
 	self subjectScripter: self formScripterWithRootNameEnteredAndBuildUnknownClassChecked.
@@ -126,7 +121,7 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknow
 
 { #category : #'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAcceptModel [
-	<gtExample>
+	"<gtExample>"
 	self subjectScripter: self formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAccept.
 	^ self subjectScripterModel
 ]
@@ -202,7 +197,7 @@ LcsMultislotPatternFormExamples >> simulateClickOnAcceptButtonIn: form [
 
 { #category : #'examples - scripter' }
 LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEnteredScripter [
-	<gtExample>
+	"<gtExample>"
 	| form aScripter |
 	form := self slotCreationFormWithPrefixAndRootNameEntered.
 	form slotModelBuilder createForRootName: 'Foo'.
@@ -222,8 +217,8 @@ LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEnteredS
 
 { #category : #'examples - form' }
 LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixEntered [
-	<gtExample>
-	<return: #LcsGlobalCollectionPatternForm>
+	"<gtExample>
+	<return: #LcsGlobalCollectionPatternForm>"
 	| form |
 	form := self mainForm.
 	form slotModelBuilder classPrefix: 'Lxx'.

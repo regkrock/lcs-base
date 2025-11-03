@@ -13,12 +13,19 @@ Class {
 }
 
 { #category : #'job steps' }
+LcsSlotDefinitionsBuilderJob >> addSlotBuilder: aSlotBuilder [
+	self slotBuilders add: (
+		aSlotBuilder
+			targetClassName: self targetClassName;
+			yourself)
+]
+
+{ #category : #'job steps' }
 LcsSlotDefinitionsBuilderJob >> buildJobSteps [
 		self slotBuilders do: [ :each |
-			self addJobStep: each.
 			each targetClassName: self targetClassName.
 			each targetPackageName: self targetPackageName.
-			each buildJobSteps ]
+			self addJobStep: each. ]
 ]
 
 { #category : #initialize }

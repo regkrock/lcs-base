@@ -168,9 +168,7 @@ LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
 
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> derivedSlotName [
-	self slotName ifNotNil: [ ^ self slotName ].
-	self slotTemplate ifNotNil: [ ^ self slotTemplate slotName ].
-	^ '<missing slotName>'
+	^ self rawDerivedSlotName ifNil: [ '<missing slotName>' ]
 ]
 
 { #category : #'gt views' }
@@ -260,6 +258,12 @@ LcsSlotDefintionMethodBuilder >> propogateProperty: aName valueChangedTo: anObje
 	self propertyAt: aName put: anObject
 ]
 
+{ #category : #'gt views' }
+LcsSlotDefintionMethodBuilder >> rawDerivedSlotName [
+	self slotName ifNotNil: [ ^ self slotName ].
+	^ self slotTemplateSlotName
+]
+
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> required [
 	^ self properties at: 'required' ifAbsentPut: [ false ]
@@ -295,7 +299,7 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
-	^ self derivedSlotName 
+	^ self rawDerivedSlotName 
 		ifNil: [ LcsError signal: 'slotName is undefined' ]
 		ifNotNil: [:name | (name , 'SlotDefinition') asSymbol ]
 ]
@@ -325,12 +329,20 @@ LcsSlotDefintionMethodBuilder >> slotNameDisplayString [
 
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> slotTemplate [
-	^ slotTemplate ifNil: [ slotTemplate := self slotClass new ]
+	^ slotTemplate ifNil: [ 
+		self slotClass ifNil: [ ^ nil ].
+		slotTemplate := self slotClass new ]
 ]
 
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> slotTemplate: anObject [
 	slotTemplate := anObject
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotTemplateSlotName [
+	self slotTemplate ifNil: [ ^ nil ].
+	^ self slotTemplate slotName
 ]
 
 { #category : #property }

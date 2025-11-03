@@ -10,6 +10,7 @@ Class {
 { #category : #tests }
 LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
 	self subject: LcsSlotDefintionMethodBuilder new.
+	self subject slotClass: LcsStringSlot.
 	self subject addSlotType: 'String'.
 	self assert: self subject slotTypes size = 1.
 	self assert: self subject slotTypes first = 'String'.
@@ -24,6 +25,7 @@ LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
 { #category : #tests }
 LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
 	self subject: LcsSlotDefintionMethodBuilder new.
+	self subject slotClass: LcsStringSlot.
 	self assert: self subject slotTypes isEmpty.
 	
 	self subject addSlotType: 'String'.
@@ -43,6 +45,7 @@ LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
 { #category : #tests }
 LcsSlotDefintionMethodBuilderTest >> testChangingTargetClassName [
 	self subject: LcsSlotDefintionMethodBuilder new.
+	self subject slotClass: LcsStringSlot.
 	self assert: self subject targetClassName isNil.
 	
 	self subject targetClassName: #Object.
@@ -66,7 +69,7 @@ LcsSlotDefintionMethodBuilderTest >> testCreation [
 	self assert: self subject slotTypes isEmpty.
 	self assert: self subject slotName isNil.
 	self assert: self subject targetClass isNil.
-	self assert: self subject targetClassName isNil.
+	self assert: self subject targetClassName isNil
 ]
 
 { #category : #tests }

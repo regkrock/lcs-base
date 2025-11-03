@@ -56,11 +56,7 @@ LcsDomainObject class >> creatorSlotDefinition [
 { #category : #'slot definitions' }
 LcsDomainObject class >> historySlotDefinition [
 	<slotDefinition>
-	^ LcsCompositeSlot new
-		slotName: 'history';
-		addSlotType: LcsDomainObjectHistory;
-		makeDirectUpdateOfVariable;
-		yourself
+	^ LcsDomainObjectHistorySlot new
 ]
 
 { #category : #'slot definitions' }

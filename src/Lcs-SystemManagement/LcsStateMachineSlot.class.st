@@ -1,6 +1,8 @@
 Class {
 	#name : #LcsStateMachineSlot,
-	#superclass : #LcsCompositeSlot,
+	#superclass : #LcsDomainObjectSlot,
+	#traits : 'LtDeleteRemovedDomainObject',
+	#classTraits : 'LtDeleteRemovedDomainObject classTrait',
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
@@ -20,4 +22,13 @@ LcsStateMachineSlot >> initialize [
 { #category : #initialize }
 LcsStateMachineSlot >> initializeOn: aStateMachineClass [ 
 	self addSlotType: aStateMachineClass
+]
+
+{ #category : #'slot model' }
+LcsStateMachineSlot >> slotVarPut: anObject in: aDomainObject [
+	| existingValue |
+	existingValue := self persistedSlotVarIn: aDomainObject.
+	self slotVarPut: anObject in: aDomainObject oldValue: existingValue.
+	(existingValue isDomainObject)
+		ifTrue: [ self currentUnitOfWork deleteObject: existingValue ]
 ]
