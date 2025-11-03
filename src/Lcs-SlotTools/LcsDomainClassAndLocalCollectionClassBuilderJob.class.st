@@ -20,7 +20,14 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> addSubclassBuilders [
 
 { #category : #command }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> buildJobSteps [
-	self addJobStep: self collectionSlotBuilder
+	self addJobStep: self domainClassBuilder.
+	self buildUnknownClass ifTrue: [
+		self addJobStep: self unknownClassBuilder].
+	self addSubclassBuilders.
+	self addJobStep: self domainCollectionClassBuilder.
+	self addJobStep: self collectionReferenceSlotBuilder.
+	self addJobStep: self collectionSlotBuilder.
+	self addMemberOfSlotBuilderForTargetClasses.
 ]
 
 { #category : #builders }
