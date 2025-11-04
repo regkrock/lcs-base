@@ -5,7 +5,8 @@ Class {
 		'targetClass',
 		'slotModelBuilder',
 		'onReset',
-		'onAccept'
+		'onAccept',
+		'mode'
 	],
 	#category : #'Lcs-Magritte-Base-Forms - Models'
 }
@@ -181,6 +182,16 @@ LcsBaseSlotCreationForm >> magritteUndoBuildAction [
 ]
 
 { #category : #accessing }
+LcsBaseSlotCreationForm >> mode [
+	^ mode
+]
+
+{ #category : #accessing }
+LcsBaseSlotCreationForm >> mode: aString [ 
+	mode := aString
+]
+
+{ #category : #accessing }
 LcsBaseSlotCreationForm >> onAccept [
 
 	^ onAccept
@@ -347,8 +358,8 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 	^ MAStringDescription new
 		label: 'Install Slot In Domain Class';
 		priority: 1;
-		accessor: #'targetClass';
-		"beReadOnly;"
+		accessor: #targetClass;
+		readOnly: (self mode = #edit);
 		blocShortcuts: [ 
 			{BlShortcutWithAction new
 				name: 'Browse class';

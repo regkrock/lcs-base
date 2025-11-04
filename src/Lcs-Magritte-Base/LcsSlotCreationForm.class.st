@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'packageAndTagName',
 		'onElementCreated',
-		'mode',
 		'slotClassName'
 	],
 	#category : #'Lcs-Magritte-Base-Forms - Models'
@@ -304,16 +303,6 @@ LcsSlotCreationForm >> magritteUpdateSlotModelBuilderAcceptAction [
 		label: 'Update Builder';
 		action: self commitSlotBuilderChangesAction;
 		beEnabledOnValidOverallStatus
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> mode [
-	^ mode
-]
-
-{ #category : #accessing }
-LcsSlotCreationForm >> mode: aString [ 
-	mode := aString
 ]
 
 { #category : #magritte }

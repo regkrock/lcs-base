@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'packageAndTagName',
 		'onElementCreated',
-		'mode',
 		'slotClassName'
 	],
 	#category : #'Lcs-Magritte-Base-Forms - Models'
