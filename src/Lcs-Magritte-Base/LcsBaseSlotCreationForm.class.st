@@ -348,7 +348,7 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 		label: 'Install Slot In Domain Class';
 		priority: 1;
 		accessor: #'targetClass';
-		beReadOnly;
+		"beReadOnly;"
 		blocShortcuts: [ 
 			{BlShortcutWithAction new
 				name: 'Browse class';

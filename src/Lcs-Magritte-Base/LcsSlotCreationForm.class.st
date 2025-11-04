@@ -140,6 +140,12 @@ LcsSlotCreationForm >> classesOrNilsFor: aCollectionOfClassNames [
 ]
 
 { #category : #magritte }
+LcsSlotCreationForm >> collectionMemberTypesDefinition [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #collectionMemberTypes
+]
+
+{ #category : #magritte }
 LcsSlotCreationForm >> collectionSlotModuleNameDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #collectionSlotModuleName

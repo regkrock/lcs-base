@@ -19,10 +19,16 @@ LcsLocalCollectionSlotBuilder class >> slotClass [
 { #category : #'gt views' }
 LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetModuleClass name asString)
-		addAssociation: self slotName toModelNamed: self slotTypes first."
-	"(aUmlModel classModelForClassname: self slotTypes first)
+	(aUmlModel classModelForClassname: self targetClassName asString)
+		addAssociation: self slotName toModelNamed: self slotTypes first.
+	(aUmlModel classModelForClass: self slotTypes first)
 		addAssociation: 'parent' toModelNamed: self targetClassName
+]
+
+{ #category : #'gt views' }
+LcsLocalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
+	super addClassesToUmlModel: aUmlModel.
+	aUmlModel addClassNamed: self slotTypes first name asString.
 ]
 
 { #category : #'gt views' }
@@ -63,6 +69,57 @@ LcsLocalCollectionSlotBuilder >> collectionMemberTypes [
 { #category : #accessing }
 LcsLocalCollectionSlotBuilder >> collectionMemberTypes: anObject [
 	self properties at: 'collectionMemberTypes' put: anObject
+]
+
+{ #category : #margritte }
+LcsLocalCollectionSlotBuilder >> collectionMemberTypesDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		label: 'Collection Member Types';
+		priority: 32;
+		accessor: (LcsMAPluggableAccessor 
+						accessors: #(#collectionMemberTypes)
+						read: [ :classes | classes collect: [ :each | each name] ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
+		classes: { String};
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		blocListStencil: (self
+				taggerStencilWithCompletion: GtClassesCompletionStrategy new
+				andContextMenuBlock: nil);
+		blocShortcuts: [ {BlShortcutWithAction new
+					name: 'Browse class';
+					description: 'Browses the class indicated by the editor';
+					combination: BlKeyCombination primaryB;
+					action: [ :anEvent | 
+						anEvent target phlow
+							spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
+				BlShortcutWithAction new
+					name: 'Inspect class';
+					description: 'Inspects the class indicated by the editor';
+					combination: BlKeyCombination primaryG;
+					action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
+				BlShortcutWithAction new
+					name: 'Browse class references';
+					description: 'Browses references to the class indicated by the editor';
+					combination: BlKeyCombination primaryN;
+					action: [ :anEvent | 
+						anEvent target phlow
+							spawnObject: anEvent target text asString asClass gtReferences ]} ];
+		addCondition: [ :aValue | aValue asSet size = aValue size ]
+			labelled: 'Duplicate classes are not allowed';
+		addCondition: [ :aValue | 
+				aValue
+					allSatisfy: [ :eachClassName | 
+						LcsBuilderLogger log: eachClassName isClass asString , ' - ' , eachClassName asString.
+						eachClassName isClass or: [(Smalltalk classOrTraitNamed: eachClassName asString trim) isNotNil ] ] ]
+			labelled: 'Unknown Class(s)';
+		addCondition: [ :aValue | 
+				| givenTraitsOrNils |
+				givenTraitsOrNils := self classesOrNilsFor: aValue.
+				givenTraitsOrNils allSatisfy: [ :each | each isNil or: [ each isClass ] ] ]
+			labelled: 'Only classes are allowed';
+		beRequired
 ]
 
 { #category : #'job steps' }

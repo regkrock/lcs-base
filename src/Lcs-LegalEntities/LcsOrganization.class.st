@@ -23,6 +23,7 @@ LcsOrganization class >> parentSlotDefinition [
 		slotName: 'parent';
 		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		collectionSlotName: 'organizations';
+		addSlotType: LcsOrganizations;
 		yourself
 ]
 
