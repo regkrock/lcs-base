@@ -1,10 +1,6 @@
 Class {
 	#name : #LcsSlotDefintionMethodBuilder,
 	#superclass : #LcsSlotDetailBuilder,
-	#instVars : [
-		'slotClass',
-		'slotTemplate'
-	],
 	#category : #'Lcs-SlotTools'
 }
 
@@ -98,7 +94,7 @@ LcsSlotDefintionMethodBuilder >> addSlotClassesToUmlModel: umlModel [
 		addClassModelForExisting: self slotClass 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #configuration }
 LcsSlotDefintionMethodBuilder >> addSlotType: aClassorClassName [
 	| aClassName |
 	aClassName := aClassorClassName isClass 
@@ -258,12 +254,6 @@ LcsSlotDefintionMethodBuilder >> propogateProperty: aName valueChangedTo: anObje
 	self propertyAt: aName put: anObject
 ]
 
-{ #category : #'gt views' }
-LcsSlotDefintionMethodBuilder >> rawDerivedSlotName [
-	self slotName ifNotNil: [ ^ self slotName ].
-	^ self slotTemplateSlotName
-]
-
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> required [
 	^ self properties at: 'required' ifAbsentPut: [ false ]
@@ -272,16 +262,6 @@ LcsSlotDefintionMethodBuilder >> required [
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> required: aBoolean [
 	self properties at: 'required' put: aBoolean
-]
-
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotClass [
-	^ slotClass
-]
-
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotClass: anObject [
-	slotClass := anObject
 ]
 
 { #category : #testing }
@@ -325,24 +305,6 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotNameDisplayString [
 	^ self derivedSlotName
-]
-
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotTemplate [
-	^ slotTemplate ifNil: [ 
-		self slotClass ifNil: [ ^ nil ].
-		slotTemplate := self slotClass new ]
-]
-
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotTemplate: anObject [
-	slotTemplate := anObject
-]
-
-{ #category : #accessing }
-LcsSlotDefintionMethodBuilder >> slotTemplateSlotName [
-	self slotTemplate ifNil: [ ^ nil ].
-	^ self slotTemplate slotName
 ]
 
 { #category : #property }

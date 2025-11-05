@@ -48,11 +48,6 @@ LcsGeographyModule class >> countriesSlotDefinition [
 ]
 
 { #category : #configuration }
-LcsGeographyModule class >> defaultModuleName [
-	^ 'Geography Module'
-]
-
-{ #category : #configuration }
 LcsGeographyModule class >> moduleConfigurationClass [
 	^ LcsGeographyModuleConfiguration
 ]

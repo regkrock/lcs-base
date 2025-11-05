@@ -356,7 +356,7 @@ LcsBaseSlotCreationForm >> targetClass: anObject [
 LcsBaseSlotCreationForm >> targetClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Install Slot In Domain Class';
+		label: self targetClassLabel;
 		priority: 1;
 		accessor: #targetClass;
 		readOnly: (self mode = #edit);
@@ -382,6 +382,11 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 		description
 			priority: 2;
 			yourself ]"
+]
+
+{ #category : #'magritte - support' }
+LcsBaseSlotCreationForm >> targetClassLabel [
+	^'Install Slot In Domain Class'
 ]
 
 { #category : #private }

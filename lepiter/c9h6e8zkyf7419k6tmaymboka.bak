@@ -1380,7 +1380,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-11-01T15:39:44.68826-04:00"
+															"dateAndTimeString" : "2025-11-01T15:40:01.303256-04:00"
 														}
 													},
 													"uid" : {
@@ -1390,7 +1390,7 @@
 													"paragraphStyle" : {
 														"__type" : "textStyle"
 													},
-													"string" : "[[Define Local Collec"
+													"string" : "[[Define Local Collection And Member Class(es) Pattern Form]]"
 												},
 												{
 													"__type" : "textSnippet",

@@ -3,17 +3,19 @@ Class {
 	#superclass : #LcsCodeBuilderStep,
 	#instVars : [
 		'targetClassName',
-		'targetClass'
+		'targetClass',
+		'slotTemplate',
+		'slotClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #printing }
 LcsSlotDetailBuilder >> derivedSlotName [
-	^ self slotName ifNil: ['<missing slotName>']
+		^ self rawDerivedSlotName ifNil: [ '<missing slotName>' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'gt views' }
 LcsSlotDetailBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self targetClass isNil ifTrue: [ 
@@ -46,9 +48,25 @@ LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>' ])
 ]
 
+{ #category : #'gt views' }
+LcsSlotDetailBuilder >> rawDerivedSlotName [
+	self slotName ifNotNil: [ ^ self slotName ].
+	^ self slotTemplateSlotName
+]
+
 { #category : #building }
 LcsSlotDetailBuilder >> slotBuilder [
 	^ self parent parent
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> slotClass [
+	^ slotClass
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> slotClass: anObject [
+	slotClass := anObject
 ]
 
 { #category : #building }
@@ -64,6 +82,24 @@ LcsSlotDetailBuilder >> slotName [
 { #category : #accessing }
 LcsSlotDetailBuilder >> slotName: anObject [
 	self properties at: 'slotName' put: anObject
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> slotTemplate [
+	^ slotTemplate ifNil: [ 
+		self slotClass ifNil: [ ^ nil ].
+		slotTemplate := self slotClass new ]
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> slotTemplate: anObject [
+	slotTemplate := anObject
+]
+
+{ #category : #accessing }
+LcsSlotDetailBuilder >> slotTemplateSlotName [
+	self slotTemplate ifNil: [ ^ nil ].
+	^ self slotTemplate slotName
 ]
 
 { #category : #accessing }

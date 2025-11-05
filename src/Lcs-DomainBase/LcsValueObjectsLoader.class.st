@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsValueObjectsLoader,
 	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Loader'
 }
 
 { #category : #configuration }

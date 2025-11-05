@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsObjectsLoader,
 	#superclass : #LcsObject,
-	#category : #'Lcs-DomainBase'
+	#category : #'Lcs-DomainBase-Loader'
 }
 
 { #category : #'slot model' }

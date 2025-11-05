@@ -281,6 +281,11 @@ LcsCodeBuilderStep >> properties: anObject [
 ]
 
 { #category : #callbacks }
+LcsCodeBuilderStep >> propertyAt: aName [ 
+	^ self properties at: aName  ifAbsent: [ nil ]
+]
+
+{ #category : #callbacks }
 LcsCodeBuilderStep >> propertyAt: aName put: anObject [ 
 	self properties at: aName put: anObject.
 	self jobSteps propogateProperty: aName valueChangedTo: anObject

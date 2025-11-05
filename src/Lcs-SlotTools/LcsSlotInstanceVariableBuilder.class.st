@@ -11,16 +11,15 @@ LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
 		ifFalse: [ 
 			aStream 
 				nextPutAll: 'Add instanceVariable: ';
-				nextPutAll:  (self slotName ifNil: [ '<missing>' ]) ]
+				nextPutAll:  self derivedSlotName ]
 ]
 
 { #category : #'gt views' }
 LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
-	^ aView text
-		title: 'Refactoring';
-		priority: 1;
-		text: [ self refactoringText asRopedText ]
+	^ (super gtRefactoringChangeOn: aView)
+		priority: 1
+		yourself
 ]
 
 { #category : #command }
@@ -41,7 +40,7 @@ LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 	^ 'Install instVar '
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #command }
 LcsSlotInstanceVariableBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeInstVar: self slotName ]

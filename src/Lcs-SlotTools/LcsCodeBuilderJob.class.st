@@ -80,6 +80,10 @@ LcsCodeBuilderJob >> execute [
 	self currentUnitOfWork applyChanges
 ]
 
+{ #category : #configuration }
+LcsCodeBuilderJob >> generateRelatedNames [
+]
+
 { #category : #'gt views' }
 LcsCodeBuilderJob >> gtClassBuilderViewFor: aView [
 	<gtView>
@@ -218,7 +222,7 @@ LcsCodeBuilderJob >> refactoringText [
 	^ stream contents
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #asking }
 LcsCodeBuilderJob >> stepNumber [
 	^ ''
 ]

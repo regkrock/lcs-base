@@ -182,7 +182,6 @@ LcsModule >> domainCollections: anObject [
 
 { #category : #modules }
 LcsModule >> geographyModule [
-
 	^ self moduleNamed: 'Geography Module'
 ]
 
@@ -306,7 +305,6 @@ LcsModule >> installModule: aModuleClass [
 
 { #category : #modules }
 LcsModule >> legalEntitiesModule [
-
 	^ self moduleNamed: 'Legal Entities Module'
 ]
 

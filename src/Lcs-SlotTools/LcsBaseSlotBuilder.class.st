@@ -165,11 +165,6 @@ LcsBaseSlotBuilder >> printJobStreamDetailsOn: aStream [
 ]
 
 { #category : #properties }
-LcsBaseSlotBuilder >> propertyAt: aName [
-	^ self properties at: aName ifAbsent: [ nil ]
-]
-
-{ #category : #properties }
 LcsBaseSlotBuilder >> propertyAt: aName ifAbsent: aBlock [
 	^ self properties at: aName ifAbsent: aBlock
 ]

@@ -15,7 +15,7 @@ LcsMainSystem class >> moduleConfigurationClass [
 	^ LcsMainSystemConfiguration
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 LcsMainSystem >> isMainSystem [
 	^ true
 ]
