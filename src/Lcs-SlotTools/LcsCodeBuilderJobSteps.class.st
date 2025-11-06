@@ -41,6 +41,11 @@ LcsCodeBuilderJobSteps >> addJobStep: aJobStep [
 ]
 
 { #category : #refactorings }
+LcsCodeBuilderJobSteps >> addRefactoringTextDetailsTo: aStream [
+	self collection do: [ :eachStep | eachStep addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr]
+]
+
+{ #category : #refactorings }
 LcsCodeBuilderJobSteps >> addRefactoringsTo: aCollection [
 	self collection do: [ :eachStep | eachStep addRefactoringsTo: aCollection ]
 ]

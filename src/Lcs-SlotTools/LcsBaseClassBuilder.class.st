@@ -43,7 +43,9 @@ LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: (
 		self newClassAlreadyExists 
 			ifTrue: [self newClassName , ' Class already exists']
-			ifFalse: [self classCreationString])
+			ifFalse: [self classCreationString]).
+	self jobSteps hasJobSteps ifTrue: [ aStream cr; cr ].
+	self jobSteps addRefactoringTextDetailsTo: aStream
 ]
 
 { #category : #'gt views' }
