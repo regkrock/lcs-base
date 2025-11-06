@@ -4,6 +4,13 @@ Class {
 	#category : #'Lcs-SystemManagement-Slot'
 }
 
+{ #category : #'object initialization' }
+LcsGlobalCollectionReferenceSlot >> _initialValueFor: aDomainObject [
+	| targetModule |
+	targetModule := self moduleNamed: self collectionSlotModuleName.
+	^ targetModule perform: self collectionSlotName asSymbol
+]
+
 { #category : #'as yet unclassified' }
 LcsGlobalCollectionReferenceSlot >> audit: anObject withAuditor: anAuditor [
 	super audit: anObject withAuditor: anAuditor.
@@ -52,9 +59,7 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 { #category : #'slot model' }
 LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
-	| targetModule |
-	targetModule := self moduleNamed: self collectionSlotModuleName. 
-	aDomainObject parent: (targetModule perform: self collectionSlotName asSymbol)
+	aDomainObject parent: (self initialValueFor: aDomainObject)
 ]
 
 { #category : #testing }
