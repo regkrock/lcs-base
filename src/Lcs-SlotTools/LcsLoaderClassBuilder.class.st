@@ -13,6 +13,16 @@ LcsLoaderClassBuilder class >> targetSuperclassName [
 	^ 'LcsObjectsLoader'
 ]
 
+{ #category : #build }
+LcsLoaderClassBuilder >> _installCode [
+	super _installCode.
+	self installClass.
+	self installDataMethod.
+	self installTargetClassMethod.
+	self installUnkownClassMethod.
+	self beCodeInstalled
+]
+
 { #category : #printing }
 LcsLoaderClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	super addRefactoringTextDetailsTo: aStream.
@@ -38,16 +48,6 @@ LcsLoaderClassBuilder >> dataString [
 LcsLoaderClassBuilder >> initialize [
 	super initialize.
 	self targetSuperclassName: self targetSuperclassName
-]
-
-{ #category : #build }
-LcsLoaderClassBuilder >> installCode [
-	super installCode.
-	self installClass.
-	self installDataMethod.
-	self installTargetClassMethod.
-	self installUnkownClassMethod.
-	self beCodeInstalled
 ]
 
 { #category : #build }

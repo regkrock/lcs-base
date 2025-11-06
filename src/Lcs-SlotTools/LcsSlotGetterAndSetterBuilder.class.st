@@ -4,6 +4,25 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #command }
+LcsSlotGetterAndSetterBuilder >> _installCode [
+	super _installCode.
+	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
+	self addRefactoring: (
+		RBAddMethodChange
+			compile: self getterSource
+			in: self targetClass
+			classified: #accessing)
+				execute.
+	self addRefactoring: (
+		RBAddMethodChange
+			compile: self setterSource
+			in: self targetClass
+			classified: #accessing)
+				execute.
+	self beCodeInstalled
+]
+
 { #category : #printing }
 LcsSlotGetterAndSetterBuilder >> addGetterAndSetterSourceCodeTo: aStream [
 	aStream
@@ -89,25 +108,6 @@ LcsSlotGetterAndSetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 		title: 'Implementor(Slot Accessors)';
 		priority: 200;
 		stencil: [ self getterAndSetterMethodsFilter ]
-]
-
-{ #category : #command }
-LcsSlotGetterAndSetterBuilder >> installCode [
-	super installCode.
-	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
-	self addRefactoring: (
-		RBAddMethodChange
-			compile: self getterSource
-			in: self targetClass
-			classified: #accessing)
-				execute.
-	self addRefactoring: (
-		RBAddMethodChange
-			compile: self setterSource
-			in: self targetClass
-			classified: #accessing)
-				execute.
-	self beCodeInstalled
 ]
 
 { #category : #testing }

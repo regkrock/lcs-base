@@ -19,7 +19,7 @@ LcsOwningModulesMethodBuilder >> initialize [
 { #category : #command }
 LcsOwningModulesMethodBuilder >> methodSource [
 	^'owningModules
-	<owningModule: ' , self owningModuleClass printString , ' priority: ' , self priority asString , '>' 
+	<owningModule: ' , self owningModuleClass name asString printString , ' priority: ' , self priority asString , '>' 
 ]
 
 { #category : #accessing }

@@ -24,6 +24,14 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 	^ nil
 ]
 
+{ #category : #build }
+LcsBaseClassBuilder >> _installCode [
+	super _installCode.
+	self newClassAlreadyExists ifFalse: [
+		self installClass ].
+	self beCodeInstalled 
+]
+
 { #category : #'gt views' }
 LcsBaseClassBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
@@ -145,14 +153,6 @@ LcsBaseClassBuilder >> installClass [
 	self newClassAlreadyExists ifTrue: [ ^ self ].
 	self addRefactoring: (RBAddClassChange definition: self classCreationString) execute.
 	self installedClass: self refactorings last changeClass
-]
-
-{ #category : #build }
-LcsBaseClassBuilder >> installCode [
-	super installCode.
-	self newClassAlreadyExists ifFalse: [
-		self installClass ].
-	self beCodeInstalled 
 ]
 
 { #category : #accessing }

@@ -11,6 +11,11 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #install }
+LcsCodeBuilderStep >> _installCode [
+	"subclasses can oberride this"
+]
+
 { #category : #'gt views' }
 LcsCodeBuilderStep >> addAssociationsToUmlModel: aUmlModel [
 	self traceStep: 'addAssociationsToUmlModel:'.
@@ -192,6 +197,7 @@ LcsCodeBuilderStep >> initialize [
 { #category : #install }
 LcsCodeBuilderStep >> installCode [
 	self traceStep: 'installCode'.
+	self _installCode.
 	self jobSteps installCode
 ]
 

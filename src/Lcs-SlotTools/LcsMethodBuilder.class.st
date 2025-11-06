@@ -11,6 +11,18 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #command }
+LcsMethodBuilder >> _installCode [
+	super _installCode.
+	self addRefactoring: (
+		RBAddMethodChange
+			compile: self methodSource
+			in: self targetClass class
+			classified: self categoryName asSymbol)
+				execute.
+	self beCodeInstalled
+]
+
 { #category : #printing }
 LcsMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream 
@@ -64,18 +76,6 @@ LcsMethodBuilder >> initialize [
 	super initialize.
 	self isClassMethod: false.
 	self categoryName: #'generated method'
-]
-
-{ #category : #command }
-LcsMethodBuilder >> installCode [
-	super installCode.
-	self addRefactoring: (
-		RBAddMethodChange
-			compile: self methodSource
-			in: self targetClass
-			classified: self categoryName asSymbol)
-				execute.
-	self beCodeInstalled
 ]
 
 { #category : #accessing }

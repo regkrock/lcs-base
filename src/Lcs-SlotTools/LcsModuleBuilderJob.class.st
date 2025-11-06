@@ -15,8 +15,8 @@ Class {
 
 { #category : #'builder job' }
 LcsModuleBuilderJob >> buildJobSteps [
-	self addJobStep: self moduleClassBuilder.
 	self addJobStep: self configurationClassBuilder.
+	self addJobStep: self moduleClassBuilder.
 	self addJobStep: self configurationSlotBuilder.
 ]
 

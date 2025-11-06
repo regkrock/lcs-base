@@ -11,6 +11,17 @@ LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 		yourself
 ]
 
+{ #category : #building }
+LcsSlotDefintionMethodBuilder >> _installCode [
+	super _installCode.
+	self addRefactoring: (
+		RBAddMethodChange
+			compile: self slotDefinitionSource
+			in: self targetClass class
+			classified: #'slot definitions') execute.
+	self beCodeInstalled
+]
+
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
@@ -213,17 +224,6 @@ LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [
 		slotTemplate: self slotClass new;
 		targetClassName: aSlotDefinitionBuilder targetClassName.
 	aSlotDefinitionBuilder addPropertiesTo: self
-]
-
-{ #category : #building }
-LcsSlotDefintionMethodBuilder >> installCode [
-	super installCode.
-	self addRefactoring: (
-		RBAddMethodChange
-			compile: self slotDefinitionSource
-			in: self targetClass class
-			classified: #'slot definitions') execute.
-	self beCodeInstalled
 ]
 
 { #category : #'initialize\t' }

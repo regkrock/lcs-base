@@ -9,6 +9,16 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #install }
+LcsSingletonValueObjectClassBuilder >> _installCode [
+	super _installCode.
+	self addRefactoring: self addDefaultLabelRefactoring execute.
+	self addRefactoring: self addDefaultDescriptionRefactoring execute.
+	self addRefactoring: self addDefaultCodeRefactoring execute.
+	self addRefactoring: self addDefaultInstanceRefactoring execute.
+	self beCodeInstalled
+]
+
 { #category : #refactoring }
 LcsSingletonValueObjectClassBuilder >> addDefaultCodeRefactoring [
 	^ RBAddMethodChange
@@ -102,16 +112,6 @@ LcsSingletonValueObjectClassBuilder >> description [
 { #category : #accessing }
 LcsSingletonValueObjectClassBuilder >> description: aString [
 	description := aString
-]
-
-{ #category : #install }
-LcsSingletonValueObjectClassBuilder >> installCode [
-	super installCode.
-	self addRefactoring: self addDefaultLabelRefactoring execute.
-	self addRefactoring: self addDefaultDescriptionRefactoring execute.
-	self addRefactoring: self addDefaultCodeRefactoring execute.
-	self addRefactoring: self addDefaultInstanceRefactoring execute.
-	self beCodeInstalled
 ]
 
 { #category : #accessing }

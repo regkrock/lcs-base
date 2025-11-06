@@ -4,6 +4,14 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #command }
+LcsSlotInstanceVariableBuilder >> _installCode [
+	super _installCode.
+	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
+	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self targetClass) execute.
+	self beCodeInstalled
+]
+
 { #category : #'gt views' }
 LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
 	([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
@@ -20,14 +28,6 @@ LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 	^ (super gtRefactoringChangeOn: aView)
 		priority: 1
 		yourself
-]
-
-{ #category : #command }
-LcsSlotInstanceVariableBuilder >> installCode [
-	super installCode.
-	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
-	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self targetClass) execute.
-	self beCodeInstalled
 ]
 
 { #category : #'gt views' }
