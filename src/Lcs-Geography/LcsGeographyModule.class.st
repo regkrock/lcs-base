@@ -17,6 +17,7 @@ LcsGeographyModule class >> addressTypesSlotDefinition [
 		collectionMemberTypes: (OrderedCollection with: LcsAddressType);
 		slotName: 'addressTypes';
 		loaderClass: LcsAddressTypesLoader;
+		priority: 20;
 		yourself
 ]
 
@@ -33,7 +34,9 @@ LcsGeographyModule class >> addressesSlotDefinition [
 { #category : #'slot definitions' }
 LcsGeographyModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
+	^ (LcsModuleConfigurationSlot newOn: self moduleConfigurationClass)
+		priority: 5;
+		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -44,7 +47,13 @@ LcsGeographyModule class >> countriesSlotDefinition [
 		addSlotType: LcsCountries;
 		addCollectionMemberType: LcsCountry;
 		loaderClass: LcsCountriesLoader;
+		priority: 4;
 		yourself
+]
+
+{ #category : #configuration }
+LcsGeographyModule class >> defaultModuleName [
+	^ 'Geography Module'
 ]
 
 { #category : #configuration }

@@ -56,6 +56,7 @@ LcsModule class >> domainCollectionsSlotDefinition [
 		slotName: 'domainCollections';
 		addSlotType: LcsGlobalCollections;
 		addCollectionMemberType: LcsDomainCollection;
+		priority: 3;
 		yourself
 ]
 
@@ -124,6 +125,8 @@ LcsModule class >> moduleConfigurationClass [
 LcsModule class >> moduleNameSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleNameSlot new
+		priority: 1;
+		yourself
 ]
 
 { #category : #'slot definitions' }
@@ -133,6 +136,7 @@ LcsModule class >> modulesSlotDefinition [
 		slotName: 'modules';
 		addSlotType: LcsModules;
 		addCollectionMemberType: LcsModule;
+		priority: 2;
 		yourself
 ]
 
@@ -286,12 +290,6 @@ LcsModule >> hasNoModules [
 { #category : #modules }
 LcsModule >> immediateSubmoduleClasses [
 	^ self class immediateSubmoduleClasses
-]
-
-{ #category : #initialize }
-LcsModule >> initializeModel [
-	super initializeModel.
-	"self modules initializeModel"
 ]
 
 { #category : #modules }

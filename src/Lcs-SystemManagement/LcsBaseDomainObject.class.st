@@ -666,7 +666,6 @@ LcsBaseDomainObject >> incrementVersionNumber [
 
 { #category : #initialize }
 LcsBaseDomainObject >> initialize [
-	"LcsLogger log: 'initialize: ' , self class name."
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.
 	super initialize.
 	self initializeModel.
