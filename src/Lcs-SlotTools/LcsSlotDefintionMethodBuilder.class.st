@@ -22,6 +22,17 @@ LcsSlotDefintionMethodBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> _verifyCodeInstallation [
+	| slotDefinition |
+	super _verifyCodeInstallation.
+	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
+	slotDefinition := self targetClass perform: self slotDefinitionSelector asSymbol.
+	self assert: slotDefinition class == self slotClass.
+	
+	self validatePropertiesIn: slotDefinition
+]
+
 { #category : #'gt views' }
 LcsSlotDefintionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
@@ -426,17 +437,6 @@ LcsSlotDefintionMethodBuilder >> validationConditions: aCollection [
 { #category : #'slot template' }
 LcsSlotDefintionMethodBuilder >> valueOfSlotTemplateProperty: aKey [
 	^ self slotTemplate properties at: aKey ifAbsent: [ ]
-]
-
-{ #category : #verification }
-LcsSlotDefintionMethodBuilder >> verifyCodeInstallation [
-	| slotDefinition |
-	super verifyCodeInstallation.
-	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
-	slotDefinition := self targetClass perform: self slotDefinitionSelector asSymbol.
-	self assert: slotDefinition class == self slotClass.
-	
-	self validatePropertiesIn: slotDefinition
 ]
 
 { #category : #verification }

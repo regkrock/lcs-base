@@ -17,6 +17,12 @@ LcsSlotGetterBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
+{ #category : #command }
+LcsSlotGetterBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+	self assert: (self targetClass canUnderstand: self getterSelector).
+]
+
 { #category : #printing }
 LcsSlotGetterBuilder >> addGetterSourceCodeTo: aStream [
 	aStream
@@ -114,12 +120,6 @@ LcsSlotGetterBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNil: [ ^ self ].
 	self targetClass removeSelector: self getterSelector
-]
-
-{ #category : #command }
-LcsSlotGetterBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-	self assert: (self targetClass canUnderstand: self getterSelector).
 ]
 
 { #category : #command }

@@ -2,7 +2,8 @@ Class {
 	#name : #LcsConvenienceModuleAccessMethodBuilder,
 	#superclass : #LcsMethodBuilder,
 	#instVars : [
-		'owningModuleClass'
+		'owningModuleClass',
+		'moduleName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -16,7 +17,17 @@ LcsConvenienceModuleAccessMethodBuilder >> initialize [
 { #category : #command }
 LcsConvenienceModuleAccessMethodBuilder >> methodSource [
 	^'<1s>
-	^ self moduleNamed: ''<2s> Module''' expandMacrosWith: self selector with: self targetClassName
+	^ self moduleNamed: ''<2s>''' expandMacrosWith: self selector with: self moduleName
+]
+
+{ #category : #accessing }
+LcsConvenienceModuleAccessMethodBuilder >> moduleName [
+	^ moduleName
+]
+
+{ #category : #accessing }
+LcsConvenienceModuleAccessMethodBuilder >> moduleName: anObject [
+	moduleName := anObject
 ]
 
 { #category : #accessing }

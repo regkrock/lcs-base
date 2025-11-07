@@ -23,6 +23,12 @@ LcsLoaderClassBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
+{ #category : #verification }
+LcsLoaderClassBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+	self assert: self installedClass superclass name equals: self class targetSuperclassName
+]
+
 { #category : #printing }
 LcsLoaderClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	super addRefactoringTextDetailsTo: aStream.
@@ -119,12 +125,6 @@ LcsLoaderClassBuilder >> updateSlotModel [
 { #category : #verification }
 LcsLoaderClassBuilder >> verifyClassAddedToSystemModel [
 	"Currently the loader is not part of model."
-]
-
-{ #category : #verification }
-LcsLoaderClassBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-	self assert: self installedClass superclass name equals: self class targetSuperclassName
 ]
 
 { #category : #verification }

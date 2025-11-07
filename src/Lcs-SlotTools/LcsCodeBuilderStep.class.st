@@ -16,6 +16,10 @@ LcsCodeBuilderStep >> _installCode [
 	"subclasses can oberride this"
 ]
 
+{ #category : #install }
+LcsCodeBuilderStep >> _verifyCodeInstallation [
+]
+
 { #category : #'gt views' }
 LcsCodeBuilderStep >> addAssociationsToUmlModel: aUmlModel [
 	self traceStep: 'addAssociationsToUmlModel:'.
@@ -392,6 +396,7 @@ LcsCodeBuilderStep >> updateSlotModel [
 { #category : #install }
 LcsCodeBuilderStep >> verifyCodeInstallation [
 	self traceStep: 'verifyCodeInstallation'.
+	self _verifyCodeInstallation.
 	self jobSteps verifyCodeInstallation
 ]
 

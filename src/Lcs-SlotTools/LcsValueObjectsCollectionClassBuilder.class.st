@@ -10,7 +10,7 @@ LcsValueObjectsCollectionClassBuilder class >> targetSuperclassName [
 ]
 
 { #category : #accessing }
-LcsValueObjectsCollectionClassBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
+LcsValueObjectsCollectionClassBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: 'LcsValueObjects'
 ]

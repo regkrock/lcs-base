@@ -12,6 +12,19 @@ LcsGlobalCollectionReferenceSlotBuilder class >> slotClass [
 	^ LcsGlobalCollectionReferenceSlot
 ]
 
+{ #category : #verification }
+LcsGlobalCollectionReferenceSlotBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+
+	"| slotDefinition |
+	slotDefinition := self targetSlotDefinition.
+	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
+	self assert: slotDefinition collectionSlotName isString.
+	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
+	self assert: slotDefinition collectionSlotModuleName isString."
+
+]
+
 { #category : #'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
@@ -144,19 +157,6 @@ LcsGlobalCollectionReferenceSlotBuilder >> umlModel [
 LcsGlobalCollectionReferenceSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ :c | c removeDomainSlotNamed: self slotName ]
-]
-
-{ #category : #verification }
-LcsGlobalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-
-	"| slotDefinition |
-	slotDefinition := self targetSlotDefinition.
-	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
-	self assert: slotDefinition collectionSlotName isString.
-	self assert:  slotDefinition collectionSlotModuleName equals: self collectionSlotModuleName.
-	self assert: slotDefinition collectionSlotModuleName isString."
-
 ]
 
 { #category : #verification }

@@ -20,6 +20,7 @@ LcsModuleClassBuilder >> convenienceModuleAccessMethodBuilder [
 		targetClassName: 'LcsModule';
 		categoryName: ('*' ,self targetPackageName) asSymbol;
 		selector: (self selectorNameFrom: self moduleName);
+		moduleName: self moduleName;
 		yourself
 ]
 

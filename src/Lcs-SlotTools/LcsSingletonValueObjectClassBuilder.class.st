@@ -19,6 +19,15 @@ LcsSingletonValueObjectClassBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
+{ #category : #verification }
+LcsSingletonValueObjectClassBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+	self assert: self installedClass superclass name equals: self targetSuperclassName.
+	self assert: self installedClass defaultDescription equals: self description.
+	self assert: self installedClass defaultCode equals: self code.
+	self assert: self installedClass defaultLabel equals: self label.
+]
+
 { #category : #refactoring }
 LcsSingletonValueObjectClassBuilder >> addDefaultCodeRefactoring [
 	^ RBAddMethodChange
@@ -122,13 +131,4 @@ LcsSingletonValueObjectClassBuilder >> label [
 { #category : #accessing }
 LcsSingletonValueObjectClassBuilder >> label: aString [
 	label := aString
-]
-
-{ #category : #verification }
-LcsSingletonValueObjectClassBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-	self assert: self installedClass superclass name equals: self targetSuperclassName.
-	self assert: self installedClass defaultDescription equals: self description.
-	self assert: self installedClass defaultCode equals: self code.
-	self assert: self installedClass defaultLabel equals: self label.
 ]

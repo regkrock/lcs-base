@@ -30,6 +30,14 @@ LcsBaseClassBuilder >> _installCode [
 	self beCodeInstalled 
 ]
 
+{ #category : #command }
+LcsBaseClassBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+	self assert: self installedClass notNil description: 'Class has been created'.
+	self assert: self installedClass name equals: self newClassName.
+	self assert: self installedClass package name equals: self targetPackageName
+]
+
 { #category : #'gt views' }
 LcsBaseClassBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
@@ -266,14 +274,6 @@ LcsBaseClassBuilder >> uninstall [
 LcsBaseClassBuilder >> updateSlotModel [
 	super updateSlotModel.
 	self installedClass initializeSlotModel.
-]
-
-{ #category : #command }
-LcsBaseClassBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-	self assert: self installedClass notNil description: 'Class has been created'.
-	self assert: self installedClass name equals: self newClassName.
-	self assert: self installedClass package name equals: self targetPackageName
 ]
 
 { #category : #command }

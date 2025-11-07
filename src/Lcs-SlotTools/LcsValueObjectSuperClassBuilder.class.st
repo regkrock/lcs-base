@@ -9,16 +9,16 @@ LcsValueObjectSuperClassBuilder class >> targetSuperclassName [
 	^ 'LcsValueObject'
 ]
 
+{ #category : #verification }
+LcsValueObjectSuperClassBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+	self assert: self installedClass superclass name equals: self targetSuperclassName
+]
+
 { #category : #initialize }
 LcsValueObjectSuperClassBuilder >> initialize [
 	super initialize.
 	self targetSuperclassName: self class targetSuperclassName
-]
-
-{ #category : #verification }
-LcsValueObjectSuperClassBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]
 
 { #category : #verification }

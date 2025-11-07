@@ -12,6 +12,12 @@ LcsSlotInstanceVariableBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
+{ #category : #command }
+LcsSlotInstanceVariableBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+	self assert: (self targetClass allInstVarNames includes: self slotName).
+]
+
 { #category : #'gt views' }
 LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
 	([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
@@ -44,12 +50,6 @@ LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 LcsSlotInstanceVariableBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeInstVar: self slotName ]
-]
-
-{ #category : #command }
-LcsSlotInstanceVariableBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-	self assert: (self targetClass allInstVarNames includes: self slotName).
 ]
 
 { #category : #command }

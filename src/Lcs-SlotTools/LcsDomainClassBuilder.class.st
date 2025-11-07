@@ -10,13 +10,13 @@ LcsDomainClassBuilder class >> defaultTargetSuperclassName [
 ]
 
 { #category : #accessing }
-LcsDomainClassBuilder >> initialize [
-	super initialize.
-	self targetSuperclassName: self class defaultTargetSuperclassName
+LcsDomainClassBuilder >> _verifyCodeInstallation [
+	super _verifyCodeInstallation.
+	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]
 
 { #category : #accessing }
-LcsDomainClassBuilder >> verifyCodeInstallation [
-	super verifyCodeInstallation.
-	self assert: self installedClass superclass name equals: self targetSuperclassName
+LcsDomainClassBuilder >> initialize [
+	super initialize.
+	self targetSuperclassName: self class defaultTargetSuperclassName
 ]

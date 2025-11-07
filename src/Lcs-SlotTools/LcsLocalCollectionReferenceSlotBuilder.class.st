@@ -12,6 +12,15 @@ LcsLocalCollectionReferenceSlotBuilder class >> slotClass [
 	^ LcsLocalCollectionReferenceSlot
 ]
 
+{ #category : #verification }
+LcsLocalCollectionReferenceSlotBuilder >> _verifyCodeInstallation [
+	| slotDefinition |
+	super _verifyCodeInstallation.
+	slotDefinition := self targetSlotDefinition.
+	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
+	self assert: slotDefinition collectionSlotName isString
+]
+
 { #category : #'gt views' }
 LcsLocalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
@@ -102,15 +111,6 @@ LcsLocalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 LcsLocalCollectionReferenceSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamed: self slotName ]
-]
-
-{ #category : #verification }
-LcsLocalCollectionReferenceSlotBuilder >> verifyCodeInstallation [
-	| slotDefinition |
-	super verifyCodeInstallation.
-	slotDefinition := self targetSlotDefinition.
-	self assert: slotDefinition collectionSlotName equals: self collectionSlotName.
-	self assert: slotDefinition collectionSlotName isString
 ]
 
 { #category : #verification }
