@@ -78,7 +78,7 @@
 				"previewShowSelector" : "gtViewsFor:",
 				"exampleBehaviorName" : "LcsModuleBuilderFormExamples",
 				"codeExpanded" : false,
-				"previewExpanded" : false,
+				"previewExpanded" : true,
 				"noCode" : false
 			}
 		]

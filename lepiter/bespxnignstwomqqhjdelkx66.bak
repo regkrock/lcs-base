@@ -74,10 +74,10 @@
 					"uidString" : "gRy1hiz/DQCT2LpEAhC/wA=="
 				},
 				"exampleSelector" : "sailClubModuleExample",
-				"previewHeight" : 200,
+				"previewHeight" : 700,
 				"previewShowSelector" : "gtViewsFor:",
 				"exampleBehaviorName" : "LcsModuleBuilderFormExamples",
-				"codeExpanded" : true,
+				"codeExpanded" : false,
 				"previewExpanded" : false,
 				"noCode" : false
 			}
