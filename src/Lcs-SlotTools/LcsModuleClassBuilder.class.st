@@ -7,6 +7,12 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #populate }
+LcsModuleClassBuilder >> _populateSlotModel [
+	super _populateSlotModel.
+	(self currentSystem moduleNamed: self owningModule defaultModuleName) buildModule: self installedClass
+]
+
 { #category : #'job steps' }
 LcsModuleClassBuilder >> buildJobSteps [
 	self jobSteps addJobStep: self moduleNameMethodBuilder.

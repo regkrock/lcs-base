@@ -17,6 +17,10 @@ LcsCodeBuilderStep >> _installCode [
 ]
 
 { #category : #install }
+LcsCodeBuilderStep >> _populateSlotModel [
+]
+
+{ #category : #install }
 LcsCodeBuilderStep >> _verifyCodeInstallation [
 ]
 
@@ -271,6 +275,7 @@ LcsCodeBuilderStep >> parent: anObject [
 { #category : #install }
 LcsCodeBuilderStep >> populateSlotModel [
 	self traceStep: 'populateSlotModel'.
+	self _populateSlotModel.
 	self jobSteps populateSlotModel
 ]
 

@@ -16,6 +16,12 @@ LcsGlobalCollectionSlotBuilder class >> slotClass [
 	^ LcsGlobalCollectionSlot
 ]
 
+{ #category : #command }
+LcsGlobalCollectionSlotBuilder >> _populateSlotModel [
+	super _populateSlotModel.
+	self globalCollectionHome initializeSlotNamed: self slotName 
+]
+
 { #category : #'gt views' }
 LcsGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
@@ -97,12 +103,6 @@ LcsGlobalCollectionSlotBuilder >> module [
 { #category : #'gt views' }
 LcsGlobalCollectionSlotBuilder >> parentClassName [
 	^ self targetModuleClass name asString
-]
-
-{ #category : #command }
-LcsGlobalCollectionSlotBuilder >> populateSlotModel [
-	super populateSlotModel.
-	self globalCollectionHome initializeSlotNamed: self slotName 
 ]
 
 { #category : #accessing }

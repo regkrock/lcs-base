@@ -443,7 +443,7 @@ LcsSlotDefintionMethodBuilder >> valueOfSlotTemplateProperty: aKey [
 LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	super verifySlotModelUpdatesMadeByBuilder.
 	self currentSystem isNil ifTrue: [ ^ self ].
-	self assert: (self targetClass slotModel slotDefinitionNamed: self slotName) notNil
+	self assert: (self targetClass slotModel slotDefinitionNamed: self derivedSlotName) notNil
 ]
 
 { #category : #verification }

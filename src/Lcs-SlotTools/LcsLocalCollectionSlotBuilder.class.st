@@ -16,6 +16,16 @@ LcsLocalCollectionSlotBuilder class >> slotClass [
 	^ LcsLocalCollectionSlot
 ]
 
+{ #category : #command }
+LcsLocalCollectionSlotBuilder >> _populateSlotModel [
+	super _populateSlotModel.
+
+		"| aModule |
+	aModule := self module.
+	(aModule perform: self getterSelector)
+		ifNil: [ aModule initializeSlotNamed: self slotName ]"
+]
+
 { #category : #'gt views' }
 LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
@@ -163,16 +173,6 @@ LcsLocalCollectionSlotBuilder >> localCollectionReferenceSlotBuilder: aClassName
 { #category : #command }
 LcsLocalCollectionSlotBuilder >> module [
 	^ self currentSystem moduleNamed: self targetClass defaultModuleName
-]
-
-{ #category : #command }
-LcsLocalCollectionSlotBuilder >> populateSlotModel [
-	super populateSlotModel.
-
-		"| aModule |
-	aModule := self module.
-	(aModule perform: self getterSelector)
-		ifNil: [ aModule initializeSlotNamed: self slotName ]"
 ]
 
 { #category : #accessing }
