@@ -111,6 +111,11 @@ LcsLoaderClassBuilder >> unknownClassName: anObject [
 	unknownClassName := anObject
 ]
 
+{ #category : #command }
+LcsLoaderClassBuilder >> updateSlotModel [
+	"Currently the loader is not part of model."
+]
+
 { #category : #verification }
 LcsLoaderClassBuilder >> verifyClassAddedToSystemModel [
 	"Currently the loader is not part of model."

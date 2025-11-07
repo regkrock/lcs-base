@@ -265,10 +265,7 @@ LcsBaseClassBuilder >> uninstall [
 { #category : #command }
 LcsBaseClassBuilder >> updateSlotModel [
 	super updateSlotModel.
-	self newClassAlreadyExists ifTrue: [
-		self installedClass verifySuperclassesHaveInitializedSlotModel.
-		^ self].
-	self installedClass initializeSlotModel
+	self installedClass initializeSlotModel.
 ]
 
 { #category : #command }

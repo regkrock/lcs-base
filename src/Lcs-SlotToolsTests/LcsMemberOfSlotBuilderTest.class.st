@@ -110,6 +110,11 @@ LcsMemberOfSlotBuilderTest >> testCreateGenderClassesWithoutAddingMemberOfToPers
 	self createGenderClassesWithoutAddingMemberOfToPerson
 ]
 
+{ #category : #support }
+LcsMemberOfSlotBuilderTest >> testCreateLxxInvoiceAndLxxInvoices [
+	self createLxxInvoiceAndLxxInvoices
+]
+
 { #category : #tests }
 LcsMemberOfSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
