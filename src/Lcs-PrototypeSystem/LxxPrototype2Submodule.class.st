@@ -4,6 +4,11 @@ Class {
 	#category : #'Lcs-PrototypeSystem-Base'
 }
 
+{ #category : #configuration }
+LxxPrototype2Submodule class >> defaultModuleName [
+	^ 'Prototype 2 Submodule'
+]
+
 { #category : #temp }
 LxxPrototype2Submodule class >> owningModules [
 	<owningModule: 'LxxPrototype2Module' priority: 50>

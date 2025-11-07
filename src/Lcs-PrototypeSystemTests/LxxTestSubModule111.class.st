@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #configuration }
+LxxTestSubModule111 class >> defaultModuleName [
+	^ 'Prototype 111 Submodule'
+]
+
+{ #category : #configuration }
 LxxTestSubModule111 class >> owningModules [
 	<owningModule: 'LxxTestSubModule11' priority: 50>
 ]

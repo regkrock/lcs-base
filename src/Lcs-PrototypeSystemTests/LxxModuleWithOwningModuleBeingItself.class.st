@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #configuration }
+LxxModuleWithOwningModuleBeingItself class >> defaultModuleName [
+	^ self class name
+]
+
+{ #category : #configuration }
 LxxModuleWithOwningModuleBeingItself class >> owningModules [
 	<owningModule: 'LxxModuleWithOwningModuleBeingItself' priority: 50>
 ]

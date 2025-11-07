@@ -25,6 +25,11 @@ LcsWarRabbitLibrary class >> configurationSlotDefinition [
 	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
 ]
 
+{ #category : #configuration }
+LcsWarRabbitLibrary class >> defaultModuleName [
+	^ 'War Rabbit System'
+]
+
 { #category : #'slot definitions' }
 LcsWarRabbitLibrary class >> libraryCategoriesSlotDefinition [
 	<slotDefinition>

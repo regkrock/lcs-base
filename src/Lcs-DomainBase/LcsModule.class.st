@@ -46,7 +46,7 @@ LcsModule class >> configurationSlotDefinition [
 
 { #category : #configuration }
 LcsModule class >> defaultModuleName [
-	^ self name
+	self subclassResponsibility
 ]
 
 { #category : #'slot definitions' }

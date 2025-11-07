@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #configuration }
+LxxModule1 class >> defaultModuleName [
+	^ '1 Module'
+]
+
+{ #category : #configuration }
 LxxModule1 class >> owningModules [
 	<owningModule: 'LxxModule0' priority: 50>
 	<owningModule: 'LxxModule2' priority: 50>
