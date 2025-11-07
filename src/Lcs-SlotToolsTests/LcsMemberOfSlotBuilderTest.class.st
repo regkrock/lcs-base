@@ -106,6 +106,11 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToLo
 ]
 
 { #category : #tests }
+LcsMemberOfSlotBuilderTest >> testCreateGenderClassesWithoutAddingMemberOfToPerson [
+	self createGenderClassesWithoutAddingMemberOfToPerson
+]
+
+{ #category : #tests }
 LcsMemberOfSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
 	self assert: LcsMemberOfGlobalCollectionSlotBuilder slotClass equals: LcsMemberOfGlobalCollectionSlot
