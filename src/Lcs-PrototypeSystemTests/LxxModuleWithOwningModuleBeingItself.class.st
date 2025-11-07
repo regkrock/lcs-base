@@ -9,7 +9,7 @@ Class {
 
 { #category : #configuration }
 LxxModuleWithOwningModuleBeingItself class >> defaultModuleName [
-	^ self class name
+	^ 'Module With Owning Module Being Itself'
 ]
 
 { #category : #configuration }

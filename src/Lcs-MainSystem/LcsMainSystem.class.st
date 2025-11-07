@@ -11,6 +11,11 @@ LcsMainSystem class >> configurationSlotDefinition [
 ]
 
 { #category : #configuration }
+LcsMainSystem class >> defaultModuleName [
+	^ 'System'
+]
+
+{ #category : #configuration }
 LcsMainSystem class >> moduleConfigurationClass [
 	^ LcsMainSystemConfiguration
 ]
