@@ -39,7 +39,7 @@ LcsLoaderClassBuilderTest >> testInstallClass [
 		newClassName: self newClassName;
 		targetPackageName: 'Lcs-Temp';
 		"targetSuperclassName: self targetSuperclassName;;"
-		instanceClassName: 'LxxPerson'..
+		instanceClassName: 'LxxPerson'.
 
 	self subject buildJobSteps.
 	self assert: self subject jobSteps hasNoJobSteps .

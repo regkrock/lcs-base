@@ -253,7 +253,7 @@ LcsBaseClassBuilder >> tearDown [
 LcsBaseClassBuilder >> uninstall [
 	super uninstall.
 	self installedClass ifNil: [ ^ self ].
-	self newClassAlreadyExists ifTrue: [ ^ self ].
+	self newClassAlreadyExists ifFalse: [ ^ self ].
 	self currentSystem ifNotNil: [
 		self currentSystem removeClassFromSlotModel: self installedClass.
 		self removeReferencesFromSubsequentSteps.
