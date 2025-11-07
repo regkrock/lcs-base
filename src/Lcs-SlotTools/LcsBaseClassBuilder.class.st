@@ -6,8 +6,7 @@ Class {
 		'rootName',
 		'newClassName',
 		'targetPackageName',
-		'targetSuperclassName',
-		'newClassAlreadyExists'
+		'targetSuperclassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -27,8 +26,7 @@ LcsBaseClassBuilder class >> targetSuperclassName [
 { #category : #build }
 LcsBaseClassBuilder >> _installCode [
 	super _installCode.
-	self newClassAlreadyExists ifFalse: [
-		self installClass ].
+	self installClass .
 	self beCodeInstalled 
 ]
 
@@ -139,8 +137,7 @@ LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 { #category : #initialize }
 LcsBaseClassBuilder >> initialize [
 	super initialize.
-	self targetSuperclassName: self class targetSuperclassName.
-	self newClassAlreadyExists: false
+	self targetSuperclassName: self class targetSuperclassName
 ]
 
 { #category : #initialize }
@@ -167,12 +164,9 @@ LcsBaseClassBuilder >> installedClass: aClass [
 
 { #category : #accessing }
 LcsBaseClassBuilder >> newClassAlreadyExists [
-	^ newClassAlreadyExists
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> newClassAlreadyExists: anObject [
-	newClassAlreadyExists := anObject
+	^ [ self newClassName asClass. true ] 
+		on: NotFound 
+		do: [ :s | s return: false ]
 ]
 
 { #category : #accessing }
@@ -187,13 +181,7 @@ LcsBaseClassBuilder >> newClassName: aString [
 
 { #category : #accessing }
 LcsBaseClassBuilder >> newTargetClassName: aString [
-	self newClassName: aString.
-	self newClassAlreadyExists: (
-		[
-			self installedClass:self newClassName asClass.
-			true ]
-			on: NotFound
-			do: [ :s | s return: false ])  
+	self newClassName: aString
 ]
 
 { #category : #printing }
