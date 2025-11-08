@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsModuleNameMethodBuilderTest,
 	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests'
+	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
 { #category : #examples }

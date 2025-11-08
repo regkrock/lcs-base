@@ -142,7 +142,5 @@ LcsMethodBuilder >> targetClassName: anObject [
 LcsMethodBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNil: [ ^ self ].
-	self isClassMethod 
-		ifTrue: [  self targetClass class removeSelector: self selector ] 
-		ifFalse: [ self targetClass removeSelector: self selector ]
+	self refactorings do: [ :each | each execute ]
 ]
