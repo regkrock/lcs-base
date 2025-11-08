@@ -88,11 +88,13 @@ LcsModule class >> immediateSubmoduleClasses [
 
 { #category : #'system model' }
 LcsModule class >> immediateSubmoduleClassesOf: aClass [
-	| immediateSubmodulePragmas |
+	| immediateSubmodulePragmas submoduleClasses |
 	immediateSubmodulePragmas := (Pragma pragmaCache at: 'owningModule:priority:') 
 									select: [ :each | (each argumentAt: 1) = aClass name asString ].
-	^ (immediateSubmodulePragmas asSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ])
-		collect: [:eachPragma | eachPragma methodClass soleInstance ]
+	submoduleClasses := (
+		immediateSubmodulePragmas asSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ])
+			collect: [:eachPragma | eachPragma methodClass soleInstance ].
+	^ submoduleClasses reject: [ :each | each isObsolete ]
 ]
 
 { #category : #testing }
