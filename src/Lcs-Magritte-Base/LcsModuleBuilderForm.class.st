@@ -46,6 +46,7 @@ LcsModuleBuilderForm >> classRootNameDescription [
 { #category : #initialize }
 LcsModuleBuilderForm >> initializeOn: aTarget [
 	self targetClass: (aTarget isClass ifTrue: [ aTarget ] ifFalse: [ aTarget class ]).
+	self targetClassName: self targetClass name asString.
 	self slotModelBuilder targetPackageName: ''.
 	self slotModelBuilder targetPackageTagName: ''.
 	self slotModelBuilder owningModule: self targetClass

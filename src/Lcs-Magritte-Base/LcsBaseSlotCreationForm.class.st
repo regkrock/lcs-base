@@ -6,7 +6,8 @@ Class {
 		'slotModelBuilder',
 		'onReset',
 		'onAccept',
-		'mode'
+		'mode',
+		'targetClassName'
 	],
 	#category : #'Lcs-Magritte-Base-Forms - Models'
 }
@@ -358,8 +359,9 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 	^ MAStringDescription new
 		label: self targetClassLabel;
 		priority: 1;
-		accessor: #targetClass;
+		accessor: (MASelectorAccessor read: #targetClassName write: #targetClassNameChangedTo:);
 		readOnly: (self mode = #edit);
+		default: '';
 		blocShortcuts: [ 
 			{BlShortcutWithAction new
 				name: 'Browse class';
@@ -377,16 +379,31 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 				combination: BlKeyCombination primaryN;
 				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
-	"^ (self magritteDescriptionFor: #targetClass) ifNotNil: [ :description |
-		description
-			priority: 2;
-			yourself ]"
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | [ aValue asString trim asClass. true ] on: NotFound do: [ :s | s return: false ] ]
+			labelled: 'Must be a subclass of LcsModule';
+		beRequired
 ]
 
 { #category : #'magritte - support' }
 LcsBaseSlotCreationForm >> targetClassLabel [
 	^'Install Slot In Domain Class'
+]
+
+{ #category : #accessing }
+LcsBaseSlotCreationForm >> targetClassName [
+	^ targetClassName
+]
+
+{ #category : #accessing }
+LcsBaseSlotCreationForm >> targetClassName: anObject [
+	targetClassName := anObject
+]
+
+{ #category : #accessing }
+LcsBaseSlotCreationForm >> targetClassNameChangedTo: aString [
+	self targetClassName: aString.
+	self targetClass:([ aString asClass ] on: NotFound do: [ :s | s return: nil ])
 ]
 
 { #category : #private }

@@ -76,7 +76,7 @@ LcsModuleBuilderJob >> generateRelatedNames [
 			^ self ].
 	self newDomainClassName: self classPrefix , self classRootName , 'Module'.
 	self targetPackageName: self classPrefix , '-' , self classRootName.
-	self targetPackageName: 'Core'.
+	self targetPackageTagName: 'Core'.
 ]
 
 { #category : #builders }

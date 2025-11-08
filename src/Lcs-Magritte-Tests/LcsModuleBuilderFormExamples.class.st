@@ -24,7 +24,8 @@ LcsModuleBuilderFormExamples >> sailClubModuleExample [
 	form := self slotCreationFormWithPrefixEntered.
 	form slotModelBuilder
 		createForRootName: 'SailingClub';
-		umlPositions: self sailClubModuleExampleUmlPositions.
+		umlPositions: self sailClubModuleExampleUmlPositions;
+		moduleName: 'Sailing Club Module'.
 	self assert: form slotModelBuilder jobSteps isEmpty.
 	self simulateClickOnAcceptButtonIn: form.
 	^ form

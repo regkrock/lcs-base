@@ -221,7 +221,6 @@ LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixEntered [
 	<return: #LcsGlobalCollectionPatternForm>"
 	| form |
 	form := self mainForm.
-	form slotModelBuilder classPrefix: 'Lxx'.
 	self assert: form slotModelBuilder jobSteps isEmpty.
 	^form
 ]
