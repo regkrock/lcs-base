@@ -230,7 +230,9 @@ LcsSlotCreationFormExamples >> slotCreationForm [
 LcsSlotCreationFormExamples >> slotCreationFormOn: aDomainClass [
 	| form |
 	self ensureCurrentsystemIsPrototypeSystem.
-	form := LcsSlotCreationForm new targetClass: aDomainClass.
+	form := LcsSlotCreationForm new 
+				targetClass: aDomainClass;
+				targetClassName: aDomainClass name asString.
 	self assert: form targetClass equals: aDomainClass.
 	self assert: form slotClassName isEmpty.
 	self assert: form isSlotModelBuilderNotReified.

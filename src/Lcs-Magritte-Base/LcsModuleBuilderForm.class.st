@@ -9,6 +9,15 @@ LcsModuleBuilderForm class >> builderClass [
 	^ LcsModuleBuilderJob
 ]
 
+{ #category : #configuration }
+LcsModuleBuilderForm class >> targetClassDescription [
+	<magritteDescription>
+	^ super targetClassDescription
+		addCondition: [ :aValue | [ aValue asString trim asClass. true ] on: NotFound do: [ :s | s return: false ] ]
+			labelled: 'Must be a subclass of LcsModule';
+		yourself
+]
+
 { #category : #magritte }
 LcsModuleBuilderForm >> classNamePrefixDescription [
 	<magritteDescription>

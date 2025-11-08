@@ -106,6 +106,7 @@ LcsBaseSlotCreationForm >> initialize [
 { #category : #initialize }
 LcsBaseSlotCreationForm >> initializeOn: aTarget [
 	self targetClass: (aTarget isClass ifTrue: [ aTarget ] ifFalse: [ aTarget class ]).
+	self targetClassName: self targetClass name asString.
 	self slotModelBuilder targetPackageName: self targetClass package name
 ]
 
@@ -380,8 +381,6 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		addCondition: [ :aValue | [ aValue asString trim asClass. true ] on: NotFound do: [ :s | s return: false ] ]
-			labelled: 'Must be a subclass of LcsModule';
 		beRequired
 ]
 
