@@ -15,6 +15,7 @@ LcsSystemClassBuilder >> buildJobSteps [
 { #category : #'job steps' }
 LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 	^ LcsConvenienceStartSystemMethodBuilder new
+		beClassMethod;
 		targetClassName: 'LcsApplicationEnvironment';
 		categoryName: ('*' ,self targetPackageName) asSymbol;
 		selector: (self selectorNameFrom: 'createNew' , self moduleName);
