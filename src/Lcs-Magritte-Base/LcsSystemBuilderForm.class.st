@@ -1,16 +1,16 @@
 Class {
-	#name : #LcsModuleBuilderForm,
+	#name : #LcsSystemBuilderForm,
 	#superclass : #LcsBaseSlotCreationForm,
 	#category : #'Lcs-Magritte-Base-Forms - Models'
 }
 
 { #category : #configuration }
-LcsModuleBuilderForm class >> builderClass [
-	^ LcsModuleBuilderJob
+LcsSystemBuilderForm class >> builderClass [
+	^ LcsSystenBuilderJob
 ]
 
 { #category : #magritte }
-LcsModuleBuilderForm >> classNamePrefixDescription [
+LcsSystemBuilderForm >> classNamePrefixDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Class Name Prefix';
@@ -27,7 +27,7 @@ LcsModuleBuilderForm >> classNamePrefixDescription [
 ]
 
 { #category : #magritte }
-LcsModuleBuilderForm >> classRootNameDescription [
+LcsSystemBuilderForm >> classRootNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Class Root Name';
@@ -43,36 +43,35 @@ LcsModuleBuilderForm >> classRootNameDescription [
 		beRequired
 ]
 
-{ #category : #'magritte - support' }
-LcsModuleBuilderForm >> decorateTargetClassDescription: aMgritteDescription [ 
+{ #category : #magritte }
+LcsSystemBuilderForm >> decorateTargetClassDescription: aMgritteDescription [ 
 	aMgritteDescription
-		addCondition: [ :aValue | 
-			[ 	aValue asString trim asClass. 
-					true ] 
+		addCondition: [ :aValue | | aClass | 
+			[aClass := aValue asString trim asClass.
+			 (aClass = LcsSystem or: [ aClass inheritsFrom: LcsSystem ]) ] 
 				on: NotFound 
 				do: [ :s | s return: false ] ]
-			labelled: 'Must be a subclass of LcsModule'
+			labelled: 'Must be a LcsSystem or a subclass of LcsSystem'
 ]
 
 { #category : #initialize }
-LcsModuleBuilderForm >> initializeOn: aTarget [
+LcsSystemBuilderForm >> initializeOn: aTarget [
 	self targetClass: (aTarget isClass ifTrue: [ aTarget ] ifFalse: [ aTarget class ]).
 	self targetClassName: self targetClass name asString.
 	self slotModelBuilder targetPackageName: ''.
-	self slotModelBuilder targetPackageTagName: ''.
-	self slotModelBuilder owningModule: self targetClass
+	self slotModelBuilder targetPackageTagName: ''
 ]
 
 { #category : #testing }
-LcsModuleBuilderForm >> isSlotModelBuilderNotReified [
+LcsSystemBuilderForm >> isSlotModelBuilderNotReified [
 	^ self slotModelBuilder class = self builderClass
 ]
 
 { #category : #magritte }
-LcsModuleBuilderForm >> moduleNameDescription [
+LcsSystemBuilderForm >> moduleNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Module Name';
+		label: 'System Name';
 		priority: 15;
 		accessor: (MAChainAccessor accessors: #(slotModelBuilder moduleName));
 		default: '';
@@ -84,12 +83,12 @@ LcsModuleBuilderForm >> moduleNameDescription [
 ]
 
 { #category : #'magritte - support' }
-LcsModuleBuilderForm >> targetClassLabel [
-	^'Install Submodule in:'
+LcsSystemBuilderForm >> targetClassLabel [
+	^'New System is subclass of'
 ]
 
 { #category : #magritte }
-LcsModuleBuilderForm >> targetPackageNameDescription [
+LcsSystemBuilderForm >> targetPackageNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Package';
@@ -104,7 +103,7 @@ LcsModuleBuilderForm >> targetPackageNameDescription [
 ]
 
 { #category : #magritte }
-LcsModuleBuilderForm >> targetPackageTagNameDescription [
+LcsSystemBuilderForm >> targetPackageTagNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Package Tag';

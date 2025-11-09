@@ -1687,6 +1687,43 @@
 														"__type" : "textStyle"
 													},
 													"string" : "[[Define Scaled Decimal Slot]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-11-04T15:35:33.725711-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-11-04T15:35:48.593505-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "NiK0giz/DQCTe+l6AhC/wA=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[Define Module]]"
 												}
 											]
 										},

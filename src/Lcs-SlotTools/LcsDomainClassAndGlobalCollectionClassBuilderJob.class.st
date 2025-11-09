@@ -46,7 +46,9 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> addSubclassBuilders [
 			LcsDomainClassBuilder new
 				newClassName: self classPrefix , eachName;
 				targetSuperclassName: self newDomainClassName;
-				targetPackageName: self targetPackageName)]
+				targetPackageName: self targetPackageName;
+				targetPackageTagName: self targetPackageTagName;
+				yourself)]
 ]
 
 { #category : #command }
@@ -116,6 +118,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassBuilder [
 	^ LcsDomainClassBuilder new
 		newTargetClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
+		targetPackageTagName: self targetPackageTagName;
 		yourself
 ]
 

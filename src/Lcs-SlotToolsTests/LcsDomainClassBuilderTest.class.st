@@ -14,7 +14,8 @@ LcsDomainClassBuilderTest >> testClassCreationString [
 	self subject: LcsDomainClassBuilder new.
 	self subject
 		newClassName: self newClassName;
-		targetPackageName: 'Lcs-Temp'.
+		targetPackageName: 'Lcs-Temp';
+		targetPackageTagName: 'Core'.
 	
 	self
 		assert: self subject classCreationString
@@ -33,7 +34,8 @@ LcsDomainClassBuilderTest >> testInstallClass [
 		self subject: LcsDomainClassBuilder new.
 	self subject
 		newClassName: self newClassName;
-		targetPackageName: 'Lcs-Temp'.
+		targetPackageName: 'Lcs-Temp';
+		targetPackageTagName: 'Core'.
 
 	self subject buildJobSteps.
 	self assert: self subject jobSteps hasNoJobSteps .

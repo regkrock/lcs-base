@@ -1,0 +1,116 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-08T09:50:02.606405-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-08T09:50:02.606405-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Z9tlJnj/DQC56QSXDlQTPw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
+			},
+			{
+				"__type" : "exampleSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-08T10:52:49.518983-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-08T10:52:49.518983-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oGHsBnn/DQCZ91iIDlQTPw=="
+				},
+				"exampleSelector" : "testSystemExample",
+				"previewHeight" : 700,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "LcsSystemBuilderFormExamples",
+				"codeExpanded" : false,
+				"previewExpanded" : false,
+				"noCode" : false
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-08T09:50:02.28436-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-08T09:50:02.28436-05:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Define New System"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "8eeb6026-78ff-0d00-b9e8-849f0e54133f"
+	}
+}

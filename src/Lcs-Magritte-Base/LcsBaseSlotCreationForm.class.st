@@ -41,6 +41,10 @@ LcsBaseSlotCreationForm >> commitSlotBuilderChangesAction [
 			aModel buildJobSteps ]
 ]
 
+{ #category : #magritte }
+LcsBaseSlotCreationForm >> decorateTargetClassDescription: magritteDescription [ 
+]
+
 { #category : #initialize }
 LcsBaseSlotCreationForm >> executeModelBuilderJob [
 	self slotModelBuilder execute.
@@ -357,7 +361,8 @@ LcsBaseSlotCreationForm >> targetClass: anObject [
 { #category : #magritte }
 LcsBaseSlotCreationForm >> targetClassDescription [
 	<magritteDescription>
-	^ MAStringDescription new
+	| magritteDescription |
+	magritteDescription := MAStringDescription new
 		label: self targetClassLabel;
 		priority: 1;
 		accessor: (MASelectorAccessor read: #targetClassName write: #targetClassNameChangedTo:);
@@ -381,7 +386,9 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		beRequired
+		beRequired.
+	self decorateTargetClassDescription: magritteDescription.
+	^magritteDescription
 ]
 
 { #category : #'magritte - support' }

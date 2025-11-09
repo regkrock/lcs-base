@@ -22,7 +22,9 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> addSubcl
 			LcsDomainClassBuilder new
 				newClassName: self classPrefix , eachName;
 				targetSuperclassName: self newDomainClassName;
-				targetPackageName: self targetPackageName)]
+				targetPackageName: self targetPackageName;
+				targetPackageTagName: self targetPackageTagName;
+				yourself)]
 ]
 
 { #category : #command }
@@ -92,6 +94,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainCl
 	^ LcsDomainClassBuilder new
 		newClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
+		targetPackageTagName: self targetPackageTagName;
 		yourself
 ]
 

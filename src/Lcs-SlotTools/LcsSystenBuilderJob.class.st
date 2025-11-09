@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsModuleBuilderJob,
+	#name : #LcsSystenBuilderJob,
 	#superclass : #LcsCodeBuilderJob,
 	#instVars : [
 		'classPrefix',
@@ -7,141 +7,129 @@ Class {
 		'newDomainClassName',
 		'targetPackageTagName',
 		'targetPackageName',
-		'moduleName',
-		'owningModule'
+		'moduleName'
 	],
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #'builder job' }
-LcsModuleBuilderJob >> buildJobSteps [
+LcsSystenBuilderJob >> buildJobSteps [
 	self addJobStep: self configurationClassBuilder.
-	self addJobStep: self moduleClassBuilder.
+	self addJobStep: self systemClassBuilder.
 	self addJobStep: self configurationSlotBuilder.
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> classPrefix [
+LcsSystenBuilderJob >> classPrefix [
 	^ classPrefix
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> classPrefix: aString [
+LcsSystenBuilderJob >> classPrefix: aString [
 	classPrefix := aString.
 	self generateRelatedNames
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> classRootName [
+LcsSystenBuilderJob >> classRootName [
 	^ classRootName
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> classRootName: aString [
+LcsSystenBuilderJob >> classRootName: aString [
 	classRootName := aString.
 	self generateRelatedNames
 ]
 
 { #category : #builders }
-LcsModuleBuilderJob >> configurationClassBuilder [
+LcsSystenBuilderJob >> configurationClassBuilder [
 	^ LcsDomainClassBuilder new
 		targetSuperclassName: LcsBaseConfiguration name;
-		newTargetClassName: self moduleConfigurationClassName;
+		newTargetClassName: self systemConfigurationClassName;
 		targetPackageName: self targetPackageName;
 		targetPackageTagName: self targetPackageTagName;
 		yourself
 ]
 
-{ #category : #builder }
-LcsModuleBuilderJob >> configurationSlotBuilder [
+{ #category : #builders }
+LcsSystenBuilderJob >> configurationSlotBuilder [
 	^ LcsAccessorSlotBuilder new
 		targetClassName: self newDomainClassName;
 		slotClassName: LcsModuleConfigurationSlot name;
 		slotName: 'configuration';
-		addSlotType: self moduleConfigurationClassName;
+		addSlotType: self systemConfigurationClassName;
 		yourself
 ]
 
 { #category : #configuration }
-LcsModuleBuilderJob >> createForRootName: aRootName [
+LcsSystenBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
 	self generateRelatedNames
 ]
 
 { #category : #configuration }
-LcsModuleBuilderJob >> generateRelatedNames [
+LcsSystenBuilderJob >> generateRelatedNames [
 	super generateRelatedNames.
 	(self classRootName isNil or: [ self classPrefix isNil ])
 		ifTrue: [
 			self newDomainClassName: nil.
 			^ self ].
-	self newDomainClassName: self classPrefix , self classRootName , 'Module'.
+	self newDomainClassName: self classPrefix , self classRootName.
 	self targetPackageName: self classPrefix , '-' , self classRootName.
 	self targetPackageTagName: 'Core'.
 ]
 
-{ #category : #builders }
-LcsModuleBuilderJob >> moduleClassBuilder [
-	^ LcsModuleClassBuilder new
-		targetSuperclassName: LcsModule name;
-		newTargetClassName: self newDomainClassName;
-		targetPackageName: self targetPackageName;
-		moduleName: self moduleName;
-		owningModule: self owningModule;
-		yourself
-]
-
 { #category : #accessing }
-LcsModuleBuilderJob >> moduleConfigurationClassName [
-	^ self classPrefix , self classRootName , 'ModuleConfiguration'
-]
-
-{ #category : #accessing }
-LcsModuleBuilderJob >> moduleName [
+LcsSystenBuilderJob >> moduleName [
 	^ moduleName
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> moduleName: aString [
+LcsSystenBuilderJob >> moduleName: aString [
 	moduleName := aString
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> newDomainClassName [
+LcsSystenBuilderJob >> newDomainClassName [
 	^ newDomainClassName
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> newDomainClassName: anObject [ 
+LcsSystenBuilderJob >> newDomainClassName: anObject [ 
 	newDomainClassName := anObject
 ]
 
-{ #category : #accessing }
-LcsModuleBuilderJob >> owningModule [
-	^ owningModule
+{ #category : #builders }
+LcsSystenBuilderJob >> systemClassBuilder [
+	^ LcsSystemClassBuilder new
+		targetSuperclassName: LcsSystem name;
+		newTargetClassName: self newDomainClassName;
+		targetPackageName: self targetPackageName;
+		moduleName: self moduleName;
+		yourself
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> owningModule: anObject [
-	owningModule := anObject
+LcsSystenBuilderJob >> systemConfigurationClassName [
+	^ self classPrefix , self classRootName , 'Configuration'
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> targetPackageName [
+LcsSystenBuilderJob >> targetPackageName [
 	^ targetPackageName
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> targetPackageName: aString [ 
+LcsSystenBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> targetPackageTagName [
+LcsSystenBuilderJob >> targetPackageTagName [
 	^ targetPackageTagName
 ]
 
 { #category : #accessing }
-LcsModuleBuilderJob >> targetPackageTagName: anObject [
+LcsSystenBuilderJob >> targetPackageTagName: anObject [
 	targetPackageTagName := anObject
 ]

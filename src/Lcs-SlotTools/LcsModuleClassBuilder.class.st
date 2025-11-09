@@ -15,9 +15,9 @@ LcsModuleClassBuilder >> _populateSlotModel [
 
 { #category : #'job steps' }
 LcsModuleClassBuilder >> buildJobSteps [
-	self jobSteps addJobStep: self moduleNameMethodBuilder.
-	self jobSteps addJobStep: self owningModulesMethodBuilder.
-	self jobSteps addJobStep: self convenienceModuleAccessMethodBuilder
+	self addJobStep: self moduleNameMethodBuilder.
+	self addJobStep: self owningModulesMethodBuilder.
+	self addJobStep: self convenienceModuleAccessMethodBuilder
 ]
 
 { #category : #builders }

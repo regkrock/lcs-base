@@ -6,7 +6,8 @@ Class {
 		'rootName',
 		'newClassName',
 		'targetPackageName',
-		'targetSuperclassName'
+		'targetSuperclassName',
+		'targetPackageTagName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -235,6 +236,16 @@ LcsBaseClassBuilder >> targetPackageName [
 { #category : #accessing }
 LcsBaseClassBuilder >> targetPackageName: aString [
 	targetPackageName := aString
+]
+
+{ #category : #accessing }
+LcsBaseClassBuilder >> targetPackageTagName [
+	^ targetPackageTagName
+]
+
+{ #category : #accessing }
+LcsBaseClassBuilder >> targetPackageTagName: anObject [
+	targetPackageTagName := anObject
 ]
 
 { #category : #accessing }
