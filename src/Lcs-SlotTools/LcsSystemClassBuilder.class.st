@@ -8,7 +8,18 @@ Class {
 LcsSystemClassBuilder >> buildJobSteps [
 	self addJobStep: self moduleNameMethodBuilder.
 	self addJobStep: self convenienceModuleAccessMethodBuilder.
-	self addJobStep: self systemDomainClassesMethodBuilder
+	self addJobStep: self systemDomainClassesMethodBuilder.
+	self addJobStep: self convenienceCreateSystemMethodBuilder
+]
+
+{ #category : #'job steps' }
+LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
+	^ LcsConvenienceStartSystemMethodBuilder new
+		targetClassName: 'LcsApplicationEnvironment';
+		categoryName: ('*' ,self targetPackageName) asSymbol;
+		selector: (self selectorNameFrom: 'createNew' , self moduleName);
+		systemClassName: self newClassName;
+		yourself
 ]
 
 { #category : #builders }
@@ -45,7 +56,7 @@ LcsSystemClassBuilder >> moduleNameMethodBuilder [
 LcsSystemClassBuilder >> systemDomainClassesMethodBuilder [
 	^ LcsSystemDomainClassesMethodBuilder new
 		targetClassName: self newClassName;
-		categoryName: #'slot mode';
+		categoryName: #'slot model';
 		selector: 'systemDomainClasses' asSymbol;
 		yourself
 ]
