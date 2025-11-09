@@ -67,6 +67,14 @@ LcsSystenBuilderJob >> createForRootName: aRootName [
 	self generateRelatedNames
 ]
 
+{ #category : #command }
+LcsSystenBuilderJob >> execute [
+	"Buildng new system classes - there is no current model which to add the new classes, etc. "
+	self jobSteps isEmpty ifTrue: [self buildJobSteps].
+	self installCode.
+	self verifyCodeInstallation
+]
+
 { #category : #configuration }
 LcsSystenBuilderJob >> generateRelatedNames [
 	super generateRelatedNames.
