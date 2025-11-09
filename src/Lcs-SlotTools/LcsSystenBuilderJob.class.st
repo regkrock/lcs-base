@@ -43,7 +43,7 @@ LcsSystenBuilderJob >> classRootName: aString [
 
 { #category : #builders }
 LcsSystenBuilderJob >> configurationClassBuilder [
-	^ LcsDomainClassBuilder new
+	^ LcsSystemConfigurationClassBuilder new
 		targetSuperclassName: LcsBaseConfiguration name;
 		newTargetClassName: self systemConfigurationClassName;
 		targetPackageName: self targetPackageName;
