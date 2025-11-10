@@ -263,7 +263,7 @@ LcsCodeBuilderJob >> umlPositions: anObject [
 LcsCodeBuilderJob >> uninstall [
 	self traceStep: 'uninstall'.
 	self jobSteps uninstall.
-	self currentUnitOfWork applyChanges
+	self currentUnitOfWork ifNotNil: [ :each | each applyChanges ]
 ]
 
 { #category : #command }
