@@ -14,3 +14,8 @@ LcsApplicationEnvironment class >> createNewSystem: aSystemClass [
 	System commitTransaction.
 	^ system
 ]
+
+{ #category : #'*Lcs-PrototypeSystem' }
+LcsApplicationEnvironment class >> ensureCurrentSystemIsPrototypeSystem [
+	self ensureCurrentSystemIs: LxxPrototypeSystem
+]

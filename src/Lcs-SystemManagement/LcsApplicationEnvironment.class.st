@@ -87,16 +87,6 @@ LcsApplicationEnvironment class >> ensureCurrentSystemIs: aSystemClass [
 	self systemsManager ensureCurrentSystemIs: aSystemClass
 ]
 
-{ #category : #'application environment - system' }
-LcsApplicationEnvironment class >> ensureCurrentSystemIsMainSystem [
-	self ensureCurrentSystemIs: LcsMainSystem
-]
-
-{ #category : #'application environment - system' }
-LcsApplicationEnvironment class >> ensureCurrentSystemIsPrototypeSystem [
-	self ensureCurrentSystemIs: LxxPrototypeSystem
-]
-
 { #category : #'application environment' }
 LcsApplicationEnvironment class >> ensureInitialized [
 	self hasInitializedApplicationEnvironment ifFalse: [ self initializeApplicationEnvironment ].
