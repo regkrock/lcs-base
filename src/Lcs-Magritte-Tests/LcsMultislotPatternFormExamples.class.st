@@ -131,7 +131,7 @@ LcsMultislotPatternFormExamples >> mainForm [
 	"<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>"
 	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	form := self formClass newOn: self targetClass.
 	self assert: form isSlotModelBuilderNotReified.
 	form slotModelBuilder
@@ -149,7 +149,7 @@ LcsMultislotPatternFormExamples >> mainFormScripter [
 	"<gtExample>
 	<return: #BlScripter>"
 	| builder |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	self
 		subjectScripter: (self
 				scripterWithModel: [ self mainForm ]

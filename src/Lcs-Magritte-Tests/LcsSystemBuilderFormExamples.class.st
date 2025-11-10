@@ -13,7 +13,7 @@ LcsSystemBuilderFormExamples >> formClass [
 LcsSystemBuilderFormExamples >> mainForm [
 	<gtExample>
 	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	form := self formClass newOn: self targetClass.
 	self assert: form isSlotModelBuilderNotReified.
 	form slotModelBuilder

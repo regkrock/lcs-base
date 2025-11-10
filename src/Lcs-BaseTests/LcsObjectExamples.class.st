@@ -20,8 +20,13 @@ LcsObjectExamples >> currentSystem [
 ]
 
 { #category : #support }
-LcsObjectExamples >> ensureCurrentsystemIsMainSystem [
-	^ LcsApplicationEnvironment ensureCurrentsystemIsMainSystem
+LcsObjectExamples >> ensureCurrentSystemIsMainSystem [
+	^ LcsApplicationEnvironment ensureCurrentSystemIsMainSystem
+]
+
+{ #category : #support }
+LcsObjectExamples >> ensureCurrentSystemIsPrototypeSystem [
+	^ LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem
 ]
 
 { #category : #'as yet unclassified' }
@@ -51,11 +56,6 @@ LcsObjectExamples >> ensureCurrentsystemIsMainSystemWithLogging [
 				, LcsApplicationEnvironment systemsManager numberOfSystems asString.
 	Transcript crShow: '-----'.
 	^ self currentSystem
-]
-
-{ #category : #support }
-LcsObjectExamples >> ensureCurrentsystemIsPrototypeSystem [
-	^ LcsApplicationEnvironment ensureCurrentsystemIsPrototypeSystem
 ]
 
 { #category : #'as yet unclassified' }

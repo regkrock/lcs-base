@@ -8,7 +8,7 @@ Class {
 LcsGtPhlowColumnedListViewExamples >> _slotsUpToFilter [
 	<gtExample>
 	| filter |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new _superclassesFilter: LxxPerson.
 	self assert: filter selectedItem class equals: GtFilterModelNoItem.
 	^ filter
@@ -18,7 +18,7 @@ LcsGtPhlowColumnedListViewExamples >> _slotsUpToFilter [
 LcsGtPhlowColumnedListViewExamples >> _slotsUpToLastItemFilter [
 	<gtExample>
 	| filter |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new _superclassesFilter: LxxPerson.
 	self assert: filter selectedItem class equals: GtFilterModelNoItem.
 	filter selectLastItem.
@@ -39,7 +39,7 @@ LcsGtPhlowColumnedListViewExamples >> allClassInDomainObjectHeirarchy [
 LcsGtPhlowColumnedListViewExamples >> domainClassFilter [
 	<gtExample>
 	| filter result |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newDomainClassFilter.
 	self assert: filter selectedValue equals: ''.
 	filter text: 'LxxPerson'.
@@ -58,7 +58,7 @@ LcsGtPhlowColumnedListViewExamples >> filterItemsUsingDefaultFilters [
 LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 	<gtExample>
 	| filter |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newSlotKindFilter.
 	self assert: filter notNil.
 	self assert: filter selectedItem itemValue equals: 'all'.
@@ -71,7 +71,7 @@ LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 LcsGtPhlowColumnedListViewExamples >> slotClassFilter [
 	<gtExample>
 	| filter result |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newSlotClassFilter.
 	self assert: filter selectedValue equals: ''.
 	filter text: 'LxxPerson'.
@@ -94,7 +94,7 @@ LcsGtPhlowColumnedListViewExamples >> slotDefinitionItemsFilteredByAccessorSlotK
 LcsGtPhlowColumnedListViewExamples >> slotKindFilter [
 	<gtExample>
 	| filter |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newSlotKindFilter.
 	self assert: filter notNil.
 	self assert: filter selectedItem itemValue equals: 'all'.
@@ -105,7 +105,7 @@ LcsGtPhlowColumnedListViewExamples >> slotKindFilter [
 LcsGtPhlowColumnedListViewExamples >> slotModelView [
 	<gtExample>
 	| view element forwardView|
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	forwardView := GtPhlowView empty on: LxxPerson perform: #gtViewSlotModelFor:.
 	view := forwardView phlowView wait.
 	BlUseAsyncFeatures disableDuring: [ 

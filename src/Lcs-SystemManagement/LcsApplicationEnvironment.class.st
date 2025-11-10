@@ -82,23 +82,19 @@ LcsApplicationEnvironment class >> ensureActiveApplicationEnvironment [
 ]
 
 { #category : #'application environment - system' }
-LcsApplicationEnvironment class >> ensureCurrentsystemIsMainSystem [
+LcsApplicationEnvironment class >> ensureCurrentSystemIs: aSystemClass [ 
 	self ensureActiveApplicationEnvironment.
-	self currentSystem 
-		ifNil: [ self createNewMainSystem ]
-		ifNotNil: [ self currentSystem isMainSystem ifFalse: [ self createNewMainSystem ] ].
-	self assert: self currentSystem isMainSystem.
-	^ self currentSystem
+	self systemsManager ensureCurrentSystemIs: aSystemClass
 ]
 
 { #category : #'application environment - system' }
-LcsApplicationEnvironment class >> ensureCurrentsystemIsPrototypeSystem [
-	self ensureActiveApplicationEnvironment.
-	self currentSystem 
-		ifNil: [ self createNewPrototypeSystem ]
-		ifNotNil: [ self currentSystem isPrototypeSystem ifFalse: [ self createNewPrototypeSystem ] ].
-	self assert: self currentSystem isPrototypeSystem.
-	^ self currentSystem
+LcsApplicationEnvironment class >> ensureCurrentSystemIsMainSystem [
+	self ensureCurrentSystemIs: LcsMainSystem
+]
+
+{ #category : #'application environment - system' }
+LcsApplicationEnvironment class >> ensureCurrentSystemIsPrototypeSystem [
+	self ensureCurrentSystemIs: LxxPrototypeSystem
 ]
 
 { #category : #'application environment' }

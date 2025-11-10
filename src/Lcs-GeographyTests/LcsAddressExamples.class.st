@@ -13,7 +13,7 @@ LcsAddressExamples class >> usaAddress [
 LcsAddressExamples >> address [
 	<gtExample>
 	| address defaultCountry |
-	self ensureCurrentsystemIsMainSystem.
+	self ensureCurrentSystemIsMainSystem.
 	address := LcsAddress new.
 	defaultCountry := self currentSystem geographyModule countries defaultInstance.
 	self assert: address country equals: defaultCountry.

@@ -8,7 +8,7 @@ Class {
 LxxPersonExamples >> johnFreeman [
 	<gtExample>
 	| person |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	self assert: (self currentSystem ifNil: [ false ] ifNotNil: [:system | system isPrototypeSystem ]).
 	person := LxxPerson new.
 	person
@@ -25,7 +25,7 @@ LxxPersonExamples >> johnFreeman [
 LxxPersonExamples >> slotDefintionViewItems [
 	<gtExample>
 	| allSlotDefinitionViewItems|
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	allSlotDefinitionViewItems := LxxPerson slotDefinitionViewItems.
 	self assert: allSlotDefinitionViewItems notEmpty.
 	^ allSlotDefinitionViewItems

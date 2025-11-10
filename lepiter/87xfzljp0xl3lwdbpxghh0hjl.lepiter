@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-08T13:53:53.79719-04:00"
+						"dateAndTimeString" : "2025-11-10T13:03:58.100161-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "/yUsm6/6DQCSraEqBZPZig=="
 				},
-				"code" : "LcsApplicationEnvironment ensureCurrentsystemIsPrototypeSystem"
+				"code" : "LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem"
 			},
 			{
 				"__type" : "textSnippet",

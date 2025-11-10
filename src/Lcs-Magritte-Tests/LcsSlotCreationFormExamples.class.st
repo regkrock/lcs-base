@@ -25,7 +25,7 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	<gtExample>
 	<return: #BlScripter>
 	| anAcceptId anCancelId fieldId slotClassDescription margritteAcceptAction |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	self subjectScripter: self formScripter.
 
 	anAcceptId := self actionIdFor: #magritteAcceptAction.
@@ -97,7 +97,7 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 LcsSlotCreationFormExamples >> formScripter [
 	<gtExample>
 	<return: #BlScripter>
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	self
 		subjectScripter: (self
 				scripterWithModel: [ self slotCreationFormOnLxxPerson ]
@@ -117,7 +117,7 @@ LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
 	| aSlotClassDescriptionId anAcceptId anCancelId |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	self subjectScripter: self formScripter.
 
 	aSlotClassDescriptionId := self fieldIdFor: #slotClassDescription.
@@ -143,7 +143,7 @@ LcsSlotCreationFormExamples >> formWithValidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
 	| aSlotClassDescriptionId |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	self subjectScripter: self formScripter.
 
 	aSlotClassDescriptionId := self fieldIdFor: #slotClassDescription.
@@ -218,7 +218,7 @@ LcsSlotCreationFormExamples >> originalCacheValueOf: slotClassDescription [
 LcsSlotCreationFormExamples >> slotCreationForm [
 	<gtExample>
 	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	form := LcsSlotCreationForm new targetClass: LxxPerson.
 	self assert: form targetClass equals: LxxPerson.
 	self assert: form slotClassName isEmpty.
@@ -229,7 +229,7 @@ LcsSlotCreationFormExamples >> slotCreationForm [
 { #category : #'examples - support' }
 LcsSlotCreationFormExamples >> slotCreationFormOn: aDomainClass [
 	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	form := LcsSlotCreationForm new 
 				targetClass: aDomainClass;
 				targetClassName: aDomainClass name asString.
@@ -251,7 +251,7 @@ LcsSlotCreationFormExamples >> slotCreationFormOnLxxPerson [
 LcsSlotCreationFormExamples >> virtualSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	form := self slotCreationFormOnLxxPerson
 				slotClassChangedTo: 'LcsVirtualSlot'.
 	self assert: form slotClassName equals: 'LcsVirtualSlot'.

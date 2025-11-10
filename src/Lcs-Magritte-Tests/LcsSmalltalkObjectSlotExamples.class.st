@@ -24,7 +24,7 @@ LcsSmalltalkObjectSlotExamples >> slotAccessorSlotCreationForm [
 	"<gtExample>"
 
 	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	form := (LcsSlotCreationFormExamples new slotCreationFormOn: self installationClass)
 			slotClassChangedTo: self slotClassName.
 	self assert: form slotClassName equals: self slotClassName.
@@ -63,7 +63,7 @@ LcsSmalltalkObjectSlotExamples >> slotSubjectScripter [
 	"<gtExample>
 	<return: #BlScripter>"
 	| aScripter |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	aScripter := self
 			scripterWithModel: [ self slotAccessorSlotCreationForm ]
 			element: [ :aModel | aModel asGtMagritteViewModel asElement ].

@@ -73,6 +73,22 @@ LcsSystemsManager >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
 ]
 
+{ #category : #api }
+LcsSystemsManager >> ensureCurrentSystemIs: aSystemClass [
+	| suspendedSystem |
+	self currentSystem ifNil: [ self createCurrentSystemFor: aSystemClass. ^ self ].
+	self currentSystem class = aSystemClass ifTrue: [ ^ self ].
+	suspendedSystem := 
+		self systems 
+			detect: [ :each | each class = aSystemClass ] 
+			ifNone: [  
+				self suspendCurrentSystem.
+				self createCurrentSystemFor: aSystemClass. 
+				^ self  ].
+	self suspendCurrentSystem.
+	suspendedSystem restoreSystem
+]
+
 { #category : #'gt views' }
 LcsSystemsManager >> gtAllSystemsFor: aView [
 	<gtView>

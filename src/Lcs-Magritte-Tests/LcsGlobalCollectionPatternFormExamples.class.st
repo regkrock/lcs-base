@@ -9,7 +9,7 @@ LcsGlobalCollectionPatternFormExamples >> addFoosGlobalCollectionWithPersonHavin
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
 	| form |
-	self ensureCurrentsystemIsPrototypeSystem.
+	self ensureCurrentSystemIsPrototypeSystem.
 	form := self slotCreationFormWithPrefixAndRootNameEntered.
 	form slotModelBuilder targetDomainClasses: (OrderedCollection with: LxxPerson).
 	form slotModelBuilder
