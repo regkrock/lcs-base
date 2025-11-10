@@ -22,12 +22,12 @@ LcsModuleBuilderJobTest >> testCreationOfNewModule [
 
 	self assert: (self classNamed: 'LxxSailingClubModule') notNil.
 	self assert: (self classNamed: 'LxxSailingClubModuleConfiguration') notNil.
-	self assert: (LcsModule respondsTo: #sailingClubModule).
+	self assert: (LcsModule canUnderstand: #sailingClubModule).
 	self assert: ((self classNamed: 'LxxSailingClubModule') respondsTo: #owningModules).
 	
 	self subject slotModelBuilder uninstall.
 
 	self assert: (self classNamed: 'LxxSailingClubModule') isNil.
 	self assert: (self classNamed: 'LxxSailingClubModuleConfiguration') isNil.
-	self deny: (LcsModule respondsTo: #sailingClubModule)
+	self deny: (LcsModule canUnderstand: #sailingClubModule)
 ]

@@ -94,7 +94,7 @@ LcsModule class >> immediateSubmoduleClassesOf: aClass [
 	submoduleClasses := (
 		immediateSubmodulePragmas asSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ])
 			collect: [:eachPragma | eachPragma methodClass soleInstance ].
-	^ submoduleClasses reject: [ :each | each isObsolete ]
+	^ submoduleClasses reject: [ :each | each isObsolete or: [ (each name findString: 'Obsolete') > 0 ] ]
 ]
 
 { #category : #testing }
