@@ -73,11 +73,3 @@ LcsModifyOwningModulesMethodBuilder >> priority [
 LcsModifyOwningModulesMethodBuilder >> priority: aNumber [
 	priority := aNumber
 ]
-
-{ #category : #command }
-LcsModifyOwningModulesMethodBuilder >> uninstall [
-	super uninstall.
-	self targetClass ifNil: [ ^ self ].
-	1 halt.
-	self refactorings do: [ :each | each execute ]
-]
