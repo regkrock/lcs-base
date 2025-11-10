@@ -43,7 +43,6 @@ LcsApplicationEnvironment class >> applicationEnvironmentViewChildren [
 LcsApplicationEnvironment class >> createCurrentSystemFor: aSystemClass [ 
 	self verifyApplicationEnvironment.
 	^ self applicationEnvironmentDo: [ :env | env createCurrentSystemFor: aSystemClass ]
-	
 ]
 
 { #category : #'application environment - system' }
@@ -290,6 +289,14 @@ LcsApplicationEnvironment class >> toggleStartStop [
 { #category : #'application environment - system' }
 LcsApplicationEnvironment class >> unitsOfWorkManager [
 	^ self applicationEnvironmentObject: [ :env | env unitsOfWorkManager ]
+]
+
+{ #category : #'application environment' }
+LcsApplicationEnvironment class >> verifyApplicationEnvironment [
+	self hasInitializedApplicationEnvironment
+		ifFalse: [ LcsApplicationEnivronmentNotInitializedError
+				signal: 'Unable to create a system because application environment is not initialized' ].
+	^ true
 ]
 
 { #category : #system }

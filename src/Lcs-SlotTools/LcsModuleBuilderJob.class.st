@@ -92,6 +92,8 @@ LcsModuleBuilderJob >> moduleClassBuilder [
 
 { #category : #accessing }
 LcsModuleBuilderJob >> moduleConfigurationClassName [
+	self assert: self classRootName notNil.
+	self assert: self classPrefix notNil.
 	^ self classPrefix , self classRootName , 'ModuleConfiguration'
 ]
 
