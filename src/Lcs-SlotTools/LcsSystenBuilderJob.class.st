@@ -5,7 +5,6 @@ Class {
 		'classPrefix',
 		'classRootName',
 		'newDomainClassName',
-		'targetPackageTagName',
 		'targetPackageName',
 		'moduleName'
 	],
@@ -130,11 +129,6 @@ LcsSystenBuilderJob >> targetPackageName [
 { #category : #accessing }
 LcsSystenBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
-]
-
-{ #category : #accessing }
-LcsSystenBuilderJob >> targetPackageTagName [
-	^ targetPackageTagName
 ]
 
 { #category : #accessing }

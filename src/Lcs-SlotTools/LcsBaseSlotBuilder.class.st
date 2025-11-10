@@ -7,8 +7,7 @@ Class {
 		'slotDefinitionTemplate',
 		'targetClass',
 		'targetClassName',
-		'targetModuleClass',
-		'targetPackageName'
+		'targetModuleClass'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -467,14 +466,4 @@ LcsBaseSlotBuilder >> targetModuleClass [
 { #category : #accessing }
 LcsBaseSlotBuilder >> targetModuleClass: aModuleClass [
 	targetModuleClass := aModuleClass
-]
-
-{ #category : #accessing }
-LcsBaseSlotBuilder >> targetPackageName [
-	^ targetPackageName
-]
-
-{ #category : #accessing }
-LcsBaseSlotBuilder >> targetPackageName: anObject [
-	targetPackageName := anObject
 ]

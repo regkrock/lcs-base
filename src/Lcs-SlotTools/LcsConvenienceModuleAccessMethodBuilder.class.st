@@ -8,9 +8,15 @@ Class {
 	#category : #'Lcs-SlotTools'
 }
 
+{ #category : #categories }
+LcsConvenienceModuleAccessMethodBuilder >> extendInPackage: aTargetPackageName [
+	self categoryName: ('*' , aTargetPackageName) asSymbol
+]
+
 { #category : #initialize }
 LcsConvenienceModuleAccessMethodBuilder >> initialize [
 	super initialize.
+	self targetClassName: 'LcsModule'.
 	self categoryName: #configuration
 ]
 

@@ -5,9 +5,7 @@ Class {
 		'installedClass',
 		'rootName',
 		'newClassName',
-		'targetPackageName',
-		'targetSuperclassName',
-		'targetPackageTagName'
+		'targetSuperclassName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -226,26 +224,6 @@ LcsBaseClassBuilder >> should: aBlock raise: anExceptionalEvent [
 { #category : #asserting }
 LcsBaseClassBuilder >> shouldnt: aBlock raise: anExceptionalEvent [
 	self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> targetPackageName [
-	^ targetPackageName
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> targetPackageName: aString [
-	targetPackageName := aString
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> targetPackageTagName [
-	^ targetPackageTagName
-]
-
-{ #category : #accessing }
-LcsBaseClassBuilder >> targetPackageTagName: anObject [
-	targetPackageTagName := anObject
 ]
 
 { #category : #accessing }

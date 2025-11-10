@@ -91,7 +91,7 @@ LxxPrototypeSystem >> countries: anObject [
 	self slotVarNamed: 'countries' put: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #convenience }
 LxxPrototypeSystem >> dummySlotDefinition [
 ]
 
@@ -121,7 +121,7 @@ LxxPrototypeSystem >> isPrototypeSystem [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #data }
 LxxPrototypeSystem >> loadData [
 	super loadData.
 	LxxCountriesLoader new load.

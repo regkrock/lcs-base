@@ -6,7 +6,8 @@ Class {
 		'refactorings',
 		'state',
 		'jobSteps',
-		'properties'
+		'properties',
+		'targetPackageName'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -361,8 +362,23 @@ LcsCodeBuilderStep >> stepNumber [
 ]
 
 { #category : #accessing }
+LcsCodeBuilderStep >> targetPackageName [
+	^ targetPackageName
+]
+
+{ #category : #accessing }
 LcsCodeBuilderStep >> targetPackageName: anObject [
-	"Do nothing"
+	targetPackageName := anObject
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> targetPackageTagName [
+	^ targetPackageTagName 
+]
+
+{ #category : #accessing }
+LcsCodeBuilderStep >> targetPackageTagName: anObject [
+	targetPackageTagName := anObject
 ]
 
 { #category : #trace }

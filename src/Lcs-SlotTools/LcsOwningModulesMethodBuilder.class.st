@@ -11,9 +11,10 @@ Class {
 { #category : #initialize }
 LcsOwningModulesMethodBuilder >> initialize [
 	super initialize.
-	self priority: 10.
+	self priority: 1.
 	self selector: #owningModules.
-	self categoryName: #configuration
+	self categoryName: #configuration;
+	beClassMethod
 ]
 
 { #category : #command }

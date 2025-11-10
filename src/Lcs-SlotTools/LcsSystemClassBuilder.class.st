@@ -9,7 +9,8 @@ LcsSystemClassBuilder >> buildJobSteps [
 	self addJobStep: self moduleNameMethodBuilder.
 	self addJobStep: self convenienceModuleAccessMethodBuilder.
 	self addJobStep: self systemDomainClassesMethodBuilder.
-	self addJobStep: self convenienceCreateSystemMethodBuilder
+	self addJobStep: self convenienceCreateSystemMethodBuilder.
+	self addJobStep: self modifyOwningModulesMethodBuilder
 ]
 
 { #category : #'job steps' }
@@ -18,7 +19,7 @@ LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 		beClassMethod;
 		targetClassName: 'LcsApplicationEnvironment';
 		categoryName: ('*' ,self targetPackageName) asSymbol;
-		selector: (self selectorNameFrom: 'createNew' , self moduleName);
+		selector: (self selectorNameFrom: 'createNew' , self moduleName) asSymbol;
 		systemClassName: self newClassName;
 		yourself
 ]
@@ -26,10 +27,17 @@ LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 { #category : #builders }
 LcsSystemClassBuilder >> convenienceModuleAccessMethodBuilder [
 	^ LcsConvenienceModuleAccessMethodBuilder new
-		targetClassName: 'LcsModule';
-		categoryName: ('*' ,self targetPackageName) asSymbol;
+		extendInPackage: self targetPackageName;
 		selector: (self selectorNameFrom: self moduleName);
 		moduleName: self moduleName;
+		yourself
+]
+
+{ #category : #'job steps' }
+LcsSystemClassBuilder >> modifyOwningModulesMethodBuilder [
+	^ LcsModifyOwningModulesMethodBuilder new
+		targetClassName: 'LcsSecurityModule';
+		owningModuleClassName: self newClassName;
 		yourself
 ]
 

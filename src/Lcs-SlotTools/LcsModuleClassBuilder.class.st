@@ -23,8 +23,7 @@ LcsModuleClassBuilder >> buildJobSteps [
 { #category : #builders }
 LcsModuleClassBuilder >> convenienceModuleAccessMethodBuilder [
 	^ LcsConvenienceModuleAccessMethodBuilder new
-		targetClassName: 'LcsModule';
-		categoryName: ('*' ,self targetPackageName) asSymbol;
+		extendInPackage: self targetPackageName;
 		selector: (self selectorNameFrom: self moduleName);
 		moduleName: self moduleName;
 		yourself
@@ -64,8 +63,6 @@ LcsModuleClassBuilder >> owningModule: anObject [
 LcsModuleClassBuilder >> owningModulesMethodBuilder [
 	^ LcsOwningModulesMethodBuilder new
 		targetClassName: self newClassName;
-		beClassMethod;
 		owningModuleClass: self owningModule;
-		categoryName: #configuration;
 		yourself
 ]

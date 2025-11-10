@@ -14,13 +14,17 @@ Class {
 { #category : #command }
 LcsMethodBuilder >> _installCode [
 	super _installCode.
-	self addRefactoring: (
-		RBAddMethodChange
-			compile: self methodSource
-			in: self targetClass class
-			classified: self categoryName asSymbol)
-				execute.
+	self
+		addRefactoring: (RBAddMethodChange
+				compile: self methodSource
+				in: self compileTargetClass
+				classified: self categoryName asSymbol) execute.
 	self beCodeInstalled
+]
+
+{ #category : #command }
+LcsMethodBuilder >> _verifyCodeInstallation [
+	self assert: (self compileTargetClass canUnderstand: self selector asSymbol )
 ]
 
 { #category : #printing }
@@ -51,6 +55,13 @@ LcsMethodBuilder >> categoryName [
 { #category : #accessing }
 LcsMethodBuilder >> categoryName: anObject [
 	categoryName := anObject
+]
+
+{ #category : #command }
+LcsMethodBuilder >> compileTargetClass [
+	^ self isClassMethod
+		ifTrue: [ self targetClass class ]
+		ifFalse: [ self targetClass ]
 ]
 
 { #category : #'gt views' }
