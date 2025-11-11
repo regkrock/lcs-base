@@ -22,6 +22,14 @@ LcsBaseModuleClassBuilder >> configurationClassName: aString [
 	self propertyAt: 'configurationClassName' put: aString
 ]
 
+{ #category : #'job steps' }
+LcsBaseModuleClassBuilder >> configurationSlotDefinitionSuperMethodBuilder [
+	^ LcsConfigurationSlotDefinitionSuperMethodBuilder new
+		targetClassName: self newClassName;
+		selector: #configurationSlotDefinition;
+		yourself
+]
+
 { #category : #builders }
 LcsBaseModuleClassBuilder >> convenienceModuleAccessMethodBuilder [
 	^ LcsConvenienceModuleAccessMethodBuilder new

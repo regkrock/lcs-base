@@ -12,14 +12,6 @@ LcsSystemClassBuilder >> buildJobSteps [
 	self addJobStep: self modifyOwningModulesMethodBuilder
 ]
 
-{ #category : #'job steps' }
-LcsSystemClassBuilder >> configurationSlotDefinitionSuperMethodBuilder [
-	^ LcsConfigurationSlotDefinitionSuperMethodBuilder new
-		targetClassName: self newClassName;
-		selector: #configurationSlotDefinition;
-		yourself
-]
-
 { #category : #builders }
 LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 	^ LcsConvenienceStartSystemMethodBuilder new
