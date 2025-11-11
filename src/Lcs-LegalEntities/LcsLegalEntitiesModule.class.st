@@ -17,7 +17,7 @@ Class {
 { #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ super configurationSlotDefinition
+	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
 { #category : #configuration }

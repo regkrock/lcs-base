@@ -41,7 +41,12 @@ LcsModule class >> baseWithNonLxxSubclasses [
 { #category : #'slot definitions' }
 LcsModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
+	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
+]
+
+{ #category : #'slot definitions' }
+LcsModule class >> configurationSlotDefinitionOn: aClass [
+	^ LcsModuleConfigurationSlot newOn: aClass
 ]
 
 { #category : #configuration }

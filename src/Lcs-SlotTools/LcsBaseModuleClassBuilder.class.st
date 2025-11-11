@@ -8,7 +8,8 @@ Class {
 LcsBaseModuleClassBuilder >> buildJobSteps [
 	self addJobStep: self moduleNameMethodBuilder.
 	self addJobStep: self convenienceModuleAccessMethodBuilder.
-	self addJobStep: self moduleConfigurationClassMethodBuilder
+	self addJobStep: self moduleConfigurationClassMethodBuilder.
+	self addJobStep: self configurationSlotDefinitionSuperMethodBuilder
 ]
 
 { #category : #properties }

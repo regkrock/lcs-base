@@ -22,7 +22,7 @@ LcsWarRabbitLibrary class >> authorsSlotDefinition [
 { #category : #'slot definitions' }
 LcsWarRabbitLibrary class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ super configurationSlotDefinition
+	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
 { #category : #configuration }
