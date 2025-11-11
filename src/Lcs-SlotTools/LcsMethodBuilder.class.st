@@ -152,6 +152,5 @@ LcsMethodBuilder >> targetClassName: anObject [
 { #category : #command }
 LcsMethodBuilder >> uninstall [
 	super uninstall.
-	self targetClass ifNil: [ ^ self ].
 	self refactorings do: [ :each | each execute ]
 ]

@@ -33,6 +33,7 @@ LcsBaseModuleClassBuilder >> convenienceModuleAccessMethodBuilder [
 { #category : #'job steps' }
 LcsBaseModuleClassBuilder >> moduleConfigurationClassMethodBuilder [
 	^ LcsModuleConfigurationClassMethodBuilder new
+		targetClassName: self newClassName;
 		configurationClassName: self configurationClassName;
 		yourself
 ]
