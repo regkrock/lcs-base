@@ -17,7 +17,8 @@ LcsModuleConfigurationClassMethodBuilder >> configurationClassName: aString [
 { #category : #initialize }
 LcsModuleConfigurationClassMethodBuilder >> initialize [
 	super initialize.
-	self selector: #moduleConfigurationClass
+	self selector: #moduleConfigurationClass.
+	self beClassMethod
 ]
 
 { #category : #'code generation templates' }

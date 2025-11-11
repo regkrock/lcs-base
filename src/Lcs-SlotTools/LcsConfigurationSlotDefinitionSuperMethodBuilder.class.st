@@ -19,5 +19,5 @@ LcsConfigurationSlotDefinitionSuperMethodBuilder >> initialize [
 LcsConfigurationSlotDefinitionSuperMethodBuilder >> methodSource [
 	^ self selector , '
 	<slotDefinition>
-	^ super ' ,self selector
+	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)'
 ]
