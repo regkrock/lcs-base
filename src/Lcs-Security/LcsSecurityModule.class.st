@@ -12,7 +12,7 @@ Class {
 { #category : #'slot definitions' }
 LcsSecurityModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
+	^ super configurationSlotDefinition
 ]
 
 { #category : #'slot definitions' }

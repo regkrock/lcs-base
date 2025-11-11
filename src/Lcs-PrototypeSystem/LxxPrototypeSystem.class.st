@@ -14,6 +14,12 @@ Class {
 }
 
 { #category : #'slot definitions' }
+LxxPrototypeSystem class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ super configurationSlotDefinition
+]
+
+{ #category : #'slot definitions' }
 LxxPrototypeSystem class >> countriesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new

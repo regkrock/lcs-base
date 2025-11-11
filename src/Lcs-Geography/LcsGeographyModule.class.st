@@ -34,7 +34,7 @@ LcsGeographyModule class >> addressesSlotDefinition [
 { #category : #'slot definitions' }
 LcsGeographyModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ (LcsModuleConfigurationSlot newOn: self moduleConfigurationClass)
+	^ super configurationSlotDefinition
 		priority: 5;
 		yourself
 ]

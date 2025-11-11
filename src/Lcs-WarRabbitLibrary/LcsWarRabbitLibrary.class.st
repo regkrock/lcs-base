@@ -19,6 +19,12 @@ LcsWarRabbitLibrary class >> authorsSlotDefinition [
 		yourself
 ]
 
+{ #category : #'slot definitions' }
+LcsWarRabbitLibrary class >> configurationSlotDefinition [
+	<slotDefinition>
+	^ super configurationSlotDefinition
+]
+
 { #category : #configuration }
 LcsWarRabbitLibrary class >> defaultModuleName [
 	^ 'War Rabbit System'
@@ -44,7 +50,7 @@ LcsWarRabbitLibrary class >> libraryItemsSlotDefinition [
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : #'slot definitions' }
 LcsWarRabbitLibrary class >> moduleConfigurationClass [
 	^ LcsWarRabbitConfiguration
 ]
