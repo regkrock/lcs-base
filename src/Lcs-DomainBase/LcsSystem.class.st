@@ -365,6 +365,18 @@ LcsSystem >> isApplicationSystem [
 ]
 
 { #category : #testing }
+LcsSystem >> isInActiveStatus [
+	self hasSlotModel ifFalse: [ ^ false ].
+	^ self status isInActiveStatus
+]
+
+{ #category : #testing }
+LcsSystem >> isInSuspendedStatus [
+	self hasSlotModel ifFalse: [ ^ true ].
+	^ self status isInSuspendedStatus
+]
+
+{ #category : #testing }
 LcsSystem >> isIncludedInSystemDomainClasses: aDomainClass [
 	^ self globalCollections includes: aDomainClass class
 ]

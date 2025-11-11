@@ -15,8 +15,7 @@ Class {
 { #category : #'builder job' }
 LcsModuleBuilderJob >> buildJobSteps [
 	self addJobStep: self configurationClassBuilder.
-	self addJobStep: self moduleClassBuilder.
-	self addJobStep: self configurationSlotBuilder.
+	self addJobStep: self moduleClassBuilder
 ]
 
 { #category : #accessing }
@@ -51,16 +50,6 @@ LcsModuleBuilderJob >> configurationClassBuilder [
 		yourself
 ]
 
-{ #category : #builder }
-LcsModuleBuilderJob >> configurationSlotBuilder [
-	^ LcsAccessorSlotBuilder new
-		targetClassName: self newDomainClassName;
-		slotClassName: LcsModuleConfigurationSlot name;
-		slotName: 'configuration';
-		addSlotType: self moduleConfigurationClassName;
-		yourself
-]
-
 { #category : #configuration }
 LcsModuleBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
@@ -87,6 +76,7 @@ LcsModuleBuilderJob >> moduleClassBuilder [
 		targetPackageName: self targetPackageName;
 		moduleName: self moduleName;
 		owningModule: self owningModule;
+		configurationClassName: self moduleConfigurationClassName;
 		yourself
 ]
 
@@ -135,6 +125,11 @@ LcsModuleBuilderJob >> targetPackageName [
 { #category : #accessing }
 LcsModuleBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
+]
+
+{ #category : #accessing }
+LcsModuleBuilderJob >> targetPackageTagName [
+	^ targetPackageTagName
 ]
 
 { #category : #accessing }

@@ -14,12 +14,6 @@ Class {
 }
 
 { #category : #'slot definitions' }
-LxxPrototypeSystem class >> configurationSlotDefinition [
-	<slotDefinition>
-	^ LcsModuleConfigurationSlot newOn: self moduleConfigurationClass
-]
-
-{ #category : #'slot definitions' }
 LxxPrototypeSystem class >> countriesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -102,18 +96,6 @@ LxxPrototypeSystem >> gtConfigurationFor: aView [
 		title: 'Configuration';
 		object: [ self configuration ];
 		view: #gtMagritteFor:
-]
-
-{ #category : #testing }
-LxxPrototypeSystem >> isInActiveStatus [
-	self hasSlotModel ifFalse: [ ^ false ].
-	^ self status isInActiveStatus
-]
-
-{ #category : #testing }
-LxxPrototypeSystem >> isInSuspendedStatus [
-	self hasSlotModel ifFalse: [ ^ true ].
-	^ self status isInSuspendedStatus
 ]
 
 { #category : #testing }

@@ -14,8 +14,7 @@ Class {
 { #category : #'builder job' }
 LcsSystenBuilderJob >> buildJobSteps [
 	self addJobStep: self configurationClassBuilder.
-	self addJobStep: self systemClassBuilder.
-	self addJobStep: self configurationSlotBuilder.
+	self addJobStep: self systemClassBuilder
 ]
 
 { #category : #accessing }
@@ -47,16 +46,6 @@ LcsSystenBuilderJob >> configurationClassBuilder [
 		newTargetClassName: self systemConfigurationClassName;
 		targetPackageName: self targetPackageName;
 		targetPackageTagName: self targetPackageTagName;
-		yourself
-]
-
-{ #category : #builders }
-LcsSystenBuilderJob >> configurationSlotBuilder [
-	^ LcsAccessorSlotBuilder new
-		targetClassName: self newDomainClassName;
-		slotClassName: LcsModuleConfigurationSlot name;
-		slotName: 'configuration';
-		addSlotType: self systemConfigurationClassName;
 		yourself
 ]
 
@@ -113,6 +102,7 @@ LcsSystenBuilderJob >> systemClassBuilder [
 		newTargetClassName: self newDomainClassName;
 		targetPackageName: self targetPackageName;
 		moduleName: self moduleName;
+		configurationClassName: self systemConfigurationClassName;
 		yourself
 ]
 

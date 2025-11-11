@@ -1,19 +1,18 @@
 Class {
 	#name : #LcsSystemClassBuilder,
-	#superclass : #LcsDomainClassBuilder,
+	#superclass : #LcsBaseModuleClassBuilder,
 	#category : #'Lcs-SlotTools'
 }
 
 { #category : #'job steps' }
 LcsSystemClassBuilder >> buildJobSteps [
-	self addJobStep: self moduleNameMethodBuilder.
-	self addJobStep: self convenienceModuleAccessMethodBuilder.
+	super buildJobSteps.
 	self addJobStep: self systemDomainClassesMethodBuilder.
 	self addJobStep: self convenienceCreateSystemMethodBuilder.
 	self addJobStep: self modifyOwningModulesMethodBuilder
 ]
 
-{ #category : #'job steps' }
+{ #category : #builders }
 LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 	^ LcsConvenienceStartSystemMethodBuilder new
 		beClassMethod;
@@ -25,39 +24,10 @@ LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 ]
 
 { #category : #builders }
-LcsSystemClassBuilder >> convenienceModuleAccessMethodBuilder [
-	^ LcsConvenienceModuleAccessMethodBuilder new
-		extendInPackage: self targetPackageName;
-		selector: (self selectorNameFrom: self moduleName);
-		moduleName: self moduleName;
-		yourself
-]
-
-{ #category : #'job steps' }
 LcsSystemClassBuilder >> modifyOwningModulesMethodBuilder [
 	^ LcsModifyOwningModulesMethodBuilder new
 		targetClassName: 'LcsSecurityModule';
 		owningModuleClassName: self newClassName;
-		yourself
-]
-
-{ #category : #properties }
-LcsSystemClassBuilder >> moduleName [
-	^ self properties at: 'moduleName'
-]
-
-{ #category : #properties }
-LcsSystemClassBuilder >> moduleName: aString [
-	self propertyAt: 'moduleName' put: aString
-]
-
-{ #category : #builders }
-LcsSystemClassBuilder >> moduleNameMethodBuilder [
-	^ LcsModuleNameMethodBuilder new
-		targetClassName: self newClassName;
-		beClassMethod;
-		moduleName: self moduleName;
-		categoryName: #configuration;
 		yourself
 ]
 
