@@ -238,8 +238,13 @@ LcsSystem >> gtSystemSlotModelFor: aView [
 { #category : #'slot model' }
 LcsSystem >> gtUnitOfWorkFor: aView [
 	<gtView>
-	self slotModel isNil ifTrue: [ ^ aView empty ].
-	self currentUnitOfWork isNil ifTrue: [ ^ aView empty ].
+	self slotModel ifNil: [
+		^ aView text
+			title: 'Unit Of Work';
+			priority: 34;
+			text: [ 'System Is Not Active' ]].
+
+				self currentUnitOfWork isNil ifTrue: [ ^ aView empty ].
 	^ aView forward
 		title: 'Unit Of Work';
 		priority: 34;
