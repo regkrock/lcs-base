@@ -8,7 +8,7 @@ Class {
 LcsPersonExamples >> johnFreeman [
 	<gtExample>
 	| person |
-	self ensureCurrentSystemIsMainSystem.
+	self ensureCurrentSystemIsDemoSystem.
 	person := 
 		LcsPerson new
 			surname: 'Freeman';

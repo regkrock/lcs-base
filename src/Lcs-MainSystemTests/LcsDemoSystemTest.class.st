@@ -1,23 +1,23 @@
 Class {
-	#name : #LcsMainSystemTest,
+	#name : #LcsDemoSystemTest,
 	#superclass : #LcsTestWithNoTestSystemSetupForTest,
 	#category : #'Lcs-MainSystemTests'
 }
 
 { #category : #tests }
-LcsMainSystemTest >> testConfigurationSlotDefinition [
-	self assert: LcsMainSystem moduleConfigurationClass equals: LcsMainSystemConfiguration.
-	self assert: (LcsMainSystem accessorSlotDefinitionPragmas detect: [ :each | each methodSelector = #configurationSlotDefinition ]) notNil.
-	self assert: LcsMainSystem configurationSlotDefinition slotTypes size equals: 1.
-	self assert: (LcsMainSystem configurationSlotDefinition slotTypes includes: LcsMainSystemConfiguration).
+LcsDemoSystemTest >> testConfigurationSlotDefinition [
+	self assert: LcsDemoSystem moduleConfigurationClass equals: LcsDemoSystemConfiguration.
+	self assert: (LcsDemoSystem accessorSlotDefinitionPragmas detect: [ :each | each methodSelector = #configurationSlotDefinition ]) notNil.
+	self assert: LcsDemoSystem configurationSlotDefinition slotTypes size equals: 1.
+	self assert: (LcsDemoSystem configurationSlotDefinition slotTypes includes: LcsDemoSystemConfiguration).
 ]
 
 { #category : #tests }
-LcsMainSystemTest >> testCreation [
+LcsDemoSystemTest >> testCreation [
 
 	| currentUnitOfWork |
 
-	self subject: LcsMainSystem new.
+	self subject: LcsDemoSystem new.
 	self assert: self currentSystem notNil.
 	self assert: self subject == self currentSystem.
 	self assert: LcsGeographyModule moduleConfigurationClass equals: LcsGeographyModuleConfiguration.	
@@ -29,7 +29,7 @@ LcsMainSystemTest >> testCreation [
 	self assert: self currentSystem notNil.
 	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth.
 	self assert: (self currentSystem moduleNamed: LcsGeographyModule defaultModuleName) notNil.
-	self assert: (self subject configuration isKindOf: LcsMainSystem moduleConfigurationClass).
+	self assert: (self subject configuration isKindOf: LcsDemoSystem moduleConfigurationClass).
 	self assert: self subject configuration parent equals: self subject.
 	
 	self assert: self subject geographyModule configuration parent equals:  self subject geographyModule.
@@ -39,7 +39,7 @@ LcsMainSystemTest >> testCreation [
 ]
 
 { #category : #tests }
-LcsMainSystemTest >> testGeographyModuleConfigurationSlotDefinition [
+LcsDemoSystemTest >> testGeographyModuleConfigurationSlotDefinition [
 	self assert: LcsGeographyModule moduleConfigurationClass equals: LcsGeographyModuleConfiguration.
 	self assert: (LcsGeographyModule accessorSlotDefinitionPragmas detect: [ :each | each methodSelector = #configurationSlotDefinition ]) notNil.
 	self assert: LcsGeographyModule configurationSlotDefinition slotTypes size equals: 1.

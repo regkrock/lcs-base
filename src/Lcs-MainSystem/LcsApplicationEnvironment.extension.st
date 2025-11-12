@@ -1,11 +1,11 @@
 Extension { #name : #LcsApplicationEnvironment }
 
 { #category : #'*Lcs-MainSystem' }
-LcsApplicationEnvironment class >> createNewMainSystem [
-	^ self createNewSystem: LcsMainSystem
+LcsApplicationEnvironment class >> createNewDemoSystem [
+	^ self createNewSystem: LcsDemoSystem
 ]
 
 { #category : #'*Lcs-MainSystem' }
-LcsApplicationEnvironment class >> ensureCurrentSystemIsMainSystem [
-	self ensureCurrentSystemIs: LcsMainSystem
+LcsApplicationEnvironment class >> ensureCurrentSystemIsDemoSystem [
+	self ensureCurrentSystemIs: LcsDemoSystem
 ]

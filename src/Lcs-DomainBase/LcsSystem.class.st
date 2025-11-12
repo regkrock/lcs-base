@@ -370,6 +370,11 @@ LcsSystem >> isApplicationSystem [
 ]
 
 { #category : #testing }
+LcsSystem >> isDemoSystem [
+	^ false
+]
+
+{ #category : #testing }
 LcsSystem >> isInActiveStatus [
 	self hasSlotModel ifFalse: [ ^ false ].
 	^ self status isInActiveStatus
@@ -384,11 +389,6 @@ LcsSystem >> isInSuspendedStatus [
 { #category : #testing }
 LcsSystem >> isIncludedInSystemDomainClasses: aDomainClass [
 	^ self globalCollections includes: aDomainClass class
-]
-
-{ #category : #testing }
-LcsSystem >> isMainSystem [
-	^ false
 ]
 
 { #category : #testing }

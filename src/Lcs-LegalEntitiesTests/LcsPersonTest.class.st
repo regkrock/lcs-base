@@ -1,6 +1,6 @@
 Class {
 	#name : #LcsPersonTest,
-	#superclass : #LcsMainSystemRunningTestCase,
+	#superclass : #LcsDemoSystemRunningTestCase,
 	#category : #'Lcs-LegalEntitiesTests-Tests'
 }
 

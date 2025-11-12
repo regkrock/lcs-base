@@ -108,14 +108,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-02-20T12:25:28.876359-05:00"
+									"dateAndTimeString" : "2025-11-12T11:24:47.872882-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "i4UDA3fTDQCnzRA1Cf7Kuw=="
 							},
-							"code" : "| classes |\rclasses := LcsMainSystem withAllSuperclasses.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
+							"code" : "| classes |\rclasses := LcsDemoSystem withAllSuperclasses.\r([ 'ProtoObject' asClass ] on: NotFound do: [ nil ]) ifNotNil: [ :class | classes remove: class ].\rGtMondrianDomainExamples new classHierarchyFor:\r\t(classes\r\t\t removeDuplicates;\r\t\t yourself)",
 							"elementHeight" : 336,
 							"codeHeight" : 46,
 							"codeVisible" : true
@@ -220,14 +220,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-02-20T12:00:47.890144-05:00"
+									"dateAndTimeString" : "2025-11-12T11:24:47.901359-05:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "VkKCnK3jDQCCxo8wAxlSQw=="
 							},
-							"code" : "LcsMainSystem allSubmoduleClasses"
+							"code" : "LcsDemoSystem allSubmoduleClasses"
 						},
 						{
 							"__type" : "pharoSnippet",
@@ -360,7 +360,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-03-20T16:27:58.597871-04:00"
+									"dateAndTimeString" : "2025-11-12T11:24:47.902989-05:00"
 								}
 							},
 							"uid" : {
@@ -370,7 +370,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "See the method {{gtMethod:LcsSystem>>allBootstrapDomainClasses}} and implement it in the new system. The domain classes must be defined here so that they will be included in the system's slot model. An example is the {{gtMethod:LcsMainSystem>>systemDomainClasses}}. This method references the package to see which classes are part of the domain model and need to be initialized."
+							"string" : "See the method {{gtMethod:LcsSystem>>allBootstrapDomainClasses}} and implement it in the new system. The domain classes must be defined here so that they will be included in the system's slot model. An example is the {{gtMethod:LcsDemoSystem>>systemDomainClasses}}. This method references the package to see which classes are part of the domain model and need to be initialized."
 						}
 					]
 				},

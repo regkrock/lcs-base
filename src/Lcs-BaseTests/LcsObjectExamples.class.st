@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-LcsObjectExamples >> createNewMainSystem [
-	^ LcsApplicationEnvironment createNewMainSystem
+LcsObjectExamples >> createNewDemoSystem [
+	^ LcsApplicationEnvironment createNewDemoSystem
 ]
 
 { #category : #'as yet unclassified' }
@@ -20,8 +20,8 @@ LcsObjectExamples >> currentSystem [
 ]
 
 { #category : #support }
-LcsObjectExamples >> ensureCurrentSystemIsMainSystem [
-	^ LcsApplicationEnvironment ensureCurrentSystemIsMainSystem
+LcsObjectExamples >> ensureCurrentSystemIsDemoSystem [
+	^ LcsApplicationEnvironment ensureCurrentSystemIsDemoSystem
 ]
 
 { #category : #support }
@@ -30,7 +30,7 @@ LcsObjectExamples >> ensureCurrentSystemIsPrototypeSystem [
 ]
 
 { #category : #'as yet unclassified' }
-LcsObjectExamples >> ensureCurrentsystemIsMainSystemWithLogging [
+LcsObjectExamples >> ensureCurrentsystemIsDemoSystemWithLogging [
 	"<gtExample>"
 	| callingMethodName |
 	callingMethodName := thisContext sender method selector copy.
@@ -46,12 +46,12 @@ LcsObjectExamples >> ensureCurrentsystemIsMainSystemWithLogging [
 					Transcript cr; tab; tab; show: '... current system is nil - crete new system'.
 					self createNewPrototypeSystem ]
 				ifNotNil: [ 
-					self currentSystem isMainSystem
+					self currentSystem isDemoSystem
 						ifFalse: [ 
 							Transcript cr; tab; tab;
 								show: '... current system is not prototype system - crete new system'.
-							self createNewMainSystem ] ] ].
-	self assert: self currentSystem isMainSystem.
+							self createNewDemoSystem ] ] ].
+	self assert: self currentSystem isDemoSystem.
 	Transcript cr; tab; tab; show: 'Number of Systems: '
 				, LcsApplicationEnvironment systemsManager numberOfSystems asString.
 	Transcript crShow: '-----'.
