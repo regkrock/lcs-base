@@ -65,6 +65,7 @@ LcsGeographyModule class >> moduleConfigurationClass [
 LcsGeographyModule class >> owningModules [
 	<owningModule: 'LcsMainSystem' priority: 5>
 	<owningModule: 'LcsWarRabbitLibrary' priority: 5>
+	<owningModule: 'LcsSailingClub' priority: 5>
 ]
 
 { #category : #accessing }

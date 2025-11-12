@@ -216,7 +216,7 @@ LcsSystem >> gtConfigurationIssuesFor: aView [
 		ifTrue: [ ^ aView empty ].
 	^ aView forward
 		title: 'Configuration Issues';
-		priority: 1;
+		priority: 10;
 		object: [ self configurationValidator ];
 		view: #gtConfigurationIssuesFor:;
 		yourself

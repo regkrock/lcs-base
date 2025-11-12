@@ -160,8 +160,15 @@ LcsDomainObject >> delete [
 { #category : #'gt views' }
 LcsDomainObject >> gtLocalCollectionsFor: aView [
 	<gtView>
+		self slotModel ifNil: [
+			^ aView text
+				title: 'Local Collections';
+				priority: 9;
+				text: [ 'System Is Not Active' ]].
+
 	 self localCollections isEmpty ifTrue: [ ^ aView empty]. 
-	^ aView columnedTree
+
+	 	^ aView columnedTree
 		title: 'Local Collections';
 		priority: 9;
 		items: [ self localCollectionItems ];

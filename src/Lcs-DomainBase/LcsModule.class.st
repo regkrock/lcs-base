@@ -209,6 +209,11 @@ LcsModule >> globalCollectionItems [
 { #category : #'gt views' }
 LcsModule >> gtApplicationModulesFor: aView [
 	<gtView>
+	self slotModel ifNil: [
+		^ aView text
+			title: 'Modules';
+			priority: 1;
+			text: [ 'System Is Not Active' ]].
 	(self modules isNil or: [ self modules hasNoElements ])
 		ifTrue: [ 
 			^ aView list

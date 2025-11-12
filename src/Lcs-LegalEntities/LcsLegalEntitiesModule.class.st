@@ -77,6 +77,7 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 LcsLegalEntitiesModule class >> owningModules [
 	<owningModule: 'LcsMainSystem' priority: 10>
 	<owningModule: 'LcsWarRabbitLibrary' priority: 10>
+	<owningModule: 'LcsSailingClub' priority: 10>
 ]
 
 { #category : #'slot definitions' }

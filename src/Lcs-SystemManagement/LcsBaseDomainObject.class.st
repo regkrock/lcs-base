@@ -550,6 +550,11 @@ LcsBaseDomainObject >> getPersistedValueOf: aString [
 { #category : #'gt views' }
 LcsBaseDomainObject >> gtLiveFor: aView [
 	<gtView>
+	self slotModel ifNil: [
+		^ aView text
+			title: 'Live';
+			priority: 1;
+			text: [ 'System Is Not Active' ]].
 	^ aView columnedTree
 		title: 'Live';
 		priority: 1;
