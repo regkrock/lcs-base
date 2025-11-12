@@ -44,7 +44,7 @@ LcsModule class >> configurationSlotDefinition [
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
-{ #category : #'slot definitions' }
+{ #category : #'slot definitions - support' }
 LcsModule class >> configurationSlotDefinitionOn: aClass [
 	^ LcsModuleConfigurationSlot newOn: aClass
 ]
@@ -91,7 +91,7 @@ LcsModule class >> immediateSubmoduleClasses [
 	^ self immediateSubmoduleClassesOf: self
 ]
 
-{ #category : #'system model' }
+{ #category : #'slot model' }
 LcsModule class >> immediateSubmoduleClassesOf: aClass [
 	| immediateSubmodulePragmas submoduleClasses |
 	immediateSubmodulePragmas := (Pragma pragmaCache at: 'owningModule:priority:') 

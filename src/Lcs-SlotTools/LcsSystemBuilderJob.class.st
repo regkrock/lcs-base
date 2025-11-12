@@ -1,5 +1,5 @@
 Class {
-	#name : #LcsSystenBuilderJob,
+	#name : #LcsSystemBuilderJob,
 	#superclass : #LcsCodeBuilderJob,
 	#instVars : [
 		'classPrefix',
@@ -12,35 +12,35 @@ Class {
 }
 
 { #category : #'builder job' }
-LcsSystenBuilderJob >> buildJobSteps [
+LcsSystemBuilderJob >> buildJobSteps [
 	self addJobStep: self configurationClassBuilder.
 	self addJobStep: self systemClassBuilder
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> classPrefix [
+LcsSystemBuilderJob >> classPrefix [
 	^ classPrefix
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> classPrefix: aString [
+LcsSystemBuilderJob >> classPrefix: aString [
 	classPrefix := aString.
 	self generateRelatedNames
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> classRootName [
+LcsSystemBuilderJob >> classRootName [
 	^ classRootName
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> classRootName: aString [
+LcsSystemBuilderJob >> classRootName: aString [
 	classRootName := aString.
 	self generateRelatedNames
 ]
 
 { #category : #builders }
-LcsSystenBuilderJob >> configurationClassBuilder [
+LcsSystemBuilderJob >> configurationClassBuilder [
 	^ LcsSystemConfigurationClassBuilder new
 		targetSuperclassName: LcsBaseConfiguration name;
 		newTargetClassName: self systemConfigurationClassName;
@@ -50,13 +50,13 @@ LcsSystenBuilderJob >> configurationClassBuilder [
 ]
 
 { #category : #configuration }
-LcsSystenBuilderJob >> createForRootName: aRootName [
+LcsSystemBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
 	self generateRelatedNames
 ]
 
 { #category : #command }
-LcsSystenBuilderJob >> execute [
+LcsSystemBuilderJob >> execute [
 	"Buildng new system classes - there is no current model which to add the new classes, etc. "
 	self jobSteps isEmpty ifTrue: [self buildJobSteps].
 	self installCode.
@@ -64,7 +64,7 @@ LcsSystenBuilderJob >> execute [
 ]
 
 { #category : #configuration }
-LcsSystenBuilderJob >> generateRelatedNames [
+LcsSystemBuilderJob >> generateRelatedNames [
 	super generateRelatedNames.
 	(self classRootName isNil or: [ self classPrefix isNil ])
 		ifTrue: [
@@ -76,27 +76,27 @@ LcsSystenBuilderJob >> generateRelatedNames [
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> moduleName [
+LcsSystemBuilderJob >> moduleName [
 	^ moduleName
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> moduleName: aString [
+LcsSystemBuilderJob >> moduleName: aString [
 	moduleName := aString
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> newDomainClassName [
+LcsSystemBuilderJob >> newDomainClassName [
 	^ newDomainClassName
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> newDomainClassName: anObject [ 
+LcsSystemBuilderJob >> newDomainClassName: anObject [ 
 	newDomainClassName := anObject
 ]
 
 { #category : #builders }
-LcsSystenBuilderJob >> systemClassBuilder [
+LcsSystemBuilderJob >> systemClassBuilder [
 	^ LcsSystemClassBuilder new
 		targetSuperclassName: LcsSystem name;
 		newTargetClassName: self newDomainClassName;
@@ -107,21 +107,21 @@ LcsSystenBuilderJob >> systemClassBuilder [
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> systemConfigurationClassName [
+LcsSystemBuilderJob >> systemConfigurationClassName [
 	^ self classPrefix , self classRootName , 'Configuration'
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> targetPackageName [
+LcsSystemBuilderJob >> targetPackageName [
 	^ targetPackageName
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> targetPackageName: aString [ 
+LcsSystemBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]
 
 { #category : #accessing }
-LcsSystenBuilderJob >> targetPackageTagName: anObject [
+LcsSystemBuilderJob >> targetPackageTagName: anObject [
 	targetPackageTagName := anObject
 ]

@@ -6,7 +6,7 @@ Class {
 
 { #category : #configuration }
 LcsSystemBuilderForm class >> builderClass [
-	^ LcsSystenBuilderJob
+	^ LcsSystemBuilderJob
 ]
 
 { #category : #magritte }

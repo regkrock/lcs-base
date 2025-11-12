@@ -4,28 +4,38 @@ Class {
 	#category : #'Lcs-SlotToolsTests-Tests'
 }
 
-{ #category : #'as yet unclassified' }
-LcsModuleBuilderJobTest >> setUp [
-	super setUp
-]
+{ #category : #examples }
+LcsModuleBuilderJobTest >> sailClubModuleBuilderExample [
+	<gtExample>
+	| job |
+	job := LcsModuleBuilderJob new.
+	job 
+		classPrefix: 'Lxx';
+		createForRootName:'SailingClub';
+		moduleName: 'Sailing Club Module';
+		owningModule: LxxPrototypeSystem;
+		buildJobSteps.
 
-{ #category : #tests }
-LcsModuleBuilderJobTest >> testCreationOfNewModule [
-	| a |
-	a := OrderedCollection new.
-	self subject: LcsModuleBuilderFormExamples new sailClubModuleExample.
+		
 	self assert: (self classNamed: 'LxxSailingClubModule') isNil.
 	self assert: (self classNamed: 'LxxSailingClubModuleConfiguration') isNil.
 	self deny: (LcsModule respondsTo: #sailingClubModule).
 
-	self subject slotModelBuilder installCode.
+	^ job
+]
+
+{ #category : #tests }
+LcsModuleBuilderJobTest >> testCreationOfNewModule [
+	self subject: self sailClubModuleBuilderExample.
+
+	self subject installCode.
 
 	self assert: (self classNamed: 'LxxSailingClubModule') notNil.
 	self assert: (self classNamed: 'LxxSailingClubModuleConfiguration') notNil.
 	self assert: (LcsModule canUnderstand: #sailingClubModule).
 	self assert: ((self classNamed: 'LxxSailingClubModule') respondsTo: #owningModules).
 	
-	self subject slotModelBuilder uninstall.
+	self subject uninstall.
 
 	self assert: (self classNamed: 'LxxSailingClubModule') isNil.
 	self assert: (self classNamed: 'LxxSailingClubModuleConfiguration') isNil.
