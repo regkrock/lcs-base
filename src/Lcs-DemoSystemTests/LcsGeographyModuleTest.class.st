@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsGeographyModuleTest,
 	#superclass : #LcsDemoSystemRunningTestCase,
-	#category : #'Lcs-MainSystemTests'
+	#category : #'Lcs-DemoSystemTests'
 }
 
 { #category : #tests }
