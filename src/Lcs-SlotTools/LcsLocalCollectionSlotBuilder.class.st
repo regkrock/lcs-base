@@ -38,7 +38,8 @@ LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 { #category : #'gt views' }
 LcsLocalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	super addClassesToUmlModel: aUmlModel.
-	aUmlModel addClassNamed: self slotTypes first name asString.
+	self slotTypes isEmpty ifTrue: [ ^ self ].
+	aUmlModel addClassNamed: (self slotTypes first isString ifTrue: [  self slotTypes first ] ifFalse: [ self slotTypes first name asString ]).
 ]
 
 { #category : #'gt views' }

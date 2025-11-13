@@ -13,7 +13,8 @@ Class {
 		'unknownClassName',
 		'collectionClassName',
 		'collectionSlotName',
-		'collectionSlotInstallationTargetClass'
+		'collectionSlotInstallationTargetClass',
+		'newDomainClassSuperclass'
 	],
 	#category : #'Lcs-SlotTools'
 }
@@ -147,6 +148,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> generateRelatedNames [
 LcsDomainClassAndDomainCollectionClassBuilderJob >> initialize [
 	super initialize.
 	self classPrefix: 'Lcs'.
+	self newDomainClassSuperclass: 'LcsDomainObject'
 ]
 
 { #category : #initialize }
@@ -196,6 +198,16 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassName [
 { #category : #accessing }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassName: anObject [ 
 	newDomainClassName := anObject
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassSuperclass [
+	^ newDomainClassSuperclass
+]
+
+{ #category : #accessing }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassSuperclass: anObject [ 
+	newDomainClassSuperclass := anObject
 ]
 
 { #category : #accessing }

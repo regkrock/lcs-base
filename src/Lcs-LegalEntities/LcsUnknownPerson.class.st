@@ -4,7 +4,7 @@ Class {
 	#category : #'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definition' }
+{ #category : #'slot definitions' }
 LcsUnknownPerson class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new

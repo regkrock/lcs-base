@@ -75,10 +75,11 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> createInstances: aCollection 
 { #category : #builders }
 LcsDomainClassAndLocalCollectionClassBuilderJob >> domainClassBuilder [
 	^ LcsDomainClassBuilder new
-		newClassName: self newDomainClassName;
-		targetPackageName: self targetPackageName;
-		targetPackageTagName: self targetPackageTagName;
-		yourself
+			targetSuperclassName: self newDomainClassSuperclass;
+			newClassName: self newDomainClassName;
+			targetPackageName: self targetPackageName;
+			targetPackageTagName: self targetPackageTagName;
+			yourself
 ]
 
 { #category : #builders }

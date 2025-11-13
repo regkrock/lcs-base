@@ -55,7 +55,7 @@ LcsUmlModel >> applyLayoutTo: mondrianModel [
 { #category : #configuration }
 LcsUmlModel >> classModelForClass: aClass [
 	^ self collection 
-		detect: [ :eachModel | eachModel modelClassname = aClass name asString ]
+		detect: [ :eachModel | eachModel isModelOf: aClass ]
 		ifNone: [  
 			"Transcript cr; show: 'Unable to find class named ' , aClassname asString."
 			nil  ] 

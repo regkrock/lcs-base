@@ -14,22 +14,22 @@ LcsExistingClassModel class >> newOn: aClass [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #decortations }
 LcsExistingClassModel >> borderColor [
 	^ Color gray
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #decortations }
 LcsExistingClassModel >> classnameText [
 	^ self modelClassname asRopedText foreground: self foregroundColor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #decortations }
 LcsExistingClassModel >> foregroundColor [
 	^ Color gray
 ]
 
-{ #category : #'instance creation' }
+{ #category : #initialize }
 LcsExistingClassModel >> initializeOn: aClass [ 
 	self modelClass: aClass.
 	self modelClassname: aClass name asString.
