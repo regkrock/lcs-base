@@ -10,6 +10,8 @@ Class {
 LcsCommodoreSlot >> initialize [
 	super initialize.
 	self slotName: 'commodore'.
-	self addSlotType: LcsPerson
+	self addSlotType: LcsPerson.
+	self beAllowNil.
+	self initialValue: nil
 
 ]
