@@ -2,10 +2,21 @@ Class {
 	#name : #LcsOrganization,
 	#superclass : #LcsLegalEntity,
 	#instVars : [
-		'organizationName'
+		'organizationName',
+		'committees'
 	],
 	#category : #'Lcs-LegalEntities'
 }
+
+{ #category : #'slot definitions' }
+LcsOrganization class >> committeesSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotTypes: (OrderedCollection with: LcsCommittees);
+		collectionMemberTypes: (OrderedCollection with: LcsCommittee);
+		slotName: 'committees';
+		yourself
+]
 
 { #category : #'slot definitions' }
 LcsOrganization class >> organizationNameSlotDefinition [
@@ -25,6 +36,16 @@ LcsOrganization class >> parentSlotDefinition [
 		collectionSlotName: 'organizations';
 		addSlotType: LcsOrganizations;
 		yourself
+]
+
+{ #category : #accessing }
+LcsOrganization >> committees [
+	^ self slotVarNamed: 'committees'
+]
+
+{ #category : #accessing }
+LcsOrganization >> committees: anObject [
+	self slotVarNamed: 'committees' put: anObject
 ]
 
 { #category : #accessing }
