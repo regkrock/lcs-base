@@ -1,7 +1,7 @@
 Class {
 	#name : #LcsDemoSystemTest,
 	#superclass : #LcsTestWithNoTestSystemSetupForTest,
-	#category : #'Lcs-MainSystemTests'
+	#category : #'Lcs-DemoSystemTests'
 }
 
 { #category : #tests }
