@@ -1,5 +1,5 @@
 Class {
 	#name : #LcsDemoSystemConfiguration,
 	#superclass : #LcsBaseConfiguration,
-	#category : #'Lcs-MainSystem-Core'
+	#category : #'Lcs-DemoSystem-Core'
 }
