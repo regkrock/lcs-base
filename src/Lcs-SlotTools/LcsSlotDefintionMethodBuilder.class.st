@@ -81,7 +81,7 @@ LcsSlotDefintionMethodBuilder >> addPostUpdateActionsKeyword: aPropertyName argu
 			addKeyword: 'addPostUpdateAction'
 			argument: each actionBlock printString
 			keyword: 'description'
-			argument: each validationDescription printString  ]
+			argument: each description printString  ]
 ]
 
 { #category : #'initialize\t' }
