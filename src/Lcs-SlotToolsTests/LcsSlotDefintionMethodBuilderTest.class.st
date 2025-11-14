@@ -98,9 +98,9 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	self assert: methodSource equals: 'fooSlotDefinition
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: ''foo'';
-		required: true;
-		yourself'
+			slotName: ''foo'';
+			required: true;
+			yourself'
 ]
 
 { #category : #tests }
@@ -117,9 +117,9 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 	self assert: methodSource equals: 'fooSlotDefinition
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: ''foo'';
-		required: true;
-		yourself'
+			slotName: ''foo'';
+			required: true;
+			yourself'
 ]
 
 { #category : #tests }
@@ -152,9 +152,9 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidatio
 	self assert: methodSource equals: 'fooSlotDefinition
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: ''foo'';
-		addValidationCondition: [ false ] description: ''Always fails'';
-		yourself'.
+			slotName: ''foo'';
+			addValidationCondition: [ false ] description: ''Always fails'';
+			yourself'.
 		
 	self subject installCode.
 	self subject verifyCodeInstallation

@@ -20,9 +20,9 @@ LcsIntegerSlotBuilderTest >> testInitialValue [
 		self assert: (self subject jobStep: 2) slotDefinitionSource equals: 'fooSlotDefinition
 	<slotDefinition>
 	^ LcsIntegerSlot new
-		slotName: ''foo'';
-		initialValueBlock: [ 1 ];
-		yourself'
+			slotName: ''foo'';
+			initialValueBlock: [ 1 ];
+			yourself'
 ]
 
 { #category : #tests }
@@ -36,7 +36,7 @@ LcsIntegerSlotBuilderTest >> testSlotDefinitionSourceCode [
 		self assert: (self subject jobStep: 2) slotDefinitionSource equals: 'fooSlotDefinition
 	<slotDefinition>
 	^ LcsIntegerSlot new
-		slotName: ''foo'';
-		initialValueBlock: [ 1 ];
-		yourself'
+			slotName: ''foo'';
+			initialValueBlock: [ 1 ];
+			yourself'
 ]

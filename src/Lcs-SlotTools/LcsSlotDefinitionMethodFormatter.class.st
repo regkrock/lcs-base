@@ -40,7 +40,7 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 		^ self addClassTypeKeyword: 'addSlotType' argument: aValue to: aStream ].
 		
 	aPropertyName = 'collectionMemberTypes' ifTrue: [ 
-		^ self addClassTypeKeyword: 'addCollectionMemberTypes' argument: aValue to: aStream ].
+		^ self addClassTypeKeyword: 'addCollectionMemberType' argument: aValue to: aStream ].
 
 	aPropertyName = 'validationConditions' ifTrue: [ 
 		^ self addValidationConditionsKeyword: aPropertyName argument: aValue to: aStream ].		
@@ -127,16 +127,19 @@ LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinitionMethodBuilder: aSl
 
 { #category : #format }
 LcsSlotDefinitionMethodFormatter >> methodSource [
-	| stream |
+	| stream streamPostionBeforeAddingProperties|
 	stream := LcsMethodStream new.
 	stream 
 		startSlotDefintionSource: self selector;
 		addSlotDefinitionClassCreatonLine: self slotClass name.
 	self properties isEmpty ifTrue: [ ^ stream contents ].
 	
+	streamPostionBeforeAddingProperties := stream streamPosition.
+	
 	self addProperties: self properties to: stream.
 	
-	stream addYourself.
+	streamPostionBeforeAddingProperties = stream streamPosition
+		ifFalse: [ stream addYourself ].
 	
 	^ stream contents
 		

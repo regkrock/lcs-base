@@ -30,11 +30,12 @@ LcsGlobalCollectionSlotBuilderTest >> testSlotDefinitionSourceCode [
 			addSlotType: LxxPersons name ;
 			yourself).
 	self subject buildJobSteps.
-		self assert: (self subject jobStep: 2) slotDefinitionSource equals: 'foosSlotDefinition
+		self assert: (self subject jobStep: 2) slotDefinitionSource equals: 
+'foosSlotDefinition
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LxxPersons);
-		collectionMemberTypes: (OrderedCollection with: LxxPerson);
-		slotName: ''foos'';
-		yourself'
+			addSlotType: LxxPersons;
+			addCollectionMemberType: LxxPerson;
+			slotName: ''foos'';
+			yourself'
 ]

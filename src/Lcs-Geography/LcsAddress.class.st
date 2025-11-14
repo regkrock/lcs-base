@@ -20,10 +20,10 @@ Class {
 LcsAddress class >> additionalDeliveryInformationSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: 'additionalDeliveryInformation';
-		allowNil: false;
-		priority: 8;
-		yourself
+			slotName: 'additionalDeliveryInformation';
+			allowNil: false;
+			priority: 8;
+			yourself
 ]
 
 { #category : #'slot definitions' }
