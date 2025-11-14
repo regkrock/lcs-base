@@ -81,6 +81,14 @@ LcsUpdateAction >> addInstVarSetterFor: aVarName to: aCodeStream [
 		argument: (self creationStringForValueOf: aVarName)
 ]
 
+{ #category : #printing }
+LcsUpdateAction >> asCreationString [
+	^'(LcsUpdateAction new
+			actionBlock: <1s>;
+			description: ''<2s>'')'
+			expandMacrosWith: self actionBlock printString with: self description
+]
+
 { #category : #'code generation' }
 LcsUpdateAction >> creationStringForValueOf: aVarName [
 	| object |

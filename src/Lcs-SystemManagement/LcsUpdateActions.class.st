@@ -84,6 +84,11 @@ LcsUpdateActions >> slotDefinition [
 	^ self parent
 ]
 
+{ #category : #querying }
+LcsUpdateActions >> updateActionWithDescription: aString [
+	^ self detect: [ :each | each description = aString ] ifNone: [ ]
+]
+
 { #category : #magritte }
 LcsUpdateActions >> updateActionsDescription [
 	<magritteDescription>

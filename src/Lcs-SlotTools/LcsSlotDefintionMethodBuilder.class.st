@@ -79,9 +79,7 @@ LcsSlotDefintionMethodBuilder >> addPostUpdateActionsKeyword: aPropertyName argu
 	aPostUpdateActions do: [ :each |
 		aCodeStream
 			addKeyword: 'addPostUpdateAction'
-			argument: each actionBlock printString
-			keyword: 'description'
-			argument: each description printString  ]
+			argument: each asCreationString ]
 ]
 
 { #category : #'initialize\t' }
@@ -349,15 +347,15 @@ LcsSlotDefintionMethodBuilder >> uninstall [
 ]
 
 { #category : #verification }
-LcsSlotDefintionMethodBuilder >> validatePostUpdateActions: aPostUpdateActions against: actualPostUpdateActions [
-	self assert: actualPostUpdateActions collectionSize equals: aPostUpdateActions collectionSize.
-	aPostUpdateActions
-		do: [ :eachPostUpdateAction | 
-			| actualPostUpdateAction |
-			actualPostUpdateAction := actualPostUpdateAction validationConditionWithDescription: eachPostUpdateAction validationDescription.
-			self assert: actualPostUpdateAction notNil.
-			self assert: eachPostUpdateAction description equals: actualPostUpdateAction description.
-			self assert: eachPostUpdateAction actionBlock asString equals: actualPostUpdateAction actionBlock asString]
+LcsSlotDefintionMethodBuilder >> validatePostUpdateActions: enteredPostUpdateActions against: slotPostUpdateActions [
+	self assert: slotPostUpdateActions collectionSize equals: enteredPostUpdateActions collectionSize.
+	enteredPostUpdateActions
+		do: [ :eachEnteredPostUpdateAction | 
+			| slotPostUpdateAction |
+			slotPostUpdateAction := slotPostUpdateActions updateActionWithDescription: eachEnteredPostUpdateAction description.
+			self assert: slotPostUpdateAction notNil.
+			self assert: eachEnteredPostUpdateAction description equals: slotPostUpdateAction description.
+			self assert: eachEnteredPostUpdateAction actionBlock asString equals: slotPostUpdateAction actionBlock asString]
 ]
 
 { #category : #verification }
