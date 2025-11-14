@@ -79,7 +79,7 @@ LcsSlotDefintionMethodBuilder >> addPostUpdateActionsKeyword: aPropertyName argu
 	aPostUpdateActions do: [ :each |
 		aCodeStream
 			addKeyword: 'addPostUpdateAction'
-			argument: each conditionBlock printString
+			argument: each actionBlock printString
 			keyword: 'description'
 			argument: each validationDescription printString  ]
 ]
