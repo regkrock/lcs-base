@@ -10,8 +10,8 @@ Class {
 LcsDomainObjectChangeRecords class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
-		makeDirectUpdateOfVariable;
-		yourself
+			makeDirectUpdateOfVariable;
+			yourself
 ]
 
 { #category : #history }
