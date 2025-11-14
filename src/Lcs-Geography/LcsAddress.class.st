@@ -105,13 +105,7 @@ LcsAddress class >> postCodeSlotDefinition [
 { #category : #'slot definitions' }
 LcsAddress class >> postalCodeSlotDefinition [
 	<slotDefinition>
-	^ LcsAccessorSlot new
-		slotName: 'postalCode';
-		addSubclassesOf: LcsBasePostCode;
-		initialValueBlock: [ :domainObject :slot | domainObject country postalCodeClass new ];
-		priority: 18;
-		required: true;
-		yourself
+	^ LcsPostalCodeSlot new
 ]
 
 { #category : #'slot definitions' }
