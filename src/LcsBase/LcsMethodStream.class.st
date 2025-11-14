@@ -31,14 +31,14 @@ LcsMethodStream >> addKeyword: aKeyword argument: aString keyword: aKeyword2 arg
 ]
 
 { #category : #building }
-LcsMethodStream >> addKeyword: aKeyword with: anAction [
+LcsMethodStream >> addKeyword: aKeyword withRenderedAction: anAction [
 	self newLine
 		nextPutAll: aKeyword;
 		nextPutAll: ': ('.
 	self indent.
 	anAction addCodeGenerationDetailsTo: self.
-	self nextPutAll: ').'.
-	self outdent
+	self nextPutAll: ');'.
+	self outdent; outdent
 ]
 
 { #category : #building }

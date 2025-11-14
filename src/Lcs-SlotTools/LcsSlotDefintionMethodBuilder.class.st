@@ -76,10 +76,10 @@ LcsSlotDefintionMethodBuilder >> addPostUpdateActionsKeyword: aPropertyName argu
 
 	aPostUpdateActions hasElements ifFalse: [ ^ self ].
 
-	aPostUpdateActions do: [ :each |
+	aPostUpdateActions do: [ :eachAction |
 		aCodeStream
 			addKeyword: 'addPostUpdateAction'
-			argument: each asCreationString ]
+			withRenderedAction: eachAction ]
 ]
 
 { #category : #'initialize\t' }
@@ -295,18 +295,18 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
-	| codeStream streamPosition |
+	| codeStream |
 	codeStream := LcsMethodStream new.
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;
 		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName.
+	self properties isEmpty ifTrue: [ ^ codeStream contents ].
+	
 	codeStream indent.
-	streamPosition := codeStream streamPosition.
 	self properties keysAndValuesDo: [ :eachPropertyName :eachValue |
-		self addKeyword: eachPropertyName argument: eachValue to: codeStream].
+		self addKeyword: eachPropertyName argument: eachValue to: codeStream ].
 
-	streamPosition ~= codeStream streamPosition 
-		ifTrue: [ codeStream addYourself].
+	codeStream addYourself.
 
 	^ codeStream contents
 ]

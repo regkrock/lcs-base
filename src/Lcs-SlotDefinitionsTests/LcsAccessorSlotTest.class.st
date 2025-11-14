@@ -22,7 +22,7 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGeneration [
 	| aStream |
 	aStream := LcsMethodStream new.
 	self subject: LcsAccessorSlotExamples new accessorSlotWithPostUpdateActions.
-	aStream addKeyword: 'addPostUpdateAction' with: self subject postUpdateActions first.
+	aStream addKeyword: 'addPostUpdateAction' withRenderedAction: self subject postUpdateActions first.
 	self assert: aStream contents equals: 'addPostUpdateAction: (
 	LcsUpdateSiblingWithCollectionDefault new
 		description: ''When country changes, update the default province'';
@@ -37,7 +37,7 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithDifferentAct
 	aStream := LcsMethodStream new.
 	self subject: LcsAccessorSlotExamples new accessorSlotWithBasicPostUpdateActions.
 	self subject postUpdateActions first actionBlock: [ :newValue :domainObject :oldValue | ]. 
-	aStream addKeyword: 'addPostUpdateAction' with: self subject postUpdateActions first.
+	aStream addKeyword: 'addPostUpdateAction' withRenderedAction: self subject postUpdateActions first.
 	self assert: aStream contents equals: 'addPostUpdateAction: (
 	LcsUpdateSiblingWithCollectionDefault new
 		actionBlock: [ :newValue :domainObject :oldValue | ];
@@ -49,7 +49,7 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithNoChanges [
 	| aStream |
 	aStream := LcsMethodStream new.
 	self subject: LcsAccessorSlotExamples new accessorSlotWithBasicPostUpdateActions.
-	aStream addKeyword: 'addPostUpdateAction' with: self subject postUpdateActions first.
+	aStream addKeyword: 'addPostUpdateAction' withRenderedAction: self subject postUpdateActions first.
 	self assert: aStream contents equals: 'addPostUpdateAction: (
 	LcsUpdateSiblingWithCollectionDefault new).'
 ]
