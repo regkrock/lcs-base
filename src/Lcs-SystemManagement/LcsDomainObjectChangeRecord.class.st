@@ -13,20 +13,20 @@ Class {
 LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
-		slotName: 'changes';
-		addSlotType: LcsDomainObjectSlotChanges;
-		addCollectionMemberType: LcsDomainObjectSlotChange;
-		makeDirectUpdateOfVariable;
-		yourself
+			slotName: 'changes';
+			addSlotType: LcsDomainObjectSlotChanges;
+			addCollectionMemberType: LcsDomainObjectSlotChange;
+			makeDirectUpdateOfVariable;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordTimestampSlot new
-		slotName: 'created';
-		makeDirectUpdateOfVariable;
-		yourself
+			slotName: 'created';
+			makeDirectUpdateOfVariable;
+			yourself
 ]
 
 { #category : #'slot definitions' }
@@ -49,8 +49,8 @@ LcsDomainObjectChangeRecord class >> userSlotDefinition [
 LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
-		makeDirectUpdateOfVariable;
-		yourself
+			makeDirectUpdateOfVariable;
+			yourself
 ]
 
 { #category : #'as yet unclassified' }
