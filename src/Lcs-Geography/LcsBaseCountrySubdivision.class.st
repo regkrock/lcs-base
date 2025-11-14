@@ -48,10 +48,10 @@ LcsBaseCountrySubdivision class >> newInContextOf: anObject [
 LcsBaseCountrySubdivision class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotName: 'subdivisions';
-		addSlotType: LcsCountrySubdivisions;
-		yourself
+			slotName: 'parent';
+			collectionSlotName: 'subdivisions';
+			addSlotType: LcsCountrySubdivisions;
+			yourself
 ]
 
 { #category : #'slot definition' }

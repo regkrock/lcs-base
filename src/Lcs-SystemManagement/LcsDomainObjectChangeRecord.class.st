@@ -33,10 +33,10 @@ LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsCollectionReferenceSlot new
-		slotName: 'parent';
-		addSlotType: LcsDomainObjectChangeRecords;
-		makeDirectUpdateOfVariable;
-		yourself
+			slotName: 'parent';
+			addSlotType: LcsDomainObjectChangeRecords;
+			makeDirectUpdateOfVariable;
+			yourself
 ]
 
 { #category : #'slot definitions' }

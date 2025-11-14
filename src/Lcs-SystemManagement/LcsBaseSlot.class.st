@@ -114,7 +114,7 @@ LcsBaseSlot >> defaultSlotComment [
 
 { #category : #'slot model' }
 LcsBaseSlot >> domainClass [
-	^ domainClass ifNil: [ domainClass := self parent ifNotNil: [ :parnt | parnt domainClass ] ]
+	^ domainClass ifNil: [ domainClass := self parent ifNotNil: [ :each | each domainClass ] ]
 ]
 
 { #category : #'slot model' }
@@ -213,9 +213,9 @@ LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 LcsBaseSlot >> gtSlotDefinitionAttributes [
 	| collection |
 	collection := OrderedCollection new
+			add: 'domainClass' -> self newDomainClassName;
 			add: 'slotDefinition' -> self;
 			add: 'slotDefinitionClass' -> self class;
-			add: 'domainClass' -> self newDomainClassName;
 			yourself.
 	self addPropertiesTo: collection.
 	self addOtherSlotDefinitionDetailsTo: collection.

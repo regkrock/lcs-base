@@ -43,10 +43,10 @@ LxxBaseCountrySubdivision class >> newInContextOf: anObject [
 LxxBaseCountrySubdivision class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
-		slotName: 'parent';
-		addSlotType: LxxCountrySubdivisions;
-		collectionSlotName: 'subdivisions';
-		yourself
+			slotName: 'parent';
+			addSlotType: LxxCountrySubdivisions;
+			collectionSlotName: 'subdivisions';
+			yourself
 ]
 
 { #category : #'slot definition' }

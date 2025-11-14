@@ -300,7 +300,7 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 	codeStream
 		startSlotDefintionSource: self slotDefinitionSelector;
 		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName.
-
+	codeStream indent.
 	streamPosition := codeStream streamPosition.
 	self properties keysAndValuesDo: [ :eachPropertyName :eachValue |
 		self addKeyword: eachPropertyName argument: eachValue to: codeStream].

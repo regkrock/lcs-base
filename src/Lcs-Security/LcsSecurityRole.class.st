@@ -11,11 +11,11 @@ Class {
 LcsSecurityRole class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotTypes: (OrderedCollection with: LcsSecurityRoles);
-		slotName: 'parent';
-		collectionSlotName: 'securityRoles';
-		collectionSlotModuleName: 'Security Module';
-		yourself
+			slotTypes: (OrderedCollection with: LcsSecurityRoles);
+			slotName: 'parent';
+			collectionSlotName: 'securityRoles';
+			collectionSlotModuleName: 'Security Module';
+			yourself
 ]
 
 { #category : #'slot definitions' }

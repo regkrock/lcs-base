@@ -75,11 +75,11 @@ LcsAddress class >> countrySlotDefinition [
 LcsAddress class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotTypes: (OrderedCollection with: LcsAddresses);
-		slotName: 'parent';
-		collectionSlotName: 'addresses';
-		collectionSlotModuleName: 'Geography Module';
-		yourself
+			slotTypes: (OrderedCollection with: LcsAddresses);
+			slotName: 'parent';
+			collectionSlotName: 'addresses';
+			collectionSlotModuleName: 'Geography Module';
+			yourself
 ]
 
 { #category : #'slot definitions' }

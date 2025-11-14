@@ -76,11 +76,11 @@ LcsCountry class >> isoNumberSlotDefinition [
 LcsCountry class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotModuleName: LcsGeographyModule defaultModuleName;
-		collectionSlotName: 'countries';
-		addSlotType: LcsCountries;
-		yourself
+			slotName: 'parent';
+			collectionSlotModuleName: LcsGeographyModule defaultModuleName;
+			collectionSlotName: 'countries';
+			addSlotType: LcsCountries;
+			yourself
 ]
 
 { #category : #'slot definitions' }

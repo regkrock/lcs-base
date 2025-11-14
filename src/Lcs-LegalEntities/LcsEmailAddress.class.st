@@ -32,11 +32,11 @@ LcsEmailAddress class >> emailSlotDefinition [
 LcsEmailAddress class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotTypes: (OrderedCollection with: LcsEmailAddresses);
-		slotName: 'parent';
-		collectionSlotName: 'emailAddresses';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			slotTypes: (OrderedCollection with: LcsEmailAddresses);
+			slotName: 'parent';
+			collectionSlotName: 'emailAddresses';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]
 
 { #category : #accessing }

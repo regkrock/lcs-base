@@ -31,11 +31,11 @@ LcsOrganization class >> organizationNameSlotDefinition [
 LcsOrganization class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
-		collectionSlotName: 'organizations';
-		addSlotType: LcsOrganizations;
-		yourself
+			slotName: 'parent';
+			collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
+			collectionSlotName: 'organizations';
+			addSlotType: LcsOrganizations;
+			yourself
 ]
 
 { #category : #accessing }

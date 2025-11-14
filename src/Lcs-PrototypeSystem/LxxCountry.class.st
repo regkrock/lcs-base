@@ -66,11 +66,11 @@ LxxCountry class >> isoNumberSlotDefinition [
 LxxCountry class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotName: 'countries';
-		collectionSlotModuleName: 'Prototype System';
-		addSlotType: LxxCountries;
-		yourself
+			slotName: 'parent';
+			collectionSlotName: 'countries';
+			collectionSlotModuleName: 'Prototype System';
+			addSlotType: LxxCountries;
+			yourself
 ]
 
 { #category : #'slot definition' }

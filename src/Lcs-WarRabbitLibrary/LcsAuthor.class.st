@@ -22,11 +22,11 @@ LcsAuthor class >> authorshipSlotDefinition [
 LcsAuthor class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotName: 'authors';
-		collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
-		addSlotType: LcsAuthors
-		yourself
+			slotName: 'parent';
+			collectionSlotName: 'authors';
+			collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
+			addSlotType: LcsAuthors
+			yourself
 ]
 
 { #category : #'slot definitions' }

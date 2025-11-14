@@ -29,11 +29,11 @@ LcsLibraryCategory class >> newFor: aString [
 LcsLibraryCategory class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
-		collectionSlotName: 'libraryCategories';
-		addSlotType: LcsLibraryCategories;
-		yourself
+			slotName: 'parent';
+			collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
+			collectionSlotName: 'libraryCategories';
+			addSlotType: LcsLibraryCategories;
+			yourself
 ]
 
 { #category : #'slot definitions' }

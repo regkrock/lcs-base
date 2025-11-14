@@ -62,10 +62,10 @@ LcsStateMachineState class >> named: stateName on: stateMachine [
 LcsStateMachineState class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotName: 'states';
-		addSlotType: LcsStateMachineStates;
-		yourself
+			slotName: 'parent';
+			collectionSlotName: 'states';
+			addSlotType: LcsStateMachineStates;
+			yourself
 ]
 
 { #category : #'slot definitions' }

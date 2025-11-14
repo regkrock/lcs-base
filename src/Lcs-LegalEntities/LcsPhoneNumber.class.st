@@ -20,11 +20,11 @@ LcsPhoneNumber class >> numberSlotDefinition [
 LcsPhoneNumber class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotTypes: (OrderedCollection with: LcsPhoneNumbers);
-		slotName: 'parent';
-		collectionSlotName: 'phoneNumbers';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			slotTypes: (OrderedCollection with: LcsPhoneNumbers);
+			slotName: 'parent';
+			collectionSlotName: 'phoneNumbers';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]
 
 { #category : #'slot definitions' }

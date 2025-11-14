@@ -29,11 +29,11 @@ LxxPerson class >> balanceSlotDefinition [
 LxxPerson class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotName: 'parent';
-		collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;
-		addSlotType: LxxPersons;
-		collectionSlotName: 'persons';
-		yourself
+			slotName: 'parent';
+			collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;
+			addSlotType: LxxPersons;
+			collectionSlotName: 'persons';
+			yourself
 ]
 
 { #category : #'slot definitions' }

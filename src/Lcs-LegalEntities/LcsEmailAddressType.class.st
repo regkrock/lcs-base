@@ -8,9 +8,9 @@ Class {
 LcsEmailAddressType class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotTypes: (OrderedCollection with: LcsEmailAddressTypes);
-		slotName: 'parent';
-		collectionSlotName: 'emailAddressTypes';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			slotTypes: (OrderedCollection with: LcsEmailAddressTypes);
+			slotName: 'parent';
+			collectionSlotName: 'emailAddressTypes';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]

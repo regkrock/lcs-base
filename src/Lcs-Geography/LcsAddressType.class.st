@@ -8,9 +8,9 @@ Class {
 LcsAddressType class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-		slotTypes: (OrderedCollection with: LcsAddressTypes);
-		slotName: 'parent';
-		collectionSlotName: 'addressTypes';
-		collectionSlotModuleName: 'Geography Module';
-		yourself
+			slotTypes: (OrderedCollection with: LcsAddressTypes);
+			slotName: 'parent';
+			collectionSlotName: 'addressTypes';
+			collectionSlotModuleName: 'Geography Module';
+			yourself
 ]
