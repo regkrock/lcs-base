@@ -48,40 +48,6 @@ LcsSlotDefintionMethodBuilder >> addClassesToUmlModel: aUmlModel [
 		addClassNamed: self slotClass name
 ]
 
-{ #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> addKeyword: aPropertyName argument: aValue to: aCodeStream [
-	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
-	(self slotTemplate isChangedProperty: aPropertyName value: aValue) ifFalse: [ ^ self ].
-
-	(#('slotTypes' 'collectionMemberTypes') includes: aPropertyName) ifTrue: [ 
-		^ self addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream ].
-
-	aPropertyName = 'validationConditions' ifTrue: [ 
-		^ self addValidationConditionsKeyword: aPropertyName argument: aValue to: aCodeStream ].		
-
-	aPropertyName = 'postUpdateActions' ifTrue: [ 
-		^ self addPostUpdateActionsKeyword: aPropertyName argument: aValue to: aCodeStream ].		
-		
-	aValue isString
-		ifFalse: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue asString ].
-
-	(self classFor: aValue) notNil
-		ifTrue: [ ^ aCodeStream addKeyword: aPropertyName argument: aValue ].
-
-	aCodeStream addKeyword: aPropertyName argument: aValue printString
-]
-
-{ #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> addPostUpdateActionsKeyword: aPropertyName argument: aPostUpdateActions to: aCodeStream [
-
-	aPostUpdateActions hasElements ifFalse: [ ^ self ].
-
-	aPostUpdateActions do: [ :eachAction |
-		aCodeStream
-			addKeyword: 'addPostUpdateAction'
-			withRenderedAction: eachAction ]
-]
-
 { #category : #'initialize\t' }
 LcsSlotDefintionMethodBuilder >> addProperty: aPropertyName value: anObject [
 	(self isValueOfSlotTemplateProperty: aPropertyName sameAs: anObject)
@@ -125,45 +91,8 @@ LcsSlotDefintionMethodBuilder >> addSlotType: aClassorClassName [
 ]
 
 { #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> addSlotTypesKeyword: aPropertyName argument: aValue to: aCodeStream [
-	| slotTypesCollectionCreationStream |
-
-	aValue isEmpty ifTrue: [ ^ self ].
-
-	slotTypesCollectionCreationStream := WriteStream on: String new.
-	slotTypesCollectionCreationStream nextPutAll: '(OrderedCollection'.
-	aValue do: [ :eachClassName | slotTypesCollectionCreationStream nextPutAll: ' with: ' , eachClassName asString ].
-	slotTypesCollectionCreationStream nextPutAll: ')'.
-	aCodeStream addKeyword: aPropertyName argument: slotTypesCollectionCreationStream contents
-]
-
-{ #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> addSlotTypesSourceCodeTo: codeStream [
-	self hasNoSlotTypes ifTrue: [ 
-		codeStream
-			addKeyword: 'addSlotType'
-			argument: '<no slot types defined>' printString.
-		^ self ].
-	self slotTypes
-		do: [ :eachName | codeStream addKeyword: 'addSlotType' argument: eachName ]
-]
-
-{ #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> addValidationCondition: aStringBlock description: aDescription [
 	self validationConditions addValidationCondition: aStringBlock description: aDescription
-]
-
-{ #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> addValidationConditionsKeyword: aPropertyName argument: aValidationConditions to: aCodeStream [
-
-	aValidationConditions hasElements ifFalse: [ ^ self ].
-
-	aValidationConditions do: [ :each |
-		aCodeStream
-			addKeyword: 'addValidationCondition'
-			argument: each conditionBlock printString
-			keyword: 'description'
-			argument: each validationDescription printString  ]
 ]
 
 { #category : #accessing }
@@ -280,13 +209,6 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
 ]
 
 { #category : #'code generation' }
-LcsSlotDefintionMethodBuilder >> slotDefinitionClassNameDisplayName [
-	^ self slotClass
-		ifNil: [ '<missing>' ]
-		ifNotNil: [ :class | class name ]
-]
-
-{ #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 	^ self rawDerivedSlotName 
 		ifNil: [ LcsError signal: 'slotName is undefined' ]
@@ -295,20 +217,8 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
 
 { #category : #'code generation' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
-	| codeStream |
-	codeStream := LcsMethodStream new.
-	codeStream
-		startSlotDefintionSource: self slotDefinitionSelector;
-		addSlotDefinitionClassCreatonLine: self slotDefinitionClassNameDisplayName.
-	self properties isEmpty ifTrue: [ ^ codeStream contents ].
-	
-	codeStream indent.
-	self properties keysAndValuesDo: [ :eachPropertyName :eachValue |
-		self addKeyword: eachPropertyName argument: eachValue to: codeStream ].
-
-	codeStream addYourself.
-
-	^ codeStream contents
+	^ (LcsSlotDefinitionMethodFormatter newOnSlotDefinitionMethodBuilder: self)
+		methodSource
 ]
 
 { #category : #'code generation' }

@@ -299,6 +299,8 @@ LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
 		ifTrue: [ 
 			(propertyValue hasNoElements and: [ aValue hasNoElements ])
 				ifTrue: [ ^ false ]].
+	propertyValue isBlock ifTrue: [
+		^ (propertyValue printString = aValue printString) not ].
 	^ (propertyValue = aValue) not
 ]
 
@@ -432,9 +434,9 @@ LcsBaseSlot >> slotClassDescription [
 
 ]
 
-{ #category : #'slot model' }
+{ #category : #asking }
 LcsBaseSlot >> slotDefinitionSelector [
-	^ (self slotName , 'SlotDefinition') asSymbol
+	^ (self slotName asString , 'SlotDefinition') asSymbol
 ]
 
 { #category : #defaults }
