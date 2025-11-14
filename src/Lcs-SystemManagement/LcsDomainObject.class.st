@@ -27,30 +27,30 @@ LcsDomainObject class >> classNamesPrefixTree [
 LcsDomainObject class >> creationDateSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'creationDate';
-		valueAccessor: #historyCreationDate;
-		addSlotType: Date;
-		yourself
+			slotName: 'creationDate';
+			valueAccessor: #historyCreationDate;
+			addSlotType: Date;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> creationTimestampSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'creationTimestamp';
-		valueAccessor: #historyCreationTimestamp;
-		addSlotType: DateAndTime;
-		yourself
+			slotName: 'creationTimestamp';
+			valueAccessor: #historyCreationTimestamp;
+			addSlotType: DateAndTime;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> creatorSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'creator';
-		valueAccessor: #historyCreator;
-		addSlotType: LcsUser;
-		yourself
+			slotName: 'creator';
+			valueAccessor: #historyCreator;
+			addSlotType: LcsUser;
+			yourself
 ]
 
 { #category : #'slot definitions' }
@@ -63,30 +63,30 @@ LcsDomainObject class >> historySlotDefinition [
 LcsDomainObject class >> lastUpdatedDateSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'lastUpdatedDate';
-		valueAccessor: #historyLastUpdatedDate;
-		addSlotType: Date;
-		yourself
+			slotName: 'lastUpdatedDate';
+			valueAccessor: #historyLastUpdatedDate;
+			addSlotType: Date;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'lastUpdatedTimestamp';
-		valueAccessor: #historyLastUpdatedTimestamp;
-		addSlotType: DateAndTime;
-		yourself
+			slotName: 'lastUpdatedTimestamp';
+			valueAccessor: #historyLastUpdatedTimestamp;
+			addSlotType: DateAndTime;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsDomainObject class >> lastUpdatedUserSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'lastUpdatedUser';
-		valueAccessor: #historyLastUpdatedUser;
-		addSlotType: LcsUser;
-		yourself
+			slotName: 'lastUpdatedUser';
+			valueAccessor: #historyLastUpdatedUser;
+			addSlotType: LcsUser;
+			yourself
 ]
 
 { #category : #'instance creation' }
@@ -132,8 +132,8 @@ LcsDomainObject class >> uuidSlotDefinition [
 LcsDomainObject class >> versionSlotDefinition [
 	<slotDefinition>
 	^ LcsSmallIntegerSlot new
-		slotName: 'version';
-		yourself
+			slotName: 'version';
+			yourself
 ]
 
 { #category : #history }
