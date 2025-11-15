@@ -22,5 +22,5 @@ LcsCalendarModule class >> moduleConfigurationClass [
 
 { #category : #configuration }
 LcsCalendarModule class >> owningModules [
-	<owningModule: 'LcsSailingClubSystem' priority: 1>
+	<owningModule: 'LcsSailingClubSystem' priority: 5>
 ]
