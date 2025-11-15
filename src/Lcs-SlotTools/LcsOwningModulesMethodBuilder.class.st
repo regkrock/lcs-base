@@ -11,7 +11,7 @@ Class {
 { #category : #initialize }
 LcsOwningModulesMethodBuilder >> initialize [
 	super initialize.
-	self priority: 1.
+	self priority: 5.	"Security module is 1. It needs to be loaded first"
 	self selector: #owningModules.
 	self categoryName: #configuration;
 	beClassMethod
