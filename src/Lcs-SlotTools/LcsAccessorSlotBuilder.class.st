@@ -1,6 +1,9 @@
 Class {
 	#name : #LcsAccessorSlotBuilder,
 	#superclass : #LcsBaseSlotBuilder,
+	#instVars : [
+		'comment'
+	],
 	#category : #'Lcs-SlotTools'
 }
 
@@ -116,6 +119,31 @@ LcsAccessorSlotBuilder >> buildJobSteps [
 LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 	self targetClass == aClass
 		ifTrue: [ self targetClassName: nil ]
+]
+
+{ #category : #accessing }
+LcsAccessorSlotBuilder >> comment [
+	^ comment
+]
+
+{ #category : #accessing }
+LcsAccessorSlotBuilder >> comment: anObject [
+	comment := anObject
+]
+
+{ #category : #margritte }
+LcsAccessorSlotBuilder >> commentDescription [
+	<magritteDescription>
+	^ GtMATextDescription new
+		label: 'Comment';
+		priority: 30;
+		accessor: #'comment';
+		default: '';
+		kind: Object;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+				"+ (BrGlamorousWithExplicitContextMenuAptitude
+						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : #properties }

@@ -156,6 +156,12 @@ LcsSlotCreationForm >> collectionSlotNameDescription [
 	^ self magritteDescriptionFor: #collectionSlotName
 ]
 
+{ #category : #magritte }
+LcsSlotCreationForm >> commentDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #comment
+]
+
 { #category : #callbacks }
 LcsSlotCreationForm >> commit [
 	self error: 'Do not use this'.

@@ -386,6 +386,8 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | (Smalltalk classNamed: aValue trim) isNotNil ]
+			labelled: 'Class does not exist';
 		beRequired.
 	self decorateTargetClassDescription: magritteDescription.
 	^magritteDescription

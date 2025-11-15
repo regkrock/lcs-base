@@ -36,3 +36,9 @@ LcsGlobalCollectionPatternForm >> initializeOn: aTarget [
 	self slotModelBuilder collectionSlotInstallationTargetClass: self targetClass.
 
 ]
+
+{ #category : #accessing }
+LcsGlobalCollectionPatternForm >> targetClassNameChangedTo: aString [
+	super targetClassNameChangedTo: aString.
+	self slotModelBuilder collectionSlotInstallationTargetClass: ([ aString asClass ] on: NotFound do: [ :s | s return: nil ])
+]
