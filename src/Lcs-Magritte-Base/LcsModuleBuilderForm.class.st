@@ -88,6 +88,12 @@ LcsModuleBuilderForm >> targetClassLabel [
 	^'Install Submodule in:'
 ]
 
+{ #category : #accessing }
+LcsModuleBuilderForm >> targetClassNameChangedTo: aString [
+	super targetClassNameChangedTo: aString.
+	self slotModelBuilder owningModule: ([ aString asClass ] on: NotFound do: [ :s | s return: nil ])
+]
+
 { #category : #magritte }
 LcsModuleBuilderForm >> targetPackageNameDescription [
 	<magritteDescription>
