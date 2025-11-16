@@ -14,21 +14,21 @@ Class {
 LcsLegalEntity class >> emailAddressSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsEmailAddress);
-		slotName: 'emailAddress';
-		collectionSlotName: 'emailAddresses';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			addSlotType: LcsEmailAddress;
+			slotName: 'emailAddress';
+			collectionSlotName: 'emailAddresses';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsLegalEntity class >> emailAddressesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
-		slotName: 'emailAddresses';
-		slotTypes: (OrderedCollection with: LcsEmailAddresses);
-		collectionClass: IdentitySet;
-		yourself
+			slotName: 'emailAddresses';
+			slotTypes: (OrderedCollection with: LcsEmailAddresses);
+			collectionClass: IdentitySet;
+			yourself
 ]
 
 { #category : #'slot definitions' }
@@ -44,23 +44,23 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 LcsLegalEntity class >> mainAddressSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsAddress);
-		slotName: 'mainAddress';
-		collectionSlotName: 'addresses';
-		collectionSlotModuleName: 'Geography Module';
-		yourself
+			addSlotType: LcsAddress;
+			slotName: 'mainAddress';
+			collectionSlotName: 'addresses';
+			collectionSlotModuleName: 'Geography Module';
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsLegalEntity class >> phoneNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		initialValueBlock: [ :domainParent :slot | slot newInstance ];
-		slotTypes: (OrderedCollection with: LcsPhoneNumber);
-		slotName: 'phoneNumber';
-		collectionSlotName: 'phoneNumbers';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			"initialValueBlock: [ :domainParent :slot | slot defaultInstance ];"
+			addSlotType: LcsPhoneNumber;
+			slotName: 'phoneNumber';
+			collectionSlotName: 'phoneNumbers';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]
 
 { #category : #accessing }

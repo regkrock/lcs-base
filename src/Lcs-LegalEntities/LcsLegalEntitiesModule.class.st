@@ -17,7 +17,9 @@ Class {
 { #category : #'slot definitions' }
 LcsLegalEntitiesModule class >> configurationSlotDefinition [
 	<slotDefinition>
-	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
+	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
+			priority: 62;
+			yourself
 ]
 
 { #category : #configuration }
@@ -70,6 +72,7 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 		slotName: 'organizations';
 		addSlotType: LcsOrganizations;
 		addCollectionMemberType: LcsOrganization;
+		priority: 61;
 		yourself
 ]
 
