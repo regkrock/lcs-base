@@ -63,8 +63,8 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> collecti
 					yourself.
 	self buildUnknownClass ifTrue: [
 		builder addJobStep: (
-			LcsAccessorSlotBuilder new
-				slotClassName: LcsAccessorSlot name;
+			LcsDomainObjectSlotBuilder new
+				slotClassName: LcsDomainObjectSlot name;
 				slotName: 'unknown';
 				targetClassName: self collectionClassName;
 				addSlotType: self unknownClassName;

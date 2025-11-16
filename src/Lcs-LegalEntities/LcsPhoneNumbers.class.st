@@ -10,10 +10,10 @@ Class {
 { #category : #'slot definitions' }
 LcsPhoneNumbers class >> unknownSlotDefinition [
 	<slotDefinition>
-	^ LcsAccessorSlot new
-		slotTypes: (OrderedCollection with: LcsUnknownPhoneNumber);
-		slotName: 'unknown';
-		yourself
+	^ LcsDomainObjectSlot new
+			slotTypes: (OrderedCollection with: LcsUnknownPhoneNumber);
+			slotName: 'unknown';
+			yourself
 ]
 
 { #category : #accessing }

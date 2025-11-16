@@ -28,7 +28,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationClassesModel
 	self assert: (modelClasses allClassModelsFor: 'LcsObjectsLoader') size = 1.
 	self assert: (modelClasses allClassModelsFor: 'LxxSamplesLoader') size = 1.
 	self assert: (modelClasses allClassModelsFor: 'LcsGlobalCollectionSlot') size = 1.
-	self assert: (modelClasses allClassModelsFor: 'LcsAccessorSlot') size = 1.
+	self assert: (modelClasses allClassModelsFor: 'LcsDomainObjectSlot') size = 1.
 ]
 
 { #category : #tests }

@@ -10,15 +10,15 @@ Class {
 { #category : #'slot definitions' }
 LcsEmailAddresses class >> unknownSlotDefinition [
 	<slotDefinition>
-	^ LcsAccessorSlot new
-		slotTypes: (OrderedCollection with: LcsUnknownEmailAddress);
-		slotName: 'unknown';
-		yourself
+	^ LcsDomainObjectSlot new
+			addSlotType: LcsUnknownEmailAddress;
+			slotName: 'unknown';
+			yourself
 ]
 
 { #category : #'default instance' }
 LcsEmailAddresses >> defaultInstance [
-	^ LcsEmailAddress new
+	^ self unknown
 ]
 
 { #category : #accessing }
