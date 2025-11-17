@@ -98,9 +98,9 @@ LcsAddress class >> postBoxSlotDefinition [
 LcsAddress class >> postCodeSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsDelegatorSlot new
-		slotName: 'postCode';
-		targetSlotPath: #('postalCode'  'code');
-		yourself
+			slotName: 'postCode';
+			targetSlotPath: #('postalCode'  'code');
+			yourself
 
 ]
 

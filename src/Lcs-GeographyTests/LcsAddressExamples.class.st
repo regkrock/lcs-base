@@ -70,12 +70,11 @@ LcsAddressExamples >> monroeNjUSAAddress [
 	<gtExample>
 	| address |
 	address := self njUSAAddress.
-
 	address city: 'Monroe'.
-	address postalCode code: '08831'.
+	address postCode: '08831'.
+	self assert: address postCode equals: '08831'.
 	self assert: address postalCode code equals: '08831'.
 	self assert: address city equals: 'Monroe'.
-	
 	^ address
 ]
 
@@ -102,7 +101,8 @@ LcsAddressExamples >> nyUSAAddress [
 		
 	address postalCode code: '10280'.
 	self assert: address postalCode code equals: '10280'.
-	
+	self assert: address postCode equals: '10280'.
+		
 	^ address
 ]
 
@@ -115,9 +115,9 @@ LcsAddressExamples >> seasMonmouthAddress [
 	address 
 		addressType: 'work';
 		city: 'Mattawan';
-		postBox: 'PO Box 891'.
-	address postalCode code: '07747'.
-	
+		postBox: 'PO Box 891';
+		postCode: '07747'.
+	self assert: address addressType code = 'work'.
 	^ address
 ]
 
