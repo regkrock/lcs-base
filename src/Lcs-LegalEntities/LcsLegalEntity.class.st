@@ -35,9 +35,9 @@ LcsLegalEntity class >> emailAddressesSlotDefinition [
 LcsLegalEntity class >> entityNameSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
-		slotName: 'entityName';
-		valueAccessor: #fullName;
-		yourself
+			slotName: 'entityName';
+			valueAccessor: #fullName;
+			yourself
 ]
 
 { #category : #'slot definitions' }
