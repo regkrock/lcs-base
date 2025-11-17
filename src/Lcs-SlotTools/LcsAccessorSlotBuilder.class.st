@@ -123,27 +123,27 @@ LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 
 { #category : #accessing }
 LcsAccessorSlotBuilder >> comment [
-	^ comment
+	^ self properties at: 'comment' ifAbsent: [ '' ]
 ]
 
 { #category : #accessing }
 LcsAccessorSlotBuilder >> comment: anObject [
-	comment := anObject
+	^ self properties at: 'comment' put: anObject
 ]
 
 { #category : #margritte }
 LcsAccessorSlotBuilder >> commentDescription [
 	<magritteDescription>
-	^ GtMATextDescription new
-		label: 'Comment';
-		priority: 30;
-		accessor: #'comment';
-		default: '';
-		kind: Object;
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
-				"+ (BrGlamorousWithExplicitContextMenuAptitude
-						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+	^ MAStringDescription new
+			label: 'Comment';
+			priority: 30;
+			accessor: #'comment';
+			default: '';
+			kind: String;
+			editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
+					"+ (BrGlamorousWithExplicitContextMenuAptitude
+							itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];
+			labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : #properties }

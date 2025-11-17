@@ -76,12 +76,12 @@ LcsBaseSlot >> comment: anObject [
 { #category : #magritte }
 LcsBaseSlot >> commentDescription [
 	<magritteDescription>
-	^ GtMATextDescription new
+	^ MAStringDescription new
 		label: 'Comment';
 		priority: 30;
 		accessor: #'comment';
 		default: '';
-		kind: Object;
+		kind: String;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize
 				"+ (BrGlamorousWithExplicitContextMenuAptitude
 						itemsWithAnchorActions: [ self contextMenuItemsForSuperclass ])" ];

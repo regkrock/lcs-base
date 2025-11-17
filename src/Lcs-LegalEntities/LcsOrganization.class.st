@@ -3,7 +3,8 @@ Class {
 	#superclass : #LcsLegalEntity,
 	#instVars : [
 		'organizationName',
-		'committees'
+		'committees',
+		'legalName'
 	],
 	#category : #'Lcs-LegalEntities'
 }
@@ -16,6 +17,15 @@ LcsOrganization class >> committeesSlotDefinition [
 		collectionMemberTypes: (OrderedCollection with: LcsCommittee);
 		slotName: 'committees';
 		yourself
+]
+
+{ #category : #'slot definitions' }
+LcsOrganization class >> legalNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+			slotName: 'legalName';
+			comment: 'This is the legal name,  enttity name is the "common" name for the organizsation';
+			yourself
 ]
 
 { #category : #'slot definitions' }
@@ -51,6 +61,16 @@ LcsOrganization >> committees: anObject [
 { #category : #accessing }
 LcsOrganization >> fullName [
 	^ self organizationName
+]
+
+{ #category : #accessing }
+LcsOrganization >> legalName [
+	^ self slotVarNamed: 'legalName'
+]
+
+{ #category : #accessing }
+LcsOrganization >> legalName: anObject [
+	self slotVarNamed: 'legalName' put: anObject
 ]
 
 { #category : #accessing }

@@ -179,7 +179,7 @@ LcsDomainObject >> gtLocalCollectionsFor: aView [
 		column: 'Size'
 			text: [ :item | item item 
 								ifNil: [ '' ] 
-								ifNotNil: [ item item collectionSize printString ] ]
+								ifNotNil: [ item collectionSize printString ] ]
 			width: 50;
 		column: 'Class'
 			text: [ :item | item item class asString ]

@@ -106,6 +106,12 @@ LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
 ]
 
 { #category : #verification }
+LcsSlotDefintionMethodBuilder >> defaultCollectionMemberTypes [
+	^ self slotClass new collectionMemberTypes
+		collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ]
+]
+
+{ #category : #verification }
 LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
 	^ self slotClass new slotTypes
 		collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ]
@@ -257,6 +263,28 @@ LcsSlotDefintionMethodBuilder >> uninstall [
 ]
 
 { #category : #verification }
+LcsSlotDefintionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollection against: anActualCollection [
+	self
+		validateCollectionMemberTypes: anExpectedCollection
+		against: anActualCollection
+		defaultTypes: self defaultCollectionMemberTypes
+]
+
+{ #category : #verification }
+LcsSlotDefintionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollection against: anActualCollection defaultTypes: aDefaultCollection [
+	| expected |
+	expected := anExpectedCollection asOrderedCollection
+			collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ].
+	expected size = anActualCollection size
+		ifTrue: [ ^ self assert: anActualCollection equals: expected ].
+
+	expected addAll: aDefaultCollection.
+	self assert: expected size equals: anActualCollection size.
+	self
+		assert: (expected allSatisfy: [ :each | anActualCollection includes: each ])
+]
+
+{ #category : #verification }
 LcsSlotDefintionMethodBuilder >> validatePostUpdateActions: enteredPostUpdateActions against: slotPostUpdateActions [
 	self assert: slotPostUpdateActions collectionSize equals: enteredPostUpdateActions collectionSize.
 	enteredPostUpdateActions
@@ -279,45 +307,40 @@ LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
 ]
 
 { #category : #verification }
-LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aValue in: slotDefinition [
+LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aExpectedObject in: slotDefinition [
 	| actualValue |
-
 	actualValue := slotDefinition perform: aProperty asSymbol.
 
 	aProperty = 'collectionMemberTypes' ifTrue: [
-		^ self assert: actualValue  equals: (aValue collect: [ :each | each asClass ]) ].
+		 ^ self validateCollectionMemberTypes: aExpectedObject against: actualValue ].
 		
 	aProperty = 'slotTypes'
-		ifTrue: [ ^ self validateSlotTypes: aValue against: actualValue ].
+		ifTrue: [ ^ self validateSlotTypes: aExpectedObject against: actualValue ].
 
 	aProperty = 'validationConditions'
-		ifTrue: [ ^ self validateValidationConditions: aValue against: actualValue ].
+		ifTrue: [ ^ self validateValidationConditions: aExpectedObject against: actualValue ].
 
 	aProperty = 'postUpdateActions'
-		ifTrue: [ ^ self validatePostUpdateActions: aValue against: actualValue ].
+		ifTrue: [ ^ self validatePostUpdateActions: aExpectedObject against: actualValue ].
 		
-	(actualValue isClass and: [ aValue isClass ])
-		ifTrue: [ ^ self assert: actualValue name equals: aValue name ].
+	(actualValue isClass and: [ aExpectedObject isClass ])
+		ifTrue: [ ^ self assert: actualValue name equals: aExpectedObject name ].
 		
 	actualValue isClass
-		ifTrue: [ ^ self assert: actualValue equals: aValue asClass ].
+		ifTrue: [ ^ self assert: actualValue equals: aExpectedObject asClass ].
 
 	actualValue isBlock 
-		ifTrue: [ ^ self assert: actualValue asString equals: aValue asString].
+		ifTrue: [ ^ self assert: actualValue asString equals: aExpectedObject asString].
 		
-	self assert: actualValue equals: aValue
+	self assert: actualValue equals: aExpectedObject
 ]
 
 { #category : #verification }
-LcsSlotDefintionMethodBuilder >> validateSlotTypes: aCollection against: actualValue [
-	| expected |
-	expected := aCollection asOrderedCollection collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [each asClass ] ].
-	expected size = actualValue size
-		ifTrue: [ ^ self assert: actualValue equals: expected ].
-		
-	expected addAll: self defaultSlotTypes.
-	self assert: expected size equals: actualValue size.
-	self assert: (expected allSatisfy: [ :each | actualValue includes: each ])
+LcsSlotDefintionMethodBuilder >> validateSlotTypes: anExpectedCollection against: anActualCollection [
+	self
+		validateCollectionMemberTypes: anExpectedCollection
+		against: anActualCollection
+		defaultTypes: self defaultSlotTypes
 ]
 
 { #category : #verification }

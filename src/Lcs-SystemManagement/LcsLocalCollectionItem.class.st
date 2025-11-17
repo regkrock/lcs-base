@@ -9,6 +9,14 @@ LcsLocalCollectionItem class >> defaultChildrenSelector [
 	^ #localCollections
 ]
 
+{ #category : #asking }
+LcsLocalCollectionItem >> collectionSize [
+	(self item class inheritsFrom: LcsDomainCollection)
+			ifTrue: [ ^ self item collectionSize ].
+			
+	 ^ self item size 
+]
+
 { #category : #accessing }
 LcsLocalCollectionItem >> numberOfPendingAdds [
 	^ (self currentSystem unitOfWork pendingAddsFor: self) size

@@ -26,7 +26,7 @@ LcsLegalEntity class >> emailAddressesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
 			slotName: 'emailAddresses';
-			slotTypes: (OrderedCollection with: LcsEmailAddresses);
+			addSlotType: LcsEmailAddresses;
 			collectionClass: IdentitySet;
 			yourself
 ]

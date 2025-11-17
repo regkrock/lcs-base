@@ -290,7 +290,7 @@ LcsSlotModel >> loadSingletonCodeCollections [
 
 { #category : #query }
 LcsSlotModel >> localCollectionSlots [
-	^ self slotDefinitions values select: [ :each | each isLocalCollectionSlot ]
+	^ self allAccessorSlotDefinitions select: [ :each | each isLocalCollectionSlot ]
 ]
 
 { #category : #accessing }
