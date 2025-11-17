@@ -21,3 +21,16 @@ LcsCountrySubdivisions >> defaultInstance [
 				formalName: 'Unknown';
 				yourself ]
 ]
+
+{ #category : #querrying }
+LcsCountrySubdivisions >> findItemMatchingCode: anObject [
+	| result |
+	anObject isString ifFalse: [ ^ anObject ].
+	result := self collection
+			detect: [ :each | each isoCode = anObject ]
+			ifNone: [ nil ].
+	result ifNotNil: [ ^ result ].
+	^ self pendingAdds
+			detect: [ :each | each isoCode = anObject ]
+			ifNone: [ anObject ].
+]

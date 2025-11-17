@@ -13,7 +13,7 @@ LcsAddressExamples class >> usaAddress [
 LcsAddressExamples >> address [
 	<gtExample>
 	| address defaultCountry |
-	self ensureCurrentSystemIsDemoSystem.
+	LcsAddress hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem].
 	address := LcsAddress new.
 	defaultCountry := self currentSystem geographyModule countries defaultInstance.
 	self assert: address country equals: defaultCountry.
@@ -102,6 +102,21 @@ LcsAddressExamples >> nyUSAAddress [
 		
 	address postalCode code: '10280'.
 	self assert: address postalCode code equals: '10280'.
+	
+	^ address
+]
+
+{ #category : #examples }
+LcsAddressExamples >> seasMonmouthAddress [
+	<gtExample>
+	| address |
+	address := self njUSAAddress.
+
+	address 
+		addressType: 'work';
+		city: 'Mattawan';
+		postBox: 'PO Box 891'.
+	address postalCode code: '07747'.
 	
 	^ address
 ]

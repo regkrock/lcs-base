@@ -29,6 +29,11 @@ LcsObjectExamples >> ensureCurrentSystemIsPrototypeSystem [
 	^ LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem
 ]
 
+{ #category : #support }
+LcsObjectExamples >> ensureCurrentSystemIsSailingClubSystem [
+	^ LcsApplicationEnvironment ensureCurrentSystemIs: LcsSailingClubSystem
+]
+
 { #category : #'as yet unclassified' }
 LcsObjectExamples >> ensureCurrentsystemIsDemoSystemWithLogging [
 	"<gtExample>"

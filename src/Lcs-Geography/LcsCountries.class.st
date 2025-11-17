@@ -12,10 +12,18 @@ LcsCountries >> defaultInstance [
 ]
 
 { #category : #query }
-LcsCountries >> findItemMatchingString: anObject [
+LcsCountries >> findItemMatchingCode: anObject [
+	| result |
 	anObject isString ifFalse: [ ^ anObject ].
-	^ self collection detect: [ :eachCountry | 
-		eachCountry isoCode = anObject or: [ 
-			eachCountry isoCode3 = anObject or: [ 
-			eachCountry commonName = anObject] ] ] ifNone: [ anObject ]
+	result := self collection
+			detect: [ :eachCountry | 
+				eachCountry isoCode = anObject
+					or: [ eachCountry isoCode3 = anObject or: [ eachCountry commonName = anObject ] ] ]
+			ifNone: [ nil ].
+	result ifNotNil: [ ^ result ].
+	^ self pendingAdds
+		detect: [ :eachCountry | 
+			eachCountry isoCode = anObject
+				or: [ eachCountry isoCode3 = anObject or: [ eachCountry commonName = anObject ] ] ]
+		ifNone: [ nil ]
 ]

@@ -30,45 +30,47 @@ LcsAddress class >> additionalDeliveryInformationSlotDefinition [
 LcsAddress class >> addressTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsAddressType);
-		slotName: 'addressType';
-		collectionSlotName: 'addressTypes';
-		collectionSlotModuleName: 'Geography Module';
-		priority: 1;
-		yourself
+			slotName: 'addressType';
+			addSlotType: LcsAddressType;
+			prevalidationTransformBlock: [ :value :slot | 
+				slot targetCollection findItemMatchingCode: value ];
+			collectionSlotName: 'addressTypes';
+			collectionSlotModuleName: 'Geography Module';
+			priority: 1;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsAddress class >> citySlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
-		slotName: 'city';
-		required: true;
-		priority: 12;
-		yourself
+			slotName: 'city';
+			required: true;
+			priority: 12;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsAddress class >> countrySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotName: 'country';
-		slotTypes: (OrderedCollection with: LcsCountry);
-		prevalidationTransformBlock: [ :value :slot | slot targetCollection findItemMatchingString: value ];
-		collectionSlotName: 'countries';
-		collectionSlotModuleName: 'Geography Module';
-		priority: 16;
-		addPostUpdateAction: (LcsUpdateSiblingWithCollectionDefault new 
-									description: 'When country changes, update the default province';
-									siblingSlotName: 'province';
-									sourceCollectionSlotName: 'subdivisions';
-									yourself);
-		addPostUpdateAction: (LcsUpdateSiblingWithNewInstanceOfSourceClass new 
-									description: 'When country changes, update the new postal code';
-									siblingSlotName: 'postalCode';
-									sourceSlotName: 'postalCodeClass';
-									yourself);
-		yourself
+			slotName: 'country';
+			slotTypes: (OrderedCollection with: LcsCountry);
+			prevalidationTransformBlock: [ :value :slot | slot targetCollection findItemMatchingCode: value ];
+			collectionSlotName: 'countries';
+			collectionSlotModuleName: 'Geography Module';
+			priority: 16;
+			addPostUpdateAction: (LcsUpdateSiblingWithCollectionDefault new 
+										description: 'When country changes, update the default province';
+										siblingSlotName: 'province';
+										sourceCollectionSlotName: 'subdivisions';
+										yourself);
+			addPostUpdateAction: (LcsUpdateSiblingWithNewInstanceOfSourceClass new 
+										description: 'When country changes, update the new postal code';
+										siblingSlotName: 'postalCode';
+										sourceSlotName: 'postalCodeClass';
+										yourself);
+			yourself
 ]
 
 { #category : #'slot definitions' }
@@ -114,7 +116,7 @@ LcsAddress class >> provinceSlotDefinition [
 	^ LcsMemberOfCollectionInSiblingSlotObjectSlot new
 		slotName: 'province';
 		prevalidationTransformBlock: [ :value :slot :domainObject | 
-			(slot targetCollectionIn: domainObject) detect: [ :each | each isoCode = value ] ifNone: [ value ] ];
+			(slot targetCollectionIn: domainObject) findItemMatchingCode: value ];
 		siblingSlotName: 'country';
 		siblingCollectionSlotName: 'subdivisions';
 		required: true;

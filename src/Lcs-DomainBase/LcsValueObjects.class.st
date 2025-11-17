@@ -21,6 +21,15 @@ LcsValueObjects >> defaultInstance [
 				signal: 'No default instance defined for Value Objects collection - ' , self class name ]
 ]
 
+{ #category : #querying }
+LcsValueObjects >> findItemMatchingCode: anObject [
+	| result |
+	anObject isString ifFalse: [ ^ anObject ].
+	result := self collection detect: [ :each | each code = anObject ] ifNone: [ nil ].
+	result ifNotNil: [ ^ result ].
+	^ self pendingAdds detect: [ :each | each code = anObject ] ifNone: [ anObject ].
+]
+
 { #category : #'gt views' }
 LcsValueObjects >> gtItemsFor: aView [
 	<gtView>
