@@ -11,6 +11,14 @@ LcsModuleConfigurationSlot class >> newOn: aConfigurationClass [
 		yourself
 ]
 
+{ #category : #'object initialization' }
+LcsModuleConfigurationSlot >> defaultInitialValueBlock [
+	^ [ :domainObject :slot | 
+		(slot slotTypes any basicNew)
+			parent: domainObject;
+			yourself ]
+]
+
 { #category : #defaults }
 LcsModuleConfigurationSlot >> defaultPriority [
 	^ 75
@@ -25,4 +33,15 @@ LcsModuleConfigurationSlot >> initialize [
 { #category : #initialize }
 LcsModuleConfigurationSlot >> initializeOn: aConfigurationClass [ 
 	self addSlotType: aConfigurationClass
+]
+
+{ #category : #'object initialization' }
+LcsModuleConfigurationSlot >> initializeSlotValueIn: aDomainObject [
+	| initialValue |
+	LcsLogger logReceiver: thisContext receiver message: thisContext message.
+	LcsLogger indent.
+	initialValue := self initialValueFor: aDomainObject.
+	self slotVarPut: initialValue in: aDomainObject.
+	initialValue initialize.
+	LcsLogger outdent.
 ]

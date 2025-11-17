@@ -168,7 +168,10 @@ LcsModule >> buildModule: eachModuleClass [
 
 { #category : #building }
 LcsModule >> buildModules [
-	self immediateSubmoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ]
+	LcsLogger indent.
+	LcsLogger log: 'Building modules: '.
+	self immediateSubmoduleClasses do: [ :eachModuleClass | self buildModule: eachModuleClass ].
+	LcsLogger outdent.
 ]
 
 { #category : #accessing }

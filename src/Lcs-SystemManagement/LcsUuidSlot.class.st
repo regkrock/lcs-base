@@ -12,7 +12,9 @@ LcsUuidSlot >> defaultInitialValueBlock [
 { #category : #defaults }
 LcsUuidSlot >> initialize [
 	super initialize.
-	self slotName: 'uuid'
+	self 
+		slotName: 'uuid';
+		priority: 100
 ]
 
 { #category : #configuration }

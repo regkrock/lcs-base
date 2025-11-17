@@ -12,5 +12,6 @@ LcsDomainObjectHistorySlot >> initialize [
 	self
 		slotName: 'history';
 		addSlotType: LcsDomainObjectHistory;
+		priority: 100;
 		makeDirectUpdateOfVariable
 ]

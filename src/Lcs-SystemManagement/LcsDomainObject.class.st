@@ -133,6 +133,7 @@ LcsDomainObject class >> versionSlotDefinition [
 	<slotDefinition>
 	^ LcsSmallIntegerSlot new
 			slotName: 'version';
+			priority: 100;
 			yourself
 ]
 
