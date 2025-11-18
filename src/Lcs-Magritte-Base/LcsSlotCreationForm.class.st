@@ -481,6 +481,12 @@ LcsSlotCreationForm >> toolFor: anInstance [
 ]
 
 { #category : #magritte }
+LcsSlotCreationForm >> typeCodeDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #typeCode
+]
+
+{ #category : #magritte }
 LcsSlotCreationForm >> validationConditionItemsDescription [
 	"<magritteDescription>"
 	^ self magritteDescriptionFor: #validationConditionItems

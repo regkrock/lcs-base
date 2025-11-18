@@ -1,6 +1,9 @@
 Class {
 	#name : #LcsSlotDefintionMethodBuilder,
 	#superclass : #LcsSlotDetailBuilder,
+	#instVars : [
+		'slotCategory'
+	],
 	#category : #'Lcs-SlotTools'
 }
 
@@ -105,6 +108,11 @@ LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
 	self properties at: 'allowNil' put: aBoolean
 ]
 
+{ #category : #command }
+LcsSlotDefintionMethodBuilder >> beFacadeSlot [
+	self slotCategory: '<facadeSlotDefinition>'
+]
+
 { #category : #verification }
 LcsSlotDefintionMethodBuilder >> defaultCollectionMemberTypes [
 	^ self slotClass new collectionMemberTypes
@@ -161,6 +169,12 @@ LcsSlotDefintionMethodBuilder >> hasNoSlotTypes [
 	^ self slotTypes isEmpty and: [ self slotDefinitionClassHasNoSlotTypes ]
 ]
 
+{ #category : #initialize }
+LcsSlotDefintionMethodBuilder >> initialize [
+	super initialize.
+	self slotCategory: '<slotDefinition>'
+]
+
 { #category : #'instance  creation' }
 LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
 	self 
@@ -206,6 +220,16 @@ LcsSlotDefintionMethodBuilder >> required [
 { #category : #accessing }
 LcsSlotDefintionMethodBuilder >> required: aBoolean [
 	self properties at: 'required' put: aBoolean
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotCategory [
+	^ slotCategory
+]
+
+{ #category : #accessing }
+LcsSlotDefintionMethodBuilder >> slotCategory: aString [
+	slotCategory := aString
 ]
 
 { #category : #testing }

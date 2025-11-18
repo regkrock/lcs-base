@@ -28,7 +28,7 @@ LcsStringSlot >> allowEmptyIntialValueDescription [
 
 { #category : #defaults }
 LcsStringSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | self typeClass new ]
+	^ [ :parentDomainObject :slot | self typeClass new ]
 ]
 
 { #category : #'default ui component' }

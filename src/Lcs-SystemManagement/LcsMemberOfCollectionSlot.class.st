@@ -16,7 +16,7 @@ LcsMemberOfCollectionSlot >> assignParent: aDomainObject to: newValue [
 
 { #category : #defaults }
 LcsMemberOfCollectionSlot >> defaultInitialValueBlock [
-	^ [:domainParent | self defaultInstance ]
+	^ [:parentDomainObject :slot | slot defaultInstance ]
 ]
 
 { #category : #'slot model' }

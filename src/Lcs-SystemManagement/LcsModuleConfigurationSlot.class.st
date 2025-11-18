@@ -13,9 +13,9 @@ LcsModuleConfigurationSlot class >> newOn: aConfigurationClass [
 
 { #category : #'object initialization' }
 LcsModuleConfigurationSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | 
+	^ [ :parentDomainObject :slot | 
 		(slot slotTypes any basicNew)
-			parent: domainObject;
+			parent: parentDomainObject;
 			yourself ]
 ]
 

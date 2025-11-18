@@ -31,11 +31,11 @@ LcsPhoneNumber class >> parentSlotDefinition [
 LcsPhoneNumber class >> phoneNumberTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsPhoneNumberType);
-		slotName: 'phoneNumberType';
-		collectionSlotName: 'phoneNumberTypes';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			slotTypes: (OrderedCollection with: LcsPhoneNumberType);
+			slotName: 'phoneNumberType';
+			collectionSlotName: 'phoneNumberTypes';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]
 
 { #category : #accessing }

@@ -29,9 +29,9 @@ LcsAccessorSlotExamples >> accessorSlot [
 	self assert: accessorSlot postUpdateActions hasNoElements.
 	self assert: accessorSlot postUpdateActions parent equals: accessorSlot.
 
-	self assert: accessorSlot initialValueBlock printString equals: '[ :domainObject :slot | 
+	self assert: accessorSlot initialValueBlock printString equals: '[ :parentDomainObject :slot | 
 		(slot slotTypes any new)
-			parent: domainObject;
+			parent: parentDomainObject;
 			yourself ]'.
 
 	^ accessorSlot

@@ -5,12 +5,14 @@ Class {
 }
 
 { #category : #initialize }
+LcsModuleNameSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject | parentDomainObject class defaultModuleName ]
+]
+
+{ #category : #initialize }
 LcsModuleNameSlot >> initialize [
 	super initialize.
-	self 
+	self
 		slotName: 'moduleName';
-		priority: 1;
-		initialValueBlock: [ :module | module class defaultModuleName ]
-
-		
+		priority: 1
 ]

@@ -5,7 +5,6 @@ Class {
 }
 
 { #category : #initialize }
-LcsSingletonLabelSlot >> initialize [
-	super initialize.
-	self initialValueBlock: [ :anInstance | anInstance class defaultLabel ]
+LcsSingletonLabelSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject | parentDomainObject class defaultLabel ]
 ]

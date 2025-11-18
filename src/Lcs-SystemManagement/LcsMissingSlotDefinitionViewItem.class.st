@@ -14,6 +14,11 @@ LcsMissingSlotDefinitionViewItem class >> on: anInstVarName domainClass: aClass 
 		yourself
 ]
 
+{ #category : #private }
+LcsMissingSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
+	^ false
+]
+
 { #category : #accessing }
 LcsMissingSlotDefinitionViewItem >> domainClass [
 	^ domainClass

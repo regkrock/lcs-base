@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsBooleanSlot >> defaultInitialValueBlock [ 
-	^ [ :domainObject :slot | false ]
+	^ [ :parentDomainObject :slot | false ]
 ]
 
 { #category : #configuration }

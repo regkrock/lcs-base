@@ -19,6 +19,11 @@ LcsPrimaryCollectionSlot >> collectionMemberTypesList [
 	^ stream contents
 ]
 
+{ #category : #initialize }
+LcsPrimaryCollectionSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject :slot | slot newObjectWithParent: parentDomainObject ]
+]
+
 { #category : #'gt views' }
 LcsPrimaryCollectionSlot >> gtSlotDefinitionAttributes [
 	| attributes |
@@ -31,9 +36,9 @@ LcsPrimaryCollectionSlot >> gtSlotDefinitionAttributes [
 ]
 
 { #category : #initialize }
-LcsPrimaryCollectionSlot >> initialize [ 
+LcsPrimaryCollectionSlot >> initialize [
 	super initialize.
-	self initialValueBlock: [ :parentDomainObject :slotDefinition | slotDefinition newObjectWithParent: parentDomainObject ]
+	self initialValueBlock: self defaultInitialValueBlock
 ]
 
 { #category : #testing }

@@ -145,11 +145,6 @@ LcsAccessorSlot >> allowNullDescription [
 
 ]
 
-{ #category : #converting }
-LcsAccessorSlot >> asViewItem [
-	^ LcsExtantSlotDefinitionViewItem on: self 
-]
-
 { #category : #'slot model' }
 LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 	newValue isDomainObject ifTrue: [
@@ -215,9 +210,9 @@ LcsAccessorSlot >> currentSlotVarIn: aDomainObject [
 
 { #category : #defaults }
 LcsAccessorSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | 
+	^ [ :parentDomainObject :slot | 
 		(slot slotTypes any new)
-			parent: domainObject;
+			parent: parentDomainObject;
 			yourself ]
 ]
 
@@ -443,9 +438,9 @@ LcsAccessorSlot >> newObjectWithParent: parentDomainObject [
 		newObject := self slotTypes any basicNew.
 		parentDomainObject perform: self setterSelector with: newObject.
 		^ newObject
-			parent: parentDomainObject;
-			initialize;
-			yourself
+				parent: parentDomainObject;
+				initialize;
+				yourself
 ]
 
 { #category : #'slot model' }
@@ -610,13 +605,21 @@ LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject oldValue: anExistingOb
 			cull: self
 			cull: aDomainObject.
 	self hasPermissionToWriteSlotOf: aDomainObject.
-	self variableUpdatePolicy
-		slotVarPut: transformedObject
-		in: aDomainObject
-		oldValue: anExistingObject.
+	self
+		updateVariableIn: aDomainObject
+		oldValue: anExistingObject
+		with: transformedObject.
 	self postUpdateActions
 		execute: transformedObject
 		context: aDomainObject
+		oldValue: anExistingObject
+]
+
+{ #category : #'slot model' }
+LcsAccessorSlot >> updateVariableIn: aDomainObject oldValue: anExistingObject with: transformedObject [
+	self variableUpdatePolicy
+		slotVarPut: transformedObject
+		in: aDomainObject
 		oldValue: anExistingObject
 ]
 

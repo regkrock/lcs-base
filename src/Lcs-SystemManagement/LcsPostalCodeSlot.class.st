@@ -5,11 +5,15 @@ Class {
 }
 
 { #category : #initialize }
+LcsPostalCodeSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject :slot | parentDomainObject country postalCodeClass new ]
+]
+
+{ #category : #initialize }
 LcsPostalCodeSlot >> initialize [
 	super initialize.
 	self slotName: 'postalCode'.
 	self addSubclassesOf: LcsBasePostCode.
-	self initialValueBlock: [ :domainObject :slot | domainObject country postalCodeClass new ].
 	self priority: 18.
 	self required: true
 ]

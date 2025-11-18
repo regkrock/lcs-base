@@ -58,6 +58,11 @@ LcsBaseSlot >> addSlotType: aClass [
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
 
+{ #category : #converting }
+LcsBaseSlot >> asViewItem [
+	^ LcsSlotDefinitionViewItem on: self 
+]
+
 { #category : #configuration }
 LcsBaseSlot >> clearSlotTypes [
 	self slotTypes removeAll.
@@ -214,7 +219,8 @@ LcsBaseSlot >> gtSlotDefinitionAttributes [
 	| collection |
 	collection := OrderedCollection new
 			add: 'domainClass' -> self newDomainClassName;
-			add: 'slotDefinition' -> self;
+			add: 'slotDefinition' -> self domainClass;
+			add: 'category' -> self slotCategory ;
 			add: 'slotDefinitionClass' -> self class;
 			yourself.
 	self addPropertiesTo: collection.
@@ -393,6 +399,14 @@ LcsBaseSlot >> propertyAt: aKey put: anObject [
 LcsBaseSlot >> removeSlotType: aClass [
 	self assert: aClass isClass.
 	(self slotTypes includes: aClass) ifTrue: [ self slotTypes remove: aClass ]
+]
+
+{ #category : #asking }
+LcsBaseSlot >> slotCategory [
+	self domainClass ifNil: [ ^ '<unknown>' ].
+	^ (self domainClass class pragmas
+		detect: [ :e | e methodSelector = self slotDefinitionSelector ]
+		ifNone: [ ^ '<unknown>' ]) selector
 ]
 
 { #category : #defaults }

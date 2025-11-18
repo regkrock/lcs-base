@@ -16,7 +16,7 @@ LcsDomainClassSlot >> convertStringToClassBlock [
 
 { #category : #defaults }
 LcsDomainClassSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | slot slotTypes any ]
+	^ [ :parentDomainObject :slot | slot slotTypes any ]
 ]
 
 { #category : #initialize }

@@ -181,13 +181,13 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> localCollectionSlotBuilderFo
 { #category : #builders }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> memberOfSlotBuilderFor: aTargetClass [ 
 	^ LcsMemberOfGlobalCollectionSlotBuilder new
-		targetClassName: aTargetClass name;
-		slotName: self domainInstanceSlotName;
-		collectionSlotName: self collectionSlotName;
-		collectionSlotModuleName: self collectionModuleClass defaultModuleName;
-		addSlotType: self newDomainClassName;
-		collectionSourceClassName: self collectionClassName;
-		yourself
+			targetClassName: aTargetClass name;
+			slotName: self domainInstanceSlotName;
+			collectionSlotName: self collectionSlotName;
+			collectionSlotModuleName: self collectionModuleClass defaultModuleName;
+			addSlotType: self newDomainClassName;
+			collectionSourceClassName: self collectionClassName;
+			yourself
 ]
 
 { #category : #accessing }

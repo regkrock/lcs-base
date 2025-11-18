@@ -33,12 +33,12 @@ LcsAuthor class >> parentSlotDefinition [
 LcsAuthor class >> personSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotName: 'person';
-		collectionSlotName: 'persons';
-		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
-		initialValueBlock: [ :domainParent :slotDefinition | slotDefinition targetCollection unknown ];
-		addSlotType: LcsBasePerson;
-		yourself
+			slotName: 'person';
+			collectionSlotName: 'persons';
+			collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
+			initialValueBlock: [ :domainParent :slot | slot targetCollection unknown ];
+			addSlotType: LcsBasePerson;
+			yourself
 ]
 
 { #category : #accessing }

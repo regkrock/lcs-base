@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsMemberOfCollectionInSiblingSlotObjectSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | (slot targetCollectionIn: domainObject) defaultInstance ]
+	^ [ :parentDomainObject :slot | (slot targetCollectionIn: parentDomainObject) defaultInstance ]
 ]
 
 { #category : #properties }

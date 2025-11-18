@@ -11,14 +11,14 @@ Class {
 LxxOrganization class >> chiefExecutiveOfficerSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotName: 'chiefExecutiveOfficer';
-		collectionSlotName: 'persons';
-		collectionSlotModuleName: LxxPersonsModule defaultModuleName;
-		addSlotType: LxxPerson;
-		"addSlotType: UndefinedObject;"
-		addSlotType: LxxUnknownPerson;
-		beRequired;
-		yourself
+			slotName: 'chiefExecutiveOfficer';
+			collectionSlotName: 'persons';
+			collectionSlotModuleName: LxxPersonsModule defaultModuleName;
+			addSlotType: LxxPerson;
+			"addSlotType: UndefinedObject;"
+			addSlotType: LxxUnknownPerson;
+			beRequired;
+			yourself
 ]
 
 { #category : #accessing }

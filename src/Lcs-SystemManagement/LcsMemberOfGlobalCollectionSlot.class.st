@@ -31,8 +31,8 @@ LcsMemberOfGlobalCollectionSlot >> addOtherSlotDefinitionDetailsTo: collection [
 	collection
 		add: '' -> '';
 		add: '------Source Collection Info------' -> ''.
-	collection add: 'source collection' ->self targetCollection.
-	collection add: 'source module' -> self collectionModule
+	collection add: 'source collection' ->self collectionSlotName.
+	collection add: 'source module' -> self collectionSlotModuleName
 ]
 
 { #category : #'slot model' }

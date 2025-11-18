@@ -28,6 +28,15 @@ LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 		reject: [ :each | (each inheritsFrom: LcsBaseDomainObject) not ]
 ]
 
+{ #category : #'slot model' }
+LcsBaseDomainObject class >> allSlotDefinitionPragmas [
+	^ OrderedCollection new
+		addAll: self accessorSlotDefinitionPragmas;
+		addAll: self facadeSlotDefinitionPragmas;
+		addAll: self virtualSlotDefinitionPragmas;
+		yourself
+]
+
 { #category : #'slot model - verification' }
 LcsBaseDomainObject class >> assertDomainSlotRemoved: aSlotName [
 	self assert: (self hasSlotDefinitionNamed: aSlotName) not.
@@ -260,22 +269,14 @@ LcsBaseDomainObject class >> isSlotModelReleased [
 
 { #category : #'slot model' }
 LcsBaseDomainObject class >> localSlotDefinitionViewItems [
-	| allSlotDefinitionViewItems accessorSlotDefinitionViewItems |
-	allSlotDefinitionViewItems := OrderedCollection new.
-	accessorSlotDefinitionViewItems := self viewItemsFrom: self accessorSlotDefinitionPragmas.
-	allSlotDefinitionViewItems 
-		addAll: accessorSlotDefinitionViewItems.
-	allSlotDefinitionViewItems
-		addAll: (self viewItemsFrom: self virtualSlotDefinitionPragmas).
-	allSlotDefinitionViewItems
-		addAll: (self viewItemsFrom: self facadeSlotDefinitionPragmas).
-	self instVarNames
+	^ self viewItemsFrom: self allSlotDefinitionPragmas.
+	"self instVarNames
 		do: [ :eachInstVarName | 
 			accessorSlotDefinitionViewItems
 				detect: [ :eachItem | eachItem slotName asString = eachInstVarName asString ]
 				ifNone: [ allSlotDefinitionViewItems
 						add: (LcsMissingSlotDefinitionViewItem on: eachInstVarName domainClass: self) ] ].
-	^ allSlotDefinitionViewItems
+	^ allSlotDefinitionViewItems"
 ]
 
 { #category : #'instance creation' }

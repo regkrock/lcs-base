@@ -15,21 +15,23 @@ LcsMethodStreamTest >> testCreateEmptySelectorSourceCode [
 { #category : #test }
 LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCode [
 	self subject: LcsMethodStream new.
-	self subject startSlotDefintionSource: 'testMethod'.
+	self subject startSlotDefintionSource: 'testMethod' slotCategory: '<slotDefinition>'.
 	self assert: subject indentLevel equals: 1.
-	self assert: self subject contents equals: 
-'testMethod
+	self
+		assert: self subject contents
+		equals: 'testMethod
 	<slotDefinition>'
 ]
 
 { #category : #test }
 LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCodeWithBuilderClass [
 	self subject: LcsMethodStream new.
-	self subject startSlotDefintionSource: 'testMethod'.
+	self subject startSlotDefintionSource: 'testMethod' slotCategory: '<slotDefinition>'.
 	self subject addSlotDefinitionClassCreatonLine: 'LcsStringSlot'.
 	self assert: subject indentLevel equals: 2.
-	self assert: self subject contents equals: 
-'testMethod
+	self
+		assert: self subject contents
+		equals: 'testMethod
 	<slotDefinition>
 	^ LcsStringSlot new'
 ]

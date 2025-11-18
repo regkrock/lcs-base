@@ -9,7 +9,7 @@ Class {
 
 { #category : #defaults }
 LcsSymbolSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | #'' ]
+	^ [ :parentDomainObject :slot | #'' ]
 ]
 
 { #category : #'slot definitions' }

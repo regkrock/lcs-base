@@ -52,22 +52,22 @@ LcsLibraryItem class >> itemNameSlotDefinition [
 LcsLibraryItem class >> libraryCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotName: 'libraryCategory';
-		collectionSlotName: 'libraryCategories';
-		collectionSlotModuleName: 'WarRabbitLibrary';
-		beRequired;
-		yourself
+			slotName: 'libraryCategory';
+			collectionSlotName: 'libraryCategories';
+			collectionSlotModuleName: 'WarRabbitLibrary';
+			beRequired;
+			yourself
 ]
 
 { #category : #'slot definitions' }
 LcsLibraryItem class >> librearyCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotName: 'libraryCategory';
-		collectionSlotName: 'libraryCategories';
-		collectionSlotModuleName: 'WarRabbitLibrary';
-		beRequired;
-		yourself
+			slotName: 'libraryCategory';
+			collectionSlotName: 'libraryCategories';
+			collectionSlotModuleName: 'WarRabbitLibrary';
+			beRequired;
+			yourself
 ]
 
 { #category : #'instance creation' }

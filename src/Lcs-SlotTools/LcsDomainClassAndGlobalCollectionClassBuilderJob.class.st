@@ -130,13 +130,13 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassBuilderStep [
 { #category : #builders }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 	^ LcsMemberOfGlobalCollectionSlotBuilder new
-		target: aTargetClass;
-		targetClassName: aTargetClass name;
-		slotName: self domainInstanceSlotName;
-		collectionSlotName: self collectionSlotName;
-		targetModuleClass: self collectionModuleClass;
-		addSlotType: self newDomainClassName;
-		yourself
+			target: aTargetClass;
+			targetClassName: aTargetClass name;
+			slotName: self domainInstanceSlotName;
+			collectionSlotName: self collectionSlotName;
+			targetModuleClass: self collectionModuleClass;
+			addSlotType: self newDomainClassName;
+			yourself
 ]
 
 { #category : #builders }

@@ -19,13 +19,13 @@ LcsSecurityModule class >> configurationSlotDefinition [
 LcsSecurityModule class >> currentUserSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotName: 'currentUser';
-		collectionSlotName: 'users';
-		collectionSlotModuleName: self defaultModuleName;
-		initialValueBlock: [ :securityModule | securityModule users superUser ];
-		addSlotType: LcsBaseUser;
-		priority: 60;
-		yourself
+			slotName: 'currentUser';
+			collectionSlotName: 'users';
+			collectionSlotModuleName: self defaultModuleName;
+			initialValueBlock: [ :securityModule | securityModule users superUser ];
+			addSlotType: LcsBaseUser;
+			priority: 60;
+			yourself
 ]
 
 { #category : #configuration }
@@ -75,6 +75,11 @@ LcsSecurityModule >> currentUser [
 { #category : #accessing }
 LcsSecurityModule >> currentUser: anObject [
 	self slotVarNamed: 'currentUser' put: anObject 
+]
+
+{ #category : #security }
+LcsSecurityModule >> hasPermissionToAddToSlot: aSlotDefinition in: aDomainObject [ 
+	^ true
 ]
 
 { #category : #security }

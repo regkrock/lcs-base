@@ -4,6 +4,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Core'
 }
 
+{ #category : #private }
+LcsExtantSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
+	^ aSlotCategory = #slotDefinition
+]
+
 { #category : #initialize }
 LcsExtantSlotDefinitionViewItem >> initializeOn: aSlotDefinition [ 
 	super initializeOn: aSlotDefinition.

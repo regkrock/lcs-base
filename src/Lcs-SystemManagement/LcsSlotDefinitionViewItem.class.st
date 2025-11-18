@@ -9,9 +9,15 @@ Class {
 
 { #category : #'instance creation' }
 LcsSlotDefinitionViewItem class >> on: aSlotDefinition [
-	^ self new
+	^ (self volunteerFor: aSlotDefinition slotCategory) new
 		initializeOn: aSlotDefinition;
 		yourself
+]
+
+{ #category : #private }
+LcsSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
+	self allSubclassesDo: [ :eachClass | (eachClass volunteerFor: aSlotCategory) ifTrue: [ ^ eachClass ] ].
+	self error: 'No class found'
 ]
 
 { #category : #'as yet unclassified' }

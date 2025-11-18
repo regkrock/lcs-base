@@ -39,6 +39,18 @@ LcsBasePerson class >> genderSlotDefinition [
 ]
 
 { #category : #'slot definitions' }
+LcsBasePerson class >> homeEmailAddressSlotDefinition [
+	<facadeSlotDefinition>
+	^ LcsInstanceInLocalCollectionSlot new
+			slotName: 'homeEmailAddress';
+			addSlotType: LcsEmailAddress;
+			required: false;
+			typeCode: 'home';
+			collectionSlotName: 'emailAddresses';
+			yourself
+]
+
+{ #category : #'slot definitions' }
 LcsBasePerson class >> middleNamesSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -63,11 +75,11 @@ LcsBasePerson class >> surnameSlotDefinition [
 LcsBasePerson class >> titleSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotName: 'title';
-		addSlotType: LcsTitle;
-		collectionSlotName: 'titles';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			slotName: 'title';
+			addSlotType: LcsTitle;
+			collectionSlotName: 'titles';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]
 
 { #category : #accessing }
@@ -103,6 +115,16 @@ LcsBasePerson >> gender [
 { #category : #accessing }
 LcsBasePerson >> gender: anObject [
 	self slotVarNamed: 'gender' put: anObject
+]
+
+{ #category : #accessing }
+LcsBasePerson >> homeEmailAddress [
+	^ self slotVarNamed: 'homeEmailAddress'
+]
+
+{ #category : #accessing }
+LcsBasePerson >> homeEmailAddress: anObject [
+	self slotVarNamed: 'homeEmailAddress' put: anObject
 ]
 
 { #category : #accessing }

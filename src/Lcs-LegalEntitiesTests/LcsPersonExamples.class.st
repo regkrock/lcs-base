@@ -25,10 +25,19 @@ LcsPersonExamples >> johnFreeman [
 	self assert: person fullName = 'John Edgar Freeman'.
 	self assert: person entityName = 'John Edgar Freeman'.
 	self assert: (person mainAddress isKindOf: LcsAddress).
-	self assert: (person emailAddress isKindOf: LcsEmailAddress).
-	self assert: person emailAddress email isEmpty.
+	self assert: (person emailAddresses isKindOf: LcsEmailAddresses).
+	self assert: person emailAddresses hasNoElements.
 	
 	^ person
+]
+
+{ #category : #examples }
+LcsPersonExamples >> johnFreemanHomeEmail [
+	<gtExample>
+	^ LcsEmailAddress new
+		emailAddressType: 'home';
+		email: 'johnfreeman@gmail.com';
+		yourself
 ]
 
 { #category : #examples }
@@ -60,5 +69,17 @@ LcsPersonExamples >> johnFreemanWithAddress [
 	"person mainAddress postalCode: 'K8A 6W8'.
 	person mainAddress postalCode asString equals: 'K8A 6W8'."
 
+	^ person
+]
+
+{ #category : #examples }
+LcsPersonExamples >> johnFreemanWithEmailAddress [
+	<gtExample>
+	| person aHomeEmail |
+	person := self johnFreeman.
+	self assert: person emailAddresses hasNoElements.
+	self assert: person homeEmailAddress equals: person emailAddresses defaultInstance.
+	person homeEmailAddress: (aHomeEmail := self johnFreemanHomeEmail).
+	self assert: person homeEmailAddress = aHomeEmail.
 	^ person
 ]

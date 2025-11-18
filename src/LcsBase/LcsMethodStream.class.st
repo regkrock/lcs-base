@@ -150,9 +150,9 @@ LcsMethodStream >> startMethodSource: aSelector [
 ]
 
 { #category : #building }
-LcsMethodStream >> startSlotDefintionSource: aSelector [
+LcsMethodStream >> startSlotDefintionSource: aSelector slotCategory: aString [
 	self startMethodSource: aSelector.
-	self newLine nextPutAll: '<slotDefinition>'.
+	self newLine nextPutAll: aString.
 ]
 
 { #category : #accessing }

@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsTimeSlot >> defaultInitialValueBlock [
-	^ [ :domainObject :slot | self typeClass now ]
+	^ [ :parentDomainObject :slot | slot typeClass now ]
 ]
 
 { #category : #initialize }

@@ -7,6 +7,11 @@ Class {
 	#category : #'Lcs-SystemManagement-Core'
 }
 
+{ #category : #private }
+LcsAccessorSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
+	^ false
+]
+
 { #category : #initialize }
 LcsAccessorSlotDefinitionViewItem >> initialize [
 	super initialize.

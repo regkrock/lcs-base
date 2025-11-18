@@ -5,8 +5,12 @@ Class {
 }
 
 { #category : #initialize }
+LcsSingletonCodeIsDefaultInstanceSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject | parentDomainObject class defaultInstance ]
+]
+
+{ #category : #initialize }
 LcsSingletonCodeIsDefaultInstanceSlot >> initialize [
 	super initialize.
-	self slotName: 'isDefaultInstance'.
-	self initialValueBlock: [ :anInstance | anInstance class defaultInstance ]
+	self slotName: 'isDefaultInstance'
 ]

@@ -4,22 +4,10 @@ Class {
 	#instVars : [
 		'mainAddress',
 		'phoneNumber',
-		'emailAddress',
 		'emailAddresses'
 	],
 	#category : #'Lcs-LegalEntities'
 }
-
-{ #category : #'slot definitions' }
-LcsLegalEntity class >> emailAddressSlotDefinition [
-	<slotDefinition>
-	^ LcsMemberOfGlobalCollectionSlot new
-			addSlotType: LcsEmailAddress;
-			slotName: 'emailAddress';
-			collectionSlotName: 'emailAddresses';
-			collectionSlotModuleName: 'Legal Entities Module';
-			yourself
-]
 
 { #category : #'slot definitions' }
 LcsLegalEntity class >> emailAddressesSlotDefinition [
@@ -61,16 +49,6 @@ LcsLegalEntity class >> phoneNumberSlotDefinition [
 			collectionSlotName: 'phoneNumbers';
 			collectionSlotModuleName: 'Legal Entities Module';
 			yourself
-]
-
-{ #category : #accessing }
-LcsLegalEntity >> emailAddress [
-	^ self slotVarNamed: 'emailAddress'
-]
-
-{ #category : #accessing }
-LcsLegalEntity >> emailAddress: anObject [
-	self slotVarNamed: 'emailAddress' put: anObject
 ]
 
 { #category : #accessing }

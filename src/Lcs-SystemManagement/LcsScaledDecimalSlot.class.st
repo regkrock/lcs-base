@@ -6,7 +6,7 @@ Class {
 
 { #category : #defaults }
 LcsScaledDecimalSlot >> defaultInitialValueBlock [ 
-	^ [ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]
+	^ [ :parentDomainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]
 ]
 
 { #category : #initialize }

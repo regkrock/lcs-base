@@ -12,11 +12,13 @@ Class {
 LcsEmailAddress class >> emailAddressTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsEmailAddressType);
-		slotName: 'emailAddressType';
-		collectionSlotName: 'emailAddressTypes';
-		collectionSlotModuleName: 'Legal Entities Module';
-		yourself
+			addSlotType: LcsEmailAddressType;
+			slotName: 'emailAddressType';
+			prevalidationTransformBlock:[ :value :slot | 
+				slot targetCollection findItemMatchingCode: value ];
+			collectionSlotName: 'emailAddressTypes';
+			collectionSlotModuleName: 'Legal Entities Module';
+			yourself
 ]
 
 { #category : #'slot definitions' }
@@ -24,7 +26,7 @@ LcsEmailAddress class >> emailSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'email';
-		addValidationCondition: [ :value :domainObject :oldValue | value isInvalidEmailFormat ] description: 'Invalid format';
+		addValidationCondition: [ :value :domainObject :oldValue | "value isInvalidEmailFormat" false ] description: 'Invalid format';
 		yourself
 ]
 

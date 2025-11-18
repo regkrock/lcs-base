@@ -7,13 +7,17 @@ Class {
 }
 
 { #category : #initialize }
+LcsSystemStatusSlot >> defaultInitialValueBlock [
+	^ [ :parentDomainObject | 
+	LcsSystemActiveStatus new
+		parent: parentDomainObject;
+		yourself ]
+]
+
+{ #category : #initialize }
 LcsSystemStatusSlot >> initialize [
 	super initialize.
-	self 
+	self
 		slotName: 'status';
-		addSlotType: LcsBaseSystemStatus;
-		initialValueBlock: [ :domainParent | 
-			(LcsSystemActiveStatus new)
-				parent: domainParent;
-				yourself]
+		addSlotType: LcsBaseSystemStatus
 ]
