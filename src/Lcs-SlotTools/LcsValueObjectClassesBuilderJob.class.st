@@ -91,11 +91,13 @@ LcsValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuilder [
 
 { #category : 'builders' }
 LcsValueObjectClassesBuilderJob >> valueObjectsLoaderBuilder [
-	^ LcsValueObjectsLoaderClassBuilder new
-		newClassName: self collectionClassName , 'Loader';
-		instanceClassName: self newDomainClassName;
-		unknownClassName: self unknownClassName;
-		targetPackageName: self targetPackageName;
-		protoCodes: self protoCodes;
-		yourself
+	| builder |
+	builder := LcsValueObjectsLoaderClassBuilder new
+			newClassName: self collectionClassName , 'Loader';
+			instanceClassName: self newDomainClassName;
+			targetPackageName: self targetPackageName;
+			protoCodes: self protoCodes.
+	self buildUnknownClass ifTrue: [
+			builder unknownClassName: self unknownClassName].
+	^ builder
 ]

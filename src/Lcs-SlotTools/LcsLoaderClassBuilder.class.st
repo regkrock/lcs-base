@@ -34,7 +34,7 @@ LcsLoaderClassBuilder >> _verifyCodeInstallation [
 LcsLoaderClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	super addRefactoringTextDetailsTo: aStream.
 	aStream cr; cr.
-	aStream nextPutAll: self targetClassMethodSource; cr; cr..
+	aStream nextPutAll: self targetClassMethodSource; cr; cr.
 	self unknownClassName notNil ifTrue: [
 		aStream nextPutAll: self unknownClassMethodSource; cr; cr].
 	aStream nextPutAll: self dataMethodSource
