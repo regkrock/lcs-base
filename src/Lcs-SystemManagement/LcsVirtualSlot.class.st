@@ -14,11 +14,6 @@ LcsVirtualSlot class >> isVirtualSlot [
 	^ true
 ]
 
-{ #category : 'convenience' }
-LcsVirtualSlot class >> slotKind [
-	^ 'virtual'
-]
-
 { #category : 'slot model' }
 LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 	^ self valueAccessBlock value: aDomainObject

@@ -37,11 +37,6 @@ LcsBaseSlot class >> isVirtualSlot [
 	^ false
 ]
 
-{ #category : 'defaults' }
-LcsBaseSlot class >> slotKind [
-	^ 'base'
-]
-
 { #category : 'gt views' }
 LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
 ]
@@ -405,10 +400,8 @@ LcsBaseSlot >> removeSlotType: aClass [
 
 { #category : 'asking' }
 LcsBaseSlot >> slotCategory [
-	self domainClass ifNil: [ ^ '<unknown>' ].
-	^ (self domainClass class pragmas
-		detect: [ :e | e methodSelector = self slotDefinitionSelector ]
-		ifNone: [ ^ '<unknown>' ]) selector
+	self domainClass ifNil: [ ^ nil ].
+	^ (self domainClass slotCategoryOf: self slotDefinitionSelector)
 ]
 
 { #category : 'defaults' }
@@ -457,7 +450,10 @@ LcsBaseSlot >> slotDefinitionSelector [
 
 { #category : 'defaults' }
 LcsBaseSlot >> slotKind [
-	^ self class slotKind
+	| string |
+	string := self slotCategory.
+	string = 'slotDefinition' ifTrue: [ ^ 'accessor' ].
+	^ string copyFrom: 1 to: ((string findString: 'SlotDefinition') - 1)
 ]
 
 { #category : 'properties' }

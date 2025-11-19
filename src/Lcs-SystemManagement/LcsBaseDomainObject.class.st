@@ -99,7 +99,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 		priority: 18;
 		items: [ self slotDefinitionViewItems ];
 		column: 'Slot' text: [ :each | each slotName ] width: 100;
-		column: 'Kind' text: [ :each | each slotKind ] width: 70;
+		column: 'Kind' text: [ :each | each slotCategory ] width: 70;
 		column: 'InstVar' text: [ :each | each instVarName ] width: 100;
 		column: 'Getter' text: [ :each | each getterSelector ] width: 100;
 		column: 'Setter' text: [ :each | each setterSelector ] width: 100;
@@ -346,6 +346,13 @@ LcsBaseDomainObject class >> removeSetter: aSetterSelector [
 { #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeSlotDefinition: aSlotDefinitionSelector [
 	self class removeSelector: aSlotDefinitionSelector asSymbol
+]
+
+{ #category : 'slot model' }
+LcsBaseDomainObject class >> slotCategoryOf: aSlotDefinitionSelector [
+	^ (self class pragmas
+		detect: [ :e | e methodSelector = aSlotDefinitionSelector ]
+		ifNone: [ ^ nil ]) selector
 ]
 
 { #category : 'slot model' }

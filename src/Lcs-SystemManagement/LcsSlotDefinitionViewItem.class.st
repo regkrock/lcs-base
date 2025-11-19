@@ -68,6 +68,11 @@ LcsSlotDefinitionViewItem >> priority [
 ]
 
 { #category : 'slot definition' }
+LcsSlotDefinitionViewItem >> slotCategory [
+	^ self slotDefinition slotCategory
+]
+
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotClass [
 	^ self slotDefinition class
 ]

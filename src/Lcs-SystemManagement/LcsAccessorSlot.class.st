@@ -40,11 +40,6 @@ LcsAccessorSlot class >> isAccessorSlot [
 	^ true
 ]
 
-{ #category : 'querying' }
-LcsAccessorSlot class >> slotKind [
-	^ 'accessor'
-]
-
 { #category : 'configuration' }
 LcsAccessorSlot class >> valueDomainObjectOldValueBlockArguments [
 	^ #('value' 'domainObject' 'oldValue')

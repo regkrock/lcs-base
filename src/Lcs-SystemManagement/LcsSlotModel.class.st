@@ -69,12 +69,8 @@ LcsSlotModel >> addAccessorSlotDefinitionsTo: aCollection [
 
 { #category : 'model' }
 LcsSlotModel >> addAllSlotDefinitionsTo: aCollection [
-	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
-		aCollection detect: [ :each | each slotName = eachSlotName ]
-			ifNone: [ aCollection add: eachSlotDefinition ] ].
-	self virtualSlotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
-		aCollection detect: [ :each | each slotName = eachSlotName ]
-			ifNone: [ aCollection add: eachSlotDefinition ] ].
+	self slotDefinitionGroups
+		do: [ :eachGroup | self addSlotDefinitions: eachGroup to: aCollection ].
 	self domainClass isRootDomainClass
 		ifFalse: [ self superClassSlotModel addAllSlotDefinitionsTo: aCollection ]
 ]
@@ -108,6 +104,15 @@ LcsSlotModel >> addSlotDefinition: aSlotDefinition [
 
 	aSlotDefinition parent: self.
 	self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
+]
+
+{ #category : 'model' }
+LcsSlotModel >> addSlotDefinitions: aSlotDefinitons to: aCollection [
+	aSlotDefinitons
+		keysAndValuesDo: [ :eachSlotName :eachSlotDefinition | 
+			aCollection
+				detect: [ :each | each slotName = eachSlotName ]
+				ifNone: [ aCollection add: eachSlotDefinition ] ]
 ]
 
 { #category : 'validation' }
@@ -327,6 +332,11 @@ LcsSlotModel >> printOn: aStream [
 { #category : 'slots' }
 LcsSlotModel >> removeSlotDefinitionNamed: aSlotName [
 	self slotDefinitions removeKey: aSlotName ifAbsent: [ ]
+]
+
+{ #category : 'model' }
+LcsSlotModel >> slotDefinitionGroups [
+	^ { self slotDefinitions. self facadeSlotDefinitions. self virtualSlotDefinitions }
 ]
 
 { #category : 'slots' }
