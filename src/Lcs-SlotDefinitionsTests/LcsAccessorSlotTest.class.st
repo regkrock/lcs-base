@@ -193,8 +193,8 @@ LcsAccessorSlotTest >> testUpdatingInitialValueBlockViaMagritteDescription [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	
 	description := self subject initialValueBlockDescription.
-	self assert: (description read: self subject) = '(slot slotTypes any new)
-			parent: domainObject;
+	self assert: (description read: self subject) equals: '(slot slotTypes any new)
+			parent: parentDomainObject;
 			yourself'.
 			
 	description write: '0' to: self subject.

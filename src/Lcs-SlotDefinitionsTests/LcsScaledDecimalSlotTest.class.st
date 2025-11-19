@@ -37,7 +37,7 @@ LcsScaledDecimalSlotTest >> testModifyingBlock [
 	self assert: aDescription notNil.
 	self assert: (aDescription read: self subject) asString equals: '0 asScaledDecimal: slot numberOfDecimals'.
 	aDescription write: '0 asScaledDecimal: slot numberOfDecimals' to: self subject.
-	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'.
+	self assert: self subject initialValueBlock asString equals: '[ :parentDomainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'.
 	self assert: self subject initialValueBlock isBlock
 ]
 

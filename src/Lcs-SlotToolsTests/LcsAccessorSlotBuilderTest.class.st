@@ -62,7 +62,7 @@ LcsAccessorSlotBuilderTest >> testInitalValueSetToNil [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject initialValueBlock printString equals: '[ ]'.
 	self subject populateFrom: LcsScaledDecimalSlot name.
-	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'.
+	self assert: self subject initialValueBlock printString equals: '[ :parentDomainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]'.
 	self subject initialValueBlockDescription write: 'nil' to: self subject.
 	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | nil ]'.
 	self assert: (self subject initialValueBlock cull: self cull: self) isNil
