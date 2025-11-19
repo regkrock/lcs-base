@@ -1,1 +1,1 @@
-Package { #name : #'Lcs-SlotDefinitionsTests' }
+Package { #name : 'Lcs-SlotDefinitionsTests' }

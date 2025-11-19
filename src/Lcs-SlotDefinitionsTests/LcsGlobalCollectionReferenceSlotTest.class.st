@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsGlobalCollectionReferenceSlotTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#name : 'LcsGlobalCollectionReferenceSlotTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsGlobalCollectionReferenceSlotTest >> testAddingNewDomainObjectToDomainCollection [
 	"This is using the definition in #testSlotDefinition. When a person is created, it is added to the 
 	 persons collection"
@@ -22,7 +24,7 @@ LcsGlobalCollectionReferenceSlotTest >> testAddingNewDomainObjectToDomainCollect
 	self assert: domainObject parent == self currentSystem persons 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsGlobalCollectionReferenceSlotTest >> testSlotDefinition [
 	self subject: (LcsGlobalCollectionReferenceSlot new
 						slotName: 'parent';

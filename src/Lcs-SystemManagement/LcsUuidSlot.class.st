@@ -8,7 +8,7 @@ Class {
 
 { #category : 'defaults' }
 LcsUuidSlot >> defaultInitialValueBlock [
-	^ [ :parentDomainObject :slot | parentDomainObject currentSystem uuidGenerator next asInteger  ]
+	^ [ :parentDomainObject :slot | UUID new asInteger ]
 ]
 
 { #category : 'defaults' }

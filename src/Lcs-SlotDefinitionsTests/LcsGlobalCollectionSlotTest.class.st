@@ -2,15 +2,17 @@
 The purpose of this class is test Global Colleciton Slot where it has not installed.
 "
 Class {
-	#name : #LcsGlobalCollectionSlotTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
+	#name : 'LcsGlobalCollectionSlotTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
 	#instVars : [
 		'codeJobBuilder'
 	],
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsGlobalCollectionSlotTest >> testDefaultCreation [
 	self subject: LcsGlobalCollectionSlot new.
 	self assert: self subject slotTypes isEmpty.

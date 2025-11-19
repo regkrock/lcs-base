@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsNumberSlotTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#name : 'LcsNumberSlotTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsNumberSlotTest >> testInitialValue [
 	self subject: (LxxPerson slotModel slotDefinitionNamed: 'weight').
 	self assert: (self subject isKindOf: LcsNumberSlot).
@@ -14,21 +16,21 @@ LcsNumberSlotTest >> testInitialValue [
 	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | 100 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsNumberSlotTest >> testInstallation [
 	subject := LxxPerson slotModel slotDefinitionNamed: 'weight'.
 	self assert: subject slotName equals: 'weight'.
 	self assert: subject class == LcsNumberSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsNumberSlotTest >> testSlotGetter [
 	| person |
 	person := LxxPerson new.
 	self assert: person weight isZero.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsNumberSlotTest >> testSlotSetter [
 	| person |
 	person := LxxPerson new.

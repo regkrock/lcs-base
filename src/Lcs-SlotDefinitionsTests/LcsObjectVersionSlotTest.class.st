@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsObjectVersionSlotTest,
-	#superclass : #LcsTestCase,
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#name : 'LcsObjectVersionSlotTest',
+	#superclass : 'LcsTestCase',
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsObjectVersionSlotTest >> testCreation [
 	subject := LcsObjectVersionSlot new.
 	self assert: (subject isKindOf: LcsObjectVersionSlot).

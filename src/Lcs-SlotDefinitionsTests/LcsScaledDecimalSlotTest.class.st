@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsScaledDecimalSlotTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#name : 'LcsScaledDecimalSlotTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsScaledDecimalSlotTest >> testInitialValue [
 	| person |
 	self subject: (LxxPerson slotModel slotDefinitionNamed: 'balance').
@@ -21,14 +23,14 @@ LcsScaledDecimalSlotTest >> testInitialValue [
 	self assert: person balance equals: 100.00s2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsScaledDecimalSlotTest >> testInstallation [
 	subject := LxxPerson slotModel slotDefinitionNamed: 'balance'.
 	self assert: subject slotName equals: 'balance'.
 	self assert: subject class == LcsScaledDecimalSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsScaledDecimalSlotTest >> testModifyingBlock [
 	| aDescription |
 	self subject: (LxxPerson slotDefinitionNamed: #balance).
@@ -41,7 +43,7 @@ LcsScaledDecimalSlotTest >> testModifyingBlock [
 	self assert: self subject initialValueBlock isBlock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsScaledDecimalSlotTest >> testSlotGetter [
 	| person |
 	person := LxxPerson new.
@@ -49,7 +51,7 @@ LcsScaledDecimalSlotTest >> testSlotGetter [
 	self assert: person balance equals: 0.00s2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsScaledDecimalSlotTest >> testSlotSetter [
 	| person |
 	person := LxxPerson new.

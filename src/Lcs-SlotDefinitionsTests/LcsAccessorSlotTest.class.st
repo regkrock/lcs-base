@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsAccessorSlotTest,
-	#superclass : #LcsTestCase,
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#name : 'LcsAccessorSlotTest',
+	#superclass : 'LcsTestCase',
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testAddingPostUpdateActions [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self subject addPostUpdateAction: (
@@ -17,7 +19,7 @@ LcsAccessorSlotTest >> testAddingPostUpdateActions [
 	self assert: self subject postUpdateActions collection any parent identicalTo: self subject postUpdateActions.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGeneration [
 	| aStream |
 	aStream := LcsMethodStream new.
@@ -31,7 +33,7 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGeneration [
 		yourself);'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithDifferentActionBlock [
 	| aStream |
 	aStream := LcsMethodStream new.
@@ -44,7 +46,7 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithDifferentAct
 		yourself);'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithNoChanges [
 	| aStream |
 	aStream := LcsMethodStream new.
@@ -54,7 +56,7 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithNoChanges [
 	LcsUpdateSiblingWithCollectionDefault new);'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testAddingValidationConditionAndDescription [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self subject addValidationCondition: [ :value | ] description: 'Test'.
@@ -62,7 +64,7 @@ LcsAccessorSlotTest >> testAddingValidationConditionAndDescription [
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testAllowNil [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self assert: self subject allowNil == false.
@@ -72,7 +74,7 @@ LcsAccessorSlotTest >> testAllowNil [
 	self assert: self subject isNilAllowed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testAllowNilDescription [
 	| margritteDescription |
 	self subject: LcsAccessorSlotExamples new accessorSlot.
@@ -82,7 +84,7 @@ LcsAccessorSlotTest >> testAllowNilDescription [
 	self assert: (margritteDescription read: self subject) = true.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testCreation [
 
 	self subject: LcsAccessorSlotExamples new accessorSlot.
@@ -92,7 +94,7 @@ LcsAccessorSlotTest >> testCreation [
 	self assert: (self subject slotTypes includes: Date)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testInitalValueSetToNil [
 	self subject:  LcsAccessorSlotExamples new accessorSlot.
 
@@ -101,7 +103,7 @@ LcsAccessorSlotTest >> testInitalValueSetToNil [
 	self assert: (self subject initialValueBlock cull: self cull: self) isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testPrevalidationTransformBlockDescription [
 	| description |
 	self subject: LcsAccessorSlotExamples new accessorSlot.
@@ -116,7 +118,7 @@ LcsAccessorSlotTest >> testPrevalidationTransformBlockDescription [
 	self assert: self subject prevalidationTransformBlock asString equals: '[ :value :slot | 0 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testRemovingPostUpdateAction [
 	| updateAction |
 	self subject: LcsAccessorSlotExamples new accessorSlotWithDummyPostUpdateAction.
@@ -127,7 +129,7 @@ LcsAccessorSlotTest >> testRemovingPostUpdateAction [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testRemovingValidationCondition [
 	| validationCondition |
 	self subject: LcsAccessorSlotExamples new accessorSlotWithDummyValidationAction.
@@ -137,7 +139,7 @@ LcsAccessorSlotTest >> testRemovingValidationCondition [
 	self assert: self subject validationConditions hasNoElements.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testRemovingValidationConditionViaDescription [
 	| validationCondition |
 	self subject: LcsAccessorSlotExamples new accessorSlotWithDummyValidationAction.
@@ -146,7 +148,7 @@ LcsAccessorSlotTest >> testRemovingValidationConditionViaDescription [
 	self assert: self subject validationConditions hasNoElements
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testRequried [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self assert: self subject isRequired not.
@@ -156,7 +158,7 @@ LcsAccessorSlotTest >> testRequried [
 	self assert: self subject isRequired not
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testSlotTypes [
 
 	self subject: LcsAccessorSlotExamples new accessorSlot.
@@ -176,7 +178,7 @@ LcsAccessorSlotTest >> testSlotTypes [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testSlotTypesDescription [
 	| description |
 	self subject: LcsAccessorSlotExamples new accessorSlot.
@@ -187,7 +189,7 @@ LcsAccessorSlotTest >> testSlotTypesDescription [
 	self assert: self subject slotTypes equals: (OrderedCollection with: String with: Integer).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testUpdatingInitialValueBlockViaMagritteDescription [
 	| description |
 	self subject: LcsAccessorSlotExamples new accessorSlot.
@@ -203,20 +205,20 @@ LcsAccessorSlotTest >> testUpdatingInitialValueBlockViaMagritteDescription [
 	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testValidationConditions [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self assert: self subject validationConditions class == LcsValidationConditions.
 	self assert: self subject validationConditions hasNoElements.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testValidationWithNoValidationConditions [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self shouldnt: (self subject validate: 'abc') raise: LcsSlotValidationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
 	| validator |
 	self subject: LcsAccessorSlotExamples new accessorSlot.
@@ -228,7 +230,7 @@ LcsAccessorSlotTest >> testValidationWithOneFailingValidationConditions [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testValidationWithOnePassingValidationConditions [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self subject addValidationCondition: [ :value |  
@@ -236,7 +238,7 @@ LcsAccessorSlotTest >> testValidationWithOnePassingValidationConditions [
 	self shouldnt: [ self subject validate: 1 ] raise: LcsSlotValidationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotTest >> testVariableUpdatePolicy [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self assert: self subject variableUpdatePolicyClass equals: LcsUnitOfWorkVariableUpdatePolicy.

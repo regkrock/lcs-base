@@ -1,24 +1,26 @@
 Class {
-	#name : #LcsStringSlotTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#name : 'LcsStringSlotTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsStringSlotTest >> testInstallation [
 	subject := LxxPerson slotModel slotDefinitionNamed: 'lastName'.
 	self assert: subject slotName equals: 'lastName'.
 	self assert: subject class == LcsStringSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsStringSlotTest >> testSlotGetter [
 	| person |
 	person := LxxPerson new.
 	self assert: person lastName isEmpty.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsStringSlotTest >> testSlotSetter [
 	| person |
 	person := LxxPerson new.

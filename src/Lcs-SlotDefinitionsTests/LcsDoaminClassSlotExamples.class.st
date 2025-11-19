@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDoaminClassSlotExamples,
-	#superclass : #LcsObjectExamples,
-	#category : #'Lcs-SlotDefinitionsTests-Examples'
+	#name : 'LcsDoaminClassSlotExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-SlotDefinitionsTests-Examples',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDoaminClassSlotExamples >> postalCodeClassUsingGenericDomainClassSlotClass [
 	<gtExample>
 	| slotDefinition |
@@ -22,7 +24,7 @@ LcsDoaminClassSlotExamples >> postalCodeClassUsingGenericDomainClassSlotClass [
 	^ slotDefinition
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDoaminClassSlotExamples >> provinceSubdvisionClassSlotUsingSpecializedDomainClassSlotClass [
 	<gtExample>
 	| slotDefinition |
@@ -39,7 +41,7 @@ LcsDoaminClassSlotExamples >> provinceSubdvisionClassSlotUsingSpecializedDomainC
 	^ slotDefinition
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDoaminClassSlotExamples >> provinceSubdvisionClassUsingGenericDomainClassSlotClass [
 	<gtExample>
 	| slotDefinition |

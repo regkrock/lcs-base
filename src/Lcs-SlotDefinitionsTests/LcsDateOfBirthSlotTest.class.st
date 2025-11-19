@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDateOfBirthSlotTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-SlotDefinitionsTests-Tests'
+	#name : 'LcsDateOfBirthSlotTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-SlotDefinitionsTests-Tests',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDateOfBirthSlotTest >> testChangedInitializeBlock [
 	| domainObject  initialDateOfBirth |
 
@@ -19,7 +21,7 @@ LcsDateOfBirthSlotTest >> testChangedInitializeBlock [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDateOfBirthSlotTest >> testChangedSlotInDomainObject [
 	| domainObject firstChangedDateOfBirth secondChangedDateOfBirth initialDateOfBirth |
 

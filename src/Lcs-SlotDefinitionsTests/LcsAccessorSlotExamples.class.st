@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsAccessorSlotExamples,
-	#superclass : #LcsObjectExamples,
-	#category : #'Lcs-SlotDefinitionsTests-Examples'
+	#name : 'LcsAccessorSlotExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-SlotDefinitionsTests-Examples',
+	#package : 'Lcs-SlotDefinitionsTests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlot [
 	<gtExample>
 	| accessorSlot |
@@ -37,7 +39,7 @@ LcsAccessorSlotExamples >> accessorSlot [
 	^ accessorSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithBasicPostUpdateActions [
 	<gtExample>
 	| accessorSlot |
@@ -48,7 +50,7 @@ LcsAccessorSlotExamples >> accessorSlotWithBasicPostUpdateActions [
 	^ accessorSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithDummyPostUpdateAction [
 	<gtExample>
 	| accessorSlot |
@@ -57,7 +59,7 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyPostUpdateAction [
 	^ accessorSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithDummyValidationAction [
 	<gtExample>
 	| accessorSlot |
@@ -66,7 +68,7 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyValidationAction [
 	^ accessorSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithPostUpdateActions [
 	<gtExample>
 	| accessorSlot |
@@ -82,7 +84,7 @@ LcsAccessorSlotExamples >> accessorSlotWithPostUpdateActions [
 	^ accessorSlot
 ]
 
-{ #category : #support }
+{ #category : 'support' }
 LcsAccessorSlotExamples >> addDummyPostUpdateActionTo: accessorSlot [
 	| updateAction |
 	updateAction := LcsUpdateAction new
@@ -95,7 +97,7 @@ LcsAccessorSlotExamples >> addDummyPostUpdateActionTo: accessorSlot [
 	self assert: accessorSlot postUpdateActions any == updateAction
 ]
 
-{ #category : #support }
+{ #category : 'support' }
 LcsAccessorSlotExamples >> addDummyValidationActionTo: accessorSlot [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
