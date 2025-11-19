@@ -2,42 +2,44 @@
 All application test classes should inherit from this class
 "
 Class {
-	#name : #LcsTestCase,
-	#superclass : #TestCase,
+	#name : 'LcsTestCase',
+	#superclass : 'TestCase',
 	#instVars : [
 		'subject'
 	],
-	#category : #'Lcs-BaseTests-Tests'
+	#category : 'Lcs-BaseTests-Tests',
+	#package : 'Lcs-BaseTests',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestCase >> abortTransaction [
 	System abortTransaction
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 LcsTestCase >> assertSortedCollection: actual equals: expected [
 	self assert: actual equals: expected.
 	actual with: expected do: [ :actualItem : expectedItem |
 		self assert: actualItem equals: expectedItem ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestCase >> beginTransaction [
 	System beginTransaction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsTestCase >> classNamed: aString [
 	^ [ aString asClass ] on: NotFound do: [ :ex | ex return: nil ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestCase >> commitTransaction [
 	System commitTransaction
 ]
 
-{ #category : #refactoring }
+{ #category : 'refactoring' }
 LcsTestCase >> createClassName: aString superclassName: aSuperclassName category: aCategory [
 	(self classNamed: aString)
 		ifNil: [ 
@@ -48,23 +50,23 @@ LcsTestCase >> createClassName: aString superclassName: aSuperclassName category
 				category: aCategory asSymbol) execute ]
 ]
 
-{ #category : #refactoring }
+{ #category : 'refactoring' }
 LcsTestCase >> removeClassName: aString [
 	(self classNamed: aString)
 		ifNotNil: [ (RBRemoveClassChange removeClassName: aString asSymbol) execute ]
 ]
 
-{ #category : #refactoring }
+{ #category : 'refactoring' }
 LcsTestCase >> removeClassesNamed: aCollectionOfClassNaes [
 	aCollectionOfClassNaes do: [ :eachClassName | self removeClassName: eachClassName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsTestCase >> subject [
 	^ subject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsTestCase >> subject: anObject [
 	subject := anObject
 ]

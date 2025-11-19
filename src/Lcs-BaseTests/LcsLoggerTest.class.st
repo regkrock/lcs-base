@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsLoggerTest,
-	#superclass : #LcsTestCase,
-	#category : #'Lcs-BaseTests-Tests'
+	#name : 'LcsLoggerTest',
+	#superclass : 'LcsTestCase',
+	#category : 'Lcs-BaseTests-Tests',
+	#package : 'Lcs-BaseTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLoggerTest >> testCreation [
 	| aLogger |
 	aLogger := LcsLogger new.
@@ -12,7 +14,7 @@ LcsLoggerTest >> testCreation [
 	self assert: aLogger tabLevel equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLoggerTest >> testIndentAndOutdent [
 	| aLogger |
 	aLogger := LcsLogger new.
@@ -32,7 +34,7 @@ LcsLoggerTest >> testIndentAndOutdent [
 	self assert: aLogger tabLevel equals: 0.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLoggerTest >> testLogginOff [
 	| aLogger |
 	aLogger := LcsLogger new.
@@ -43,7 +45,7 @@ LcsLoggerTest >> testLogginOff [
 	self assert: (aLogger stream class = NullStream)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLoggerTest >> testReset [
 	| aLogger |
 	aLogger := LcsLogger new.
@@ -56,7 +58,7 @@ LcsLoggerTest >> testReset [
 	self assert: aLogger tabLevel equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLoggerTest >> testResetTranscript [
 	| aLogger |
 	aLogger := LcsLogger new.
@@ -70,7 +72,7 @@ LcsLoggerTest >> testResetTranscript [
 	self assert: aLogger tabLevel equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLoggerTest >> testSwitchingToStreamLogging [
 	| aLogger |
 	aLogger := LcsLogger new.
@@ -78,7 +80,7 @@ LcsLoggerTest >> testSwitchingToStreamLogging [
 	self assert: (aLogger stream class = WriteStream).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLoggerTest >> testSwitchingToTranscriptLogging [
 	| aLogger |
 	aLogger := LcsLogger new.

@@ -224,11 +224,6 @@ LcsSlotDefintionMethodBuilder >> required: aBoolean [
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> slotCategory [
-	^ slotCategory
-]
-
-{ #category : 'accessing' }
 LcsSlotDefintionMethodBuilder >> slotCategory: aString [
 	slotCategory := aString
 ]
@@ -255,6 +250,11 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 { #category : 'code generation' }
 LcsSlotDefintionMethodBuilder >> slotNameDisplayString [
 	^ self derivedSlotName
+]
+
+{ #category : 'accessing' }
+LcsSlotDefintionMethodBuilder >> slotPragmaName [
+	^ slotCategory
 ]
 
 { #category : 'property' }

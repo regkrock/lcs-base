@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsMethodStreamTest,
-	#superclass : #LcsTestCase,
-	#category : #'Lcs-BaseTests-Tests'
+	#name : 'LcsMethodStreamTest',
+	#superclass : 'LcsTestCase',
+	#category : 'Lcs-BaseTests-Tests',
+	#package : 'Lcs-BaseTests',
+	#tag : 'Tests'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testCreateEmptySelectorSourceCode [
 	self subject: LcsMethodStream new.
 	self subject startMethodSource: 'testMethod'.
@@ -12,10 +14,10 @@ LcsMethodStreamTest >> testCreateEmptySelectorSourceCode [
 	self assert: self subject contents equals: 'testMethod'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCode [
 	self subject: LcsMethodStream new.
-	self subject startSlotDefintionSource: 'testMethod' slotCategory: '<slotDefinition>'.
+	self subject startSlotDefintionSource: 'testMethod' pragmaName: '<slotDefinition>'.
 	self assert: subject indentLevel equals: 1.
 	self
 		assert: self subject contents
@@ -23,10 +25,10 @@ LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCode [
 	<slotDefinition>'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCodeWithBuilderClass [
 	self subject: LcsMethodStream new.
-	self subject startSlotDefintionSource: 'testMethod' slotCategory: '<slotDefinition>'.
+	self subject startSlotDefintionSource: 'testMethod' pragmaName: '<slotDefinition>'.
 	self subject addSlotDefinitionClassCreatonLine: 'LcsStringSlot'.
 	self assert: subject indentLevel equals: 2.
 	self
@@ -36,7 +38,7 @@ LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCodeWithBuilderClas
 	^ LcsStringSlot new'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testCreation [
 	self subject: LcsMethodStream new.
 	self assert: self subject indentLevel equals: 0.
@@ -45,7 +47,7 @@ LcsMethodStreamTest >> testCreation [
 	self assert: self subject contents equals: ''
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testKeywordArgumentKeywordArgumentMessage [
 	self subject: LcsMethodStream new.
 	self assert: self subject stream isEmpty.
@@ -53,7 +55,7 @@ LcsMethodStreamTest >> testKeywordArgumentKeywordArgumentMessage [
 	self assert: subject contents equals: 'test: ''aValue1'' test: ''aValue2'';'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testKeywordArgumentMessage [
 	self subject: LcsMethodStream new.
 	self assert: self subject stream isEmpty.
@@ -61,7 +63,7 @@ LcsMethodStreamTest >> testKeywordArgumentMessage [
 	self assert: subject contents equals: 'test: ''aValue1'';'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testKeywordsMessage [
 	self subject: LcsMethodStream new.
 	self assert: self subject stream isEmpty.
@@ -69,7 +71,7 @@ LcsMethodStreamTest >> testKeywordsMessage [
 	self assert: subject contents equals: 'test: ''aValue1'' test: ''aValue2'';'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testKeywordsMessage2 [
 	self subject: LcsMethodStream new.
 	self assert: self subject stream isEmpty.
@@ -77,7 +79,7 @@ LcsMethodStreamTest >> testKeywordsMessage2 [
 	self assert: subject contents equals: 'test: 1 test: 2;'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testKeywordsMessage3 [
 	self subject: LcsMethodStream new.
 	self assert: self subject stream isEmpty.
@@ -85,14 +87,14 @@ LcsMethodStreamTest >> testKeywordsMessage3 [
 	self assert: subject contents equals: 'test: anArray test: anOrderedCollection;'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testUnaryMessage [
 	self subject: LcsMethodStream new.
 	self subject addUnaryMessage: 'test'.
 	self assert: subject contents equals: 'test;'
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsMethodStreamTest >> testYourself [
 	self subject: LcsMethodStream new.
 	self subject addYourself.

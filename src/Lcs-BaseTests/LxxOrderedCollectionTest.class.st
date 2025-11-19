@@ -1,10 +1,12 @@
 Class {
-	#name : #LxxOrderedCollectionTest,
-	#superclass : #LcsTestCase,
-	#category : #'Lcs-BaseTests-Tests'
+	#name : 'LxxOrderedCollectionTest',
+	#superclass : 'LcsTestCase',
+	#category : 'Lcs-BaseTests-Tests',
+	#package : 'Lcs-BaseTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxOrderedCollectionTest >> testAdd [
 	| anLxxCollection addedObject |
 	anLxxCollection := LxxOrderedCollection new.
@@ -19,7 +21,7 @@ LxxOrderedCollectionTest >> testAdd [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxOrderedCollectionTest >> testCollect [
 	| anLxxCollection result |
 	anLxxCollection := LxxOrderedCollection new.
@@ -32,14 +34,14 @@ LxxOrderedCollectionTest >> testCollect [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrderedCollectionTest >> testCreation [
 	| anLxxCollection |
 	anLxxCollection := LxxOrderedCollection new.
 	self assert: anLxxCollection collection class equals: OrderedCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrderedCollectionTest >> testDo [
 	| anLxxCollection result |
 	result := OrderedCollection new.
@@ -53,7 +55,7 @@ LxxOrderedCollectionTest >> testDo [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrderedCollectionTest >> testIncludes [
 	| anLxxCollection result |
 	anLxxCollection := LxxOrderedCollection new.
@@ -66,7 +68,7 @@ LxxOrderedCollectionTest >> testIncludes [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrderedCollectionTest >> testInjectInto [
 	| anLxxCollection result |
 	anLxxCollection := LxxOrderedCollection new.
@@ -78,7 +80,7 @@ LxxOrderedCollectionTest >> testInjectInto [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrderedCollectionTest >> testReject [
 	| anLxxCollection result |
 	anLxxCollection := LxxOrderedCollection new.
@@ -91,7 +93,7 @@ LxxOrderedCollectionTest >> testReject [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrderedCollectionTest >> testRemove [
 	| anLxxCollection addedObject removedOjbect |
 	anLxxCollection := LxxOrderedCollection new.
@@ -112,7 +114,7 @@ LxxOrderedCollectionTest >> testRemove [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrderedCollectionTest >> testSelect [
 	| anLxxCollection result |
 	anLxxCollection := LxxOrderedCollection new.

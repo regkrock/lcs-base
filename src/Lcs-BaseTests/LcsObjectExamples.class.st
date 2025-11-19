@@ -1,40 +1,42 @@
 Class {
-	#name : #LcsObjectExamples,
-	#superclass : #LcsObject,
-	#category : #'Lcs-BaseTests-Examples'
+	#name : 'LcsObjectExamples',
+	#superclass : 'LcsObject',
+	#category : 'Lcs-BaseTests-Examples',
+	#package : 'Lcs-BaseTests',
+	#tag : 'Examples'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsObjectExamples >> createNewDemoSystem [
 	^ LcsApplicationEnvironment createNewDemoSystem
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsObjectExamples >> createNewPrototypeSystem [
 	^ LcsApplicationEnvironment createNewPrototypeSystem
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsObjectExamples >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #support }
+{ #category : 'support' }
 LcsObjectExamples >> ensureCurrentSystemIsDemoSystem [
 	^ LcsApplicationEnvironment ensureCurrentSystemIsDemoSystem
 ]
 
-{ #category : #support }
+{ #category : 'support' }
 LcsObjectExamples >> ensureCurrentSystemIsPrototypeSystem [
 	^ LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem
 ]
 
-{ #category : #support }
+{ #category : 'support' }
 LcsObjectExamples >> ensureCurrentSystemIsSailingClubSystem [
 	^ LcsApplicationEnvironment ensureCurrentSystemIs: LcsSailingClubSystem
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsObjectExamples >> ensureCurrentsystemIsDemoSystemWithLogging [
 	"<gtExample>"
 	| callingMethodName |
@@ -63,7 +65,7 @@ LcsObjectExamples >> ensureCurrentsystemIsDemoSystemWithLogging [
 	^ self currentSystem
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsObjectExamples >> ensureCurrentsystemIsPrototypeSystemWithLogging [
 	"<gtExample>"
 	| callingMethodName |
@@ -92,7 +94,7 @@ LcsObjectExamples >> ensureCurrentsystemIsPrototypeSystemWithLogging [
 	^ self currentSystem
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsObjectExamples >> removeCurrentSystem [
 	^ LcsApplicationEnvironment removeCurrentSystem
 ]

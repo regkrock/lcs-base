@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsBlockSourceConverterTest,
-	#superclass : #LcsTestCase,
-	#category : #'Lcs-BaseTests-Tests'
+	#name : 'LcsBlockSourceConverterTest',
+	#superclass : 'LcsTestCase',
+	#category : 'Lcs-BaseTests-Tests',
+	#package : 'Lcs-BaseTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsBlockSourceConverterTest >> testCreatingBlockWithInnerSource [
 	| existingBlock createdBlock |
 	existingBlock := [  ].
@@ -25,7 +27,7 @@ LcsBlockSourceConverterTest >> testCreatingBlockWithInnerSource [
 	self assert: createdBlock asString = '[ 1 + 3 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsBlockSourceConverterTest >> testCreatingSlotBlockWithInnerSource [
 	| existingBlock createdBlock |
 
@@ -38,7 +40,7 @@ LcsBlockSourceConverterTest >> testCreatingSlotBlockWithInnerSource [
 	self assert: createdBlock asString = '[ :domainObject :slot | 1 + 3 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsBlockSourceConverterTest >> testCreatingSlotBlockWithInnerSourceWithNoArguments [
 	| existingBlock createdBlock |
 
@@ -48,13 +50,13 @@ LcsBlockSourceConverterTest >> testCreatingSlotBlockWithInnerSourceWithNoArgumen
 	self assert: createdBlock asString = '[ 1 + 3 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsBlockSourceConverterTest >> testCreation [
 	self subject: LcsBlockSourceConverter new.
 	self assert:self subject arguments isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsBlockSourceConverterTest >> testReplacingExistingBlockSourceWithNewBlock [
 	| existingBlock createdBlock |
 	existingBlock := [ 1 ].
@@ -66,7 +68,7 @@ LcsBlockSourceConverterTest >> testReplacingExistingBlockSourceWithNewBlock [
 	self assert: createdBlock asString = '[ :domainObject :slot | 1 + 3 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsBlockSourceConverterTest >> testReturningInnerSourceCodeFromABlock [
 	| innderSourceCode |
 	
@@ -92,7 +94,7 @@ LcsBlockSourceConverterTest >> testReturningInnerSourceCodeFromABlock [
 	self assert: innderSourceCode equals: 'a + b'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsBlockSourceConverterTest >> testReturningInnerSourceCodeFromASlotBlock [
 	| innderSourceCode |
 	

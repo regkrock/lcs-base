@@ -11,7 +11,7 @@ Class {
 
 { #category : 'instance creation' }
 LcsSlotDefinitionViewItem class >> on: aSlotDefinition [
-	^ (self volunteerFor: aSlotDefinition slotCategory) new
+	^ (self volunteerFor: aSlotDefinition slotPragmaName) new
 		initializeOn: aSlotDefinition;
 		yourself
 ]
@@ -68,11 +68,6 @@ LcsSlotDefinitionViewItem >> priority [
 ]
 
 { #category : 'slot definition' }
-LcsSlotDefinitionViewItem >> slotCategory [
-	^ self slotDefinition slotCategory
-]
-
-{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotClass [
 	^ self slotDefinition class
 ]
@@ -100,6 +95,11 @@ LcsSlotDefinitionViewItem >> slotKind [
 { #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotName [
 	^ self slotDefinition slotName
+]
+
+{ #category : 'slot definition' }
+LcsSlotDefinitionViewItem >> slotPragmaName [
+	^ self slotDefinition slotPragmaName
 ]
 
 { #category : 'slot definition' }

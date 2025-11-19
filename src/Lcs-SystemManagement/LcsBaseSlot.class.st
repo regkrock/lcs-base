@@ -217,7 +217,7 @@ LcsBaseSlot >> gtSlotDefinitionAttributes [
 	collection := OrderedCollection new
 			add: 'domainClass' -> self newDomainClassName;
 			add: 'slotDefinition' -> self domainClass;
-			add: 'category' -> self slotCategory ;
+			add: 'category' -> self slotPragmaName ;
 			add: 'slotDefinitionClass' -> self class;
 			yourself.
 	self addPropertiesTo: collection.
@@ -398,12 +398,6 @@ LcsBaseSlot >> removeSlotType: aClass [
 	(self slotTypes includes: aClass) ifTrue: [ self slotTypes remove: aClass ]
 ]
 
-{ #category : 'asking' }
-LcsBaseSlot >> slotCategory [
-	self domainClass ifNil: [ ^ nil ].
-	^ (self domainClass slotCategoryOf: self slotDefinitionSelector)
-]
-
 { #category : 'defaults' }
 LcsBaseSlot >> slotClass [
 	^ self slotTypes any
@@ -451,7 +445,7 @@ LcsBaseSlot >> slotDefinitionSelector [
 { #category : 'defaults' }
 LcsBaseSlot >> slotKind [
 	| string |
-	string := self slotCategory.
+	string := self slotPragmaName.
 	string = 'slotDefinition' ifTrue: [ ^ 'accessor' ].
 	^ string copyFrom: 1 to: ((string findString: 'SlotDefinition') - 1)
 ]
@@ -488,6 +482,12 @@ LcsBaseSlot >> slotNameDescription [
 		beReadOnly;
 		beRequired
 
+]
+
+{ #category : 'asking' }
+LcsBaseSlot >> slotPragmaName [
+	self domainClass ifNil: [ ^ nil ].
+	^ (self domainClass pragmaNameOf: self slotDefinitionSelector)
 ]
 
 { #category : 'gt views' }

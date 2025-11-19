@@ -1,7 +1,9 @@
 Class {
-	#name : #LxxOrderedCollection,
-	#superclass : #LcsObject,
+	#name : 'LxxOrderedCollection',
+	#superclass : 'LcsObject',
 	#traits : 'LtOrderedCollection',
 	#classTraits : 'LtOrderedCollection classTrait',
-	#category : #'Lcs-BaseTests-Tests'
+	#category : 'Lcs-BaseTests-Tests',
+	#package : 'Lcs-BaseTests',
+	#tag : 'Tests'
 }
