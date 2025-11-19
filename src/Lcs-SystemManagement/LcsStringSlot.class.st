@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsStringSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsStringSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsStringSlot >> allowEmptyIntialValue [
 	^ self propertyAt: 'allowEmptyIntialValue'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsStringSlot >> allowEmptyIntialValue: aBoolean [
 	^ self propertyAt: 'allowEmptyIntialValue' put: aBoolean
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsStringSlot >> allowEmptyIntialValueDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
@@ -26,38 +28,38 @@ LcsStringSlot >> allowEmptyIntialValueDescription [
 		beRequired
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsStringSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | self typeClass new ]
 ]
 
-{ #category : #'default ui component' }
+{ #category : 'default ui component' }
 LcsStringSlot >> defaultInputComponentClassName [
 	^#LuiTextInput
 ]
 
-{ #category : #iniitialize }
+{ #category : 'iniitialize' }
 LcsStringSlot >> initialValue: anObject [
 	super initialValue:anObject printString
 ]
 
-{ #category : #iniitialize }
+{ #category : 'iniitialize' }
 LcsStringSlot >> initialize [
 	super initialize.
 	self allowEmptyIntialValue: true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStringSlot >> isNullAllowed [
 	^ self allowEmptyIntialValue
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStringSlot >> isNullObject: anObject [ 
 	^ anObject isString and: [ anObject isEmpty ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsStringSlot >> typeClass [
 	<todo: 'This needs to use UTF-8 string calss'> 
 	^ LcsSmalltalkConfiguration stringClass

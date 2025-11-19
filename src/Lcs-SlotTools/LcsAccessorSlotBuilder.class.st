@@ -1,33 +1,34 @@
 Class {
-	#name : #LcsAccessorSlotBuilder,
-	#superclass : #LcsBaseSlotBuilder,
+	#name : 'LcsAccessorSlotBuilder',
+	#superclass : 'LcsBaseSlotBuilder',
 	#instVars : [
 		'comment'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsAccessorSlotBuilder class >> newOn: aBuilderOrBuilderJob [
 	^ self new
 		initializeOn: aBuilderOrBuilderJob;
 		yourself 
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsAccessorSlotBuilder class >> slotClass [
 	"Subclasses can override this method to provide a default"
 	^ LcsAccessorSlot
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsAccessorSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetClassName.
 	self jobSteps addClassesToUmlModel: aUmlModel.
 	self addTargetModuleClassTo: aUmlModel
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 	| className |
 	className := aClassOrClassName isClass 
@@ -37,40 +38,40 @@ LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 		self slotTypes add: className ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsAccessorSlotBuilder >> addTargetClassTo: classesModel [
 	self targetClass
 		ifNil: [ classesModel proposedClassModelFor: self targetClassName ]
 		ifNotNil: [ :class | classesModel addClassModelForExisting: class ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 	self targetModuleClass notNil
 		ifTrue: [ classesModel addClassModelForExisting: self targetModuleClass ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> addValidationCondition: aValidationCondition [
 	self validationConditions addValidationCondition: aValidationCondition
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsAccessorSlotBuilder >> addValidationCondition: aBlock description: aDescription [
 	self validationConditions addValidationCondition: aBlock description: aDescription
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNil [
 	^ self propertyAt: 'allowNil' ifAbsent: [ false ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNil: anObject [ 
 	self propertyAt: 'allowNil' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> allowNilDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
@@ -81,17 +82,17 @@ LcsAccessorSlotBuilder >> allowNilDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNull [
 	^ self propertyAt: 'allowNull' ifAbsent: [ false ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNull: anObject [ 
 	self propertyAt: 'allowNull' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> allowNullDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
@@ -102,12 +103,12 @@ LcsAccessorSlotBuilder >> allowNullDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsAccessorSlotBuilder >> beAllowNil [
 	self allowNil: true
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsAccessorSlotBuilder >> buildJobSteps [
 	"self jobSteps removeAll. <-- this needs to go somewhere else"
 	self addJobStep: self slotInstanceVariableBuilder.
@@ -115,23 +116,23 @@ LcsAccessorSlotBuilder >> buildJobSteps [
 	self addJobStep: self getterAndSetterMethodsBuilder
 ]
 
-{ #category : #uninstall }
+{ #category : 'uninstall' }
 LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 	self targetClass == aClass
 		ifTrue: [ self targetClassName: nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAccessorSlotBuilder >> comment [
 	^ self properties at: 'comment' ifAbsent: [ '' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAccessorSlotBuilder >> comment: anObject [
 	^ self properties at: 'comment' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> commentDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -146,12 +147,12 @@ LcsAccessorSlotBuilder >> commentDescription [
 			labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> defaultPrevalidationTransformBlock [
 	^ [  ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAccessorSlotBuilder >> getterAndSetterMethodsBuilder [
 	^ LcsSlotGetterAndSetterBuilder new
 		slotName: self slotName;
@@ -159,22 +160,22 @@ LcsAccessorSlotBuilder >> getterAndSetterMethodsBuilder [
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsAccessorSlotBuilder >> getterSelector [
 	^ self slotName asSymbol
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> initialValueBlock [
 	^ self propertyAt: 'initialValueBlock' ifAbsent: [ [ ] ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> initialValueBlock: aString [
 	^ self propertyAt: 'initialValueBlock' put: aString
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -188,49 +189,49 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAccessorSlotBuilder >> initialize [
 	super initialize.
 	self validationConditions: (LcsValidationConditions newOn: self).
 	self postUpdateActions: (LcsUpdateActions newOn: self)
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAccessorSlotBuilder >> initializeOn: aBuilderOrBuilderJob [ 
 	self parent: aBuilderOrBuilderJob
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsAccessorSlotBuilder >> installSlotDefinition [
 	self targetClass installSlotDefinition: self slotDefinitionSelector
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsAccessorSlotBuilder >> isNilAllowed [
 	^ self allowNil == true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsAccessorSlotBuilder >> isNullAllowed [
 	^ self allowNull == true
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 LcsAccessorSlotBuilder >> jobStep: anInteger [
 	^ self jobSteps jobStep: anInteger
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> postUpdateActions [
 	^ self propertyAt: #postUpdateActions ifAbsentPut: [ LcsUpdateAction newOn: self]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> postUpdateActions: anObject [
 	self propertyAt: #postUpdateActions put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> postUpdateActionsDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -259,17 +260,17 @@ LcsAccessorSlotBuilder >> postUpdateActionsDescription [
 		  						yourself ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> prevalidationTransformBlock [
 	^ self propertyAt: 'prevalidationTransformBlock' ifAbsent: [ self defaultPrevalidationTransformBlock ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> prevalidationTransformBlock: aString [
 	^ self propertyAt: 'prevalidationTransformBlock' put: aString
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -283,27 +284,27 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #validations }
+{ #category : 'validations' }
 LcsAccessorSlotBuilder >> removeValidationCondition: aValidationCondition [
 	self validationConditions removeValidationCondition: aValidationCondition
 ]
 
-{ #category : #validations }
+{ #category : 'validations' }
 LcsAccessorSlotBuilder >> removeValidationConditionWithDescription: aString [
 	self validationConditions removeValidationConditionWithDescription: aString
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> required [
 	^ self propertyAt: 'required' ifAbsent: [ false ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> required: anObject [ 
 	self propertyAt: 'required' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> requiredDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
@@ -314,7 +315,7 @@ LcsAccessorSlotBuilder >> requiredDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 	^ LcsSlotInstanceVariableBuilder new
 		slotName: self slotName;
@@ -322,30 +323,30 @@ LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 		yourself
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsAccessorSlotBuilder >> targetSlotDefinition [
 	^ self targetClass perform: self slotDefinitionSelector
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsAccessorSlotBuilder >> updateSlotModel [
 	super updateSlotModel.
 	self installSlotDefinition
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> validationConditionItems [
 	^ self propertyAt: #validationConditionItems ifAbsentPut: [ OrderedCollection new]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> validationConditionItems: aCollection [
 	self propertyAt: #validationConditionItems put: aCollection.
 	self validationConditions removeAll.
 	aCollection do: [:each | self validationConditions addValidationCondition: each ]
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> validationConditionItemsDescription [
 	"<magritteDescription>"
 	^ MAToManyRelationDescription new
@@ -373,18 +374,18 @@ LcsAccessorSlotBuilder >> validationConditionItemsDescription [
 		  newItemStencil: [  LcsValidationCondition new ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> validationConditions [
 	^ self propertyAt: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> validationConditions: anObject [
 	self propertyAt: #validationConditions put: anObject.
 	"self validationConditionItems: anObject collection copy"
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsAccessorSlotBuilder >> validationConditionsDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -413,7 +414,7 @@ LcsAccessorSlotBuilder >> validationConditionsDescription [
 		  newItemStencil: [  LcsValidationCondition new ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsAccessorSlotBuilder >> viewCodeButton [
 	self targetClass isNil ifTrue: [ ^ BrButton new ].
 	^ self viewClassButtonFor: self targetClass 

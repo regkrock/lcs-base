@@ -1,6 +1,6 @@
-Extension { #name : #GtHome }
+Extension { #name : 'GtHome' }
 
-{ #category : #'*LcsBase' }
+{ #category : '*LcsBase' }
 GtHome >> getStartedSection [
 	<gtHomeSection>
 	<gtExample>

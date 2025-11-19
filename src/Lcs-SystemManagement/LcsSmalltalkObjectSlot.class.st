@@ -1,61 +1,63 @@
 Class {
-	#name : #LcsSmalltalkObjectSlot,
-	#superclass : #LcsAccessorSlot,
+	#name : 'LcsSmalltalkObjectSlot',
+	#superclass : 'LcsAccessorSlot',
 	#instVars : [
 		'inputComponentClassName'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSmalltalkObjectSlot class >> isAbstract [
 	^ self name = #LcsSmalltalkObjectSlot
 ]
 
-{ #category : #'object initialization' }
+{ #category : 'object initialization' }
 LcsSmalltalkObjectSlot >> _initialValueFor: aDomainObject [
 	^ self initialValueBlock cull: aDomainObject cull: self cull: nil
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSmalltalkObjectSlot >> addDefaultSlotType [
 	self addSlotType: self typeClass
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsSmalltalkObjectSlot >> defaultInitialValueBlock [
 	self subclassResponsibility
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsSmalltalkObjectSlot >> defaultInputComponentClassName [
 	^ #'NeedsToBeDefined'
 	"self subclassResponsibility"
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSmalltalkObjectSlot >> initialize [
 	super initialize.
 	self addDefaultSlotType.
 	self inputComponentClassName: self defaultInputComponentClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkObjectSlot >> inputComponentClass [
 	^ self inputComponentClassName asClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkObjectSlot >> inputComponentClassName [
 	^ inputComponentClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkObjectSlot >> inputComponentClassName: anObject [
 	inputComponentClassName := anObject
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSmalltalkObjectSlot >> typeClass [
 	self subclassResponsibility
 ]

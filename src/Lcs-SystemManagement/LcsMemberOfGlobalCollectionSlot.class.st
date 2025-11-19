@@ -8,16 +8,18 @@ The slot is responsible for:
 Note: Currently this is defined to look up a value in a global collection.
 "
 Class {
-	#name : #LcsMemberOfGlobalCollectionSlot,
-	#superclass : #LcsMemberOfCollectionSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsMemberOfGlobalCollectionSlot',
+	#superclass : 'LcsMemberOfCollectionSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> addAssociationsToUmlModel: umlModel [ 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [ 
 	aUmlModel addClass: self class.
 	aUmlModel addClass: self targetCollection class.
@@ -25,7 +27,7 @@ LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [
 		addAssociation: self slotName toModelNamed: self collectionClassName."
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> addOtherSlotDefinitionDetailsTo: collection [
 	super addOtherSlotDefinitionDetailsTo: collection.
 	collection
@@ -35,32 +37,32 @@ LcsMemberOfGlobalCollectionSlot >> addOtherSlotDefinitionDetailsTo: collection [
 	collection add: 'source module' -> self collectionSlotModuleName
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsMemberOfGlobalCollectionSlot >> collectionModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName [
 	^ self propertyAt: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName: aString [ 
 	self propertyAt: 'collectionSlotModuleName' put: aString
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotName [
 	^ self propertyAt: 'collectionSlotName' ifAbsent: []
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotName: aString [ 
 	self propertyAt: 'collectionSlotName' put: aString
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> gtUMLFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -72,34 +74,34 @@ LcsMemberOfGlobalCollectionSlot >> gtUMLFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsMemberOfGlobalCollectionSlot >> newInstance [
 	^ self targetCollectionSlotDefinition collectionMemberTypes first new
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> proposedUmlModelFor: aUmlModel [
 	^ LcsUml new proposedUmlModelFor: aUmlModel
 ]
 
-{ #category : #message }
+{ #category : 'message' }
 LcsMemberOfGlobalCollectionSlot >> sourceCollectionNotPopulatedMessage [
 	^'Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized' 
 			expandMacrosWith: self collectionSlotModuleName 
 			with: self collectionSlotName
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsMemberOfGlobalCollectionSlot >> targetCollection [
 	^ self collectionModule perform: self collectionSlotName asSymbol
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsMemberOfGlobalCollectionSlot >> targetCollectionSlotDefinition [
 	^ self collectionModule slotDefinitionNamed: self collectionSlotName asSymbol
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> umlModel [
 	| umlModel |
 	umlModel := LcsUmlModel new .
@@ -110,7 +112,7 @@ LcsMemberOfGlobalCollectionSlot >> umlModel [
 	^ umlModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> umlModelMondrianView [
 	^ self proposedUmlModelFor: self umlModel
 ]

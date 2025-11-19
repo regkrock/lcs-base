@@ -1,23 +1,25 @@
 Class {
-	#name : #LcsUnitsOfWork,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsUnitsOfWork',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtOrderedCollection + LtParentTrait',
 	#classTraits : 'LtOrderedCollection classTrait + LtParentTrait classTrait',
-	#category : #'Lcs-SystemManagement-Environment'
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsUnitsOfWork >> applicationEnvironmentViewChildren [
 	^ self collect: [ :each | LcsApplicationEnvironmentViewItem newOn: self label: '' item: each]
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 LcsUnitsOfWork >> removeUnitsOfWorkFor: aSystem [
 	self collection copy
 		do: [ :each | each system == aSystem ifTrue: [ self remove: each ] ].
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 LcsUnitsOfWork >> unitOfWorkFor: aSystem [
 	^ self
 		detect: [ :each | each system == aSystem ]

@@ -1,99 +1,101 @@
 Class {
-	#name : #LcsConditionsValidator,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsConditionsValidator',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'domainObject',
 		'errorDescriptions',
 		'slotDefinition'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #validations }
+{ #category : 'validations' }
 LcsConditionsValidator class >> newOn: aSlotDefinition [ 
 	^ self new
 		initializeOn: aSlotDefinition;
 		yourself
 ]
 
-{ #category : #errors }
+{ #category : 'errors' }
 LcsConditionsValidator >> addError: aMessage [
 	self errorDescriptions add: aMessage
 ]
 
-{ #category : #errors }
+{ #category : 'errors' }
 LcsConditionsValidator >> addErrorDescription: aMessage [
 	self errorDescriptions add: aMessage
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsConditionsValidator >> addErrorDescription: aDescription in: aValidationCondition [
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 LcsConditionsValidator >> domainObject [
 	^ domainObject
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 LcsConditionsValidator >> domainObject: aDomainObject [ 
 	domainObject := aDomainObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidator >> errorDescriptions [
 	^ errorDescriptions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidator >> errorDescriptions: anOrderedCollection [
 	errorDescriptions := anOrderedCollection
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsConditionsValidator >> hasError: aDescription [
 	| result |
 	result := self errorDescriptions detect: [ :each | each = aDescription ] ifNone: [ ].
 	^ result notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsConditionsValidator >> hasErrors [
 	^ self errorDescriptions notEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsConditionsValidator >> hasNoErrors [
 	^ self errorDescriptions isEmpty
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsConditionsValidator >> initialize [ 
 	super initialize.
 	self errorDescriptions: OrderedCollection new
 ]
 
-{ #category : #validations }
+{ #category : 'validations' }
 LcsConditionsValidator >> initializeOn: aSlotDefinition [ 
 	self slotDefinition: aSlotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidator >> slotDefinition [
 	^ slotDefinition 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidator >> slotDefinition: aSlotDefinition [ 
 	slotDefinition := aSlotDefinition
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsConditionsValidator >> validate: aValue [ 
 	self slotDefinition validate: aValue withValidator: self
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsConditionsValidator >> validationConditionsDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new

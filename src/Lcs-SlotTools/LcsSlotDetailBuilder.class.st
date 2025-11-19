@@ -1,21 +1,22 @@
 Class {
-	#name : #LcsSlotDetailBuilder,
-	#superclass : #LcsCodeBuilderStep,
+	#name : 'LcsSlotDetailBuilder',
+	#superclass : 'LcsCodeBuilderStep',
 	#instVars : [
 		'targetClassName',
 		'targetClass',
 		'slotTemplate',
 		'slotClass'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotDetailBuilder >> derivedSlotName [
 		^ self rawDerivedSlotName ifNil: [ '<missing slotName>' ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotDetailBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self targetClass isNil ifTrue: [ 
@@ -33,12 +34,12 @@ LcsSlotDetailBuilder >> gtClassViewOn: aView [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotDetailBuilder >> jobStepActionDescription [
 	self subclassResponsibility
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: self jobStepActionDescription;
@@ -48,78 +49,78 @@ LcsSlotDetailBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>' ])
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotDetailBuilder >> rawDerivedSlotName [
 	self slotName ifNotNil: [ ^ self slotName ].
 	^ self slotTemplateSlotName
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsSlotDetailBuilder >> slotBuilder [
 	^ self parent parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> slotClass [
 	^ slotClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> slotClass: anObject [
 	slotClass := anObject
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsSlotDetailBuilder >> slotDefinitionSource [
 	^ self slotBuilder slotDefinitionSource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> slotName [
 	^ self properties at: 'slotName' ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> slotName: anObject [
 	self properties at: 'slotName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> slotTemplate [
 	^ slotTemplate ifNil: [ 
 		self slotClass ifNil: [ ^ nil ].
 		slotTemplate := self slotClass new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> slotTemplate: anObject [
 	slotTemplate := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> slotTemplateSlotName [
 	self slotTemplate ifNil: [ ^ nil ].
 	^ self slotTemplate slotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> targetClass [
 	^ targetClass ifNil: [[ self targetClassName asString asClass ] 
 			on: NotFound 
 			do: [ :s | s return: nil ]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> targetClass: anObject [
 	targetClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> targetClassName [
 	^ targetClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDetailBuilder >> targetClassName: anObject [
 	targetClassName := anObject.
 	self targetClass: nil.

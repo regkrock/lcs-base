@@ -1,19 +1,21 @@
 Class {
-	#name : #LcsBlockSourceConverter,
-	#superclass : #LcsObject,
+	#name : 'LcsBlockSourceConverter',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'arguments'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBlockSourceConverter class >> blockWithArguments: blockArguments innerSourceCode: innerBlockString toReplace: existingBlock [
 	^ self  new 
 		blockWithArguments: blockArguments innerSourceCode: innerBlockString toReplace: existingBlock
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBlockSourceConverter class >> blockWithInnerSourceCode: innerBlockString arguments: blockArguments [
 	^ self
 		blockWithArguments: blockArguments
@@ -21,7 +23,7 @@ LcsBlockSourceConverter class >> blockWithInnerSourceCode: innerBlockString argu
 		toReplace: [  ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBlockSourceConverter class >> blockWithInnerSourceCode: innerBlockString toReplace: existingBlock [
 	^ self
 		blockWithArguments: #()
@@ -29,28 +31,28 @@ LcsBlockSourceConverter class >> blockWithInnerSourceCode: innerBlockString toRe
 		toReplace: existingBlock
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBlockSourceConverter class >> innerSourceCodeOf: aBlock [
 	^ self innerSourceCodeOf: aBlock arguments: #()
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBlockSourceConverter class >> innerSourceCodeOf: aBlock arguments: aBlockArguments [
 	^ self new
 		innerSourceCodeOf: aBlock arguments: aBlockArguments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBlockSourceConverter >> arguments [
 	^ arguments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBlockSourceConverter >> arguments: anObject [
 	arguments := anObject
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LcsBlockSourceConverter >> blockFromInnerSourceCode: aString [
 	| stream |
 	stream := WriteStream on: String new.
@@ -64,25 +66,25 @@ LcsBlockSourceConverter >> blockFromInnerSourceCode: aString [
 	^ stream contents
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LcsBlockSourceConverter >> blockFromInnerSourceCode: aString replacing: aBlock [
 	aString trimBoth = (self innerSourceCodeOf: aBlock) ifTrue: [ ^ aBlock ].
-	^ self class evaluate: (self blockFromInnerSourceCode: aString)
+	^ self class compiler evaluate: (self blockFromInnerSourceCode: aString)
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LcsBlockSourceConverter >> blockWithArguments: blockArguments innerSourceCode: innerBlockString toReplace: existingBlock [
 	self arguments: blockArguments.
 	^ self blockFromInnerSourceCode: innerBlockString replacing: existingBlock
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBlockSourceConverter >> initialize [
 	super initialize.
 	self arguments: OrderedCollection new
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LcsBlockSourceConverter >> innerSourceCodeOf: aBlock [
 	| sourceCode barIndex rightSquareBracketIndex leftSquareBracketIndex |
 	sourceCode := aBlock asString.
@@ -97,7 +99,7 @@ LcsBlockSourceConverter >> innerSourceCodeOf: aBlock [
 	^ (sourceCode copyFrom: (barIndex + 1) to: (rightSquareBracketIndex - 1) ) trimBoth
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LcsBlockSourceConverter >> innerSourceCodeOf: aBlock arguments: blockArguments [
 	self arguments: blockArguments.
 	^ self innerSourceCodeOf: aBlock

@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsModifyOwningModulesMethodBuilder,
-	#superclass : #LcsMethodBuilder,
+	#name : 'LcsModifyOwningModulesMethodBuilder',
+	#superclass : 'LcsMethodBuilder',
 	#instVars : [
 		'owningModuleClass',
 		'priority',
 		'owningModuleClassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModifyOwningModulesMethodBuilder >> initialize [
 	super initialize.
 	self priority: 1.
@@ -18,7 +19,7 @@ LcsModifyOwningModulesMethodBuilder >> initialize [
 	beClassMethod
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsModifyOwningModulesMethodBuilder >> methodSource [
 	| stream currentSource|
 	stream := WriteStream on: String new.
@@ -32,27 +33,27 @@ LcsModifyOwningModulesMethodBuilder >> methodSource [
 	^stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModifyOwningModulesMethodBuilder >> owningModuleClass [
 	^ owningModuleClass ifNil: [ owningModuleClass := self owningModuleClassName asClass ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModifyOwningModulesMethodBuilder >> owningModuleClass: anObject [
 	owningModuleClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModifyOwningModulesMethodBuilder >> owningModuleClassName [
 	^ owningModuleClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModifyOwningModulesMethodBuilder >> owningModuleClassName: anObject [
 	owningModuleClassName := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsModifyOwningModulesMethodBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Update #';
@@ -64,12 +65,12 @@ LcsModifyOwningModulesMethodBuilder >> printJobStreamDetailsOn: aStream [
 			nextPutAll: ' class']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModifyOwningModulesMethodBuilder >> priority [
 	^ priority
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModifyOwningModulesMethodBuilder >> priority: aNumber [
 	priority := aNumber
 ]

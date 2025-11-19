@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsUserToUserIdConversionSlot,
-	#superclass : #LcsObjectToIdConversionSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsUserToUserIdConversionSlot',
+	#superclass : 'LcsObjectToIdConversionSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsUserToUserIdConversionSlot >> initialize [
 	super initialize.
 	self slotName: 'user'.

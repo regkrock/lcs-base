@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsAddedObjectRecord,
-	#superclass : #LcsObjectChangeRecord,
+	#name : 'LcsAddedObjectRecord',
+	#superclass : 'LcsObjectChangeRecord',
 	#instVars : [
 		'creationContext'
 	],
-	#category : #'Lcs-SystemManagement-UnitOfWork'
+	#category : 'Lcs-SystemManagement-UnitOfWork',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'UnitOfWork'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 LcsAddedObjectRecord >> applyChanges [
 	<todo: 'This was put in becaue a member of slot had a value of nil and caused this problem. Fixing this is related to the null object pattern which has not yet been implemented.'>
 	"self domainObject isNil ifTrue: [ ^self ]."
@@ -20,17 +22,17 @@ LcsAddedObjectRecord >> applyChanges [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddedObjectRecord >> creationContext [
 	^ creationContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddedObjectRecord >> creationContext: anObject [
 	creationContext := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddedObjectRecord >> viewItemLabel [
 	^ 'Added'
 ]

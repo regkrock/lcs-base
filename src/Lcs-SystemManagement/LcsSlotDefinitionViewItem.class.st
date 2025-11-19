@@ -1,101 +1,103 @@
 Class {
-	#name : #LcsSlotDefinitionViewItem,
-	#superclass : #LcsObject,
+	#name : 'LcsSlotDefinitionViewItem',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'slotDefinition'
 	],
-	#category : #'Lcs-SystemManagement-Core'
+	#category : 'Lcs-SystemManagement-Core',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotDefinitionViewItem class >> on: aSlotDefinition [
 	^ (self volunteerFor: aSlotDefinition slotCategory) new
 		initializeOn: aSlotDefinition;
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
 	self allSubclassesDo: [ :eachClass | (eachClass volunteerFor: aSlotCategory) ifTrue: [ ^ eachClass ] ].
 	self error: 'No class found'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsSlotDefinitionViewItem >> domainClass [
 	^ self slotDefinition domainClass
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> getterSelector [
 	^ self slotDefinition getterSelector
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSlotDefinitionViewItem >> initialize [
 	super initialize.
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSlotDefinitionViewItem >> initializeOn: aSlotDefinition [ 
 	self slotDefinition: aSlotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionViewItem >> instVarName [
 	^ ''
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSlotDefinitionViewItem >> isAccessorSlot [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSlotDefinitionViewItem >> isSlotDefinitionFor: anInstVarName [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSlotDefinitionViewItem >> isVirtualSlot [
 	^ false
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> priority [
 	^ self slotDefinition priority
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotClass [
 	^ self slotDefinition class
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionViewItem >> slotDefinition [
 	^ slotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionViewItem >> slotDefinition: anObject [
 	slotDefinition := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsSlotDefinitionViewItem >> slotDefinitionInformation [
 	^ self slotDefinition
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotKind [
 	^ self slotDefinition slotKind
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotName [
 	^ self slotDefinition slotName
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotTypesList [
 	^ self slotDefinition slotTypesList
 ]

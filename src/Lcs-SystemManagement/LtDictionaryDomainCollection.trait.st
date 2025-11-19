@@ -1,11 +1,13 @@
 Trait {
-	#name : #LtDictionaryDomainCollection,
+	#name : 'LtDictionaryDomainCollection',
 	#traits : 'LtDomainCollection',
 	#classTraits : 'LtDomainCollection classTrait',
-	#category : #'Lcs-SystemManagement-Traits'
+	#category : 'Lcs-SystemManagement-Traits',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Traits'
 }
 
-{ #category : #'slot definition\t' }
+{ #category : 'slot definition\t' }
 LtDictionaryDomainCollection classSide >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsDictionarySlot new

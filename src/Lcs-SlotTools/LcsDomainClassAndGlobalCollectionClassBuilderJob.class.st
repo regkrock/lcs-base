@@ -23,23 +23,24 @@ This is an exploritory feature for storing some data from which to create data i
 For example, if creating person titles, the protoinstances could contain {{Mr} {Mrs} {Dr}} etc. This would result in the 
 "
 Class {
-	#name : #LcsDomainClassAndGlobalCollectionClassBuilderJob,
-	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
+	#name : 'LcsDomainClassAndGlobalCollectionClassBuilderJob',
+	#superclass : 'LcsDomainClassAndDomainCollectionClassBuilderJob',
 	#instVars : [
 		'protoInstances',
 		'subclassNames'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		aStream nextPutAll: '---- Step: ' , each stepNumber , ' ----'; cr; cr.
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> addSubclassBuilders [
 	self subclassNames do: [ :eachName |
 		self addJobStep: (
@@ -51,7 +52,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> addSubclassBuilders [
 				yourself)]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildJobSteps [
 	self addJobStep: self domainClassBuilder.
 	self buildUnknownClass ifTrue: [
@@ -64,7 +65,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> buildJobSteps [
 	self addMemberOfSlotBuilderForTargetClasses.
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionReferenceSlotBuilder [
 	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
@@ -75,7 +76,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionReferenceSlotBuild
 		yourself
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionSlotBuilder [
 	| builder |
 	builder := LcsGlobalCollectionSlotBuilder new
@@ -96,24 +97,24 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionSlotBuilder [
 	^ builder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> createForPrefix: aPrefix rootName: aRootName withSubclasses: aCollection [ 
 	self createForPrefix: aPrefix rootName: aRootName.
 	self subclassNames addAll: aCollection
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> createForRootName: aRootName [
 	super createForRootName: aRootName.
 	self unknownClassName: self classPrefix , 'Unknown' , aRootName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> createInstances: aCollection [
 	aCollection do: [ :each | self protoInstances add: each ]
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassBuilder [
 	^ LcsDomainClassBuilder new
 		newTargetClassName: self newDomainClassName;
@@ -122,12 +123,12 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassBuilder [
 		yourself
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsDomainClassBuilder) first
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 	^ LcsMemberOfGlobalCollectionSlotBuilder new
 			target: aTargetClass;
@@ -139,7 +140,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainClassCodeMemberSlotBui
 			yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
 		newClassName: self collectionClassName;
@@ -147,7 +148,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> domainCollectionClassBuilder
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> generateRelatedNames [
 	super generateRelatedNames.
 	(self classRootName isNil or: [ self classPrefix isNil ])
@@ -157,12 +158,12 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> generateRelatedNames [
 	self unknownClassName: self classPrefix , 'Unknown' , self classRootName
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalCollectionSlotBuilder) first
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -172,7 +173,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> gtRefactoringChangeOn: aView
 		actionUpdateButton
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> initialize [
 	super initialize.
 	self protoInstances: OrderedCollection new.
@@ -181,7 +182,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> initialize [
 	self subclassNames: OrderedCollection new
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> loaderBuilder [
 	^ LcsLoaderClassBuilder new
 		newClassName: self collectionClassName , 'Loader';
@@ -190,7 +191,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> loaderBuilder [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: 'Install ';
@@ -199,17 +200,17 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> printJobStreamDetailsOn: aSt
 		nextPutAll: (self collectionClassName) printString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> protoInstances [
 	^ protoInstances
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> protoInstances: aCollection [
 	protoInstances := aCollection
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> refactoringText [
 	| stream |
 	stream := WriteStream on: String new.
@@ -217,17 +218,17 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> refactoringText [
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> subclassNames [
 	^ subclassNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> subclassNames: anObject [
 	subclassNames := anObject
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassBuilder [
 	^ LcsUnknownClassBuilder new
 		newClassName: self unknownClassName;
@@ -236,22 +237,22 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassBuilder [
 		yourself
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsUnknownClassBuilder) ifEmpty: [ nil ] ifNotEmpty: [ :coll | coll first ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassName [
 	^ unknownClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> unknownClassName: anObject [
 	unknownClassName := anObject
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsDomainClassAndGlobalCollectionClassBuilderJob >> verifyPopulateSlotModel [
 	super verifyPopulateSlotModel.
 	self protoInstances isEmpty 

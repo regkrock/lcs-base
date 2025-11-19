@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsDefaultInstanceSlot,
-	#superclass : #LcsVirtualSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsDefaultInstanceSlot',
+	#superclass : 'LcsVirtualSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsDefaultInstanceSlot >> defaultValueAccessBlock [
 	[ :domainCollection | domainCollection defaultInstance ]
 ]
 
-{ #category : #inititalize }
+{ #category : 'inititalize' }
 LcsDefaultInstanceSlot >> initialize [
 	super initialize.
 	self slotName: 'defaultInstance'

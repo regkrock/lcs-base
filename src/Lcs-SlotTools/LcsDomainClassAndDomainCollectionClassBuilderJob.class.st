@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsDomainClassAndDomainCollectionClassBuilderJob,
-	#superclass : #LcsCodeBuilderJob,
+	#name : 'LcsDomainClassAndDomainCollectionClassBuilderJob',
+	#superclass : 'LcsCodeBuilderJob',
 	#instVars : [
 		'classPrefix',
 		'targetPackageName',
@@ -16,65 +16,66 @@ Class {
 		'collectionSlotInstallationTargetClass',
 		'newDomainClassSuperclass'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> _targetDoainClasses [
 	^ self targetDomainClasses
 		collect: [ :each | each isString ifTrue: [ each asClass ] ifFalse: [ each ] ]
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> addLocalCollectionSlotBuildersForTargetClasses [
 	self _targetDoainClasses
 		do: [ :eachClass | self addJobStep: (self localCollectionSlotBuilderFor:  eachClass) ]
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> addMemberOfSlotBuilderForTargetClasses [
 	self _targetDoainClasses
 		do: [ :eachClass | self addJobStep: (self memberOfSlotBuilderFor: eachClass) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> classPrefix [
 	^ classPrefix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> classPrefix: aString [
 	classPrefix := aString.
 	self generateRelatedNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> classRootName [
 	^ classRootName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> classRootName: aString [
 	classRootName := aString.
 	self generateRelatedNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionClassName [
 	^ collectionClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionClassName: anObject [ 
 	collectionClassName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionModuleClass [
 	^ self collectionSlotInstallationTargetClass
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionReferenceSlotBuilder [
 	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
@@ -84,33 +85,33 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionReferenceSlotBuild
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTargetClass [
 	^ collectionSlotInstallationTargetClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTargetClass: aClass [
 	collectionSlotInstallationTargetClass := aClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotName [
 	^ collectionSlotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotName: aString [
 	collectionSlotName := aString
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> createForPrefix: aPrefix rootName: aRootName [
 	self classPrefix: aPrefix.
 	self createForRootName: aRootName
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
 	"self domainInstanceSlotName: self classRootName asValidSelector.
@@ -119,17 +120,17 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> createForRootName: aRootName
 	self collectionClassName: self newDomainClassName asEnglishPlural"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> domainInstanceSlotName [
 	^ domainInstanceSlotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> domainInstanceSlotName: aString [ 
 	domainInstanceSlotName := aString
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> generateRelatedNames [
 	(self classRootName isNil or: [ self classPrefix isNil ])
 		ifTrue: [
@@ -144,29 +145,29 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> generateRelatedNames [
 	self collectionClassName: self newDomainClassName asEnglishPlural
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> initialize [
 	super initialize.
 	self classPrefix: 'Lcs'.
 	self newDomainClassSuperclass: 'LcsDomainObject'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> installCollectionSlotInClass: aClass [
 	self collectionSlotInstallationTargetClass: aClass 
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> installMemberSlotInDomainClass: aClass [ 
 	self targetDomainClasses add: aClass
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> installNewClassesInPackageNamed: aString [ 
 	self targetPackageName: aString
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> localCollectionSlotBuilderFor: aTargetClass [ 
 	^ LcsLocalCollectionSlotBuilder new
 		slotName: self collectionSlotName;
@@ -178,7 +179,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> localCollectionSlotBuilderFo
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> memberOfSlotBuilderFor: aTargetClass [ 
 	^ LcsMemberOfGlobalCollectionSlotBuilder new
 			targetClassName: aTargetClass name;
@@ -190,77 +191,77 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> memberOfSlotBuilderFor: aTar
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassName [
 	^ newDomainClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassName: anObject [ 
 	newDomainClassName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassSuperclass [
 	^ newDomainClassSuperclass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> newDomainClassSuperclass: anObject [ 
 	newDomainClassSuperclass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetDomainClasses [
 	^ targetDomainClasses
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetDomainClasses: aCollection [
 	targetDomainClasses := aCollection
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModule [
 	^ self currentSystem moduleNamed: self collectionModuleClass defaultModuleName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleClass [
 	^ targetModuleClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleClass: aModuleClass [
 	targetModuleClass := aModuleClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleName [
 	^ targetModuleName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetModuleName: aString [
 	targetModuleName := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName [
 	^ targetPackageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageTagName: anObject [
 	targetPackageTagName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> unknownClassName [
 	^ nil
 ]

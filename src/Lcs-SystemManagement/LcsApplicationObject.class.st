@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsApplicationObject,
-	#superclass : #LcsObject,
+	#name : 'LcsApplicationObject',
+	#superclass : 'LcsObject',
 	#traits : 'LtApplicationEnvironment',
 	#classTraits : 'LtApplicationEnvironment classTrait',
 	#instVars : [
 		'targetPackageTagName'
 	],
-	#category : #'Lcs-SystemManagement-Environment'
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationObject class >> isDomainClass [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationObject >> targetPackageTagName [
 	^ targetPackageTagName
 ]

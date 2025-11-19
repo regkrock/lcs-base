@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsUnitOfWork,
-	#superclass : #LcsBaseUnitOfWork,
-	#category : #'Lcs-SystemManagement-UnitOfWork'
+	#name : 'LcsUnitOfWork',
+	#superclass : 'LcsBaseUnitOfWork',
+	#category : 'Lcs-SystemManagement-UnitOfWork',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'UnitOfWork'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitOfWork >> applyChanges [
 	self addedObjects valuesDo: [ :each | each applyChanges ].
 	self changedObjects do: [ :each | each applyChanges ].
@@ -12,65 +14,65 @@ LcsUnitOfWork >> applyChanges [
 	self clearUnitOfWork
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitOfWork >> applyChanges: aDictionary to: eachCollection [ 
 		(aDictionary at: 'add') do: [ :eachItem | eachCollection add: eachItem ].
 		(aDictionary at: 'delete') do: [ :eachItem | eachCollection delete: eachItem ]
 
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitOfWork >> changedSlotRecordFor: aDomainObject slotNamed: aSlotName [
 	^ (self changedRecordFor: aDomainObject)
 		ifNil: [ nil ]
 		ifNotNil: [ :changedObjectRecord | changedObjectRecord changedSlotRecordFor: aSlotName ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitOfWork >> hasAddedRecordFor: aDomainObject [
 	^ (self addedObjects at: aDomainObject ifAbsent: [ nil ]) notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitOfWork >> hasChangeRecordFor: anItem [
 	self changedObjects at: anItem ifAbsent: [ ^ false ].
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitOfWork >> hasChanges [
 	self changedObjects notEmpty ifTrue: [ ^ true ].
 	self deletedObjects notEmpty ifTrue: [ ^ true ].
 	^ self addedObjects notEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitOfWork >> hasNoChanges [
 	self changedObjects isEmpty ifTrue: [ ^ true ].
 	self deletedObjects isEmpty ifTrue: [ ^ true ].
 	^ self addedObjects isEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitOfWork >> hasRemovalRecordFor: aDomainObject [
 	^ (self deletedObjects at: aDomainObject ifAbsent: [ nil ]) notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitOfWork >> pendingAddsFor: anItem [
 	^ self addedObjects
 		select: [ :eachAddRecord | 
 			eachAddRecord isMemberOfGlobalCollectionIn: anItem label ]
 ]
 
-{ #category : #query }
+{ #category : 'query' }
 LcsUnitOfWork >> pendingDeletesFor: anItem [
 	^ self deletedObjects
 		select: [ :eachDeletedRecord | 
 			eachDeletedRecord isMemberOfGlobalCollectionIn: anItem label ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitOfWork >> removeAddOf: anObject [
 	(self hasAddedRecordFor: anObject) ifFalse: [ ^ self ].
 	anObject instVarNamed: 'parent' put: nil.

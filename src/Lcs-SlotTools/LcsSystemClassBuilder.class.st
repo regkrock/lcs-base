@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsSystemClassBuilder,
-	#superclass : #LcsBaseModuleClassBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsSystemClassBuilder',
+	#superclass : 'LcsBaseModuleClassBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsSystemClassBuilder >> buildJobSteps [
 	super buildJobSteps.
 	self addJobStep: self systemDomainClassesMethodBuilder.
@@ -12,7 +13,7 @@ LcsSystemClassBuilder >> buildJobSteps [
 	self addJobStep: self modifyOwningModulesMethodBuilder
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 	^ LcsConvenienceStartSystemMethodBuilder new
 		beClassMethod;
@@ -23,7 +24,7 @@ LcsSystemClassBuilder >> convenienceCreateSystemMethodBuilder [
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSystemClassBuilder >> modifyOwningModulesMethodBuilder [
 	^ LcsModifyOwningModulesMethodBuilder new
 		targetClassName: 'LcsSecurityModule';
@@ -31,7 +32,7 @@ LcsSystemClassBuilder >> modifyOwningModulesMethodBuilder [
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSystemClassBuilder >> systemDomainClassesMethodBuilder [
 	^ LcsSystemDomainClassesMethodBuilder new
 		targetClassName: self newClassName;
@@ -40,7 +41,7 @@ LcsSystemClassBuilder >> systemDomainClassesMethodBuilder [
 		yourself
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSystemClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	super verifySlotModelUpdatesMadeByBuilder.
 	"A new system class is not part of the current system's slot model"

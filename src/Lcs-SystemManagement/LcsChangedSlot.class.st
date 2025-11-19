@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsChangedSlot,
-	#superclass : #LcsObject,
+	#name : 'LcsChangedSlot',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'slotName',
 		'newValue',
 		'parent'
 	],
-	#category : #'Lcs-SystemManagement-UnitOfWork'
+	#category : 'Lcs-SystemManagement-UnitOfWork',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'UnitOfWork'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsChangedSlot class >> newFor: aSlotName parent: aChangedObjectRecord [
 
 	^self new
@@ -17,56 +19,56 @@ LcsChangedSlot class >> newFor: aSlotName parent: aChangedObjectRecord [
 		yourself	
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsChangedSlot >> applyChangeRecordingHistoryIn: aChangeRecord [
 	(aChangeRecord changes newSlotChangeRecord: self slotName)
 		newValue: self newValue.
 	self domainObject instVarNamed: self slotName asString put: self newValue
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsChangedSlot >> domainObject [
 	^ self parent domainObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsChangedSlot >> gtUnitOfWorkChildren [
 	^ LcsUnitOfWorkViewItem newLabel: self slotName item: self newValue
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsChangedSlot >> initailzeFor: aSlotName parent: aChangedObjectRecord [ 
 	self
 		slotName: aSlotName;
 		parent: aChangedObjectRecord
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsChangedSlot >> newValue [
 	^ newValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsChangedSlot >> newValue: anObject [
 	newValue := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsChangedSlot >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsChangedSlot >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsChangedSlot >> slotName [
 	^ slotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsChangedSlot >> slotName: anObject [
 	slotName := anObject
 ]

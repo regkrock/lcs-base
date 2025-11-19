@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsPostalCodeSlot,
-	#superclass : #LcsDomainObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsPostalCodeSlot',
+	#superclass : 'LcsDomainObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsPostalCodeSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | parentDomainObject country postalCodeClass new ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsPostalCodeSlot >> initialize [
 	super initialize.
 	self slotName: 'postalCode'.
@@ -18,7 +20,7 @@ LcsPostalCodeSlot >> initialize [
 	self required: true
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsPostalCodeSlot >> slotVarPut: anObject in: aDomainObject [
 	anObject slotVarNamed: 'parent' put: aDomainObject.
 	super slotVarPut: anObject in: aDomainObject

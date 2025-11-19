@@ -2,28 +2,30 @@
 This is used to define a global collection slot. All of the items stored in this collection are rooted in this collection.
 "
 Class {
-	#name : #LcsGlobalCollectionSlot,
-	#superclass : #LcsPrimaryCollectionSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsGlobalCollectionSlot',
+	#superclass : 'LcsPrimaryCollectionSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'object initialization' }
+{ #category : 'object initialization' }
 LcsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
 	self populateCollection 
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsGlobalCollectionSlot >> loaderClass [
 	^ self propertyAt: 'loaderClass' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsGlobalCollectionSlot >> loaderClass: aLoaderClass [
 	self propertyAt: 'loaderClass' put: aLoaderClass
 ]
 
-{ #category : #load }
+{ #category : 'load' }
 LcsGlobalCollectionSlot >> populateCollection [
 	self loaderClass isNil ifTrue: [ ^ self ].
 	self loaderClass new load

@@ -1,34 +1,36 @@
 Class {
-	#name : #LcsBaseDomainObject,
-	#superclass : #LcsObject,
+	#name : 'LcsBaseDomainObject',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'parent'
 	],
 	#classInstVars : [
 		'slotModel'
 	],
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> accessorSlotDefinitionPragmas [
 	^ Pragma allNamed: 'slotDefinition' in: self class
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> addSlotDefinitionViewItemsTo: allSlotDefinitionViewItems [ 
 	allSlotDefinitionViewItems addAll: self localSlotDefinitionViewItems.
 	self superclass = LcsObject ifFalse: [
 		self superclass addSlotDefinitionViewItemsTo: allSlotDefinitionViewItems ]
 ]
 
-{ #category : #'meta data' }
+{ #category : 'meta data' }
 LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 	^ self allSuperclasses reverse
 		reject: [ :each | (each inheritsFrom: LcsBaseDomainObject) not ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> allSlotDefinitionPragmas [
 	^ OrderedCollection new
 		addAll: self accessorSlotDefinitionPragmas;
@@ -37,7 +39,7 @@ LcsBaseDomainObject class >> allSlotDefinitionPragmas [
 		yourself
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> assertDomainSlotRemoved: aSlotName [
 	self assert: (self hasSlotDefinitionNamed: aSlotName) not.
 	self assert: (self instVarNames includes: aSlotName) not.
@@ -46,7 +48,7 @@ LcsBaseDomainObject class >> assertDomainSlotRemoved: aSlotName [
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> assertSlotAdded: aSlotName [
 	self assert: (self instVarNames includes: aSlotName).
 	self assert: (self canUnderstand: aSlotName asSymbol).
@@ -54,27 +56,27 @@ LcsBaseDomainObject class >> assertSlotAdded: aSlotName [
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject class >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject class >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> facadeSlotDefinitionPragmas [
 	^ Pragma allNamed: 'facadeSlotDefinition' in: self class
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject class >> getPersistedValueOf: aString in: anObject [ 
 	^ self slotModel getPersistedValueOf: aString in: anObject 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 	<gtClassView>
 	^ aView explicit
@@ -87,7 +89,7 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 		
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowContext [
 	<gtView>
 	<gtClassView>
@@ -133,7 +135,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 	^ element
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
@@ -152,56 +154,56 @@ LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 		
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> hasNoninitializedApplicationEnvironment [
 	^ self isSlotModelReleased
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> hasNoninitializedSlotModel [
 	^ self hasNoninitializedApplicationEnvironment
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> hasParentSlotDefinition [
 	^ self hasSlotDefinitionNamed: 'parent' 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> hasSlotDefinitionNamed: aString [ 
 	self slotModel ifNil: [ ^ false ].
 	^ self slotModel hasSlotDefinitionNamed: aString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> hasSlotModel [
 	^ self slotModel notNil 
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject class >> initializeApplicationEnvironment [
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> initializeSlotModel [
 	self instantiateSlotModel.
 	self installSlotModel
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> installFacadeSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self slotModel addFacadeSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self slotModel isNil ifTrue: [ ^ self ].
 	self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinitions [
 	self accessorSlotDefinitionPragmas
 		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ].
@@ -211,63 +213,63 @@ LcsBaseDomainObject class >> installSlotDefinitions [
 		do: [ :eachPragma | self installFacadeSlotDefinition: eachPragma methodSelector ]
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> installSlotModel [
 	self currentSystem notNil ifTrue: [
 		self installSlotModelIn: self currentSystem ]
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> installSlotModelIn: aSystem [
 	aSystem addToSlotModel: self slotModel.
 	self installSlotDefinitions
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> installVirtualSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self slotModel addVirtualSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
-{ #category : #'slot model - install' }
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> instantiateSlotModel [
 	self  verifySuperclassesHaveInitializedSlotModel.
 	self slotModel: (LcsSlotModel newOn: self)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> isDomainClass [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> isPrototypeClass [
 	^ self name beginsWith: 'Lxx'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> isRootDomainClass [
 	^ self name asString = 'LcsBaseDomainObject'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> isSlotModelInstantiated [
 	^ self slotModel notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> isSlotModelPopulated [
 	^ self isDefined and: [ 
 		self subclasses allSatisfy: [ :each | each isSlotModelPopulated ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject class >> isSlotModelReleased [
 	self withAllSubclassesDo: [ :eachClass | eachClass slotModel notNil ifTrue: [ ^ false ] ].
 	^ true
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> localSlotDefinitionViewItems [
 	^ self viewItemsFrom: self allSlotDefinitionPragmas.
 	"self instVarNames
@@ -279,7 +281,7 @@ LcsBaseDomainObject class >> localSlotDefinitionViewItems [
 	^ allSlotDefinitionViewItems"
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBaseDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.
@@ -287,30 +289,30 @@ LcsBaseDomainObject class >> new [
 	^ newObject
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> parentSlot [
 	self slotModel isNil ifTrue: [ LcsUndefinedSlotModelError signalClassWithoutSlotModel: self ].
 	^ self slotModel slotDefinitionNamed: 'parent'
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBaseDomainObject class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsParentSlot new
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject class >> releaseApplicationEnvironment [
 	self releaseSlotModel
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> releaseSlotModel [
 	self slotModel: nil.
 	self subclassesDo: [ :each | each releaseSlotModel ]
 ]
 
-{ #category : #'slot definition - removal' }
+{ #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeDomainSlotNamed: aSlotName [
 	self removeDomainSlotNamedFromSlotModel: aSlotName.
 	self removeInstVar: aSlotName.
@@ -319,40 +321,40 @@ LcsBaseDomainObject class >> removeDomainSlotNamed: aSlotName [
 	self removeSlotDefinition: (aSlotName , 'SlotDefinition')
 ]
 
-{ #category : #'slot definition - removal' }
+{ #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeDomainSlotNamedFromSlotModel: aSlotName [
 	self slotModel
 		ifNotNil: [ :model | model removeSlotDefinitionNamed: aSlotName asString ]
 ]
 
-{ #category : #'slot definition - removal' }
+{ #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeGetter: aGetter [
 	self removeSelector: aGetter asSymbol
 ]
 
-{ #category : #'slot definition - removal' }
+{ #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeInstVar: aSlotName [
 	(self instVarNames includes: aSlotName asSymbol)
 		ifTrue: [ self removeInstVarNamed: aSlotName asSymbol ]
 ]
 
-{ #category : #'slot definition - removal' }
+{ #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeSetter: aSetterSelector [
 	self removeSelector: aSetterSelector asSymbol
 ]
 
-{ #category : #'slot definition - removal' }
+{ #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeSlotDefinition: aSlotDefinitionSelector [
 	self class removeSelector: aSlotDefinitionSelector asSymbol
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> slotDefinitionNamed: aString [ 
 	self verifySlotModelInitialized.
 	^ self slotModel slotDefinitionNamed: aString
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> slotDefinitionViewItems [
 	| allSlotDefinitionViewItems |
 	allSlotDefinitionViewItems := OrderedCollection new.
@@ -360,27 +362,27 @@ LcsBaseDomainObject class >> slotDefinitionViewItems [
 	^ allSlotDefinitionViewItems
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseDomainObject class >> slotModel [
 	^ slotModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseDomainObject class >> slotModel: aSlotModel [
 	slotModel := aSlotModel
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> slotModelNotInitializedError [
 	LcsSlotModelNotInitializedError signalWithContext: self
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject class >> slotNamesExcludedFromCollectionViewSlotDefinitions [
 	^ #('parent')
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifyClassHasDomainSlotNamed: aSlotName [
 	self assert: (self allInstVarNames includes: aSlotName).
 	self assert: (self canUnderstand: aSlotName asSymbol).
@@ -388,7 +390,7 @@ LcsBaseDomainObject class >> verifyClassHasDomainSlotNamed: aSlotName [
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifyClassHasNoDomainSlotNamed: aSlotName [
 	self assert: (self instVarNames includes: aSlotName) not.
 	self assert: (self canUnderstand: aSlotName asSymbol) not.
@@ -396,14 +398,14 @@ LcsBaseDomainObject class >> verifyClassHasNoDomainSlotNamed: aSlotName [
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol) not
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifyClassHasSlotDefinitionsForInstVars [
 	self verifyNoSlotDefinitionInstanceVariableMismatch.
 	self accessorSlotDefinitionPragmas do: [ :eachPragma |
 		self verifyClassHasDomainSlotNamed: (self perform: eachPragma method selector) slotName]
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 	| localInstVarNames slotDefinitions |
 	localInstVarNames := self instVarNames asOrderedCollection.
@@ -420,7 +422,7 @@ LcsBaseDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 		LcsSlotDefinitionAndInstanceVariableMismatchError signalFrom: self unmatchInstVars: localInstVarNames slotDefinitions: slotDefinitions]
 ]
 
-{ #category : #'slot definition - removal' }
+{ #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> verifyRemovedDomainSlotNamed: aSlotName [
 	self slotModel ifNotNil: [
 		self assert: (self slotModel _slotDefinitionNamed: aSlotName) isNil ].
@@ -431,19 +433,19 @@ LcsBaseDomainObject class >> verifyRemovedDomainSlotNamed: aSlotName [
 
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifySlotModelConsistency [
 	 self verifyClassHasSlotDefinitionsForInstVars .
 	self assert: self hasSlotModel.
 	self assert: self slotModel parent == self
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifySlotModelInitialized [
 	self slotModel ifNil: [ self slotModelNotInitializedError ]
 ]
 
-{ #category : #'slot model - verification' }
+{ #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
 	"self superclass == LcsObject ifTrue: [ ^ self ].
 	self superclass isSlotModelDefined
@@ -452,30 +454,30 @@ LcsBaseDomainObject class >> verifySuperclassesHaveInitializedSlotModel [
 
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> viewItemsFrom: aListOfPragmas [
 	^ aListOfPragmas collect: [ :eachPragma | 
 		((self perform: eachPragma method selector) domainClass: self) asViewItem ] 
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> virtualSlotDefinitionPragmas [
 	^ Pragma allNamed: 'virtualSlotDefinition' in: self class
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject >> _slotVarNamed: aSlotName [
 	"Return the value of the instance variable in me with that name"
 	^ (self slotDefinitionNamed: aSlotName) _currentSlotVarIn: self
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject >> accessorSlotNameandValue [
 	^ self allAccessorSlotDefinitions collect: [ :each | 
 		each slotName -> (self perform: each slotName asSymbol) ]
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 	"self isIncludedInSystemDomainClasses
 		ifTrue: [self slotModel class name = #LcsSlotModel
@@ -489,22 +491,22 @@ LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 		aValidator validate: self slotModel]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> allAccessorSlotDefinitions [
 	^ self slotModel allAccessorSlotDefinitions
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> allSlotDefinitions [
 	^ self slotModel allSlotDefinitions
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject >> applicationEnvironment [
 	^ self parent applicationEnvironment
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsBaseDomainObject >> auditSlots [
 	<TODO: 'This needs more work'>
 	| auditor |
@@ -513,42 +515,42 @@ LcsBaseDomainObject >> auditSlots [
 	^ auditor
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> changeRecordForSlot: aSlotName [
 	^ (self slotDefinitionNamed: aSlotName) changedSlotRecordFor: self
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> changeValueForSlot: aSlotName [
 	^ (self changeRecordForSlot: aSlotName) ifNil: [ '' ] ifNotNil: [ :slotChangeRecord | slotChangeRecord newValue]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> collectionViewSlotDefinitions [
 	^ self slotModel collectionViewSlotDefinitions
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject >> currentSystem [
 	^ self class currentSystem
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject >> currentUnitOfWork [
 	^ self class currentUnitOfWork
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsBaseDomainObject >> currentUser [
 	^ self currentSystem currentUser
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject >> getPersistedValueOf: aString [
 	^ self class getPersistedValueOf: aString in: self
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject >> gtLiveFor: aView [
 	<gtView>
 	self slotModel ifNil: [
@@ -571,7 +573,7 @@ LcsBaseDomainObject >> gtLiveFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject >> gtPendingChangesFor: aView [
 	<gtView>
 	self currentSystem ifNil: [ ^ super gtRawFor: aView ].
@@ -644,144 +646,144 @@ LcsBaseDomainObject >> gtPendingChangesFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject >> gtSlotDefinitionMethodFor: aView [
 	<gtView>
 	<gtClassView>
 	^ self class gtSlotDefinitionMethodFor: aView
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject >> gtViewSlotDefinitionFor: aView context: aPhlowContext [
 	<gtView>
 	<gtClassView>
 	^ self class gtViewSlotDefinitionFor: aView context: aPhlowContext
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseDomainObject >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
 	^ self class gtViewSlotModelFor: aView
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsBaseDomainObject >> incrementVersionNumber [
 	"subclasses should implement as needed"
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseDomainObject >> initialize [
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.
 	super initialize.
 	self initializeModel.
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseDomainObject >> initializeModel [
 	self initializeSlotValues
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject >> initializeSlotNamed: aSlotName [
 	self slotModel initializeSlotNamed: aSlotName in: self
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseDomainObject >> initializeSlotValues [
 	self verifySlotModelInitialized.
 	self slotModel initializeSlotValuesIn: self
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseDomainObject >> initializeUninitializedSlotValues [
 	self slotModel ifNil: [ LcsSlotModelNotInitializedError signalWithContext: self ].
 	self slotModel initializeUnintializedSlotValuesIn: self.
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject >> isDomainObject [
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject >> isIncludedInSystemDomainClasses [
 	^ self currentSystem isIncludedInSystemDomainClasses: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject >> isMemberOfGlobalCollectionIn: aSlotName [
 	^ self parentSlotDefinition isGlobalCollectionRefenceSlotTo: aSlotName
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject >> isRootDomainClass [
 	self class isRootDomainClass
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject >> isSlotModelInstantiated [
 	^ self class isSlotModelInstantiated
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseDomainObject >> isSupportDomainObject [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseDomainObject >> parent [
 	^ self slotVarNamed: 'parent'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseDomainObject >> parent: anObject [
 	self slotVarNamed: 'parent' put: anObject
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject >> parentPersistedValue [
 	^ self getPersistedValueOf: 'parent'
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> parentSlot [
 	^ self class parentSlot
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> parentSlotDefinition [
 	^ self slotModel parentSlotDefinition
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> slotDefinitionNamed: aString [
 	^ self class slotDefinitionNamed: aString
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseDomainObject >> slotModel [
 	^ self class slotModel
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject >> slotVarNamed: aSlotName [
 	"Return the value of the instance variable in me with that name"
 	^ (self slotDefinitionNamed: aSlotName) currentSlotVarIn: self
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject >> slotVarNamed: aSlotName put: onObject [
 	(self slotDefinitionNamed: aSlotName) slotVarPut: onObject in: self
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsBaseDomainObject >> verifySlotModelInitialized [
 	self class verifySlotModelInitialized
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsBaseDomainObject >> virtualSlotVarNamed: aSlotName [
 	"Return the value of the instance variable in me with that name"
 	^ (self slotDefinitionNamed: aSlotName) currentSlotVarIn: self

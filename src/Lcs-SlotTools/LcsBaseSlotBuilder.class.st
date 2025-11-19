@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsBaseSlotBuilder,
-	#superclass : #LcsCodeBuilderStep,
+	#name : 'LcsBaseSlotBuilder',
+	#superclass : 'LcsCodeBuilderStep',
 	#instVars : [
 		'slotClassName',
 		'slotDefinitionSelector',
@@ -9,15 +9,16 @@ Class {
 		'targetClassName',
 		'targetModuleClass'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #con }
+{ #category : 'con' }
 LcsBaseSlotBuilder class >> slotClass [
 	"Subclasses can override this method to provide a default"
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 	"Note: The 'property' will be turned into a setter and value is argument
 		ex: property 'slotName' and argument 'foo' will become the setter for the slot name.
@@ -28,22 +29,22 @@ LcsBaseSlotBuilder >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 		aSlotDefinitionMethodBuilder addProperty: key value: value ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlotBuilder >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 LcsBaseSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsBaseSlotBuilder >> addStepNumberTo: aString [
 	^ self stepNumber , '.' , aString
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotBuilder >> classesOrNilsFor: aCollectionOfClassNames [ 
 	"Return collection of Class. If a Class does not exist, `nil` value is used."
 
@@ -52,35 +53,35 @@ LcsBaseSlotBuilder >> classesOrNilsFor: aCollectionOfClassNames [
 		collect: [ :eachClasstName | Smalltalk classOrTraitNamed: eachClasstName asString trimBoth ]
 ]
 
-{ #category : #execute }
+{ #category : 'execute' }
 LcsBaseSlotBuilder >> commit [
 	self buildJobSteps.
 	self execute
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlotBuilder >> doesSlotDefinitionMethodExist [
 	^ self targetClass class includesSelector: self slotDefinitionSelector
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlotBuilder >> doesTargetClassExist [
 	^ self targetClass isClass
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotBuilder >> editableLabelAptitude [
 	^ BrGlamorousEditableLabelAptitude new glamorousFormEditorCodeFontAndSize
 		defaultForeground: Color black
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsBaseSlotBuilder >> ensureSlotDefinitionMethodDoesNotAlreadyExist [
 	self doesSlotDefinitionMethodExist
 		ifTrue: [ self error: 'Slot definition already exists' ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlotBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self doesTargetClassExist ifFalse: [
@@ -96,7 +97,7 @@ LcsBaseSlotBuilder >> gtClassViewOn: aView [
 		yourself
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotBuilder >> initialize [
 	super initialize.
 	self slotTypes: OrderedCollection new.
@@ -105,18 +106,18 @@ LcsBaseSlotBuilder >> initialize [
 
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotBuilder >> initializeJobSteps [
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsBaseSlotBuilder >> installCode [
 	self traceStep: 'installCode'.
 	self jobSteps installCode
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotBuilder >> moveToNextItemIn: aForm [
 	^ BlShortcutWithAction new
 		name: 'Move to next form item';
@@ -130,7 +131,7 @@ LcsBaseSlotBuilder >> moveToNextItemIn: aForm [
 				nextFocusDo: #requestFocus ifNone: [  ] ]
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotBuilder >> moveToPreviousItemIn: aForm [
 	^ BlShortcutWithAction new
 		name: 'Move to previous form item';
@@ -144,7 +145,7 @@ LcsBaseSlotBuilder >> moveToPreviousItemIn: aForm [
 				nextFocusDo: #requestFocus ifNone: [  ] ]
 ]
 
-{ #category : #populate }
+{ #category : 'populate' }
 LcsBaseSlotBuilder >> populateFrom: aSlotClassName [
 	self properties removeAll.
 	self slotClassName: aSlotClassName.
@@ -154,7 +155,7 @@ LcsBaseSlotBuilder >> populateFrom: aSlotClassName [
 		self propertyAt: key put: value copy ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsBaseSlotBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Install slot "';
@@ -163,63 +164,63 @@ LcsBaseSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ self targetClass ifNotNil: [ self targetClass name ] ]) asString
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> propertyAt: aName ifAbsent: aBlock [
 	^ self properties at: aName ifAbsent: aBlock
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> propertyAt: aString ifAbsentPut: aBlock [ 
 	^ self properties at: aString ifAbsentPut: aBlock
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> propertyAt: aString put: anObject [ 
 	self properties at: aString put: anObject.
 	self jobSteps propogateProperty: aString valueChangedTo: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> slotClassName [
 	^ slotClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> slotClassName: anObject [
 	slotClassName := anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotBuilder >> slotDefinitionMethodBuilder [
 	^ LcsSlotDefintionMethodBuilder newFrom: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> slotDefinitionSelector [
 	^ slotDefinitionSelector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> slotDefinitionSelector: aSymbolOrNil [
 	slotDefinitionSelector := aSymbolOrNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> slotDefinitionTemplate [
 	^ slotDefinitionTemplate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> slotDefinitionTemplate: anObject [ 
 	slotDefinitionTemplate := anObject
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> slotName [
 	^ self propertyAt: 'slotName' ifAbsent: [ nil ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> slotName: anObject [
 	| slotName slotDefinitionName|
 	slotName := 
@@ -235,7 +236,7 @@ LcsBaseSlotBuilder >> slotName: anObject [
 	self slotDefinitionSelector: slotDefinitionName
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsBaseSlotBuilder >> slotNameDescription [
 	<magritteDescription>
 	| existingInstvarNames |
@@ -255,17 +256,17 @@ LcsBaseSlotBuilder >> slotNameDescription [
 		beRequired
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> slotTypes [
 	^ self propertyAt: 'slotTypes' ifAbsent: [ OrderedCollection new] 
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlotBuilder >> slotTypes: anObject [
 	self propertyAt: 'slotTypes' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsBaseSlotBuilder >> slotTypesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -316,7 +317,7 @@ LcsBaseSlotBuilder >> slotTypesDescription [
 		beRequired
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotBuilder >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
 	^ [ :aMemento :aDescription :aForm | 
 	| aTagger aTaggerAptitude |
@@ -407,7 +408,7 @@ LcsBaseSlotBuilder >> taggerStencilWithCompletion: aCompletionStrategy andContex
 		using: aDescription ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> targetClass [
 	^ self targetClassName ifNotNil: [ 
 		[ self targetClassName asClass ] 
@@ -415,12 +416,12 @@ LcsBaseSlotBuilder >> targetClass [
 			do: [ :s | s return: nil ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> targetClass: aClass [
 	self targetClassName: aClass name
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsBaseSlotBuilder >> targetClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -448,22 +449,22 @@ LcsBaseSlotBuilder >> targetClassDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> targetClassName [
 	^ targetClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> targetClassName: aString [
 	targetClassName := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> targetModuleClass [
 	^ targetModuleClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotBuilder >> targetModuleClass: aModuleClass [
 	targetModuleClass := aModuleClass
 ]

@@ -1,29 +1,31 @@
 Class {
-	#name : #LcsDomainCollection,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsDomainCollection',
+	#superclass : 'LcsDomainObject',
 	#traits : 'LtIdentitySetDomainCollection',
 	#classTraits : 'LtIdentitySetDomainCollection classTrait',
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainCollection class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsIdentitySetSlot new
 ]
 
-{ #category : #queries }
+{ #category : 'queries' }
 LcsDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
 	^nil
 ]
 
-{ #category : #'default instance' }
+{ #category : 'default instance' }
 LcsDomainCollection >> find: aBlock [
 	^ self find: aBlock ifNone: [ nil ]
 ]
 
-{ #category : #'default instance' }
+{ #category : 'default instance' }
 LcsDomainCollection >> find: aBlock ifNone: aNoneBlock [
 	| defaultInstance |
 	defaultInstance := self collection detect: aBlock ifNone: [ nil ].
@@ -33,17 +35,17 @@ LcsDomainCollection >> find: aBlock ifNone: aNoneBlock [
 	^ aNoneBlock cull: self
 ]
 
-{ #category : #search }
+{ #category : 'search' }
 LcsDomainCollection >> findWithKey: anObject [
 	^ self findWithKey: anObject ifNone: [ ]
 ]
 
-{ #category : #search }
+{ #category : 'search' }
 LcsDomainCollection >> findWithKey: anObject ifNone: aBlock [
 	^ self collection detect: [ :each | each key = anObject ] ifNone: aBlock
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainCollection >> gtPendingAddsView: aView [
 	<gtView>
 	| columnedListView |
@@ -70,7 +72,7 @@ LcsDomainCollection >> gtPendingAddsView: aView [
 	^ columnedListView
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainCollection >> gtPendingDeletesView: aView [
 	<gtView>
 	self pendingDeletes ifEmpty: [ ^ aView empty ].
@@ -82,12 +84,12 @@ LcsDomainCollection >> gtPendingDeletesView: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'domain collection' }
+{ #category : 'domain collection' }
 LcsDomainCollection >> pendingAdds [
 	^ self currentUnitOfWork pendingAddsIn: self
 ]
 
-{ #category : #'domain collection' }
+{ #category : 'domain collection' }
 LcsDomainCollection >> pendingDeletes [
 	^ self currentUnitOfWork pendingDeletesFromCollection: self
 ]

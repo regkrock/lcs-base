@@ -1,36 +1,38 @@
 Class {
-	#name : #LcsScaledDecimalSlot,
-	#superclass : #LcsNumberSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsScaledDecimalSlot',
+	#superclass : 'LcsNumberSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsScaledDecimalSlot >> defaultInitialValueBlock [ 
 	^ [ :parentDomainObject :slot | 0 asScaledDecimal: slot numberOfDecimals ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsScaledDecimalSlot >> defaultNumberOfDecimals [
 	^ 2
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsScaledDecimalSlot >> initialize [
 	super initialize.
 	self numberOfDecimals: self defaultNumberOfDecimals
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsScaledDecimalSlot >> numberOfDecimals [
 	^ self propertyAt: 'numberOfDecimals' ifAbsent: [ 2 ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsScaledDecimalSlot >> numberOfDecimals: anObject [
 	self propertyAt: 'numberOfDecimals' put: anObject
 ]
 
-{ #category : #'magritte\t' }
+{ #category : 'magritte\t' }
 LcsScaledDecimalSlot >> numberOfDecimalsDescription [
 	<magritteDescription>
 	^ MANumberDescription new
@@ -43,13 +45,13 @@ LcsScaledDecimalSlot >> numberOfDecimalsDescription [
 		yourself
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsScaledDecimalSlot >> prevalidationTransformBlock [
 	^ [ :value :slot | 
 			value isNumber ifTrue: [ value asScaledDecimal: slot numberOfDecimals ] ifFalse: [ value ] ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsScaledDecimalSlot >> typeClass [
 	^LcsSmalltalkConfiguration scaledDeciamlClass
 ]

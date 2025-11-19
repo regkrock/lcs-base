@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsLogger,
-	#superclass : #LcsObject,
+	#name : 'LcsLogger',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'tabLevel',
 		'stream'
@@ -8,135 +8,137 @@ Class {
 	#classInstVars : [
 		'soleInstance'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> cr [
 	self soleInstance cr
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> decrementTabLevel [
 	self soleInstance decrementTabLevel
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> incrementTabLevel [
 	self soleInstance incrementTabLevel
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> indent [
 	self soleInstance incrementTabLevel
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> log: aMessage [
 	self soleInstance log: aMessage
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger class >> logGettingInitialValue [
 	self soleInstance logGettingInitialValue
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> logIndented: aMessage [
 	self soleInstance logIndented: aMessage
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger class >> logReceiver: aReceiver message: aMessage [
 	self soleInstance logReceiver: aReceiver message: aMessage
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger class >> logReceiver: aReceiver slector: aSelector arguments: aCollection [
 	self soleInstance logReceiver: aReceiver slector: aSelector arguments: aCollection
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger class >> logReturningInitialValue: anObject [
 	self soleInstance logReturningInitialValue: anObject
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> logTab: aMessage [
 	self soleInstance logTab: aMessage
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLogger class >> loggingOff [
 	self soleInstance loggingOff
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger class >> outdent [
 	self soleInstance decrementTabLevel
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsLogger class >> reset [
 	self soleInstance reset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLogger class >> soleInstance [
 	^ soleInstance ifNil: [ soleInstance := self new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLogger class >> soleInstance: anObject [
 	soleInstance := anObject
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLogger class >> streamLoggingOn [
 	self soleInstance streamLoggingOn
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLogger class >> transcriptLoggingOn [
 	self soleInstance transcriptLoggingOn
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger >> cr [
 	^ self stream cr
 ]
 
-{ #category : #tabs }
+{ #category : 'tabs' }
 LcsLogger >> decrementTabLevel [
 	self tabLevel > 0 ifTrue: [
 		self tabLevel: self tabLevel - 1 ].
 ]
 
-{ #category : #tabs }
+{ #category : 'tabs' }
 LcsLogger >> incrementTabLevel [
 	self tabLevel: self tabLevel + 1
 ]
 
-{ #category : #tabs }
+{ #category : 'tabs' }
 LcsLogger >> indent [
 	self incrementTabLevel
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsLogger >> initialize [
 	super initialize.
 	self tabLevel: 0.
 	self stream: NullStream new
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger >> log: aMessage [
 	self writeTabs.
 	self nextPutAll: aMessage.
 	self cr
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger >> logGettingInitialValue [
 	self 
 		indent; 
@@ -144,7 +146,7 @@ LcsLogger >> logGettingInitialValue [
 		indent
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger >> logIndented: aMessage [
 	self writeTabs.
 	self tab.
@@ -152,7 +154,7 @@ LcsLogger >> logIndented: aMessage [
 	self cr
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger >> logReceiver: aReceiver message: aMessage [
 	self 
 		writeTabs;
@@ -160,7 +162,7 @@ LcsLogger >> logReceiver: aReceiver message: aMessage [
 		cr 
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger >> logReceiver: aReceiver slector: aSelector arguments: aCollection [
 	self 
 		writeTabs;
@@ -169,7 +171,7 @@ LcsLogger >> logReceiver: aReceiver slector: aSelector arguments: aCollection [
 				self nextPutAll: ' arg' , index asString , ': ' , each printString ] 
 ]
 
-{ #category : #'logging - api' }
+{ #category : 'logging - api' }
 LcsLogger >> logReturningInitialValue: anObject [
 	self 
 		outdent;
@@ -177,7 +179,7 @@ LcsLogger >> logReturningInitialValue: anObject [
 		outdent.
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger >> logTab: aMessage [
 	self writeTabs.
 	self tab.
@@ -185,22 +187,22 @@ LcsLogger >> logTab: aMessage [
 	self cr
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLogger >> loggingOff [
 	self stream: NullStream new.
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger >> nextPutAll: aMessage [
 	self stream nextPutAll: aMessage asString
 ]
 
-{ #category : #tabs }
+{ #category : 'tabs' }
 LcsLogger >> outdent [
 	self decrementTabLevel
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsLogger >> reset [
 	self stream isStream
 		ifTrue: [self stream reset]
@@ -208,42 +210,42 @@ LcsLogger >> reset [
 	self tabLevel: 0.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLogger >> stream [
 	^ stream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLogger >> stream: anObject [
 	stream := anObject
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLogger >> streamLoggingOn [
 	self stream: (WriteStream on: String new)
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger >> tab [
 	^ self stream tab
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLogger >> tabLevel [
 	^ tabLevel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLogger >> tabLevel: anObject [
 	tabLevel := anObject
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLogger >> transcriptLoggingOn [
 	self stream: Transcript.
 ]
 
-{ #category : #logging }
+{ #category : 'logging' }
 LcsLogger >> writeTabs [
 	self tabLevel timesRepeat: [ self tab ]
 ]

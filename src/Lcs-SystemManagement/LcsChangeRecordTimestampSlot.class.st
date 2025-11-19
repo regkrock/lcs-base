@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsChangeRecordTimestampSlot,
-	#superclass : #LcsTimestampSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsChangeRecordTimestampSlot',
+	#superclass : 'LcsTimestampSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsChangeRecordTimestampSlot >> initialize [
 	super initialize.
 	self makeDirectUpdateOfVariable

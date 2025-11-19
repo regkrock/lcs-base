@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsCommodoreSlot,
-	#superclass : #LcsDomainObjectSlot,
+	#name : 'LcsCommodoreSlot',
+	#superclass : 'LcsDomainObjectSlot',
 	#traits : 'LtAggregateAssociation',
 	#classTraits : 'LtAggregateAssociation classTrait',
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsCommodoreSlot >> initialize [
 	super initialize.
 	self slotName: 'commodore'.

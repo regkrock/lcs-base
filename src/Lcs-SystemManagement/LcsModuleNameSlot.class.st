@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsModuleNameSlot,
-	#superclass : #LcsStringSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsModuleNameSlot',
+	#superclass : 'LcsStringSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModuleNameSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject | parentDomainObject class defaultModuleName ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModuleNameSlot >> initialize [
 	super initialize.
 	self

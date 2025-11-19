@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsSlotValidationNonBooleanResultError,
-	#superclass : #LcsSlotValidationBaseError,
-	#category : #'Lcs-SystemManagement-Error'
+	#name : 'LcsSlotValidationNonBooleanResultError',
+	#superclass : 'LcsSlotValidationBaseError',
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotValidationNonBooleanResultError class >> signalBooleanNotReturnedFor: aValue condition: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self new
 		signalBooleanNotReturnedFor: aValue
@@ -14,7 +16,7 @@ LcsSlotValidationNonBooleanResultError class >> signalBooleanNotReturnedFor: aVa
 		oldValue: anOldValue
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotValidationNonBooleanResultError >> signalBooleanNotReturnedFor: aValue condition: aValidationCondition inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self value: aValue.
 	self validationCondition: aValidationCondition.
@@ -24,7 +26,7 @@ LcsSlotValidationNonBooleanResultError >> signalBooleanNotReturnedFor: aValue co
 	self signal: self validationConditionErrorMessage
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotValidationNonBooleanResultError >> validationConditionErrorMessage [
 	^ '<1s> slot: <2s> has validation error: <3s>'
 		expandMacrosWith: self context class name asString

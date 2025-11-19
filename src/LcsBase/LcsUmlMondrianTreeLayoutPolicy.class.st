@@ -1,29 +1,31 @@
 Class {
-	#name : #LcsUmlMondrianTreeLayoutPolicy,
-	#superclass : #LcsUmlModelLayoutPolicy,
+	#name : 'LcsUmlMondrianTreeLayoutPolicy',
+	#superclass : 'LcsUmlModelLayoutPolicy',
 	#instVars : [
 		'levelDistance'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUmlMondrianTreeLayoutPolicy >> applyLayoutTo: aMondrinModel [
 	aMondrinModel layout tree levelDistance: 40
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsUmlMondrianTreeLayoutPolicy >> initialize [
 	super initialize.
 	self levelDistance: 40
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUmlMondrianTreeLayoutPolicy >> levelDistance [
 	^ levelDistance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUmlMondrianTreeLayoutPolicy >> levelDistance: anObject [
 	levelDistance := anObject
 ]

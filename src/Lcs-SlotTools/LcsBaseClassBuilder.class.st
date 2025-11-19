@@ -1,35 +1,36 @@
 Class {
-	#name : #LcsBaseClassBuilder,
-	#superclass : #LcsCodeBuilderStep,
+	#name : 'LcsBaseClassBuilder',
+	#superclass : 'LcsCodeBuilderStep',
 	#instVars : [
 		'installedClass',
 		'rootName',
 		'newClassName',
 		'targetSuperclassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBaseClassBuilder class >> newOn: aString [ 
 	^ self new
 		initializeOn: aString;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder class >> targetSuperclassName [
 	^ nil
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsBaseClassBuilder >> _installCode [
 	super _installCode.
 	self installClass .
 	self beCodeInstalled 
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsBaseClassBuilder >> _verifyCodeInstallation [
 	super _verifyCodeInstallation.
 	self assert: self installedClass notNil description: 'Class has been created'.
@@ -37,13 +38,13 @@ LcsBaseClassBuilder >> _verifyCodeInstallation [
 	self assert: self installedClass package name equals: self targetPackageName
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseClassBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
 	self addProposedClassTo: aUmlModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseClassBuilder >> addProposedClassTo: classesModel [
 	| proposedClass |
 	proposedClass := classesModel proposedClassModelFor: self newClassName.
@@ -51,7 +52,7 @@ LcsBaseClassBuilder >> addProposedClassTo: classesModel [
 		ifTrue: [ proposedClass modelSuperclassName: self targetSuperclassName ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: (
 		self newClassAlreadyExists 
@@ -61,7 +62,7 @@ LcsBaseClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps addRefactoringTextDetailsTo: aStream
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseClassBuilder >> addSuperclassTo: classesModel [
 	self targetSuperclass
 		ifNil: [ self targetSuperclassName ifNotNil: [ 
@@ -69,17 +70,17 @@ LcsBaseClassBuilder >> addSuperclassTo: classesModel [
 		ifNotNil: [ :class | classesModel addClassModelForExisting: class ]
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 LcsBaseClassBuilder >> assertInstalled [
 	self shouldnt: [ self newClassName asClass ] raise: NotFound
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 LcsBaseClassBuilder >> assertNotInstalled [
 	self should: [ self newClassName asClass ] raise: NotFound
 ]
 
-{ #category : #'method code source' }
+{ #category : 'method code source' }
 LcsBaseClassBuilder >> classCreationString [
 
 	self assert: self targetSuperclassName isString.
@@ -96,24 +97,24 @@ LcsBaseClassBuilder >> classCreationString [
 			with: self targetPackageName
 ]
 
-{ #category : #uninstall }
+{ #category : 'uninstall' }
 LcsBaseClassBuilder >> clearTargetClass: aClass [
 	self installedClass == aClass
 		ifTrue: [ self installedClass: nil ]
 ]
 
-{ #category : #refactorings }
+{ #category : 'refactorings' }
 LcsBaseClassBuilder >> completedRefactorings [
 	^ self parent completedRefactorings
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 LcsBaseClassBuilder >> executeShould: aBlock inScopeOf: anExceptionalEvent [
 	^ [ aBlock value.
 		false ] on: anExceptionalEvent do: [ :ex | ex return: true ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseClassBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self installedClass isNil ifTrue: [ 
@@ -131,7 +132,7 @@ LcsBaseClassBuilder >> gtClassViewOn: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -141,57 +142,57 @@ LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 	
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseClassBuilder >> initialize [
 	super initialize.
 	self targetSuperclassName: self class targetSuperclassName
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseClassBuilder >> initializeOn: aBuilder [ 
 	self parent: aBuilder
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsBaseClassBuilder >> installClass [
 	self newClassAlreadyExists ifTrue: [ ^ self ].
-	self addRefactoring: (RBAddClassChange definition: self classCreationString) execute.
+	self addRefactoring: (RBAddClassChange definitionString: self classCreationString) execute.
 	self installedClass: self refactorings last changeClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> installedClass [
 	^ installedClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> installedClass: aClass [ 
 	installedClass := aClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> newClassAlreadyExists [
 	^ [ self newClassName asClass. true ] 
 		on: NotFound 
 		do: [ :s | s return: false ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> newClassName [
 	^ newClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> newClassName: aString [ 
 	newClassName := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> newTargetClassName: aString [
 	self newClassName: aString
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsBaseClassBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Create class: ';
@@ -200,53 +201,53 @@ LcsBaseClassBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: self targetSuperclassName displayString
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsBaseClassBuilder >> removeReferencesFromSubsequentSteps [
 	self parent isNil ifTrue: [ ^ self ].
 	self parent inStepsAfter: self removeTargetClass: self installedClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> rootName [
 	^ rootName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> rootName: aString [ 
 	rootName := aString
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 LcsBaseClassBuilder >> should: aBlock raise: anExceptionalEvent [
 	^ self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent)
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 LcsBaseClassBuilder >> shouldnt: aBlock raise: anExceptionalEvent [
 	self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> targetSuperclass [
 	^ [ self targetSuperclassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> targetSuperclassName [
 	^ targetSuperclassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseClassBuilder >> targetSuperclassName: aString [
 	targetSuperclassName := aString
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsBaseClassBuilder >> tearDown [
 	self uninstall
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsBaseClassBuilder >> uninstall [
 	super uninstall.
 	self installedClass ifNil: [ ^ self ].
@@ -259,13 +260,13 @@ LcsBaseClassBuilder >> uninstall [
 	self installedClass: nil
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsBaseClassBuilder >> updateSlotModel [
 	super updateSlotModel.
 	self installedClass initializeSlotModel.
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsBaseClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	super verifySlotModelUpdatesMadeByBuilder.
 	self assert: self installedClass slotModel  notNil.
@@ -273,13 +274,13 @@ LcsBaseClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	self assert: (self currentSystem systemSlotModel hasSlotModelForClass: self installedClass)
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsBaseClassBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self assert: self installedClass isNil
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseClassBuilder >> viewCodeButton [
 	self installedClass isNil ifTrue: [ ^ BrButton new ].
 	^ self viewClassButtonFor: self installedClass 

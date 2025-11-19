@@ -1,47 +1,48 @@
 Class {
-	#name : #LcsConvenienceModuleAccessMethodBuilder,
-	#superclass : #LcsMethodBuilder,
+	#name : 'LcsConvenienceModuleAccessMethodBuilder',
+	#superclass : 'LcsMethodBuilder',
 	#instVars : [
 		'owningModuleClass',
 		'moduleName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #categories }
+{ #category : 'categories' }
 LcsConvenienceModuleAccessMethodBuilder >> extendInPackage: aTargetPackageName [
 	self categoryName: ('*' , aTargetPackageName) asSymbol
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsConvenienceModuleAccessMethodBuilder >> initialize [
 	super initialize.
 	self targetClassName: 'LcsModule'.
 	self categoryName: #configuration
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsConvenienceModuleAccessMethodBuilder >> methodSource [
 	^'<1s>
 	^ self moduleNamed: ''<2s>''' expandMacrosWith: self selector with: self moduleName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConvenienceModuleAccessMethodBuilder >> moduleName [
 	^ moduleName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConvenienceModuleAccessMethodBuilder >> moduleName: anObject [
 	moduleName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConvenienceModuleAccessMethodBuilder >> owningModuleClass [
 	^ owningModuleClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConvenienceModuleAccessMethodBuilder >> owningModuleClass: anObject [
 	owningModuleClass := anObject
 ]

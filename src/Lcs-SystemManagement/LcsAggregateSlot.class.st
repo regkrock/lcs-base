@@ -10,12 +10,14 @@
 2) When an element (child domain object) of this slot is replaced, the replaced domain object will still exist and is not marked for deletion.
 "
 Class {
-	#name : #LcsAggregateSlot,
-	#superclass : #LcsDomainObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsAggregateSlot',
+	#superclass : 'LcsDomainObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsAggregateSlot >> slotVarPut: anObject in: aDomainObject [
 	| originalObject |
 	self deprecated: 'Need to pass the old value as well'.

@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsBaseUnitOfWork,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsBaseUnitOfWork',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait',
 	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
@@ -11,29 +11,31 @@ Class {
 		'unitOfWorkName',
 		'changedCollections'
 	],
-	#category : #'Lcs-SystemManagement-UnitOfWork'
+	#category : 'Lcs-SystemManagement-UnitOfWork',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'UnitOfWork'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> _pendingAddsIn: aTargetCollection [
 	^ (self collectionChagesFor: aTargetCollection)
 		at: 'add'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> _pendingDeletesIn: aTargetCollection [
 	^ (self collectionChagesFor: aTargetCollection)
 		at: 'delete'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> addObject: aDomainObject [
 
 	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self).
 	aDomainObject parentSlot setUpPendingAddOf: aDomainObject in: self
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> addObject: aDomainObject context: aDomainContextObject [
 	aDomainObject isNil ifTrue: [ ^ self ].
 	self addedObjects
@@ -43,70 +45,70 @@ LcsBaseUnitOfWork >> addObject: aDomainObject context: aDomainContextObject [
 				yourself)
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> addObject: aDomainObject toCollection: aTargetCollection [
 
 	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self).
 	aDomainObject parentSlot setUpPendingAddOf: aDomainObject in: self toCollection: aTargetCollection
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsBaseUnitOfWork >> addPendingAddOf: aDomainObject to: aTargetCollection [
 	(self _pendingAddsIn: aTargetCollection) add: aDomainObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsBaseUnitOfWork >> addPendingDeletionOf: aDomainObject to: aTargetCollection [
 	(self pendingDeletesIn: aTargetCollection) add: aDomainObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> addRecordFor: aDomainObject [
 	^ self addedObjects at: aDomainObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> addedObjects [
 	^ addedObjects
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> addedObjects: anObject [
 	addedObjects := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> applyChanges [
 	self addedObjects valuesDo: [ :each | each applyChanges ].
 	self changedObjects do: [ :each | each applyChanges ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> changedCollections [
 	^ changedCollections
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> changedCollections: anObject [ 
 	changedCollections := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> changedObjects [
 	^ changedObjects
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> changedObjects: anObject [
 	changedObjects := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> changedRecordFor: aDomainObject [
 	^ (self changedObjects at: aDomainObject ifAbsent: [ nil ])
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> changedSlot: aSlotName valueTo: anObject in: aDomainObject [
 
 	(self addedObjects keys includes: aDomainObject) ifTrue: [ ^ self ].
@@ -115,7 +117,7 @@ LcsBaseUnitOfWork >> changedSlot: aSlotName valueTo: anObject in: aDomainObject 
 		
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseUnitOfWork >> clearUnitOfWork [
 
 	self addedObjects removeAll.
@@ -124,31 +126,31 @@ LcsBaseUnitOfWork >> clearUnitOfWork [
 	self changedCollections removeAll.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsBaseUnitOfWork >> collectionChagesFor: aTargetCollection [
 	^ self changedCollections
 		at: aTargetCollection
 		ifAbsentPut: [ self newCollectionChaangesDictionary ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> deleteObject: aDomainObject [
 	aDomainObject isNil ifTrue: [ ^ self ].
 	self deletedObjects at: aDomainObject put: (LcsDeletedObjectRecord newFor: aDomainObject parent: self).
 	aDomainObject parentSlot setUpPendingDeleteOf: aDomainObject in: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> deletedObjects [
 	^ deletedObjects
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> deletedObjects: anObject [
 	deletedObjects := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseUnitOfWork >> gtUnitOfWorkChildren [
 	^ {
 		LcsUnitOfWorkViewItem newLabel: 'Added' item: self addedObjects values.
@@ -157,7 +159,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkChildren [
 		}
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 	<gtView>
 	^ aView columnedTree 
@@ -183,7 +185,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseUnitOfWork >> gtUnitOfWorkItems [
 	^ {
 		LcsUnitOfWorkViewItem newLabel: 'System' item: self system.
@@ -194,18 +196,18 @@ LcsBaseUnitOfWork >> gtUnitOfWorkItems [
 		}
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseUnitOfWork >> hasChangesForCollection: aTargetCollection [
 	^ self changedCollections keys includes: aTargetCollection
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsBaseUnitOfWork >> hasCollectionChagesFor: aTargetCollection [
 	^ (self changedCollections at: aTargetCollection ifAbsent: [ nil ])
 		notNil
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseUnitOfWork >> initialize [
 	super initialize.
 	self addedObjects: LcsSmalltalkConfiguration objectKeyDictionaryClass new.
@@ -216,7 +218,7 @@ LcsBaseUnitOfWork >> initialize [
 	self clearUnitOfWork
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsBaseUnitOfWork >> newCollectionChaangesDictionary [
 	^ Dictionary new
 		at: 'add' put: OrderedCollection new;
@@ -224,27 +226,27 @@ LcsBaseUnitOfWork >> newCollectionChaangesDictionary [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> pendingAddsIn: aTargetCollection [
 	(self hasChangesForCollection: aTargetCollection)
 		ifFalse: [ ^ OrderedCollection new ].
 	^ self _pendingAddsIn: aTargetCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> pendingDeletesFromCollection: aTargetCollection [
 	(self hasChangesForCollection: aTargetCollection)
 		ifFalse: [ ^ OrderedCollection new ].
 	^ self _pendingDeletesIn: aTargetCollection
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> pendingDeletesIn: aTargetCollection [
 	(self changedCollections keys includes: aTargetCollection) ifFalse: [ ^OrderedCollection new ].
 	^ (self collectionChagesFor: aTargetCollection) at: 'delete'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> printOn: aStream [
 	super printOn: aStream.
 	aStream
@@ -253,7 +255,7 @@ LcsBaseUnitOfWork >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseUnitOfWork >> setValueIn: aDomainObject slot: aSlotDefiniton to: anObject [ 
 
 	(self addedObjects keys includes: aDomainObject) ifTrue: [ 
@@ -266,22 +268,22 @@ LcsBaseUnitOfWork >> setValueIn: aDomainObject slot: aSlotDefiniton to: anObject
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> system [
 	^ self parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> system: aSystem [ 
 	self parent: aSystem	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> unitOfWorkName [
 	^ unitOfWorkName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseUnitOfWork >> unitOfWorkName: anObject [
 	unitOfWorkName := anObject
 ]

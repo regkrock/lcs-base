@@ -1,25 +1,27 @@
 Class {
-	#name : #LcsDomainClassSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsDomainClassSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDomainClassSlot >> addDefaultSlotType [
 	"Do nothing"
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsDomainClassSlot >> convertStringToClassBlock [
 	^ [ :value | [ value isClass ifTrue: [ value ] ifFalse: [ value asClass ] ] on: NotFound do: [ :s | s return: value ] ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsDomainClassSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | slot slotTypes any ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsDomainClassSlot >> initialize [
 	super initialize.
 	self 
@@ -32,23 +34,23 @@ LcsDomainClassSlot >> initialize [
 				yourself)
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsDomainClassSlot >> superclassClass [
 	^ self properties at: 'superclassClass' ifAbsent: [ LcsDomainObject ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsDomainClassSlot >> superclassClass: aClass [
 	self properties at: 'superclassClass' put: aClass
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsDomainClassSlot >> typeClass [
 	"Slot type must be explicitly added via #addSlotTYpe: "
 	^ nil
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsDomainClassSlot >> verifySlotTypeOf: anObject for: aDomainObject [
 	(self slotTypes includes: anObject) ifFalse: [
 		self signalInvalidSlotTypeError: anObject for: aDomainObject]

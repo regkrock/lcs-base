@@ -1,43 +1,45 @@
 Class {
-	#name : #LcsValidatorIssueMessage,
-	#superclass : #Object,
+	#name : 'LcsValidatorIssueMessage',
+	#superclass : 'Object',
 	#instVars : [
 		'context',
 		'message'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #'instace creation' }
+{ #category : 'instace creation' }
 LcsValidatorIssueMessage class >> newOn: anObject message: aString [
 	^ self new 
 		initializeOn: anObject message: aString;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidatorIssueMessage >> context [
 	^ context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidatorIssueMessage >> context: anObject [
 	context := anObject
 ]
 
-{ #category : #'instace creation' }
+{ #category : 'instace creation' }
 LcsValidatorIssueMessage >> initializeOn: anObject message: aString [ 
 	self 
 		context: anObject;
 		message: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidatorIssueMessage >> message [
 	^ message
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidatorIssueMessage >> message: anObject [
 	message := anObject
 ]

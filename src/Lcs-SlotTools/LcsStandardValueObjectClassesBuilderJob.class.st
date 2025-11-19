@@ -1,13 +1,14 @@
 Class {
-	#name : #LcsStandardValueObjectClassesBuilderJob,
-	#superclass : #LcsValueObjectClassesBuilderJob,
+	#name : 'LcsStandardValueObjectClassesBuilderJob',
+	#superclass : 'LcsValueObjectClassesBuilderJob',
 	#instVars : [
 		'defaultInstance'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #command }
+{ #category : 'command' }
 LcsStandardValueObjectClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self valueObjectClassBuilder.
 	self buildUnknownClass ifTrue: [
@@ -21,7 +22,7 @@ LcsStandardValueObjectClassesBuilderJob >> buildJobSteps [
 
 ]
 
-{ #category : #populate }
+{ #category : 'populate' }
 LcsStandardValueObjectClassesBuilderJob >> createProtoCodesFromLabels: aCollection [ 
 	aCollection do: [ :eachLabel | 
 		self protoCodes add: (
@@ -32,29 +33,29 @@ LcsStandardValueObjectClassesBuilderJob >> createProtoCodesFromLabels: aCollecti
 		aCollection add: LcsProtoCode unknown ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStandardValueObjectClassesBuilderJob >> defaultInstance [
 	^defaultInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStandardValueObjectClassesBuilderJob >> defaultInstance: aString [ 
 	defaultInstance := aString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsStandardValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsValueObjectsGlobalCollectionSlotBuilder) first
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStandardValueObjectClassesBuilderJob >> initialize [
 	super initialize.
 	self buildUnknownClass: false.
 	self protoCodes: OrderedCollection new
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsStandardValueObjectClassesBuilderJob >> unknownClassBuilder [
 	^ LcsUnknownClassBuilder new
 		newClassName: self unknownClassName;
@@ -63,13 +64,13 @@ LcsStandardValueObjectClassesBuilderJob >> unknownClassBuilder [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsStandardValueObjectClassesBuilderJob >> unknownClassName [
 	(self classPrefix isNil or: [ self classRootName isNil]) ifTrue: [ ^ 'nil' ].
 	^ self classPrefix , 'Unknown' , self classRootName
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsStandardValueObjectClassesBuilderJob >> verifyPopulateSlotModel [
 	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.

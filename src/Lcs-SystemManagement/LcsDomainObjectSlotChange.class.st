@@ -1,14 +1,16 @@
 Class {
-	#name : #LcsDomainObjectSlotChange,
-	#superclass : #LcsSupportDomainObject,
+	#name : 'LcsDomainObjectSlotChange',
+	#superclass : 'LcsSupportDomainObject',
 	#instVars : [
 		'slotName',
 		'newValue'
 	],
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectSlotChange class >> newValueSlotDefinition [
 	<slotDefinition>
 	^  LcsValueHistorySlot new
@@ -16,7 +18,7 @@ LcsDomainObjectSlotChange class >> newValueSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -25,7 +27,7 @@ LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
 			yourself
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectSlotChange >> addSlotChangesOf: aSlotName to: slotChangeHistory [
 	slotChangeHistory add: (
 		Array 
@@ -34,27 +36,27 @@ LcsDomainObjectSlotChange >> addSlotChangesOf: aSlotName to: slotChangeHistory [
 			with: self created printString)
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectSlotChange >> created [
 	^ self parent created
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectSlotChange >> newValue [
 	^ self slotVarNamed: 'newValue'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectSlotChange >> newValue: anObject [
 	self slotVarNamed: 'newValue' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectSlotChange >> slotName [
 	^ self slotVarNamed: 'slotName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectSlotChange >> slotName: anObject [
 	self slotVarNamed: 'slotName' put: anObject
 ]

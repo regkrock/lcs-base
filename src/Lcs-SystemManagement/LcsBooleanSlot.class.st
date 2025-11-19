@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsBooleanSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsBooleanSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsBooleanSlot >> defaultInitialValueBlock [ 
 	^ [ :parentDomainObject :slot | false ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsBooleanSlot >> typeClass [
 	^ LcsSmalltalkConfiguration booleanClass
 ]

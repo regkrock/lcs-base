@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsSlotValidationExecutionError,
-	#superclass : #LcsSlotValidationBaseError,
-	#category : #'Lcs-SystemManagement-Error'
+	#name : 'LcsSlotValidationExecutionError',
+	#superclass : 'LcsSlotValidationBaseError',
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forCondition: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
 	self new
 		signalInvalidValue: aValue
@@ -15,7 +17,7 @@ LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forCondition
 		message: aString
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotValidationExecutionError >> signalInvalidValue: aValue forCondition: aValidationCondition inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
 	self value: aValue.
 	self validationCondition: aValidationCondition.
@@ -25,7 +27,7 @@ LcsSlotValidationExecutionError >> signalInvalidValue: aValue forCondition: aVal
 	self oldValue: anOldValue
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotValidationExecutionError >> validationConditionErrorMessage [
 	^ '<1s> slot: <2s> has validation error: <3s>'
 		expandMacrosWith: self context class name asString

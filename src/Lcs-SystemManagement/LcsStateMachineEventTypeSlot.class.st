@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsStateMachineEventTypeSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsStateMachineEventTypeSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsStateMachineEventTypeSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | #'' ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineEventTypeSlot >> initialize [
 	super initialize.
 	self
@@ -17,7 +19,7 @@ LcsStateMachineEventTypeSlot >> initialize [
 		beRequired
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsStateMachineEventTypeSlot >> typeClass [
 	^ Symbol
 ]

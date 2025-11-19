@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsValidationCondition,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsValidationCondition',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait',
 	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
@@ -8,27 +8,29 @@ Class {
 		'validationDescription',
 		'errorMessage'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsValidationCondition >> = anObject [
 	anObject class name = self class name ifFalse: [ ^ false ].
 	anObject conditionBlock asString = self conditionBlock asString ifFalse: [ ^ false ].
 	^ anObject validationDescription = self validationDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidationCondition >> conditionBlock [
 	^ conditionBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidationCondition >> conditionBlock: anObject [
 	conditionBlock := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsValidationCondition >> conditionBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -45,39 +47,39 @@ LcsValidationCondition >> conditionBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidationCondition >> errorMessage [
 	^ errorMessage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidationCondition >> errorMessage: aStringOrBlock [
 	errorMessage := aStringOrBlock 
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidationCondition >> evaluateWith: aValidator [
 	(self conditionBlock value: aValidator domainObject) ifFalse: [
 		aValidator addErrorDescription: self validationDescriptionDescription in: self ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsValidationCondition >> hash [
 	^ self conditionBlock hash bitXor: self validationDescription hash
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValidationCondition >> initialize [
 	super initialize.
 	self conditionBlock: [ :value | true ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValidationCondition >> initializeOn: anObject [ 
 	self parent: anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsValidationCondition >> magritteAcceptAction [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -93,7 +95,7 @@ LcsValidationCondition >> magritteAcceptAction [
 		beToolbarAction
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsValidationCondition >> magritteInspectAction [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -108,12 +110,12 @@ LcsValidationCondition >> magritteInspectAction [
 		beToolbarAction
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsValidationCondition >> slotDefinition [
 	^ self parent ifNotNil: [:p | p slotDefinition ]
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidationCondition >> validate: aValue [
 	| isError |
 	isError := [ self conditionBlock cull: aValue ]
@@ -144,7 +146,7 @@ LcsValidationCondition >> validate: aValue [
 	^ isError
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidationCondition >> validate: aValue context: aDomainObject [
 	| isError oldValue |
 	oldValue := nil.
@@ -179,7 +181,7 @@ LcsValidationCondition >> validate: aValue context: aDomainObject [
 	^ isError
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidationCondition >> validate: aValue context: aDomainObject oldValue: anOldValue [
 	| isError |
 	isError := 
@@ -211,17 +213,17 @@ LcsValidationCondition >> validate: aValue context: aDomainObject oldValue: anOl
 	^ isError
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidationCondition >> validationDescription [
 	^ validationDescription
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidationCondition >> validationDescription: anObject [
 	validationDescription := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsValidationCondition >> validationDescriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -234,7 +236,7 @@ LcsValidationCondition >> validationDescriptionDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidationCondition >> validationErrorMessage [
 	^ self errorMessage 
 		ifNil: [ self validationDescription ifNil: [ '' ] ] 

@@ -1,21 +1,23 @@
 Class {
-	#name : #LcsTimestampSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsTimestampSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsTimestampSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | self typeClass now ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsTimestampSlot >> initialize [
 	super initialize.
 	self slotName: 'timestamp'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsTimestampSlot >> typeClass [
 	^ DateAndTime 
 ]

@@ -1,17 +1,19 @@
 Class {
-	#name : #LcsModuleConfigurationSlot,
-	#superclass : #LcsDomainObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsModuleConfigurationSlot',
+	#superclass : 'LcsDomainObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsModuleConfigurationSlot class >> newOn: aConfigurationClass [
 	^ self new
 		initializeOn: aConfigurationClass;
 		yourself
 ]
 
-{ #category : #'object initialization' }
+{ #category : 'object initialization' }
 LcsModuleConfigurationSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | 
 		(slot slotTypes any basicNew)
@@ -19,23 +21,23 @@ LcsModuleConfigurationSlot >> defaultInitialValueBlock [
 			yourself ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsModuleConfigurationSlot >> defaultPriority [
 	^ 75
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModuleConfigurationSlot >> initialize [
 	super initialize.
 	self slotName: 'configuration'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModuleConfigurationSlot >> initializeOn: aConfigurationClass [ 
 	self addSlotType: aConfigurationClass
 ]
 
-{ #category : #'object initialization' }
+{ #category : 'object initialization' }
 LcsModuleConfigurationSlot >> initializeSlotValueIn: aDomainObject [
 	| initialValue |
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.

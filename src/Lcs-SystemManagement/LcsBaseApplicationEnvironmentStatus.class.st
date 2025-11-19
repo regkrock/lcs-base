@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsBaseApplicationEnvironmentStatus,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsBaseApplicationEnvironmentStatus',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'parent'
 	],
-	#category : #'Lcs-SystemManagement-Environment'
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBaseApplicationEnvironmentStatus class >> newOn: anApplicationEnvironment [ 
 	^ self new
 		initializeOn: anApplicationEnvironment;
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseApplicationEnvironmentStatus >> gtLiveFor: aView [
 	<gtView>
 	^ aView explicit
@@ -43,40 +45,40 @@ LcsBaseApplicationEnvironmentStatus >> gtLiveFor: aView [
 							padding: (BlInsets all: 10))) ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseApplicationEnvironmentStatus >> initializeOn: anApplicationEnvironment [ 
 	self parent: anApplicationEnvironment
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseApplicationEnvironmentStatus >> isInActiveStatus [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseApplicationEnvironmentStatus >> isInSuspendedStatus [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseApplicationEnvironmentStatus >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseApplicationEnvironmentStatus >> parent: anApplicationEnvironment [ 
 	parent := anApplicationEnvironment
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseApplicationEnvironmentStatus >> restoreApplicationEnvironment [
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseApplicationEnvironmentStatus >> statusName [
 	^ 'Base Status'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsBaseApplicationEnvironmentStatus >> suspendApplicationEnvironment [
 ]

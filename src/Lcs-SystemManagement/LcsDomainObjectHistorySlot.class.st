@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsDomainObjectHistorySlot,
-	#superclass : #LcsDomainObjectSlot,
+	#name : 'LcsDomainObjectHistorySlot',
+	#superclass : 'LcsDomainObjectSlot',
 	#traits : 'LtDeleteRemovedDomainObject',
 	#classTraits : 'LtDeleteRemovedDomainObject classTrait',
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsDomainObjectHistorySlot >> initialize [
 	super initialize.
 	self

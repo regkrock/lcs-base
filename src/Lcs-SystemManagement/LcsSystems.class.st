@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsSystems,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsSystems',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtOrderedCollection + LtParentTrait',
 	#classTraits : 'LtOrderedCollection classTrait + LtParentTrait classTrait',
-	#category : #'Lcs-SystemManagement-Environment'
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSystems >> applicationEnvironmentViewChildren [
 	^ self collect: [ :each | LcsApplicationEnvironmentViewItem newOn: self label: '' item: each]
 ]

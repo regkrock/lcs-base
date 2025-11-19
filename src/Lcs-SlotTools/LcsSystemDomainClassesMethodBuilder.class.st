@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsSystemDomainClassesMethodBuilder,
-	#superclass : #LcsMethodBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsSystemDomainClassesMethodBuilder',
+	#superclass : 'LcsMethodBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSystemDomainClassesMethodBuilder >> methodSource [
 ^'systemDomainClasses
 	| collection |

@@ -1,27 +1,28 @@
 Class {
-	#name : #LcsModuleConfigurationClassMethodBuilder,
-	#superclass : #LcsMethodBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsModuleConfigurationClassMethodBuilder',
+	#superclass : 'LcsMethodBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'properties - accessing' }
+{ #category : 'properties - accessing' }
 LcsModuleConfigurationClassMethodBuilder >> configurationClassName [
 	^ self properties at: 'configurationClassName'
 ]
 
-{ #category : #'properties - accessing' }
+{ #category : 'properties - accessing' }
 LcsModuleConfigurationClassMethodBuilder >> configurationClassName: aString [
 	^ self properties at: 'configurationClassName' put: aString
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModuleConfigurationClassMethodBuilder >> initialize [
 	super initialize.
 	self selector: #moduleConfigurationClass.
 	self beClassMethod
 ]
 
-{ #category : #'code generation templates' }
+{ #category : 'code generation templates' }
 LcsModuleConfigurationClassMethodBuilder >> methodSource [
 	^'<1s>
 	^ <2s>' expandMacrosWith: self selector with: self configurationClassName

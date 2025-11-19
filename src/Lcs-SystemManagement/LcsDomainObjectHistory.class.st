@@ -5,17 +5,19 @@ This has the following information:
 3) Change Log - this is a log of all changes. For each change a new change log is created.
 "
 Class {
-	#name : #LcsDomainObjectHistory,
-	#superclass : #LcsSupportDomainObject,
+	#name : 'LcsDomainObjectHistory',
+	#superclass : 'LcsSupportDomainObject',
 	#instVars : [
 		'created',
 		'userUuid',
 		'changeRecords'
 	],
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -28,7 +30,7 @@ LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectHistory class >> createdSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordTimestampSlot new
@@ -39,13 +41,13 @@ LcsDomainObjectHistory class >> createdSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectHistory class >> userSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsUserToUserIdConversionSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectHistory class >> userUuidSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
@@ -53,63 +55,63 @@ LcsDomainObjectHistory class >> userUuidSlotDefinition [
 			yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsDomainObjectHistory >> addChangeRecord [
 	^ self changeRecords addChangeRecord
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsDomainObjectHistory >> addChangesTo: aChangeRecord [ 
 	self domainObject allAccessorSlotDefinitions
 		do: [ :eachSlotDefinition | aChangeRecord createInitialSlotChangeFor: eachSlotDefinition ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> changeRecords [
 	^ self slotVarNamed: 'changeRecords'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> changeRecords: anObject [
 	self slotVarNamed: 'changeRecords' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> created [
 	^ self slotVarNamed: 'created'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> created: anObject [
 	self slotVarNamed: 'created' put: anObject
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> creationDate [
 	^ self created asDate
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> creationTimestamp [
 	^ self created
 ]
 
-{ #category : #'domain object' }
+{ #category : 'domain object' }
 LcsDomainObjectHistory >> domainObject [
 	^ self parent
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> domainObjectHistory [
 	^ self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsDomainObjectHistory >> hasChangeHistoryFor: aSlotName [ 
 	^ self addChangeRecord hasChangeHistoryFor: aSlotName
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> historyOfAllSlotChanges [
 	| allSlotChangesHistory|
 	allSlotChangesHistory := OrderedCollection new.
@@ -118,7 +120,7 @@ LcsDomainObjectHistory >> historyOfAllSlotChanges [
 	^ allSlotChangesHistory
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> historyOfChangesToSlot: aSlotName [
 	| slotChangeHistory |
 	slotChangeHistory := OrderedCollection new.
@@ -126,35 +128,35 @@ LcsDomainObjectHistory >> historyOfChangesToSlot: aSlotName [
 	^ slotChangeHistory
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> lastUpdatedDate [
 	^ self lastUpdatedTimestamp asDate
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> lastUpdatedTimestamp [
 	self changeRecords hasNoElements ifTrue: [ ^ self created ].
 	^ self changeRecords lastUpdateTimestamp
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> lastUpdatedUser [
 	self changeRecords hasNoElements ifTrue: [ ^ self user ].
 	^ self changeRecords lastUpdatedUser
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> newChangeRecord [
 	^ self changeRecords newChangeRecord
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> recordOriginalSlotValue: aSlotName [
 	(self hasChangeHistoryFor: aSlotName)
 		ifFalse: [ self addChangeRecord addOriginalValueFor: aSlotName ]
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> recordSlotChanges [
 	self changeRecords hasElements 
 		ifTrue: [ LcsError signal: 'Attempt to record creation when it has already been recorded' ].
@@ -164,7 +166,7 @@ LcsDomainObjectHistory >> recordSlotChanges [
 		created: self created.
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectHistory >> recordSlotChanges: aChangesRecord [
 	| changeRecord |
 	changeRecord := self newChangeRecord.
@@ -174,22 +176,22 @@ LcsDomainObjectHistory >> recordSlotChanges: aChangesRecord [
 			each applyChangeRecordingHistoryIn: changeRecord ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> user [
 	^ self slotVarNamed: 'user'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> user: aUser [
 	self slotVarNamed: 'user' put: aUser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> userUuid [
 	^ self slotVarNamed: 'userUuid'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectHistory >> userUuid: aString [
 	self slotVarNamed: 'userUuid' put: aString
 ]

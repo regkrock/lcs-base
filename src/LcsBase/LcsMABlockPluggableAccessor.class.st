@@ -1,10 +1,15 @@
 Class {
-	#name : #LcsMABlockPluggableAccessor,
-	#superclass : #LcsMAPluggableAccessor,
-	#category : #'LcsBase-Accessor'
+	#name : 'LcsMABlockPluggableAccessor',
+	#superclass : 'LcsMAPluggableAccessor',
+	#instVars : [
+		'blockArguments'
+	],
+	#category : 'LcsBase-Accessor',
+	#package : 'LcsBase',
+	#tag : 'Accessor'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsMABlockPluggableAccessor class >> accessors: aCollection arguments: aBlockArguments [
 	^ self new
 		accessors: aCollection;
@@ -12,7 +17,7 @@ LcsMABlockPluggableAccessor class >> accessors: aCollection arguments: aBlockArg
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsMABlockPluggableAccessor class >> accessors: aCollection arguments: aBlockArguments read: aReadBlock write: aWriteBlock [
 	^ self new
 		accessors: aCollection;
@@ -22,17 +27,17 @@ LcsMABlockPluggableAccessor class >> accessors: aCollection arguments: aBlockArg
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMABlockPluggableAccessor >> blockArguments [
 	^ blockArguments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMABlockPluggableAccessor >> blockArguments: anObject [
 	blockArguments := anObject
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsMABlockPluggableAccessor >> defaultReadBlock [
 	^ [ :block :blockArguments | 
 			LcsBlockSourceConverter 
@@ -40,7 +45,7 @@ LcsMABlockPluggableAccessor >> defaultReadBlock [
 				arguments: blockArguments ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsMABlockPluggableAccessor >> defaultWriteBlock [
 	^ [ :blockArguments  :string :existingBlock | 
 			LcsBlockSourceConverter 
@@ -49,7 +54,7 @@ LcsMABlockPluggableAccessor >> defaultWriteBlock [
 				toReplace: existingBlock ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsMABlockPluggableAccessor >> initialize [ 
 	super initialize.
 	self blockArguments: OrderedCollection new.
@@ -57,17 +62,17 @@ LcsMABlockPluggableAccessor >> initialize [
 	self writeBlock: self defaultWriteBlock.
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LcsMABlockPluggableAccessor >> read: aModel [
 	^ self readBlock value: (self chainAccessor valueIn: aModel) value: self blockArguments
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsMABlockPluggableAccessor >> storeBlock: aBlock on: aStream [ 
 	aStream nextPutAll: aBlock asString greaseString allButFirst allButLast
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LcsMABlockPluggableAccessor >> write: aString to: aModel [
 	(self chainAccessor targetModelFromSourceModel: aModel) perform: (
 		self chainAccessor setter) with: (

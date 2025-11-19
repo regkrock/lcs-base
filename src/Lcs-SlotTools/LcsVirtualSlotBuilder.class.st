@@ -1,22 +1,23 @@
 Class {
-	#name : #LcsVirtualSlotBuilder,
-	#superclass : #LcsBaseSlotBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsVirtualSlotBuilder',
+	#superclass : 'LcsBaseSlotBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsVirtualSlotBuilder class >> slotClass [
 	"Subclasses can override this method to provide a default"
 	^ LcsVirtualSlot
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsVirtualSlotBuilder >> buildJobSteps [
 	self addJobStep: self slotDefinitionMethodBuilder.
 	self addJobStep: self getterMethodBuilder
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsVirtualSlotBuilder >> getterMethodBuilder [
 	^ LcsSlotGetterBuilder new
 		slotName: self slotName;

@@ -1,17 +1,19 @@
 Class {
-	#name : #LcsSlotModelNotInitializedError,
-	#superclass : #LcsSlotModelError,
-	#category : #'Lcs-SystemManagement-Error'
+	#name : 'LcsSlotModelNotInitializedError',
+	#superclass : 'LcsSlotModelError',
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #iniitialize }
+{ #category : 'iniitialize' }
 LcsSlotModelNotInitializedError class >> signalWithContext: anObject [ 
 	self new
 		context: anObject;
 		signal: 'Slot model not initialized for ' , anObject className
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsSlotModelNotInitializedError >> gtDomainClassViewFor: aView [
 	<gtView>
 	<gtExceptionView>

@@ -1,37 +1,39 @@
 Class {
-	#name : #LcsValidator,
-	#superclass : #LcsObject,
+	#name : 'LcsValidator',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'validatedObjects',
 		'validationErrors',
 		'validationIssues',
 		'visitationStack'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidator >> addIssueMessage: aString [
 	self validationIssues
 		add: (LcsValidatorIssueMessage newOn: self objectBeingValidated message: aString)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsValidator >> hasAlreadyBeenValidated: anObject [
 	^ self validatedObjects includes: anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsValidator >> hasNoValidationIssues [
 	^ self validationIssues isEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsValidator >> hasValidationIssues [
 	^ self validationIssues notEmpty
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValidator >> initialize [
 	super initialize.
 	self visitationStack: OrderedCollection new.
@@ -39,18 +41,18 @@ LcsValidator >> initialize [
 	self validationIssues: OrderedCollection new
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidator >> objectBeingValidated [
 	^ self validatedObjects last
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidator >> objectBeingValidated: anObject [
 	self visitationStack add: anObject.
 	self validatedObjects add: anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsValidator >> validate: anObject [
 	(self hasAlreadyBeenValidated: anObject) ifTrue: [ ^ self ].
 	[ 
@@ -60,37 +62,37 @@ LcsValidator >> validate: anObject [
 		ensure: [ self visitationStack removeLast ]
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsValidator >> validateCurrentObject [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidator >> validatedObjects [
 	^ validatedObjects
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidator >> validatedObjects: anObject [
 	validatedObjects := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidator >> validationIssues [
 	^ validationIssues
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidator >> validationIssues: anObject [ 
 	validationIssues := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidator >> visitationStack [
 	^ visitationStack
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValidator >> visitationStack: anObject [
 	visitationStack := anObject
 ]

@@ -8,17 +8,19 @@ If one wants to access the user object, then a user slot can be created which en
 For performance, the facade slot can cache the retrieved object. In the user example, the user slot would cache the retrieved user. Care must be taken to ensure the userId slot and the user slot are not allowed to become unsynced.
 "
 Class {
-	#name : #LcsFacadeSlot,
-	#superclass : #LcsAccessorSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsFacadeSlot',
+	#superclass : 'LcsAccessorSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsFacadeSlot >> targetSlotName [
 	^ self propertyAt: 'targetSlotName' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsFacadeSlot >> targetSlotName: anObject [
 	self propertyAt: 'targetSlotName' put: anObject
 ]

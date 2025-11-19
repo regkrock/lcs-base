@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsDateSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsDateSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsDateSlot >> defaultInitialValueBlock [ 
 	^ [ :parentDomainObject :slot | self typeClass today ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsDateSlot >> defaultInputComponentClassName [
 	^ #'LuiDatePicker'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsDateSlot >> defaultPrevalidationTransformBlock [
 	^ [ :value :slot | 
 		(value isKindOf: Date) 
@@ -25,7 +27,7 @@ LcsDateSlot >> defaultPrevalidationTransformBlock [
 					do: [ :s | s return: value ] ] ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDateSlot >> typeClass [
 	^ LcsSmalltalkConfiguration dateClass
 ]

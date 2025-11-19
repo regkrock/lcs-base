@@ -1,33 +1,35 @@
 Class {
-	#name : #LcsUpdateAction,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsUpdateAction',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait',
 	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
 		'description',
 		'actionBlock'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsUpdateAction >> = anObject [
 	anObject class name = self class name ifFalse: [ ^ false ].
 	anObject actionBlock asString = self actionBlock asString ifFalse: [ ^ false ].
 	^ anObject description = self description
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateAction >> actionBlock [
 	^ actionBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateAction >> actionBlock: anObject [
 	actionBlock := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsUpdateAction >> actionBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -44,7 +46,7 @@ LcsUpdateAction >> actionBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 LcsUpdateAction >> addCodeGenerationDetailsTo: aCodeStream [
 	| baseObject newValue originalValue hasDetailLines instanceVarNames|
 	hasDetailLines := false.
@@ -73,7 +75,7 @@ LcsUpdateAction >> addCodeGenerationDetailsTo: aCodeStream [
 
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 LcsUpdateAction >> addInstVarSetterFor: aVarName to: aCodeStream [
 	aVarName asString = 'parent' ifTrue: [ ^ self ].
 	aCodeStream
@@ -81,7 +83,7 @@ LcsUpdateAction >> addInstVarSetterFor: aVarName to: aCodeStream [
 		argument: (self creationStringForValueOf: aVarName)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsUpdateAction >> asCreationString [
 	^'(LcsUpdateAction new
 			actionBlock: <1s>;
@@ -89,7 +91,7 @@ LcsUpdateAction >> asCreationString [
 			expandMacrosWith: self actionBlock printString with: self description
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 LcsUpdateAction >> creationStringForValueOf: aVarName [
 	| object |
 	object := self instVarNamed: aVarName.
@@ -97,23 +99,23 @@ LcsUpdateAction >> creationStringForValueOf: aVarName [
 	^ object printString
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUpdateAction >> defaultActionBlock [
 	"do nothing"
 	^ [ :value |  ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateAction >> description [
 	^ description
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateAction >> description: aString [ 
 	description := aString
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsUpdateAction >> descriptionDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -126,24 +128,24 @@ LcsUpdateAction >> descriptionDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : #message }
+{ #category : 'message' }
 LcsUpdateAction >> errorDescription [
 	^ self class name asString , ' Error ' , self description
 		ifNil: [ '' ]
 		ifNotNil: ' - ' , self description
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsUpdateAction >> execute: aValue [
 	^ self execute: aValue context: nil oldValue: nil
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsUpdateAction >> execute: aValue context: aDomainObject [
 	^ self execute: aValue context: aDomainObject oldValue: nil
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsUpdateAction >> execute: aValue context: aDomainObject oldValue: anOldValue [
 	[ self actionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
 		on: Error
@@ -157,23 +159,23 @@ LcsUpdateAction >> execute: aValue context: aDomainObject oldValue: anOldValue [
 					message: s message asString ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsUpdateAction >> hash [
 	^ self actionBlock hash bitXor: self description hash
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsUpdateAction >> initialize [
 	super initialize.
 	self actionBlock: self defaultActionBlock
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsUpdateAction >> initializeOn: anObject [ 
 	self parent: anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsUpdateAction >> magritteAcceptAction [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -189,7 +191,7 @@ LcsUpdateAction >> magritteAcceptAction [
 		beToolbarAction
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsUpdateAction >> magritteInspectAction [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -204,11 +206,11 @@ LcsUpdateAction >> magritteInspectAction [
 		beToolbarAction
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsUpdateAction >> slotDefinition [
 	^ self parent ifNotNil: [:p | p slotDefinition ]
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 LcsUpdateAction >> writeOnCodeStream: aCodeStream [
 ]

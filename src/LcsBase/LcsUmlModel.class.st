@@ -1,27 +1,29 @@
 Class {
-	#name : #LcsUmlModel,
-	#superclass : #LcsObject,
+	#name : 'LcsUmlModel',
+	#superclass : 'LcsObject',
 	#traits : 'LtOrderedCollection',
 	#classTraits : 'LtOrderedCollection classTrait',
 	#instVars : [
 		'layoutPolicy'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsUmlModel class >> new [ 
 	^ super new
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUmlModel >> addClass: aClass [
 	aClass isNil ifTrue: [ ^ self ].
 	aClass isClass ifFalse: [ ^ self ].
 	self addClassModelForExisting: aClass 
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LcsUmlModel >> addClassModel: aClassModel [
 	| model |
 	model := self classModelForClassname: aClassModel modelClassname asString.
@@ -29,12 +31,12 @@ LcsUmlModel >> addClassModel: aClassModel [
 	^ model
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LcsUmlModel >> addClassModelForExisting: aClass [
 	^ self addClassModel: (LcsExistingClassModel newOn: aClass)
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUmlModel >> addClassNamed: aClassname [
 	aClassname isNil ifTrue: [ ^ self ].
 	([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
@@ -42,17 +44,17 @@ LcsUmlModel >> addClassNamed: aClassname [
 		ifNotNil: [ :class | self addClassModelForExisting: class ]
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LcsUmlModel >> allClassModelsFor: aClassname [
 	^ self collection select: [ :eachModel | eachModel modelClassname = aClassname asString ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUmlModel >> applyLayoutTo: mondrianModel [
 	self layoutPolicy applyLayoutTo: mondrianModel
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUmlModel >> classModelForClass: aClass [
 	^ self collection 
 		detect: [ :eachModel | eachModel isModelOf: aClass ]
@@ -61,7 +63,7 @@ LcsUmlModel >> classModelForClass: aClass [
 			nil  ] 
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUmlModel >> classModelForClassname: aClassname [
 	^ self collection 
 		detect: [ :eachModel | eachModel modelClassname = aClassname asString ]
@@ -70,7 +72,7 @@ LcsUmlModel >> classModelForClassname: aClassname [
 			nil  ] 
 ]
 
-{ #category : #'initialize\t' }
+{ #category : 'initialize\t' }
 LcsUmlModel >> initialize [ 
 	super initialize.
 	self collection: self collectionClass new.
@@ -78,17 +80,17 @@ LcsUmlModel >> initialize [
 	self layoutPolicy: LcsUmlMondrianTreeLayoutPolicy new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUmlModel >> layoutPolicy [
 	^ layoutPolicy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUmlModel >> layoutPolicy: anObject [
 	layoutPolicy := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUmlModel >> positions: aCollection [
 	aCollection isEmpty ifTrue: [ ^ self ].
 	self layoutPolicy: (LcsUmlMondrianCustomLayoutPolicy new
@@ -96,12 +98,12 @@ LcsUmlModel >> positions: aCollection [
 							yourself)
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LcsUmlModel >> proposedClassModelFor: aClassname [
 	^ self addClassModel: (LcsProposedClassModel newOn: aClassname)
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUmlModel >> resolveClassModelNames [
 	LcsBuilderLogger log:  'Resolving super class names '.
 	self collection do: [ :eachClassModel | self resolveSuperclassFor: eachClassModel ].
@@ -109,7 +111,7 @@ LcsUmlModel >> resolveClassModelNames [
 	self collection do: [ :eachClassModel | self resolveToClassModelAssociationFor: eachClassModel ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUmlModel >> resolveSuperclassFor: aClassModel [
 	aClassModel modelSuperclass: (
 		self collection
@@ -119,7 +121,7 @@ LcsUmlModel >> resolveSuperclassFor: aClassModel [
 				nil ])
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUmlModel >> resolveToClassModelAssociationFor: aClassModel [
 	aClassModel associations do: [ :eachAssociation | 
 		eachAssociation toClassModel isNil ifTrue: [ 

@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsSlotDefinitionMethodFormatter,
-	#superclass : #LcsObject,
+	#name : 'LcsSlotDefinitionMethodFormatter',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'slotTemplate',
 		'selector',
@@ -8,30 +8,31 @@ Class {
 		'properties',
 		'slotCategory'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotDefinitionMethodFormatter class >> newOnSlotDefinition: aSlotDefinition [
 	^ self new
 		initializeOnSlotDefinition: aSlotDefinition;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSlotDefinitionMethodFormatter class >> newOnSlotDefinitionMethodBuilder: aSlotDefinitionMethodBuilder [
 	^ self new
 		initializeOnSlotDefinitionMethodBuilder: aSlotDefinitionMethodBuilder;
 		yourself
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addClassTypeKeyword: aPropertyName argument: aClasses to: aStream [ 
 	aClasses do: [ :eachClassName | 
 		aStream addKeyword: aPropertyName argument: eachClassName asString ]
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue to: aStream [
 	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
 	self slotTemplate notNil ifTrue: [
@@ -58,7 +59,7 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 	aStream addKeyword: aPropertyName argument: aValue printString
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addPostUpdateActionsKeyword: aPropertyName argument: aPostUpdateActions to: aStream [ 
 	aPostUpdateActions hasElements ifFalse: [ ^ self ].
 	aPostUpdateActions do: [ :eachAction |
@@ -67,20 +68,20 @@ LcsSlotDefinitionMethodFormatter >> addPostUpdateActionsKeyword: aPropertyName a
 			withRenderedAction: eachAction ]
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addProperties: aProperties to: aStream [
 	aStream indent.
 	aProperties keysAndValuesDo: [ :eachPropertyName :eachValue |
 		self addKeyword: eachPropertyName argument: eachValue to: aStream ].
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addSlotTypesKeyword: aPropertyName argument: aSlotTypes to: aStream [ 
 	aSlotTypes do: [ :eachClassName | 
 		aStream addKeyword: aPropertyName argument: eachClassName asString ]
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addValidationConditionsKeyword: aPropertyName argument: aValidationConditions to: aStream [ 
 
 	aValidationConditions hasElements ifFalse: [ ^ self ].
@@ -93,7 +94,7 @@ LcsSlotDefinitionMethodFormatter >> addValidationConditionsKeyword: aPropertyNam
 			argument: each validationDescription printString  ]
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> format: aSlotDefinition [
 	| stream |
 	stream := LcsMethodStream new.
@@ -109,7 +110,7 @@ LcsSlotDefinitionMethodFormatter >> format: aSlotDefinition [
 	^ stream contents
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinition: aSlotDefinition [ 
 	self slotTemplate: aSlotDefinition class new.
 	self selector: aSlotDefinition slotDefinitionSelector.
@@ -117,7 +118,7 @@ LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinition: aSlotDefinition 
 	self properties: aSlotDefinition properties.
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinitionMethodBuilder: aSlotDefinitionMethodBuilder [ 
 	self slotTemplate: aSlotDefinitionMethodBuilder slotTemplate.
 	self selector: aSlotDefinitionMethodBuilder slotDefinitionSelector.
@@ -126,7 +127,7 @@ LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinitionMethodBuilder: aSl
 	self slotCategory: aSlotDefinitionMethodBuilder slotCategory
 ]
 
-{ #category : #format }
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> methodSource [
 	| stream streamPostionBeforeAddingProperties |
 	stream := LcsMethodStream new.
@@ -145,52 +146,52 @@ LcsSlotDefinitionMethodFormatter >> methodSource [
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> properties [
 	^ properties
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> properties: anObject [
 	properties := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> selector [
 	^ selector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> selector: anObject [
 	selector := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> slotCategory [
 	^ slotCategory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> slotCategory: anObject [
 	slotCategory := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> slotClass [
 	^ slotClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> slotClass: anObject [
 	slotClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> slotTemplate [
 	^ slotTemplate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> slotTemplate: anObject [
 	slotTemplate := anObject
 ]

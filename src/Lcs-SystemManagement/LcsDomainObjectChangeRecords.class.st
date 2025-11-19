@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsDomainObjectChangeRecords,
-	#superclass : #LcsSupportDomainObject,
+	#name : 'LcsDomainObjectChangeRecords',
+	#superclass : 'LcsSupportDomainObject',
 	#traits : 'LtOrderedCollectionDomainCollection',
 	#classTraits : 'LtOrderedCollectionDomainCollection classTrait',
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsDomainObjectChangeRecords class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
@@ -14,12 +16,12 @@ LcsDomainObjectChangeRecords class >> collectionSlotDefinition [
 			yourself
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectChangeRecords >> addChangeRecord [
 	^ self collection first
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectChangeRecords >> addSlotChangesOf: aSlotName to: slotChangeHistory [
 	self collection reverseDo: [ :eachChangeRecord |
 		eachChangeRecord addSlotChangesOf: aSlotName to: slotChangeHistory ].
@@ -31,37 +33,37 @@ LcsDomainObjectChangeRecords >> addSlotChangesOf: aSlotName to: slotChangeHistor
 					with: self  parent created printString)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecords >> collection [
 	^ self slotVarNamed: 'collection'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecords >> collection: aCollection [
 	self slotVarNamed: 'collection' put: aCollection
 ]
 
-{ #category : #'history saving' }
+{ #category : 'history saving' }
 LcsDomainObjectChangeRecords >> domainObject [
 	^ self parent domainObject
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectChangeRecords >> domainObjectHistory [
 	^ self parent domainObjectHistory
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectChangeRecords >> lastUpdateTimestamp [
 	^ self collection last created
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsDomainObjectChangeRecords >> lastUpdatedUser [
 	^ self collection last user
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsDomainObjectChangeRecords >> newChangeRecord [
 	| newRecord |
 	newRecord :=

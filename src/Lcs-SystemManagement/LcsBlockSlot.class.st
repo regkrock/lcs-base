@@ -1,22 +1,24 @@
 Class {
-	#name : #LcsBlockSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsBlockSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBlockSlot >> _initialValueFor: aDomainObject [
 	^ self initialValueBlock 
 		ifNil: [ [ true ] ] 
 		ifNotNil: [ self initialValueBlock ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsBlockSlot >> defaultInitialValueBlock [
 	^ nil
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsBlockSlot >> typeClass [
 	^ BlockClosure.
 ]

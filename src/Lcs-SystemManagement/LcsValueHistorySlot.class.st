@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsValueHistorySlot,
-	#superclass : #LcsAccessorSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsValueHistorySlot',
+	#superclass : 'LcsAccessorSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValueHistorySlot >> initialize [ 
 	super initialize.
 	self

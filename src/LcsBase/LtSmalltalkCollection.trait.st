@@ -1,26 +1,28 @@
 Trait {
-	#name : #LtSmalltalkCollection,
+	#name : 'LtSmalltalkCollection',
 	#traits : 'LtCollection',
 	#classTraits : 'LtCollection classTrait',
-	#category : #'LcsBase-Traits'
+	#category : 'LcsBase-Traits',
+	#package : 'LcsBase',
+	#tag : 'Traits'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LtSmalltalkCollection >> collection [
 	^ collection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LtSmalltalkCollection >> collection: anObject [
 	collection := anObject
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LtSmalltalkCollection >> collectionClass [
 	^ self class collectionClass
 ]
 
-{ #category : #'initialize\t' }
+{ #category : 'initialize\t' }
 LtSmalltalkCollection >> initialize [ 
 
 	super initialize.

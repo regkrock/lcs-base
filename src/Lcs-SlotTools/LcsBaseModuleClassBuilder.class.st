@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsBaseModuleClassBuilder,
-	#superclass : #LcsDomainClassBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsBaseModuleClassBuilder',
+	#superclass : 'LcsDomainClassBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsBaseModuleClassBuilder >> buildJobSteps [
 	self addJobStep: self moduleNameMethodBuilder.
 	self addJobStep: self convenienceModuleAccessMethodBuilder.
@@ -12,17 +13,17 @@ LcsBaseModuleClassBuilder >> buildJobSteps [
 	self addJobStep: self configurationSlotDefinitionSuperMethodBuilder
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseModuleClassBuilder >> configurationClassName [
 	^ self properties at: 'configurationClassName'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseModuleClassBuilder >> configurationClassName: aString [
 	self propertyAt: 'configurationClassName' put: aString
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsBaseModuleClassBuilder >> configurationSlotDefinitionSuperMethodBuilder [
 	^ LcsConfigurationSlotDefinitionSuperMethodBuilder new
 		targetClassName: self newClassName;
@@ -30,7 +31,7 @@ LcsBaseModuleClassBuilder >> configurationSlotDefinitionSuperMethodBuilder [
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsBaseModuleClassBuilder >> convenienceModuleAccessMethodBuilder [
 	^ LcsConvenienceModuleAccessMethodBuilder new
 		extendInPackage: self targetPackageName;
@@ -39,7 +40,7 @@ LcsBaseModuleClassBuilder >> convenienceModuleAccessMethodBuilder [
 		yourself
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsBaseModuleClassBuilder >> moduleConfigurationClassMethodBuilder [
 	^ LcsModuleConfigurationClassMethodBuilder new
 		targetClassName: self newClassName;
@@ -47,17 +48,17 @@ LcsBaseModuleClassBuilder >> moduleConfigurationClassMethodBuilder [
 		yourself
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseModuleClassBuilder >> moduleName [
 	^ self properties at: 'moduleName'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseModuleClassBuilder >> moduleName: aString [
 	self propertyAt: 'moduleName' put: aString
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsBaseModuleClassBuilder >> moduleNameMethodBuilder [
 	^ LcsModuleNameMethodBuilder new
 		targetClassName: self newClassName;

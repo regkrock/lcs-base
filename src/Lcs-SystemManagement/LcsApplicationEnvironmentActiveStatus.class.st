@@ -1,30 +1,32 @@
 Class {
-	#name : #LcsApplicationEnvironmentActiveStatus,
-	#superclass : #LcsBaseApplicationEnvironmentStatus,
-	#category : #'Lcs-SystemManagement-Environment'
+	#name : 'LcsApplicationEnvironmentActiveStatus',
+	#superclass : 'LcsBaseApplicationEnvironmentStatus',
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsApplicationEnvironmentActiveStatus >> displayString [
 	^ self statusName
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentActiveStatus >> gtLiveBackground [
 	^ BrGlamorousColors successBackgroundColor
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironmentActiveStatus >> isInActiveStatus [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentActiveStatus >> statusName [
 	^ 'Active' translated
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsApplicationEnvironmentActiveStatus >> suspendApplicationEnvironment [
 	self parent status: (
 		(LcsApplicationEnvironmentSuspendedStatus newOn: self parent)
@@ -32,12 +34,12 @@ LcsApplicationEnvironmentActiveStatus >> suspendApplicationEnvironment [
 			yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentActiveStatus >> toggleStatus [
 	self suspendApplicationEnvironment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentActiveStatus >> toggleStatusLabel [
 	^ 'Stop'
 ]

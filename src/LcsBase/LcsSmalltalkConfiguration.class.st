@@ -1,76 +1,78 @@
 Class {
-	#name : #LcsSmalltalkConfiguration,
-	#superclass : #LcsObject,
-	#category : #'LcsBase-Core'
+	#name : 'LcsSmalltalkConfiguration',
+	#superclass : 'LcsObject',
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> booleanClass [
 	^ Boolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> dateClass [
 	^ Date
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> identityDictionaryClass [
 	^ Dictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> identitySetClass [
 	^ IdentitySet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> integerClass [
 	^ Integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> objectKeyDictionaryClass [
 	^ Dictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> scaledDeciamlClass [
 	^ ScaledDecimal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> setClass [
 
 	^ IdentitySet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> stringClass [
 	^ String
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> stringDictionaryClass [
 	^ Dictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> symbolDictionaryClass [
 
 	^ Dictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> systemDictionary [
 	^ SmalltalkImage current globals
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> timeClass [
 	^ Time
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSmalltalkConfiguration >> classSelecotrFor: aClass [
 ]

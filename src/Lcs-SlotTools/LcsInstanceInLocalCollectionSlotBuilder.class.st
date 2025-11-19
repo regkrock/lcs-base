@@ -1,32 +1,33 @@
 Class {
-	#name : #LcsInstanceInLocalCollectionSlotBuilder,
-	#superclass : #LcsAccessorSlotBuilder,
+	#name : 'LcsInstanceInLocalCollectionSlotBuilder',
+	#superclass : 'LcsAccessorSlotBuilder',
 	#instVars : [
 		'collectionSourceClassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsInstanceInLocalCollectionSlotBuilder class >> slotClass [
 	^ LcsInstanceInLocalCollectionSlot
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsInstanceInLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	(aUmlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self slotTypes any
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsInstanceInLocalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetClassName.
 	self currentSystem isNil ifTrue: [ ^ self ].
 	aUmlModel addClassNamed: self slotTypes first
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsInstanceInLocalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 	super addSlotDefinitionSourceDetailsTo: aCodeStream.
 	aCodeStream
@@ -34,23 +35,23 @@ LcsInstanceInLocalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCo
 		addKeyword: 'typeCode' argument: (self typeCode ifNil: [ '<missing>' ]) printString
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsInstanceInLocalCollectionSlotBuilder >> buildJobSteps [
 	self addJobStep: self slotDefinitionMethodBuilder.
 	self addJobStep: self getterAndSetterMethodsBuilder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotName [
 	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotName: anObject [
 	self properties at: 'collectionSlotName' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -62,24 +63,24 @@ LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotNameDescription [
 		yourself
 ]
 
-{ #category : #properites }
+{ #category : 'properites' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSourceClassName [
 	^ collectionSourceClassName
 ]
 
-{ #category : #properites }
+{ #category : 'properites' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSourceClassName: anObject [
 	collectionSourceClassName := anObject
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsInstanceInLocalCollectionSlotBuilder >> slotDefinitionMethodBuilder [
 	^ super slotDefinitionMethodBuilder
 		beFacadeSlot;
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsInstanceInLocalCollectionSlotBuilder >> sourceCollectionClassName [
 
 	self collectionSourceClassName ifNotNil: [ ^ self collectionSourceClassName ].
@@ -88,17 +89,17 @@ LcsInstanceInLocalCollectionSlotBuilder >> sourceCollectionClassName [
 		([ module perform: self collectionSlotName asSymbol ] on: MessageNotUnderstood do: [ :s | s return: nil ]) ifNotNil: [ :value | value class name asString ] ]
 ]
 
-{ #category : #properites }
+{ #category : 'properites' }
 LcsInstanceInLocalCollectionSlotBuilder >> typeCode [
 	^ self properties at: 'typeCode' ifAbsent: [ nil ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> typeCode: anObject [
 	self properties at: 'typeCode' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsInstanceInLocalCollectionSlotBuilder >> typeCodeDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -110,7 +111,7 @@ LcsInstanceInLocalCollectionSlotBuilder >> typeCodeDescription [
 		yourself
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsInstanceInLocalCollectionSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamed: self slotName ]

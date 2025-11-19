@@ -1,47 +1,49 @@
 Class {
-	#name : #LcsUpdateActions,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsUpdateActions',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait + LtOrderedCollection',
 	#classTraits : 'LtParentTrait classTrait + LtOrderedCollection classTrait',
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsUpdateActions >> = aValidationCollections [
 	(aValidationCollections isKindOf: self class name) ifFalse: [ ^ false ].
 	"self collection size = aValidationCollections collections size ifFalse: [ ^ false ]."
 	^ self collection = aValidationCollections collection
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsUpdateActions >> addPostUpdateAction: anUpdateAction [
 	anUpdateAction parent: self.
 	^ self add: anUpdateAction
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsUpdateActions >> addUpdateAction: anUpdateAction [
 	anUpdateAction parent: self.
 	^ self add: anUpdateAction
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsUpdateActions >> execute: aValue [
 	self collection do: [ :eachAction| eachAction execute: aValue ]
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsUpdateActions >> execute: aValue context: aDomainObject [
 	self collection do: [ :eachAction | eachAction execute: aValue context: aDomainObject ]
 	
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsUpdateActions >> execute: aValue context: aDomainObject oldValue: anOldValue [
 	self collection do: [ :eachAction | eachAction execute: aValue context: aDomainObject oldValue: anOldValue ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsUpdateActions >> gtItemsFor: aView [
 	<gtView>
 	self collection isNil ifTrue: [ ^ aView empty ].
@@ -53,18 +55,18 @@ LcsUpdateActions >> gtItemsFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsUpdateActions >> hash [
 	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsUpdateActions >> initialize [ 
 	super initialize.
 	self collection: OrderedCollection new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUpdateActions >> isSameAs: anUpdateActions [
 	(anUpdateActions isKindOf: LcsUpdateActions) ifFalse: [ ^ false ].
 	self collection size = anUpdateActions collection size ifFalse: [ ^ false ].
@@ -74,22 +76,22 @@ LcsUpdateActions >> isSameAs: anUpdateActions [
 	^ true
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsUpdateActions >> removePostUpdateAction: aPostUpdateAction [
 	^ self remove: aPostUpdateAction ifAbsent: []
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsUpdateActions >> slotDefinition [
 	^ self parent
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 LcsUpdateActions >> updateActionWithDescription: aString [
 	^ self detect: [ :each | each description = aString ] ifNone: [ ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsUpdateActions >> updateActionsDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new

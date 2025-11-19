@@ -1,21 +1,22 @@
 Class {
-	#name : #LcsConfigurationSlotDefinitionSuperMethodBuilder,
-	#superclass : #LcsMethodBuilder,
+	#name : 'LcsConfigurationSlotDefinitionSuperMethodBuilder',
+	#superclass : 'LcsMethodBuilder',
 	#instVars : [
 		'owningModuleClass',
 		'moduleName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsConfigurationSlotDefinitionSuperMethodBuilder >> initialize [
 	super initialize.
 	self categoryName: #'slot definitions';
 	beClassMethod
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsConfigurationSlotDefinitionSuperMethodBuilder >> methodSource [
 	^ self selector , '
 	<slotDefinition>

@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsUuidSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsUuidSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUuidSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | parentDomainObject currentSystem uuidGenerator next asInteger  ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUuidSlot >> initialize [
 	super initialize.
 	self 
@@ -17,7 +19,7 @@ LcsUuidSlot >> initialize [
 		priority: 100
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsUuidSlot >> typeClass [
 	^ Integer
 ]

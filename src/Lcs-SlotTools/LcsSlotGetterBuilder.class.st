@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsSlotGetterBuilder,
-	#superclass : #LcsSlotDetailBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsSlotGetterBuilder',
+	#superclass : 'LcsSlotDetailBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterBuilder >> _installCode [
 	super _installCode.
 	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
@@ -17,20 +18,20 @@ LcsSlotGetterBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterBuilder >> _verifyCodeInstallation [
 	super _verifyCodeInstallation.
 	self assert: (self targetClass canUnderstand: self getterSelector).
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotGetterBuilder >> addGetterSourceCodeTo: aStream [
 	aStream
 		nextPutAll: self getterSource;
 		cr
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotGetterBuilder >> addRefactoringTextDetailsTo: aStream [
 	self slotName isNil
 		ifTrue: [ aStream
@@ -60,7 +61,7 @@ LcsSlotGetterBuilder >> addRefactoringTextDetailsTo: aStream [
 	self addGetterSourceCodeTo: aStream
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotGetterBuilder >> getterMethodsFilter [
 	| classFilter |
 	classFilter := (GtSearchInheritedMethodsFilter forClass: self targetClass)
@@ -68,18 +69,18 @@ LcsSlotGetterBuilder >> getterMethodsFilter [
 	^ classFilter & (self getterSelector gtImplementors)
 ]
 
-{ #category : #selector }
+{ #category : 'selector' }
 LcsSlotGetterBuilder >> getterSelector [
 	^ self slotName asString asSymbol
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterBuilder >> getterSource [
 	^'<1s>
 	^ self slotVarNamed: ''<1s>''' expandMacrosWith: self slotName
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotGetterBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -88,7 +89,7 @@ LcsSlotGetterBuilder >> gtRefactoringChangeOn: aView [
 		text: [ self refactoringText asRopedText ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotGetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 	<gtView>
 	self targetClass isNil ifTrue: [ ^ aView empty ].
@@ -98,31 +99,31 @@ LcsSlotGetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 		stencil: [ self getterMethodsFilter ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSlotGetterBuilder >> isAlreadyImplementedInSuperclass [
 	self targetClass isNil ifTrue: [ ^ false ].
 	^ self targetClass superclass canUnderstand: self getterSelector
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSlotGetterBuilder >> isAlreadyImplementedInTargetClass [
 	self targetClass isNil ifTrue: [ ^ false ].
 	^ self targetClass canUnderstand: self slotName asSymbol
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotGetterBuilder >> jobStepActionDescription [
 	^ 'Install getter for'
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNil: [ ^ self ].
 	self targetClass removeSelector: self getterSelector
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass ifNil: [ ^ self ].

@@ -1,35 +1,37 @@
 Class {
-	#name : #LcsExistingClassModel,
-	#superclass : #LcsClassModel,
+	#name : 'LcsExistingClassModel',
+	#superclass : 'LcsClassModel',
 	#instVars : [
 		'modelClass'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsExistingClassModel class >> newOn: aClass [
 	^ self new 
 		initializeOn: aClass;
 		yourself
 ]
 
-{ #category : #decortations }
+{ #category : 'decortations' }
 LcsExistingClassModel >> borderColor [
 	^ Color gray
 ]
 
-{ #category : #decortations }
+{ #category : 'decortations' }
 LcsExistingClassModel >> classnameText [
 	^ self modelClassname asRopedText foreground: self foregroundColor
 ]
 
-{ #category : #decortations }
+{ #category : 'decortations' }
 LcsExistingClassModel >> foregroundColor [
 	^ Color gray
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsExistingClassModel >> initializeOn: aClass [ 
 	self modelClass: aClass.
 	self modelClassname: aClass name asString.
@@ -37,17 +39,17 @@ LcsExistingClassModel >> initializeOn: aClass [
 	self modelSuperclass: aClass superclass.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsExistingClassModel >> modelClass [
 	^ modelClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsExistingClassModel >> modelClass: anObject [
 	modelClass := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsExistingClassModel >> printOn: aStream [
 	super printOn: aStream.
 	aStream 

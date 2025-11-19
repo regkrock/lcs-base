@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsModuleBuilderJob,
-	#superclass : #LcsCodeBuilderJob,
+	#name : 'LcsModuleBuilderJob',
+	#superclass : 'LcsCodeBuilderJob',
 	#instVars : [
 		'classPrefix',
 		'classRootName',
@@ -9,38 +9,39 @@ Class {
 		'moduleName',
 		'owningModule'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'builder job' }
+{ #category : 'builder job' }
 LcsModuleBuilderJob >> buildJobSteps [
 	self addJobStep: self configurationClassBuilder.
 	self addJobStep: self moduleClassBuilder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> classPrefix [
 	^ classPrefix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> classPrefix: aString [
 	classPrefix := aString.
 	self generateRelatedNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> classRootName [
 	^ classRootName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> classRootName: aString [
 	classRootName := aString.
 	self generateRelatedNames
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsModuleBuilderJob >> configurationClassBuilder [
 	^ LcsDomainClassBuilder new
 		targetSuperclassName: LcsBaseConfiguration name;
@@ -50,13 +51,13 @@ LcsModuleBuilderJob >> configurationClassBuilder [
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsModuleBuilderJob >> createForRootName: aRootName [
 	self classRootName: aRootName.
 	self generateRelatedNames
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsModuleBuilderJob >> generateRelatedNames [
 	super generateRelatedNames.
 	(self classRootName isNil or: [ self classPrefix isNil ])
@@ -68,7 +69,7 @@ LcsModuleBuilderJob >> generateRelatedNames [
 	self targetPackageTagName: 'Core'.
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsModuleBuilderJob >> moduleClassBuilder [
 	^ LcsModuleClassBuilder new
 		targetSuperclassName: LcsModule name;
@@ -80,59 +81,59 @@ LcsModuleBuilderJob >> moduleClassBuilder [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> moduleConfigurationClassName [
 	self assert: self classRootName notNil.
 	self assert: self classPrefix notNil.
 	^ self classPrefix , self classRootName , 'ModuleConfiguration'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> moduleName [
 	^ moduleName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> moduleName: aString [
 	moduleName := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> newDomainClassName [
 	^ newDomainClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> newDomainClassName: anObject [ 
 	newDomainClassName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> owningModule [
 	^ owningModule
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> owningModule: anObject [
 	owningModule := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> targetPackageName [
 	^ targetPackageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> targetPackageTagName [
 	^ targetPackageTagName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderJob >> targetPackageTagName: anObject [
 	targetPackageTagName := anObject
 ]

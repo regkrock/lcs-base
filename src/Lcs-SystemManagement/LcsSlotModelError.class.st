@@ -1,24 +1,26 @@
 Class {
-	#name : #LcsSlotModelError,
-	#superclass : #LcsError,
+	#name : 'LcsSlotModelError',
+	#superclass : 'LcsError',
 	#instVars : [
 		'context',
 		'slotName'
 	],
-	#category : #'Lcs-SystemManagement-Error'
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotModelError >> context [
 	^ context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotModelError >> context: anObject [
 	context := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsSlotModelError >> gtCurrentSystemViewFor: aView [
 	<gtView>
 	<gtExceptionView>

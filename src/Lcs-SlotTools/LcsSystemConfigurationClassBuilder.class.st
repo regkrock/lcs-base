@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsSystemConfigurationClassBuilder,
-	#superclass : #LcsDomainClassBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsSystemConfigurationClassBuilder',
+	#superclass : 'LcsDomainClassBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystemConfigurationClassBuilder class >> defaultTargetSuperclassName [
 	^ 'LcsBaseConfiguration'
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSystemConfigurationClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	super verifySlotModelUpdatesMadeByBuilder.
 	"A new system class is not part of the current system's slot model"

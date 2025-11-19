@@ -1,14 +1,15 @@
 Class {
-	#name : #LcsOwningModulesMethodBuilder,
-	#superclass : #LcsMethodBuilder,
+	#name : 'LcsOwningModulesMethodBuilder',
+	#superclass : 'LcsMethodBuilder',
 	#instVars : [
 		'owningModuleClass',
 		'priority'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsOwningModulesMethodBuilder >> initialize [
 	super initialize.
 	self priority: 5.	"Security module is 1. It needs to be loaded first"
@@ -17,28 +18,28 @@ LcsOwningModulesMethodBuilder >> initialize [
 	beClassMethod
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsOwningModulesMethodBuilder >> methodSource [
 	^'owningModules
 	<owningModule: ' , self owningModuleClass name asString printString , ' priority: ' , self priority asString , '>' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOwningModulesMethodBuilder >> owningModuleClass [
 	^ owningModuleClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOwningModulesMethodBuilder >> owningModuleClass: anObject [
 	owningModuleClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOwningModulesMethodBuilder >> priority [
 	^ priority
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOwningModulesMethodBuilder >> priority: aNumber [
 	priority := aNumber
 ]

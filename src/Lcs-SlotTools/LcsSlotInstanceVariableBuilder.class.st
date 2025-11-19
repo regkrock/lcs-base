@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsSlotInstanceVariableBuilder,
-	#superclass : #LcsSlotDetailBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsSlotInstanceVariableBuilder',
+	#superclass : 'LcsSlotDetailBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotInstanceVariableBuilder >> _installCode [
 	super _installCode.
 	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
@@ -12,13 +13,13 @@ LcsSlotInstanceVariableBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotInstanceVariableBuilder >> _verifyCodeInstallation [
 	super _verifyCodeInstallation.
 	self assert: (self targetClass allInstVarNames includes: self slotName).
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
 	([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
 		ifTrue: [ aStream nextPutAll: 'Use existing instanceVariable: ' , self slotName ]
@@ -28,7 +29,7 @@ LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
 				nextPutAll:  self derivedSlotName ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ (super gtRefactoringChangeOn: aView)
@@ -36,23 +37,23 @@ LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotInstanceVariableBuilder >> isInstanceVariableAlreadyCreated [
 	^ self targetClass allInstVarNames includes: self slotName
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotInstanceVariableBuilder >> jobStepActionDescription [
 	^ 'Install instVar '
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotInstanceVariableBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeInstVar: self slotName ]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotInstanceVariableBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass isNil ifTrue: [ ^ self  ].

@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsInvalidSlotTypeError,
-	#superclass : #LcsSlotModelError,
+	#name : 'LcsInvalidSlotTypeError',
+	#superclass : 'LcsSlotModelError',
 	#instVars : [
 		'object',
 		'slotDefinition',
 		'target'
 	],
-	#category : #'Lcs-SystemManagement-Error'
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'instance  creation' }
+{ #category : 'instance  creation' }
 LcsInvalidSlotTypeError class >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
 	self new
 		signalInvalidType: anObject
@@ -17,12 +19,12 @@ LcsInvalidSlotTypeError class >> signalInvalidType: anObject forSlot: aSlotDefin
 		for: aDomainObject
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> domainClassName [
 	^ self slotDefinition domainClass name
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> gtNewValueViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -42,7 +44,7 @@ LcsInvalidSlotTypeError >> gtNewValueViewFor: aView [
 		"view: #gtViewsFor:"
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -62,7 +64,7 @@ LcsInvalidSlotTypeError >> gtSlotAttributesViewFor: aView [
 
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> gtSlotDefinitionMethods: aView [
 	<gtView>
 	<gtExceptionView>
@@ -76,7 +78,7 @@ LcsInvalidSlotTypeError >> gtSlotDefinitionMethods: aView [
 
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> gtSlotTypesViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -96,7 +98,7 @@ LcsInvalidSlotTypeError >> gtSlotTypesViewFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> gtTargetViewsFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -116,7 +118,7 @@ LcsInvalidSlotTypeError >> gtTargetViewsFor: aView [
 		"view: #gtViewsFor:"
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> gtUpdateSlotModelFor: anAction [
 	<gtAction>
 	^ anAction button
@@ -126,36 +128,36 @@ LcsInvalidSlotTypeError >> gtUpdateSlotModelFor: anAction [
 		action: [ :aButton | self reinstallSlotDefinition ]
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> invalidAuditMessage [
 	^ self slotName printString , '  slot("'
 		, self slotDefinition class name , '") in '
 		, self slotDefinition domainClass name , ' contains invalid: ' , self object printString
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> invalidSlotTypeMessage [
 	^ 'Attempt to update ' , self slotName printString , '  slot("'
 		, self slotDefinition class name , '") in '
 		, self slotDefinition domainClass name , ' with: ' , self object printString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsInvalidSlotTypeError >> object [
 	^ object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsInvalidSlotTypeError >> object: anObject [ 
 	object := anObject
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> reinstallSlotDefinition [
 	^ self target class installSlotDefinition: self slotDefinitionSelector
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
 	self object: anObject.
 	self slotDefinition: aSlotDefinition.
@@ -164,22 +166,22 @@ LcsInvalidSlotTypeError >> signalInvalidType: anObject forSlot: aSlotDefinition 
 	self signal: self messageText
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> slotClassName [
 	^ self slotDefinition class name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsInvalidSlotTypeError >> slotDefinition [
 	^ slotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsInvalidSlotTypeError >> slotDefinition: aSlotDefinition [ 
 	slotDefinition := aSlotDefinition
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> slotDefinitionMethods [
 	| method |
 	method := self target class class lookupSelector: self slotDefinitionSelector.
@@ -187,22 +189,22 @@ LcsInvalidSlotTypeError >> slotDefinitionMethods [
 	^ Array with: method
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> slotDefinitionSelector [
 	^ (self slotName , 'SlotDefinition')  asSymbol
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> slotName [
 	^ self slotDefinition slotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsInvalidSlotTypeError >> target [
 	^ target
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> target: aDomainObject [ 
 	target := aDomainObject
 ]

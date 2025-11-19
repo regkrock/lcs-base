@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsMemberOfSlotSourceCollectionNotInitialized,
-	#superclass : #LcsSlotModelError,
-	#category : #'Lcs-SystemManagement-Error'
+	#name : 'LcsMemberOfSlotSourceCollectionNotInitialized',
+	#superclass : 'LcsSlotModelError',
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsMemberOfSlotSourceCollectionNotInitialized class >> signalWithContext: aSlotDefinition [
 	self new signalWithContext: aSlotDefinition
 ]
 
-{ #category : #'gt - views' }
+{ #category : 'gt - views' }
 LcsMemberOfSlotSourceCollectionNotInitialized >> gtDomainClassViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -20,7 +22,7 @@ LcsMemberOfSlotSourceCollectionNotInitialized >> gtDomainClassViewFor: aView [
 		view: #gtMetaFor:
 ]
 
-{ #category : #'gt - views' }
+{ #category : 'gt - views' }
 LcsMemberOfSlotSourceCollectionNotInitialized >> gtModuleViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -31,7 +33,7 @@ LcsMemberOfSlotSourceCollectionNotInitialized >> gtModuleViewFor: aView [
 		view: #gtRawFor:
 ]
 
-{ #category : #'gt - views' }
+{ #category : 'gt - views' }
 LcsMemberOfSlotSourceCollectionNotInitialized >> gtSlotClassViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -42,7 +44,7 @@ LcsMemberOfSlotSourceCollectionNotInitialized >> gtSlotClassViewFor: aView [
 		view: #gtMetaFor:
 ]
 
-{ #category : #'gt - views' }
+{ #category : 'gt - views' }
 LcsMemberOfSlotSourceCollectionNotInitialized >> gtSlotViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -53,7 +55,7 @@ LcsMemberOfSlotSourceCollectionNotInitialized >> gtSlotViewFor: aView [
 		view: #gtRawFor:
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsMemberOfSlotSourceCollectionNotInitialized >> signalWithContext: aSlotDefinition [ 
 	self 
 		context: aSlotDefinition;
@@ -61,7 +63,7 @@ LcsMemberOfSlotSourceCollectionNotInitialized >> signalWithContext: aSlotDefinit
 		signal
 ]
 
-{ #category : #message }
+{ #category : 'message' }
 LcsMemberOfSlotSourceCollectionNotInitialized >> unintializeSourceCollectionMessage [
 	^'Timing Error - Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized but is needed to initialize <3s> slot' 
 		expandMacrosWith: self context collectionSlotModuleName 

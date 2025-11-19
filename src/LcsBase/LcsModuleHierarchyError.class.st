@@ -1,30 +1,32 @@
 Class {
-	#name : #LcsModuleHierarchyError,
-	#superclass : #LcsError,
+	#name : 'LcsModuleHierarchyError',
+	#superclass : 'LcsError',
 	#instVars : [
 		'moduleClassName'
 	],
-	#category : #'LcsBase-Error'
+	#category : 'LcsBase-Error',
+	#package : 'LcsBase',
+	#tag : 'Error'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsModuleHierarchyError class >> signalModuleRecursingToItself: moduleName [ 
 	self new
 		moduleName: moduleName;
 		signalModuleRecursingToItself 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsModuleHierarchyError >> moduleName [
 	^ moduleClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleHierarchyError >> moduleName: aString [ 
 	moduleClassName := aString
 ]
 
-{ #category : #signal }
+{ #category : 'signal' }
 LcsModuleHierarchyError >> signalModuleRecursingToItself [
 	self signal: 'Pragma #owningModule: pointing to itself in ' , self moduleName
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsLocalCollectionSlot,
-	#superclass : #LcsPrimaryCollectionSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsLocalCollectionSlot',
+	#superclass : 'LcsPrimaryCollectionSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsLocalCollectionSlot >> isLocalCollectionSlot [
 	^ true
 ]

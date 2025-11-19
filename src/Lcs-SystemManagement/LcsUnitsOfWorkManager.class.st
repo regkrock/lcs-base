@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsUnitsOfWorkManager,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsUnitsOfWorkManager',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait',
 	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
@@ -10,58 +10,60 @@ Class {
 	#classInstVars : [
 		'Singleton'
 	],
-	#category : #'Lcs-SystemManagement-Environment'
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsUnitsOfWorkManager class >> new [
 	"Use the #newOn: method"
 	self shouldNotImplement
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsUnitsOfWorkManager class >> newOn: anObject [
 	^ self basicNew initialize
 		initializeOn: anObject;
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsUnitsOfWorkManager >> applicationEnvironmentViewChildren [
 	^ {
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Current Unit Of Work' item: self currentUnitOfWork.
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Units Of Work' item: self unitsOfWork. }
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> createUnitOfWork [
 	^ self createUnitOfWorkFor: nil
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> createUnitOfWorkFor: aSystem [
 	self currentUnitOfWork: (LcsUnitOfWork newOn: aSystem).
 	self unitsOfWork add: self currentUnitOfWork.
 	^ self currentUnitOfWork
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> createUnitOfWorkForCurrentSystem [
 	^ self createUnitOfWorkFor: self currentSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitsOfWorkManager >> currentUnitOfWork [
 	^ currentUnitOfWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitsOfWorkManager >> currentUnitOfWork: anObject [
 	currentUnitOfWork := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsUnitsOfWorkManager >> gtUnitsOfWorkManagerFor: aView [
 		<gtView>
 	^ aView columnedList
@@ -79,47 +81,47 @@ LcsUnitsOfWorkManager >> gtUnitsOfWorkManagerFor: aView [
 		
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitsOfWorkManager >> hasCurrentUnitOfWork [
 	^self currentUnitOfWork notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsUnitsOfWorkManager >> hasUnitsOfWork [
 	^ self unitsOfWork hasElements
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsUnitsOfWorkManager >> initialize [
 	super initialize.
 	self unitsOfWork: (LcsUnitsOfWork newOn: self)
 ]
 
-{ #category : #query }
+{ #category : 'query' }
 LcsUnitsOfWorkManager >> numberOfUnitsOfWork [
 	^ self unitsOfWork collectionSize
 ]
 
-{ #category : #release }
+{ #category : 'release' }
 LcsUnitsOfWorkManager >> releaseApplicationEnvironment [
 	self currentUnitOfWork: nil.
 	self unitsOfWork removeAll
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> removeAllUnitsOfWork [
 	self removeCurrentUnitOfWork.
 	self unitsOfWork removeAll
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> removeCurrentUnitOfWork [
 	self currentUnitOfWork clearUnitOfWork.
 	self unitsOfWork remove: self currentUnitOfWork ifAbsent: [ nil ]. 
 	self currentUnitOfWork: nil
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> removeUnitsOfWorkFor: aSystem [
 	self unitsOfWork removeUnitsOfWorkFor: aSystem.
 	self currentUnitOfWork ifNil: [ ^ self ].	
@@ -130,28 +132,28 @@ LcsUnitsOfWorkManager >> removeUnitsOfWorkFor: aSystem [
 	self currentUnitOfWork system == aSystem ifTrue: [ self removeCurrentUnitOfWork ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> restoreUnitOfWorkFor: aSystem [
 	self
 		currentUnitOfWork: (aSystem ifNil: [  ] ifNotNil: [ self unitOfWorkFor: aSystem ])
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> suspendUnitOfWorkFor: aSystem [
 	self currentUnitOfWork: nil
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> unitOfWorkFor: aSystem [
 	^ self unitsOfWork unitOfWorkFor: aSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitsOfWorkManager >> unitsOfWork [
 	^ unitsOfWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitsOfWorkManager >> unitsOfWork: anObject [
 	unitsOfWork := anObject
 ]

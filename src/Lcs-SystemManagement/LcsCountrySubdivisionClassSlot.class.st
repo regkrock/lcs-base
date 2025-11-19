@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsCountrySubdivisionClassSlot,
-	#superclass : #LcsDomainClassSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsCountrySubdivisionClassSlot',
+	#superclass : 'LcsDomainClassSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsCountrySubdivisionClassSlot >> initialize [
 	super initialize.
 	self slotName: 'subdivisionClass'.

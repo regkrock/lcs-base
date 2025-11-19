@@ -1,35 +1,36 @@
 Class {
-	#name : #LcsModuleClassBuilder,
-	#superclass : #LcsBaseModuleClassBuilder,
+	#name : 'LcsModuleClassBuilder',
+	#superclass : 'LcsBaseModuleClassBuilder',
 	#instVars : [
 		'owningModule'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #populate }
+{ #category : 'populate' }
 LcsModuleClassBuilder >> _populateSlotModel [
 	super _populateSlotModel.
 	(self currentSystem moduleNamed: self owningModule defaultModuleName) buildModule: self installedClass
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsModuleClassBuilder >> buildJobSteps [
 	super buildJobSteps.
 	self addJobStep: self owningModulesMethodBuilder.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleClassBuilder >> owningModule [
 	^ owningModule
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleClassBuilder >> owningModule: anObject [ 
 	owningModule := anObject
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsModuleClassBuilder >> owningModulesMethodBuilder [
 	^ LcsOwningModulesMethodBuilder new
 		targetClassName: self newClassName;

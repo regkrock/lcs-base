@@ -1,69 +1,71 @@
 Class {
-	#name : #LcsConditionsValidatorVisitor,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsConditionsValidatorVisitor',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'domainObject',
 		'errorDescriptions',
 		'slotDefinition',
 		'visited'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #validations }
+{ #category : 'validations' }
 LcsConditionsValidatorVisitor class >> newOn: aSlotDefinition [ 
 	^ self new
 		initializeOn: aSlotDefinition;
 		yourself
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsConditionsValidatorVisitor >> addErrorDescription: aDescription in: aValidationCondition [
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 LcsConditionsValidatorVisitor >> domainObject [
 	^ domainObject
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 LcsConditionsValidatorVisitor >> domainObject: aDomainObject [ 
 	domainObject := aDomainObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidatorVisitor >> errorDescriptions [
 	^ errorDescriptions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidatorVisitor >> errorDescriptions: anObject [
 	errorDescriptions := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsConditionsValidatorVisitor >> initialize [ 
 	super initialize.
 	self errorDescriptions: OrderedCollection new.
 	self visited: Set new
 ]
 
-{ #category : #validations }
+{ #category : 'validations' }
 LcsConditionsValidatorVisitor >> initializeOn: aSlotDefinition [ 
 	self slotDefinition: aSlotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidatorVisitor >> slotDefinition [
 	^ slotDefinition 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidatorVisitor >> slotDefinition: aSlotDefinition [ 
 	slotDefinition := aSlotDefinition
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsConditionsValidatorVisitor >> validate: anObject [ 
 	(self visited includes: anObject) ifTrue: [ ^ self ].
 	self visited add: anObject.
@@ -71,12 +73,12 @@ LcsConditionsValidatorVisitor >> validate: anObject [
 	"self slotDefinition validationConditions validate: aValue"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidatorVisitor >> visited [
 	^ visited
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsConditionsValidatorVisitor >> visited: anObject [
 	visited := anObject
 ]

@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsUmlMondrianCustomLayoutPolicy,
-	#superclass : #LcsUmlModelLayoutPolicy,
+	#name : 'LcsUmlMondrianCustomLayoutPolicy',
+	#superclass : 'LcsUmlModelLayoutPolicy',
 	#instVars : [
 		'positions'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #api }
+{ #category : 'api' }
 LcsUmlMondrianCustomLayoutPolicy >> applyLayoutTo: aMondrinModel [
 	self positions isEmpty ifTrue: [ ^self ].
 	aMondrinModel layout custom: BlBasicLayout new.
@@ -15,18 +17,18 @@ LcsUmlMondrianCustomLayoutPolicy >> applyLayoutTo: aMondrinModel [
 		withIndexDo: [ :child :n | child relocate: (self positions at: n) ] 
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsUmlMondrianCustomLayoutPolicy >> initialize [
 	super initialize.
 	self positions: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUmlMondrianCustomLayoutPolicy >> positions [
 	^ positions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUmlMondrianCustomLayoutPolicy >> positions: anObject [
 	positions := anObject
 ]

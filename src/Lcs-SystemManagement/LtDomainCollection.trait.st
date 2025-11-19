@@ -1,27 +1,29 @@
 Trait {
-	#name : #LtDomainCollection,
+	#name : 'LtDomainCollection',
 	#traits : 'LtCollection',
 	#classTraits : 'LtCollection classTrait',
-	#category : #'Lcs-SystemManagement-Traits'
+	#category : 'Lcs-SystemManagement-Traits',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Traits'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LtDomainCollection >> collection [
 	^ self slotVarNamed: 'collection'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LtDomainCollection >> collection: aCollection [
 	self slotVarNamed: 'collection' put: aCollection
 ]
 
-{ #category : #queries }
+{ #category : 'queries' }
 LtDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
 	^nil
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LtDomainCollection >> gtItemsFor: aView [
 	<gtView>
 	| columnedListView |

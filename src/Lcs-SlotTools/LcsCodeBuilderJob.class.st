@@ -1,64 +1,65 @@
 Class {
-	#name : #LcsCodeBuilderJob,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsCodeBuilderJob',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'jobSteps',
 		'buildUnknownClass',
 		'umlPositions'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> addAssociationsToUmlModel: aUmlModel [ 
 	self traceStep: 'addAssociationsToUmlModel:'.
 	 self jobSteps addAssociationsToUmlModel: aUmlModel 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> addClassesToUmlModel: aUmlModel [ 
 	self traceStep: 'addClassesToUmlModel:'.
 	self jobSteps addClassesToUmlModel: aUmlModel 
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsCodeBuilderJob >> addJobStep: aJobStep [ 
 	^ self jobSteps addJobStep: aJobStep
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		aStream nextPutAll: '---- Step: ' , each stepNumber , ' ----'; cr; cr.
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
 ]
 
-{ #category : #refactorings }
+{ #category : 'refactorings' }
 LcsCodeBuilderJob >> addRefactoringsTo: aCollection [ 
 	self jobSteps addRefactoringsTo: aCollection 
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> buildJobSteps [
 	"subclasses can override this"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderJob >> buildUnknownClass [
 	^ buildUnknownClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderJob >> buildUnknownClass: aBoolean [ 
 	buildUnknownClass := aBoolean
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsCodeBuilderJob >> builderJob [
 	^self
 ]
 
-{ #category : #refactorings }
+{ #category : 'refactorings' }
 LcsCodeBuilderJob >> completedRefactorings [
 	| allRefactorings |
 	allRefactorings := OrderedCollection new.
@@ -66,7 +67,7 @@ LcsCodeBuilderJob >> completedRefactorings [
 	^ allRefactorings
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> execute [
 	self jobSteps isEmpty ifTrue: [self buildJobSteps].
 	self installCode.
@@ -80,11 +81,11 @@ LcsCodeBuilderJob >> execute [
 	self currentUnitOfWork applyChanges
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsCodeBuilderJob >> generateRelatedNames [
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
@@ -106,7 +107,7 @@ LcsCodeBuilderJob >> gtClassBuilderViewFor: aView [
 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -116,7 +117,7 @@ LcsCodeBuilderJob >> gtConstructionTreeFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> gtExecutionViewFor: aView [
 	<gtView>
 	^ (LcsCodeBuilderJob>>#execute gtSourceFor: aView)
@@ -125,12 +126,12 @@ LcsCodeBuilderJob >> gtExecutionViewFor: aView [
 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> gtPaintUMLWith: aMondrian [ 
 	aMondrian initialize: #LcsSlotModelDiagramExamples asClass new domainObjectSlotModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -140,7 +141,7 @@ LcsCodeBuilderJob >> gtRefactoringChangeOn: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> gtUMLFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -152,25 +153,25 @@ LcsCodeBuilderJob >> gtUMLFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsCodeBuilderJob >> initialize [
 	super initialize.
 	self umlPositions: OrderedCollection new.
 	self initializeJobSteps
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsCodeBuilderJob >> initializeJobSteps [
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> installCode [
 	self traceStep: 'installCode'.
 	self jobSteps installCode
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> jobStepDescription [
 	| stream |
 	stream := WriteStream on: String new.
@@ -178,17 +179,17 @@ LcsCodeBuilderJob >> jobStepDescription [
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderJob >> jobSteps [
 	^ jobSteps
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderJob >> jobSteps: anObject [
 	jobSteps := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> modelAssociations [
 	| associations |
 	associations := OrderedCollection new.
@@ -196,25 +197,25 @@ LcsCodeBuilderJob >> modelAssociations [
 	^ associations
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> populateSlotModel [
 	self traceStep: 'populateSlotModel'.
 	self jobSteps populateSlotModel.
 	self currentSystem currentUnitOfWork applyChanges
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream nextPutAll: self printString
 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> proposedUmlModelFor: aUmlModel [
 	^ LcsUml new proposedUmlModelFor: aUmlModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> refactoringText [
 	| stream |
 	stream := WriteStream on: String new.
@@ -222,17 +223,17 @@ LcsCodeBuilderJob >> refactoringText [
 	^ stream contents
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsCodeBuilderJob >> stepNumber [
 	^ ''
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> traceStep: aMethodName [
 	LcsBuilderLogger log: aMethodName , '-' , self printString
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> umlModel [
 	| umlModel |
 	umlModel := LcsUmlModel new .
@@ -244,29 +245,29 @@ LcsCodeBuilderJob >> umlModel [
 	^ umlModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderJob >> umlModelMondrianView [
 	^ self proposedUmlModelFor: self umlModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderJob >> umlPositions [
 	^ umlPositions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderJob >> umlPositions: anObject [
 	umlPositions := anObject
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> uninstall [
 	self traceStep: 'uninstall'.
 	self jobSteps uninstall.
 	self currentUnitOfWork ifNotNil: [ :each | each applyChanges ]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> updateSlotModel [
 	self traceStep: 'updateSlotModel'.
 	self currentSystem isNil ifTrue: [ ^ self ].
@@ -274,24 +275,24 @@ LcsCodeBuilderJob >> updateSlotModel [
 	self currentSystem currentUnitOfWork applyChanges	
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> verifyCodeInstallation [
 	self traceStep: 'verifyCodeInstallation'.
 	self jobSteps verifyCodeInstallation
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> verifyPopulateSlotModel [
 	self jobSteps verifyPopulateSlotModel
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> verifySlotModelUpdatesMadeByBuilder [
 	self traceStep: 'verifySlotModelUpdatesMadeByBuilder'.
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsCodeBuilderJob >> verifyUninstall [
 	self traceStep: 'verifyUninstall'.
 	self jobSteps verifyUninstall

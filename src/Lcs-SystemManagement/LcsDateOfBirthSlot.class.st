@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDateOfBirthSlot,
-	#superclass : #LcsDateSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsDateOfBirthSlot',
+	#superclass : 'LcsDateSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsDateOfBirthSlot >> initialize [
 	super initialize.
 	self slotName: 'dateOfBirth'.

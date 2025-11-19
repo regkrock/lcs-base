@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsChangeRecordUserUuidSlot,
-	#superclass : #LcsIntegerSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsChangeRecordUserUuidSlot',
+	#superclass : 'LcsIntegerSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsChangeRecordUserUuidSlot >> initialize [
 	super initialize.
 	self 

@@ -1,11 +1,13 @@
 Trait {
-	#name : #LtIdentitySetDomainCollection,
+	#name : 'LtIdentitySetDomainCollection',
 	#traits : 'LtDomainCollection',
 	#classTraits : 'LtDomainCollection classTrait',
-	#category : #'Lcs-SystemManagement-Traits'
+	#category : 'Lcs-SystemManagement-Traits',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Traits'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LtIdentitySetDomainCollection classSide >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsIdentitySetSlot new

@@ -1,35 +1,37 @@
 Class {
-	#name : #LcsUndefinedSlotModelError,
-	#superclass : #LcsSlotModelError,
+	#name : 'LcsUndefinedSlotModelError',
+	#superclass : 'LcsSlotModelError',
 	#instVars : [
 		'domainClass'
 	],
-	#category : #'Lcs-SystemManagement-Error'
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsUndefinedSlotModelError class >> signalClassWithoutSlotModel: aClass [
 	^ self new
 		signalClassWithoutSlotModel: aClass
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsUndefinedSlotModelError class >> signalSuperclassWithoutSlotModel: aClass [
 	^ self new
 		signalClassWithoutSlotModel: aClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUndefinedSlotModelError >> domainClass [
 	^ domainClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUndefinedSlotModelError >> domainClass: anObject [
 	domainClass := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsUndefinedSlotModelError >> gtDomainClassViewFor: aView [
 	<gtView>
 	<gtExceptionView>
@@ -40,7 +42,7 @@ LcsUndefinedSlotModelError >> gtDomainClassViewFor: aView [
 		view: #gtMetaFor:
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsUndefinedSlotModelError >> signalClassWithoutSlotModel: aClass [ 
 	self domainClass: aClass.
 	self signal: 'No slot model defined for ' , self domainClass name

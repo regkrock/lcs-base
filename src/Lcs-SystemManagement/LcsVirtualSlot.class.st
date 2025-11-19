@@ -1,65 +1,67 @@
 Class {
-	#name : #LcsVirtualSlot,
-	#superclass : #LcsBaseSlot,
+	#name : 'LcsVirtualSlot',
+	#superclass : 'LcsBaseSlot',
 	#instVars : [
 		'valueAccessBlock'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsVirtualSlot class >> isVirtualSlot [
 	^ true
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 LcsVirtualSlot class >> slotKind [
 	^ 'virtual'
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 	^ self valueAccessBlock value: aDomainObject
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsVirtualSlot >> defaultValueAccessBlock [
 	[ :domainObject | LcsError signal: 'defaultValueAccessBlock not overriden or not initialized']
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsVirtualSlot >> initialize [
 	super initialize.
 	self valueAccessBlock: self defaultValueAccessBlock
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsVirtualSlot >> slotVarNamed: anObject in: aDomainObject [
 	self error: 'This is a read only slot'
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsVirtualSlot >> slotVarPut: anObject in: aDomainObject [
 	self deprecated: 'Need to pass the old value as well'.
 	self error: 'This is a read only slot'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsVirtualSlot >> valueAccessBlock [
 	^ valueAccessBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsVirtualSlot >> valueAccessBlock: anObject [
 	valueAccessBlock := anObject
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsVirtualSlot >> valueAccessor: aSelector [
 	self valueAccessBlock: [ :domainObject | domainObject perform: aSelector asSymbol]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsVirtualSlot >> valueIn: aDomainObject [
 	^ self valueAccessBlock value: aDomainObject
 ]

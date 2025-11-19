@@ -1,25 +1,26 @@
 Class {
-	#name : #LcsScaledDecimalSlotBuilder,
-	#superclass : #LcsAccessorSlotBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsScaledDecimalSlotBuilder',
+	#superclass : 'LcsAccessorSlotBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsScaledDecimalSlotBuilder class >> slotClass [
 	^ LcsScaledDecimalSlot
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsScaledDecimalSlotBuilder >> numberOfDecimals [
 	^ self propertyAt: 'numberOfDecimals'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsScaledDecimalSlotBuilder >> numberOfDecimals: anInteger [
 	self propertyAt: 'numberOfDecimals' put: anInteger
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsScaledDecimalSlotBuilder >> numberOfDecimalsDescription [
 	<magritteDescription>
 	^ MANumberDescription new

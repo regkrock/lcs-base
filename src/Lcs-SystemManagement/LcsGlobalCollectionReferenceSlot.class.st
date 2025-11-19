@@ -1,54 +1,56 @@
 Class {
-	#name : #LcsGlobalCollectionReferenceSlot,
-	#superclass : #LcsDomainObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsGlobalCollectionReferenceSlot',
+	#superclass : 'LcsDomainObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'object initialization' }
+{ #category : 'object initialization' }
 LcsGlobalCollectionReferenceSlot >> _initialValueFor: aDomainObject [
 	| targetModule |
 	targetModule := self moduleNamed: self collectionSlotModuleName.
 	^ targetModule perform: self collectionSlotName asSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsGlobalCollectionReferenceSlot >> audit: anObject withAuditor: anAuditor [
 	super audit: anObject withAuditor: anAuditor.
 	(self targetCollection includes: anObject) ifFalse: [
 		anAuditor addErrorDescription: ('''<1s>'' slot("<2s>") in <3s> is not in its global collection' expandMacrosWith: self slotName with: self class printString with: anObject class name) ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsGlobalCollectionReferenceSlot >> collectionSlot [
 	^ self collectionSlotModule slotDefinitionNamed: self collectionSlotName
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsGlobalCollectionReferenceSlot >> collectionSlotModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName [
 	^ self propertyAt: 'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsGlobalCollectionReferenceSlot >> collectionSlotModuleName: aString [
 	self propertyAt: 'collectionSlotModuleName' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionReferenceSlot >> collectionSlotName [
 	^ self propertyAt: 'collectionSlotName' ifAbsent: []
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionReferenceSlot >> collectionSlotName: anObject [
 	self propertyAt: 'collectionSlotName' put: anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 	^ super gtSlotDefinitionAttributes
 		add: 'collectionSlotModuleName' -> self collectionSlotModuleName;
@@ -56,48 +58,48 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"
 	aDomainObject parent: (self initialValueFor: aDomainObject)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsGlobalCollectionReferenceSlot >> isGlobalCollectionRefenceSlot [
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsGlobalCollectionReferenceSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
 	^ self isGlobalCollectionRefenceSlot and: [
 	self collectionSlotName = aSlotName ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsGlobalCollectionReferenceSlot >> moduleNamed: aModuleName [
 	^ self currentSystem moduleNamed: aModuleName
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject contextObject: aContextDomainObject [
 	aDomainObject instVarNamed: self slotName put: self targetCollection.
 	self collectionSlot persistValue: aDomainObject in: self collectionSlotModule
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsGlobalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
 
 	aUnitOfWork addPendingAddOf: aDomainObject to: self targetCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsGlobalCollectionReferenceSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
 
 	aUnitOfWork addPendingAddOf: aDomainObject to: 
 	self targetCollection 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionReferenceSlot >> targetCollection [
 	^self collectionSlotModule perform: self collectionSlotName asSymbol
 ]

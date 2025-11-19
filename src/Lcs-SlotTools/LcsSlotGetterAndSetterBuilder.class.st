@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsSlotGetterAndSetterBuilder,
-	#superclass : #LcsSlotDetailBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsSlotGetterAndSetterBuilder',
+	#superclass : 'LcsSlotDetailBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterAndSetterBuilder >> _installCode [
 	super _installCode.
 	self isAlreadyImplementedInSuperclass ifTrue: [ ^ self ].
@@ -23,14 +24,14 @@ LcsSlotGetterAndSetterBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterAndSetterBuilder >> _verifyCodeInstallation [
 	super _verifyCodeInstallation.
 	self assert: (self targetClass canUnderstand: self getterSelector).
 	self assert: (self targetClass canUnderstand: self setterSelector).
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotGetterAndSetterBuilder >> addGetterAndSetterSourceCodeTo: aStream [
 	aStream
 		nextPutAll: self getterSource;
@@ -39,7 +40,7 @@ LcsSlotGetterAndSetterBuilder >> addGetterAndSetterSourceCodeTo: aStream [
 		nextPutAll: self setterSource
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
 	self slotName isNil
 		ifTrue: [ aStream
@@ -69,7 +70,7 @@ LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
 	self addGetterAndSetterSourceCodeTo: aStream
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotGetterAndSetterBuilder >> getterAndSetterMethodsFilter [
 	| classFilter |
 	classFilter := (GtSearchInheritedMethodsFilter forClass: self targetClass)
@@ -77,18 +78,18 @@ LcsSlotGetterAndSetterBuilder >> getterAndSetterMethodsFilter [
 	^ classFilter & (self getterSelector gtImplementors | self setterSelector gtImplementors)
 ]
 
-{ #category : #selector }
+{ #category : 'selector' }
 LcsSlotGetterAndSetterBuilder >> getterSelector [
 	^ self slotName asString asSymbol
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterAndSetterBuilder >> getterSource [
 	^'<1s>
 	^ self slotVarNamed: ''<1s>''' expandMacrosWith: self slotName
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtClassViewOn: aView [
 	<gtView>
 	^ aView text
@@ -98,7 +99,7 @@ LcsSlotGetterAndSetterBuilder >> gtClassViewOn: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -107,7 +108,7 @@ LcsSlotGetterAndSetterBuilder >> gtRefactoringChangeOn: aView [
 		text: [ self refactoringText asRopedText ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotGetterAndSetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 	<gtView>
 	self targetClass isNil ifTrue: [ ^ aView empty ].
@@ -117,35 +118,35 @@ LcsSlotGetterAndSetterBuilder >> gtSlotAccessorImplementorsFor: aView [
 		stencil: [ self getterAndSetterMethodsFilter ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSlotGetterAndSetterBuilder >> isAlreadyImplementedInSuperclass [
 	self targetClass isNil ifTrue: [ ^ false ].
 	^ self targetClass superclass canUnderstand: self getterSelector
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSlotGetterAndSetterBuilder >> isAlreadyImplementedInTargetClass [
 	self targetClass isNil ifTrue: [ ^ false ].
 	^ self targetClass canUnderstand: self slotName asSymbol
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSlotGetterAndSetterBuilder >> jobStepActionDescription [
 	^ 'Install getter and setter for'
 ]
 
-{ #category : #selector }
+{ #category : 'selector' }
 LcsSlotGetterAndSetterBuilder >> setterSelector [
 	^ (self slotName asString , ':') asSymbol
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterAndSetterBuilder >> setterSource [
 	^'<1s>: anObject
 	self slotVarNamed: ''<1s>'' put: anObject' expandMacrosWith: self slotName
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterAndSetterBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNil: [ ^ self ].
@@ -153,7 +154,7 @@ LcsSlotGetterAndSetterBuilder >> uninstall [
 	self targetClass removeSelector: self setterSelector
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSlotGetterAndSetterBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass ifNil: [ ^ self ].

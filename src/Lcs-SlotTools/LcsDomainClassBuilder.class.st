@@ -1,21 +1,22 @@
 Class {
-	#name : #LcsDomainClassBuilder,
-	#superclass : #LcsBaseClassBuilder,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsDomainClassBuilder',
+	#superclass : 'LcsBaseClassBuilder',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassBuilder class >> defaultTargetSuperclassName [
 	^ 'LcsDomainObject'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassBuilder >> _verifyCodeInstallation [
 	super _verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self targetSuperclassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainClassBuilder >> initialize [
 	super initialize.
 	self targetSuperclassName: self class defaultTargetSuperclassName

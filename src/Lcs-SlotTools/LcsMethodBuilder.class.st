@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsMethodBuilder,
-	#superclass : #LcsCodeBuilderStep,
+	#name : 'LcsMethodBuilder',
+	#superclass : 'LcsCodeBuilderStep',
 	#instVars : [
 		'categoryName',
 		'selector',
@@ -8,10 +8,11 @@ Class {
 		'targetClassName',
 		'isClassMethod'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMethodBuilder >> _installCode [
 	super _installCode.
 	self
@@ -22,12 +23,12 @@ LcsMethodBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMethodBuilder >> _verifyCodeInstallation [
 	self assert: (self compileTargetClass canUnderstand: self selector asSymbol )
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream 
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>']).
@@ -37,34 +38,34 @@ LcsMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self methodSource
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMethodBuilder >> beClassMethod [
 	self isClassMethod: true
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMethodBuilder >> beInstanceMethod [
 	self isClassMethod: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> categoryName [
 	^ categoryName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> categoryName: anObject [
 	categoryName := anObject
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMethodBuilder >> compileTargetClass [
 	^ self isClassMethod
 		ifTrue: [ self targetClass class ]
 		ifFalse: [ self targetClass ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMethodBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self targetClass isNil ifTrue: [ 
@@ -82,29 +83,29 @@ LcsMethodBuilder >> gtClassViewOn: aView [
 		yourself
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsMethodBuilder >> initialize [
 	super initialize.
 	self isClassMethod: false.
 	self categoryName: #'generated method'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> isClassMethod [
 	^ isClassMethod
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> isClassMethod: aBoolean [ 
 	isClassMethod := aBoolean
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMethodBuilder >> methodSource [
 	self subclassResponsibility
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsMethodBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Install #';
@@ -116,40 +117,40 @@ LcsMethodBuilder >> printJobStreamDetailsOn: aStream [
 			nextPutAll: ' class']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> selector [
 	^ selector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> selector: anObject [
 	selector := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> targetClass [
 	^ targetClass ifNil: [[ self targetClassName asString asClass ] 
 			on: NotFound 
 			do: [ :s | s return: nil ]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> targetClass: anObject [
 	targetClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> targetClassName [
 	^ targetClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodBuilder >> targetClassName: anObject [
 	targetClassName := anObject.
 	self targetClass: nil.
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMethodBuilder >> uninstall [
 	super uninstall.
 	self refactorings do: [ :each | each execute ]

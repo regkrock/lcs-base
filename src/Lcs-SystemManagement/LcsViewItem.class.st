@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsViewItem,
-	#superclass : #LcsObject,
+	#name : 'LcsViewItem',
+	#superclass : 'LcsObject',
 	#traits : 'LtApplicationEnvironment',
 	#classTraits : 'LtApplicationEnvironment classTrait',
 	#instVars : [
@@ -8,77 +8,79 @@ Class {
 		'item',
 		'childrenSelector'
 	],
-	#category : #'Lcs-SystemManagement-Core'
+	#category : 'Lcs-SystemManagement-Core',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Core'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsViewItem class >> defaultChildrenSelector [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsViewItem class >> newLabel: aString item: anObject [ 
 	^ self new
 		initializeLabel: aString value: anObject;
 		yourself
 ]
 
-{ #category : #children }
+{ #category : 'children' }
 LcsViewItem >> children [
 	^ self itemChildren: self childrenSelector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsViewItem >> childrenSelector [
 	^ childrenSelector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsViewItem >> childrenSelector: anObject [
 	childrenSelector := anObject
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsViewItem >> defaultChildrenSelector [
 	^ self class defaultChildrenSelector
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsViewItem >> initialize [
 	super initialize.
 	self childrenSelector: self defaultChildrenSelector
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsViewItem >> initializeLabel: aString value: anObject [ 
 	self 
 		label: aString;
 		item: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsViewItem >> item [
 	^ item
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsViewItem >> item: anObject [
 	item := anObject
 ]
 
-{ #category : #children }
+{ #category : 'children' }
 LcsViewItem >> itemChildren: anItemChildrenSelector [
 	^ (self item respondsTo: anItemChildrenSelector)
 		ifTrue: [ self item perform: anItemChildrenSelector ]
 		ifFalse: [ #() ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsViewItem >> label [
 	^ label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsViewItem >> label: anObject [
 	label := anObject
 ]

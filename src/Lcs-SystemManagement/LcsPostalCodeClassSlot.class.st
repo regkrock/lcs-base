@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsPostalCodeClassSlot,
-	#superclass : #LcsDomainClassSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsPostalCodeClassSlot',
+	#superclass : 'LcsDomainClassSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsPostalCodeClassSlot >> initialize [
 	super initialize.
 	self slotName: 'postalCodeClass'.

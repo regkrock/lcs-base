@@ -1,9 +1,11 @@
 Trait {
-	#name : #LtDeleteRemovedDomainObject,
-	#category : #'Lcs-SystemManagement-Traits'
+	#name : 'LtDeleteRemovedDomainObject',
+	#category : 'Lcs-SystemManagement-Traits',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Traits'
 }
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LtDeleteRemovedDomainObject >> slotVarPut: anObject in: aDomainObject [
 	| existingValue |
 	existingValue := self persistedSlotVarIn: aDomainObject.

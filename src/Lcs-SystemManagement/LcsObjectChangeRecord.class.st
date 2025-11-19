@@ -1,69 +1,71 @@
 Class {
-	#name : #LcsObjectChangeRecord,
-	#superclass : #LcsObject,
+	#name : 'LcsObjectChangeRecord',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'domainObject',
 		'parent'
 	],
-	#category : #'Lcs-SystemManagement-UnitOfWork'
+	#category : 'Lcs-SystemManagement-UnitOfWork',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'UnitOfWork'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsObjectChangeRecord class >> newFor: aDomainObject parent: anObject [
 	^self new
 		initializeFor: aDomainObject parent: anObject;
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsObjectChangeRecord >> applyChanges [
 	self subclassResponsibility
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsObjectChangeRecord >> currentUser [
 	^ self system currentUser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsObjectChangeRecord >> domainObject [
 	^ domainObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsObjectChangeRecord >> domainObject: anObject [
 	anObject isDomainObject ifFalse: [ self error: 'Not a domain object'].
 	domainObject := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsObjectChangeRecord >> gtUnitOfWorkChildren [
 	^ LcsUnitOfWorkViewItem newLabel: self viewItemLabel item: self domainObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsObjectChangeRecord >> initializeFor: aDomainObject parent: anObject [
 	self 
 		domainObject: aDomainObject;
 		parent: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsObjectChangeRecord >> isMemberOfGlobalCollectionIn: aSlotName [
 	^ self domainObject isMemberOfGlobalCollectionIn: aSlotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsObjectChangeRecord >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsObjectChangeRecord >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsObjectChangeRecord >> system [
 	^ self parent system
 ]

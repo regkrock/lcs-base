@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsExtantSlotDefinitionViewItem,
-	#superclass : #LcsAccessorSlotDefinitionViewItem,
-	#category : #'Lcs-SystemManagement-Core'
+	#name : 'LcsExtantSlotDefinitionViewItem',
+	#superclass : 'LcsAccessorSlotDefinitionViewItem',
+	#category : 'Lcs-SystemManagement-Core',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Core'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LcsExtantSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
 	^ aSlotCategory = #slotDefinition
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsExtantSlotDefinitionViewItem >> initializeOn: aSlotDefinition [ 
 	super initializeOn: aSlotDefinition.
 	self instVarName: (
@@ -18,27 +20,27 @@ LcsExtantSlotDefinitionViewItem >> initializeOn: aSlotDefinition [
 			ifFalse: [ '***missing***' ])
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsExtantSlotDefinitionViewItem >> isAccessorSlot [
 	^ self slotDefinition isAccessorSlot
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsExtantSlotDefinitionViewItem >> isSlotDefinitionFor: anInstVarName [
 	^ self slotName asString = anInstVarName asString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsExtantSlotDefinitionViewItem >> isVirtualSlot [
 	^ self slotDefinition isVirtualSlot
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsExtantSlotDefinitionViewItem >> remove [
 	self domainClass removeDomainSlotNamed: self slotName
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsExtantSlotDefinitionViewItem >> setterSelector [
 	^ self slotDefinition isVirtualSlot 
 		ifTrue: [ 'n/a' ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDelegatorSlot,
-	#superclass : #LcsFacadeSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsDelegatorSlot',
+	#superclass : 'LcsFacadeSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsDelegatorSlot >> currentSlotVarIn: aTargetDomainObject [
 	| actualDomainObject |
 	actualDomainObject := aTargetDomainObject.
@@ -13,13 +15,13 @@ LcsDelegatorSlot >> currentSlotVarIn: aTargetDomainObject [
 	^ actualDomainObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsDelegatorSlot >> initialize [
 	super initialize.
 	self targetSlotPath: OrderedCollection new
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsDelegatorSlot >> slotVarPut: anObject in: aTargetDomainObject [
 	| actualDomainObject |
 	actualDomainObject := aTargetDomainObject.
@@ -30,12 +32,12 @@ LcsDelegatorSlot >> slotVarPut: anObject in: aTargetDomainObject [
 		put: anObject
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsDelegatorSlot >> targetSlotPath [
 	^ self properties at: 'targetSlotPath'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsDelegatorSlot >> targetSlotPath: aSlotNamesCollection [ 
 	self properties at: 'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
 ]

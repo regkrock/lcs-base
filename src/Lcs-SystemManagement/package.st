@@ -1,1 +1,1 @@
-Package { #name : #'Lcs-SystemManagement' }
+Package { #name : 'Lcs-SystemManagement' }

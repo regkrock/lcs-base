@@ -1,26 +1,28 @@
 Class {
-	#name : #LcsValueObjectsGlobalCollectionSlot,
-	#superclass : #LcsPrimaryCollectionSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsValueObjectsGlobalCollectionSlot',
+	#superclass : 'LcsPrimaryCollectionSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #'object initialization' }
+{ #category : 'object initialization' }
 LcsValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
 	self populateCollection 
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass [
 	^ self propertyAt: 'loaderClass' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass: aLoaderClass [
 	self propertyAt: 'loaderClass' put: aLoaderClass
 ]
 
-{ #category : #load }
+{ #category : 'load' }
 LcsValueObjectsGlobalCollectionSlot >> populateCollection [
 	self loaderClass new load
 ]

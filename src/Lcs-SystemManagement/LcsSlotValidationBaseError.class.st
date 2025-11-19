@@ -1,16 +1,18 @@
 Class {
-	#name : #LcsSlotValidationBaseError,
-	#superclass : #LcsSlotModelError,
+	#name : 'LcsSlotValidationBaseError',
+	#superclass : 'LcsSlotModelError',
 	#instVars : [
 		'slotDefinition',
 		'validationCondition',
 		'value',
 		'oldValue'
 	],
-	#category : #'Lcs-SystemManagement-Error'
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 	<gtView>
 	<gtExceptionView>
@@ -37,7 +39,7 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 		send: #last
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsSlotValidationBaseError >> gtSlotDefinitionAttributes: aView [
 	<gtView>
 	<gtExceptionView>
@@ -48,42 +50,42 @@ LcsSlotValidationBaseError >> gtSlotDefinitionAttributes: aView [
 		view: #gtSlotAttributesViewFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> oldValue [
 	^ oldValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> oldValue: anObject [
 	oldValue := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> slotDefinition [
 	^ slotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> slotDefinition: anObject [
 	slotDefinition := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> validationCondition [
 	^ validationCondition 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> validationCondition: aValidationCondition [ 
 	validationCondition := aValidationCondition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> value [
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> value: aValue [ 
 	value := aValue
 ]

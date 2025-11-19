@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsSingletonLabelSlot,
-	#superclass : #LcsLabelSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsSingletonLabelSlot',
+	#superclass : 'LcsLabelSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSingletonLabelSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject | parentDomainObject class defaultLabel ]
 ]

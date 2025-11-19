@@ -1,18 +1,19 @@
 Class {
-	#name : #LcsLocalCollectionReferenceSlotBuilder,
-	#superclass : #LcsAccessorSlotBuilder,
+	#name : 'LcsLocalCollectionReferenceSlotBuilder',
+	#superclass : 'LcsAccessorSlotBuilder',
 	#instVars : [
 		'collectionClassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLocalCollectionReferenceSlotBuilder class >> slotClass [
 	^ LcsLocalCollectionReferenceSlot
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsLocalCollectionReferenceSlotBuilder >> _verifyCodeInstallation [
 	| slotDefinition |
 	super _verifyCodeInstallation.
@@ -21,7 +22,7 @@ LcsLocalCollectionReferenceSlotBuilder >> _verifyCodeInstallation [
 	self assert: slotDefinition collectionSlotName isString
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsLocalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	(aUmlModel classModelForClassname: self targetClassName)
@@ -30,14 +31,14 @@ LcsLocalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 		addAssociation: 'collection' toModelNamed: self targetClassName asString
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsLocalCollectionReferenceSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetClassName.
 	self slotTypes isEmpty ifTrue: [ ^ self ].
 	aUmlModel addClassNamed: self slotTypes first
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsLocalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
 	[ classesModel addClassModelForExisting: self slotTypes first asClass ]
 		on: NotFound
@@ -46,32 +47,32 @@ LcsLocalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
 			s return: nil ]
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionClass [
 	^self collectionClassName asClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionClassName [
 	^ collectionClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionClassName: anObject [
 	collectionClassName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName [
 	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
 	self properties at: 'collectionSlotName' put: aString
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsLocalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
 	<gtView>
 	^ aView columnedTree
@@ -92,13 +93,13 @@ LcsLocalCollectionReferenceSlotBuilder >> gtClassBuilderViewFor: aView [
 			text: [ :step | step state asString asRopedText ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsLocalCollectionReferenceSlotBuilder >> initialize [
 	super initialize.
 	self slotName: 'parent'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsLocalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Install slot "';
@@ -107,13 +108,13 @@ LcsLocalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class>' ])
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsLocalCollectionReferenceSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamed: self slotName ]
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsLocalCollectionReferenceSlotBuilder >> verifyUninstall [
 	| slotDefinition |
 	super verifyUninstall.

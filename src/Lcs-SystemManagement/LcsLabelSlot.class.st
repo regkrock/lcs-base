@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsLabelSlot,
-	#superclass : #LcsStringSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsLabelSlot',
+	#superclass : 'LcsStringSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsLabelSlot >> initialize [
 	super initialize.
 	self slotName: 'label'

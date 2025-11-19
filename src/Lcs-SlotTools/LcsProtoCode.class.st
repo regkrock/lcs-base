@@ -1,16 +1,17 @@
 Class {
-	#name : #LcsProtoCode,
-	#superclass : #LcsObject,
+	#name : 'LcsProtoCode',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'code',
 		'description',
 		'label',
 		'isDefaultInstance'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #populate }
+{ #category : 'populate' }
 LcsProtoCode class >> newFromLabel: aLabel [ 
 	^ self new
 		label: aLabel;
@@ -20,7 +21,7 @@ LcsProtoCode class >> newFromLabel: aLabel [
 		yourself
 ]
 
-{ #category : #'istance creation' }
+{ #category : 'istance creation' }
 LcsProtoCode class >> unknown [
 	^ self new
 		code: 'unknown';
@@ -30,48 +31,48 @@ LcsProtoCode class >> unknown [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> code [
 	^ code
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> code: anObject [
 	code := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> description [
 	^ description
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> description: anObject [
 	description := anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsProtoCode >> initialize [ 
 	super initialize.
 	self isDefaultInstance: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> isDefaultInstance [
 	^ isDefaultInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> isDefaultInstance: anObject [
 	isDefaultInstance := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> label [
 	^ label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsProtoCode >> label: anObject [
 	label := anObject
 ]

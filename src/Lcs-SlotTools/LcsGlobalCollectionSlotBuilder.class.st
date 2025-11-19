@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsGlobalCollectionSlotBuilder,
-	#superclass : #LcsAccessorSlotBuilder,
+	#name : 'LcsGlobalCollectionSlotBuilder',
+	#superclass : 'LcsAccessorSlotBuilder',
 	#instVars : [
 		'slotClass',
 		'targetModule',
@@ -8,21 +8,22 @@ Class {
 		'collectionClass',
 		'slotTypeClassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsGlobalCollectionSlotBuilder class >> slotClass [
 	^ LcsGlobalCollectionSlot
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsGlobalCollectionSlotBuilder >> _populateSlotModel [
 	super _populateSlotModel.
 	self globalCollectionHome initializeSlotNamed: self slotName 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	(aUmlModel classModelForClassname: self parentClassName)
@@ -31,7 +32,7 @@ LcsGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 		addAssociation: 'parent' toModelNamed: self parentClassName
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	super addClassesToUmlModel: aUmlModel.
 	aUmlModel 
@@ -40,126 +41,126 @@ LcsGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
 		addClassNamed: self collectionClassName
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionSlotBuilder >> addCollectionMemberType: aClass [
 	self collectionMemberTypes add: aClass
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsGlobalCollectionSlotBuilder >> allowNilDescription [
 	^ super allowNilDescription
 		beReadOnly;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> collectionClass [
 	^ collectionClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> collectionClass: anObject [
 	collectionClass := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionSlotBuilder >> collectionClassName [
 	^ self slotTypes first asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> collectionMemberTypes [
 	^ self properties at: 'collectionMemberTypes' ifAbsent: [ OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> collectionMemberTypes: anObject [
 	self properties at: 'collectionMemberTypes' put: anObject
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsGlobalCollectionSlotBuilder >> globalCollectionHome [
 	^ self module
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsGlobalCollectionSlotBuilder >> initialize [
 	super initialize.
 	self collectionMemberTypes: OrderedCollection new.
 	self collectionClass: LcsSmalltalkConfiguration identitySetClass
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsGlobalCollectionSlotBuilder >> initializeModel [
 	(self targetClass slotDefinitionNamed: self slotName)
 		initializeSlotValueIn: (self currentSystem moduleNamed: self targetModuleName)
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsGlobalCollectionSlotBuilder >> module [
 	^ self currentSystem moduleNamed: self targetClass defaultModuleName
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionSlotBuilder >> parentClassName [
 	^ self targetModuleClass name asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> slotClass [
 	^ slotClass 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> slotClass: anObject [
 	slotClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> slotTypeClass [
 	^ [ self slotTypeClassName asString asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> slotTypeClassName [
 	^ slotTypeClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> slotTypeClassName: aName [
 	slotTypeClassName := aName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> targetModule [
 	^ targetModule
 	"^ self currentSystem moduleNamed: (self targetModuleName ifNil: [ self targetModuleClass defaultModuleName ])"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> targetModuleName [
 	^ targetModuleName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> targetModuleName: anObject [
 	targetModuleName := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsGlobalCollectionSlotBuilder >> umlModel [
 	^ super umlModel
 		positions: {(419.4818950229221@572.4021606445313). (412.3888888888889@645.0). (662.712894015842@576.0). (486.81529752443134@602.0). (486.81529752443134@602.0). (486.81529752443134@602.0). (553.0038905673557@567.3765194971581). (553.0038905673557@567.3765194971581). (553.0038905673557@567.3765194971581). (553.0038905673557@588.363342093737). (553.0038905673557@588.363342093737). (553.0038905673557@588.363342093737)};
 		yourself
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsGlobalCollectionSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamedFromSlotModel: self slotName].
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsGlobalCollectionSlotBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass ifNotNil: [ self targetClass verifyRemovedDomainSlotNamed: self slotName ]

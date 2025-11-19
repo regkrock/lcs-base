@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsUnitOfWorkViewItem,
-	#superclass : #LcsViewItem,
-	#category : #'Lcs-SystemManagement-Core'
+	#name : 'LcsUnitOfWorkViewItem',
+	#superclass : 'LcsViewItem',
+	#category : 'Lcs-SystemManagement-Core',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Core'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUnitOfWorkViewItem class >> defaultChildrenSelector [
 	^ #gtUnitOfWorkChildren
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitOfWorkViewItem >> children [
 	self item isCollection ifFalse: [ ^ #()].
 	self item isEmpty ifTrue: [ ^ {} ].
@@ -18,14 +20,14 @@ LcsUnitOfWorkViewItem >> children [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitOfWorkViewItem >> gtItemDisplayString [
 	^ (self item respondsTo: #gtItemDisplayString)
 		ifTrue: [ self item gtItemDisplayString ]
 		ifFalse: [ self item displayString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitOfWorkViewItem >> gtViewDisplayString [
 	^ (self item canUnderstand: #gtViewDisplayString)
 		ifTrue: [ self item gtViewDisplayString ]

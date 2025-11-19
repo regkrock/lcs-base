@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsBaselinesShouldProperlySpecifyDependencies,
-	#superclass : #GtPharoConstraint,
-	#category : #'Lcs-SlotTools'
+	#name : 'LcsBaselinesShouldProperlySpecifyDependencies',
+	#superclass : 'GtPharoConstraint',
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 LcsBaselinesShouldProperlySpecifyDependencies class >> blocSpartaPackageAnalysisExample [
 	"<gtExample>
 	| analyzer packageAnalyzers blocSpartaPackageAnaluser |
@@ -17,7 +18,7 @@ LcsBaselinesShouldProperlySpecifyDependencies class >> blocSpartaPackageAnalysis
 	^ blocSpartaPackageAnaluser"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaselinesShouldProperlySpecifyDependencies >> issues [
 	| gtProject allDependencies analyzers |
 	gtProject := #BaselineOfLcsBase asClass gtRlProjectWithRepository: 'github//regkrock/lcs-base:main.src'.
@@ -35,12 +36,12 @@ LcsBaselinesShouldProperlySpecifyDependencies >> issues [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaselinesShouldProperlySpecifyDependencies >> name [
 	^ 'Baselines should properly define project dependencies'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaselinesShouldProperlySpecifyDependencies >> status [ 
 	^ GtNeutralConstraintStatus new
 ]

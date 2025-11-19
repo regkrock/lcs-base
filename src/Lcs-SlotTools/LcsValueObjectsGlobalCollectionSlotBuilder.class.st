@@ -1,57 +1,58 @@
 Class {
-	#name : #LcsValueObjectsGlobalCollectionSlotBuilder,
-	#superclass : #LcsGlobalCollectionSlotBuilder,
+	#name : 'LcsValueObjectsGlobalCollectionSlotBuilder',
+	#superclass : 'LcsGlobalCollectionSlotBuilder',
 	#instVars : [
 		'valueObjectSuperclassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsValueObjectsGlobalCollectionSlotBuilder class >> slotClass [
 	^ LcsValueObjectsGlobalCollectionSlot
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel 
 		addClassNamed: self collectionClassName;
 		addClassNamed: self parentClassName
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [ 
 	super addSlotDefinitionSourceDetailsTo: aCodeStream .
 	aCodeStream addKeyword: 'loaderClass' argument: self loaderClassName
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> laderClass [
 	^ self loaderClassName asClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName [
 	^ self properties at: 'loaderClass' ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName: anObject [
 	self properties at: 'loaderClass' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclass [
 	^ self valueObjectSuperclassName asClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName [
 	^ valueObjectSuperclassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName: aClassName [
 	valueObjectSuperclassName := aClassName
 ]

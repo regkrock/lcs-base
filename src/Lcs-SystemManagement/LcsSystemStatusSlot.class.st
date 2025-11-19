@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsSystemStatusSlot,
-	#superclass : #LcsDomainObjectSlot,
+	#name : 'LcsSystemStatusSlot',
+	#superclass : 'LcsDomainObjectSlot',
 	#traits : 'LtDeleteRemovedDomainObject',
 	#classTraits : 'LtDeleteRemovedDomainObject classTrait',
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystemStatusSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject | 
 	LcsSystemActiveStatus new
@@ -14,7 +16,7 @@ LcsSystemStatusSlot >> defaultInitialValueBlock [
 		yourself ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystemStatusSlot >> initialize [
 	super initialize.
 	self

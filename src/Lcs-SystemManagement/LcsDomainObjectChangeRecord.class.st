@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsDomainObjectChangeRecord,
-	#superclass : #LcsSupportDomainObject,
+	#name : 'LcsDomainObjectChangeRecord',
+	#superclass : 'LcsSupportDomainObject',
 	#instVars : [
 		'userUuid',
 		'created',
 		'changes'
 	],
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -20,7 +22,7 @@ LcsDomainObjectChangeRecord class >> changesSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordTimestampSlot new
@@ -29,7 +31,7 @@ LcsDomainObjectChangeRecord class >> createdSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsCollectionReferenceSlot new
@@ -39,13 +41,13 @@ LcsDomainObjectChangeRecord class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> userSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsUserToUserIdConversionSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 	<slotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
@@ -53,77 +55,77 @@ LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
 			yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsDomainObjectChangeRecord >> addOriginalValueFor: aSlotName [
 	self createInitialSlotChangeFor: (self domainObject slotDefinitionNamed: aSlotName) 
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectChangeRecord >> addSlotChangesOf: aSlotName to: slotChangeHistory [
 	self changes addSlotChangesOf: aSlotName to: slotChangeHistory
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectChangeRecord >> changeForSlot: aSlotName [
 	^ self changes changeForSlot: aSlotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> changes [
 	^ changes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> changes: anObject [
 	changes := anObject
 ]
 
-{ #category : #'history saving' }
+{ #category : 'history saving' }
 LcsDomainObjectChangeRecord >> createInitialSlotChangeFor: eachSlotDefinition [ 
 	self changes createInitialSlotChangeFor: eachSlotDefinition 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> created [
 	^ created
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> created: anObject [
 	created := anObject
 ]
 
-{ #category : #'domain object' }
+{ #category : 'domain object' }
 LcsDomainObjectChangeRecord >> domainObject [
 	^ self parent domainObject
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObjectChangeRecord >> domainObjectHistory [
 	^ self parent domainObjectHistory
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsDomainObjectChangeRecord >> hasChangeHistoryFor: aSlotName [
 	^ self changes hasChangeHistoryFor: aSlotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> user [
 	^ self slotVarNamed: 'user'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> user: aUser [
 	self slotVarNamed: 'user' put: aUser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> userUuid [
 	^ userUuid
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObjectChangeRecord >> userUuid: anObject [
 	userUuid := anObject
 ]

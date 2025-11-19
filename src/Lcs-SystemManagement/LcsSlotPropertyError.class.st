@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsSlotPropertyError,
-	#superclass : #LcsSlotModelError,
+	#name : 'LcsSlotPropertyError',
+	#superclass : 'LcsSlotModelError',
 	#instVars : [
 		'slotDefinition'
 	],
-	#category : #'Lcs-SystemManagement-Error'
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSlotPropertyError >> gtSlotDefinitionAttributes: aView [
 	<gtView>
 	<gtExceptionView>
@@ -18,12 +20,12 @@ LcsSlotPropertyError >> gtSlotDefinitionAttributes: aView [
 		view: #gtSlotAttributesViewFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotPropertyError >> slotDefinition [
 	^ slotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotPropertyError >> slotDefinition: anObject [
 	slotDefinition := anObject
 ]

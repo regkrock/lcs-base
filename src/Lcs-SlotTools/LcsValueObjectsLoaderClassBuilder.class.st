@@ -1,18 +1,19 @@
 Class {
-	#name : #LcsValueObjectsLoaderClassBuilder,
-	#superclass : #LcsLoaderClassBuilder,
+	#name : 'LcsValueObjectsLoaderClassBuilder',
+	#superclass : 'LcsLoaderClassBuilder',
 	#instVars : [
 		'protoCodes'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueObjectsLoaderClassBuilder class >> targetSuperclassName [	
 	^ 'LcsValueObjectsLoader'
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsValueObjectsLoaderClassBuilder >> dataString [
 	^ String streamContents: [ :stream |
 		(NeoJSONWriter on: stream)
@@ -20,12 +21,12 @@ LcsValueObjectsLoaderClassBuilder >> dataString [
 			nextPut: self protoCodes ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsLoaderClassBuilder >> protoCodes [
 	^ protoCodes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectsLoaderClassBuilder >> protoCodes: anObject [
 	protoCodes := anObject
 ]

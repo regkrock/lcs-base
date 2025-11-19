@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsCodeBuilderStep,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsCodeBuilderStep',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'parent',
 		'refactorings',
@@ -9,90 +9,91 @@ Class {
 		'properties',
 		'targetPackageName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> _installCode [
 	"subclasses can oberride this"
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> _populateSlotModel [
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> _verifyCodeInstallation [
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> addAssociationsToUmlModel: aUmlModel [
 	self traceStep: 'addAssociationsToUmlModel:'.
 	self jobSteps addAssociationsToUmlModel: aUmlModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> addClassesToUmlModel: aUmlModel [
 	self traceStep: 'addClassesToUmlModel:'.
 	self jobSteps addClassesToUmlModel: aUmlModel.
 	"self addClassesToUmlModel: aUmlModel"
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsCodeBuilderStep >> addJobStep: aJobStep [
 	^ self jobSteps addJobStep: aJobStep
 ]
 
-{ #category : #refactorings }
+{ #category : 'refactorings' }
 LcsCodeBuilderStep >> addRefactoring: aRefactoring [ 
 	self refactorings add: aRefactoring
 ]
 
-{ #category : #refactorings }
+{ #category : 'refactorings' }
 LcsCodeBuilderStep >> addRefactoringTextDetailsTo: stream [ 
 ]
 
-{ #category : #refactorings }
+{ #category : 'refactorings' }
 LcsCodeBuilderStep >> addRefactoringsTo: aCollection [
 	aCollection addAll: self refactorings
 ]
 
-{ #category : #state }
+{ #category : 'state' }
 LcsCodeBuilderStep >> beCodeInstalled [
 	self state: 'Code Installed'
 ]
 
-{ #category : #state }
+{ #category : 'state' }
 LcsCodeBuilderStep >> beCodeVerified [
 	self state: 'Code Verified'
 ]
 
-{ #category : #state }
+{ #category : 'state' }
 LcsCodeBuilderStep >> beSlotModelUpdated [
 	self state: 'Slot Model Updated'
 ]
 
-{ #category : #state }
+{ #category : 'state' }
 LcsCodeBuilderStep >> beSlotModelUpdatedVerified [
 	self state: 'Slot Model Verified'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsCodeBuilderStep >> buildJobSteps [
 	^ self jobSteps buildJobSteps
 ]
 
-{ #category : #'builder job' }
+{ #category : 'builder job' }
 LcsCodeBuilderStep >> builderJob [
 	^ self parent builderJob
 ]
 
-{ #category : #uninstall }
+{ #category : 'uninstall' }
 LcsCodeBuilderStep >> clearTargetClass: aClass [
 	"subclasses can override"
 ]
 
-{ #category : #execute }
+{ #category : 'execute' }
 LcsCodeBuilderStep >> execute [
 	self jobSteps isEmpty ifTrue: [self buildJobSteps].
 	self installCode.
@@ -106,7 +107,7 @@ LcsCodeBuilderStep >> execute [
 	self currentUnitOfWork applyChanges
 ]
 
-{ #category : #execute }
+{ #category : 'execute' }
 LcsCodeBuilderStep >> fullyInstall [
 	"If this is part of a builder job, then do not use this. Let the builder control the phases"
 	self 
@@ -118,7 +119,7 @@ LcsCodeBuilderStep >> fullyInstall [
 		verifyPopulateSlotModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> gtClassViewOn: aView [
 	<gtView>
 	^ aView text
@@ -128,7 +129,7 @@ LcsCodeBuilderStep >> gtClassViewOn: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -138,7 +139,7 @@ LcsCodeBuilderStep >> gtConstructionTreeFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> gtPaintTreeWith: aMondrian [
 	self
 		withDeep: [ :each | 
@@ -160,7 +161,7 @@ LcsCodeBuilderStep >> gtPaintTreeWith: aMondrian [
 	aMondrian
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> gtPropertiesFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -172,7 +173,7 @@ LcsCodeBuilderStep >> gtPropertiesFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -183,7 +184,7 @@ LcsCodeBuilderStep >> gtRefactoringChangeOn: aView [
 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> gtUMLFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -194,7 +195,7 @@ LcsCodeBuilderStep >> gtUMLFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsCodeBuilderStep >> initialize [ 
 	super initialize.
 	self state: 'Initial'.
@@ -203,14 +204,14 @@ LcsCodeBuilderStep >> initialize [
 	self jobSteps: (LcsCodeBuilderJobSteps newOn: self)
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> installCode [
 	self traceStep: 'installCode'.
 	self _installCode.
 	self jobSteps installCode
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsCodeBuilderStep >> jobStepDescription [
 	| stream |
 	stream := self jobStepDescriptionStream.
@@ -218,7 +219,7 @@ LcsCodeBuilderStep >> jobStepDescription [
 	^ stream contents
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsCodeBuilderStep >> jobStepDescriptionStream [
 	^ (WriteStream on: String new)
 			nextPutAll: self stepNumber;
@@ -226,7 +227,7 @@ LcsCodeBuilderStep >> jobStepDescriptionStream [
 			yourself 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> jobStepPane: aJobStep [
 	^ BrVerticalPane new
 		fitContent;
@@ -240,7 +241,7 @@ LcsCodeBuilderStep >> jobStepPane: aJobStep [
 				aptitude: BrGlamorousLabelAptitude new)
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> jobStepPaneAssociation [
 	^ BlParabollaArcElement new
 		zIndex: 0;
@@ -253,61 +254,61 @@ LcsCodeBuilderStep >> jobStepPaneAssociation [
 						build))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> jobSteps [
 	^ jobSteps
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> jobSteps: anObject [
 	jobSteps := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> populateSlotModel [
 	self traceStep: 'populateSlotModel'.
 	self _populateSlotModel.
 	self jobSteps populateSlotModel
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsCodeBuilderStep >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: self printString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> properties [
 	^ properties
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> properties: anObject [
 	properties := anObject
 ]
 
-{ #category : #callbacks }
+{ #category : 'callbacks' }
 LcsCodeBuilderStep >> propertyAt: aName [ 
 	^ self properties at: aName  ifAbsent: [ nil ]
 ]
 
-{ #category : #callbacks }
+{ #category : 'callbacks' }
 LcsCodeBuilderStep >> propertyAt: aName put: anObject [ 
 	self properties at: aName put: anObject.
 	self jobSteps propogateProperty: aName valueChangedTo: anObject
 ]
 
-{ #category : #callbacks }
+{ #category : 'callbacks' }
 LcsCodeBuilderStep >> propogateProperty: aName valueChangedTo: anObject [
 	(self respondsTo: (aName , ':' asSymbol))
 		ifTrue: [ 
@@ -317,12 +318,12 @@ LcsCodeBuilderStep >> propogateProperty: aName valueChangedTo: anObject [
 	self propertyAt: aName put: anObject 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> proposedUmlModelFor: aUmlModel [
 	^ LcsUml new proposedUmlModelFor: aUmlModel
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsCodeBuilderStep >> refactoringText [
 	| stream |
 	stream := WriteStream on: String new.
@@ -330,63 +331,63 @@ LcsCodeBuilderStep >> refactoringText [
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> refactorings [
 	^ refactorings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> refactorings: anObject [
 	refactorings := anObject
 ]
 
-{ #category : #uninstall }
+{ #category : 'uninstall' }
 LcsCodeBuilderStep >> reverseRefactorings [
 	self refactorings reverseDo: [ :each | each execute ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> state [
 	^ state
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> state: anObject [
 	state := anObject
 ]
 
-{ #category : #trace }
+{ #category : 'trace' }
 LcsCodeBuilderStep >> stepNumber [
 	self parent isNil ifTrue: [ ^'1'].
 	^self parent stepNumberFor: self 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> targetPackageName [
 	^ targetPackageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> targetPackageName: anObject [
 	targetPackageName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> targetPackageTagName [
 	^ targetPackageTagName 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderStep >> targetPackageTagName: anObject [
 	targetPackageTagName := anObject
 ]
 
-{ #category : #trace }
+{ #category : 'trace' }
 LcsCodeBuilderStep >> traceStep: aString [
 	LcsBuilderLogger log: aString , '- ' , self jobStepDescription , '(' , self class name , ')'.
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> umlModel [
 	| umlModel |
 	umlModel := LcsUmlModel new.
@@ -397,49 +398,49 @@ LcsCodeBuilderStep >> umlModel [
 	^ umlModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> umlModelMondrianView [
 	^ self proposedUmlModelFor: self umlModel
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> uninstall [
 	self traceStep: 'uninstall'.
 	self jobSteps uninstall
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> updateSlotModel [
 	self traceStep: 'updateSlotModel'.
 	self jobSteps updateSlotModel
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> verifyCodeInstallation [
 	self traceStep: 'verifyCodeInstallation'.
 	self _verifyCodeInstallation.
 	self jobSteps verifyCodeInstallation
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> verifyPopulateSlotModel [
 	self traceStep: 'verifyPopulateSlotModel'.
 	self jobSteps verifyPopulateSlotModel
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> verifySlotModelUpdatesMadeByBuilder [
 	self traceStep: 'verifySlotModelUpdatesMadeByBuilder'.
 	self jobSteps verifySlotModelUpdatesMadeByBuilder
 ]
 
-{ #category : #install }
+{ #category : 'install' }
 LcsCodeBuilderStep >> verifyUninstall [
 	self traceStep: 'verifyUninstall'.
 	self jobSteps verifyUninstall
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> viewClassButtonFor: aClass [
 	^ BrButton new
 		id: GtCoderBrowseCoderButtonId;
@@ -450,7 +451,7 @@ LcsCodeBuilderStep >> viewClassButtonFor: aClass [
 			aButton phlow spawnTool: (GtClassCoderTool forClass: aClass) ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsCodeBuilderStep >> viewCodeButton [
 	^ BrButton new
 ]

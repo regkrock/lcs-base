@@ -1,21 +1,22 @@
 Class {
-	#name : #LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob,
-	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
+	#name : 'LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob',
+	#superclass : 'LcsDomainClassAndDomainCollectionClassBuilderJob',
 	#instVars : [
 		'protoInstances',
 		'subclassNames'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> addRefactoringTextDetailsTo: aStream [
 	self jobSteps do: [ :each |
 		aStream nextPutAll: '---- Step: ' , each stepNumber , ' ----'; cr; cr.
 		each addRefactoringTextDetailsTo: aStream ] separatedBy: [ aStream cr; cr ]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> addSubclassBuilders [
 	self subclassNames do: [ :eachName |
 		self addJobStep: (
@@ -27,7 +28,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> addSubcl
 				yourself)]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> buildJobSteps [
 	self addJobStep: self domainClassBuilder.
 	self buildUnknownClass ifTrue: [
@@ -40,7 +41,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> buildJob
 	self addLocalCollectionSlotBuildersForTargetClasses.
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> collectionReferenceSlotBuilder [
 	^ LcsGlobalCollectionReferenceSlotBuilder new
 		targetClassName: self newDomainClassName;
@@ -51,7 +52,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> collecti
 		yourself
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> collectionSlotBuilder [
 	| builder |
 	builder := LcsGlobalCollectionSlotBuilder new
@@ -72,24 +73,24 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> collecti
 	^ builder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> createForPrefix: aPrefix rootName: aRootName withSubclasses: aCollection [ 
 	self createForPrefix: aPrefix rootName: aRootName.
 	self subclassNames addAll: aCollection
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> createForRootName: aRootName [
 	super createForRootName: aRootName.
 	self unknownClassName: self classPrefix , 'Unknown' , aRootName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> createInstances: aCollection [
 	aCollection do: [ :each | self protoInstances add: each ]
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainClassBuilder [
 	^ LcsDomainClassBuilder new
 		newClassName: self newDomainClassName;
@@ -98,12 +99,12 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainCl
 		yourself
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsDomainClassBuilder) first
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 	^ LcsMemberOfGlobalCollectionSlotBuilder new
 		target: aTargetClass;
@@ -115,7 +116,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainCl
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainCollectionClassBuilder [
 	^ LcsDomainCollectionClassBuilder new
 		newClassName: self collectionClassName;
@@ -123,7 +124,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> domainCo
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> generateRelatedNames [
 	super generateRelatedNames.
 	(self classRootName isNil or: [ self classPrefix isNil ])
@@ -133,12 +134,12 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> generate
 	self unknownClassName: self classPrefix , 'Unknown' , self classRootName
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalCollectionSlotBuilder) first
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
@@ -148,7 +149,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> gtRefact
 		actionUpdateButton
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> initialize [
 	super initialize.
 	self protoInstances: OrderedCollection new.
@@ -157,7 +158,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> initiali
 	self subclassNames: OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> loaderBuilder [
 	^ LcsLoaderClassBuilder new
 		newClassName: self collectionClassName , 'Loader';
@@ -166,7 +167,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> loaderBu
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> localCollectionSlotBuilder [
 	^ LcsLocalCollectionSlotBuilder new
 		slotName: self collectionSlotName;
@@ -179,7 +180,7 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> localCol
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream 
 		nextPutAll: 'Install ';
@@ -188,17 +189,17 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> printJob
 		nextPutAll: (self collectionClassName) printString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> protoInstances [
 	^ protoInstances
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> protoInstances: aCollection [
 	protoInstances := aCollection
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> refactoringText [
 	| stream |
 	stream := WriteStream on: String new.
@@ -206,17 +207,17 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> refactor
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> subclassNames [
 	^ subclassNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> subclassNames: anObject [
 	subclassNames := anObject
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> unknownClassBuilder [
 	^ LcsUnknownClassBuilder new
 		newClassName: self unknownClassName;
@@ -225,22 +226,22 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> unknownC
 		yourself
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> unknownClassBuilderStep [
 	^ (self jobSteps stepsWithClass: LcsUnknownClassBuilder) ifEmpty: [ nil ] ifNotEmpty: [ :coll | coll first ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> unknownClassName [
 	^ unknownClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> unknownClassName: anObject [
 	unknownClassName := anObject
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob >> verifyPopulateSlotModel [
 	super verifyPopulateSlotModel.
 	self protoInstances isEmpty 

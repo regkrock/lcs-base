@@ -1,32 +1,33 @@
 Class {
-	#name : #LcsMemberOfGlobalCollectionSlotBuilder,
-	#superclass : #LcsAccessorSlotBuilder,
+	#name : 'LcsMemberOfGlobalCollectionSlotBuilder',
+	#superclass : 'LcsAccessorSlotBuilder',
 	#instVars : [
 		'collectionSourceClassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsMemberOfGlobalCollectionSlotBuilder class >> slotClass [
 	^ LcsMemberOfGlobalCollectionSlot
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	(aUmlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotName toModelNamed: self slotTypes any
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetClassName.
 	self currentSystem isNil ifTrue: [ ^ self ].
 	aUmlModel addClassNamed: self slotTypes first
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
 	super addSlotDefinitionSourceDetailsTo: aCodeStream.
 	aCodeStream
@@ -34,17 +35,17 @@ LcsMemberOfGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCod
 		addKeyword: 'collectionSlotModuleName' argument: (self collectionSlotModuleName ifNil: [ '<missing>' ]) printString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotModuleName [
 	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotModuleName: aString [
 	self properties at: 'collectionSlotModuleName' put: aString
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotModuleNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -56,17 +57,17 @@ LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotModuleNameDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotName [
 	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotName: anObject [
 	self properties at: 'collectionSlotName' put: anObject
 ]
 
-{ #category : #margritte }
+{ #category : 'margritte' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -78,17 +79,17 @@ LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotNameDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSourceClassName [
 	^ collectionSourceClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSourceClassName: anObject [
 	collectionSourceClassName := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlotBuilder >> sourceCollectionClassName [
 
 	self collectionSourceClassName ifNotNil: [ ^ self collectionSourceClassName ].
@@ -97,7 +98,7 @@ LcsMemberOfGlobalCollectionSlotBuilder >> sourceCollectionClassName [
 		([ module perform: self collectionSlotName asSymbol ] on: MessageNotUnderstood do: [ :s | s return: nil ]) ifNotNil: [ :value | value class name asString ] ]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsMemberOfGlobalCollectionSlotBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamed: self slotName ]

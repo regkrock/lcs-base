@@ -1,19 +1,20 @@
 Class {
-	#name : #LcsLoaderClassBuilder,
-	#superclass : #LcsBaseClassBuilder,
+	#name : 'LcsLoaderClassBuilder',
+	#superclass : 'LcsBaseClassBuilder',
 	#instVars : [
 		'instanceClassName',
 		'unknownClassName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLoaderClassBuilder class >> targetSuperclassName [	
 	^ 'LcsObjectsLoader'
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> _installCode [
 	super _installCode.
 	self installClass.
@@ -23,13 +24,13 @@ LcsLoaderClassBuilder >> _installCode [
 	self beCodeInstalled
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsLoaderClassBuilder >> _verifyCodeInstallation [
 	super _verifyCodeInstallation.
 	self assert: self installedClass superclass name equals: self class targetSuperclassName
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsLoaderClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	super addRefactoringTextDetailsTo: aStream.
 	aStream cr; cr.
@@ -39,24 +40,24 @@ LcsLoaderClassBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream nextPutAll: self dataMethodSource
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> dataMethodSource [
 	^ 'data
 	^ ''<1s>''' expandMacrosWith: self dataString
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> dataString [
 	^''
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsLoaderClassBuilder >> initialize [
 	super initialize.
 	self targetSuperclassName: self targetSuperclassName
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> installDataMethod [
 	self addRefactoring: (
 		RBAddMethodChange
@@ -65,7 +66,7 @@ LcsLoaderClassBuilder >> installDataMethod [
 			classified: #data) execute.
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> installTargetClassMethod [
 	self assert: self instanceClassName notNil.
 	self addRefactoring: (
@@ -75,7 +76,7 @@ LcsLoaderClassBuilder >> installTargetClassMethod [
 			classified: #configuration) execute.
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> installUnkownClassMethod [
 	self unknownClassName isNil ifTrue: [ ^self ].
 	self addRefactoring: (
@@ -85,55 +86,55 @@ LcsLoaderClassBuilder >> installUnkownClassMethod [
 			classified: #configuration) execute.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLoaderClassBuilder >> instanceClassName [
 	^ instanceClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLoaderClassBuilder >> instanceClassName: anObject [
 	instanceClassName := anObject
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> targetClassMethodSource [
 	^ 'targetClass
 	^ ' , self instanceClassName
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsLoaderClassBuilder >> unknownClassMethodSource [
 	^ 'unknownClass	
 	^ ' , self unknownClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLoaderClassBuilder >> unknownClassName [
 	^ unknownClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLoaderClassBuilder >> unknownClassName: anObject [
 	unknownClassName := anObject
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsLoaderClassBuilder >> updateSlotModel [
 	"Currently the loader is not part of model."
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsLoaderClassBuilder >> verifyClassAddedToSystemModel [
 	"Currently the loader is not part of model."
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsLoaderClassBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	"Currently the loader is not part of model."
 	self traceStep: 'verifySlotModelUpdatesMadeByBuilder'.
 ]
 
-{ #category : #verification }
+{ #category : 'verification' }
 LcsLoaderClassBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self assert: self installedClass isNil

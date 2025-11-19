@@ -2,28 +2,30 @@
 All instances of this class have a Domain Object History. It is created when the instance of a LcsDomainObject is created.
 "
 Class {
-	#name : #LcsDomainObject,
-	#superclass : #LcsBaseDomainObject,
+	#name : 'LcsDomainObject',
+	#superclass : 'LcsBaseDomainObject',
 	#instVars : [
 		'history',
 		'uuid',
 		'version'
 	],
-	#category : #'Lcs-SystemManagement-Domain'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsDomainObject class >> addToUnitOfWork: newObject [
 	self currentSystem ifNil: [ ^ self ]. 
 	self currentUnitOfWork addObject: newObject
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 LcsDomainObject class >> classNamesPrefixTree [
 	^ GtPrefixTree withAll: (self allSubclasses collect: #name)
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> creationDateSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -33,7 +35,7 @@ LcsDomainObject class >> creationDateSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> creationTimestampSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -43,7 +45,7 @@ LcsDomainObject class >> creationTimestampSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> creatorSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -53,13 +55,13 @@ LcsDomainObject class >> creatorSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> historySlotDefinition [
 	<slotDefinition>
 	^ LcsDomainObjectHistorySlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> lastUpdatedDateSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -69,7 +71,7 @@ LcsDomainObject class >> lastUpdatedDateSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -79,7 +81,7 @@ LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> lastUpdatedUserSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -89,7 +91,7 @@ LcsDomainObject class >> lastUpdatedUserSlotDefinition [
 			yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.
@@ -104,7 +106,7 @@ LcsDomainObject class >> new [
 	^ newObject
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsDomainObject class >> newInContextOf: anObject [
 	"THIS TEMPORARY. IT SHOULD BE AVAILABLE ONLY TO LOCAL COLLECTION ITEMS"
 	| newObject parentCollectionSlot |
@@ -117,18 +119,18 @@ LcsDomainObject class >> newInContextOf: anObject [
 	^ newObject 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainObject class >> slotNamesExcludedFromCollectionViewSlotDefinitions [
 	^#('parent' 'history' 'uuid' 'version')
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> uuidSlotDefinition [
 	<slotDefinition>
 	^ LcsUuidSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDomainObject class >> versionSlotDefinition [
 	<slotDefinition>
 	^ LcsSmallIntegerSlot new
@@ -137,28 +139,28 @@ LcsDomainObject class >> versionSlotDefinition [
 			yourself
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> creationDate [
 	^ self slotVarNamed: 'creationDate'
 ]
 
-{ #category : #'accessing - virtual slot' }
+{ #category : 'accessing - virtual slot' }
 LcsDomainObject >> creationTimestamp [
 	^ self slotVarNamed: 'creationTimestamp'
 ]
 
-{ #category : #'accessing - virtual slot' }
+{ #category : 'accessing - virtual slot' }
 LcsDomainObject >> creator [
 	^ self slotVarNamed: 'creator'
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsDomainObject >> delete [
 
 	self currentUnitOfWork deleteObject: self
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainObject >> gtLocalCollectionsFor: aView [
 	<gtView>
 		self slotModel ifNil: [
@@ -195,7 +197,7 @@ LcsDomainObject >> gtLocalCollectionsFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainObject >> gtUnitOfWorkFor: aView [
 	<gtView>
 	 self currentUnitOfWork isNil ifTrue: [ ^ aView empty]. 
@@ -206,62 +208,62 @@ LcsDomainObject >> gtUnitOfWorkFor: aView [
 		view: #gtUnitOfWorkFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObject >> history [
 	^ self slotVarNamed: 'history'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObject >> history: anObject [
 	self slotVarNamed: 'history' put: anObject
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyCreationDate [
 	^ self history creationDate
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyCreationTimestamp [
 	^ self history creationTimestamp
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyCreator [
 	^ self history user
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyLastUpdatedDate [
 	^ self history lastUpdatedDate
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyLastUpdatedTimestamp [
 	^ self history lastUpdatedTimestamp
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyLastUpdatedUser [
 	^ self history lastUpdatedUser
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyOfAllSlotChanges [
 	^ self history historyOfAllSlotChanges
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> historyOfChangesToSlot: aSlotName [
 	^ self history historyOfChangesToSlot: aSlotName
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsDomainObject >> incrementVersionNumber [
 	self version: (self version ifNil: [ 0 ]) + 1
 ]
 
-{ #category : #state }
+{ #category : 'state' }
 LcsDomainObject >> isInAddingState [
 	"The object has been created but has not been committed. When committed the version will be incremented to 1"
 	| value |
@@ -269,12 +271,12 @@ LcsDomainObject >> isInAddingState [
 	^ value isNil or: [ value isZero ]
 ]
 
-{ #category : #state }
+{ #category : 'state' }
 LcsDomainObject >> isInDeletedState [
 	^ self version = SmallInteger minVal
 ]
 
-{ #category : #state }
+{ #category : 'state' }
 LcsDomainObject >> isInPendingDeletionState [
 	"This will only be -1 from the time the object is marked as deleted until the transaction is complete.
 	 When the transaction is completed, the value of version with be low values"
@@ -282,22 +284,22 @@ LcsDomainObject >> isInPendingDeletionState [
 	^ self version = -1
 ]
 
-{ #category : #'accessing - virtual slot' }
+{ #category : 'accessing - virtual slot' }
 LcsDomainObject >> lastUpdatedDate [
 	^ self slotVarNamed: 'lastUpdatedDate'
 ]
 
-{ #category : #history }
+{ #category : 'history' }
 LcsDomainObject >> lastUpdatedTimestamp [
 	^ self slotVarNamed: 'lastUpdatedTimestamp'
 ]
 
-{ #category : #'accessing - virtual slot' }
+{ #category : 'accessing - virtual slot' }
 LcsDomainObject >> lastUpdatedUser [
 	^ self slotVarNamed: 'lastUpdatedUser'
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainObject >> localCollectionItems [
 	^ self slotModel localCollectionSlots
 		collect: [ :eachSlotDefinition | 
@@ -306,27 +308,27 @@ LcsDomainObject >> localCollectionItems [
 				item: (self perform: eachSlotDefinition slotName asSymbol) ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsDomainObject >> localCollections [
 	^ self slotModel localCollectionSlots collect: [ :each | self perform: each slotName asSymbol ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObject >> uuid [
 	^ self slotVarNamed: 'uuid'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObject >> uuid: anObject [
 	self slotVarNamed: 'uuid' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObject >> version [
 	^ self slotVarNamed: 'version'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDomainObject >> version: anObject [
 	self slotVarNamed: 'version' put: anObject
 ]

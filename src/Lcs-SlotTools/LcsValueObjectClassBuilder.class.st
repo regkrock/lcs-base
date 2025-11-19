@@ -1,34 +1,35 @@
 Class {
-	#name : #LcsValueObjectClassBuilder,
-	#superclass : #LcsBaseClassBuilder,
+	#name : 'LcsValueObjectClassBuilder',
+	#superclass : 'LcsBaseClassBuilder',
 	#instVars : [
 		'defaultInstance'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueObjectClassBuilder >> beDefaultInstance [
 	defaultInstance := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectClassBuilder >> defaultInstance [
 	^ defaultInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectClassBuilder >> defaultInstance: aBoolean [ 
 	defaultInstance := aBoolean
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValueObjectClassBuilder >> initialize [
 	super initialize.
 	self defaultInstance: false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsValueObjectClassBuilder >> isDefaultInstance [
 	^ self defaultInstance == true
 ]

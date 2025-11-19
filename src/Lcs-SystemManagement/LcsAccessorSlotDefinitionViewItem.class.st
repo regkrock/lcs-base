@@ -1,29 +1,31 @@
 Class {
-	#name : #LcsAccessorSlotDefinitionViewItem,
-	#superclass : #LcsSlotDefinitionViewItem,
+	#name : 'LcsAccessorSlotDefinitionViewItem',
+	#superclass : 'LcsSlotDefinitionViewItem',
 	#instVars : [
 		'instVarName'
 	],
-	#category : #'Lcs-SystemManagement-Core'
+	#category : 'Lcs-SystemManagement-Core',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Core'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LcsAccessorSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
 	^ false
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAccessorSlotDefinitionViewItem >> initialize [
 	super initialize.
 	self instVarName: ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAccessorSlotDefinitionViewItem >> instVarName [
 	^ instVarName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAccessorSlotDefinitionViewItem >> instVarName: anObject [
 	instVarName := anObject
 ]

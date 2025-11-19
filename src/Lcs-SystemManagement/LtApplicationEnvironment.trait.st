@@ -1,44 +1,46 @@
 Trait {
-	#name : #LtApplicationEnvironment,
-	#category : #'Lcs-SystemManagement-Traits'
+	#name : 'LtApplicationEnvironment',
+	#category : 'Lcs-SystemManagement-Traits',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Traits'
 }
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment classSide >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment classSide >> currentUnitOfWork [
 	^ self currentSystem ifNotNil: [:system | system currentUnitOfWork ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment classSide >> currentUser [
 	^ self currentSystem ifNotNil: [:system | system currentUser ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment classSide >> securityModule [
 	^ self currentSystem ifNotNil: [:system | system securityModule ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment >> currentSystem [
 	^ self class currentSystem
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment >> currentUnitOfWork [
 	^ self class currentUnitOfWork
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment >> currentUser [
 	^ self class currentUser
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LtApplicationEnvironment >> securityModule [
 	^ self class securityModule
 ]

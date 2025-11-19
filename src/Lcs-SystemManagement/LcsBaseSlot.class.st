@@ -1,50 +1,52 @@
 Class {
-	#name : #LcsBaseSlot,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsBaseSlot',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'parent',
 		'domainClass',
 		'properties',
 		'comment'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #querying }
+{ #category : 'querying' }
 LcsBaseSlot class >> classNamesPrefixTree [
 	^ GtPrefixTree withAll: (self allSubclasses collect: #name)
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsBaseSlot class >> defaultSlotComment [
 	^ ''
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlot class >> isAbstract [
 	^ self name = #LcsBaseSlot
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlot class >> isAccessorSlot [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlot class >> isVirtualSlot [
 	^ false
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsBaseSlot class >> slotKind [
 	^ 'base'
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> addPropertiesTo: collection [
 	collection
 		add: '' -> '';
@@ -52,33 +54,33 @@ LcsBaseSlot >> addPropertiesTo: collection [
 	collection addAll: self properties associations copy
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsBaseSlot >> addSlotType: aClass [
 	self assert: aClass isClass.
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LcsBaseSlot >> asViewItem [
 	^ LcsSlotDefinitionViewItem on: self 
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsBaseSlot >> clearSlotTypes [
 	self slotTypes removeAll.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlot >> comment [
 	^ comment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlot >> comment: anObject [
 	comment := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> commentDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -94,7 +96,7 @@ LcsBaseSlot >> commentDescription [
 
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 	| theContextMenu items |
 	theContextMenu := GtFormContextMenuContent new editorElement: anElement.
@@ -107,27 +109,27 @@ LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 	^ theContextMenu
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlot >> defaultPriority [
 	^ 50
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsBaseSlot >> defaultSlotComment [
 	^ self class defaultSlotComment
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseSlot >> domainClass [
 	^ domainClass ifNil: [ domainClass := self parent ifNotNil: [ :each | each domainClass ] ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseSlot >> domainClass: aDomainClass [
 	domainClass := aDomainClass
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> domainClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -156,14 +158,14 @@ LcsBaseSlot >> domainClassDescription [
 
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> errorPropertyNotFound: aSelector [ 
 	LcsSlotPropertyError new
 		slotDefinition: self;
 		signal: 'Property ' , aSelector , ' not found.'
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseSlot >> getterSelector [
 	| substring1 substring2 |
 	substring1 := (self slotName at: 1) asLowercase asString.
@@ -172,7 +174,7 @@ LcsBaseSlot >> getterSelector [
 		
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> gtCreateClassAndValueElementFor: aColumn [
 	^ aColumn
 		cellStencil: [ BrHorizontalPane new
@@ -198,7 +200,7 @@ LcsBaseSlot >> gtCreateClassAndValueElementFor: aColumn [
 							vFitContent) ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -214,7 +216,7 @@ LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> gtSlotDefinitionAttributes [
 	| collection |
 	collection := OrderedCollection new
@@ -228,7 +230,7 @@ LcsBaseSlot >> gtSlotDefinitionAttributes [
 	^ collection
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
 	<gtView>
 
@@ -246,7 +248,7 @@ LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
 			GtPharoMethodsCoder forItems: methods]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> gtSlotTypesViewFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -275,7 +277,7 @@ LcsBaseSlot >> gtSlotTypesViewFor: aView [
 
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlot >> initialize [
 	super initialize.
 	self properties: OrderedDictionary new.
@@ -285,17 +287,17 @@ LcsBaseSlot >> initialize [
 	self comment: self defaultSlotComment
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlot >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlot >> isAccessorSlot [
 	^ self class isAccessorSlot
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
 	| propertyValue prepertyAccessor|
 	prepertyAccessor := aPropertyName asSymbol.
@@ -310,32 +312,32 @@ LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
 	^ (propertyValue = aValue) not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlot >> isVirtualSlot [
 	^ self class isVirtualSlot
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseSlot >> label [
 	^self labelForSelector: self slotName
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseSlot >> newDomainClassName [
 	^ self domainClass ifNil: [ ^ '<not initialized>']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlot >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlot >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsBaseSlot >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
@@ -344,17 +346,17 @@ LcsBaseSlot >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> priority [
 	^ self propertyAt: 'priority'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> priority: anObject [
 	self propertyAt: 'priority' put: anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> priorityDescription [
 	<magritteDescription>
 	^ MANumberDescription new
@@ -368,40 +370,40 @@ LcsBaseSlot >> priorityDescription [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlot >> properties [
 	^ properties
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlot >> properties: anObject [
 	properties := anObject
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
 
 	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> propertyAt: aKey ifAbsent: aBlock [
 	^ self properties at: aKey ifAbsent: aBlock 
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> propertyAt: aKey put: anObject [
 	^ self properties at: aKey put: anObject 
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsBaseSlot >> removeSlotType: aClass [
 	self assert: aClass isClass.
 	(self slotTypes includes: aClass) ifTrue: [ self slotTypes remove: aClass ]
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsBaseSlot >> slotCategory [
 	self domainClass ifNil: [ ^ '<unknown>' ].
 	^ (self domainClass class pragmas
@@ -409,12 +411,12 @@ LcsBaseSlot >> slotCategory [
 		ifNone: [ ^ '<unknown>' ]) selector
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsBaseSlot >> slotClass [
 	^ self slotTypes any
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> slotClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -448,27 +450,27 @@ LcsBaseSlot >> slotClassDescription [
 
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsBaseSlot >> slotDefinitionSelector [
 	^ (self slotName asString , 'SlotDefinition') asSymbol
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsBaseSlot >> slotKind [
 	^ self class slotKind
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> slotName [
 	^ self propertyAt: 'slotName' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> slotName: anObject [
 	self propertyAt: 'slotName' put: anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> slotNameDescription [
 	<magritteDescription>
 	| existingInstvarNames |
@@ -492,7 +494,7 @@ LcsBaseSlot >> slotNameDescription [
 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlot >> slotTypeClassNames [
 	| stream |
 	stream := WriteStream on: String new.
@@ -504,17 +506,17 @@ LcsBaseSlot >> slotTypeClassNames [
 	^stream contents
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> slotTypes [
 	^ self propertyAt: 'slotTypes'
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsBaseSlot >> slotTypes: anObject [
 	self propertyAt: 'slotTypes' put: anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> slotTypesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -541,7 +543,7 @@ LcsBaseSlot >> slotTypesDescription [
 		beRequired
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsBaseSlot >> slotTypesList [
 	| stream |
 	stream := WriteStream on: String new.
@@ -551,12 +553,12 @@ LcsBaseSlot >> slotTypesList [
 	^ stream contents
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsBaseSlot >> slotVarPut: anObject in: aDomainObject [
 	^ LcsError signal: 'Attempt to update a read only slot'
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
 	^ [ :aMemento :aDescription :aForm | 
 	| aTagger aTaggerAptitude |

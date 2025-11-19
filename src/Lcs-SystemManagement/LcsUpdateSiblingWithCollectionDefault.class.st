@@ -1,14 +1,16 @@
 Class {
-	#name : #LcsUpdateSiblingWithCollectionDefault,
-	#superclass : #LcsUpdateAction,
+	#name : 'LcsUpdateSiblingWithCollectionDefault',
+	#superclass : 'LcsUpdateAction',
 	#instVars : [
 		'siblingSlotName',
 		'sourceCollectionSlotName'
 	],
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUpdateSiblingWithCollectionDefault >> defaultActionBlock [
 	^ [ :newValue :domainObject :oldValue | 
 		domainObject
@@ -16,27 +18,27 @@ LcsUpdateSiblingWithCollectionDefault >> defaultActionBlock [
 			with: (newValue perform: self sourceCollectionSlotName asSymbol) defaultInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateSiblingWithCollectionDefault >> siblingSlotName [
 	^ siblingSlotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateSiblingWithCollectionDefault >> siblingSlotName: aSlotName [
 	siblingSlotName := aSlotName
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUpdateSiblingWithCollectionDefault >> siblingSlotSetter [
 	^ (self siblingSlotName , ':') asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateSiblingWithCollectionDefault >> sourceCollectionSlotName [
 	^ sourceCollectionSlotName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateSiblingWithCollectionDefault >> sourceCollectionSlotName: aSlotName [ 
 	sourceCollectionSlotName := aSlotName
 ]

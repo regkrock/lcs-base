@@ -1,51 +1,53 @@
 Class {
-	#name : #LcsAssociationModel,
-	#superclass : #LcsObject,
+	#name : 'LcsAssociationModel',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'fromClassModel',
 		'toClassModel',
 		'toClassModelName',
 		'associationName'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> associationName [
 	^ associationName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> associationName: anObject [
 	associationName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> fromClassModel [
 	^ fromClassModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> fromClassModel: anObject [
 	fromClassModel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> toClassModel [
 	^ toClassModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> toClassModel: anObject [
 	toClassModel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> toClassModelName [
 	^ toClassModelName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAssociationModel >> toClassModelName: aString [
 	toClassModelName := aString
 ]

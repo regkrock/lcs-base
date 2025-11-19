@@ -1,25 +1,27 @@
 Class {
-	#name : #LcsValidationConditions,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsValidationConditions',
+	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait + LtOrderedCollection',
 	#classTraits : 'LtParentTrait classTrait + LtOrderedCollection classTrait',
-	#category : #'Lcs-SystemManagement-Slot'
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsValidationConditions >> = aValidationCollections [
 	(aValidationCollections isKindOf: LcsValidationConditions) ifFalse: [ ^ false ].
 	"self collection size = aValidationCollections collections size ifFalse: [ ^ false ]."
 	^ self collection = aValidationCollections collection
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> addValidationCondition: aValidationCondition [
 	aValidationCondition parent: self.
 	^ self add: aValidationCondition
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> addValidationCondition: aBlock description: aString [
 	self addValidationCondition: (
 		LcsValidationCondition new
@@ -28,7 +30,7 @@ LcsValidationConditions >> addValidationCondition: aBlock description: aString [
 			yourself)
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsValidationConditions >> gtItemsFor: aView [
 	<gtView>
 	self collection isNil ifTrue: [ ^ aView empty ].
@@ -40,52 +42,52 @@ LcsValidationConditions >> gtItemsFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LcsValidationConditions >> hash [
 	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValidationConditions >> initialize [ 
 	super initialize.
 	self collection: OrderedCollection new
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> removeValidationCondition: aCondition [
 	^ self remove: aCondition ifAbsent: []
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> removeValidationConditionWithDescription: aDescription [
 	| condition |
 	condition := self detect: [ :each | each validationDescription = aDescription ] ifNone: [ nil ].
 	^ condition ifNotNil: [ self removeValidationCondition: condition ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsValidationConditions >> slotDefinition [
 	^ self parent
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> validate: aValue [
 	self collection do: [ :eachCondition | eachCondition validate: aValue ]
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> validate: aValue context: aDomainObject [
 	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject ]
 	
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> validate: aValue context: aDomainObject oldValue: anOldValue [
 	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject oldValue: anOldValue ]
 	
 ]
 
-{ #category : #conditions }
+{ #category : 'conditions' }
 LcsValidationConditions >> validate: aValue withValidator: aValidator [
 	self collection do: [ :eachCondition | 
 		[ eachCondition validate: aValue ]
@@ -95,12 +97,12 @@ LcsValidationConditions >> validate: aValue withValidator: aValidator [
 				s return: nil ] ]
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 LcsValidationConditions >> validationConditionWithDescription: aString [
 	^ self detect: [ :each | each validationDescription = aString ] ifNone: [ ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsValidationConditions >> validationConditionsDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new

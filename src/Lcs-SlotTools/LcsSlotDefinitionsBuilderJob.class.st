@@ -2,17 +2,18 @@
 This was creataed to generate multiple slot definitions. Is this still needed?
 "
 Class {
-	#name : #LcsSlotDefinitionsBuilderJob,
-	#superclass : #LcsCodeBuilderJob,
+	#name : 'LcsSlotDefinitionsBuilderJob',
+	#superclass : 'LcsCodeBuilderJob',
 	#instVars : [
 		'targetClassName',
 		'targetPackageName',
 		'slotBuilders'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsSlotDefinitionsBuilderJob >> addSlotBuilder: aSlotBuilder [
 	self slotBuilders add: (
 		aSlotBuilder
@@ -20,7 +21,7 @@ LcsSlotDefinitionsBuilderJob >> addSlotBuilder: aSlotBuilder [
 			yourself)
 ]
 
-{ #category : #'job steps' }
+{ #category : 'job steps' }
 LcsSlotDefinitionsBuilderJob >> buildJobSteps [
 	self slotBuilders do: [ :each |
 		each targetClassName: self targetClassName.
@@ -28,43 +29,43 @@ LcsSlotDefinitionsBuilderJob >> buildJobSteps [
 		self addJobStep: each. ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSlotDefinitionsBuilderJob >> initialize [
 	super initialize.
 	self slotBuilders: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionsBuilderJob >> slotBuilders [
 	^ slotBuilders
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionsBuilderJob >> slotBuilders: anObject [
 	slotBuilders := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionsBuilderJob >> targetClass [
 	^ [ self targetClassName asClass ] on: NotFound on: [ :s | s return: nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionsBuilderJob >> targetClassName [
 	^ targetClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionsBuilderJob >> targetClassName: anObject [
 	targetClassName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionsBuilderJob >> targetPackageName [
 	^ targetPackageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSlotDefinitionsBuilderJob >> targetPackageName: anObject [
 	targetPackageName := anObject
 ]

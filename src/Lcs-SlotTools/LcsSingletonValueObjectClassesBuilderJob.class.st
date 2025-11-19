@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsSingletonValueObjectClassesBuilderJob,
-	#superclass : #LcsValueObjectClassesBuilderJob,
+	#name : 'LcsSingletonValueObjectClassesBuilderJob',
+	#superclass : 'LcsValueObjectClassesBuilderJob',
 	#instVars : [
 		'valueObjectSubclassBuilders',
 		'subclassRootNames',
 		'defaultSubclassRootName'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSingletonValueObjectClassesBuilderJob >> addValueObjectSubclassBuilders [
 	self valueObjectSubclassBuilders
 		do: [ :eachBuilder | self addJobStep: (
@@ -19,12 +20,12 @@ LcsSingletonValueObjectClassesBuilderJob >> addValueObjectSubclassBuilders [
 					yourself) ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSingletonValueObjectClassesBuilderJob >> addValueObjectSubclassWithRootNamed: aString [
 	^ self addValueObjectSubclassWithRootNamed: aString with: [ :classBuilder | ]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSingletonValueObjectClassesBuilderJob >> buildJobSteps [
 	self addJobStep: self valueObjectClassBuilder.
 	self addValueObjectSubclassBuilders.
@@ -34,29 +35,29 @@ LcsSingletonValueObjectClassesBuilderJob >> buildJobSteps [
 	self addMemberOfSlotBuilderForTargetClasses
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSingletonValueObjectClassesBuilderJob >> defaultSubclassRootName [
 	^ defaultSubclassRootName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSingletonValueObjectClassesBuilderJob >> defaultSubclassRootName: anObject [
 	defaultSubclassRootName := anObject
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsSingletonValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsSingletonValueObjectsGlobalCollectionSlotBuilder) first
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSingletonValueObjectClassesBuilderJob >> initialize [
 	super initialize.
 	self subclassRootNames: OrderedCollection new.
 	self valueObjectSubclassBuilders: OrderedCollection new
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSingletonValueObjectClassesBuilderJob >> overview [
 	| collection |
 	collection := OrderedCollection new.
@@ -66,36 +67,36 @@ LcsSingletonValueObjectClassesBuilderJob >> overview [
 	
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSingletonValueObjectClassesBuilderJob >> printJobStreamDetailsOn: aStream [
 	aStream
 		nextPutAll: 'Create and populate classes related to ';
 		nextPutAll: self newDomainClassName asString
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSingletonValueObjectClassesBuilderJob >> singletonClassBuilders [
 	^ self jobSteps stepsWithClass: LcsSingletonValueObjectClassBuilder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSingletonValueObjectClassesBuilderJob >> subclassRootNames [
 	^ subclassRootNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSingletonValueObjectClassesBuilderJob >> subclassRootNames: anObject [
 	subclassRootNames := anObject
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSingletonValueObjectClassesBuilderJob >> valueObjectClassBuilder [
 	^ super valueObjectClassBuilder
 		targetSuperclassName: 'LcsSingletonValueObject';
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSingletonValueObjectClassesBuilderJob >> valueObjectSubclassBuilderFor: aString [
 	^ LcsSingletonValueObjectClassBuilder new
 		rootName: aString;
@@ -106,17 +107,17 @@ LcsSingletonValueObjectClassesBuilderJob >> valueObjectSubclassBuilderFor: aStri
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSingletonValueObjectClassesBuilderJob >> valueObjectSubclassBuilders [
 	^ valueObjectSubclassBuilders
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSingletonValueObjectClassesBuilderJob >> valueObjectSubclassBuilders: aCollection [
 	valueObjectSubclassBuilders := aCollection
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsSingletonValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuilder [
 	^ LcsSingletonValueObjectsGlobalCollectionSlotBuilder new
 		slotName: self collectionSlotName;
@@ -127,7 +128,7 @@ LcsSingletonValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuil
 		yourself
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSingletonValueObjectClassesBuilderJob >> verifyPopulateSlotModel [
 	super verifyPopulateSlotModel.
 	self assert: self targetGlobalCollection parent == self targetModule.

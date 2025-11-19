@@ -1,37 +1,39 @@
 Class {
-	#name : #LcsObjectToIdConversionSlot,
-	#superclass : #LcsFacadeSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsObjectToIdConversionSlot',
+	#superclass : 'LcsFacadeSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertFromTarget [
 	^ self propertyAt: 'convertFromTarget' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertFromTarget: anObject [
 	self propertyAt: 'convertFromTarget' put: anObject
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertToTarget [
 	^ self propertyAt: 'convertToTarget' ifAbsent: [ ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertToTarget: anObject [
 	self propertyAt: 'convertToTarget' put: anObject
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsObjectToIdConversionSlot >> currentSlotVarIn: aDomainObject [
 	^ self convertFromTarget 
 		cull: (aDomainObject slotVarNamed: self targetSlotName) 
 		cull: aDomainObject
 ]
 
-{ #category : #'slot access' }
+{ #category : 'slot access' }
 LcsObjectToIdConversionSlot >> slotVarPut: anObject in: aTargetDomainObject [
 	aTargetDomainObject
 		slotVarNamed: self targetSlotName

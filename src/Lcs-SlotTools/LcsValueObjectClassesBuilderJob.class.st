@@ -1,14 +1,15 @@
 Class {
-	#name : #LcsValueObjectClassesBuilderJob,
-	#superclass : #LcsDomainClassAndDomainCollectionClassBuilderJob,
+	#name : 'LcsValueObjectClassesBuilderJob',
+	#superclass : 'LcsDomainClassAndDomainCollectionClassBuilderJob',
 	#instVars : [
 		'moduleClass',
 		'protoCodes'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueObjectClassesBuilderJob >> addValueObjectSubclassWithRootNamed: aString with: aBlock [
 	| classBuilder |
 	classBuilder := self valueObjectSubclassBuilderFor: aString.
@@ -16,7 +17,7 @@ LcsValueObjectClassesBuilderJob >> addValueObjectSubclassWithRootNamed: aString 
 	self valueObjectSubclassBuilders add: classBuilder
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsValueObjectClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClass [
 	^ LcsMemberOfGlobalCollectionSlotBuilder new
 		target: aTargetClass;
@@ -28,39 +29,39 @@ LcsValueObjectClassesBuilderJob >> domainClassCodeMemberSlotBuilder: aTargetClas
 		yourself
 ]
 
-{ #category : #'builder step' }
+{ #category : 'builder step' }
 LcsValueObjectClassesBuilderJob >> globalCollectionSlotDefinitionStep [
 	^ (self jobSteps stepsWithClass: LcsGlobalCollectionSlotBuilder) first
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValueObjectClassesBuilderJob >> initialize [
 	super initialize.
 	self targetDomainClasses: OrderedCollection new.
 	self protoCodes: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectClassesBuilderJob >> protoCodes [
 	^ protoCodes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectClassesBuilderJob >> protoCodes: aCollection [
 	protoCodes := aCollection
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsValueObjectClassesBuilderJob >> targetGlobalCollection [
 	^ self targetModule perform: self globalCollectionSlotDefinitionStep getterSelector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObjectClassesBuilderJob >> targetModuleName [
 	^ targetModuleName ifNil: [ targetModuleName :=  self targetModuleClass defaultModuleName ]
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsValueObjectClassesBuilderJob >> valueObjectClassBuilder [
 	^ LcsValueObjectSuperClassBuilder new
 		newClassName: self newDomainClassName;
@@ -68,7 +69,7 @@ LcsValueObjectClassesBuilderJob >> valueObjectClassBuilder [
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsValueObjectClassesBuilderJob >> valueObjectsCollectionClassBuilder [
 	^ LcsValueObjectsCollectionClassBuilder new
 		newClassName: self collectionClassName;
@@ -76,7 +77,7 @@ LcsValueObjectClassesBuilderJob >> valueObjectsCollectionClassBuilder [
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuilder [
 	^ LcsValueObjectsGlobalCollectionSlotBuilder new
 		slotName: self collectionSlotName;
@@ -88,7 +89,7 @@ LcsValueObjectClassesBuilderJob >> valueObjectsGlobalCollectionSlotBuilder [
 		yourself
 ]
 
-{ #category : #builders }
+{ #category : 'builders' }
 LcsValueObjectClassesBuilderJob >> valueObjectsLoaderBuilder [
 	^ LcsValueObjectsLoaderClassBuilder new
 		newClassName: self collectionClassName , 'Loader';

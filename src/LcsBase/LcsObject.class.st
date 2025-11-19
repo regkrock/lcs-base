@@ -4,17 +4,19 @@ This is the root class for application classes and tool and general utitlity cla
 Another root class is LcsTestCase - all test case classes should inherit from there
 "
 Class {
-	#name : #LcsObject,
-	#superclass : #Object,
-	#category : #'LcsBase-Core'
+	#name : 'LcsObject',
+	#superclass : 'Object',
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #transactions }
+{ #category : 'transactions' }
 LcsObject class >> abortTransaction [
 	System abortTransaction
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsObject class >> addClassMethodNamed: aSelectorName to: collection [ 
 	(self class includesSelector: aSelectorName) ifTrue: [
 		collection add: (self class methodDict at: aSelectorName)].
@@ -22,7 +24,7 @@ LcsObject class >> addClassMethodNamed: aSelectorName to: collection [
 		self superclass addClassMethodNamed: aSelectorName to: collection ] 
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsObject class >> addInstanceMethodNamed: aSelectorName to: collection [ 
 	(self includesSelector: aSelectorName) ifTrue: [
 		collection add: (self methodDict at: aSelectorName)].
@@ -30,27 +32,27 @@ LcsObject class >> addInstanceMethodNamed: aSelectorName to: collection [
 		self superclass addInstanceMethodNamed: aSelectorName to: collection ] 
 ]
 
-{ #category : #transactions }
+{ #category : 'transactions' }
 LcsObject class >> beginTransaction [
 	System beginTransaction
 ]
 
-{ #category : #transactions }
+{ #category : 'transactions' }
 LcsObject class >> commitTransaction [
 	System commitTransaction
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsObject class >> isApplicationSystemClass [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsObject class >> isDomainClass [
 	^ false
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsObject class >> slotDefinitionMethodsNamed: aSelectorName [ 
 	| collection |
 	collection := OrderedCollection new.
@@ -58,23 +60,23 @@ LcsObject class >> slotDefinitionMethodsNamed: aSelectorName [
 	^ collection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsObject >> classFor: aStringOrClass [
 	aStringOrClass isClass ifTrue: [ ^ aStringOrClass ].
 	^ [ aStringOrClass asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsObject >> isApplicationSystem [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsObject >> isDomainClass [
 	^self class isDomainClass
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsObject >> printOn: aStream [
 	super printOn: aStream.
 	"aStream 
@@ -84,13 +86,13 @@ LcsObject >> printOn: aStream [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsObject >> removeProtoObjectFrom: classes [
 	([ 'ProtoObject' asClass ] on: NotFound do: [ ^ self ])
 		ifNotNil: [ :class | classes remove: class ifAbsent: [  ] ]
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 LcsObject >> selectorNameFrom: aString [
 	| newString |
 	newString := aString displayString asCamelCase.
@@ -98,7 +100,7 @@ LcsObject >> selectorNameFrom: aString [
 	^ (newString at: 1) asLowercase asString , (newString copyFrom: 2 to: newString size)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsObject >> testGemstone [
 	^ 1 = 2
 ]

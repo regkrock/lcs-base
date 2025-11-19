@@ -1,31 +1,33 @@
 Class {
-	#name : #LcsUpdateActionExecutionError,
-	#superclass : #LcsSlotModelError,
+	#name : 'LcsUpdateActionExecutionError',
+	#superclass : 'LcsSlotModelError',
 	#instVars : [
 		'value',
 		'updateAction',
 		'slotDefinition',
 		'oldValue'
 	],
-	#category : #'Lcs-SystemManagement-Error'
+	#category : 'Lcs-SystemManagement-Error',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Error'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsUpdateActionExecutionError class >> signalErrForValue: aValue updateAction: anUpdateAction slot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aMessage [ 
 	^ self new signalErrForValue: aValue updateAction: anUpdateAction slot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aMessage 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> oldValue [
 	^ oldValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> oldValue: anObject [
 	oldValue := anObject
 ]
 
-{ #category : #error }
+{ #category : 'error' }
 LcsUpdateActionExecutionError >> signalErrForValue: aValue updateAction: anUpdateAction slot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [ 
 	self value: aValue.
 	self updateAction: anUpdateAction.
@@ -35,32 +37,32 @@ LcsUpdateActionExecutionError >> signalErrForValue: aValue updateAction: anUpdat
 	self signal: self updateAction errorDescription  , ': ' , aString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> slotDefinition [
 	^ slotDefinition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> slotDefinition: anObject [
 	slotDefinition := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> updateAction [
 	^ updateAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> updateAction: anObject [
 	updateAction := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> value [
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUpdateActionExecutionError >> value: aValue [ 
 	value := aValue
 ]

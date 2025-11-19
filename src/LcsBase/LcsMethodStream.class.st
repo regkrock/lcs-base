@@ -1,14 +1,16 @@
 Class {
-	#name : #LcsMethodStream,
-	#superclass : #LcsObject,
+	#name : 'LcsMethodStream',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'stream',
 		'indentLevel'
 	],
-	#category : #'LcsBase-Core'
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> addKeyword: aKeyword argument: aString [
 	self newLine
 		nextPutAll: aKeyword;
@@ -17,7 +19,7 @@ LcsMethodStream >> addKeyword: aKeyword argument: aString [
 		nextPutAll: ';'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> addKeyword: aKeyword argument: aString keyword: aKeyword2 argument: aString2 [ 
 	self newLine
 		nextPutAll: aKeyword;
@@ -30,7 +32,7 @@ LcsMethodStream >> addKeyword: aKeyword argument: aString keyword: aKeyword2 arg
 		nextPutAll: ';'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> addKeyword: aKeyword withRenderedAction: anAction [
 	self newLine
 		nextPutAll: aKeyword;
@@ -41,7 +43,7 @@ LcsMethodStream >> addKeyword: aKeyword withRenderedAction: anAction [
 	self outdent; outdent
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> addKeywords: aKeywordSelectorName arguments: aCollectionOfStrings [ 
 	| keywords count |
 	keywords := aKeywordSelectorName substrings: { Character value: 58 }.
@@ -60,7 +62,7 @@ LcsMethodStream >> addKeywords: aKeywordSelectorName arguments: aCollectionOfStr
 			ifFalse: [ self stream space ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> addSlotDefinitionClassCreatonLine: aSlotDefinitionClassName [
 	self newLine
 		nextPutAll: '^ ';
@@ -69,63 +71,63 @@ LcsMethodStream >> addSlotDefinitionClassCreatonLine: aSlotDefinitionClassName [
 	self increaseIndentLevel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> addUnaryMessage: aString [
 	self newLine nextPutAll: aString; nextPutAll: ';'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> addYourself [
 	self newLine
 		nextPutAll: 'yourself'
 
 ]
 
-{ #category : #stream }
+{ #category : 'stream' }
 LcsMethodStream >> contents [
 	^ self stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> decrementIndentLevel [
 	self indentLevel: self indentLevel - 1.
 	self indentLevel < 0 ifTrue: [ self indentLevel: 0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> increaseIndentLevel [
 	self indentLevel: self indentLevel + 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> indent [
 	self increaseIndentLevel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> indentLevel [
 	^ indentLevel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> indentLevel: anObject [ 
 	indentLevel := anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsMethodStream >> initialize [
 	super initialize.
 	self stream: (WriteStream on: String new).
 	self indentLevel: 0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsMethodStream >> isLastCharacterLineTerminationCharacter [
 	^ {Character lf.
 		Character cr} includes: self stream contents last
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> newLine [
 	self stream contents isEmpty
 		ifFalse: [ self isLastCharacterLineTerminationCharacter ifFalse: [ self stream cr ] ].
@@ -133,39 +135,39 @@ LcsMethodStream >> newLine [
 	^ self stream
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> nextPutAll: aString [
 	self stream nextPutAll: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> outdent [
 	self decrementIndentLevel
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> startMethodSource: aSelector [
 	self newLine nextPutAll: aSelector.
 	self increaseIndentLevel
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsMethodStream >> startSlotDefintionSource: aSelector slotCategory: aString [
 	self startMethodSource: aSelector.
 	self newLine nextPutAll: aString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> stream [
 	^ stream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMethodStream >> stream: anObject [
 	stream := anObject
 ]
 
-{ #category : #stream }
+{ #category : 'stream' }
 LcsMethodStream >> streamPosition [
 	^ self stream position
 ]

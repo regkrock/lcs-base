@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsNumberSlot,
-	#superclass : #LcsSmalltalkObjectSlot,
-	#category : #'Lcs-SystemManagement-Slot'
+	#name : 'LcsNumberSlot',
+	#superclass : 'LcsSmalltalkObjectSlot',
+	#category : 'Lcs-SystemManagement-Slot',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Slot'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsNumberSlot >> defaultInitialValueBlock [ 
 	^ [ :parentDomainObject :slot | 0 ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsNumberSlot >> typeClass [
 	^ Number
 ]

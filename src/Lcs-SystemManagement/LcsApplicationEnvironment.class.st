@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsApplicationEnvironment,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsApplicationEnvironment',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'unitsOfWorkManager',
 		'status',
@@ -9,90 +9,92 @@ Class {
 	#classInstVars : [
 		'singleton'
 	],
-	#category : #'Lcs-SystemManagement-Environment'
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #'application environment - private' }
+{ #category : 'application environment - private' }
 LcsApplicationEnvironment class >> applicationEnvironmentDo: aBlock [
 	^ self currentApplicationEnvironment ifNotNil: aBlock 
 ]
 
-{ #category : #'application environment - private' }
+{ #category : 'application environment - private' }
 LcsApplicationEnvironment class >> applicationEnvironmentDoesNotHave: aBlock [
 	^ self currentApplicationEnvironment ifNil: [ true ] ifNotNil: aBlock 
 ]
 
-{ #category : #'application environment - private' }
+{ #category : 'application environment - private' }
 LcsApplicationEnvironment class >> applicationEnvironmentHas: aBlock [
 	^ self currentApplicationEnvironment ifNil: [ false ] ifNotNil: aBlock 
 ]
 
-{ #category : #'application environment - private' }
+{ #category : 'application environment - private' }
 LcsApplicationEnvironment class >> applicationEnvironmentObject: aBlock [
 	^ self currentApplicationEnvironment ifNil: [ nil ] ifNotNil: aBlock 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironment class >> applicationEnvironmentViewChildren [
 	^ {
 		"LcsApplicationEnvironmentViewItem newOn: self label: 'Initialized' item: self currentApplicationEnvironment notNil."
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Current' item: self currentApplicationEnvironment}
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> createCurrentSystemFor: aSystemClass [ 
 	self verifyApplicationEnvironment.
 	^ self applicationEnvironmentDo: [ :env | env createCurrentSystemFor: aSystemClass ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> createUnitOfWork [
 	^ self applicationEnvironmentDo: [ :env | env createUnitOfWork ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> currentApplicationEnvironment [
 	^ LcsApplicationEnvironment singleton
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> currentSystem [
 	^ self applicationEnvironmentObject: [ :env | env currentSystem ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> currentSystem: aSystem [ 
 	self applicationEnvironmentDo: [  :env | env currentSystem: aSystem ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> currentUnitOfWork [
 	^ self applicationEnvironmentObject: [ :env | env currentUnitOfWork ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> deleteCurrentAndMakeCurrent: aSystem [
 	self applicationEnvironmentDo: [ :env | env deleteCurrentAndMakeCurrent: aSystem ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsApplicationEnvironment class >> ensureActiveApplicationEnvironment [
 	self hasInitializedApplicationEnvironment
 		ifFalse: [ self initializeApplicationEnvironment] 
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> ensureCurrentSystemIs: aSystemClass [ 
 	self ensureActiveApplicationEnvironment.
 	self systemsManager ensureCurrentSystemIs: aSystemClass
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> ensureInitialized [
 	self hasInitializedApplicationEnvironment ifFalse: [ self initializeApplicationEnvironment ].
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 	<gtView>
 	<gtClassView>
@@ -118,7 +120,7 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironment class >> gtStartStopActionFor: anAction [
 	"<gtClassAction>"
 	^ anAction button
@@ -128,47 +130,47 @@ LcsApplicationEnvironment class >> gtStartStopActionFor: anAction [
 		action: [ self toggleStartStop ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasCurrentSystem [
 	^ self applicationEnvironmentHas: [ :env | env currentSystem notNil ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasCurrentUnitOfWork [
 	^ self applicationEnvironmentHas: [:env |  env hasCurrentUnitOfWork ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasInitializedApplicationEnvironment [
 	^ self currentApplicationEnvironment notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasNoCurrentSystem [
 	^ self applicationEnvironmentDoesNotHave: [ :env | env currentSystem isNil ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasNoCurrentUnitOfWork [
 	^ self applicationEnvironmentDoesNotHave: [ :env | env currentUnitOfWork isNil ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasNoninitializedApplicationEnvironment [
 	^ self currentApplicationEnvironment isNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasSystemsManager [
 	^ self applicationEnvironmentHas: [ :env | env hasSystemsManager ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> hasUnitsOfWorkManager [
 	^ self applicationEnvironmentHas: [ :env | env hasUnitsOfWorkManager ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsApplicationEnvironment class >> initializeApplicationEnvironment [
 	self currentApplicationEnvironment ifNotNil: [ self error: 'Environment is already initialized' ].
 	"System abortTransaction."
@@ -177,35 +179,35 @@ LcsApplicationEnvironment class >> initializeApplicationEnvironment [
 	^ self currentApplicationEnvironment
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment class >> isInActiveStatus [
 	^ self applicationEnvironmentHas: [ :env | env isInActiveStatus]
 ]
 
-{ #category : #'start-stop' }
+{ #category : 'start-stop' }
 LcsApplicationEnvironment class >> isRunning [
 	^ self hasInitializedApplicationEnvironment
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> makeSystemCurrent: aSystem [
 	self applicationEnvironmentDo: [ :env | env makeSystemCurrent: aSystem ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsApplicationEnvironment class >> new [
 	"Use #initializeEnvironment instead"
 	self shouldNotImplement
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> releaseApplicationEnvironment [
 	self applicationEnvironmentDo: [ :env | 
 		 env releaseApplicationEnvironment.
 		 self singleton: nil ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> removeClassesNamed: classNames [ 
 	| classesToBeRemoved |
 	classesToBeRemoved := (classNames collect: [:each | 
@@ -213,40 +215,40 @@ LcsApplicationEnvironment class >> removeClassesNamed: classNames [
 	classesToBeRemoved do: [ :eachClass | (RBRemoveClassChange removeClassName: eachClass name) execute ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> removeCurrentSystem [
 	self applicationEnvironmentDo: [  :env  | env removeCurrentSystem ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> removeCurrentUnitOfWork [
 	self applicationEnvironmentDo: [ :env | env  removeCurrentUnitOfWork ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> resetApplicationEnvironment [
 	self releaseApplicationEnvironment.
 	self initializeApplicationEnvironment.
 	^ self currentApplicationEnvironment
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> restoreToCurrentApplicationEnvironment: anApplicationEnvironment [
 	self singleton: anApplicationEnvironment.
 	self applicationEnvironmentDo: [ :env | env restoreApplicationEnvironment ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment class >> singleton [
 	^ singleton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment class >> singleton: anApplicationEnvironment [
 	singleton := anApplicationEnvironment
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> suspendApplicationEnvironment [
 	| suspensionCandidate |
 	suspensionCandidate := self currentApplicationEnvironment.
@@ -255,29 +257,29 @@ LcsApplicationEnvironment class >> suspendApplicationEnvironment [
 	^suspensionCandidate
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> suspendCurrentSystem [
 	^ self applicationEnvironmentDo: [ :env | env suspendCurrentSystem ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> systemsManager [
 	^ self applicationEnvironmentObject: [ :env | env systemsManager ]
 ]
 
-{ #category : #'start-stop' }
+{ #category : 'start-stop' }
 LcsApplicationEnvironment class >> toggleStartStop [
 	self isRunning
 		ifTrue: [ self releaseApplicationEnvironment ]
 		ifFalse: [ self initializeApplicationEnvironment ]
 ]
 
-{ #category : #'application environment - system' }
+{ #category : 'application environment - system' }
 LcsApplicationEnvironment class >> unitsOfWorkManager [
 	^ self applicationEnvironmentObject: [ :env | env unitsOfWorkManager ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsApplicationEnvironment class >> verifyApplicationEnvironment [
 	self hasInitializedApplicationEnvironment
 		ifFalse: [ LcsApplicationEnivronmentNotInitializedError
@@ -285,12 +287,12 @@ LcsApplicationEnvironment class >> verifyApplicationEnvironment [
 	^ true
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> applicationEnvironment [
 	^ self
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironment >> applicationEnvironmentViewChildren [
 	^ {
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Status' item: self status.
@@ -298,39 +300,39 @@ LcsApplicationEnvironment >> applicationEnvironmentViewChildren [
 		LcsApplicationEnvironmentViewItem newOn: self label: 'Units Of Work' item: self unitsOfWorkManager.}
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> createCurrentSystemFor: aSystemClass [
 	^ self systemsManager createCurrentSystemFor: aSystemClass
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsApplicationEnvironment >> createUnitOfWork [
 	^ self unitsOfWorkManager createUnitOfWork
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> currentSystem [
 	^ self systemsManager currentSystem
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> currentSystem: aSystem [
 	^ self systemsManager currentSystem: aSystem
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsApplicationEnvironment >> currentUnitOfWork [
 	^ self unitsOfWorkManager currentUnitOfWork
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> deleteCurrentAndMakeCurrent: aSystem [
 	self 
 		removeCurrentSystem;
 		makeSystemCurrent: aSystem
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 	<gtView>
 	^ aView columnedTree
@@ -349,7 +351,7 @@ LcsApplicationEnvironment >> gtApplicationEnvironmentFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironment >> gtSystemsManagerFor: aView [
 	<gtView>
 	^ aView forward
@@ -360,7 +362,7 @@ LcsApplicationEnvironment >> gtSystemsManagerFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironment >> gtUnitsOfWorkManagerFor: aView [
 	<gtView>
 	^ aView forward
@@ -371,27 +373,27 @@ LcsApplicationEnvironment >> gtUnitsOfWorkManagerFor: aView [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment >> hasCurrentUnitOfWork [
 	^ self unitsOfWorkManager hasCurrentUnitOfWork
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment >> hasNoCurrentUnitOfWork [
 	^ self unitsOfWorkManager hasNoCurrentUnitOfWork
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment >> hasSystemsManager [
 	^ self systemsManager notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment >> hasUnitsOfWorkManager [
 	^self unitsOfWorkManager notNil
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsApplicationEnvironment >> initialize [
 	super initialize.
 	self systemsManager: (LcsSystemsManager newOn: self).
@@ -399,79 +401,79 @@ LcsApplicationEnvironment >> initialize [
 	self status: (LcsApplicationEnvironmentActiveStatus newOn: self)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment >> isInActiveStatus [
 	^self status isInActiveStatus
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironment >> isInSuspendedStatus [
 	^self status isInSuspendedStatus
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> makeSystemCurrent: aSystem [
 	self systemsManager makeSystemCurrent: aSystem
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> releaseApplicationEnvironment [
 	self systemsManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].
 	self unitsOfWorkManager ifNotNil: [ :manager | manager releaseApplicationEnvironment ].
 	LcsBaseDomainObject releaseApplicationEnvironment  
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> removeCurrentSystem [
 	^ self systemsManager removeCurrentSystem
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsApplicationEnvironment >> removeCurrentUnitOfWork [
 	^ self unitsOfWorkManager removeCurrentUnitOfWork
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> restoreApplicationEnvironment [
 	self status restoreApplicationEnvironment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment >> status [
 	^ status
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment >> status: anObject [
 	status := anObject
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> suspendApplicationEnvironment [
 	^ self status suspendApplicationEnvironment
 ]
 
-{ #category : #system }
+{ #category : 'system' }
 LcsApplicationEnvironment >> suspendCurrentSystem [
 	^ self systemsManager suspendCurrentSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment >> systemsManager [
 	^ systemsManager
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment >> systemsManager: anObject [
 	systemsManager := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment >> unitsOfWorkManager [
 	^ unitsOfWorkManager
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironment >> unitsOfWorkManager: anObject [
 	unitsOfWorkManager := anObject
 ]

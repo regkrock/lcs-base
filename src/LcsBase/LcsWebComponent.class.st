@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsWebComponent,
-	#superclass : #WAComponent,
-	#category : #'LcsBase-Core'
+	#name : 'LcsWebComponent',
+	#superclass : 'WAComponent',
+	#category : 'LcsBase-Core',
+	#package : 'LcsBase',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWebComponent >> components [
 	^ components
 ]

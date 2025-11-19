@@ -1,39 +1,41 @@
 Class {
-	#name : #LcsApplicationEnvironmentSuspendedStatus,
-	#superclass : #LcsBaseApplicationEnvironmentStatus,
+	#name : 'LcsApplicationEnvironmentSuspendedStatus',
+	#superclass : 'LcsBaseApplicationEnvironmentStatus',
 	#instVars : [
 		'suspendedSystem'
 	],
-	#category : #'Lcs-SystemManagement-Environment'
+	#category : 'Lcs-SystemManagement-Environment',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Environment'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentSuspendedStatus >> gtLiveBackground [
 	^ BrGlamorousColors newsBackgroundColor
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironmentSuspendedStatus >> isInSuspendedStatus [
 	^ true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsApplicationEnvironmentSuspendedStatus >> restoreApplicationEnvironment [
 	self parent makeSystemCurrent: self suspendedSystem.
 	self parent status: (LcsApplicationEnvironmentActiveStatus newOn: self parent)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentSuspendedStatus >> statusName [
 	^ 'Suspended' translated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentSuspendedStatus >> suspendedSystem [
 	^ suspendedSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentSuspendedStatus >> suspendedSystem: anObject [
 	suspendedSystem := anObject
 ]

@@ -1,80 +1,82 @@
 Class {
-	#name : #LcsMissingSlotDefinitionViewItem,
-	#superclass : #LcsAccessorSlotDefinitionViewItem,
+	#name : 'LcsMissingSlotDefinitionViewItem',
+	#superclass : 'LcsAccessorSlotDefinitionViewItem',
 	#instVars : [
 		'domainClass'
 	],
-	#category : #'Lcs-SystemManagement-Core'
+	#category : 'Lcs-SystemManagement-Core',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsMissingSlotDefinitionViewItem class >> on: anInstVarName domainClass: aClass [
 	^ self new 
 		initializeOn: anInstVarName domainClass: aClass;
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsMissingSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMissingSlotDefinitionViewItem >> domainClass [
 	^ domainClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMissingSlotDefinitionViewItem >> domainClass: anObject [
 	domainClass := anObject
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsMissingSlotDefinitionViewItem >> getterSelector [
 	^ ''
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsMissingSlotDefinitionViewItem >> initializeOn: aSlotDefinition [ 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsMissingSlotDefinitionViewItem >> initializeOn: anInstVarName domainClass: aClass [ 
 	self instVarName: anInstVarName.
 	self domainClass: aClass
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsMissingSlotDefinitionViewItem >> priority [
 	^ ''
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsMissingSlotDefinitionViewItem >> remove [
 	self domainClass removeDomainSlotNamed: self instVarName
 ]
 
-{ #category : #askingg }
+{ #category : 'askingg' }
 LcsMissingSlotDefinitionViewItem >> setterSelector [
 	^ ''
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsMissingSlotDefinitionViewItem >> slotDefinitionInformation [
 	^ self
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsMissingSlotDefinitionViewItem >> slotKind [
 	^ ''
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsMissingSlotDefinitionViewItem >> slotName [
 	^ 'missing'
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsMissingSlotDefinitionViewItem >> slotTypesList [
 	^ ''
 ]

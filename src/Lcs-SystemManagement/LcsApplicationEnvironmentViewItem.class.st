@@ -1,25 +1,27 @@
 Class {
-	#name : #LcsApplicationEnvironmentViewItem,
-	#superclass : #LcsViewItem,
+	#name : 'LcsApplicationEnvironmentViewItem',
+	#superclass : 'LcsViewItem',
 	#instVars : [
 		'context'
 	],
-	#category : #'Lcs-SystemManagement-View'
+	#category : 'Lcs-SystemManagement-View',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'View'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsApplicationEnvironmentViewItem class >> defaultChildrenSelector [
 	^ #applicationEnvironmentViewChildren
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsApplicationEnvironmentViewItem class >> newOn: anObject label: aLabel item: anItem [ 
 	^ self new
 		initializeOn: anObject label: aLabel item: anItem;
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> activateSuspendSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -29,17 +31,17 @@ LcsApplicationEnvironmentViewItem >> activateSuspendSystemButton [
 			aButton phlow fireViewUpdateWish ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentViewItem >> context [
 	^ context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentViewItem >> context: anObject [ 
 	context := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> debugSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -53,7 +55,7 @@ LcsApplicationEnvironmentViewItem >> debugSystemButton [
 				debug: (ReadStream on: 'self item new') ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: anItem [ 
 	self
 		context: anObject;
@@ -61,19 +63,19 @@ LcsApplicationEnvironmentViewItem >> initializeOn: anObject label: aLabel item: 
 		item: anItem
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> isInstantiatedSystem [
 	(self item respondsTo: #isApplicationSystem) ifFalse: [ ^ false ].
 	^ self item isApplicationSystem
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsApplicationEnvironmentViewItem >> isSystemClass [
 	self item isClass ifFalse: [ ^ false ].
 	^self item isApplicationSystemClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsApplicationEnvironmentViewItem >> itemChildren: anItemChildrenSelector [
 	self label = 'Available Systems'
 		ifTrue: [ 
@@ -81,7 +83,7 @@ LcsApplicationEnvironmentViewItem >> itemChildren: anItemChildrenSelector [
 	^ super itemChildren: anItemChildrenSelector
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> startNewSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -89,7 +91,7 @@ LcsApplicationEnvironmentViewItem >> startNewSystemButton [
 		action: [ :aButton | self item new ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> startStopApplicationEnvironmentButton [
 	^ self item == true
 		ifTrue: [ BrButton new
@@ -102,7 +104,7 @@ LcsApplicationEnvironmentViewItem >> startStopApplicationEnvironmentButton [
 				action: [ :aButton | LcsApplicationEnvironment initializeApplicationEnvironment ] ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> startSuspendSystemButton [
 	self isSystemClass ifTrue: [ ^ self startSystemButton ].
 	self isInstantiatedSystem ifTrue: [ ^ self activateSuspendSystemButton ].
@@ -110,7 +112,7 @@ LcsApplicationEnvironmentViewItem >> startSuspendSystemButton [
 	^ BrButton new
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> startSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;
@@ -120,13 +122,13 @@ LcsApplicationEnvironmentViewItem >> startSystemButton [
 			aButton phlow fireViewUpdateWish ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> stopButton [
 	self isInstantiatedSystem ifTrue: [ ^ self stopSystemButton ].
 	^ BrButton new
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsApplicationEnvironmentViewItem >> stopSystemButton [
 	^ BrButton new
 		aptitude: BrGlamorousButtonWithLabelAptitude new;

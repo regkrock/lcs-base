@@ -1,19 +1,20 @@
 Class {
-	#name : #LcsCodeBuilderTreeView,
-	#superclass : #Object,
+	#name : 'LcsCodeBuilderTreeView',
+	#superclass : 'Object',
 	#instVars : [
 		'parent'
 	],
-	#category : #'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools',
+	#package : 'Lcs-SlotTools'
 }
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsCodeBuilderTreeView class >> newPaintTreeOn: aMondrian context: anObject [ 
 	self new
 		paintTreeOn: aMondrian context: anObject 
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsCodeBuilderTreeView >> jobStepPane: aJobStep [ 
 	^ BrVerticalPane new
 		fitContent;
@@ -27,7 +28,7 @@ LcsCodeBuilderTreeView >> jobStepPane: aJobStep [
 				aptitude: BrGlamorousLabelAptitude new)
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsCodeBuilderTreeView >> jobStepPaneAssociation [
 	^ BlParabollaArcElement new
 		zIndex: 0;
@@ -40,7 +41,7 @@ LcsCodeBuilderTreeView >> jobStepPaneAssociation [
 						build))
 ]
 
-{ #category : #'gt view' }
+{ #category : 'gt view' }
 LcsCodeBuilderTreeView >> paintTreeOn: aMondrian context: aBuilder [
 	aBuilder
 		withDeep: [ :each | each jobSteps collect: [ :eachStep | eachStep ] ]
@@ -61,12 +62,12 @@ LcsCodeBuilderTreeView >> paintTreeOn: aMondrian context: aBuilder [
 	^ aMondrian
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderTreeView >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderTreeView >> parent: anObject [
 	parent := anObject
 ]

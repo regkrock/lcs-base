@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsLocalCollectionItem,
-	#superclass : #LcsViewItem,
-	#category : #'Lcs-SystemManagement-Core'
+	#name : 'LcsLocalCollectionItem',
+	#superclass : 'LcsViewItem',
+	#category : 'Lcs-SystemManagement-Core',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Core'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsLocalCollectionItem class >> defaultChildrenSelector [
 	^ #localCollections
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsLocalCollectionItem >> collectionSize [
 	(self item class inheritsFrom: LcsDomainCollection)
 			ifTrue: [ ^ self item collectionSize ].
@@ -17,12 +19,12 @@ LcsLocalCollectionItem >> collectionSize [
 	 ^ self item size 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocalCollectionItem >> numberOfPendingAdds [
 	^ (self currentSystem unitOfWork pendingAddsFor: self) size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocalCollectionItem >> numberOfPendingRemovals [
 	"^ self currentSystem currentUnitOfWork pendingRemovalsFor: self."
 	^ 0
