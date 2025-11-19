@@ -49,7 +49,10 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 
 	aPropertyName = 'postUpdateActions' ifTrue: [ 
 		^ self addPostUpdateActionsKeyword: aPropertyName argument: aValue to: aStream ].		
-		
+
+	aPropertyName = 'valueAccessor' ifTrue: [ 
+		^ aStream addKeyword: aPropertyName symbolArgument: aValue ].		
+				
 	aValue isString
 		ifFalse: [ ^ aStream addKeyword: aPropertyName argument: aValue asString ].
 

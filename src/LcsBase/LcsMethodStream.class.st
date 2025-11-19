@@ -33,6 +33,15 @@ LcsMethodStream >> addKeyword: aKeyword argument: aString keyword: aKeyword2 arg
 ]
 
 { #category : 'building' }
+LcsMethodStream >> addKeyword: aKeyword symbolArgument: aString [
+	self newLine
+		nextPutAll: aKeyword;
+		nextPutAll: ': #';
+		nextPutAll: aString;
+		nextPutAll: ';'
+]
+
+{ #category : 'building' }
 LcsMethodStream >> addKeyword: aKeyword withRenderedAction: anAction [
 	self newLine
 		nextPutAll: aKeyword;
@@ -154,7 +163,10 @@ LcsMethodStream >> startMethodSource: aSelector [
 { #category : 'building' }
 LcsMethodStream >> startSlotDefintionSource: aSelector pragmaName: aString [
 	self startMethodSource: aSelector.
-	self newLine nextPutAll: aString.
+	self newLine 
+		nextPutAll: '<';
+		nextPutAll: aString;
+		nextPutAll: '>'.
 ]
 
 { #category : 'accessing' }

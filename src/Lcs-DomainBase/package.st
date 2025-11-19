@@ -1,1 +1,1 @@
-Package { #name : #'Lcs-DomainBase' }
+Package { #name : 'Lcs-DomainBase' }

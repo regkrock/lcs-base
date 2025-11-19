@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsModuleBuilderForm,
-	#superclass : #LcsBaseSlotCreationForm,
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#name : 'LcsModuleBuilderForm',
+	#superclass : 'LcsBaseSlotCreationForm',
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsModuleBuilderForm class >> builderClass [
 	^ LcsModuleBuilderJob
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsModuleBuilderForm >> classNamePrefixDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -26,7 +28,7 @@ LcsModuleBuilderForm >> classNamePrefixDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsModuleBuilderForm >> classRootNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -43,7 +45,7 @@ LcsModuleBuilderForm >> classRootNameDescription [
 		beRequired
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsModuleBuilderForm >> decorateTargetClassDescription: aMgritteDescription [ 
 	aMgritteDescription
 		addCondition: [ :aValue | 
@@ -54,7 +56,7 @@ LcsModuleBuilderForm >> decorateTargetClassDescription: aMgritteDescription [
 			labelled: 'Must be a subclass of LcsModule'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModuleBuilderForm >> initializeOn: aTarget [
 	self targetClass: (aTarget isClass ifTrue: [ aTarget ] ifFalse: [ aTarget class ]).
 	self targetClassName: self targetClass name asString.
@@ -63,12 +65,12 @@ LcsModuleBuilderForm >> initializeOn: aTarget [
 	self slotModelBuilder owningModule: self targetClass
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsModuleBuilderForm >> isSlotModelBuilderNotReified [
 	^ self slotModelBuilder class = self builderClass
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsModuleBuilderForm >> moduleNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -83,18 +85,18 @@ LcsModuleBuilderForm >> moduleNameDescription [
 		beRequired
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsModuleBuilderForm >> targetClassLabel [
 	^'Install Submodule in:'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModuleBuilderForm >> targetClassNameChangedTo: aString [
 	super targetClassNameChangedTo: aString.
 	self slotModelBuilder owningModule: ([ aString asClass ] on: NotFound do: [ :s | s return: nil ])
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsModuleBuilderForm >> targetPackageNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -109,7 +111,7 @@ LcsModuleBuilderForm >> targetPackageNameDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsModuleBuilderForm >> targetPackageTagNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new

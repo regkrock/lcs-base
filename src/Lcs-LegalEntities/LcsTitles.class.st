@@ -1,5 +1,6 @@
 Class {
-	#name : #LcsTitles,
-	#superclass : #LcsValueObjects,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsTitles',
+	#superclass : 'LcsValueObjects',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }

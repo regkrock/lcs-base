@@ -1,24 +1,26 @@
 Class {
-	#name : #LcsPersonTest,
-	#superclass : #LcsDemoSystemRunningTestCase,
-	#category : #'Lcs-LegalEntitiesTests-Tests'
+	#name : 'LcsPersonTest',
+	#superclass : 'LcsDemoSystemRunningTestCase',
+	#category : 'Lcs-LegalEntitiesTests-Tests',
+	#package : 'Lcs-LegalEntitiesTests',
+	#tag : 'Tests'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 LcsPersonTest >> testPersonWithInvalidBirthdate [
 	| person |
 	person := LcsPerson new.
 	self should: [ person dateOfBirth: '01-01-1000xxxxxx' ] raise: LcsSlotValidationError
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsPersonTest >> testPersonWithVeryOldBirthdate [
 	| person |
 	person := LcsPerson new.
 	self should: [ person dateOfBirth: '01-01-1000' ] raise: LcsSlotValidationError
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsPersonTest >> testSlotValidationError [
 	| person error |
 	person := LcsPerson new.

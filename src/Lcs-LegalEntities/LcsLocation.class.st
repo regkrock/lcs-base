@@ -1,20 +1,21 @@
 Class {
-	#name : #LcsLocation,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsLocation',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'locationName',
 		'address'
 	],
-	#category : #'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLocation class >> addressSlotDefinition [
 	<slotDefinition>
 	^ LcsAddressSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLocation class >> locationNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -22,22 +23,22 @@ LcsLocation class >> locationNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocation >> address [
 	^ self slotVarNamed: 'address'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocation >> address: anObject [ 
 	self slotVarNamed: 'address' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocation >> locationName [
 	^ self slotVarNamed: 'locationName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLocation >> locationName: anObject [ 
 	self slotVarNamed: 'locationName' put: anObject
 ]

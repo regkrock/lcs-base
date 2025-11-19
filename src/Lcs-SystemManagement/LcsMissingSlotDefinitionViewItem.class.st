@@ -4,9 +4,9 @@ Class {
 	#instVars : [
 		'domainClass'
 	],
-	#category : 'Lcs-SystemManagement-Core',
+	#category : 'Lcs-SystemManagement-View',
 	#package : 'Lcs-SystemManagement',
-	#tag : 'Core'
+	#tag : 'View'
 }
 
 { #category : 'instance creation' }

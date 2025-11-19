@@ -1,34 +1,36 @@
 Class {
-	#name : #LcsSystemSuspendedStatus,
-	#superclass : #LcsBaseSystemStatus,
-	#category : #'Lcs-DomainBase-Core'
+	#name : 'LcsSystemSuspendedStatus',
+	#superclass : 'LcsBaseSystemStatus',
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystemSuspendedStatus >> isInSuspendedStatus [
 	^ true
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsSystemSuspendedStatus >> restoreSystem [
 	self privateParent _restoreSystem
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSystemSuspendedStatus >> statusName [
 	^ 'Suspended' translated
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsSystemSuspendedStatus >> suspendedSystem [
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSystemSuspendedStatus >> toggleActionButtonLabel [
 	^ 'Activate'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsSystemSuspendedStatus >> toggleStatus [
 	self restoreSystem
 ]

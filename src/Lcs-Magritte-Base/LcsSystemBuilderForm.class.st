@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsSystemBuilderForm,
-	#superclass : #LcsBaseSlotCreationForm,
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#name : 'LcsSystemBuilderForm',
+	#superclass : 'LcsBaseSlotCreationForm',
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSystemBuilderForm class >> builderClass [
 	^ LcsSystemBuilderJob
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsSystemBuilderForm >> classNamePrefixDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -26,7 +28,7 @@ LcsSystemBuilderForm >> classNamePrefixDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsSystemBuilderForm >> classRootNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -43,7 +45,7 @@ LcsSystemBuilderForm >> classRootNameDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsSystemBuilderForm >> decorateTargetClassDescription: aMgritteDescription [ 
 	aMgritteDescription
 		addCondition: [ :aValue | | aClass | 
@@ -54,7 +56,7 @@ LcsSystemBuilderForm >> decorateTargetClassDescription: aMgritteDescription [
 			labelled: 'Must be a LcsSystem or a subclass of LcsSystem'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystemBuilderForm >> initializeOn: aTarget [
 	self targetClass: (aTarget isClass ifTrue: [ aTarget ] ifFalse: [ aTarget class ]).
 	self targetClassName: self targetClass name asString.
@@ -62,12 +64,12 @@ LcsSystemBuilderForm >> initializeOn: aTarget [
 	self slotModelBuilder targetPackageTagName: ''
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystemBuilderForm >> isSlotModelBuilderNotReified [
 	^ self slotModelBuilder class = self builderClass
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsSystemBuilderForm >> moduleNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -82,12 +84,12 @@ LcsSystemBuilderForm >> moduleNameDescription [
 		beRequired
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsSystemBuilderForm >> targetClassLabel [
 	^'New System is subclass of'
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsSystemBuilderForm >> targetPackageNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -102,7 +104,7 @@ LcsSystemBuilderForm >> targetPackageNameDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsSystemBuilderForm >> targetPackageTagNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new

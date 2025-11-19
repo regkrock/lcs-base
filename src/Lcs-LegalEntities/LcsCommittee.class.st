@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsCommittee,
-	#superclass : #LcsOrganization,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsCommittee',
+	#superclass : 'LcsOrganization',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCommittee class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionReferenceSlot new

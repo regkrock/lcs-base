@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsMultislotPatternForm,
-	#superclass : #LcsBaseSlotCreationForm,
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#name : 'LcsMultislotPatternForm',
+	#superclass : 'LcsBaseSlotCreationForm',
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsMultislotPatternForm class >> builderClass [
 	self subclassResponsibility
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsMultislotPatternForm >> classNamePrefixDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -26,7 +28,7 @@ LcsMultislotPatternForm >> classNamePrefixDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsMultislotPatternForm >> classRootNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -43,7 +45,7 @@ LcsMultislotPatternForm >> classRootNameDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsMultislotPatternForm >> domainInstanceSlotNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -56,12 +58,12 @@ LcsMultislotPatternForm >> domainInstanceSlotNameDescription [
 		comment: 'Use this name rather than the ''standard'' slot name. Example: #mainAddress rather than #address'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsMultislotPatternForm >> isSlotModelBuilderNotReified [
 	^ self slotModelBuilder class = self builderClass
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsMultislotPatternForm >> targetDomainClassesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
@@ -93,7 +95,7 @@ LcsMultislotPatternForm >> targetDomainClassesDescription [
 
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsMultislotPatternForm >> targetPackageNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -108,7 +110,7 @@ LcsMultislotPatternForm >> targetPackageNameDescription [
 		beRequired
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsMultislotPatternForm >> targetPackageTagNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new

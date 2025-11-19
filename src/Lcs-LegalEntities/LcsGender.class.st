@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsGender,
-	#superclass : #LcsSingletonValueObject,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsGender',
+	#superclass : 'LcsSingletonValueObject',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsGender class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new

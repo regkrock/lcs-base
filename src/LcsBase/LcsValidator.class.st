@@ -7,9 +7,9 @@ Class {
 		'validationIssues',
 		'visitationStack'
 	],
-	#category : 'LcsBase-Core',
+	#category : 'LcsBase-Support',
 	#package : 'LcsBase',
-	#tag : 'Core'
+	#tag : 'Support'
 }
 
 { #category : 'validation' }

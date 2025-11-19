@@ -1,25 +1,26 @@
 Class {
-	#name : #LcsUnknownGender,
-	#superclass : #LcsGender,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsUnknownGender',
+	#superclass : 'LcsGender',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUnknownGender class >> defaultCode [
 	^ 'unknownGender'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUnknownGender class >> defaultDescription [
 	^ 'UnknownGender'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUnknownGender class >> defaultInstance [
 	^ true
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsUnknownGender class >> defaultLabel [
 	^ 'UnknownGender'
 ]

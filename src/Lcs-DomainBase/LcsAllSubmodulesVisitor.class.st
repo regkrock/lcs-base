@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsAllSubmodulesVisitor,
-	#superclass : #LcsObject,
+	#name : 'LcsAllSubmodulesVisitor',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'visited',
 		'submodules',
@@ -8,27 +8,29 @@ Class {
 		'potentialModules',
 		'collectionPolicy'
 	],
-	#category : #'Lcs-DomainBase-Core'
+	#category : 'Lcs-DomainBase-Support',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsAllSubmodulesVisitor class >> allSubmodulesFor: aModule [
 	^ (self newOn: aModule) allSubmoduleClasses
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsAllSubmodulesVisitor class >> immediateSubmodulesFor: aModule [
 	^ (self newOn: aModule) immediateSubmoduleClasses
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsAllSubmodulesVisitor class >> newOn: aModule [ 
 	^ self basicNew
 		initializeOn: aModule;
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsAllSubmodulesVisitor >> _submodulesFor: aModuleClass [
 	self potentialModules do: [ :eachClass | 
 		(eachClass isSubmoduleOf: aModuleClass) ifTrue: [ 
@@ -37,50 +39,50 @@ LcsAllSubmodulesVisitor >> _submodulesFor: aModuleClass [
 		self searchForSubmodulesOfFoundSubmodules].
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsAllSubmodulesVisitor >> allSubmoduleClasses [
 	self submodulesFor: self targetModule.
 	^ self submodules
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsAllSubmodulesVisitor >> beCollectAllModules [
 	self collectionPolicy: #all 
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsAllSubmodulesVisitor >> beCollectOnlyImmediateModules [
 	self collectionPolicy: #immediate 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> collectionPolicy [
 	^ collectionPolicy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> collectionPolicy: aString [ 
 	collectionPolicy := aString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsAllSubmodulesVisitor >> hasCollectAllPolicy [
 	^ self collectionPolicy == #all 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsAllSubmodulesVisitor >> hasRecursiveModules [
 	^ self submodules includes: self targetModule
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsAllSubmodulesVisitor >> immediateSubmoduleClasses [
 	self beCollectOnlyImmediateModules.
 	self submodulesFor: self targetModule.
 	^ self submodules
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAllSubmodulesVisitor >> initialize [ 
 	super initialize.
 	self visited: Set new.
@@ -89,23 +91,23 @@ LcsAllSubmodulesVisitor >> initialize [
 	self beCollectAllModules.
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAllSubmodulesVisitor >> initializeOn: aModule [ 
 	self initialize.
 	self targetModule: aModule
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> potentialModules [
 	^ potentialModules
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> potentialModules: anObject [
 	potentialModules := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsAllSubmodulesVisitor >> searchForSubmodulesOfFoundSubmodules [
 	self submodules copy do: [ :eachClass | | visitor |
 		visitor := self copy
@@ -115,27 +117,27 @@ LcsAllSubmodulesVisitor >> searchForSubmodulesOfFoundSubmodules [
 		"(self submodules includes: visitor targetModule) ifTrue: [ visitor signalRecursiveError]" ] 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsAllSubmodulesVisitor >> signalErrorIfRecursiveModulesExist [
 	^ self hasRecursiveModules ifTrue: [ self signalRecursiveError ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsAllSubmodulesVisitor >> signalRecursiveError [
 	LcsModuleHierarchyError signalModuleRecursingToItself: self targetModule name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> submodules [
 	^ submodules
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> submodules: anObject [
 	submodules := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LcsAllSubmodulesVisitor >> submodulesFor: aModuleClass [
 	(self visited includes: aModuleClass) ifTrue: [ ^ self ].
 	self visited add: aModuleClass.
@@ -143,22 +145,22 @@ LcsAllSubmodulesVisitor >> submodulesFor: aModuleClass [
 	self hasRecursiveModules ifTrue: [ self signalRecursiveError ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> targetModule [
 	^ targetModule
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> targetModule: aModule [ 
 	targetModule := aModule
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> visited [
 	^ visited
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAllSubmodulesVisitor >> visited: anObject [
 	visited := anObject
 ]

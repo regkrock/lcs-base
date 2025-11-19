@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsPersonExamples,
-	#superclass : #LcsObjectExamples,
-	#category : #'Lcs-LegalEntitiesTests-Examples'
+	#name : 'LcsPersonExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-LegalEntitiesTests-Examples',
+	#package : 'Lcs-LegalEntitiesTests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsPersonExamples >> johnFreeman [
 	<gtExample>
 	| person |
@@ -31,7 +33,7 @@ LcsPersonExamples >> johnFreeman [
 	^ person
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsPersonExamples >> johnFreemanHomeEmail [
 	<gtExample>
 	^ LcsEmailAddress new
@@ -40,7 +42,7 @@ LcsPersonExamples >> johnFreemanHomeEmail [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsPersonExamples >> johnFreemanWithAddress [
 	<gtExample>
 	| person |
@@ -72,14 +74,33 @@ LcsPersonExamples >> johnFreemanWithAddress [
 	^ person
 ]
 
-{ #category : #examples }
-LcsPersonExamples >> johnFreemanWithEmailAddress [
+{ #category : 'examples' }
+LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	<gtExample>
-	| person aHomeEmail |
+	| person aHomeEmail aWorkEmail originalPendingAddSize |
+	originalPendingAddSize := self currentSystem legalEntitiesModule emailAddresses pendingAdds size.
 	person := self johnFreeman.
 	self assert: person emailAddresses hasNoElements.
-	self assert: person homeEmailAddress equals: person emailAddresses defaultInstance.
+	self
+		assert: person homeEmailAddress
+		equals: person emailAddresses defaultInstance.
 	person homeEmailAddress: (aHomeEmail := self johnFreemanHomeEmail).
-	self assert: person homeEmailAddress = aHomeEmail.
+	self assert: person homeEmailAddress equals: aHomeEmail.
+	self assert: person emailAddresses pendingAdds size equals: 1.
+	person workEmailAddress: (aWorkEmail := self johnFreemanWorkEmail).
+	self assert: person workEmailAddress equals: aWorkEmail.
+	self assert: person emailAddresses pendingAdds size equals: 2.
+	self
+		assert: self currentSystem legalEntitiesModule emailAddresses pendingAdds size
+		equals: originalPendingAddSize + 2.
 	^ person
+]
+
+{ #category : 'examples' }
+LcsPersonExamples >> johnFreemanWorkEmail [
+	<gtExample>
+	^ LcsEmailAddress new
+		emailAddressType: 'work';
+		email: 'johnfreemanWork@gmail.com';
+		yourself
 ]

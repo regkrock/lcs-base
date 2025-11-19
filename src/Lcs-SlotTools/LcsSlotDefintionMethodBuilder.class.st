@@ -2,7 +2,7 @@ Class {
 	#name : 'LcsSlotDefintionMethodBuilder',
 	#superclass : 'LcsSlotDetailBuilder',
 	#instVars : [
-		'slotCategory'
+		'slotPragmaName'
 	],
 	#category : 'Lcs-SlotTools',
 	#package : 'Lcs-SlotTools'
@@ -111,7 +111,12 @@ LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
 
 { #category : 'command' }
 LcsSlotDefintionMethodBuilder >> beFacadeSlot [
-	self slotCategory: '<facadeSlotDefinition>'
+	self slotPragmaName: 'facadeSlotDefinition'
+]
+
+{ #category : 'command' }
+LcsSlotDefintionMethodBuilder >> beVirtualSlot [
+	self slotPragmaName: 'virtualSlotDefinition'
 ]
 
 { #category : 'verification' }
@@ -173,7 +178,7 @@ LcsSlotDefintionMethodBuilder >> hasNoSlotTypes [
 { #category : 'initialize' }
 LcsSlotDefintionMethodBuilder >> initialize [
 	super initialize.
-	self slotCategory: '<slotDefinition>'
+	self slotPragmaName: 'slotDefinition'
 ]
 
 { #category : 'instance  creation' }
@@ -223,11 +228,6 @@ LcsSlotDefintionMethodBuilder >> required: aBoolean [
 	self properties at: 'required' put: aBoolean
 ]
 
-{ #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> slotCategory: aString [
-	slotCategory := aString
-]
-
 { #category : 'testing' }
 LcsSlotDefintionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
 	^ self slotClass notNil
@@ -254,7 +254,12 @@ LcsSlotDefintionMethodBuilder >> slotNameDisplayString [
 
 { #category : 'accessing' }
 LcsSlotDefintionMethodBuilder >> slotPragmaName [
-	^ slotCategory
+	^ slotPragmaName
+]
+
+{ #category : 'accessing' }
+LcsSlotDefintionMethodBuilder >> slotPragmaName: aString [
+	slotPragmaName := aString
 ]
 
 { #category : 'property' }

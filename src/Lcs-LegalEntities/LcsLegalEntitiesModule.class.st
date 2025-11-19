@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsLegalEntitiesModule,
-	#superclass : #LcsModule,
+	#name : 'LcsLegalEntitiesModule',
+	#superclass : 'LcsModule',
 	#instVars : [
 		'persons',
 		'organizations',
@@ -11,10 +11,11 @@ Class {
 		'emailAddresses',
 		'emailAddressTypes'
 	],
-	#category : #'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
@@ -22,12 +23,12 @@ LcsLegalEntitiesModule class >> configurationSlotDefinition [
 			yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLegalEntitiesModule class >> defaultModuleName [
 	^ 'Legal Entities Module'
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> emailAddressTypesSlotDefinition [
 	<slotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
@@ -39,7 +40,7 @@ LcsLegalEntitiesModule class >> emailAddressTypesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> emailAddressesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -49,7 +50,7 @@ LcsLegalEntitiesModule class >> emailAddressesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> gendersSlotDefinition [
 	<slotDefinition>
 	^ LcsSingletonValueObjectsGlobalCollectionSlot new
@@ -60,12 +61,12 @@ LcsLegalEntitiesModule class >> gendersSlotDefinition [
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLegalEntitiesModule class >> moduleConfigurationClass [
 	^ LcsLegalEntitiesModuleConfiguration
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -76,14 +77,14 @@ LcsLegalEntitiesModule class >> organizationsSlotDefinition [
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLegalEntitiesModule class >> owningModules [
 	<owningModule: 'LcsDemoSystem' priority: 10>
 	<owningModule: 'LcsWarRabbitLibrary' priority: 10>
 	<owningModule: 'LcsSailingClubSystem' priority: 10>
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> personsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -94,7 +95,7 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> phoneNumberTypesSlotDefinition [
 	<slotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
@@ -106,7 +107,7 @@ LcsLegalEntitiesModule class >> phoneNumberTypesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> phoneNumbersSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -116,7 +117,7 @@ LcsLegalEntitiesModule class >> phoneNumbersSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> titlesSlotDefinition [
 	<slotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
@@ -128,82 +129,82 @@ LcsLegalEntitiesModule class >> titlesSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> emailAddressTypes [
 	^ self slotVarNamed: 'emailAddressTypes'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> emailAddressTypes: anObject [
 	self slotVarNamed: 'emailAddressTypes' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> emailAddresses [
 	^ self slotVarNamed: 'emailAddresses'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> emailAddresses: anObject [
 	self slotVarNamed: 'emailAddresses' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> genders [
 	^ self slotVarNamed: 'genders'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> genders: anObject [
 	self slotVarNamed: 'genders' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> organizations [
 	^ self slotVarNamed: 'organizations'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> organizations: anObject [
 	self slotVarNamed: 'organizations' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> persons [
 	^ self slotVarNamed: 'persons'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> persons: anObject [
 	self slotVarNamed: 'persons' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> phoneNumberTypes [
 	^ self slotVarNamed: 'phoneNumberTypes'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> phoneNumberTypes: anObject [
 	self slotVarNamed: 'phoneNumberTypes' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> phoneNumbers [
 	^ self slotVarNamed: 'phoneNumbers'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> phoneNumbers: anObject [
 	self slotVarNamed: 'phoneNumbers' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> titles [
 	^ self slotVarNamed: 'titles'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntitiesModule >> titles: anObject [
 	self slotVarNamed: 'titles' put: anObject
 ]

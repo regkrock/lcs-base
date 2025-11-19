@@ -99,7 +99,7 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 		priority: 18;
 		items: [ self slotDefinitionViewItems ];
 		column: 'Slot' text: [ :each | each slotName ] width: 100;
-		column: 'Kind' text: [ :each | each slotPragmaName ] width: 70;
+		column: 'Kind' text: [ :each | each slotKind ] width: 70;
 		column: 'InstVar' text: [ :each | each instVarName ] width: 100;
 		column: 'Getter' text: [ :each | each getterSelector ] width: 100;
 		column: 'Setter' text: [ :each | each setterSelector ] width: 100;
@@ -139,19 +139,32 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
-	self slotModel ifNil: [ 
-		^ aView list
-			title: 'Slot Model';
-			priority: 10;
-			items: [ Array with: 'Not initialized' ];
-			yourself].	
+	self currentSystem
+		ifNil: [ ^ aView list
+				title: 'Slot Model';
+				priority: 10;
+				items: [ Array with: 'System not initialized' ];
+				yourself ].
+
+	self slotModel
+		ifNil: [ ^ aView list
+				title: 'Slot Model';
+				priority: 10;
+				items: [ Array with: 'Slot model not initialized' ];
+				actionButtonIcon: BrGlamorousVectorIcons play
+					tooltip: 'Initialize Slot Model'
+					action: [ :aButton :aTab | 
+						self initializeSlotModel.
+						aButton phlow fireViewUpdateWish ];
+				actionUpdateButton;
+				yourself ].
+				
 	^ aView forward
 		title: 'Slot Model';
 		priority: 10;
 		object: [ self slotModel ];
 		view: #gtViewSlotModelFor:;
 		yourself
-		
 ]
 
 { #category : 'testing' }

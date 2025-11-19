@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsSystemSlotModel,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsSystemSlotModel',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'slotModels'
 	],
-	#category : #'Lcs-DomainBase-Core'
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSystemSlotModel class >> newOn: aSystem [ 
 	^ self new
 		parent: aSystem;
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystemSlotModel class >> slotModelsSlotDefinition [
 	<slotDefinition>
 	^ LcsIdentityDictionarySlot new
@@ -22,12 +24,12 @@ LcsSystemSlotModel class >> slotModelsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystemSlotModel >> addToSlotModel: aSlotModel [
 	self slotModels at: aSlotModel parent put: aSlotModel
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSystemSlotModel >> gtSystemSlotModelFor: aView [
 	<gtView>
 	self slotModels ifEmpty: [ ^ aView empty ].
@@ -45,7 +47,7 @@ LcsSystemSlotModel >> gtSystemSlotModelFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSystemSlotModel >> gtViewSlotModelChildren [
 	| children |
 	children := OrderedCollection new.
@@ -54,61 +56,61 @@ LcsSystemSlotModel >> gtViewSlotModelChildren [
 	^ children
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystemSlotModel >> hasSlotModelFor: aDomainObject [
 	^ self hasSlotModelForClass: aDomainObject class
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystemSlotModel >> hasSlotModelForClass: aDomainClass [
 	self slotModels at: aDomainClass ifAbsent: [ ^ false ].
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystemSlotModel >> hasSlotModels [
 	^ self slotModels notEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystemSlotModel >> includes: anObject [
 	^ self slotModels includes: anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystemSlotModel >> initialize [
 	super initialize.
 	self slotModels: LcsSmalltalkConfiguration identityDictionaryClass new
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystemSlotModel >> removeClassFromSlotModel: aDomainClass [
 	self slotModels removeKey: aDomainClass ifAbsent: [ ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystemSlotModel >> removeFromSlotModel: aSlotModel [
 	self slotModels removeKey: aSlotModel parent ifAbsent: [ ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystemSlotModel >> restoreSlotModel [
 	LcsBaseDomainObject releaseApplicationEnvironment.
 	self slotModels keysAndValuesDo: [ :eachDomainClass :eachSlotModel | eachDomainClass slotModel: eachSlotModel ]
 
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 LcsSystemSlotModel >> size [
 	^ self slotModels size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystemSlotModel >> slotModels [
 	^ slotModels
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystemSlotModel >> slotModels: anObject [
 	slotModels := anObject
 ]

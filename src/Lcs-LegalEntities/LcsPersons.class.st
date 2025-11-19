@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsPersons,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsPersons',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #queries }
+{ #category : 'queries' }
 LcsPersons >> defaultInstance [
 	^ self currentSystem legalEntitiesModule configuration unknownPerson
 ]

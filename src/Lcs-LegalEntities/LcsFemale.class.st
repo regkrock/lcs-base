@@ -1,25 +1,26 @@
 Class {
-	#name : #LcsFemale,
-	#superclass : #LcsGender,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsFemale',
+	#superclass : 'LcsGender',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsFemale class >> defaultCode [
 	^ 'female'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsFemale class >> defaultDescription [
 	^ 'Female'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsFemale class >> defaultInstance [
 	^ false
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LcsFemale class >> defaultLabel [
 	^ 'Female'
 ]

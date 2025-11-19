@@ -2,7 +2,8 @@ Class {
 	#name : 'LcsVirtualSlot',
 	#superclass : 'LcsBaseSlot',
 	#instVars : [
-		'valueAccessBlock'
+		'valueAccessBlock',
+		'valueAccessor'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -16,12 +17,12 @@ LcsVirtualSlot class >> isVirtualSlot [
 
 { #category : 'slot model' }
 LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
-	^ self valueAccessBlock value: aDomainObject
+	^ self valueAccessBlock cull: aDomainObject cull: self
 ]
 
 { #category : 'defaults' }
 LcsVirtualSlot >> defaultValueAccessBlock [
-	[ :domainObject | LcsError signal: 'defaultValueAccessBlock not overriden or not initialized']
+		^ [ :domainObject :slot | domainObject perform: slot valueAccessor ]
 ]
 
 { #category : 'initialize' }
@@ -47,16 +48,16 @@ LcsVirtualSlot >> valueAccessBlock [
 ]
 
 { #category : 'accessing' }
-LcsVirtualSlot >> valueAccessBlock: anObject [
-	valueAccessBlock := anObject
+LcsVirtualSlot >> valueAccessBlock: aBlock [
+	valueAccessBlock := aBlock
 ]
 
-{ #category : 'slot model' }
-LcsVirtualSlot >> valueAccessor: aSelector [
-	self valueAccessBlock: [ :domainObject | domainObject perform: aSelector asSymbol]
+{ #category : 'accessing' }
+LcsVirtualSlot >> valueAccessor [
+	^ valueAccessor
 ]
 
-{ #category : 'slot model' }
-LcsVirtualSlot >> valueIn: aDomainObject [
-	^ self valueAccessBlock value: aDomainObject
+{ #category : 'accessing' }
+LcsVirtualSlot >> valueAccessor: anObject [
+	valueAccessor := anObject asSymbol
 ]

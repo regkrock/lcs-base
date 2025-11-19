@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsPhoneNumberType,
-	#superclass : #LcsValueObject,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsPhoneNumberType',
+	#superclass : 'LcsValueObject',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsPhoneNumberType class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new

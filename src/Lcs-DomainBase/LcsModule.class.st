@@ -2,30 +2,32 @@
 This application is composed of a System and zero to many mdoules. This is the super class of all system and module classes.
 "
 Class {
-	#name : #LcsModule,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsModule',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'modules',
 		'domainCollections',
 		'configuration',
 		'moduleName'
 	],
-	#category : #'Lcs-DomainBase-Core'
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule class >> allOwnedModuleCandidates [
 	^ self allSubclasses select: [ :eachModuleClass | 
 		eachModuleClass class pragmas anySatisfy: [ :eachPragma | 
 			eachPragma selector = 'owningModule:priority:'] ]
 ]
 
-{ #category : #'system model' }
+{ #category : 'system model' }
 LcsModule class >> allSubmoduleClasses [
 	^ LcsAllSubmodulesVisitor allSubmodulesFor: self
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsModule class >> baseWithNonLxxSubclasses [
 	| classes |
 	classes := (LcsModule withAllSuperclasses , LcsModule withAllSubclasses)
@@ -38,23 +40,23 @@ LcsModule class >> baseWithNonLxxSubclasses [
 	^classes
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
-{ #category : #'slot definitions - support' }
+{ #category : 'slot definitions - support' }
 LcsModule class >> configurationSlotDefinitionOn: aClass [
 	^ LcsModuleConfigurationSlot newOn: aClass
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsModule class >> defaultModuleName [
 	self subclassResponsibility
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsModule class >> domainCollectionsSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -65,7 +67,7 @@ LcsModule class >> domainCollectionsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsModule class >> gtSlotDefinitionMethodFor: aView [
 	<gtView>
 	<gtClassView>
@@ -78,7 +80,7 @@ LcsModule class >> gtSlotDefinitionMethodFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
 	| moduleName |
 	(aPragma selector = 'owningModule:priority:') ifFalse: [ ^ false ].
@@ -86,12 +88,12 @@ LcsModule class >> hasOwningModulePragmaFor: aPragma ownedBy: aModuleClass [
 	^ moduleName = aModuleClass name asString 
 ]
 
-{ #category : #'system model' }
+{ #category : 'system model' }
 LcsModule class >> immediateSubmoduleClasses [
 	^ self immediateSubmoduleClassesOf: self
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsModule class >> immediateSubmoduleClassesOf: aClass [
 	| immediateSubmodulePragmas submoduleClasses |
 	immediateSubmodulePragmas := (Pragma pragmaCache at: 'owningModule:priority:') 
@@ -102,33 +104,33 @@ LcsModule class >> immediateSubmoduleClassesOf: aClass [
 	^ submoduleClasses reject: [ :each | each isObsolete or: [ (each name findString: 'Obsolete') > 0 ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsModule class >> isSubmoduleOf: aModuleClass [
 	self class pragmas do:  [ :eachPragma | 
 		(self hasOwningModulePragmaFor: eachPragma ownedBy: aModuleClass) ifTrue: [ ^true ] ].
 	^ false
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsModule class >> loadPriorityInContextOf: aModuleClassName [
 	^ ((Pragma allNamed: #owningModule:priority: in: self class)
 		detect: [ :each | (each argumentAt: 1) = aModuleClassName ] ifNone: [ ^ 0 ])
 			argumentAt: 2
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule class >> moduleClassNamed: aString [
 	^ self allSubclasses detect: [ :eachClass |
 		eachClass defaultModuleName = aString ]
 		ifNone: []
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsModule class >> moduleConfigurationClass [
 	^ LcsBaseConfiguration
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsModule class >> moduleNameSlotDefinition [
 	<slotDefinition>
 	^ LcsModuleNameSlot new
@@ -136,7 +138,7 @@ LcsModule class >> moduleNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsModule class >> modulesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -147,26 +149,26 @@ LcsModule class >> modulesSlotDefinition [
 		yourself
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> _moduleNamed: aString [
 	self moduleName = aString ifTrue: [ ^ self ].
 	self modules ifNil: [ ^ nil ].
 	^ self modules findModuleNamed: aString
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> allSubmoduleClasses [
 	^ self class allSubmoduleClasses
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsModule >> buildModule: eachModuleClass [ 
 	eachModuleClass hasSlotModel ifFalse: [
 		eachModuleClass initializeSlotModel.].
 	self modules buildModuleFor: eachModuleClass
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsModule >> buildModules [
 	LcsLogger indent.
 	LcsLogger log: 'Building modules: '.
@@ -174,32 +176,32 @@ LcsModule >> buildModules [
 	LcsLogger outdent.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> configuration [
 	^ self slotVarNamed: 'configuration'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> configuration: anObject [
 	self slotVarNamed: 'configuration' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> domainCollections [
 	^ self slotModel globalCollectionSlots collect: [ :each | self perform: each slotName asSymbol ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> domainCollections: anObject [
 	domainCollections := anObject
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> geographyModule [
 	^ self moduleNamed: 'Geography Module'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> globalCollectionItems [
 	self slotModel ifNil: [ ^ OrderedCollection new ].
 	^ self slotModel globalCollectionSlots
@@ -209,7 +211,7 @@ LcsModule >> globalCollectionItems [
 				item: (self perform: eachSlotDefinition slotName asSymbol) ]
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsModule >> gtApplicationModulesFor: aView [
 	<gtView>
 	self slotModel ifNil: [
@@ -232,7 +234,7 @@ LcsModule >> gtApplicationModulesFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsModule >> gtGlobalCollectionsFor: aView [
 	<gtView>
 	 "self domainCollections isEmpty ifTrue: [ ^ aView empty]. "
@@ -292,22 +294,22 @@ LcsModule >> gtGlobalCollectionsFor: aView [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsModule >> hasModules [
 	^ self modules hasElements
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsModule >> hasNoModules [
 	^ self modules hasNoElements
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> immediateSubmoduleClasses [
 	^ self class immediateSubmoduleClasses
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> installModule: aModuleClass [
 
 	"self currentSystem globalCollections remove: aModuleClass ifAbsent: [ ]."
@@ -316,81 +318,81 @@ LcsModule >> installModule: aModuleClass [
 
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> legalEntitiesModule [
 	^ self moduleNamed: 'Legal Entities Module'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModule >> loadData [
 	self loadSingletonCodeCollections
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LcsModule >> loadPriority [
 	^ self class loadPriorityInContextOf: self parentModuleClassName
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsModule >> loadSingletonCodeCollections [
 	"self slotModel loadSingletonCodeCollections.
 	self modules do: [ :eachModule | eachModule loadSingletonCodeCollections ]"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> moduleName [
 	^ self _slotVarNamed: 'moduleName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> moduleName: anObject [
 	self slotVarNamed: 'moduleName' put: anObject
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> moduleNamed: aString [
 	^ (self _moduleNamed: aString)
 		ifNil: [ LcsModuleNotFoundError signal: 'Module not found: ' , aString asString ]
 		ifNotNil: [ :foundModule | foundModule ]
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> moduleViewChildren [
 	self modules ifNil: [ ^#() ].
 	^ self modules moduleViewChildren 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> modules [
 	^ self _slotVarNamed: 'modules'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> modules: anObject [
 	modules := anObject
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> modulesDo: aBlock [ 
 	self modules do: aBlock
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModule >> numberOfChildModules [
 	^ self modules numberOfModules
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> objectId [
 	^ self hash
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsModule >> parentModuleClassName [
 	^ self parent parent class name asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModule >> printOn: aStream [
 	super printOn: aStream.
 	aStream 

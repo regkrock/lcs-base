@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm,
-	#superclass : #LcsMultislotPatternForm,
+	#name : 'LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm',
+	#superclass : 'LcsMultislotPatternForm',
 	#instVars : [
 		'packageAndTagName',
 		'onElementCreated',
 		'slotClassName'
 	],
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm class >> builderClass [
 	^ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternBuilderJob
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> buildUnknownClassDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
@@ -30,14 +32,14 @@ LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> buildUnknownCl
 		beRequired
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> initializeOn: aTarget [
 	super initializeOn: aTarget.
 	self slotModelBuilder collectionSlotInstallationTargetClass: self targetClass.
 
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsGlobalCollectionWithDomainHavingALocalCollectionPatternForm >> targetDomainClassesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new

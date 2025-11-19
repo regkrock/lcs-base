@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsBaseSlotCreationForm,
-	#superclass : #Object,
+	#name : 'LcsBaseSlotCreationForm',
+	#superclass : 'Object',
 	#instVars : [
 		'targetClass',
 		'slotModelBuilder',
@@ -9,29 +9,31 @@ Class {
 		'mode',
 		'targetClassName'
 	],
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBaseSlotCreationForm class >> newOn: aTarget [
 	^ self new
 		initializeOn: aTarget;
 		yourself
 ]
 
-{ #category : #callbacks }
+{ #category : 'callbacks' }
 LcsBaseSlotCreationForm >> buildJobSteps [
 	self slotModelBuilder 
 			initializeJobSteps;
 			buildJobSteps
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsBaseSlotCreationForm >> builderClass [
 	^ self class builderClass
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotCreationForm >> commitSlotBuilderChangesAction [
 	^ GtMagritteAction new
 		beInFutureProcess;
@@ -41,17 +43,17 @@ LcsBaseSlotCreationForm >> commitSlotBuilderChangesAction [
 			aModel buildJobSteps ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlotCreationForm >> decorateTargetClassDescription: magritteDescription [ 
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotCreationForm >> executeModelBuilderJob [
 	self slotModelBuilder execute.
 	"self reinitialize."
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlotCreationForm >> gtConstructionTreeFor: aView [
 	<gtView>
 	^ aView forward
@@ -61,7 +63,7 @@ LcsBaseSlotCreationForm >> gtConstructionTreeFor: aView [
 		view: #gtConstructionTreeFor:
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlotCreationForm >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView forward
@@ -71,7 +73,7 @@ LcsBaseSlotCreationForm >> gtRefactoringChangeOn: aView [
 		view: #gtRefactoringChangeOn:
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlotCreationForm >> gtSlotBuilderFor: aView [
 	<gtView>
 	^ aView forward
@@ -81,7 +83,7 @@ LcsBaseSlotCreationForm >> gtSlotBuilderFor: aView [
 		view: #gtRawFor:
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlotCreationForm >> gtSlotBuilderMetaFor: aView [
 	<gtView>
 	^ aView forward
@@ -91,7 +93,7 @@ LcsBaseSlotCreationForm >> gtSlotBuilderMetaFor: aView [
 		view: #gtMetaFor:
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsBaseSlotCreationForm >> gtUMLFor: aView [
 	<gtView>
 	^ aView forward
@@ -101,25 +103,25 @@ LcsBaseSlotCreationForm >> gtUMLFor: aView [
 		view: #gtUMLFor:
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotCreationForm >> initialize [
 	super initialize.
 	self slotModelBuilder: self builderClass new
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotCreationForm >> initializeOn: aTarget [
 	self targetClass: (aTarget isClass ifTrue: [ aTarget ] ifFalse: [ aTarget class ]).
 	self targetClassName: self targetClass name asString.
 	self slotModelBuilder targetPackageName: self targetClass package name
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsBaseSlotCreationForm >> isSlotModelBuilderNotReified [
 	^ self slotModelBuilder class = LcsCodeBuilderStep
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotCreationForm >> magritteAcceptAction [
 	<magritteActionDescription>
 	^ super magritteAcceptAction
@@ -128,7 +130,7 @@ LcsBaseSlotCreationForm >> magritteAcceptAction [
 		beEnabledOnValidOverallStatus
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotCreationForm >> magritteBuildAction [
 	<magritteActionDescription>
 	"self isSlotModelBuilderNotReified ifTrue: [ ^ nil ]."
@@ -152,7 +154,7 @@ LcsBaseSlotCreationForm >> magritteBuildAction [
 								ifFalse: [ aDescription enabled: aStatus isValidAndInactive ] ])
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotCreationForm >> magritteCancelAction [
 	<magritteActionDescription>
 	^ super magritteCancelAction
@@ -163,7 +165,7 @@ LcsBaseSlotCreationForm >> magritteCancelAction [
 		beAlwaysEnabled
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotCreationForm >> magritteUndoBuildAction [
 	<magritteActionDescription>
 	"self isSlotModelBuilderNotReified ifTrue: [ ^ nil ]."
@@ -187,39 +189,39 @@ LcsBaseSlotCreationForm >> magritteUndoBuildAction [
 								ifFalse: [ aDescription enabled: aStatus isValidAndInactive ] ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> mode [
 	^ mode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> mode: aString [ 
 	mode := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> onAccept [
 
 	^ onAccept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> onAccept: aBlock [
 
 	onAccept := aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> onReset [
 	^ onReset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> onReset: aBlock [
 	onReset := aBlock
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotCreationForm >> reinitialize [
 	| target |
 	target := self targetClass.
@@ -227,17 +229,17 @@ LcsBaseSlotCreationForm >> reinitialize [
 	self initializeOn: target
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> slotModelBuilder [
 	^ slotModelBuilder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> slotModelBuilder: anObject [
 	slotModelBuilder := anObject
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotCreationForm >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
 	^ [ :aMemento :aDescription :aForm | 
 	| aTagger aTaggerAptitude |
@@ -348,17 +350,17 @@ LcsBaseSlotCreationForm >> taggerStencilWithCompletion: aCompletionStrategy andC
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> targetClass [
 	^ targetClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> targetClass: anObject [
 	targetClass := anObject
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsBaseSlotCreationForm >> targetClassDescription [
 	<magritteDescription>
 	| magritteDescription |
@@ -393,38 +395,38 @@ LcsBaseSlotCreationForm >> targetClassDescription [
 	^magritteDescription
 ]
 
-{ #category : #'magritte - support' }
+{ #category : 'magritte - support' }
 LcsBaseSlotCreationForm >> targetClassLabel [
 	^'Install Slot In Domain Class'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> targetClassName [
 	^ targetClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> targetClassName: anObject [
 	targetClassName := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseSlotCreationForm >> targetClassNameChangedTo: aString [
 	self targetClassName: aString.
 	self targetClass:([ aString asClass ] on: NotFound do: [ :s | s return: nil ])
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsBaseSlotCreationForm >> umlModel [
 	^ self slotModelBuilder umlModel
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsBaseSlotCreationForm >> umlModelMondrianView [
 	^ self slotModelBuilder umlModelMondrianView
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsBaseSlotCreationForm >> uninstallModelBuilderJob [
 	self slotModelBuilder uninstall.
 	"self reinitialize."

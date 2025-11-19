@@ -1,28 +1,30 @@
 Class {
-	#name : #LcsValueObject,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsValueObject',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'code',
 		'label',
 		'description',
 		'isDefaultInstance'
 	],
-	#category : #'Lcs-DomainBase-Core'
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsValueObject class >> codeSlotDefinition [
 	<slotDefinition>
 	^ LcsValueCodeSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsValueObject class >> descriptionSlotDefinition [
 	<slotDefinition>
 	^ LcsDescriptionSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsValueObject class >> isDefaultInstanceSlotDefinition [
 	<slotDefinition>
 	^ LcsBooleanSlot new
@@ -30,63 +32,63 @@ LcsValueObject class >> isDefaultInstanceSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsValueObject class >> labelSlotDefinition [
 	<slotDefinition>
 	^ LcsLabelSlot new
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsValueObject class >> securityResourceName [
 	^ 'ValueObject'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> code [
 	^ self slotVarNamed: 'code' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> code: anObject [
 	self slotVarNamed: 'code' put: anObject 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> description [
 	^ self slotVarNamed: 'description' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> description: anObject [
 	self slotVarNamed: 'description' put: anObject 
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsValueObject >> displayString [
 	^ self code asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> isDefaultInstance [
 	^ self slotVarNamed: 'isDefaultInstance' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> isDefaultInstance: anObject [
 	self slotVarNamed: 'isDefaultInstance' put: anObject 
 ]
 
-{ #category : #search }
+{ #category : 'search' }
 LcsValueObject >> key [
 	^ self code
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> label [ 
 	^ self slotVarNamed: 'label' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsValueObject >> label: anObject [
 	self slotVarNamed: 'label' put: anObject 
 ]

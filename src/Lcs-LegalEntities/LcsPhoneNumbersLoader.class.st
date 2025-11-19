@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsPhoneNumbersLoader,
-	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsPhoneNumbersLoader',
+	#superclass : 'LcsObjectsLoader',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #data }
+{ #category : 'data' }
 LcsPhoneNumbersLoader >> data [
 	^ ''
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsPhoneNumbersLoader >> targetClass [
 	^ LcsPhoneNumber
 ]

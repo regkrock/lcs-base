@@ -1,1 +1,1 @@
-Package { #name : #'Lcs-Magritte-Base' }
+Package { #name : 'Lcs-Magritte-Base' }

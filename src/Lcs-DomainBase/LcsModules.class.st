@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsModules,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-DomainBase-Core'
+	#name : 'LcsModules',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsModules class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsDictionarySlot new
@@ -13,7 +15,7 @@ LcsModules class >> collectionSlotDefinition [
 		yourself
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsModules >> buildModuleFor: eachModuleClass [
 
 	| module |
@@ -26,19 +28,19 @@ LcsModules >> buildModuleFor: eachModuleClass [
 	module buildModules
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModules >> collection [
 	"Bypass unit of work - this is a setup situation"
 	^ collection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsModules >> collection: aCollection [
 	"Bypass unit of work - this is a setup situation"
 	collection := aCollection
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModules >> findModuleNamed: aString [
 	| foundModule |
 	self collection ifNil: [ ^ nil ].
@@ -50,7 +52,7 @@ LcsModules >> findModuleNamed: aString [
 	^ nil
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsModules >> gtApplicationModulesFor: aView [
 	<gtView>
 	self hasNoElements ifTrue: [ ^ aView empty ].
@@ -71,23 +73,23 @@ LcsModules >> gtApplicationModulesFor: aView [
 		yourself
 ]
 
-{ #category : #build }
+{ #category : 'build' }
 LcsModules >> initializeModel [
 	super initializeSlotValues.
 	self collection valuesDo: [ :eachModule | eachModule initializeModel ]
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 	^ self collection at: aString ifAbsent: aBlock
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsModules >> moduleViewChildren [
 	^ self collect: [ :each | LcsModuleViewItem newLabel: each moduleName item: each ]
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsModules >> numberOfModules [
 	^ self collection size
 ]

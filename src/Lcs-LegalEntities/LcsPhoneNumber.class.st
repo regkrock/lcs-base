@@ -1,14 +1,15 @@
 Class {
-	#name : #LcsPhoneNumber,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsPhoneNumber',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'phoneNumberType',
 		'number'
 	],
-	#category : #'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsPhoneNumber class >> numberSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -16,7 +17,7 @@ LcsPhoneNumber class >> numberSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsPhoneNumber class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -27,7 +28,7 @@ LcsPhoneNumber class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsPhoneNumber class >> phoneNumberTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -38,22 +39,22 @@ LcsPhoneNumber class >> phoneNumberTypeSlotDefinition [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsPhoneNumber >> number [
 	^ self slotVarNamed: 'number'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsPhoneNumber >> number: anObject [
 	self slotVarNamed: 'number' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsPhoneNumber >> phoneNumberType [
 	^ self slotVarNamed: 'phoneNumberType'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsPhoneNumber >> phoneNumberType: anObject [
 	self slotVarNamed: 'phoneNumberType' put: anObject
 ]

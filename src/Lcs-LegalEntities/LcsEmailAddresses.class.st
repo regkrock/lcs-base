@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsEmailAddresses,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsEmailAddresses',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'default instance' }
+{ #category : 'default instance' }
 LcsEmailAddresses >> defaultInstance [
 	^ self currentSystem legalEntitiesModule configuration unknownEmailAddress
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 LcsEmailAddresses >> findItemMatchingAddressType: anObject [
 	| result |
 	anObject isString ifFalse: [ ^ anObject ].

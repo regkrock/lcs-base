@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsEmailAddressTypesLoader,
-	#superclass : #LcsValueObjectsLoader,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsEmailAddressTypesLoader',
+	#superclass : 'LcsValueObjectsLoader',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #data }
+{ #category : 'data' }
 LcsEmailAddressTypesLoader >> data [
 	^ '[
 		{"code":"home","description":"Home","label":"Home","isDefaultInstance":false},
@@ -13,7 +14,7 @@ LcsEmailAddressTypesLoader >> data [
 		]'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsEmailAddressTypesLoader >> targetClass [
 	^ LcsEmailAddressType
 ]

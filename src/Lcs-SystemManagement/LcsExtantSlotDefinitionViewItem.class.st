@@ -1,9 +1,9 @@
 Class {
 	#name : 'LcsExtantSlotDefinitionViewItem',
 	#superclass : 'LcsAccessorSlotDefinitionViewItem',
-	#category : 'Lcs-SystemManagement-Core',
+	#category : 'Lcs-SystemManagement-View',
 	#package : 'Lcs-SystemManagement',
-	#tag : 'Core'
+	#tag : 'View'
 }
 
 { #category : 'private' }

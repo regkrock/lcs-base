@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsValueCollectionPatternForm,
-	#superclass : #LcsMultislotPatternForm,
+	#name : 'LcsValueCollectionPatternForm',
+	#superclass : 'LcsMultislotPatternForm',
 	#instVars : [
 		'packageAndTagName',
 		'onElementCreated',
 		'slotClassName'
 	],
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueCollectionPatternForm class >> builderClass [
 	^ LcsStandardValueObjectClassesBuilderJob
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsValueCollectionPatternForm >> buildUnknownClassDescription [
 	"<magritteDescription>"
 	^ MABooleanDescription new
@@ -26,7 +28,7 @@ LcsValueCollectionPatternForm >> buildUnknownClassDescription [
 		beRequired
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsValueCollectionPatternForm >> initializeOn: aTarget [
 	super initializeOn: aTarget.
 	self slotModelBuilder collectionSlotInstallationTargetClass: self targetClass.

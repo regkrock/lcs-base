@@ -1,26 +1,28 @@
 Class {
-	#name : #LcsSingletonValueCollectionPatternForm,
-	#superclass : #LcsMultislotPatternForm,
+	#name : 'LcsSingletonValueCollectionPatternForm',
+	#superclass : 'LcsMultislotPatternForm',
 	#instVars : [
 		'packageAndTagName',
 		'onElementCreated',
 		'slotClassName'
 	],
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSingletonValueCollectionPatternForm class >> builderClass [
 	^ LcsSingletonValueObjectClassesBuilderJob
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSingletonValueCollectionPatternForm >> initializeOn: aTarget [
 	super initializeOn: aTarget.
 	self slotModelBuilder collectionSlotInstallationTargetClass: self targetClass
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsSingletonValueCollectionPatternForm >> subclassRootNamesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new

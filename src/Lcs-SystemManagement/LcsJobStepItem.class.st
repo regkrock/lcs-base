@@ -1,7 +1,7 @@
 Class {
 	#name : 'LcsJobStepItem',
 	#superclass : 'LcsViewItem',
-	#category : 'Lcs-SystemManagement-Core',
+	#category : 'Lcs-SystemManagement-View',
 	#package : 'Lcs-SystemManagement',
-	#tag : 'Core'
+	#tag : 'View'
 }

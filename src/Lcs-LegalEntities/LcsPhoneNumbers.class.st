@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsPhoneNumbers,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsPhoneNumbers',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'default instance' }
+{ #category : 'default instance' }
 LcsPhoneNumbers >> defaultInstance [
 	^ self currentSystem legalEntitiesModule configuration unknownPhoneNumber
 ]

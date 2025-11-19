@@ -1,5 +1,6 @@
 Class {
-	#name : #LcsCommittees,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsCommittees',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }

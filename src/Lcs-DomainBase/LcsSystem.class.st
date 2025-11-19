@@ -2,18 +2,20 @@
 This is the base class for defining systems. A system class can have zero to many module components.
 "
 Class {
-	#name : #LcsSystem,
-	#superclass : #LcsModule,
+	#name : 'LcsSystem',
+	#superclass : 'LcsModule',
 	#instVars : [
 		'status',
 		'systemSlotModel',
 		'globalCollections',
 		'uuidGenerator'
 	],
-	#category : #'Lcs-DomainBase-Core'
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #'system model' }
+{ #category : 'system model' }
 LcsSystem class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
 	self allClassBetweenMyselfAndLcsDomainObject
 		do: [ :each | (prebootstrapClasses includes: each) ifFalse: [ prebootstrapClasses add: each ] ].
@@ -21,12 +23,12 @@ LcsSystem class >> addMyDomainClassHeirarchyTo: prebootstrapClasses [
 	prebootstrapClasses addAll: self allSubmoduleClasses
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSystem class >> defaultModuleName [
 	^ 'System'
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSystem class >> globalCollectionsSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -36,12 +38,12 @@ LcsSystem class >> globalCollectionsSlotDefinition [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem class >> isApplicationSystemClass [
 	^ true
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsSystem class >> new [
 	"A factory pattern is used here. The creation of the system is delegated to the system manager"
 	^ self basicNew
@@ -49,26 +51,18 @@ LcsSystem class >> new [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSystem class >> statusSlotDefinition [
 	<slotDefinition>
 	^ LcsSystemStatusSlot new
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSystem class >> systemBootstrapDomainClasses [
 	| prebootstrapClasses |
 	prebootstrapClasses := 
 		OrderedCollection new
-			add: LcsBaseDomainObject;
-			add: LcsSupportDomainObject;
-			add: LcsDomainObject;
-			add: LcsDomainCollection;
-			add: LcsDomainObjectHistory;
-			add: LcsDomainObjectChangeRecord;
-			add: LcsDomainObjectChangeRecords;
-			add: LcsDomainObjectSlotChange;
-			add: LcsDomainObjectSlotChanges;
+			addAll: ((#'Lcs-SystemManagement' asPackage) classesTaggedWith: 'Domain');
 			add: LcsSystemSlotModel;
 			add: LcsBaseSystemStatus;
 			addAll: LcsBaseSystemStatus subclasses;
@@ -78,7 +72,7 @@ LcsSystem class >> systemBootstrapDomainClasses [
 	^ prebootstrapClasses
 ]
 
-{ #category : #'system model' }
+{ #category : 'system model' }
 LcsSystem class >> systemSlotModelSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -88,24 +82,24 @@ LcsSystem class >> systemSlotModelSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSystem class >> uuidGeneratorSlotDefinition [
 	<slotDefinition>
 	^ LcsUuidGeneratorSlot new
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsSystem >> _parent [
 	"Do not use in normal situations"
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> _parent: aSystemManger [
 	parent := aSystemManger
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 LcsSystem >> _restoreSystem [
 	self suspendCurrentSystem.
 	self
@@ -115,7 +109,7 @@ LcsSystem >> _restoreSystem [
 	self status: self newActiveState
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 LcsSystem >> _suspendSystem [
 	(self slotDefinitionNamed: 'status') slotVarDirectlyPut: self newSuspendedState in: self.
 	self
@@ -124,12 +118,12 @@ LcsSystem >> _suspendSystem [
 	self systemsManager currentSystem: nil
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> addClasses: classes to: collection [ 
 	collection addAll: (classes reject: [ :each | each isDomainClass not ]).
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> addDomainClassesFromSubmodulesTo: systemDomainClasses [
 	self allSubmoduleClasses do: [ :eachModule | 
 		self
@@ -137,12 +131,12 @@ LcsSystem >> addDomainClassesFromSubmodulesTo: systemDomainClasses [
 			to: systemDomainClasses ]
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> addToSlotModel: aSlotModel [
 	self systemSlotModel addToSlotModel: aSlotModel
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> allBootstrapDomainClasses [
 	^ OrderedCollection new
 		addAll: self systemBootstrapDomainClasses;
@@ -151,17 +145,17 @@ LcsSystem >> allBootstrapDomainClasses [
 
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsSystem >> applyChanges [
 	^ self unitOfWork applyChanges
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> buildSlotDefinitions [
 	self buildSlotDefinitionsFor: self globalCollections copy
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> buildSlotDefinitionsFor: aCollectionOfDomainClasses [
 	aCollectionOfDomainClasses do: [ :eachDomainClass | 
 		eachDomainClass initializeSlotModel.
@@ -169,34 +163,34 @@ LcsSystem >> buildSlotDefinitionsFor: aCollectionOfDomainClasses [
 			self globalCollections add: eachDomainClass ] ]
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsSystem >> configurationValidator [
 	^ LcsSystemConfigurationValidator new
 		validate: self;
 		yourself
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsSystem >> currentUnitOfWork [
 	^ self _parent currentUnitOfWork
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsSystem >> currentUser [
 	^ self securityModule currentUser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> globalCollections [
 	^ self slotVarNamed: 'globalCollections' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> globalCollections: anObject [
 	self slotVarNamed: 'globalCollections' put: anObject
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> gtAllSystemsFor: aView [
 	<gtView>
 	(LcsApplicationEnvironment isInActiveStatus)
@@ -209,7 +203,7 @@ LcsSystem >> gtAllSystemsFor: aView [
 		yourself
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSystem >> gtConfigurationIssuesFor: aView [
 	<gtView>
 	self configurationValidator hasNoValidationIssues
@@ -222,7 +216,7 @@ LcsSystem >> gtConfigurationIssuesFor: aView [
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> gtSystemSlotModelFor: aView [
 	<gtView>
 	(self systemSlotModel isNil or: [self hasSystemSlotModels not])
@@ -235,7 +229,7 @@ LcsSystem >> gtSystemSlotModelFor: aView [
 		yourself
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> gtUnitOfWorkFor: aView [
 	<gtView>
 	self slotModel ifNil: [
@@ -253,27 +247,27 @@ LcsSystem >> gtUnitOfWorkFor: aView [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> hasSlotModel [
 	^ self class hasSlotModel
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> hasSlotModelFor: aClass [
 	^ self systemSlotModel hasSlotModelForClass: aClass
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> hasSystemSlotModels [
 	^ self systemSlotModel hasSlotModels
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> hasValidConfiguration [
 	^ self configurationValidator hasNoValidationIssues
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> initialize [
 	self makeCurrentSystem.
 	self inititalizeSlotModel.
@@ -282,7 +276,7 @@ LcsSystem >> initialize [
 	self loadData.
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> initializeBasicSystem [
 	self instantiateAndInstallSlotModelForBootstrapClasses.
 	self unitOfWork addObject: self.
@@ -298,7 +292,7 @@ LcsSystem >> initializeBasicSystem [
 	self addToSlotModel: self slotModel
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> initializeModel [
 	self modules isNil ifTrue: [ self initializeModulesVariable ].
 	self systemSlotModel isNil ifTrue: [ self initializeSystemSlotModelVariable ].
@@ -307,56 +301,56 @@ LcsSystem >> initializeModel [
 	"self modules initializeModel"
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> initializeModulesVariable [
 	self modulesSlot initializeSlotValueIn: self
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> initializeSystemSlotModelVariable [
 	self systemSlotModelSlot initializeSlotValueIn: self
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> inititalizeSlotModel [
 	self initializeBasicSystem.
 	self addToSlotModel: self slotModel.
 	self inititalizeSlotModelFor: self systemDomainClasses
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> inititalizeSlotModelFor: aCollection [
 	self inititalizeSlotModelFor: aCollection instantiateBlock: [ :eachClass |
 		eachClass instantiateSlotModel.
 		self addToSlotModel: eachClass slotModel]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> inititalizeSlotModelFor: aDomainClassesCollection instantiateBlock: aBlock [
 	aDomainClassesCollection do: aBlock.
 	self verifySlotModelConsistencyFor: aDomainClassesCollection.
 	self installSlotDefinitionsIn: aDomainClassesCollection
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> installSlotDefinitionsIn: aDomainClassesCollection [
 	aDomainClassesCollection do: [ :eachClass | eachClass installSlotDefinitions ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> installSlotModelForBootstrapClasses [
 	self systemBootstrapDomainClasses
 		do: [ :eachClass | eachClass installSlotDefinitions ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> instantiateAndInstallSlotModelForBootstrapClasses [
 	self instantiateSlotModelForBootstrapClasses.
 	self verifySlotModelForBootstrapClasses.
 	self installSlotModelForBootstrapClasses
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> instantiateSlotModelForBootstrapClasses [
 	self systemBootstrapDomainClasses
 		doWithIndex: [ :eachClass :index | 
@@ -364,63 +358,63 @@ LcsSystem >> instantiateSlotModelForBootstrapClasses [
 			self assert: eachClass slotModel parent == eachClass ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> isApplicationSystem [
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> isDemoSystem [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> isInActiveStatus [
 	self hasSlotModel ifFalse: [ ^ false ].
 	^ self status isInActiveStatus
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> isInSuspendedStatus [
 	self hasSlotModel ifFalse: [ ^ true ].
 	^ self status isInSuspendedStatus
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> isIncludedInSystemDomainClasses: aDomainClass [
 	^ self globalCollections includes: aDomainClass class
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsSystem >> isPrototypeSystem [
 	^ false
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 LcsSystem >> makeCurrentSystem [
 	LcsApplicationEnvironment systemsManager addSystem: self
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> modulesSlot [
 	^ self slotDefinitionNamed: 'modules'
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 LcsSystem >> newActiveState [
 	^ LcsSystemActiveStatus new
 		parent: self;
 		yourself
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 LcsSystem >> newSuspendedState [
 	^ LcsSystemSuspendedStatus new
 		parent: self;
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsSystem >> printOn: aStream [
 	super printOn: aStream.
 	aStream
@@ -429,91 +423,91 @@ LcsSystem >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsSystem >> relatedUnitOfWork [
 	^ self parent unitsOfWorkManager unitOfWorkFor: self
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> releaseSlotModel [
 	self parent releaseSlotModel
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> removeClassFromSlotModel: aDomainClass [
 	self systemSlotModel removeClassFromSlotModel: aDomainClass
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> removeFromSlotModel: aSlotDefinitions [
 	self systemSlotModel removeFromSlotModel: aSlotDefinitions
 ]
 
-{ #category : #remove }
+{ #category : 'remove' }
 LcsSystem >> removeSystem [ 
 	self _parent removeSystem: self
 ]
 
-{ #category : #restore }
+{ #category : 'restore' }
 LcsSystem >> restoreSlotModel [
 	self systemSlotModel restoreSlotModel
 ]
 
-{ #category : #restore }
+{ #category : 'restore' }
 LcsSystem >> restoreSystem [
 	self _restoreSystem
 ]
 
-{ #category : #restore }
+{ #category : 'restore' }
 LcsSystem >> restoreUnitOfWork [
 	self systemsManager restoreUnitOfWorkFor: self
 ]
 
-{ #category : #modules }
+{ #category : 'modules' }
 LcsSystem >> securityModule [
 	^ self _moduleNamed: 'Security Module'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> status [
 	^ self hasSlotModel 
 		ifTrue: [ self slotVarNamed: 'status' ]
 		ifFalse: [ self instVarNamed: 'status' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> status: aSystemStatus [ 
 	self slotVarNamed: 'status' put: aSystemStatus
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSystem >> statusNameString [
 	^ ([ self status ] on: Error do: [ :s | s return: nil ]) 
 		ifNil: [ 'no status' ] 
 		ifNotNil: [ self status statusName ]
 ]
 
-{ #category : #suspend }
+{ #category : 'suspend' }
 LcsSystem >> suspendCurrentSystem [
 	self systemsManager suspendCurrentSystem
 ]
 
-{ #category : #suspend }
+{ #category : 'suspend' }
 LcsSystem >> suspendSystem [
 	self status suspendSystem
 ]
 
-{ #category : #suspend }
+{ #category : 'suspend' }
 LcsSystem >> suspendUnitOfWork [
 	self systemsManager suspendUnitOfWorkFor: self
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSystem >> systemBootstrapDomainClasses [
 	^ self class systemBootstrapDomainClasses
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> systemDomainClasses [
 	| systemDomainClasses |
 	systemDomainClasses := OrderedCollection new.
@@ -534,63 +528,63 @@ LcsSystem >> systemDomainClasses [
 	^ systemDomainClasses
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> systemSlotModel [
 	^ systemSlotModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> systemSlotModel: anObject [
 	systemSlotModel := anObject
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsSystem >> systemSlotModelSlot [
 	^ self slotDefinitionNamed: 'systemSlotModel'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> systemsManager [
 	^ self _parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> systemsManager: aSystemManager [
 	self _parent: aSystemManager
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 LcsSystem >> toggleActionButtonLabel [
 	^ self status toggleActionButtonLabel
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LcsSystem >> toggleStatus [
 	self status toggleStatus
 ]
 
-{ #category : #'unit of work' }
+{ #category : 'unit of work' }
 LcsSystem >> unitOfWork [
 	^ self currentUnitOfWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> uuidGenerator [
 	^ self slotVarNamed: 'uuidGenerator'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystem >> uuidGenerator: anObject [
 	self slotVarNamed: 'uuidGenerator' put: anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> verifySlotModelConsistencyFor: aDomainClassesCollection [
 	aDomainClassesCollection
 		do: [ :eachClass | eachClass verifySlotModelConsistency ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsSystem >> verifySlotModelForBootstrapClasses [
 	self systemBootstrapDomainClasses
 		doWithIndex: [ :eachClass :index | eachClass verifySlotModelConsistency ]

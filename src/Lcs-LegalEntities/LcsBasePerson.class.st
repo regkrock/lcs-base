@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsBasePerson,
-	#superclass : #LcsLegalEntity,
+	#name : 'LcsBasePerson',
+	#superclass : 'LcsLegalEntity',
 	#instVars : [
 		'dateOfBirth',
 		'firstName',
@@ -9,16 +9,17 @@ Class {
 		'gender',
 		'title'
 	],
-	#category : #'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
 	^ LcsDateOfBirthSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePerson class >> firstNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -26,7 +27,7 @@ LcsBasePerson class >> firstNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePerson class >> genderSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -38,7 +39,7 @@ LcsBasePerson class >> genderSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePerson class >> homeEmailAddressSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsInstanceInLocalCollectionSlot new
@@ -50,7 +51,7 @@ LcsBasePerson class >> homeEmailAddressSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePerson class >> middleNamesSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -58,12 +59,12 @@ LcsBasePerson class >> middleNamesSlotDefinition [
 		yourself
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsBasePerson class >> securityResourceName [
 	^ 'Person'
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePerson class >> surnameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -71,7 +72,7 @@ LcsBasePerson class >> surnameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePerson class >> titleSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -82,77 +83,98 @@ LcsBasePerson class >> titleSlotDefinition [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'slot definitions' }
+LcsBasePerson class >> workEmailAddressSlotDefinition [
+	<facadeSlotDefinition>
+	^ LcsInstanceInLocalCollectionSlot new
+			slotName: 'workEmailAddress';
+			addSlotType: LcsEmailAddress;
+			collectionSlotName: 'emailAddresses';
+			typeCode: 'work';
+			yourself
+]
+
+{ #category : 'accessing' }
 LcsBasePerson >> dateOfBirth [
 	^ self slotVarNamed: 'dateOfBirth'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> dateOfBirth: anObject [
 	self slotVarNamed: 'dateOfBirth' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> firstName [
 	^ self slotVarNamed: 'firstName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> firstName: anObject [
 	self slotVarNamed: 'firstName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> fullName [
 	^ self firstName , ' ' , self middleNames , ' ' , self surname
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> gender [
 	^ self slotVarNamed: 'gender'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> gender: anObject [
 	self slotVarNamed: 'gender' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> homeEmailAddress [
 	^ self slotVarNamed: 'homeEmailAddress'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> homeEmailAddress: anObject [
 	self slotVarNamed: 'homeEmailAddress' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> middleNames [
 	^ self slotVarNamed: 'middleNames'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> middleNames: anObject [
 	self slotVarNamed: 'middleNames' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> surname [
 	^ self slotVarNamed: 'surname'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> surname: anObject [
 	self slotVarNamed: 'surname' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> title [
 	^ self slotVarNamed: 'title'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePerson >> title: anObject [
 	self slotVarNamed: 'title' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsBasePerson >> workEmailAddress [
+	^ self slotVarNamed: 'workEmailAddress'
+]
+
+{ #category : 'accessing' }
+LcsBasePerson >> workEmailAddress: anObject [
+	self slotVarNamed: 'workEmailAddress' put: anObject
 ]

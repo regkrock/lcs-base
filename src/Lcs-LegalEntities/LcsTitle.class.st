@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsTitle,
-	#superclass : #LcsValueObject,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsTitle',
+	#superclass : 'LcsValueObject',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsTitle class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new

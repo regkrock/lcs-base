@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsOrganization,
-	#superclass : #LcsLegalEntity,
+	#name : 'LcsOrganization',
+	#superclass : 'LcsLegalEntity',
 	#instVars : [
 		'organizationName',
 		'committees',
 		'legalName'
 	],
-	#category : #'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsOrganization class >> committeesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -19,7 +20,7 @@ LcsOrganization class >> committeesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsOrganization class >> legalNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -28,7 +29,7 @@ LcsOrganization class >> legalNameSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsOrganization class >> organizationNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -37,7 +38,7 @@ LcsOrganization class >> organizationNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsOrganization class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -48,47 +49,47 @@ LcsOrganization class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> committees [
 	^ self slotVarNamed: 'committees'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> committees: anObject [
 	self slotVarNamed: 'committees' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> fullName [
 	^ self organizationName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> legalName [
 	^ self slotVarNamed: 'legalName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> legalName: anObject [
 	self slotVarNamed: 'legalName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> location [
 	^ self slotVarNamed: 'location'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> location: anObject [
 	self slotVarNamed: 'location' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> organizationName [
 	^ self slotVarNamed: 'organizationName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsOrganization >> organizationName: anObject [
 	self slotVarNamed: 'organizationName' put: anObject
 ]

@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsValueObjectsLoader,
-	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-DomainBase-Loader'
+	#name : 'LcsValueObjectsLoader',
+	#superclass : 'LcsObjectsLoader',
+	#category : 'Lcs-DomainBase-Loader',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Loader'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueObjectsLoader >> data [
 	^ ''
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 LcsValueObjectsLoader >> load [
 	| newClass |
 	self protoCodes do: [ :eachProtoCode | 
@@ -23,7 +25,7 @@ LcsValueObjectsLoader >> load [
 			isDefaultInstance: eachProtoCode isDefaultInstance ]
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 LcsValueObjectsLoader >> protoCodes [
 	^ (NeoJSONReader on: self data readStream)
 			mapInstVarsFor: LcsProtoCode;
@@ -31,12 +33,12 @@ LcsValueObjectsLoader >> protoCodes [
 			nextAs: #ArrayOfPrtotCodes.
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueObjectsLoader >> targetClass [
 	^ self subclassResponsibility
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueObjectsLoader >> unknownClass [
 	^ nil
 ]

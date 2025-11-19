@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsEmailAddressType,
-	#superclass : #LcsValueObject,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsEmailAddressType',
+	#superclass : 'LcsValueObject',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsEmailAddressType class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new

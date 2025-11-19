@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsGlobalCollectionPatternForm,
-	#superclass : #LcsMultislotPatternForm,
+	#name : 'LcsGlobalCollectionPatternForm',
+	#superclass : 'LcsMultislotPatternForm',
 	#instVars : [
 		'packageAndTagName',
 		'onElementCreated',
 		'slotClassName'
 	],
-	#category : #'Lcs-Magritte-Base-Forms - Models'
+	#category : 'Lcs-Magritte-Base-Forms - Models',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'Forms - Models'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGlobalCollectionPatternForm class >> builderClass [
 	^ LcsDomainClassAndGlobalCollectionClassBuilderJob
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 LcsGlobalCollectionPatternForm >> buildUnknownClassDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
@@ -30,14 +32,14 @@ LcsGlobalCollectionPatternForm >> buildUnknownClassDescription [
 		beRequired
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsGlobalCollectionPatternForm >> initializeOn: aTarget [
 	super initializeOn: aTarget.
 	self slotModelBuilder collectionSlotInstallationTargetClass: self targetClass.
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGlobalCollectionPatternForm >> targetClassNameChangedTo: aString [
 	super targetClassNameChangedTo: aString.
 	self slotModelBuilder collectionSlotInstallationTargetClass: ([ aString asClass ] on: NotFound do: [ :s | s return: nil ])

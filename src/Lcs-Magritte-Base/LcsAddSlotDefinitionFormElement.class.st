@@ -1,43 +1,45 @@
 Class {
-	#name : #LcsAddSlotDefinitionFormElement,
-	#superclass : #BrStencil,
+	#name : 'LcsAddSlotDefinitionFormElement',
+	#superclass : 'BrStencil',
 	#instVars : [
 		'parentElement',
 		'element',
 		'formCache',
 		'targetClass'
 	],
-	#category : #'Lcs-Magritte-Base-UI'
+	#category : 'Lcs-Magritte-Base-UI',
+	#package : 'Lcs-Magritte-Base',
+	#tag : 'UI'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsAddSlotDefinitionFormElement class >> newOn: aParentElement targetClass: aClass [
 	^ self new
 		initializeOn: aParentElement targetClass: aClass;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> element [
 	^ element
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> element: anObject [
 	element := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> formCache [
 	^ formCache
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> formCache: anObject [ 
 	formCache := anObject 
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsAddSlotDefinitionFormElement >> gtCreationInterface: aParentElement [
 	| contentTabs |
 	contentTabs := BrTabGroup new.
@@ -80,13 +82,13 @@ LcsAddSlotDefinitionFormElement >> gtCreationInterface: aParentElement [
 	^ contentTabs
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAddSlotDefinitionFormElement >> initialize [ 
 	super initialize.
 	self formCache: Dictionary new
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsAddSlotDefinitionFormElement >> initializeOn: aParentElement targetClass: aClass [ 
 	self taregtClass: aClass.
 	self parentElement: aParentElement.
@@ -102,27 +104,27 @@ LcsAddSlotDefinitionFormElement >> initializeOn: aParentElement targetClass: aCl
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> parentElement [
 	^ parentElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> parentElement: anObject [
 	parentElement := anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsAddSlotDefinitionFormElement >> tabClasses [
 	^ { LcsSlotCreationForm}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> taregtClass: aClass [ 
 	targetClass := aClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddSlotDefinitionFormElement >> targetClass [
 	^ targetClass
 ]

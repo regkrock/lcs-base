@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsSystemConfigurationValidator,
-	#superclass : #LcsValidator,
-	#category : #'Lcs-DomainBase-Core'
+	#name : 'LcsSystemConfigurationValidator',
+	#superclass : 'LcsValidator',
+	#category : 'Lcs-DomainBase-Support',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Support'
 }
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsSystemConfigurationValidator >> gtConfigurationIssuesFor: aView [
 	<gtView>
 	self hasNoValidationIssues ifTrue: [ ^ aView empty ].
@@ -22,7 +24,7 @@ LcsSystemConfigurationValidator >> gtConfigurationIssuesFor: aView [
 		yourself
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 LcsSystemConfigurationValidator >> validateCurrentObject [
 	self objectBeingValidated addValidateConfigurationResultTo: self
 ]

@@ -1,18 +1,20 @@
 Class {
-	#name : #LcsGlobalCollections,
-	#superclass : #LcsDomainCollection,
+	#name : 'LcsGlobalCollections',
+	#superclass : 'LcsDomainCollection',
 	#traits : 'LtIdentityDictionaryDomainCollection',
 	#classTraits : 'LtIdentityDictionaryDomainCollection classTrait',
-	#category : #'Lcs-DomainBase-Core'
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsGlobalCollections class >> collectionSlotDefinition [
 	<slotDefinition>
 	^LcsIdentityDictionarySlot new
 ]
 
-{ #category : #collection }
+{ #category : 'collection' }
 LcsGlobalCollections >> add: aClass [
 	self halt.
 ]

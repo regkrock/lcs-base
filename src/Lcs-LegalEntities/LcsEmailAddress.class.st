@@ -1,14 +1,15 @@
 Class {
-	#name : #LcsEmailAddress,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsEmailAddress',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'email',
 		'emailAddressType'
 	],
-	#category : #'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsEmailAddress class >> emailAddressTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -21,7 +22,7 @@ LcsEmailAddress class >> emailAddressTypeSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsEmailAddress class >> emailSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -30,7 +31,7 @@ LcsEmailAddress class >> emailSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsEmailAddress class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -41,22 +42,22 @@ LcsEmailAddress class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsEmailAddress >> email [
 	^ self slotVarNamed: 'email'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsEmailAddress >> email: anObject [
 	self slotVarNamed: 'email' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsEmailAddress >> emailAddressType [
 	^ self slotVarNamed: 'emailAddressType'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsEmailAddress >> emailAddressType: anObject [
 	self slotVarNamed: 'emailAddressType' put: anObject
 ]

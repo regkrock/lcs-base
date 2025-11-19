@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsValueObjects,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-DomainBase-Core'
+	#name : 'LcsValueObjects',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-DomainBase-Core',
+	#package : 'Lcs-DomainBase',
+	#tag : 'Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsValueObjects >> collectionWithPendingChanges [
 	| actualCollection |
 	actualCollection := self collection copy.
@@ -13,7 +15,7 @@ LcsValueObjects >> collectionWithPendingChanges [
 	^ actualCollection
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsValueObjects >> defaultInstance [
 	^ self collectionWithPendingChanges
 		detect: [ :each | each isDefaultInstance == true ]
@@ -21,7 +23,7 @@ LcsValueObjects >> defaultInstance [
 				signal: 'No default instance defined for Value Objects collection - ' , self class name ]
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 LcsValueObjects >> findItemMatchingCode: anObject [
 	| result |
 	anObject isString ifFalse: [ ^ anObject ].
@@ -30,7 +32,7 @@ LcsValueObjects >> findItemMatchingCode: anObject [
 	^ self pendingAdds detect: [ :each | each code = anObject ] ifNone: [ anObject ].
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsValueObjects >> gtItemsFor: aView [
 	<gtView>
 	self collection isNil ifTrue: [ ^ aView empty ].
@@ -45,7 +47,7 @@ LcsValueObjects >> gtItemsFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsValueObjects >> hasDefaultInstance [
 	self collection detect: [ :each | each isDefaultInstance == true] ifNone: [ ^ false ].
 	^ true

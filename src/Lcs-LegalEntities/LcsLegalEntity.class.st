@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsLegalEntity,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsLegalEntity',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'mainAddress',
 		'phoneNumber',
 		'emailAddresses'
 	],
-	#category : #'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntity class >> emailAddressesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -19,7 +20,7 @@ LcsLegalEntity class >> emailAddressesSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntity class >> entityNameSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -28,7 +29,7 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntity class >> mainAddressSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -39,7 +40,7 @@ LcsLegalEntity class >> mainAddressSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLegalEntity class >> phoneNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -51,37 +52,37 @@ LcsLegalEntity class >> phoneNumberSlotDefinition [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntity >> emailAddresses [
 	^ self slotVarNamed: 'emailAddresses'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntity >> emailAddresses: anObject [
 	self slotVarNamed: 'emailAddresses' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntity >> entityName [
 	^ self virtualSlotVarNamed: 'entityName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntity >> mainAddress [
 	^ self slotVarNamed: 'mainAddress'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntity >> mainAddress: anObject [
 	self slotVarNamed: 'mainAddress' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntity >> phoneNumber [
 	^ self slotVarNamed: 'phoneNumber'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLegalEntity >> phoneNumber: anObject [
 	self slotVarNamed: 'phoneNumber' put: anObject
 ]

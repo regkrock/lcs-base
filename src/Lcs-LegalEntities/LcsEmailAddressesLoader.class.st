@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsEmailAddressesLoader,
-	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-LegalEntities'
+	#name : 'LcsEmailAddressesLoader',
+	#superclass : 'LcsObjectsLoader',
+	#category : 'Lcs-LegalEntities',
+	#package : 'Lcs-LegalEntities'
 }
 
-{ #category : #data }
+{ #category : 'data' }
 LcsEmailAddressesLoader >> data [
 	^ ''
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsEmailAddressesLoader >> targetClass [
 	^ LcsEmailAddress
 ]
