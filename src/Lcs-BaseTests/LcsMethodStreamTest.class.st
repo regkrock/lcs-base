@@ -17,7 +17,7 @@ LcsMethodStreamTest >> testCreateEmptySelectorSourceCode [
 { #category : 'test' }
 LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCode [
 	self subject: LcsMethodStream new.
-	self subject startSlotDefintionSource: 'testMethod' pragmaName: '<slotDefinition>'.
+	self subject startSlotDefintionSource: 'testMethod' pragmaName: 'slotDefinition'.
 	self assert: subject indentLevel equals: 1.
 	self
 		assert: self subject contents
@@ -28,7 +28,7 @@ LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCode [
 { #category : 'test' }
 LcsMethodStreamTest >> testCreateSlotDefinitionSelectorSourceCodeWithBuilderClass [
 	self subject: LcsMethodStream new.
-	self subject startSlotDefintionSource: 'testMethod' pragmaName: '<slotDefinition>'.
+	self subject startSlotDefintionSource: 'testMethod' pragmaName: 'slotDefinition'.
 	self subject addSlotDefinitionClassCreatonLine: 'LcsStringSlot'.
 	self assert: subject indentLevel equals: 2.
 	self
