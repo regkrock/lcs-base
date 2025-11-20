@@ -7,29 +7,21 @@ Class {
 }
 
 { #category : 'testing' }
-LcsValueObjects >> collectionWithPendingChanges [
-	| actualCollection |
-	actualCollection := self collection copy.
-	actualCollection addAll: self pendingAdds.
-	actualCollection removeAll: self pendingDeletes.
-	^ actualCollection
-]
-
-{ #category : 'testing' }
 LcsValueObjects >> defaultInstance [
-	^ self collectionWithPendingChanges
-		detect: [ :each | each isDefaultInstance == true ]
+	^ self
+		find: [ :each | each isDefaultInstance == true ]
 		ifNone: [ LcsCodeCollectionDefaultInstanceNotDefined
 				signal: 'No default instance defined for Value Objects collection - ' , self class name ]
 ]
 
 { #category : 'querying' }
-LcsValueObjects >> findItemMatchingCode: anObject [
-	| result |
-	anObject isString ifFalse: [ ^ anObject ].
-	result := self collection detect: [ :each | each code = anObject ] ifNone: [ nil ].
-	result ifNotNil: [ ^ result ].
-	^ self pendingAdds detect: [ :each | each code = anObject ] ifNone: [ anObject ].
+LcsValueObjects >> findItemMatchingCode: aCode [
+	^ self findItemMatchingCode: aCode ifNone: [ nil ]
+]
+
+{ #category : 'querying' }
+LcsValueObjects >> findItemMatchingCode: aCode ifNone: aBlock [
+	^ self find: [ :each | each code = aCode ] ifNone: aBlock 
 ]
 
 { #category : 'gt views' }
@@ -49,6 +41,6 @@ LcsValueObjects >> gtItemsFor: aView [
 
 { #category : 'testing' }
 LcsValueObjects >> hasDefaultInstance [
-	self collection detect: [ :each | each isDefaultInstance == true] ifNone: [ ^ false ].
+	self find: [ :each | each isDefaultInstance == true] ifNone: [ ^ false ].
 	^ true
 ]

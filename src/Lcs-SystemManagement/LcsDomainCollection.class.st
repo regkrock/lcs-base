@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsDomainCollection',
-	#superclass : 'LcsDomainObject',
+	#superclass : 'LcsBaseDomainCollection',
 	#traits : 'LtIdentitySetDomainCollection',
 	#classTraits : 'LtIdentitySetDomainCollection classTrait',
 	#category : 'Lcs-SystemManagement-Domain',
@@ -14,6 +14,11 @@ LcsDomainCollection class >> collectionSlotDefinition [
 	^ LcsIdentitySetSlot new
 ]
 
+{ #category : 'configuration' }
+LcsDomainCollection class >> collectionType [
+	^'concrete'
+]
+
 { #category : 'queries' }
 LcsDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
@@ -25,14 +30,14 @@ LcsDomainCollection >> find: aBlock [
 	^ self find: aBlock ifNone: [ nil ]
 ]
 
-{ #category : 'default instance' }
+{ #category : 'querying' }
 LcsDomainCollection >> find: aBlock ifNone: aNoneBlock [
-	| defaultInstance |
-	defaultInstance := self collection detect: aBlock ifNone: [ nil ].
-	defaultInstance notNil ifTrue: [ ^ defaultInstance ].
-	defaultInstance := self pendingAdds detect: aBlock ifNone: [ nil ].
-	defaultInstance notNil ifTrue: [ ^ defaultInstance ].
-	^ aNoneBlock cull: self
+	| item |
+	item := self collection detect: aBlock ifNone: [ nil ].
+	item notNil ifTrue: [ ^ item ].
+	item := self pendingAdds detect: aBlock ifNone: [ nil ].
+	item notNil ifTrue: [ ^ item ].
+	^ aNoneBlock value
 ]
 
 { #category : 'search' }
@@ -40,7 +45,7 @@ LcsDomainCollection >> findWithKey: anObject [
 	^ self findWithKey: anObject ifNone: [ ]
 ]
 
-{ #category : 'search' }
+{ #category : 'querying' }
 LcsDomainCollection >> findWithKey: anObject ifNone: aBlock [
 	^ self collection detect: [ :each | each key = anObject ] ifNone: aBlock
 ]

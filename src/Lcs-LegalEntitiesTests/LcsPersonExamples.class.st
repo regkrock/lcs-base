@@ -18,12 +18,15 @@ LcsPersonExamples >> johnFreeman [
 			middleNames: 'Edgar';
 			dateOfBirth: '01-01-1990';
 			gender: 'male';
+			title: 'mr';
 			yourself.
+	self assert: person title code equals: 'mr'.
 	self assert: person surname equals: 'Freeman'.
 	self assert: person firstName equals: 'John'.
 	self assert: person middleNames equals: 'Edgar'.
 	self assert: person dateOfBirth asString equals: '1 January 1990'.
 	self assert: person gender code = 'male'.
+	self assert: person title code = 'mr'.
 	self assert: person fullName = 'John Edgar Freeman'.
 	self assert: person entityName = 'John Edgar Freeman'.
 	self assert: (person mainAddress isKindOf: LcsAddress).
@@ -62,14 +65,14 @@ LcsPersonExamples >> johnFreemanWithAddress [
 	
 	person mainAddress country: 'CAN'.
 	self assert: person mainAddress country isoCode3 equals: 'CAN'.
-	"self assert: (person mainAddress province isKindOf: LcsCanadaSubdivision).
-	self assert: (person mainAddress province isoCode = '')."
+	self assert: (person mainAddress province isKindOf: LcsCanadaSubdivision).
+	self assert: (person mainAddress province isoCode = '').
 	
 	person mainAddress province: 'ON'.
 	self assert: person mainAddress province isoCode equals: 'ON'.
 	
-	"person mainAddress postalCode: 'K8A 6W8'.
-	person mainAddress postalCode asString equals: 'K8A 6W8'."
+	person mainAddress postCode: 'K8A 6W8'.
+	self assert: person mainAddress postCode equals: 'K8A 6W8'.
 
 	^ person
 ]
@@ -77,18 +80,20 @@ LcsPersonExamples >> johnFreemanWithAddress [
 { #category : 'examples' }
 LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	<gtExample>
-	| person aHomeEmail aWorkEmail originalPendingAddSize |
+	| person homeEmail workEmail originalPendingAddSize |
 	originalPendingAddSize := self currentSystem legalEntitiesModule emailAddresses pendingAdds size.
 	person := self johnFreeman.
 	self assert: person emailAddresses hasNoElements.
 	self
-		assert: person homeEmailAddress
+		assert: person homeEmailAddress defaultInstance
 		equals: person emailAddresses defaultInstance.
-	person homeEmailAddress: (aHomeEmail := self johnFreemanHomeEmail).
-	self assert: person homeEmailAddress equals: aHomeEmail.
+	homeEmail := self johnFreemanHomeEmail.
+	person homeEmailAddress: homeEmail.
+	self assert: person homeEmailAddress equals: homeEmail.
 	self assert: person emailAddresses pendingAdds size equals: 1.
-	person workEmailAddress: (aWorkEmail := self johnFreemanWorkEmail).
-	self assert: person workEmailAddress equals: aWorkEmail.
+	workEmail := self johnFreemanWorkEmail.
+	person workEmailAddress: workEmail.
+	self assert: person workEmailAddress equals: workEmail.
 	self assert: person emailAddresses pendingAdds size equals: 2.
 	self
 		assert: self currentSystem legalEntitiesModule emailAddresses pendingAdds size

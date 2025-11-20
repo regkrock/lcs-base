@@ -25,14 +25,13 @@ LcsCountrySubdivisions >> defaultInstance [
 ]
 
 { #category : 'querrying' }
-LcsCountrySubdivisions >> findItemMatchingCode: anObject [
-	| result |
-	anObject isString ifFalse: [ ^ anObject ].
-	result := self collection
-			detect: [ :each | each isoCode = anObject ]
-			ifNone: [ nil ].
-	result ifNotNil: [ ^ result ].
-	^ self pendingAdds
-			detect: [ :each | each isoCode = anObject ]
-			ifNone: [ anObject ].
+LcsCountrySubdivisions >> findItemMatchingCode: aCode [
+	self findItemMatchingCode: aCode ifNone: [ nil ]
+]
+
+{ #category : 'querrying' }
+LcsCountrySubdivisions >> findItemMatchingCode: aCode ifNone: aBlock [
+	^ self
+		find: [ :each | each isoCode = aCode ]
+		ifNone: aBlock
 ]

@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsSecurityRole,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsSecurityRole',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'role'
 	],
-	#category : #'Lcs-Security-Core'
+	#category : 'Lcs-Security-Core',
+	#package : 'Lcs-Security',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSecurityRole class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -18,7 +20,7 @@ LcsSecurityRole class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSecurityRole class >> roleSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -28,12 +30,12 @@ LcsSecurityRole class >> roleSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityRole >> role [
 	^ self slotVarNamed: 'role'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityRole >> role: anObject [
 	self slotVarNamed: 'role' put: anObject
 ]

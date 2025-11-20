@@ -9,3 +9,8 @@ Class {
 LcsPersons >> defaultInstance [
 	^ self currentSystem legalEntitiesModule configuration unknownPerson
 ]
+
+{ #category : 'querying' }
+LcsPersons >> findWithFullName: aString [
+	self find: [ :each | each fullName = aString ] ifNone: [ ^ OrderedCollection new ]
+]

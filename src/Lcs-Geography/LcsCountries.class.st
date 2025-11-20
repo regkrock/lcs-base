@@ -14,18 +14,28 @@ LcsCountries >> defaultInstance [
 ]
 
 { #category : 'query' }
-LcsCountries >> findItemMatchingCode: anObject [
-	| result |
-	anObject isString ifFalse: [ ^ anObject ].
-	result := self collection
-			detect: [ :eachCountry | 
-				eachCountry isoCode = anObject
-					or: [ eachCountry isoCode3 = anObject or: [ eachCountry commonName = anObject ] ] ]
-			ifNone: [ nil ].
-	result ifNotNil: [ ^ result ].
-	^ self pendingAdds
-		detect: [ :eachCountry | 
-			eachCountry isoCode = anObject
-				or: [ eachCountry isoCode3 = anObject or: [ eachCountry commonName = anObject ] ] ]
-		ifNone: [ nil ]
+LcsCountries >> findItemMatchingCode: aCode [
+	^ self findItemMatchingCode: aCode ifNone: [ nil ]
+]
+
+{ #category : 'query' }
+LcsCountries >> findItemMatchingCode: aCode ifNone: aBlock [
+	^ self
+		find: [ :each | each isoCode = aCode ]
+		ifNone: aBlock
+]
+
+{ #category : 'query' }
+LcsCountries >> findItemMatchingCodeOrName: anIsoCodeOrName [
+	^ self findItemMatchingCodeOrName: anIsoCodeOrName ifNone: [ nil ]
+]
+
+{ #category : 'query' }
+LcsCountries >> findItemMatchingCodeOrName: anIsoCodeOrName ifNone: aBlock [
+	^ self
+		find: [ :eachCountry | 
+			eachCountry isoCode = anIsoCodeOrName
+				or: [ eachCountry isoCode3 = anIsoCodeOrName
+						or: [ eachCountry commonName = anIsoCodeOrName ] ] ]
+		ifNone: aBlock
 ]

@@ -259,6 +259,9 @@ LcsModule >> gtGlobalCollectionsFor: aView [
 		column: 'Pending Removals'
 			text: [ :item | item numberOfPendingRemovals asString ]
 			width: 125;
+		column: 'Type'
+			text: [ :item | item collectionType ]
+			width: 60;
 		actionDropdownButtonIcon: BrGlamorousVectorIcons spawn 
 			tooltip: 'Add Global Collection Slot'
 			content: [ :aDropdown |

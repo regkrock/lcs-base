@@ -12,13 +12,7 @@ LcsEmailAddresses >> defaultInstance [
 
 { #category : 'querying' }
 LcsEmailAddresses >> findItemMatchingAddressType: anObject [
-	| result |
-	anObject isString ifFalse: [ ^ anObject ].
-	result := self collection
-			detect: [ :each | each emailAddressType code = anObject ]
-			ifNone: [ nil ].
-	result ifNotNil: [ ^ result ].
-	^ self pendingAdds
-			detect: [ :each | each emailAddressType code = anObject ]
-			ifNone: [ self defaultInstance ]
+	^ self
+		find: [ :each | each emailAddressType code = anObject ]
+		ifNone: [ self defaultInstance ]
 ]

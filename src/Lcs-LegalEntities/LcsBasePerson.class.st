@@ -80,6 +80,7 @@ LcsBasePerson class >> titleSlotDefinition [
 			addSlotType: LcsTitle;
 			collectionSlotName: 'titles';
 			collectionSlotModuleName: 'Legal Entities Module';
+			prevalidationTransformBlock:[ :value :slot | slot targetCollection findWithKey: value ifNone: [ value ] ];
 			yourself
 ]
 

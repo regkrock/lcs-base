@@ -1,21 +1,23 @@
 Class {
-	#name : #LcsSecurityModule,
-	#superclass : #LcsModule,
+	#name : 'LcsSecurityModule',
+	#superclass : 'LcsModule',
 	#instVars : [
 		'users',
 		'currentUser',
 		'securityRoles'
 	],
-	#category : #'Lcs-Security-Core'
+	#category : 'Lcs-Security-Core',
+	#package : 'Lcs-Security',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSecurityModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSecurityModule class >> currentUserSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -28,17 +30,17 @@ LcsSecurityModule class >> currentUserSlotDefinition [
 			yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSecurityModule class >> defaultModuleName [
 	^ 'Security Module'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSecurityModule class >> moduleConfigurationClass [
 	^ LcsSecurityModuleConfiguration
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSecurityModule class >> owningModules [
 	<owningModule: 'LcsDemoSystem' priority: 1>
 	<owningModule: 'LcsWarRabbitLibrary' priority: 1>
@@ -46,7 +48,7 @@ LcsSecurityModule class >> owningModules [
 	<owningModule: 'LcsSailingClubSystem' priority: 1>
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSecurityModule class >> securityRolesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -57,7 +59,7 @@ LcsSecurityModule class >> securityRolesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsSecurityModule class >> usersSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -67,52 +69,52 @@ LcsSecurityModule class >> usersSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityModule >> currentUser [
 	^ self slotVarNamed: 'currentUser' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityModule >> currentUser: anObject [
 	self slotVarNamed: 'currentUser' put: anObject 
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsSecurityModule >> hasPermissionToAddToSlot: aSlotDefinition in: aDomainObject [ 
 	^ true
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsSecurityModule >> hasPermissionToReadSlot: aSlotDefinition in: aDomainObject [ 
 	^ true
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsSecurityModule >> hasPermissionToWriteSlot: aSlotDefinition in: aDomainObject [ 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityModule >> securityRoles [
 	^ self slotVarNamed: 'securityRoles' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityModule >> securityRoles: anObject [
 	self slotVarNamed: 'securityRoles' put: anObject 
 ]
 
-{ #category : #security }
+{ #category : 'security' }
 LcsSecurityModule >> userWithUuid: aUserUuid [
 	^ self users userWithUuid: aUserUuid
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityModule >> users [
 	^ self slotVarNamed: 'users' 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSecurityModule >> users: anObject [
 	self slotVarNamed: 'users' put: anObject 
 ]

@@ -18,7 +18,7 @@ LcsEmailAddress class >> emailAddressTypeSlotDefinition [
 			addSlotType: LcsEmailAddressType;
 			slotName: 'emailAddressType';
 			prevalidationTransformBlock:[ :value :slot | 
-				slot targetCollection findItemMatchingCode: value ];
+				slot targetCollection findItemMatchingCode: value ifNone: [ value ]  ];
 			collectionSlotName: 'emailAddressTypes';
 			collectionSlotModuleName: 'Legal Entities Module';
 			yourself

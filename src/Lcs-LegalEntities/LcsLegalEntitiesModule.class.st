@@ -9,7 +9,8 @@ Class {
 		'phoneNumbers',
 		'phoneNumberTypes',
 		'emailAddresses',
-		'emailAddressTypes'
+		'emailAddressTypes',
+		'contacts'
 	],
 	#category : 'Lcs-LegalEntities',
 	#package : 'Lcs-LegalEntities'
@@ -21,6 +22,17 @@ LcsLegalEntitiesModule class >> configurationSlotDefinition [
 	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
 			priority: 62;
 			yourself
+]
+
+{ #category : 'slot definitions' }
+LcsLegalEntitiesModule class >> contactsSlotDefinition [
+	<slotDefinition>
+	^ LcsGlobalCollectionSlot new
+		slotName: 'contacts';
+		addSlotType: LcsLegalEntities;
+		addCollectionMemberType: LcsLegalEntity;
+		priority: 62;
+		yourself
 ]
 
 { #category : 'configuration' }
@@ -127,6 +139,16 @@ LcsLegalEntitiesModule class >> titlesSlotDefinition [
 		loaderClass: LcsTitlesLoader;
 		priority: 10;
 		yourself
+]
+
+{ #category : 'accessing' }
+LcsLegalEntitiesModule >> contacts [
+	^ self slotVarNamed: 'contacts'
+]
+
+{ #category : 'accessing' }
+LcsLegalEntitiesModule >> contacts: anObject [
+	self slotVarNamed: 'contacts' put: anObject
 ]
 
 { #category : 'accessing' }

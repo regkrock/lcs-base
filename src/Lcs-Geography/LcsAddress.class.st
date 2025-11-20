@@ -37,7 +37,7 @@ LcsAddress class >> addressTypeSlotDefinition [
 			slotName: 'addressType';
 			addSlotType: LcsAddressType;
 			prevalidationTransformBlock: [ :value :slot | 
-				slot targetCollection findItemMatchingCode: value ];
+				slot targetCollection findItemMatchingCode: value ifNone: [ value ] ];
 			collectionSlotName: 'addressTypes';
 			collectionSlotModuleName: 'Geography Module';
 			priority: 1;
@@ -60,7 +60,8 @@ LcsAddress class >> countrySlotDefinition [
 	^ LcsMemberOfGlobalCollectionSlot new
 			slotName: 'country';
 			slotTypes: (OrderedCollection with: LcsCountry);
-			prevalidationTransformBlock: [ :value :slot | slot targetCollection findItemMatchingCode: value ];
+			prevalidationTransformBlock: [ :value :slot | 
+				slot targetCollection findItemMatchingCodeOrName: value ifNone: [ value ] ];
 			collectionSlotName: 'countries';
 			collectionSlotModuleName: 'Geography Module';
 			priority: 16;
@@ -120,7 +121,7 @@ LcsAddress class >> provinceSlotDefinition [
 	^ LcsMemberOfCollectionInSiblingSlotObjectSlot new
 		slotName: 'province';
 		prevalidationTransformBlock: [ :value :slot :domainObject | 
-			(slot targetCollectionIn: domainObject) findItemMatchingCode: value ];
+			(slot targetCollectionIn: domainObject) findItemMatchingCode: value ifNone: [ value ] ];
 		siblingSlotName: 'country';
 		siblingCollectionSlotName: 'subdivisions';
 		required: true;
