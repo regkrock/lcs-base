@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsCountry,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsCountry',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'isoCode',
 		'formalName',
@@ -12,10 +12,12 @@ Class {
 		'subdivisionClass',
 		'postalCodeClass'
 	],
-	#category : #'Lcs-Geography-Domain'
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> commonNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -27,7 +29,7 @@ LcsCountry class >> commonNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> formalNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -39,7 +41,7 @@ LcsCountry class >> formalNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> isoCode3SlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -50,7 +52,7 @@ LcsCountry class >> isoCode3SlotDefinition [
 		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 3 ] description: 'Code must be 3 characters long';		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> isoCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -61,7 +63,7 @@ LcsCountry class >> isoCodeSlotDefinition [
 		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 2 ] description: 'Code must be 2 characters long';		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> isoNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -72,7 +74,7 @@ LcsCountry class >> isoNumberSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -83,19 +85,19 @@ LcsCountry class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> postalCodeClassSlotDefinition [
 	<slotDefinition>
 	^ LcsPostalCodeClassSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> subdivisionClassSlotDefinition [
 	<slotDefinition>
 	^ LcsCountrySubdivisionClassSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> subdivisionNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -104,7 +106,7 @@ LcsCountry class >> subdivisionNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountry class >> subdivisionsSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -114,97 +116,97 @@ LcsCountry class >> subdivisionsSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> commonName [
 	^ self slotVarNamed: 'commonName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> commonName: anObject [
 	self slotVarNamed: 'commonName' put: anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsCountry >> displayString [
 	^ self commonName asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> formalName [
 	^ self slotVarNamed: 'formalName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> formalName: anObject [
 	self slotVarNamed: 'formalName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> isoCode [
 	^ self slotVarNamed: 'isoCode'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> isoCode3 [
 	^ self slotVarNamed: 'isoCode3'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> isoCode3: anObject [
 	self slotVarNamed: 'isoCode3' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> isoCode: anObject [
 	self slotVarNamed: 'isoCode' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> isoNumber [
 	^ self slotVarNamed: 'isoNumber'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> isoNumber: anObject [
 	self slotVarNamed: 'isoNumber' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> postalCodeClass [
 	^ self slotVarNamed: 'postalCodeClass'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> postalCodeClass: anObject [
 	self slotVarNamed: 'postalCodeClass' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> subdivisionClass [
 	^ self slotVarNamed: 'subdivisionClass'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> subdivisionClass: anObject [
 	self slotVarNamed: 'subdivisionClass' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> subdivisionName [
 	^ self slotVarNamed: 'subdivisionName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> subdivisionName: anObject [
 	self slotVarNamed: 'subdivisionName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> subdivisions [
 	^ self slotVarNamed: 'subdivisions'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCountry >> subdivisions: anObject [
 	self slotVarNamed: 'subdivisions' put: anObject
 ]

@@ -1,17 +1,19 @@
 Class {
-	#name : #LcsCountries,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-Geography-Domain'
+	#name : 'LcsCountries',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #query }
+{ #category : 'query' }
 LcsCountries >> defaultInstance [
 	^ self 
 		find: [ :each | each class = LcsUnknownCountry ]
 		ifNone: [ LcsUnknownCountry new ]
 ]
 
-{ #category : #query }
+{ #category : 'query' }
 LcsCountries >> findItemMatchingCode: anObject [
 	| result |
 	anObject isString ifFalse: [ ^ anObject ].

@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsGeographyModule,
-	#superclass : #LcsModule,
+	#name : 'LcsGeographyModule',
+	#superclass : 'LcsModule',
 	#instVars : [
 		'countries',
 		'addressTypes',
 		'addresses'
 	],
-	#category : #'Lcs-Geography-Domain'
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsGeographyModule class >> addressTypesSlotDefinition [
 	<slotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
@@ -21,7 +23,7 @@ LcsGeographyModule class >> addressTypesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsGeographyModule class >> addressesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -31,7 +33,7 @@ LcsGeographyModule class >> addressesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsGeographyModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
@@ -39,7 +41,7 @@ LcsGeographyModule class >> configurationSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsGeographyModule class >> countriesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -51,49 +53,49 @@ LcsGeographyModule class >> countriesSlotDefinition [
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGeographyModule class >> defaultModuleName [
 	^ 'Geography Module'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGeographyModule class >> moduleConfigurationClass [
 	^ LcsGeographyModuleConfiguration
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGeographyModule class >> owningModules [
 	<owningModule: 'LcsDemoSystem' priority: 5>
 	<owningModule: 'LcsWarRabbitLibrary' priority: 5>
 	<owningModule: 'LcsSailingClubSystem' priority: 5>
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModule >> addressTypes [
 	^ self slotVarNamed: 'addressTypes'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModule >> addressTypes: anObject [
 	self slotVarNamed: 'addressTypes' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModule >> addresses [
 	^ self slotVarNamed: 'addresses'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModule >> addresses: anObject [
 	self slotVarNamed: 'addresses' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModule >> countries [
 	^ self slotVarNamed: 'countries'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModule >> countries: anObject [
 	self slotVarNamed: 'countries' put: anObject
 ]

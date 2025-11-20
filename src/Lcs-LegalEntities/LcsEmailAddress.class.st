@@ -1,6 +1,8 @@
 Class {
 	#name : 'LcsEmailAddress',
 	#superclass : 'LcsDomainObject',
+	#traits : 'LtDateRange',
+	#classTraits : 'LtDateRange classTrait',
 	#instVars : [
 		'email',
 		'emailAddressType'

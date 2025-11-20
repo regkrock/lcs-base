@@ -2,17 +2,19 @@
 This is where the configuration information for the module is stored.
 "
 Class {
-	#name : #LcsGeographyModuleConfiguration,
-	#superclass : #LcsBaseConfiguration,
+	#name : 'LcsGeographyModuleConfiguration',
+	#superclass : 'LcsBaseConfiguration',
 	#instVars : [
 		'defaultPostalCodeName',
 		'defaultPoliticalUnitName',
 		'defaultCountry'
 	],
-	#category : #'Lcs-Geography-Domain'
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultCountrySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -23,7 +25,7 @@ LcsGeographyModuleConfiguration class >> defaultCountrySlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -33,7 +35,7 @@ LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefinition 
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -43,32 +45,32 @@ LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultCountry [
 	^ self slotVarNamed: 'defaultCountry'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultCountry: anObject [
 	self slotVarNamed: 'defaultCountry' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultPoliticalUnitName [
 	^ self slotVarNamed: 'defaultPoliticalUnitName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultPoliticalUnitName: anObject [
 	^ self slotVarNamed: 'defaultPoliticalUnitName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultPostalCodeName [
 	^ self slotVarNamed: 'defaultPostalCodeName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultPostalCodeName: anObject [
 	^ self slotVarNamed: 'defaultPostalCodeName' put: anObject
 ]

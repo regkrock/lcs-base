@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsCanadaPostalCode,
-	#superclass : #LcsBasePostCode,
-	#category : #'Lcs-Geography-Domain'
+	#name : 'LcsCanadaPostalCode',
+	#superclass : 'LcsBasePostCode',
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definition\t' }
+{ #category : 'slot definition\t' }
 LcsCanadaPostalCode class >> codeSlotDefinition [
 	<slotDefinition>
 	^ super codeSlotDefinition

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsCountrySubdivisions,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-Geography-Domain'
+	#name : 'LcsCountrySubdivisions',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCountrySubdivisions class >> defaultInstanceSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsDefaultInstanceSlot new
@@ -12,7 +14,7 @@ LcsCountrySubdivisions class >> defaultInstanceSlotDefinition [
 		yourself
 ]
 
-{ #category : #queries }
+{ #category : 'queries' }
 LcsCountrySubdivisions >> defaultInstance [
 	^ self 
 		find: [ :each | each formalName = 'Unknown' ]
@@ -22,7 +24,7 @@ LcsCountrySubdivisions >> defaultInstance [
 				yourself ]
 ]
 
-{ #category : #querrying }
+{ #category : 'querrying' }
 LcsCountrySubdivisions >> findItemMatchingCode: anObject [
 	| result |
 	anObject isString ifFalse: [ ^ anObject ].

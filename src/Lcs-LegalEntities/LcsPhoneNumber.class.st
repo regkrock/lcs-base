@@ -1,6 +1,8 @@
 Class {
 	#name : 'LcsPhoneNumber',
 	#superclass : 'LcsDomainObject',
+	#traits : 'LtDateRange',
+	#classTraits : 'LtDateRange classTrait',
 	#instVars : [
 		'phoneNumberType',
 		'number'

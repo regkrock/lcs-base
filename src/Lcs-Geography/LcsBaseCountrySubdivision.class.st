@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsBaseCountrySubdivision,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsBaseCountrySubdivision',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'isoCode',
 		'formalName',
 		'subdivisionName'
 	],
-	#category : #'Lcs-Geography-Domain'
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsBaseCountrySubdivision class >> collectionSlotIn: anObject [ 
 	^ anObject perform: self parentSlotDefinition collectionSlotName asSymbol
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> formalNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -24,7 +26,7 @@ LcsBaseCountrySubdivision class >> formalNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition\t' }
+{ #category : 'slot definition\t' }
 LcsBaseCountrySubdivision class >> isoCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -33,7 +35,7 @@ LcsBaseCountrySubdivision class >> isoCodeSlotDefinition [
 		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 2 ] description: 'Code must be 2 characters long';		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsBaseCountrySubdivision class >> newInContextOf: anObject [
 	| newObject parentCollectionSlot |
 	newObject := self basicNew.
@@ -44,7 +46,7 @@ LcsBaseCountrySubdivision class >> newInContextOf: anObject [
 	^ newObject 
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
@@ -54,7 +56,7 @@ LcsBaseCountrySubdivision class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -64,32 +66,32 @@ LcsBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseCountrySubdivision >> formalName [
 	^ self slotVarNamed: 'formalName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseCountrySubdivision >> formalName: anObject [
 	self slotVarNamed: 'formalName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseCountrySubdivision >> isoCode [
 	^ self slotVarNamed: 'isoCode'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseCountrySubdivision >> isoCode: anObject [
 	self slotVarNamed: 'isoCode' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseCountrySubdivision >> subdivisionName [
 	^ self slotVarNamed: 'subdivisionName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBaseCountrySubdivision >> subdivisionName: anObject [
 	self slotVarNamed: 'subdivisionName' put: anObject
 ]

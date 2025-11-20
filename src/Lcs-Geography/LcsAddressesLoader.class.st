@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsAddressesLoader,
-	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-Geography-Domain'
+	#name : 'LcsAddressesLoader',
+	#superclass : 'LcsObjectsLoader',
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #data }
+{ #category : 'data' }
 LcsAddressesLoader >> data [
 	^ ''
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsAddressesLoader >> targetClass [
 	^ LcsAddress
 ]

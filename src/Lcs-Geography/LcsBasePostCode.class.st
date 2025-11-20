@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsBasePostCode,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsBasePostCode',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'code'
 	],
-	#category : #'Lcs-Geography-Domain'
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsBasePostCode class >> codeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -15,12 +17,12 @@ LcsBasePostCode class >> codeSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePostCode >> code [
 	^ self slotVarNamed: 'code'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsBasePostCode >> code: anObject [
 	self slotVarNamed: 'code' put: anObject
 ]

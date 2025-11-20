@@ -1,6 +1,8 @@
 Class {
-	#name : #LcsAddress,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsAddress',
+	#superclass : 'LcsDomainObject',
+	#traits : 'LtDateRange',
+	#classTraits : 'LtDateRange classTrait',
 	#instVars : [
 		'streetName',
 		'postalCode',
@@ -13,10 +15,12 @@ Class {
 		'country',
 		'province'
 	],
-	#category : #'Lcs-Geography-Domain'
+	#category : 'Lcs-Geography-Domain',
+	#package : 'Lcs-Geography',
+	#tag : 'Domain'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> additionalDeliveryInformationSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -26,7 +30,7 @@ LcsAddress class >> additionalDeliveryInformationSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> addressTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -40,7 +44,7 @@ LcsAddress class >> addressTypeSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> citySlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -50,7 +54,7 @@ LcsAddress class >> citySlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> countrySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -73,7 +77,7 @@ LcsAddress class >> countrySlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -84,7 +88,7 @@ LcsAddress class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> postBoxSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -94,7 +98,7 @@ LcsAddress class >> postBoxSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> postCodeSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsDelegatorSlot new
@@ -104,13 +108,13 @@ LcsAddress class >> postCodeSlotDefinition [
 
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> postalCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsPostalCodeSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> provinceSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfCollectionInSiblingSlotObjectSlot new
@@ -125,7 +129,7 @@ LcsAddress class >> provinceSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> streetNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -135,7 +139,7 @@ LcsAddress class >> streetNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> streetNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -147,7 +151,7 @@ LcsAddress class >> streetNumberSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAddress class >> unitSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -156,112 +160,112 @@ LcsAddress class >> unitSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> additionalDeliveryInformation [
 	^ self slotVarNamed: 'additionalDeliveryInformation'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> additionalDeliveryInformation: anObject [
 	self slotVarNamed: 'additionalDeliveryInformation' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> addressType [
 	^ self slotVarNamed: 'addressType'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> addressType: anObject [
 	self slotVarNamed: 'addressType' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> city [
 	^ self slotVarNamed: 'city'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> city: anObject [
 	self slotVarNamed: 'city' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> country [
 	^ self slotVarNamed: 'country'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> country: anObject [
 	self slotVarNamed: 'country' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> postBox [
 	^ self slotVarNamed: 'postBox'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> postBox: anObject [
 	self slotVarNamed: 'postBox' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> postCode [
 	^ self slotVarNamed: 'postCode'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> postCode: anObject [
 	self slotVarNamed: 'postCode' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> postalCode [
 	^ self slotVarNamed: 'postalCode'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> postalCode: anObject [
 	self slotVarNamed: 'postalCode' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> province [
 	^ self slotVarNamed: 'province'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> province: anObject [
 	self slotVarNamed: 'province' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> streetName [
 	^ self slotVarNamed: 'streetName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> streetName: anObject [
 	self slotVarNamed: 'streetName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> streetNumber [
 	^ self slotVarNamed: 'streetNumber'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> streetNumber: anObject [
 	self slotVarNamed: 'streetNumber' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> unit [
 	^ self slotVarNamed: 'unit'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAddress >> unit: anObject [
 	self slotVarNamed: 'unit' put: anObject
 ]
