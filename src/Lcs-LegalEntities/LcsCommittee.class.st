@@ -9,7 +9,7 @@ Class {
 LcsCommittee class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
-			slotTypes: (OrderedCollection with: LcsCommittees);
+			addSlotType: LcsCommittees;
 			slotName: 'parent';
 			collectionSlotName: 'committees';
 			yourself
