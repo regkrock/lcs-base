@@ -86,7 +86,8 @@ LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 
 { #category : 'gt views' }
 LcsModules >> moduleViewChildren [
-	^ self collect: [ :each | LcsModuleViewItem newLabel: each moduleName item: each ]
+	^ ((self collect: [ :each | LcsModuleViewItem newLabel: each moduleName item: each ])
+			asSortedCollection: [ :a :b | a item loadPriority <= b item loadPriority]) asOrderedCollection
 ]
 
 { #category : 'modules' }

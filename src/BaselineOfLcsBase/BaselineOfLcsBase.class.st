@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfLcsBase,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfLcsBase
+	#name : 'BaselineOfLcsBase',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfLcsBase',
+	#package : 'BaselineOfLcsBase'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfLcsBase class >> manuallyLoadLepiter [
 	| repository defaultDatabase currentProperties |
 	
@@ -18,7 +19,7 @@ BaselineOfLcsBase class >> manuallyLoadLepiter [
 	defaultDatabase reload.
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfLcsBase >> baseline: spec [
 	<baseline>
 		^ spec for: #common do: [
@@ -34,6 +35,7 @@ BaselineOfLcsBase >> baseline: spec [
 
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
 			spec package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Geography') ].
+			spec package: 'Lcs-InternalOrganization' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-LegalEntities') ].
 			spec package: 'Lcs-Security' with: [ spec requires: #('Lcs-DomainBase') ].
 			spec package: 'Lcs-Calendar' with: [ spec requires: #('Lcs-DomainBase') ].
 			spec package: 'Lcs-DemoSystem' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' 'Lcs-Security' ) ].
