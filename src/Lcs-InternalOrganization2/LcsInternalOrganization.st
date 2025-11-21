@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'committees'
 	],
-	#category : 'Lcs-LegalEntities-Core',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-InternalOrganization-Core',
+	#package : 'Lcs-InternalOrganization'
 	#tag : 'Core'
 }
