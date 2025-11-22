@@ -1,0 +1,6 @@
+Extension { #name : 'LcsModule' }
+
+{ #category : '*Lcs-InternalOrganization' }
+LcsModule >> internalOrganizationModule [
+	^ self moduleNamed: 'Internal Organization Module'
+]
