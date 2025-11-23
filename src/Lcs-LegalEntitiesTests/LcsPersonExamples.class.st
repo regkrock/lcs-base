@@ -97,7 +97,7 @@ LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	person := self johnFreeman.
 	self assert: person emailAddresses hasNoElements.
 	self
-		assert: person homeEmailAddress defaultInstance
+		assert: person homeEmailAddress
 		equals: person emailAddresses defaultInstance.
 	homeEmail := self johnFreemanHomeEmail.
 	person homeEmailAddress: homeEmail.
