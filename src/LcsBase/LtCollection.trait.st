@@ -102,7 +102,7 @@ LtCollection >> reject: aBlock [
 
 { #category : 'collection' }
 LtCollection >> remove: anObject [
-	^ self collection remove: anObject
+	^ self remove: anObject ifAbsent: [ ]
 ]
 
 { #category : 'collection' }

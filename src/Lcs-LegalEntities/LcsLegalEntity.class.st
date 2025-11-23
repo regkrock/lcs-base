@@ -52,6 +52,11 @@ LcsLegalEntity class >> phoneNumberSlotDefinition [
 			yourself
 ]
 
+{ #category : 'as yet unclassified' }
+LcsLegalEntity >> contactWithFirstName: aFirstName surname: aSurname [
+	^ self currentSystem legalEntitiesModule contactWithFirstName: aFirstName surname: aSurname
+]
+
 { #category : 'accessing' }
 LcsLegalEntity >> emailAddresses [
 	^ self slotVarNamed: 'emailAddresses'
@@ -65,6 +70,11 @@ LcsLegalEntity >> emailAddresses: anObject [
 { #category : 'accessing' }
 LcsLegalEntity >> entityName [
 	^ self virtualSlotVarNamed: 'entityName'
+]
+
+{ #category : 'as yet unclassified' }
+LcsLegalEntity >> hasContactWithFirstName: aFirstName surname: aSurname [
+	^ self currentSystem legalEntitiesModule hasContactWithFirstName: aFirstName surname: aSurname
 ]
 
 { #category : 'accessing' }

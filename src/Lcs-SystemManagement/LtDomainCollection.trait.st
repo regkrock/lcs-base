@@ -7,6 +7,13 @@ Trait {
 	#tag : 'Traits'
 }
 
+{ #category : 'collection' }
+LtDomainCollection >> add: anObject [
+	"self verifyCanAdd: anObject."
+	anObject parent ifNil: [ anObject parent: self ].
+	^ self collection add: anObject
+]
+
 { #category : 'accessing' }
 LtDomainCollection >> collection [
 	^ self slotVarNamed: 'collection'
@@ -21,6 +28,21 @@ LtDomainCollection >> collection: aCollection [
 LtDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
 	^nil
+]
+
+{ #category : 'collection' }
+LtDomainCollection >> directAdd: anObject [
+	^ self collection add: anObject
+]
+
+{ #category : 'collection' }
+LtDomainCollection >> directRemove: anObject [
+	^ self directRemove: anObject ifAbsent: [ ]
+]
+
+{ #category : 'collection' }
+LtDomainCollection >> directRemove: anObject ifAbsent: aBlock [
+	^ self collection remove: anObject ifAbsent: aBlock
 ]
 
 { #category : 'gt views' }
@@ -41,4 +63,10 @@ LtDomainCollection >> gtItemsFor: aView [
 				text: [:domainObject | (domainObject perform: eachSlotDefinition getterSelector) asString ] 
 				width: 100 ] ].
 	^ columnedListView
+]
+
+{ #category : 'collection' }
+LtDomainCollection >> remove: anObject ifAbsent: aBlock [
+	"self verifyCanARemove: anObject."
+	^ self collection remove: anObject ifAbsent: [ ]
 ]

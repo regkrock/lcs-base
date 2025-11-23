@@ -141,6 +141,11 @@ LcsLegalEntitiesModule class >> titlesSlotDefinition [
 		yourself
 ]
 
+{ #category : 'querying' }
+LcsLegalEntitiesModule >> contactWithFirstName: aFirstName surname: aSurname [
+	^ self contacts contactWithFirstName: aFirstName surname: aSurname
+]
+
 { #category : 'accessing' }
 LcsLegalEntitiesModule >> contacts [
 	^ self slotVarNamed: 'contacts'
@@ -179,6 +184,11 @@ LcsLegalEntitiesModule >> genders [
 { #category : 'accessing' }
 LcsLegalEntitiesModule >> genders: anObject [
 	self slotVarNamed: 'genders' put: anObject
+]
+
+{ #category : 'querying' }
+LcsLegalEntitiesModule >> hasContactWithFirstName: aFirstName surname: aSurname [
+	^ self contacts hasContactWithFirstName: aFirstName surname: aSurname
 ]
 
 { #category : 'accessing' }

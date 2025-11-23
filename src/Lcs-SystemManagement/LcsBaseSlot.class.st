@@ -217,7 +217,7 @@ LcsBaseSlot >> gtSlotDefinitionAttributes [
 	collection := OrderedCollection new
 			add: 'domainClass' -> self newDomainClassName;
 			add: 'slotDefinition' -> self domainClass;
-			add: 'category' -> self slotPragmaName ;
+			add: 'pragma' -> self slotPragmaName ;
 			add: 'slotDefinitionClass' -> self class;
 			yourself.
 	self addPropertiesTo: collection.

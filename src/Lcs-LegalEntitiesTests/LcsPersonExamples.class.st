@@ -7,6 +7,17 @@ Class {
 }
 
 { #category : 'examples' }
+LcsPersonExamples >> johnDoe [
+	<gtExample>
+	| person |
+	self ensureCurrentSystemIsDemoSystem.
+	person := LcsPerson new
+			firstName: 'John';
+			surname: 'Doe'.
+	^ person
+]
+
+{ #category : 'examples' }
 LcsPersonExamples >> johnFreeman [
 	<gtExample>
 	| person |
@@ -108,4 +119,15 @@ LcsPersonExamples >> johnFreemanWorkEmail [
 		emailAddressType: 'work';
 		email: 'johnfreemanWork@gmail.com';
 		yourself
+]
+
+{ #category : 'examples' }
+LcsPersonExamples >> samSmith [
+	<gtExample>
+	| person |
+	self ensureCurrentSystemIsDemoSystem.
+	person := LcsPerson new
+			firstName: 'Sam';
+			surname: 'Smith'.
+	^ person
 ]

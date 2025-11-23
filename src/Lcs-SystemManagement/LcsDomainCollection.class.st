@@ -19,13 +19,20 @@ LcsDomainCollection class >> collectionType [
 	^'concrete'
 ]
 
+{ #category : 'collection' }
+LcsDomainCollection >> add: anObject [
+	"self verifyCanAdd: anObject."
+	anObject parent ifNil: [ anObject parent: self ].
+	^ self collection add: anObject
+]
+
 { #category : 'queries' }
 LcsDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
 	^nil
 ]
 
-{ #category : 'default instance' }
+{ #category : 'querying' }
 LcsDomainCollection >> find: aBlock [
 	^ self find: aBlock ifNone: [ nil ]
 ]
@@ -40,7 +47,7 @@ LcsDomainCollection >> find: aBlock ifNone: aNoneBlock [
 	^ aNoneBlock value
 ]
 
-{ #category : 'search' }
+{ #category : 'querying' }
 LcsDomainCollection >> findWithKey: anObject [
 	^ self findWithKey: anObject ifNone: [ ]
 ]

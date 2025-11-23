@@ -208,14 +208,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-18T08:47:09.304859-04:00"
+						"dateAndTimeString" : "2025-11-23T13:46:02.567905-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "wt3upu33DQCRimygBscWFQ=="
 				},
-				"code" : "targetTrait := LtCompositeAssociation.\rObject withAllSubclasses select: [ :each | each traits includes: targetTrait ]"
+				"code" : "targetTrait := LtDomainCollection.\rObject withAllSubclasses select: [ :each | each traits includes: targetTrait ]"
 			},
 			{
 				"__type" : "pharoSnippet",

@@ -16,7 +16,7 @@ LcsUnitOfWork >> applyChanges [
 
 { #category : 'api' }
 LcsUnitOfWork >> applyChanges: aDictionary to: eachCollection [ 
-		(aDictionary at: 'add') do: [ :eachItem | eachCollection add: eachItem ].
+		(aDictionary at: 'add') do: [ :eachItem | eachCollection directAdd: eachItem ].
 		(aDictionary at: 'delete') do: [ :eachItem | eachCollection delete: eachItem ]
 
 ]
