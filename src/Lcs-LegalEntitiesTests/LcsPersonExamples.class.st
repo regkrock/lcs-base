@@ -14,6 +14,7 @@ LcsPersonExamples >> johnDoe [
 	person := LcsPerson new
 			firstName: 'John';
 			surname: 'Doe'.
+	"Because person is automatically added to a global collection, no need to explicitly add the parent"
 	^ person
 ]
 
