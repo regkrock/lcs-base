@@ -22,7 +22,7 @@ LcsDomainCollection class >> collectionType [
 { #category : 'collection' }
 LcsDomainCollection >> add: anObject [
 	"self verifyCanAdd: anObject."
-	anObject parent ifNil: [ anObject parent: self ].
+	anObject parent isNil ifTrue: [ anObject parent: self ].
 	^ self collection add: anObject
 ]
 
