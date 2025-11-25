@@ -303,7 +303,7 @@ LcsDomainObject >> lastUpdatedUser [
 LcsDomainObject >> localCollectionItems [
 	^ self slotModel localCollectionSlots
 		collect: [ :eachSlotDefinition | 
-			LcsLocalCollectionItem
+			LcsLocalCollectionViewItem
 				newLabel: eachSlotDefinition slotName
 				item: (self perform: eachSlotDefinition slotName asSymbol) ]
 ]

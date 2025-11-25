@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsGlobalCollectionItem',
+	#name : 'LcsGlobalCollectionViewItem',
 	#superclass : 'LcsViewItem',
 	#category : 'Lcs-SystemManagement-View',
 	#package : 'Lcs-SystemManagement',
@@ -7,23 +7,23 @@ Class {
 }
 
 { #category : 'defaults' }
-LcsGlobalCollectionItem class >> defaultChildrenSelector [
+LcsGlobalCollectionViewItem class >> defaultChildrenSelector [
 	^ #globalCollections
 ]
 
 { #category : 'accessing' }
-LcsGlobalCollectionItem >> collectionType [
+LcsGlobalCollectionViewItem >> collectionType [
 	^ self item collectionType
 ]
 
 { #category : 'accessing' }
-LcsGlobalCollectionItem >> numberOfPendingAdds [
+LcsGlobalCollectionViewItem >> numberOfPendingAdds [
 	^ (self currentSystem ifNil: [ 0 ]
 		ifNotNil: [ :s | s unitOfWork pendingAddsFor: self ]) size
 ]
 
 { #category : 'accessing' }
-LcsGlobalCollectionItem >> numberOfPendingRemovals [
+LcsGlobalCollectionViewItem >> numberOfPendingRemovals [
 	"^ self currentSystem currentUnitOfWork pendingRemovalsFor: self."
 	^ 0
 ]

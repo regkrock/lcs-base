@@ -29,16 +29,16 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-27T11:33:28.874252-05:00"
+						"dateAndTimeString" : "2025-11-25T08:14:26.319845-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "a+kIXRTpDQCR8ZErA8uYfw=="
 				},
-				"code" : "(GtCoderElement forClass: LcsApplicationEnvironment) disablePlayPage beNormalLevel",
-				"elementHeight" : 1110,
-				"codeHeight" : 50,
+				"code" : "(GtCoderElement forClass: LcsApplicationEnvironment) disablePlayPage beNormalLevel.\r\rLcsDemoSystem new",
+				"elementHeight" : 819,
+				"codeHeight" : 176,
 				"codeVisible" : true
 			},
 			{

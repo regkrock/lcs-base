@@ -39,6 +39,11 @@ LcsLogger class >> log: aMessage [
 ]
 
 { #category : 'logging - api' }
+LcsLogger class >> logAdding: anObject to: aCollection [
+	self soleInstance logAdding: anObject to: aCollection
+]
+
+{ #category : 'logging - api' }
 LcsLogger class >> logGettingInitialValue [
 	self soleInstance logGettingInitialValue
 ]
@@ -135,6 +140,16 @@ LcsLogger >> initialize [
 LcsLogger >> log: aMessage [
 	self writeTabs.
 	self nextPutAll: aMessage.
+	self cr
+]
+
+{ #category : 'logging' }
+LcsLogger >> logAdding: anObject to: aCollection [
+	self writeTabs.
+	self nextPutAll: 'Adding '.
+	self nextPutAll: anObject printString.
+	self nextPutAll: ' to '.
+	self nextPutAll: aCollection printString.
 	self cr
 ]
 

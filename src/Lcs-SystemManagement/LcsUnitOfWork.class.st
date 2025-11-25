@@ -17,7 +17,7 @@ LcsUnitOfWork >> applyChanges [
 { #category : 'api' }
 LcsUnitOfWork >> applyChanges: aDictionary to: eachCollection [ 
 		(aDictionary at: 'add') do: [ :eachItem | eachCollection directAdd: eachItem ].
-		(aDictionary at: 'delete') do: [ :eachItem | eachCollection delete: eachItem ]
+		(aDictionary at: 'delete') do: [ :eachItem | eachCollection directRemove: eachItem ]
 
 ]
 
@@ -59,17 +59,17 @@ LcsUnitOfWork >> hasRemovalRecordFor: aDomainObject [
 ]
 
 { #category : 'testing' }
-LcsUnitOfWork >> pendingAddsFor: anItem [
+LcsUnitOfWork >> pendingAddsFor: aViewItem [
 	^ self addedObjects
 		select: [ :eachAddRecord | 
-			eachAddRecord isMemberOfGlobalCollectionIn: anItem label ]
+			eachAddRecord isMemberOfGlobalCollectionIn: aViewItem label ]
 ]
 
 { #category : 'query' }
-LcsUnitOfWork >> pendingDeletesFor: anItem [
+LcsUnitOfWork >> pendingDeletesFor: aViewItem [
 	^ self deletedObjects
 		select: [ :eachDeletedRecord | 
-			eachDeletedRecord isMemberOfGlobalCollectionIn: anItem label ]
+			eachDeletedRecord isMemberOfGlobalCollectionIn: aViewItem label ]
 ]
 
 { #category : 'api' }

@@ -8,9 +8,7 @@ Class {
 
 { #category : 'object initialization' }
 LcsGlobalCollectionReferenceSlot >> _initialValueFor: aDomainObject [
-	| targetModule |
-	targetModule := self moduleNamed: self collectionSlotModuleName.
-	^ targetModule perform: self collectionSlotName asSymbol
+	self shouldNotImplement
 ]
 
 { #category : 'as yet unclassified' }
@@ -58,10 +56,13 @@ LcsGlobalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
 		yourself
 ]
 
-{ #category : 'slot model' }
+{ #category : 'object initialization' }
 LcsGlobalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
-	"The global collection is initialized by the module, not from the parent"
-	aDomainObject parent: (self initialValueFor: aDomainObject)
+	LcsLogger logReceiver: thisContext receiver message: thisContext message.
+	LcsLogger indent.
+	LcsLogger logAdding: aDomainObject to: self targetCollection .
+	self targetCollection add: aDomainObject.
+	LcsLogger outdent.
 ]
 
 { #category : 'testing' }

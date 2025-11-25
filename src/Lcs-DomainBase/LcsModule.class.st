@@ -206,7 +206,7 @@ LcsModule >> globalCollectionItems [
 	self slotModel ifNil: [ ^ OrderedCollection new ].
 	^ self slotModel globalCollectionSlots
 		collect: [ :eachSlotDefinition | 
-			LcsGlobalCollectionItem
+			LcsGlobalCollectionViewItem
 				newLabel: eachSlotDefinition slotName
 				item: (self perform: eachSlotDefinition slotName asSymbol) ]
 ]
