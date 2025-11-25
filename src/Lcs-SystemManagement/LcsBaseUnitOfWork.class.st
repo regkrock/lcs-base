@@ -16,13 +16,13 @@ Class {
 	#tag : 'UnitOfWork'
 }
 
-{ #category : 'api' }
+{ #category : 'private' }
 LcsBaseUnitOfWork >> _pendingAddsIn: aTargetCollection [
 	^ (self collectionChagesFor: aTargetCollection)
 		at: 'add'
 ]
 
-{ #category : 'api' }
+{ #category : 'private' }
 LcsBaseUnitOfWork >> _pendingDeletesIn: aTargetCollection [
 	^ (self collectionChagesFor: aTargetCollection)
 		at: 'delete'

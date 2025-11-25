@@ -20,10 +20,12 @@ LcsDomainCollection class >> collectionType [
 ]
 
 { #category : 'collection' }
-LcsDomainCollection >> add: anObject [
+LcsDomainCollection >> add: aDomainObject [
 	"self verifyCanAdd: anObject."
-	anObject parent isNil ifTrue: [ anObject parent: self ].
-	^ self collection add: anObject
+	aDomainObject parent isNil ifTrue: [ aDomainObject parent: self ].
+	(self pendingAdds includes: aDomainObject) ifFalse: [
+		self currentUnitOfWork addObject: aDomainObject toCollection: self ].
+	^ aDomainObject
 ]
 
 { #category : 'queries' }

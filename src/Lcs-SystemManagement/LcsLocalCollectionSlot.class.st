@@ -10,3 +10,9 @@ Class {
 LcsLocalCollectionSlot >> isLocalCollectionSlot [
 	^ true
 ]
+
+{ #category : 'testing' }
+LcsLocalCollectionSlot >> slotVarPut: anObject in: aDomainObject [
+	super slotVarPut: anObject in: aDomainObject.
+	self currentUnitOfWork changedCollections 
+]
