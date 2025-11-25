@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsUnitsOfWorkManagerTest,
-	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#name : 'LcsUnitsOfWorkManagerTest',
+	#superclass : 'LcsTestWithNoApplicationEnvironmentTest',
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitsOfWorkManagerTest >> testCreation [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	subject := LcsApplicationEnvironment unitsOfWorkManager.
@@ -18,7 +20,7 @@ LcsUnitsOfWorkManagerTest >> testCreation [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsUnitsOfWorkManagerTest >> testRemoveCurrentUnitOfWork [
 	| unitOfWork |
 	LcsApplicationEnvironment initializeApplicationEnvironment.

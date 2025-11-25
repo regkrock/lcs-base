@@ -1,10 +1,12 @@
 Class {
-	#name : #LxxPersonExamples,
-	#superclass : #LcsObjectExamples,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#name : 'LxxPersonExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Tests'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LxxPersonExamples >> johnFreeman [
 	<gtExample>
 	| person |
@@ -21,7 +23,7 @@ LxxPersonExamples >> johnFreeman [
 	^ person
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPersonExamples >> slotDefintionViewItems [
 	<gtExample>
 	| allSlotDefinitionViewItems|

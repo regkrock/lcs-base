@@ -1,22 +1,24 @@
 Class {
-	#name : #LcsApplicationObjectTest,
-	#superclass : #LcsTestWithNoTestSystemSetupForTest,
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#name : 'LcsApplicationObjectTest',
+	#superclass : 'LcsTestWithNoTestSystemSetupForTest',
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 LcsApplicationObjectTest >> testCurrentSystemDoesNotExist [
 	self assert: LcsApplicationObject currentSystem isNil.
 	self assert: LcsApplicationObject new currentSystem isNil
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsApplicationObjectTest >> testCurrentUnitOfWorkDoesNotExist [
 	self assert: LcsApplicationObject currentUnitOfWork isNil.
 	self assert: LcsApplicationObject new currentUnitOfWork isNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsApplicationObjectTest >> testLcsObjectHasNoninitializedSlotModel [
 	self assert: LcsBaseDomainObject hasNoninitializedSlotModel equals: true
 ]

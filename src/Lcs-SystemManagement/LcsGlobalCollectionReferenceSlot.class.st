@@ -89,15 +89,12 @@ LcsGlobalCollectionReferenceSlot >> persistValue: aDomainObject contextObject: a
 
 { #category : 'as yet unclassified' }
 LcsGlobalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfWork [
-
 	aUnitOfWork addPendingAddOf: aDomainObject to: self targetCollection
 ]
 
 { #category : 'as yet unclassified' }
 LcsGlobalCollectionReferenceSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
-
-	aUnitOfWork addPendingAddOf: aDomainObject to: 
-	self targetCollection 
+	aUnitOfWork addPendingDeletionOf: aDomainObject from: self targetCollection
 ]
 
 { #category : 'accessing' }

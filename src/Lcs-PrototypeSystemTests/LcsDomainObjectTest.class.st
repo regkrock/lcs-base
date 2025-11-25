@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDomainObjectTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#name : 'LcsDomainObjectTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainObjectTest >> testCreatingNewDomainObject [
 	| domainObject |
 	
@@ -19,7 +21,7 @@ LcsDomainObjectTest >> testCreatingNewDomainObject [
 	self assert: (self currentUnitOfWork addedObjects keys includes:  domainObject)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainObjectTest >> testHistoryCreationWithNewDomainObject [
 	| domainObject |
 		
@@ -38,7 +40,7 @@ LcsDomainObjectTest >> testHistoryCreationWithNewDomainObject [
 	self assert: domainObject history userUuid isInteger
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainObjectTest >> testRemoveDomainSlot [
 	LxxPrototypeSystem removeDomainSlotNamed: 'dummy'.
 	self assert: (LxxPrototypeSystem instVarNames includes: #dummy) not.
@@ -49,7 +51,7 @@ LcsDomainObjectTest >> testRemoveDomainSlot [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainObjectTest >> testRemoveDomainSlotDefinitionIsDefined [
 
 	LxxPrototypeSystem compile: 'dummySlotDefinition'.
@@ -64,7 +66,7 @@ LcsDomainObjectTest >> testRemoveDomainSlotDefinitionIsDefined [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlyGetterIsDefined [
 
 	LxxPrototypeSystem compile: 'dummy'.
@@ -79,7 +81,7 @@ LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlyGetterIsDefined [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlyInstanceVariableIsDefined [
 
 	LxxPrototypeSystem addInstVarNamed: #dummy.
@@ -94,7 +96,7 @@ LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlyInstanceVariableIsDefined [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlySetterIsDefined [
 
 	LxxPrototypeSystem compile: 'dummy: anObject'.

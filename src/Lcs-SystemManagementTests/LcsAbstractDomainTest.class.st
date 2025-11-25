@@ -4,15 +4,17 @@ Subclasses in:
 2) the tearDwon phase will restore the suspended system.
 "
 Class {
-	#name : #LcsAbstractDomainTest,
-	#superclass : #LcsTestCase,
+	#name : 'LcsAbstractDomainTest',
+	#superclass : 'LcsTestCase',
 	#instVars : [
 		'savedSystem'
 	],
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 LcsAbstractDomainTest >> assertObject: anActualValue equals: aExectedValue [
 	(anActualValue isBlock and: [ aExectedValue isBlock ]) 
 		ifTrue: [ 
@@ -25,33 +27,33 @@ LcsAbstractDomainTest >> assertObject: anActualValue equals: aExectedValue [
 	self assert: anActualValue equals: aExectedValue
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsAbstractDomainTest >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsAbstractDomainTest >> currentSystemUnitOfWork [
 	^ (LcsApplicationEnvironment currentSystem)
 		ifNotNil: [ :cur | cur unitOfWork ]
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsAbstractDomainTest >> currentUnitOfWork [
 	^ LcsApplicationEnvironment currentUnitOfWork
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAbstractDomainTest >> savedSystem [
 	^ savedSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAbstractDomainTest >> savedSystem: aSystem [
 	savedSystem := aSystem
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsAbstractDomainTest >> setUp [
 	super setUp.
 	self abortTransaction.
@@ -61,17 +63,17 @@ LcsAbstractDomainTest >> setUp [
 	self commitTransaction
 ]
 
-{ #category : #setUp }
+{ #category : 'setUp' }
 LcsAbstractDomainTest >> setUpTestSystem [
 	"This does not setup a test system"
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsAbstractDomainTest >> systemsManager [
 	^ LcsApplicationEnvironment systemsManager
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsAbstractDomainTest >> tearDown [
 	super tearDown.
 	self abortTransaction.
@@ -86,7 +88,7 @@ LcsAbstractDomainTest >> tearDown [
 
 ]
 
-{ #category : #'application environment' }
+{ #category : 'application environment' }
 LcsAbstractDomainTest >> unitsOfWorkManager [
 	^ LcsApplicationEnvironment unitsOfWorkManager
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsAuditorTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#name : 'LcsAuditorTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsAuditorTest >> testAuditingNewPerson [
 	| anAuditor |
 	self subject: LxxPerson new.
@@ -19,7 +21,7 @@ LcsAuditorTest >> testAuditingNewPerson [
 	self assert: anAuditor hasNoErrors.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsAuditorTest >> testAuditingWithParentSlotWithAnInvalidValue [
 	| anAuditor |
 	self subject: LxxPerson new.
@@ -31,7 +33,7 @@ LcsAuditorTest >> testAuditingWithParentSlotWithAnInvalidValue [
 	self assert: anAuditor errorDescriptions first equals: '''parent''  slot("LcsGlobalCollectionReferenceSlot") in LxxPerson contains invalid: nil'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsAuditorTest >> testAuditingWithSmalltalkSlotWithAnInvalidValue [
 	| anAuditor |
 	self subject: LxxPerson new.

@@ -90,9 +90,7 @@ LcsLocalCollectionReferenceSlot >> setUpPendingAddOf: aDomainObject in: aUnitOfW
 
 { #category : 'unit of work' }
 LcsLocalCollectionReferenceSlot >> setUpPendingDeleteOf: aDomainObject in: aUnitOfWork [
-
-	aUnitOfWork addPendingAddOf: aDomainObject to: 
-	self targetCollection 
+	aUnitOfWork addPendingDeletionOf: aDomainObject from: self targetCollection
 ]
 
 { #category : 'private' }

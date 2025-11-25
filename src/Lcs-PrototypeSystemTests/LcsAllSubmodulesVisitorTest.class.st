@@ -1,14 +1,16 @@
 Class {
-	#name : #LcsAllSubmodulesVisitorTest,
-	#superclass : #LcsTestWithNoTestSystemSetupForTest,
+	#name : 'LcsAllSubmodulesVisitorTest',
+	#superclass : 'LcsTestWithNoTestSystemSetupForTest',
 	#instVars : [
 		'refactoring',
 		'originalSource'
 	],
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAllSubmodulesVisitorTest >> testNestedSubmodules [
 	| modules visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxPrototypeSystem.
@@ -17,42 +19,42 @@ LcsAllSubmodulesVisitorTest >> testNestedSubmodules [
 	self assert: modules size equals: 4.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModule0OwnsModule1AndModule2AreOwnedyEachOther [
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxModule0.
 	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModule1AndModule2AndModule3AreInACircularOwnership [
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxTestModule1.
 	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModule1AndModule2AreOwnedyEachOther [
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxModule1.
 	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAllSubmodulesVisitorTest >> testRecursiveSubmodulesWhereModuleIsOwnedByItself [
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxModuleWithOwningModuleBeingItself.
 	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAllSubmodulesVisitorTest >> testSubmodulesWhereNoSubmoduleExists [
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxPersonsModule.
 	self assert: visitor allSubmoduleClasses isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAllSubmodulesVisitorTest >> testSubmodulesWhereOneSubmoduleExists [
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxPrototype2Module.

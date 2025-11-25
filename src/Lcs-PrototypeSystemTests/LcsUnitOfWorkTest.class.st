@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsUnitOfWorkTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#name : 'LcsUnitOfWorkTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsUnitOfWorkTest >> testCreation [
 
 	| unitOfWork |
@@ -16,7 +18,7 @@ LcsUnitOfWorkTest >> testCreation [
 	self assert: unitOfWork changedObjects isEmpty.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsUnitOfWorkTest >> testDeleteDomainObject [
 	"| domainObject |
 	LxxPrototypeSystem new. 
@@ -35,7 +37,7 @@ LcsUnitOfWorkTest >> testDeleteDomainObject [
 	self assert: LcsApplicationEnvironment currentUnitOfWork deletedObjects any domainObject == domainObject"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsUnitOfWorkTest >> testHistoryCreationWithNewDomainObject [
 	| domainObject |
 		
@@ -54,7 +56,7 @@ LcsUnitOfWorkTest >> testHistoryCreationWithNewDomainObject [
 	self assert: domainObject history userUuid isInteger
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
 	| person slotChangeHistory |
 	person := LxxPerson new.
@@ -82,7 +84,7 @@ LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsUnitOfWorkTest >> testHistoryOfSlotChange [
 	| person slotChangeHistory |
 	person := LxxPerson new.
@@ -110,7 +112,7 @@ LcsUnitOfWorkTest >> testHistoryOfSlotChange [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsUnitOfWorkTest >> testLastUpdatedDate [
 	| person creationTimestamp |
 	person := LxxPerson new.

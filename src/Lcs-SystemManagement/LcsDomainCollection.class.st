@@ -103,5 +103,5 @@ LcsDomainCollection >> pendingAdds [
 
 { #category : 'domain collection' }
 LcsDomainCollection >> pendingDeletes [
-	^ self currentUnitOfWork pendingDeletesFromCollection: self
+	^ self currentUnitOfWork pendingDeletesIn: self
 ]

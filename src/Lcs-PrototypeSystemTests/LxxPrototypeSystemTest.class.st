@@ -9,34 +9,36 @@ To see the application environment click on: {{gtClass:LcsApplicationEnvironment
 
 "
 Class {
-	#name : #LxxPrototypeSystemTest,
-	#superclass : #LcsTestWithNoTestSystemSetupForTest,
+	#name : 'LxxPrototypeSystemTest',
+	#superclass : 'LcsTestWithNoTestSystemSetupForTest',
 	#instVars : [
 		'system1',
 		'system2',
 		'newSystem'
 	],
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LxxPrototypeSystemTest >> additionalNewPrototypeSystem [
 	self additionalSubject: LxxPrototypeSystem new
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LxxPrototypeSystemTest >> bootstrapClasses [
 	^ self subject allBootstrapDomainClasses
 		asSortedCollection: [ :a :b | a name <= b name ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LxxPrototypeSystemTest >> classesWithInitializeSlotModel [
 	^ self subject systemSlotModel slotModels keys
 		asSortedCollection: [ :a :b | a name <= b name ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LxxPrototypeSystemTest >> newPrototypeSystem [
 	| numberOfSystems numberOfUnitsOfWork |
 	self assert: LcsApplicationEnvironment isInActiveStatus.
@@ -67,7 +69,7 @@ LxxPrototypeSystemTest >> newPrototypeSystem [
 	self assert: self subject moduleName equals: LxxPrototypeSystem defaultModuleName
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testCreationNew [
 	self newPrototypeSystem.
 	self assert: self currentSystem identicalTo: self subject.
@@ -80,7 +82,7 @@ LxxPrototypeSystemTest >> testCreationNew [
 	"self assert:system hasValidConfiguration. "
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testCreationOfNewSystem [
 	self newPrototypeSystem.
 	self assert: self currentSystem class identicalTo: LxxPrototypeSystem.
@@ -92,18 +94,18 @@ LxxPrototypeSystemTest >> testCreationOfNewSystem [
 	self assert: self currentSystem countries collectionSize = 3 description: 'Test country codes are being initialized'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testCreationWithPrototypeSystem [
 	| domainObject |
 	self newPrototypeSystem.
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem identicalTo:self subject.
-	self assert: (self currentSystem currentUnitOfWork addRecordFor: domainObject) domainObject identicalTo: domainObject.
+	self assert: (self currentSystem currentUnitOfWork addedObjects includes: domainObject).
 	self assert: domainObject slotModel className equals: 'LcsSlotModel' .
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testInstallingFirstNameSlotInPerson [
 	self deny: (LxxPerson instVarNames includes: 'firstName').
 	self deny: (LxxPerson respondsTo: #firstName).
@@ -111,13 +113,13 @@ LxxPrototypeSystemTest >> testInstallingFirstNameSlotInPerson [
 	self deny: (LxxPerson class respondsTo: #firstNameSlotDefinition).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testNewUnitOfWorkInSystem [
 	self newPrototypeSystem.
 	self assert: self currentSystem currentUnitOfWork system identicalTo: self  currentSystem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testPrototypeSystemCreation [
 	| allDomainClasses |
 	self newPrototypeSystem.
@@ -140,7 +142,7 @@ LxxPrototypeSystemTest >> testPrototypeSystemCreation [
 		assert: (allDomainClasses allSatisfy: [ :eachClass | eachClass slotModel isNil ])
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testRestoreSuspendedSystem [
 	
 	self newPrototypeSystem.
@@ -157,7 +159,7 @@ LxxPrototypeSystemTest >> testRestoreSuspendedSystem [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testSuspendAndRestoreBetweenTwoSystems [
 	
 	self newPrototypeSystem.
@@ -179,7 +181,7 @@ LxxPrototypeSystemTest >> testSuspendAndRestoreBetweenTwoSystems [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testSuspendCurrentSystem [
 	
 	self newPrototypeSystem.
@@ -214,7 +216,7 @@ LxxPrototypeSystemTest >> testSuspendCurrentSystem [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testSystemCreation [
 
 	self newPrototypeSystem. 
@@ -222,7 +224,7 @@ LxxPrototypeSystemTest >> testSystemCreation [
 	self assert: self subject identicalTo: self currentSystem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testSystemRemoval [
 
 	self newPrototypeSystem.
@@ -237,7 +239,7 @@ LxxPrototypeSystemTest >> testSystemRemoval [
 	self assert: (self systemsManager systems includes: self subject) not
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LxxPrototypeSystemTest >> testSystemRemovalWhenTwoSystemsExist [
 
 	self newPrototypeSystem.

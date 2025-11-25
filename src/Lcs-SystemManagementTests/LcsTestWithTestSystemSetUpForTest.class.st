@@ -7,17 +7,19 @@ Example: {{gtMethod:LcsPrototypeSystemTest>>#setupSunitSystem}}
 
 "
 Class {
-	#name : #LcsTestWithTestSystemSetUpForTest,
-	#superclass : #LcsAbstractDomainTest,
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#name : 'LcsTestWithTestSystemSetUpForTest',
+	#superclass : 'LcsAbstractDomainTest',
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestWithTestSystemSetUpForTest >> domainModelTestClasses [
 	^ OrderedCollection new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestWithTestSystemSetUpForTest >> setUpTestSystem [
 	self setupSunitSystem.
 	self currentSystem notNil ifTrue: [
@@ -25,7 +27,7 @@ LcsTestWithTestSystemSetUpForTest >> setUpTestSystem [
 	self assert: self currentSystem ~~ self savedSystem
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestWithTestSystemSetUpForTest >> setupSunitSystem [
 	"subclasses can override this method to create the system required for testing"
 ]

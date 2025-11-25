@@ -1,23 +1,25 @@
 Class {
-	#name : #LcsSystemManagerTest,
-	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#name : 'LcsSystemManagerTest',
+	#superclass : 'LcsTestWithNoApplicationEnvironmentTest',
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystemManagerTest >> testAccessingApplicationEnvironment [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	self assert: LcsApplicationEnvironment systemsManager applicationEnvironment equals:  LcsApplicationEnvironment singleton.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSystemManagerTest >> testAccessingUnitOfWorkManager [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	subject := LcsApplicationEnvironment systemsManager.
 	self assert: subject unitsOfWorkManager == LcsApplicationEnvironment unitsOfWorkManager
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystemManagerTest >> testCreateUnitOfWork [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	self assert: LcsApplicationEnvironment currentUnitOfWork isNil.
@@ -26,7 +28,7 @@ LcsSystemManagerTest >> testCreateUnitOfWork [
 	self assert: LcsApplicationEnvironment currentUnitOfWork class identicalTo: LcsUnitOfWork 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSystemManagerTest >> testRemoveCurrentSystem [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 
@@ -39,7 +41,7 @@ LcsSystemManagerTest >> testRemoveCurrentSystem [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsSystemManagerTest >> testRemoveCurrentUnitOfWork [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	subject := LcsApplicationEnvironment unitsOfWorkManager.
@@ -52,7 +54,7 @@ LcsSystemManagerTest >> testRemoveCurrentUnitOfWork [
 	self deny: subject hasCurrentUnitOfWork
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSystemManagerTest >> testSystemMangerAPIsWhenCollectionIsEmpty [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	subject := LcsApplicationEnvironment systemsManager.

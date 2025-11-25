@@ -4,25 +4,27 @@ Subclasses of this class will suspend the current application environment during
 The subclasses of this test then have a 'pristine' environment to test the creation of the application environment and its operation without interfeering with the existing Application Environment
 "
 Class {
-	#name : #LcsTestWithNoApplicationEnvironmentTest,
-	#superclass : #LcsTestCase,
+	#name : 'LcsTestWithNoApplicationEnvironmentTest',
+	#superclass : 'LcsTestCase',
 	#instVars : [
 		'currentApplicationEnvironment'
 	],
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsTestWithNoApplicationEnvironmentTest >> currentApplicationEnvironment [
 	^currentApplicationEnvironment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsTestWithNoApplicationEnvironmentTest >> currentApplicationEnvironment: anApplicationEnvironment [ 
 	currentApplicationEnvironment := anApplicationEnvironment
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestWithNoApplicationEnvironmentTest >> setUp [
 	self abortTransaction. 
 	super setUp.
@@ -31,7 +33,7 @@ LcsTestWithNoApplicationEnvironmentTest >> setUp [
 	self commitTransaction
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsTestWithNoApplicationEnvironmentTest >> tearDown [
 	self abortTransaction. 
 	super tearDown.

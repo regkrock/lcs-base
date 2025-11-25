@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsGtPhlowColumnedListViewExamples,
-	#superclass : #LcsObjectExamples,
-	#category : #'Lcs-PrototypeSystemTests-Examples'
+	#name : 'LcsGtPhlowColumnedListViewExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-PrototypeSystemTests-Examples',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> _slotsUpToFilter [
 	<gtExample>
 	| filter |
@@ -14,7 +16,7 @@ LcsGtPhlowColumnedListViewExamples >> _slotsUpToFilter [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> _slotsUpToLastItemFilter [
 	<gtExample>
 	| filter |
@@ -27,7 +29,7 @@ LcsGtPhlowColumnedListViewExamples >> _slotsUpToLastItemFilter [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> allClassInDomainObjectHeirarchy [
 	^ {LxxPerson.
 		LxxBasePerson.
@@ -35,7 +37,7 @@ LcsGtPhlowColumnedListViewExamples >> allClassInDomainObjectHeirarchy [
 		LcsBaseDomainObject} asOrderedCollection
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> domainClassFilter [
 	<gtExample>
 	| filter result |
@@ -48,13 +50,13 @@ LcsGtPhlowColumnedListViewExamples >> domainClassFilter [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> filterItemsUsingDefaultFilters [
 	<gtExample>
 	^ self slotModelView filteredItems
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 	<gtExample>
 	| filter |
@@ -67,7 +69,7 @@ LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotClassFilter [
 	<gtExample>
 	| filter result |
@@ -80,7 +82,7 @@ LcsGtPhlowColumnedListViewExamples >> slotClassFilter [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotDefinitionItemsFilteredByAccessorSlotKind [
 	<gtExample>
 	| view  filteredItems |
@@ -90,7 +92,7 @@ LcsGtPhlowColumnedListViewExamples >> slotDefinitionItemsFilteredByAccessorSlotK
 	^ filteredItems
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotKindFilter [
 	<gtExample>
 	| filter |
@@ -101,7 +103,7 @@ LcsGtPhlowColumnedListViewExamples >> slotKindFilter [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotModelView [
 	<gtExample>
 	| view element forwardView|
@@ -124,7 +126,7 @@ LcsGtPhlowColumnedListViewExamples >> slotModelView [
 	^ view
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotsUpToFilter [
 	<gtExample>
 	| view filter |
@@ -142,7 +144,7 @@ LcsGtPhlowColumnedListViewExamples >> slotsUpToFilter [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotsUpToFilterWithLastItemSelected [
 	<gtExample>
 	| filter |
@@ -153,7 +155,7 @@ LcsGtPhlowColumnedListViewExamples >> slotsUpToFilterWithLastItemSelected [
 	^ filter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> unfilteredItems [
 	<gtExample>
 	| view unfilteredItems |
@@ -163,7 +165,7 @@ LcsGtPhlowColumnedListViewExamples >> unfilteredItems [
 	^ unfilteredItems
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> viewWithDefaultFiltersSelectedItems [
 	<gtExample>
 	| view |
@@ -173,7 +175,7 @@ LcsGtPhlowColumnedListViewExamples >> viewWithDefaultFiltersSelectedItems [
 	^ view
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> viewWithSlotDefinitionItemsFilteredByAccessorSlotKind [
 	<gtExample>
 	| view accessorItem filter filteredItems |

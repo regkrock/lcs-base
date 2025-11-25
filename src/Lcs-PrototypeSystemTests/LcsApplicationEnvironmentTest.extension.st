@@ -1,6 +1,6 @@
-Extension { #name : #LcsApplicationEnvironmentTest }
+Extension { #name : 'LcsApplicationEnvironmentTest' }
 
-{ #category : #'*Lcs-PrototypeSystemTests' }
+{ #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentTest >> testAddingSystenToApplicationEnvironment [
 	subject := LcsApplicationEnvironment.
 	subject initializeApplicationEnvironment.
@@ -14,7 +14,7 @@ LcsApplicationEnvironmentTest >> testAddingSystenToApplicationEnvironment [
 	self assert: subject hasCurrentUnitOfWork.
 ]
 
-{ #category : #'*Lcs-PrototypeSystemTests' }
+{ #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentTest >> testDeletingCurrentSystemAndMakingSuspendedSystemCurrentViaApplicationEnvironment [
 	| system temporarySystem |
 	subject := LcsApplicationEnvironment.
@@ -31,7 +31,7 @@ LcsApplicationEnvironmentTest >> testDeletingCurrentSystemAndMakingSuspendedSyst
 	self deny:(subject systemsManager systems includes: temporarySystem).
 ]
 
-{ #category : #'*Lcs-PrototypeSystemTests' }
+{ #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentTest >> testMakingSuspendedSystemCurrentViaApplicationEnvironment [
 	| system |
 	subject := LcsApplicationEnvironment.
@@ -46,7 +46,7 @@ LcsApplicationEnvironmentTest >> testMakingSuspendedSystemCurrentViaApplicationE
 	self assert: system isInActiveStatus
 ]
 
-{ #category : #'*Lcs-PrototypeSystemTests' }
+{ #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentTest >> testSuspendingCurrentSystemViaApplicationEnvironment [
 	| system |
 	subject := LcsApplicationEnvironment.

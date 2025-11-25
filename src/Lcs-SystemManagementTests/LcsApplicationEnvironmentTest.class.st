@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsApplicationEnvironmentTest,
-	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#name : 'LcsApplicationEnvironmentTest',
+	#superclass : 'LcsTestWithNoApplicationEnvironmentTest',
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testInitializedApplicationEnvironment [
 	self assert: LcsApplicationEnvironment currentApplicationEnvironment isNil.
 	LcsApplicationEnvironment initializeApplicationEnvironment .
@@ -24,7 +26,7 @@ LcsApplicationEnvironmentTest >> testInitializedApplicationEnvironment [
 	self assert: (LcsApplicationEnvironment unitsOfWorkManager isKindOf: LcsUnitsOfWorkManager)
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsApplicationEnvironmentTest >> testNoninitializedApplicationEnvironment [
 	self assert: LcsApplicationEnvironment currentApplicationEnvironment isNil.
 
@@ -43,7 +45,7 @@ LcsApplicationEnvironmentTest >> testNoninitializedApplicationEnvironment [
 	self assert: LcsApplicationEnvironment unitsOfWorkManager isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testReleaseApplicationEnvironment [
 	self assert: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment.
 
@@ -54,7 +56,7 @@ LcsApplicationEnvironmentTest >> testReleaseApplicationEnvironment [
 	self assert: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testResetingAnApplicationEnvironment [
 	| environment |
 	LcsApplicationEnvironment initializeApplicationEnvironment.
@@ -66,7 +68,7 @@ LcsApplicationEnvironmentTest >> testResetingAnApplicationEnvironment [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testRestoringSuspendedApplicationEnvironment [
 	| suspendedEnvironment |
 	LcsApplicationEnvironment initializeApplicationEnvironment.
@@ -79,7 +81,7 @@ LcsApplicationEnvironmentTest >> testRestoringSuspendedApplicationEnvironment [
 	self assert: suspendedEnvironment isInActiveStatus
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testSuspendingAnApplicationEnvironment [
 	| suspendedEnvironment |
 	self assert: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment.
@@ -92,7 +94,7 @@ LcsApplicationEnvironmentTest >> testSuspendingAnApplicationEnvironment [
 	self assert: suspendedEnvironment isInSuspendedStatus
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testSuspendingCurrentSystemWhenNoSystemExists [
 	| suspendedSystem |
 	LcsApplicationEnvironment initializeApplicationEnvironment.
@@ -104,14 +106,14 @@ LcsApplicationEnvironmentTest >> testSuspendingCurrentSystemWhenNoSystemExists [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testVerifyApplicationEnvironmentIsInitialized [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	self shouldnt: [LcsApplicationEnvironment verifyApplicationEnvironment] raise: LcsApplicationEnivronmentNotInitializedError
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsApplicationEnvironmentTest >> testVerifyApplicationEnvironmentIsNotInitialized [
 	self assert: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment.
 	self should: [LcsApplicationEnvironment verifyApplicationEnvironment] 

@@ -1,21 +1,23 @@
 Class {
-	#name : #LcsObjectTest,
-	#superclass : #LcsTestWithNoTestSystemSetupForTest,
-	#category : #'Lcs-SystemManagementTests-Tests'
+	#name : 'LcsObjectTest',
+	#superclass : 'LcsTestWithNoTestSystemSetupForTest',
+	#category : 'Lcs-SystemManagementTests-Tests',
+	#package : 'Lcs-SystemManagementTests',
+	#tag : 'Tests'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 LcsObjectTest >> testCreatingSelectorNameFromAString [
 	self assert: (LcsObject new selectorNameFrom: 'IsSelector') equals: #isSelector.
 	self assert: (LcsObject new selectorNameFrom: 'Is Selector') equals: #isSelector 
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsObjectTest >> testLcsObjectIsNotAnApplicationSystem [
 	self assert: LcsObject new isApplicationSystem equals: false
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 LcsObjectTest >> testLcsObjectNotADomainClass [
 	self assert: LcsObject isDomainClass equals: false
 ]

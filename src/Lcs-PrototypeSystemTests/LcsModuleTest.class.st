@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsModuleTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-PrototypeSystemTests-Tests'
+	#name : 'LcsModuleTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#package : 'Lcs-PrototypeSystemTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsModuleTest >> testAddingAModule [
 	| existingNumberOfModules |
 	self assert: self currentSystem notNil.
