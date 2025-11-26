@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsGlobalCollectionSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsGlobalCollectionSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
 	self subject: (
 		LcsGlobalCollectionSlotBuilder new
@@ -19,7 +21,7 @@ LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
 	self subject verifyCodeInstallation
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsGlobalCollectionSlotBuilderTest >> testSlotDefinitionSourceCode [
 	self subject: (
 		LcsGlobalCollectionSlotBuilder new

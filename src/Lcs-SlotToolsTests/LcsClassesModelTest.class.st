@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsClassesModelTest,
-	#superclass : #LcsTestCase,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsClassesModelTest',
+	#superclass : 'LcsTestCase',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsClassesModelTest >> testAddingExistingClass [
 	| existingClassModel |
 	self subject: LcsUmlModel new.
@@ -18,7 +20,7 @@ LcsClassesModelTest >> testAddingExistingClass [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsClassesModelTest >> testAddingExistingClassTwiceWhichShouldReturnTheFirstModel [
 	| existingClassModel newExistingClassModel |
 	self subject: LcsUmlModel new.
@@ -28,7 +30,7 @@ LcsClassesModelTest >> testAddingExistingClassTwiceWhichShouldReturnTheFirstMode
 	self assert: existingClassModel identicalTo: newExistingClassModel
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsClassesModelTest >> testAddingProposedClass [
 	| proposedClassModel |
 	self subject: LcsUmlModel new.
@@ -42,7 +44,7 @@ LcsClassesModelTest >> testAddingProposedClass [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsClassesModelTest >> testAddingProposedClassTwiceWhichShouldReturnTheFirstModel [
 	| proposedClassModel newProposedClassModel |
 	self subject: LcsUmlModel new.
@@ -53,7 +55,7 @@ LcsClassesModelTest >> testAddingProposedClassTwiceWhichShouldReturnTheFirstMode
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsClassesModelTest >> testCreation [
 	self subject: LcsUmlModel new.
 	self assert: (self subject collection isKindOf: OrderedCollection).

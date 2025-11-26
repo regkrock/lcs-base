@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsAccessorSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
+	#name : 'LcsAccessorSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
 	#instVars : [
 		'codeBuilder'
 	],
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testAddingValidationCondition [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
@@ -20,7 +22,7 @@ LcsAccessorSlotBuilderTest >> testAddingValidationCondition [
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testAddingValidationConditionAndDescription [
 	self subject: LcsAccessorSlotBuilder new.
 	self subject addValidationCondition: [ :value | ] description: 'Test'.
@@ -28,7 +30,7 @@ LcsAccessorSlotBuilderTest >> testAddingValidationConditionAndDescription [
 	self assert: self subject validationConditions collection any parent identicalTo: self subject validationConditions.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testAllowNil [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject allowNil == false.
@@ -38,7 +40,7 @@ LcsAccessorSlotBuilderTest >> testAllowNil [
 	self assert: self subject isNilAllowed
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testAllowNilDescription [
 	| description |
 	self subject: LcsAccessorSlotBuilder new.
@@ -46,7 +48,7 @@ LcsAccessorSlotBuilderTest >> testAllowNilDescription [
 	self assert: (description read: self subject) = false
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testCreation [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject validationConditions hasNoElements.
@@ -57,7 +59,7 @@ LcsAccessorSlotBuilderTest >> testCreation [
 	self assert: self subject state equals: 'Initial'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testInitalValueSetToNil [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject initialValueBlock printString equals: '[ ]'.
@@ -68,7 +70,7 @@ LcsAccessorSlotBuilderTest >> testInitalValueSetToNil [
 	self assert: (self subject initialValueBlock cull: self cull: self) isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsAccessorSlotBuilder new
@@ -83,7 +85,7 @@ LcsAccessorSlotBuilderTest >> testInstallingSlot [
 	self subject updateSlotModel
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testPrevalidationTransformBlockDescription [
 	| description |
 	self subject: LcsAccessorSlotBuilder new.
@@ -98,7 +100,7 @@ LcsAccessorSlotBuilderTest >> testPrevalidationTransformBlockDescription [
 	self assert: self subject prevalidationTransformBlock asString equals: '[ :value :slot | 0 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testRemovingValidationCondition [
 	| validationCondition |
 	validationCondition := LcsValidationCondition new
@@ -113,7 +115,7 @@ LcsAccessorSlotBuilderTest >> testRemovingValidationCondition [
 	self assert: self subject validationConditions hasNoElements.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testRemovingValidationConditionViaDescription [
 	self subject: LcsAccessorSlotBuilder new.
 	self subject addValidationCondition: [ :value | ] description: 'Test'.
@@ -122,7 +124,7 @@ LcsAccessorSlotBuilderTest >> testRemovingValidationConditionViaDescription [
 	self assert: self subject validationConditions hasNoElements.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testRequried [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject required == false.
@@ -130,7 +132,7 @@ LcsAccessorSlotBuilderTest >> testRequried [
 	self assert: self subject required == true.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testSlotTypes [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject slotTypes isEmpty.
@@ -139,7 +141,7 @@ LcsAccessorSlotBuilderTest >> testSlotTypes [
 	self assert: self subject slotTypes class == Array
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testSlotTypesDescription [
 	| description |
 	self subject: LcsAccessorSlotBuilder new.
@@ -150,7 +152,7 @@ LcsAccessorSlotBuilderTest >> testSlotTypesDescription [
 	self assert: self subject slotTypes equals: { String. Integer}.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testUpdatingInitialValueBlockViaMagritteDescription [
 	| description |
 	self subject: LcsAccessorSlotBuilder new.
@@ -165,7 +167,7 @@ LcsAccessorSlotBuilderTest >> testUpdatingInitialValueBlockViaMagritteDescriptio
 	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 ]'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAccessorSlotBuilderTest >> testValidationConditions [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject validationConditions class == LcsValidationConditions.

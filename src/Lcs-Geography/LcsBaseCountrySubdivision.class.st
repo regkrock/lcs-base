@@ -35,17 +35,6 @@ LcsBaseCountrySubdivision class >> isoCodeSlotDefinition [
 		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 2 ] description: 'Code must be 2 characters long';		yourself
 ]
 
-{ #category : 'instance creation' }
-LcsBaseCountrySubdivision class >> newInContextOf: anObject [
-	| newObject parentCollectionSlot |
-	newObject := self basicNew.
-	self currentSystem ifNotNil: [
-		parentCollectionSlot := self collectionSlotIn: anObject.
-		self currentUnitOfWork addObject: newObject toCollection: parentCollectionSlot ].
-	newObject initialize.
-	^ newObject 
-]
-
 { #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> parentSlotDefinition [
 	<slotDefinition>

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsCodeBuilderStepTest,
-	#superclass : #LcsCodeBuilderTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsCodeBuilderStepTest',
+	#superclass : 'LcsCodeBuilderTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #setUp }
+{ #category : 'setUp' }
 LcsCodeBuilderStepTest >> tearDown [
 	self subject notNil ifTrue: [
 		self subject uninstall.

@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsValidationConditionTest,
-	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
+	#name : 'LcsValidationConditionTest',
+	#superclass : 'LcsTestWithNoApplicationEnvironmentTest',
 	#traits : 'TBlDevScripterExamples + LctDevScripterSuport',
 	#classTraits : 'TBlDevScripterExamples classTrait + LctDevScripterSuport classTrait',
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testCreatingOnValidationConditions [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -17,7 +19,7 @@ LcsValidationConditionTest >> testCreatingOnValidationConditions [
 	self should: [ self subject validate: 'xxxx' ] raise: LcsSlotValidationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testCreation [
 	self subject: LcsValidationCondition new.
 	self assert: self subject conditionBlock displayString equals: '[ :value | true ]'.
@@ -26,7 +28,7 @@ LcsValidationConditionTest >> testCreation [
 	self should: [ self subject validate: 'xxxx' ] raise: LcsSlotValidationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testErrorConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -35,7 +37,7 @@ LcsValidationConditionTest >> testErrorConditionWithValueAndRelatedObject [
 	self should: [ self subject validate: true context: 'aString' ]  raise: LcsSlotValidationExecutionError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testInvalidCondition [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -45,7 +47,7 @@ LcsValidationConditionTest >> testInvalidCondition [
 	self assert: (self subject validate: 'xxxx') equals: false.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testInvalidConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -55,7 +57,7 @@ LcsValidationConditionTest >> testInvalidConditionWithValueAndRelatedObject [
 	self assert: (self subject validate: true context: 'aString') == false
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testMagritteForm [
 	"<gtExample>"
 	"<return: #BlScripter>"
@@ -142,7 +144,7 @@ LcsValidationConditionTest >> testMagritteForm [
 	^ self subjectScripter"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testNonBooleanCondition [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -152,7 +154,7 @@ LcsValidationConditionTest >> testNonBooleanCondition [
 	self should: [self subject validate: 'xxxx' ]  raise: LcsSlotValidationNonBooleanResultError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
@@ -162,13 +164,13 @@ LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	self should: [ self subject validate: true context: 'aString' ] raise:  LcsSlotValidationError
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsValidationConditionTest >> validationConditionExample [
 	<gtExample>
 	^ LcsValidationCondition new
 ]
 
-{ #category : #scripter }
+{ #category : 'scripter' }
 LcsValidationConditionTest >> validationConditionScripter [
 	<gtExample>
 	<return: #BlScripter>

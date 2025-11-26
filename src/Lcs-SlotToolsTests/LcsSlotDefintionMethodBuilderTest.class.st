@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsSlotDefintionMethodBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
+	#name : 'LcsSlotDefintionMethodBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
 	#instVars : [
 		'codeBuilder'
 	],
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
 	self subject: LcsSlotDefintionMethodBuilder new.
 	self subject slotClass: LcsStringSlot.
@@ -22,7 +24,7 @@ LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
 	self subject: LcsSlotDefintionMethodBuilder new.
 	self subject slotClass: LcsStringSlot.
@@ -42,7 +44,7 @@ LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testChangingTargetClassName [
 	self subject: LcsSlotDefintionMethodBuilder new.
 	self subject slotClass: LcsStringSlot.
@@ -57,7 +59,7 @@ LcsSlotDefintionMethodBuilderTest >> testChangingTargetClassName [
 	self assert: self subject targetClass isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testCreation [
 	self subject: LcsSlotDefintionMethodBuilder new.
 	self assert: self subject properties class = OrderedDictionary.
@@ -72,7 +74,7 @@ LcsSlotDefintionMethodBuilderTest >> testCreation [
 	self assert: self subject targetClassName isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testInstallingSlotDefinitionMethod [
 	self subject: (
 		LcsSlotDefintionMethodBuilder new
@@ -84,7 +86,7 @@ LcsSlotDefintionMethodBuilderTest >> testInstallingSlotDefinitionMethod [
 	self assert: (LxxBasePerson respondsTo: ('foo' , 'SlotDefinition') asSymbol)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnLcsCodeSlot [
 	| methodSource |
 	self subject: (
@@ -103,7 +105,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 			yourself'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnLcsStringSlot [
 	| methodSource |
 	self subject: (
@@ -122,7 +124,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 			yourself'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoSlotNameDefined [
 	self should: [
 		(LcsSlotDefintionMethodBuilder new
@@ -133,7 +135,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoS
 				slotDefinitionSource ] raise: LcsError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidationConditions [
 | methodSource validationCondition |
 	self subject: (

@@ -1,25 +1,27 @@
 Class {
-	#name : #LcsSingletonUnknownValueObjectClassBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsSingletonUnknownValueObjectClassBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSingletonUnknownValueObjectClassBuilderTest >> newClassName [
 	^ 'XxxUnknownCode'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSingletonUnknownValueObjectClassBuilderTest >> targetPackageName [
 	^ 'Lcs-Temp'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSingletonUnknownValueObjectClassBuilderTest >> targetSuperclassName [
 	^ 'LcsSingletonValueObject'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSingletonUnknownValueObjectClassBuilderTest >> testCreation [
 	self subject: LcsSingletonUnknownValueObjectClassBuilder new.
 	self subject newClassName: self newClassName.
@@ -40,7 +42,7 @@ LcsSingletonUnknownValueObjectClassBuilderTest >> testCreation [
 		package: ''Lcs-Temp'' '
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSingletonUnknownValueObjectClassBuilderTest >> testInstallClass [
 	self subject: LcsSingletonUnknownValueObjectClassBuilder new.
 	self subject

@@ -1,14 +1,16 @@
 Class {
-	#name : #LcsStringSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsStringSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsStringSlotBuilderTest >> testCreation [
 	self assert: LcsStringSlotBuilder slotClass equals: LcsStringSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsStringSlotBuilderTest >> testSlotDefinitionSource [
 ]

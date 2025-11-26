@@ -1,16 +1,18 @@
 Class {
-	#name : #LcsGlobalCollectionReferenceSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsGlobalCollectionReferenceSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsGlobalCollectionReferenceSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
 	self assert: LcsGlobalCollectionReferenceSlotBuilder slotClass equals: LcsGlobalCollectionReferenceSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsGlobalCollectionReferenceSlotBuilderTest >> testDefinitionSourceCode [
 
 	self subject: (LcsGlobalCollectionReferenceSlotBuilder new

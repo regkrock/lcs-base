@@ -106,19 +106,6 @@ LcsDomainObject class >> new [
 	^ newObject
 ]
 
-{ #category : 'instance creation' }
-LcsDomainObject class >> newInContextOf: anObject [
-	"THIS TEMPORARY. IT SHOULD BE AVAILABLE ONLY TO LOCAL COLLECTION ITEMS"
-	| newObject parentCollectionSlot |
-	newObject := self basicNew.
-	self currentSystem ifNotNil: [
-		"parentCollectionSlot := self collectionSlotIn: anObject."
-		parentCollectionSlot :=  anObject perform: self parentSlotDefinition collectionSlotName asSymbol.
-		self currentUnitOfWork addObject: newObject toCollection: parentCollectionSlot ].
-	newObject initialize.
-	^ newObject 
-]
-
 { #category : 'gt views' }
 LcsDomainObject class >> slotNamesExcludedFromCollectionViewSlotDefinitions [
 	^#('parent' 'history' 'uuid' 'version')

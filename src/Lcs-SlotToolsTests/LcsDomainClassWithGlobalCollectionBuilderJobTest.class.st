@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDomainClassWithGlobalCollectionBuilderJobTest,
-	#superclass : #LcsCodeJobBuilderTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsDomainClassWithGlobalCollectionBuilderJobTest',
+	#superclass : 'LcsCodeJobBuilderTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainClassWithGlobalCollectionBuilderJobTest >> testAddingAJobStep [
 	| builderJob |
 	builderJob := LcsDomainClassAndDomainCollectionClassBuilderJob new.
@@ -15,7 +17,7 @@ LcsDomainClassWithGlobalCollectionBuilderJobTest >> testAddingAJobStep [
 	self assert: builderJob jobSteps collection any builderJob identicalTo: builderJob
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainClassWithGlobalCollectionBuilderJobTest >> testCreation [
 	| builderJob |
 	builderJob := LcsDomainClassAndDomainCollectionClassBuilderJob new.

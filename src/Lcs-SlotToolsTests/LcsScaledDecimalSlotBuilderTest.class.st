@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsScaledDecimalSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsScaledDecimalSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsScaledDecimalSlotBuilderTest >> testCreation [
 	self assert: LcsScaledDecimalSlotBuilder slotClass equals: LcsScaledDecimalSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsScaledDecimalSlotBuilderTest >> testSlotDefinitionSourceCode [
 	self subject: (
 		LcsScaledDecimalSlotBuilder new

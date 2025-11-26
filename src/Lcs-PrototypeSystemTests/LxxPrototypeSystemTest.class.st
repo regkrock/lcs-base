@@ -101,7 +101,7 @@ LxxPrototypeSystemTest >> testCreationWithPrototypeSystem [
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem identicalTo:self subject.
-	self assert: (self currentSystem currentUnitOfWork addedObjects includes: domainObject).
+	self assert: (self currentSystem currentUnitOfWork addedObjects at: domainObject ifAbsent: [ nil ] ) notNil.
 	self assert: domainObject slotModel className equals: 'LcsSlotModel' .
 ]
 

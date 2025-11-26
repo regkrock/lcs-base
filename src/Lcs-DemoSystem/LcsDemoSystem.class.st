@@ -1,39 +1,40 @@
 Class {
-	#name : #LcsDemoSystem,
-	#superclass : #LcsSystem,
-	#category : #'Lcs-DemoSystem-Core'
+	#name : 'LcsDemoSystem',
+	#superclass : 'LcsSystem',
+	#category : 'Lcs-DemoSystem-Core',
+	#package : 'Lcs-DemoSystem',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsDemoSystem class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDemoSystem class >> defaultModuleName [
 	^ 'Demo System'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDemoSystem class >> moduleConfigurationClass [
 	^ LcsDemoSystemConfiguration
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsDemoSystem >> isDemoSystem [
 	^ true
 ]
 
-{ #category : #'iniitialize - load data' }
+{ #category : 'iniitialize - load data' }
 LcsDemoSystem >> loadData [
 	super loadData.
-	"LcsCountryLoader new load."
 	self applyChanges
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsDemoSystem >> systemDomainClasses [
 	| collection |
 	collection := super systemDomainClasses.

@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsSlotGetterBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
+	#name : 'LcsSlotGetterBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
 	#instVars : [
 		'codeBuilder'
 	],
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotGetterBuilderTest >> testInstallingGetter [
 	self deny: (self currentSystem class canUnderstand: 'foos' asSymbol).
 	self deny: (self currentSystem class canUnderstand: 'foos:' asSymbol).

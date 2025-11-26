@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsValidationConditionsTest,
-	#superclass : #LcsTestWithNoApplicationEnvironmentTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsValidationConditionsTest',
+	#superclass : 'LcsTestWithNoApplicationEnvironmentTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionsTest >> testAddingValidationCondition [
 	| validationDescription validationCondition conditionBlock |
 	validationDescription := 'Date must be today or beyond'.
@@ -17,7 +19,7 @@ LcsValidationConditionsTest >> testAddingValidationCondition [
 	self assert:self subject collection size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionsTest >> testCreation [
 	self subject: LcsValidationConditions new.
 	self assert: self subject collection isEmpty.
@@ -25,7 +27,7 @@ LcsValidationConditionsTest >> testCreation [
 	self assert: (self subject collection isKindOf: OrderedCollection)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionsTest >> testRemovingValidationCondition [
 	| validationDescription validationCondition conditionBlock |
 	validationDescription := 'Date must be today or beyond'.
@@ -45,7 +47,7 @@ LcsValidationConditionsTest >> testRemovingValidationCondition [
 	self assert: self subject collection isEmpty.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionsTest >> testValidation [
 	| validationDescription conditionBlock |
 	validationDescription := 'Date must be today or beyond'.
@@ -56,7 +58,7 @@ LcsValidationConditionsTest >> testValidation [
 	self subject validate: Date today
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValidationConditionsTest >> testValidationViaSlot [
 	| validationDescription conditionBlock |
 	validationDescription := 'Date must be today or beyond'.

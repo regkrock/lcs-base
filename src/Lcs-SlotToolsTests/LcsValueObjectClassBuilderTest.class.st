@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsValueObjectClassBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsValueObjectClassBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LcsValueObjectClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsValueObjectClassBuilderTest >> targetSuperclassName [
 	^ 'LcsValueObject'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValueObjectClassBuilderTest >> testClassCreationString [
 	self subject: LcsValueObjectClassBuilder new.
 	self subject
@@ -38,7 +40,7 @@ LcsValueObjectClassBuilderTest >> testClassCreationString [
 		package: ''Lcs-Temp'' '
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValueObjectClassBuilderTest >> testInstallClass [
 	self subject: LcsValueObjectClassBuilder new.
 	self subject

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsStandardValueObjectClassesBuilderJobTest,
-	#superclass : #LcsCodeJobBuilderTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsStandardValueObjectClassesBuilderJobTest',
+	#superclass : 'LcsCodeJobBuilderTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsStandardValueObjectClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	| person |
 	self currentCodeBuilderJob:

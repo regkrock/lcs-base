@@ -30,26 +30,8 @@ LcsBaseUnitOfWork >> _pendingDeletesIn: aTargetCollection [
 
 { #category : 'api' }
 LcsBaseUnitOfWork >> addObject: aDomainObject [
-
 	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self).
 	aDomainObject parentSlot setUpPendingAddOf: aDomainObject in: self
-]
-
-{ #category : 'api' }
-LcsBaseUnitOfWork >> addObject: aDomainObject context: aDomainContextObject [
-	aDomainObject isNil ifTrue: [ ^ self ].
-	self addedObjects
-		at: aDomainObject
-		put: ((LcsAddedObjectRecord newFor: aDomainObject parent: self)
-				creationContext: aDomainContextObject;
-				yourself)
-]
-
-{ #category : 'api' }
-LcsBaseUnitOfWork >> addObject: aDomainObject toCollection: aTargetCollection [
-
-	self addedObjects at: aDomainObject put: (LcsAddedObjectRecord newFor: aDomainObject parent: self).
-	aDomainObject parentSlot setUpPendingAddOf: aDomainObject in: self toCollection: aTargetCollection
 ]
 
 { #category : 'private' }

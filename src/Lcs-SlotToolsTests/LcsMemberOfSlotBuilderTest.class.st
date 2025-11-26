@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsMemberOfSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsMemberOfSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #support }
+{ #category : 'support' }
 LcsMemberOfSlotBuilderTest >> createGenderClassesWithoutAddingMemberOfToPerson [
 	self currentCodeBuilderJob: (
 		LcsSingletonValueObjectClassesBuilderJob new
@@ -25,7 +27,7 @@ LcsMemberOfSlotBuilderTest >> createGenderClassesWithoutAddingMemberOfToPerson [
 	self assert: (LxxPersonsModule includesSelector: #'genders')
 ]
 
-{ #category : #support }
+{ #category : 'support' }
 LcsMemberOfSlotBuilderTest >> createLxxInvoiceAndLxxInvoices [
 	self currentCodeBuilderJob:
 		(LcsDomainClassAndGlobalCollectionClassBuilderJob new
@@ -50,7 +52,7 @@ LcsMemberOfSlotBuilderTest >> createLxxInvoiceAndLxxInvoices [
 	self currentCodeBuilderJob execute.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToGlobalCollection [
 	| classesModel |
 	self createGenderClassesWithoutAddingMemberOfToPerson.
@@ -77,7 +79,7 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToGl
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToLocalCollection [
 	<TODO: 'The commented out assertion fails. The cause is that LcsMemberOfSlotDefinition is not properly wired for a local member of situation. Especially for initialization.' >
 	| classesModel |
@@ -105,17 +107,17 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToLo
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsMemberOfSlotBuilderTest >> testCreateGenderClassesWithoutAddingMemberOfToPerson [
 	self createGenderClassesWithoutAddingMemberOfToPerson
 ]
 
-{ #category : #support }
+{ #category : 'support' }
 LcsMemberOfSlotBuilderTest >> testCreateLxxInvoiceAndLxxInvoices [
 	self createLxxInvoiceAndLxxInvoices
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsMemberOfSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
 	self assert: LcsMemberOfGlobalCollectionSlotBuilder slotClass equals: LcsMemberOfGlobalCollectionSlot

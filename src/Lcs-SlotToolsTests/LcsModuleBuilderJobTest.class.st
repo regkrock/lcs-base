@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsModuleBuilderJobTest,
-	#superclass : #LcsCodeJobBuilderTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsModuleBuilderJobTest',
+	#superclass : 'LcsCodeJobBuilderTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsModuleBuilderJobTest >> sailClubModuleBuilderExample [
 	<gtExample>
 	| job |
@@ -24,7 +26,7 @@ LcsModuleBuilderJobTest >> sailClubModuleBuilderExample [
 	^ job
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsModuleBuilderJobTest >> testCreationOfNewModule [
 	self subject: self sailClubModuleBuilderExample.
 

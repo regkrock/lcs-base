@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsModuleNameMethodBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsModuleNameMethodBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsModuleNameMethodBuilderTest >> moduleNameBuilder [
 	<gtExample>
 	
@@ -18,7 +20,7 @@ LcsModuleNameMethodBuilderTest >> moduleNameBuilder [
 	^ self subject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsModuleNameMethodBuilderTest >> testMethodSource [
 	
 	self subject: self moduleNameBuilder.
@@ -33,7 +35,7 @@ LcsModuleNameMethodBuilderTest >> testMethodSource [
 	^ ''Test Module'''
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsModuleNameMethodBuilderTest >> testRefactoringDetails [
 	| stream |
 	stream := WriteStream on: String new.
@@ -46,7 +48,7 @@ LcsModuleNameMethodBuilderTest >> testRefactoringDetails [
 	^ ''Test Module'''
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsModuleNameMethodBuilderTest >> testRefactoringDetailsWithClassMethod [
 	| stream |
 	stream := WriteStream on: String new.

@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsIntegerSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsIntegerSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsIntegerSlotBuilderTest >> testCreation [
 	self assert: LcsIntegerSlotBuilder slotClass equals: LcsIntegerSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsIntegerSlotBuilderTest >> testInitialValue [
 	self subject: (
 		LcsIntegerSlotBuilder new
@@ -25,7 +27,7 @@ LcsIntegerSlotBuilderTest >> testInitialValue [
 			yourself'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsIntegerSlotBuilderTest >> testSlotDefinitionSourceCode [
 	self subject: (
 		LcsIntegerSlotBuilder new

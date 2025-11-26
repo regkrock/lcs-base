@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsDomainClassBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsDomainClassBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LcsDomainClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainClassBuilderTest >> testClassCreationString [
 	self subject: LcsDomainClassBuilder new.
 	self subject
@@ -27,7 +29,7 @@ LcsDomainClassBuilderTest >> testClassCreationString [
 		package: ''Lcs-Temp'' '
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsDomainClassBuilderTest >> testInstallClass [
 	self should: [ self newClassName asClass ] raise: NotFound.
 

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsSystemBuilderJobTest,
-	#superclass : #LcsCodeJobBuilderTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsSystemBuilderJobTest',
+	#superclass : 'LcsCodeJobBuilderTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsSystemBuilderJobTest >> clubSystemBuilderExample [
 	<gtExample>
 	| job |
@@ -22,7 +24,7 @@ LcsSystemBuilderJobTest >> clubSystemBuilderExample [
 	^ job
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSystemBuilderJobTest >> testCreationOfNewSystem [
 	| a |
 	a := OrderedCollection new.

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDomainClassAndGlobalCollectionClassBuilderJobTest,
-	#superclass : #LcsCodeJobBuilderTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsDomainClassAndGlobalCollectionClassBuilderJobTest',
+	#superclass : 'LcsCodeJobBuilderTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationClassesModel [
 	| modelClasses |
 	self currentCodeBuilderJob:
@@ -31,7 +33,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationClassesModel
 	self assert: (modelClasses allClassModelsFor: 'LcsDomainObjectSlot') size = 1.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationOfNewDomainClassAndItsGlobalCollectionClassInstalledInAModule [
 	self currentCodeBuilderJob:
 		(LcsDomainClassAndGlobalCollectionClassBuilderJob new
@@ -44,7 +46,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationOfNewDomainC
 	self currentCodeBuilderJob execute
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainClassAndGlobalCollectionClassBuilderJobTest >> testCreationOfNewDomainClassWithUnknownClassAndItsGlobalCollectionInstalledInAModule [
 	self currentCodeBuilderJob:
 		(LcsDomainClassAndGlobalCollectionClassBuilderJob new

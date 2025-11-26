@@ -1,21 +1,23 @@
 Class {
-	#name : #LcsDateSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsDateSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #setUp }
+{ #category : 'setUp' }
 LcsDateSlotBuilderTest >> tearDown [
 	super tearDown.
 	LxxPerson removeInstVar: 'date'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDateSlotBuilderTest >> testCreation [
 	self assert: LcsDateSlotBuilder slotClass equals: LcsDateSlot
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDateSlotBuilderTest >> testDateChangeValidation [
 	| person |
 	self subject: (
@@ -43,7 +45,7 @@ LcsDateSlotBuilderTest >> testDateChangeValidation [
 	self should: [ person date: (Date today addDays: 20) ] raise: LcsSlotValidationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDateSlotBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsDateSlotBuilder new
@@ -60,7 +62,7 @@ LcsDateSlotBuilderTest >> testInstallingSlot [
 	self assert: (LxxPerson hasSlotDefinitionNamed: 'date') 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDateSlotBuilderTest >> testInstallingSlotWithInitialValueBlockOverriden [
 	self subject: (
 		LcsDateSlotBuilder new
@@ -78,7 +80,7 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithInitialValueBlockOverriden [
 	self assert: LxxPerson new date equals: (Date today subtractDays: 10)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 	| slotDefinitionMethodBuilder |
 	self subject: (

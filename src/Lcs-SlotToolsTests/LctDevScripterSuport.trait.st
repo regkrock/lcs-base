@@ -1,14 +1,16 @@
 Trait {
-	#name : #LctDevScripterSuport,
-	#category : #'Lcs-SlotToolsTests-Scripter'
+	#name : 'LctDevScripterSuport',
+	#category : 'Lcs-SlotToolsTests-Scripter',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Scripter'
 }
 
-{ #category : #asking }
+{ #category : 'asking' }
 LctDevScripterSuport >> actionIdFor: aDescriptionSymbol [
 	^ GtMagritteActionElementId new description: (self subjectScripter model perform: aDescriptionSymbol)
 ]
 
-{ #category : #'scripter - assertion' }
+{ #category : 'scripter - assertion' }
 LctDevScripterSuport >> assert: aStep acceptEnabled: isAcceptEnabled cancelEnabled: isCancelEnabled acceptId: anAcceptId cancelId: anCancelId [
 	aStep
 		assertStep: [ :s | 
@@ -37,7 +39,7 @@ LctDevScripterSuport >> assert: aStep acceptEnabled: isAcceptEnabled cancelEnabl
 							equals: [ 0 ] ] ]
 ]
 
-{ #category : #'scripter - assertion' }
+{ #category : 'scripter - assertion' }
 LctDevScripterSuport >> assert: aStep acceptEnabled: isAcceptEnabled cancelEnabled: isCancelEnabled buildEnabled: isBuildEnabled acceptId: anAcceptId cancelId: anCancelId buildId: aBuildId [
 	aStep
 		assertStep: [ :s | 
@@ -85,7 +87,7 @@ LctDevScripterSuport >> assert: aStep acceptEnabled: isAcceptEnabled cancelEnabl
 
 ]
 
-{ #category : #'scripter - assertion' }
+{ #category : 'scripter - assertion' }
 LctDevScripterSuport >> assert: aStep model: aModel acceptEnabled: isAcceptEnabled cancelEnabled: isCancelEnabled [
 	| anAcceptId anCancelId |
 	anAcceptId := GtMagritteActionElementId new
@@ -100,7 +102,7 @@ LctDevScripterSuport >> assert: aStep model: aModel acceptEnabled: isAcceptEnabl
 		cancelId: anCancelId
 ]
 
-{ #category : #'scripter - assertion' }
+{ #category : 'scripter - assertion' }
 LctDevScripterSuport >> assert: aStep model: aModel acceptEnabled: isAcceptEnabled cancelEnabled: isCancelEnabled buildEnabled: isBuildEnabled [
 	| anAcceptId aCancelId aBuildId |
 	anAcceptId := GtMagritteActionElementId new description: aModel magritteAcceptAction.
@@ -116,13 +118,13 @@ LctDevScripterSuport >> assert: aStep model: aModel acceptEnabled: isAcceptEnabl
 		buildId: aBuildId
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LctDevScripterSuport >> cackeKeyOf: aDescriptionSymbol [
 	^ self subjectScripterMemento cache
 		at: (self targetDescriptionFor: aDescriptionSymbol)
 ]
 
-{ #category : #'scripter - assertion' }
+{ #category : 'scripter - assertion' }
 LctDevScripterSuport >> clickOn: anId [
 	self subjectScripter
 		substeps: ('Click on an element: ' , anId asSymbol)
@@ -139,46 +141,46 @@ LctDevScripterSuport >> clickOn: anId [
 						onChildAt: 1 ] ]
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LctDevScripterSuport >> currentValueOf: aDescriptionSymbol [
 	^ (self cackeKeyOf: aDescriptionSymbol)
 		ifSome: [ :item | item value currentValue ]
 		ifNone: [ nil ]
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LctDevScripterSuport >> fieldIdFor: aDescriptionSymbol [
 	^ GtMagritteFieldElementId new description: (self subjectScripter model perform: aDescriptionSymbol)
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LctDevScripterSuport >> previousValueOf: aDescriptionSymbol [
 	^ (self cackeKeyOf: aDescriptionSymbol)
 		ifSome: [ :item | item value originalValue ]
 		ifNone: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LctDevScripterSuport >> subjectScripter [
 	^ self subject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LctDevScripterSuport >> subjectScripter: aScripter [
 	self subject: aScripter
 ]
 
-{ #category : #'scripter - model' }
+{ #category : 'scripter - model' }
 LctDevScripterSuport >> subjectScripterMemento [
 	^self subjectScripter element userData at: GtMagritteViewModel gtMementoSymbol
 ]
 
-{ #category : #'scripter - model' }
+{ #category : 'scripter - model' }
 LctDevScripterSuport >> subjectScripterModel [
 	^ self subjectScripter model
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LctDevScripterSuport >> targetDescriptionFor: aDescriptionSymbol [
 	| keys descriptionLabel |
 	keys := self subjectScripterMemento cache keys.
@@ -186,7 +188,7 @@ LctDevScripterSuport >> targetDescriptionFor: aDescriptionSymbol [
 	^ keys detect: [ :each | each label = descriptionLabel ] ifNone: [ ^nil ].
 ]
 
-{ #category : #'scripter - assertion' }
+{ #category : 'scripter - assertion' }
 LctDevScripterSuport >> validateEntryOf: aString into: anId resultingAccept: anAcceptBoolean cancel: aCancelBoolean [
 	self subjectScripter
 		substeps: 'Enter slot class name'

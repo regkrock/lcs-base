@@ -19,9 +19,10 @@ LcsCountrySubdivisions >> defaultInstance [
 	^ self 
 		find: [ :each | each formalName = 'Unknown' ]
 		ifNone: [ 
-			(self parent subdivisionClass newInContextOf: self parent)
-				formalName: 'Unknown';
-				yourself ]
+			self parent subdivisions add: (
+				self parent subdivisionClass new
+					formalName: 'Unknown';
+					yourself) ]
 ]
 
 { #category : 'querrying' }

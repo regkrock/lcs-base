@@ -1,41 +1,43 @@
 Class {
-	#name : #LcsCodeBuilderTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
+	#name : 'LcsCodeBuilderTest',
+	#superclass : 'LcsPrototypeSystemRunningTestCase',
 	#instVars : [
 		'codeBuilderJobs',
 		'currentCodeBuilderJob'
 	],
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderTest >> codeBuilderJobs [
 	^ codeBuilderJobs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderTest >> codeBuilderJobs: anObject [
 	codeBuilderJobs := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderTest >> currentCodeBuilderJob [
 	^ currentCodeBuilderJob
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsCodeBuilderTest >> currentCodeBuilderJob: anObject [
 	currentCodeBuilderJob := anObject.
 	self codeBuilderJobs add: anObject
 ]
 
-{ #category : #setUp }
+{ #category : 'setUp' }
 LcsCodeBuilderTest >> setUp [ 
 	super setUp.
 	self codeBuilderJobs: OrderedCollection new
 ]
 
-{ #category : #'setUp\t' }
+{ #category : 'setUp\t' }
 LcsCodeBuilderTest >> tearDown [
 	self codeBuilderJobs reverseDo: [ :builder | builder uninstall].
 	super tearDown.

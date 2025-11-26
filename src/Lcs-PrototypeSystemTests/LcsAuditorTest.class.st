@@ -9,12 +9,13 @@ Class {
 { #category : 'as yet unclassified' }
 LcsAuditorTest >> testAuditingNewPerson [
 	| anAuditor |
-	self subject: LxxPerson new.
+	self subject: LxxPerson basicNew.
 
 	anAuditor := self subject auditSlots.
 	self assert: anAuditor hasErrors.
-	self assert: anAuditor errorDescriptions first equals: '''parent'' slot("LcsGlobalCollectionReferenceSlot") in LxxPerson is not in its global collection'.
+	self assert: (anAuditor errorDescriptions includes: '''parent'' slot("LcsGlobalCollectionReferenceSlot") in LxxPerson is not in its global collection').
 	
+	self subject initialize.
 	self currentSystem applyChanges.
 	
 	anAuditor := self subject auditSlots.

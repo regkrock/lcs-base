@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsValueObjectsGlobalCollectionSlotBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsValueObjectsGlobalCollectionSlotBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValueObjectsGlobalCollectionSlotBuilderTest >> testCreation [
 	<TODO: 'need to add test for creation of slot definition method'>
 	
@@ -30,7 +32,7 @@ LcsValueObjectsGlobalCollectionSlotBuilderTest >> testCreation [
 	self assert: self subject targetModuleName isNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValueObjectsGlobalCollectionSlotBuilderTest >> testSlotName [
 	self subject: LcsValueObjectsGlobalCollectionSlotBuilder new.
 	
@@ -48,7 +50,7 @@ LcsValueObjectsGlobalCollectionSlotBuilderTest >> testSlotName [
 	self assert: self subject slotDefinitionSelector equals: 'fooBarSlotDefinition'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsValueObjectsGlobalCollectionSlotBuilderTest >> testTargetClassName [
 	self subject: LcsValueObjectsGlobalCollectionSlotBuilder new.
 	

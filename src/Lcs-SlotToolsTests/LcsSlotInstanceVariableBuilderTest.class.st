@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsSlotInstanceVariableBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
+	#name : 'LcsSlotInstanceVariableBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
 	#instVars : [
 		'codeBuilder'
 	],
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSlotInstanceVariableBuilderTest >> testInstallingSlot [
 	self subject: (
 		LcsSlotInstanceVariableBuilder new

@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsSingletonCodeClassBuilderTest,
-	#superclass : #LcsCodeBuilderStepTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsSingletonCodeClassBuilderTest',
+	#superclass : 'LcsCodeBuilderStepTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LcsSingletonCodeClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsSingletonCodeClassBuilderTest >> targetSuperclassName [
 	^ 'LcsValueObject'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSingletonCodeClassBuilderTest >> testClassCreationString [
 	| builder |
 	builder := LcsSingletonValueObjectClassBuilder new.
@@ -39,7 +41,7 @@ LcsSingletonCodeClassBuilderTest >> testClassCreationString [
 		package: ''Lcs-Temp'' '
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsSingletonCodeClassBuilderTest >> testInstallClass [
 	self subject: LcsSingletonValueObjectClassBuilder new.
 	self subject

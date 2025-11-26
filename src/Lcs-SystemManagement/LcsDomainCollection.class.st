@@ -12,20 +12,13 @@ Class {
 LcsDomainCollection class >> collectionSlotDefinition [
 	<slotDefinition>
 	^ LcsIdentitySetSlot new
+			priority: 1;
+			yourself
 ]
 
 { #category : 'configuration' }
 LcsDomainCollection class >> collectionType [
 	^'concrete'
-]
-
-{ #category : 'collection' }
-LcsDomainCollection >> add: aDomainObject [
-	"self verifyCanAdd: anObject."
-	aDomainObject parent isNil ifTrue: [ aDomainObject parent: self ].
-	(self pendingAdds includes: aDomainObject) ifFalse: [
-		self currentUnitOfWork addObject: aDomainObject toCollection: self ].
-	^ aDomainObject
 ]
 
 { #category : 'queries' }

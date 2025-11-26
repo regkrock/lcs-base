@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDomainClassAndLocalCollectionClassBuilderJobTest,
-	#superclass : #LcsCodeJobBuilderTest,
-	#category : #'Lcs-SlotToolsTests-Tests'
+	#name : 'LcsDomainClassAndLocalCollectionClassBuilderJobTest',
+	#superclass : 'LcsCodeJobBuilderTest',
+	#category : 'Lcs-SlotToolsTests-Tests',
+	#package : 'Lcs-SlotToolsTests',
+	#tag : 'Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LcsDomainClassAndLocalCollectionClassBuilderJobTest >> createLxxInvoiceAndLxxInvoices [
 	self currentCodeBuilderJob:
 		(LcsDomainClassAndGlobalCollectionClassBuilderJob new
@@ -19,7 +21,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> createLxxInvoiceAndLxxInv
 	self assert: (self currentSystem invoices isKindOf: #LxxInvoices asClass)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsDomainClassAndLocalCollectionClassBuilderJobTest >> testCreationOfNewDomainClassAndItsLocalCollectionClassInstalledInAModule [
 	| newInvoice newInvoiceItem |
 	self createLxxInvoiceAndLxxInvoices.
@@ -40,7 +42,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> testCreationOfNewDomainCl
 
 	self currentSystem applyChanges.
 
-	newInvoiceItem := #LxxInvoiceItem asClass newInContextOf: newInvoice.
+	newInvoiceItem := newInvoice invoiceItems add: (#LxxInvoiceItem asClass new).
 	self assert: newInvoiceItem parent == newInvoice invoiceItems.
 
 	self currentSystem applyChanges.
