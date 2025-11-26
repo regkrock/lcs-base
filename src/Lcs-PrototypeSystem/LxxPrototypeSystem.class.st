@@ -114,7 +114,7 @@ LxxPrototypeSystem >> isPrototypeSystem [
 { #category : 'data' }
 LxxPrototypeSystem >> loadData [
 	super loadData.
-	LxxCountriesLoader new load.
+	LxxCountriesLoader new loadInto: self countries.
 	self applyChanges
 ]
 
