@@ -12,20 +12,21 @@ LcsValueObjectsLoader >> data [
 ]
 
 { #category : 'loading' }
-LcsValueObjectsLoader >> load [
-	| newClass |
+LcsValueObjectsLoader >> loadInto: aTargetCollection [
+	| newClass instance|
 	self protoCodes do: [ :eachProtoCode | 
 		newClass := (eachProtoCode code = 'unknown' and: [ self unknownClass notNil ])
 			ifTrue: [ self unknownClass ]
 			ifFalse: [ self targetClass ].
-		newClass new
+		instance := newClass new
 			code: eachProtoCode code;
 			description: eachProtoCode description;
 			label: eachProtoCode label;
-			isDefaultInstance: eachProtoCode isDefaultInstance ]
+			isDefaultInstance: eachProtoCode isDefaultInstance.
+		aTargetCollection add: instance ]
 ]
 
-{ #category : 'loading' }
+{ #category : 'data' }
 LcsValueObjectsLoader >> protoCodes [
 	^ (NeoJSONReader on: self data readStream)
 			mapInstVarsFor: LcsProtoCode;

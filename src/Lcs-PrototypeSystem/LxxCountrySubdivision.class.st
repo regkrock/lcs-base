@@ -1,5 +1,7 @@
 Class {
-	#name : #LxxCountrySubdivision,
-	#superclass : #LxxBaseCountrySubdivision,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxCountrySubdivision',
+	#superclass : 'LxxBaseCountrySubdivision',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }

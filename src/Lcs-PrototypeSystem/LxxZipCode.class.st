@@ -1,10 +1,12 @@
 Class {
-	#name : #LxxZipCode,
-	#superclass : #LxxBasePostCode,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxZipCode',
+	#superclass : 'LxxBasePostCode',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxZipCode class >> codeSlotDefinition [
 	"<slotDefinition>"
 	^ super codeSlotDefinition

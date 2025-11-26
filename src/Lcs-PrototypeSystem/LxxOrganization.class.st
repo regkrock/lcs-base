@@ -1,13 +1,15 @@
 Class {
-	#name : #LxxOrganization,
-	#superclass : #LcsDomainObject,
+	#name : 'LxxOrganization',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'chiefExecutiveOfficer'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxOrganization class >> chiefExecutiveOfficerSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -21,12 +23,12 @@ LxxOrganization class >> chiefExecutiveOfficerSlotDefinition [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrganization >> chiefExecutiveOfficer [
 	^ self slotVarNamed: 'chiefExecutiveOfficer'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxOrganization >> chiefExecutiveOfficer: aPerson [
 	self slotVarNamed: 'chiefExecutiveOfficer' put: aPerson
 ]

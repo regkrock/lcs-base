@@ -5,6 +5,40 @@
 		"__type" : "snippets",
 		"items" : [
 			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-25T16:10:41.33008-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-25T16:10:54.720933-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DE3817D+R9+Qx/uWG04msA=="
+				},
+				"code" : "LcsDemoSystem new"
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",

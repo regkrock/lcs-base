@@ -1,10 +1,12 @@
 Class {
-	#name : #LxxSeasMembersLoader,
-	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxSeasMembersLoader',
+	#superclass : 'LcsObjectsLoader',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 LxxSeasMembersLoader >> addListInfoToMembersJson [
 	| inputFile inputStream outputFile outputStream string|
 	inputFile := (File named: '/Users/regkrock/SEAS/monmouthmembership/seas/members.json').
@@ -23,7 +25,7 @@ LxxSeasMembersLoader >> addListInfoToMembersJson [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LxxSeasMembersLoader >> data [
 	^'{
 	"_id": {
@@ -121,12 +123,12 @@ LxxSeasMembersLoader >> data [
 }'
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LxxSeasMembersLoader >> mongodbNanosecondsAsDate: anInteger [		 
 	^ (DateAndTime fromUnixTime: (anInteger * 0.001) ) asDate
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LxxSeasMembersLoader >> parsedJsonData [
 	"^ ( NeoJSONReader on: self new data2 readStream ) parseList"
 

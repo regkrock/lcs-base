@@ -2,24 +2,26 @@
 This is a system with no modules, etc. It is used for basic testing of the system logic
 "
 Class {
-	#name : #LxxPrototypeSystem,
-	#superclass : #LcsSystem,
+	#name : 'LxxPrototypeSystem',
+	#superclass : 'LcsSystem',
 	#instVars : [
 		'persons',
 		'organization',
 		'countries',
 		'skills'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPrototypeSystem class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPrototypeSystem class >> countriesSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -29,17 +31,17 @@ LxxPrototypeSystem class >> countriesSlotDefinition [
 		yourself
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxPrototypeSystem class >> defaultModuleName [
 	^ 'Prototype System'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxPrototypeSystem class >> moduleConfigurationClass [
 	^ LxxPrototypeSystemConfiguration
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPrototypeSystem class >> organizationSlotDefinition [
 	<slotDefinition>
 	^ LcsDomainObjectSlot new
@@ -48,7 +50,7 @@ LxxPrototypeSystem class >> organizationSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPrototypeSystem class >> personsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
@@ -58,7 +60,7 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPrototypeSystem class >> skillsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -68,7 +70,7 @@ LxxPrototypeSystem class >> skillsSlotDefinition [
 		yourself
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LxxPrototypeSystem >> addTempClassesTo: collection [
 	"This is present so starting and stopping the system with temp classes works"
 
@@ -81,21 +83,21 @@ LxxPrototypeSystem >> addTempClassesTo: collection [
 		do: [ :each | collection add: each ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> countries [
 	^ self slotVarNamed: 'countries'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> countries: anObject [
 	self slotVarNamed: 'countries' put: anObject
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 LxxPrototypeSystem >> dummySlotDefinition [
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 LxxPrototypeSystem >> gtConfigurationFor: aView [
 	<gtView>
 	^ aView forward
@@ -104,49 +106,49 @@ LxxPrototypeSystem >> gtConfigurationFor: aView [
 		view: #gtMagritteFor:
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LxxPrototypeSystem >> isPrototypeSystem [
 	^ true
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 LxxPrototypeSystem >> loadData [
 	super loadData.
 	LxxCountriesLoader new load.
 	self applyChanges
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> organization [
 	^ self slotVarNamed: 'organization'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> organization: anObject [
 	self slotVarNamed: 'organization' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> persons [
 	^ self slotVarNamed: 'persons'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> persons: anObject [
 	self slotVarNamed: 'persons' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> skills [
 	^ self slotVarNamed: 'skills'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPrototypeSystem >> skills: anObject [
 	self slotVarNamed: 'skills' put: anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LxxPrototypeSystem >> systemDomainClasses [
 	| collection |
 	collection := super systemDomainClasses.	"self addClasses: self class package classes to: collection.

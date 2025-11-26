@@ -12,7 +12,7 @@ Class {
 { #category : 'object initialization' }
 LcsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
-	self populateCollection 
+	self populateCollection: (aDomainObject perform: self slotName asSymbol) 
 ]
 
 { #category : 'properties' }
@@ -29,4 +29,10 @@ LcsGlobalCollectionSlot >> loaderClass: aLoaderClass [
 LcsGlobalCollectionSlot >> populateCollection [
 	self loaderClass isNil ifTrue: [ ^ self ].
 	self loaderClass new load
+]
+
+{ #category : 'load' }
+LcsGlobalCollectionSlot >> populateCollection: aTargetCollection [
+	self loaderClass isNil ifTrue: [ ^ self ].
+	self loaderClass new loadInto: aTargetCollection
 ]

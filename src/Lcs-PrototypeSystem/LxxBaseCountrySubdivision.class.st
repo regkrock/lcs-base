@@ -1,15 +1,17 @@
 Class {
-	#name : #LxxBaseCountrySubdivision,
-	#superclass : #LcsDomainObject,
+	#name : 'LxxBaseCountrySubdivision',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'isoCode',
 		'formalName',
 		'subdivisionName'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxBaseCountrySubdivision class >> formalNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -18,7 +20,7 @@ LxxBaseCountrySubdivision class >> formalNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxBaseCountrySubdivision class >> isoCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -27,7 +29,7 @@ LxxBaseCountrySubdivision class >> isoCodeSlotDefinition [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LxxBaseCountrySubdivision class >> newInContextOf: anObject [
 	| newObject parentCollectionSlot|
 	newObject := self basicNew.
@@ -39,7 +41,7 @@ LxxBaseCountrySubdivision class >> newInContextOf: anObject [
 	^ newObject 
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxBaseCountrySubdivision class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
@@ -49,7 +51,7 @@ LxxBaseCountrySubdivision class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -58,32 +60,32 @@ LxxBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBaseCountrySubdivision >> formalName [
 	^ self slotVarNamed: 'formalName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBaseCountrySubdivision >> formalName: anObject [
 	self slotVarNamed: 'formalName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBaseCountrySubdivision >> isoCode [
 	^ self slotVarNamed: 'isoCode'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBaseCountrySubdivision >> isoCode: anObject [
 	self slotVarNamed: 'isoCode' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBaseCountrySubdivision >> subdivisionName [
 	^ self slotVarNamed: 'subdivisionName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBaseCountrySubdivision >> subdivisionName: anObject [
 	self slotVarNamed: 'subdivisionName' put: anObject
 ]

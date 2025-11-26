@@ -1,10 +1,12 @@
 Class {
-	#name : #LxxCountriesLoader,
-	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxCountriesLoader',
+	#superclass : 'LcsObjectsLoader',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #data }
+{ #category : 'data' }
 LxxCountriesLoader >> caSubdivisionData [
 	^'NL	Newfoundland And Labrador	Province
 PE	Prince Edward Island	Province
@@ -21,7 +23,7 @@ YT	Yukon	Territory
 NT	Northwest Territory	Territory'
 ]
 
-{ #category : #query }
+{ #category : 'query' }
 LxxCountriesLoader >> collectionSize [
 	| stream numberOfLines|
 	numberOfLines := 0.
@@ -33,73 +35,53 @@ LxxCountriesLoader >> collectionSize [
 	
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 LxxCountriesLoader >> data [
 	^ 'Canada	CA	CAN	124	Canada	LxxCanadaPostalCode	LxxCanadaSubdivision	Province
 United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom	LxxGenericPostalCode	LxxCountrySubdivision	 
 United States of America (the)	US	USA	840	United States	LxxZipCode	LxxUnitedStatesSubdivision	State'
 ]
 
-{ #category : #loading }
-LxxCountriesLoader >> load [
-	self loadFrom: self data readStream class: self targetClass schema: self schema
-]
-
-{ #category : #loading }
-LxxCountriesLoader >> loadFrom: aDataStream class: aTargetClass schema: anArray [
-	| instance line setters subdivisionSelector | 
-	setters := anArray collect: [ :each | (each , ':') asSymbol ].
+{ #category : 'loading' }
+LxxCountriesLoader >> loadFrom: aDataStream class: aTargetClass into: aTargetCollection [
+	| newDomainObject | 
 	[ aDataStream atEnd ] whileFalse: [
-		instance := aTargetClass new.
-		line := aDataStream nextLine. 
-		(line substrings: {Character tab}) doWithIndex: [ :value :index |
-			instance perform: (setters at: index) with: value ].
-		subdivisionSelector := (instance isoCode asLowercase , 'SubdivisionData') asSymbol.
-		(self respondsTo: subdivisionSelector) ifTrue: [
-			self 
-				loadSubdivisionsFrom: (self perform:  subdivisionSelector) readStream
-				schema: self subdivisionDataSchema 
-				context: instance ] ] 
+		newDomainObject := aTargetClass new.
+		self populate: newDomainObject with: aDataStream nextLine.
+		aTargetCollection add: newDomainObject.
+		self loadSubdivisionsInto: newDomainObject ]
 ]
 
-{ #category : #loading }
-LxxCountriesLoader >> loadSubdivisionsFrom: aDataStream class: aTargetClass schema: anArray context: aCountry [
-	| instance line setters | 
-	setters := anArray collect: [ :each | (each , ':') asSymbol ].
-	[ aDataStream atEnd ] whileFalse: [
-		instance := aTargetClass newInContextOf: aCountry.
-		line := aDataStream nextLine. 
-		(line substrings: {Character tab}) doWithIndex: [ :value :index |.
-			instance perform: (setters at: index) with: value ] ] 
+{ #category : 'loading' }
+LxxCountriesLoader >> loadInto: aTargetCollection [
+	self
+		loadFrom: self data readStream
+		class: self targetClass
+		into: aTargetCollection
 ]
 
-{ #category : #loading }
-LxxCountriesLoader >> loadSubdivisionsFrom: aDataStream schema: anArray context: aCountry [
-	| instance line setters | 
-	setters := anArray collect: [ :each | (each , ':') asSymbol ].
-	[ aDataStream atEnd ] whileFalse: [
-		instance := aCountry subdivisionClass newInContextOf: aCountry.
-		line := aDataStream nextLine. 
-		(line substrings: {Character tab}) doWithIndex: [ :value :index |
-			instance perform: (setters at: index) with: value ] ] 
+{ #category : 'loading' }
+LxxCountriesLoader >> loadSubdivisionsInto: aCountry [
+	| selector |
+	selector := (aCountry isoCode asLowercase , 'SubdivisionData') asSymbol.
+	(self respondsTo: selector)
+		ifTrue: [ LxxCountrySubdivisionsLoader new
+				load: (self perform: selector)
+				for: aCountry subdivisionClass
+				into: aCountry subdivisions ]
 ]
 
-{ #category : #schema }
+{ #category : 'schema' }
 LxxCountriesLoader >> schema [
 	^#( 'formalName' 'isoCode' 'isoCode3' 'isoNumber' 'commonName' 'postalCodeClass' 'subdivisionClass' 'subdivisionName')
 ]
 
-{ #category : #schema }
-LxxCountriesLoader >> subdivisionDataSchema [
-	^#( 'isoCode' 'formalName' 'subdivisionName' )
-]
-
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxCountriesLoader >> targetClass [
 	^ LxxCountry
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 LxxCountriesLoader >> usSubdivisionData [
 	^'AL	Alabama	State
 AK	Alaska	State

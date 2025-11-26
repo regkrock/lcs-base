@@ -1,10 +1,12 @@
 Class {
-	#name : #LxxCanadaPostalCode,
-	#superclass : #LxxBasePostCode,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxCanadaPostalCode',
+	#superclass : 'LxxBasePostCode',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definition\t' }
+{ #category : 'slot definition\t' }
 LxxCanadaPostalCode class >> codeSlotDefinition [
 	"<slotDefinition>"
 	^ super codeSlotDefinition

@@ -1,23 +1,25 @@
 Class {
-	#name : #LxxPersonsModule,
-	#superclass : #LcsModule,
+	#name : 'LxxPersonsModule',
+	#superclass : 'LcsModule',
 	#instVars : [
 		'persons'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxPersonsModule class >> defaultModuleName [
 	^ 'Persons Module'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxPersonsModule class >> owningModules [
 	<owningModule: 'LxxPrototypeSystem' priority: 10>
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPersonsModule class >> personsSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionSlot new
@@ -27,12 +29,12 @@ LxxPersonsModule class >> personsSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPersonsModule >> persons [
 	^ self slotVarNamed: 'persons'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPersonsModule >> persons: aCollection [
 	^ self slotVarNamed: 'persons' put: aCollection
 ]

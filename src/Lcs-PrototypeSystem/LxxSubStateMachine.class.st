@@ -1,13 +1,15 @@
 Class {
-	#name : #LxxSubStateMachine,
-	#superclass : #LcsStateMachine,
+	#name : 'LxxSubStateMachine',
+	#superclass : 'LcsStateMachine',
 	#instVars : [
 		'changes'
 	],
-	#category : #'Lcs-PrototypeSystem-Support'
+	#category : 'Lcs-PrototypeSystem-Support',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Support'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxSubStateMachine class >> changesSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
@@ -15,17 +17,17 @@ LxxSubStateMachine class >> changesSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxSubStateMachine >> changes [
 	^ self slotVarNamed: 'changes'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxSubStateMachine >> changes: anObject [
 	self slotVarNamed: 'changes' put: anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 LxxSubStateMachine >> initialize [
 
 	super initialize.

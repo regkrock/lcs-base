@@ -1,11 +1,11 @@
-Extension { #name : #LcsApplicationEnvironment }
+Extension { #name : 'LcsApplicationEnvironment' }
 
-{ #category : #'*Lcs-PrototypeSystem' }
+{ #category : '*Lcs-PrototypeSystem' }
 LcsApplicationEnvironment class >> createNewPrototypeSystem [
 	^ self createNewSystem: LxxPrototypeSystem
 ]
 
-{ #category : #'*Lcs-PrototypeSystem' }
+{ #category : '*Lcs-PrototypeSystem' }
 LcsApplicationEnvironment class >> createNewSystem: aSystemClass [
 	| system |
 	System abortTransaction.
@@ -15,7 +15,7 @@ LcsApplicationEnvironment class >> createNewSystem: aSystemClass [
 	^ system
 ]
 
-{ #category : #'*Lcs-PrototypeSystem' }
+{ #category : '*Lcs-PrototypeSystem' }
 LcsApplicationEnvironment class >> ensureCurrentSystemIsPrototypeSystem [
 	self ensureCurrentSystemIs: LxxPrototypeSystem
 ]

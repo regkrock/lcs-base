@@ -1,15 +1,17 @@
 Class {
-	#name : #LxxPrototype2Module,
-	#superclass : #LcsModule,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxPrototype2Module',
+	#superclass : 'LcsModule',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxPrototype2Module class >> defaultModuleName [
 	^ 'Prototype 2 Module'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxPrototype2Module class >> owningModules [
 	<owningModule: 'LxxPrototypeSystem' priority: 50>
 ]

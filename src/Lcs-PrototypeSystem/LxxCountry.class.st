@@ -1,6 +1,6 @@
 Class {
-	#name : #LxxCountry,
-	#superclass : #LcsDomainObject,
+	#name : 'LxxCountry',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'isoCode',
 		'formalName',
@@ -12,10 +12,12 @@ Class {
 		'subdivisionClass',
 		'postalCodeClass'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> commonNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -24,7 +26,7 @@ LxxCountry class >> commonNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> formalNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -34,7 +36,7 @@ LxxCountry class >> formalNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> isoCode3SlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -43,7 +45,7 @@ LxxCountry class >> isoCode3SlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> isoCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -52,7 +54,7 @@ LxxCountry class >> isoCodeSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> isoNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -62,7 +64,7 @@ LxxCountry class >> isoNumberSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -73,7 +75,7 @@ LxxCountry class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> postalCodeClassSlotDefinition [
 	<slotDefinition>
 	| slotDefinition |
@@ -85,7 +87,7 @@ LxxCountry class >> postalCodeClassSlotDefinition [
 	^ slotDefinition
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> subdivisionClassSlotDefinition [
 	<slotDefinition>
 	| slotDefinition |
@@ -97,7 +99,7 @@ LxxCountry class >> subdivisionClassSlotDefinition [
 	^ slotDefinition
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> subdivisionNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -106,7 +108,7 @@ LxxCountry class >> subdivisionNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxCountry class >> subdivisionsSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
@@ -116,92 +118,92 @@ LxxCountry class >> subdivisionsSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> commonName [
 	^ self slotVarNamed: 'commonName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> commonName: anObject [
 	self slotVarNamed: 'commonName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> formalName [
 	^ self slotVarNamed: 'formalName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> formalName: anObject [
 	self slotVarNamed: 'formalName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> isoCode [
 	^ self slotVarNamed: 'isoCode'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> isoCode3 [
 	^ self slotVarNamed: 'isoCode3'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> isoCode3: anObject [
 	self slotVarNamed: 'isoCode3' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> isoCode: anObject [
 	self slotVarNamed: 'isoCode' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> isoNumber [
 	^ self slotVarNamed: 'isoNumber'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> isoNumber: anObject [
 	self slotVarNamed: 'isoNumber' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> postalCodeClass [
 	^ self slotVarNamed: 'postalCodeClass'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> postalCodeClass: anObject [
 	self slotVarNamed: 'postalCodeClass' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> subdivisionClass [
 	^ self slotVarNamed: 'subdivisionClass'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> subdivisionClass: anObject [
 	self slotVarNamed: 'subdivisionClass' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> subdivisionName [
 	^ self slotVarNamed: 'subdivisionName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> subdivisionName: anObject [
 	self slotVarNamed: 'subdivisionName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> subdivisions [
 	^ self slotVarNamed: 'subdivisions'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCountry >> subdivisions: anObject [
 	self slotVarNamed: 'subdivisions' put: anObject
 ]

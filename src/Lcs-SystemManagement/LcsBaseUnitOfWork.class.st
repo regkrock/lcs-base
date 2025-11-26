@@ -191,6 +191,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkItems [
 		LcsUnitOfWorkViewItem newLabel: 'Added' item: self addedObjects values.
 		LcsUnitOfWorkViewItem newLabel: 'Changed' item: self changedObjects values.
 		LcsUnitOfWorkViewItem newLabel: 'Deleted' item: self deletedObjects values.
+		LcsUnitOfWorkViewItem newLabel: 'Changed Collections' item: self changedCollections values.
 		}
 ]
 

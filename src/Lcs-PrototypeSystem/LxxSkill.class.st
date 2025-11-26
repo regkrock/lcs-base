@@ -1,10 +1,12 @@
 Class {
-	#name : #LxxSkill,
-	#superclass : #LcsDomainObject,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxSkill',
+	#superclass : 'LcsDomainObject',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxSkill class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new

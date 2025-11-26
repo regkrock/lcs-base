@@ -1,5 +1,7 @@
 Class {
-	#name : #LxxUnknownPerson,
-	#superclass : #LxxBasePerson,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxUnknownPerson',
+	#superclass : 'LxxBasePerson',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }

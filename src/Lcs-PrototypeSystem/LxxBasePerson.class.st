@@ -1,22 +1,24 @@
 Class {
-	#name : #LxxBasePerson,
-	#superclass : #LcsDomainObject,
+	#name : 'LxxBasePerson',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'dateOfBirth',
 		'lastName',
 		'firstName',
 		'middleName'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxBasePerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
 	^ LcsDateOfBirthSlot new
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxBasePerson class >> firstNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -24,7 +26,7 @@ LxxBasePerson class >> firstNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxBasePerson class >> lastNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -32,7 +34,7 @@ LxxBasePerson class >> lastNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxBasePerson class >> middleNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -40,7 +42,7 @@ LxxBasePerson class >> middleNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #cal }
+{ #category : 'cal' }
 LxxBasePerson >> _age [
 	| today birthDate |
 	today := Date today .
@@ -52,42 +54,42 @@ LxxBasePerson >> _age [
  
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> dateOfBirth [
 	^ self slotVarNamed: 'dateOfBirth'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> dateOfBirth: anObject [
 	self slotVarNamed: 'dateOfBirth' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> firstName [
 	^ self slotVarNamed: 'firstName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> firstName: anObject [
 	self slotVarNamed: 'firstName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> lastName [
 	^ self slotVarNamed: 'lastName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> lastName: anObject [
 	self slotVarNamed: 'lastName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> middleName [
 	^ self slotVarNamed: 'middleName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxBasePerson >> middleName: anObject [
 	self slotVarNamed: 'middleName' put: anObject
 ]

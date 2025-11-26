@@ -1,15 +1,17 @@
 Class {
-	#name : #LxxSkillsLoader,
-	#superclass : #LcsObjectsLoader,
-	#category : #'Lcs-PrototypeSystem-Base'
+	#name : 'LxxSkillsLoader',
+	#superclass : 'LcsObjectsLoader',
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #data }
+{ #category : 'data' }
 LxxSkillsLoader >> data [
 	^ ''
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LxxSkillsLoader >> targetClass [
 	^ LxxSkill
 ]

@@ -1,13 +1,15 @@
 Class {
-	#name : #LxxSkills,
-	#superclass : #LcsDomainCollection,
+	#name : 'LxxSkills',
+	#superclass : 'LcsDomainCollection',
 	#instVars : [
 		'unknown'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxSkills class >> unknownSlotDefinition [
 	<slotDefinition>
 	^ LcsDomainObjectSlot new
@@ -16,12 +18,12 @@ LxxSkills class >> unknownSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxSkills >> unknown [
 	^ self slotVarNamed: 'unknown'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxSkills >> unknown: anObject [
 	self slotVarNamed: 'unknown' put: anObject
 ]

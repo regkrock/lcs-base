@@ -1,13 +1,15 @@
 Class {
-	#name : #LxxPersons,
-	#superclass : #LcsDomainCollection,
+	#name : 'LxxPersons',
+	#superclass : 'LcsDomainCollection',
 	#instVars : [
 		'unknown'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definition' }
+{ #category : 'slot definition' }
 LxxPersons class >> unknownSlotDefinition [
 	<slotDefinition>
 	^ LcsUnknownSlot new
@@ -15,17 +17,17 @@ LxxPersons class >> unknownSlotDefinition [
 		yourself
 ]
 
-{ #category : #queries }
+{ #category : 'queries' }
 LxxPersons >> defaultInstance [
 	^ self unknown
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPersons >> unknown [
 	^ self slotVarNamed: 'unknown'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPersons >> unknown: anObject [
 	^ self slotVarNamed: 'unknown' put: anObject
 ]

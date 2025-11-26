@@ -1,14 +1,16 @@
 Class {
-	#name : #LxxPerson,
-	#superclass : #LxxBasePerson,
+	#name : 'LxxPerson',
+	#superclass : 'LxxBasePerson',
 	#instVars : [
 		'balance',
 		'weight'
 	],
-	#category : #'Lcs-PrototypeSystem-Base'
+	#category : 'Lcs-PrototypeSystem-Base',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Base'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPerson class >> ageSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
@@ -17,7 +19,7 @@ LxxPerson class >> ageSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPerson class >> balanceSlotDefinition [
 	<slotDefinition>
 	^ LcsScaledDecimalSlot new
@@ -25,7 +27,7 @@ LxxPerson class >> balanceSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPerson class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -36,7 +38,7 @@ LxxPerson class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxPerson class >> weightSlotDefinition [
 	<slotDefinition>
 	^ LcsNumberSlot new
@@ -44,27 +46,27 @@ LxxPerson class >> weightSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPerson >> age [
 	^ self virtualSlotVarNamed: 'age'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPerson >> balance [
 	^ self slotVarNamed: 'balance'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPerson >> balance: anObject [
 	self slotVarNamed: 'balance' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPerson >> weight [
 	^ self slotVarNamed: 'weight'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxPerson >> weight: anObject [
 	self slotVarNamed: 'weight' put: anObject
 ]

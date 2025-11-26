@@ -1,13 +1,15 @@
 Class {
-	#name : #LxxCompositeStateMachine,
-	#superclass : #LcsStateMachine,
+	#name : 'LxxCompositeStateMachine',
+	#superclass : 'LcsStateMachine',
 	#instVars : [
 		'changes'
 	],
-	#category : #'Lcs-PrototypeSystem-Support'
+	#category : 'Lcs-PrototypeSystem-Support',
+	#package : 'Lcs-PrototypeSystem',
+	#tag : 'Support'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LxxCompositeStateMachine class >> changesSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
@@ -15,17 +17,17 @@ LxxCompositeStateMachine class >> changesSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LxxCompositeStateMachine >> changes [
 	^ self slotVarNamed: 'changes'
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 LxxCompositeStateMachine >> changes: anObject [
 	self slotVarNamed: 'changes' put: anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 LxxCompositeStateMachine >> initialize [
 	
 	| state2 |
