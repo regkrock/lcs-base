@@ -34,6 +34,11 @@ LcsValueObjectsLoader >> protoCodes [
 			nextAs: #ArrayOfPrtotCodes.
 ]
 
+{ #category : 'schema' }
+LcsValueObjectsLoader >> schema [
+	^ #()
+]
+
 { #category : 'configuration' }
 LcsValueObjectsLoader >> targetClass [
 	^ self subclassResponsibility

@@ -9,7 +9,7 @@ Class {
 { #category : 'object initialization' }
 LcsValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
-	self populateCollection 
+	self populateCollection: (aDomainObject perform: self slotName asSymbol) 
 ]
 
 { #category : 'properties' }
@@ -23,6 +23,6 @@ LcsValueObjectsGlobalCollectionSlot >> loaderClass: aLoaderClass [
 ]
 
 { #category : 'load' }
-LcsValueObjectsGlobalCollectionSlot >> populateCollection [
-	self loaderClass new load
+LcsValueObjectsGlobalCollectionSlot >> populateCollection: aTargetCollection [
+	self loaderClass new loadInto: aTargetCollection
 ]
