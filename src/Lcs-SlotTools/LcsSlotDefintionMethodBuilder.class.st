@@ -346,6 +346,9 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aExpectedObj
 		
 	aProperty = 'slotTypes'
 		ifTrue: [ ^ self validateSlotTypes: aExpectedObject against: actualValue ].
+		
+	aProperty = 'targetSlotPath'
+		ifTrue: [ ^ self validateTargetSlotPath: aExpectedObject asOrderedCollection against: actualValue ].
 
 	aProperty = 'validationConditions'
 		ifTrue: [ ^ self validateValidationConditions: aExpectedObject against: actualValue ].
@@ -371,6 +374,13 @@ LcsSlotDefintionMethodBuilder >> validateSlotTypes: anExpectedCollection against
 		validateCollectionMemberTypes: anExpectedCollection
 		against: anActualCollection
 		defaultTypes: self defaultSlotTypes
+]
+
+{ #category : 'verification' }
+LcsSlotDefintionMethodBuilder >> validateTargetSlotPath: anExpectedCollection against: anActualCollection [
+	self
+		assert: anExpectedCollection
+		equals: anActualCollection
 ]
 
 { #category : 'verification' }

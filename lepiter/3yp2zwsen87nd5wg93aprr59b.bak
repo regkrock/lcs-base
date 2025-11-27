@@ -29,14 +29,48 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-25T16:10:41.33008-05:00"
+						"dateAndTimeString" : "2025-11-25T16:10:54.720933-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "DE3817D+R9+Qx/uWG04msA=="
 				},
-				"code" : ""
+				"code" : "LcsDemoSystem new"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-27T09:16:55.970662-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-27T09:19:55.776377-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "XZjwqRLaQhiyOa3k2oCnBQ=="
+				},
+				"code" : "LcsApplicationEnvironment currentSystem organization\r\tcommittees add: (LcsSteeringCommittee new committeeName: 'Executive Commit'\r\rself"
 			},
 			{
 				"__type" : "textSnippet",

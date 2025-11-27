@@ -84,7 +84,7 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 		tooltip: 'Methods that define Slot Defintions';
 		priority: 19;
 		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
-				& ( #slotDefinition gtPragmas "| #magritteActionDescription gtPragmas") ];
+				& ( #slotDefinition gtPragmas | #facadeSlotDefinition gtPragmas) ];
 		actionUpdateButton
 		
 ]
