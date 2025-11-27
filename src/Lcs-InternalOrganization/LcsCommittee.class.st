@@ -10,9 +10,9 @@ Class {
 LcsCommittee class >> committeeNameSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsDelegatorSlot new
-			slotName: #'committeeName';
+			slotName: 'committeeName';
 			addSlotType: String;
-			targetSlotPath: #(#'organizationName');
+			targetSlotPath: #(#organizationName);
 			yourself
 ]
 

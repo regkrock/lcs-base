@@ -52,7 +52,7 @@ LcsDelegatorSlot >> targetSlotPathDescription [
 						accessors: #(#targetSlotPath)
 						read: [ :selectors | selectors ] 
 						write: [ :aModel :setter :collection | 
-							aModel perform: setter with: collection  ]);
+							aModel perform: setter with: (collection collect: [ :each | each asSymbol ]) ]);
 			classes: { String};
 			priority: 35;
 			beModifiable;
