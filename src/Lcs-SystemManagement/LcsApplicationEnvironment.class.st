@@ -14,6 +14,13 @@ Class {
 	#tag : 'Environment'
 }
 
+{ #category : 'instance creation' }
+LcsApplicationEnvironment class >> activeApplicationEnvironment [
+	self hasInitializedApplicationEnvironment
+		ifFalse: [ self initializeApplicationEnvironment].
+	^ self singleton
+]
+
 { #category : 'application environment - private' }
 LcsApplicationEnvironment class >> applicationEnvironmentDo: aBlock [
 	^ self currentApplicationEnvironment ifNotNil: aBlock 

@@ -483,6 +483,12 @@ LcsSlotCreationForm >> slotTypesDescription [
 	^ self magritteDescriptionFor: #slotTypes
 ]
 
+{ #category : 'magritte' }
+LcsSlotCreationForm >> targetSlotPathDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #targetSlotPath
+]
+
 { #category : 'private' }
 LcsSlotCreationForm >> toolFor: anInstance [
 	^ GtClassCoderTool forClass: anInstance

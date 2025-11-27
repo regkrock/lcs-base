@@ -41,3 +41,25 @@ LcsDelegatorSlot >> targetSlotPath [
 LcsDelegatorSlot >> targetSlotPath: aSlotNamesCollection [ 
 	self properties at: 'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
 ]
+
+{ #category : 'magritte' }
+LcsDelegatorSlot >> targetSlotPathDescription [
+	<magritteDescription>
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  label: 'Target Slot Path';
+			accessor: (LcsMAPluggableAccessor 
+						accessors: #(#targetSlotPath)
+						read: [ :selectors | selectors ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: collection  ]);
+			classes: { String};
+			priority: 35;
+			beModifiable;
+			labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+			blocListStencil: (
+				self
+					taggerStencilWithCompletion: GtClassesCompletionStrategy new
+					andContextMenuBlock: nil);
+			beRequired
+]

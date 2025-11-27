@@ -110,7 +110,6 @@ LcsAccessorSlotBuilder >> beAllowNil [
 
 { #category : 'job steps' }
 LcsAccessorSlotBuilder >> buildJobSteps [
-	"self jobSteps removeAll. <-- this needs to go somewhere else"
 	self addJobStep: self slotInstanceVariableBuilder.
 	self addJobStep: self slotDefinitionMethodBuilder.
 	self addJobStep: self getterAndSetterMethodsBuilder
