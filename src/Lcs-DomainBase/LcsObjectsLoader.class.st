@@ -14,6 +14,26 @@ LcsObjectsLoader class >> initializeSlotModel [
 	"Not part of the model"
 ]
 
+{ #category : 'slot model' }
+LcsObjectsLoader class >> installSlotDefinitions [ 
+	"Not part of the model"
+]
+
+{ #category : 'slot model' }
+LcsObjectsLoader class >> instantiateSlotModel [ 
+	"Not part of the model"
+]
+
+{ #category : 'slot model' }
+LcsObjectsLoader class >> instantiateSlotModelInSystem: aSystem [
+	"Not part of the model"
+]
+
+{ #category : 'slot model' }
+LcsObjectsLoader class >> verifySlotModelConsistency [
+	"Not part of the model"
+]
+
 { #category : 'initialize' }
 LcsObjectsLoader >> initialize [ 
 	super initialize.

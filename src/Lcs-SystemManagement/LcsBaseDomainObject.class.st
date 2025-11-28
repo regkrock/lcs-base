@@ -250,6 +250,14 @@ LcsBaseDomainObject class >> instantiateSlotModel [
 	self slotModel: (LcsSlotModel newOn: self)
 ]
 
+{ #category : 'slot model - install' }
+LcsBaseDomainObject class >> instantiateSlotModelInSystem: aSystem [
+	self verifySuperclassesHaveInitializedSlotModel.
+	(aSystem hasSlotModelFor: self) ifFalse: [ 
+			self slotModel: (LcsSlotModel newOn: self).
+			aSystem addToSlotModel: self slotModel ]
+]
+
 { #category : 'testing' }
 LcsBaseDomainObject class >> isDomainClass [
 	^true

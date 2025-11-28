@@ -32,12 +32,15 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-Magritte-Base' with: [ spec requires: #( 'Lcs-SlotTools') ].
 			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SlotTools') ].
 			spec package: 'Lcs-StateMachine' with: [ spec requires: #('Lcs-DomainBase') ].
+			spec package: 'Lcs-Security' with: [ spec requires: #('Lcs-DomainBase') ].
 
+			spec package: 'Lcs-BasicSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Security') ].
+			
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].
 			spec package: 'Lcs-LegalEntities' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Geography') ].
 			spec package: 'Lcs-InternalOrganization' with: [ spec requires: #('Lcs-LegalEntities') ].
-			spec package: 'Lcs-Security' with: [ spec requires: #('Lcs-DomainBase') ].
 			spec package: 'Lcs-Calendar' with: [ spec requires: #('Lcs-DomainBase') ].
+
 			spec package: 'Lcs-DemoSystem' with: [ spec requires: #('Lcs-LegalEntities' 'Lcs-Geography' 'Lcs-Security' ) ].
 
 			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-DomainBase' 'Lcs-StateMachine') ].  

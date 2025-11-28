@@ -321,8 +321,7 @@ LcsSystem >> inititalizeSlotModel [
 { #category : 'initialize' }
 LcsSystem >> inititalizeSlotModelFor: aCollection [
 	self inititalizeSlotModelFor: aCollection instantiateBlock: [ :eachClass |
-		eachClass instantiateSlotModel.
-		self addToSlotModel: eachClass slotModel]
+		eachClass instantiateSlotModelInSystem: self ]
 ]
 
 { #category : 'initialize' }

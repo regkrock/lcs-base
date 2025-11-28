@@ -46,6 +46,7 @@ LcsSecurityModule class >> owningModules [
 	<owningModule: 'LcsWarRabbitLibrary' priority: 1>
 	<owningModule: 'LxxPrototypeSystem' priority: 1>
 	<owningModule: 'LcsSailingClubSystem' priority: 1>
+	<owningModule: 'LcsBasicSystem' priority: 1>
 ]
 
 { #category : 'slot definitions' }

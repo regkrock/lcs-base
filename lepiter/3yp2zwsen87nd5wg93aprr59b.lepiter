@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-25T16:10:41.33008-05:00"
+						"dateAndTimeString" : "2025-11-28T10:42:16.319089-05:00"
 					}
 				},
 				"editEmail" : {
@@ -29,14 +29,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-25T16:10:54.720933-05:00"
+						"dateAndTimeString" : "2025-11-28T11:45:27.573027-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "DE3817D+R9+Qx/uWG04msA=="
+					"uidString" : "amGs285OTl+RZcy56dJTGg=="
 				},
-				"code" : "LcsDemoSystem new"
+				"code" : "| aClub |\rLcsApplicationEnvironment ensureCurrentSystemIs: LcsDemoSystem.\rLcsApplicationEnvironment currentSystem inititalizeSlotModelFor: ( 'Lcs-Seas' asPackage definedClasses).\raClub := LcsSailingClubOrganization new.\raClub"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -71,6 +71,40 @@
 					"uidString" : "XZjwqRLaQhiyOa3k2oCnBQ=="
 				},
 				"code" : "LcsApplicationEnvironment currentSystem organization\r\tcommittees add: (LcsSteeringCommittee new committeeName: 'Executive Committee').\rLcsApplicationEnvironment currentSystem organization\r\tcommittees"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-25T16:10:41.33008-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-25T16:10:54.720933-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DE3817D+R9+Qx/uWG04msA=="
+				},
+				"code" : "LcsDemoSystem new"
 			},
 			{
 				"__type" : "textSnippet",
