@@ -38,11 +38,11 @@ LcsAccessorSlotTest >> testAddingPostUpdateActionsCodeGenerationWithDifferentAct
 	| aStream |
 	aStream := LcsMethodStream new.
 	self subject: LcsAccessorSlotExamples new accessorSlotWithBasicPostUpdateActions.
-	self subject postUpdateActions first actionBlock: [ :newValue :domainObject :oldValue | ]. 
+	self subject postUpdateActions first actionBlock: [ :newValue :parentDomainObject :oldValue | ]. 
 	aStream addKeyword: 'addPostUpdateAction' withRenderedAction: self subject postUpdateActions first.
 	self assert: aStream contents equals: 'addPostUpdateAction: (
 	LcsUpdateSiblingWithCollectionDefault new
-		actionBlock: [ :newValue :domainObject :oldValue | ];
+		actionBlock: [ :newValue :parentDomainObject :oldValue | ];
 		yourself);'
 ]
 
@@ -99,7 +99,7 @@ LcsAccessorSlotTest >> testInitalValueSetToNil [
 	self subject:  LcsAccessorSlotExamples new accessorSlot.
 
 	self subject initialValue: nil.
-	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | nil ]'.
+	self assert: self subject initialValueBlock printString equals: '[ :parentDomainObject :slot | nil ]'.
 	self assert: (self subject initialValueBlock cull: self cull: self) isNil
 ]
 
@@ -202,7 +202,7 @@ LcsAccessorSlotTest >> testUpdatingInitialValueBlockViaMagritteDescription [
 	description write: '0' to: self subject.
 	self assert: (description read: self subject) equals: '0'.
 
-	self assert: self subject initialValueBlock asString equals: '[ :domainObject :slot | 0 ]'
+	self assert: self subject initialValueBlock asString equals: '[ :parentDomainObject :slot | 0 ]'
 ]
 
 { #category : 'tests' }

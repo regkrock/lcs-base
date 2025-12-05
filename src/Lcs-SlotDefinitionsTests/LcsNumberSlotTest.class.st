@@ -13,7 +13,7 @@ LcsNumberSlotTest >> testInitialValue [
 	self assert: self subject initialValue equals: 0.
 
 	self subject initialValue: 100.
-	self assert: self subject initialValueBlock printString equals: '[ :domainObject :slot | 100 ]'
+	self assert: self subject initialValueBlock printString equals: '[ :parentDomainObject :slot | 100 ]'
 ]
 
 { #category : 'tests' }

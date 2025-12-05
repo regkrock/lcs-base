@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-25T16:30:45.161806-04:00"
+						"dateAndTimeString" : "2025-10-28T10:28:39.352103-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "###Sunit Tests"
+				"string" : "###Sunit Tests "
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-12T15:14:54.237739-04:00"
+						"dateAndTimeString" : "2025-12-03T11:46:12.392122-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "WDwk4mXQDQCH/k4kAKwlPw=="
 				},
-				"code" : "| failures errors passed testResult testClasses |\rfailures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\rtestClasses := OrderedCollection new.\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestClasses add: each.\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed addAll: testResult passed] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors]].\rresults \r\tadd: 'Test Classes Ran: ' , testClasses size printString;\r\tadd: 'Passed (' , passed size printString , ' passed tests)';\r\tadd: passed;\r\tadd: 'Failed (' , failures size printString , ' failed tests)'.\rfailures isNotEmpty ifTrue: [ results add: failures ].\rresults add: 'Errors (' , errors size printString , ' error tests)'.\rerrors isNotEmpty ifTrue: [ results add: errors ].\rresults"
+				"code" : "| failures errors passed testResult testClasses |\rfailures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\rtestClasses := OrderedCollection new.\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestClasses add: each.\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed addAll: testResult passed ] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors]].\rresults \r\tadd: 'Test Classes Ran: ' , testClasses size printString;\r\tadd: 'Passed (' , passed size printString , ' passed tests)';\r\tadd: passed;\r\tadd: 'Failed (' , failures size printString , ' failed tests)'.\rfailures isNotEmpty ifTrue: [ results add: failures ].\rresults add: 'Errors (' , errors size printString , ' error tests)'.\rerrors isNotEmpty ifTrue: [ results add: errors ].\rresults"
 			},
 			{
 				"__type" : "textSnippet",

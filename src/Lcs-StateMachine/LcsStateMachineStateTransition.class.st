@@ -1,16 +1,18 @@
 Class {
-	#name : #LcsStateMachineStateTransition,
-	#superclass : #LcsStateMachineObject,
+	#name : 'LcsStateMachineStateTransition',
+	#superclass : 'LcsStateMachineObject',
 	#instVars : [
 		'nextStateId',
 		'guardCondition',
 		'action',
 		'eventType'
 	],
-	#category : #'Lcs-StateMachine-Core'
+	#category : 'Lcs-StateMachine-Core',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineStateTransition class >> action: aBlockOrMessageSend to: nextStateId [
 	| inst |
 	inst := self nextStateId: nextStateId.
@@ -18,7 +20,7 @@ LcsStateMachineStateTransition class >> action: aBlockOrMessageSend to: nextStat
 	^inst
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> actionSlotDefinition [
 	<slotDefinition>
 	^ LcsBlockSlot new
@@ -26,17 +28,17 @@ LcsStateMachineStateTransition class >> actionSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> eventTypeSlotDefinition [
 	<slotDefinition>
 	^ LcsSymbolSlot new
 		slotName: 'eventType';
-		inputConversionBlock: [ :domainObject :anEventOrSymbol  :slot | 
-			domainObject asEventType: anEventOrSymbol];
+		inputConversionBlock: [ :parentDomainObject :anEventOrSymbol  :slot | 
+			parentDomainObject asEventType: anEventOrSymbol];
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> guardConditionSlotDefinition [
 	<slotDefinition>
 	^ LcsBlockSlot new
@@ -44,7 +46,7 @@ LcsStateMachineStateTransition class >> guardConditionSlotDefinition [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineStateTransition class >> guarded: guardCondition action: aBlockOrMessageSend to: nextStateId [
 	| inst |
 	inst := self nextStateId: nextStateId.
@@ -53,26 +55,26 @@ LcsStateMachineStateTransition class >> guarded: guardCondition action: aBlockOr
 	^inst
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineStateTransition class >> newId: anId with: aBlock [
 	^ self new
 		initializeId: anId with: aBlock;
 		yourself
 ]
 
-{ #category : #'actions-event' }
+{ #category : 'actions-event' }
 LcsStateMachineStateTransition class >> newWhenEvent: anEventOrSymbol transitionToStateId: nextStateId [ 
 	^ self new
 		initializeWhenEvent: anEventOrSymbol transitionToStateId: nextStateId;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineStateTransition class >> nextStateId: aStateSymbol [
 	^self new nextStateId: aStateSymbol
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> nextStateIdSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -80,17 +82,17 @@ LcsStateMachineStateTransition class >> nextStateIdSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> action [
 	^ action
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> action: aBlockOrMessageSend [
 	action := aBlockOrMessageSend
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachineStateTransition >> activate [
 	self perform. 	"or send event"
 	self changeState.
@@ -98,33 +100,33 @@ LcsStateMachineStateTransition >> activate [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> asEventType: anEventOrSymbol [
 	^ anEventOrSymbol isString
 		ifTrue: [ anEventOrSymbol ]
 		ifFalse: [ anEventOrSymbol type ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachineStateTransition >> changeState [
 	self changeStateToStateNamed: self nextStateId.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachineStateTransition >> changeStateTo: aState [
 
 	self stateMachine changeStateTo: aState on: self currentEvent
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachineStateTransition >> changeStateToStateNamed: aStateSymbol [
 
 	self stateMachine changeStateToStateNamed: aStateSymbol on: self currentEvent
 	
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachineStateTransition >> checkGuard [
 	self guardCondition ifNil: [ ^ true ].
 	
@@ -132,34 +134,34 @@ LcsStateMachineStateTransition >> checkGuard [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> eventType [
 	^ eventType
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> eventType: anEventOrSymbol [
 	eventType := self asEventType: anEventOrSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> guardCondition [
 	^ guardCondition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> guardCondition: anObject [
 	guardCondition := anObject
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineStateTransition >> initializeId: anId with: aBlock [
 	self 
 		id: anId;
 		with: aBlock 
 ]
 
-{ #category : #'actions-event' }
+{ #category : 'actions-event' }
 LcsStateMachineStateTransition >> initializeWhenEvent: anEventOrSymbol transitionToStateId: aNextStateId [ 
 	self	
 		nextStateId: aNextStateId;
@@ -167,23 +169,23 @@ LcsStateMachineStateTransition >> initializeWhenEvent: anEventOrSymbol transitio
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> nextState [
 	^self stateMachine stateNamed: self nextStateId.
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> nextStateId [
 	^nextStateId
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineStateTransition >> nextStateId: anObject [
 	nextStateId := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachineStateTransition >> perform [
 	^ self action ifNotNil: [:act | act cull: self context cull: self currentEvent] 
 

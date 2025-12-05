@@ -1,14 +1,15 @@
 Class {
-	#name : #LcsLibraryCategory,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsLibraryCategory',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'categoryName',
 		'subcategories'
 	],
-	#category : #'Lcs-WarRabbitLibrary'
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryCategory class >> categoryNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -17,7 +18,7 @@ LcsLibraryCategory class >> categoryNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryCategory class >> newFor: aString [
 	^ self new
 		categoryName: aString;
@@ -25,7 +26,7 @@ LcsLibraryCategory class >> newFor: aString [
 	
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryCategory class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -36,7 +37,7 @@ LcsLibraryCategory class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryCategory class >> subcategoriesSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -44,22 +45,22 @@ LcsLibraryCategory class >> subcategoriesSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryCategory >> categoryName [
 		^ self slotVarNamed: 'categoryName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryCategory >> categoryName: anObject [
 	self slotVarNamed: 'categoryName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryCategory >> subcategories [
 	^ self slotVarNamed: 'subcategories'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryCategory >> subcategories: anObject [
 	^ self slotVarNamed: 'subcategories' put: anObject
 ]

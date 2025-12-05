@@ -45,7 +45,6 @@ LcsDelegatorSlot >> targetSlotPath: aSlotNamesCollection [
 { #category : 'magritte' }
 LcsDelegatorSlot >> targetSlotPathDescription [
 	<magritteDescription>
-	<magritteDescription>
 	^ MAToManyRelationDescription new
 		  label: 'Target Slot Path';
 			accessor: (LcsMAPluggableAccessor 

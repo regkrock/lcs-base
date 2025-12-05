@@ -1,14 +1,16 @@
 Class {
-	#name : #LcsStateMachineTransitionDecision,
-	#superclass : #LcsStateMachineStateTransition,
+	#name : 'LcsStateMachineTransitionDecision',
+	#superclass : 'LcsStateMachineStateTransition',
 	#instVars : [
 		'trueStateId',
 		'falseStateId'
 	],
-	#category : #'Lcs-StateMachine-Core'
+	#category : 'Lcs-StateMachine-Core',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineTransitionDecision class >> falseStateIdSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineEventTypeSlot new
@@ -17,7 +19,7 @@ LcsStateMachineTransitionDecision class >> falseStateIdSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineTransitionDecision class >> trueStateIdSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineEventTypeSlot new
@@ -26,17 +28,17 @@ LcsStateMachineTransitionDecision class >> trueStateIdSlotDefinition [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineTransitionDecision >> falseStateId [
 	^ falseStateId
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineTransitionDecision >> falseStateId: anObject [
 	falseStateId := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachineTransitionDecision >> perform [
 	| evalResult |
 	evalResult := super perform.
@@ -46,12 +48,12 @@ LcsStateMachineTransitionDecision >> perform [
 				ifFalse: [self falseStateId])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineTransitionDecision >> trueStateId [
 	^ trueStateId
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineTransitionDecision >> trueStateId: anObject [
 	trueStateId := anObject
 ]

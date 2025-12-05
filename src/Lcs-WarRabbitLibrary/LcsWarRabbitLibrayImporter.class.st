@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsWarRabbitLibrayImporter,
-	#superclass : #LcsApplicationObject,
+	#name : 'LcsWarRabbitLibrayImporter',
+	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'library',
 		'currentCategory',
@@ -9,17 +9,18 @@ Class {
 		'items',
 		'protoItemParts'
 	],
-	#category : #'Lcs-WarRabbitLibrary'
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter class >> newOn: aLibrary [ 
 	^ self new
 		initializeOn: aLibrary;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> candidateLibraryComponent: aString [
 	^ self isLibraryCategoryCandidate
 		ifTrue: [ self libraryCategoryCandidate ]
@@ -28,105 +29,105 @@ LcsWarRabbitLibrayImporter >> candidateLibraryComponent: aString [
 					yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> currentAuthors [
 	^ currentAuthors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> currentAuthors: anObject [
 	currentAuthors := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> currentCategory [
 	^ currentCategory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> currentCategory: anObject [
 	currentCategory := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> currentLine [
 	^ self importedLines last
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> importLine: aString [
 	self importedLines add: aString.
 	self protoItemParts: (aString substrings: {Character tab}).
 	self items add: (self candidateLibraryComponent: aString)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> importedLines [
 	^ importedLines
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> importedLines: anObject [
 	importedLines := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> initialize [
 	super initialize.
 	self importedLines: OrderedCollection new.
 	self items:OrderedCollection new
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsWarRabbitLibrayImporter >> initializeOn: aLibrary [ 
 	self library: aLibrary
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsWarRabbitLibrayImporter >> isLibraryCategoryCandidate [
 	^ self protoItemParts size = 1
 		and: [ self protoItemParts first allSatisfy: [ :each | each isCharacter ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> items [
 	^ items
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> items: aCollection [
 	items := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> library [
 	^ library
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> library: anObject [
 	library := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> libraryCategoryCandidate [
 	self currentCategory: (self currentSystem libraryCategoryFor: self protoItemParts first).
 	^self currentCategory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> libraryItemFor: aString [
 	((self protoItemParts includes: 'pb') | (self protoItemParts includes: 'hc') | (self protoItemParts includes: 'hc+dj'))
 		ifTrue: [ ^ LcsBook newOn: aString parts: self protoItemParts ]. 
 	^ LcsUnknownLibraryItem newOn: aString parts: self protoItemParts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> protoItemParts [
 	^ protoItemParts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrayImporter >> protoItemParts: anObject [
 	protoItemParts := anObject
 ]

@@ -16,8 +16,10 @@ LcsMemberOfGlobalCollectionSlotBuilder class >> slotClass [
 { #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self slotTypes any
+	aUmlModel
+		addAssociation: self slotName
+		from: self targetClassName
+		to: self slotTypes first asString
 ]
 
 { #category : 'gt views' }

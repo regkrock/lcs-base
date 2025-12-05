@@ -8,7 +8,7 @@ Class {
 
 { #category : 'defaults' }
 LcsDefaultInstanceSlot >> defaultValueAccessBlock [
-	[ :domainCollection | domainCollection defaultInstance ]
+	[ :parentDomainObject | parentDomainObject defaultInstance ]
 ]
 
 { #category : 'inititalize' }

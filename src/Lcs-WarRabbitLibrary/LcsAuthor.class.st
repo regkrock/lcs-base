@@ -1,14 +1,15 @@
 Class {
-	#name : #LcsAuthor,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsAuthor',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'authorship',
 		'person'
 	],
-	#category : #'Lcs-WarRabbitLibrary'
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAuthor class >> authorshipSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -18,7 +19,7 @@ LcsAuthor class >> authorshipSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAuthor class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -29,49 +30,49 @@ LcsAuthor class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsAuthor class >> personSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
 			slotName: 'person';
 			collectionSlotName: 'persons';
 			collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
-			initialValueBlock: [ :domainParent :slot | slot targetCollection unknown ];
+			initialValueBlock: [ :parentDomainParent :slot | slot targetCollection unknown ];
 			addSlotType: LcsBasePerson;
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAuthor >> authorship [
 	^ self slotVarNamed: 'authorship'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAuthor >> authorship: anObject [
 	self slotVarNamed: 'authorship' put: anObject
 ]
 
-{ #category : #person }
+{ #category : 'person' }
+LcsAuthor >> familyName [
+	^ self person familyName
+]
+
+{ #category : 'person' }
 LcsAuthor >> firstName [
 	^ self person firstName
 ]
 
-{ #category : #person }
+{ #category : 'person' }
 LcsAuthor >> middleNames [
 	^ self person middleNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAuthor >> person [
 	^ self slotVarNamed: 'person'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsAuthor >> person: anObject [
 	self slotVarNamed: 'person' put: anObject
-]
-
-{ #category : #person }
-LcsAuthor >> surname [
-	^ self person surname
 ]

@@ -120,8 +120,8 @@ LcsAddress class >> provinceSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfCollectionInSiblingSlotObjectSlot new
 		slotName: 'province';
-		prevalidationTransformBlock: [ :value :slot :domainObject | 
-			(slot targetCollectionIn: domainObject) findItemMatchingCode: value ifNone: [ value ] ];
+		prevalidationTransformBlock: [ :value :slot :parentDomainObject | 
+			(slot targetCollectionIn: parentDomainObject) findItemMatchingCode: value ifNone: [ value ] ];
 		siblingSlotName: 'country';
 		siblingCollectionSlotName: 'subdivisions';
 		required: true;
@@ -145,7 +145,7 @@ LcsAddress class >> streetNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'streetNumber';
-		"addValidationCondition: [ :value :domainObject :oldValue | value isNilOrEmpty ] description: 'Street number is required';"
+		"addValidationCondition: [ :value :parentDomainObject :oldValue | value isNilOrEmpty ] description: 'Street number is required';"
 		allowNil: false;
 		required: true;
 		priority: 5;

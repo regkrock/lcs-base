@@ -10,7 +10,7 @@ Class {
 LcsValidationConditionsTest >> testAddingValidationCondition [
 	| validationDescription validationCondition conditionBlock |
 	validationDescription := 'Date must be today or beyond'.
-	conditionBlock := [ :newDate :domainObject :oldValue |  Date today < newDate ].
+	conditionBlock := [ :newDate :parentDomainObject :oldValue |  Date today < newDate ].
 	self subject: LcsValidationConditions new.
 	self subject addValidationCondition: conditionBlock description: validationDescription.
 	validationCondition := self subject validationConditionWithDescription: validationDescription.

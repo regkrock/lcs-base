@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsLibraryItem,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsLibraryItem',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'libraryCategory',
 		'itemName',
@@ -9,10 +9,11 @@ Class {
 	#classInstVars : [
 		'collectionSlotName'
 	],
-	#category : #'Lcs-WarRabbitLibrary'
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryItem class >> authorsSlotDefinition [
 	"<slotDefinition>"
 	^LcsSecondaryCollectionSlot new
@@ -23,12 +24,12 @@ LcsLibraryItem class >> authorsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryItem class >> collectionSlotName [
 	^ collectionSlotName
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryItem class >> itemAuthorsSlotDefinition [
 	<slotDefinition>
 	^LcsSecondaryCollectionSlot new
@@ -39,7 +40,7 @@ LcsLibraryItem class >> itemAuthorsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryItem class >> itemNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -48,7 +49,7 @@ LcsLibraryItem class >> itemNameSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryItem class >> libraryCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -59,7 +60,7 @@ LcsLibraryItem class >> libraryCategorySlotDefinition [
 			yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryItem class >> librearyCategorySlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -70,18 +71,18 @@ LcsLibraryItem class >> librearyCategorySlotDefinition [
 			yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsLibraryItem class >> newFor: line [ 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem class >> newOn: aString parts: protoItemParts [ 
 	^ self new
 		initializeOn: aString parts: protoItemParts;
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsLibraryItem class >> parentSlotDefinition [
 	<slotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
@@ -91,39 +92,39 @@ LcsLibraryItem class >> parentSlotDefinition [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem >> initializeOn: aString parts: protoItemParts [ 
 	self 
 		"originalLine: aString;
 		parts: protoItemParts"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem >> itemAuthors [
 	^ self slotVarNamed: 'itemAuthors'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem >> itemAuthors: anObject [
 	self slotVarNamed: 'itemAuthors' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem >> itemName [
 	^ self slotVarNamed: 'itemName'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem >> itemName: anObject [
 	self slotVarNamed: 'itemName' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem >> libraryCategory [
 	^ self slotVarNamed: 'libraryCategory'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibraryItem >> libraryCategory: anObject [
 	self slotVarNamed: 'libraryCategory' put: anObject
 ]

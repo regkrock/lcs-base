@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsLibraryCategories,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-WarRabbitLibrary'
+	#name : 'LcsLibraryCategories',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #query }
+{ #category : 'query' }
 LcsLibraryCategories >> libraryCategoryFor: aString [
 	^ self collection
 		detect: [ :each | each categoryName = aString ]

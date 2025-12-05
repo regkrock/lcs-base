@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsStateMachineStateSlot,
-	#superclass : #LcsDomainObjectSlot,
+	#name : 'LcsStateMachineStateSlot',
+	#superclass : 'LcsDomainObjectSlot',
 	#traits : 'LtAggregateAssociation',
 	#classTraits : 'LtAggregateAssociation classTrait',
-	#category : #'Lcs-StateMachine-Slot'
+	#category : 'Lcs-StateMachine-Slot',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineStateSlot >> initialize [
 	super initialize.
 	self 
@@ -16,7 +18,7 @@ LcsStateMachineStateSlot >> initialize [
 		initialValue: nil
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsStateMachineStateSlot >> slotVarPut: anObject in: aDomainObject [
 	<TODO: 'More work required here as the fact that they were swapped needs to be recorded'>
 

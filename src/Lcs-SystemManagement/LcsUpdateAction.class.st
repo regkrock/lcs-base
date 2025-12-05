@@ -33,15 +33,19 @@ LcsUpdateAction >> actionBlock: anObject [
 LcsUpdateAction >> actionBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Action [:value :domainObject :oldValue | ';
+		label: ('Action [:<1s> :<2s> :<3s> | '
+				expandMacrosWithArguments: LcsAccessorSlot valueDomainObjectOldValueBlockArguments);
 		priority: 10;
 		default: '';
-		accessor: (LcsMABlockPluggableAccessor 
-						accessors: #(#actionBlock)
-						arguments: LcsAccessorSlot valueDomainObjectOldValueBlockArguments);
-		addCondition: [:aValue | aValue trimBoth isNotEmpty ] labelled: 'Enter a Smalltalk expression';
-		addCondition: [:aValue | (aValue = 'true') not ] labelled: 'Enter a new value, this will always evaluate to show the error message';
-		addCondition: [:aValue | (aValue = 'false') not ] labelled: 'Enter a new value, this will always evaluate to never show the error message';
+		accessor: (LcsMABlockPluggableAccessor
+				accessors: #(#actionBlock)
+				arguments: LcsAccessorSlot valueDomainObjectOldValueBlockArguments);
+		addCondition: [ :aValue | aValue trimBoth isNotEmpty ]
+			labelled: 'Enter a Smalltalk expression';
+		addCondition: [ :aValue | (aValue = 'true') not ]
+			labelled: 'Enter a new value, this will always evaluate to show the error message';
+		addCondition: [ :aValue | (aValue = 'false') not ]
+			labelled: 'Enter a new value, this will always evaluate to never show the error message';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]

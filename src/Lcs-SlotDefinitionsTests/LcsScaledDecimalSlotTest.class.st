@@ -16,7 +16,7 @@ LcsScaledDecimalSlotTest >> testInitialValue [
 	self subject initialValue: 100s2.
 	self
 		assert: self subject initialValueBlock printString
-		equals: '[ :domainObject :slot | 100.00s2 ]'.
+		equals: '[ :parentDomainObject :slot | 100.00s2 ]'.
 	self assert: self subject initialValue equals: 100.00s2.
 
 	person := LxxPerson new.

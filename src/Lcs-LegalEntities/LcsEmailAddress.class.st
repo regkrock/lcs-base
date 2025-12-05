@@ -29,19 +29,20 @@ LcsEmailAddress class >> emailSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'email';
-		addValidationCondition: [ :value :domainObject :oldValue | "value isInvalidEmailFormat" false ] description: 'Invalid format';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | "value isInvalidEmailFormat" false ] description: 'Invalid format';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsEmailAddress class >> parentSlotDefinition [
 	<slotDefinition>
-	^ LcsGlobalCollectionReferenceSlot new
+	^ super parentSlotDefinition
+	"^ LcsGlobalCollectionReferenceSlot new
 			slotTypes: (OrderedCollection with: LcsEmailAddresses);
 			slotName: 'parent';
 			collectionSlotName: 'emailAddresses';
 			collectionSlotModuleName: 'Legal Entities Module';
-			yourself
+			yourself"
 ]
 
 { #category : 'accessing' }

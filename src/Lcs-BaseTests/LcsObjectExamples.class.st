@@ -6,37 +6,37 @@ Class {
 	#tag : 'Examples'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'system support' }
 LcsObjectExamples >> createNewDemoSystem [
 	^ LcsApplicationEnvironment createNewDemoSystem
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'system support' }
 LcsObjectExamples >> createNewPrototypeSystem [
 	^ LcsApplicationEnvironment createNewPrototypeSystem
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'system support' }
 LcsObjectExamples >> currentSystem [
 	^ LcsApplicationEnvironment currentSystem
 ]
 
-{ #category : 'support' }
+{ #category : 'system support' }
 LcsObjectExamples >> ensureCurrentSystemIsDemoSystem [
 	^ LcsApplicationEnvironment ensureCurrentSystemIsDemoSystem
 ]
 
-{ #category : 'support' }
+{ #category : 'system support' }
 LcsObjectExamples >> ensureCurrentSystemIsPrototypeSystem [
 	^ LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem
 ]
 
-{ #category : 'support' }
+{ #category : 'system support' }
 LcsObjectExamples >> ensureCurrentSystemIsSailingClubSystem [
 	^ LcsApplicationEnvironment ensureCurrentSystemIs: LcsSailingClubSystem
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'system support' }
 LcsObjectExamples >> ensureCurrentsystemIsDemoSystemWithLogging [
 	"<gtExample>"
 	| callingMethodName |
@@ -65,7 +65,7 @@ LcsObjectExamples >> ensureCurrentsystemIsDemoSystemWithLogging [
 	^ self currentSystem
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'system support' }
 LcsObjectExamples >> ensureCurrentsystemIsPrototypeSystemWithLogging [
 	"<gtExample>"
 	| callingMethodName |
@@ -94,7 +94,29 @@ LcsObjectExamples >> ensureCurrentsystemIsPrototypeSystemWithLogging [
 	^ self currentSystem
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'assertions  - support' }
+LcsObjectExamples >> executeShould: aBlock inScopeOf: anExceptionalEvent [
+	^ [ aBlock value.
+		false ] on: anExceptionalEvent do: [ :ex | ex return: true ]
+]
+
+{ #category : 'assertions  - support' }
+LcsObjectExamples >> executeShouldnt: aBlock inScopeOf: anExceptionalEvent [
+	^ [ aBlock value.
+		true ] on: anExceptionalEvent do: [ :ex | ex return: false ]
+]
+
+{ #category : 'system support' }
 LcsObjectExamples >> removeCurrentSystem [
 	^ LcsApplicationEnvironment removeCurrentSystem
+]
+
+{ #category : 'assertions' }
+LcsObjectExamples >> should: aBlock raise: anExceptionalEvent [
+	^ self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent)
+]
+
+{ #category : 'assertions' }
+LcsObjectExamples >> shouldnt: aBlock raise: anExceptionalEvent [
+	^ self assert: (self executeShouldnt: aBlock inScopeOf: anExceptionalEvent)
 ]

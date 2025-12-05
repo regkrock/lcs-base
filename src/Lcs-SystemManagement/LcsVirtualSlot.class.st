@@ -22,7 +22,7 @@ LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 
 { #category : 'defaults' }
 LcsVirtualSlot >> defaultValueAccessBlock [
-		^ [ :domainObject :slot | domainObject perform: slot valueAccessor ]
+		^ [ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]
 ]
 
 { #category : 'initialize' }

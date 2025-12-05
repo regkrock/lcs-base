@@ -25,7 +25,7 @@ LcsCountry class >> commonNameSlotDefinition [
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :domainObject :oldValue | value size < 3 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -37,7 +37,7 @@ LcsCountry class >> formalNameSlotDefinition [
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :domainObject :oldValue | value size < 3 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
@@ -49,7 +49,7 @@ LcsCountry class >> isoCode3SlotDefinition [
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 3 ] description: 'Code must be 3 characters long';		yourself
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ] description: 'Code must be 3 characters long';		yourself
 ]
 
 { #category : 'slot definitions' }
@@ -60,7 +60,7 @@ LcsCountry class >> isoCodeSlotDefinition [
 		beRequired;
 		initialValue: '  ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 2 ] description: 'Code must be 2 characters long';		yourself
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ] description: 'Code must be 2 characters long';		yourself
 ]
 
 { #category : 'slot definitions' }
@@ -70,7 +70,7 @@ LcsCountry class >> isoNumberSlotDefinition [
 		slotName: #'isoNumber';
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 3 ] description: 'Code must be 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ] description: 'Code must be 3 characters long';
 		yourself
 ]
 

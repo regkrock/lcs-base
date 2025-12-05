@@ -40,16 +40,37 @@ LcsSlotDefintionMethodBuilder >> _verifyCodeInstallation [
 { #category : 'gt views' }
 LcsSlotDefintionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetClassName)
-		addAssociation: (self derivedSlotName , 'SlotDefintion') toModelNamed: self slotClass name.
+	aUmlModel
+			addAssociation: self slotName , 'SlotDefintion'
+			from: self targetClassName
+			to: self slotClass.
+	self targetClass isNil ifTrue: [ ^ self ].
+	(self propertyAt: 'collectionSlotName') isNil ifTrue: [ ^ self ].
+	aUmlModel
+		addAssociation: (self propertyAt: 'collectionSlotName')
+			from: self targetClassName
+			to: self domainCollectionClass;
+		addAssociation: self selectionPath
+			from: self domainCollectionClass
+			to: self domainCollectionElementClass
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addClassesToUmlModel: aUmlModel [
-	super addClassesToUmlModel: aUmlModel.
-	aUmlModel 
+LcsSlotDefintionMethodBuilder >> addClassesToUmlModel: umlModel [
+	super addClassesToUmlModel: umlModel.
+	umlModel
 		addClassNamed: self targetClassName;
-		addClassNamed: self slotClass name
+		addClassNamed: self slotClass.
+	self targetClass isNil ifTrue: [ ^ self ].
+	(self propertyAt: 'collectionSlotName') notNil
+		ifTrue: [ self addDomainCollectionClassTo: umlModel ].
+	self slotTypes notEmpty
+		ifTrue: [ umlModel addClassNamed: self domainCollectionElementClass ]
+]
+
+{ #category : 'gt views' }
+LcsSlotDefintionMethodBuilder >> addDomainCollectionClassTo: umlModel [
+	umlModel addClass: self domainCollectionClass
 ]
 
 { #category : 'initialize\t' }
@@ -70,6 +91,11 @@ LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 LcsSlotDefintionMethodBuilder >> addSlotAssociationsToUmlModel: aUmlModel [ 
 	(aUmlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotDefinitionSelector toModelNamed: self slotClass.
+	(aUmlModel classModelForClassname: self targetClassName)
+		addAssociation: (self propertyAt: 'collectionSlotName') toModelNamed: self domainCollectionClass.
+	(aUmlModel classModelForClassname: self domainCollectionClass)
+		addAssociation: self selectionPath toModelNamed: self domainCollectionElementClass.
+		
 	"(aUmlModel classModelForClassname: self parentClassName)
 		addAssociation: self slotName toModelNamed: self collectionClassName.
 	(aUmlModel classModelForClassname: self collectionClassName)
@@ -77,11 +103,14 @@ LcsSlotDefintionMethodBuilder >> addSlotAssociationsToUmlModel: aUmlModel [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addSlotClassesToUmlModel: umlModel [ 
-	umlModel 
+LcsSlotDefintionMethodBuilder >> addSlotClassesToUmlModel: umlModel [
+	umlModel
 		addClassNamed: self targetClassName;
-		"addClassModelForExisting: LcsSlotModel;"
-		addClassModelForExisting: self slotClass 
+		addClassModel: self slotClass.
+	(self propertyAt: 'collectionSlotName') notNil
+		ifTrue: [ self addDomainCollectionClassTo: umlModel ].
+	self slotTypes notEmpty
+		ifTrue: [ umlModel addClassNamed: self domainCollectionElementClass ]
 ]
 
 { #category : 'configuration' }
@@ -134,6 +163,18 @@ LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
 { #category : 'gt views' }
 LcsSlotDefintionMethodBuilder >> derivedSlotName [
 	^ self rawDerivedSlotName ifNil: [ '<missing slotName>' ]
+]
+
+{ #category : 'gt views' }
+LcsSlotDefintionMethodBuilder >> domainCollectionClass [
+	^ (self targetClass
+		perform: ((self propertyAt: 'collectionSlotName') , 'SlotDefinition') asSymbol)
+		slotTypes first
+]
+
+{ #category : 'gt views' }
+LcsSlotDefintionMethodBuilder >> domainCollectionElementClass [
+	^ self slotTypes first
 ]
 
 { #category : 'gt views' }
@@ -204,6 +245,11 @@ LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 ]
 
 { #category : 'properties' }
+LcsSlotDefintionMethodBuilder >> propertyAt: aName [
+	^ self properties at: aName ifAbsent: [ nil ]
+]
+
+{ #category : 'properties' }
 LcsSlotDefintionMethodBuilder >> propertyAt: aName ifAbsentPut: aBlock [ 
 	self properties at: aName ifAbsentPut: aBlock
 ]
@@ -226,6 +272,16 @@ LcsSlotDefintionMethodBuilder >> required [
 { #category : 'accessing' }
 LcsSlotDefintionMethodBuilder >> required: aBoolean [
 	self properties at: 'required' put: aBoolean
+]
+
+{ #category : 'gt views' }
+LcsSlotDefintionMethodBuilder >> selectionPath [
+	| targetPathStream |
+	targetPathStream := WriteStream on: String new.
+	(self propertyAt: 'targetSlotPath') do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
+	targetPathStream nextPutAll: ' = '; nextPutAll: (self propertyAt: 'targetItem') printString.
+	^ targetPathStream contents
+
 ]
 
 { #category : 'testing' }
@@ -281,6 +337,11 @@ LcsSlotDefintionMethodBuilder >> slotUmlModel [
 	self addSlotAssociationsToUmlModel: umlModel.
 	umlModel resolveClassModelNames.
 	^ umlModel
+]
+
+{ #category : 'gt views' }
+LcsSlotDefintionMethodBuilder >> umlModel [
+	^ super umlModel
 ]
 
 { #category : 'verification' }
@@ -414,6 +475,7 @@ LcsSlotDefintionMethodBuilder >> valueOfSlotTemplateProperty: aKey [
 LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	super verifySlotModelUpdatesMadeByBuilder.
 	self currentSystem isNil ifTrue: [ ^ self ].
+	self assert: self targetClass slotModel notNil.
 	self assert: (self targetClass slotModel slotDefinitionNamed: self derivedSlotName) notNil
 ]
 

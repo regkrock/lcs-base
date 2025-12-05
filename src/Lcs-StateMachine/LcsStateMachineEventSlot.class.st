@@ -1,12 +1,14 @@
 Class {
-	#name : #LcsStateMachineEventSlot,
-	#superclass : #LcsDomainObjectSlot,
+	#name : 'LcsStateMachineEventSlot',
+	#superclass : 'LcsDomainObjectSlot',
 	#traits : 'LtAggregateAssociation',
 	#classTraits : 'LtAggregateAssociation classTrait',
-	#category : #'Lcs-StateMachine-Slot'
+	#category : 'Lcs-StateMachine-Slot',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Slot'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineEventSlot >> initialize [
 	super initialize.
 	self addSlotType: #LcsStateMachineEvent asClass. 

@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsDebugLogger,
-	#superclass : #LcsObject,
+	#name : 'LcsDebugLogger',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'actualLogger',
 		'isActive'
@@ -8,63 +8,65 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #'Lcs-StateMachine-Core'
+	#category : 'Lcs-StateMachine-Core',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Core'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 LcsDebugLogger class >> default [ 
 	default isNil ifTrue: [default := self new].
 	^default
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 LcsDebugLogger class >> release [
 	default := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDebugLogger >> actualLogger [
 	^ actualLogger ifNil: [actualLogger := self]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDebugLogger >> actualLogger: anObject [
 	actualLogger := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsDebugLogger >> debug: anObject [
 	self isActive
 		ifTrue: [Transcript cr; show: 'DEBUG> '.
 			Transcript show: anObject printString]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsDebugLogger >> error: anObject [
 	self isActive
 		ifTrue: [Transcript cr; show: 'ERROR> '.
 			Transcript show: anObject printString]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsDebugLogger >> info: anObject [
 	self isActive
 		ifTrue: [Transcript cr; show: 'INFO> '.
 			Transcript show: anObject printString]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsDebugLogger >> isActive [
 	isActive isNil ifTrue: [isActive := false].
 	^isActive
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsDebugLogger >> isActive: aBoolean [
 	isActive := aBoolean
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsDebugLogger >> warn: anObject [
 	self isActive
 		ifTrue: [Transcript cr; show: 'WARN> '.

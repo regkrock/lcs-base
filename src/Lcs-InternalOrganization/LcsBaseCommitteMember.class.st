@@ -1,6 +1,22 @@
 Class {
 	#name : 'LcsBaseCommitteMember',
 	#superclass : 'LcsDomainObject',
-	#category : 'Lcs-InternalOrganization',
-	#package : 'Lcs-InternalOrganization'
+	#category : 'Lcs-InternalOrganization-Core',
+	#package : 'Lcs-InternalOrganization',
+	#tag : 'Core'
 }
+
+{ #category : 'slot definitions' }
+LcsBaseCommitteMember class >> parentSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionReferenceSlot new
+			addSlotType: LcsCommitteeMembers;
+			slotName: 'parent';
+			collectionSlotName: 'committeeMembers';
+			yourself
+]
+
+{ #category : 'organization model' }
+LcsBaseCommitteMember >> internalOrganization [
+	^ self parent internalOrganization
+]

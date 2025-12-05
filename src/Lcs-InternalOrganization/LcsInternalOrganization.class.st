@@ -28,3 +28,8 @@ LcsInternalOrganization >> committees [
 LcsInternalOrganization >> committees: anObject [
 	self slotVarNamed: 'committees' put: anObject 
 ]
+
+{ #category : 'organization model' }
+LcsInternalOrganization >> internalOrganization [
+	^ self
+]

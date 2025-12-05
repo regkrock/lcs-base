@@ -1,1 +1,1 @@
-Package { #name : #'Lcs-WarRabbitLibrary' }
+Package { #name : 'Lcs-WarRabbitLibrary' }

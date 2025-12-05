@@ -15,7 +15,7 @@ LcsDateRange class >> effectiveDateSlotDefinition [
 	<slotDefinition>
 	^ LcsDateSlot new
 			slotName: 'effectiveDate';
-			initialValueBlock: [ :domainObject :slot | Date newDay: 1 month: 1 year: 1970 ];
+			initialValueBlock: [ :parentDomainParent :slot | Date newDay: 1 month: 1 year: 1970 ];
 			yourself
 ]
 
@@ -24,7 +24,7 @@ LcsDateRange class >> expiryDateSlotDefinition [
 	<slotDefinition>
 	^ LcsDateSlot new
 			slotName: 'expiryDate';
-			initialValueBlock: [ :domainObject :slot | Date newDay: 31 month: 12 year: 2100 ];
+			initialValueBlock: [ :parentDomainParent :slot | Date newDay: 31 month: 12 year: 2100 ];
 			yourself
 ]
 

@@ -1,38 +1,29 @@
 Class {
 	#name : 'LcsInstanceInLocalCollectionSlotBuilder',
-	#superclass : 'LcsAccessorSlotBuilder',
-	#instVars : [
-		'collectionSourceClassName'
-	],
+	#superclass : 'LcsFacadeSlotBuilder',
 	#category : 'Lcs-SlotTools',
 	#package : 'Lcs-SlotTools'
 }
 
-{ #category : 'defaults' }
+{ #category : 'configuration' }
 LcsInstanceInLocalCollectionSlotBuilder class >> slotClass [
 	^ LcsInstanceInLocalCollectionSlot
 ]
 
-{ #category : 'gt views' }
-LcsInstanceInLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
-	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self slotTypes any
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlotBuilder >> allowNilDescription [
+	<magritteDescription>
+	^ super allowNilDescription
+		beReadOnly;
+		yourself
 ]
 
-{ #category : 'gt views' }
-LcsInstanceInLocalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
-	aUmlModel addClassNamed: self targetClassName.
-	self currentSystem isNil ifTrue: [ ^ self ].
-	aUmlModel addClassNamed: self slotTypes first
-]
-
-{ #category : 'gt views' }
-LcsInstanceInLocalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCodeStream [
-	super addSlotDefinitionSourceDetailsTo: aCodeStream.
-	aCodeStream
-		addKeyword: 'collectionSlotName' argument: (self collectionSlotName ifNil: [ '<missing>' ]) printString;
-		addKeyword: 'typeCode' argument: (self typeCode ifNil: [ '<missing>' ]) printString
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlotBuilder >> allowNullDescription [
+	<magritteDescription>
+	^ super allowNullDescription
+		beReadOnly;
+		yourself
 ]
 
 { #category : 'job steps' }
@@ -41,78 +32,92 @@ LcsInstanceInLocalCollectionSlotBuilder >> buildJobSteps [
 	self addJobStep: self getterAndSetterMethodsBuilder
 ]
 
-{ #category : 'accessing' }
+{ #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
+	^ self properties at: 'collectionSlotName' ifAbsentPut: [ '' ]
 ]
 
 { #category : 'properties' }
-LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotName: anObject [
-	self properties at: 'collectionSlotName' put: anObject
+LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotName: aString [ 
+	self properties at: 'collectionSlotName' put: aString
 ]
 
-{ #category : 'margritte' }
+{ #category : 'magritte' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotNameDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Collection slot name';
-		priority: 11;
-		default: '';
+		label: 'Collection Slot Name';
+		priority: 5;
 		accessor: #collectionSlotName;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		yourself
+		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | aValue asString trim asSymbol allSatisfy: [ :each | each isAlphaNumeric ] ] labelled: 'Slot Names can contain only alphanumerics';
+		beRequired
 ]
 
-{ #category : 'properites' }
-LcsInstanceInLocalCollectionSlotBuilder >> collectionSourceClassName [
-	^ collectionSourceClassName
+{ #category : 'defaults' }
+LcsInstanceInLocalCollectionSlotBuilder >> defaultInitialValueBlock [
+	^ [ :parentDomainObject :slot | (parentDomainObject perform: self collectionSlotName) findItemIn: slot targetSlotPath matching: slot targetItem ]
 ]
 
-{ #category : 'properites' }
-LcsInstanceInLocalCollectionSlotBuilder >> collectionSourceClassName: anObject [
-	collectionSourceClassName := anObject
-]
-
-{ #category : 'builder step' }
+{ #category : 'job steps' }
 LcsInstanceInLocalCollectionSlotBuilder >> slotDefinitionMethodBuilder [
 	^ super slotDefinitionMethodBuilder
-		beFacadeSlot;
-		yourself
-]
-
-{ #category : 'gt views' }
-LcsInstanceInLocalCollectionSlotBuilder >> sourceCollectionClassName [
-
-	self collectionSourceClassName ifNotNil: [ ^ self collectionSourceClassName ].
-	
-	^ (self currentSystem moduleNamed: self collectionSlotModuleName) ifNotNil: [ :module | 
-		([ module perform: self collectionSlotName asSymbol ] on: MessageNotUnderstood do: [ :s | s return: nil ]) ifNotNil: [ :value | value class name asString ] ]
-]
-
-{ #category : 'properites' }
-LcsInstanceInLocalCollectionSlotBuilder >> typeCode [
-	^ self properties at: 'typeCode' ifAbsent: [ nil ]
+			beFacadeSlot;
+			yourself
 ]
 
 { #category : 'properties' }
-LcsInstanceInLocalCollectionSlotBuilder >> typeCode: anObject [
-	self properties at: 'typeCode' put: anObject
+LcsInstanceInLocalCollectionSlotBuilder >> targetItem [
+	^ self properties at: 'targetItem' ifAbsentPut: [ '' ]
 ]
 
-{ #category : 'margritte' }
-LcsInstanceInLocalCollectionSlotBuilder >> typeCodeDescription [
+{ #category : 'properties' }
+LcsInstanceInLocalCollectionSlotBuilder >> targetItem: aString [ 
+	self properties at: 'targetItem' put: aString
+]
+
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlotBuilder >> targetItemDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Type Code';
-		priority: 11;
-		default: '';
-		accessor: #typeCode;
+		label: 'Target Item';
+		priority: 6;
+		accessor: #targetItem;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		yourself
+		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter the name of the target item';
+		beRequired
 ]
 
-{ #category : 'command' }
-LcsInstanceInLocalCollectionSlotBuilder >> uninstall [
-	super uninstall.
-	self targetClass ifNotNil: [ self targetClass removeDomainSlotNamed: self slotName ]
+{ #category : 'properties' }
+LcsInstanceInLocalCollectionSlotBuilder >> targetSlotPath [
+	^ self properties at: 'targetSlotPath'
+]
+
+{ #category : 'properties' }
+LcsInstanceInLocalCollectionSlotBuilder >> targetSlotPath: aSlotNamesCollection [ 
+	self properties at: 'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
+]
+
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlotBuilder >> targetSlotPathDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  label: 'Target Slot Path';
+			accessor: (LcsMAPluggableAccessor 
+						accessors: #(#targetSlotPath)
+						read: [ :selectors | selectors ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: (collection collect: [ :each | each asSymbol ]) ]);
+			classes: { String};
+			priority: 7;
+			beModifiable;
+			labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+			blocListStencil: (
+				self
+					taggerStencilWithCompletion: GtClassesCompletionStrategy new
+					andContextMenuBlock: nil);
+			beRequired
 ]

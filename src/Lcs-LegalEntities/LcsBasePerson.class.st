@@ -4,10 +4,10 @@ Class {
 	#instVars : [
 		'dateOfBirth',
 		'firstName',
-		'surname',
 		'middleNames',
 		'gender',
-		'title'
+		'title',
+		'familyName'
 	],
 	#category : 'Lcs-LegalEntities',
 	#package : 'Lcs-LegalEntities'
@@ -17,6 +17,14 @@ Class {
 LcsBasePerson class >> dateOfBirthSlotDefinition [
 	<slotDefinition>
 	^ LcsDateOfBirthSlot new
+]
+
+{ #category : 'slot definitions' }
+LcsBasePerson class >> familyNameSlotDefinition [
+	<slotDefinition>
+	^ LcsStringSlot new
+		slotName: 'familyName';
+		yourself
 ]
 
 { #category : 'slot definitions' }
@@ -46,7 +54,8 @@ LcsBasePerson class >> homeEmailAddressSlotDefinition [
 			slotName: 'homeEmailAddress';
 			addSlotType: LcsEmailAddress;
 			required: false;
-			typeCode: 'home';
+			targetItem: 'home';
+			targetSlotPath: #(emailAddressType code) asOrderedCollection;
 			collectionSlotName: 'emailAddresses';
 			yourself
 ]
@@ -65,14 +74,6 @@ LcsBasePerson class >> securityResourceName [
 ]
 
 { #category : 'slot definitions' }
-LcsBasePerson class >> surnameSlotDefinition [
-	<slotDefinition>
-	^ LcsStringSlot new
-		slotName: 'surname';
-		yourself
-]
-
-{ #category : 'slot definitions' }
 LcsBasePerson class >> titleSlotDefinition [
 	<slotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
@@ -88,11 +89,15 @@ LcsBasePerson class >> titleSlotDefinition [
 LcsBasePerson class >> workEmailAddressSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsInstanceInLocalCollectionSlot new
-			slotName: 'workEmailAddress';
-			addSlotType: LcsEmailAddress;
-			collectionSlotName: 'emailAddresses';
-			typeCode: 'work';
-			yourself
+		slotName: 'workEmailAddress';
+		addSlotType: LcsEmailAddress;
+		collectionSlotName: 'emailAddresses';
+		targetItem: 'work';
+		targetSlotPath: #(emailAddressType code) asOrderedCollection;
+		initialValueBlock: [ :parentDomainObject :slot | 
+			(parentDomainObject perform: slot collectionSlotName asSymbol)
+				findItemIn: slot targetSlotPath matching: slot targetItem ];
+		yourself
 ]
 
 { #category : 'accessing' }
@@ -103,6 +108,16 @@ LcsBasePerson >> dateOfBirth [
 { #category : 'accessing' }
 LcsBasePerson >> dateOfBirth: anObject [
 	self slotVarNamed: 'dateOfBirth' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsBasePerson >> familyName [
+	^ self slotVarNamed: 'familyName'
+]
+
+{ #category : 'accessing' }
+LcsBasePerson >> familyName: anObject [
+	self slotVarNamed: 'familyName' put: anObject
 ]
 
 { #category : 'accessing' }
@@ -117,7 +132,7 @@ LcsBasePerson >> firstName: anObject [
 
 { #category : 'accessing' }
 LcsBasePerson >> fullName [
-	^ self firstName , ' ' , self middleNames , ' ' , self surname
+	^ self firstName , ' ' , self middleNames , ' ' , self familyName
 ]
 
 { #category : 'accessing' }
@@ -148,16 +163,6 @@ LcsBasePerson >> middleNames [
 { #category : 'accessing' }
 LcsBasePerson >> middleNames: anObject [
 	self slotVarNamed: 'middleNames' put: anObject
-]
-
-{ #category : 'accessing' }
-LcsBasePerson >> surname [
-	^ self slotVarNamed: 'surname'
-]
-
-{ #category : 'accessing' }
-LcsBasePerson >> surname: anObject [
-	self slotVarNamed: 'surname' put: anObject
 ]
 
 { #category : 'accessing' }

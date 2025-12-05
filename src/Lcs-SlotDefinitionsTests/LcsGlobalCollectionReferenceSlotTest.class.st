@@ -14,7 +14,7 @@ LcsGlobalCollectionReferenceSlotTest >> testAddingNewDomainObjectToDomainCollect
 	| domainObject |
 	domainObject := LxxPerson new.
 	self assert: (self currentSystem persons pendingAdds includes: domainObject).
-	self deny: (self currentSystem persons includes: domainObject).
+	self deny: (self currentSystem persons collection includes: domainObject).
 	
 	self currentSystem applyChanges.
 	self currentSystem currentUnitOfWork hasNoChanges.

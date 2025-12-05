@@ -1,20 +1,22 @@
 Class {
-	#name : #LcsStateMachineEndState,
-	#superclass : #LcsStateMachineState,
-	#category : #'Lcs-StateMachine-Core'
+	#name : 'LcsStateMachineEndState',
+	#superclass : 'LcsStateMachineState',
+	#category : 'Lcs-StateMachine-Core',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Core'
 }
 
-{ #category : #'state-actions' }
+{ #category : 'state-actions' }
 LcsStateMachineEndState >> doActivity [
 	"NEVER DO ANYTHING"	
 ]
 
-{ #category : #'state-actions' }
+{ #category : 'state-actions' }
 LcsStateMachineEndState >> exit [
 	"NEVER DO ANYTHING"	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEndState >> id [
 	^#endState
 ]

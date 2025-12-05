@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsStateMachineEvent,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsStateMachineEvent',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'handled',
 		'arguments',
 		'type'
 	],
-	#category : #'Lcs-StateMachine-Core'
+	#category : 'Lcs-StateMachine-Core',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineEvent class >> argumentsSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
@@ -17,7 +19,7 @@ LcsStateMachineEvent class >> argumentsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineEvent class >> handledSlotDefinition [
 	<slotDefinition>
 	^ LcsBooleanSlot new
@@ -26,51 +28,51 @@ LcsStateMachineEvent class >> handledSlotDefinition [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineEvent class >> newType: aSymbol [
 	^self newType: aSymbol arguments: #()
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineEvent class >> newType: aSymbol arguments: args [
 	^self new 
 		initializeType: aSymbol arguments: args
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachineEvent class >> typeSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineEventTypeSlot new
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineEvent >> arguments [
 	^arguments
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEvent >> arguments: anArray [
 	arguments := anArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEvent >> handled [
 	^ handled
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEvent >> handled: aBoolean [
 	handled := aBoolean
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineEvent >> initializeType: aSymbol arguments: args [
 	self type: aSymbol.
 	self arguments addAll: args
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LcsStateMachineEvent >> printOn: aStream [
 	aStream nextPutAll: 'Event: '.
 	aStream space.
@@ -79,12 +81,12 @@ LcsStateMachineEvent >> printOn: aStream [
 	aStream nextPutAll: self arguments printString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEvent >> type [
 	^type
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEvent >> type: aSymbol [
 	type := aSymbol
 ]

@@ -1,57 +1,58 @@
 Class {
-	#name : #LcsLibrayImporter,
-	#superclass : #LcsObject,
+	#name : 'LcsLibrayImporter',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'library',
 		'currentCategory',
 		'currentAuthors',
 		'importedLines'
 	],
-	#category : #'Lcs-WarRabbitLibrary'
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> currentAuthors [
 	^ currentAuthors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> currentAuthors: anObject [
 	currentAuthors := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> currentCategory [
 	^ currentCategory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> currentCategory: anObject [
 	currentCategory := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> importedLines [
 	^ importedLines
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> importedLines: anObject [
 	importedLines := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> initialize [
 	super initialize.
 	self importedLines: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> library [
 	^ library
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsLibrayImporter >> library: anObject [
 	library := anObject
 ]

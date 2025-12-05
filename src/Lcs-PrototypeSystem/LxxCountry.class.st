@@ -22,7 +22,7 @@ LxxCountry class >> commonNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'commonName';
-		addValidationCondition: [ :value :domainObject :oldValue | value size < 3 ] description: 'Must be 3 or more characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Must be 3 or more characters';
 		yourself
 ]
 
@@ -32,7 +32,7 @@ LxxCountry class >> formalNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'formalName';
 		beAllowNil;
-		addValidationCondition: [ :value :domainObject :oldValue | value size < 3 ] description: 'Must be 3 or more characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Must be 3 or more characters';
 		yourself
 ]
 
@@ -41,7 +41,7 @@ LxxCountry class >> isoCode3SlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode3';
-		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 3 ] description: 'Must be 3 characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ] description: 'Must be 3 characters';
 		yourself
 ]
 
@@ -50,7 +50,7 @@ LxxCountry class >> isoCodeSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode';
-		addValidationCondition: [ :value :domainObject :oldValue | value size ~= 2 ] description: 'Must be 2 characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ] description: 'Must be 2 characters';
 		yourself
 ]
 
@@ -59,8 +59,8 @@ LxxCountry class >> isoNumberSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoNumber';
-		addValidationCondition: [ :value :domainObject :oldValue | (value size = 3) not ] description: 'Must be 3 characters. Example: "001"';
-		addValidationCondition: [ :value :domainObject :oldValue | value asInteger <= 0 or: [ value asInteger >= 1000 ] ] description: 'Must be in range 001 to 999';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | (value size = 3) not ] description: 'Must be 3 characters. Example: "001"';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value asInteger <= 0 or: [ value asInteger >= 1000 ] ] description: 'Must be in range 001 to 999';
 		yourself
 ]
 

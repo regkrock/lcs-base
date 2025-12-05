@@ -33,7 +33,7 @@ LcsValidationConditionTest >> testErrorConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
 	self subject: (LcsValidationCondition newOn: validationConditions).
-	self subject conditionBlock: [ :value :domainObject | value + 5 ].
+	self subject conditionBlock: [ :value :parentDomainObject | value + 5 ].
 	self should: [ self subject validate: true context: 'aString' ]  raise: LcsSlotValidationExecutionError
 ]
 
@@ -52,7 +52,7 @@ LcsValidationConditionTest >> testInvalidConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
 	self subject: (LcsValidationCondition newOn: validationConditions).
-	self subject conditionBlock: [ :value :domainObject | value == false ].
+	self subject conditionBlock: [ :value :parentDomainObject | value == false ].
 	self should: [ self subject validate: false context: 'aString' ]  raise: LcsSlotValidationError.
 	self assert: (self subject validate: true context: 'aString') == false
 ]
@@ -159,7 +159,7 @@ LcsValidationConditionTest >> testValidConditionWithValueAndRelatedObject [
 	| validationConditions |
 	validationConditions := LcsValidationConditions new.
 	self subject: (LcsValidationCondition newOn: validationConditions).
-	self subject conditionBlock: [ :value :domainObject | value == true ].
+	self subject conditionBlock: [ :value :parentDomainObject | value == true ].
 	self assert: (self subject validate: false context: 'aString') equals: false.
 	self should: [ self subject validate: true context: 'aString' ] raise:  LcsSlotValidationError
 ]

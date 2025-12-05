@@ -203,6 +203,13 @@ LcsSlotCreationForm >> ghostTextFor: aString [
 		for: (aString asRopedText glamorousFormEditorCodeFontAndSize foreground: Color lightGray)
 ]
 
+{ #category : 'magritte' }
+LcsSlotCreationForm >> gtMagritteFor: aView [
+	^ (super gtMagritteFor: aView)
+			actionUpdateButton;
+			yourself
+]
+
 { #category : 'testing' }
 LcsSlotCreationForm >> hasPackageAndTag [
 	^ true
@@ -278,6 +285,7 @@ LcsSlotCreationForm >> magritteDescriptionFor: aSlotNameSymbol [
 	(self slotModelBuilder respondsTo: aSlotNameSymbol) ifFalse: [ ^ nil ].
 	
 	aDescription := self slotModelBuilder perform: (aSlotNameSymbol , 'Description') asSymbol.
+	aDescription isNil ifTrue: [ ^ nil ].
 	
 	self addAccessorToBeginningOfAccessPath: aDescription.
 	^ aDescription
@@ -484,6 +492,18 @@ LcsSlotCreationForm >> slotTypesDescription [
 ]
 
 { #category : 'magritte' }
+LcsSlotCreationForm >> targetAccessPathDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #targetAccessPath
+]
+
+{ #category : 'magritte' }
+LcsSlotCreationForm >> targetItemDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #targetItem
+]
+
+{ #category : 'magritte' }
 LcsSlotCreationForm >> targetSlotPathDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #targetSlotPath
@@ -492,12 +512,6 @@ LcsSlotCreationForm >> targetSlotPathDescription [
 { #category : 'private' }
 LcsSlotCreationForm >> toolFor: anInstance [
 	^ GtClassCoderTool forClass: anInstance
-]
-
-{ #category : 'magritte' }
-LcsSlotCreationForm >> typeCodeDescription [
-	<magritteDescription>
-	^ self magritteDescriptionFor: #typeCode
 ]
 
 { #category : 'magritte' }

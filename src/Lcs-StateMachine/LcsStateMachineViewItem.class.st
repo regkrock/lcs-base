@@ -1,53 +1,55 @@
 Class {
-	#name : #LcsStateMachineViewItem,
-	#superclass : #LcsViewItem,
+	#name : 'LcsStateMachineViewItem',
+	#superclass : 'LcsViewItem',
 	#instVars : [
 		'context',
 		'displaySelector'
 	],
-	#category : #'Lcs-StateMachine-GT View'
+	#category : 'Lcs-StateMachine-GT View',
+	#package : 'Lcs-StateMachine',
+	#tag : 'GT View'
 }
 
-{ #category : #constants }
+{ #category : 'constants' }
 LcsStateMachineViewItem class >> defaultChildrenSelector [
 	^ #stateMachineViewChildren
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineViewItem class >> newOn: anObject label: aLabel item: anItem [ 
 	^ self new
 		initializeOn: anObject label: aLabel item: anItem;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineViewItem class >> newOn: anObject label: aLabel item: anItem displaySelector: aSelector [
 	^ self new
 		initializeOn: anObject label: aLabel item: anItem displaySelector: aSelector;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineViewItem >> context [
 	^ context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineViewItem >> context: anObject [ 
 	context := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineViewItem >> displaySelector [
 	^ displaySelector
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineViewItem >> displaySelector: aSelector [ 
 	displaySelector := aSelector asSymbol
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineViewItem >> initializeOn: anObject label: aLabel item: anItem [
 	self
 		context: anObject;
@@ -55,7 +57,7 @@ LcsStateMachineViewItem >> initializeOn: anObject label: aLabel item: anItem [
 		item: anItem
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsStateMachineViewItem >> initializeOn: anObject label: aLabel item: anItem displaySelector: aSelector [
 	self
 		context: anObject;
@@ -64,7 +66,7 @@ LcsStateMachineViewItem >> initializeOn: anObject label: aLabel item: anItem dis
 		displaySelector: aSelector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineViewItem >> itemDisplay [
 	self item isNil ifTrue: [ ^self item ].
 	^ self displaySelector isNil 

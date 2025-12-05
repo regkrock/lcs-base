@@ -17,6 +17,14 @@ LcsUmlModel class >> new [
 ]
 
 { #category : 'configuration' }
+LcsUmlModel >> addAssociation: aString from: aFromClass to: aToClass [
+	self assert: (self hasModelFor: aFromClass).
+	self assert: (self hasModelFor: aToClass).
+	(self classModelForClassname: aFromClass)
+		addAssociation: aString toModelNamed: aToClass.
+]
+
+{ #category : 'configuration' }
 LcsUmlModel >> addClass: aClass [
 	aClass isNil ifTrue: [ ^ self ].
 	aClass isClass ifFalse: [ ^ self ].
@@ -70,6 +78,14 @@ LcsUmlModel >> classModelForClassname: aClassname [
 		ifNone: [  
 			"Transcript cr; show: 'Unable to find class named ' , aClassname asString."
 			nil  ] 
+]
+
+{ #category : 'testing' }
+LcsUmlModel >> hasModelFor: aStringOrClass [
+	self
+		detect: [ :each | each modelClassname = aStringOrClass or: [ each modelClass = aStringOrClass ] ]
+		ifNone: [ ^ false ].
+	^ true
 ]
 
 { #category : 'initialize\t' }

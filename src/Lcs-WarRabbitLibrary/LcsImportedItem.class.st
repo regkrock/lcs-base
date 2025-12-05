@@ -1,9 +1,10 @@
 Class {
-	#name : #LcsImportedItem,
-	#superclass : #LcsObject,
+	#name : 'LcsImportedItem',
+	#superclass : 'LcsObject',
 	#instVars : [
 		'rawLine',
 		'libararyItem'
 	],
-	#category : #'Lcs-WarRabbitLibrary'
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }

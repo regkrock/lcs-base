@@ -27,7 +27,7 @@ Class {
 
 { #category : 'configuration' }
 LcsAccessorSlot class >> domainObjectSlotBlockArguments [
-	^ #('domainObject' 'slot')
+	^ #('parentDomainObject' 'slot')
 ]
 
 { #category : 'testing' }
@@ -42,7 +42,7 @@ LcsAccessorSlot class >> isAccessorSlot [
 
 { #category : 'configuration' }
 LcsAccessorSlot class >> valueDomainObjectOldValueBlockArguments [
-	^ #('value' 'domainObject' 'oldValue')
+	^ #('value' 'parentDomainObject' 'oldValue')
 ]
 
 { #category : 'configuration' }
@@ -293,7 +293,7 @@ LcsAccessorSlot >> initialValue [
 LcsAccessorSlot >> initialValue: anObject [
 	self
 		initialValueBlock: (self class compiler
-				evaluate: '[ :domainObject :slot | ' , anObject asString , ' ]')
+				evaluate: '[ :parentDomainObject :slot | ' , anObject asString , ' ]')
 ]
 
 { #category : 'properties' }
@@ -310,7 +310,7 @@ LcsAccessorSlot >> initialValueBlock: aBlock [
 LcsAccessorSlot >> initialValueBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Initial Value Block [ :domainObject :slot | ';
+		label: ('Initial Value Block [ :<1s> : <2s> | ' expandMacrosWithArguments: LcsAccessorSlot domainObjectSlotBlockArguments);
 		priority: 10;
 		default: '';
 		accessor: (LcsMABlockPluggableAccessor 

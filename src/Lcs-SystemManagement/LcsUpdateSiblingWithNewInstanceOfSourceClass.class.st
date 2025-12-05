@@ -8,8 +8,8 @@ Class {
 
 { #category : 'defaults' }
 LcsUpdateSiblingWithNewInstanceOfSourceClass >> defaultActionBlock [
-	^ [ :newValue :domainObject :oldValue | 
-	domainObject
+	^ [ :newValue :parentDomainObject :oldValue | 
+	parentDomainObject
 		perform: self siblingSlotSetter
 		with: (self sourceClassIn: newValue) new ]
 ]

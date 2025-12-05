@@ -36,7 +36,7 @@ LcsBaseUnitOfWork >> addObject: aDomainObject [
 
 { #category : 'private' }
 LcsBaseUnitOfWork >> addPendingAddOf: aDomainObject to: aTargetCollection [
-	(self _pendingAddsIn: aTargetCollection) add: aDomainObject
+	^ (self _pendingAddsIn: aTargetCollection) add: aDomainObject
 ]
 
 { #category : 'private' }

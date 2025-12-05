@@ -1,5 +1,6 @@
 Class {
-	#name : #LcsLibraryItems,
-	#superclass : #LcsDomainCollection,
-	#category : #'Lcs-WarRabbitLibrary'
+	#name : 'LcsLibraryItems',
+	#superclass : 'LcsDomainCollection',
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }

@@ -29,15 +29,19 @@ LcsGlobalCollectionReferenceSlotBuilder >> _verifyCodeInstallation [
 { #category : 'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(aUmlModel classModelForClassname: self collectionClassName)
-		addAssociation: 'collection' toModelNamed: self targetClassName
+	aUmlModel
+		addAssociation: self slotName
+			from: self targetClassName
+			to: self collectionClassName;
+		addAssociation: 'collection'
+			from: self collectionClassName
+			to: self targetClassName.
 ]
 
 { #category : 'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetClassName.
+	aUmlModel addClassNamed: self slotClassName.
 	self slotTypes isEmpty ifTrue: [ ^ self ].
 	aUmlModel addClassNamed: self slotTypes first
 ]
@@ -146,7 +150,7 @@ LcsGlobalCollectionReferenceSlotBuilder >> printJobStreamDetailsOn: aStream [
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class>' ])
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'gt views' }
 LcsGlobalCollectionReferenceSlotBuilder >> umlModel [
 	^ super umlModel
 		positions: {(296.68288951449927@311.40216064453125). (499.3888888888889@308.0). (350.47889094882544@294.7452011869667). (350.47889094882544@294.7452011869667). (350.47889094882544@323.29755093379276). (350.47889094882544@323.29755093379276)};

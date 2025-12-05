@@ -1,5 +1,6 @@
 Class {
-	#name : #LcsMagazine,
-	#superclass : #LcsLibraryItem,
-	#category : #'Lcs-WarRabbitLibrary'
+	#name : 'LcsMagazine',
+	#superclass : 'LcsLibraryItem',
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }

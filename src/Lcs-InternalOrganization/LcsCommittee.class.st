@@ -1,10 +1,23 @@
 Class {
 	#name : 'LcsCommittee',
 	#superclass : 'LcsInternalOrganization',
+	#instVars : [
+		'committeeMembers'
+	],
 	#category : 'Lcs-InternalOrganization-Core',
 	#package : 'Lcs-InternalOrganization',
 	#tag : 'Core'
 }
+
+{ #category : 'slot definitions' }
+LcsCommittee class >> committeeMembersSlotDefinition [
+	<slotDefinition>
+	^ LcsLocalCollectionSlot new
+			addSlotType: LcsCommitteeMembers;
+			addCollectionMemberType: LcsCommitteeMember;
+			slotName: 'committeeMembers';
+			yourself
+]
 
 { #category : 'slot definitions' }
 LcsCommittee class >> committeeNameSlotDefinition [
@@ -27,6 +40,16 @@ LcsCommittee class >> parentSlotDefinition [
 ]
 
 { #category : 'accessing' }
+LcsCommittee >> committeeMembers [
+	^ self slotVarNamed: 'committeeMembers'
+]
+
+{ #category : 'accessing' }
+LcsCommittee >> committeeMembers: anObject [
+	self slotVarNamed: 'committeeMembers' put: anObject
+]
+
+{ #category : 'accessing' }
 LcsCommittee >> committeeName [
 	^ self slotVarNamed: 'committeeName'
 ]
@@ -34,4 +57,9 @@ LcsCommittee >> committeeName [
 { #category : 'accessing' }
 LcsCommittee >> committeeName: anObject [
 	self slotVarNamed: 'committeeName' put: anObject
+]
+
+{ #category : 'organization model' }
+LcsCommittee >> internalOrganization [
+	^ self parent internalOrganization
 ]

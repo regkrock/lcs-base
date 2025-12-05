@@ -8,10 +8,9 @@ Trait {
 }
 
 { #category : 'collection' }
-LtDomainCollection >> add: anObject [
-	"self verifyCanAdd: anObject."
-	anObject parent ifNil: [ anObject parent: self ].
-	^ self collection add: anObject
+LtDomainCollection >> add: aDomainObject [
+	aDomainObject parent ifNil: [ aDomainObject parent: self ].
+	^ self currentUnitOfWork addPendingAddOf: aDomainObject to: self
 ]
 
 { #category : 'accessing' }
@@ -66,7 +65,20 @@ LtDomainCollection >> gtItemsFor: aView [
 ]
 
 { #category : 'collection' }
+LtDomainCollection >> includes: anObject [
+	^ (self collection includes: anObject)
+		or: [ self pendingAdds includes: anObject ] 
+]
+
+{ #category : 'collection' }
+LtDomainCollection >> remove: anObject [
+	(self includes: anObject) ifFalse: [ ^ nil ].
+	^ self currentUnitOfWork addPendingDeletionOf: anObject from: self
+]
+
+{ #category : 'collection' }
 LtDomainCollection >> remove: anObject ifAbsent: aBlock [
 	"self verifyCanARemove: anObject."
-	^ self collection remove: anObject ifAbsent: [ ]
+	(self includes: anObject) ifFalse: [ ^ aBlock value ].
+	^ self currentUnitOfWork addPendingDeletionOf: anObject from: self
 ]

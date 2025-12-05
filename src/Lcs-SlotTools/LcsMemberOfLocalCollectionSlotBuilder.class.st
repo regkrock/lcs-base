@@ -16,8 +16,10 @@ LcsMemberOfLocalCollectionSlotBuilder class >> slotClass [
 { #category : 'gt views' }
 LcsMemberOfLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self slotTypes any
+	aUmlModel
+		addAssociation: self slotName
+		from: self targetClassName
+		to: self slotTypes first asString
 ]
 
 { #category : 'gt views' }
@@ -61,9 +63,15 @@ LcsMemberOfLocalCollectionSlotBuilder >> collectionSourceClassName [
 	^ collectionSourceClassName
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialize' }
 LcsMemberOfLocalCollectionSlotBuilder >> collectionSourceClassName: anObject [
 	collectionSourceClassName := anObject
+]
+
+{ #category : 'initialize' }
+LcsMemberOfLocalCollectionSlotBuilder >> initialize [
+	super initialize.
+	self targetSlotPath: OrderedCollection new
 ]
 
 { #category : 'gt views' }
@@ -73,6 +81,37 @@ LcsMemberOfLocalCollectionSlotBuilder >> sourceCollectionClassName [
 	
 	^ (self currentSystem moduleNamed: self collectionSlotModuleName) ifNotNil: [ :module | 
 		([ module perform: self collectionSlotName asSymbol ] on: MessageNotUnderstood do: [ :s | s return: nil ]) ifNotNil: [ :value | value class name asString ] ]
+]
+
+{ #category : 'properties' }
+LcsMemberOfLocalCollectionSlotBuilder >> targetSlotPath [
+	^ self propertyAt: 'targetSlotPath' ifAbsent: []
+]
+
+{ #category : 'properties' }
+LcsMemberOfLocalCollectionSlotBuilder >> targetSlotPath: aString [ 
+	self propertyAt: 'targetSlotPath' put: aString
+]
+
+{ #category : 'magritte' }
+LcsMemberOfLocalCollectionSlotBuilder >> targetSlotPathDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  label: 'Target Slot Path';
+			accessor: (LcsMAPluggableAccessor 
+						accessors: #(#targetSlotPath)
+						read: [ :selectors | selectors ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: (collection collect: [ :each | each asSymbol ]) ]);
+			classes: { String};
+			priority: 35;
+			beModifiable;
+			labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+			blocListStencil: (
+				self
+					taggerStencilWithCompletion: GtClassesCompletionStrategy new
+					andContextMenuBlock: nil);
+			beRequired
 ]
 
 { #category : 'command' }

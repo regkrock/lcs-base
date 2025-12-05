@@ -5,3 +5,8 @@ Class {
 	#package : 'Lcs-InternalOrganization',
 	#tag : 'Core'
 }
+
+{ #category : 'organization model' }
+LcsInternalOrganizationModuleConfiguration >> internalOrganization [
+	^ self parent internalOrganization
+]

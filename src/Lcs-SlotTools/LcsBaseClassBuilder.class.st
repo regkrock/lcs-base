@@ -40,7 +40,7 @@ LcsBaseClassBuilder >> _verifyCodeInstallation [
 
 { #category : 'gt views' }
 LcsBaseClassBuilder >> addClassesToUmlModel: aUmlModel [
-	aUmlModel addClassNamed: self targetSuperclassName.	"self addSuperclassTo: classesModel."
+	aUmlModel addClassNamed: self targetSuperclassName.
 	self addProposedClassTo: aUmlModel
 ]
 

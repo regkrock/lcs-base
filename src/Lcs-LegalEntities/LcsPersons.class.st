@@ -6,9 +6,9 @@ Class {
 }
 
 { #category : 'querying' }
-LcsPersons >> contactWithFirstName: aFirstName surname: aSurname [
+LcsPersons >> contactWithFirstName: aFirstName familyName: aFamilyName [
 	^ self
-		find: [ :each | each firstName = aFirstName and: [ each surname = aSurname ] ]
+		find: [ :each | each firstName = aFirstName and: [ each familyName = aFamilyName ] ]
 		ifNone: [ nil ]
 ]
 
@@ -23,6 +23,6 @@ LcsPersons >> findWithFullName: aString [
 ]
 
 { #category : 'querying' }
-LcsPersons >> hasContactWithFirstName: aFirstName surname: aSurname [
-	^ (self contactWithFirstName: aFirstName surname: aSurname) notNil
+LcsPersons >> hasContactWithFirstName: aFirstName familyName: aFamilyName [
+	^ (self contactWithFirstName: aFirstName familyName: aFamilyName) notNil
 ]

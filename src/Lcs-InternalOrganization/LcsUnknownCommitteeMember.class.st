@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsTrustee',
+	#name : 'LcsUnknownCommitteeMember',
 	#superclass : 'LcsBaseCommitteMember',
 	#category : 'Lcs-InternalOrganization-Core',
 	#package : 'Lcs-InternalOrganization',

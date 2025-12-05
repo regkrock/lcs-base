@@ -12,8 +12,8 @@ Class {
 
 { #category : 'defaults' }
 LcsUpdateSiblingWithCollectionDefault >> defaultActionBlock [
-	^ [ :newValue :domainObject :oldValue | 
-		domainObject
+	^ [ :newValue :parentDomainObject :oldValue | 
+		parentDomainObject
 			perform: self siblingSlotSetter
 			with: (newValue perform: self sourceCollectionSlotName asSymbol) defaultInstance ]
 ]

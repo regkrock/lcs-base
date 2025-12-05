@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsWarRabbitLibrayImporterTest,
-	#superclass : #LcsTestWithTestSystemSetUpForTest,
-	#category : #'Lcs-WarRabbitLibraryTests'
+	#name : 'LcsWarRabbitLibrayImporterTest',
+	#superclass : 'LcsTestWithTestSystemSetUpForTest',
+	#category : 'Lcs-WarRabbitLibraryTests',
+	#package : 'Lcs-WarRabbitLibraryTests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 LcsWarRabbitLibrayImporterTest >> setupSunitSystem [
 	LcsWarRabbitLibrary new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsWarRabbitLibrayImporterTest >> testImportBook [
 	"| importer stream |
 	importer := LcsWarRabbitLibrayImporter newOn: self currentSystem.
@@ -27,7 +28,7 @@ Bealer, Alex W. 	Art of Blacksmithing	(rev ed)			Castle 1969/76/95'.
 	self assert: importer items last libraryCategory identicalTo: importer items first"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsWarRabbitLibrayImporterTest >> testImportCategoryName [
 	| importer stream libraryCategory |
 	importer := LcsWarRabbitLibrayImporter newOn: self currentSystem.
@@ -44,7 +45,7 @@ LcsWarRabbitLibrayImporterTest >> testImportCategoryName [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsWarRabbitLibrayImporterTest >> testImportCategoryNameTwice [
 	| importer stream |
 	importer := LcsWarRabbitLibrayImporter newOn: self currentSystem.
@@ -61,7 +62,7 @@ Crafts'.
 	self assert: self currentSystem libraryCategories collection any categoryName = 'Crafts'.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsWarRabbitLibrayImporterTest >> testImportPaperbackBook [
 	"| importer stream |
 	importer := LcsWarRabbitLibrayImporter newOn: self currentSystem.

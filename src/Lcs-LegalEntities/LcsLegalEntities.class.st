@@ -11,8 +11,8 @@ LcsLegalEntities >> collectionSize [
 ]
 
 { #category : 'querying' }
-LcsLegalEntities >> contactWithFirstName: aFirstName surname: aSurname [
-	^ self persons contactWithFirstName: aFirstName surname: aSurname
+LcsLegalEntities >> contactWithFirstName: aFirstName familyName: aFamilyName [
+	^ self persons contactWithFirstName: aFirstName familyName: aFamilyName
 ]
 
 { #category : 'querying' }
@@ -24,8 +24,8 @@ LcsLegalEntities >> findContactWithFullName: aString [
 ]
 
 { #category : 'querying' }
-LcsLegalEntities >> hasContactWithFirstName: aFirstName surname: aSurname [
-	^ self persons hasContactWithFirstName: aFirstName surname: aSurname
+LcsLegalEntities >> hasContactWithFirstName: aFirstName familyName: aFamilyName [
+	^ self persons hasContactWithFirstName: aFirstName familyName: aFamilyName
 ]
 
 { #category : 'convenience' }

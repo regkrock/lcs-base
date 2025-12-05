@@ -7,14 +7,23 @@ Class {
 }
 
 { #category : 'examples' }
+LcsPersonExamples >> globalEmailAddressesPendingAddsSize [
+	^ self currentSystem legalEntitiesModule emailAddresses pendingAdds size
+]
+
+{ #category : 'examples' }
 LcsPersonExamples >> johnDoe [
 	<gtExample>
 	| person |
 	self ensureCurrentSystemIsDemoSystem.
 	person := LcsPerson new
 			firstName: 'John';
-			surname: 'Doe'.
-	"Because person is automatically added to a global collection, no need to explicitly add the parent"
+			familyName: 'Doe'.	"Because person is automatically added to a global collection, no need to explicitly add the parent"
+	self currentSystem legalEntitiesModule persons includes: person.
+	self
+		assert: (self currentSystem legalEntitiesModule
+				hasContactWithFirstName: person firstName
+				familyName: person familyName).
 	^ person
 ]
 
@@ -25,7 +34,7 @@ LcsPersonExamples >> johnFreeman [
 	self ensureCurrentSystemIsDemoSystem.
 	person := 
 		LcsPerson new
-			surname: 'Freeman';
+			familyName: 'Freeman';
 			firstName: 'John';
 			middleNames: 'Edgar';
 			dateOfBirth: '01-01-1990';
@@ -33,7 +42,7 @@ LcsPersonExamples >> johnFreeman [
 			title: 'mr';
 			yourself.
 	self assert: person title code equals: 'mr'.
-	self assert: person surname equals: 'Freeman'.
+	self assert: person familyName equals: 'Freeman'.
 	self assert: person firstName equals: 'John'.
 	self assert: person middleNames equals: 'Edgar'.
 	self assert: person dateOfBirth asString equals: '1 January 1990'.
@@ -44,7 +53,9 @@ LcsPersonExamples >> johnFreeman [
 	self assert: (person mainAddress isKindOf: LcsAddress).
 	self assert: (person emailAddresses isKindOf: LcsEmailAddresses).
 	self assert: person emailAddresses hasNoElements.
-	
+	self currentSystem legalEntitiesModule persons includes: person.
+	self assert: person emailAddresses hasNoElements.
+
 	^ person
 ]
 
@@ -93,22 +104,27 @@ LcsPersonExamples >> johnFreemanWithAddress [
 LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	<gtExample>
 	| person homeEmail workEmail originalPendingAddSize |
-	originalPendingAddSize := self currentSystem legalEntitiesModule emailAddresses pendingAdds size.
+	self ensureCurrentSystemIsDemoSystem.
+	originalPendingAddSize := self globalEmailAddressesPendingAddsSize.
 	person := self johnFreeman.
-	self assert: person emailAddresses hasNoElements.
 	self
 		assert: person homeEmailAddress
 		equals: person emailAddresses defaultInstance.
+
 	homeEmail := self johnFreemanHomeEmail.
 	person homeEmailAddress: homeEmail.
 	self assert: person homeEmailAddress equals: homeEmail.
 	self assert: person emailAddresses pendingAdds size equals: 1.
+	self
+		assert: self globalEmailAddressesPendingAddsSize
+		equals: originalPendingAddSize + 1.
+
 	workEmail := self johnFreemanWorkEmail.
 	person workEmailAddress: workEmail.
 	self assert: person workEmailAddress equals: workEmail.
 	self assert: person emailAddresses pendingAdds size equals: 2.
 	self
-		assert: self currentSystem legalEntitiesModule emailAddresses pendingAdds size
+		assert: self globalEmailAddressesPendingAddsSize
 		equals: originalPendingAddSize + 2.
 	^ person
 ]
@@ -129,6 +145,7 @@ LcsPersonExamples >> samSmith [
 	self ensureCurrentSystemIsDemoSystem.
 	person := LcsPerson new
 			firstName: 'Sam';
-			surname: 'Smith'.
+			familyName: 'Smith'.
+	self currentSystem legalEntitiesModule persons includes: person.
 	^ person
 ]

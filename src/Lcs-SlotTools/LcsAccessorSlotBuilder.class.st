@@ -178,7 +178,7 @@ LcsAccessorSlotBuilder >> initialValueBlock: aString [
 LcsAccessorSlotBuilder >> initialValueBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
-		label: 'Initial Value Block [ :domainObject :slot | ';
+		label: ('Initial Value Block [ :<1s> : <2s> | ' expandMacrosWithArguments: LcsAccessorSlot domainObjectSlotBlockArguments);
 		priority: 9;
 		default: '';
 		accessor: (LcsMABlockPluggableAccessor 

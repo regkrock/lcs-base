@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsLibraryCategoryTest,
-	#superclass : #LcsTestWithTestSystemSetUpForTest,
-	#category : #'Lcs-WarRabbitLibraryTests'
+	#name : 'LcsLibraryCategoryTest',
+	#superclass : 'LcsTestWithTestSystemSetUpForTest',
+	#category : 'Lcs-WarRabbitLibraryTests',
+	#package : 'Lcs-WarRabbitLibraryTests'
 }
 
-{ #category : #setUp }
+{ #category : 'setUp' }
 LcsLibraryCategoryTest >> setupSunitSystem [
 	LcsWarRabbitLibrary new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsLibraryCategoryTest >> testCreationAndAddingToParentCollection [
 	| libraryCategory |
 	libraryCategory := LcsLibraryCategory new categoryName: 'Test'.

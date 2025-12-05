@@ -38,6 +38,21 @@ LcsBaseSlot class >> isVirtualSlot [
 ]
 
 { #category : 'gt views' }
+LcsBaseSlot >> addAssociationsToUmlModel: aUmlModel [
+	aUmlModel
+		addAssociation: self slotName , 'SlotDefintion'
+			from: self domainClass
+			to: self class
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> addClassesToUmlModel: umlModel [ 
+	umlModel
+		addClassNamed: self domainClass;
+		addClassNamed: self class.
+]
+
+{ #category : 'gt views' }
 LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
 ]
 
@@ -270,6 +285,18 @@ LcsBaseSlot >> gtSlotTypesViewFor: aView [
 						label: label ] ];
 		yourself
 
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> gtUMLFor: aView [
+	<gtView>
+	^ aView mondrian
+		title: 'UML';
+		priority: 20;
+		tooltip: 'Existing Classes: gray, Proposed Classes: blue, Newly Created: brown';
+		initialize: self umlModelMondrianView;
+		send: [ :item | item modelClass ifNil: [ item ] ];
+		actionUpdateButton
 ]
 
 { #category : 'initialize' }
@@ -524,8 +551,25 @@ LcsBaseSlot >> slotTypesDescription [
 						read: [ :classes | classes collect: [ :each | each name] ] 
 						write: [ :aModel :setter :collection | 
 							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
-		classes: { Class};
+		"classes: { Class};"
+		kind: String;
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		blocShortcuts: [ 
+			{BlShortcutWithAction new
+				name: 'Browse class';
+				description: 'Browses the class indicated by the editor';
+				combination: BlKeyCombination primaryB;
+				action: [ :anEvent | anEvent target phlow spawnTool: (GtClassCoderTool forClass: anEvent target text asString asClass) ].
+			BlShortcutWithAction new
+				name: 'Inspect class';
+				description: 'Inspects the class indicated by the editor';
+				combination: BlKeyCombination primaryG;
+				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass ].
+			BlShortcutWithAction new
+				name: 'Browse class references';
+				description: 'Browses references to the class indicated by the editor';
+				combination: BlKeyCombination primaryN;
+				action: [ :anEvent | anEvent target phlow spawnObject: anEvent target text asString asClass gtReferences ]} ];
 		blocListStencil: (
 			self
 				taggerStencilWithCompletion: GtClassesCompletionStrategy new
@@ -663,4 +707,20 @@ LcsBaseSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBl
 		memento: aMemento
 		using: aDescription ]
 
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> umlModel [
+	| umlModel |
+	umlModel := LcsUmlModel new.
+	self addClassesToUmlModel: umlModel.
+	umlModel removeDuplicates.
+	self addAssociationsToUmlModel: umlModel.
+	umlModel resolveClassModelNames.
+	^ umlModel
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> umlModelMondrianView [
+	^ LcsUml new proposedUmlModelFor: self umlModel
 ]

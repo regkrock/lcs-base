@@ -1,15 +1,16 @@
 Class {
-	#name : #LcsWarRabbitLibrary,
-	#superclass : #LcsSystem,
+	#name : 'LcsWarRabbitLibrary',
+	#superclass : 'LcsSystem',
 	#instVars : [
 		'libraryCategories',
 		'libraryItems',
 		'authors'
 	],
-	#category : #'Lcs-WarRabbitLibrary'
+	#category : 'Lcs-WarRabbitLibrary',
+	#package : 'Lcs-WarRabbitLibrary'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsWarRabbitLibrary class >> authorsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
@@ -19,18 +20,18 @@ LcsWarRabbitLibrary class >> authorsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsWarRabbitLibrary class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsWarRabbitLibrary class >> defaultModuleName [
 	^ 'War Rabbit System'
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsWarRabbitLibrary class >> libraryCategoriesSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
@@ -40,7 +41,7 @@ LcsWarRabbitLibrary class >> libraryCategoriesSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsWarRabbitLibrary class >> libraryItemsSlotDefinition [
 	<slotDefinition>
 	^LcsGlobalCollectionSlot new
@@ -50,47 +51,47 @@ LcsWarRabbitLibrary class >> libraryItemsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsWarRabbitLibrary class >> moduleConfigurationClass [
 	^ LcsWarRabbitConfiguration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrary >> authors [
 	^ self slotVarNamed: 'authors'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrary >> authors: anObject [
 	self slotVarNamed: 'authors' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrary >> libraryCategories [
 	^ self slotVarNamed: 'libraryCategories'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrary >> libraryCategories: anObject [
 	self slotVarNamed: 'libraryCategories' put: anObject
 ]
 
-{ #category : #query }
+{ #category : 'query' }
 LcsWarRabbitLibrary >> libraryCategoryFor: aString [
 	^ self libraryCategories libraryCategoryFor: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrary >> libraryItems [
 	^ self slotVarNamed: 'libraryItems'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsWarRabbitLibrary >> libraryItems: anObject [
 	self slotVarNamed: 'libraryItems' put: anObject
 ]
 
-{ #category : #'slot model' }
+{ #category : 'slot model' }
 LcsWarRabbitLibrary >> systemDomainClasses [
 	| collection |
 	collection := super systemDomainClasses.

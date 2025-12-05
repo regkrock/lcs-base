@@ -40,6 +40,9 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 
 	aPropertyName = 'slotTypes' ifTrue: [ 
 		^ self addClassTypeKeyword: 'addSlotType' argument: aValue to: aStream ].
+
+	aPropertyName = 'targetSlotPath' ifTrue: [ 
+		^ self addSlotPathKeyword: 'targetSlotPath' argument: aValue to: aStream ].
 		
 	aPropertyName = 'collectionMemberTypes' ifTrue: [ 
 		^ self addClassTypeKeyword: 'addCollectionMemberType' argument: aValue to: aStream ].
@@ -76,6 +79,11 @@ LcsSlotDefinitionMethodFormatter >> addProperties: aProperties to: aStream [
 	aStream indent.
 	aProperties keysAndValuesDo: [ :eachPropertyName :eachValue |
 		self addKeyword: eachPropertyName argument: eachValue to: aStream ].
+]
+
+{ #category : 'format' }
+LcsSlotDefinitionMethodFormatter >> addSlotPathKeyword: aPropertyName argument: aValue to: aStream [ 
+	aStream addKeyword: aPropertyName argument: aValue asArray printString , ' asOrderedCollection'
 ]
 
 { #category : 'format' }

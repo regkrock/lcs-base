@@ -8,5 +8,5 @@ Class {
 
 { #category : 'visiting-description' }
 LcsMAStringReader >> visitBlockDescription: aDescription [
-	self object: (Smalltalk compiler evaluate: '[ :domainObject :slot | ', self contents)
+	self object: (Smalltalk compiler evaluate: '[ :parentDomainObject :slot | ', self contents)
 ]

@@ -17,6 +17,8 @@ LcsLegalEntity class >> emailAddressesSlotDefinition [
 			slotName: 'emailAddresses';
 			addSlotType: LcsEmailAddresses;
 			collectionClass: IdentitySet;
+			dependentGlobalCollectionModuleName: 'Legal Entities Module';
+			dependentGlobalCollectionSlotName: 'emailAddresses';
 			yourself
 ]
 
@@ -53,8 +55,8 @@ LcsLegalEntity class >> phoneNumberSlotDefinition [
 ]
 
 { #category : 'as yet unclassified' }
-LcsLegalEntity >> contactWithFirstName: aFirstName surname: aSurname [
-	^ self currentSystem legalEntitiesModule contactWithFirstName: aFirstName surname: aSurname
+LcsLegalEntity >> contactWithFirstName: aFirstName familyName: aFamilyName [
+	^ self currentSystem legalEntitiesModule contactWithFirstName: aFirstName familyName: aFamilyName
 ]
 
 { #category : 'accessing' }
@@ -73,8 +75,8 @@ LcsLegalEntity >> entityName [
 ]
 
 { #category : 'as yet unclassified' }
-LcsLegalEntity >> hasContactWithFirstName: aFirstName surname: aSurname [
-	^ self currentSystem legalEntitiesModule hasContactWithFirstName: aFirstName surname: aSurname
+LcsLegalEntity >> hasContactWithFirstName: aFirstName familyName: aFamilyName [
+	^ self currentSystem legalEntitiesModule hasContactWithFirstName: aFirstName familyName: aFamilyName
 ]
 
 { #category : 'accessing' }

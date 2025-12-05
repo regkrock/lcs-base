@@ -1,6 +1,6 @@
 Class {
-	#name : #LcsStateMachine,
-	#superclass : #LcsDomainObject,
+	#name : 'LcsStateMachine',
+	#superclass : 'LcsDomainObject',
 	#instVars : [
 		'currentState',
 		'states',
@@ -10,16 +10,18 @@ Class {
 		'context',
 		'id'
 	],
-	#category : #'Lcs-StateMachine-Core'
+	#category : 'Lcs-StateMachine-Core',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachine class >> contextSlotDefinition [
 	<slotDefinition>
 	^ LcsContextSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachine class >> currentStateSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineStateSlot new
@@ -27,13 +29,13 @@ LcsStateMachine class >> currentStateSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachine class >> idSlotDefinition [
 	<slotDefinition>
 	^ LcsIdSlot new
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachine class >> listenersSlotDefinition [
 	<slotDefinition>
 	^ LcsOrderedCollectionSlot new
@@ -41,7 +43,7 @@ LcsStateMachine class >> listenersSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachine class >> startStateSlotDefinition [
 	<slotDefinition>
 	^ LcsStateMachineStateSlot new
@@ -51,7 +53,7 @@ LcsStateMachine class >> startStateSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachine class >> stateTransitionsSlotDefinition [
 	<slotDefinition>
 	^ LcsSecondaryCollectionSlot new
@@ -61,7 +63,7 @@ LcsStateMachine class >> stateTransitionsSlotDefinition [
 		yourself
 ]
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsStateMachine class >> statesSlotDefinition [
 	<slotDefinition>
 	^LcsLocalCollectionSlot new
@@ -71,35 +73,35 @@ LcsStateMachine class >> statesSlotDefinition [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachine >> addListener: aStatechart [ 
 	self listeners add: aStatechart
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 LcsStateMachine >> addState: aState [
 	aState parent: self states.
 	aState stateMachine: self.
 	^ self states add: aState
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> addStateNamed: stateName [
 	^ self addState: (LcsStateMachineState named: stateName)
 ]
 
-{ #category : #'actions-basic' }
+{ #category : 'actions-basic' }
 LcsStateMachine >> addStateTransition: aStateTransition [
 	aStateTransition stateMachine: self.
 	^ self stateTransitions add: aStateTransition
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> atEnd [
 	^self currentState isKindOf: LcsStateMachineEndState
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachine >> basicHandleEvent: anEvent ifFailed: aBlock [
 	self listeners	do: [:each | each handleEvent: anEvent copy].
 		
@@ -110,56 +112,56 @@ LcsStateMachine >> basicHandleEvent: anEvent ifFailed: aBlock [
 	
 ]
 
-{ #category : #'changing state' }
+{ #category : 'changing state' }
 LcsStateMachine >> changeStateTo: state [
 	self changeStateTo: state on: nil
 ]
 
-{ #category : #'changing state' }
+{ #category : 'changing state' }
 LcsStateMachine >> changeStateTo: state on: anEvent [
 	state currentEvent: anEvent.
 	self updateCurrentState: state
 ]
 
-{ #category : #'changing state' }
+{ #category : 'changing state' }
 LcsStateMachine >> changeStateToStateNamed: aStateSymbol [
 	self changeStateToStateNamed: aStateSymbol on: nil
 ]
 
-{ #category : #'changing state' }
+{ #category : 'changing state' }
 LcsStateMachine >> changeStateToStateNamed: aStateSymbol on: anEvent [
 	| state |
 	state := self stateNamed: aStateSymbol.
 	self changeStateTo: state on: anEvent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> context [
 	context isNil ifTrue: [context := Dictionary new].
 	^context
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> context: anObject [
 	context := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> currentState [
 	^currentState
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> currentState: aState [
 	currentState := aState
 ]
 
-{ #category : #debugging }
+{ #category : 'debugging' }
 LcsStateMachine >> debug: anObject [ 
 	LcsDebugLogger default debug: anObject
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsStateMachine >> gtStateMachineViewFor: aView [
 	<gtView>
 	^ aView columnedTree
@@ -179,84 +181,84 @@ LcsStateMachine >> gtStateMachineViewFor: aView [
 		yourself
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 LcsStateMachine >> handleEvent: anEventSymbolOrEvent [ 
 	^ self handleEvent: anEventSymbolOrEvent ifFailed: []
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 LcsStateMachine >> handleEvent: anEventSymbolOrEvent ifFailed: aBlock [
 	| evt |
 	evt := anEventSymbolOrEvent isString ifTrue: [(LcsStateMachineEvent newType: anEventSymbolOrEvent)] ifFalse: [anEventSymbolOrEvent].
 	^self basicHandleEvent: evt ifFailed: aBlock
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> hasEndState [
 	self states detect: [ :each | each isKindOf: LcsStateMachineEndState ] ifNone: [ ^false ].
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> hasStartState [
 	^ self startState notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> hasStateTransitions [
 	^self stateTransitions size > 0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> hasStates [
 	^ self states hasElements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 LcsStateMachine >> initialize [
 	super initialize.
 	self addState: LcsStateMachineEndState new.
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> isAtEnd [
 	^self currentState isKindOf: LcsStateMachineEndState
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> isAtStart [
 	^ self startState notNil and: [
 		self startState == self currentState ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> listeners [
 	listeners isNil ifTrue:[ listeners := OrderedCollection new].
 	^listeners
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> listeners: anOrderedCollection [
 	listeners := anOrderedCollection
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachine >> numberOfStates [
 	^self states collectionSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> recurCurrentState [
 	| state |
 	state := self currentState.
@@ -267,55 +269,55 @@ LcsStateMachine >> recurCurrentState [
 	^ state
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> reset [
 	self currentState: self startState
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> setAutoFrom: aStateId to: aNextStateId [
 	(self stateNamed: aStateId) setAutoTransitionTo: aNextStateId
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> setDecisionFrom: stateId if: aBlockOrMessageSend trueTo: aTrueStateId falseTo: aFalseStateId [
 	(self stateNamed: stateId) setTransitionIf: aBlockOrMessageSend trueTo: aTrueStateId falseTo: aFalseStateId
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> setStartState: aState [
 	self startState: aState.
 	self changeStateTo: aState
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> setStartStateTo: aState [
 	self setStartState: aState
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> setStartStateToStateNamed: aStateSymbol [
 	self setStartState: (self stateNamed: aStateSymbol)
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LcsStateMachine >> start [
 	self reset.
 	self currentState enter.
 	self currentState doActivity
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> startState [
 	^startState
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> startState: aState [
 	startState := aState
 ]
 
-{ #category : #'gt views' }
+{ #category : 'gt views' }
 LcsStateMachine >> stateMachineViewChildren [
 	^ {
 		LcsStateMachineViewItem newOn: self label: 'Parent' item: self parent.
@@ -324,48 +326,48 @@ LcsStateMachine >> stateMachineViewChildren [
 		"LcsStateMachineViewItem newOn: self label: 'Units Of Work' item: self unitsOfWorkManager."}
 ]
 
-{ #category : #'actions-basic' }
+{ #category : 'actions-basic' }
 LcsStateMachine >> stateNamed: aStateName [
 	^self states detect: [ :each | each name = aStateName ] ifNone:[LcsStateMachineNoSuchStateError signal: aStateName asString]
 ]
 
-{ #category : #'actions-basic' }
+{ #category : 'actions-basic' }
 LcsStateMachine >> stateTransitionNamed: aTransitionId ifNone: aBlock [
 	^self stateTransitions detect: [ :each | each id = aTransitionId ] ifNone: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> stateTransitions [
 	^ self slotVarNamed: 'stateTransitions'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> stateTransitions: anObject [
 	self slotVarNamed: 'stateTransitions' put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> states [
 	^ self slotVarNamed: 'states'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachine >> states: aCollection [
 	^ self slotVarNamed: 'states' put: aCollection
 ]
 
-{ #category : #'actions-basic' }
+{ #category : 'actions-basic' }
 LcsStateMachine >> transAt: aTransitionId [
 	^self stateTransitionNamed: aTransitionId ifNone: [LcsStateMachineNoSuchTransitionError signal: aTransitionId]
 ]
 
-{ #category : #'actions-basic' }
+{ #category : 'actions-basic' }
 LcsStateMachine >> transAt: aTransitionId put: aStateTransition [
 	aStateTransition stateMachine: self.
 	^self stateTransitions add: aStateTransition
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachine >> updateCurrentState: aState [
 	self currentState: aState.
 	aState enter.

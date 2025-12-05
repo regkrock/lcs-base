@@ -1,40 +1,42 @@
 Class {
-	#name : #LcsStateMachineEventNotSupportedError,
-	#superclass : #Warning,
+	#name : 'LcsStateMachineEventNotSupportedError',
+	#superclass : 'Warning',
 	#instVars : [
 		'event',
 		'state'
 	],
-	#category : #'Lcs-StateMachine-Error'
+	#category : 'Lcs-StateMachine-Error',
+	#package : 'Lcs-StateMachine',
+	#tag : 'Error'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LcsStateMachineEventNotSupportedError class >> event: anEvent state: aState [
 	^self new event: anEvent; state: aState; yourself
 ]
 
-{ #category : #exceptionDescription }
+{ #category : 'exceptionDescription' }
 LcsStateMachineEventNotSupportedError >> defaultAction [
 	
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEventNotSupportedError >> event [
 	^ event
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEventNotSupportedError >> event: anObject [
 	event := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEventNotSupportedError >> state [
 	^ state
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsStateMachineEventNotSupportedError >> state: anObject [
 	state := anObject
 ]

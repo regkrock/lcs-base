@@ -142,8 +142,8 @@ LcsLegalEntitiesModule class >> titlesSlotDefinition [
 ]
 
 { #category : 'querying' }
-LcsLegalEntitiesModule >> contactWithFirstName: aFirstName surname: aSurname [
-	^ self contacts contactWithFirstName: aFirstName surname: aSurname
+LcsLegalEntitiesModule >> contactWithFirstName: aFirstName familyName: aFamilyName [
+	^ self contacts contactWithFirstName: aFirstName familyName: aFamilyName
 ]
 
 { #category : 'accessing' }
@@ -187,8 +187,8 @@ LcsLegalEntitiesModule >> genders: anObject [
 ]
 
 { #category : 'querying' }
-LcsLegalEntitiesModule >> hasContactWithFirstName: aFirstName surname: aSurname [
-	^ self contacts hasContactWithFirstName: aFirstName surname: aSurname
+LcsLegalEntitiesModule >> hasContactWithFirstName: aFirstName familyName: aFamilyName [
+	^ self contacts hasContactWithFirstName: aFirstName familyName: aFamilyName
 ]
 
 { #category : 'accessing' }

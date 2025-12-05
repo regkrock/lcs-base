@@ -31,8 +31,8 @@ LcsVirtualSlotExamples >> virtualSlot [
 
 	self
 		assert: slot defaultValueAccessBlock printString
-		equals: '[ :domainObject :slot | domainObject perform: slot valueAccessor ]'.
-	self assert: slot valueAccessBlock printString equals: '[ :domainObject :slot | domainObject perform: slot valueAccessor ]'.
+		equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]'.
+	self assert: slot valueAccessBlock printString equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]'.
 		
 	^ slot
 ]

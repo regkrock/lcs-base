@@ -21,6 +21,16 @@ LcsDomainCollection class >> collectionType [
 	^'concrete'
 ]
 
+{ #category : 'as yet unclassified' }
+LcsDomainCollection >> accessorSlotNameAndValue [
+	| nameAndValues |
+	nameAndValues := super accessorSlotNameAndValue.
+	^ nameAndValues 
+		add: ('pendingAdds' -> self pendingAdds);
+		add: ('pendingDeletes' -> self pendingDeletes);
+		yourself
+]
+
 { #category : 'queries' }
 LcsDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
@@ -40,6 +50,46 @@ LcsDomainCollection >> find: aBlock ifNone: aNoneBlock [
 	item := self pendingAdds detect: aBlock ifNone: [ nil ].
 	item notNil ifTrue: [ ^ item ].
 	^ aNoneBlock value
+]
+
+{ #category : 'querying' }
+LcsDomainCollection >> findItemIn: anAccessPath matching: anObject [
+	| result |
+	result := self findItemsIn: anAccessPath matching: anObject.
+	result isEmpty ifTrue: [ ^ nil ].
+	result size = 1 ifFalse: [LcsError signal: 'More than one item found'].
+	^ result any
+]
+
+{ #category : 'querying' }
+LcsDomainCollection >> findItemIn: anAccessPath matching: anObject ifNone: aBlock [
+	| result |
+	result := self findItemsIn: anAccessPath matching: anObject.
+	result isEmpty ifTrue: [ ^ aBlock value ].
+	result size = 1 ifFalse: [LcsError signal: 'More than one item found'].
+	^ result any
+]
+
+{ #category : 'querying' }
+LcsDomainCollection >> findItemsIn: anAccessPath matching: anObject [
+	| foundItems |
+	foundItems := OrderedCollection new.
+	{self collection. self pendingAdds} do: [ :eachCollection | 
+		foundItems addAll: (
+			self
+				findItemsIn: anAccessPath
+				matching: anObject
+				collection: eachCollection) ].
+	^ foundItems
+]
+
+{ #category : 'querying' }
+LcsDomainCollection >> findItemsIn: anAccessPath matching: anObject collection: eachCollection [
+	^ eachCollection select: [ :each | 
+			| result |
+			result := each.
+			anAccessPath do: [ :eachSlotName | result := result perform: eachSlotName asSymbol ].
+			result = anObject ]
 ]
 
 { #category : 'querying' }
@@ -74,7 +124,7 @@ LcsDomainCollection >> gtPendingAddsView: aView [
 		self pendingAdds any collectionViewSlotDefinitions do: [ :eachSlotDefinition |
 			columnedListView 
 				column: eachSlotDefinition label 
-				text: [:domainObject | (domainObject perform: eachSlotDefinition getterSelector) asString ] 
+				text: [:parentDomainObject | (parentDomainObject perform: eachSlotDefinition getterSelector) asString ] 
 				width: 100 ] ].
 	^ columnedListView
 ]

@@ -25,10 +25,13 @@ LcsLocalCollectionReferenceSlotBuilder >> _verifyCodeInstallation [
 { #category : 'gt views' }
 LcsLocalCollectionReferenceSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetClassName)
-		addAssociation: self slotName toModelNamed: self slotTypes first asString.
-	(aUmlModel classModelForClassname: self slotTypes first asString)
-		addAssociation: 'collection' toModelNamed: self targetClassName asString
+	aUmlModel
+		addAssociation: self slotName
+			from: self targetClassName
+			to: self slotTypes first asString;
+		addAssociation: 'collection'
+			from: self slotTypes first asString
+			to: self targetClassName
 ]
 
 { #category : 'gt views' }
@@ -45,6 +48,18 @@ LcsLocalCollectionReferenceSlotBuilder >> addParentClassTo: classesModel [
 		do: [ :s | 
 			classesModel proposedClassModelFor: self slotTypes first.
 			s return: nil ]
+]
+
+{ #category : 'as yet unclassified' }
+LcsLocalCollectionReferenceSlotBuilder >> allowNilDescription [
+	<magritteDescription>
+	^ nil
+]
+
+{ #category : 'as yet unclassified' }
+LcsLocalCollectionReferenceSlotBuilder >> allowNullDescription [
+	<magritteDescription>
+	^ nil
 ]
 
 { #category : 'code generation' }
@@ -70,6 +85,20 @@ LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName [
 { #category : 'accessing' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
 	self properties at: 'collectionSlotName' put: aString
+]
+
+{ #category : 'as yet unclassified' }
+LcsLocalCollectionReferenceSlotBuilder >> collectionSlotNameDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Collection Slot Name';
+		priority: 4;
+		accessor: #collectionSlotName;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | aValue asString trim asSymbol allSatisfy: [ :each | each isAlphaNumeric ] ] labelled: 'Slot Names can contain only alphanumerics';
+		beRequired
 ]
 
 { #category : 'gt views' }

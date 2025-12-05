@@ -1,25 +1,26 @@
 Class {
-	#name : #LcsAuthorTest,
-	#superclass : #LcsTestWithTestSystemSetUpForTest,
-	#category : #'Lcs-WarRabbitLibraryTests'
+	#name : 'LcsAuthorTest',
+	#superclass : 'LcsTestWithTestSystemSetUpForTest',
+	#category : 'Lcs-WarRabbitLibraryTests',
+	#package : 'Lcs-WarRabbitLibraryTests'
 }
 
-{ #category : #setUp }
+{ #category : 'setUp' }
 LcsAuthorTest >> setupSunitSystem [
 	LcsWarRabbitLibrary new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsAuthorTest >> testCreationAndAddingToParentCollection [
 	"| author person |
 	person := LcsPerson new
-					surname: 'Freeman';
+					aFamilyName: 'Freeman';
 					firstName: 'Jack';
 					middleNames: 'Edward';
 					yourself.
 	author := LcsAuthor new .
 	author person: person.
-	self assert: author surname equals: 'Freeman'.
+	self assert: author aFamilyName equals: 'Freeman'.
 	self assert: author firstName equals: 'Jack'.
 	self assert: author middleNames equals: 'Edward'.
 	self assert: (author parent isKindOf: LcsAuthors).

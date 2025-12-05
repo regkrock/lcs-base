@@ -1485,7 +1485,7 @@
 																	"__type" : "time",
 																	"time" : {
 																		"__type" : "dateAndTime",
-																		"dateAndTimeString" : "2025-10-31T10:24:43.683701-04:00"
+																		"dateAndTimeString" : "2025-12-01T09:45:09.817073-05:00"
 																	}
 																},
 																"editEmail" : {
@@ -1496,18 +1496,56 @@
 																	"__type" : "time",
 																	"time" : {
 																		"__type" : "dateAndTime",
-																		"dateAndTimeString" : "2025-10-31T10:25:17.289249-04:00"
+																		"dateAndTimeString" : "2025-12-01T09:45:51.761938-05:00"
 																	}
 																},
 																"uid" : {
 																	"__type" : "uid",
-																	"uidString" : "q+8h3db+DQC8ZuVjDxvQvw=="
+																	"uidString" : "ukKrktl+RjGtbiSUub6PmQ=="
 																},
 																"paragraphStyle" : {
 																	"__type" : "textStyle"
 																},
-																"string" : "[[Define Value Collection]]"
-															},
+																"string" : "[[Local Collection Reference Slot]]"
+															}
+														]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-11-20T11:13:03.381941-05:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2025-11-20T11:14:05.427947-05:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "UQAyKbH4REqsLt7VRqmCbw=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "[[Generate Several Classes and Relationships For Defined Patterns]]"
+												},
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [
 															{
 																"__type" : "textSnippet",
 																"children" : {
@@ -1544,6 +1582,43 @@
 																	"__type" : "textStyle"
 																},
 																"string" : "[[Define Singleton Value Collection]]"
+															},
+															{
+																"__type" : "textSnippet",
+																"children" : {
+																	"__type" : "snippets",
+																	"items" : [ ]
+																},
+																"createEmail" : {
+																	"__type" : "email",
+																	"emailString" : "<unknown>"
+																},
+																"createTime" : {
+																	"__type" : "time",
+																	"time" : {
+																		"__type" : "dateAndTime",
+																		"dateAndTimeString" : "2025-10-31T10:24:43.683701-04:00"
+																	}
+																},
+																"editEmail" : {
+																	"__type" : "email",
+																	"emailString" : "<unknown>"
+																},
+																"editTime" : {
+																	"__type" : "time",
+																	"time" : {
+																		"__type" : "dateAndTime",
+																		"dateAndTimeString" : "2025-10-31T10:25:17.289249-04:00"
+																	}
+																},
+																"uid" : {
+																	"__type" : "uid",
+																	"uidString" : "q+8h3db+DQC8ZuVjDxvQvw=="
+																},
+																"paragraphStyle" : {
+																	"__type" : "textStyle"
+																},
+																"string" : "[[Define Value Collection]]"
 															}
 														]
 													},
@@ -1555,7 +1630,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-11-20T11:13:03.381941-05:00"
+															"dateAndTimeString" : "2025-12-01T09:41:30.348061-05:00"
 														}
 													},
 													"editEmail" : {
@@ -1566,17 +1641,17 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2025-11-20T11:14:05.427947-05:00"
+															"dateAndTimeString" : "2025-12-01T09:42:00.590861-05:00"
 														}
 													},
 													"uid" : {
 														"__type" : "uid",
-														"uidString" : "UQAyKbH4REqsLt7VRqmCbw=="
+														"uidString" : "lYsYF4CnSM+ZgK+VPI/BHQ=="
 													},
 													"paragraphStyle" : {
 														"__type" : "textStyle"
 													},
-													"string" : "[[Generate Several Classes and Relationships For Defined Patterns]]"
+													"string" : "[[Value Objects Definition Patterns]]"
 												},
 												{
 													"__type" : "textSnippet",

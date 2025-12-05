@@ -30,10 +30,13 @@ LcsLocalCollectionSlotBuilder >> _populateSlotModel [
 { #category : 'gt views' }
 LcsLocalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
-	(aUmlModel classModelForClassname: self targetClassName asString)
-		addAssociation: self slotName toModelNamed: self slotTypes first.
-	(aUmlModel classModelForClass: self slotTypes first)
-		addAssociation: 'parent' toModelNamed: self targetClassName
+	aUmlModel
+		addAssociation: self slotName
+			from: self targetClassName
+			to: self slotTypes first asString;
+		addAssociation: 'parent'
+			from: self slotTypes first asString
+			to: self targetClassName
 ]
 
 { #category : 'gt views' }

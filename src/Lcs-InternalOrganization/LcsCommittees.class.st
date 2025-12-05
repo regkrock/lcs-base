@@ -5,3 +5,8 @@ Class {
 	#package : 'Lcs-InternalOrganization',
 	#tag : 'Core'
 }
+
+{ #category : 'organization model' }
+LcsCommittees >> internalOrganization [
+	^ self parent internalOrganization
+]

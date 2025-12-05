@@ -1,58 +1,176 @@
 Class {
 	#name : 'LcsInstanceInLocalCollectionSlot',
-	#superclass : 'LcsMemberOfCollectionSlot',
+	#superclass : 'LcsFacadeSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
 }
 
-{ #category : 'slot model' }
+{ #category : 'slot access' }
 LcsInstanceInLocalCollectionSlot >> _currentSlotVarIn: aDomainObject [
-	^ (aDomainObject perform: self collectionSlotName asSymbol)
-		findItemMatchingAddressType: self typeCode
+	^ (self targetCollectionIn: aDomainObject)
+		findItemIn: self targetSlotPath
+		matching: self targetItem
+		ifNone: [ self initialValueBlock cull: aDomainObject cull: self ]
+]
+
+{ #category : 'gt views' }
+LcsInstanceInLocalCollectionSlot >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	aUmlModel
+		addAssociation: self collectionSlotName
+			from: self domainClass
+			to: self domainCollectionClass;
+		addAssociation: self selectionPath
+			from: self domainCollectionClass
+			to: self domainCollectionElementClass
+]
+
+{ #category : 'gt views' }
+LcsInstanceInLocalCollectionSlot >> addClassesToUmlModel: umlModel [ 
+	super addClassesToUmlModel: umlModel.
+	umlModel addClass: self domainCollectionClass.
+	self slotTypes notEmpty
+		ifTrue: [ umlModel addClassNamed: self domainCollectionElementClass ]
+]
+
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlot >> allowNilDescription [
+	<magritteDescription>
+	^ super allowNilDescription
+		beReadOnly;
+		yourself
+]
+
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlot >> allowNullDescription [
+	<magritteDescription>
+	^ super allowNullDescription
+		beReadOnly;
+		yourself
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> collectionSlotName [
-	^ self propertyAt: 'collectionSlotName' ifAbsent: []
+	^ self properties at: 'collectionSlotName'
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> collectionSlotName: aString [ 
-	self propertyAt: 'collectionSlotName' put: aString
+	self properties at: 'collectionSlotName' put: aString
 ]
 
-{ #category : 'defaults' }
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlot >> collectionSlotNameDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Collection Slot Name';
+		priority: 4;
+		accessor: #collectionSlotName;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter a unique slot name of at least two characters in length';
+		addCondition: [ :aValue | aValue asString trim asSymbol allSatisfy: [ :each | each isAlphaNumeric ] ] labelled: 'Slot Names can contain only alphanumerics';
+		beRequired
+]
+
+{ #category : 'slot access' }
 LcsInstanceInLocalCollectionSlot >> defaultInitialValueBlock [
-	^ [ :parentDomainObject :slot | 
-	(parentDomainObject perform: self collectionSlotName asSymbol)
-		findItemMatchingAddressType: slot typeCode ]
+	^ [ :parentDomainObject :slot | (slot targetCollectionIn: parentDomainObject) defaultInstance ]
 ]
 
-{ #category : 'slot model' }
-LcsInstanceInLocalCollectionSlot >> hasPermissionToWriteSlotOf: aDomainObject [
-	self securityModule
-		ifNotNil: [ :securityModule | securityModule hasPermissionToAddToSlot: (aDomainObject perform: self collectionSlotName asSymbol) in: aDomainObject ]
+{ #category : 'querying' }
+LcsInstanceInLocalCollectionSlot >> domainCollectionClass [
+	^ (self domainClass
+		perform: ((self propertyAt: 'collectionSlotName') , 'SlotDefinition') asSymbol)
+		slotTypes first
 ]
 
-{ #category : 'asking' }
+{ #category : 'gt views' }
+LcsInstanceInLocalCollectionSlot >> domainCollectionElementClass [
+	^ self slotTypes first
+]
+
+{ #category : 'initialize' }
+LcsInstanceInLocalCollectionSlot >> initialize [
+	super initialize.
+	self targetSlotPath: OrderedCollection new.
+	self collectionSlotName: ''.
+	self targetItem: ''
+]
+
+{ #category : 'gt views' }
+LcsInstanceInLocalCollectionSlot >> selectionPath [
+	| targetPathStream |
+	targetPathStream := WriteStream on: String new.
+	(self propertyAt: 'targetSlotPath') do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
+	targetPathStream nextPutAll: ' = '; nextPutAll: (self propertyAt: 'targetItem') printString.
+	^ targetPathStream contents
+]
+
+{ #category : 'slot access' }
+LcsInstanceInLocalCollectionSlot >> slotVarPut: anObject in: aTargetDomainObject [
+	"self verifyCanAdd: anObject."
+	(aTargetDomainObject slotDefinitionNamed: self collectionSlotName)
+		add: anObject to: aTargetDomainObject.
+	"(self targetCollectionIn: aTargetDomainObject) add: anObject."
+]
+
+{ #category : 'slot access' }
 LcsInstanceInLocalCollectionSlot >> targetCollectionIn: aDomainObject [
 	^ aDomainObject perform: self collectionSlotName asSymbol
 ]
 
 { #category : 'properties' }
-LcsInstanceInLocalCollectionSlot >> typeCode [
-	^ self propertyAt: 'typeCode' ifAbsent: [ '' ]
+LcsInstanceInLocalCollectionSlot >> targetItem [
+	^ self properties at: 'targetItem' ifAbsentPut: [ '' ]
 ]
 
 { #category : 'properties' }
-LcsInstanceInLocalCollectionSlot >> typeCode: aString [ 
-	self propertyAt: 'typeCode' put: aString
+LcsInstanceInLocalCollectionSlot >> targetItem: aString [ 
+	self properties at: 'targetItem' put: aString
 ]
 
-{ #category : 'slot model' }
-LcsInstanceInLocalCollectionSlot >> updateVariableIn: aDomainObject oldValue: anExistingObject with: aTransformedObject [
-	self currentUnitOfWork
-		addPendingAddOf: aTransformedObject
-		to: (self targetCollectionIn: aDomainObject)
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlot >> targetItemDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Target Item';
+		priority: 6;
+		accessor: #targetItem;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter the name of the target item';
+		beRequired
+]
+
+{ #category : 'properties' }
+LcsInstanceInLocalCollectionSlot >> targetSlotPath [
+	^ self properties at: 'targetSlotPath'
+]
+
+{ #category : 'properties' }
+LcsInstanceInLocalCollectionSlot >> targetSlotPath: aSlotNamesCollection [ 
+	self properties at: 'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
+]
+
+{ #category : 'magritte' }
+LcsInstanceInLocalCollectionSlot >> targetSlotPathDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  label: 'Target Slot Path';
+			accessor: (LcsMAPluggableAccessor 
+						accessors: #(#targetSlotPath)
+						read: [ :selectors | selectors ] 
+						write: [ :aModel :setter :collection | 
+							aModel perform: setter with: (collection collect: [ :each | each asSymbol ]) ]);
+			classes: { String};
+			priority: 35;
+			beModifiable;
+			labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+			blocListStencil: (
+				self
+					taggerStencilWithCompletion: GtClassesCompletionStrategy new
+					andContextMenuBlock: nil);
+			beRequired
 ]

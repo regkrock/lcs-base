@@ -7,3 +7,8 @@ Class {
 	#package : 'Lcs-BaseTests',
 	#tag : 'Tests'
 }
+
+{ #category : 'collection' }
+LxxOrderedCollection >> includes: anObject [
+	^ self collection includes: anObject
+]
