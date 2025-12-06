@@ -495,7 +495,7 @@ LcsBaseDomainObject class >> virtualSlotDefinitionPragmas [
 
 { #category : 'slot access' }
 LcsBaseDomainObject >> _slotVarNamed: aSlotName [
-	"Return the value of the instance variable in me with that name"
+	"Return the value of the instance variable in me with that name" 
 	^ (self slotDefinitionNamed: aSlotName) _currentSlotVarIn: self
 ]
 
