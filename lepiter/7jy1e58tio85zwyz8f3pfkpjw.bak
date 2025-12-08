@@ -5,7 +5,7 @@
 		"__type" : "snippets",
 		"items" : [
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "exampleSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-26T13:43:42.51884-05:00"
+						"dateAndTimeString" : "2025-12-08T14:44:14.912413-05:00"
 					}
 				},
 				"editEmail" : {
@@ -29,14 +29,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-26T15:51:08.367398-05:00"
+						"dateAndTimeString" : "2025-12-08T14:44:14.912413-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "Sytli3KTSOKVEFLIAnPZ6g=="
+					"uidString" : "BL4OzxTiTxiY3q44jDYeIw=="
 				},
-				"code" : "LcsApplicationEnvironment activeApplicationEnvironment "
+				"exampleSelector" : "ui",
+				"previewHeight" : 1000,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "LcsApplicationEnvironmentUI",
+				"codeExpanded" : true,
+				"previewExpanded" : false,
+				"noCode" : false
 			}
 		]
 	},
