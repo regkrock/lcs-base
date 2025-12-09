@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsGlobalCollectionReferenceSlotBuilder',
-	#superclass : 'LcsAccessorSlotBuilder',
+	#superclass : 'LcsDomainObjectSlotBuilder',
 	#instVars : [
 		'collectionClassName'
 	],

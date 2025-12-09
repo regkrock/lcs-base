@@ -73,7 +73,7 @@ LcsAccessorSlot >> _slotVarPut: anObject in: aDomainObject [
 
 { #category : 'post update actions' }
 LcsAccessorSlot >> addPostUpdateAction: anUpdateAction [
-	self postUpdateActions addUpdateAction: anUpdateAction
+	self postUpdateActions addAction: anUpdateAction
 ]
 
 { #category : 'slot definitions' }
@@ -513,7 +513,7 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 ]
 
 { #category : 'validations' }
-LcsAccessorSlot >> removePostUpdateAction: anUpdateAction [
+LcsAccessorSlot >> removeAction: anUpdateAction [
 	self postUpdateActions remove: anUpdateAction
 ]
 

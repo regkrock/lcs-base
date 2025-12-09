@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsUpdateActions',
+	#name : 'LcsPostAddActions',
 	#superclass : 'LcsSlotActions',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -7,33 +7,38 @@ Class {
 }
 
 { #category : 'magritte' }
-LcsUpdateActions >> actionClass [
-	^ LcsUpdateAction
+LcsPostAddActions >> actionClass [
+	^ LcsPostAddAction
 ]
 
 { #category : 'magritte' }
-LcsUpdateActions >> actionsLabel [
-	^ 'Post Update Actions'
+LcsPostAddActions >> actionsLabel [
+	^ 'Post Add Actions'
 ]
 
 { #category : 'conditions' }
-LcsUpdateActions >> execute: aValue [
+LcsPostAddActions >> execute: aValue [
 	self collection do: [ :eachAction| eachAction execute: aValue ]
 ]
 
 { #category : 'conditions' }
-LcsUpdateActions >> execute: aValue context: aDomainObject [
+LcsPostAddActions >> execute: aValue context: aDomainObject [
 	self collection do: [ :eachAction | eachAction execute: aValue context: aDomainObject ]
 	
 ]
 
 { #category : 'conditions' }
-LcsUpdateActions >> execute: aValue context: aDomainObject oldValue: anOldValue [
+LcsPostAddActions >> execute: aValue context: aDomainObject oldValue: anOldValue [
 	self collection do: [ :eachAction | eachAction execute: aValue context: aDomainObject oldValue: anOldValue ]
 ]
 
 { #category : 'magritte' }
-LcsUpdateActions >> updateActionsDescription [
+LcsPostAddActions >> postAddActionsDescription [
 	<magritteDescription>
 	^ self actionsDescription
+]
+
+{ #category : 'conditions' }
+LcsPostAddActions >> removePostAddAction: aPostAddAction [
+	^ self remove: aPostAddAction ifAbsent: []
 ]

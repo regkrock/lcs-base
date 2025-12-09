@@ -372,6 +372,18 @@ LcsSlotCreationForm >> packageAndTagName: anObject [
 ]
 
 { #category : 'magritte' }
+LcsSlotCreationForm >> postAddActionsDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #postAddActions
+]
+
+{ #category : 'magritte' }
+LcsSlotCreationForm >> postRemoveActionsDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #postRemoveActions
+]
+
+{ #category : 'magritte' }
 LcsSlotCreationForm >> postUpdateActionsDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #postUpdateActions
@@ -421,7 +433,7 @@ LcsSlotCreationForm >> selectInNavigationModel: aNavigationModel anInstance: anI
 LcsSlotCreationForm >> slotBuilderClass [
 	self slotClassWithSuperclasses do: [ :eachTargetSlotClass |
 		LcsBaseSlotBuilder allSubclasses do: [ :eachSlotBuilderClass |
-			eachSlotBuilderClass slotClass = eachTargetSlotClass
+			(eachSlotBuilderClass volunteersFor: eachTargetSlotClass)
 				ifTrue: [ ^ eachSlotBuilderClass ] ] ].
 	^ LcsAccessorSlotBuilder
 ]

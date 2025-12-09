@@ -32,7 +32,7 @@ LcsLibraryItem class >> collectionSlotName [
 { #category : 'slot definitions' }
 LcsLibraryItem class >> itemAuthorsSlotDefinition [
 	<slotDefinition>
-	^LcsSecondaryCollectionSlot new
+	^LcsLocalCollectionSlot new
 		slotName: 'itemAuthors';
 		addSlotType: LcsItemAuthors; 
 		addCollectionMemberType: LcsAuthor;

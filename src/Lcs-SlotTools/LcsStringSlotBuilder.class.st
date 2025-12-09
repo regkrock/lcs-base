@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsStringSlotBuilder',
-	#superclass : 'LcsAccessorSlotBuilder',
+	#superclass : 'LcsSmalltalkObjectSlotBuilder',
 	#category : 'Lcs-SlotTools',
 	#package : 'Lcs-SlotTools'
 }

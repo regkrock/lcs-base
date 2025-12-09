@@ -124,7 +124,7 @@ LcsAccessorSlotTest >> testRemovingPostUpdateAction [
 	self subject: LcsAccessorSlotExamples new accessorSlotWithDummyPostUpdateAction.
 	self assert: self subject postUpdateActions collectionSize equals: 1.
 	updateAction := self subject postUpdateActions collection any.
-	self subject removePostUpdateAction: updateAction.
+	self subject removeAction: updateAction.
 	self assert: self subject postUpdateActions collectionSize equals: 0.
 
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsValueObjectsGlobalCollectionSlot',
-	#superclass : 'LcsPrimaryCollectionSlot',
+	#superclass : 'LcsDomainCollectionSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
@@ -10,6 +10,11 @@ Class {
 LcsValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
 	self populateCollection: (aDomainObject perform: self slotName asSymbol) 
+]
+
+{ #category : 'testing' }
+LcsValueObjectsGlobalCollectionSlot >> isGlobalCollectionSlot [
+	^ true
 ]
 
 { #category : 'properties' }

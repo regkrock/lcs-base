@@ -2,9 +2,9 @@ Class {
 	#name : 'LcsLegalEntity',
 	#superclass : 'LcsDomainObject',
 	#instVars : [
-		'mainAddress',
-		'phoneNumber',
-		'emailAddresses'
+		'emailAddresses',
+		'postalAddresses',
+		'phoneNumbers'
 	],
 	#category : 'Lcs-LegalEntities',
 	#package : 'Lcs-LegalEntities'
@@ -32,25 +32,24 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 ]
 
 { #category : 'slot definitions' }
-LcsLegalEntity class >> mainAddressSlotDefinition [
+LcsLegalEntity class >> phoneNumbersSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfGlobalCollectionSlot new
-			addSlotType: LcsAddress;
-			slotName: 'mainAddress';
-			collectionSlotName: 'addresses';
-			collectionSlotModuleName: 'Geography Module';
+	^ LcsLocalCollectionSlot new
+			slotName: 'phoneNumbers';
+			addSlotType: LcsPhoneNumbers;
+			addCollectionMemberType: LcsPhoneNumber;
+			collectionClass: IdentitySet;
 			yourself
 ]
 
 { #category : 'slot definitions' }
-LcsLegalEntity class >> phoneNumberSlotDefinition [
+LcsLegalEntity class >> postalAddressesSlotDefinition [
 	<slotDefinition>
-	^ LcsMemberOfGlobalCollectionSlot new
-			"initialValueBlock: [ :domainParent :slot | slot defaultInstance ];"
-			addSlotType: LcsPhoneNumber;
-			slotName: 'phoneNumber';
-			collectionSlotName: 'phoneNumbers';
-			collectionSlotModuleName: 'Legal Entities Module';
+	^ LcsLocalCollectionSlot new
+			slotName: 'postalAddresses';
+			addSlotType: LcsAddresses;
+			addCollectionMemberType: LcsAddress;
+			collectionClass: IdentitySet;
 			yourself
 ]
 
@@ -80,21 +79,21 @@ LcsLegalEntity >> hasContactWithFirstName: aFirstName familyName: aFamilyName [
 ]
 
 { #category : 'accessing' }
-LcsLegalEntity >> mainAddress [
-	^ self slotVarNamed: 'mainAddress'
+LcsLegalEntity >> phoneNumbers [
+	^ self slotVarNamed: 'phoneNumbers'
 ]
 
 { #category : 'accessing' }
-LcsLegalEntity >> mainAddress: anObject [
-	self slotVarNamed: 'mainAddress' put: anObject
+LcsLegalEntity >> phoneNumbers: anObject [
+	self slotVarNamed: 'phoneNumbers' put: anObject
 ]
 
 { #category : 'accessing' }
-LcsLegalEntity >> phoneNumber [
-	^ self slotVarNamed: 'phoneNumber'
+LcsLegalEntity >> postalAddresses [
+	^ self slotVarNamed: 'postalAddresses'
 ]
 
 { #category : 'accessing' }
-LcsLegalEntity >> phoneNumber: anObject [
-	self slotVarNamed: 'phoneNumber' put: anObject
+LcsLegalEntity >> postalAddresses: anObject [
+	self slotVarNamed: 'postalAddresses' put: anObject
 ]

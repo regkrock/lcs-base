@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSingletonValueObjectsGlobalCollectionSlot',
-	#superclass : 'LcsPrimaryCollectionSlot',
+	#superclass : 'LcsDomainCollectionSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
@@ -16,6 +16,11 @@ LcsSingletonValueObjectsGlobalCollectionSlot >> initialize [
 LcsSingletonValueObjectsGlobalCollectionSlot >> initializeSlotValueIn: aDomainObject [
 	super initializeSlotValueIn: aDomainObject.
 	self populateCollection
+]
+
+{ #category : 'testing' }
+LcsSingletonValueObjectsGlobalCollectionSlot >> isGlobalCollectionSlot [
+	^ true
 ]
 
 { #category : 'load' }

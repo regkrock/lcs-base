@@ -1,3 +1,6 @@
+"
+This is for slots that can be read and written by users with the appropriate authority
+"
 Class {
 	#name : 'LcsAccessorSlotBuilder',
 	#superclass : 'LcsBaseSlotBuilder',

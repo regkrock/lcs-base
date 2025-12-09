@@ -381,7 +381,7 @@ LcsSlotDefintionMethodBuilder >> validatePostUpdateActions: enteredPostUpdateAct
 	enteredPostUpdateActions
 		do: [ :eachEnteredPostUpdateAction | 
 			| slotPostUpdateAction |
-			slotPostUpdateAction := slotPostUpdateActions updateActionWithDescription: eachEnteredPostUpdateAction description.
+			slotPostUpdateAction := slotPostUpdateActions actionWithDescription: eachEnteredPostUpdateAction description.
 			self assert: slotPostUpdateAction notNil.
 			self assert: eachEnteredPostUpdateAction description equals: slotPostUpdateAction description.
 			self assert: eachEnteredPostUpdateAction actionBlock asString equals: slotPostUpdateAction actionBlock asString]

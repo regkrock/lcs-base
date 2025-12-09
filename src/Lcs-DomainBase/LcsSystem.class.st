@@ -31,7 +31,7 @@ LcsSystem class >> defaultModuleName [
 { #category : 'slot definitions' }
 LcsSystem class >> globalCollectionsSlotDefinition [
 	<slotDefinition>
-	^ LcsSecondaryCollectionSlot new
+	^ LcsLocalCollectionSlot new
 		slotName: 'globalCollections';
 		addSlotType: LcsGlobalCollections;
 		addCollectionMemberType: LcsDomainCollection;
@@ -75,7 +75,7 @@ LcsSystem class >> systemBootstrapDomainClasses [
 { #category : 'system model' }
 LcsSystem class >> systemSlotModelSlotDefinition [
 	<slotDefinition>
-	^ LcsSecondaryCollectionSlot new
+	^ LcsLocalCollectionSlot new
 		slotName: 'systemSlotModel';
 		addSlotType: LcsSystemSlotModel;
 		addCollectionMemberType: LcsSlotModel;

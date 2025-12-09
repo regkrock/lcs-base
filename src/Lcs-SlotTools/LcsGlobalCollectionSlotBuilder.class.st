@@ -1,13 +1,6 @@
 Class {
 	#name : 'LcsGlobalCollectionSlotBuilder',
-	#superclass : 'LcsAccessorSlotBuilder',
-	#instVars : [
-		'slotClass',
-		'targetModule',
-		'targetModuleName',
-		'collectionClass',
-		'slotTypeClassName'
-	],
+	#superclass : 'LcsDomainCollectionSlotBuilder',
 	#category : 'Lcs-SlotTools',
 	#package : 'Lcs-SlotTools'
 }

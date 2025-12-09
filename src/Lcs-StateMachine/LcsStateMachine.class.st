@@ -56,7 +56,7 @@ LcsStateMachine class >> startStateSlotDefinition [
 { #category : 'slot definitions' }
 LcsStateMachine class >> stateTransitionsSlotDefinition [
 	<slotDefinition>
-	^ LcsSecondaryCollectionSlot new
+	^ LcsLocalCollectionSlot new
 		slotName: 'stateTransitions';
 		addSlotType: LcsStateMachineTransitions; 
 		addCollectionMemberType: LcsStateMachineStateTransition;

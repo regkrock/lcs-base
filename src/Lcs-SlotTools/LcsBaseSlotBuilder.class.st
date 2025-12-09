@@ -13,9 +13,21 @@ Class {
 	#package : 'Lcs-SlotTools'
 }
 
+{ #category : 'testing' }
+LcsBaseSlotBuilder class >> isAbstractSlotBuilder [
+	[ self slotClass ] on: SubclassResponsibility do: [:s | ^ true ].
+	^ false
+]
+
 { #category : 'con' }
 LcsBaseSlotBuilder class >> slotClass [
-	"Subclasses can override this method to provide a default"
+	self subclassResponsibility
+]
+
+{ #category : 'testing' }
+LcsBaseSlotBuilder class >> volunteersFor: aSlotClass [
+	self isAbstractSlotBuilder ifTrue: [ ^ false ].
+	^ self slotClass = aSlotClass
 ]
 
 { #category : 'properties' }
@@ -115,6 +127,11 @@ LcsBaseSlotBuilder >> initializeJobSteps [
 LcsBaseSlotBuilder >> installCode [
 	self traceStep: 'installCode'.
 	self jobSteps installCode
+]
+
+{ #category : 'testing' }
+LcsBaseSlotBuilder >> isAbstractSlotBuilder [
+	^ self class isAbstractSlotBuilder
 ]
 
 { #category : 'magritte - support' }

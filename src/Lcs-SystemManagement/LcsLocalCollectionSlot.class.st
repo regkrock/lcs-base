@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsLocalCollectionSlot',
-	#superclass : 'LcsPrimaryCollectionSlot',
+	#superclass : 'LcsDomainCollectionSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'

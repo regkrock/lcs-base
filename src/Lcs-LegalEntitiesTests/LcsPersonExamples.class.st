@@ -33,7 +33,7 @@ LcsPersonExamples >> johnFreeman [
 	| person |
 	self ensureCurrentSystemIsDemoSystem.
 	person := 
-		LcsPerson new
+		self newPerson
 			familyName: 'Freeman';
 			firstName: 'John';
 			middleNames: 'Edgar';
@@ -50,11 +50,10 @@ LcsPersonExamples >> johnFreeman [
 	self assert: person title code = 'mr'.
 	self assert: person fullName = 'John Edgar Freeman'.
 	self assert: person entityName = 'John Edgar Freeman'.
-	self assert: (person mainAddress isKindOf: LcsAddress).
-	self assert: (person emailAddresses isKindOf: LcsEmailAddresses).
+	self assert: person postalAddresses hasNoElements.
 	self assert: person emailAddresses hasNoElements.
+	self assert: person phoneNumbers hasNoElements.
 	self currentSystem legalEntitiesModule persons includes: person.
-	self assert: person emailAddresses hasNoElements.
 
 	^ person
 ]
@@ -136,6 +135,31 @@ LcsPersonExamples >> johnFreemanWorkEmail [
 		emailAddressType: 'work';
 		email: 'johnfreemanWork@gmail.com';
 		yourself
+]
+
+{ #category : 'examples' }
+LcsPersonExamples >> newPerson [
+	<gtExample>
+	| person |
+	self ensureCurrentSystemIsDemoSystem.
+	person := LcsPerson new.
+	self assert: person title code equals: 'unknown'.
+	self assert: person familyName isEmpty.
+	self assert: person firstName isEmpty.
+	self assert: person middleNames isEmpty.
+	self assert: person dateOfBirth asString equals: Date today asString.
+	self assert: person gender code = 'unknownGender'.
+	self assert: person fullName = '  '.
+	self assert: person entityName = '  '.
+	self assert: (person postalAddresses isKindOf: LcsAddresses).
+	self assert: (person emailAddresses isKindOf: LcsEmailAddresses).
+	self assert: (person phoneNumbers isKindOf: LcsPhoneNumbers).
+	self assert: person postalAddresses hasNoElements.
+	self assert: person emailAddresses hasNoElements.
+	self assert: person phoneNumbers hasNoElements.
+	self currentSystem legalEntitiesModule persons includes: person.
+
+	^ person
 ]
 
 { #category : 'examples' }
