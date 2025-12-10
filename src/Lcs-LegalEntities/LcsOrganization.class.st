@@ -19,6 +19,18 @@ LcsOrganization class >> legalNameSlotDefinition [
 ]
 
 { #category : 'slot definitions' }
+LcsOrganization class >> mainAddressSlotDefinition [
+	<facadeSlotDefinition>
+	^ LcsInstanceInLocalCollectionSlot new
+			slotName: 'mainAddress';
+			addSlotType: LcsAddress;
+			targetSlotPath: #(#addressType #code) asOrderedCollection;
+			collectionSlotName: 'postalAddresses';
+			targetItem: 'work';
+			yourself
+]
+
+{ #category : 'slot definitions' }
 LcsOrganization class >> organizationNameSlotDefinition [
 	<slotDefinition>
 	^ LcsStringSlot new
@@ -61,6 +73,16 @@ LcsOrganization >> location [
 { #category : 'accessing' }
 LcsOrganization >> location: anObject [
 	self slotVarNamed: 'location' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsOrganization >> mainAddress [
+	^ self slotVarNamed: 'mainAddress'
+]
+
+{ #category : 'accessing' }
+LcsOrganization >> mainAddress: anObject [
+	self slotVarNamed: 'mainAddress' put: anObject
 ]
 
 { #category : 'accessing' }

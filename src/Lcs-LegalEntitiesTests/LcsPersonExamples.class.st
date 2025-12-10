@@ -72,29 +72,29 @@ LcsPersonExamples >> johnFreemanWithAddress [
 	<gtExample>
 	| person |
 	person := self johnFreeman.
+	person homeAddress: (LcsAddress new addressType: 'home').
+	person homeAddress city: 'Godfrey'.
+	self assert: person homeAddress city equals: 'Godfrey'.
 	
-	person mainAddress city: 'Godfrey'.
-	self assert: person mainAddress city equals: 'Godfrey'.
+	person homeAddress streetNumber: '12345'.
+	self assert: person homeAddress streetNumber equals: '12345'.
 	
-	person mainAddress streetNumber: '12345'.
-	self assert: person mainAddress streetNumber equals: '12345'.
+	person homeAddress streetName: 'Witt Road'.
+	self assert: person homeAddress streetName equals: 'Witt Road'.
 	
-	person mainAddress streetName: 'Witt Road'.
-	self assert: person mainAddress streetName equals: 'Witt Road'.
+	person homeAddress additionalDeliveryInformation: 'RR 2'.
+	self assert: person homeAddress additionalDeliveryInformation equals: 'RR 2'.
 	
-	person mainAddress additionalDeliveryInformation: 'RR 2'.
-	self assert: person mainAddress additionalDeliveryInformation equals: 'RR 2'.
+	person homeAddress country: 'CAN'.
+	self assert: person homeAddress country isoCode3 equals: 'CAN'.
+	self assert: (person homeAddress province isKindOf: LcsCanadaSubdivision).
+	self assert: (person homeAddress province isoCode = '').
 	
-	person mainAddress country: 'CAN'.
-	self assert: person mainAddress country isoCode3 equals: 'CAN'.
-	self assert: (person mainAddress province isKindOf: LcsCanadaSubdivision).
-	self assert: (person mainAddress province isoCode = '').
+	person homeAddress province: 'ON'.
+	self assert: person homeAddress province isoCode equals: 'ON'.
 	
-	person mainAddress province: 'ON'.
-	self assert: person mainAddress province isoCode equals: 'ON'.
-	
-	person mainAddress postCode: 'K8A 6W8'.
-	self assert: person mainAddress postCode equals: 'K8A 6W8'.
+	person homeAddress postCode: 'K8A 6W8'.
+	self assert: person homeAddress postCode equals: 'K8A 6W8'.
 
 	^ person
 ]

@@ -48,6 +48,18 @@ LcsBasePerson class >> genderSlotDefinition [
 ]
 
 { #category : 'slot definitions' }
+LcsBasePerson class >> homeAddressSlotDefinition [
+	<facadeSlotDefinition>
+	^ LcsInstanceInLocalCollectionSlot new
+			slotName: 'homeAddress';
+			addSlotType: LcsAddress;
+			targetSlotPath: #(#addressType #code) asOrderedCollection;
+			collectionSlotName: 'postalAddresses';
+			targetItem: 'home';
+			yourself
+]
+
+{ #category : 'slot definitions' }
 LcsBasePerson class >> homeEmailAddressSlotDefinition [
 	<facadeSlotDefinition>
 	^ LcsInstanceInLocalCollectionSlot new
@@ -143,6 +155,16 @@ LcsBasePerson >> gender [
 { #category : 'accessing' }
 LcsBasePerson >> gender: anObject [
 	self slotVarNamed: 'gender' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsBasePerson >> homeAddress [
+	^ self slotVarNamed: 'homeAddress'
+]
+
+{ #category : 'accessing' }
+LcsBasePerson >> homeAddress: anObject [
+	self slotVarNamed: 'homeAddress' put: anObject
 ]
 
 { #category : 'accessing' }

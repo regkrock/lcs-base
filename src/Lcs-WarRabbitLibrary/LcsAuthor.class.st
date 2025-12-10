@@ -12,7 +12,7 @@ Class {
 { #category : 'slot definitions' }
 LcsAuthor class >> authorshipSlotDefinition [
 	<slotDefinition>
-	^ LcsSecondaryCollectionSlot new
+	^ LcsDomainCollectionSlot new
 		slotName: 'authorship';
 		addCollectionMemberType: LcsLibraryItem;
 		addSlotType: LcsLibraryItems; 

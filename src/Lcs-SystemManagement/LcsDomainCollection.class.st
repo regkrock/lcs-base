@@ -84,8 +84,8 @@ LcsDomainCollection >> findItemsIn: anAccessPath matching: anObject [
 ]
 
 { #category : 'querying' }
-LcsDomainCollection >> findItemsIn: anAccessPath matching: anObject collection: eachCollection [
-	^ eachCollection select: [ :each | 
+LcsDomainCollection >> findItemsIn: anAccessPath matching: anObject collection: aCollection [
+	^ aCollection select: [ :each | 
 			| result |
 			result := each.
 			anAccessPath do: [ :eachSlotName | result := result perform: eachSlotName asSymbol ].
@@ -99,7 +99,10 @@ LcsDomainCollection >> findWithKey: anObject [
 
 { #category : 'querying' }
 LcsDomainCollection >> findWithKey: anObject ifNone: aBlock [
-	^ self collection detect: [ :each | each key = anObject ] ifNone: aBlock
+	| result |
+	result := self collection detect: [ :each | each key = anObject ] ifNone: [ nil ].
+	result notNil ifTrue: [ ^ result ].
+	^ self pendingAdds detect: [ :each | each key = anObject ] ifNone: aBlock
 ]
 
 { #category : 'gt views' }

@@ -72,13 +72,14 @@ LcsSystem class >> systemBootstrapDomainClasses [
 	^ prebootstrapClasses
 ]
 
-{ #category : 'system model' }
+{ #category : 'slot definitions' }
 LcsSystem class >> systemSlotModelSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'systemSlotModel';
 		addSlotType: LcsSystemSlotModel;
 		addCollectionMemberType: LcsSlotModel;
+		makeDirectUpdateOfVariable;
 		yourself
 ]
 
@@ -190,7 +191,7 @@ LcsSystem >> globalCollections: anObject [
 	self slotVarNamed: 'globalCollections' put: anObject
 ]
 
-{ #category : 'slot model' }
+{ #category : 'gt views' }
 LcsSystem >> gtAllSystemsFor: aView [
 	<gtView>
 	(LcsApplicationEnvironment isInActiveStatus)
@@ -216,11 +217,11 @@ LcsSystem >> gtConfigurationIssuesFor: aView [
 		yourself
 ]
 
-{ #category : 'slot model' }
+{ #category : 'gt views' }
 LcsSystem >> gtSystemSlotModelFor: aView [
 	<gtView>
-	(self systemSlotModel isNil or: [self hasSystemSlotModels not])
-		ifTrue: [ ^ aView empty ].
+	"(self systemSlotModel isNil or: [self hasSystemSlotModels not])
+		ifTrue: [ ^ aView empty ]."
 	^ aView forward
 		title: 'System Slot Model';
 		priority: 201;
@@ -229,7 +230,7 @@ LcsSystem >> gtSystemSlotModelFor: aView [
 		yourself
 ]
 
-{ #category : 'slot model' }
+{ #category : 'gt views' }
 LcsSystem >> gtUnitOfWorkFor: aView [
 	<gtView>
 	self slotModel ifNil: [

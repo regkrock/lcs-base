@@ -218,19 +218,22 @@ LcsModule >> gtApplicationModulesFor: aView [
 		^ aView text
 			title: 'Modules';
 			priority: 1;
-			text: [ 'System Is Not Active' ]].
+			text: [ 'System Is Not Active' ];
+			actionUpdateButton].
 	(self modules isNil or: [ self modules hasNoElements ])
 		ifTrue: [ 
 			^ aView list
 				title: 'Modules';
 				priority: 1;
 				items: #('Has no submodules');
+				actionUpdateButton;
 				yourself ].
 	^ aView forward
 		title: 'Modules';
 		priority: 1;
 		object: [ self modules ];
 		view: #gtApplicationModulesFor:;
+		actionUpdateButton;
 		yourself
 ]
 

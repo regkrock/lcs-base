@@ -21,6 +21,7 @@ LcsSystemSlotModel class >> slotModelsSlotDefinition [
 	<slotDefinition>
 	^ LcsIdentityDictionarySlot new
 		slotName: 'slotModels';
+		makeDirectUpdateOfVariable;
 		yourself
 ]
 
@@ -32,7 +33,7 @@ LcsSystemSlotModel >> addToSlotModel: aSlotModel [
 { #category : 'gt views' }
 LcsSystemSlotModel >> gtSystemSlotModelFor: aView [
 	<gtView>
-	self slotModels ifEmpty: [ ^ aView empty ].
+	"self slotModels ifEmpty: [ ^ aView empty ]."
 	^ aView columnedTree 
 		title: 'Slot Model';
 		priority: 2.5;
@@ -44,6 +45,7 @@ LcsSystemSlotModel >> gtSystemSlotModelFor: aView [
 			width: 200;
 		column: 'Value' text: [ :each | each item displayString ];
 		send: #item;
+		actionUpdateButton;
 		yourself
 ]
 
