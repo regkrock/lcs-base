@@ -96,6 +96,8 @@ LcsPersonExamples >> johnFreemanWithAddress [
 	person homeAddress postCode: 'K8A 6W8'.
 	self assert: person homeAddress postCode equals: 'K8A 6W8'.
 
+	self assert: ((person currentSystem moduleNamed: 'Geography Module') addresses includes: person homeAddress).
+	
 	^ person
 ]
 

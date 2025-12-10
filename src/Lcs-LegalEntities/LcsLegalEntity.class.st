@@ -14,12 +14,20 @@ Class {
 LcsLegalEntity class >> emailAddressesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
-			slotName: 'emailAddresses';
-			addSlotType: LcsEmailAddresses;
-			collectionClass: IdentitySet;
-			dependentGlobalCollectionModuleName: 'Legal Entities Module';
-			dependentGlobalCollectionSlotName: 'emailAddresses';
-			yourself
+		slotName: 'emailAddresses';
+		addSlotType: LcsEmailAddresses;
+			addCollectionMemberType: LcsEmailAddress;
+		addPostAddAction: (LcsPostAddAction new
+				description: 'Add to global collection';
+				actionBlock: [ :newValue :parentDomainObject :oldValue | 
+					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+						emailAddresses add: newValue ]);
+		addPostRemoveAction: (LcsPostRemoveAction new
+				description: 'Remove from global collection';
+				actionBlock: [ :newValue :parentDomainObject :oldValue | 
+					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+						emailAddresses remove: newValue ]);
+		yourself
 ]
 
 { #category : 'slot definitions' }
@@ -38,7 +46,16 @@ LcsLegalEntity class >> phoneNumbersSlotDefinition [
 			slotName: 'phoneNumbers';
 			addSlotType: LcsPhoneNumbers;
 			addCollectionMemberType: LcsPhoneNumber;
-			collectionClass: IdentitySet;
+			addPostAddAction: (LcsPostAddAction new
+				description: 'Add to global collection';
+				actionBlock: [ :newValue :parentDomainObject :oldValue | 
+					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+						phoneNumbers add: newValue ]);
+		addPostRemoveAction: (LcsPostRemoveAction new
+				description: 'Remove from global collection';
+				actionBlock: [ :newValue :parentDomainObject :oldValue | 
+					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+						phoneNumbers remove: newValue ]);
 			yourself
 ]
 
@@ -46,11 +63,20 @@ LcsLegalEntity class >> phoneNumbersSlotDefinition [
 LcsLegalEntity class >> postalAddressesSlotDefinition [
 	<slotDefinition>
 	^ LcsLocalCollectionSlot new
-			slotName: 'postalAddresses';
-			addSlotType: LcsAddresses;
-			addCollectionMemberType: LcsAddress;
-			collectionClass: IdentitySet;
-			yourself
+		slotName: 'postalAddresses';
+		addSlotType: LcsAddresses;
+		addCollectionMemberType: LcsAddress;
+		addPostAddAction: (LcsPostAddAction new
+				description: 'Add address to the global addresses collection';
+				actionBlock: [ :newValue :parentDomainObject :oldValue | 
+					(parentDomainObject currentSystem moduleNamed: 'Geography Module') addresses
+						add: newValue ]);
+		addPostRemoveAction: (LcsPostRemoveAction new
+				description: 'Remove from global collection';
+				actionBlock: [ :newValue :parentDomainObject :oldValue | 
+					(parentDomainObject currentSystem moduleNamed: 'Geography Module')
+						addresses remove: newValue ]);
+		yourself
 ]
 
 { #category : 'as yet unclassified' }

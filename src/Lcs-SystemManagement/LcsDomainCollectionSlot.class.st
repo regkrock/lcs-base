@@ -17,6 +17,16 @@ LcsDomainCollectionSlot >> addCollectionMemberType: aClass [
 		ifFalse: [ self collectionMemberTypes add: aClass ]
 ]
 
+{ #category : 'actions' }
+LcsDomainCollectionSlot >> addPostAddAction: anAction [
+	self postAddActions addAction: anAction
+]
+
+{ #category : 'actions' }
+LcsDomainCollectionSlot >> addPostRemoveAction: anAction [
+	self postRemoveActions addAction: anAction
+]
+
 { #category : 'configuration' }
 LcsDomainCollectionSlot >> beIdentitySetCollection [
 	self collectionClass: LcsSmalltalkConfiguration identitySetClass
@@ -123,6 +133,16 @@ LcsDomainCollectionSlot >> postRemoveActions [
 LcsDomainCollectionSlot >> postRemoveActions: aPostRemoveActions [
 	aPostRemoveActions parent: self.
 	self propertyAt: 'postRemoveActions' put: aPostRemoveActions
+]
+
+{ #category : 'actions' }
+LcsDomainCollectionSlot >> removePostAddAction: anAction [
+	self postAddActions removeAction: anAction
+]
+
+{ #category : 'actions' }
+LcsDomainCollectionSlot >> removePostRemoveAction: anAction [
+	self postRemoveActions removeAction: anAction
 ]
 
 { #category : 'verification' }
