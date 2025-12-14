@@ -56,12 +56,26 @@ LcsBaseSlot >> addClassesToUmlModel: umlModel [
 LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
 ]
 
+{ #category : 'code generation' }
+LcsBaseSlot >> addPropertiesTo: aSlotDefintionMethodBuilder [
+	self properties keysAndValuesDo: [ :key :value | 
+		aSlotDefintionMethodBuilder addProperty: key value: value ]
+]
+
 { #category : 'gt views' }
-LcsBaseSlot >> addPropertiesTo: collection [
+LcsBaseSlot >> addPropertyAttributesTo: collection [
 	collection
 		add: '' -> '';
 		add: '------PROPERTIES------' -> ''.
 	collection addAll: self properties associations copy
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> addRefactoringTextDetailsTo: aStream [
+	aStream 
+		nextPutAll: (self domainClass ifNil: ['nil'] ifNotNil: [ self domainClass name ]) ; 
+		nextPutAll:' class >>';
+		nextPutAll: self slotDefinitionSource
 ]
 
 { #category : 'configuration' }
@@ -211,6 +225,16 @@ LcsBaseSlot >> gtCreateClassAndValueElementFor: aColumn [
 ]
 
 { #category : 'gt views' }
+LcsBaseSlot >> gtRefactoringChangeOn: aView [
+	<gtView>
+	^ aView text
+		title: 'Refactoring';
+		priority: 19;
+		text: [ self refactoringText asRopedText ];
+		actionUpdateButton
+]
+
+{ #category : 'gt views' }
 LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -235,7 +259,7 @@ LcsBaseSlot >> gtSlotDefinitionAttributes [
 			add: 'pragma' -> self slotPragmaName ;
 			add: 'slotDefinitionClass' -> self class;
 			yourself.
-	self addPropertiesTo: collection.
+	self addPropertyAttributesTo: collection.
 	self addOtherSlotDefinitionDetailsTo: collection.
 	^ collection
 ]
@@ -419,6 +443,14 @@ LcsBaseSlot >> propertyAt: aKey put: anObject [
 	^ self properties at: aKey put: anObject 
 ]
 
+{ #category : 'gt views' }
+LcsBaseSlot >> refactoringText [
+	| stream |
+	stream := WriteStream on: String new.
+	self addRefactoringTextDetailsTo: stream.
+	^ stream contents
+]
+
 { #category : 'configuration' }
 LcsBaseSlot >> removeSlotType: aClass [
 	self assert: aClass isClass.
@@ -467,6 +499,12 @@ LcsBaseSlot >> slotClassDescription [
 { #category : 'asking' }
 LcsBaseSlot >> slotDefinitionSelector [
 	^ (self slotName asString , 'SlotDefinition') asSymbol
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> slotDefinitionSource [
+	^ (LcsSlotDefinitionMethodFormatter newOnSlotDefinition: self)
+		methodSource
 ]
 
 { #category : 'defaults' }
@@ -551,8 +589,8 @@ LcsBaseSlot >> slotTypesDescription [
 						read: [ :classes | classes collect: [ :each | each name] ] 
 						write: [ :aModel :setter :collection | 
 							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
-		"classes: { Class};"
-		kind: String;
+		classes: { Object};
+		kind: Object;
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocShortcuts: [ 
 			{BlShortcutWithAction new

@@ -1,1 +1,1 @@
-Package { #name : #'Lcs-Calendar' }
+Package { #name : 'Lcs-Calendar' }

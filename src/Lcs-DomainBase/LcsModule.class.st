@@ -196,11 +196,6 @@ LcsModule >> domainCollections: anObject [
 	domainCollections := anObject
 ]
 
-{ #category : 'modules' }
-LcsModule >> geographyModule [
-	^ self moduleNamed: 'Geography Module'
-]
-
 { #category : 'accessing' }
 LcsModule >> globalCollectionItems [
 	self slotModel ifNil: [ ^ OrderedCollection new ].
@@ -322,11 +317,6 @@ LcsModule >> installModule: aModuleClass [
 	aModuleClass initializeSlotModel.
 	self buildModule: aModuleClass
 
-]
-
-{ #category : 'modules' }
-LcsModule >> legalEntitiesModule [
-	^ self moduleNamed: 'Legal Entities Module'
 ]
 
 { #category : 'initialize' }

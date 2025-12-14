@@ -39,7 +39,7 @@ LcsAddress class >> addressTypeSlotDefinition [
 			prevalidationTransformBlock: [ :value :slot | 
 				slot targetCollection findItemMatchingCode: value ifNone: [ value ] ];
 			collectionSlotName: 'addressTypes';
-			collectionSlotModuleName: 'Geography Module';
+			collectionSlotModuleName: LcsGeographyModule defaultModuleName;
 			priority: 1;
 			yourself
 ]
@@ -63,7 +63,7 @@ LcsAddress class >> countrySlotDefinition [
 			prevalidationTransformBlock: [ :value :slot | 
 				slot targetCollection findItemMatchingCodeOrName: value ifNone: [ value ] ];
 			collectionSlotName: 'countries';
-			collectionSlotModuleName: 'Geography Module';
+			collectionSlotModuleName: LcsGeographyModule defaultModuleName;
 			priority: 16;
 			addPostUpdateAction: (LcsUpdateSiblingWithCollectionDefault new 
 										description: 'When country changes, update the default province';
@@ -85,7 +85,7 @@ LcsAddress class >> parentSlotDefinition [
 			slotTypes: (OrderedCollection with: LcsAddresses);
 			slotName: 'parent';
 			collectionSlotName: 'addresses';
-			collectionSlotModuleName: 'Geography Module';
+			collectionSlotModuleName: LcsGeographyModule defaultModuleName;
 			yourself
 ]
 

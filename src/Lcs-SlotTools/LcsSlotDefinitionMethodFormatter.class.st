@@ -125,6 +125,7 @@ LcsSlotDefinitionMethodFormatter >> format: aSlotDefinition [
 LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinition: aSlotDefinition [ 
 	self slotTemplate: aSlotDefinition class new.
 	self selector: aSlotDefinition slotDefinitionSelector.
+	self slotPragmaName: (aSlotDefinition slotPragmaName ifNil: [ 'nil' ]).
 	self slotClass: aSlotDefinition class.
 	self properties: aSlotDefinition properties.
 ]

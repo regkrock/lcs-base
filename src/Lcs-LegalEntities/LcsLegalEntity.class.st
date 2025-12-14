@@ -16,16 +16,16 @@ LcsLegalEntity class >> emailAddressesSlotDefinition [
 	^ LcsLocalCollectionSlot new
 		slotName: 'emailAddresses';
 		addSlotType: LcsEmailAddresses;
-			addCollectionMemberType: LcsEmailAddress;
+		addCollectionMemberType: LcsEmailAddress;
 		addPostAddAction: (LcsPostAddAction new
 				description: 'Add to global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
 						emailAddresses add: newValue ]);
 		addPostRemoveAction: (LcsPostRemoveAction new
 				description: 'Remove from global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
 						emailAddresses remove: newValue ]);
 		yourself
 ]
@@ -49,12 +49,12 @@ LcsLegalEntity class >> phoneNumbersSlotDefinition [
 			addPostAddAction: (LcsPostAddAction new
 				description: 'Add to global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
 						phoneNumbers add: newValue ]);
 		addPostRemoveAction: (LcsPostRemoveAction new
 				description: 'Remove from global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: 'Legal Entities Module')
+					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
 						phoneNumbers remove: newValue ]);
 			yourself
 ]
@@ -69,12 +69,12 @@ LcsLegalEntity class >> postalAddressesSlotDefinition [
 		addPostAddAction: (LcsPostAddAction new
 				description: 'Add address to the global addresses collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: 'Geography Module') addresses
+					(parentDomainObject currentSystem moduleNamed: LcsGeographyModule defaultModuleName) addresses
 						add: newValue ]);
 		addPostRemoveAction: (LcsPostRemoveAction new
 				description: 'Remove from global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: 'Geography Module')
+					(parentDomainObject currentSystem moduleNamed: LcsGeographyModule defaultModuleName)
 						addresses remove: newValue ]);
 		yourself
 ]

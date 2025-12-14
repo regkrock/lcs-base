@@ -1,26 +1,28 @@
 Class {
-	#name : #LcsCalendarModule,
-	#superclass : #LcsModule,
-	#category : #'Lcs-Calendar-Core'
+	#name : 'LcsCalendarModule',
+	#superclass : 'LcsModule',
+	#category : 'Lcs-Calendar-Core',
+	#package : 'Lcs-Calendar',
+	#tag : 'Core'
 }
 
-{ #category : #'slot definitions' }
+{ #category : 'slot definitions' }
 LcsCalendarModule class >> configurationSlotDefinition [
 	<slotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsCalendarModule class >> defaultModuleName [
 	^ 'Calendar Module'
 ]
 
-{ #category : #'generated method' }
+{ #category : 'generated method' }
 LcsCalendarModule class >> moduleConfigurationClass [
 	^ LcsCalendarModuleConfiguration
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsCalendarModule class >> owningModules [
 	<owningModule: 'LcsSailingClubSystem' priority: 5>
 ]

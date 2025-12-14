@@ -13,6 +13,6 @@ LcsAddressType class >> parentSlotDefinition [
 			slotTypes: (OrderedCollection with: LcsAddressTypes);
 			slotName: 'parent';
 			collectionSlotName: 'addressTypes';
-			collectionSlotModuleName: 'Geography Module';
+			collectionSlotModuleName: LcsGeographyModule defaultModuleName;
 			yourself
 ]

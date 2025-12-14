@@ -1,6 +1,6 @@
-Extension { #name : #LcsModule }
+Extension { #name : 'LcsModule' }
 
-{ #category : #'*Lcs-Calendar' }
+{ #category : '*Lcs-Calendar' }
 LcsModule >> calendarModule [
-	^ self moduleNamed: 'Calendar Module'
+	^ self moduleNamed: LcsCalendarModule defaultModuleName
 ]

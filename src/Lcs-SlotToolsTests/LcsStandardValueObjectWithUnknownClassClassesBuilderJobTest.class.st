@@ -24,5 +24,5 @@ LcsStandardValueObjectWithUnknownClassClassesBuilderJobTest >> testCreationOfSin
 	self currentCodeBuilderJob execute.
 
 	person := LxxPerson new.
-	self assert: person title identicalTo: (self currentSystem moduleNamed: 'Persons Module') titles defaultInstance
+	self assert: person title identicalTo: (self currentSystem moduleNamed: LxxPersonsModule defaultModuleName) titles defaultInstance
 ]

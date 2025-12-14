@@ -26,5 +26,5 @@ LcsSingletonValueObjectClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	self currentCodeBuilderJob execute.
 
 	person := LxxPerson new.
-	self assert: person gender identicalTo: (self currentSystem moduleNamed: 'Persons Module') genders defaultInstance
+	self assert: person gender identicalTo: (self currentSystem moduleNamed: LxxPersonsModule defaultModuleName) genders defaultInstance
 ]

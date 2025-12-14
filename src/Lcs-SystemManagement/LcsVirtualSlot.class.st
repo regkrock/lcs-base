@@ -28,7 +28,8 @@ LcsVirtualSlot >> defaultValueAccessBlock [
 { #category : 'initialize' }
 LcsVirtualSlot >> initialize [
 	super initialize.
-	self valueAccessBlock: self defaultValueAccessBlock
+	self valueAccessBlock: self defaultValueAccessBlock.
+	self valueAccessor: ''
 ]
 
 { #category : 'slot model' }
@@ -44,20 +45,20 @@ LcsVirtualSlot >> slotVarPut: anObject in: aDomainObject [
 
 { #category : 'accessing' }
 LcsVirtualSlot >> valueAccessBlock [
-	^ valueAccessBlock
+	^ self properties at: 'valueAccessBlock'
 ]
 
 { #category : 'accessing' }
 LcsVirtualSlot >> valueAccessBlock: aBlock [
-	valueAccessBlock := aBlock
+	^ self properties at: 'valueAccessBlock' put: aBlock
 ]
 
 { #category : 'accessing' }
 LcsVirtualSlot >> valueAccessor [
-	^ valueAccessor
+	^ self properties at: 'valueAccessor'
 ]
 
 { #category : 'accessing' }
 LcsVirtualSlot >> valueAccessor: anObject [
-	valueAccessor := anObject asSymbol
+	^ self properties at: 'valueAccessor' put: anObject asSymbol
 ]

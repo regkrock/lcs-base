@@ -449,6 +449,33 @@ LcsAccessorSlot >> persistedSlotVarIn: aDomainObject [
 	^ aDomainObject instVarNamed: self slotName asString
 ]
 
+{ #category : 'magritte' }
+LcsAccessorSlot >> postAddActionsDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  accessor: (MAChainAccessor accessors: #(#postAddActions #collection));
+		  label: 'Post Add Actions';
+		  default: #(  );
+		  classes: { LcsPostAddAction };
+		  priority: 35;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [ LcsPostAddAction new ]
+]
+
 { #category : 'accessing' }
 LcsAccessorSlot >> postUpdateActions [
 	^ self properties at: 'postUpdateActions'
@@ -483,9 +510,7 @@ LcsAccessorSlot >> postUpdateActionsDescription [
 						   left: 0);
 				  padding: (BlInsets all: 5);
 				  background: Color white ];
-		  newItemStencil: [ LcsUpdateAction new
-		  						parent: self postUpdateActions;
-		  						yourself ]
+		  newItemStencil: [ LcsUpdateAction new ]
 ]
 
 { #category : 'properties' }

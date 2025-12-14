@@ -27,7 +27,7 @@ LcsVirtualSlotExamples >> virtualSlot [
 	self assert: slot slotName isNil.
 	self assert: slot slotTypes isEmpty.
 	self assert: slot slotTypes class = OrderedCollection.
-	self assert: slot valueAccessor isNil.
+	self assert: slot valueAccessor isEmpty.
 
 	self
 		assert: slot defaultValueAccessBlock printString
