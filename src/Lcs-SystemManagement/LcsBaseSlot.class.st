@@ -504,7 +504,7 @@ LcsBaseSlot >> slotDefinitionSelector [
 { #category : 'gt views' }
 LcsBaseSlot >> slotDefinitionSource [
 	^ (LcsSlotDefinitionMethodFormatter newOnSlotDefinition: self)
-		methodSource
+		methodSource 
 ]
 
 { #category : 'defaults' }
