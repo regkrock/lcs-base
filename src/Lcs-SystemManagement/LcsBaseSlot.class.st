@@ -5,7 +5,8 @@ Class {
 		'parent',
 		'domainClass',
 		'properties',
-		'comment'
+		'comment',
+		'prgamaSelector'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -54,6 +55,7 @@ LcsBaseSlot >> addClassesToUmlModel: umlModel [
 
 { #category : 'gt views' }
 LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
+	"This hook is provided so subclasses can implement as needed"
 ]
 
 { #category : 'code generation' }
@@ -256,7 +258,7 @@ LcsBaseSlot >> gtSlotDefinitionAttributes [
 	collection := OrderedCollection new
 			add: 'domainClass' -> self newDomainClassName;
 			add: 'slotDefinition' -> self domainClass;
-			add: 'pragma' -> self slotPragmaName ;
+			add: 'pragmaSelector' -> self pragmaSelector ;
 			add: 'slotDefinitionClass' -> self class;
 			yourself.
 	self addPropertyAttributesTo: collection.
@@ -381,6 +383,22 @@ LcsBaseSlot >> parent [
 { #category : 'accessing' }
 LcsBaseSlot >> parent: anObject [
 	parent := anObject
+]
+
+{ #category : 'properties' }
+LcsBaseSlot >> pragmaSelector [
+	^ prgamaSelector ifNil: [ prgamaSelector := self pragmaSelectorBasedOnSlotDefinitionMethod ]
+]
+
+{ #category : 'properties' }
+LcsBaseSlot >> pragmaSelector: aString [
+	prgamaSelector := aString
+]
+
+{ #category : 'asking' }
+LcsBaseSlot >> pragmaSelectorBasedOnSlotDefinitionMethod [
+	self domainClass ifNil: [ ^ nil ].
+	^ (self domainClass pragmaSelectorOf: self slotDefinitionSelector)
 ]
 
 { #category : 'printing' }
@@ -510,7 +528,7 @@ LcsBaseSlot >> slotDefinitionSource [
 { #category : 'defaults' }
 LcsBaseSlot >> slotKind [
 	| string |
-	string := self slotPragmaName.
+	string := self pragmaSelector.
 	string = 'slotDefinition' ifTrue: [ ^ 'accessor' ].
 	^ string copyFrom: 1 to: ((string findString: 'SlotDefinition') - 1)
 ]
@@ -547,12 +565,6 @@ LcsBaseSlot >> slotNameDescription [
 		beReadOnly;
 		beRequired
 
-]
-
-{ #category : 'asking' }
-LcsBaseSlot >> slotPragmaName [
-	self domainClass ifNil: [ ^ nil ].
-	^ (self domainClass pragmaNameOf: self slotDefinitionSelector)
 ]
 
 { #category : 'gt views' }

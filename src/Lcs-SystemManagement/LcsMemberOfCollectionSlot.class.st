@@ -6,11 +6,6 @@ Class {
 	#tag : 'Slot'
 }
 
-{ #category : 'gt views' }
-LcsMemberOfCollectionSlot >> addOtherSlotDefinitionDetailsTo: collection [
-	super addOtherSlotDefinitionDetailsTo: collection
-]
-
 { #category : 'slot model' }
 LcsMemberOfCollectionSlot >> assignParent: aDomainObject to: newValue [
 	"Parent has already been assigned"

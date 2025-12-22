@@ -11,7 +11,7 @@ Class {
 
 { #category : 'instance creation' }
 LcsSlotDefinitionViewItem class >> on: aSlotDefinition [
-	^ (self volunteerFor: aSlotDefinition slotPragmaName) new
+	^ (self volunteerFor: aSlotDefinition pragmaSelectorBasedOnSlotDefinitionMethod) new
 		initializeOn: aSlotDefinition;
 		yourself
 ]
@@ -63,6 +63,11 @@ LcsSlotDefinitionViewItem >> isVirtualSlot [
 ]
 
 { #category : 'slot definition' }
+LcsSlotDefinitionViewItem >> pragmaSelectorBasedOnSlotDefinitionMethod [
+	^ self slotDefinition pragmaSelector
+]
+
+{ #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> priority [
 	^ self slotDefinition priority
 ]
@@ -95,11 +100,6 @@ LcsSlotDefinitionViewItem >> slotKind [
 { #category : 'slot definition' }
 LcsSlotDefinitionViewItem >> slotName [
 	^ self slotDefinition slotName
-]
-
-{ #category : 'slot definition' }
-LcsSlotDefinitionViewItem >> slotPragmaName [
-	^ self slotDefinition slotPragmaName
 ]
 
 { #category : 'slot definition' }

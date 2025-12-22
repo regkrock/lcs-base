@@ -2,7 +2,7 @@ Class {
 	#name : 'LcsSlotDefintionMethodBuilder',
 	#superclass : 'LcsSlotDetailBuilder',
 	#instVars : [
-		'slotPragmaName'
+		'pragmaSelector'
 	],
 	#category : 'Lcs-SlotTools',
 	#package : 'Lcs-SlotTools'
@@ -140,12 +140,12 @@ LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
 
 { #category : 'command' }
 LcsSlotDefintionMethodBuilder >> beFacadeSlot [
-	self slotPragmaName: 'facadeSlotDefinition'
+	self pragmaSelector: 'facadeSlotDefinition'
 ]
 
 { #category : 'command' }
 LcsSlotDefintionMethodBuilder >> beVirtualSlot [
-	self slotPragmaName: 'virtualSlotDefinition'
+	self pragmaSelector: 'virtualSlotDefinition'
 ]
 
 { #category : 'verification' }
@@ -219,7 +219,7 @@ LcsSlotDefintionMethodBuilder >> hasNoSlotTypes [
 { #category : 'initialize' }
 LcsSlotDefintionMethodBuilder >> initialize [
 	super initialize.
-	self slotPragmaName: 'slotDefinition'
+	self pragmaSelector: 'slotDefinition'
 ]
 
 { #category : 'instance  creation' }
@@ -242,6 +242,16 @@ LcsSlotDefintionMethodBuilder >> isValueOfSlotTemplateProperty: aPropertyName sa
 { #category : 'printing' }
 LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
 	^ 'Install slot definition for'
+]
+
+{ #category : 'accessing' }
+LcsSlotDefintionMethodBuilder >> pragmaSelector [
+	^ pragmaSelector
+]
+
+{ #category : 'accessing' }
+LcsSlotDefintionMethodBuilder >> pragmaSelector: aString [
+	pragmaSelector := aString
 ]
 
 { #category : 'properties' }
@@ -306,16 +316,6 @@ LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
 { #category : 'code generation' }
 LcsSlotDefintionMethodBuilder >> slotNameDisplayString [
 	^ self derivedSlotName
-]
-
-{ #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> slotPragmaName [
-	^ slotPragmaName
-]
-
-{ #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> slotPragmaName: aString [
-	slotPragmaName := aString
 ]
 
 { #category : 'property' }

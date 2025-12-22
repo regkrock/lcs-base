@@ -72,17 +72,6 @@ LcsDomainCollectionSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | slot newObjectWithParent: parentDomainObject ]
 ]
 
-{ #category : 'gt views' }
-LcsDomainCollectionSlot >> gtSlotDefinitionAttributes [
-	| attributes |
-	attributes := super gtSlotDefinitionAttributes.
-	attributes detect: [ :each | each key = 'collectionClass' ] ifNone: [
-		attributes add: 'collectionClass' -> nil].
-	^ attributes
-		add: 'collectionMemberTypes' -> self collectionMemberTypesList ;
-		yourself
-]
-
 { #category : 'initialize' }
 LcsDomainCollectionSlot >> initialize [
 	super initialize.

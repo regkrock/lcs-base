@@ -36,14 +36,6 @@ LcsLocalCollectionReferenceSlot >> collectionSlotName: anObject [
 	self propertyAt: 'collectionSlotName' put: anObject
 ]
 
-{ #category : 'gt views' }
-LcsLocalCollectionReferenceSlot >> gtSlotDefinitionAttributes [
-	^ super gtSlotDefinitionAttributes
-		add: 'collectionSlotModuleName' -> self collectionSlotModuleName;
-		add: 'collectionSlotName' -> self collectionSlotName;
-		yourself
-]
-
 { #category : 'slot model' }
 LcsLocalCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The parent is set when the object is created and added to the pending collection"

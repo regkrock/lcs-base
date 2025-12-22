@@ -16,14 +16,6 @@ LcsCollectionReferenceSlot >> collectionSlotName: anObject [
 	self propertyAt: 'collectionSlotName' put: anObject
 ]
 
-{ #category : 'gt views' }
-LcsCollectionReferenceSlot >> gtSlotDefinitionAttributes [
-	^ super gtSlotDefinitionAttributes
-		"add: 'collectionSlotModuleName' -> self collectionSlotModuleName;"
-		add: 'collectionSlotName' -> self collectionSlotName;
-		yourself
-]
-
 { #category : 'slot model' }
 LcsCollectionReferenceSlot >> initializeSlotValueIn: aDomainObject [
 	"The global collection is initialized by the module, not from the parent"

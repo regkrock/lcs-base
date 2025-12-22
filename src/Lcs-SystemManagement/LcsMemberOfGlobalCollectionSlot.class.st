@@ -27,16 +27,6 @@ LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [
 		addAssociation: self slotName toModelNamed: self collectionClassName."
 ]
 
-{ #category : 'gt views' }
-LcsMemberOfGlobalCollectionSlot >> addOtherSlotDefinitionDetailsTo: collection [
-	super addOtherSlotDefinitionDetailsTo: collection.
-	collection
-		add: '' -> '';
-		add: '------Source Collection Info------' -> ''.
-	collection add: 'source collection' ->self collectionSlotName.
-	collection add: 'source module' -> self collectionSlotModuleName
-]
-
 { #category : 'slot model' }
 LcsMemberOfGlobalCollectionSlot >> collectionModule [
 	^ self currentSystem moduleNamed: self collectionSlotModuleName

@@ -323,7 +323,7 @@ LcsBaseDomainObject class >> parentSlotDefinition [
 ]
 
 { #category : 'slot model' }
-LcsBaseDomainObject class >> pragmaNameOf: aSlotDefinitionSelector [
+LcsBaseDomainObject class >> pragmaSelectorOf: aSlotDefinitionSelector [
 	^ (self class pragmas
 		detect: [ :e | e methodSelector = aSlotDefinitionSelector ]
 		ifNone: [ ^ nil ]) selector

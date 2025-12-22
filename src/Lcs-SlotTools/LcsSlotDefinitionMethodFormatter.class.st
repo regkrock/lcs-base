@@ -6,7 +6,7 @@ Class {
 		'selector',
 		'slotClass',
 		'properties',
-		'slotPragmaName'
+		'pragmaSelector'
 	],
 	#category : 'Lcs-SlotTools',
 	#package : 'Lcs-SlotTools'
@@ -125,7 +125,7 @@ LcsSlotDefinitionMethodFormatter >> format: aSlotDefinition [
 LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinition: aSlotDefinition [ 
 	self slotTemplate: aSlotDefinition class new.
 	self selector: aSlotDefinition slotDefinitionSelector.
-	self slotPragmaName: (aSlotDefinition slotPragmaName ifNil: [ 'nil' ]).
+	self pragmaSelector: aSlotDefinition pragmaSelector.
 	self slotClass: aSlotDefinition class.
 	self properties: aSlotDefinition properties.
 ]
@@ -136,7 +136,7 @@ LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinitionMethodBuilder: aSl
 	self selector: aSlotDefinitionMethodBuilder slotDefinitionSelector.
 	self slotClass: (aSlotDefinitionMethodBuilder slotClass ifNil: [ '<missing slot class>' ]).
 	self properties: aSlotDefinitionMethodBuilder properties.
-	self slotPragmaName: aSlotDefinitionMethodBuilder slotPragmaName
+	self pragmaSelector: aSlotDefinitionMethodBuilder pragmaSelector
 ]
 
 { #category : 'format' }
@@ -144,7 +144,7 @@ LcsSlotDefinitionMethodFormatter >> methodSource [
 	| stream streamPostionBeforeAddingProperties |
 	stream := LcsMethodStream new.
 	stream
-		startSlotDefintionSource: self selector pragmaName: self slotPragmaName;
+		startSlotDefintionSource: self selector pragmaName: (self pragmaSelector ifNil: [ 'nil' ]);
 		addSlotDefinitionClassCreatonLine: self slotClass name.
 	self properties isEmpty ifTrue: [ ^ stream contents ].
 
@@ -156,6 +156,16 @@ LcsSlotDefinitionMethodFormatter >> methodSource [
 		ifFalse: [ stream addYourself ].
 
 	^ stream contents
+]
+
+{ #category : 'accessing' }
+LcsSlotDefinitionMethodFormatter >> pragmaSelector [
+	^ pragmaSelector
+]
+
+{ #category : 'accessing' }
+LcsSlotDefinitionMethodFormatter >> pragmaSelector: anObject [
+	pragmaSelector := anObject
 ]
 
 { #category : 'accessing' }
@@ -186,16 +196,6 @@ LcsSlotDefinitionMethodFormatter >> slotClass [
 { #category : 'accessing' }
 LcsSlotDefinitionMethodFormatter >> slotClass: anObject [
 	slotClass := anObject
-]
-
-{ #category : 'accessing' }
-LcsSlotDefinitionMethodFormatter >> slotPragmaName [
-	^ slotPragmaName
-]
-
-{ #category : 'accessing' }
-LcsSlotDefinitionMethodFormatter >> slotPragmaName: anObject [
-	slotPragmaName := anObject
 ]
 
 { #category : 'accessing' }
