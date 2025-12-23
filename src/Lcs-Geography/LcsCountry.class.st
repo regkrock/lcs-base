@@ -19,87 +19,94 @@ Class {
 
 { #category : 'slot definitions' }
 LcsCountry class >> commonNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #commonName;
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ]
+			description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> formalNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #formalName;
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ]
+			description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> isoCode3SlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
-		slotName: #'isoCode3';
+		slotName: #isoCode3;
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ] description: 'Code must be 3 characters long';		yourself
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ]
+			description: 'Code must be 3 characters long';
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> isoCodeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
-		slotName: #'isoCode';
+		slotName: #isoCode;
 		beRequired;
 		initialValue: '  ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ] description: 'Code must be 2 characters long';		yourself
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ]
+			description: 'Code must be 2 characters long';
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> isoNumberSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
-		slotName: #'isoNumber';
+		slotName: #isoNumber;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ] description: 'Code must be 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ]
+			description: 'Code must be 3 characters long';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotModuleName: LcsGeographyModule defaultModuleName;
-			collectionSlotName: 'countries';
-			addSlotType: LcsCountries;
-			yourself
+		slotName: 'parent';
+		collectionSlotModuleName: LcsGeographyModule defaultModuleName;
+		collectionSlotName: 'countries';
+		addSlotType: LcsCountries;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> postalCodeClassSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsPostalCodeClassSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> subdivisionClassSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsCountrySubdivisionClassSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsCountry class >> subdivisionNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #subdivisionName;
 		allowEmptyIntialValue;
@@ -108,11 +115,11 @@ LcsCountry class >> subdivisionNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsCountry class >> subdivisionsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'subdivisions';
 		addSlotType: LcsCountrySubdivisions;
-		addCollectionMemberType: LcsBaseCountrySubdivision ;
+		addCollectionMemberType: LcsBaseCountrySubdivision;
 		yourself
 ]
 

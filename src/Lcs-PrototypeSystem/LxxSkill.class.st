@@ -8,11 +8,11 @@ Class {
 
 { #category : 'slot definition' }
 LxxSkill class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			addSlotType: LxxSkills;
-			collectionSlotName: 'skills';
-			collectionSlotModuleName: 'Prototype System';
-			yourself
+		slotName: 'parent';
+		addSlotType: LxxSkills;
+		collectionSlotName: 'skills';
+		collectionSlotModuleName: 'Prototype System';
+		yourself
 ]

@@ -19,89 +19,97 @@ Class {
 
 { #category : 'slot definition' }
 LxxCountry class >> commonNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'commonName';
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Must be 3 or more characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ]
+			description: 'Must be 3 or more characters';
 		yourself
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> formalNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'formalName';
 		beAllowNil;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ] description: 'Must be 3 or more characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ]
+			description: 'Must be 3 or more characters';
 		yourself
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> isoCode3SlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode3';
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ] description: 'Must be 3 characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ]
+			description: 'Must be 3 characters';
 		yourself
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> isoCodeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode';
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ] description: 'Must be 2 characters';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ]
+			description: 'Must be 2 characters';
 		yourself
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> isoNumberSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoNumber';
-		addValidationCondition: [ :value :parentDomainObject :oldValue | (value size = 3) not ] description: 'Must be 3 characters. Example: "001"';
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value asInteger <= 0 or: [ value asInteger >= 1000 ] ] description: 'Must be in range 001 to 999';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | (value size = 3) not ]
+			description: 'Must be 3 characters. Example: "001"';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value asInteger <= 0 or: [ value asInteger >= 1000 ] ]
+			description: 'Must be in range 001 to 999';
 		yourself
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotName: 'countries';
-			collectionSlotModuleName: 'Prototype System';
-			addSlotType: LxxCountries;
-			yourself
+		slotName: 'parent';
+		collectionSlotName: 'countries';
+		collectionSlotModuleName: 'Prototype System';
+		addSlotType: LxxCountries;
+		yourself
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> postalCodeClassSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	| slotDefinition |
 	slotDefinition := LcsPostalCodeClassSlot new.
 	slotDefinition clearSlotTypes.
 	slotDefinition superclassClass: LxxBasePostCode.
 	slotDefinition initialValue: LxxGenericPostalCode.
-	slotDefinition superclassClass subclassesDo: [ :eachClass | slotDefinition addSlotType: eachClass ].
+	slotDefinition superclassClass
+		subclassesDo: [ :eachClass | slotDefinition addSlotType: eachClass ].
 	^ slotDefinition
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> subdivisionClassSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	| slotDefinition |
 	slotDefinition := LcsCountrySubdivisionClassSlot new.
 	slotDefinition clearSlotTypes.
-	slotDefinition superclassClass:  LxxBaseCountrySubdivision.
+	slotDefinition superclassClass: LxxBaseCountrySubdivision.
 	slotDefinition initialValue: LxxCountrySubdivision.
-	slotDefinition superclassClass subclassesDo: [ :eachClass | slotDefinition addSlotType: eachClass ].
+	slotDefinition superclassClass
+		subclassesDo: [ :eachClass | slotDefinition addSlotType: eachClass ].
 	^ slotDefinition
 ]
 
 { #category : 'slot definition' }
 LxxCountry class >> subdivisionNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #subdivisionName;
 		allowEmptyIntialValue;
@@ -110,7 +118,7 @@ LxxCountry class >> subdivisionNameSlotDefinition [
 
 { #category : 'slot definition' }
 LxxCountry class >> subdivisionsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'subdivisions';
 		addSlotType: LxxCountrySubdivisions;

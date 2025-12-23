@@ -1,27 +1,29 @@
 Class {
-	#name : #LcsMagritteFormExamples,
-	#superclass : #LcsObjectExamples,
+	#name : 'LcsMagritteFormExamples',
+	#superclass : 'LcsObjectExamples',
 	#traits : 'TBlDevScripterExamples + LctDevScripterSuport',
 	#classTraits : 'TBlDevScripterExamples classTrait + LctDevScripterSuport classTrait',
 	#instVars : [
 		'subject'
 	],
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #debugging }
+{ #category : 'debugging' }
 LcsMagritteFormExamples >> simulateClickOnAcceptButtonAction [
 	"This is to be used for debugging purposes"
 	self subjectScripterMemento commit.
 	self subjectScripter model buildJobSteps
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMagritteFormExamples >> subject [
 	^ subject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMagritteFormExamples >> subject: anObject [
 	subject := anObject
 ]

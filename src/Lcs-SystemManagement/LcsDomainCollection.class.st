@@ -10,10 +10,10 @@ Class {
 
 { #category : 'slot definitions' }
 LcsDomainCollection class >> collectionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIdentitySetSlot new
-			priority: 1;
-			yourself
+		priority: 1;
+		yourself
 ]
 
 { #category : 'configuration' }

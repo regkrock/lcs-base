@@ -205,7 +205,7 @@ LcsAccessorSlotBuilder >> initializeOn: aBuilderOrBuilderJob [
 
 { #category : 'job steps' }
 LcsAccessorSlotBuilder >> installSlotDefinition [
-	self targetClass installSlotDefinition: self slotDefinitionSelector
+	self targetClass installAccessorSlotDefinition: self slotDefinitionSelector
 ]
 
 { #category : 'testing' }

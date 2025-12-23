@@ -18,7 +18,7 @@ LcsSystemSlotModel class >> newOn: aSystem [
 
 { #category : 'slot model' }
 LcsSystemSlotModel class >> slotModelsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIdentityDictionarySlot new
 		slotName: 'slotModels';
 		makeDirectUpdateOfVariable;

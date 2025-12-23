@@ -19,26 +19,24 @@ Class {
 
 { #category : 'slot definitions' }
 LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
-			slotName: 'changeRecords';
-			addSlotType: LcsDomainObjectChangeRecords;
-			addCollectionMemberType: LcsDomainObjectChangeRecord;
-			beRequired;
-			makeDirectUpdateOfVariable;
-			"beReadOnly;"
-			yourself
+		slotName: 'changeRecords';
+		addSlotType: LcsDomainObjectChangeRecords;
+		addCollectionMemberType: LcsDomainObjectChangeRecord;
+		beRequired;
+		makeDirectUpdateOfVariable;
+		yourself	"beReadOnly;"
 ]
 
 { #category : 'slot definitions' }
 LcsDomainObjectHistory class >> createdSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsChangeRecordTimestampSlot new
-			slotName: 'created';
-			beRequired;
-			makeDirectUpdateOfVariable;
-			"beReadOnly;"
-			yourself
+		slotName: 'created';
+		beRequired;
+		makeDirectUpdateOfVariable;
+		yourself	"beReadOnly;"
 ]
 
 { #category : 'slot definitions' }
@@ -49,10 +47,10 @@ LcsDomainObjectHistory class >> userSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsDomainObjectHistory class >> userUuidSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
-			makeDirectUpdateOfVariable;
-			yourself
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'as yet unclassified' }

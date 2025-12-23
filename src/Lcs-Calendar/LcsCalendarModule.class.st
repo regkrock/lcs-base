@@ -8,7 +8,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsCalendarModule class >> configurationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 

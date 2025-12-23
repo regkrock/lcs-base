@@ -1,22 +1,24 @@
 Class {
-	#name : #LcsModuleBuilderFormExamples,
-	#superclass : #LcsMultislotPatternFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsModuleBuilderFormExamples',
+	#superclass : 'LcsMultislotPatternFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsModuleBuilderFormExamples >> formClass [
 	^ LcsModuleBuilderForm
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsModuleBuilderFormExamples >> mainForm [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
 	^ super mainForm
 ]
 
-{ #category : #'examples  - form' }
+{ #category : 'examples  - form' }
 LcsModuleBuilderFormExamples >> sailClubModuleExample [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -31,12 +33,12 @@ LcsModuleBuilderFormExamples >> sailClubModuleExample [
 	^ form
 ]
 
-{ #category : #'examples  - form' }
+{ #category : 'examples  - form' }
 LcsModuleBuilderFormExamples >> sailClubModuleExampleUmlPositions [
 	^ OrderedCollection new
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsModuleBuilderFormExamples >> targetClass [
 	^ LxxPrototypeSystem
 ]

@@ -17,13 +17,13 @@ Class {
 
 { #category : 'slot definitions' }
 LxxPrototypeSystem class >> configurationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
 { #category : 'slot definitions' }
 LxxPrototypeSystem class >> countriesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'countries';
 		addSlotType: LxxCountries;
@@ -43,7 +43,7 @@ LxxPrototypeSystem class >> moduleConfigurationClass [
 
 { #category : 'slot definitions' }
 LxxPrototypeSystem class >> organizationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainObjectSlot new
 		slotName: 'organization';
 		addSlotType: LxxOrganization;
@@ -52,8 +52,8 @@ LxxPrototypeSystem class >> organizationSlotDefinition [
 
 { #category : 'slot definitions' }
 LxxPrototypeSystem class >> personsSlotDefinition [
-	<slotDefinition>
-	^LcsGlobalCollectionSlot new
+	<accessorSlotDefinition>
+	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
 		addSlotType: LxxPersons;
 		addCollectionMemberType: LxxPerson;
@@ -62,7 +62,7 @@ LxxPrototypeSystem class >> personsSlotDefinition [
 
 { #category : 'slot definitions' }
 LxxPrototypeSystem class >> skillsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'skills';
 		addSlotType: LxxSkills;

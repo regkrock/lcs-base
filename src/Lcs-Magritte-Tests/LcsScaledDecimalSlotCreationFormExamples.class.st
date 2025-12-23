@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsScaledDecimalSlotCreationFormExamples,
-	#superclass : #LcsSmalltalkObjectSlotExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsScaledDecimalSlotCreationFormExamples',
+	#superclass : 'LcsSmalltalkObjectSlotExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsScaledDecimalSlotCreationFormExamples >> amountSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
@@ -14,31 +16,31 @@ LcsScaledDecimalSlotCreationFormExamples >> amountSlotCreationForm [
 	^ form
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsScaledDecimalSlotCreationFormExamples >> nilDescriptionSelectors [
 	^ #()
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsScaledDecimalSlotCreationFormExamples >> requiredDescriptionSelectors [
 	^ super requiredDescriptionSelectors
 		add: #numberOfDecimalsDescription;
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsScaledDecimalSlotCreationFormExamples >> slotAccessorSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
 	^ super slotAccessorSlotCreationForm
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsScaledDecimalSlotCreationFormExamples >> slotClass [
 	^LcsScaledDecimalSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsScaledDecimalSlotCreationFormExamples >> slotSubjectScripter [
 	<gtExample>
 	<return: #BlScripter>

@@ -10,10 +10,10 @@ Class {
 
 { #category : 'slot definition\t' }
 LcsDomainObjectSlotChanges class >> collectionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDictionarySlot new
-			makeDirectUpdateOfVariable;
-			yourself
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'testing' }

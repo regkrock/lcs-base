@@ -96,7 +96,7 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
 	slotDefinitionMethodBuilder := (self subject jobSteps collection at: 2).
 	
 	self assert: slotDefinitionMethodBuilder  slotDefinitionSource equals: 'dateSlotDefinition
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDateSlot new
 			addValidationCondition: [ :newDate :parentDomainObject :oldValue | newDate < Date today] description: ''Date must be >= today'';
 			addValidationCondition: [ :newDate :parentDomainObject :oldValue | newDate > (Date today addDays: 19)] description: ''Date must be < 20 days in the future'';

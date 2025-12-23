@@ -30,7 +30,7 @@ LcsSystem class >> defaultModuleName [
 
 { #category : 'slot definitions' }
 LcsSystem class >> globalCollectionsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'globalCollections';
 		addSlotType: LcsGlobalCollections;
@@ -53,7 +53,7 @@ LcsSystem class >> new [
 
 { #category : 'slot definitions' }
 LcsSystem class >> statusSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSystemStatusSlot new
 ]
 
@@ -74,7 +74,7 @@ LcsSystem class >> systemBootstrapDomainClasses [
 
 { #category : 'slot definitions' }
 LcsSystem class >> systemSlotModelSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'systemSlotModel';
 		addSlotType: LcsSystemSlotModel;
@@ -85,7 +85,7 @@ LcsSystem class >> systemSlotModelSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsSystem class >> uuidGeneratorSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsUuidGeneratorSlot new
 ]
 

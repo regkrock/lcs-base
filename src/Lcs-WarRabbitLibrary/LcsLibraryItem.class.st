@@ -15,10 +15,10 @@ Class {
 
 { #category : 'slot definitions' }
 LcsLibraryItem class >> authorsSlotDefinition [
-	"<slotDefinition>"
-	^LcsSecondaryCollectionSlot new
+	"<accessorSlotDefinition>"
+	^ LcsLocalCollectionSlot new
 		slotName: 'authors';
-		addSlotType: LcsAuthors; 
+		addSlotType: LcsAuthors;
 		addCollectionMemberType: LcsAuthor;
 		beOrderedCollection;
 		yourself
@@ -31,10 +31,10 @@ LcsLibraryItem class >> collectionSlotName [
 
 { #category : 'slot definitions' }
 LcsLibraryItem class >> itemAuthorsSlotDefinition [
-	<slotDefinition>
-	^LcsLocalCollectionSlot new
+	<accessorSlotDefinition>
+	^ LcsLocalCollectionSlot new
 		slotName: 'itemAuthors';
-		addSlotType: LcsItemAuthors; 
+		addSlotType: LcsItemAuthors;
 		addCollectionMemberType: LcsAuthor;
 		beOrderedCollection;
 		yourself
@@ -42,7 +42,7 @@ LcsLibraryItem class >> itemAuthorsSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLibraryItem class >> itemNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'itemName';
 		beRequired;
@@ -51,24 +51,24 @@ LcsLibraryItem class >> itemNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLibraryItem class >> libraryCategorySlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-			slotName: 'libraryCategory';
-			collectionSlotName: 'libraryCategories';
-			collectionSlotModuleName: 'WarRabbitLibrary';
-			beRequired;
-			yourself
+		slotName: 'libraryCategory';
+		collectionSlotName: 'libraryCategories';
+		collectionSlotModuleName: 'WarRabbitLibrary';
+		beRequired;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsLibraryItem class >> librearyCategorySlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-			slotName: 'libraryCategory';
-			collectionSlotName: 'libraryCategories';
-			collectionSlotModuleName: 'WarRabbitLibrary';
-			beRequired;
-			yourself
+		slotName: 'libraryCategory';
+		collectionSlotName: 'libraryCategories';
+		collectionSlotModuleName: 'WarRabbitLibrary';
+		beRequired;
+		yourself
 ]
 
 { #category : 'instance creation' }
@@ -84,12 +84,12 @@ LcsLibraryItem class >> newOn: aString parts: protoItemParts [
 
 { #category : 'slot definitions' }
 LcsLibraryItem class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
-			collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
-			collectionSlotName: 'libraryItems';
-			yourself
+		collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
+		collectionSlotName: 'libraryItems';
+		yourself
 ]
 
 { #category : 'accessing' }

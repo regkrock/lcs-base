@@ -12,23 +12,22 @@ Class {
 
 { #category : 'slot definitions' }
 LcsCommitteeMember class >> memberSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfLocalCollectionSlot new
-			slotName: 'member';
-			addSlotType: LcsMember;
-			initialValueBlock: [ :parentDomainObject :slot | parentDomainObject internalOrganization
-	members defaultInstance ];
-			collectionSlotName: 'members';
-			yourself
+		slotName: 'member';
+		addSlotType: LcsMember;
+		initialValueBlock: [ :parentDomainObject :slot | parentDomainObject internalOrganization members defaultInstance ];
+		collectionSlotName: 'members';
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsCommitteeMember class >> titleSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: 'title';
-			required: true;
-			yourself
+		slotName: 'title';
+		required: true;
+		yourself
 ]
 
 { #category : 'accessing' }

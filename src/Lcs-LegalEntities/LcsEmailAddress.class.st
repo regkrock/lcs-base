@@ -13,31 +13,30 @@ Class {
 
 { #category : 'slot definitions' }
 LcsEmailAddress class >> emailAddressTypeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-			addSlotType: LcsEmailAddressType;
-			slotName: 'emailAddressType';
-			prevalidationTransformBlock:[ :value :slot | 
-				slot targetCollection findItemMatchingCode: value ifNone: [ value ]  ];
-			collectionSlotName: 'emailAddressTypes';
-			collectionSlotModuleName: 'Legal Entities Module';
-			yourself
+		addSlotType: LcsEmailAddressType;
+		slotName: 'emailAddressType';
+		prevalidationTransformBlock: [ :value :slot | slot targetCollection findItemMatchingCode: value ifNone: [ value ] ];
+		collectionSlotName: 'emailAddressTypes';
+		collectionSlotModuleName: 'Legal Entities Module';
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsEmailAddress class >> emailSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'email';
-		addValidationCondition: [ :value :parentDomainObject :oldValue | "value isInvalidEmailFormat" false ] description: 'Invalid format';
+		addValidationCondition: [ :value "value isInvalidEmailFormat" :parentDomainObject :oldValue | false ]
+			description: 'Invalid format';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsEmailAddress class >> parentSlotDefinition [
-	<slotDefinition>
-	^ super parentSlotDefinition
-	"^ LcsGlobalCollectionReferenceSlot new
+	<accessorSlotDefinition>
+	^ super parentSlotDefinition	"^ LcsGlobalCollectionReferenceSlot new
 			slotTypes: (OrderedCollection with: LcsEmailAddresses);
 			slotName: 'parent';
 			collectionSlotName: 'emailAddresses';

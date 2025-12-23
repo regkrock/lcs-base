@@ -7,11 +7,11 @@ Class {
 
 { #category : 'slot definition' }
 LcsTitle class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotName: 'titles';
-			collectionSlotModuleName: 'Legal Entities Module';
-			addSlotType: LcsTitles;
-			yourself
+		slotName: 'parent';
+		collectionSlotName: 'titles';
+		collectionSlotModuleName: 'Legal Entities Module';
+		addSlotType: LcsTitles;
+		yourself
 ]

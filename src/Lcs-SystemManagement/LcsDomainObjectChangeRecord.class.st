@@ -13,32 +13,32 @@ Class {
 
 { #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> changesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
-			slotName: 'changes';
-			addSlotType: LcsDomainObjectSlotChanges;
-			addCollectionMemberType: LcsDomainObjectSlotChange;
-			makeDirectUpdateOfVariable;
-			yourself
+		slotName: 'changes';
+		addSlotType: LcsDomainObjectSlotChanges;
+		addCollectionMemberType: LcsDomainObjectSlotChange;
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> createdSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsChangeRecordTimestampSlot new
-			slotName: 'created';
-			makeDirectUpdateOfVariable;
-			yourself
+		slotName: 'created';
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsCollectionReferenceSlot new
-			slotName: 'parent';
-			addSlotType: LcsDomainObjectChangeRecords;
-			makeDirectUpdateOfVariable;
-			yourself
+		slotName: 'parent';
+		addSlotType: LcsDomainObjectChangeRecords;
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'slot definitions' }
@@ -49,10 +49,10 @@ LcsDomainObjectChangeRecord class >> userSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsDomainObjectChangeRecord class >> userUuidSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsChangeRecordUserUuidSlot new
-			makeDirectUpdateOfVariable;
-			yourself
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'as yet unclassified' }

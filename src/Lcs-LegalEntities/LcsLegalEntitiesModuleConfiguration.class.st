@@ -12,30 +12,30 @@ Class {
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModuleConfiguration class >> unknownEmailAddressSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainObjectSlot new
-			slotName: 'unknownEmailAddress';
-			addSlotType: LcsUnknownEmailAddress;
-			yourself
+		slotName: 'unknownEmailAddress';
+		addSlotType: LcsUnknownEmailAddress;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModuleConfiguration class >> unknownPersonSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainObjectSlot new
-			slotName: 'unknownPerson';
-			addSlotType: LcsUnknownPerson;
-			priority: 60;
-			yourself
+		slotName: 'unknownPerson';
+		addSlotType: LcsUnknownPerson;
+		priority: 60;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModuleConfiguration class >> unknownPhoneNumberSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainObjectSlot new
-			slotName: 'unknownPhoneNumber';
-			addSlotType: LcsUnknownPhoneNumber;
-			yourself
+		slotName: 'unknownPhoneNumber';
+		addSlotType: LcsUnknownPhoneNumber;
+		yourself
 ]
 
 { #category : 'accessing' }

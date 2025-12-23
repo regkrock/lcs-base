@@ -8,7 +8,7 @@ Class {
 
 { #category : 'private' }
 LcsExtantSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
-	^ aSlotCategory = #slotDefinition
+	^ aSlotCategory = #accessorSlotDefinition
 ]
 
 { #category : 'initialize' }

@@ -12,24 +12,24 @@ Class {
 
 { #category : 'slot definitions' }
 LcsBook class >> authorsSlotDefinition [
-	<slotDefinition>
-	^LcsStringSlot new
+	<accessorSlotDefinition>
+	^ LcsStringSlot new
 		slotName: 'authors';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsBook class >> titleSlotDefinition [
-	<slotDefinition>
-	^LcsStringSlot new
+	<accessorSlotDefinition>
+	^ LcsStringSlot new
 		slotName: 'title';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsBook class >> yearPublishedSlotDefinition [
-	<slotDefinition>
-	^LcsIntegerSlot new
+	<accessorSlotDefinition>
+	^ LcsIntegerSlot new
 		slotName: 'yearPublished';
 		yourself
 ]

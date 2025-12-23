@@ -110,7 +110,7 @@ LcsSlotDefinitionMethodFormatter >> format: aSlotDefinition [
 	| stream |
 	stream := LcsMethodStream new.
 	stream
-		startSlotDefintionSource: self selector pragmaName: nil;
+		startSlotDefinitionSource: self selector pragmaName: nil;
 		addSlotDefinitionClassCreatonLine: self slotClass name.
 	aSlotDefinition properties isEmpty ifTrue: [ ^ stream contents ].
 
@@ -144,7 +144,7 @@ LcsSlotDefinitionMethodFormatter >> methodSource [
 	| stream streamPostionBeforeAddingProperties |
 	stream := LcsMethodStream new.
 	stream
-		startSlotDefintionSource: self selector pragmaName: (self pragmaSelector ifNil: [ 'nil' ]);
+		startSlotDefinitionSource: self selector pragmaName: (self pragmaSelector ifNil: [ 'nil' ]);
 		addSlotDefinitionClassCreatonLine: self slotClass name.
 	self properties isEmpty ifTrue: [ ^ stream contents ].
 

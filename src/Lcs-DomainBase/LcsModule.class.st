@@ -42,7 +42,7 @@ LcsModule class >> baseWithNonLxxSubclasses [
 
 { #category : 'slot definitions' }
 LcsModule class >> configurationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
@@ -58,7 +58,7 @@ LcsModule class >> defaultModuleName [
 
 { #category : 'slot definitions' }
 LcsModule class >> domainCollectionsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'domainCollections';
 		addSlotType: LcsGlobalCollections;
@@ -132,7 +132,7 @@ LcsModule class >> moduleConfigurationClass [
 
 { #category : 'slot definitions' }
 LcsModule class >> moduleNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsModuleNameSlot new
 		priority: 1;
 		yourself
@@ -140,7 +140,7 @@ LcsModule class >> moduleNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsModule class >> modulesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'modules';
 		addSlotType: LcsModules;

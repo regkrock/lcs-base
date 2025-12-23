@@ -16,7 +16,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultCountrySlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'defaultCountry';
 		slotTypes: (OrderedCollection with: LcsCountry with: LcsUnknownCountry);
@@ -27,21 +27,23 @@ LcsGeographyModuleConfiguration class >> defaultCountrySlotDefinition [
 
 { #category : 'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultPoliticalUnitNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'defaultPoliticalUnitName';
 		beRequired;
-		addValidationCondition: [ :string :parentDomainObject :oldValue | string size < 3 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :string :parentDomainObject :oldValue | string size < 3 ]
+			description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'defaultPostalCodeName';
 		beRequired;
-		addValidationCondition: [ :string :parentDomainObject :oldValue | string size <= 2 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :string :parentDomainObject :oldValue | string size <= 2 ]
+			description: 'Name must be at least 3 characters long';
 		yourself
 ]
 

@@ -11,13 +11,13 @@ Class {
 
 { #category : 'slot definitions' }
 LcsLocation class >> addressSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsAddressSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsLocation class >> locationNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'locationName';
 		yourself

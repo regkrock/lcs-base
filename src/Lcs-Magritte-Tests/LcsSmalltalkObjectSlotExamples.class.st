@@ -1,25 +1,27 @@
 Class {
-	#name : #LcsSmalltalkObjectSlotExamples,
-	#superclass : #LcsMagritteFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsSmalltalkObjectSlotExamples',
+	#superclass : 'LcsMagritteFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsSmalltalkObjectSlotExamples >> installationClass [
 	^ LxxPerson
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsSmalltalkObjectSlotExamples >> nilDescriptionSelectors [
 	^ #(numberOfDecimalsDescription) 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsSmalltalkObjectSlotExamples >> requiredDescriptionSelectors [
 	^ #(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) asOrderedCollection
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsSmalltalkObjectSlotExamples >> slotAccessorSlotCreationForm [
 	"<gtExample>"
 
@@ -38,27 +40,27 @@ LcsSmalltalkObjectSlotExamples >> slotAccessorSlotCreationForm [
 	^ form
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSmalltalkObjectSlotExamples >> slotBuilderClass [
 	^ (self slotClass name , 'Builder') asClass
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSmalltalkObjectSlotExamples >> slotClass [
 	self subclassResponsibility
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSmalltalkObjectSlotExamples >> slotClassName [
 	^ self slotClass name asString
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSmalltalkObjectSlotExamples >> slotModelBuilderClassName [
 	^ self slotBuilderClass name asString
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsSmalltalkObjectSlotExamples >> slotSubjectScripter [
 	"<gtExample>
 	<return: #BlScripter>"

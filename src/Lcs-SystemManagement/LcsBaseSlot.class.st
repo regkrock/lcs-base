@@ -41,7 +41,7 @@ LcsBaseSlot class >> isVirtualSlot [
 { #category : 'gt views' }
 LcsBaseSlot >> addAssociationsToUmlModel: aUmlModel [
 	aUmlModel
-		addAssociation: self slotName , 'SlotDefintion'
+		addAssociation: self slotName , 'SlotDefinition'
 			from: self domainClass
 			to: self class
 ]
@@ -59,9 +59,9 @@ LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
 ]
 
 { #category : 'code generation' }
-LcsBaseSlot >> addPropertiesTo: aSlotDefintionMethodBuilder [
+LcsBaseSlot >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 	self properties keysAndValuesDo: [ :key :value | 
-		aSlotDefintionMethodBuilder addProperty: key value: value ]
+		aSlotDefinitionMethodBuilder addProperty: key value: value ]
 ]
 
 { #category : 'gt views' }
@@ -528,8 +528,7 @@ LcsBaseSlot >> slotDefinitionSource [
 { #category : 'defaults' }
 LcsBaseSlot >> slotKind [
 	| string |
-	string := self pragmaSelector.
-	string = 'slotDefinition' ifTrue: [ ^ 'accessor' ].
+	string := self pragmaSelector asString.
 	^ string copyFrom: 1 to: ((string findString: 'SlotDefinition') - 1)
 ]
 

@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsSlotDefintionMethodBuilder',
+	#name : 'LcsSlotDefinitionMethodBuilder',
 	#superclass : 'LcsSlotDetailBuilder',
 	#instVars : [
 		'pragmaSelector'
@@ -9,14 +9,14 @@ Class {
 }
 
 { #category : 'instance  creation' }
-LcsSlotDefintionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
+LcsSlotDefinitionMethodBuilder class >> newFrom: aSlotDefinitionBuilder [
 	^ self new
 		initializeFrom: aSlotDefinitionBuilder;
 		yourself
 ]
 
 { #category : 'building' }
-LcsSlotDefintionMethodBuilder >> _installCode [
+LcsSlotDefinitionMethodBuilder >> _installCode [
 	super _installCode.
 	self addRefactoring: (
 		RBAddMethodChange
@@ -27,7 +27,7 @@ LcsSlotDefintionMethodBuilder >> _installCode [
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> _verifyCodeInstallation [
+LcsSlotDefinitionMethodBuilder >> _verifyCodeInstallation [
 	| slotDefinition |
 	super _verifyCodeInstallation.
 	self assert: (self targetClass class canUnderstand: self slotDefinitionSelector).
@@ -38,10 +38,10 @@ LcsSlotDefintionMethodBuilder >> _verifyCodeInstallation [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
+LcsSlotDefinitionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	aUmlModel
-			addAssociation: self slotName , 'SlotDefintion'
+			addAssociation: self slotName , 'SlotDefinition'
 			from: self targetClassName
 			to: self slotClass.
 	self targetClass isNil ifTrue: [ ^ self ].
@@ -56,7 +56,7 @@ LcsSlotDefintionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addClassesToUmlModel: umlModel [
+LcsSlotDefinitionMethodBuilder >> addClassesToUmlModel: umlModel [
 	super addClassesToUmlModel: umlModel.
 	umlModel
 		addClassNamed: self targetClassName;
@@ -69,18 +69,18 @@ LcsSlotDefintionMethodBuilder >> addClassesToUmlModel: umlModel [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addDomainCollectionClassTo: umlModel [
+LcsSlotDefinitionMethodBuilder >> addDomainCollectionClassTo: umlModel [
 	umlModel addClass: self domainCollectionClass
 ]
 
 { #category : 'initialize\t' }
-LcsSlotDefintionMethodBuilder >> addProperty: aPropertyName value: anObject [
+LcsSlotDefinitionMethodBuilder >> addProperty: aPropertyName value: anObject [
 	(self isValueOfSlotTemplateProperty: aPropertyName sameAs: anObject)
 		ifFalse: [ self properties at: aPropertyName put: anObject ]
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
+LcsSlotDefinitionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 	aStream 
 		nextPutAll: (self targetClassName ifNil: [ '<missing target class name>']); 
 		nextPutAll:' class >>';
@@ -88,7 +88,7 @@ LcsSlotDefintionMethodBuilder >> addRefactoringTextDetailsTo: aStream [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addSlotAssociationsToUmlModel: aUmlModel [ 
+LcsSlotDefinitionMethodBuilder >> addSlotAssociationsToUmlModel: aUmlModel [ 
 	(aUmlModel classModelForClassname: self targetClassName)
 		addAssociation: self slotDefinitionSelector toModelNamed: self slotClass.
 	(aUmlModel classModelForClassname: self targetClassName)
@@ -103,7 +103,7 @@ LcsSlotDefintionMethodBuilder >> addSlotAssociationsToUmlModel: aUmlModel [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> addSlotClassesToUmlModel: umlModel [
+LcsSlotDefinitionMethodBuilder >> addSlotClassesToUmlModel: umlModel [
 	umlModel
 		addClassNamed: self targetClassName;
 		addClassModel: self slotClass.
@@ -114,7 +114,7 @@ LcsSlotDefintionMethodBuilder >> addSlotClassesToUmlModel: umlModel [
 ]
 
 { #category : 'configuration' }
-LcsSlotDefintionMethodBuilder >> addSlotType: aClassorClassName [
+LcsSlotDefinitionMethodBuilder >> addSlotType: aClassorClassName [
 	| aClassName |
 	aClassName := aClassorClassName isClass 
 					ifTrue: [ aClassorClassName name asString]
@@ -124,61 +124,61 @@ LcsSlotDefintionMethodBuilder >> addSlotType: aClassorClassName [
 ]
 
 { #category : 'code generation' }
-LcsSlotDefintionMethodBuilder >> addValidationCondition: aStringBlock description: aDescription [
+LcsSlotDefinitionMethodBuilder >> addValidationCondition: aStringBlock description: aDescription [
 	self validationConditions addValidationCondition: aStringBlock description: aDescription
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> allowNil [
+LcsSlotDefinitionMethodBuilder >> allowNil [
 	^ self properties at: 'allowNil' ifAbsentPut: [ false ]
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> allowNil: aBoolean [
+LcsSlotDefinitionMethodBuilder >> allowNil: aBoolean [
 	self properties at: 'allowNil' put: aBoolean
 ]
 
 { #category : 'command' }
-LcsSlotDefintionMethodBuilder >> beFacadeSlot [
+LcsSlotDefinitionMethodBuilder >> beFacadeSlot [
 	self pragmaSelector: 'facadeSlotDefinition'
 ]
 
 { #category : 'command' }
-LcsSlotDefintionMethodBuilder >> beVirtualSlot [
+LcsSlotDefinitionMethodBuilder >> beVirtualSlot [
 	self pragmaSelector: 'virtualSlotDefinition'
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> defaultCollectionMemberTypes [
+LcsSlotDefinitionMethodBuilder >> defaultCollectionMemberTypes [
 	^ self slotClass new collectionMemberTypes
 		collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ]
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> defaultSlotTypes [
+LcsSlotDefinitionMethodBuilder >> defaultSlotTypes [
 	^ self slotClass new slotTypes
 		collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ]
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> derivedSlotName [
+LcsSlotDefinitionMethodBuilder >> derivedSlotName [
 	^ self rawDerivedSlotName ifNil: [ '<missing slotName>' ]
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> domainCollectionClass [
+LcsSlotDefinitionMethodBuilder >> domainCollectionClass [
 	^ (self targetClass
 		perform: ((self propertyAt: 'collectionSlotName') , 'SlotDefinition') asSymbol)
 		slotTypes first
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> domainCollectionElementClass [
+LcsSlotDefinitionMethodBuilder >> domainCollectionElementClass [
 	^ self slotTypes first
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> gtClassViewOn: aView [
+LcsSlotDefinitionMethodBuilder >> gtClassViewOn: aView [
 	<gtView>
 	self targetClassName isNil ifTrue: [
 		^ aView text
@@ -190,7 +190,7 @@ LcsSlotDefintionMethodBuilder >> gtClassViewOn: aView [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
+LcsSlotDefinitionMethodBuilder >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
 		title: 'Refactoring';
@@ -200,7 +200,7 @@ LcsSlotDefintionMethodBuilder >> gtRefactoringChangeOn: aView [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
+LcsSlotDefinitionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 	<gtView>
 	self targetClassName isNil ifTrue: [ ^ aView empty ].
 	^ aView explicit
@@ -212,18 +212,18 @@ LcsSlotDefintionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 ]
 
 { #category : 'testing' }
-LcsSlotDefintionMethodBuilder >> hasNoSlotTypes [
+LcsSlotDefinitionMethodBuilder >> hasNoSlotTypes [
 	^ self slotTypes isEmpty and: [ self slotDefinitionClassHasNoSlotTypes ]
 ]
 
 { #category : 'initialize' }
-LcsSlotDefintionMethodBuilder >> initialize [
+LcsSlotDefinitionMethodBuilder >> initialize [
 	super initialize.
-	self pragmaSelector: 'slotDefinition'
+	self pragmaSelector: 'accessorSlotDefinition'
 ]
 
 { #category : 'instance  creation' }
-LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
+LcsSlotDefinitionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [ 
 	self 
 		slotClass: aSlotDefinitionBuilder slotClassName asClass;
 		slotTemplate: self slotClass new;
@@ -232,7 +232,7 @@ LcsSlotDefintionMethodBuilder >> initializeFrom: aSlotDefinitionBuilder [
 ]
 
 { #category : 'initialize\t' }
-LcsSlotDefintionMethodBuilder >> isValueOfSlotTemplateProperty: aPropertyName sameAs: anObject [
+LcsSlotDefinitionMethodBuilder >> isValueOfSlotTemplateProperty: aPropertyName sameAs: anObject [
 	| templateValue |
 	templateValue := self valueOfSlotTemplateProperty: aPropertyName.
 	templateValue isBlock ifTrue: [ ^ templateValue  asString = anObject asString].
@@ -240,32 +240,32 @@ LcsSlotDefintionMethodBuilder >> isValueOfSlotTemplateProperty: aPropertyName sa
 ]
 
 { #category : 'printing' }
-LcsSlotDefintionMethodBuilder >> jobStepActionDescription [
+LcsSlotDefinitionMethodBuilder >> jobStepActionDescription [
 	^ 'Install slot definition for'
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> pragmaSelector [
+LcsSlotDefinitionMethodBuilder >> pragmaSelector [
 	^ pragmaSelector
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> pragmaSelector: aString [
+LcsSlotDefinitionMethodBuilder >> pragmaSelector: aString [
 	pragmaSelector := aString
 ]
 
 { #category : 'properties' }
-LcsSlotDefintionMethodBuilder >> propertyAt: aName [
+LcsSlotDefinitionMethodBuilder >> propertyAt: aName [
 	^ self properties at: aName ifAbsent: [ nil ]
 ]
 
 { #category : 'properties' }
-LcsSlotDefintionMethodBuilder >> propertyAt: aName ifAbsentPut: aBlock [ 
+LcsSlotDefinitionMethodBuilder >> propertyAt: aName ifAbsentPut: aBlock [ 
 	self properties at: aName ifAbsentPut: aBlock
 ]
 
 { #category : 'properties' }
-LcsSlotDefintionMethodBuilder >> propogateProperty: aName valueChangedTo: anObject [
+LcsSlotDefinitionMethodBuilder >> propogateProperty: aName valueChangedTo: anObject [
 	(self respondsTo: (aName , ':' asSymbol))
 		ifTrue: [ 
 			self perform: (aName , ':' asSymbol) with: anObject.
@@ -275,17 +275,17 @@ LcsSlotDefintionMethodBuilder >> propogateProperty: aName valueChangedTo: anObje
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> required [
+LcsSlotDefinitionMethodBuilder >> required [
 	^ self properties at: 'required' ifAbsentPut: [ false ]
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> required: aBoolean [
+LcsSlotDefinitionMethodBuilder >> required: aBoolean [
 	self properties at: 'required' put: aBoolean
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> selectionPath [
+LcsSlotDefinitionMethodBuilder >> selectionPath [
 	| targetPathStream |
 	targetPathStream := WriteStream on: String new.
 	(self propertyAt: 'targetSlotPath') do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
@@ -295,41 +295,41 @@ LcsSlotDefintionMethodBuilder >> selectionPath [
 ]
 
 { #category : 'testing' }
-LcsSlotDefintionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
+LcsSlotDefinitionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
 	^ self slotClass notNil
 		and: [ self slotClass new slotTypes isEmpty ]
 ]
 
 { #category : 'code generation' }
-LcsSlotDefintionMethodBuilder >> slotDefinitionSelector [
+LcsSlotDefinitionMethodBuilder >> slotDefinitionSelector [
 	^ self rawDerivedSlotName 
 		ifNil: [ LcsError signal: 'slotName is undefined' ]
 		ifNotNil: [:name | (name , 'SlotDefinition') asSymbol ]
 ]
 
 { #category : 'code generation' }
-LcsSlotDefintionMethodBuilder >> slotDefinitionSource [
+LcsSlotDefinitionMethodBuilder >> slotDefinitionSource [
 	^ (LcsSlotDefinitionMethodFormatter newOnSlotDefinitionMethodBuilder: self)
 		methodSource
 ]
 
 { #category : 'code generation' }
-LcsSlotDefintionMethodBuilder >> slotNameDisplayString [
+LcsSlotDefinitionMethodBuilder >> slotNameDisplayString [
 	^ self derivedSlotName
 ]
 
 { #category : 'property' }
-LcsSlotDefintionMethodBuilder >> slotTypes [
+LcsSlotDefinitionMethodBuilder >> slotTypes [
 	^ self properties at: 'slotTypes' ifAbsentPut: [ OrderedCollection new ]
 ]
 
 { #category : 'property' }
-LcsSlotDefintionMethodBuilder >> slotTypes: aCollection [
+LcsSlotDefinitionMethodBuilder >> slotTypes: aCollection [
 	self properties at: 'slotTypes' put: aCollection
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> slotUmlModel [
+LcsSlotDefinitionMethodBuilder >> slotUmlModel [
 	| umlModel |
 	umlModel := LcsUmlModel new.
 	self addSlotClassesToUmlModel: umlModel.
@@ -340,12 +340,12 @@ LcsSlotDefintionMethodBuilder >> slotUmlModel [
 ]
 
 { #category : 'gt views' }
-LcsSlotDefintionMethodBuilder >> umlModel [
+LcsSlotDefinitionMethodBuilder >> umlModel [
 	^ super umlModel
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> uninstall [
+LcsSlotDefinitionMethodBuilder >> uninstall [
 	super uninstall.
 	self targetClass ifNotNil: [ 
 		[self targetClass class removeSelector: self slotDefinitionSelector ] 
@@ -354,7 +354,7 @@ LcsSlotDefintionMethodBuilder >> uninstall [
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollection against: anActualCollection [
+LcsSlotDefinitionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollection against: anActualCollection [
 	self
 		validateCollectionMemberTypes: anExpectedCollection
 		against: anActualCollection
@@ -362,7 +362,7 @@ LcsSlotDefintionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollec
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollection against: anActualCollection defaultTypes: aDefaultCollection [
+LcsSlotDefinitionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollection against: anActualCollection defaultTypes: aDefaultCollection [
 	| expected |
 	expected := anExpectedCollection asOrderedCollection
 			collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ].
@@ -376,7 +376,7 @@ LcsSlotDefintionMethodBuilder >> validateCollectionMemberTypes: anExpectedCollec
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validatePostUpdateActions: enteredPostUpdateActions against: slotPostUpdateActions [
+LcsSlotDefinitionMethodBuilder >> validatePostUpdateActions: enteredPostUpdateActions against: slotPostUpdateActions [
 	self assert: slotPostUpdateActions collectionSize equals: enteredPostUpdateActions collectionSize.
 	enteredPostUpdateActions
 		do: [ :eachEnteredPostUpdateAction | 
@@ -388,7 +388,7 @@ LcsSlotDefintionMethodBuilder >> validatePostUpdateActions: enteredPostUpdateAct
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
+LcsSlotDefinitionMethodBuilder >> validatePropertiesIn: slotDefinition [
 	self properties
 		keysAndValuesDo: [ :key :value | 
 			self
@@ -398,7 +398,7 @@ LcsSlotDefintionMethodBuilder >> validatePropertiesIn: slotDefinition [
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aExpectedObject in: slotDefinition [
+LcsSlotDefinitionMethodBuilder >> validateProperty: aProperty value: aExpectedObject in: slotDefinition [
 	| actualValue |
 	actualValue := slotDefinition perform: aProperty asSymbol.
 
@@ -430,7 +430,7 @@ LcsSlotDefintionMethodBuilder >> validateProperty: aProperty value: aExpectedObj
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validateSlotTypes: anExpectedCollection against: anActualCollection [
+LcsSlotDefinitionMethodBuilder >> validateSlotTypes: anExpectedCollection against: anActualCollection [
 	self
 		validateCollectionMemberTypes: anExpectedCollection
 		against: anActualCollection
@@ -438,14 +438,14 @@ LcsSlotDefintionMethodBuilder >> validateSlotTypes: anExpectedCollection against
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validateTargetSlotPath: anExpectedCollection against: anActualCollection [
+LcsSlotDefinitionMethodBuilder >> validateTargetSlotPath: anExpectedCollection against: anActualCollection [
 	self
 		assert: anExpectedCollection
 		equals: anActualCollection
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> validateValidationConditions: aValidationConditions against: actualValidationConditions [
+LcsSlotDefinitionMethodBuilder >> validateValidationConditions: aValidationConditions against: actualValidationConditions [
 	self assert: actualValidationConditions collectionSize equals: aValidationConditions collectionSize.
 	aValidationConditions
 		do: [ :eachValidationCondition | 
@@ -457,22 +457,22 @@ LcsSlotDefintionMethodBuilder >> validateValidationConditions: aValidationCondit
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> validationConditions [
+LcsSlotDefinitionMethodBuilder >> validationConditions [
 	^ self properties at: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self ]
 ]
 
 { #category : 'accessing' }
-LcsSlotDefintionMethodBuilder >> validationConditions: aCollection [
+LcsSlotDefinitionMethodBuilder >> validationConditions: aCollection [
 	self properties at: 'validationConditions' put: aCollection
 ]
 
 { #category : 'slot template' }
-LcsSlotDefintionMethodBuilder >> valueOfSlotTemplateProperty: aKey [
+LcsSlotDefinitionMethodBuilder >> valueOfSlotTemplateProperty: aKey [
 	^ self slotTemplate properties at: aKey ifAbsent: [ ]
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
+LcsSlotDefinitionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 	super verifySlotModelUpdatesMadeByBuilder.
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self assert: self targetClass slotModel notNil.
@@ -480,7 +480,7 @@ LcsSlotDefintionMethodBuilder >> verifySlotModelUpdatesMadeByBuilder [
 ]
 
 { #category : 'verification' }
-LcsSlotDefintionMethodBuilder >> verifyUninstall [
+LcsSlotDefinitionMethodBuilder >> verifyUninstall [
 	| selector |
 	super verifyUninstall.
 	self targetClass isNil ifTrue: [ ^ self ].

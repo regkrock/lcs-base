@@ -8,7 +8,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsInternalOrganizationModule class >> configurationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 

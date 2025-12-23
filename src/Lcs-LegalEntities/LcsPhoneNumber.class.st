@@ -13,7 +13,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsPhoneNumber class >> numberSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'number';
 		yourself
@@ -21,24 +21,24 @@ LcsPhoneNumber class >> numberSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsPhoneNumber class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotTypes: (OrderedCollection with: LcsPhoneNumbers);
-			slotName: 'parent';
-			collectionSlotName: 'phoneNumbers';
-			collectionSlotModuleName: 'Legal Entities Module';
-			yourself
+		slotTypes: (OrderedCollection with: LcsPhoneNumbers);
+		slotName: 'parent';
+		collectionSlotName: 'phoneNumbers';
+		collectionSlotModuleName: 'Legal Entities Module';
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsPhoneNumber class >> phoneNumberTypeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-			slotTypes: (OrderedCollection with: LcsPhoneNumberType);
-			slotName: 'phoneNumberType';
-			collectionSlotName: 'phoneNumberTypes';
-			collectionSlotModuleName: 'Legal Entities Module';
-			yourself
+		slotTypes: (OrderedCollection with: LcsPhoneNumberType);
+		slotName: 'phoneNumberType';
+		collectionSlotName: 'phoneNumberTypes';
+		collectionSlotModuleName: 'Legal Entities Module';
+		yourself
 ]
 
 { #category : 'accessing' }

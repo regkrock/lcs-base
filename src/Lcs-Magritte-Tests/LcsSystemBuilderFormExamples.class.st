@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsSystemBuilderFormExamples,
-	#superclass : #LcsMultislotPatternFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsSystemBuilderFormExamples',
+	#superclass : 'LcsMultislotPatternFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSystemBuilderFormExamples >> formClass [
 	^ LcsSystemBuilderForm
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsSystemBuilderFormExamples >> mainForm [
 	<gtExample>
 	| form |
@@ -26,12 +28,12 @@ LcsSystemBuilderFormExamples >> mainForm [
 	^ form
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsSystemBuilderFormExamples >> targetClass [
 	^ LcsSystem
 ]
 
-{ #category : #'examples  - form' }
+{ #category : 'examples  - form' }
 LcsSystemBuilderFormExamples >> testSystemExample [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -46,7 +48,7 @@ LcsSystemBuilderFormExamples >> testSystemExample [
 	^ form
 ]
 
-{ #category : #'examples  - form' }
+{ #category : 'examples  - form' }
 LcsSystemBuilderFormExamples >> testSystemExampleUmlPositions [
 	^ OrderedCollection new
 ]

@@ -11,12 +11,12 @@ Class {
 
 { #category : 'slot definitions' }
 LcsCommittee class >> committeeMembersSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
-			addSlotType: LcsCommitteeMembers;
-			addCollectionMemberType: LcsCommitteeMember;
-			slotName: 'committeeMembers';
-			yourself
+		addSlotType: LcsCommitteeMembers;
+		addCollectionMemberType: LcsCommitteeMember;
+		slotName: 'committeeMembers';
+		yourself
 ]
 
 { #category : 'slot definitions' }
@@ -31,12 +31,12 @@ LcsCommittee class >> committeeNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsCommittee class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
-			addSlotType: LcsCommittees;
-			slotName: 'parent';
-			collectionSlotName: 'committees';
-			yourself 
+		addSlotType: LcsCommittees;
+		slotName: 'parent';
+		collectionSlotName: 'committees';
+		yourself
 ]
 
 { #category : 'accessing' }

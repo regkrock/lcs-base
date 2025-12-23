@@ -16,7 +16,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> activitySlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsBlockSlot new
 		slotName: 'activity';
 		yourself
@@ -24,7 +24,7 @@ LcsStateMachineState class >> activitySlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> autoTransitionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsBooleanSlot new
 		slotName: 'autoTransition';
 		initialValue: false;
@@ -33,7 +33,7 @@ LcsStateMachineState class >> autoTransitionSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> entryActionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsBlockSlot new
 		slotName: 'entryAction';
 		yourself
@@ -41,7 +41,7 @@ LcsStateMachineState class >> entryActionSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> exitActionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsBlockSlot new
 		slotName: 'exitAction';
 		yourself
@@ -62,27 +62,27 @@ LcsStateMachineState class >> named: stateName on: stateMachine [
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotName: 'states';
-			addSlotType: LcsStateMachineStates;
-			yourself
+		slotName: 'parent';
+		collectionSlotName: 'states';
+		addSlotType: LcsStateMachineStates;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> stateTransitionsSlotDefinition [
-	<slotDefinition>
-	^LcsLocalCollectionSlot new
+	<accessorSlotDefinition>
+	^ LcsLocalCollectionSlot new
 		slotName: 'stateTransitions';
-		addSlotType: LcsStateMachineTransitions; 
+		addSlotType: LcsStateMachineTransitions;
 		addCollectionMemberType: LcsStateMachineStateTransition;
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> statesTransitionsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIdentitySetSlot new
 		slotName: 'stateTransitions';
 		addSlotType: LcsStateMachineState;
@@ -91,8 +91,8 @@ LcsStateMachineState class >> statesTransitionsSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachineState class >> subStateMachineSlotDefinition [
-	<slotDefinition>
-	^LcsSubstateMachineSlot new
+	<accessorSlotDefinition>
+	^ LcsSubstateMachineSlot new
 ]
 
 { #category : 'private' }

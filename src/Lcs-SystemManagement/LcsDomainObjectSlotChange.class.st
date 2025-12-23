@@ -12,19 +12,19 @@ Class {
 
 { #category : 'slot definitions' }
 LcsDomainObjectSlotChange class >> newValueSlotDefinition [
-	<slotDefinition>
-	^  LcsValueHistorySlot new
-			slotName: 'newValue';
-			yourself
+	<accessorSlotDefinition>
+	^ LcsValueHistorySlot new
+		slotName: 'newValue';
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsDomainObjectSlotChange class >> slotNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: 'slotName';
-			makeDirectUpdateOfVariable;
-			yourself
+		slotName: 'slotName';
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'history' }

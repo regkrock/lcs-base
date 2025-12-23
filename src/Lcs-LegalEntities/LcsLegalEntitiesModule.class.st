@@ -18,15 +18,15 @@ Class {
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> configurationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
-			priority: 62;
-			yourself
+		priority: 62;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> contactsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'contacts';
 		addSlotType: LcsLegalEntities;
@@ -42,7 +42,7 @@ LcsLegalEntitiesModule class >> defaultModuleName [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> emailAddressTypesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsEmailAddressTypes);
 		collectionMemberTypes: (OrderedCollection with: LcsEmailAddressType);
@@ -54,7 +54,7 @@ LcsLegalEntitiesModule class >> emailAddressTypesSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> emailAddressesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsEmailAddresses);
 		collectionMemberTypes: (OrderedCollection with: LcsEmailAddress);
@@ -64,7 +64,7 @@ LcsLegalEntitiesModule class >> emailAddressesSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> gendersSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSingletonValueObjectsGlobalCollectionSlot new
 		slotName: 'genders';
 		addSlotType: LcsGenders;
@@ -80,7 +80,7 @@ LcsLegalEntitiesModule class >> moduleConfigurationClass [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> organizationsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'organizations';
 		addSlotType: LcsOrganizations;
@@ -98,7 +98,7 @@ LcsLegalEntitiesModule class >> owningModules [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> personsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
 		priority: 60;
@@ -109,7 +109,7 @@ LcsLegalEntitiesModule class >> personsSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> phoneNumberTypesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsPhoneNumberTypes);
 		collectionMemberTypes: (OrderedCollection with: LcsPhoneNumberType);
@@ -121,7 +121,7 @@ LcsLegalEntitiesModule class >> phoneNumberTypesSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> phoneNumbersSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsPhoneNumbers);
 		collectionMemberTypes: (OrderedCollection with: LcsPhoneNumber);
@@ -131,7 +131,7 @@ LcsLegalEntitiesModule class >> phoneNumbersSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModule class >> titlesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
 		slotName: 'titles';
 		addSlotType: LcsTitles;

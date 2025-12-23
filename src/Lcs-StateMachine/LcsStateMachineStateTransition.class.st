@@ -22,7 +22,7 @@ LcsStateMachineStateTransition class >> action: aBlockOrMessageSend to: nextStat
 
 { #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> actionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsBlockSlot new
 		slotName: 'action';
 		yourself
@@ -30,17 +30,16 @@ LcsStateMachineStateTransition class >> actionSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> eventTypeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSymbolSlot new
 		slotName: 'eventType';
-		inputConversionBlock: [ :parentDomainObject :anEventOrSymbol  :slot | 
-			parentDomainObject asEventType: anEventOrSymbol];
+		inputConversionBlock: [ :parentDomainObject :anEventOrSymbol :slot | parentDomainObject asEventType: anEventOrSymbol ];
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> guardConditionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsBlockSlot new
 		slotName: 'guardCondition';
 		yourself
@@ -76,7 +75,7 @@ LcsStateMachineStateTransition class >> nextStateId: aStateSymbol [
 
 { #category : 'slot definitions' }
 LcsStateMachineStateTransition class >> nextStateIdSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'nextStateId';
 		yourself

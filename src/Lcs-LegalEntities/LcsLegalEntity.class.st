@@ -12,7 +12,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsLegalEntity class >> emailAddressesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'emailAddresses';
 		addSlotType: LcsEmailAddresses;
@@ -20,13 +20,15 @@ LcsLegalEntity class >> emailAddressesSlotDefinition [
 		addPostAddAction: (LcsPostAddAction new
 				description: 'Add to global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
-						emailAddresses add: newValue ]);
+					(parentDomainObject currentSystem
+						moduleNamed: LcsLegalEntitiesModule defaultModuleName) emailAddresses
+						add: newValue ]);
 		addPostRemoveAction: (LcsPostRemoveAction new
 				description: 'Remove from global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
-						emailAddresses remove: newValue ]);
+					(parentDomainObject currentSystem
+						moduleNamed: LcsLegalEntitiesModule defaultModuleName) emailAddresses
+						remove: newValue ]);
 		yourself
 ]
 
@@ -41,27 +43,29 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsLegalEntity class >> phoneNumbersSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
-			slotName: 'phoneNumbers';
-			addSlotType: LcsPhoneNumbers;
-			addCollectionMemberType: LcsPhoneNumber;
-			addPostAddAction: (LcsPostAddAction new
+		slotName: 'phoneNumbers';
+		addSlotType: LcsPhoneNumbers;
+		addCollectionMemberType: LcsPhoneNumber;
+		addPostAddAction: (LcsPostAddAction new
 				description: 'Add to global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
-						phoneNumbers add: newValue ]);
+					(parentDomainObject currentSystem
+						moduleNamed: LcsLegalEntitiesModule defaultModuleName) phoneNumbers
+						add: newValue ]);
 		addPostRemoveAction: (LcsPostRemoveAction new
 				description: 'Remove from global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: LcsLegalEntitiesModule defaultModuleName)
-						phoneNumbers remove: newValue ]);
-			yourself
+					(parentDomainObject currentSystem
+						moduleNamed: LcsLegalEntitiesModule defaultModuleName) phoneNumbers
+						remove: newValue ]);
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsLegalEntity class >> postalAddressesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'postalAddresses';
 		addSlotType: LcsAddresses;
@@ -69,13 +73,14 @@ LcsLegalEntity class >> postalAddressesSlotDefinition [
 		addPostAddAction: (LcsPostAddAction new
 				description: 'Add address to the global addresses collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: LcsGeographyModule defaultModuleName) addresses
-						add: newValue ]);
+					(parentDomainObject currentSystem
+						moduleNamed: LcsGeographyModule defaultModuleName) addresses add: newValue ]);
 		addPostRemoveAction: (LcsPostRemoveAction new
 				description: 'Remove from global collection';
 				actionBlock: [ :newValue :parentDomainObject :oldValue | 
-					(parentDomainObject currentSystem moduleNamed: LcsGeographyModule defaultModuleName)
-						addresses remove: newValue ]);
+					(parentDomainObject currentSystem
+						moduleNamed: LcsGeographyModule defaultModuleName) addresses
+						remove: newValue ]);
 		yourself
 ]
 

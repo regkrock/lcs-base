@@ -117,7 +117,7 @@ LcsSlotModel >> addSlotDefinitions: aSlotDefinitons to: aCollection [
 
 { #category : 'validation' }
 LcsSlotModel >> addValidateConfigurationResultTo: aValidator [
-	self slotDefinitions do: [ :eachSlotDefintion | aValidator validate: eachSlotDefintion ]
+	self slotDefinitions do: [ :eachSlotDefinition | aValidator validate: eachSlotDefinition ]
 ]
 
 { #category : 'slots' }
@@ -227,7 +227,7 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 				beTinySize;
 				label: 'Reinstall Slot';
 				action: [ :aButton | 
-					each domainClass installSlotDefinition: each slotDefinitionSelector.
+					each domainClass installAccessorSlotDefinition: each slotDefinitionSelector.
 					aButton phlow fireViewUpdateWish ]] width: 40; 
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
 			tooltip: 'Inspect Slot Model'

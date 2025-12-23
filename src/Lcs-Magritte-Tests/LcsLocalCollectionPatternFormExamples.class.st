@@ -1,22 +1,24 @@
 Class {
-	#name : #LcsLocalCollectionPatternFormExamples,
-	#superclass : #LcsMultislotPatternFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsLocalCollectionPatternFormExamples',
+	#superclass : 'LcsMultislotPatternFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLocalCollectionPatternFormExamples >> formClass [
 	^ LcsLocalCollectionPatternForm
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsLocalCollectionPatternFormExamples >> formScripterWithRootNameEntered [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
 	^ super formScripterWithRootNameEntered
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsLocalCollectionPatternFormExamples >> mainForm [
 	<gtExample>
 	<return: #LcsLocalCollectionPatternForm>
@@ -28,7 +30,7 @@ LcsLocalCollectionPatternFormExamples >> mainForm [
 	^ form
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsLocalCollectionPatternFormExamples >> mainFormScripter [
 	<gtExample>
 	| scripter |
@@ -36,7 +38,7 @@ LcsLocalCollectionPatternFormExamples >> mainFormScripter [
 	^ scripter
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsLocalCollectionPatternFormExamples >> organizationCommitteeExample [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -55,12 +57,12 @@ LcsLocalCollectionPatternFormExamples >> organizationCommitteeExample [
 	^ form
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsLocalCollectionPatternFormExamples >> organizationCommitteeExampleUmlPositions [
 	^ {(561.2157813178168@569.2645060221354). (571.2777777777777@665.2645060221354). (271.4277793036566@540.0688273111979). (290.9017783270941@628.6666666666666). (820.530783759223@562.8623453776041). (615.6496162841859@598.862345377604). (340.33829171089593@569.6666666666665). (668.4077826605902@550.6635991303817). (668.4077826605902@550.6635991303817). (668.4077826605902@550.6635991303817). (668.4077826605902@550.6635991303817). (668.4077826605902@550.6635991303817). (394.7837821112737@595.7696062611319). (394.7837821112737@595.7696062611319). (394.7837821112737@595.7696062611319). (394.7837821112737@595.7696062611319). (394.7837821112737@595.7696062611319). (394.7837821112737@650.3181495655856). (394.7837821112737@650.3181495655856). (394.7837821112737@650.3181495655856). (394.7837821112737@650.3181495655856). (394.7837821112737@650.3181495655856). (394.7837821112737@626.6617545004322). (394.7837821112737@626.6617545004322). (394.7837821112737@626.6617545004322). (394.7837821112737@626.6617545004322). (394.7837821112737@626.6617545004322). (394.7837821112737@580.6588446155647). (394.7837821112737@580.6588446155647). (394.7837821112737@580.6588446155647). (394.7837821112737@580.6588446155647). (394.7837821112737@580.6588446155647)}
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsLocalCollectionPatternFormExamples >> phoneNumbersAddedToPersonExample [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -74,7 +76,7 @@ LcsLocalCollectionPatternFormExamples >> phoneNumbersAddedToPersonExample [
 	^ form
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsLocalCollectionPatternFormExamples >> phoneNumbersAddedToPersonExampleUmlPositions [
 	^ {502.98799896240234 @ 387.86234537760413.
 		718.814998626709 @ 496.66666666666663.
@@ -117,7 +119,7 @@ LcsLocalCollectionPatternFormExamples >> phoneNumbersAddedToPersonExampleUmlPosi
 		384.4720001220703 @ 490.52836773774067}
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsLocalCollectionPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEntered [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -131,7 +133,7 @@ LcsLocalCollectionPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEn
 	^form
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsLocalCollectionPatternFormExamples >> targetClass [
 	^ LxxPerson
 ]

@@ -15,13 +15,13 @@ Class {
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> dateOfBirthSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDateOfBirthSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> familyNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'familyName';
 		yourself
@@ -29,7 +29,7 @@ LcsBasePerson class >> familyNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> firstNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'firstName';
 		yourself
@@ -37,13 +37,16 @@ LcsBasePerson class >> firstNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> genderSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'gender';
 		addSlotType: LcsGender;
 		collectionSlotName: 'genders';
 		collectionSlotModuleName: 'Legal Entities Module';
-		prevalidationTransformBlock:[ :value :slot | slot targetCollection findWithKey: value ifNone: [ slot targetCollection defaultInstance ] ];
+		prevalidationTransformBlock: [ :value :slot | 
+			slot targetCollection
+				findWithKey: value
+				ifNone: [ slot targetCollection defaultInstance ] ];
 		yourself
 ]
 
@@ -74,7 +77,7 @@ LcsBasePerson class >> homeEmailAddressSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> middleNamesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'middleNames';
 		yourself
@@ -87,14 +90,14 @@ LcsBasePerson class >> securityResourceName [
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> titleSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-			slotName: 'title';
-			addSlotType: LcsTitle;
-			collectionSlotName: 'titles';
-			collectionSlotModuleName: 'Legal Entities Module';
-			prevalidationTransformBlock:[ :value :slot | slot targetCollection findWithKey: value ifNone: [ value ] ];
-			yourself
+		slotName: 'title';
+		addSlotType: LcsTitle;
+		collectionSlotName: 'titles';
+		collectionSlotModuleName: 'Legal Entities Module';
+		prevalidationTransformBlock: [ :value :slot | slot targetCollection findWithKey: value ifNone: [ value ] ];
+		yourself
 ]
 
 { #category : 'slot definitions' }

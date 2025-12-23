@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsGlobalCollectionPatternFormExamples,
-	#superclass : #LcsMultislotPatternFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsGlobalCollectionPatternFormExamples',
+	#superclass : 'LcsMultislotPatternFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsGlobalCollectionPatternFormExamples >> addFoosGlobalCollectionWithPersonHavingAFooInstanceForm [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -18,7 +20,7 @@ LcsGlobalCollectionPatternFormExamples >> addFoosGlobalCollectionWithPersonHavin
 	^ form
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsGlobalCollectionPatternFormExamples >> addFoosGlobalCollectionWithPµersonHavingAFooInstanceFormUmlPositions [
 	^ {495.21256086561414 @ 552.6243828667534.
 		433.319557401869 @ 690.2222222222222.
@@ -89,19 +91,19 @@ LcsGlobalCollectionPatternFormExamples >> addFoosGlobalCollectionWithPµersonHav
 		357.8765527937147 @ 688.721148889058}
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGlobalCollectionPatternFormExamples >> formClass [
 	^ LcsGlobalCollectionPatternForm
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsGlobalCollectionPatternFormExamples >> formScripterWithRootNameEntered [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
 	^ super formScripterWithRootNameEntered
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsGlobalCollectionPatternFormExamples >> mainForm [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -113,7 +115,7 @@ LcsGlobalCollectionPatternFormExamples >> mainForm [
 	^ form
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsGlobalCollectionPatternFormExamples >> mainFormScripter [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -122,7 +124,7 @@ LcsGlobalCollectionPatternFormExamples >> mainFormScripter [
 	^ scripter
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsGlobalCollectionPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEntered [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -133,7 +135,7 @@ LcsGlobalCollectionPatternFormExamples >> slotCreationFormWithPrefixAndRootNameE
 	^form
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsGlobalCollectionPatternFormExamples >> targetClass [
 	^ LxxPrototypeSystem
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsBooleanSlotCreationFormExamples,
-	#superclass : #LcsSmalltalkObjectSlotExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsBooleanSlotCreationFormExamples',
+	#superclass : 'LcsSmalltalkObjectSlotExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsBooleanSlotCreationFormExamples >> myBooleanSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
@@ -14,19 +16,19 @@ LcsBooleanSlotCreationFormExamples >> myBooleanSlotCreationForm [
 	^ form
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsBooleanSlotCreationFormExamples >> slotAccessorSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
 	^ super slotAccessorSlotCreationForm
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsBooleanSlotCreationFormExamples >> slotClass [
 	^ LcsBooleanSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsBooleanSlotCreationFormExamples >> slotSubjectScripter [
 	<gtExample>
 	<return: #BlScripter>

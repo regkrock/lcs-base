@@ -13,7 +13,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsGeographyModule class >> addressTypesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsAddressTypes);
 		collectionMemberTypes: (OrderedCollection with: LcsAddressType);
@@ -25,7 +25,7 @@ LcsGeographyModule class >> addressTypesSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsGeographyModule class >> addressesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsAddresses);
 		collectionMemberTypes: (OrderedCollection with: LcsAddress);
@@ -35,15 +35,15 @@ LcsGeographyModule class >> addressesSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsGeographyModule class >> configurationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
-			priority: 5;
-			yourself
+		priority: 5;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsGeographyModule class >> countriesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'countries';
 		addSlotType: LcsCountries;

@@ -161,7 +161,7 @@ LcsMethodStream >> startMethodSource: aSelector [
 ]
 
 { #category : 'building' }
-LcsMethodStream >> startSlotDefintionSource: aSelector pragmaName: aString [
+LcsMethodStream >> startSlotDefinitionSource: aSelector pragmaName: aString [
 	self startMethodSource: aSelector.
 	self newLine 
 		nextPutAll: '<';

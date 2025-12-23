@@ -11,7 +11,7 @@ Class {
 
 { #category : 'slot definitions' }
 LxxCompositeStateMachine class >> changesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsOrderedCollectionSlot new
 		slotName: 'changes';
 		yourself

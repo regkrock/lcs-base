@@ -11,7 +11,7 @@ Class {
 
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
-	self subject: LcsSlotDefintionMethodBuilder new.
+	self subject: LcsSlotDefinitionMethodBuilder new.
 	self subject slotClass: LcsStringSlot.
 	self subject addSlotType: 'String'.
 	self assert: self subject slotTypes size = 1.
@@ -26,8 +26,8 @@ LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
 
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
-	self subject: LcsSlotDefintionMethodBuilder new.
-	self assert: self subject pragmaSelector = 'slotDefinition'.
+	self subject: LcsSlotDefinitionMethodBuilder new.
+	self assert: self subject pragmaSelector = 'accessorSlotDefinition'.
 	
 	self subject slotClass: LcsStringSlot.
 	self assert: self subject slotTypes isEmpty.
@@ -46,7 +46,7 @@ LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
 
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testChangingTargetClassName [
-	self subject: LcsSlotDefintionMethodBuilder new.
+	self subject: LcsSlotDefinitionMethodBuilder new.
 	self subject slotClass: LcsStringSlot.
 	self assert: self subject targetClassName isNil.
 	
@@ -61,7 +61,7 @@ LcsSlotDefintionMethodBuilderTest >> testChangingTargetClassName [
 
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testCreation [
-	self subject: LcsSlotDefintionMethodBuilder new.
+	self subject: LcsSlotDefinitionMethodBuilder new.
 	self assert: self subject properties class = OrderedDictionary.
 	self assert: self subject slotTypes class = OrderedCollection.
 	self assert: self subject validationConditions class = LcsValidationConditions.
@@ -77,7 +77,7 @@ LcsSlotDefintionMethodBuilderTest >> testCreation [
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testInstallingSlotDefinitionMethod [
 	self subject: (
-		LcsSlotDefintionMethodBuilder new
+		LcsSlotDefinitionMethodBuilder new
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
@@ -90,7 +90,7 @@ LcsSlotDefintionMethodBuilderTest >> testInstallingSlotDefinitionMethod [
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnLcsCodeSlot [
 	| methodSource |
 	self subject: (
-		LcsSlotDefintionMethodBuilder new
+		LcsSlotDefinitionMethodBuilder new
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
@@ -98,7 +98,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 			yourself).
 	methodSource := self subject slotDefinitionSource.
 	self assert: methodSource equals: 'fooSlotDefinition
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 			slotName: ''foo'';
 			required: true;
@@ -109,7 +109,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnLcsStringSlot [
 	| methodSource |
 	self subject: (
-		LcsSlotDefintionMethodBuilder new
+		LcsSlotDefinitionMethodBuilder new
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
@@ -117,7 +117,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 			yourself).
 	methodSource := self subject slotDefinitionSource.
 	self assert: methodSource equals: 'fooSlotDefinition
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 			slotName: ''foo'';
 			required: true;
@@ -127,7 +127,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoSlotNameDefined [
 	self should: [
-		(LcsSlotDefintionMethodBuilder new
+		(LcsSlotDefinitionMethodBuilder new
 			slotClass: LcsAccessorSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
@@ -139,7 +139,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoS
 LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidationConditions [
 | methodSource validationCondition |
 	self subject: (
-		LcsSlotDefintionMethodBuilder new
+		LcsSlotDefinitionMethodBuilder new
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
@@ -152,7 +152,7 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidatio
 	
 	methodSource := self subject slotDefinitionSource.
 	self assert: methodSource equals: 'fooSlotDefinition
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 			slotName: ''foo'';
 			addValidationCondition: [ false ] description: ''Always fails'';

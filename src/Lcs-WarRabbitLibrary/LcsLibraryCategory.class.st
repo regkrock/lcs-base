@@ -11,7 +11,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsLibraryCategory class >> categoryNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'categoryName';
 		beRequired;
@@ -28,18 +28,18 @@ LcsLibraryCategory class >> newFor: aString [
 
 { #category : 'slot definitions' }
 LcsLibraryCategory class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
-			collectionSlotName: 'libraryCategories';
-			addSlotType: LcsLibraryCategories;
-			yourself
+		slotName: 'parent';
+		collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
+		collectionSlotName: 'libraryCategories';
+		addSlotType: LcsLibraryCategories;
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsLibraryCategory class >> subcategoriesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'subcategories';
 		yourself

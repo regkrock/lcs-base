@@ -7,6 +7,6 @@ Class {
 
 { #category : 'slot definitions' }
 LcsUnknownPhoneNumber class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsParentSlot new
 ]

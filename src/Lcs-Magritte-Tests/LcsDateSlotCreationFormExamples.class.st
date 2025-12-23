@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsDateSlotCreationFormExamples,
-	#superclass : #LcsSmalltalkObjectSlotExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsDateSlotCreationFormExamples',
+	#superclass : 'LcsSmalltalkObjectSlotExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDateSlotCreationFormExamples >> myDateSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
@@ -14,19 +16,19 @@ LcsDateSlotCreationFormExamples >> myDateSlotCreationForm [
 	^ form
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDateSlotCreationFormExamples >> slotAccessorSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
 	^ super slotAccessorSlotCreationForm
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDateSlotCreationFormExamples >> slotClass [
 	^ LcsDateSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDateSlotCreationFormExamples >> slotSubjectScripter [
 	<gtExample>
 	<return: #BlScripter>

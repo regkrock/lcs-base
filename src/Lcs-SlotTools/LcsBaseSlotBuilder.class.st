@@ -209,7 +209,7 @@ LcsBaseSlotBuilder >> slotClassName: anObject [
 
 { #category : 'initialize' }
 LcsBaseSlotBuilder >> slotDefinitionMethodBuilder [
-	^ LcsSlotDefintionMethodBuilder newFrom: self
+	^ LcsSlotDefinitionMethodBuilder newFrom: self
 ]
 
 { #category : 'accessing' }

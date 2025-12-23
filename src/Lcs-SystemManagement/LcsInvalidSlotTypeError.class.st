@@ -154,7 +154,7 @@ LcsInvalidSlotTypeError >> object: anObject [
 
 { #category : 'gt view' }
 LcsInvalidSlotTypeError >> reinstallSlotDefinition [
-	^ self target class installSlotDefinition: self slotDefinitionSelector
+	^ self target class installAccessorSlotDefinition: self slotDefinitionSelector
 ]
 
 { #category : 'signal' }

@@ -1,26 +1,28 @@
 Class {
-	#name : #LcsSlotCreationFormExamples,
-	#superclass : #LcsMagritteFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsSlotCreationFormExamples',
+	#superclass : 'LcsMagritteFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSlotCreationFormExamples >> actionIdFor: aDescriptionSymbol [
 	^ GtMagritteActionElementId new description: (self subjectScripterModel perform: aDescriptionSymbol)
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSlotCreationFormExamples >> currentCacheValueOf: slotClassDescription [ 
 	^ (((self subjectScripter element userData at: #gtmemento) cache
 		at: slotClassDescription) ifSome: [ :aValue | aValue ]) currentValue.
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSlotCreationFormExamples >> fieldIdFor: aDescriptionSymbol [
 	^ GtMagritteFieldElementId new description: (self subjectScripterModel perform: aDescriptionSymbol)
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	<gtExample>
 	<return: #BlScripter>
@@ -93,7 +95,7 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	^ self subjectScripter
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formScripter [
 	<gtExample>
 	<return: #BlScripter>
@@ -112,7 +114,7 @@ LcsSlotCreationFormExamples >> formScripter [
 	^ self subjectScripter
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
@@ -138,7 +140,7 @@ LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 	^ self subjectScripter
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formWithValidSlotClassNameEntry [
 	<gtExample>
 	<return: #BlScripter>
@@ -163,7 +165,7 @@ LcsSlotCreationFormExamples >> formWithValidSlotClassNameEntry [
 	^ self subjectScripter
 ]
 
-{ #category : #'scripter - support' }
+{ #category : 'scripter - support' }
 LcsSlotCreationFormExamples >> inStep: aStep click: anAcceptId [
 	aStep requestFocus
 		label: 'Focus set to Accept button';
@@ -177,7 +179,7 @@ LcsSlotCreationFormExamples >> inStep: aStep click: anAcceptId [
 				onChildAt: 1 ]
 ]
 
-{ #category : #'scripter - support' }
+{ #category : 'scripter - support' }
 LcsSlotCreationFormExamples >> inStep: aStep enterText: aString in: anId acceptEnabled: anAcceptEnabled acceptId: anAcceptId cancelEnabled: aCancelEnabled cancelId: aCancelId [
 
 	aStep requestFocus
@@ -208,13 +210,13 @@ LcsSlotCreationFormExamples >> inStep: aStep enterText: aString in: anId acceptE
 		cancelId: aCancelId 
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsSlotCreationFormExamples >> originalCacheValueOf: slotClassDescription [ 
 	^ (((self subjectScripter element userData at: #gtmemento) cache
 		at: slotClassDescription) ifSome: [ :aValue | aValue ]) originalValue.
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsSlotCreationFormExamples >> slotCreationForm [
 	<gtExample>
 	| form |
@@ -226,7 +228,7 @@ LcsSlotCreationFormExamples >> slotCreationForm [
 	^form
 ]
 
-{ #category : #'examples - support' }
+{ #category : 'examples - support' }
 LcsSlotCreationFormExamples >> slotCreationFormOn: aDomainClass [
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.
@@ -239,7 +241,7 @@ LcsSlotCreationFormExamples >> slotCreationFormOn: aDomainClass [
 	^form
 ]
 
-{ #category : #'example - form' }
+{ #category : 'example - form' }
 LcsSlotCreationFormExamples >> slotCreationFormOnLxxPerson [
 	<gtExample>
 	| form |
@@ -247,7 +249,7 @@ LcsSlotCreationFormExamples >> slotCreationFormOnLxxPerson [
 	^ form
 ]
 
-{ #category : #'example - form' }
+{ #category : 'example - form' }
 LcsSlotCreationFormExamples >> virtualSlotAccessorSlotCreationForm [
 	<gtExample>
 	| form |

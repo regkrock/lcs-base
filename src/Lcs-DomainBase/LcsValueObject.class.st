@@ -14,19 +14,19 @@ Class {
 
 { #category : 'slot definitions' }
 LcsValueObject class >> codeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsValueCodeSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsValueObject class >> descriptionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDescriptionSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsValueObject class >> isDefaultInstanceSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsBooleanSlot new
 		slotName: 'isDefaultInstance';
 		yourself
@@ -34,7 +34,7 @@ LcsValueObject class >> isDefaultInstanceSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsValueObject class >> labelSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLabelSlot new
 ]
 

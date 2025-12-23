@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsMultislotPatternFormExamples,
-	#superclass : #LcsMagritteFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsMultislotPatternFormExamples',
+	#superclass : 'LcsMagritteFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #'scripter - assertion' }
+{ #category : 'scripter - assertion' }
 LcsMultislotPatternFormExamples >> assert: aStep model: aModel acceptEnabled: isAcceptEnabled cancelEnabled: isCancelEnabled [
 	| anAcceptId anCancelId |
 	anAcceptId := GtMagritteActionElementId new
@@ -19,12 +21,12 @@ LcsMultislotPatternFormExamples >> assert: aStep model: aModel acceptEnabled: is
 		cancelId: anCancelId
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsMultislotPatternFormExamples >> builderJobClass [
 	^ self formClass builderClass
 ]
 
-{ #category : #'sciprter - support' }
+{ #category : 'sciprter - support' }
 LcsMultislotPatternFormExamples >> clickOnAcceptButtonScript [
 	| anAcceptId anCancelId |
 	self subject: self slotCreationFormWithPrefixAndRootNameEnteredScripter.
@@ -48,12 +50,12 @@ LcsMultislotPatternFormExamples >> clickOnAcceptButtonScript [
 	^ self subject
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsMultislotPatternFormExamples >> formClass [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEntered [
 	self subjectScripter: self mainFormScripter.
 	self
@@ -76,7 +78,7 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEntered [
 	^ self subjectScripter
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknownClassChecked [
 	"<gtExample>
 	<return: #BlScripter>"
@@ -89,7 +91,7 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknow
 	^ self subjectScripter
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAccept [
 	"<gtExample>
 	<return: #BlScripter>"
@@ -119,14 +121,14 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknow
 	^ self subjectScripter
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAcceptModel [
 	"<gtExample>"
 	self subjectScripter: self formScripterWithRootNameEnteredAndBuildUnknownClassCheckedAndClickAcceptAndThenUnslectBuildUnknownAndClickAccept.
 	^ self subjectScripterModel
 ]
 
-{ #category : #'examples  - form' }
+{ #category : 'examples  - form' }
 LcsMultislotPatternFormExamples >> mainForm [
 	"<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>"
@@ -144,7 +146,7 @@ LcsMultislotPatternFormExamples >> mainForm [
 	^ form
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsMultislotPatternFormExamples >> mainFormScripter [
 	"<gtExample>
 	<return: #BlScripter>"
@@ -185,7 +187,7 @@ LcsMultislotPatternFormExamples >> mainFormScripter [
 	^ self subjectScripter
 ]
 
-{ #category : #'sciprter - support' }
+{ #category : 'sciprter - support' }
 LcsMultislotPatternFormExamples >> simulateClickOnAcceptButtonIn: form [
 	self
 		subjectScripter: (
@@ -195,7 +197,7 @@ LcsMultislotPatternFormExamples >> simulateClickOnAcceptButtonIn: form [
 	self clickOn: (self actionIdFor: #magritteAcceptAction)
 ]
 
-{ #category : #'examples - scripter' }
+{ #category : 'examples - scripter' }
 LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEnteredScripter [
 	"<gtExample>"
 	| form aScripter |
@@ -215,7 +217,7 @@ LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEnteredS
 	^ aScripter
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixEntered [
 	"<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>"
@@ -225,7 +227,7 @@ LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixEntered [
 	^form
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsMultislotPatternFormExamples >> targetClass [
 	^ LxxPrototypeSystem
 ]

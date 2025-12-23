@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsValueCollectionPatternFormExamples,
-	#superclass : #LcsMultislotPatternFormExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsValueCollectionPatternFormExamples',
+	#superclass : 'LcsMultislotPatternFormExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueCollectionPatternFormExamples >> formClass [
 	^ LcsValueCollectionPatternForm
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsValueCollectionPatternFormExamples >> mainForm [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -21,7 +23,7 @@ LcsValueCollectionPatternFormExamples >> mainForm [
 	^ form
 ]
 
-{ #category : #'examples - form' }
+{ #category : 'examples - form' }
 LcsValueCollectionPatternFormExamples >> personTitlesCreationForm [
 	<gtExample>
 	<return: #LcsGlobalCollectionPatternForm>
@@ -35,7 +37,7 @@ LcsValueCollectionPatternFormExamples >> personTitlesCreationForm [
 	^ form
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsValueCollectionPatternFormExamples >> targetClass [
 	^ LxxPrototypeSystem
 ]

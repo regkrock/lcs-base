@@ -18,40 +18,44 @@ LcsBaseCountrySubdivision class >> collectionSlotIn: anObject [
 
 { #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> formalNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #formalName;
 		beRequired;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size <= 2 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size <= 2 ]
+			description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
 { #category : 'slot definition\t' }
 LcsBaseCountrySubdivision class >> isoCodeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
-		slotName: #'isoCode';
+		slotName: #isoCode;
 		beRequired;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ] description: 'Code must be 2 characters long';		yourself
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ]
+			description: 'Code must be 2 characters long';
+		yourself
 ]
 
 { #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotName: 'subdivisions';
-			addSlotType: LcsCountrySubdivisions;
-			yourself
+		slotName: 'parent';
+		collectionSlotName: 'subdivisions';
+		addSlotType: LcsCountrySubdivisions;
+		yourself
 ]
 
 { #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #subdivisionName;
 		beRequired;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size <= 2 ] description: 'Name must be at least 3 characters long';
+		addValidationCondition: [ :value :parentDomainObject :oldValue | value size <= 2 ]
+			description: 'Name must be at least 3 characters long';
 		yourself
 ]
 

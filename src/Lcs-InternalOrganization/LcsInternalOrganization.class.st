@@ -11,12 +11,12 @@ Class {
 
 { #category : 'slot definitions' }
 LcsInternalOrganization class >> committeesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotTypes: (OrderedCollection with: LcsCommittees);
 		collectionMemberTypes: (OrderedCollection with: LcsCommittee);
 		slotName: 'committees';
-		yourself 
+		yourself
 ]
 
 { #category : 'accessing' }

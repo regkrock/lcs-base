@@ -17,13 +17,13 @@ Class {
 
 { #category : 'slot definitions' }
 LcsStateMachine class >> contextSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsContextSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsStateMachine class >> currentStateSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStateMachineStateSlot new
 		slotName: 'currentState';
 		yourself
@@ -31,13 +31,13 @@ LcsStateMachine class >> currentStateSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachine class >> idSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIdSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsStateMachine class >> listenersSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsOrderedCollectionSlot new
 		slotName: 'listeners';
 		yourself
@@ -45,7 +45,7 @@ LcsStateMachine class >> listenersSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachine class >> startStateSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStateMachineStateSlot new
 		slotName: 'startState';
 		beAllowNil;
@@ -55,20 +55,20 @@ LcsStateMachine class >> startStateSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachine class >> stateTransitionsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
 		slotName: 'stateTransitions';
-		addSlotType: LcsStateMachineTransitions; 
+		addSlotType: LcsStateMachineTransitions;
 		addCollectionMemberType: LcsStateMachineStateTransition;
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsStateMachine class >> statesSlotDefinition [
-	<slotDefinition>
-	^LcsLocalCollectionSlot new
+	<accessorSlotDefinition>
+	^ LcsLocalCollectionSlot new
 		slotName: 'states';
-		addSlotType: LcsStateMachineStates; 
+		addSlotType: LcsStateMachineStates;
 		addCollectionMemberType: LcsStateMachineState;
 		yourself
 ]

@@ -11,11 +11,10 @@ Class {
 
 { #category : 'slot definitions\t' }
 LcsSupportDomainObject class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ super parentSlotDefinition
-			makeDirectUpdateOfVariable;
-			yourself
-
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'testing' }

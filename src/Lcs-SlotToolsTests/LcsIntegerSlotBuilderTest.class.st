@@ -20,7 +20,7 @@ LcsIntegerSlotBuilderTest >> testInitialValue [
 			yourself).
 	self subject buildJobSteps.
 		self assert: (self subject jobStep: 2) slotDefinitionSource equals: 'fooSlotDefinition
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIntegerSlot new
 			slotName: ''foo'';
 			initialValueBlock: [ 1 ];
@@ -36,7 +36,7 @@ LcsIntegerSlotBuilderTest >> testSlotDefinitionSourceCode [
 			yourself).
 	self subject buildJobSteps.
 		self assert: (self subject jobStep: 2) slotDefinitionSource equals: 'fooSlotDefinition
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIntegerSlot new
 			slotName: ''foo'';
 			initialValueBlock: [ 1 ];

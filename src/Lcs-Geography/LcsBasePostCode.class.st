@@ -11,7 +11,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsBasePostCode class >> codeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'code';
 		yourself

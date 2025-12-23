@@ -8,7 +8,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsModules class >> collectionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDictionarySlot new
 		slotName: 'collection';
 		makeDirectUpdateOfVariable;

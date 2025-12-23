@@ -13,7 +13,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsStateMachineObject class >> currentEventSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStateMachineEventSlot new
 		slotName: 'currentEvent';
 		yourself
@@ -26,10 +26,10 @@ LcsStateMachineObject class >> id: anId [
 
 { #category : 'slot definitions' }
 LcsStateMachineObject class >> idSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'id';
-		addSlotType: String; 
+		addSlotType: String;
 		beAllowNil;
 		initialValue: nil;
 		yourself
@@ -37,10 +37,10 @@ LcsStateMachineObject class >> idSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachineObject class >> stateMachineSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsAggregateSlot new
 		slotName: 'stateMachine';
-		addSlotType: LcsStateMachine; 
+		addSlotType: LcsStateMachine;
 		beAllowNil;
 		initialValue: nil;
 		yourself

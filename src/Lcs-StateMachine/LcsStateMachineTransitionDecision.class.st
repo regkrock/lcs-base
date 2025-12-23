@@ -12,7 +12,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsStateMachineTransitionDecision class >> falseStateIdSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStateMachineEventTypeSlot new
 		slotName: 'falseStateId';
 		beRequired;
@@ -21,7 +21,7 @@ LcsStateMachineTransitionDecision class >> falseStateIdSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsStateMachineTransitionDecision class >> trueStateIdSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStateMachineEventTypeSlot new
 		slotName: 'trueStateId';
 		beRequired;

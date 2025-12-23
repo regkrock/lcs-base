@@ -11,7 +11,7 @@ Class {
 
 { #category : 'slot definition' }
 LxxSkills class >> unknownSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainObjectSlot new
 		slotName: 'unknown';
 		addSlotType: LxxUnknownSkill;

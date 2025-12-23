@@ -21,7 +21,7 @@ LxxPersonsModule class >> owningModules [
 
 { #category : 'slot definitions' }
 LxxPersonsModule class >> personsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'persons';
 		addSlotType: LxxPersons;

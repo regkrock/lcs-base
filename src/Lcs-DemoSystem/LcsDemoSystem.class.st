@@ -8,9 +8,8 @@ Class {
 
 { #category : 'slot definitions' }
 LcsDemoSystem class >> configurationSlotDefinition [
-	<slotDefinition>
-	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
-		yourself
+	<accessorSlotDefinition>
+	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass) yourself
 ]
 
 { #category : 'configuration' }

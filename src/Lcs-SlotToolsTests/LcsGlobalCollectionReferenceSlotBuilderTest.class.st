@@ -30,7 +30,7 @@ LcsGlobalCollectionReferenceSlotBuilderTest >> testDefinitionSourceCode [
 	
 	self assert: (self subject jobStep: 2) slotDefinitionSource equals: 
 'parentSlotDefinition
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
 			addSlotType: LxxPersons;
 			slotName: ''parent'';

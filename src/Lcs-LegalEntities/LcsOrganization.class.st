@@ -11,11 +11,11 @@ Class {
 
 { #category : 'slot definitions' }
 LcsOrganization class >> legalNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: 'legalName';
-			comment: 'This is the legal name,  enttity name is the "common" name for the organizsation';
-			yourself
+		slotName: 'legalName';
+		comment: 'This is the legal name,  enttity name is the "common" name for the organizsation';
+		yourself
 ]
 
 { #category : 'slot definitions' }
@@ -32,7 +32,7 @@ LcsOrganization class >> mainAddressSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsOrganization class >> organizationNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'organizationName';
 		allowNil: false;
@@ -41,13 +41,13 @@ LcsOrganization class >> organizationNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsOrganization class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
-			collectionSlotName: 'organizations';
-			addSlotType: LcsOrganizations;
-			yourself
+		slotName: 'parent';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
+		collectionSlotName: 'organizations';
+		addSlotType: LcsOrganizations;
+		yourself
 ]
 
 { #category : 'accessing' }

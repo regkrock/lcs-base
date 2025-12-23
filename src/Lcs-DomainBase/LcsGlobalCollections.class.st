@@ -10,8 +10,8 @@ Class {
 
 { #category : 'slot model' }
 LcsGlobalCollections class >> collectionSlotDefinition [
-	<slotDefinition>
-	^LcsIdentityDictionarySlot new
+	<accessorSlotDefinition>
+	^ LcsIdentityDictionarySlot new
 ]
 
 { #category : 'collection' }

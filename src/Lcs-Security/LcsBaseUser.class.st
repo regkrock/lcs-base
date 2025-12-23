@@ -8,13 +8,13 @@ Class {
 
 { #category : 'slot definitions' }
 LcsBaseUser class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotModuleName: LcsSecurityModule defaultModuleName;
-			collectionSlotName: 'users';
-			addSlotType: LcsUsers;
-			yourself 
+		slotName: 'parent';
+		collectionSlotModuleName: LcsSecurityModule defaultModuleName;
+		collectionSlotName: 'users';
+		addSlotType: LcsUsers;
+		yourself
 ]
 
 { #category : 'permissions' }

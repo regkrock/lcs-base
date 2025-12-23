@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsDateOfBirthSlotCreationFormExamples,
-	#superclass : #LcsSmalltalkObjectSlotExamples,
-	#category : #'Lcs-Magritte-Tests-Examples'
+	#name : 'LcsDateOfBirthSlotCreationFormExamples',
+	#superclass : 'LcsSmalltalkObjectSlotExamples',
+	#category : 'Lcs-Magritte-Tests-Examples',
+	#package : 'Lcs-Magritte-Tests',
+	#tag : 'Examples'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDateOfBirthSlotCreationFormExamples >> installationClass [
 	^ LxxPrototypeSystem
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDateOfBirthSlotCreationFormExamples >> myDateOfBirthSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
@@ -18,24 +20,24 @@ LcsDateOfBirthSlotCreationFormExamples >> myDateOfBirthSlotCreationForm [
 	^ form
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDateOfBirthSlotCreationFormExamples >> slotAccessorSlotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>
 	^ super slotAccessorSlotCreationForm
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDateOfBirthSlotCreationFormExamples >> slotBuilderClass [
 	^ LcsDateSlotBuilder
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LcsDateOfBirthSlotCreationFormExamples >> slotClass [
 	^ LcsDateOfBirthSlot
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsDateOfBirthSlotCreationFormExamples >> slotCreationForm [
 	<gtExample>
 	<return: #LcsSlotCreationForm>

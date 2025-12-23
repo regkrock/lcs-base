@@ -14,7 +14,7 @@ Class {
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> accessorSlotDefinitionPragmas [
-	^ Pragma allNamed: 'slotDefinition' in: self class
+	^ Pragma allNamed: 'accessorSlotDefinition' in: self class
 ]
 
 { #category : 'slot model' }
@@ -84,7 +84,7 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 		tooltip: 'Methods that define Slot Defintions';
 		priority: 19;
 		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
-				& ( #slotDefinition gtPragmas | #facadeSlotDefinition gtPragmas) ];
+				& ( #accessorSlotDefinition gtPragmas | #facadeSlotDefinition gtPragmas) ];
 		actionUpdateButton
 		
 ]
@@ -204,22 +204,22 @@ LcsBaseDomainObject class >> initializeSlotModel [
 ]
 
 { #category : 'slot model - install' }
-LcsBaseDomainObject class >> installFacadeSlotDefinition: aSlotDefinitionSelector [
-	self currentSystem isNil ifTrue: [ ^ self ].
-	self slotModel addFacadeSlotDefinition: (self perform: aSlotDefinitionSelector)
-]
-
-{ #category : 'slot model - install' }
-LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
+LcsBaseDomainObject class >> installAccessorSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self slotModel isNil ifTrue: [ ^ self ].
 	self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
 { #category : 'slot model - install' }
+LcsBaseDomainObject class >> installFacadeSlotDefinition: aSlotDefinitionSelector [
+	self currentSystem isNil ifTrue: [ ^ self ].
+	self slotModel addFacadeSlotDefinition: (self perform: aSlotDefinitionSelector)
+]
+
+{ #category : 'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinitions [
 	self accessorSlotDefinitionPragmas
-		do: [ :eachPragma | self installSlotDefinition: eachPragma methodSelector ].
+		do: [ :eachPragma | self installAccessorSlotDefinition: eachPragma methodSelector ].
 	self virtualSlotDefinitionPragmas
 		do: [ :eachPragma | self installVirtualSlotDefinition: eachPragma methodSelector ].
 	self facadeSlotDefinitionPragmas
@@ -292,14 +292,7 @@ LcsBaseDomainObject class >> isSlotModelReleased [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> localSlotDefinitionViewItems [
-	^ self viewItemsFrom: self allSlotDefinitionPragmas.
-	"self instVarNames
-		do: [ :eachInstVarName | 
-			accessorSlotDefinitionViewItems
-				detect: [ :eachItem | eachItem slotName asString = eachInstVarName asString ]
-				ifNone: [ allSlotDefinitionViewItems
-						add: (LcsMissingSlotDefinitionViewItem on: eachInstVarName domainClass: self) ] ].
-	^ allSlotDefinitionViewItems"
+	^ self viewItemsFrom: self allSlotDefinitionPragmas
 ]
 
 { #category : 'instance creation' }
@@ -318,7 +311,7 @@ LcsBaseDomainObject class >> parentSlot [
 
 { #category : 'slot definitions' }
 LcsBaseDomainObject class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsParentSlot new
 ]
 
@@ -438,14 +431,14 @@ LcsBaseDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 	| localInstVarNames slotDefinitions |
 	localInstVarNames := self instVarNames asOrderedCollection.
 	slotDefinitions := (self accessorSlotDefinitionPragmas collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection.
-	slotDefinitions copy do: [ :eachSlotDefintion |
-		(localInstVarNames includes: eachSlotDefintion slotName) 
+	slotDefinitions copy do: [ :eachSlotDefinition |
+		(localInstVarNames includes: eachSlotDefinition slotName) 
 			ifTrue: [
-				slotDefinitions remove: eachSlotDefintion ifAbsent: [].
-				localInstVarNames remove: eachSlotDefintion slotName]
+				slotDefinitions remove: eachSlotDefinition ifAbsent: [].
+				localInstVarNames remove: eachSlotDefinition slotName]
 			ifFalse: [
-				(self classThatDefinesInstVarNamed: eachSlotDefintion slotName) notNil ifTrue: [
-					slotDefinitions remove: eachSlotDefintion ifAbsent: [] ] ] ].
+				(self classThatDefinesInstVarNamed: eachSlotDefinition slotName) notNil ifTrue: [
+					slotDefinitions remove: eachSlotDefinition ifAbsent: [] ] ] ].
 	(localInstVarNames notEmpty or: [slotDefinitions notEmpty]) ifTrue: [
 		LcsSlotDefinitionAndInstanceVariableMismatchError signalFrom: self unmatchInstVars: localInstVarNames slotDefinitions: slotDefinitions]
 ]

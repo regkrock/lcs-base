@@ -12,20 +12,28 @@ Class {
 
 { #category : 'slot definitions' }
 LcsDateRange class >> effectiveDateSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDateSlot new
-			slotName: 'effectiveDate';
-			initialValueBlock: [ :parentDomainParent :slot | Date newDay: 1 month: 1 year: 1970 ];
-			yourself
+		slotName: 'effectiveDate';
+		initialValueBlock: [ :parentDomainParent :slot | 
+			Date
+				newDay: 1
+				month: 1
+				year: 1970 ];
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsDateRange class >> expiryDateSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDateSlot new
-			slotName: 'expiryDate';
-			initialValueBlock: [ :parentDomainParent :slot | Date newDay: 31 month: 12 year: 2100 ];
-			yourself
+		slotName: 'expiryDate';
+		initialValueBlock: [ :parentDomainParent :slot | 
+			Date
+				newDay: 31
+				month: 12
+				year: 2100 ];
+		yourself
 ]
 
 { #category : 'slot definitions' }

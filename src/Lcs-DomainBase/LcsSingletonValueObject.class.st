@@ -8,7 +8,7 @@ Class {
 
 { #category : 'slot definitions' }
 LcsSingletonValueObject class >> codeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSingletonValueCodeNameSlot new
 ]
 
@@ -24,18 +24,18 @@ LcsSingletonValueObject class >> defaultInstance [
 
 { #category : 'slot definitions' }
 LcsSingletonValueObject class >> descriptionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSingletonCodeDescriptionSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsSingletonValueObject class >> isDefaultInstanceSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSingletonCodeIsDefaultInstanceSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsSingletonValueObject class >> labelSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSingletonLabelSlot new
 ]

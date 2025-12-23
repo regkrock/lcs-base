@@ -11,35 +11,34 @@ Class {
 
 { #category : 'slot definitions' }
 LcsAuthor class >> authorshipSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainCollectionSlot new
 		slotName: 'authorship';
 		addCollectionMemberType: LcsLibraryItem;
-		addSlotType: LcsLibraryItems; 
+		addSlotType: LcsLibraryItems;
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsAuthor class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotName: 'authors';
-			collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
-			addSlotType: LcsAuthors
-			yourself
+		slotName: 'parent';
+		collectionSlotName: 'authors';
+		collectionSlotModuleName: LcsWarRabbitLibrary defaultModuleName;
+		addSlotType: LcsAuthors yourself
 ]
 
 { #category : 'slot definitions' }
 LcsAuthor class >> personSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-			slotName: 'person';
-			collectionSlotName: 'persons';
-			collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
-			initialValueBlock: [ :parentDomainParent :slot | slot targetCollection unknown ];
-			addSlotType: LcsBasePerson;
-			yourself
+		slotName: 'person';
+		collectionSlotName: 'persons';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
+		initialValueBlock: [ :parentDomainParent :slot | slot targetCollection unknown ];
+		addSlotType: LcsBasePerson;
+		yourself
 ]
 
 { #category : 'accessing' }

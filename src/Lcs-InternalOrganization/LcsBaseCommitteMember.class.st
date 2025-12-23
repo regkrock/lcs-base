@@ -8,12 +8,12 @@ Class {
 
 { #category : 'slot definitions' }
 LcsBaseCommitteMember class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsLocalCollectionReferenceSlot new
-			addSlotType: LcsCommitteeMembers;
-			slotName: 'parent';
-			collectionSlotName: 'committeeMembers';
-			yourself
+		addSlotType: LcsCommitteeMembers;
+		slotName: 'parent';
+		collectionSlotName: 'committeeMembers';
+		yourself
 ]
 
 { #category : 'organization model' }

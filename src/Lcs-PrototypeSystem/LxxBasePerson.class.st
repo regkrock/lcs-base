@@ -14,13 +14,13 @@ Class {
 
 { #category : 'slot definitions' }
 LxxBasePerson class >> dateOfBirthSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDateOfBirthSlot new
 ]
 
 { #category : 'slot definition' }
 LxxBasePerson class >> firstNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'firstName';
 		yourself
@@ -28,7 +28,7 @@ LxxBasePerson class >> firstNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LxxBasePerson class >> lastNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'lastName';
 		yourself
@@ -36,7 +36,7 @@ LxxBasePerson class >> lastNameSlotDefinition [
 
 { #category : 'slot definition' }
 LxxBasePerson class >> middleNameSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'middleName';
 		yourself

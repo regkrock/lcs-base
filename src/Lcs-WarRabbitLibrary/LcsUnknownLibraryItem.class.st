@@ -18,7 +18,7 @@ LcsUnknownLibraryItem class >> newOn: aString [
 
 { #category : 'slot definitions' }
 LcsUnknownLibraryItem class >> originalLineSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'originalLine';
 		yourself
@@ -26,7 +26,7 @@ LcsUnknownLibraryItem class >> originalLineSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsUnknownLibraryItem class >> partsSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'parts';
 		yourself

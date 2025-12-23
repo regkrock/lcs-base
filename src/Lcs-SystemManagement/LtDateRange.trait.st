@@ -10,11 +10,11 @@ Trait {
 
 { #category : 'slot definitions' }
 LtDateRange classSide >> dateRangeSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainObjectSlot new
-			slotName: 'dateRange';
-			addSlotType: LcsDateRange;
-			yourself
+		slotName: 'dateRange';
+		addSlotType: LcsDateRange;
+		yourself
 ]
 
 { #category : 'accessing' }

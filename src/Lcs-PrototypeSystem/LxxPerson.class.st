@@ -21,7 +21,7 @@ LxxPerson class >> ageSlotDefinition [
 
 { #category : 'slot definitions' }
 LxxPerson class >> balanceSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsScaledDecimalSlot new
 		slotName: 'balance';
 		yourself
@@ -29,18 +29,18 @@ LxxPerson class >> balanceSlotDefinition [
 
 { #category : 'slot definitions' }
 LxxPerson class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			slotName: 'parent';
-			collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;
-			addSlotType: LxxPersons;
-			collectionSlotName: 'persons';
-			yourself
+		slotName: 'parent';
+		collectionSlotModuleName: LxxPrototypeSystem defaultModuleName;
+		addSlotType: LxxPersons;
+		collectionSlotName: 'persons';
+		yourself
 ]
 
 { #category : 'slot definitions' }
 LxxPerson class >> weightSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsNumberSlot new
 		slotName: 'weight';
 		yourself

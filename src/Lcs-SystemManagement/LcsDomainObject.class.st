@@ -57,7 +57,7 @@ LcsDomainObject class >> creatorSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsDomainObject class >> historySlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsDomainObjectHistorySlot new
 ]
 
@@ -113,17 +113,17 @@ LcsDomainObject class >> slotNamesExcludedFromCollectionViewSlotDefinitions [
 
 { #category : 'slot definitions' }
 LcsDomainObject class >> uuidSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsUuidSlot new
 ]
 
 { #category : 'slot definitions' }
 LcsDomainObject class >> versionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsSmallIntegerSlot new
-			slotName: 'version';
-			priority: 100;
-			yourself
+		slotName: 'version';
+		priority: 100;
+		yourself
 ]
 
 { #category : 'history' }

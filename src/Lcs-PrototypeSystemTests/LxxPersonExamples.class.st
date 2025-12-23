@@ -24,7 +24,7 @@ LxxPersonExamples >> johnFreeman [
 ]
 
 { #category : 'tests' }
-LxxPersonExamples >> slotDefintionViewItems [
+LxxPersonExamples >> slotDefintiionViewItems [
 	<gtExample>
 	| allSlotDefinitionViewItems|
 	self ensureCurrentSystemIsPrototypeSystem.

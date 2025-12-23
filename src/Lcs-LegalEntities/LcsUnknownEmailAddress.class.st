@@ -12,6 +12,6 @@ LcsUnknownEmailAddress class >> new [
 
 { #category : 'slot definitions' }
 LcsUnknownEmailAddress class >> parentSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsParentSlot new
 ]

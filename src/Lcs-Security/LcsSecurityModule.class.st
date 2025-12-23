@@ -13,21 +13,21 @@ Class {
 
 { #category : 'slot definitions' }
 LcsSecurityModule class >> configurationSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
 { #category : 'slot definitions' }
 LcsSecurityModule class >> currentUserSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsMemberOfGlobalCollectionSlot new
-			slotName: 'currentUser';
-			collectionSlotName: 'users';
-			collectionSlotModuleName: self defaultModuleName;
-			initialValueBlock: [ :securityModule | securityModule users superUser ];
-			addSlotType: LcsBaseUser;
-			priority: 60;
-			yourself
+		slotName: 'currentUser';
+		collectionSlotName: 'users';
+		collectionSlotModuleName: self defaultModuleName;
+		initialValueBlock: [ :securityModule | securityModule users superUser ];
+		addSlotType: LcsBaseUser;
+		priority: 60;
+		yourself
 ]
 
 { #category : 'configuration' }
@@ -51,7 +51,7 @@ LcsSecurityModule class >> owningModules [
 
 { #category : 'slot definitions' }
 LcsSecurityModule class >> securityRolesSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'securityRoles';
 		addSlotType: LcsSecurityRoles;
@@ -62,7 +62,7 @@ LcsSecurityModule class >> securityRolesSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsSecurityModule class >> usersSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
 		slotName: 'users';
 		addSlotType: LcsUsers;

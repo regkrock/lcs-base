@@ -10,10 +10,10 @@ Class {
 
 { #category : 'slot definition' }
 LcsDomainObjectChangeRecords class >> collectionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsOrderedCollectionSlot new
-			makeDirectUpdateOfVariable;
-			yourself
+		makeDirectUpdateOfVariable;
+		yourself
 ]
 
 { #category : 'history' }
