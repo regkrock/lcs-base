@@ -13,6 +13,16 @@ LcsUnitsOfWork >> applicationEnvironmentViewChildren [
 	^ self collect: [ :each | LcsApplicationEnvironmentViewItem newOn: self label: '' item: each]
 ]
 
+{ #category : 'testing' }
+LcsUnitsOfWork >> hasElements [
+	^ self isNotEmpty
+]
+
+{ #category : 'testing' }
+LcsUnitsOfWork >> hasNoElements [
+	^ self isEmpty
+]
+
 { #category : 'collection' }
 LcsUnitsOfWork >> removeUnitsOfWorkFor: aSystem [
 	self collection copy

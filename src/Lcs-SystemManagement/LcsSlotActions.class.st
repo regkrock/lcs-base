@@ -76,6 +76,16 @@ LcsSlotActions >> gtItemsFor: aView [
 		actionUpdateButton
 ]
 
+{ #category : 'testing' }
+LcsSlotActions >> hasElements [
+	^ self isNotEmpty
+]
+
+{ #category : 'testing' }
+LcsSlotActions >> hasNoElements [
+	^ self isEmpty
+]
+
 { #category : 'comparing' }
 LcsSlotActions >> hash [
 	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]

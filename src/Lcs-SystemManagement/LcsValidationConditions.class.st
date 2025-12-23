@@ -42,6 +42,16 @@ LcsValidationConditions >> gtItemsFor: aView [
 		actionUpdateButton
 ]
 
+{ #category : 'testing' }
+LcsValidationConditions >> hasElements [
+	^ self isNotEmpty
+]
+
+{ #category : 'testing' }
+LcsValidationConditions >> hasNoElements [
+	^ self isEmpty
+]
+
 { #category : 'comparing' }
 LcsValidationConditions >> hash [
 	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]

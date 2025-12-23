@@ -53,6 +53,16 @@ LcsDomainObjectChangeRecords >> domainObjectHistory [
 	^ self parent domainObjectHistory
 ]
 
+{ #category : 'testing' }
+LcsDomainObjectChangeRecords >> hasElements [
+	^ self isNotEmpty
+]
+
+{ #category : 'testing' }
+LcsDomainObjectChangeRecords >> hasNoElements [
+	^ self isEmpty
+]
+
 { #category : 'history' }
 LcsDomainObjectChangeRecords >> lastUpdateTimestamp [
 	^ self collection last created

@@ -1,6 +1,11 @@
 Class {
 	#name : 'LcsPersonExamples',
 	#superclass : 'LcsObjectExamples',
+	#instVars : [
+		'originalPhoneNumbersPendingAddSize',
+		'originalEmailAddressesPendingAddSize',
+		'originalPostalAddressesPendingAddSize'
+	],
 	#category : 'Lcs-LegalEntitiesTests-Examples',
 	#package : 'Lcs-LegalEntitiesTests',
 	#tag : 'Examples'
@@ -18,7 +23,7 @@ LcsPersonExamples >> globalPhoneNumbersPendingAddsSize [
 
 { #category : 'examples' }
 LcsPersonExamples >> globalPostalAddressesPendingAddsSize [
-	^ self currentSystem legalEntitiesModule addresses pendingAdds size
+	^ self currentSystem geographyModule addresses pendingAdds size
 ]
 
 { #category : 'examples' }
@@ -40,10 +45,12 @@ LcsPersonExamples >> johnDoe [
 { #category : 'examples' }
 LcsPersonExamples >> johnFreeman [
 	<gtExample>
-	| person |
+	| person originalPostalAddressPendingAddSize |
 	self ensureCurrentSystemIsDemoSystem.
-	person := 
-		self newPerson
+	originalEmailAddressesPendingAddSize := self globalEmailAddressesPendingAddsSize.
+	originalPostalAddressPendingAddSize := self
+			globalPostalAddressesPendingAddsSize.
+	person := self newPerson
 			familyName: 'Freeman';
 			firstName: 'John';
 			middleNames: 'Edgar';
@@ -64,7 +71,9 @@ LcsPersonExamples >> johnFreeman [
 	self assert: person emailAddresses hasNoElements.
 	self assert: person phoneNumbers hasNoElements.
 	self currentSystem legalEntitiesModule persons includes: person.
-
+	self
+		assert: self globalEmailAddressesPendingAddsSize
+		equals: originalEmailAddressesPendingAddSize.
 	^ person
 ]
 
@@ -80,43 +89,53 @@ LcsPersonExamples >> johnFreemanHomeEmail [
 { #category : 'examples' }
 LcsPersonExamples >> johnFreemanWithAddress [
 	<gtExample>
-	| person |
+	| person newHomeAddress |
 	person := self johnFreeman.
-	person homeAddress: (LcsAddress new addressType: 'home').
+	self saveOriginalStats.
+	newHomeAddress := LcsAddress new addressType: 'home'.
+	person homeAddress: newHomeAddress.
+	self
+		assert: self globalPostalAddressesPendingAddsSize
+		equals: originalPostalAddressesPendingAddSize + 1.
 	person homeAddress city: 'Godfrey'.
 	self assert: person homeAddress city equals: 'Godfrey'.
-	
+
 	person homeAddress streetNumber: '12345'.
 	self assert: person homeAddress streetNumber equals: '12345'.
-	
+
 	person homeAddress streetName: 'Witt Road'.
 	self assert: person homeAddress streetName equals: 'Witt Road'.
-	
+
 	person homeAddress additionalDeliveryInformation: 'RR 2'.
 	self assert: person homeAddress additionalDeliveryInformation equals: 'RR 2'.
-	
+
 	person homeAddress country: 'CAN'.
 	self assert: person homeAddress country isoCode3 equals: 'CAN'.
 	self assert: (person homeAddress province isKindOf: LcsCanadaSubdivision).
-	self assert: (person homeAddress province isoCode = '').
-	
+	self assert: person homeAddress province isoCode = ''.
+
 	person homeAddress province: 'ON'.
 	self assert: person homeAddress province isoCode equals: 'ON'.
-	
+
 	person homeAddress postCode: 'K8A 6W8'.
 	self assert: person homeAddress postCode equals: 'K8A 6W8'.
 
-	self assert: ((person currentSystem moduleNamed: LcsGeographyModule defaultModuleName) addresses includes: person homeAddress).
-	
+	self
+		assert: ((person currentSystem moduleNamed: LcsGeographyModule defaultModuleName)
+				addresses includes: person homeAddress).
+	self
+		assert: self globalPostalAddressesPendingAddsSize
+		equals: originalPostalAddressesPendingAddSize + 1.
+
 	^ person
 ]
 
 { #category : 'examples' }
 LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	<gtExample>
-	| person homeEmail workEmail originalPendingAddSize |
+	| person homeEmail workEmail |
 	self ensureCurrentSystemIsDemoSystem.
-	originalPendingAddSize := self globalEmailAddressesPendingAddsSize.
+	self saveOriginalStats.
 	person := self johnFreeman.
 	self
 		assert: person homeEmailAddress
@@ -128,7 +147,7 @@ LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	self assert: person emailAddresses pendingAdds size equals: 1.
 	self
 		assert: self globalEmailAddressesPendingAddsSize
-		equals: originalPendingAddSize + 1.
+		equals: originalEmailAddressesPendingAddSize + 1.
 
 	workEmail := self johnFreemanWorkEmail.
 	person workEmailAddress: workEmail.
@@ -136,7 +155,7 @@ LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	self assert: person emailAddresses pendingAdds size equals: 2.
 	self
 		assert: self globalEmailAddressesPendingAddsSize
-		equals: originalPendingAddSize + 2.
+		equals: originalEmailAddressesPendingAddSize + 2.
 	^ person
 ]
 
@@ -184,4 +203,12 @@ LcsPersonExamples >> samSmith [
 			familyName: 'Smith'.
 	self currentSystem legalEntitiesModule persons includes: person.
 	^ person
+]
+
+{ #category : 'examples' }
+LcsPersonExamples >> saveOriginalStats [
+	originalEmailAddressesPendingAddSize := self globalEmailAddressesPendingAddsSize.
+	originalPhoneNumbersPendingAddSize := self globalPhoneNumbersPendingAddsSize.
+	originalPostalAddressesPendingAddSize := self
+			globalPostalAddressesPendingAddsSize
 ]

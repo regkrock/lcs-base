@@ -12,3 +12,13 @@ Class {
 LcsSystems >> applicationEnvironmentViewChildren [
 	^ self collect: [ :each | LcsApplicationEnvironmentViewItem newOn: self label: '' item: each]
 ]
+
+{ #category : 'testing' }
+LcsSystems >> hasElements [
+	^ self isNotEmpty
+]
+
+{ #category : 'testing' }
+LcsSystems >> hasNoElements [
+	^ self isEmpty
+]

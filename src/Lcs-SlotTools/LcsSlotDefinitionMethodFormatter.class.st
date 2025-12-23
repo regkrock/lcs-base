@@ -67,7 +67,7 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 
 { #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addPostUpdateActionsKeyword: aPropertyName argument: aPostUpdateActions to: aStream [ 
-	aPostUpdateActions hasElements ifFalse: [ ^ self ].
+	aPostUpdateActions isNotEmpty ifFalse: [ ^ self ].
 	aPostUpdateActions do: [ :eachAction |
 		aStream
 			addKeyword: 'addPostUpdateAction'
@@ -95,7 +95,7 @@ LcsSlotDefinitionMethodFormatter >> addSlotTypesKeyword: aPropertyName argument:
 { #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addValidationConditionsKeyword: aPropertyName argument: aValidationConditions to: aStream [ 
 
-	aValidationConditions hasElements ifFalse: [ ^ self ].
+	aValidationConditions isNotEmpty ifFalse: [ ^ self ].
 
 	aValidationConditions do: [ :each |
 		aStream

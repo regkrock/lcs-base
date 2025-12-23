@@ -88,7 +88,7 @@ LcsUnitsOfWorkManager >> hasCurrentUnitOfWork [
 
 { #category : 'testing' }
 LcsUnitsOfWorkManager >> hasUnitsOfWork [
-	^ self unitsOfWork hasElements
+	^ self unitsOfWork isNotEmpty
 ]
 
 { #category : 'initialize' }

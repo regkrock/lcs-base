@@ -18,7 +18,7 @@ LcsAccessorSlotExamples >> accessorSlot [
 	
 	self assert: (accessorSlot validationConditions isKindOf: LcsValidationConditions).
 	self assert: accessorSlot validationConditions parent equals: accessorSlot.
-	self assert: accessorSlot validationConditions hasNoElements.
+	self assert: accessorSlot validationConditions isEmpty.
 
 	self assert: accessorSlot allowNil == false.
 	self assert: accessorSlot required == false.
@@ -28,7 +28,7 @@ LcsAccessorSlotExamples >> accessorSlot [
 	self assert: accessorSlot variableUpdatePolicy parent equals: accessorSlot.
 	
 	self assert: accessorSlot postUpdateActions class equals: LcsUpdateActions.
-	self assert: accessorSlot postUpdateActions hasNoElements.
+	self assert: accessorSlot postUpdateActions isEmpty.
 	self assert: accessorSlot postUpdateActions parent equals: accessorSlot.
 
 	self assert: accessorSlot initialValueBlock printString equals: '[ :parentDomainObject :slot | 

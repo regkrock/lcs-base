@@ -211,7 +211,7 @@ LcsStateMachine >> hasStateTransitions [
 
 { #category : 'testing' }
 LcsStateMachine >> hasStates [
-	^ self states hasElements
+	^ self states isNotEmpty
 ]
 
 { #category : 'accessing' }

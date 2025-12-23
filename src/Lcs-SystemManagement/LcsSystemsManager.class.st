@@ -144,7 +144,7 @@ LcsSystemsManager >> hasNoSystems [
 
 { #category : 'testing' }
 LcsSystemsManager >> hasSystems [
-	^ self systems hasElements
+	^ self systems isNotEmpty
 ]
 
 { #category : 'initialize' }

@@ -145,6 +145,46 @@ LcsDomainCollection >> gtPendingDeletesView: aView [
 ]
 
 { #category : 'domain collection' }
+LcsDomainCollection >> hasElements [
+	^ self hasPendingAdds or: [ self hasPersistedElements ]
+]
+
+{ #category : 'domain collection' }
+LcsDomainCollection >> hasNoElements [
+	^ self hasNoPendingAdds and: [ self hasNoPersistedElements ]
+]
+
+{ #category : 'domain collection' }
+LcsDomainCollection >> hasNoPendingAdds [
+	^ self pendingAdds isEmpty
+]
+
+{ #category : 'domain collection' }
+LcsDomainCollection >> hasNoPendingDeletes [
+	^ self pendingDeletes isEmpty
+]
+
+{ #category : 'testing' }
+LcsDomainCollection >> hasNoPersistedElements [
+	^ self isEmpty
+]
+
+{ #category : 'domain collection' }
+LcsDomainCollection >> hasPendingAdds [
+	^ self pendingAdds notEmpty
+]
+
+{ #category : 'domain collection' }
+LcsDomainCollection >> hasPendingDeletes [
+	^ self pendingDeletes notEmpty
+]
+
+{ #category : 'testing' }
+LcsDomainCollection >> hasPersistedElements [
+	^ self isNotEmpty
+]
+
+{ #category : 'domain collection' }
 LcsDomainCollection >> pendingAdds [
 	^ self currentUnitOfWork pendingAddsIn: self
 ]

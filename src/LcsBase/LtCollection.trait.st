@@ -70,16 +70,6 @@ LtCollection >> gtItemsFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : 'testing' }
-LtCollection >> hasElements [
-	^ self collection notEmpty
-]
-
-{ #category : 'testing' }
-LtCollection >> hasNoElements [
-	^ self collection isEmpty
-]
-
 { #category : 'collection' }
 LtCollection >> includes: anObject [
 	^ self collection includes: anObject
@@ -88,6 +78,16 @@ LtCollection >> includes: anObject [
 { #category : 'collection' }
 LtCollection >> inject: anObject into: aBlock [
 	^ self collection inject: anObject into: aBlock
+]
+
+{ #category : 'testing' }
+LtCollection >> isEmpty [
+	^ self collection isEmpty
+]
+
+{ #category : 'testing' }
+LtCollection >> isNotEmpty [
+	^ self collection notEmpty
 ]
 
 { #category : 'collection' }
