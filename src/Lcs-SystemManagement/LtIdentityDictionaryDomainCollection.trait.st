@@ -12,6 +12,6 @@ Trait {
 
 { #category : 'slot definition\t' }
 LtIdentityDictionaryDomainCollection classSide >> collectionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIdentityDictionarySlot new
 ]

@@ -9,6 +9,6 @@ Trait {
 
 { #category : 'slot definition' }
 LtOrderedCollectionDomainCollection classSide >> collectionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsOrderedCollectionSlot new
 ]

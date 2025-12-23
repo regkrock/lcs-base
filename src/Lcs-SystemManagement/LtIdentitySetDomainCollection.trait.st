@@ -9,6 +9,6 @@ Trait {
 
 { #category : 'configuration' }
 LtIdentitySetDomainCollection classSide >> collectionSlotDefinition [
-	<slotDefinition>
+	<accessorSlotDefinition>
 	^ LcsIdentitySetSlot new
 ]
