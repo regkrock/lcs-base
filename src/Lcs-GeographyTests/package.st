@@ -1,1 +1,1 @@
-Package { #name : #'Lcs-GeographyTests' }
+Package { #name : 'Lcs-GeographyTests' }

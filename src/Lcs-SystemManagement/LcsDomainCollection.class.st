@@ -31,6 +31,11 @@ LcsDomainCollection >> accessorSlotNameAndValue [
 		yourself
 ]
 
+{ #category : 'domain collection' }
+LcsDomainCollection >> currentSize [
+	^ self pendingAddsSize + self persistedSize - self pendingDeletesSize 
+]
+
 { #category : 'queries' }
 LcsDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
@@ -190,6 +195,21 @@ LcsDomainCollection >> pendingAdds [
 ]
 
 { #category : 'domain collection' }
+LcsDomainCollection >> pendingAddsSize [
+	^ self pendingAdds size
+]
+
+{ #category : 'domain collection' }
 LcsDomainCollection >> pendingDeletes [
 	^ self currentUnitOfWork pendingDeletesIn: self
+]
+
+{ #category : 'domain collection' }
+LcsDomainCollection >> pendingDeletesSize [
+	^ self pendingDeletes size
+]
+
+{ #category : 'domain collection' }
+LcsDomainCollection >> persistedSize [
+	^ self collection size
 ]

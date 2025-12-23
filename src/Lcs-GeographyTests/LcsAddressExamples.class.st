@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsAddressExamples,
-	#superclass : #LcsObjectExamples,
-	#category : #'Lcs-GeographyTests-Examples'
+	#name : 'LcsAddressExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-GeographyTests-Examples',
+	#package : 'Lcs-GeographyTests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples class >> usaAddress [
 	^ self new usaAddress
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> address [
 	<gtExample>
 	| address defaultCountry |
@@ -22,7 +24,7 @@ LcsAddressExamples >> address [
 	^ address
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> britishAddress [
 	<gtExample>
 	| address country |
@@ -42,7 +44,7 @@ LcsAddressExamples >> britishAddress [
 	^ address
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> canadaAddress [
 	<gtExample>
 	| address country |
@@ -65,7 +67,7 @@ LcsAddressExamples >> canadaAddress [
 	^ address
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> monroeNjUSAAddress [
 	<gtExample>
 	| address |
@@ -78,7 +80,7 @@ LcsAddressExamples >> monroeNjUSAAddress [
 	^ address
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> njUSAAddress [
 	<gtExample>
 	| address |
@@ -90,7 +92,7 @@ LcsAddressExamples >> njUSAAddress [
 	^ address
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> nyUSAAddress [
 	<gtExample>
 	| address |
@@ -106,7 +108,7 @@ LcsAddressExamples >> nyUSAAddress [
 	^ address
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> seasMonmouthAddress [
 	<gtExample>
 	| address |
@@ -121,7 +123,7 @@ LcsAddressExamples >> seasMonmouthAddress [
 	^ address
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsAddressExamples >> usaAddress [
 	<gtExample>
 	| address country |

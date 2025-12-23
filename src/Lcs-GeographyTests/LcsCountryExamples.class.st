@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsCountryExamples,
-	#superclass : #LcsObjectExamples,
-	#category : #'Lcs-GeographyTests-Examples'
+	#name : 'LcsCountryExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-GeographyTests-Examples',
+	#package : 'Lcs-GeographyTests',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsCountryExamples >> canada [
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName subdivisionClass postalCodeClass |
@@ -38,7 +40,7 @@ LcsCountryExamples >> canada [
 	^ country
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsCountryExamples >> error [
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |
@@ -66,7 +68,7 @@ LcsCountryExamples >> error [
 	^ country
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LcsCountryExamples >> unknown [
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |

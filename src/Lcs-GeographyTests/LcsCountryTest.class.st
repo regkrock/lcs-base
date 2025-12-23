@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsCountryTest,
-	#superclass : #LcsDemoSystemRunningTestCase,
-	#category : #'Lcs-GeographyTests-Tests'
+	#name : 'LcsCountryTest',
+	#superclass : 'LcsDemoSystemRunningTestCase',
+	#category : 'Lcs-GeographyTests-Tests',
+	#package : 'Lcs-GeographyTests',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsCountryTest >> testCreation [
 	| country countries countriesSize|
 	countries := self currentSystem geographyModule countries.
@@ -36,7 +38,7 @@ LcsCountryTest >> testCreation [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsCountryTest >> testInvalidTypeAssignment [
 	| country oldValue|
 	country := self currentSystem geographyModule countries defaultInstance.
@@ -47,7 +49,7 @@ LcsCountryTest >> testInvalidTypeAssignment [
 	self assert: country postalCodeClass equals: oldValue
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsCountryTest >> testModifyingPostalCodeClassImpactOUnitOfWork [
 	| country |
 	country := self currentSystem geographyModule countries defaultInstance.
@@ -60,7 +62,7 @@ LcsCountryTest >> testModifyingPostalCodeClassImpactOUnitOfWork [
 	self assert: self currentUnitOfWork hasChanges not.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsCountryTest >> testPostalCodeAssignment [
 	| country |
 	country := LcsCountry new.
@@ -71,7 +73,7 @@ LcsCountryTest >> testPostalCodeAssignment [
 	self assert: country postalCodeClass = LcsCanadaPostalCode.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsCountryTest >> testSubdivisionClassAssignment [
 	| country |
 	country := LcsCountry new.
