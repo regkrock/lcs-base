@@ -11,7 +11,7 @@ LcsGender class >> parentSlotDefinition [
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		collectionSlotName: 'genders';
-		collectionSlotModuleName: 'Legal Entities Module';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		addSlotType: LcsGenders;
 		yourself
 ]

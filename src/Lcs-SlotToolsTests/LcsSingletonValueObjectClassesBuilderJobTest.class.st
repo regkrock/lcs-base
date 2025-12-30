@@ -9,6 +9,7 @@ Class {
 { #category : 'tests' }
 LcsSingletonValueObjectClassesBuilderJobTest >> testCreationOfSingletonClasses [
 	| person |
+	self assert: LcsApplicationEnvironment currentSystem class == LxxPrototypeSystem.
 	self currentCodeBuilderJob:
 		(LcsSingletonValueObjectClassesBuilderJob new
 			classPrefix: 'Lxx';

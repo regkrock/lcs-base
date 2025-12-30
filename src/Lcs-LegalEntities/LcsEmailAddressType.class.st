@@ -12,6 +12,6 @@ LcsEmailAddressType class >> parentSlotDefinition [
 		slotTypes: (OrderedCollection with: LcsEmailAddressTypes);
 		slotName: 'parent';
 		collectionSlotName: 'emailAddressTypes';
-		collectionSlotModuleName: 'Legal Entities Module';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		yourself
 ]

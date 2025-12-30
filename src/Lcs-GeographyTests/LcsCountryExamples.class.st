@@ -19,7 +19,7 @@ LcsCountryExamples >> canada [
 	subdivisionName := 'Province'.
 	subdivisionClass := LcsCanadaSubdivision.
 	postalCodeClass := LcsCanadaPostalCode.
-	country := LcsCountry new
+	country := self newCountry
 			commonName: commonName;
 			formalName: formalName;
 			isoCode: isoCode;
@@ -44,14 +44,13 @@ LcsCountryExamples >> canada [
 LcsCountryExamples >> error [
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |
-	self ensureCurrentSystemIsDemoSystem.
 	commonName := ''.
 	formalName := 'Unknown'.
 	isoCode := ''.
 	isoCode3 := ''.
 	isoNumber := ''.
 	subdivisionName := ''.
-	country := LcsCountry new
+	country := self newCountry
 			commonName: commonName;
 			formalName: formalName;
 			isoCode: isoCode;
@@ -69,17 +68,33 @@ LcsCountryExamples >> error [
 ]
 
 { #category : 'examples' }
+LcsCountryExamples >> newCountry [
+	<gtExample>
+	| country |
+	LcsCountry hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem ].
+	country := LcsCountry new.
+	self assert: country commonName equals: '   '.
+	self assert: country formalName equals: '   '.
+	self assert: country isoCode equals: '  '.
+	self assert: country isoCode3 equals: '   '.
+	self assert: country isoNumber equals: '   '.
+	self assert: country subdivisionName equals: ''.
+	self assert: country subdivisionClass == LcsCountrySubdivision.
+	self assert: country postalCodeClass == LcsGenericPostalCode.
+	^ country
+]
+
+{ #category : 'examples' }
 LcsCountryExamples >> unknown [
 	<gtExample>
 	| country commonName formalName isoCode isoCode3 isoNumber subdivisionName |
-	self ensureCurrentSystemIsDemoSystem.
 	commonName := '   '.
 	formalName := 'Unknown'.
 	isoCode := '  '.
 	isoCode3 := '   '.
 	isoNumber := '   '.
 	subdivisionName := ''.
-	country := LcsCountry new
+	country := self newCountry
 			commonName: commonName;
 			formalName: formalName;
 			isoCode: isoCode;

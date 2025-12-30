@@ -12,6 +12,6 @@ LcsPhoneNumberType class >> parentSlotDefinition [
 		slotTypes: (OrderedCollection with: LcsPhoneNumberTypes);
 		slotName: 'parent';
 		collectionSlotName: 'phoneNumberTypes';
-		collectionSlotModuleName: 'Legal Entities Module';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		yourself
 ]

@@ -11,7 +11,7 @@ LcsTitle class >> parentSlotDefinition [
 	^ LcsGlobalCollectionReferenceSlot new
 		slotName: 'parent';
 		collectionSlotName: 'titles';
-		collectionSlotModuleName: 'Legal Entities Module';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		addSlotType: LcsTitles;
 		yourself
 ]

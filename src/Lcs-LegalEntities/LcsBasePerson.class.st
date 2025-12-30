@@ -42,7 +42,7 @@ LcsBasePerson class >> genderSlotDefinition [
 		slotName: 'gender';
 		addSlotType: LcsGender;
 		collectionSlotName: 'genders';
-		collectionSlotModuleName: 'Legal Entities Module';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		prevalidationTransformBlock: [ :value :slot | 
 			slot targetCollection
 				findWithKey: value
@@ -95,7 +95,7 @@ LcsBasePerson class >> titleSlotDefinition [
 		slotName: 'title';
 		addSlotType: LcsTitle;
 		collectionSlotName: 'titles';
-		collectionSlotModuleName: 'Legal Entities Module';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		prevalidationTransformBlock: [ :value :slot | slot targetCollection findWithKey: value ifNone: [ value ] ];
 		yourself
 ]

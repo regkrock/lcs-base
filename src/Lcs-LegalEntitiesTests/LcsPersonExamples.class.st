@@ -25,17 +25,17 @@ LcsPersonExamples >> assertPendingAddsOfPostalAddresses: anInteger1 emailAddress
 
 ]
 
-{ #category : 'examples' }
+{ #category : 'private' }
 LcsPersonExamples >> globalEmailAddressesPendingAddsSize [
 	^ self currentSystem legalEntitiesModule emailAddresses pendingAdds size
 ]
 
-{ #category : 'examples' }
+{ #category : 'private' }
 LcsPersonExamples >> globalPhoneNumbersPendingAddsSize [
 	^ self currentSystem legalEntitiesModule phoneNumbers pendingAdds size
 ]
 
-{ #category : 'examples' }
+{ #category : 'private' }
 LcsPersonExamples >> globalPostalAddressesPendingAddsSize [
 	^ self currentSystem geographyModule addresses pendingAdds size
 ]
@@ -44,8 +44,7 @@ LcsPersonExamples >> globalPostalAddressesPendingAddsSize [
 LcsPersonExamples >> johnDoe [
 	<gtExample>
 	| person |
-	self ensureCurrentSystemIsDemoSystem.
-	person := LcsPerson new
+	person := self newPerson
 			firstName: 'John';
 			familyName: 'Doe'.	"Because person is automatically added to a global collection, no need to explicitly add the parent"
 	self currentSystem legalEntitiesModule persons includes: person.
@@ -60,8 +59,6 @@ LcsPersonExamples >> johnDoe [
 LcsPersonExamples >> johnFreeman [
 	<gtExample>
 	| person originalPostalAddressPendingAddSize |
-	self ensureCurrentSystemIsDemoSystem.
-	self saveOriginalStats.
 	person := self newPerson
 			familyName: 'Freeman';
 			firstName: 'John';
@@ -143,8 +140,6 @@ LcsPersonExamples >> johnFreemanWithAddress [
 LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	<gtExample>
 	| person homeEmail workEmail |
-	self ensureCurrentSystemIsDemoSystem.
-	self saveOriginalStats.
 	person := self johnFreeman.
 	self
 		assert: person homeEmailAddress
@@ -180,7 +175,10 @@ LcsPersonExamples >> johnFreemanWorkEmail [
 LcsPersonExamples >> newPerson [
 	<gtExample>
 	| person |
-	self ensureCurrentSystemIsDemoSystem.
+	"This is done to handle situations where LcsPerson is defined in a different system"
+	LcsPerson hasSlotModel ifFalse: [
+		self ensureCurrentSystemIsDemoSystem].
+	self saveOriginalStats.
 	person := LcsPerson new.
 	self assert: person title code equals: 'unknown'.
 	self assert: person familyName isEmpty.
@@ -205,8 +203,7 @@ LcsPersonExamples >> newPerson [
 LcsPersonExamples >> samSmith [
 	<gtExample>
 	| person |
-	self ensureCurrentSystemIsDemoSystem.
-	person := LcsPerson new
+	person := self newPerson
 			firstName: 'Sam';
 			familyName: 'Smith'.
 	self currentSystem legalEntitiesModule persons includes: person.

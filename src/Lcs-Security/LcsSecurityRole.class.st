@@ -16,7 +16,7 @@ LcsSecurityRole class >> parentSlotDefinition [
 		slotTypes: (OrderedCollection with: LcsSecurityRoles);
 		slotName: 'parent';
 		collectionSlotName: 'securityRoles';
-		collectionSlotModuleName: 'Security Module';
+		collectionSlotModuleName: LcsSecurityModule defaultModuleName;
 		yourself
 ]
 

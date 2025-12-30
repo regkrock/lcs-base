@@ -19,7 +19,7 @@ LcsEmailAddress class >> emailAddressTypeSlotDefinition [
 		slotName: 'emailAddressType';
 		prevalidationTransformBlock: [ :value :slot | slot targetCollection findItemMatchingCode: value ifNone: [ value ] ];
 		collectionSlotName: 'emailAddressTypes';
-		collectionSlotModuleName: 'Legal Entities Module';
+		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
 		yourself
 ]
 

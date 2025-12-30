@@ -6,6 +6,16 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'properties' }
+LcsLocalCollectionReferenceSlot >> accessPath [
+	^ self propertyAt: 'accessPath' ifAbsent: [ ]
+]
+
+{ #category : 'properties' }
+LcsLocalCollectionReferenceSlot >> accessPath: aCollection [
+	self propertyAt: 'accessPath' put: aCollection
+]
+
 { #category : 'slot model' }
 LcsLocalCollectionReferenceSlot >> collectionSlot [
 	^ self collectionSlotModule slotDefinitionNamed: self collectionSlotName
@@ -34,6 +44,12 @@ LcsLocalCollectionReferenceSlot >> collectionSlotName [
 { #category : 'properties' }
 LcsLocalCollectionReferenceSlot >> collectionSlotName: anObject [
 	self propertyAt: 'collectionSlotName' put: anObject
+]
+
+{ #category : 'initialize' }
+LcsLocalCollectionReferenceSlot >> initialize [
+	super initialize.
+	self accessPath: OrderedCollection new
 ]
 
 { #category : 'slot model' }
