@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-12T11:26:40.630656-05:00"
+						"dateAndTimeString" : "2025-12-31T11:44:32.632294-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "n3v3l/PoDQC4nSSrBI/n4w=="
 				},
-				"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsTestWithNoApplicationEnvironmentTest; add: LcsPrototypeSystemRunningTestCase; add: LcsDemoSystemRunningTestCase.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
+				"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsTestWithNoApplicationEnvironmentTest; add: LcsPrototypeSystemRunningTest; add: LcsDemoSystemRunningTestCase.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
 				"elementHeight" : 260,
 				"codeHeight" : 50,
 				"codeVisible" : false

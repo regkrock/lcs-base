@@ -1,13 +1,15 @@
 Class {
-	#name : #LcsStateMachineTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
+	#name : 'LcsStateMachineTest',
+	#superclass : 'LcsPrototypeSystemRunningTest',
 	#instVars : [
 		'counter'
 	],
-	#category : #'Lcs-StateMachineTests-Tests'
+	#category : 'Lcs-StateMachineTests-Tests',
+	#package : 'Lcs-StateMachineTests',
+	#tag : 'Tests'
 }
 
-{ #category : #setUp }
+{ #category : 'setUp' }
 LcsStateMachineTest >> domainModelTestClasses [
 	^ super domainModelTestClasses
 		"add: LxxCompositeStateMachine;
@@ -15,18 +17,18 @@ LcsStateMachineTest >> domainModelTestClasses [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachineTest >> incrementCounter [
 	counter := counter + 1.
 	^counter asString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachineTest >> initCounter [
 	counter := 0
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LcsStateMachineTest >> newStateMachine [
 	| stateMachine |
 	stateMachine := LcsStateMachine new.
@@ -44,13 +46,13 @@ LcsStateMachineTest >> newStateMachine [
 	^stateMachine
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LcsStateMachineTest >> setUp [
 	super setUp.
 	self initCounter
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testAddingInitialState [
 	| stateMachine newState |
 	stateMachine := self newStateMachine.
@@ -65,7 +67,7 @@ LcsStateMachineTest >> testAddingInitialState [
 	self deny: stateMachine atEnd
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testAddingNewState [
 	| stateMachine newState |
 	stateMachine := self newStateMachine.
@@ -87,7 +89,7 @@ LcsStateMachineTest >> testAddingNewState [
 	self assert: newState currentEvent isNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testAutoTransition [
 	| stateMachine stateA stateB stateC |
 	stateMachine := self newStateMachine.
@@ -110,7 +112,7 @@ LcsStateMachineTest >> testAutoTransition [
 	self assert: counter = 2
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testCompositeStateMachine [
 	| stateMachine subStateMachine |
 	stateMachine := LxxCompositeStateMachine new.
@@ -138,12 +140,12 @@ LcsStateMachineTest >> testCompositeStateMachine [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testCreation [
 	self newStateMachine
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testDecision [
 	| stateMachine steps testNum stateA stateB even odd oddEntryActionBlock |
 	stateMachine := self newStateMachine.
@@ -185,7 +187,7 @@ LcsStateMachineTest >> testDecision [
 	self assert: steps asArray =  #(#b #c #b #d #b #c)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testEventWithArguments [
 	| stateMachine toA toB toC stateA stateB stateC |
 	stateMachine := self newStateMachine.
@@ -251,7 +253,7 @@ LcsStateMachineTest >> testEventWithArguments [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testGuardedTransition [
 	| stateMachine stateA stateB stateC |
 	stateMachine := self newStateMachine.
@@ -292,7 +294,7 @@ LcsStateMachineTest >> testGuardedTransition [
 	self assert: stateMachine currentState id equals: #endState.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testMovingFromStartStateToAnotherState [
 	| stateMachine newState |
 	stateMachine := self newStateMachine.
@@ -311,7 +313,7 @@ LcsStateMachineTest >> testMovingFromStartStateToAnotherState [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LcsStateMachineTest >> testStateMachineContext [
 	| stateMachine stateA stateB stateC |
 	stateMachine := self newStateMachine.

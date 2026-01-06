@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsStateMachineStateTest,
-	#superclass : #LcsPrototypeSystemRunningTestCase,
-	#category : #'Lcs-StateMachineTests-Tests'
+	#name : 'LcsStateMachineStateTest',
+	#superclass : 'LcsPrototypeSystemRunningTest',
+	#category : 'Lcs-StateMachineTests-Tests',
+	#package : 'Lcs-StateMachineTests',
+	#tag : 'Tests'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 LcsStateMachineStateTest >> testCreation [
 	self assert: LcsStateMachineState isSlotModelPopulated.
 	self subject: LcsStateMachineState new

@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsUnitOfWorkTest',
-	#superclass : 'LcsPrototypeSystemRunningTestCase',
+	#superclass : 'LcsPrototypeSystemRunningTest',
 	#category : 'Lcs-PrototypeSystemTests-Tests',
 	#package : 'Lcs-PrototypeSystemTests',
 	#tag : 'Tests'

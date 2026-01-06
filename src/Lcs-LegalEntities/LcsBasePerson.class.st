@@ -160,6 +160,11 @@ LcsBasePerson >> gender: anObject [
 	self slotVarNamed: 'gender' put: anObject
 ]
 
+{ #category : 'testing' }
+LcsBasePerson >> hasFirstName: aFirstName familyName: aFamilyName [
+	^ self firstName = aFirstName and: [ self familyName = aFamilyName ]
+]
+
 { #category : 'accessing' }
 LcsBasePerson >> homeAddress [
 	^ self slotVarNamed: 'homeAddress'

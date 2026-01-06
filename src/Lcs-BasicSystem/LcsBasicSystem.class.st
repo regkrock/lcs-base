@@ -1,8 +1,9 @@
 Class {
 	#name : 'LcsBasicSystem',
 	#superclass : 'LcsSystem',
-	#category : 'Lcs-BasicSystem',
-	#package : 'Lcs-BasicSystem'
+	#category : 'Lcs-BasicSystem-Core',
+	#package : 'Lcs-BasicSystem',
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }

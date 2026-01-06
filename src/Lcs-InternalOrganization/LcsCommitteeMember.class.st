@@ -16,7 +16,7 @@ LcsCommitteeMember class >> memberSlotDefinition [
 	^ LcsMemberOfLocalCollectionSlot new
 		slotName: 'member';
 		addSlotType: LcsMember;
-		initialValueBlock: [ :parentDomainObject :slot | parentDomainObject internalOrganization members defaultInstance ];
+		initialValueBlock: [ :parentDomainObject :slot | slot currentSystem organization members defaultInstance ];
 		collectionSlotName: 'members';
 		yourself
 ]

@@ -1,0 +1,35 @@
+Class {
+	#name : 'LcsSailingClubSystemTest',
+	#superclass : 'LcsAbstractSystemTest',
+	#category : 'Lcs-DemoSystemTests',
+	#package : 'Lcs-DemoSystemTests'
+}
+
+{ #category : 'assertions' }
+LcsSailingClubSystemTest >> assertLegalEntitiesModuleIsConfigured [
+	| module |
+	module := self currentSystem legalEntitiesModule.
+	self assert: (module isKindOf: LcsLegalEntitiesModule).
+	self assert: (module slotDefinitionNamed: 'contacts') notNil.
+	self assert: (module contacts isKindOf: LcsLegalEntities).
+	self assert: (module persons isKindOf: LcsPersons).
+	self assert: (module organizations isKindOf: LcsOrganizations).
+	self assert: (module persons unknownPerson isKindOf: LcsUnknownPerson).
+	self assert: (module persons unknownPerson == module persons defaultInstance).
+	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth
+]
+
+{ #category : 'tests' }
+LcsSailingClubSystemTest >> testCreation [
+
+	self subject: LcsSailingClubSystem new.
+	self assertCurrentSystemSetTo: LcsSailingClubSystem.
+	self assertModuleConfigured: LcsSecurityModule.
+	self assertModuleConfigured: LcsGeographyModule.
+	self assertModuleConfigured: LcsLegalEntitiesModule.
+	self assertModuleConfigured: LcsCalendarModule.
+	
+	"self assertGeographyModuleIsConfigured.
+	self assertLegalEntitiesModuleIsConfigured"
+	
+]

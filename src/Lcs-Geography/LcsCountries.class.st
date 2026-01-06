@@ -1,16 +1,31 @@
 Class {
 	#name : 'LcsCountries',
 	#superclass : 'LcsDomainCollection',
+	#instVars : [
+		'unknownInstance'
+	],
 	#category : 'Lcs-Geography-Domain',
 	#package : 'Lcs-Geography',
 	#tag : 'Domain'
 }
 
+{ #category : 'slot definitions' }
+LcsCountries class >> unknownInstanceSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsDomainObjectSlot new
+			slotName: 'unknownInstance';
+			addSlotType: LcsUnknownCountry;
+			addPostUpdateAction: (
+				LcsUpdateAction new
+					description: 'Add the unknown instance to the collection';
+					actionBlock: [ :value :parentDomainObject :oldValue | parentDomainObject add: value ];
+					yourself);
+			yourself
+]
+
 { #category : 'query' }
 LcsCountries >> defaultInstance [
-	^ self 
-		find: [ :each | each class = LcsUnknownCountry ]
-		ifNone: [ LcsUnknownCountry new ]
+	^ self unknownInstance
 ]
 
 { #category : 'query' }
@@ -38,4 +53,14 @@ LcsCountries >> findItemMatchingCodeOrName: anIsoCodeOrName ifNone: aBlock [
 				or: [ eachCountry isoCode3 = anIsoCodeOrName
 						or: [ eachCountry commonName = anIsoCodeOrName ] ] ]
 		ifNone: aBlock
+]
+
+{ #category : 'accessing' }
+LcsCountries >> unknownInstance [
+	^ self slotVarNamed: 'unknownInstance'
+]
+
+{ #category : 'accessing' }
+LcsCountries >> unknownInstance: anObject [
+	self slotVarNamed: 'unknownInstance' put: anObject
 ]

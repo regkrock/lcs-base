@@ -95,7 +95,7 @@ LcsDomainObject class >> lastUpdatedUserSlotDefinition [
 LcsDomainObject class >> new [
 	| newObject |
 	newObject := self basicNew.
-	self addToUnitOfWork: newObject.
+	"self addToUnitOfWork: newObject."
 	LcsLogger 
 		log: self name , ' >> basicNew - starting';
 		indent.

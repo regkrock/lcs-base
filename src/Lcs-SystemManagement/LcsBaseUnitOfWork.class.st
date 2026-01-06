@@ -41,6 +41,7 @@ LcsBaseUnitOfWork >> addPendingAddOf: aDomainObject to: aTargetCollection [
 	| pendingAdds |
 	pendingAdds := self _pendingAddsIn: aTargetCollection.
 	(pendingAdds includes: aDomainObject) ifTrue: [ ^ aDomainObject ].
+	"aDomainObject parent isNil ifTrue: [ LcsError signal: 'Setting up a Unit Of Work add record with no parent' ]."
 	^ pendingAdds add: aDomainObject
 ]
 

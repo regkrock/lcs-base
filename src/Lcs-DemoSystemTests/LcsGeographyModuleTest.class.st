@@ -1,10 +1,11 @@
 Class {
-	#name : #LcsGeographyModuleTest,
-	#superclass : #LcsDemoSystemRunningTestCase,
-	#category : #'Lcs-DemoSystemTests'
+	#name : 'LcsGeographyModuleTest',
+	#superclass : 'LcsDemoSystemRunningTestCase',
+	#category : 'Lcs-DemoSystemTests',
+	#package : 'Lcs-DemoSystemTests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 LcsGeographyModuleTest >> testCreation [
 	| module |
 	module := self currentSystem geographyModule.

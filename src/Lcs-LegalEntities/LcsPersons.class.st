@@ -1,9 +1,21 @@
 Class {
 	#name : 'LcsPersons',
 	#superclass : 'LcsDomainCollection',
+	#instVars : [
+		'unknownPerson'
+	],
 	#category : 'Lcs-LegalEntities',
 	#package : 'Lcs-LegalEntities'
 }
+
+{ #category : 'slot definitions' }
+LcsPersons class >> unknownPersonSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsDomainObjectSlot new
+			slotName: 'unknownPerson';
+			addSlotType: LcsUnknownPerson;
+			yourself
+]
 
 { #category : 'querying' }
 LcsPersons >> contactWithFirstName: aFirstName familyName: aFamilyName [
@@ -14,7 +26,7 @@ LcsPersons >> contactWithFirstName: aFirstName familyName: aFamilyName [
 
 { #category : 'queries' }
 LcsPersons >> defaultInstance [
-	^ self currentSystem legalEntitiesModule configuration unknownPerson
+	^ self unknownPerson
 ]
 
 { #category : 'querying' }
@@ -25,4 +37,14 @@ LcsPersons >> findWithFullName: aString [
 { #category : 'querying' }
 LcsPersons >> hasContactWithFirstName: aFirstName familyName: aFamilyName [
 	^ (self contactWithFirstName: aFirstName familyName: aFamilyName) notNil
+]
+
+{ #category : 'accessing' }
+LcsPersons >> unknownPerson [
+	^ self slotVarNamed: 'unknownPerson'
+]
+
+{ #category : 'accessing' }
+LcsPersons >> unknownPerson: anObject [
+	self slotVarNamed: 'unknownPerson' put: anObject
 ]
