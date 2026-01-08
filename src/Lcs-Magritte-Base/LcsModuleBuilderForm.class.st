@@ -85,6 +85,19 @@ LcsModuleBuilderForm >> moduleNameDescription [
 		beRequired
 ]
 
+{ #category : 'magritte' }
+LcsModuleBuilderForm >> owningModulePriorityDescription [
+	<magritteDescription>
+	^ MANumberDescription new
+		label: 'Module Priotiry';
+		priority: 20;
+		accessor: (MAChainAccessor accessors: #(slotModelBuilder owningModulePriority));
+		default: 20;
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		beRequired
+]
+
 { #category : 'magritte - support' }
 LcsModuleBuilderForm >> targetClassLabel [
 	^'Install Submodule in:'

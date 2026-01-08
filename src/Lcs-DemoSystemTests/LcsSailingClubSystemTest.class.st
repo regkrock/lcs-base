@@ -21,15 +21,22 @@ LcsSailingClubSystemTest >> assertLegalEntitiesModuleIsConfigured [
 
 { #category : 'tests' }
 LcsSailingClubSystemTest >> testCreation [
-
 	self subject: LcsSailingClubSystem new.
 	self assertCurrentSystemSetTo: LcsSailingClubSystem.
 	self assertModuleConfigured: LcsSecurityModule.
 	self assertModuleConfigured: LcsGeographyModule.
 	self assertModuleConfigured: LcsLegalEntitiesModule.
 	self assertModuleConfigured: LcsCalendarModule.
-	
-	"self assertGeographyModuleIsConfigured.
-	self assertLegalEntitiesModuleIsConfigured"
-	
+	self validateOrganization
+]
+
+{ #category : 'assertions' }
+LcsSailingClubSystemTest >> validateOrganization [
+	| organization members |
+	organization := self subject organization.
+	members := organization members.
+	self assert: organization parent = self subject.
+	self assert: (members isKindOf: LcsMembers).
+	self assert: (members unknownInstance isKindOf: LcsMember).
+	self assert: members unknownInstance parent == members
 ]

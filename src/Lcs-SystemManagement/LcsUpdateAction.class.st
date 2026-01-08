@@ -27,7 +27,7 @@ LcsUpdateAction >> execute: aValue context: aDomainObject oldValue: anOldValue [
 					slot: self slotDefinition
 					context: aDomainObject
 					oldValue: anOldValue
-					message: s message asString ]
+					message: s messageText asString ]
 ]
 
 { #category : 'initialize' }

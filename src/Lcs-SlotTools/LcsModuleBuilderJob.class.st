@@ -7,7 +7,8 @@ Class {
 		'newDomainClassName',
 		'targetPackageName',
 		'moduleName',
-		'owningModule'
+		'owningModule',
+		'owningModulePriority'
 	],
 	#category : 'Lcs-SlotTools',
 	#package : 'Lcs-SlotTools'
@@ -77,6 +78,7 @@ LcsModuleBuilderJob >> moduleClassBuilder [
 		targetPackageName: self targetPackageName;
 		moduleName: self moduleName;
 		owningModule: self owningModule;
+		owningModulePriority: self owningModulePriority;
 		configurationClassName: self moduleConfigurationClassName;
 		yourself
 ]
@@ -116,6 +118,16 @@ LcsModuleBuilderJob >> owningModule [
 { #category : 'accessing' }
 LcsModuleBuilderJob >> owningModule: anObject [
 	owningModule := anObject
+]
+
+{ #category : 'accessing' }
+LcsModuleBuilderJob >> owningModulePriority [
+	^ owningModulePriority
+]
+
+{ #category : 'accessing' }
+LcsModuleBuilderJob >> owningModulePriority: anObject [
+	owningModulePriority := anObject
 ]
 
 { #category : 'accessing' }

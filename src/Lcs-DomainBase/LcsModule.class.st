@@ -348,7 +348,7 @@ LcsModule >> moduleName: anObject [
 { #category : 'modules' }
 LcsModule >> moduleNamed: aString [
 	^ (self _moduleNamed: aString)
-		ifNil: [ LcsModuleNotFoundError signal: 'Module not found: ' , aString asString ]
+		ifNil: [ LcsModuleNotFoundError signal: 'Module not found: ' , aString printString , ' in current system: ' , self currentSystem printString ]
 		ifNotNil: [ :foundModule | foundModule ]
 ]
 
