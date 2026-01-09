@@ -56,6 +56,15 @@ LcsModule class >> defaultModuleName [
 	self subclassResponsibility
 ]
 
+{ #category : 'slot model - install' }
+LcsModule class >> domainClassesInPackage [
+	| domainClasses |
+	domainClasses := self package classes reject: [ :each | each isMeta ].
+	self systemModelDependentPackages do: [ :eachPackage |
+		domainClasses addAll: (eachPackage classes reject: [ :each | each isMeta ]) ].
+	^ domainClasses
+]
+
 { #category : 'slot definitions' }
 LcsModule class >> domainCollectionsSlotDefinition [
 	<accessorSlotDefinition>
@@ -147,6 +156,11 @@ LcsModule class >> modulesSlotDefinition [
 		addCollectionMemberType: LcsModule;
 		priority: 2;
 		yourself
+]
+
+{ #category : 'slot model - install' }
+LcsModule class >> systemModelDependentPackages [
+	^ OrderedCollection new
 ]
 
 { #category : 'modules' }

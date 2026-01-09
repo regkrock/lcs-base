@@ -27,6 +27,7 @@ LcsSailingClubSystemTest >> testCreation [
 	self assertModuleConfigured: LcsGeographyModule.
 	self assertModuleConfigured: LcsLegalEntitiesModule.
 	self assertModuleConfigured: LcsCalendarModule.
+	self assertModuleConfigured: LcsSeasModule.
 	self validateOrganization
 ]
 
@@ -35,7 +36,7 @@ LcsSailingClubSystemTest >> validateOrganization [
 	| organization members |
 	organization := self subject organization.
 	members := organization members.
-	self assert: organization parent = self subject.
+	self assert: organization parent = self subject seasModule.
 	self assert: (members isKindOf: LcsMembers).
 	self assert: (members unknownInstance isKindOf: LcsMember).
 	self assert: members unknownInstance parent == members

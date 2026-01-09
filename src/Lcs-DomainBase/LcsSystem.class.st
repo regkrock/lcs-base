@@ -128,7 +128,7 @@ LcsSystem >> addClasses: classes to: collection [
 LcsSystem >> addDomainClassesFromSubmodulesTo: systemDomainClasses [
 	self allSubmoduleClasses do: [ :eachModule | 
 		self
-			addClasses: (eachModule package classes reject: [ :each | each isMeta ])
+			addClasses: (eachModule domainClassesInPackage)
 			to: systemDomainClasses ]
 ]
 

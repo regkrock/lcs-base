@@ -362,7 +362,8 @@ LcsSlotModel >> slotDefinitions: aCollection [
 
 { #category : 'model' }
 LcsSlotModel >> superClassSlotModel [
-	^ self domainClass superclass slotModel
+	^ self domainClass superclass slotModel ifNil: [
+		LcsSlotModelNotInitializedError signalWithContext: self domainClass superclass ]
 ]
 
 { #category : 'validation' }
