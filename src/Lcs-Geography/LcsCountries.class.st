@@ -12,8 +12,7 @@ Class {
 { #category : 'slot definitions' }
 LcsCountries class >> unknownInstanceSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainObjectSlot new
-			slotName: 'unknownInstance';
+	^ LcsUnknownInstanceSlot new
 			addSlotType: LcsUnknownCountry;
 			addPostUpdateAction: (
 				LcsUpdateAction new

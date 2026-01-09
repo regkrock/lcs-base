@@ -89,8 +89,7 @@ LcsDomainClassAndGlobalCollectionClassBuilderJob >> collectionSlotBuilder [
 	self buildUnknownClass ifTrue: [
 		builder addJobStep: (
 			LcsDomainObjectSlotBuilder new
-				slotClassName: LcsDomainObjectSlot name;
-				slotName: 'unknown';
+				slotClassName: LcsUnknownInstanceSlot name;
 				targetClassName: self collectionClassName;
 				addSlotType: self unknownClassName;
 				yourself)].

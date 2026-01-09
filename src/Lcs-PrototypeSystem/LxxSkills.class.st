@@ -2,7 +2,7 @@ Class {
 	#name : 'LxxSkills',
 	#superclass : 'LcsDomainCollection',
 	#instVars : [
-		'unknown'
+		'unknownInstance'
 	],
 	#category : 'Lcs-PrototypeSystem-Base',
 	#package : 'Lcs-PrototypeSystem',
@@ -10,20 +10,19 @@ Class {
 }
 
 { #category : 'slot definition' }
-LxxSkills class >> unknownSlotDefinition [
+LxxSkills class >> unknownInstanceSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainObjectSlot new
-		slotName: 'unknown';
+	^ LcsUnknownInstanceSlot new
 		addSlotType: LxxUnknownSkill;
 		yourself
 ]
 
 { #category : 'accessing' }
-LxxSkills >> unknown [
-	^ self slotVarNamed: 'unknown'
+LxxSkills >> unknownInstance [
+	^ self slotVarNamed: 'unknownInstance'
 ]
 
 { #category : 'accessing' }
-LxxSkills >> unknown: anObject [
-	self slotVarNamed: 'unknown' put: anObject
+LxxSkills >> unknownInstance: anObject [
+	self slotVarNamed: 'unknownInstance' put: anObject
 ]

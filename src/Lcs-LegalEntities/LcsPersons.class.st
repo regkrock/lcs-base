@@ -11,7 +11,7 @@ Class {
 { #category : 'slot definitions' }
 LcsPersons class >> unknownPersonSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainObjectSlot new
+	^ LcsUnknownInstanceSlot new
 			slotName: 'unknownPerson';
 			addSlotType: LcsUnknownPerson;
 			yourself

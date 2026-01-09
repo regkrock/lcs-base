@@ -36,7 +36,7 @@ LcsAuthor class >> personSlotDefinition [
 		slotName: 'person';
 		collectionSlotName: 'persons';
 		collectionSlotModuleName: LcsLegalEntitiesModule defaultModuleName;
-		initialValueBlock: [ :parentDomainParent :slot | slot targetCollection unknown ];
+		initialValueBlock: [ :parentDomainParent :slot | slot targetCollection unknownInstance ];
 		addSlotType: LcsBasePerson;
 		yourself
 ]

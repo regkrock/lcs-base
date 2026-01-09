@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsUnknownSlot',
+	#name : 'LcsUnknownInstanceSlot',
 	#superclass : 'LcsDomainObjectSlot',
 	#traits : 'LtDeleteRemovedDomainObject',
 	#classTraits : 'LtDeleteRemovedDomainObject classTrait',
@@ -9,7 +9,8 @@ Class {
 }
 
 { #category : 'initialize' }
-LcsUnknownSlot >> initialize [
+LcsUnknownInstanceSlot >> initialize [
 	super initialize.
-	self slotName: 'unknown'
+	self slotName: 'unknownInstance';
+	priority: 60
 ]

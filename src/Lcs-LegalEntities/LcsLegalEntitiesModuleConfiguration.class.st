@@ -13,7 +13,7 @@ Class {
 { #category : 'slot definitions' }
 LcsLegalEntitiesModuleConfiguration class >> unknownEmailAddressSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainObjectSlot new
+	^ LcsUnknownInstanceSlot new
 		slotName: 'unknownEmailAddress';
 		addSlotType: LcsUnknownEmailAddress;
 		yourself
@@ -22,17 +22,16 @@ LcsLegalEntitiesModuleConfiguration class >> unknownEmailAddressSlotDefinition [
 { #category : 'slot definitions' }
 LcsLegalEntitiesModuleConfiguration class >> unknownPersonSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainObjectSlot new
+	^ LcsUnknownInstanceSlot new
 		slotName: 'unknownPerson';
 		addSlotType: LcsUnknownPerson;
-		priority: 60;
 		yourself
 ]
 
 { #category : 'slot definitions' }
 LcsLegalEntitiesModuleConfiguration class >> unknownPhoneNumberSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainObjectSlot new
+	^ LcsUnknownInstanceSlot new
 		slotName: 'unknownPhoneNumber';
 		addSlotType: LcsUnknownPhoneNumber;
 		yourself

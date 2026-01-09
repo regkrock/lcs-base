@@ -41,6 +41,6 @@ LcsValueObjects >> gtItemsFor: aView [
 
 { #category : 'testing' }
 LcsValueObjects >> hasDefaultInstance [
-	self find: [ :each | each isDefaultInstance == true] ifNone: [ ^ false ].
+	self find: [ :each | each isDefaultInstance == true ] ifNone: [ ^ false ].
 	^ true
 ]
