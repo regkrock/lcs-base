@@ -28,6 +28,7 @@ LcsStringSlotTest >> testSlotSetter [
 	person lastName: 'Schmidt'.
 	self assert: person isInAddingState.
 	self assert: person lastName equals: 'Schmidt'.
-	"This may be wrong. Should it return nil as we are in add state"
+	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) isNil.
+	self currentSystem applyChanges.
 	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: 'Schmidt'
 ]
