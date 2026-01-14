@@ -98,6 +98,7 @@ LxxPrototypeSystemTest >> testCreationOfNewSystem [
 LxxPrototypeSystemTest >> testCreationWithPrototypeSystem [
 	| domainObject |
 	self newPrototypeSystem.
+	self assert: self currentUnitOfWork hasNoChanges.
 	domainObject := LcsDomainObject new.
 	self assert: domainObject parent isNil.
 	self assert: domainObject currentSystem identicalTo:self subject.

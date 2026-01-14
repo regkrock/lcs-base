@@ -38,6 +38,7 @@ LcsNumberSlotTest >> testSlotSetter [
 	person weight: 100.5.
 	self assert: person isInAddingState.
 	self assert: person weight equals: 100.5.
-	"This may be wrong. Should it return nil as we are in add state"
+	self assert: ((person slotDefinitionNamed: 'weight') persistedSlotVarIn: person) isNil.
+	self currentSystem applyChanges.
 	self assert: ((person slotDefinitionNamed: 'weight') persistedSlotVarIn: person) equals: 100.5
 ]
