@@ -57,5 +57,6 @@ LcsSlotInstanceVariableBuilder >> uninstall [
 LcsSlotInstanceVariableBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass isNil ifTrue: [ ^ self  ].
+	self slotName isNil ifTrue: [ ^ self ].
 	self assert: (self targetClass instVarNames includes: self slotName asSymbol) not.
 ]

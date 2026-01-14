@@ -355,6 +355,7 @@ LcsBaseDomainObject class >> removeGetter: aGetter [
 
 { #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> removeInstVar: aSlotName [
+	aSlotName isNil ifTrue: [ ^ self ].
 	(self instVarNames includes: aSlotName asSymbol)
 		ifTrue: [ self removeInstVarNamed: aSlotName asSymbol ]
 ]
