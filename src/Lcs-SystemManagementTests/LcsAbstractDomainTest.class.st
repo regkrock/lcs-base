@@ -82,8 +82,11 @@ LcsAbstractDomainTest >> tearDown [
 			LcsApplicationEnvironment removeCurrentSystem.
 			self assert: self currentSystem isNil ]
 		ifFalse: [
-			LcsApplicationEnvironment deleteCurrentAndMakeCurrent: self savedSystem.
-		self assert: self currentSystem identicalTo: self savedSystem ].
+			| tempSystem |
+			tempSystem := self currentSystem.
+			[LcsApplicationEnvironment deleteCurrentAndMakeCurrent: self savedSystem] ensure: [tempSystem ifNotNil: [ tempSystem removeSystem ]].
+			self assert: (LcsApplicationEnvironment systemsManager systems includes: tempSystem) not.
+			self assert: self currentSystem identicalTo: self savedSystem ].
 	self commitTransaction.
 
 ]

@@ -28,7 +28,7 @@ LcsStringSlotTest >> testSlotSetter [
 	person lastName: 'Schmidt'.
 	self assert: person isInAddingState.
 	self assert: person lastName equals: 'Schmidt'.
-	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) isNil.
+	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: 'Schmidt'.
 	self currentSystem applyChanges.
 	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: 'Schmidt'
 ]

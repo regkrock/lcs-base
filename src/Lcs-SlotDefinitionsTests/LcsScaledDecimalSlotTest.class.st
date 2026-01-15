@@ -59,7 +59,7 @@ LcsScaledDecimalSlotTest >> testSlotSetter [
 	person balance: 20.5.
 	self assert: person isInAddingState.
 	self assert: person balance equals: 20.5.
-	self assert: ((person slotDefinitionNamed: 'balance') persistedSlotVarIn: person) isNil.
+	self assert: ((person slotDefinitionNamed: 'balance') persistedSlotVarIn: person) equals: 20.5.
 	self currentSystem applyChanges.
 	self assert: ((person slotDefinitionNamed: 'balance') persistedSlotVarIn: person) equals: 20.5
 ]
