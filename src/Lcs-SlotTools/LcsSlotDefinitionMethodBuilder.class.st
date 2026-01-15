@@ -41,7 +41,7 @@ LcsSlotDefinitionMethodBuilder >> _verifyCodeInstallation [
 LcsSlotDefinitionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	aUmlModel
-			addAssociation: self slotName , 'SlotDefinition'
+			addAssociation: self derivedSlotName , 'SlotDefinition'
 			from: self targetClassName
 			to: self slotClass.
 	self targetClass isNil ifTrue: [ ^ self ].

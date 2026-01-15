@@ -41,15 +41,8 @@ LcsBaseClassBuilder >> _verifyCodeInstallation [
 { #category : 'gt views' }
 LcsBaseClassBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetSuperclassName.
-	self addProposedClassTo: aUmlModel
-]
-
-{ #category : 'gt views' }
-LcsBaseClassBuilder >> addProposedClassTo: classesModel [
-	| proposedClass |
-	proposedClass := classesModel proposedClassModelFor: self newClassName.
-	self targetSuperclassName notNil
-		ifTrue: [ proposedClass modelSuperclassName: self targetSuperclassName ]
+	(aUmlModel addClassNamed: self newClassName)
+		modelSuperclassName: self targetSuperclassName
 ]
 
 { #category : 'printing' }

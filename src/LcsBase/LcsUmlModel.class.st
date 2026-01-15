@@ -47,7 +47,7 @@ LcsUmlModel >> addClassModelForExisting: aClass [
 { #category : 'configuration' }
 LcsUmlModel >> addClassNamed: aClassname [
 	aClassname isNil ifTrue: [ ^ self ].
-	([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
+	^ ([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
 		ifNil: [ self proposedClassModelFor: aClassname ]
 		ifNotNil: [ :class | self addClassModelForExisting: class ]
 ]

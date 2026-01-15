@@ -8,8 +8,9 @@ Class {
 { #category : 'command' }
 LcsSlotInstanceVariableBuilder >> _installCode [
 	super _installCode.
+	self assert: self rawDerivedSlotName notNil.
 	self isInstanceVariableAlreadyCreated ifTrue: [ ^ self ].
-	self addRefactoring: (RBAddInstanceVariableChange add: self slotName to: self targetClass) execute.
+	self addRefactoring: (RBAddInstanceVariableChange add: self derivedSlotName to: self targetClass) execute.
 	self beCodeInstalled
 ]
 
@@ -39,7 +40,7 @@ LcsSlotInstanceVariableBuilder >> gtRefactoringChangeOn: aView [
 
 { #category : 'gt views' }
 LcsSlotInstanceVariableBuilder >> isInstanceVariableAlreadyCreated [
-	^ self targetClass allInstVarNames includes: self slotName
+	^ self targetClass allInstVarNames includes: self derivedSlotName
 ]
 
 { #category : 'printing' }
