@@ -104,8 +104,8 @@ LcsSlotCreationForm >> asElement [
 ]
 
 { #category : 'private' }
-LcsSlotCreationForm >> classNamed: aValue [
-	^ Smalltalk classNamed: aValue trim
+LcsSlotCreationForm >> classNamed: aString [
+	^ Smalltalk classNamed: aString trim
 ]
 
 { #category : 'magritte - support' }
@@ -253,9 +253,9 @@ LcsSlotCreationForm >> isInstanceSideClass: aValue [
 ]
 
 { #category : 'testing' }
-LcsSlotCreationForm >> isSlotClass: aValue [ 
+LcsSlotCreationForm >> isSlotClass: aClassName [ 
 	| class |
-	class := self classNamed: aValue.
+	class := self classNamed: aClassName.
 	class isNil ifTrue: [ ^ false ].
 	^ class inheritsFrom: LcsBaseSlot
 ]

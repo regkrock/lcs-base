@@ -21,6 +21,11 @@ LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 ]
 
 { #category : 'defaults' }
+LcsVirtualSlot >> defaultPragmaSelector [
+	^ self class virtualSlotDefinitionName
+]
+
+{ #category : 'defaults' }
 LcsVirtualSlot >> defaultValueAccessBlock [
 		^ [ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]
 ]

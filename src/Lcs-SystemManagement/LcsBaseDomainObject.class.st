@@ -34,6 +34,7 @@ LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 LcsBaseDomainObject class >> allSlotDefinitionPragmas [
 	^ OrderedCollection new
 		addAll: self accessorSlotDefinitionPragmas;
+		addAll: self collectionItemSlotDefinitionPragmas;
 		addAll: self facadeSlotDefinitionPragmas;
 		addAll: self virtualSlotDefinitionPragmas;
 		yourself
@@ -41,7 +42,7 @@ LcsBaseDomainObject class >> allSlotDefinitionPragmas [
 
 { #category : 'slot model - verification' }
 LcsBaseDomainObject class >> assertDomainSlotRemoved: aSlotName [
-	self assert: (self hasSlotDefinitionNamed: aSlotName) not.
+	self assert: (self hasAccessorSlotDefinitionNamed: aSlotName) not.
 	self assert: (self instVarNames includes: aSlotName) not.
 	self assert: (self canUnderstand: aSlotName asSymbol) not.
 	self assert: (self canUnderstand: (aSlotName , ':') asSymbol) not.
@@ -54,6 +55,11 @@ LcsBaseDomainObject class >> assertSlotAdded: aSlotName [
 	self assert: (self canUnderstand: aSlotName asSymbol).
 	self assert: (self canUnderstand: (aSlotName , ':') asSymbol).
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
+]
+
+{ #category : 'slot model' }
+LcsBaseDomainObject class >> collectionItemSlotDefinitionPragmas [
+	^ Pragma allNamed: 'collectionItemSlotDefinition' in: self class
 ]
 
 { #category : 'application environment' }
@@ -84,7 +90,9 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 		tooltip: 'Methods that define Slot Defintions';
 		priority: 19;
 		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
-				& ( #accessorSlotDefinition gtPragmas | #facadeSlotDefinition gtPragmas) ];
+				& ( #accessorSlotDefinition gtPragmas | 
+					#facadeSlotDefinition gtPragmas | 
+					#collectionItemSlotDefinition gtPragmas) ];
 		actionUpdateButton
 		
 ]
@@ -168,6 +176,12 @@ LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 ]
 
 { #category : 'testing' }
+LcsBaseDomainObject class >> hasAccessorSlotDefinitionNamed: aString [ 
+	self slotModel ifNil: [ ^ false ].
+	^ self slotModel hasAccessorSlotDefinitionNamed: aString
+]
+
+{ #category : 'testing' }
 LcsBaseDomainObject class >> hasNoninitializedApplicationEnvironment [
 	^ self isSlotModelReleased
 ]
@@ -179,7 +193,7 @@ LcsBaseDomainObject class >> hasNoninitializedSlotModel [
 
 { #category : 'testing' }
 LcsBaseDomainObject class >> hasParentSlotDefinition [
-	^ self hasSlotDefinitionNamed: 'parent' 
+	^ self hasAccessorSlotDefinitionNamed: 'parent' 
 ]
 
 { #category : 'testing' }
@@ -207,19 +221,28 @@ LcsBaseDomainObject class >> initializeSlotModel [
 LcsBaseDomainObject class >> installAccessorSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self slotModel isNil ifTrue: [ ^ self ].
-	self slotModel addSlotDefinition: (self perform: aSlotDefinitionSelector)
+	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
+]
+
+{ #category : 'slot model - install' }
+LcsBaseDomainObject class >> installCollectionItemSlotDefinition: aSlotDefinitionSelector [
+	self currentSystem isNil ifTrue: [ ^ self ].
+	self slotModel isNil ifTrue: [ ^ self ].
+	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
 { #category : 'slot model - install' }
 LcsBaseDomainObject class >> installFacadeSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
-	self slotModel addFacadeSlotDefinition: (self perform: aSlotDefinitionSelector)
+	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
 { #category : 'slot model - install' }
 LcsBaseDomainObject class >> installSlotDefinitions [
 	self accessorSlotDefinitionPragmas
 		do: [ :eachPragma | self installAccessorSlotDefinition: eachPragma methodSelector ].
+	self collectionItemSlotDefinitionPragmas
+		do: [ :eachPragma | self installCollectionItemSlotDefinition: eachPragma methodSelector ].
 	self virtualSlotDefinitionPragmas
 		do: [ :eachPragma | self installVirtualSlotDefinition: eachPragma methodSelector ].
 	self facadeSlotDefinitionPragmas
@@ -241,7 +264,7 @@ LcsBaseDomainObject class >> installSlotModelIn: aSystem [
 { #category : 'slot model - install' }
 LcsBaseDomainObject class >> installVirtualSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
-	self slotModel addVirtualSlotDefinition: (self perform: aSlotDefinitionSelector)
+	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
 { #category : 'slot model - install' }
@@ -447,7 +470,7 @@ LcsBaseDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 { #category : 'slot definition - removal' }
 LcsBaseDomainObject class >> verifyRemovedDomainSlotNamed: aSlotName [
 	self slotModel ifNotNil: [
-		self assert: (self slotModel _slotDefinitionNamed: aSlotName) isNil ].
+		self assert: (self slotModel accessorSlotDefinitionNamed: aSlotName) isNil ].
 	self assert: (self instVarNames includes: aSlotName) not.
 	self assert: (self canUnderstand: aSlotName asSymbol) not.
 	self assert: (self canUnderstand: (aSlotName , ':') asSymbol) not.

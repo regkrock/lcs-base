@@ -3,19 +3,15 @@ Class {
 	#superclass : 'LcsObject',
 	#instVars : [
 		'domainClass',
-		'slotDefinitions',
 		'virtualSlotDefinitions',
-		'facadeSlotDefinitions'
+		'facadeSlotDefinitions',
+		'collectionItemSlotDefinitions',
+		'accessorSlotDefinitions'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
 }
-
-{ #category : 'configuration' }
-LcsSlotModel class >> collectionClass [
-	^ LcsSmalltalkConfiguration symbolDictionaryClass
-]
 
 { #category : 'instance creation' }
 LcsSlotModel class >> newOn: aDomainClass [
@@ -25,73 +21,73 @@ LcsSlotModel class >> newOn: aDomainClass [
 		yourself
 ]
 
-{ #category : 'slots' }
-LcsSlotModel >> _facadeSlotDefinitionNamed: aSlotName [
-	^ self facadeSlotDefinitions
-		at: aSlotName
-		ifAbsent: [
-			self domainSuperClass isDomainClass
-				ifTrue: [
-					self domainSuperClassSlotModel  _facadeSlotDefinitionNamed: aSlotName]
-				ifFalse: [ nil ] ]
-]
-
-{ #category : 'slots' }
-LcsSlotModel >> _slotDefinitionNamed: aSlotName [
-	^ self slotDefinitions
-		at: aSlotName
-		ifAbsent: [
-			self domainSuperClass isDomainClass
-				ifTrue: [
-					self domainSuperClassSlotModel  _slotDefinitionNamed: aSlotName]
-				ifFalse: [ nil ] ]
-]
-
-{ #category : 'slots' }
-LcsSlotModel >> _virtualSlotDefinitionNamed: aSlotName [
-	^ self virtualSlotDefinitions
-		at: aSlotName
-		ifAbsent: [
-			self domainSuperClass isDomainClass
-				ifTrue: [
-					self domainSuperClassSlotModel  _virtualSlotDefinitionNamed: aSlotName]
-				ifFalse: [ nil ] ]
-]
-
-{ #category : 'model' }
-LcsSlotModel >> addAccessorSlotDefinitionsTo: aCollection [
-	self slotDefinitions keysAndValuesDo: [ :eachSlotName :eachSlotDefinition |
-		aCollection detect: [ :each | each slotName = eachSlotName ]
-			ifNone: [ aCollection add: eachSlotDefinition ] ].
+{ #category : 'private' }
+LcsSlotModel >> _addSlotDefinitionsIn: aSelector to: aCollection [
+	(self perform: aSelector)
+		keysAndValuesDo: [ :eachSlotName :eachSlotDefinition | 
+			aCollection
+				detect: [ :each | each slotName = eachSlotName ]
+				ifNone: [ aCollection add: eachSlotDefinition ] ].
+	self domainClass isNil ifTrue: [ ^ self ].
 	self domainClass isRootDomainClass
-		ifFalse: [ self superClassSlotModel addAccessorSlotDefinitionsTo: aCollection ]
+		ifFalse: [ self superClassSlotModel _addSlotDefinitionsIn: aSelector to: aCollection ]
 ]
 
-{ #category : 'model' }
+{ #category : 'private' }
+LcsSlotModel >> _slotDefinitionNamed: aSlotName inSlotDefinitionsSelector: aSelector [
+	^ (self perform: aSelector)
+		at: aSlotName
+		ifAbsent: [ 
+			self domainClass notNil
+				ifTrue: [ self domainSuperClass isDomainClass
+						ifTrue: [ self domainSuperClassSlotModel
+								_slotDefinitionNamed: aSlotName
+								inSlotDefinitionsSelector: aSelector ]
+						ifFalse: [ nil ] ]
+				ifFalse: [ nil ] ]
+]
+
+{ #category : 'querying - model' }
+LcsSlotModel >> accessorSlotDefinitionNamed: aSlotName [
+	^ self
+		_slotDefinitionNamed: aSlotName
+		inSlotDefinitionsSelector: #accessorSlotDefinitions
+]
+
+{ #category : 'accessing' }
+LcsSlotModel >> accessorSlotDefinitions [
+	^ accessorSlotDefinitions
+]
+
+{ #category : 'accessing' }
+LcsSlotModel >> accessorSlotDefinitions: aCollection [
+	accessorSlotDefinitions := aCollection 
+]
+
+{ #category : 'querying - model' }
+LcsSlotModel >> addAllLocalSlotDefinitionsTo: aCollection [
+	self slotDefinitionsCollections
+		do: [ :eachGroup | self addSlotDefinitionsInGroup: eachGroup to: aCollection ]
+]
+
+{ #category : 'querying - model' }
 LcsSlotModel >> addAllSlotDefinitionsTo: aCollection [
-	self slotDefinitionGroups
-		do: [ :eachGroup | self addSlotDefinitions: eachGroup to: aCollection ].
+	self addAllLocalSlotDefinitionsTo: aCollection.
+	self domainClass isNil ifTrue: [ ^ aCollection ].
 	self domainClass isRootDomainClass
 		ifFalse: [ self superClassSlotModel addAllSlotDefinitionsTo: aCollection ]
 ]
 
-{ #category : 'model' }
+{ #category : 'model - view' }
 LcsSlotModel >> addCollectionViewSlotDefinitionsTo: aCollection [
 	self addLocalCollectionViewSlotDefinitionsTo: aCollection.
 	self domainClass isRootDomainClass
 		ifFalse: [ self superClassSlotModel addCollectionViewSlotDefinitionsTo: aCollection ]
 ]
 
-{ #category : 'slots' }
-LcsSlotModel >> addFacadeSlotDefinition: aSlotDefinition [
-
-	aSlotDefinition parent: self.
-	self facadeSlotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
-]
-
-{ #category : 'model' }
+{ #category : 'model - view' }
 LcsSlotModel >> addLocalCollectionViewSlotDefinitionsTo: aCollection [
-	self slotDefinitions
+	self accessorSlotDefinitions
 		keysAndValuesDo: [ :eachSlotName :eachSlotDefinition | 
 			aCollection
 				detect: [ :each | each slotName = eachSlotName ]
@@ -99,15 +95,8 @@ LcsSlotModel >> addLocalCollectionViewSlotDefinitionsTo: aCollection [
 								ifTrue: [ aCollection add: eachSlotDefinition ] ] ]
 ]
 
-{ #category : 'slots' }
-LcsSlotModel >> addSlotDefinition: aSlotDefinition [
-
-	aSlotDefinition parent: self.
-	self slotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
-]
-
-{ #category : 'model' }
-LcsSlotModel >> addSlotDefinitions: aSlotDefinitons to: aCollection [
+{ #category : 'model - view' }
+LcsSlotModel >> addSlotDefinitionsInGroup: aSlotDefinitons to: aCollection [
 	aSlotDefinitons
 		keysAndValuesDo: [ :eachSlotName :eachSlotDefinition | 
 			aCollection
@@ -117,21 +106,29 @@ LcsSlotModel >> addSlotDefinitions: aSlotDefinitons to: aCollection [
 
 { #category : 'validation' }
 LcsSlotModel >> addValidateConfigurationResultTo: aValidator [
-	self slotDefinitions do: [ :eachSlotDefinition | aValidator validate: eachSlotDefinition ]
-]
-
-{ #category : 'slots' }
-LcsSlotModel >> addVirtualSlotDefinition: aSlotDefinition [
-
-	aSlotDefinition parent: self.
-	self virtualSlotDefinitions at: aSlotDefinition slotName put: aSlotDefinition
+	self accessorSlotDefinitions do: [ :eachSlotDefinition | aValidator validate: eachSlotDefinition ]
 ]
 
 { #category : 'model' }
 LcsSlotModel >> allAccessorSlotDefinitions [
+	^ self allSlotDefinitionsIn: LcsBaseSlot accessorSlotDefinitionsSelector
+]
+
+{ #category : 'model' }
+LcsSlotModel >> allCollectionItemSlotDefinitions [
+	^ self allSlotDefinitionsIn: LcsBaseSlot collectionItemSlotDefinitionsSelector
+]
+
+{ #category : 'model' }
+LcsSlotModel >> allFacadeSlotDefinitions [
+	^ self allSlotDefinitionsIn: LcsBaseSlot facadeSlotDefinitionsSelector
+]
+
+{ #category : 'model' }
+LcsSlotModel >> allLocalSlotDefinitions [
 	| allSlotDefinitions |
 	allSlotDefinitions := OrderedCollection new.
-	self addAccessorSlotDefinitionsTo:allSlotDefinitions.
+	self addAllSlotDefinitionsTo:allSlotDefinitions.
 	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
@@ -143,9 +140,44 @@ LcsSlotModel >> allSlotDefinitions [
 	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
+{ #category : 'model' }
+LcsSlotModel >> allSlotDefinitionsIn: aSelector [
+	| allSlotDefinitions |
+	allSlotDefinitions := OrderedCollection new.
+	self _addSlotDefinitionsIn: aSelector to: allSlotDefinitions.
+	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
+]
+
+{ #category : 'model' }
+LcsSlotModel >> allVirtualSlotDefinitions [
+	^ self allSlotDefinitionsIn: LcsBaseSlot virtualSlotDefinitionsSelector
+]
+
+{ #category : 'model' }
+LcsSlotModel >> allVirutalSlotDefinitions [
+	^ self allSlotDefinitionsIn: #virtualSlotDefinitions
+]
+
 { #category : 'validation' }
 LcsSlotModel >> audit: anObject withAuditor: anAuditor [
-	self slotDefinitions do: [ :each |  each audit: anObject withAuditor: anAuditor ]
+	self accessorSlotDefinitions do: [ :each |  each audit: anObject withAuditor: anAuditor ]
+]
+
+{ #category : 'querying - model' }
+LcsSlotModel >> collectionItemSlotDefinitionNamed: aSlotName [
+	^ self
+		_slotDefinitionNamed: aSlotName
+		inSlotDefinitionsSelector: LcsBaseSlot collectionItemSlotDefinitionsSelector
+]
+
+{ #category : 'accessing' }
+LcsSlotModel >> collectionItemSlotDefinitions [
+	^ collectionItemSlotDefinitions
+]
+
+{ #category : 'accessing' }
+LcsSlotModel >> collectionItemSlotDefinitions: anObject [
+	collectionItemSlotDefinitions := anObject
 ]
 
 { #category : 'model' }
@@ -166,15 +198,22 @@ LcsSlotModel >> domainClass: anObject [
 	domainClass := anObject
 ]
 
-{ #category : 'slots' }
+{ #category : 'model' }
 LcsSlotModel >> domainSuperClass [
 	^ self domainClass superclass
 ]
 
-{ #category : 'slots' }
+{ #category : 'model' }
 LcsSlotModel >> domainSuperClassSlotModel [
 	self domainSuperClass hasSlotModel ifTrue: [ ^ self domainSuperClass slotModel ].
 	LcsUndefinedSlotModelError signalSuperclassWithoutSlotModel: self domainSuperClass
+]
+
+{ #category : 'querying - model' }
+LcsSlotModel >> facadeSlotDefinitionNamed: aSlotName [
+	^ self
+		_slotDefinitionNamed: aSlotName
+		inSlotDefinitionsSelector: LcsBaseSlot facadeSlotDefinitionsSelector
 ]
 
 { #category : 'accessing' }
@@ -192,16 +231,16 @@ LcsSlotModel >> getPersistedValueOf: aString in: anObject [
 	^ (self slotDefinitionNamed: aString) persistedSlotVarIn: anObject
 ]
 
-{ #category : 'query' }
+{ #category : 'querying - model' }
 LcsSlotModel >> globalCollectionSlots [
-	^ self slotDefinitions values select: [ :each | each isGlobalCollectionSlot ]
+	^ self accessorSlotDefinitions values select: [ :each | each isGlobalCollectionSlot ]
 ]
 
 { #category : 'gt views' }
 LcsSlotModel >> gtViewSlotModelChildren [
 	| children |
 	children := OrderedCollection new.
-	self slotDefinitions keysAndValuesDo: [ :key :value |
+	self accessorSlotDefinitions keysAndValuesDo: [ :key :value |
 		children add: (LcsSlotModelViewItem newLabel: key item: value)].
 	^ children
 ]
@@ -242,22 +281,46 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 
 ]
 
-{ #category : 'slots' }
+{ #category : 'testing' }
+LcsSlotModel >> hasAccessorSlotDefinitionNamed: aSlotName [
+	^ (self accessorSlotDefinitionNamed: aSlotName) notNil
+]
+
+{ #category : 'testing' }
+LcsSlotModel >> hasCollectionItemSlotDefinitionNamed: aSlotName [
+	^ (self collectionItemSlotDefinitionNamed: aSlotName) notNil
+]
+
+{ #category : 'testing' }
+LcsSlotModel >> hasFacadeSlotDefinitionNamed: aSlotName [
+	^ (self facadeSlotDefinitionNamed: aSlotName) notNil
+]
+
+{ #category : 'testing' }
 LcsSlotModel >> hasSlotDefinitionNamed: aSlotName [
-	^ (self _slotDefinitionNamed: aSlotName) notNil
+	^ (self hasAccessorSlotDefinitionNamed: aSlotName) or: [
+		(self hasCollectionItemSlotDefinitionNamed: aSlotName) or: [
+		(self hasFacadeSlotDefinitionNamed: aSlotName) or: [
+		(self hasVirtualSlotDefinitionNamed: aSlotName) ] ] ]
 ]
 
 { #category : 'testing' }
 LcsSlotModel >> hasSlotDefinitions [
-	^ self allAccessorSlotDefinitions notEmpty
+	^ self allSlotDefinitions notEmpty
 ]
 
-{ #category : 'accessing' }
+{ #category : 'testing' }
+LcsSlotModel >> hasVirtualSlotDefinitionNamed: aSlotName [
+	^ (self virtualSlotDefinitionNamed: aSlotName) notNil
+]
+
+{ #category : 'initialize' }
 LcsSlotModel >> initialize [
 	super initialize.
-	self slotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
+	self accessorSlotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
 	self virtualSlotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
 	self facadeSlotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
+	self collectionItemSlotDefinitions: LcsSmalltalkConfiguration identityDictionaryClass new.
 ]
 
 { #category : 'initialize' }
@@ -284,18 +347,25 @@ LcsSlotModel >> initializeUnintializedSlotValuesIn: aDomainObject [
 ]
 
 { #category : 'model' }
+LcsSlotModel >> installSlotDefinition: aSlotDefinition [
+	aSlotDefinition parent: self.
+	(self perform: (aSlotDefinition pragmaSelector , 's') asSymbol)
+		at: aSlotDefinition slotName put: aSlotDefinition
+]
+
+{ #category : 'testing' }
 LcsSlotModel >> isNotExlcudedFromCollectionView: eachSlotName [
 	^ (self domainClass slotNamesExcludedFromCollectionViewSlotDefinitions
 		includes: eachSlotName) not
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'loading' }
 LcsSlotModel >> loadSingletonCodeCollections [
-	self slotDefinitions do: [ :eachSlotDefinition |
+	self accessorSlotDefinitions do: [ :eachSlotDefinition |
 		eachSlotDefinition class = LcsSingletonValueObjectsGlobalCollectionSlot ifTrue: [ eachSlotDefinition populateCollection  ] ]
 ]
 
-{ #category : 'query' }
+{ #category : 'querying - model' }
 LcsSlotModel >> localCollectionSlots [
 	^ self allAccessorSlotDefinitions select: [ :each | each isLocalCollectionSlot ]
 ]
@@ -310,12 +380,12 @@ LcsSlotModel >> parent: aDomainClass [
 	self domainClass: aDomainClass
 ]
 
-{ #category : 'slots' }
+{ #category : 'model' }
 LcsSlotModel >> parentSlotDefinition [
 	^ self slotDefinitionNamed: 'parent'
 ]
 
-{ #category : 'slots' }
+{ #category : 'model' }
 LcsSlotModel >> parentSuperclass [
 	^ self parent superclass
 ]
@@ -329,35 +399,32 @@ LcsSlotModel >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : 'slots' }
+{ #category : 'model' }
 LcsSlotModel >> removeSlotDefinitionNamed: aSlotName [
-	self slotDefinitions removeKey: aSlotName ifAbsent: [ ]
+	self slotDefinitionsCollections
+		do: [ :eachSlotDefinitionsCollection | eachSlotDefinitionsCollection removeKey: aSlotName ifAbsent: [ ] ]
 ]
 
 { #category : 'model' }
-LcsSlotModel >> slotDefinitionGroups [
-	^ { self slotDefinitions. self facadeSlotDefinitions. self virtualSlotDefinitions }
-]
-
-{ #category : 'slots' }
 LcsSlotModel >> slotDefinitionNamed: aSlotName [
-	(self _slotDefinitionNamed: aSlotName) ifNotNil: [ :definition | ^ definition ].
-	(self _virtualSlotDefinitionNamed: aSlotName) ifNotNil: [ :definition | ^ definition ].
-	(self _facadeSlotDefinitionNamed: aSlotName) ifNotNil: [ :definition | ^ definition ].
-
+	self slotDefinitionsSelectors do: [ :eachSelector |
+		(self _slotDefinitionNamed: aSlotName inSlotDefinitionsSelector: eachSelector) ifNotNil: [ :definition | ^ definition ] ].
 	LcsSlotDoesNotExistInSlotModelError
 		signalWithContext: self
 		slotName: aSlotName
 ]
 
 { #category : 'model' }
-LcsSlotModel >> slotDefinitions [
-	^ slotDefinitions
+LcsSlotModel >> slotDefinitionsCollections [
+	^ {self accessorSlotDefinitions.
+		self collectionItemSlotDefinitions.
+		self facadeSlotDefinitions.
+		self virtualSlotDefinitions}
 ]
 
-{ #category : 'accessing' }
-LcsSlotModel >> slotDefinitions: aCollection [
-	slotDefinitions := aCollection 
+{ #category : 'model' }
+LcsSlotModel >> slotDefinitionsSelectors [
+	^ LcsBaseSlot slotDefinitionsSelectors
 ]
 
 { #category : 'model' }
@@ -368,7 +435,14 @@ LcsSlotModel >> superClassSlotModel [
 
 { #category : 'validation' }
 LcsSlotModel >> validate: anObject visitor: aValidationVisitor [
-	self slotDefinitions do: [ :each |  each validate: anObject visitor: aValidationVisitor ]
+	self accessorSlotDefinitions do: [ :each |  each validate: anObject visitor: aValidationVisitor ]
+]
+
+{ #category : 'querying - model' }
+LcsSlotModel >> virtualSlotDefinitionNamed: aSlotName [
+	^ self
+		_slotDefinitionNamed: aSlotName
+		inSlotDefinitionsSelector: LcsBaseSlot virtualSlotDefinitionsSelector
 ]
 
 { #category : 'accessing' }

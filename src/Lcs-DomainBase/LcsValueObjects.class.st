@@ -27,11 +27,10 @@ LcsValueObjects >> findItemMatchingCode: aCode ifNone: aBlock [
 { #category : 'gt views' }
 LcsValueObjects >> gtItemsFor: aView [
 	<gtView>
-	self collection isNil ifTrue: [ ^ aView empty ].
 	^ aView columnedList
 		title: 'Items' translated;
 		priority: 0.5;
-		items: [ self collection asOrderedCollection ];
+		items: [ (self collection ifNil: [ OrderedCollection new] ) asOrderedCollection ];
 		column: 'code' text: [ :each | each code ];
 		column: 'description' text: [ :each | each description ];
 		column: 'Label' text: [ :each | each label ];

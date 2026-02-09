@@ -200,6 +200,17 @@ LcsPersonExamples >> newPerson [
 ]
 
 { #category : 'examples' }
+LcsPersonExamples >> newPersonWithFirstName: aFirstName familyName: aFamilyName [
+	<gtExample>
+	| person |
+	person := self newPerson.
+	person firstName: aFirstName.
+	person familyName: aFamilyName.
+	self currentSystem legalEntitiesModule persons includes: person.
+	^ person
+]
+
+{ #category : 'examples' }
 LcsPersonExamples >> samSmith [
 	<gtExample>
 	| person |

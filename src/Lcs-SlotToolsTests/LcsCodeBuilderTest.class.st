@@ -39,7 +39,10 @@ LcsCodeBuilderTest >> setUp [
 
 { #category : 'setUp\t' }
 LcsCodeBuilderTest >> tearDown [
-	self codeBuilderJobs reverseDo: [ :builder | builder uninstall].
+	self codeBuilderJobs isNil ifTrue: [ 
+		super tearDown.
+		^ self ].
+	self codeBuilderJobs reverseDo: [ :builder | builder uninstall ].
 	super tearDown.
-	self codeBuilderJobs reverseDo: [ :builder | builder verifyUninstall]
+	self codeBuilderJobs reverseDo: [ :builder | builder verifyUninstall ]
 ]

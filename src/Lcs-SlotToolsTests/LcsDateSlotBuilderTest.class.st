@@ -59,7 +59,7 @@ LcsDateSlotBuilderTest >> testInstallingSlot [
 	
 	self currentSystem applyChanges.
 	
-	self assert: (LxxPerson hasSlotDefinitionNamed: 'date') 
+	self assert: (LxxPerson hasAccessorSlotDefinitionNamed: 'date') 
 ]
 
 { #category : 'tests' }

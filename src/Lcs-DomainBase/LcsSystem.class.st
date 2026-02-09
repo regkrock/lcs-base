@@ -164,6 +164,11 @@ LcsSystem >> buildSlotDefinitionsFor: aCollectionOfDomainClasses [
 			self globalCollections add: eachDomainClass ] ]
 ]
 
+{ #category : 'unit of work' }
+LcsSystem >> clearUnitOfWork [
+	^ self unitOfWork clearUnitOfWork
+]
+
 { #category : 'validation' }
 LcsSystem >> configurationValidator [
 	^ LcsSystemConfigurationValidator new

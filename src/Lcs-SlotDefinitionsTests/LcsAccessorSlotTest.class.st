@@ -149,7 +149,7 @@ LcsAccessorSlotTest >> testRemovingValidationConditionViaDescription [
 ]
 
 { #category : 'tests' }
-LcsAccessorSlotTest >> testRequried [
+LcsAccessorSlotTest >> testRequired [
 	self subject: LcsAccessorSlotExamples new accessorSlot.
 	self assert: self subject isRequired not.
 	self subject beRequired.

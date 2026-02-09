@@ -16,3 +16,8 @@ LcsAddressType class >> parentSlotDefinition [
 		collectionSlotModuleName: LcsGeographyModule defaultModuleName;
 		yourself
 ]
+
+{ #category : 'testing' }
+LcsAddressType >> isUnknown [
+	^ self code = 'unknown'
+]

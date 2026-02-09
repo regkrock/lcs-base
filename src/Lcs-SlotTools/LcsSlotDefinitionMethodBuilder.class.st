@@ -47,10 +47,11 @@ LcsSlotDefinitionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 	self targetClass isNil ifTrue: [ ^ self ].
 	(self propertyAt: 'collectionSlotName') isNil ifTrue: [ ^ self ].
 	aUmlModel
-		addAssociation: (self propertyAt: 'collectionSlotName')
+		addAssociation: self selectionPath
+		"(self propertyAt: 'collectionSlotName')"
 			from: self targetClassName
 			to: self domainCollectionClass;
-		addAssociation: self selectionPath
+		addAssociation: '0:m'
 			from: self domainCollectionClass
 			to: self domainCollectionElementClass
 ]
@@ -288,6 +289,7 @@ LcsSlotDefinitionMethodBuilder >> required: aBoolean [
 LcsSlotDefinitionMethodBuilder >> selectionPath [
 	| targetPathStream |
 	targetPathStream := WriteStream on: String new.
+	targetPathStream nextPutAll: self derivedSlotName; cr.
 	(self propertyAt: 'targetSlotPath') do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
 	targetPathStream nextPutAll: ' = '; nextPutAll: (self propertyAt: 'targetItem') printString.
 	^ targetPathStream contents

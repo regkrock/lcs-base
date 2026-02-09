@@ -125,7 +125,7 @@ LcsAccessorSlotBuilderTest >> testRemovingValidationConditionViaDescription [
 ]
 
 { #category : 'tests' }
-LcsAccessorSlotBuilderTest >> testRequried [
+LcsAccessorSlotBuilderTest >> testRequired [
 	self subject: LcsAccessorSlotBuilder new.
 	self assert: self subject required == false.
 	self subject required: true.

@@ -15,6 +15,11 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'defaults' }
+LcsFacadeSlot >> defaultPragmaSelector [
+	^ self class facadeSlotDefinitionName
+]
+
 { #category : 'properties' }
 LcsFacadeSlot >> targetSlotName [
 	^ self propertyAt: 'targetSlotName' ifAbsent: [ ]

@@ -13,14 +13,44 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'slot definition types' }
+LcsBaseSlot class >> accessorSlotDefinitionName [
+	^ 'accessorSlotDefinition'
+]
+
+{ #category : 'slot definition types' }
+LcsBaseSlot class >> accessorSlotDefinitionsSelector [
+	^ (self accessorSlotDefinitionName , 's') asSymbol
+]
+
 { #category : 'querying' }
 LcsBaseSlot class >> classNamesPrefixTree [
 	^ GtPrefixTree withAll: (self allSubclasses collect: #name)
 ]
 
+{ #category : 'slot definition types' }
+LcsBaseSlot class >> collectionItemSlotDefinitionName [
+	^ 'collectionItemSlotDefinition'
+]
+
+{ #category : 'slot definition types' }
+LcsBaseSlot class >> collectionItemSlotDefinitionsSelector [
+	^ (self collectionItemSlotDefinitionName , 's') asSymbol
+]
+
 { #category : 'defaults' }
 LcsBaseSlot class >> defaultSlotComment [
 	^ ''
+]
+
+{ #category : 'slot definition types' }
+LcsBaseSlot class >> facadeSlotDefinitionName [
+	^ 'facadeSlotDefinition'
+]
+
+{ #category : 'slot definition types' }
+LcsBaseSlot class >> facadeSlotDefinitionsSelector [
+	^ (self facadeSlotDefinitionName , 's') asSymbol
 ]
 
 { #category : 'testing' }
@@ -36,6 +66,24 @@ LcsBaseSlot class >> isAccessorSlot [
 { #category : 'testing' }
 LcsBaseSlot class >> isVirtualSlot [
 	^ false
+]
+
+{ #category : 'model' }
+LcsBaseSlot class >> slotDefinitionsSelectors [
+	^ {self accessorSlotDefinitionsSelector.
+		self collectionItemSlotDefinitionsSelector.
+		self facadeSlotDefinitionsSelector.
+		self virtualSlotDefinitionsSelector}
+]
+
+{ #category : 'slot definition types' }
+LcsBaseSlot class >> virtualSlotDefinitionName [
+	^ 'virtualSlotDefinition'
+]
+
+{ #category : 'model' }
+LcsBaseSlot class >> virtualSlotDefinitionsSelector [
+	^ (self virtualSlotDefinitionName , 's') asSymbol
 ]
 
 { #category : 'gt views' }
@@ -133,6 +181,11 @@ LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 					title: 'Browse users' asText}.
 	theContextMenu items: items.
 	^ theContextMenu
+]
+
+{ #category : 'defaults' }
+LcsBaseSlot >> defaultPragmaSelector [
+	^ self subclassResponsibility
 ]
 
 { #category : 'initialize' }
@@ -332,7 +385,8 @@ LcsBaseSlot >> initialize [
 	self slotName: nil.
 	self initializeSlotTypes.
 	self priority: self defaultPriority.
-	self comment: self defaultSlotComment
+	self comment: self defaultSlotComment.
+	self pragmaSelector: self defaultPragmaSelector
 ]
 
 { #category : 'initialize' }

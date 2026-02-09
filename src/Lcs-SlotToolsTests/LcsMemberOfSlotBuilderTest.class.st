@@ -23,7 +23,7 @@ LcsMemberOfSlotBuilderTest >> createGenderClassesWithoutAddingMemberOfToPerson [
 			yourself).
 	self currentCodeBuilderJob buildJobSteps.
 	self currentCodeBuilderJob execute.
-	self assert: (LxxPerson hasSlotDefinitionNamed: 'gender') not.
+	self assert: (LxxPerson hasAccessorSlotDefinitionNamed: 'gender') not.
 	self assert: (LxxPersonsModule includesSelector: #'genders')
 ]
 

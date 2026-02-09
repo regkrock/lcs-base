@@ -12,9 +12,8 @@ LcsAbstractSystemTest >> assertConfigurationSlotDefinition: aModuleClass [
 	aConfigurationClass := (aModuleClass name , 'Configuration') asClass.
 	self assert: aModuleClass moduleConfigurationClass equals: aConfigurationClass.
 	self assert: (aModuleClass accessorSlotDefinitionPragmas
-										detect: [ :each | each methodSelector = #configurationSlotDefinition ] 
-										ifNone: [ nil] )
-								notNil.
+						detect: [ :each | each methodSelector = #configurationSlotDefinition ] 
+						ifNone: [ nil] ) notNil.
 	self assert: aModuleClass configurationSlotDefinition slotTypes size equals: 1.
 	self assert: (aModuleClass configurationSlotDefinition slotTypes includes: aConfigurationClass)
 ]

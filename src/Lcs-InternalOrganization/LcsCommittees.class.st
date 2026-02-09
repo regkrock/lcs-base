@@ -6,6 +6,11 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'querying' }
+LcsCommittees >> findWithOrganizationName: aName [
+	^ self find: [ :each | each organizationName = aName ]
+]
+
 { #category : 'organization model' }
 LcsCommittees >> internalOrganization [
 	^ self parent internalOrganization

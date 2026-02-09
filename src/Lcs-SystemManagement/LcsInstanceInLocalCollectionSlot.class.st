@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsInstanceInLocalCollectionSlot',
-	#superclass : 'LcsFacadeSlot',
+	#superclass : 'LcsAccessorSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
@@ -18,12 +18,15 @@ LcsInstanceInLocalCollectionSlot >> _currentSlotVarIn: aDomainObject [
 LcsInstanceInLocalCollectionSlot >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
 	aUmlModel
-		addAssociation: self collectionSlotName
+		"addAssociation: self collectionSlotName
 			from: self domainClass
-			to: self domainCollectionClass;
-		addAssociation: self selectionPath
+			to: self domainCollectionClass;"
+		addAssociation: '0:m'
 			from: self domainCollectionClass
-			to: self domainCollectionElementClass
+			to: self domainCollectionElementClass;
+		addAssociation: self selectionPath
+			from: self domainClass
+			to: self domainCollectionClass
 ]
 
 { #category : 'gt views' }
@@ -79,6 +82,11 @@ LcsInstanceInLocalCollectionSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | (slot targetCollectionIn: parentDomainObject) defaultInstance ]
 ]
 
+{ #category : 'defaults' }
+LcsInstanceInLocalCollectionSlot >> defaultPragmaSelector [
+	^ self class collectionItemSlotDefinitionName
+]
+
 { #category : 'querying' }
 LcsInstanceInLocalCollectionSlot >> domainCollectionClass [
 	^ (self domainClass
@@ -103,6 +111,7 @@ LcsInstanceInLocalCollectionSlot >> initialize [
 LcsInstanceInLocalCollectionSlot >> selectionPath [
 	| targetPathStream |
 	targetPathStream := WriteStream on: String new.
+	targetPathStream nextPutAll: self slotName; cr.
 	(self propertyAt: 'targetSlotPath') do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
 	targetPathStream nextPutAll: ' = '; nextPutAll: (self propertyAt: 'targetItem') printString.
 	^ targetPathStream contents
@@ -142,6 +151,16 @@ LcsInstanceInLocalCollectionSlot >> targetItemDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		addCondition: [ :aValue | aValue asString trim size >= 2 ] labelled: 'Enter the name of the target item';
 		beRequired
+]
+
+{ #category : 'properties' }
+LcsInstanceInLocalCollectionSlot >> targetSlotName [
+	^ self propertyAt: 'targetSlotName' ifAbsent: [ ]
+]
+
+{ #category : 'properties' }
+LcsInstanceInLocalCollectionSlot >> targetSlotName: anObject [
+	self propertyAt: 'targetSlotName' put: anObject
 ]
 
 { #category : 'properties' }

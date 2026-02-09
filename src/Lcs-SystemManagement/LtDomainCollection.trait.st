@@ -48,12 +48,11 @@ LtDomainCollection >> directRemove: anObject ifAbsent: aBlock [
 LtDomainCollection >> gtItemsFor: aView [
 	<gtView>
 	| columnedListView |
-	self collection isNil ifTrue: [ ^ aView empty ].
 	columnedListView := 
 		aView columnedList
 			title: 'Items' translated;
 			priority: 0.5;
-			items: [ self collection asOrderedCollection ];
+			items: [ (self collection ifNil: [ OrderedCollection new]) asOrderedCollection ];
 			actionUpdateButton.
 	self collection notEmpty ifTrue: [
 		self collection any collectionViewSlotDefinitions do: [ :eachSlotDefinition |

@@ -38,7 +38,8 @@ LcsTestWithNoTestSystemSetupForTest >> setUp [
 { #category : 'running' }
 LcsTestWithNoTestSystemSetupForTest >> tearDown [
 	self subject ifNotNil: [ 
-		self subject removeSystem.
+		(self subject respondsTo:  #removeSystem) ifTrue: [
+			self subject removeSystem].
 		self subject: nil ].
 	self additionalSubject ifNotNil: [ 
 		self additionalSubject removeSystem.

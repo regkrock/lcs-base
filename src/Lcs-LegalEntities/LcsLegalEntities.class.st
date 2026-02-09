@@ -6,6 +6,13 @@ Class {
 }
 
 { #category : 'querying' }
+LcsLegalEntities >> collection [
+	^ self parent persons collection copy 
+		addAll: self parent organizations collection;
+		yourself
+]
+
+{ #category : 'querying' }
 LcsLegalEntities >> collectionSize [
 	^ self parent persons collectionSize + self parent organizations collectionSize
 ]

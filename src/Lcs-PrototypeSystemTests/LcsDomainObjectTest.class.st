@@ -47,7 +47,7 @@ LcsDomainObjectTest >> testRemoveDomainSlot [
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
-	self assert: (LxxPrototypeSystem hasSlotDefinitionNamed: 'dummy') not
+	self assert: (LxxPrototypeSystem hasAccessorSlotDefinitionNamed: 'dummy') not
 
 ]
 
@@ -62,7 +62,7 @@ LcsDomainObjectTest >> testRemoveDomainSlotDefinitionIsDefined [
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
-	self assert: (LxxPrototypeSystem hasSlotDefinitionNamed: 'dummy') not
+	self assert: (LxxPrototypeSystem hasAccessorSlotDefinitionNamed: 'dummy') not
 
 ]
 
@@ -77,7 +77,7 @@ LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlyGetterIsDefined [
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
-	self assert: (LxxPrototypeSystem hasSlotDefinitionNamed: 'dummy') not
+	self assert: (LxxPrototypeSystem hasAccessorSlotDefinitionNamed: 'dummy') not
 
 ]
 
@@ -92,7 +92,7 @@ LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlyInstanceVariableIsDefined [
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
-	self assert: (LxxPrototypeSystem hasSlotDefinitionNamed: 'dummy') not
+	self assert: (LxxPrototypeSystem hasAccessorSlotDefinitionNamed: 'dummy') not
 
 ]
 
@@ -107,6 +107,6 @@ LcsDomainObjectTest >> testRemoveDomainSlotWhereOnlySetterIsDefined [
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
 	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
-	self assert: (LxxPrototypeSystem hasSlotDefinitionNamed: 'dummy') not
+	self assert: (LxxPrototypeSystem hasAccessorSlotDefinitionNamed: 'dummy') not
 
 ]

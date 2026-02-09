@@ -200,6 +200,11 @@ LcsAddress >> country: anObject [
 	self slotVarNamed: 'country' put: anObject
 ]
 
+{ #category : 'testing' }
+LcsAddress >> isUnknown [
+	^ self addressType isUnknown
+]
+
 { #category : 'accessing' }
 LcsAddress >> postBox [
 	^ self slotVarNamed: 'postBox'

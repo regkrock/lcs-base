@@ -13,8 +13,8 @@ Class {
 LcsInternalOrganization class >> committeesSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsCommittees);
-		collectionMemberTypes: (OrderedCollection with: LcsCommittee);
+		addSlotType: LcsCommittees;
+		addCollectionMemberType: LcsCommittee;
 		slotName: 'committees';
 		yourself
 ]
