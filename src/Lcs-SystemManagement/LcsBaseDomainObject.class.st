@@ -14,7 +14,7 @@ Class {
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> accessorSlotDefinitionPragmas [
-	^ Pragma allNamed: 'accessorSlotDefinition' in: self class
+	^ Pragma allNamed: LcsBaseSlot accessorSlotDefinitionName in: self class
 ]
 
 { #category : 'slot model' }
@@ -59,7 +59,7 @@ LcsBaseDomainObject class >> assertSlotAdded: aSlotName [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> collectionItemSlotDefinitionPragmas [
-	^ Pragma allNamed: 'collectionItemSlotDefinition' in: self class
+	^ Pragma allNamed: LcsBaseSlot collectionItemSlotDefinitionName in: self class
 ]
 
 { #category : 'application environment' }
@@ -74,7 +74,7 @@ LcsBaseDomainObject class >> currentUnitOfWork [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> facadeSlotDefinitionPragmas [
-	^ Pragma allNamed: 'facadeSlotDefinition' in: self class
+	^ Pragma allNamed: LcsBaseSlot facadeSlotDefinitionName in: self class
 ]
 
 { #category : 'slot access' }
@@ -102,11 +102,11 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 	<gtView>
 	<gtClassView>
 	| element |
-	element := aView filteredColumnedList
+	element := aView lcsFilteredColumnedList
 		title: 'Slot Definitions';
 		priority: 18;
 		items: [ self slotDefinitionViewItems ];
-		column: 'Slot' text: [ :each | each slotName ] width: 100;
+		column: 'Slot' text: [ :each | each slotName ] width: 150;
 		column: 'Kind' text: [ :each | each slotKind ] width: 70;
 		column: 'InstVar' text: [ :each | each instVarName ] width: 100;
 		column: 'Getter' text: [ :each | each getterSelector ] width: 100;
@@ -404,7 +404,7 @@ LcsBaseDomainObject class >> slotDefinitionViewItems [
 	| allSlotDefinitionViewItems |
 	allSlotDefinitionViewItems := OrderedCollection new.
 	self addSlotDefinitionViewItemsTo: allSlotDefinitionViewItems.
-	^ allSlotDefinitionViewItems
+	^ allSlotDefinitionViewItems asSortedCollection: [ :a :b | a priority <= b priority ]
 ]
 
 { #category : 'accessing' }
@@ -507,7 +507,7 @@ LcsBaseDomainObject class >> viewItemsFrom: aListOfPragmas [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> virtualSlotDefinitionPragmas [
-	^ Pragma allNamed: 'virtualSlotDefinition' in: self class
+	^ Pragma allNamed: LcsBaseSlot virtualSlotDefinitionName in: self class
 ]
 
 { #category : 'slot access' }

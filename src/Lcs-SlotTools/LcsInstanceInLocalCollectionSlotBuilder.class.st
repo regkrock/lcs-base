@@ -1,8 +1,9 @@
 Class {
 	#name : 'LcsInstanceInLocalCollectionSlotBuilder',
 	#superclass : 'LcsFacadeSlotBuilder',
-	#category : 'Lcs-SlotTools',
-	#package : 'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools-Core',
+	#package : 'Lcs-SlotTools',
+	#tag : 'Core'
 }
 
 { #category : 'configuration' }
@@ -64,7 +65,7 @@ LcsInstanceInLocalCollectionSlotBuilder >> defaultInitialValueBlock [
 { #category : 'job steps' }
 LcsInstanceInLocalCollectionSlotBuilder >> slotDefinitionMethodBuilder [
 	^ super slotDefinitionMethodBuilder
-			beFacadeSlot;
+			beCollectionItemSlot;
 			yourself
 ]
 

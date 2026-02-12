@@ -1,8 +1,9 @@
 Class {
 	#name : 'LcsFacadeSlotBuilder',
 	#superclass : 'LcsAccessorSlotBuilder',
-	#category : 'Lcs-SlotTools',
-	#package : 'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools-Core',
+	#package : 'Lcs-SlotTools',
+	#tag : 'Core'
 }
 
 { #category : 'configuration' }

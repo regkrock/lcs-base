@@ -27,7 +27,7 @@ LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
 	self subject: LcsSlotDefinitionMethodBuilder new.
-	self assert: self subject pragmaSelector = 'accessorSlotDefinition'.
+	self assert: self subject pragmaSelector = LcsBaseSlot accessorSlotDefinitionName.
 	
 	self subject slotClass: LcsStringSlot.
 	self assert: self subject slotTypes isEmpty.

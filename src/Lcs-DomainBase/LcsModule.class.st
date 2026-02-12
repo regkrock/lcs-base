@@ -15,6 +15,15 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'slot model' }
+LcsModule class >> addUniqueSubmodulePragmasOf: aClass in: submodulePragamsWithDuplicates  to: submodulePragams [
+	submodulePragamsWithDuplicates
+		do: [ :each | 
+			submodulePragams
+				detect: [ :e | (e argumentNamed: #owningModule) = aClass name asString and: [ e methodClass = each methodClass ] ]
+				ifNone: [ submodulePragams add: each ] ]
+]
+
 { #category : 'modules' }
 LcsModule class >> allOwnedModuleCandidates [
 	^ self allSubclasses select: [ :eachModuleClass | 
@@ -85,7 +94,23 @@ LcsModule class >> gtSlotDefinitionMethodFor: aView [
 		tooltip: 'Methods that define Slot Defintions';
 		priority: 19;
 		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
-				& ( #slotDefinition gtPragmas "| #magritteActionDescription gtPragmas") ];
+				& ( #accessorSlotDefinition gtPragmas | #collectionItemSlotDefinition gtPragmas) ];
+		actionUpdateButton
+]
+
+{ #category : 'gt views' }
+LcsModule class >> gtSubmodulesFor: aView [
+	<gtView>
+	<gtClassView>
+	^ aView columnedTree
+		title: 'Submodules';
+		tooltip: 'Submodules of this module';
+		priority: 22;
+		items: [ self immediateSubmodulePragmas ];
+		children: [ :each | each methodClass soleInstance immediateSubmodulePragmas ];
+		column: 'Class' text: [ :each | each methodClass soleInstance ];
+		column: 'Priority' text: [ :each | each argumentNamed: #priority ];
+		send: [ :eachPragma | eachPragma methodClass soleInstance ];
 		actionUpdateButton
 ]
 
@@ -105,12 +130,34 @@ LcsModule class >> immediateSubmoduleClasses [
 { #category : 'slot model' }
 LcsModule class >> immediateSubmoduleClassesOf: aClass [
 	| immediateSubmodulePragmas submoduleClasses |
-	immediateSubmodulePragmas := (Pragma pragmaCache at: 'owningModule:priority:') 
-									select: [ :each | (each argumentAt: 1) = aClass name asString ].
-	submoduleClasses := (
-		immediateSubmodulePragmas asSortedCollection: [ :a :b | (a argumentAt: 2) <= (b argumentAt: 2) ])
-			collect: [:eachPragma | eachPragma methodClass soleInstance ].
-	^ submoduleClasses reject: [ :each | each isObsolete or: [ (each name findString: 'Obsolete') > 0 ] ]
+	immediateSubmodulePragmas := self immediateSubmodulePragmasOf: aClass.
+	submoduleClasses := immediateSubmodulePragmas collect: [ :eachPragma | eachPragma methodClass soleInstance ].
+	^ submoduleClasses
+		reject: [ :each | each isObsolete or: [ (each name findString: 'Obsolete') > 0 ] ]
+]
+
+{ #category : 'system model' }
+LcsModule class >> immediateSubmodulePragmas [
+	^ self immediateSubmodulePragmasOf: self
+]
+
+{ #category : 'slot model' }
+LcsModule class >> immediateSubmodulePragmasOf: aClass [
+	| submodulePragams |
+	submodulePragams := OrderedCollection new.
+	"When the method is saved an additional entry is add to the Pragma cache. Hence the duplicates"
+	self
+		addUniqueSubmodulePragmasOf: aClass
+		in: (self immediateSubmodulePragmasWithDuplicatesOf: aClass)
+		to: submodulePragams.
+	^ submodulePragams
+		asSortedCollection: [ :a :b | (a argumentNamed: #priority) <= (b argumentNamed: #priority) ]
+]
+
+{ #category : 'slot model' }
+LcsModule class >> immediateSubmodulePragmasWithDuplicatesOf: aClass [
+	^ (Pragma pragmaCache at: 'owningModule:priority:')
+		select: [ :each | (each argumentNamed: #owningModule) = aClass name asString ]
 ]
 
 { #category : 'testing' }
@@ -210,7 +257,7 @@ LcsModule >> domainCollections: anObject [
 	domainCollections := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : 'querying' }
 LcsModule >> globalCollectionItems [
 	self slotModel ifNil: [ ^ OrderedCollection new ].
 	^ self slotModel globalCollectionSlots

@@ -77,8 +77,18 @@ LcsObject >> isDomainClass [
 ]
 
 { #category : 'printing' }
+LcsObject >> printDetailsOn: aStream [
+	"aStream 
+		nextPutAll: ' (objectId: ';
+		nextPutAll: self hash displayString;
+		nextPutAll: ')'"
+
+]
+
+{ #category : 'printing' }
 LcsObject >> printOn: aStream [
 	super printOn: aStream.
+	self printDetailsOn: aStream.
 	"aStream 
 		nextPutAll: ' (objectId: ';
 		nextPutAll: self hash displayString;

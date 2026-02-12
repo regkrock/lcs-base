@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'pragmaSelector'
 	],
-	#category : 'Lcs-SlotTools',
-	#package : 'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools-Core',
+	#package : 'Lcs-SlotTools',
+	#tag : 'Core'
 }
 
 { #category : 'instance  creation' }
@@ -140,13 +141,18 @@ LcsSlotDefinitionMethodBuilder >> allowNil: aBoolean [
 ]
 
 { #category : 'command' }
+LcsSlotDefinitionMethodBuilder >> beCollectionItemSlot [
+	self pragmaSelector: LcsBaseSlot collectionItemSlotDefinitionName
+]
+
+{ #category : 'command' }
 LcsSlotDefinitionMethodBuilder >> beFacadeSlot [
-	self pragmaSelector: 'facadeSlotDefinition'
+	self pragmaSelector: LcsBaseSlot facadeSlotDefinitionName
 ]
 
 { #category : 'command' }
 LcsSlotDefinitionMethodBuilder >> beVirtualSlot [
-	self pragmaSelector: 'virtualSlotDefinition'
+	self pragmaSelector: LcsBaseSlot virtualSlotDefinitionName
 ]
 
 { #category : 'verification' }
@@ -220,7 +226,7 @@ LcsSlotDefinitionMethodBuilder >> hasNoSlotTypes [
 { #category : 'initialize' }
 LcsSlotDefinitionMethodBuilder >> initialize [
 	super initialize.
-	self pragmaSelector: 'accessorSlotDefinition'
+	self pragmaSelector: LcsBaseSlot accessorSlotDefinitionName
 ]
 
 { #category : 'instance  creation' }

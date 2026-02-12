@@ -1,6 +1,7 @@
 Class {
 	#name : 'LcsExternalOrganization',
 	#superclass : 'LcsOrganization',
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }

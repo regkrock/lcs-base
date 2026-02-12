@@ -1,9 +1,9 @@
 Class {
 	#name : 'LxxCountrySubdivisionsLoader',
 	#superclass : 'LcsObjectsLoader',
-	#category : 'Lcs-PrototypeSystem-Domain',
+	#category : 'Lcs-PrototypeSystem-Core',
 	#package : 'Lcs-PrototypeSystem',
-	#tag : 'Domain'
+	#tag : 'Core'
 }
 
 { #category : 'private' }

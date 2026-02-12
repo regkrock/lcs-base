@@ -8,7 +8,7 @@ Class {
 
 { #category : 'private' }
 LcsFacadeSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
-	^ aSlotCategory = #facadeSlotDefinition
+	^ aSlotCategory = LcsBaseSlot facadeSlotDefinitionName
 ]
 
 { #category : 'as yet unclassified' }

@@ -115,9 +115,10 @@ LcsBaseSlot >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 { #category : 'gt views' }
 LcsBaseSlot >> addPropertyAttributesTo: collection [
 	collection
-		add: '' -> '';
-		add: '------PROPERTIES------' -> ''.
-	collection addAll: self properties associations copy
+		add: (LcsSlotAttributelViewItem newLabel: '' item: '').
+		"add: '------PROPERTIES------' -> ''."
+	self properties keysAndValuesDo: [ :eachKey :eachValue |
+		collection add: (LcsSlotAttributelViewItem newLabel: eachKey item: eachValue)]
 ]
 
 { #category : 'gt views' }
@@ -292,15 +293,18 @@ LcsBaseSlot >> gtRefactoringChangeOn: aView [
 { #category : 'gt views' }
 LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 	<gtView>
-	^ aView columnedList
+	^ aView columnedTree
 		title: 'Attributes';
 		priority: 5;
 		items: [ self gtSlotDefinitionAttributes ];
-		column: 'Option' 
-			text: #key 
-			width: 200;
-		column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];
-		send: #value;
+		"children: [ :each | (each item isCollection and: [ each item isString not ]) 
+								ifTrue: [ each item  collect: [ :ea | (LcsSlotAttributeView newLabel: each label item: ea) ] ]
+								ifFalse: [ #() ] ];"
+		children: [ :each | each children ];
+		column: 'Property' text: #label width: 200;
+		"column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];"
+		column: 'Value' text: #item;
+		send: [ :each | each item ];
 		actionUpdateButton;		
 		yourself
 ]
@@ -309,11 +313,11 @@ LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 LcsBaseSlot >> gtSlotDefinitionAttributes [
 	| collection |
 	collection := OrderedCollection new
-			add: 'domainClass' -> self newDomainClassName;
-			add: 'slotDefinition' -> self domainClass;
-			add: 'pragmaSelector' -> self pragmaSelector ;
-			add: 'slotDefinitionClass' -> self class;
-			yourself.
+		add: (LcsSlotAttributelViewItem newLabel: 'domainClass' item: self domainClass);
+		add: (LcsSlotAttributelViewItem newLabel: 'slotDefinition' item: self newDomainClassName);
+		add: (LcsSlotAttributelViewItem newLabel: 'pragmaSelector' item: self pragmaSelector);
+		add: (LcsSlotAttributelViewItem newLabel: 'slotDefinitionClass' item: self class);
+		yourself.
 	self addPropertyAttributesTo: collection.
 	self addOtherSlotDefinitionDetailsTo: collection.
 	^ collection
@@ -339,7 +343,7 @@ LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
 
 { #category : 'gt views' }
 LcsBaseSlot >> gtSlotTypesViewFor: aView [
-	<gtView>
+	"<gtView>"
 	^ aView columnedList
 		title: 'Slot Types';
 		priority: 10;

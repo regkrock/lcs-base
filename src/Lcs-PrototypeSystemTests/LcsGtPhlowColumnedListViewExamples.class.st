@@ -65,7 +65,7 @@ LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 	self assert: filter notNil.
 	self assert: filter selectedItem itemValue equals: 'all'.
 	filter selectLastItem.
-	self assert: filter selectedItem itemValue equals: 'facade'.
+	self assert: filter selectedItem itemValue equals: 'virtual'.
 	^ filter
 ]
 

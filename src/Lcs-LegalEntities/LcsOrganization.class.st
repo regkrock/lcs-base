@@ -5,8 +5,9 @@ Class {
 		'organizationName',
 		'legalName'
 	],
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }
@@ -20,7 +21,7 @@ LcsOrganization class >> legalNameSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsOrganization class >> mainAddressSlotDefinition [
-	<facadeSlotDefinition>
+	<collectionItemSlotDefinition>
 	^ LcsInstanceInLocalCollectionSlot new
 			slotName: 'mainAddress';
 			addSlotType: LcsAddress;

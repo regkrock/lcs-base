@@ -15,5 +15,6 @@ LcsAddressTest >> testCreation [
 	self assert: addresses hasNoPendingAdds.
 	address := LcsAddress new.
 	self assert: addresses pendingAddsSize equals: 1.
-	self assert: address parent equals: addresses
+	self assert: address parent equals: addresses.
+	self assert: address addressType isUnknown
 ]

@@ -7,11 +7,12 @@ Class {
 	#instVars : [
 		'defaultPostalCodeName',
 		'defaultPoliticalUnitName',
-		'defaultCountry'
+		'defaultCountry',
+		'unknownPostalAddress'
 	],
-	#category : 'Lcs-Geography-Domain',
+	#category : 'Lcs-Geography-Core',
 	#package : 'Lcs-Geography',
-	#tag : 'Domain'
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }
@@ -47,6 +48,16 @@ LcsGeographyModuleConfiguration class >> defaultPostalCodeNameSlotDefinition [
 		yourself
 ]
 
+{ #category : 'slot definitions' }
+LcsGeographyModuleConfiguration class >> unknownPostalAddressSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsUnknownInstanceSlot new
+			slotName: 'unknownPostalAddress';
+			addSlotType: LcsUnknownAddress;
+			required: true;
+			yourself
+]
+
 { #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultCountry [
 	^ self slotVarNamed: 'defaultCountry'
@@ -75,4 +86,14 @@ LcsGeographyModuleConfiguration >> defaultPostalCodeName [
 { #category : 'accessing' }
 LcsGeographyModuleConfiguration >> defaultPostalCodeName: anObject [
 	^ self slotVarNamed: 'defaultPostalCodeName' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsGeographyModuleConfiguration >> unknownPostalAddress [
+	^ self slotVarNamed: 'unknownPostalAddress'
+]
+
+{ #category : 'accessing' }
+LcsGeographyModuleConfiguration >> unknownPostalAddress: anObject [
+	self slotVarNamed: 'unknownPostalAddress' put: anObject
 ]

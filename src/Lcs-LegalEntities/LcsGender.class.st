@@ -1,8 +1,9 @@
 Class {
 	#name : 'LcsGender',
 	#superclass : 'LcsSingletonValueObject',
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }
 
 { #category : 'slot definition' }

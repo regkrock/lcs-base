@@ -1,8 +1,9 @@
 Class {
 	#name : 'LcsEmailAddressesLoader',
 	#superclass : 'LcsObjectsLoader',
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }
 
 { #category : 'data' }

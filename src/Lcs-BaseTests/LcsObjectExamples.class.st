@@ -7,6 +7,12 @@ Class {
 }
 
 { #category : 'system support' }
+LcsObjectExamples >> clearUnitOfWork [
+	self currentSystem isNil ifTrue: [ ^ self ].
+	self currentSystem clearUnitOfWork
+]
+
+{ #category : 'system support' }
 LcsObjectExamples >> createNewDemoSystem [
 	^ LcsApplicationEnvironment createNewDemoSystem
 ]

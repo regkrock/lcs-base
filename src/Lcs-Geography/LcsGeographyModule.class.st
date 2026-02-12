@@ -6,9 +6,9 @@ Class {
 		'addressTypes',
 		'addresses'
 	],
-	#category : 'Lcs-Geography-Domain',
+	#category : 'Lcs-Geography-Core',
 	#package : 'Lcs-Geography',
-	#tag : 'Domain'
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }
@@ -27,9 +27,10 @@ LcsGeographyModule class >> addressTypesSlotDefinition [
 LcsGeographyModule class >> addressesSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsAddresses);
+		slotTypes: (OrderedCollection with: LcsGlobalAddresses);
 		collectionMemberTypes: (OrderedCollection with: LcsAddress);
 		slotName: 'addresses';
+		priority: 39;
 		yourself
 ]
 
@@ -37,7 +38,7 @@ LcsGeographyModule class >> addressesSlotDefinition [
 LcsGeographyModule class >> configurationSlotDefinition [
 	<accessorSlotDefinition>
 	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass)
-		priority: 5;
+		priority: 40;
 		yourself
 ]
 

@@ -79,7 +79,7 @@ LcsInstanceInLocalCollectionSlot >> collectionSlotNameDescription [
 
 { #category : 'slot access' }
 LcsInstanceInLocalCollectionSlot >> defaultInitialValueBlock [
-	^ [ :parentDomainObject :slot | (slot targetCollectionIn: parentDomainObject) defaultInstance ]
+	^ [ :parentDomainObject :slot | (slot targetCollectionIn: parentDomainObject) unknownInstance ]
 ]
 
 { #category : 'defaults' }

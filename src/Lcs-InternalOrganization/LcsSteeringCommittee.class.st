@@ -15,6 +15,11 @@ LcsSteeringCommittee class >> commodoreSlotDefinition [
 			targetSlotPath: #(#title) asOrderedCollection;
 			collectionSlotName: 'committeeMembers';
 			targetItem: 'Commodore';
+			initialValueBlock: [ :parentDomainObject :slot | 
+				LcsCommitteeMember new
+					title: slot targetItem;
+					member: parentDomainObject ;
+					yourself ];
 			yourself
 ]
 
@@ -28,6 +33,12 @@ LcsSteeringCommittee class >> secretarySlotDefinition [
 			targetSlotPath: #(#title) asOrderedCollection;
 			collectionSlotName: 'committeeMembers';
 			targetItem: 'Secretary';
+			initialValueBlock: [ :parentDomainObject :slot | 
+				LcsCommitteeMember new
+					title: slot targetItem;
+					member: parentDomainObject ;
+					yourself ];
+			"(slot targetCollectionIn: parentDomainObject) defaultInstance ];"
 			yourself
 ]
 
@@ -40,6 +51,11 @@ LcsSteeringCommittee class >> treasurerSlotDefinition [
 			targetSlotPath: #(#title) asOrderedCollection;
 			collectionSlotName: 'committeeMembers';
 			targetItem: 'Treasurer';
+			initialValueBlock: [ :parentDomainObject :slot | 
+				LcsCommitteeMember new
+					title: slot targetItem;
+					member: parentDomainObject ;
+					yourself ];
 			yourself
 ]
 
@@ -52,6 +68,11 @@ LcsSteeringCommittee class >> viceCommodoreSlotDefinition [
 			targetSlotPath: #(#title) asOrderedCollection;
 			collectionSlotName: 'committeeMembers';
 			targetItem: 'Vice-Commodore';
+			initialValueBlock: [ :parentDomainObject :slot | 
+				LcsCommitteeMember new
+					title: slot targetItem;
+					member: parentDomainObject ;
+					yourself ];
 			yourself
 ]
 

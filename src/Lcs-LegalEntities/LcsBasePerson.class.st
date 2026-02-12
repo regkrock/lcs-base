@@ -9,8 +9,9 @@ Class {
 		'title',
 		'familyName'
 	],
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }
@@ -52,7 +53,7 @@ LcsBasePerson class >> genderSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> homeAddressSlotDefinition [
-	<facadeSlotDefinition>
+	<collectionItemSlotDefinition>
 	^ LcsInstanceInLocalCollectionSlot new
 			slotName: 'homeAddress';
 			addSlotType: LcsAddress;
@@ -64,7 +65,7 @@ LcsBasePerson class >> homeAddressSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> homeEmailAddressSlotDefinition [
-	<facadeSlotDefinition>
+	<collectionItemSlotDefinition>
 	^ LcsInstanceInLocalCollectionSlot new
 			slotName: 'homeEmailAddress';
 			addSlotType: LcsEmailAddress;
@@ -102,16 +103,16 @@ LcsBasePerson class >> titleSlotDefinition [
 
 { #category : 'slot definitions' }
 LcsBasePerson class >> workEmailAddressSlotDefinition [
-	<facadeSlotDefinition>
+	<collectionItemSlotDefinition>
 	^ LcsInstanceInLocalCollectionSlot new
 		slotName: 'workEmailAddress';
 		addSlotType: LcsEmailAddress;
 		collectionSlotName: 'emailAddresses';
 		targetItem: 'work';
 		targetSlotPath: #(emailAddressType code) asOrderedCollection;
-		initialValueBlock: [ :parentDomainObject :slot | 
+		"initialValueBlock: [ :parentDomainObject :slot | 
 			(parentDomainObject perform: slot collectionSlotName asSymbol)
-				findItemIn: slot targetSlotPath matching: slot targetItem ];
+				findItemIn: slot targetSlotPath matching: slot targetItem ];"
 		yourself
 ]
 

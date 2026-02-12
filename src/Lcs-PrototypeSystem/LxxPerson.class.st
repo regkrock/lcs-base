@@ -5,9 +5,9 @@ Class {
 		'balance',
 		'weight'
 	],
-	#category : 'Lcs-PrototypeSystem-Base',
+	#category : 'Lcs-PrototypeSystem-Core',
 	#package : 'Lcs-PrototypeSystem',
-	#tag : 'Base'
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }

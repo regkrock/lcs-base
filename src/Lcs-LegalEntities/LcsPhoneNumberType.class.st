@@ -1,8 +1,9 @@
 Class {
 	#name : 'LcsPhoneNumberType',
 	#superclass : 'LcsValueObject',
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }

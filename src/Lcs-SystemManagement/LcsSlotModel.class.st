@@ -155,7 +155,7 @@ LcsSlotModel >> allVirtualSlotDefinitions [
 
 { #category : 'model' }
 LcsSlotModel >> allVirutalSlotDefinitions [
-	^ self allSlotDefinitionsIn: #virtualSlotDefinitions
+	^ self allSlotDefinitionsIn: LcsBaseSlot virtualSlotDefinitionName
 ]
 
 { #category : 'validation' }
@@ -249,7 +249,7 @@ LcsSlotModel >> gtViewSlotModelChildren [
 LcsSlotModel >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
-	^ aView filteredColumnedList
+	^ aView lcsFilteredColumnedList
 		title: 'Slot Model';
 		priority: 10;
 		items: [ self allSlotDefinitions ];
@@ -337,6 +337,8 @@ LcsSlotModel >> initializeSlotNamed: aSlotName in: aDomainObject [
 LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
 	LcsLogger logReceiver: thisContext receiver message: thisContext message; indent.
 	self allAccessorSlotDefinitions
+		do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ].
+	self allCollectionItemSlotDefinitions 
 		do: [ :eachDefintion | eachDefintion initializeSlotValueIn: aDomainObject ].
 	LcsLogger outdent
 ]

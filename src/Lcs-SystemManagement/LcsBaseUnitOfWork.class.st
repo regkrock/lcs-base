@@ -168,6 +168,7 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 			tooltip: 'Cancel Changes'
 			action: [ :aButton :aTab | 
 				self value clearUnitOfWork ];
+		send: [ :item | item ];
 		yourself
 ]
 

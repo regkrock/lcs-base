@@ -192,6 +192,15 @@ LcsSlotAction >> magritteInspectAction [
 		beToolbarAction
 ]
 
+{ #category : 'printing' }
+LcsSlotAction >> printDetailsOn: aStream [
+	super printDetailsOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: (self description ifNil: ['']) printString;
+		nextPutAll: ')'
+]
+
 { #category : 'slot model' }
 LcsSlotAction >> slotDefinition [
 	^ self parent ifNotNil: [:p | p slotDefinition ]

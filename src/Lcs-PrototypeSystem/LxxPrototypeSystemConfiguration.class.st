@@ -1,7 +1,7 @@
 Class {
 	#name : 'LxxPrototypeSystemConfiguration',
 	#superclass : 'LcsBaseConfiguration',
-	#category : 'Lcs-PrototypeSystem-Base',
+	#category : 'Lcs-PrototypeSystem-Core',
 	#package : 'Lcs-PrototypeSystem',
-	#tag : 'Base'
+	#tag : 'Core'
 }

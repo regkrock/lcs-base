@@ -12,9 +12,9 @@ Class {
 		'subdivisionClass',
 		'postalCodeClass'
 	],
-	#category : 'Lcs-Geography-Domain',
+	#category : 'Lcs-Geography-Core',
 	#package : 'Lcs-Geography',
-	#tag : 'Domain'
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }

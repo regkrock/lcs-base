@@ -1,8 +1,9 @@
 Class {
 	#name : 'LcsSlotGetterBuilder',
 	#superclass : 'LcsSlotDetailBuilder',
-	#category : 'Lcs-SlotTools',
-	#package : 'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools-Core',
+	#package : 'Lcs-SlotTools',
+	#tag : 'Core'
 }
 
 { #category : 'command' }

@@ -114,6 +114,15 @@ LcsValidationCondition >> magritteInspectAction [
 		beToolbarAction
 ]
 
+{ #category : 'printing' }
+LcsValidationCondition >> printDetailsOn: aStream [
+	super printDetailsOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: (self validationDescription ifNil: ['']);
+		nextPutAll: ')'
+]
+
 { #category : 'slot model' }
 LcsValidationCondition >> slotDefinition [
 	^ self parent ifNotNil: [:p | p slotDefinition ]

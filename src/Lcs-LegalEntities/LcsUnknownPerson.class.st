@@ -1,6 +1,7 @@
 Class {
 	#name : 'LcsUnknownPerson',
 	#superclass : 'LcsBasePerson',
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }

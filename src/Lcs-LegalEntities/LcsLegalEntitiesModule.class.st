@@ -12,8 +12,9 @@ Class {
 		'emailAddressTypes',
 		'contacts'
 	],
-	#category : 'Lcs-LegalEntities',
-	#package : 'Lcs-LegalEntities'
+	#category : 'Lcs-LegalEntities-Core',
+	#package : 'Lcs-LegalEntities',
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }
@@ -56,7 +57,7 @@ LcsLegalEntitiesModule class >> emailAddressTypesSlotDefinition [
 LcsLegalEntitiesModule class >> emailAddressesSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsEmailAddresses);
+		slotTypes: (OrderedCollection with: LcsGlobalEmailAddresses);
 		collectionMemberTypes: (OrderedCollection with: LcsEmailAddress);
 		slotName: 'emailAddresses';
 		yourself
@@ -123,7 +124,7 @@ LcsLegalEntitiesModule class >> phoneNumberTypesSlotDefinition [
 LcsLegalEntitiesModule class >> phoneNumbersSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
-		slotTypes: (OrderedCollection with: LcsPhoneNumbers);
+		slotTypes: (OrderedCollection with: LcsGlobalPhoneNumbers);
 		collectionMemberTypes: (OrderedCollection with: LcsPhoneNumber);
 		slotName: 'phoneNumbers';
 		yourself

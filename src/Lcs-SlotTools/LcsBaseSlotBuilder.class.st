@@ -9,8 +9,9 @@ Class {
 		'targetClassName',
 		'targetModuleClass'
 	],
-	#category : 'Lcs-SlotTools',
-	#package : 'Lcs-SlotTools'
+	#category : 'Lcs-SlotTools-Core',
+	#package : 'Lcs-SlotTools',
+	#tag : 'Core'
 }
 
 { #category : 'testing' }

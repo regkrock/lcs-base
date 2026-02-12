@@ -8,7 +8,7 @@ Class {
 
 { #category : 'private' }
 LcsVirtualSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
-	^ aSlotCategory = #virtualSlotDefinition
+	^ aSlotCategory = LcsBaseSlot virtualSlotDefinitionName
 ]
 
 { #category : 'as yet unclassified' }
