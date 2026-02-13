@@ -167,11 +167,11 @@ LcsModule class >> isSubmoduleOf: aModuleClass [
 	^ false
 ]
 
-{ #category : 'asking' }
-LcsModule class >> loadPriorityInContextOf: aModuleClassName [
-	^ ((Pragma allNamed: #owningModule:priority: in: self class)
-		detect: [ :each | (each argumentAt: 1) = aModuleClassName ] ifNone: [ ^ 0 ])
-			argumentAt: 2
+{ #category : 'modules' }
+LcsModule class >> loadPriorityInOwningModule: aModuleClass [
+	^ (self owningModulePriortyModulePragmas
+		detect: [ :eachPragma | (eachPragma argumentNamed: #'owningModule:') = aModuleClass name asString ]
+		ifNone: [ ^ 0 ]) argumentNamed: #'priority:'
 ]
 
 { #category : 'modules' }
@@ -203,6 +203,11 @@ LcsModule class >> modulesSlotDefinition [
 		addCollectionMemberType: LcsModule;
 		priority: 2;
 		yourself
+]
+
+{ #category : 'modules' }
+LcsModule class >> owningModulePriortyModulePragmas [
+	^ self class pragmas select: [ :each | each selector = #owningModule:priority: ]
 ]
 
 { #category : 'slot model - install' }
@@ -387,7 +392,8 @@ LcsModule >> loadData [
 
 { #category : 'building' }
 LcsModule >> loadPriority [
-	^ self class loadPriorityInContextOf: self parentModuleClassName
+	self owningModule ifNil: [ ^ 0 ].
+	^ self class loadPriorityInOwningModule: self owningModule class
 ]
 
 { #category : 'initialize' }
@@ -442,6 +448,11 @@ LcsModule >> numberOfChildModules [
 { #category : 'accessing' }
 LcsModule >> objectId [
 	^ self hash
+]
+
+{ #category : 'modules' }
+LcsModule >> owningModule [
+	^ self parent ifNotNil: [ :each | each parent ]
 ]
 
 { #category : 'asking' }
