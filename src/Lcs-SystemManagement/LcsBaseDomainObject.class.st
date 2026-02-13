@@ -516,12 +516,6 @@ LcsBaseDomainObject >> _slotVarNamed: aSlotName [
 	^ (self slotDefinitionNamed: aSlotName) _currentSlotVarIn: self
 ]
 
-{ #category : 'gt views' }
-LcsBaseDomainObject >> accessorSlotNameAndValue [
-	^ self allAccessorSlotDefinitions collect: [ :each | 
-		each slotName -> (self perform: each slotName asSymbol) ]
-]
-
 { #category : 'validation' }
 LcsBaseDomainObject >> addValidateConfigurationResultTo: aValidator [
 	"self isIncludedInSystemDomainClasses
@@ -590,6 +584,12 @@ LcsBaseDomainObject >> currentUser [
 	^ self currentSystem currentUser
 ]
 
+{ #category : 'gt views' }
+LcsBaseDomainObject >> domainObjectSlotViewItems [
+	^ self allAccessorSlotDefinitions collect: [ :each | 
+		LcsDomainObjectSlotViewItem newLabel: each slotName item: (self perform: each slotName asSymbol) ]
+]
+
 { #category : 'slot access' }
 LcsBaseDomainObject >> getPersistedValueOf: aString [
 	^ self class getPersistedValueOf: aString in: self
@@ -606,14 +606,11 @@ LcsBaseDomainObject >> gtLiveFor: aView [
 	^ aView columnedTree
 		title: 'Live';
 		priority: 1;
-		items: [ self accessorSlotNameAndValue ];
-		children: [ :each | 
-			each value isDomainObject 
-				ifTrue: [ each value accessorSlotNameAndValue ]
-				ifFalse: [#()] ] ;
-		column: 'Slot' text: [ :each | each key ] width: 100;
-		column: 'Value' text: [ :each | each value displayString ] width: 200;
-		send: #value;
+		items: [ self domainObjectSlotViewItems ];
+		children: [ :each | each children ] ;
+		column: 'Slot' text: [ :each | each label ] width: 150;
+		column: 'Value' text: [ :each | each item gtDisplayString ];
+		send: #item;
 		actionUpdateButton;
 		yourself
 ]

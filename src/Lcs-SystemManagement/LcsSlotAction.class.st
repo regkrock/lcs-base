@@ -144,6 +144,15 @@ LcsSlotAction >> errorDetails [
 	^ ' - Error: ' , self description
 ]
 
+{ #category : 'printing' }
+LcsSlotAction >> gtDisplayOn: aStream [
+	super gtDisplayOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: (self description ifNil: ['']) printString;
+		nextPutAll: ')'
+]
+
 { #category : 'comparing' }
 LcsSlotAction >> hash [
 	^ self actionBlock hash bitXor: self description hash
@@ -190,15 +199,6 @@ LcsSlotAction >> magritteInspectAction [
 				action: [ :aModel :aButton :aMemento :aDescription | 
 					aButton phlow spawnObject: aMemento ]);
 		beToolbarAction
-]
-
-{ #category : 'printing' }
-LcsSlotAction >> printDetailsOn: aStream [
-	super printDetailsOn: aStream.
-	aStream
-		nextPutAll: '(';
-		nextPutAll: (self description ifNil: ['']) printString;
-		nextPutAll: ')'
 ]
 
 { #category : 'slot model' }

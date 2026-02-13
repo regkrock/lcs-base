@@ -345,7 +345,8 @@ LcsSlotModel >> initializeSlotValuesIn: aDomainObject [
 
 { #category : 'model' }
 LcsSlotModel >> initializeUnintializedSlotValuesIn: aDomainObject [
-	self allAccessorSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ]
+	self allAccessorSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ].
+	self allCollectionItemSlotDefinitions do: [ :eachDefinition | eachDefinition initializeUnintializedSlotValueIn: aDomainObject ]
 ]
 
 { #category : 'model' }

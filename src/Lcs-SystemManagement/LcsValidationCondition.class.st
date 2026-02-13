@@ -67,6 +67,15 @@ LcsValidationCondition >> evaluateWith: aValidator [
 		aValidator addErrorDescription: self validationDescriptionDescription in: self ]
 ]
 
+{ #category : 'printing' }
+LcsValidationCondition >> gtDisplayOn: aStream [
+	super gtDisplayOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: (self validationDescription ifNil: ['']);
+		nextPutAll: ')'
+]
+
 { #category : 'comparing' }
 LcsValidationCondition >> hash [
 	^ self conditionBlock hash bitXor: self validationDescription hash
@@ -112,15 +121,6 @@ LcsValidationCondition >> magritteInspectAction [
 				action: [ :aModel :aButton :aMemento :aDescription | 
 					aButton phlow spawnObject: aMemento ]);
 		beToolbarAction
-]
-
-{ #category : 'printing' }
-LcsValidationCondition >> printDetailsOn: aStream [
-	super printDetailsOn: aStream.
-	aStream
-		nextPutAll: '(';
-		nextPutAll: (self validationDescription ifNil: ['']);
-		nextPutAll: ')'
 ]
 
 { #category : 'slot model' }

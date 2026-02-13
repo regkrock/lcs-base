@@ -72,7 +72,12 @@ LcsViewItem >> item: anObject [
 LcsViewItem >> itemChildren: anItemChildrenSelector [
 	^ (self item respondsTo: anItemChildrenSelector)
 		ifTrue: [ self item perform: anItemChildrenSelector ]
-		ifFalse: [ #() ]
+		ifFalse: [ self itemChildrenForNonresponders ]
+]
+
+{ #category : 'children' }
+LcsViewItem >> itemChildrenForNonresponders [
+	^ #()
 ]
 
 { #category : 'accessing' }

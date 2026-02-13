@@ -12,15 +12,6 @@ LcsUnitOfWorkViewItem class >> defaultChildrenSelector [
 ]
 
 { #category : 'accessing' }
-LcsUnitOfWorkViewItem >> children [
-	self item isCollection ifFalse: [ ^ #()].
-	self item isEmpty ifTrue: [ ^ {} ].
-	^ (self item select: [ :each | each respondsTo: self childrenSelector ])
-		collect: [ :each | each  perform: self childrenSelector ]
-
-]
-
-{ #category : 'accessing' }
 LcsUnitOfWorkViewItem >> gtItemDisplayString [
 	^ (self item respondsTo: #gtItemDisplayString)
 		ifTrue: [ self item gtItemDisplayString ]
@@ -32,4 +23,11 @@ LcsUnitOfWorkViewItem >> gtViewDisplayString [
 	^ (self item canUnderstand: #gtViewDisplayString)
 		ifTrue: [ self item gtViewDisplayString ]
 		ifFalse: [ self item displayString ]
+]
+
+{ #category : 'accessing' }
+LcsUnitOfWorkViewItem >> itemChildrenForNonresponders [
+	self item isCollection ifFalse: [ ^ #()].
+	self item isEmpty ifTrue: [ ^ {} ].
+	^ super itemChildrenForNonresponders
 ]

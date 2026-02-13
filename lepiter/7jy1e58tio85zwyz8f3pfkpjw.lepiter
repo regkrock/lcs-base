@@ -43,6 +43,40 @@
 				"codeExpanded" : true,
 				"previewExpanded" : false,
 				"noCode" : true
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-13T09:01:28.939665-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-13T09:02:21.191781-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "cARezd7KSIKeK+9uLHQOkw=="
+				},
+				"code" : "Smalltalk garbageCollect.\rSmalltalk garbageCollectMost"
 			}
 		]
 	},

@@ -21,16 +21,6 @@ LcsDomainCollection class >> collectionType [
 	^'concrete'
 ]
 
-{ #category : 'as yet unclassified' }
-LcsDomainCollection >> accessorSlotNameAndValue [
-	| nameAndValues |
-	nameAndValues := super accessorSlotNameAndValue.
-	^ nameAndValues 
-		add: ('pendingAdds' -> self pendingAdds);
-		add: ('pendingDeletes' -> self pendingDeletes);
-		yourself
-]
-
 { #category : 'domain collection' }
 LcsDomainCollection >> currentSize [
 	^ self pendingAddsSize + self persistedSize - self pendingDeletesSize 
@@ -40,6 +30,16 @@ LcsDomainCollection >> currentSize [
 LcsDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
 	^nil
+]
+
+{ #category : 'gt views' }
+LcsDomainCollection >> domainObjectSlotViewItems [
+	| nameAndValues |
+	nameAndValues := super domainObjectSlotViewItems.
+	^ nameAndValues 
+		add: (LcsDomainObjectSlotViewItem  newLabel: 'pendingAdds' item: self pendingAdds);
+		add: (LcsDomainObjectSlotViewItem  newLabel: 'pendingDeletes' item: self pendingDeletes);
+		yourself
 ]
 
 { #category : 'querying' }

@@ -297,13 +297,9 @@ LcsBaseSlot >> gtSlotAttributesViewFor: aView [
 		title: 'Attributes';
 		priority: 5;
 		items: [ self gtSlotDefinitionAttributes ];
-		"children: [ :each | (each item isCollection and: [ each item isString not ]) 
-								ifTrue: [ each item  collect: [ :ea | (LcsSlotAttributeView newLabel: each label item: ea) ] ]
-								ifFalse: [ #() ] ];"
 		children: [ :each | each children ];
 		column: 'Property' text: #label width: 200;
-		"column: 'Value' do: [ :aColumn | self gtCreateClassAndValueElementFor: aColumn ];"
-		column: 'Value' text: #item;
+		column: 'Value' text: [ :each | each item gtDisplayString ];
 		send: [ :each | each item ];
 		actionUpdateButton;		
 		yourself

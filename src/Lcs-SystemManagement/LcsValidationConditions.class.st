@@ -63,20 +63,6 @@ LcsValidationConditions >> initialize [
 	self collection: OrderedCollection new
 ]
 
-{ #category : 'printing' }
-LcsValidationConditions >> printDetailsOn: aStream [
-	super printDetailsOn: aStream.
-	aStream
-		nextPutAll: '[' , self collection size printString , ' item'
-				, (self collection size = 1 ifTrue: [ '' ] ifFalse: [ 's' ]) , ']'.
-	self collection isEmpty ifTrue: [ ^ self ].
-	aStream nextPutAll: '('.
-	self collection
-		do: [ :each | aStream nextPutAll: each validationDescription printString ]
-		separatedBy: [ aStream nextPutAll: ',' ].
-	aStream nextPutAll: ')'
-]
-
 { #category : 'conditions' }
 LcsValidationConditions >> removeValidationCondition: aCondition [
 	^ self remove: aCondition ifAbsent: []

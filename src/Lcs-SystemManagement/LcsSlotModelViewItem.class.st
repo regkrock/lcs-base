@@ -12,9 +12,8 @@ LcsSlotModelViewItem class >> defaultChildrenSelector [
 ]
 
 { #category : 'children' }
-LcsSlotModelViewItem >> children [
+LcsSlotModelViewItem >> itemChildrenForNonresponders [
 	self item isCollection ifFalse: [ ^ #()].
-	self item isEmpty ifTrue: [ ^ {} ].
-	^ (self item select: [ :each | each respondsTo: self childrenSelector ])
-		collect: [ :each | each  perform: self childrenSelector ]
+	self item isEmpty ifTrue: [ ^ #() ].
+	^ super itemChildrenForNonresponders
 ]

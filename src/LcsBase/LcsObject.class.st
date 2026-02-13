@@ -60,7 +60,7 @@ LcsObject class >> slotDefinitionMethodsNamed: aSelectorName [
 	^ collection
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'query' }
 LcsObject >> classFor: aStringOrClass [
 	aStringOrClass isClass ifTrue: [ ^ aStringOrClass ].
 	^ [ aStringOrClass asClass ] on: NotFound do: [ :s | s return: nil ]
@@ -74,26 +74,6 @@ LcsObject >> isApplicationSystem [
 { #category : 'testing' }
 LcsObject >> isDomainClass [
 	^self class isDomainClass
-]
-
-{ #category : 'printing' }
-LcsObject >> printDetailsOn: aStream [
-	"aStream 
-		nextPutAll: ' (objectId: ';
-		nextPutAll: self hash displayString;
-		nextPutAll: ')'"
-
-]
-
-{ #category : 'printing' }
-LcsObject >> printOn: aStream [
-	super printOn: aStream.
-	self printDetailsOn: aStream.
-	"aStream 
-		nextPutAll: ' (objectId: ';
-		nextPutAll: self hash displayString;
-		nextPutAll: ')'"
-
 ]
 
 { #category : 'private' }

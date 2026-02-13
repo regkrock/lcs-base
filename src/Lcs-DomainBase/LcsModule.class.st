@@ -415,7 +415,7 @@ LcsModule >> moduleNamed: aString [
 
 { #category : 'modules' }
 LcsModule >> moduleViewChildren [
-	self modules ifNil: [ ^#() ].
+	self modules ifNil: [ ^ #() ].
 	^ self modules moduleViewChildren 
 ]
 
