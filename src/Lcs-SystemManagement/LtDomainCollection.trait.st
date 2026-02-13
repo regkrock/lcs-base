@@ -63,6 +63,20 @@ LtDomainCollection >> gtItemsFor: aView [
 	^ columnedListView
 ]
 
+{ #category : 'printing' }
+LtDomainCollection >> gtPrintCollectionSizeOn: stream [
+	stream
+		print: 'P: ';
+		print: self collectionSize;
+		nextPutAll: (' item' asPluralBasedOn: self collectionSize);
+		print: ', A: ';
+		print: self pendingAddsSize;
+		nextPutAll: (' item' asPluralBasedOn: self pendingAddsSize);
+		print: ', D: ';
+		print: self pendingDeletesSize;
+		nextPutAll: (' item' asPluralBasedOn: self pendingDeletesSize)
+]
+
 { #category : 'collection' }
 LtDomainCollection >> includes: anObject [
 	^ (self collection includes: anObject)

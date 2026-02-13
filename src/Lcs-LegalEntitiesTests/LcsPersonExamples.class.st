@@ -191,8 +191,10 @@ LcsPersonExamples >> newPerson [
 	self assert: (person postalAddresses isKindOf: LcsAddresses).
 	self assert: (person emailAddresses isKindOf: LcsEmailAddresses).
 	self assert: (person phoneNumbers isKindOf: LcsPhoneNumbers).
-	self assert: person postalAddresses hasNoElements.
-	self assert: person emailAddresses hasNoElements.
+	self assert: person postalAddresses hasNoPersistedElements.
+	self assert: person postalAddresses hasPendingAdds.
+	self assert: person emailAddresses hasNoPersistedElements.
+	self assert: person emailAddresses hasPendingAdds.
 	self assert: person phoneNumbers hasNoElements.
 	self currentSystem legalEntitiesModule persons includes: person.
 

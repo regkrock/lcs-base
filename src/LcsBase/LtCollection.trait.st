@@ -78,16 +78,16 @@ LtCollection >> gtDisplayOn: stream [
 		do: [ :each | aStream nextPutAll: each description printString ]
 		separatedBy: [ aStream nextPutAll: ',' ].
 	aStream nextPutAll: ')'."
-	
+
 	self printNameOn: stream.
-	stream
+		stream
 		space;
-		nextPut: $[;
-		print: self collectionSize;
-		nextPutAll: (' item' asPluralBasedOn: self collectionSize);
+		nextPut: $[.
+	self gtPrintCollectionSizeOn: stream.
+	stream
 		nextPut: $];
 		space.
-	self collectionSize <= self gtCollectionSizeThreshold 
+	self collectionSize <= self gtCollectionSizeThreshold
 		ifTrue: [ self printElementsOn: stream ]
 ]
 
@@ -101,6 +101,13 @@ LtCollection >> gtItemsFor: aView [
 		object: [ self collection ];
 		view: #gtItemsFor:;
 		actionUpdateButton
+]
+
+{ #category : 'printing' }
+LtCollection >> gtPrintCollectionSizeOn: stream [
+	stream
+		print: self collectionSize;
+		nextPutAll: (' item' asPluralBasedOn: self collectionSize)
 ]
 
 { #category : 'collection' }

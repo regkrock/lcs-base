@@ -18,7 +18,7 @@ LcsSteeringCommittee class >> commodoreSlotDefinition [
 			initialValueBlock: [ :parentDomainObject :slot | 
 				LcsCommitteeMember new
 					title: slot targetItem;
-					member: parentDomainObject ;
+					member: self currentSystem seasModule organization members unknownInstance ;
 					yourself ];
 			yourself
 ]
@@ -36,7 +36,7 @@ LcsSteeringCommittee class >> secretarySlotDefinition [
 			initialValueBlock: [ :parentDomainObject :slot | 
 				LcsCommitteeMember new
 					title: slot targetItem;
-					member: parentDomainObject ;
+					member: self currentSystem seasModule organization members unknownInstance ;
 					yourself ];
 			"(slot targetCollectionIn: parentDomainObject) defaultInstance ];"
 			yourself
@@ -54,7 +54,7 @@ LcsSteeringCommittee class >> treasurerSlotDefinition [
 			initialValueBlock: [ :parentDomainObject :slot | 
 				LcsCommitteeMember new
 					title: slot targetItem;
-					member: parentDomainObject ;
+					member: self currentSystem seasModule organization members unknownInstance ;
 					yourself ];
 			yourself
 ]
@@ -71,7 +71,7 @@ LcsSteeringCommittee class >> viceCommodoreSlotDefinition [
 			initialValueBlock: [ :parentDomainObject :slot | 
 				LcsCommitteeMember new
 					title: slot targetItem;
-					member: parentDomainObject ;
+					member: self currentSystem seasModule organization members unknownInstance ;
 					yourself ];
 			yourself
 ]
