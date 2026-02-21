@@ -65,7 +65,7 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToGl
 			addSlotType: 'LxxGender';
 			yourself).
 	classesModel := self subject umlModel.
-	self assert: classesModel collection size = 2.
+	self assert: classesModel collection size = 3.
 	self assert: (classesModel classModelForClassname: 'LxxPerson') notNil.
 	"self assert: (classesModel classModelForClassname: 'LxxGenders') notNil."
 	self assert: (classesModel classModelForClassname: 'LxxPerson') associations size = 1.
@@ -93,7 +93,7 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToLo
 			addSlotType: 'LxxInvoiceItem';
 			yourself).
 	classesModel := self subject umlModel.
-	self assert: classesModel collection size = 2.
+	self assert: classesModel collection size = 3.
 	self assert: (classesModel classModelForClassname: 'LxxPerson') notNil.
 	"self assert: (classesModel classModelForClassname: 'LxxInvoiceItems') notNil."
 	self assert: (classesModel classModelForClassname: 'LxxPerson') associations size = 1.
