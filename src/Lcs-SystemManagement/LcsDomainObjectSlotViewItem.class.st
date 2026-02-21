@@ -8,7 +8,7 @@ Class {
 
 { #category : 'defaults' }
 LcsDomainObjectSlotViewItem class >> defaultChildrenSelector [
-	^ #domainObjectSlotViewItems
+	^ #domainObjectAllAccessorSlotViewItems
 ]
 
 { #category : 'children' }

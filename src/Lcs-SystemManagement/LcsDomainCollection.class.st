@@ -33,9 +33,9 @@ LcsDomainCollection >> defaultInstance [
 ]
 
 { #category : 'gt views' }
-LcsDomainCollection >> domainObjectSlotViewItems [
+LcsDomainCollection >> domainObjectAllAccessorSlotViewItems [
 	| nameAndValues |
-	nameAndValues := super domainObjectSlotViewItems.
+	nameAndValues := super domainObjectAllAccessorSlotViewItems.
 	^ nameAndValues 
 		add: (LcsDomainObjectSlotViewItem  newLabel: 'pendingAdds' item: self pendingAdds);
 		add: (LcsDomainObjectSlotViewItem  newLabel: 'pendingDeletes' item: self pendingDeletes);
@@ -108,6 +108,25 @@ LcsDomainCollection >> findWithKey: anObject ifNone: aBlock [
 	result := self collection detect: [ :each | each key = anObject ] ifNone: [ nil ].
 	result notNil ifTrue: [ ^ result ].
 	^ self pendingAdds detect: [ :each | each key = anObject ] ifNone: aBlock
+]
+
+{ #category : 'gt views' }
+LcsDomainCollection >> gtItemsFor_Obsolete: aView [
+	"<gtView>"
+	| columnedListView |
+	columnedListView := 
+		aView columnedList
+			title: 'Items' translated;
+			priority: 0.5;
+			items: [ (self collection ifNil: [ OrderedCollection new]) asOrderedCollection ];
+			actionUpdateButton.
+	self collection notEmpty ifTrue: [
+		self collection any collectionViewSlotDefinitions do: [ :eachSlotDefinition |
+			columnedListView 
+				column: eachSlotDefinition label 
+				text: [:domainObject | (domainObject perform: eachSlotDefinition getterSelector) asString ] 
+				width: 100 ] ].
+	^ columnedListView
 ]
 
 { #category : 'gt views' }

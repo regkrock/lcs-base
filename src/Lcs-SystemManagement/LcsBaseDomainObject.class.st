@@ -585,7 +585,7 @@ LcsBaseDomainObject >> currentUser [
 ]
 
 { #category : 'gt views' }
-LcsBaseDomainObject >> domainObjectSlotViewItems [
+LcsBaseDomainObject >> domainObjectAllAccessorSlotViewItems [
 	^ self allAccessorSlotDefinitions collect: [ :each | 
 		LcsDomainObjectSlotViewItem newLabel: each slotName item: (self perform: each slotName asSymbol) ]
 ]
@@ -606,7 +606,7 @@ LcsBaseDomainObject >> gtLiveFor: aView [
 	^ aView columnedTree
 		title: 'Live';
 		priority: 1;
-		items: [ self domainObjectSlotViewItems ];
+		items: [ self domainObjectAllAccessorSlotViewItems ];
 		children: [ :each | each children ] ;
 		column: 'Slot' text: [ :each | each label ] width: 150;
 		column: 'Value' text: [ :each | each item gtDisplayString ];

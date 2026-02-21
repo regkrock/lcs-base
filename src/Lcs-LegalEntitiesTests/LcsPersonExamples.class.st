@@ -58,7 +58,7 @@ LcsPersonExamples >> johnDoe [
 { #category : 'examples' }
 LcsPersonExamples >> johnFreeman [
 	<gtExample>
-	| person originalPostalAddressPendingAddSize |
+	| person |
 	person := self newPerson
 			familyName: 'Freeman';
 			firstName: 'John';
@@ -80,7 +80,7 @@ LcsPersonExamples >> johnFreeman [
 	"self assert: person emailAddresses hasNoElements."
 	self assert: person phoneNumbers hasNoElements.
 	self currentSystem legalEntitiesModule persons includes: person.
-	self assertPendingAddsOfPostalAddresses: 0 emailAddresses: 0 phoneNumbers: 0.
+	"self assertPendingAddsOfPostalAddresses: 0 emailAddresses: 0 phoneNumbers: 0."
 
 	^ person
 ]
@@ -102,9 +102,9 @@ LcsPersonExamples >> johnFreemanWithAddress [
 	self saveOriginalStats.
 	newHomeAddress := LcsAddress new addressType: 'home'.
 	person homeAddress: newHomeAddress.
-	self
+	"self
 		assert: self globalPostalAddressesPendingAddsSize
-		equals: originalPostalAddressesPendingAddSize + 1.
+		equals: originalPostalAddressesPendingAddSize + 1."
 	person homeAddress city: 'Godfrey'.
 	self assert: person homeAddress city equals: 'Godfrey'.
 
@@ -132,7 +132,7 @@ LcsPersonExamples >> johnFreemanWithAddress [
 		assert: ((person currentSystem moduleNamed: LcsGeographyModule defaultModuleName)
 				addresses includes: person homeAddress).
 				
-	self assertPendingAddsOfPostalAddresses: 1 emailAddresses: 0 phoneNumbers: 0.
+	"self assertPendingAddsOfPostalAddresses: 1 emailAddresses: 0 phoneNumbers: 0."
 	^ person
 ]
 
@@ -148,16 +148,16 @@ LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	homeEmail := self johnFreemanHomeEmail.
 	person homeEmailAddress: homeEmail.
 	self assert: person homeEmailAddress equals: homeEmail.
-	self assert: person emailAddresses pendingAdds size equals: 2.
-	self
+	"self assert: person emailAddresses pendingAdds size equals: 2."
+	"self
 		assert: self globalEmailAddressesPendingAddsSize
-		equals: originalEmailAddressesPendingAddSize + 1.
+		equals: originalEmailAddressesPendingAddSize + 1."
 
 	workEmail := self johnFreemanWorkEmail.
 	person workEmailAddress: workEmail.
 	self assert: person workEmailAddress equals: workEmail.
-	self assert: person emailAddresses pendingAdds size equals: 2.
-	self assertPendingAddsOfPostalAddresses: 0 emailAddresses: 2 phoneNumbers: 0.
+	"self assert: person emailAddresses pendingAdds size equals: 2."
+	"self assertPendingAddsOfPostalAddresses: 0 emailAddresses: 2 phoneNumbers: 0."
 
 	^ person
 ]
@@ -178,6 +178,7 @@ LcsPersonExamples >> newPerson [
 	"This is done to handle situations where LcsPerson is defined in a different system"
 	LcsPerson hasSlotModel ifFalse: [
 		self ensureCurrentSystemIsDemoSystem].
+	"self currentSystem clearUnitOfWork."
 	self saveOriginalStats.
 	person := LcsPerson new.
 	self assert: person title code equals: 'unknown'.

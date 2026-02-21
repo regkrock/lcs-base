@@ -23,6 +23,16 @@ LtDomainCollection >> collection: aCollection [
 	self slotVarNamed: 'collection' put: aCollection
 ]
 
+{ #category : 'gt views' }
+LtDomainCollection >> collectionViewItems [
+	| orderedCollection pairs |
+	pairs := OrderedCollection new.
+	orderedCollection := (self collection ifNil: [ OrderedCollection new]) asOrderedCollection.
+	orderedCollection doWithIndex: [ :each :index |
+		pairs add: (LcsDomainObjectSlotViewItem newLabel: index item: each) ].
+	^ pairs
+]
+
 { #category : 'queries' }
 LtDomainCollection >> defaultInstance [
 	<todo: 'the null object needs to replace this?'>
@@ -49,17 +59,15 @@ LtDomainCollection >> gtItemsFor: aView [
 	<gtView>
 	| columnedListView |
 	columnedListView := 
-		aView columnedList
+		aView columnedTree
 			title: 'Items' translated;
 			priority: 0.5;
-			items: [ (self collection ifNil: [ OrderedCollection new]) asOrderedCollection ];
+			items: [ self collectionViewItems ];
+			children: [ :each | each children];
+			column: 'Key' text: [ :each | each label ] width: 150;
+			column: 'Value' text: [ :each | each item gtDisplayString ];
+			send: [ :each | each item ];
 			actionUpdateButton.
-	self collection notEmpty ifTrue: [
-		self collection any collectionViewSlotDefinitions do: [ :eachSlotDefinition |
-			columnedListView 
-				column: eachSlotDefinition label 
-				text: [:domainObject | (domainObject perform: eachSlotDefinition getterSelector) asString ] 
-				width: 100 ] ].
 	^ columnedListView
 ]
 
