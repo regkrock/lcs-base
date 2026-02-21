@@ -19,6 +19,21 @@ LcsSmalltalkObjectSlot >> _initialValueFor: aDomainObject [
 	^ self initialValueBlock cull: aDomainObject cull: self cull: nil
 ]
 
+{ #category : 'gtviews' }
+LcsSmalltalkObjectSlot >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	aUmlModel
+		addAssociation: self slotName
+			from: self domainClass
+			to: self slotTypes first
+]
+
+{ #category : 'gtviews' }
+LcsSmalltalkObjectSlot >> addClassesToUmlModel: umlModel [ 
+	super addClassesToUmlModel: umlModel.
+	umlModel addClassNamed: self slotTypes first
+]
+
 { #category : 'initialize' }
 LcsSmalltalkObjectSlot >> addDefaultSlotType [
 	self addSlotType: self typeClass

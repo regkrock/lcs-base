@@ -11,10 +11,16 @@ Class {
 { #category : 'gt views' }
 LcsDomainObjectSlot >> addAssociationsToUmlModel: aUmlModel [
 	super addAssociationsToUmlModel: aUmlModel.
+	self domainClass ifNil: [ ^ self ].
 	aUmlModel
 		addAssociation: self slotName
 			from: self domainClass
-			to: self slotTypes first
+			to: self slotTypes first.
+	"This needs to be sorted - how to display global collection"
+	"aUmlModel
+		addAssociation: self
+			from: self slotTypes first
+			to: self "
 ]
 
 { #category : 'gt views' }

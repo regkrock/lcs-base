@@ -9,7 +9,7 @@ Class {
 { #category : 'slot definitions' }
 LcsBasicSystem class >> configurationSlotDefinition [
 	<accessorSlotDefinition>
-	^ (self configurationSlotDefinitionOn: self moduleConfigurationClass) yourself
+	^ self configurationSlotDefinitionOn: self moduleConfigurationClass
 ]
 
 { #category : 'configuration' }

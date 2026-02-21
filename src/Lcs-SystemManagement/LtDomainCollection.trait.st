@@ -66,15 +66,18 @@ LtDomainCollection >> gtItemsFor: aView [
 { #category : 'printing' }
 LtDomainCollection >> gtPrintCollectionSizeOn: stream [
 	stream
-		print: 'P: ';
 		print: self collectionSize;
-		nextPutAll: (' item' asPluralBasedOn: self collectionSize);
-		print: ', A: ';
-		print: self pendingAddsSize;
-		nextPutAll: (' item' asPluralBasedOn: self pendingAddsSize);
-		print: ', D: ';
-		print: self pendingDeletesSize;
-		nextPutAll: (' item' asPluralBasedOn: self pendingDeletesSize)
+		nextPutAll: (' item' asPluralBasedOn: self collectionSize).
+	self pendingAdds notEmpty ifTrue: [
+		stream
+			print: ', Pending Adds: ';
+			print: self pendingAddsSize;
+			nextPutAll: (' item' asPluralBasedOn: self pendingAddsSize)].
+	self pendingDeletes notEmpty ifTrue: [
+		stream
+			print: ', Pending Deletes: ';
+			print: self pendingDeletesSize;
+			nextPutAll: (' item' asPluralBasedOn: self pendingDeletesSize)]
 ]
 
 { #category : 'collection' }

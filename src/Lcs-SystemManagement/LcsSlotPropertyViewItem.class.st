@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsSlotAttributelViewItem',
+	#name : 'LcsSlotPropertyViewItem',
 	#superclass : 'LcsViewItem',
 	#category : 'Lcs-SystemManagement-View',
 	#package : 'Lcs-SystemManagement',
@@ -7,12 +7,12 @@ Class {
 }
 
 { #category : 'defaults' }
-LcsSlotAttributelViewItem class >> defaultChildrenSelector [
-	^ #slotAttributeViewItems
+LcsSlotPropertyViewItem class >> defaultChildrenSelector [
+	^ #slotPropertiesViewItems
 ]
 
 { #category : 'children' }
-LcsSlotAttributelViewItem >> itemChildrenForNonresponders [
+LcsSlotPropertyViewItem >> itemChildrenForNonresponders [
 	self item isString ifTrue: [ ^ #() ].
 	self item isCollection ifTrue: [ ^ self item collect: [ :each | LcsSlotModelViewItem newLabel: '' item: each ] ].
 	^ super itemChildrenForNonresponders

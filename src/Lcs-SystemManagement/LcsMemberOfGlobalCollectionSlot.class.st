@@ -17,10 +17,12 @@ Class {
 
 { #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> addAssociationsToUmlModel: umlModel [ 
+	super addAssociationsToUmlModel: umlModel 
 ]
 
 { #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [ 
+	super addClassesToUmlModel: aUmlModel .
 	aUmlModel addClass: self class.
 	aUmlModel addClass: self targetCollection class.
 	"(aUmlModel classModelForClass: self targetClassName)

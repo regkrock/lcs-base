@@ -22,12 +22,18 @@ LcsSlotInstanceVariableBuilder >> _verifyCodeInstallation [
 ]
 
 { #category : 'gt views' }
+LcsSlotInstanceVariableBuilder >> addClassesToUmlModel: umlModel [ 
+	super addClassesToUmlModel: umlModel
+]
+
+{ #category : 'gt views' }
 LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
+	aStream nextPutAll: self targetClassName.
 	([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
-		ifTrue: [ aStream nextPutAll: 'Use existing instanceVariable: ' , self slotName ]
+		ifTrue: [ aStream nextPutAll: ' - using existing instanceVariable: ' , self slotName ]
 		ifFalse: [ 
 			aStream 
-				nextPutAll: 'Add instanceVariable: ';
+				nextPutAll: ' - add instanceVariable: ';
 				nextPutAll:  self derivedSlotName ]
 ]
 

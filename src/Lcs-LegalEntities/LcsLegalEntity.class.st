@@ -39,6 +39,7 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 	^ LcsVirtualSlot new
 			slotName: 'entityName';
 			valueAccessor: #fullName;
+			addSlotType: String;
 			yourself
 ]
 

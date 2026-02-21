@@ -27,7 +27,7 @@ LcsOrganization class >> mainAddressSlotDefinition [
 			addSlotType: LcsAddress;
 			targetSlotPath: #(#addressType #code) asOrderedCollection;
 			collectionSlotName: 'postalAddresses';
-			targetItem: 'work';
+			targetItem: 'mainAddress';
 			yourself
 ]
 

@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-14T10:21:12.636359-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-14T10:31:14.930718-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nrJWSH4sRLG+IJEfgbA6FA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "[Stack Exchange Ideas on Calendar](https://softwareengineering.stackexchange.com/questions/456032/calendar-modeling-in-class-diagram)\n\n[Student Calendar Desiign](https://docs.ed-fi.org/reference/data-exchange/data-standard/model-reference/school-calendar-domain/)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-14T10:31:45.920471-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-16T10:42:20.761101-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ijRoWXX0QViCoqNRp1jqvQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "CalendarModule - contains all the calendar information\n{{gtClass:name=LcsCalendar}}  Calendar\nCalendar Events - A collection of Calendar events\nCalendar Date - A specific day\n\t- collection of events\n\t- events may start, end or span a calendar day\nCalendar Year - A year view \n\t- contains - months\n\t- contains - day\nCalendar Week - a view of a sweek - this can cross year boundaries\n\nOrganization Events:\n- meeting\n- boat reservation\n\nEntity can have its own calendar view\n- ex: boats\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-02-14T10:21:37.935431-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-02-14T10:21:37.935431-05:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Calendar Design"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "f19cbaee-1f40-44fd-b88f-703574bb6bd7"
+	}
+}

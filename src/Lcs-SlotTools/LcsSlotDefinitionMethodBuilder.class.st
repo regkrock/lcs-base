@@ -46,15 +46,20 @@ LcsSlotDefinitionMethodBuilder >> addAssociationsToUmlModel: aUmlModel [
 			from: self targetClassName
 			to: self slotClass.
 	self targetClass isNil ifTrue: [ ^ self ].
-	(self propertyAt: 'collectionSlotName') isNil ifTrue: [ ^ self ].
-	aUmlModel
-		addAssociation: self selectionPath
-		"(self propertyAt: 'collectionSlotName')"
+	(self propertyAt: 'collectionSlotName') notNil ifTrue: [ 
+		aUmlModel
+			addAssociation: self selectionPath
+			"(self propertyAt: 'collectionSlotName')"
+				from: self targetClassName
+				to: self domainCollectionClass;
+			addAssociation: '0:m'
+				from: self domainCollectionClass
+				to: self domainCollectionElementClass ].
+	self hasSlotTypes ifTrue: [
+		aUmlModel
+			addAssociation: self derivedSlotName
 			from: self targetClassName
-			to: self domainCollectionClass;
-		addAssociation: '0:m'
-			from: self domainCollectionClass
-			to: self domainCollectionElementClass
+			to: self domainCollectionElementClass ].
 ]
 
 { #category : 'gt views' }
@@ -63,16 +68,15 @@ LcsSlotDefinitionMethodBuilder >> addClassesToUmlModel: umlModel [
 	umlModel
 		addClassNamed: self targetClassName;
 		addClassNamed: self slotClass.
-	self targetClass isNil ifTrue: [ ^ self ].
 	(self propertyAt: 'collectionSlotName') notNil
-		ifTrue: [ self addDomainCollectionClassTo: umlModel ].
-	self slotTypes notEmpty
+		ifTrue: [ self targetClass notNil ifTrue: [ self addDomainCollectionClassTo: umlModel ] ].
+	self hasSlotTypes
 		ifTrue: [ umlModel addClassNamed: self domainCollectionElementClass ]
 ]
 
 { #category : 'gt views' }
 LcsSlotDefinitionMethodBuilder >> addDomainCollectionClassTo: umlModel [
-	umlModel addClass: self domainCollectionClass
+	umlModel addClassNamed: self domainCollectionClass
 ]
 
 { #category : 'initialize\t' }
@@ -97,11 +101,6 @@ LcsSlotDefinitionMethodBuilder >> addSlotAssociationsToUmlModel: aUmlModel [
 		addAssociation: (self propertyAt: 'collectionSlotName') toModelNamed: self domainCollectionClass.
 	(aUmlModel classModelForClassname: self domainCollectionClass)
 		addAssociation: self selectionPath toModelNamed: self domainCollectionElementClass.
-		
-	"(aUmlModel classModelForClassname: self parentClassName)
-		addAssociation: self slotName toModelNamed: self collectionClassName.
-	(aUmlModel classModelForClassname: self collectionClassName)
-		addAssociation: 'parent' toModelNamed: self parentClassName"
 ]
 
 { #category : 'gt views' }
@@ -174,14 +173,19 @@ LcsSlotDefinitionMethodBuilder >> derivedSlotName [
 
 { #category : 'gt views' }
 LcsSlotDefinitionMethodBuilder >> domainCollectionClass [
-	^ (self targetClass
-		perform: ((self propertyAt: 'collectionSlotName') , 'SlotDefinition') asSymbol)
+	| selector |
+	selector := ((self propertyAt: 'collectionSlotName') , 'SlotDefinition') asSymbol.
+	self targetClass isNil ifTrue: [ ^ nil ].
+	(self targetClass respondsTo: selector) ifFalse: [ ^ nil ].
+	^ (self targetClass perform: selector)
 		slotTypes first
 ]
 
 { #category : 'gt views' }
 LcsSlotDefinitionMethodBuilder >> domainCollectionElementClass [
-	^ self slotTypes first
+	self slotTypes isEmpty ifFalse: [ ^ self slotTypes first ].
+	self slotDefinitionClassSlotTypes isEmpty ifTrue: [ ^ OrderedCollection new ].
+	^ self slotDefinitionClassSlotTypes first
 ]
 
 { #category : 'gt views' }
@@ -220,7 +224,12 @@ LcsSlotDefinitionMethodBuilder >> gtSlotDefinitionImplementorFor: aView [
 
 { #category : 'testing' }
 LcsSlotDefinitionMethodBuilder >> hasNoSlotTypes [
-	^ self slotTypes isEmpty and: [ self slotDefinitionClassHasNoSlotTypes ]
+	^ self slotTypes isEmpty and: [ self slotDefinitionClassSlotTypes isEmpty]
+]
+
+{ #category : 'testing' }
+LcsSlotDefinitionMethodBuilder >> hasSlotTypes [
+	^ self slotTypes notEmpty or: [ self slotDefinitionClassSlotTypes notEmpty]
 ]
 
 { #category : 'initialize' }
@@ -304,8 +313,13 @@ LcsSlotDefinitionMethodBuilder >> selectionPath [
 
 { #category : 'testing' }
 LcsSlotDefinitionMethodBuilder >> slotDefinitionClassHasNoSlotTypes [
-	^ self slotClass notNil
-		and: [ self slotClass new slotTypes isEmpty ]
+	^ self defaultSlotTypes isEmpty
+]
+
+{ #category : 'testing' }
+LcsSlotDefinitionMethodBuilder >> slotDefinitionClassSlotTypes [
+	self slotClass isNil ifTrue: [ ^ OrderedCollection new ].
+	^ self defaultSlotTypes
 ]
 
 { #category : 'code generation' }

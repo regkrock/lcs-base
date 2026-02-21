@@ -112,12 +112,12 @@ LcsSlotActions >> removeAction: anAction [
 	^ self remove: anAction ifAbsent: []
 ]
 
-{ #category : 'gt views' }
-LcsSlotActions >> slotAttributeViewItems [
-	^ self collection collect: [ :each | LcsSlotAttributelViewItem newLabel: '' item: each ]
-]
-
 { #category : 'slot model' }
 LcsSlotActions >> slotDefinition [
 	^ self parent
+]
+
+{ #category : 'gt views' }
+LcsSlotActions >> slotPropertiesViewItems [
+	^ self collection collect: [ :each | LcsSlotPropertyViewItem newLabel: '' item: each ]
 ]

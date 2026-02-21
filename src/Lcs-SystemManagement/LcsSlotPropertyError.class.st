@@ -10,14 +10,14 @@ Class {
 }
 
 { #category : 'gt views' }
-LcsSlotPropertyError >> gtSlotDefinitionAttributes: aView [
+LcsSlotPropertyError >> gtSlotPropertiesView: aView [
 	<gtView>
 	<gtExceptionView>
 	^aView forward
-		title: 'Slot Attributes';
+		title: 'Slot Properties';
 		priority: 2;
 		object: [ self slotDefinition ];
-		view: #gtSlotAttributesViewFor:
+		view: #gtSlotPropertiesViewFor:
 ]
 
 { #category : 'accessing' }

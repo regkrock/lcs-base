@@ -27,6 +27,7 @@ LcsMemberOfGlobalCollectionSlotBuilder >> addAssociationsToUmlModel: aUmlModel [
 LcsMemberOfGlobalCollectionSlotBuilder >> addClassesToUmlModel: aUmlModel [
 	aUmlModel addClassNamed: self targetClassName.
 	self currentSystem isNil ifTrue: [ ^ self ].
+	aUmlModel addClassNamed: self slotClassName.
 	aUmlModel addClassNamed: self slotTypes first
 ]
 

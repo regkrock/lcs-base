@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-12-23T16:28:44.574592-05:00"
+						"dateAndTimeString" : "2026-02-14T11:09:55.133049-05:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtTodo:label=LcsSlotBlock|completed=2025-12-23}}\n{{gtTodo:label=Implenet initialValueBlock editting|completed=2025-07-30}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=2025-08-23}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=2025-08-23}}\n{{gtTodo:label=Add logic for 'Slots Up To' in LcsGtColumnListView|completed=2025-12-23}}"
+				"string" : "{{gtTodo:label=LcsSlotBlock|completed=2025-12-23}}\n{{gtTodo:label=Implenet initialValueBlock editting|completed=2025-07-30}}\n{{gtTodo:label=\n Surface more  properties on Slot Definition edit UI|completed=2025-08-23}}\n{{gtTodo:label= Add builder job to slot defnition tag|completed=}}\n{{gtTodo:label=Change collectionElementTypes to collectionMemberTypes|completed=2025-06-27}}\n{{gtTodo:label= Add validation when updating a slot's value|completed=2025-06-29}}\n{{gtTodo:label=Debug LcsAccessorSlotCreationFormTest>>#testAddingStringSlot|completed=}}\n{{gtTodo:label=Add logic for 'Slots Up To' in LcsGtColumnListView|completed=2025-12-23}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-12-23T16:31:01.430939-05:00"
+						"dateAndTimeString" : "2026-02-14T10:59:38.650865-05:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtTodo:label=Adding new instance to a collection - explicitly or implicitly}}\n{{gtTodo:label=Creating Sailing Club Example}}"
+				"string" : "{{gtTodo:label=Adding new instance to a collection - explicitly or implicitly|completed=2026-02-14}}\n{{gtTodo:label=Creating Sailing Club Example- LcsSailingClubOrganizationExamples|completed=}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-14T10:59:47.90389-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-14T11:09:50.524674-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "pkvTQ0+CRJGH4mZ0KgILjQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Seas Organization\n- LcsSailingClubOrganization\n{{gtTodo:label=Poplulate legal and organization names|completed=}}\n{{gtTodo:label=In SailingClubOrganization make commodore a facade on steering committee|completed=}}\n{{gtTodo:label=Load Members}}\n{{gtTodo:label=Add Steering Committee and other committees}}\n{{gtTodo:label=Initialize postal address|completed=}}\n{{gtTodo:label=Initialize Phone Number|completed=}}\n{{gtTodo:label=Initialize Phone Number}}"
 			}
 		]
 	},

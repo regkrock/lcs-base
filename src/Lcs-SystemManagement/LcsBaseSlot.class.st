@@ -88,6 +88,7 @@ LcsBaseSlot class >> virtualSlotDefinitionsSelector [
 
 { #category : 'gt views' }
 LcsBaseSlot >> addAssociationsToUmlModel: aUmlModel [
+	self domainClass isNil ifTrue: [ ^ self ].
 	aUmlModel
 		addAssociation: self slotName , 'SlotDefinition'
 			from: self domainClass
@@ -102,7 +103,7 @@ LcsBaseSlot >> addClassesToUmlModel: umlModel [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> addOtherSlotDefinitionDetailsTo: collection [
+LcsBaseSlot >> addOtherSlotPropertiesViewItemsTo: collection [
 	"This hook is provided so subclasses can implement as needed"
 ]
 
@@ -113,20 +114,20 @@ LcsBaseSlot >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> addPropertyAttributesTo: collection [
-	collection
-		add: (LcsSlotAttributelViewItem newLabel: '' item: '').
-		"add: '------PROPERTIES------' -> ''."
-	self properties keysAndValuesDo: [ :eachKey :eachValue |
-		collection add: (LcsSlotAttributelViewItem newLabel: eachKey item: eachValue)]
-]
-
-{ #category : 'gt views' }
 LcsBaseSlot >> addRefactoringTextDetailsTo: aStream [
 	aStream 
 		nextPutAll: (self domainClass ifNil: ['nil'] ifNotNil: [ self domainClass name ]) ; 
 		nextPutAll:' class >>';
 		nextPutAll: self slotDefinitionSource
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> addSlotPropertiesViewItemsTo: collection [
+	collection
+		add: (LcsSlotPropertyViewItem newLabel: '' item: '').
+		"add: '------PROPERTIES------' -> ''."
+	self properties keysAndValuesDo: [ :eachKey :eachValue |
+		collection add: (LcsSlotPropertyViewItem newLabel: eachKey item: eachValue)]
 ]
 
 { #category : 'configuration' }
@@ -291,35 +292,6 @@ LcsBaseSlot >> gtRefactoringChangeOn: aView [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtSlotAttributesViewFor: aView [
-	<gtView>
-	^ aView columnedTree
-		title: 'Attributes';
-		priority: 5;
-		items: [ self gtSlotDefinitionAttributes ];
-		children: [ :each | each children ];
-		column: 'Property' text: #label width: 200;
-		column: 'Value' text: [ :each | each item gtDisplayString ];
-		send: [ :each | each item ];
-		actionUpdateButton;		
-		yourself
-]
-
-{ #category : 'gt views' }
-LcsBaseSlot >> gtSlotDefinitionAttributes [
-	| collection |
-	collection := OrderedCollection new
-		add: (LcsSlotAttributelViewItem newLabel: 'domainClass' item: self domainClass);
-		add: (LcsSlotAttributelViewItem newLabel: 'slotDefinition' item: self newDomainClassName);
-		add: (LcsSlotAttributelViewItem newLabel: 'pragmaSelector' item: self pragmaSelector);
-		add: (LcsSlotAttributelViewItem newLabel: 'slotDefinitionClass' item: self class);
-		yourself.
-	self addPropertyAttributesTo: collection.
-	self addOtherSlotDefinitionDetailsTo: collection.
-	^ collection
-]
-
-{ #category : 'gt views' }
 LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
 	<gtView>
 
@@ -335,6 +307,36 @@ LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
 			self isVirtualSlot ifFalse: [
 				self domainClass addInstanceMethodNamed: self setterSelector asSymbol to: methods].
 			GtPharoMethodsCoder forItems: methods]
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> gtSlotPropertiesViewFor: aView [
+	<gtView>
+	^ aView columnedTree
+		title: 'Properties';
+		priority: 5;
+		items: [ self gtSlotPropertiesViewItems ];
+		children: [ :each | each children ];
+		column: 'Property' text: #label width: 200;
+		column: 'Value' text: [ :each | each item gtDisplayString ];
+		send: [ :each | each item ];
+		actionUpdateButton;		
+		yourself
+]
+
+{ #category : 'gt views' }
+LcsBaseSlot >> gtSlotPropertiesViewItems [
+	| collection |
+	collection := OrderedCollection new
+		add: (LcsSlotPropertyViewItem newLabel: 'parent' item: self parent);
+		add: (LcsSlotPropertyViewItem newLabel: 'domainClass' item: self domainClass);
+		add: (LcsSlotPropertyViewItem newLabel: 'slotDefinition' item: self newDomainClassName);
+		add: (LcsSlotPropertyViewItem newLabel: 'pragmaSelector' item: self pragmaSelector);
+		add: (LcsSlotPropertyViewItem newLabel: 'slotDefinitionClass' item: self class);
+		yourself.
+	self addSlotPropertiesViewItemsTo: collection.
+	self addOtherSlotPropertiesViewItemsTo: collection.
+	^ collection
 ]
 
 { #category : 'gt views' }

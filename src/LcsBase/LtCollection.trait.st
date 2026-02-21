@@ -68,17 +68,7 @@ LtCollection >> gtCollectionSizeThreshold [
 
 { #category : 'printing' }
 LtCollection >> gtDisplayOn: stream [
-	"super gtDisplayOn: aStream.
-	aStream
-		nextPutAll: '[' , self collection size printString , ' item'
-				, (self collection size = 1 ifTrue: [ '' ] ifFalse: [ 's' ]) , ']'.
-	self collection isEmpty ifTrue: [ ^ self ].
-	aStream nextPutAll: '('.
-	self collection
-		do: [ :each | aStream nextPutAll: each description printString ]
-		separatedBy: [ aStream nextPutAll: ',' ].
-	aStream nextPutAll: ')'."
-
+	"super gtDisplayOn: aStream."
 	self printNameOn: stream.
 		stream
 		space;
@@ -99,8 +89,7 @@ LtCollection >> gtItemsFor: aView [
 		title: 'Items' translated;
 		priority: 0.5;
 		object: [ self collection ];
-		view: #gtItemsFor:;
-		actionUpdateButton
+		view: #gtItemsFor:
 ]
 
 { #category : 'printing' }

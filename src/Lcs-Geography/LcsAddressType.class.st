@@ -17,6 +17,15 @@ LcsAddressType class >> parentSlotDefinition [
 		yourself
 ]
 
+{ #category : 'printing' }
+LcsAddressType >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream 
+		nextPutAll: '(';
+		nextPutAll: self code displayString;
+		nextPutAll: ')'
+]
+
 { #category : 'testing' }
 LcsAddressType >> isUnknown [
 	^ self code = 'unknown'

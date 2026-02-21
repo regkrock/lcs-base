@@ -376,6 +376,12 @@ LcsModule >> immediateSubmoduleClasses [
 	^ self class immediateSubmoduleClasses
 ]
 
+{ #category : 'initialize' }
+LcsModule >> initialize [
+	super initialize.
+	self loadData.
+]
+
 { #category : 'modules' }
 LcsModule >> installModule: aModuleClass [
 
@@ -385,7 +391,7 @@ LcsModule >> installModule: aModuleClass [
 
 ]
 
-{ #category : 'initialize' }
+{ #category : 'iniitialize - load data' }
 LcsModule >> loadData [
 	self loadSingletonCodeCollections
 ]

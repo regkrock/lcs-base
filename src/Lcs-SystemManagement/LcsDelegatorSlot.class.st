@@ -6,6 +6,21 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'gt views' }
+LcsDelegatorSlot >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	aUmlModel
+		addAssociation: self slotName
+			from: self domainClass
+			to: self slotTypes first
+]
+
+{ #category : 'gt views' }
+LcsDelegatorSlot >> addClassesToUmlModel: umlModel [ 
+	super addClassesToUmlModel: umlModel.
+	umlModel addClassNamed: self slotTypes first
+]
+
 { #category : 'slot access' }
 LcsDelegatorSlot >> currentSlotVarIn: aTargetDomainObject [
 	| actualDomainObject |
@@ -13,6 +28,12 @@ LcsDelegatorSlot >> currentSlotVarIn: aTargetDomainObject [
 	self targetSlotPath
 		do: [ :each | actualDomainObject := actualDomainObject perform: each asSymbol ].
 	^ actualDomainObject
+]
+
+{ #category : 'magritte' }
+LcsDelegatorSlot >> initialValueBlockDescription [
+	<magritteDescription>
+	^ nil
 ]
 
 { #category : 'initialize' }

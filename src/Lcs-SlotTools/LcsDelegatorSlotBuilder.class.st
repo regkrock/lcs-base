@@ -17,6 +17,11 @@ LcsDelegatorSlotBuilder >> buildJobSteps [
 	self addJobStep: self getterAndSetterMethodsBuilder
 ]
 
+{ #category : 'margritte' }
+LcsDelegatorSlotBuilder >> initialValueBlockDescription [
+	^ nil
+]
+
 { #category : 'job steps' }
 LcsDelegatorSlotBuilder >> slotDefinitionMethodBuilder [
 	^ super slotDefinitionMethodBuilder

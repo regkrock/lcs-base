@@ -5,3 +5,8 @@ Class {
 	#package : 'Lcs-LegalEntities',
 	#tag : 'Core'
 }
+
+{ #category : 'asking' }
+LcsUnknownPerson >> fullName [
+	^ 'Unknown Person'
+]

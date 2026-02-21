@@ -18,10 +18,17 @@ LcsUmlModel class >> new [
 
 { #category : 'configuration' }
 LcsUmlModel >> addAssociation: aString from: aFromClass to: aToClass [
-	self assert: (self hasModelFor: aFromClass).
-	self assert: (self hasModelFor: aToClass).
-	(self classModelForClassname: aFromClass)
-		addAssociation: aString toModelNamed: aToClass.
+	| associationModel priorAssociations associationWithSameEndpoints fromModel toModel|
+	aFromClass isNil ifTrue: [ ^ self ].
+	self assert: (fromModel := self modelFor: aFromClass) notNil.
+	self assert: (toModel := self modelFor: aToClass) notNil.
+
+	priorAssociations := fromModel associations reverse copy.
+	associationModel := fromModel addAssociation: aString toModelNamed: toModel.
+	associationWithSameEndpoints := priorAssociations 
+		detect: [ :each | each toClassModel = associationModel toClassModel]  
+		ifNone: [ ^ self ].
+	associationModel factor: associationWithSameEndpoints factor + 0.6
 ]
 
 { #category : 'configuration' }
@@ -45,10 +52,11 @@ LcsUmlModel >> addClassModelForExisting: aClass [
 ]
 
 { #category : 'configuration' }
-LcsUmlModel >> addClassNamed: aClassname [
-	aClassname isNil ifTrue: [ ^ self ].
-	^ ([ aClassname asString asClass ] on: NotFound do: [ :s | s return: nil ])
-		ifNil: [ self proposedClassModelFor: aClassname ]
+LcsUmlModel >> addClassNamed: aClassOrClassname [
+	aClassOrClassname isNil ifTrue: [ ^ self ].
+	aClassOrClassname isClass ifTrue: [ ^ self addClassModelForExisting: aClassOrClassname ].
+	^ ([ aClassOrClassname asClass ] on: NotFound do: [ :s | s return: nil ])
+		ifNil: [ self proposedClassModelFor: aClassOrClassname ]
 		ifNotNil: [ :class | self addClassModelForExisting: class ]
 ]
 
@@ -80,12 +88,24 @@ LcsUmlModel >> classModelForClassname: aClassname [
 			nil  ] 
 ]
 
+{ #category : 'gt view' }
+LcsUmlModel >> gtItemsFor: aView [
+	<gtView>
+	self collection isNil ifTrue: [ ^ aView empty ].
+	^ aView columnedTree
+		title: 'Items' translated;
+		priority: 0.5;
+		items: [ self collection ];
+		children: [ :each | (each class = LcsAssociationModel) ifTrue: [ #() ] ifFalse: [  each associations ] ];
+		column: 'From Class' text: [ :each | (each class = LcsAssociationModel) ifTrue: [ '' ] ifFalse: [ each ]  ];
+		column: 'Association' text: [ :each | (each class = LcsAssociationModel) ifTrue: [ each associationName] ifFalse: [ '']  ];
+		column: 'To Class' text: [ :each | (each class = LcsAssociationModel) ifTrue: [ each toClassModel ] ifFalse: [ '']  ];
+		actionUpdateButton
+]
+
 { #category : 'testing' }
 LcsUmlModel >> hasModelFor: aStringOrClass [
-	self
-		detect: [ :each | each modelClassname = aStringOrClass or: [ each modelClass = aStringOrClass ] ]
-		ifNone: [ ^ false ].
-	^ true
+	^ (self modelFor: aStringOrClass) notNil
 ]
 
 { #category : 'initialize\t' }
@@ -104,6 +124,13 @@ LcsUmlModel >> layoutPolicy [
 { #category : 'accessing' }
 LcsUmlModel >> layoutPolicy: anObject [
 	layoutPolicy := anObject
+]
+
+{ #category : 'testing' }
+LcsUmlModel >> modelFor: aStringOrClass [
+	^ self
+		detect: [ :each | each modelClassname = aStringOrClass or: [ each modelClass = aStringOrClass ] ]
+		ifNone: [ nil ]
 ]
 
 { #category : 'accessing' }

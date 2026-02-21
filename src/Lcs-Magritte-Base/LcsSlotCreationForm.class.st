@@ -197,6 +197,18 @@ LcsSlotCreationForm >> defaultSlotClass [
 	^ self class defaultSlotClass
 ]
 
+{ #category : 'magritte' }
+LcsSlotCreationForm >> exposeEffectiveDateDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #exposeEffectiveDate
+]
+
+{ #category : 'magritte' }
+LcsSlotCreationForm >> exposeExpiryDateDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #exposeExpiryDate
+]
+
 { #category : 'private' }
 LcsSlotCreationForm >> ghostTextFor: aString [
 	^ BrGhostTextAttribute

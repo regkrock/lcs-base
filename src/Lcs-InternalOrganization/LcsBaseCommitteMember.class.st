@@ -40,6 +40,15 @@ LcsBaseCommitteMember class >> titleSlotDefinition [
 		yourself
 ]
 
+{ #category : 'as yet unclassified' }
+LcsBaseCommitteMember >> gtDisplayOn: aStream [
+	super gtDisplayOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: (self title , '-' , self member printString);
+		nextPutAll: ')'
+]
+
 { #category : 'organization model' }
 LcsBaseCommitteMember >> internalOrganization [
 	^ self parent internalOrganization

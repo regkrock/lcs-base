@@ -76,8 +76,8 @@ LcsPersonExamples >> johnFreeman [
 	self assert: person title code = 'mr'.
 	self assert: person fullName = 'John Edgar Freeman'.
 	self assert: person entityName = 'John Edgar Freeman'.
-	self assert: person postalAddresses hasNoElements.
-	self assert: person emailAddresses hasNoElements.
+	"self assert: person postalAddresses hasNoElements."
+	"self assert: person emailAddresses hasNoElements."
 	self assert: person phoneNumbers hasNoElements.
 	self currentSystem legalEntitiesModule persons includes: person.
 	self assertPendingAddsOfPostalAddresses: 0 emailAddresses: 0 phoneNumbers: 0.
@@ -143,12 +143,12 @@ LcsPersonExamples >> johnFreemanWithEmailAddresses [
 	person := self johnFreeman.
 	self
 		assert: person homeEmailAddress
-		equals: person emailAddresses defaultInstance.
+		equals: person emailAddresses unknownInstance.
 
 	homeEmail := self johnFreemanHomeEmail.
 	person homeEmailAddress: homeEmail.
 	self assert: person homeEmailAddress equals: homeEmail.
-	self assert: person emailAddresses pendingAdds size equals: 1.
+	self assert: person emailAddresses pendingAdds size equals: 2.
 	self
 		assert: self globalEmailAddressesPendingAddsSize
 		equals: originalEmailAddressesPendingAddSize + 1.

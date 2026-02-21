@@ -15,6 +15,21 @@ LcsVirtualSlot class >> isVirtualSlot [
 	^ true
 ]
 
+{ #category : 'gt views' }
+LcsVirtualSlot >> addAssociationsToUmlModel: aUmlModel [
+	super addAssociationsToUmlModel: aUmlModel.
+	aUmlModel
+		addAssociation: self slotName 
+			from: self domainClass
+			to: self slotTypes first
+]
+
+{ #category : 'gt views' }
+LcsVirtualSlot >> addClassesToUmlModel: umlModel [ 
+	super addClassesToUmlModel: umlModel.
+	umlModel addClassNamed: self slotTypes first
+]
+
 { #category : 'slot model' }
 LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
 	^ self valueAccessBlock cull: aDomainObject cull: self

@@ -45,26 +45,6 @@ LcsInvalidSlotTypeError >> gtNewValueViewFor: aView [
 ]
 
 { #category : 'gt view' }
-LcsInvalidSlotTypeError >> gtSlotAttributesViewFor: aView [
-	<gtView>
-	<gtExceptionView>
-	^ aView forward
-		title: 'Slot Attributes';
-		priority: 15;
-		object: [ self slotDefinition ];
-		view: #gtSlotAttributesViewFor:;
-		actionButtonIcon: BrGlamorousVectorIcons inspect 
-			tooltip: 'Inspect ' , self slotDefinition printString
-			action: [ :aButton :aTab | 
-				aButton phlow spawnObject: self slotDefinition ];
-		actionButtonIcon: BrGlamorousVectorIcons browse 
-			tooltip: 'Browse ' , self slotDefinition class name
-			action: [ :aButton :aTab | 
-				aButton phlow spawnObject: self slotDefinition class ]
-
-]
-
-{ #category : 'gt view' }
 LcsInvalidSlotTypeError >> gtSlotDefinitionMethods: aView [
 	<gtView>
 	<gtExceptionView>
@@ -75,6 +55,26 @@ LcsInvalidSlotTypeError >> gtSlotDefinitionMethods: aView [
 		actionButtonIcon: BrGlamorousVectorIcons repair 
 			tooltip: 'Install ' , self slotName , ' Slot Definition'
 			action: [ :aButton :aTab | self reinstallSlotDefinition ]
+
+]
+
+{ #category : 'gt view' }
+LcsInvalidSlotTypeError >> gtSlotPropertiesViewFor: aView [
+	<gtView>
+	<gtExceptionView>
+	^ aView forward
+		title: 'Slot Attributes';
+		priority: 15;
+		object: [ self slotDefinition ];
+		view: #gtSlotPropertiesViewFor:;
+		actionButtonIcon: BrGlamorousVectorIcons inspect 
+			tooltip: 'Inspect ' , self slotDefinition printString
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self slotDefinition ];
+		actionButtonIcon: BrGlamorousVectorIcons browse 
+			tooltip: 'Browse ' , self slotDefinition class name
+			action: [ :aButton :aTab | 
+				aButton phlow spawnObject: self slotDefinition class ]
 
 ]
 

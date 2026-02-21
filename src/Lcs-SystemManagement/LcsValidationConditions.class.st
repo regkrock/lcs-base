@@ -75,14 +75,14 @@ LcsValidationConditions >> removeValidationConditionWithDescription: aDescriptio
 	^ condition ifNotNil: [ self removeValidationCondition: condition ]
 ]
 
-{ #category : 'gt views' }
-LcsValidationConditions >> slotAttributeViewItems [
-	^ self collection collect: [ :each | LcsSlotAttributelViewItem newLabel: '' item: each ]
-]
-
 { #category : 'slot model' }
 LcsValidationConditions >> slotDefinition [
 	^ self parent
+]
+
+{ #category : 'gt views' }
+LcsValidationConditions >> slotPropertiesViewItems [
+	^ self collection collect: [ :each | LcsSlotPropertyViewItem newLabel: '' item: each ]
 ]
 
 { #category : 'conditions' }

@@ -40,14 +40,14 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 ]
 
 { #category : 'gt view' }
-LcsSlotValidationBaseError >> gtSlotDefinitionAttributes: aView [
+LcsSlotValidationBaseError >> gtSlotPropertiesView: aView [
 	<gtView>
 	<gtExceptionView>
 	^aView forward
-		title: 'Slot Attributes';
+		title: 'Slot Properties';
 		priority: 2;
 		object: [ self slotDefinition ];
-		view: #gtSlotAttributesViewFor:
+		view: #gtSlotPropertiesViewFor:
 ]
 
 { #category : 'accessing' }

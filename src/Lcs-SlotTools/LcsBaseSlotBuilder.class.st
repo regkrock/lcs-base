@@ -294,7 +294,7 @@ LcsBaseSlotBuilder >> slotTypesDescription [
 						accessors: #(#slotTypes)
 						read: [ :classes | classes collect: [ :each | each name] ] 
 						write: [ :aModel :setter :collection | 
-							aModel perform: setter with: (collection collect: [ :each | each asClass ] ) ]);
+							aModel perform: setter with: (collection collect: [ :each | each isClass ifTrue: [ each ] ifFalse: [ each asClass ] ] ) ]);
 		classes: { String};
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		blocListStencil: (self

@@ -165,13 +165,16 @@ LcsCodeBuilderStep >> gtPaintTreeWith: aMondrian [
 { #category : 'gt views' }
 LcsCodeBuilderStep >> gtPropertiesFor: aView [
 	<gtView>
-	^ aView columnedList
+	^ aView columnedTree
 		title: 'Properties';
-		items: [ self properties associations ];
-		column: 'Property' text: #key;
-		column: 'Value' text: #value;
-		send: #value;
-		actionUpdateButton
+		priority: 5;
+		items: [ self gtSlotPropertiesViewItems ];
+		children: [ :each | each children ];
+		column: 'Property' text: #label width: 200;
+		column: 'Value' text: [ :each | each item gtDisplayString ];
+		send: [ :each | each item ];
+		actionUpdateButton;		
+		yourself
 ]
 
 { #category : 'gt views' }
@@ -183,6 +186,15 @@ LcsCodeBuilderStep >> gtRefactoringChangeOn: aView [
 		text: [ self refactoringText asRopedText ];
 		actionUpdateButton
 
+]
+
+{ #category : 'gt views' }
+LcsCodeBuilderStep >> gtSlotPropertiesViewItems [
+	| collection |
+	collection := OrderedCollection new.
+	self properties keysAndValuesDo: [ :eachKey :eachValue |
+		collection add: (LcsSlotPropertyViewItem newLabel: eachKey item: eachValue)].
+	^ collection
 ]
 
 { #category : 'gt views' }

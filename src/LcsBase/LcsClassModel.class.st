@@ -13,28 +13,18 @@ Class {
 }
 
 { #category : 'api' }
-LcsClassModel >> addAssociation: aName toClassModelNamed: aClassModelName [
+LcsClassModel >> addAssociation: aName toClassModel: toClassModel [
 	| association |
 	association := LcsAssociationModel new
 						fromClassModel: self;
-						toClassModelName: aClassModelName;
+						toClassModel: toClassModel;
 						associationName: aName.
 	^ self associations add: association
 ]
 
 { #category : 'api' }
-LcsClassModel >> addAssociation: aName toModel: aModel [
-	| association |
-	association := LcsAssociationModel new
-						fromClassModel: self;
-						toClassModel: aModel;
-						associationName: aName.
-	^ self associations add: association
-]
-
-{ #category : 'api' }
-LcsClassModel >> addAssociation: aName toModelNamed: aModelClassname [
-	^ self addAssociation: aName toClassModelNamed: aModelClassname
+LcsClassModel >> addAssociation: aName toModelNamed: aTooClassModel [
+	^ self addAssociation: aName toClassModel: aTooClassModel
 ]
 
 { #category : 'accessing' }

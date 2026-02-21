@@ -29,5 +29,5 @@ LcsDateSlot >> defaultPrevalidationTransformBlock [
 
 { #category : 'configuration' }
 LcsDateSlot >> typeClass [
-	^ LcsSmalltalkConfiguration dateClass
+	^ Date
 ]

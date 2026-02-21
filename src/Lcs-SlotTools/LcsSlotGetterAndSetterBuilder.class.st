@@ -50,7 +50,8 @@ LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
 	self targetClass isNil
 		ifTrue: [ 
 			aStream
-				nextPutAll: self targetClassName asString , ' not yet created. This is the proposed code:';
+				nextPutAll: (self targetClassName ifNil: ['<missing target class name>'] ifNotNil: [ self targetClassName , ' not yet created']);
+				nextPutAll: '. This is the proposed accessor and getter code:';
 				cr;
 				cr.
 			self addGetterAndSetterSourceCodeTo: aStream.

@@ -8,7 +8,7 @@ Class {
 
 { #category : 'data' }
 LcsAddressTypesLoader >> data [
-	^ '[{"code":"home","description":"home","label":"Home","isDefaultInstance":false},{"code":"work","description":"work","label":"Work","isDefaultInstance":false},{"code":"unknown","description":"Unknown","label":"","isDefaultInstance":true}]'
+	^ '[{"code":"home","description":"home","label":"Home","isDefaultInstance":false},{"code":"work","description":"Work","label":"Work","isDefaultInstance":false},{"code":"main","description":"Main","label":"Main","isDefaultInstance":false},{"code":"unknown","description":"Unknown","label":"","isDefaultInstance":true}]'
 ]
 
 { #category : 'configuration' }

@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'fromClassModel',
 		'toClassModel',
-		'toClassModelName',
-		'associationName'
+		'associationName',
+		'factor'
 	],
 	#category : 'LcsBase-Core',
 	#package : 'LcsBase',
@@ -23,6 +23,16 @@ LcsAssociationModel >> associationName: anObject [
 ]
 
 { #category : 'accessing' }
+LcsAssociationModel >> factor [
+	^ factor
+]
+
+{ #category : 'accessing' }
+LcsAssociationModel >> factor: aNumber [
+	factor := aNumber
+]
+
+{ #category : 'accessing' }
 LcsAssociationModel >> fromClassModel [
 	^ fromClassModel
 ]
@@ -30,6 +40,17 @@ LcsAssociationModel >> fromClassModel [
 { #category : 'accessing' }
 LcsAssociationModel >> fromClassModel: anObject [
 	fromClassModel := anObject
+]
+
+{ #category : 'accessing' }
+LcsAssociationModel >> fromClassModelName [
+	^ self fromClassModel modelClassname
+]
+
+{ #category : 'initialize' }
+LcsAssociationModel >> initialize [
+	super initialize.
+	self factor: 0.2
 ]
 
 { #category : 'accessing' }
@@ -44,10 +65,5 @@ LcsAssociationModel >> toClassModel: anObject [
 
 { #category : 'accessing' }
 LcsAssociationModel >> toClassModelName [
-	^ toClassModelName
-]
-
-{ #category : 'accessing' }
-LcsAssociationModel >> toClassModelName: aString [
-	toClassModelName := aString
+	^ self toClassModel modelClassname
 ]
