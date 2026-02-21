@@ -146,6 +146,15 @@ LxxCountry >> formalName: anObject [
 	self slotVarNamed: 'formalName' put: anObject
 ]
 
+{ #category : 'printing' }
+LxxCountry >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream
+		nextPutAll: '(';
+		nextPutAll: self isoCode asString;
+		nextPutAll: ')'
+]
+
 { #category : 'accessing' }
 LxxCountry >> isoCode [
 	^ self slotVarNamed: 'isoCode'

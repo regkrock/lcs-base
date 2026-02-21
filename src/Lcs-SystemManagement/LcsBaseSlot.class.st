@@ -81,7 +81,7 @@ LcsBaseSlot class >> virtualSlotDefinitionName [
 	^ 'virtualSlotDefinition'
 ]
 
-{ #category : 'model' }
+{ #category : 'slot definition types' }
 LcsBaseSlot class >> virtualSlotDefinitionsSelector [
 	^ (self virtualSlotDefinitionName , 's') asSymbol
 ]

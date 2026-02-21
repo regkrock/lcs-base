@@ -155,7 +155,7 @@ LcsSlotModel >> allVirtualSlotDefinitions [
 
 { #category : 'model' }
 LcsSlotModel >> allVirutalSlotDefinitions [
-	^ self allSlotDefinitionsIn: LcsBaseSlot virtualSlotDefinitionName
+	^ self allSlotDefinitionsIn: LcsBaseSlot virtualSlotDefinitionsSelector
 ]
 
 { #category : 'validation' }

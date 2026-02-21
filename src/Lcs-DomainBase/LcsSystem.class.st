@@ -278,8 +278,7 @@ LcsSystem >> initialize [
 	self makeCurrentSystem.
 	self inititalizeSlotModel.
 	super initialize.
-	self currentUnitOfWork applyChanges.
-	self loadData.
+	self currentUnitOfWork applyChanges
 ]
 
 { #category : 'initialize' }
