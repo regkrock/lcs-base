@@ -3,7 +3,9 @@ Class {
 	#superclass : 'LcsDomainObjectSlotBuilder',
 	#instVars : [
 		'exposeEffectiveDate',
-		'exposeExpiryDate'
+		'exposeExpiryDate',
+		'effectiveDate',
+		'expiryDate'
 	],
 	#category : 'Lcs-SlotTools-Core',
 	#package : 'Lcs-SlotTools',
@@ -25,6 +27,39 @@ LcsDateRangeSlotBuilder >> buildJobSteps [
 		self addJobStep: self expiryDateFacadeBuilder ]
 ]
 
+{ #category : 'defaults' }
+LcsDateRangeSlotBuilder >> defaultEffectiveDate [
+	^ Date newDay: 01 month: 01 year: 1970
+]
+
+{ #category : 'defaults' }
+LcsDateRangeSlotBuilder >> defaultExpiryDate [
+	^ Date newDay: 31 month: 12 year: 2100
+]
+
+{ #category : 'accessing' }
+LcsDateRangeSlotBuilder >> effectiveDate [
+	^ self propertyAt: 'effectiveDate' ifAbsentPut: self defaultEffectiveDate
+]
+
+{ #category : 'accessing' }
+LcsDateRangeSlotBuilder >> effectiveDate: anObject [
+	self propertyAt: 'effectiveDate' put: anObject
+]
+
+{ #category : 'margritte' }
+LcsDateRangeSlotBuilder >> effectiveDateDescription [
+	^ MAStringDescription new
+		label: 'Effective date';
+		priority: 8;
+		accessor:(LcsMAPluggableAccessor
+						accessors: #(#effectiveDate)
+						read: [ :aModel | aModel yyyymmdd ]
+						write: [ :aModel :setter :dateString | aModel perform: setter with: (Date fromString: dateString) ]);
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
 { #category : 'job steps' }
 LcsDateRangeSlotBuilder >> effectiveDateFacadeBuilder [
 	| candidateSlotName |
@@ -37,6 +72,33 @@ LcsDateRangeSlotBuilder >> effectiveDateFacadeBuilder [
 				#effectiveDate} asOrderedCollection;
 		slotTypes: (OrderedCollection with: Date);
 		yourself
+]
+
+{ #category : 'accessing' }
+LcsDateRangeSlotBuilder >> expiryDate [
+	^ self propertyAt: 'expiryDate' ifAbsentPut: self defaultExpiryDate
+]
+
+{ #category : 'accessing' }
+LcsDateRangeSlotBuilder >> expiryDate: anObject [
+	self propertyAt: 'expiryDate' put: anObject
+]
+
+{ #category : 'margritte' }
+LcsDateRangeSlotBuilder >> expiryDateDescription [
+	<magritteDescription>
+	| description |
+	description :=  MAStringDescription new
+		label: 'Expiry Date';
+		priority: 8.3;
+		accessor:(LcsMAPluggableAccessor
+						accessors: #(#expiryDate)
+						read: [ :aModel | aModel yyyymmdd ]
+						write: [ :aModel :setter :dateString | aModel perform: setter with: (Date fromString: dateString) ]);
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
+		yourself.
+	^ description "inspect"
 ]
 
 { #category : 'job steps' }
@@ -89,7 +151,7 @@ LcsDateRangeSlotBuilder >> exposeExpiryDateDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Expose expiry date';
-		priority: 8;
+		priority: 8.2;
 		accessor: #exposeExpiryDate;
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
@@ -100,5 +162,7 @@ LcsDateRangeSlotBuilder >> initialize [
 	super initialize.
 	self slotTypes: (OrderedCollection with: LcsDateRange).
 	self exposeEffectiveDate: true.
-	self exposeExpiryDate: true
+	self effectiveDate: self defaultEffectiveDate.
+	self exposeExpiryDate: true.
+	self expiryDate: self defaultExpiryDate
 ]

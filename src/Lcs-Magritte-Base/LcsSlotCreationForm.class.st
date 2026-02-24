@@ -198,6 +198,18 @@ LcsSlotCreationForm >> defaultSlotClass [
 ]
 
 { #category : 'magritte' }
+LcsSlotCreationForm >> effectiveDateDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #effectiveDate
+]
+
+{ #category : 'magritte' }
+LcsSlotCreationForm >> expiryDateDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #expiryDate
+]
+
+{ #category : 'magritte' }
 LcsSlotCreationForm >> exposeEffectiveDateDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #exposeEffectiveDate

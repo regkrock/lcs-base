@@ -33,7 +33,6 @@ LcsCalendar class >> inEffectDateRangeSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsDateRangeSlot new
 			slotName: 'inEffectDateRange';
-			addSlotType: LcsDateRange;
 			yourself
 ]
 

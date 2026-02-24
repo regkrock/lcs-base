@@ -34,6 +34,12 @@ LcsSlotDefinitionMethodFormatter >> addClassTypeKeyword: aPropertyName argument:
 ]
 
 { #category : 'format' }
+LcsSlotDefinitionMethodFormatter >> addDateKeyword: aPropertyName argument: aDate to: aStream [ 
+	aStream addKeyword: aPropertyName argument: '(Date fromString: ' , (aDate printFormat: #(3 2 1 $- 1 1)) printString , ')'
+
+]
+
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue to: aStream [
 	(aPropertyName = 'slotName' and: [ aValue isNil ]) ifTrue: [ ^ self ].
 	self slotTemplate notNil ifTrue: [
@@ -56,7 +62,10 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 
 	aPropertyName = 'valueAccessor' ifTrue: [ 
 		^ aStream addKeyword: aPropertyName symbolArgument: aValue ].		
-				
+
+	aValue class = Date
+		ifTrue: [ ^ self addDateKeyword: aPropertyName argument: aValue to: aStream ].
+		
 	aValue isString
 		ifFalse: [ ^ aStream addKeyword: aPropertyName argument: aValue asString ].
 

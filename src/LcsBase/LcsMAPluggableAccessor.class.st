@@ -28,6 +28,11 @@ LcsMAPluggableAccessor >> accessors: anObject [
 	self chainAccessor accessors: anObject asOrderedCollection
 ]
 
+{ #category : 'model' }
+LcsMAPluggableAccessor >> actualModelFor: aModel [
+	^ self chainAccessor targetModelFromSourceModel: aModel
+]
+
 { #category : 'chain accessor' }
 LcsMAPluggableAccessor >> addSelectorToStartOfAccessChain: aSelector [
 	self chainAccessor addSelectorToStartOfAccessChain: aSelector 
@@ -56,9 +61,14 @@ LcsMAPluggableAccessor >> read: aModel [
 ]
 
 { #category : 'model' }
+LcsMAPluggableAccessor >> setter [
+	^ self chainAccessor setter
+]
+
+{ #category : 'model' }
 LcsMAPluggableAccessor >> write: anObject to: aModel [
-	self writeBlock 
-		value: (self chainAccessor targetModelFromSourceModel: aModel) 
-		value: self chainAccessor setter
-		value: anObject 
+	self writeBlock
+		value: (self actualModelFor: aModel)
+		value: self setter
+		value: anObject
 ]

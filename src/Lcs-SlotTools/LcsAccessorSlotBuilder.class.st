@@ -80,7 +80,7 @@ LcsAccessorSlotBuilder >> allowNilDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Allow Nil';
-		priority: 8;
+		priority: 18;
 		accessor: #'allowNil';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
@@ -101,7 +101,7 @@ LcsAccessorSlotBuilder >> allowNullDescription [
 	<magritteDescription>
 	^ MABooleanDescription new
 		label: 'Allow Null';
-		priority: 8;
+		priority: 19;
 		accessor: #'allowNull';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]

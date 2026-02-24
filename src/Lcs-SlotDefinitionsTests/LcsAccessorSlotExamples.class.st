@@ -9,34 +9,11 @@ Class {
 { #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlot [
 	<gtExample>
-	| accessorSlot |
-	accessorSlot := LcsAccessorSlot new.
-
-	self assert: accessorSlot slotName isNil.
-	self assert: accessorSlot slotTypes isEmpty.
-	self assert: accessorSlot slotTypes class = OrderedCollection.
-	
-	self assert: (accessorSlot validationConditions isKindOf: LcsValidationConditions).
-	self assert: accessorSlot validationConditions parent equals: accessorSlot.
-	self assert: accessorSlot validationConditions isEmpty.
-
-	self assert: accessorSlot allowNil == false.
-	self assert: accessorSlot required == false.
-
-	self assert: accessorSlot variableUpdatePolicyClass equals: LcsUnitOfWorkVariableUpdatePolicy.
-	self assert: (accessorSlot variableUpdatePolicy isKindOf: LcsUnitOfWorkVariableUpdatePolicy).
-	self assert: accessorSlot variableUpdatePolicy parent equals: accessorSlot.
-	
-	self assert: accessorSlot postUpdateActions class equals: LcsUpdateActions.
-	self assert: accessorSlot postUpdateActions isEmpty.
-	self assert: accessorSlot postUpdateActions parent equals: accessorSlot.
-
-	self assert: accessorSlot initialValueBlock printString equals: '[ :parentDomainObject :slot | 
-		(slot slotTypes any new)
-			parent: parentDomainObject;
-			yourself ]'.
-
-	^ accessorSlot
+	| slot |
+	slot := LcsAccessorSlot new.
+	self validateAccessorStyleSlot: slot.
+	self assert: slot slotTypes isEmpty.
+	^ slot
 ]
 
 { #category : 'examples' }
@@ -108,4 +85,47 @@ LcsAccessorSlotExamples >> addDummyValidationActionTo: accessorSlot [
 	self assert: accessorSlot validationConditions collectionSize equals: 1.
 	self assert: validationCondition parent == accessorSlot validationConditions.
 	self assert: accessorSlot validationConditions any == validationCondition
+]
+
+{ #category : 'examples' }
+LcsAccessorSlotExamples >> dateRangeSlot [
+	<gtExample>
+	| slot |
+	slot := LcsDateRangeSlot new.
+	self validateAccessorStyleSlot: slot.
+	self assert: slot slotTypes size = 1.
+	self assert: slot slotTypes first = LcsDateRange.
+	self assert: slot effectiveDate = (Date newDay: 1 month: 1 year: 1970).
+	self assert: slot expiryDate = (Date newDay: 31 month: 12 year: 2100).
+	^ slot
+]
+
+{ #category : 'validation' }
+LcsAccessorSlotExamples >> validateAccessorStyleSlot: slot [
+	self assert: slot properties notEmpty.
+	self assert: slot slotName isNil.
+	self assert: slot slotTypes class = OrderedCollection.
+	
+	self assert: (slot validationConditions isKindOf: LcsValidationConditions).
+	self assert: slot validationConditions parent equals: slot.
+	self assert: slot validationConditions isEmpty.
+
+	self assert: slot allowNil == false.
+	self assert: slot allowNull == false.
+	self assert: slot required == false.
+
+	self assert: slot variableUpdatePolicyClass equals: LcsUnitOfWorkVariableUpdatePolicy.
+	self assert: (slot variableUpdatePolicy isKindOf: LcsUnitOfWorkVariableUpdatePolicy).
+	self assert: slot variableUpdatePolicy parent equals: slot.
+	
+	self assert: slot postUpdateActions class equals: LcsUpdateActions.
+	self assert: slot postUpdateActions isEmpty.
+	self assert: slot postUpdateActions parent equals: slot.
+
+	self assert: slot initialValueBlock printString equals: '[ :parentDomainObject :slot | self newInstanceOfFirstSlotTypeIn: slot parent: parentDomainObject ]'.
+			
+	self assert: slot initialValueBlock printString = slot defaultInitialValueBlock printString.
+	self assert: slot prevalidationTransformBlock printString = slot defaultPrevalidationTransformBlock printString.
+	self assert: slot pragmaSelector = slot defaultPragmaSelector.
+	self assert: slot comment isEmpty.
 ]

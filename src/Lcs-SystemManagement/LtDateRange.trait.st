@@ -11,9 +11,8 @@ Trait {
 { #category : 'slot definitions' }
 LtDateRange classSide >> dateRangeSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainObjectSlot new
+	^ LcsDateRangeSlot new
 		slotName: 'dateRange';
-		addSlotType: LcsDateRange;
 		yourself
 ]
 

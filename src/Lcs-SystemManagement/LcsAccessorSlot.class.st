@@ -207,10 +207,7 @@ LcsAccessorSlot >> currentSlotVarIn: aDomainObject [
 
 { #category : 'defaults' }
 LcsAccessorSlot >> defaultInitialValueBlock [
-	^ [ :parentDomainObject :slot | 
-		(slot slotTypes any new)
-			parent: parentDomainObject;
-			yourself ]
+	^ [ :parentDomainObject :slot | self newInstanceOfFirstSlotTypeIn: slot parent: parentDomainObject ]
 ]
 
 { #category : 'printing' }
@@ -434,6 +431,13 @@ LcsAccessorSlot >> makeDirectUpdateOfVariable [
 LcsAccessorSlot >> makeUpdateOfVariableViaUnitOfWork [
 	self variableUpdatePolicyClassName: LcsUnitOfWorkVariableUpdatePolicy name.
 	self initializeVariableUpdatePolicy
+]
+
+{ #category : 'defaults' }
+LcsAccessorSlot >> newInstanceOfFirstSlotTypeIn: slot parent: parentDomainObject [
+	^ slot slotTypes any new
+		parent: parentDomainObject;
+		yourself
 ]
 
 { #category : 'defaults' }
