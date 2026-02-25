@@ -46,6 +46,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-PrototypeSystem' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-DomainBase' 'Lcs-StateMachine') ].  
 
 			spec package: 'Lcs-BaseTests' with: [ spec requires: #('Lcs-SystemManagement')  ].
+			spec package: 'Lcs-BaseSystemExamples' with: [ spec requires: #('Lcs-BaseTests') ]
 			spec package: 'Lcs-PrototypeSystemTests' with: [ spec requires: #('Lcs-PrototypeSystem' 'Lcs-SystemManagementTests') ].  
 			spec package: 'Lcs-SystemManagementTests' with: [ spec requires: #('Lcs-SystemManagement' 'Lcs-BaseTests') ].
 			spec package: 'Lcs-SlotDefinitionsTests' with: [ spec requires: #('Lcs-PrototypeSystemTests') ].
