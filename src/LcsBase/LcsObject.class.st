@@ -66,6 +66,15 @@ LcsObject >> classFor: aStringOrClass [
 	^ [ aStringOrClass asClass ] on: NotFound do: [ :s | s return: nil ]
 ]
 
+{ #category : 'printing' }
+LcsObject >> gtPrint: anObject on: stream [ 
+	self printOn: stream.
+	stream 
+		nextPutAll: '(';
+		nextPutAll: anObject asString;
+		nextPutAll: ')'
+]
+
 { #category : 'testing' }
 LcsObject >> isApplicationSystem [
 	^ false

@@ -26,3 +26,8 @@ LcsBasePostCode >> code [
 LcsBasePostCode >> code: anObject [
 	self slotVarNamed: 'code' put: anObject
 ]
+
+{ #category : 'printing' }
+LcsBasePostCode >> gtDisplayOn: stream [
+	self gtPrint: self code on: stream
+]

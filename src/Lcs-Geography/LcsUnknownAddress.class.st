@@ -11,3 +11,8 @@ LcsUnknownAddress class >> parentSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsParentSlot new
 ]
+
+{ #category : 'testing' }
+LcsUnknownAddress >> isUnknown [
+	^ true
+]

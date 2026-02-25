@@ -148,6 +148,11 @@ LcsCountry >> formalName: anObject [
 	self slotVarNamed: 'formalName' put: anObject
 ]
 
+{ #category : 'printing' }
+LcsCountry >> gtDisplayOn: stream [
+	self gtPrint: self isoCode on: stream
+]
+
 { #category : 'accessing' }
 LcsCountry >> isoCode [
 	^ self slotVarNamed: 'isoCode'

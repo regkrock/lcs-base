@@ -71,6 +71,11 @@ LcsDateRange >> expiryDate: anObject [
 	self slotVarNamed: 'expiryDate' put: anObject
 ]
 
+{ #category : 'printing' }
+LcsDateRange >> gtDisplayOn: stream [
+	self gtPrint: self effectiveDate yyyymmdd , ' - ' , self expiryDate yyyymmdd on: stream
+]
+
 { #category : 'accessing' }
 LcsDateRange >> isInEffect [
 	^ self slotVarNamed: 'isInEffect'

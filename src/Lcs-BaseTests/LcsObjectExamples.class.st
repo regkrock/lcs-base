@@ -1,6 +1,9 @@
 Class {
 	#name : 'LcsObjectExamples',
 	#superclass : 'LcsObject',
+	#instVars : [
+		'subject'
+	],
 	#category : 'Lcs-BaseTests-Examples',
 	#package : 'Lcs-BaseTests',
 	#tag : 'Examples'
@@ -125,4 +128,14 @@ LcsObjectExamples >> should: aBlock raise: anExceptionalEvent [
 { #category : 'assertions' }
 LcsObjectExamples >> shouldnt: aBlock raise: anExceptionalEvent [
 	^ self assert: (self executeShouldnt: aBlock inScopeOf: anExceptionalEvent)
+]
+
+{ #category : 'accessing' }
+LcsObjectExamples >> subject [
+	^ subject
+]
+
+{ #category : 'accessing' }
+LcsObjectExamples >> subject: anObject [
+	subject := anObject
 ]

@@ -3,9 +3,9 @@ Class {
 	#superclass : 'LcsObject',
 	#traits : 'LtOrderedCollection',
 	#classTraits : 'LtOrderedCollection classTrait',
-	#category : 'Lcs-BaseTests-Tests',
+	#category : 'Lcs-BaseTests-Support',
 	#package : 'Lcs-BaseTests',
-	#tag : 'Tests'
+	#tag : 'Support'
 }
 
 { #category : 'collection' }

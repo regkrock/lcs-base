@@ -60,7 +60,7 @@ LcsAccessorSlotCreationFormTest >> testCreation [
 	self subject: LcsSlotCreationForm new.
 	self assert: self subject targetClass isNil.
 	self assert: self subject isSlotModelBuilderNotReified.
-	self assert: self subject slotClassName isString..
+	self assert: self subject slotClassName isString.
 	self assert: self subject slotClassName isEmpty.
 	self assert: self subject mode isNil.
 	self subject targetClass: LxxPerson.

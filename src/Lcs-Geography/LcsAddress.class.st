@@ -202,7 +202,7 @@ LcsAddress >> country: anObject [
 
 { #category : 'testing' }
 LcsAddress >> isUnknown [
-	^ self addressType isUnknown
+	^ false
 ]
 
 { #category : 'accessing' }

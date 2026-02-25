@@ -214,6 +214,22 @@ LcsPersonExamples >> newPersonWithFirstName: aFirstName familyName: aFamilyName 
 ]
 
 { #category : 'examples' }
+LcsPersonExamples >> oldDateOfBirthValidationError [
+	<gtExample>
+	| person error |
+	person := self johnDoe.
+	error := [ person dateOfBirth: '01-01-1000' ] 
+				on: LcsSlotValidationError
+				do: [ :s | s return: s ].
+	self assert: error class = LcsSlotValidationError.
+	self assert: error context equals: person.
+	self assert: error value equals: (Date fromString: '01-01-1000').
+	self assert: error oldValue equals: person dateOfBirth.
+	self assert: (error isKindOf: LcsSlotValidationError).
+	^ error
+]
+
+{ #category : 'examples' }
 LcsPersonExamples >> samSmith [
 	<gtExample>
 	| person |
@@ -230,4 +246,20 @@ LcsPersonExamples >> saveOriginalStats [
 	originalPhoneNumbersPendingAddSize := self globalPhoneNumbersPendingAddsSize.
 	originalPostalAddressesPendingAddSize := self
 			globalPostalAddressesPendingAddsSize
+]
+
+{ #category : 'examples' }
+LcsPersonExamples >> stringDateOfBirthValidationError [
+	<gtExample>
+	| person error |
+	person := self johnDoe.
+	error := [ person dateOfBirth: '01-01-1000xxxxxx' ] 
+				on: LcsSlotValidationError
+				do: [ :s | s return: s ].
+	self assert: error class = LcsSlotValidationError.
+	self assert: error context equals: person.
+	self assert: error value equals: (Date fromString: '01-01-1000xxxxxx').
+	self assert: error oldValue equals: person dateOfBirth.
+	self assert: (error isKindOf: LcsSlotValidationError).
+	^ error
 ]
