@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsBooleanSlotBuilderExamples',
+	#name : 'LcsIntegerSlotBuilderExamples',
 	#superclass : 'LcsObjectExamples',
 	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
@@ -7,18 +7,18 @@ Class {
 }
 
 { #category : 'examples' }
-LcsBooleanSlotBuilderExamples >> newBuilder [
+LcsIntegerSlotBuilderExamples >> newBuilder [
 	<gtExample>
 	| builder |
-	builder := LcsBooleanSlotBuilder new.
-	self assert: builder slotClassName identicalTo: #LcsBooleanSlot.
-	self assert: (builder slotTypes includes: Boolean).
+	builder := LcsIntegerSlotBuilder new.
+	self assert: builder slotClassName identicalTo: #LcsIntegerSlot.
+	self assert: (builder slotTypes includes: Integer).
 	self assert: builder slotTypes size = 1.
 	^ builder
 ]
 
 { #category : 'examples' }
-LcsBooleanSlotBuilderExamples >> slotDefinitionAccessorMethodBuilder [
+LcsIntegerSlotBuilderExamples >> slotDefinitionAccessorMethodBuilder [
 	<gtExample>
 	| builder |
 	builder := self slotDefinitionBuilderWithSlotName jobStep: 3.
@@ -26,20 +26,7 @@ LcsBooleanSlotBuilderExamples >> slotDefinitionAccessorMethodBuilder [
 ]
 
 { #category : 'examples' }
-LcsBooleanSlotBuilderExamples >> slotDefinitionAccessorMethods [
-	<gtExample>
-	| builder |
-	builder := self slotDefinitionAccessorMethodBuilder.
-	self assert: builder refactoringText equals: 'foo
-	^ self slotVarNamed: ''foo''
-
-foo: anObject
-	self slotVarNamed: ''foo'' put: anObject'.	
-	^ builder refactoringText
-]
-
-{ #category : 'examples' }
-LcsBooleanSlotBuilderExamples >> slotDefinitionBuilderWithSlotName [
+LcsIntegerSlotBuilderExamples >> slotDefinitionBuilderWithSlotName [
 	<gtExample>
 	| builder |
 	builder := self newBuilder
@@ -51,7 +38,7 @@ LcsBooleanSlotBuilderExamples >> slotDefinitionBuilderWithSlotName [
 ]
 
 { #category : 'examples' }
-LcsBooleanSlotBuilderExamples >> slotDefinitionInstanceBuilder [
+LcsIntegerSlotBuilderExamples >> slotDefinitionInstanceBuilder [
 	<gtExample>
 	| builder |
 	builder := self slotDefinitionBuilderWithSlotName jobStep: 1.
@@ -60,22 +47,36 @@ LcsBooleanSlotBuilderExamples >> slotDefinitionInstanceBuilder [
 ]
 
 { #category : 'examples' }
-LcsBooleanSlotBuilderExamples >> slotDefinitionMethodBuilder [
+LcsIntegerSlotBuilderExamples >> slotDefinitionMethodBuilder [
 	<gtExample>
 	| builder |
 	builder := self slotDefinitionBuilderWithSlotName jobStep: 2.
 	^ builder
 ]
 
-{ #category : 'examples' }
-LcsBooleanSlotBuilderExamples >> slotDefinitionMethodSourceCode [
+{ #category : 'tests' }
+LcsIntegerSlotBuilderExamples >> slotDefinitionMethodSourceCode [
 	<gtExample>
 	| builder |
 	builder := self slotDefinitionMethodBuilder.
 	self assert: builder refactoringText equals: 'LcsDomainObject class >>fooSlotDefinition
 	<accessorSlotDefinition>
-	^ LcsBooleanSlot new
+	^ LcsIntegerSlot new
 			slotName: ''foo'';
 			yourself'.
 	^ builder refactoringText
+]
+
+{ #category : 'examples' }
+LcsIntegerSlotBuilderExamples >> slotDefinitionMethodSourceWithModifiedInitialValueBlock [
+	<gtExample>
+	| builder |
+	builder := self slotDefinitionBuilderWithSlotName.
+	builder initialValueBlock: [ 1 ].
+	self assert: (builder jobStep: 2) refactoringText equals:'LcsDomainObject class >>fooSlotDefinition
+	<accessorSlotDefinition>
+	^ LcsIntegerSlot new
+			slotName: ''foo'';
+			initialValueBlock: [ 1 ];
+			yourself'
 ]

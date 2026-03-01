@@ -13,9 +13,34 @@ Class {
 }
 
 { #category : 'system support' }
+LcsObjectExamples >> abortTransaction [
+	System abortTransaction
+]
+
+{ #category : 'asserting' }
+LcsObjectExamples >> assertClassDoesntExist: aString [
+	self should: [ aString asClass ] raise: NotFound
+]
+
+{ #category : 'asserting' }
+LcsObjectExamples >> assertClassExists: aString [
+	self shouldnt: [ aString asClass ] raise: NotFound
+]
+
+{ #category : 'system support' }
+LcsObjectExamples >> beginTransaction [
+	System beginTransaction
+]
+
+{ #category : 'system support' }
 LcsObjectExamples >> clearUnitOfWork [
 	self currentSystem isNil ifTrue: [ ^ self ].
 	self currentSystem clearUnitOfWork
+]
+
+{ #category : 'system support' }
+LcsObjectExamples >> commitTransaction [
+	System commitTransaction
 ]
 
 { #category : 'system support' }

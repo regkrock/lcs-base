@@ -1,61 +1,78 @@
 Class {
 	#name : 'LcsSingletonCodeClassBuilderTest',
-	#superclass : 'LcsCodeBuilderStepTest',
-	#category : 'Lcs-SlotToolsTests-Tests',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
+
+{ #category : 'examples' }
+LcsSingletonCodeClassBuilderTest >> installAndRemoveClass [
+	<gtExample>
+	| builder |
+	self ensureCurrentSystemIsPrototypeSystem.
+	builder := self singletonValueObjectClassBuilder.
+	
+	[
+	  self assertClassDoesntExist: self newClassName.
+  	builder installCode.
+	  self assertClassExists: self newClassName.
+	  builder verifyCodeInstallation]
+		ensure: [
+			builder uninstall.
+			builder verifyUninstall.
+			self assertClassDoesntExist: self newClassName ].
+	^ builder
+]
+
+{ #category : 'examples' }
+LcsSingletonCodeClassBuilderTest >> newBuilder [
+	<gtExample>
+	| builder |
+	builder := LcsSingletonValueObjectClassBuilder new.
+	^builder
+]
 
 { #category : 'private' }
 LcsSingletonCodeClassBuilderTest >> newClassName [
 	^ 'LxxMale1'
 ]
 
-{ #category : 'private' }
-LcsSingletonCodeClassBuilderTest >> targetSuperclassName [
-	^ 'LcsValueObject'
-]
-
-{ #category : 'tests' }
-LcsSingletonCodeClassBuilderTest >> testClassCreationString [
+{ #category : 'examples' }
+LcsSingletonCodeClassBuilderTest >> singletonValueObjectClassBuilder [
+	<gtExample>
 	| builder |
-	builder := LcsSingletonValueObjectClassBuilder new.
-	builder
-		newClassName: self newClassName;
-		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
+	builder := self newBuilder
+				newClassName: self newClassName;
+				targetPackageName: 'Lcs-Temp';
+				targetSuperclassName: self targetSuperclassName;
+				rootName: 'Male'.
 
 	self assert: builder isDefaultInstance not.
 	self assert: builder description = 'Male'.
 	self assert: builder code = #male.
 	self assert: builder label = 'Male'.
+	builder buildJobSteps.
+	self assert: builder jobSteps hasNoJobSteps .
+	^ builder
+]
 
+{ #category : 'examples' }
+LcsSingletonCodeClassBuilderTest >> singletonValueObjectClassCreationString [
+	<gtExample>
+	| builder |
+	builder := self singletonValueObjectClassBuilder.
 	self
 		assert: builder classCreationString
-		equals: 
-'LcsValueObject subclass: #LxxMale1
+		equals: 'LcsValueObject subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
-		package: ''Lcs-Temp'' '
+		package: ''Lcs-Temp'' '.
+	^ builder
 ]
 
-{ #category : 'tests' }
-LcsSingletonCodeClassBuilderTest >> testInstallClass [
-	self subject: LcsSingletonValueObjectClassBuilder new.
-	self subject
-		newClassName: self newClassName;
-		targetPackageName: 'Lcs-Temp';
-		targetSuperclassName: self targetSuperclassName;
-		rootName: 'Male'.
-
-	self subject buildJobSteps.
-	self assert: self subject jobSteps hasNoJobSteps .
-	
-	self should: [ self newClassName asClass ] raise: NotFound.
-	self subject installCode.
-	self shouldnt: [ self newClassName asClass ] raise: NotFound.
-	self subject verifyCodeInstallation
-
+{ #category : 'private' }
+LcsSingletonCodeClassBuilderTest >> targetSuperclassName [
+	^ 'LcsValueObject'
 ]

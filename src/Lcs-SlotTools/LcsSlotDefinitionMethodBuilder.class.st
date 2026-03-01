@@ -115,13 +115,14 @@ LcsSlotDefinitionMethodBuilder >> addSlotClassesToUmlModel: umlModel [
 ]
 
 { #category : 'configuration' }
-LcsSlotDefinitionMethodBuilder >> addSlotType: aClassorClassName [
-	| aClassName |
-	aClassName := aClassorClassName isClass 
-					ifTrue: [ aClassorClassName name asString]
-					ifFalse: [ aClassorClassName ].
-	(self slotTypes includes: aClassorClassName) ifFalse: [ 
-		self slotTypes add: aClassName ]
+LcsSlotDefinitionMethodBuilder >> addSlotType: aClassOrClassName [
+	"Strings are allowed because the class may not yet be created"
+	| item |
+	item := aClassOrClassName isClass 
+					ifTrue: [ aClassOrClassName ] 
+					ifFalse: [ (self classFor: aClassOrClassName) ifNil: [ aClassOrClassName ] ].
+	(self slotTypes includes: item) ifFalse: [
+		self slotTypes add: item ]
 ]
 
 { #category : 'code generation' }

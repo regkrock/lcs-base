@@ -10,3 +10,9 @@ Class {
 LcsIntegerSlotBuilder class >> slotClass [
 	^ LcsIntegerSlot
 ]
+
+{ #category : 'initialize' }
+LcsIntegerSlotBuilder >> initialize [
+	super initialize.
+	self addSlotType: Integer
+]

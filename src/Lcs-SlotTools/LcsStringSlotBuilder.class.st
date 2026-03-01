@@ -10,3 +10,9 @@ Class {
 LcsStringSlotBuilder class >> slotClass [
 	^ LcsStringSlot
 ]
+
+{ #category : 'initialize' }
+LcsStringSlotBuilder >> initialize [
+	super initialize.
+	self addSlotType: String
+]

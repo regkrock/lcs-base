@@ -1,103 +1,85 @@
 Class {
 	#name : 'LcsSlotDefintionMethodBuilderTest',
-	#superclass : 'LcsCodeBuilderStepTest',
+	#superclass : 'LcsObjectExamples',
 	#instVars : [
 		'codeBuilder'
 	],
-	#category : 'Lcs-SlotToolsTests-Tests',
+	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
 
-{ #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testAddingDuplicateToSlotTypes [
-	self subject: LcsSlotDefinitionMethodBuilder new.
-	self subject slotClass: LcsStringSlot.
-	self subject addSlotType: 'String'.
-	self assert: self subject slotTypes size = 1.
-	self assert: self subject slotTypes first = 'String'.
-	
-	self subject addSlotType: 'String'.
-	self assert: self subject slotTypes size = 1.
-	self assert: self subject slotTypes last = 'String'.
-	
-
+{ #category : 'examples' }
+LcsSlotDefintionMethodBuilderTest >> builderWithFourSlotTypes [
+	<gtExample>
+	| builder |
+	builder := self newBuilder.
+	self assert: builder slotTypes isEmpty.
+	builder addSlotType: 'String'.
+	" Duplicates are ignored"
+	builder addSlotType: 'String'.
+	builder addSlotType: 'Number'.
+	builder addSlotType: Object.
+	builder addSlotType: 'XXXX'.
+	self assert: builder slotTypes size = 4.	
+	self assert: (builder slotTypes includes: String).
+	self assert: (builder slotTypes includes: Number).
+	self assert: (builder slotTypes includes: Object).
+	self assert: (builder slotTypes includes: 'XXXX').
+	^ builder
 ]
 
 { #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testAddingSlotTypes [
-	self subject: LcsSlotDefinitionMethodBuilder new.
-	self assert: self subject pragmaSelector = LcsBaseSlot accessorSlotDefinitionName.
-	
-	self subject slotClass: LcsStringSlot.
-	self assert: self subject slotTypes isEmpty.
-	
-	self subject addSlotType: 'String'.
-	self assert: self subject slotTypes size = 1.
-	self assert: self subject slotTypes first = 'String'.
-	
-	self subject addSlotType: 'Number'.
-	self assert: self subject slotTypes size = 2.
-	self assert: self subject slotTypes last = 'Number'.
-	
-	self subject addSlotType: Object.
-	self assert: (self subject slotTypes includes: 'Object')
-]
-
-{ #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testChangingTargetClassName [
-	self subject: LcsSlotDefinitionMethodBuilder new.
-	self subject slotClass: LcsStringSlot.
-	self assert: self subject targetClassName isNil.
-	
-	self subject targetClassName: #Object.
-	self assert: self subject targetClassName = #Object.
-	self assert: self subject targetClass == Object.
-	
-	self subject targetClassName: nil.
-	self assert: self subject targetClassName isNil.
-	self assert: self subject targetClass isNil
-]
-
-{ #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testCreation [
-	self subject: LcsSlotDefinitionMethodBuilder new.
-	self assert: self subject properties class = OrderedDictionary.
-	self assert: self subject slotTypes class = OrderedCollection.
-	self assert: self subject validationConditions class = LcsValidationConditions.
-	self assert: self subject slotTypes isEmpty.
-	self assert: self subject allowNil == false.
-	self assert: self subject required == false.
-	self assert: self subject slotTypes isEmpty.
-	self assert: self subject slotName isNil.
-	self assert: self subject targetClass isNil.
-	self assert: self subject targetClassName isNil
-]
-
-{ #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testInstallingSlotDefinitionMethod [
-	self subject: (
+LcsSlotDefintionMethodBuilderTest >> installedAndRemovedSlotDefinitionMethod [
+	<gtExample>
+	| builder |
+	builder := (
 		LcsSlotDefinitionMethodBuilder new
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
 			yourself).
-	self subject installCode.
-	self assert: (LxxBasePerson respondsTo: ('foo' , 'SlotDefinition') asSymbol)
+	[
+	  builder installCode.
+	  self assert: (LxxBasePerson respondsTo: ('foo' , 'SlotDefinition') asSymbol) ]
+		ensure: [
+			builder uninstall.
+			self deny: (LxxBasePerson respondsTo: ('foo' , 'SlotDefinition') asSymbol) ].
+	^ builder
+]
+
+{ #category : 'examples' }
+LcsSlotDefintionMethodBuilderTest >> newBuilder [
+	<gtExample>
+	| builder |
+	builder := LcsSlotDefinitionMethodBuilder new.
+	self assert:builder properties class = OrderedDictionary.
+	self assert: builder slotTypes class = OrderedCollection.
+	self assert: builder validationConditions class = LcsValidationConditions.
+	self assert: builder slotTypes isEmpty.
+	self assert: builder allowNil == false.
+	self assert: builder required == false.
+	self assert: builder slotTypes isEmpty.
+	self assert: builder slotName isNil.
+	self assert: builder targetClass isNil.
+	self assert: builder targetClassName isNil.
+	self assert: builder pragmaSelector = LcsBaseSlot accessorSlotDefinitionName.
+	self verifyChangingTargetClassName: builder.
+	^ builder
 ]
 
 { #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnLcsCodeSlot [
-	| methodSource |
-	self subject: (
+LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodStringBaseOnLcsStringSlot [
+	<gtExample>
+	| builder |
+	builder := 
 		LcsSlotDefinitionMethodBuilder new
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
-			yourself).
-	methodSource := self subject slotDefinitionSource.
-	self assert: methodSource equals: 'fooSlotDefinition
+			yourself.
+	self assert: builder slotDefinitionSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 			slotName: ''foo'';
@@ -105,60 +87,60 @@ LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnL
 			yourself'
 ]
 
-{ #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringBaseOnLcsStringSlot [
-	| methodSource |
-	self subject: (
-		LcsSlotDefinitionMethodBuilder new
-			slotName: 'foo';
-			slotClass: LcsStringSlot;
-			targetClassName: #LxxBasePerson;
-			required: true;
-			yourself).
-	methodSource := self subject slotDefinitionSource.
-	self assert: methodSource equals: 'fooSlotDefinition
-	<accessorSlotDefinition>
-	^ LcsStringSlot new
-			slotName: ''foo'';
-			required: true;
-			yourself'
-]
-
-{ #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodStringWithNoSlotNameDefined [
-	self should: [
-		(LcsSlotDefinitionMethodBuilder new
+{ #category : 'examples' }
+LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodStringWithNoSlotNameDefined [
+	<gtExample>
+	| builder |
+	builder := LcsSlotDefinitionMethodBuilder new
 			slotClass: LcsAccessorSlot;
 			targetClassName: #LxxBasePerson;
 			required: true;
-			yourself) 
-				slotDefinitionSource ] raise: LcsError
+			yourself.
+	self should: [ builder slotDefinitionSource ] raise: LcsError.
+	^ builder
 ]
 
 { #category : 'tests' }
-LcsSlotDefintionMethodBuilderTest >> testSlotDefinitionSourceMethodWithValidationConditions [
-| methodSource validationCondition |
-	self subject: (
-		LcsSlotDefinitionMethodBuilder new
+LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodWithValidationConditions [
+	<gtExample>
+	| methodSource validationCondition builder |
+	builder := (
+		self newBuilder
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
 			addValidationCondition: [ false ] description: 'Always fails';
 			yourself).
-	self assert: self subject validationConditions collectionSize = 1.
-	validationCondition := (self subject validationConditions validationConditionWithDescription: 'Always fails').
+	self assert: builder validationConditions collectionSize = 1.
+	validationCondition := (builder validationConditions validationConditionWithDescription: 'Always fails').
 	self assert: validationCondition conditionBlock printString equals: '[ false ]'.
 	self assert: validationCondition validationDescription  equals: 'Always fails'.
 	
-	methodSource := self subject slotDefinitionSource.
+	methodSource := builder slotDefinitionSource.
 	self assert: methodSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: ''foo'';
 			addValidationCondition: [ false ] description: ''Always fails'';
+			slotName: ''foo'';
 			yourself'.
 		
-	self subject installCode.
-	self subject verifyCodeInstallation
+	^ builder
+]
 
+{ #category : 'tests' }
+LcsSlotDefintionMethodBuilderTest >> verifyChangingTargetClassName: builder [
+	self assert: builder targetClassName isNil.
+	self assert: builder targetClass isNil.
+	
+	builder targetClassName: #Object.
+	self assert: builder targetClassName = #Object.
+	self assert: builder targetClass == Object.
+
+	builder targetClass: Integer.
+	self assert: builder targetClassName = #Integer.
+	self assert: builder targetClass == Integer.
+	
+	builder targetClassName: nil.
+	self assert: builder targetClassName isNil.
+	self assert: builder targetClass isNil
 ]

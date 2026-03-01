@@ -34,10 +34,11 @@ LcsAccessorSlotBuilder >> addClassesToUmlModel: aUmlModel [
 
 { #category : 'initialize' }
 LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
+	"Strings are allowed because the class may not yet be created"
 	| item |
 	item := aClassOrClassName isClass 
 					ifTrue: [ aClassOrClassName ] 
-					ifFalse: [ aClassOrClassName asString ].
+					ifFalse: [ (self classFor: aClassOrClassName) ifNil: [ aClassOrClassName ] ].
 	(self slotTypes includes: item) ifFalse: [
 		self slotTypes add: item ]
 ]

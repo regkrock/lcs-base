@@ -113,7 +113,8 @@ LcsSlotDetailBuilder >> targetClass [
 
 { #category : 'accessing' }
 LcsSlotDetailBuilder >> targetClass: anObject [
-	targetClass := anObject
+	targetClass := anObject.
+	targetClassName := anObject isClass ifTrue: [ anObject name ] ifFalse: [ nil ]
 ]
 
 { #category : 'accessing' }
@@ -124,5 +125,5 @@ LcsSlotDetailBuilder >> targetClassName [
 { #category : 'accessing' }
 LcsSlotDetailBuilder >> targetClassName: anObject [
 	targetClassName := anObject.
-	self targetClass: nil.
+	targetClass := nil.
 ]
