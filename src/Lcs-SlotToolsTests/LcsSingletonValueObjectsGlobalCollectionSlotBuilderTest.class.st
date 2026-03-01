@@ -1,9 +1,9 @@
 Class {
 	#name : 'LcsSingletonValueObjectsGlobalCollectionSlotBuilderTest',
 	#superclass : 'LcsCodeBuilderStepTest',
-	#category : 'Lcs-SlotToolsTests-Tests',
+	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
 
 { #category : 'tests' }

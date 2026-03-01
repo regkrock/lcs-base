@@ -70,7 +70,7 @@ LcsNumberSlotExamples >> weightNumberSlotInitialValue [
 	<gtExample>
 	| slot |
 	slot := self weightNumberSlot.
-	self assert: slot initialValueBlock printString equals: '[ :parentDomainObject :slot | 0 ]'.
+	self assert: slot initialValueBlock printString equals:'[ :parentDomainObject :slot | 0 ]'.
 	self assert: slot initialValue equals: 0.
 	^ slot initialValue
 ]
