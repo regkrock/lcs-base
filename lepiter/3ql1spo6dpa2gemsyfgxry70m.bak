@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-12-08T16:44:04.978487-05:00"
+						"dateAndTimeString" : "2025-12-08T16:44:10.142094-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "WDwk4mXQDQCH/k4kAKwlPw=="
 				},
-				"code" : "failures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\rtestClasses := OrderedCollection new.\rfuture := [ \r\t(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestClasses add: each.\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed addAll: testResult passed ] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors ] ] ] asAsyncPromiseWithUserBackgroundPriority.\rfuture then: [\r\tresults \r\t\tadd: 'Test Classes Ran: ' , testClasses size printString;\r\t\tadd: 'Passed (' , passed size printString , ' passed tests)';\r\t\tadd: passed;\r\t\tadd: 'Failed (' , failures size printString , ' failed tests)'.\r\tfailures isNotEmpty ifTrue: [ results add: failures ].\r\tresults add: 'Errors (' , errors size printString , ' error tests)'.\r\terrors isNotEmpty ifTrue: [ results add: errors ].\r\tresults"
+				"code" : "failures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\rtestClasses := OrderedCollection new.\rfuture := [ \r\t(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestClasses add: each.\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed addAll: testResult passed ] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors ] ] ] asAsyncPromiseWithUserBackgroundPriority.\rfuture then: [\r\tresults \r\t\tadd: 'Test Classes Ran: ' , testClasses size printString;\r\t\tadd: 'Passed (' , passed size printString , ' passed tests)';\r\t\tadd: passed;\r\t\tadd: 'Failed (' , failures size printString , ' failed tests)'.\r\tfailures isNotEmpty ifTrue: [ results add: failures ].\r\tresults add: 'Errors (' , errors size printString , ' error tests)'.\r\terrors isNotEmpty ifTrue: [ results add: errors ].\r\tresults ]"
 			},
 			{
 				"__type" : "textSnippet",
@@ -250,6 +250,40 @@
 					"uidString" : "+W+jhKH4DQCxHSqQAJnPzw=="
 				},
 				"code" : "Pragma allNamed: #gtExample \t\"This uses the cache to find its results\""
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-26T13:07:40.88091-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-28T12:17:05.171229-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oVo10/fLSF+XQEJd5l+C8A=="
+				},
+				"code" : "\"List test classes - 88 classes\"\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not].\r\r\"Totoal number of testMethods - 279 methods \" \rLcsTestCase withAllSubclasses inject: 0 into: [ :total :each  | total + each buildSuite tests size ].\r"
 			}
 		]
 	},

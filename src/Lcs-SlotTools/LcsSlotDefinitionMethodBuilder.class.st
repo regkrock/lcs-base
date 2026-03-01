@@ -126,7 +126,7 @@ LcsSlotDefinitionMethodBuilder >> addSlotType: aClassorClassName [
 
 { #category : 'code generation' }
 LcsSlotDefinitionMethodBuilder >> addValidationCondition: aStringBlock description: aDescription [
-	self validationConditions addValidationCondition: aStringBlock description: aDescription
+	^ self validationConditions addValidationCondition: aStringBlock description: aDescription
 ]
 
 { #category : 'accessing' }

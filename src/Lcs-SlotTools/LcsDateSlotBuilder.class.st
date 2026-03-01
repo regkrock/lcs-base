@@ -10,3 +10,9 @@ Class {
 LcsDateSlotBuilder class >> slotClass [
 	^ LcsDateSlot
 ]
+
+{ #category : 'initialize' }
+LcsDateSlotBuilder >> initialize [
+	super initialize.
+	self addSlotType: Date
+]

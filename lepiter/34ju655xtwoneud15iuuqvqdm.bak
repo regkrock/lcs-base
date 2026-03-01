@@ -77,7 +77,7 @@
 				"previewHeight" : 500,
 				"previewShowSelector" : "gtViewsFor:",
 				"exampleBehaviorName" : "LcsDateSlotCreationFormExamples",
-				"codeExpanded" : true,
+				"codeExpanded" : false,
 				"previewExpanded" : true,
 				"noCode" : false
 			}

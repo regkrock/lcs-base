@@ -95,7 +95,7 @@ LcsAccessorSlot >> addValidationCondition: aValidationCondition [
 
 { #category : 'validations' }
 LcsAccessorSlot >> addValidationCondition: aBlock description: aString [
-	self validationConditions addValidationCondition: aBlock description: aString
+	^ self validationConditions addValidationCondition: aBlock description: aString
 ]
 
 { #category : 'properties' }
@@ -168,6 +168,11 @@ LcsAccessorSlot >> audit: anObject withAuditor: anAuditor [
 { #category : 'configuration' }
 LcsAccessorSlot >> beAllowNil [ 
 	self allowNil: true
+]
+
+{ #category : 'configuration' }
+LcsAccessorSlot >> beDisallowNil [ 
+	self allowNil: false
 ]
 
 { #category : 'configuration' }
@@ -646,13 +651,7 @@ LcsAccessorSlot >> validate: aValue context: aDomainObject [
 LcsAccessorSlot >> validate: anObject for: aDomainObject [
 	| oldValue |
 	oldValue := aDomainObject perform: self getterSelector.
-	self verifySlotType: anObject for: aDomainObject.
-	(self isNilAllowed and: [ anObject isNil and: [ oldValue isNil ] ]) ifTrue: [ ^self ].
-	(self isNullAllowed and: [ (self isNullObject: anObject)]) ifTrue: [ ^ self ].
-	self validationConditions 
-		validate: anObject 
-		context: aDomainObject 
-		oldValue: oldValue
+	self validate: anObject for: aDomainObject  oldValue: oldValue
 ]
 
 { #category : 'slot model' }

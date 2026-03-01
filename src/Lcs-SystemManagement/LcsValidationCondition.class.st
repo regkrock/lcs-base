@@ -142,7 +142,7 @@ LcsValidationCondition >> validate: aValue [
 					oldValue: nil
 					message: s message ].
 	isError isBoolean
-		ifFalse: [ LcsSlotValidationNonBooleanResultError
+		ifFalse: [ ^ LcsSlotValidationNonBooleanResultError
 				signalBooleanNotReturnedFor: aValue
 				condition: self
 				inSlot: self slotDefinition
@@ -150,7 +150,7 @@ LcsValidationCondition >> validate: aValue [
 				oldValue: nil ].
 
 	isError == true
-		ifTrue: [ LcsSlotValidationError
+		ifTrue: [ ^ LcsSlotValidationError
 				signalInvalidValue: aValue
 				forCondition: self
 				inSlot: self slotDefinition

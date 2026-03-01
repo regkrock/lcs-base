@@ -7,22 +7,7 @@ Class {
 }
 
 { #category : 'tests' }
-LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
-	self subject: (
-		LcsGlobalCollectionSlotBuilder new
-			slotName: 'foos';
-			targetClassName: LxxPrototypeSystem name;
-			targetModuleClass: LxxPrototypeSystem name;
-			collectionMemberTypes: (OrderedCollection with:  LxxPerson name );
-			addSlotType: LxxPersons name ;
-			yourself).
-	self subject buildJobSteps.
-	self subject installCode.
-	self subject verifyCodeInstallation
-]
-
-{ #category : 'tests' }
-LcsGlobalCollectionSlotBuilderTest >> testSlotDefinitionSourceCode [
+LcsGlobalCollectionSlotBuilderTest >> slotDefinitionSourceCode [
 	self subject: (
 		LcsGlobalCollectionSlotBuilder new
 			slotName: 'foos';
@@ -40,4 +25,19 @@ LcsGlobalCollectionSlotBuilderTest >> testSlotDefinitionSourceCode [
 			addCollectionMemberType: LxxPerson;
 			slotName: ''foos'';
 			yourself'
+]
+
+{ #category : 'tests' }
+LcsGlobalCollectionSlotBuilderTest >> testInstallingGlobalCollectionSlot [
+	self subject: (
+		LcsGlobalCollectionSlotBuilder new
+			slotName: 'foos';
+			targetClassName: LxxPrototypeSystem name;
+			targetModuleClass: LxxPrototypeSystem name;
+			collectionMemberTypes: (OrderedCollection with:  LxxPerson name );
+			addSlotType: LxxPersons name ;
+			yourself).
+	self subject buildJobSteps.
+	self subject installCode.
+	self subject verifyCodeInstallation
 ]

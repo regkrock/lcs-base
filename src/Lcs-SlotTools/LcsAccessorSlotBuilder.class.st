@@ -34,12 +34,12 @@ LcsAccessorSlotBuilder >> addClassesToUmlModel: aUmlModel [
 
 { #category : 'initialize' }
 LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
-	| className |
-	className := aClassOrClassName isClass 
-					ifTrue: [ aClassOrClassName name asString ] 
+	| item |
+	item := aClassOrClassName isClass 
+					ifTrue: [ aClassOrClassName ] 
 					ifFalse: [ aClassOrClassName asString ].
-	(self slotTypes includes: className) ifFalse: [
-		self slotTypes add: className ]
+	(self slotTypes includes: item) ifFalse: [
+		self slotTypes add: item ]
 ]
 
 { #category : 'gt views' }
@@ -62,7 +62,7 @@ LcsAccessorSlotBuilder >> addValidationCondition: aValidationCondition [
 
 { #category : 'slot model' }
 LcsAccessorSlotBuilder >> addValidationCondition: aBlock description: aDescription [
-	self validationConditions addValidationCondition: aBlock description: aDescription
+	^ self validationConditions addValidationCondition: aBlock description: aDescription
 ]
 
 { #category : 'properties' }

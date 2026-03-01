@@ -37,20 +37,27 @@ LcsUnitsOfWorkManager >> applicationEnvironmentViewChildren [
 ]
 
 { #category : 'api' }
+LcsUnitsOfWorkManager >> createCurrentUnitOfWorkFor: aSystem [
+	self currentUnitOfWork: (self createUnitOfWorkFor: aSystem).
+	^ self currentUnitOfWork
+]
+
+{ #category : 'api' }
 LcsUnitsOfWorkManager >> createUnitOfWork [
 	^ self createUnitOfWorkFor: nil
 ]
 
 { #category : 'api' }
 LcsUnitsOfWorkManager >> createUnitOfWorkFor: aSystem [
-	self currentUnitOfWork: (LcsUnitOfWork newOn: aSystem).
-	self unitsOfWork add: self currentUnitOfWork.
-	^ self currentUnitOfWork
+	| unitOfWork |
+	unitOfWork := LcsUnitOfWork newOn: aSystem.
+	self unitsOfWork add: unitOfWork.
+	^ unitOfWork
 ]
 
 { #category : 'api' }
 LcsUnitsOfWorkManager >> createUnitOfWorkForCurrentSystem [
-	^ self createUnitOfWorkFor: self currentSystem
+	^ self createCurrentUnitOfWorkFor: self currentSystem
 ]
 
 { #category : 'accessing' }
@@ -84,6 +91,11 @@ LcsUnitsOfWorkManager >> gtUnitsOfWorkManagerFor: aView [
 { #category : 'testing' }
 LcsUnitsOfWorkManager >> hasCurrentUnitOfWork [
 	^self currentUnitOfWork notNil
+]
+
+{ #category : 'testing' }
+LcsUnitsOfWorkManager >> hasUnitOfWork: aUnitOfWork [
+	^ self unitsOfWork includes: aUnitOfWork
 ]
 
 { #category : 'testing' }

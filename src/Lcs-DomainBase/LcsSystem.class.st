@@ -8,7 +8,8 @@ Class {
 		'status',
 		'systemSlotModel',
 		'globalCollections',
-		'uuidGenerator'
+		'uuidGenerator',
+		'unitOfWork'
 	],
 	#category : 'Lcs-DomainBase-Core',
 	#package : 'Lcs-DomainBase',
@@ -79,6 +80,16 @@ LcsSystem class >> systemSlotModelSlotDefinition [
 		slotName: 'systemSlotModel';
 		addSlotType: LcsSystemSlotModel;
 		addCollectionMemberType: LcsSlotModel;
+		makeDirectUpdateOfVariable;
+		yourself
+]
+
+{ #category : 'slot definitions' }
+LcsSystem class >> unitOfWorkSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsAccessorSlot new
+		slotName: 'unitOfWork';
+		addSlotType: LcsUnitOfWork;
 		makeDirectUpdateOfVariable;
 		yourself
 ]
@@ -220,6 +231,15 @@ LcsSystem >> gtConfigurationIssuesFor: aView [
 		object: [ self configurationValidator ];
 		view: #gtConfigurationIssuesFor:;
 		yourself
+]
+
+{ #category : 'printing' }
+LcsSystem >> gtDisplayOn: aStream [
+	super gtDisplayOn: aStream.
+	aStream
+		nextPutAll: ' (';
+		nextPutAll: self statusNameString;
+		nextPutAll: ')'
 ]
 
 { #category : 'gt views' }
@@ -396,7 +416,7 @@ LcsSystem >> isPrototypeSystem [
 
 { #category : 'environment' }
 LcsSystem >> makeCurrentSystem [
-	LcsApplicationEnvironment systemsManager addSystem: self
+	LcsApplicationEnvironment systemsManager addCurrentSystem: self
 ]
 
 { #category : 'slot model' }
@@ -416,15 +436,6 @@ LcsSystem >> newSuspendedState [
 	^ LcsSystemSuspendedStatus new
 		parent: self;
 		yourself
-]
-
-{ #category : 'printing' }
-LcsSystem >> printOn: aStream [
-	super printOn: aStream.
-	aStream
-		nextPutAll: ' (';
-		nextPutAll: self statusNameString;
-		nextPutAll: ')'
 ]
 
 { #category : 'unit of work' }
@@ -569,7 +580,12 @@ LcsSystem >> toggleStatus [
 
 { #category : 'unit of work' }
 LcsSystem >> unitOfWork [
-	^ self currentUnitOfWork
+	^ unitOfWork
+]
+
+{ #category : 'accessing' }
+LcsSystem >> unitOfWork: anObject [
+	unitOfWork := anObject
 ]
 
 { #category : 'accessing' }

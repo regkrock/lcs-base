@@ -10,3 +10,9 @@ Class {
 LcsBooleanSlotBuilder class >> slotClass [
 	^ LcsBooleanSlot
 ]
+
+{ #category : 'initialize' }
+LcsBooleanSlotBuilder >> initialize [
+	super initialize.
+	self addSlotType: Boolean
+]

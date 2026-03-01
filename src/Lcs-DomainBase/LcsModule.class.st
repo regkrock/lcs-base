@@ -231,7 +231,7 @@ LcsModule >> allSubmoduleClasses [
 LcsModule >> buildModule: eachModuleClass [ 
 	eachModuleClass hasSlotModel ifFalse: [
 		eachModuleClass initializeSlotModel.].
-	self modules buildModuleFor: eachModuleClass
+	^ self modules buildModuleFor: eachModuleClass
 ]
 
 { #category : 'building' }
@@ -296,6 +296,15 @@ LcsModule >> gtApplicationModulesFor: aView [
 		view: #gtApplicationModulesFor:;
 		actionUpdateButton;
 		yourself
+]
+
+{ #category : 'accessing' }
+LcsModule >> gtDisplayOn: aStream [
+	super printOn: aStream.
+	aStream 
+		nextPutAll: ' (';
+		nextPutAll: self objectId asString;
+		nextPutAll: ')'
 ]
 
 { #category : 'gt views' }
@@ -387,8 +396,7 @@ LcsModule >> installModule: aModuleClass [
 
 	"self currentSystem globalCollections remove: aModuleClass ifAbsent: [ ]."
 	aModuleClass initializeSlotModel.
-	self buildModule: aModuleClass
-
+	^ self buildModule: aModuleClass
 ]
 
 { #category : 'iniitialize - load data' }
@@ -464,13 +472,4 @@ LcsModule >> owningModule [
 { #category : 'asking' }
 LcsModule >> parentModuleClassName [
 	^ self parent parent class name asString
-]
-
-{ #category : 'accessing' }
-LcsModule >> printOn: aStream [
-	super printOn: aStream.
-	aStream 
-		nextPutAll: ' (';
-		nextPutAll: self objectId asString;
-		nextPutAll: ')'
 ]

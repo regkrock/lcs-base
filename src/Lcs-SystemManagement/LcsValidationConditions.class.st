@@ -23,7 +23,7 @@ LcsValidationConditions >> addValidationCondition: aValidationCondition [
 
 { #category : 'conditions' }
 LcsValidationConditions >> addValidationCondition: aBlock description: aString [
-	self addValidationCondition: (
+	^ self addValidationCondition: (
 		LcsValidationCondition new
 			validationDescription: aString;
 			conditionBlock: aBlock;
@@ -105,11 +105,7 @@ LcsValidationConditions >> validate: aValue context: aDomainObject oldValue: anO
 { #category : 'conditions' }
 LcsValidationConditions >> validate: aValue withValidator: aValidator [
 	self collection do: [ :eachCondition | 
-		[ eachCondition validate: aValue ]
-			on: LcsSlotValidationError
-			do: [ :s | 
-				aValidator errorDescriptions add: eachCondition validationErrorMessage.
-				s return: nil ] ]
+		eachCondition validate: aValue context: nil oldValue: nil ]
 ]
 
 { #category : 'querying' }

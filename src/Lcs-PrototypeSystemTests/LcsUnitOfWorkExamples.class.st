@@ -1,26 +1,15 @@
 Class {
-	#name : 'LcsUnitOfWorkTest',
-	#superclass : 'LcsPrototypeSystemRunningTest',
-	#category : 'Lcs-PrototypeSystemTests-Tests',
+	#name : 'LcsUnitOfWorkExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-PrototypeSystemTests-Examples',
 	#package : 'Lcs-PrototypeSystemTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
 
-{ #category : 'tests' }
-LcsUnitOfWorkTest >> testCreation [
-
-	| unitOfWork |
-
-	unitOfWork := LcsUnitOfWork new.
-	self assert: unitOfWork system isNil.
-	self assert: unitOfWork addedObjects isEmpty.
-	self assert: unitOfWork deletedObjects isEmpty.
-	self assert: unitOfWork changedObjects isEmpty.
-]
-
-{ #category : 'tests' }
-LcsUnitOfWorkTest >> testDeleteDomainObject [
-	"| domainObject |
+{ #category : 'examples' }
+LcsUnitOfWorkExamples >> deleteDomainObject [
+	"<gtExample>
+	| domainObject |
 	LxxPrototypeSystem new. 
 	domainObject := LcsDomainObject new.
 	self assert: LcsApplicationEnvironment currentUnitOfWork addedObjects isEmpty.
@@ -37,10 +26,11 @@ LcsUnitOfWorkTest >> testDeleteDomainObject [
 	self assert: LcsApplicationEnvironment currentUnitOfWork deletedObjects any domainObject == domainObject"
 ]
 
-{ #category : 'tests' }
-LcsUnitOfWorkTest >> testHistoryCreationWithNewDomainObject [
-	| domainObject |
-		
+{ #category : 'examples' }
+LcsUnitOfWorkExamples >> historyObjectOfNewDomainObject [
+	<gtExample>
+	| domainObject history |
+	self ensureCurrentSystemIsPrototypeSystem.
 	domainObject := LcsDomainObject new.
 
 	"Set parent to a 'nonsensical' value so changes can be applied. This is a hack for this test"
@@ -53,12 +43,16 @@ LcsUnitOfWorkTest >> testHistoryCreationWithNewDomainObject [
 	self assert: domainObject lastUpdatedDate equals: domainObject history creationTimestamp asDate.
 	self assert: domainObject lastUpdatedTimestamp equals: domainObject history creationTimestamp.
 	self assert: domainObject creator equals: self currentSystem currentUser.
-	self assert: domainObject history userUuid isInteger
+	self assert: (history := domainObject history) userUuid isInteger.
+	self removeCurrentSystemAndActivateSavedSystem.
+	^ history
 ]
 
-{ #category : 'tests' }
-LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
+{ #category : 'examples' }
+LcsUnitOfWorkExamples >> historyOfAllSlotChanges [
+	<gtExample>
 	| person slotChangeHistory |
+	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
@@ -81,12 +75,15 @@ LcsUnitOfWorkTest >> testHistoryOfAllSlotChanges [
 	self currentSystem applyChanges.
 	slotChangeHistory := person historyOfAllSlotChanges.
 	self assert: slotChangeHistory size equals: person allAccessorSlotDefinitions size + 4.
+	^ slotChangeHistory
 
 ]
 
 { #category : 'tests' }
-LcsUnitOfWorkTest >> testHistoryOfSlotChange [
+LcsUnitOfWorkExamples >> historyOfSlotChange [
+	<gtExample>
 	| person slotChangeHistory |
+	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
@@ -109,12 +106,15 @@ LcsUnitOfWorkTest >> testHistoryOfSlotChange [
 	self currentSystem applyChanges.
 	slotChangeHistory := person historyOfChangesToSlot: 'dateOfBirth'.
 	self assert: slotChangeHistory size = 3.
-
+	self removeCurrentSystemAndActivateSavedSystem.
+	^ slotChangeHistory
 ]
 
-{ #category : 'tests' }
-LcsUnitOfWorkTest >> testLastUpdatedDate [
+{ #category : 'examples' }
+LcsUnitOfWorkExamples >> lastUpdatedDate [
+	<gtExample>
 	| person creationTimestamp |
+	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
@@ -126,5 +126,19 @@ LcsUnitOfWorkTest >> testLastUpdatedDate [
 	self currentSystem applyChanges.
 	
 	self assert: person lastUpdatedTimestamp > creationTimestamp.
-	self assert: person lastUpdatedUser equals: self currentSystem currentUser
+	self assert: person lastUpdatedUser equals: self currentSystem currentUser.
+	self removeCurrentSystemAndActivateSavedSystem.
+	^ person lastUpdatedTimestamp
+]
+
+{ #category : 'examples' }
+LcsUnitOfWorkExamples >> newUnitOfWork [
+	<gtExample>
+	| unitOfWork |
+	unitOfWork := LcsUnitOfWork new.
+	self assert: unitOfWork system isNil.
+	self assert: unitOfWork addedObjects isEmpty.
+	self assert: unitOfWork deletedObjects isEmpty.
+	self assert: unitOfWork changedObjects isEmpty.
+	^ unitOfWork
 ]

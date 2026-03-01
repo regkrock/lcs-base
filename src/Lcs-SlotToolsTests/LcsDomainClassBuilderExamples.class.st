@@ -1,19 +1,19 @@
 Class {
-	#name : 'LcsDomainCollectionClassBuilderTest',
+	#name : 'LcsDomainClassBuilderExamples',
 	#superclass : 'LcsObjectExamples',
 	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
 	#tag : 'Examples'
 }
 
-{ #category : 'examples' }
-LcsDomainCollectionClassBuilderTest >> builderInstallAndRemoveClass [
+{ #category : 'as yet unclassified' }
+LcsDomainClassBuilderExamples >> builderInstallAndRemoveClass [
 	<gtExample>
 	| builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	[
 		self should: [ self newClassname asClass ] raise: NotFound.
-		builder := self builderWithLxxMalesCreationString.
+		builder := self builderWithLxxMale1CreationString.
 		builder installCode.
 		self shouldnt: [ self newClassname asClass ] raise: NotFound.
 		builder verifyCodeInstallation]
@@ -25,7 +25,7 @@ LcsDomainCollectionClassBuilderTest >> builderInstallAndRemoveClass [
 ]
 
 { #category : 'examples' }
-LcsDomainCollectionClassBuilderTest >> builderToCreateLxxMalesClass [
+LcsDomainClassBuilderExamples >> builderToCreateLxxMale1Class [
 	<gtExample>
 	| builder |
 	builder := self newBuilder.
@@ -37,36 +37,36 @@ LcsDomainCollectionClassBuilderTest >> builderToCreateLxxMalesClass [
 ]
 
 { #category : 'examples' }
-LcsDomainCollectionClassBuilderTest >> builderWithLxxMalesCreationString [
-	<gtExample>
+LcsDomainClassBuilderExamples >> builderWithLxxMale1CreationString [
+	<gtExample>	
 	| builder |
-	builder := self builderToCreateLxxMalesClass.
+	builder := self builderToCreateLxxMale1Class.
 	self
 		assert: builder classCreationString
 		equals: 
-'LcsDomainCollection subclass: #LxxMales
+'LcsDomainObject subclass: #LxxMale1
 		instanceVariableNames: ''''
 		classVariableNames: ''''
 		poolDictionaries: ''''
 		package: ''Lcs-Temp'' '.
-	^ builder
+	^ builder 
 ]
 
 { #category : 'examples' }
-LcsDomainCollectionClassBuilderTest >> newBuilder [
+LcsDomainClassBuilderExamples >> newBuilder [
 	<gtExample>
 	| builder |
-	builder := LcsDomainCollectionClassBuilder new.
+	builder := LcsDomainClassBuilder new.
 	self assert: builder newClassName isNil.
 	self assert: builder jobSteps isEmpty.
 	self assert: builder targetPackageName isNil.
 	self assert: builder targetPackageTagName isNil.
 	self assert: builder rootName isNil.
-	self assert: builder targetSuperclassName equals: 'LcsDomainCollection'.
+	self assert: builder targetSuperclassName equals: 'LcsDomainObject'.
 	^ builder
 ]
 
 { #category : 'private' }
-LcsDomainCollectionClassBuilderTest >> newClassname [
-	^ 'LxxMales'
+LcsDomainClassBuilderExamples >> newClassname [
+	^ 'LxxMale1'
 ]

@@ -29,13 +29,16 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 				{'Old Value'. self oldValue}.
 				{'Domain Object'. self context}.
 				{''. ''}.
-				{'Description'. self validationCondition validationDescription}.
-				{'Condition'. self validationCondition conditionBlock}.
+				{'Error Description'. self validationCondition validationDescription}.
+				{'Error Condition'. self validationCondition conditionBlock}.
+				{''. ''}.
+				{'Validation Conditions'. self validationCondition parent}
 			} ];
+		"children: [ :each | each class == LcsValidationCondition ifTrue: [ each conditions collect: [ :e | {''. e} ] ] ifFalse: [ #() ] ]"
 		column: 'Name'
 			text: [ :each | each first asRopedText foreground: Color gray ]
-			width: 100;
-		column: 'Value' text: [ :each | each last gtDisplayString ];
+			width: 120;
+		column: 'Value' text: [ :each | each last ];
 		send: #last
 ]
 

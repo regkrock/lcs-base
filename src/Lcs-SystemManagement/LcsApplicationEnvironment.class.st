@@ -93,7 +93,7 @@ LcsApplicationEnvironment class >> ensureActiveApplicationEnvironment [
 { #category : 'application environment - system' }
 LcsApplicationEnvironment class >> ensureCurrentSystemIs: aSystemClass [ 
 	self ensureActiveApplicationEnvironment.
-	self systemsManager ensureCurrentSystemIs: aSystemClass
+	^ self systemsManager ensureCurrentSystemIs: aSystemClass
 ]
 
 { #category : 'application environment' }
@@ -114,7 +114,7 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 		column: 'Option' translated
 			text: [ :each | each label displayString ]
 			width: 200;
-		column: 'Value' translated text: [ :each | each item displayString ] width: 400;
+		column: 'Value' translated text: [ :each | each item gtDisplayString ] width: 400;
 		column: '' stencil: [ :viewItem :row :column | viewItem startSuspendSystemButton ] width: 70;
 		column: '' stencil: [ :viewItem | viewItem stopButton ] width: 70; 
 		send: #item;
@@ -225,6 +225,11 @@ LcsApplicationEnvironment class >> removeClassesNamed: classNames [
 { #category : 'application environment - system' }
 LcsApplicationEnvironment class >> removeCurrentSystem [
 	self applicationEnvironmentDo: [  :env  | env removeCurrentSystem ]
+]
+
+{ #category : 'application environment - system' }
+LcsApplicationEnvironment class >> removeCurrentSystemAndActivate: aSuspendedSystem [
+	self systemsManager removeCurrentSystemAndActivate: aSuspendedSystem
 ]
 
 { #category : 'application environment - system' }

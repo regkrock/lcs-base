@@ -11,6 +11,13 @@ LcsScaledDecimalSlotBuilder class >> slotClass [
 	^ LcsScaledDecimalSlot
 ]
 
+{ #category : 'initialize' }
+LcsScaledDecimalSlotBuilder >> initialize [
+	super initialize.
+	self addSlotType: ScaledDecimal.
+
+]
+
 { #category : 'properties' }
 LcsScaledDecimalSlotBuilder >> numberOfDecimals [
 	^ self propertyAt: 'numberOfDecimals'

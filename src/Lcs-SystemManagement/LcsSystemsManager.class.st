@@ -26,13 +26,17 @@ LcsSystemsManager class >> newOn: anObject [
 ]
 
 { #category : 'api' }
-LcsSystemsManager >> addSystem: aBasicSystem [
+LcsSystemsManager >> addCurrentSystem: aSystem [
 	self suspendCurrentSystem.
-	self currentSystem: aBasicSystem.
-	self currentSystem systemsManager: self.
-	self systems add: self currentSystem.
-	self unitsOfWorkManager createUnitOfWorkForCurrentSystem. 
-	"self currentUnitOfWork addObject: aBasicSystem"
+	self currentSystem: aSystem.
+	self addSystem: aSystem.
+	aSystem unitOfWork: (self unitsOfWorkManager createCurrentUnitOfWorkFor: aSystem)
+]
+
+{ #category : 'api' }
+LcsSystemsManager >> addSystem: aSystem [
+	aSystem systemsManager: self.
+	self systems add: aSystem
 ]
 
 { #category : 'query' }
@@ -78,17 +82,13 @@ LcsSystemsManager >> currentUnitOfWork [
 { #category : 'api' }
 LcsSystemsManager >> ensureCurrentSystemIs: aSystemClass [
 	| suspendedSystem |
-	self currentSystem ifNil: [ self createCurrentSystemFor: aSystemClass. ^ self ].
-	self currentSystem class = aSystemClass ifTrue: [ ^ self ].
-	suspendedSystem := 
-		self systems 
-			detect: [ :each | each class = aSystemClass ] 
-			ifNone: [  
-				self suspendCurrentSystem.
-				self createCurrentSystemFor: aSystemClass. 
-				^ self  ].
-	self suspendCurrentSystem.
-	suspendedSystem restoreSystem
+	self currentSystem class = aSystemClass ifTrue: [ ^ self currentSystem ].
+	(suspendedSystem := self suspendedSystemFor: aSystemClass) 
+		ifNil: [ aSystemClass new ]
+		ifNotNil: [
+			self currentSystem ifNotNil: [ self suspendCurrentSystem ].
+			suspendedSystem restoreSystem ].
+	^ self currentSystem
 ]
 
 { #category : 'gt views' }
@@ -143,6 +143,11 @@ LcsSystemsManager >> hasNoSystems [
 ]
 
 { #category : 'testing' }
+LcsSystemsManager >> hasSystem: aSystem [
+	^ self systems includes: aSystem
+]
+
+{ #category : 'testing' }
 LcsSystemsManager >> hasSystems [
 	^ self systems isNotEmpty
 ]
@@ -182,7 +187,17 @@ LcsSystemsManager >> releaseSlotModel [
 
 { #category : 'api' }
 LcsSystemsManager >> removeCurrentSystem [
-	self removeSystem: self currentSystem
+	self removeSystem: self currentSystem.
+	self assert: self currentSystem isNil
+]
+
+{ #category : 'api' }
+LcsSystemsManager >> removeCurrentSystemAndActivate: aSystem [
+	(aSystem notNil and: [ self currentSystem ~~ aSystem ])
+		ifTrue: [ self removeCurrentSystem.
+			self assert: self currentSystem isNil.
+			aSystem restoreSystem ].
+	self assert: self currentSystem == aSystem
 ]
 
 { #category : 'api' }
@@ -211,6 +226,13 @@ LcsSystemsManager >> suspendCurrentSystem [
 { #category : 'api' }
 LcsSystemsManager >> suspendUnitOfWorkFor: suspendedSystem [
 	^ self unitsOfWorkManager suspendUnitOfWorkFor: suspendedSystem
+]
+
+{ #category : 'api' }
+LcsSystemsManager >> suspendedSystemFor: aSystemClass [
+	^ self systems
+		detect: [ :each | each class = aSystemClass ]
+		ifNone: [ nil ]
 ]
 
 { #category : 'accessing' }

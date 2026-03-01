@@ -7,12 +7,7 @@ Class {
 }
 
 { #category : 'tests' }
-LcsIntegerSlotBuilderTest >> testCreation [
-	self assert: LcsIntegerSlotBuilder slotClass equals: LcsIntegerSlot
-]
-
-{ #category : 'tests' }
-LcsIntegerSlotBuilderTest >> testInitialValue [
+LcsIntegerSlotBuilderTest >> slotDefinitionSourceCode [
 	self subject: (
 		LcsIntegerSlotBuilder new
 			slotName: 'foo';
@@ -28,7 +23,12 @@ LcsIntegerSlotBuilderTest >> testInitialValue [
 ]
 
 { #category : 'tests' }
-LcsIntegerSlotBuilderTest >> testSlotDefinitionSourceCode [
+LcsIntegerSlotBuilderTest >> testCreation [
+	self assert: LcsIntegerSlotBuilder slotClass equals: LcsIntegerSlot
+]
+
+{ #category : 'tests' }
+LcsIntegerSlotBuilderTest >> testInitialValue [
 	self subject: (
 		LcsIntegerSlotBuilder new
 			slotName: 'foo';

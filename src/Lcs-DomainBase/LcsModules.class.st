@@ -17,7 +17,6 @@ LcsModules class >> collectionSlotDefinition [
 
 { #category : 'build' }
 LcsModules >> buildModuleFor: eachModuleClass [
-
 	| module |
 	module := eachModuleClass basicNew.
 	self currentUnitOfWork addObject: module.
@@ -25,7 +24,8 @@ LcsModules >> buildModuleFor: eachModuleClass [
 	(module slotDefinitionNamed: 'moduleName') initializeSlotValueIn: module.
 	self collection at: module moduleName put: module.
 	module initialize.
-	module buildModules
+	module buildModules.
+	^ module
 ]
 
 { #category : 'accessing' }

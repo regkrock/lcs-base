@@ -1,24 +1,87 @@
 Class {
-	#name : 'LcsDateSlotBuilderTest',
-	#superclass : 'LcsCodeBuilderStepTest',
-	#category : 'Lcs-SlotToolsTests-Tests',
+	#name : 'LcsDateSlotBuilderExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
 
-{ #category : 'setUp' }
-LcsDateSlotBuilderTest >> tearDown [
-	super tearDown.
-	LxxPerson removeInstVar: 'date'
+{ #category : 'examples' }
+LcsDateSlotBuilderExamples >> newBuilder [
+	<gtExample>
+	| builder |
+	builder := LcsDateSlotBuilder new.
+	self assert: builder slotClassName identicalTo: #LcsDateSlot.
+	self assert: (builder slotTypes includes: Date).
+	self assert: builder slotTypes size = 1.
+	^ builder
+]
+
+{ #category : 'examples' }
+LcsDateSlotBuilderExamples >> slotDefinitionAccessorMethodBuilder [
+	<gtExample>
+	| builder |
+	builder := self slotDefinitionBuilderWithSlotName jobStep: 3.
+	^ builder
+]
+
+{ #category : 'examples' }
+LcsDateSlotBuilderExamples >> slotDefinitionAccessorMethods [
+	<gtExample>
+	| slotAccessorsBuilder |
+	slotAccessorsBuilder := self slotDefinitionAccessorMethodBuilder.
+	self assert: slotAccessorsBuilder refactoringText equals: 'foo
+	^ self slotVarNamed: ''foo''
+
+foo: anObject
+	self slotVarNamed: ''foo'' put: anObject'.	
+	^ slotAccessorsBuilder refactoringText
+]
+
+{ #category : 'examples' }
+LcsDateSlotBuilderExamples >> slotDefinitionBuilderWithSlotName [
+	<gtExample>
+	| builder |
+	builder := self newBuilder
+					targetClassName: #LcsDomainObject;
+					slotName: 'foo';
+					yourself.
+	builder buildJobSteps.
+	^ builder
+]
+
+{ #category : 'examples' }
+LcsDateSlotBuilderExamples >> slotDefinitionInstanceBuilder [
+	<gtExample>
+	| slotInstanceBuilder |
+	slotInstanceBuilder := self slotDefinitionBuilderWithSlotName jobStep: 1.
+	self assert: slotInstanceBuilder refactoringText equals: 'LcsDomainObject - add instanceVariable: foo'.
+	^ slotInstanceBuilder
+]
+
+{ #category : 'examples' }
+LcsDateSlotBuilderExamples >> slotDefinitionMethodBuilder [
+	<gtExample>
+	| slotDefinitionBuilder |
+	slotDefinitionBuilder := self slotDefinitionBuilderWithSlotName jobStep: 2.
+	^ slotDefinitionBuilder
+]
+
+{ #category : 'examples' }
+LcsDateSlotBuilderExamples >> slotDefinitionMethodSourceCode [
+	<gtExample>
+	| slotDefinitionBuilder |
+	slotDefinitionBuilder := self slotDefinitionMethodBuilder.
+	self assert: slotDefinitionBuilder refactoringText equals: 'LcsDomainObject class >>fooSlotDefinition
+	<accessorSlotDefinition>
+	^ LcsDateSlot new
+			slotName: ''foo'';
+			yourself'.
+	^ slotDefinitionBuilder refactoringText
 ]
 
 { #category : 'tests' }
-LcsDateSlotBuilderTest >> testCreation [
-	self assert: LcsDateSlotBuilder slotClass equals: LcsDateSlot
-]
-
-{ #category : 'tests' }
-LcsDateSlotBuilderTest >> testDateChangeValidation [
+LcsDateSlotBuilderExamples >> testDateChangeValidation [
 	| person |
 	self subject: (
 		LcsDateSlotBuilder new
@@ -46,7 +109,7 @@ LcsDateSlotBuilderTest >> testDateChangeValidation [
 ]
 
 { #category : 'tests' }
-LcsDateSlotBuilderTest >> testInstallingSlot [
+LcsDateSlotBuilderExamples >> testInstallingSlot [
 	self subject: (
 		LcsDateSlotBuilder new
 			slotName: 'date';
@@ -63,7 +126,7 @@ LcsDateSlotBuilderTest >> testInstallingSlot [
 ]
 
 { #category : 'tests' }
-LcsDateSlotBuilderTest >> testInstallingSlotWithInitialValueBlockOverriden [
+LcsDateSlotBuilderExamples >> testInstallingSlotWithInitialValueBlockOverriden [
 	self subject: (
 		LcsDateSlotBuilder new
 			slotName: 'date';
@@ -81,7 +144,7 @@ LcsDateSlotBuilderTest >> testInstallingSlotWithInitialValueBlockOverriden [
 ]
 
 { #category : 'tests' }
-LcsDateSlotBuilderTest >> testInstallingSlotWithValidationBlocks [
+LcsDateSlotBuilderExamples >> testInstallingSlotWithValidationBlocks [
 	| slotDefinitionMethodBuilder |
 	self subject: (
 		LcsDateSlotBuilder new

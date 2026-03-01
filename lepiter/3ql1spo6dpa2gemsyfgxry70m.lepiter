@@ -250,6 +250,40 @@
 					"uidString" : "+W+jhKH4DQCxHSqQAJnPzw=="
 				},
 				"code" : "Pragma allNamed: #gtExample \t\"This uses the cache to find its results\""
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-26T13:07:40.88091-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-28T12:17:09.965677-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oVo10/fLSF+XQEJd5l+C8A=="
+				},
+				"code" : "\"List test classes - 88 classes\"\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) size .\r\r\"Totoal number of testMethods - 279 methods \" \rLcsTestCase withAllSubclasses inject: 0 into: [ :total :each  | total + each buildSuite tests size ].\r"
 			}
 		]
 	},
