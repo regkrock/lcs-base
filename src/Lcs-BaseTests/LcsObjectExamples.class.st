@@ -83,7 +83,7 @@ LcsObjectExamples >> newLcsObject [
 	<gtExample>
 	| object |
 	object := LcsObject new.
-	self deny: self newLcsObject isApplicationSystem.
+	self deny: object isApplicationSystem.
 	self assert: (LcsObject new selectorNameFrom: 'IsSelector') equals: #isSelector.
 	self assert: (LcsObject new selectorNameFrom: 'Is Selector') equals: #isSelector.
 	^ object
