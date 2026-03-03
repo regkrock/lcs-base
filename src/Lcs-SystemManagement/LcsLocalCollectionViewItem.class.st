@@ -14,9 +14,8 @@ LcsLocalCollectionViewItem class >> defaultChildrenSelector [
 { #category : 'asking' }
 LcsLocalCollectionViewItem >> collectionSize [
 	(self item class inheritsFrom: LcsDomainCollection)
-			ifTrue: [ ^ self item collectionSize ].
-			
-	 ^ self item size 
+		ifTrue: [ ^ self item collectionSize ].
+	^ self item size
 ]
 
 { #category : 'accessing' }

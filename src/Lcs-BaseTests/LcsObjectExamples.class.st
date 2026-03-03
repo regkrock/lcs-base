@@ -78,6 +78,17 @@ LcsObjectExamples >> ensureNoCurrentSystem [
 	self currentSystem ifNotNil: [ self currentSystem suspendSystem ]
 ]
 
+{ #category : 'examples' }
+LcsObjectExamples >> newLcsObject [
+	<gtExample>
+	| object |
+	object := LcsObject new.
+	self deny: self newLcsObject isApplicationSystem.
+	self assert: (LcsObject new selectorNameFrom: 'IsSelector') equals: #isSelector.
+	self assert: (LcsObject new selectorNameFrom: 'Is Selector') equals: #isSelector.
+	^ object
+]
+
 { #category : 'system support' }
 LcsObjectExamples >> removeCurrentSystem [
 	^ LcsApplicationEnvironment removeCurrentSystem

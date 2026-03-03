@@ -54,7 +54,7 @@ LcsVirtualSlot >> initialize [
 
 { #category : 'slot model' }
 LcsVirtualSlot >> slotVarNamed: anObject in: aDomainObject [
-	self error: 'This is a read only slot'
+	LcsSlotUpdateNotAllowedError signal:  'This is a read only slot'
 ]
 
 { #category : 'slot model' }

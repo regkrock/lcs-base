@@ -3,10 +3,7 @@ The purpose of this class is test Global Colleciton Slot where it has not instal
 "
 Class {
 	#name : 'LcsGlobalCollectionSlotExamples',
-	#superclass : 'LcsPrototypeSystemRunningTest',
-	#instVars : [
-		'codeJobBuilder'
-	],
+	#superclass : 'LcsObjectExamples',
 	#category : 'Lcs-SlotDefinitionsTests-Examples',
 	#package : 'Lcs-SlotDefinitionsTests',
 	#tag : 'Examples'

@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsUuidSlotExamples',
-	#superclass : 'LcsTestCase',
+	#superclass : 'LcsObjectExamples',
 	#category : 'Lcs-SlotDefinitionsTests-Examples',
 	#package : 'Lcs-SlotDefinitionsTests',
 	#tag : 'Examples'
