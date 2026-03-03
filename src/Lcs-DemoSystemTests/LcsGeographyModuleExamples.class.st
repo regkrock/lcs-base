@@ -1,13 +1,16 @@
 Class {
-	#name : 'LcsGeographyModuleTest',
-	#superclass : 'LcsDemoSystemRunningTestCase',
-	#category : 'Lcs-DemoSystemTests',
-	#package : 'Lcs-DemoSystemTests'
+	#name : 'LcsGeographyModuleExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-DemoSystemTests-Examples',
+	#package : 'Lcs-DemoSystemTests',
+	#tag : 'Examples'
 }
 
-{ #category : 'tests' }
-LcsGeographyModuleTest >> testCreation [
+{ #category : 'examples' }
+LcsGeographyModuleExamples >> geographyModuleInDemoSystem [
+	<gtExample>
 	| module |
+	self ensureCurrentSystemIsDemoSystem.
 	module := self currentSystem geographyModule.
 	self assert: (module isKindOf: LcsGeographyModule).
 	self assert: (module slotDefinitionNamed: 'countries') notNil.
@@ -20,5 +23,5 @@ LcsGeographyModuleTest >> testCreation [
 	self assert: LcsGeographyModule moduleConfigurationClass equals: LcsGeographyModuleConfiguration.
 	self assert: (self currentSystem geographyModule configuration isKindOf: LcsGeographyModuleConfiguration).
 	self assert: self currentSystem geographyModule configuration parent equals: self currentSystem geographyModule.
-
+	^ module
 ]

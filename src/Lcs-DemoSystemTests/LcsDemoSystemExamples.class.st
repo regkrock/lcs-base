@@ -1,12 +1,13 @@
 Class {
-	#name : 'LcsDemoSystemTest',
-	#superclass : 'LcsAbstractSystemTest',
-	#category : 'Lcs-DemoSystemTests',
-	#package : 'Lcs-DemoSystemTests'
+	#name : 'LcsDemoSystemExamples',
+	#superclass : 'LcsBaseSystemExamples',
+	#category : 'Lcs-DemoSystemTests-Examples',
+	#package : 'Lcs-DemoSystemTests',
+	#tag : 'Examples'
 }
 
 { #category : 'assertions' }
-LcsDemoSystemTest >> assertGeographyModuleIsConfigured [
+LcsDemoSystemExamples >> assertGeographyModuleIsConfigured [
 	| module |
 	module := self currentSystem geographyModule.
 	self assert: (module isKindOf: LcsGeographyModule).
@@ -20,8 +21,23 @@ LcsDemoSystemTest >> assertGeographyModuleIsConfigured [
 	module countries collection do: [ :each | self assert: each parent = module countries ].
 ]
 
+{ #category : 'tests' }
+LcsDemoSystemExamples >> domoSystemExample [
+	<gtExample>
+	self ensureCurrentSystemIsDemoSystem.
+	self assertCurrentSystemSetTo: LcsDemoSystem.
+	self assertModuleConfigured: LcsSecurityModule.
+	self assertModuleConfigured: LcsGeographyModule.
+	self assertModuleConfigured: LcsLegalEntitiesModule.
+	self assertModuleConfigured: LcsCalendarModule.
+	
+	self assertGeographyModuleIsConfigured.
+	self validateLegalEntitiesModuleIsConfigured.
+	^ self currentSystem
+]
+
 { #category : 'assertions' }
-LcsDemoSystemTest >> assertLegalEntitiesModuleIsConfigured [
+LcsDemoSystemExamples >> validateLegalEntitiesModuleIsConfigured [
 	| module |
 	module := self currentSystem legalEntitiesModule.
 	self assert: (module isKindOf: LcsLegalEntitiesModule).
@@ -32,19 +48,4 @@ LcsDemoSystemTest >> assertLegalEntitiesModuleIsConfigured [
 	self assert: (module persons unknownPerson isKindOf: LcsUnknownPerson).
 	self assert: (module persons unknownPerson == module persons defaultInstance).
 	self assert: (LcsPerson slotDefinitionNamed: #dateOfBirth) slotName equals: #dateOfBirth
-]
-
-{ #category : 'tests' }
-LcsDemoSystemTest >> testCreation [
-
-	self subject: LcsDemoSystem new.
-	self assertCurrentSystemSetTo: LcsDemoSystem.
-	self assertModuleConfigured: LcsSecurityModule.
-	self assertModuleConfigured: LcsGeographyModule.
-	self assertModuleConfigured: LcsLegalEntitiesModule.
-	self assertModuleConfigured: LcsCalendarModule.
-	
-	self assertGeographyModuleIsConfigured.
-	self assertLegalEntitiesModuleIsConfigured.
-	
 ]
