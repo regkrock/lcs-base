@@ -277,6 +277,11 @@ LcsCodeBuilderStep >> jobSteps: anObject [
 	jobSteps := anObject
 ]
 
+{ #category : 'job steps' }
+LcsCodeBuilderStep >> numberOfSubsteps [
+	^ self jobSteps numberOfSteps
+]
+
 { #category : 'accessing' }
 LcsCodeBuilderStep >> parent [
 	^ parent

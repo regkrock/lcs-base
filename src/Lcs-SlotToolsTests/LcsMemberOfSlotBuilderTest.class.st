@@ -52,6 +52,28 @@ LcsMemberOfSlotBuilderTest >> createLxxInvoiceAndLxxInvoices [
 	self currentCodeBuilderJob execute.
 ]
 
+{ #category : 'examples' }
+LcsMemberOfSlotBuilderTest >> invoiceItemMemberOfGlobalCollectionSlotBuilder [
+	<gtExample>
+	| builder |
+	builder := self newMemberOfGlobalCollectionSlotBuilder
+						targetClassName: 'LxxPerson';
+						slotName: 'invoiceItem';
+						collectionSlotName: 'invoiceItems';
+						collectionSourceClassName: 'LxxInvoiceItems';
+						addSlotType: 'LxxInvoiceItem';
+						yourself.
+	^ builder
+]
+
+{ #category : 'examples' }
+LcsMemberOfSlotBuilderTest >> newMemberOfGlobalCollectionSlotBuilder [
+	<gtExample>
+	| builder |
+	builder := LcsMemberOfGlobalCollectionSlotBuilder new.
+	^ builder
+]
+
 { #category : 'tests' }
 LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToGlobalCollection [
 	| classesModel |
@@ -81,30 +103,20 @@ LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToGl
 
 { #category : 'tests' }
 LcsMemberOfSlotBuilderTest >> testAddingMemberOfRelationshipFromDomainObjectToLocalCollection [
-	<TODO: 'The commented out assertion fails. The cause is that LcsMemberOfSlotDefinition is not properly wired for a local member of situation. Especially for initialization.' >
+	<TODO: 'The commented out assertion fails. The cause is that LcsMemberOfSlotDefinition is not properly wired for a local member of situation. Especially for initialization.'>
 	| classesModel |
 	self createLxxInvoiceAndLxxInvoices.
-	self subject: (
-		LcsMemberOfGlobalCollectionSlotBuilder new
-			targetClassName: 'LxxPerson';
-			slotName: 'invoiceItem';
-			collectionSlotName: 'invoiceItems';
-			collectionSourceClassName: 'LxxInvoiceItems';
-			addSlotType: 'LxxInvoiceItem';
-			yourself).
+	self subject: self invoiceItemMemberOfGlobalCollectionSlotBuilder.
 	classesModel := self subject umlModel.
 	self assert: classesModel collection size = 3.
-	self assert: (classesModel classModelForClassname: 'LxxPerson') notNil.
-	"self assert: (classesModel classModelForClassname: 'LxxInvoiceItems') notNil."
-	self assert: (classesModel classModelForClassname: 'LxxPerson') associations size = 1.
-	"self assert: (classesModel classModelForClassname: 'LxxInvoiceItems') associations isEmpty."
-	self assert: (classesModel classModelForClassname: 'LxxPerson') associations first associationName = 'invoiceItem'.
-	"self assert: (classesModel classModelForClassname: 'LxxPerson') associations first toClassModel = ((classesModel classModelForClassname: 'LxxInvoiceItems'))."
+	self assert: (classesModel classModelForClassname: 'LxxPerson') notNil.	"self assert: (classesModel classModelForClassname: 'LxxInvoiceItems') notNil."
+	self
+		assert: (classesModel classModelForClassname: 'LxxPerson') associations size = 1.	"self assert: (classesModel classModelForClassname: 'LxxInvoiceItems') associations isEmpty."
+	self
+		assert: (classesModel classModelForClassname: 'LxxPerson') associations first
+				associationName = 'invoiceItem'.	"self assert: (classesModel classModelForClassname: 'LxxPerson') associations first toClassModel = ((classesModel classModelForClassname: 'LxxInvoiceItems'))."
 	self subject buildJobSteps.
-	self subject execute.
-	
-	"self assert: ('LxxPerson' asClass new invoiceItem isNil )."
-	
+	self subject execute	"self assert: ('LxxPerson' asClass new invoiceItem isNil )."
 ]
 
 { #category : 'tests' }

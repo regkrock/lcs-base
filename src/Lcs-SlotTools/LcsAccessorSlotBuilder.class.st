@@ -38,7 +38,7 @@ LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 	| item |
 	item := aClassOrClassName isClass 
 					ifTrue: [ aClassOrClassName ] 
-					ifFalse: [ (self classFor: aClassOrClassName) ifNil: [ aClassOrClassName ] ].
+					ifFalse: [ (self classNamed: aClassOrClassName) ifNil: [ aClassOrClassName ] ].
 	(self slotTypes includes: item) ifFalse: [
 		self slotTypes add: item ]
 ]

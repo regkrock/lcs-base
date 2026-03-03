@@ -19,6 +19,13 @@ LcsSystemBuilderJob >> buildJobSteps [
 	self addJobStep: self systemClassBuilder
 ]
 
+{ #category : 'job steps' }
+LcsSystemBuilderJob >> builderAtStep: aString [
+	| stepNumbers |
+	stepNumbers := (aString substrings: {$.}) collect: [ :each | each asNumber ].
+	^ self jobSteps builderAtStep: stepNumbers
+]
+
 { #category : 'accessing' }
 LcsSystemBuilderJob >> classPrefix [
 	^ classPrefix

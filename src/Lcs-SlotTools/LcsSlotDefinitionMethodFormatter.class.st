@@ -69,7 +69,7 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 	aValue isString
 		ifFalse: [ ^ aStream addKeyword: aPropertyName argument: aValue asString ].
 
-	(self classFor: aValue) notNil
+	(self classNamed: aValue) notNil
 		ifTrue: [ ^ aStream addKeyword: aPropertyName argument: aValue ].
 
 	aStream addKeyword: aPropertyName argument: aValue printString

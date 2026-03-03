@@ -198,6 +198,11 @@ LcsCodeBuilderJob >> modelAssociations [
 	^ associations
 ]
 
+{ #category : 'job steps' }
+LcsCodeBuilderJob >> numberOfSubsteps [
+	^ self jobSteps numberOfSteps
+]
+
 { #category : 'command' }
 LcsCodeBuilderJob >> populateSlotModel [
 	self traceStep: 'populateSlotModel'.

@@ -20,8 +20,8 @@ LcsUmlModel class >> new [
 LcsUmlModel >> addAssociation: aString from: aFromClass to: aToClass [
 	| associationModel priorAssociations associationWithSameEndpoints fromModel toModel|
 	aFromClass isNil ifTrue: [ ^ self ].
-	self assert: (fromModel := self modelFor: aFromClass) notNil.
-	self assert: (toModel := self modelFor: aToClass) notNil.
+	self assert: (fromModel := self modelFor: aFromClass) notNil description: 'Attempting to find umlModel for ' , aFromClass asString.
+	self assert: (toModel := self modelFor: aToClass) notNil description: 'Attempting to find umlModel for ' , aToClass asString.
 
 	priorAssociations := fromModel associations reverse copy.
 	associationModel := fromModel addAssociation: aString toModelNamed: toModel.

@@ -65,6 +65,19 @@ LcsCodeBuilderJobSteps >> buildJobSteps [
 	^ self collection do: [ :each | each buildJobSteps ]
 ]
 
+{ #category : 'steps' }
+LcsCodeBuilderJobSteps >> builderAtStep: stepNumbers [
+	| stepNumber builder subStepNumbers|
+	stepNumber := stepNumbers first.
+	subStepNumbers := stepNumbers size > 1
+		ifTrue: [ stepNumbers copyFrom: 2 to: stepNumbers size ]
+		ifFalse: [ OrderedCollection new].
+	builder := self collection at: stepNumber.
+	^ subStepNumbers isEmpty 
+		ifTrue: [ builder ]
+		ifFalse: [ builder jobSteps builderAtStep: subStepNumbers ]
+]
+
 { #category : 'asking' }
 LcsCodeBuilderJobSteps >> builderJob [
 	^ self parent builderJob
