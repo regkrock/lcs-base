@@ -128,7 +128,7 @@ LcsSlotModel >> allFacadeSlotDefinitions [
 LcsSlotModel >> allLocalSlotDefinitions [
 	| allSlotDefinitions |
 	allSlotDefinitions := OrderedCollection new.
-	self addAllSlotDefinitionsTo:allSlotDefinitions.
+	self addAllLocalSlotDefinitionsTo:allSlotDefinitions.
 	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
@@ -205,6 +205,7 @@ LcsSlotModel >> domainSuperClass [
 
 { #category : 'model' }
 LcsSlotModel >> domainSuperClassSlotModel [
+	self domainSuperClass isDomainClass ifFalse: [ ^ nil ].
 	self domainSuperClass hasSlotModel ifTrue: [ ^ self domainSuperClass slotModel ].
 	LcsUndefinedSlotModelError signalSuperclassWithoutSlotModel: self domainSuperClass
 ]
