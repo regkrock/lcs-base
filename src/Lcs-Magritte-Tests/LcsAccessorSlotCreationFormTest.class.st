@@ -84,7 +84,7 @@ LcsAccessorSlotCreationFormTest >> testCreationUsingNewOn [
 	self subject: (LcsSlotCreationForm newOn: LxxPerson).
 	self assert: self subject targetClass equals: LxxPerson.
 	self assert: self subject isSlotModelBuilderNotReified.
-	self assert: self subject slotClassName isString..
+	self assert: self subject slotClassName isString.
 	self assert: self subject slotClassName isEmpty.
 	self assert: self subject mode = #add
 ]

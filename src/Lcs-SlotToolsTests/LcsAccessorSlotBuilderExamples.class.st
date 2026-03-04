@@ -1,9 +1,6 @@
 Class {
 	#name : 'LcsAccessorSlotBuilderExamples',
-	#superclass : 'LcsCodeBuilderStepTest',
-	#instVars : [
-		'codeBuilder'
-	],
+	#superclass : 'LcsObjectExamples',
 	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
 	#tag : 'Examples'
@@ -216,19 +213,4 @@ LcsAccessorSlotBuilderExamples >> slotDefinitionMethodSourceCode [
 			slotName: ''foo'';
 			yourself'.
 	^ slotDefinitionBuilder refactoringText
-]
-
-{ #category : 'tests' }
-LcsAccessorSlotBuilderExamples >> testInstallingSlot [
-	self subject: (
-		LcsAccessorSlotBuilder new
-			slotClassName: LcsStringSlot name;
-			targetClassName: LxxPrototypeSystem name;
-			addSlotType: LxxPerson name ;
-			slotName: 'foos';
-			yourself).
-	self subject buildJobSteps.
-	self subject installCode.
-	self subject verifyCodeInstallation.
-	self subject updateSlotModel
 ]

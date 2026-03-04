@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsScaledDecimalSlotBuilderExamples',
-	#superclass : 'LcsCodeBuilderStepTest',
+	#superclass : 'LcsObjectExamples',
 	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
 	#tag : 'Examples'
