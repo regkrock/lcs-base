@@ -6,7 +6,7 @@ Class {
 	#tag : 'Examples'
 }
 
-{ #category : 'examples' }
+{ #category : 'configuration' }
 LcsSmalltalkObjectSlotExamples >> installationClass [
 	^ LxxPerson
 ]
@@ -21,7 +21,7 @@ LcsSmalltalkObjectSlotExamples >> requiredDescriptionSelectors [
 	^ #(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) asOrderedCollection
 ]
 
-{ #category : 'examples' }
+{ #category : 'scripter - model' }
 LcsSmalltalkObjectSlotExamples >> slotAccessorSlotCreationForm [
 	"<gtExample>"
 
@@ -60,7 +60,7 @@ LcsSmalltalkObjectSlotExamples >> slotModelBuilderClassName [
 	^ self slotBuilderClass name asString
 ]
 
-{ #category : 'examples' }
+{ #category : 'scripter - model' }
 LcsSmalltalkObjectSlotExamples >> slotSubjectScripter [
 	"<gtExample>
 	<return: #BlScripter>"
