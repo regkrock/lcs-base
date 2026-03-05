@@ -229,6 +229,11 @@ LcsCodeBuilderJob >> refactoringText [
 	^ stream contents
 ]
 
+{ #category : 'command' }
+LcsCodeBuilderJob >> removeAllJobSteps [
+	self jobSteps removeAll
+]
+
 { #category : 'asking' }
 LcsCodeBuilderJob >> stepNumber [
 	^ ''

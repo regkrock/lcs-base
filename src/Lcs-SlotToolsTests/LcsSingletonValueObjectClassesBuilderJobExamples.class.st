@@ -10,6 +10,18 @@ Class {
 LcsSingletonValueObjectClassesBuilderJobExamples >> genderSingletonPatternBuilderJob [
 	<gtExample>
 	| builderJob |
+	builderJob := self genderSingletonPatternBuilderJobWithoutInstallationOfGenderSlotInPerson
+					installMemberSlotInDomainClass: LxxBasePerson;
+					yourself.
+	builderJob removeAllJobSteps.
+	builderJob buildJobSteps.
+	^ builderJob 
+]
+
+{ #category : 'examples' }
+LcsSingletonValueObjectClassesBuilderJobExamples >> genderSingletonPatternBuilderJobWithoutInstallationOfGenderSlotInPerson [
+	<gtExample>
+	| builderJob |
 	builderJob := self newBuilderJob
 					classPrefix: 'Lxx';
 					createForRootName: 'Gender';
@@ -20,7 +32,6 @@ LcsSingletonValueObjectClassesBuilderJobExamples >> genderSingletonPatternBuilde
 					addValueObjectSubclassWithRootNamed: 'UnknownGender'
 						with: [ :classBuilder | classBuilder beDefaultInstance ];
 					targetModuleClass: LxxPrototypeSystem;
-					installMemberSlotInDomainClass: LxxBasePerson;
 					yourself.
 	builderJob buildJobSteps.
 	^ builderJob 
@@ -63,7 +74,6 @@ LcsSingletonValueObjectClassesBuilderJobExamples >> newBuilderJob [
 	<gtExample>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
-
 	builderJob :=  LcsSingletonValueObjectClassesBuilderJob new.
 	^ builderJob
 ]
