@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsAddressesExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-GeographyTests-Examples',
 	#package : 'Lcs-GeographyTests',
 	#tag : 'Examples'

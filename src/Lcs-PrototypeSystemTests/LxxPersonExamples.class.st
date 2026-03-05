@@ -1,6 +1,6 @@
 Class {
 	#name : 'LxxPersonExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-PrototypeSystemTests-Examples',
 	#package : 'Lcs-PrototypeSystemTests',
 	#tag : 'Examples'

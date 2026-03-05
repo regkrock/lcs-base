@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsDomainClassAndGlobalCollectionClassBuilderJobExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
 	#tag : 'Examples'

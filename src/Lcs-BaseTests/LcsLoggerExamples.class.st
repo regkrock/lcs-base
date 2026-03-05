@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsLoggerExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-BaseTests-Examples',
 	#package : 'Lcs-BaseTests',
 	#tag : 'Examples'

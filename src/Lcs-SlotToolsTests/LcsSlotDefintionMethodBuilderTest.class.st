@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSlotDefintionMethodBuilderTest',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#instVars : [
 		'codeBuilder'
 	],

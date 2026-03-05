@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSlotModelExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-SystemManagementTests-Exampless',
 	#package : 'Lcs-SystemManagementTests',
 	#tag : 'Exampless'

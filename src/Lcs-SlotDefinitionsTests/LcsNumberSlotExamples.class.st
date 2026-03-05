@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsNumberSlotExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-SlotDefinitionsTests-Examples',
 	#package : 'Lcs-SlotDefinitionsTests',
 	#tag : 'Examples'

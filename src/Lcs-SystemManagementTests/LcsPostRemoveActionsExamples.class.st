@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsPostRemoveActionsExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-SystemManagementTests-Examples',
 	#package : 'Lcs-SystemManagementTests',
 	#tag : 'Examples'

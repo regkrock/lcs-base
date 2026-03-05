@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsPersonExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#instVars : [
 		'originalPhoneNumbersPendingAddSize',
 		'originalEmailAddressesPendingAddSize',

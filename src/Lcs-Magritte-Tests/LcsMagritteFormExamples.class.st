@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsMagritteFormExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#traits : 'TBlDevScripterExamples + LctDevScripterSuport',
 	#classTraits : 'TBlDevScripterExamples classTrait + LctDevScripterSuport classTrait',
 	#category : 'Lcs-Magritte-Tests-Examples',

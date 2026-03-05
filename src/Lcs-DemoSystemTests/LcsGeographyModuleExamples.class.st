@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsGeographyModuleExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-DemoSystemTests-Examples',
 	#package : 'Lcs-DemoSystemTests',
 	#tag : 'Examples'

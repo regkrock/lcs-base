@@ -276,14 +276,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-02-28T12:17:05.171229-05:00"
+						"dateAndTimeString" : "2026-02-28T12:17:09.965677-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "oVo10/fLSF+XQEJd5l+C8A=="
 				},
-				"code" : "\"List test classes - 88 classes\"\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not].\r\r\"Totoal number of testMethods - 279 methods \" \rLcsTestCase withAllSubclasses inject: 0 into: [ :total :each  | total + each buildSuite tests size ].\r"
+				"code" : "\"List test classes - 88 classes\"\r(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) size .\r\r\"Totoal number of testMethods - 279 methods \" \rLcsTestCase withAllSubclasses inject: 0 into: [ :total :each  | total + each buildSuite tests size ].\r"
 			}
 		]
 	},

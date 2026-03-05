@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSlotInstanceVariableBuilderExamples',
-	#superclass : 'LcsObjectExamples',
+	#superclass : 'LcsExamples',
 	#instVars : [
 		'codeBuilder'
 	],

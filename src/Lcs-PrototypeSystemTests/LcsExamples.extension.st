@@ -1,18 +1,18 @@
-Extension { #name : 'LcsObjectExamples' }
+Extension { #name : 'LcsExamples' }
 
-{ #category : '*Lcs-DemoSystemTests' }
-LcsObjectExamples >> createNewDemoSystem [
-	^ LcsApplicationEnvironment createNewDemoSystem
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsExamples >> createNewPrototypeSystem [
+	^ LcsApplicationEnvironment createNewPrototypeSystem
 ]
 
-{ #category : '*Lcs-DemoSystemTests' }
-LcsObjectExamples >> ensureCurrentSystemIsDemoSystem [
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsExamples >> ensureCurrentSystemIsPrototypeSystem [
 	self savedSystem: self currentSystem.
-	^ LcsApplicationEnvironment ensureCurrentSystemIs: LcsDemoSystem
+	^ LcsApplicationEnvironment ensureCurrentSystemIs: LxxPrototypeSystem
 ]
 
-{ #category : '*Lcs-DemoSystemTests' }
-LcsObjectExamples >> ensureCurrentSystemIsDemoSystemWithLogging [
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsExamples >> ensureCurrentSystemIsPrototypeSystemWithLogging [
 	"<gtExample>"
 	| callingMethodName |
 	callingMethodName := thisContext sender method selector copy.
@@ -28,12 +28,12 @@ LcsObjectExamples >> ensureCurrentSystemIsDemoSystemWithLogging [
 					Transcript cr; tab; tab; show: '... current system is nil - crete new system'.
 					self createNewPrototypeSystem ]
 				ifNotNil: [ 
-					self currentSystem isDemoSystem
+					self currentSystem isPrototypeSystem
 						ifFalse: [ 
 							Transcript cr; tab; tab;
 								show: '... current system is not prototype system - crete new system'.
-							self createNewDemoSystem ] ] ].
-	self assert: self currentSystem isDemoSystem.
+							self createNewPrototypeSystem ] ] ].
+	self assert: self currentSystem isPrototypeSystem.
 	Transcript cr; tab; tab; show: 'Number of Systems: '
 				, LcsApplicationEnvironment systemsManager numberOfSystems asString.
 	Transcript crShow: '-----'.
