@@ -1,9 +1,9 @@
 Class {
 	#name : 'LcsStandardValueObjectWithUnknownClassClassesBuilderJobExamples',
 	#superclass : 'LcsObjectExamples',
-	#category : 'Lcs-SlotToolsTests-Tests',
+	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
 
 { #category : 'examples' }
@@ -35,7 +35,7 @@ LcsStandardValueObjectWithUnknownClassClassesBuilderJobExamples >> titlesWithUnk
 	builderJob := self newBuilderJob
 					classPrefix: 'Lxx';
 					createForRootName: 'Title';
-					installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
+					installNewClassesInPackageNamed: 'Lcs-Temp';
 					installCollectionSlotInClass: LxxPersonsModule;
 					createProtoCodesFromLabels: #('Mr' 'Ms' '');
 					targetModuleClass: LxxPrototypeSystem;

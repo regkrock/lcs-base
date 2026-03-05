@@ -49,7 +49,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJob >> collectionSlotBuilder [
 	^ LcsLocalCollectionSlotBuilder new
 		slotName: self collectionSlotName;
 		addSlotType: self collectionClassName;
-		targetClassName: self collectionModuleClass name;
+		targetClassName: self collectionSlotInstallationTargetClassName;
 		targetModuleClass: self collectionModuleClass;
 		targetPackageName: self targetPackageName;
 		collectionMemberTypes: (OrderedCollection with: self newDomainClassName);

@@ -12,7 +12,7 @@ LcsMemberOfSlotBuilderTest >> createGenderClassesWithoutAddingMemberOfToPerson [
 		LcsSingletonValueObjectClassesBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Gender';
-			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
+			installNewClassesInPackageNamed: 'Lcs-Temp';
 			installCollectionSlotInClass: LxxPersonsModule;
 			addValueObjectSubclassWithRootNamed: 'Male';
 			addValueObjectSubclassWithRootNamed: 'Female';
@@ -33,7 +33,7 @@ LcsMemberOfSlotBuilderTest >> createLxxInvoiceAndLxxInvoices [
 		(LcsDomainClassAndGlobalCollectionClassBuilderJob new
 			classPrefix: 'Lxx';
 			createForRootName: 'Invoice';
-			installNewClassesInPackageNamed: 'Lcs-PrototypeSystem';
+			installNewClassesInPackageNamed: 'Lcs-Temp';
 			installCollectionSlotInClass: LxxPrototypeSystem;
 			buildJobSteps;
 			yourself).

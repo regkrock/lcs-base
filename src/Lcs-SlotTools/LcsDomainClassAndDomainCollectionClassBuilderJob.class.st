@@ -14,7 +14,8 @@ Class {
 		'collectionClassName',
 		'collectionSlotName',
 		'collectionSlotInstallationTargetClass',
-		'newDomainClassSuperclass'
+		'newDomainClassSuperclass',
+		'collectionSlotInstallationTargetClassName'
 	],
 	#category : 'Lcs-SlotTools-Core',
 	#package : 'Lcs-SlotTools',
@@ -97,6 +98,16 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTa
 ]
 
 { #category : 'accessing' }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTargetClassName [
+	^ collectionSlotInstallationTargetClassName
+]
+
+{ #category : 'accessing' }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTargetClassName: aClassName [
+	collectionSlotInstallationTargetClassName := aClassName
+]
+
+{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotName [
 	^ collectionSlotName
 ]
@@ -156,6 +167,11 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> initialize [
 { #category : 'initialize' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> installCollectionSlotInClass: aClass [
 	self collectionSlotInstallationTargetClass: aClass 
+]
+
+{ #category : 'initialize' }
+LcsDomainClassAndDomainCollectionClassBuilderJob >> installCollectionSlotInClassName: aClass [
+	self collectionSlotInstallationTargetClassName: aClass 
 ]
 
 { #category : 'configuration' }
