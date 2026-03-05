@@ -10,19 +10,18 @@ Class {
 LcsSingletonValueObjectClassesBuilderJobExamples >> genderSingletonPatternBuilderJob [
 	<gtExample>
 	| builderJob |
-	builderJob :=
-	self newBuilderJob
-		classPrefix: 'Lxx';
-		createForRootName: 'Gender';
-		installNewClassesInPackageNamed: 'Lcs-Temp';
-		installCollectionSlotInClass: LxxPersonsModule;
-		addValueObjectSubclassWithRootNamed: 'Male';
-		addValueObjectSubclassWithRootNamed: 'Female';
-		addValueObjectSubclassWithRootNamed: 'UnknownGender'
-			with: [ :classBuilder | classBuilder beDefaultInstance ];
-		targetModuleClass: LxxPrototypeSystem;
-		installMemberSlotInDomainClass: LxxBasePerson;
-		yourself.
+	builderJob := self newBuilderJob
+					classPrefix: 'Lxx';
+					createForRootName: 'Gender';
+					installNewClassesInPackageNamed: 'Lcs-Temp';
+					installCollectionSlotInClass: LxxPersonsModule;
+					addValueObjectSubclassWithRootNamed: 'Male';
+					addValueObjectSubclassWithRootNamed: 'Female';
+					addValueObjectSubclassWithRootNamed: 'UnknownGender'
+						with: [ :classBuilder | classBuilder beDefaultInstance ];
+					targetModuleClass: LxxPrototypeSystem;
+					installMemberSlotInDomainClass: LxxBasePerson;
+					yourself.
 	builderJob buildJobSteps.
 	^ builderJob 
 ]
@@ -45,26 +44,26 @@ LcsSingletonValueObjectClassesBuilderJobExamples >> installAndRemoveGenderSingle
 
 { #category : 'examples' }
 LcsSingletonValueObjectClassesBuilderJobExamples >> installGenderSingletonPatternClasses [
-	<gtExample>
-	
+	"<gtExample>
 	| builderJob person |
-	self ensureCurrentSystemIsPrototypeSystem.
 	builderJob :=  self genderSingletonPatternBuilderJob.
-
-	builderJob execute.
-
-	person := LxxPerson new.
-	self
-		assert: person gender
-		identicalTo: (self currentSystem moduleNamed: LxxPersonsModule defaultModuleName) genders
-				defaultInstance.
-	^ builderJob
+	[
+		builderJob execute.
+		builderJob verifyCodeInstallation.
+		person := LxxPerson new.
+		self verifyGenderAvailableByCreatingNewPerson. ]
+		ensure: [
+			builderJob uninstall.
+			builderJob verifyUninstall ].
+	^ builderJob"
 ]
 
 { #category : 'examples' }
 LcsSingletonValueObjectClassesBuilderJobExamples >> newBuilderJob [
 	<gtExample>
 	| builderJob |
+	self ensureCurrentSystemIsPrototypeSystem.
+
 	builderJob :=  LcsSingletonValueObjectClassesBuilderJob new.
 	^ builderJob
 ]

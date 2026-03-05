@@ -1,24 +1,27 @@
 Class {
-	#name : 'LcsDomainClassWithGlobalCollectionBuilderJobTest',
-	#superclass : 'LcsCodeJobBuilderTest',
-	#category : 'Lcs-SlotToolsTests-Tests',
+	#name : 'LcsDomainClassWithGlobalCollectionBuilderJobExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
 
-{ #category : 'tests' }
-LcsDomainClassWithGlobalCollectionBuilderJobTest >> testAddingAJobStep [
+{ #category : 'examples' }
+LcsDomainClassWithGlobalCollectionBuilderJobExamples >> builderJobWithAddedJobStep [
+	<gtExample>
 	| builderJob |
-	builderJob := LcsDomainClassAndDomainCollectionClassBuilderJob new.
+	builderJob := self newBuilderJob.
 	builderJob addJobStep: LcsValueObjectSuperClassBuilder new.
 	self assert: builderJob jobSteps hasJobSteps.
 	self assert: builderJob jobSteps collection size equals: 1.
 	self assert: builderJob jobSteps collection any parent equals: builderJob jobSteps.
-	self assert: builderJob jobSteps collection any builderJob identicalTo: builderJob
+	self assert: builderJob jobSteps collection any builderJob identicalTo: builderJob.
+	^ builderJob
 ]
 
-{ #category : 'tests' }
-LcsDomainClassWithGlobalCollectionBuilderJobTest >> testCreation [
+{ #category : 'examples' }
+LcsDomainClassWithGlobalCollectionBuilderJobExamples >> newBuilderJob [
+	<gtExample>
 	| builderJob |
 	builderJob := LcsDomainClassAndDomainCollectionClassBuilderJob new.
 	self assert: (builderJob jobSteps isKindOf: LcsCodeBuilderJobSteps).
@@ -26,5 +29,6 @@ LcsDomainClassWithGlobalCollectionBuilderJobTest >> testCreation [
 	self assert: builderJob jobSteps hasNoJobSteps.
 	self assert: builderJob classPrefix equals: 'Lcs'.
 	self assert: builderJob targetPackageName isNil.
-	self assert: builderJob completedRefactorings isEmpty
+	self assert: builderJob completedRefactorings isEmpty.
+	^ builderJob
 ]

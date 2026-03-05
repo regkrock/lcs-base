@@ -306,7 +306,7 @@ LcsSlotDefinitionMethodBuilder >> selectionPath [
 	| targetPathStream |
 	targetPathStream := WriteStream on: String new.
 	targetPathStream nextPutAll: self derivedSlotName; cr.
-	(self propertyAt: 'targetSlotPath') do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
+	((self propertyAt: 'targetSlotPath') ifNil: [ OrderedCollection new]) do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
 	targetPathStream nextPutAll: ' = '; nextPutAll: (self propertyAt: 'targetItem') printString.
 	^ targetPathStream contents
 

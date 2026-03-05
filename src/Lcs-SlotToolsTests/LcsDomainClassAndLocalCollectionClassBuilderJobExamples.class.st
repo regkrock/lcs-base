@@ -1,33 +1,18 @@
 Class {
-	#name : 'LcsDomainClassAndLocalCollectionClassBuilderJobTest',
-	#superclass : 'LcsCodeJobBuilderTest',
-	#category : 'Lcs-SlotToolsTests-Tests',
+	#name : 'LcsDomainClassAndLocalCollectionClassBuilderJobExamples',
+	#superclass : 'LcsObjectExamples',
+	#category : 'Lcs-SlotToolsTests-Examples',
 	#package : 'Lcs-SlotToolsTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
 
 { #category : 'private' }
-LcsDomainClassAndLocalCollectionClassBuilderJobTest >> createLxxInvoiceAndLxxInvoices [
-	self currentCodeBuilderJob:
-		(LcsDomainClassAndGlobalCollectionClassBuilderJob new
-			classPrefix: 'Lxx';
-			createForRootName: 'Invoice';
-			installNewClassesInPackageNamed: 'Lcs-Temp';
-			installCollectionSlotInClass: LxxPrototypeSystem;
-			buildJobSteps;
-			yourself).
-	self currentCodeBuilderJob execute.
-	self assert: self currentSystem invoices notNil.
-	self assert: (self currentSystem invoices isKindOf: #LxxInvoices asClass)
-]
-
-{ #category : 'private' }
-LcsDomainClassAndLocalCollectionClassBuilderJobTest >> invoiceAndInvoicesBuilderJob [
+LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceAndInvoicesBuilderJob [
 	^ LcsDomainClassAndGlobalCollectionClassBuilderJobExamples new invoiceAndInvoicesBuilderJob
 ]
 
-{ #category : 'tests' }
-LcsDomainClassAndLocalCollectionClassBuilderJobTest >> invoiceItemAndLocalInvoiceItemsCreationJob [
+{ #category : 'examples' }
+LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalInvoiceItemsCreationJob [
 	<gtExample>
 	| builderJob |
 	builderJob :=  self newBuilderJob
@@ -42,8 +27,8 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> invoiceItemAndLocalInvoic
 	^ builderJob
 ]
 
-{ #category : 'tests' }
-LcsDomainClassAndLocalCollectionClassBuilderJobTest >> invoiceItemAndLocalInvoiceItemsCreationJobInstallationAndRemoval [
+{ #category : 'examples' }
+LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalInvoiceItemsCreationJobInstallationAndRemoval [
 	<gtExample>
 	| builderJob invoiceBuilderJob|
 	invoiceBuilderJob := self invoiceAndInvoicesBuilderJob.
@@ -63,7 +48,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> invoiceItemAndLocalInvoic
 ]
 
 { #category : 'examples' }
-LcsDomainClassAndLocalCollectionClassBuilderJobTest >> newBuilderJob [
+LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> newBuilderJob [
 	<gtExample>
 	| builderJob |
 	builderJob := LcsDomainClassAndLocalCollectionClassBuilderJob new.
@@ -71,7 +56,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJobTest >> newBuilderJob [
 ]
 
 { #category : 'validation' }
-LcsDomainClassAndLocalCollectionClassBuilderJobTest >> verifyInstallationOf: builderJob [ 
+LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> verifyInstallationOf: builderJob [ 
 	| newInvoice newInvoiceItem |
 	
 	"This code creates ok but there is problems when the changes 
