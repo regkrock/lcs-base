@@ -508,5 +508,5 @@ LcsSlotDefinitionMethodBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass isNil ifTrue: [ ^ self ].
 	selector := [ self slotDefinitionSelector ] on: LcsError do: [ :s | ^ self ].
-	self assert: (self targetClass class canUnderstand: selector) not
+	self assert: (self targetClass class selectors includes: selector asSymbol) not
 ]

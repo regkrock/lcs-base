@@ -160,6 +160,6 @@ LcsSlotGetterAndSetterBuilder >> uninstall [
 LcsSlotGetterAndSetterBuilder >> verifyUninstall [
 	super verifyUninstall.
 	self targetClass ifNil: [ ^ self ].
-	self assert: (self targetClass canUnderstand: self getterSelector) not.
-	self assert: (self targetClass canUnderstand: self setterSelector) not.
+	self assert: (self targetClass selectors includes: self getterSelector) not.
+	self assert: (self targetClass selectors includes: self setterSelector) not.
 ]

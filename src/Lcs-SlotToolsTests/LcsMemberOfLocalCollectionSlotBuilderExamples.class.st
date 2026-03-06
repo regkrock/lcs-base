@@ -24,19 +24,19 @@ LcsMemberOfLocalCollectionSlotBuilderExamples >> localMemberSlotBuilder [
 { #category : 'tests' }
 LcsMemberOfLocalCollectionSlotBuilderExamples >> memberOfLocalCollectionSlotAddedToConnectInvoiceItemWithInvoiceItemsInInvoice [
 	<gtExample>
-	<TODO: 'The commented out assertion fails. The cause is that LcsMemberOfSlotDefinition is not properly wired for a local member of situation. Especially for initialization.'>
 	| invoiceBuilderJob invoiceItemBuilderJob builder |
 	invoiceBuilderJob := LcsDomainClassAndGlobalCollectionClassBuilderJobExamples new 
 							invoiceAndInvoicesBuilderJob.
 	invoiceItemBuilderJob := LcsDomainClassAndLocalCollectionClassBuilderJobExamples new
-							 	invoiceItemAndLocalInvoiceItemsCreationJob.
+							 	invoiceItemAndLocalInvoiceItemsCreationJobWithoutInoiceItemsSlotInInvoice.
 	builder := self localMemberSlotBuilder.
 	[
 		invoiceBuilderJob execute.
 		invoiceBuilderJob verifyCodeInstallation.
 		invoiceItemBuilderJob execute.
 		invoiceItemBuilderJob verifyCodeInstallation.
-		self assert: ('LxxInvoice' asClass canUnderstand: #invoiceItems) not.
+		self denyClass: 'LxxInvoice' hasLocalSelector: #invoiceItems.
+		self denyClass: 'LxxInvoiceItem' hasLocalClassSelector: #parentSlotDefinition.
 		builder execute.
 		builder verifyCodeInstallation.
 		"self verifyInvoiceItemCreation" ]
@@ -59,8 +59,9 @@ LcsMemberOfLocalCollectionSlotBuilderExamples >> newBuilder [
 
 { #category : 'validation' }
 LcsMemberOfLocalCollectionSlotBuilderExamples >> verifyInvoiceItemCreation [
-		| invoice invoiceItem |
-		self assert: ('LxxInvoice' asClass canUnderstand: #invoiceItems).
-		self assert: (invoice := 'LxxInvoice' asClass new invoiceItems isEmpty ).
-		invoiceItem := #LxxInvoiceItem asClass new
+		"| invoice invoiceItem |
+		self denyClass: 'LxxInvoice' hasLocalSelector: #invoiceItems."
+		self assertClass: 'LxxInvoiceItem' hasLocalClassSelector: #parentSlotDefinition.
+		"self assert: (invoice := 'LxxInvoice' asClass new invoiceItems isEmpty ).
+		invoiceItem := #LxxInvoiceItem asClass new"
 ]

@@ -18,6 +18,26 @@ LcsExamples >> abortTransaction [
 ]
 
 { #category : 'asserting' }
+LcsExamples >> assertClass: aClassOrClassName hasClassSelector: aSelector [
+	self assert: ((self classNamed:aClassOrClassName) class allSelectors includes: aSelector asSymbol)
+]
+
+{ #category : 'asserting' }
+LcsExamples >> assertClass: aClassOrClassName hasLocalClassSelector: aSelector [
+	self assert: ((self classNamed:aClassOrClassName) class selectors includes: aSelector asSymbol)
+]
+
+{ #category : 'asserting' }
+LcsExamples >> assertClass: aClassOrClassName hasLocalSelector: aSelector [
+	self assert: ((self classNamed:aClassOrClassName) selectors includes: aSelector asSymbol)
+]
+
+{ #category : 'asserting' }
+LcsExamples >> assertClass: aClassOrClassName hasSelector: aSelector [
+	self assert: ((self classNamed:aClassOrClassName) allSelectors includes: aSelector asSymbol)
+]
+
+{ #category : 'asserting' }
 LcsExamples >> assertClassDoesntExist: aString [
 	self should: [ aString asClass ] raise: NotFound
 ]
@@ -64,6 +84,26 @@ LcsExamples >> currentSystem [
 { #category : 'system support' }
 LcsExamples >> currentUnitOfWork [
 	^ (self currentSystem ifNil: [ ^ nil ]) unitOfWork
+]
+
+{ #category : 'asserting' }
+LcsExamples >> denyClass: aClassOrClassName hasClassSelector: aSelector [
+	self deny: ((self classNamed:aClassOrClassName) class allSelectors includes: aSelector asSymbol)
+]
+
+{ #category : 'asserting' }
+LcsExamples >> denyClass: aClassOrClassName hasLocalClassSelector: aSelector [
+	self deny: ((self classNamed:aClassOrClassName) class selectors includes: aSelector asSymbol)
+]
+
+{ #category : 'asserting' }
+LcsExamples >> denyClass: aClassOrClassName hasLocalSelector: aSelector [
+	self deny: ((self classNamed:aClassOrClassName) selectors includes: aSelector asSymbol)
+]
+
+{ #category : 'asserting' }
+LcsExamples >> denyClass: aClassOrClassName hasSelector: aSelector [
+	self deny: ((self classNamed:aClassOrClassName) allSelectors includes: aSelector asSymbol)
 ]
 
 { #category : 'system support' }

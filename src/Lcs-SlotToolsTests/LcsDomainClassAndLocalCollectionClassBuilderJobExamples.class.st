@@ -48,6 +48,15 @@ LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalIn
 ]
 
 { #category : 'examples' }
+LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalInvoiceItemsCreationJobWithoutInoiceItemsSlotInInvoice [
+	<gtExample>
+	| builderJob |
+	builderJob :=  self invoiceItemAndLocalInvoiceItemsCreationJob.
+	builderJob jobSteps removeLast.
+	^ builderJob
+]
+
+{ #category : 'examples' }
 LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> newBuilderJob [
 	<gtExample>
 	| builderJob |

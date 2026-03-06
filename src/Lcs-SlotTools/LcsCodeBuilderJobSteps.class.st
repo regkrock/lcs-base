@@ -315,6 +315,12 @@ LcsCodeBuilderJobSteps >> removeAll [
 	self collection removeAll
 ]
 
+{ #category : 'as yet unclassified' }
+LcsCodeBuilderJobSteps >> removeLast [
+	self collection isEmpty ifTrue: [ ^ self ].
+	self collection remove: self collection last
+]
+
 { #category : 'gt - views' }
 LcsCodeBuilderJobSteps >> stepNumberFor: aStep [
 	| localStepNumber |
