@@ -16,6 +16,96 @@ Class {
 	#tag : 'Examples'
 }
 
+{ #category : 'examples' }
+LxxPrototypeSystemExamples >> addOnlyGetterAndThenDeleteTheSlot [
+	<gtExample>
+	self verifyRemovedDomainSlotNamed: 'dummy'.
+	LxxPrototypeSystem compile: 'dummy'.
+	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) notNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem instVarNames includes: #dummy) not.
+	self removeDomainSlotNamed: 'dummy'.
+	^ LxxPrototypeSystem
+]
+
+{ #category : 'examples' }
+LxxPrototypeSystemExamples >> addOnlyInstVarAndThenDeleteTheSlot [
+	<gtExample>
+	self verifyRemovedDomainSlotNamed: 'dummy'.
+	LxxPrototypeSystem addInstVarNamed: 'dummy'.
+	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem instVarNames includes: #dummy).
+	self removeDomainSlotNamed: 'dummy'.
+	^ LxxPrototypeSystem
+]
+
+{ #category : 'examples' }
+LxxPrototypeSystemExamples >> addOnlySetterAndThenDeleteTheSlot [
+	<gtExample>
+	self verifyRemovedDomainSlotNamed: 'dummy'.
+	LxxPrototypeSystem compile: 'dummy: anObject'.
+	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) notNil.
+	self assert: (LxxPrototypeSystem instVarNames includes: #dummy) not.
+	self removeDomainSlotNamed: 'dummy'.
+	^ LxxPrototypeSystem
+]
+
+{ #category : 'examples' }
+LxxPrototypeSystemExamples >> addOnlySlotDefintionMethodAndThenDeleteTheSlot [
+	<gtExample>
+	self verifyRemovedDomainSlotNamed: 'dummy'.
+	LxxPrototypeSystem class compile: 'dummySlotDefinition'.
+	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) notNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) isNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) isNil.
+	self deny: (LxxPrototypeSystem instVarNames includes: #dummy).
+
+	LxxPrototypeSystem removeDomainSlotNamed: 'dummy'.
+	self removeDomainSlotNamed: 'dummy'.
+	^ LxxPrototypeSystem
+]
+
+{ #category : 'examples' }
+LxxPrototypeSystemExamples >> addSlotComponentsAndThenDeleteTheSlot [
+	<gtExample>
+	self verifyRemovedDomainSlotNamed: 'dummy'.
+	LxxPrototypeSystem class compile: 'dummySlotDefinition'.
+	LxxPrototypeSystem compile: 'dummy'.
+	LxxPrototypeSystem compile: 'dummy: anObject'.
+	LxxPrototypeSystem addInstVarNamed: 'dummy'.
+	self assert: (LxxPrototypeSystem class compiledMethodAt: #dummySlotDefinition ifAbsent: [ nil ]) notNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy ifAbsent: [ nil ]) notNil.
+	self assert: (LxxPrototypeSystem compiledMethodAt: #dummy: ifAbsent: [ nil ]) notNil.
+	self assert: (LxxPrototypeSystem instVarNames includes: #dummy).
+	self removeDomainSlotNamed: 'dummy'.
+	^ LxxPrototypeSystem
+]
+
+{ #category : 'examples' }
+LxxPrototypeSystemExamples >> historyCreationWithNewDomainObject [
+	<gtExample>
+	| domainObject |
+	self ensureCurrentSystemIsPrototypeSystem.
+	domainObject := LcsDomainObject new.
+
+	"Set parent to a 'nonsensical' value so changes can be applied. This is a hack for this test"
+	domainObject instVarNamed: 'parent' put: self currentSystem.
+	
+	self currentSystem applyChanges.
+	self assert: domainObject creationDate equals: domainObject history creationTimestamp asDate.
+	self assert: domainObject creationDate equals: Date today.
+	self assert: domainObject creationTimestamp equals: domainObject history creationTimestamp.
+	self assert: domainObject lastUpdatedDate equals: domainObject history creationTimestamp asDate.
+	self assert: domainObject lastUpdatedTimestamp equals: domainObject history creationTimestamp.
+	self assert: domainObject creator equals: self currentSystem currentUser.
+	self assert: domainObject history userUuid isInteger
+]
+
 { #category : 'private' }
 LxxPrototypeSystemExamples >> newPrototypeSystem [
 	<gtExample>
@@ -67,7 +157,7 @@ LxxPrototypeSystemExamples >> newPrototypeSystemWCreatedWhenNoCurrentSystem [
 	^ system
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LxxPrototypeSystemExamples >> newSystemAfterItHasBeenSuspendedAndRestoredWhenAnotherSystemAvailableForSwapping [
 	<gtExample>
 	| secondSystem firstSystem |
@@ -97,7 +187,13 @@ LxxPrototypeSystemExamples >> newSystemAfterItHasBeenSuspendedAndRestoredWhenAno
 	^ firstSystem
 ]
 
-{ #category : 'tests' }
+{ #category : 'private' }
+LxxPrototypeSystemExamples >> removeDomainSlotNamed: aString [
+	LxxPrototypeSystem removeDomainSlotNamed: aString.
+	self verifyRemovedDomainSlotNamed: aString
+]
+
+{ #category : 'examples' }
 LxxPrototypeSystemExamples >> removedSystem [
 	<gtExample>
 	| system |
@@ -111,7 +207,7 @@ LxxPrototypeSystemExamples >> removedSystem [
 	^ system
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LxxPrototypeSystemExamples >> restoredSuspendedSystem [
 	<gtExample>
 	| system |
@@ -122,7 +218,7 @@ LxxPrototypeSystemExamples >> restoredSuspendedSystem [
 	^ self subject
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LxxPrototypeSystemExamples >> suspendedCurrentSystem [
 	<gtExample>
 	| system |
@@ -131,4 +227,34 @@ LxxPrototypeSystemExamples >> suspendedCurrentSystem [
 	self assert: system isInSuspendedStatus.
 	self assert: self currentSystem isNil.
 	^ system
+]
+
+{ #category : 'examples' }
+LxxPrototypeSystemExamples >> unitOfWorkWithNewObject [
+	<gtExample>
+	| domainObject |
+	self ensureCurrentSystemIsPrototypeSystem.
+	self assert: self currentUnitOfWork hasNoChanges.
+	domainObject := LcsDomainObject new.
+	self assert: self currentUnitOfWork addedObjects size equals: 1.
+	self assert: self currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentUnitOfWork changedObjects isEmpty.
+	self assert: (self currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
+	self assert: (self currentUnitOfWork addedObjects keys includes:  domainObject).
+	self clearUnitOfWork
+]
+
+{ #category : 'private' }
+LxxPrototypeSystemExamples >> verifyRemovedDomainSlotNamed: aString [
+	self assert: (LxxPrototypeSystem instVarNames includes: aString asSymbol) not.
+	self
+		assert: (LxxPrototypeSystem class compiledMethodAt: aString asSymbol ifAbsent: [ nil ])
+				isNil.
+	self
+		assert: (LxxPrototypeSystem compiledMethodAt: (aString , ':') asSymbol ifAbsent: [ nil ])
+				isNil.
+	self
+		assert: (LxxPrototypeSystem class
+				compiledMethodAt: (aString , 'SlotDefinition') asSymbol
+				ifAbsent: [ nil ]) isNil
 ]
