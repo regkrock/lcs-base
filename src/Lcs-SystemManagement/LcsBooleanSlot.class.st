@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsBooleanSlot',
-	#superclass : 'LcsSmalltalkObjectSlot',
+	#superclass : 'LcsBaseSmalltalkObjectSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'

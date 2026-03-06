@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsScaledDecimalSlotCreationFormExamples',
-	#superclass : 'LcsSmalltalkObjectSlotExamples',
+	#superclass : 'LcsBaseSmalltalkObjectSlotCreationFormExamples',
 	#category : 'Lcs-Magritte-Tests-Examples',
 	#package : 'Lcs-Magritte-Tests',
 	#tag : 'Examples'

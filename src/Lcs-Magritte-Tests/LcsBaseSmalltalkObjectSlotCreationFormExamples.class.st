@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsSmalltalkObjectSlotExamples',
+	#name : 'LcsBaseSmalltalkObjectSlotCreationFormExamples',
 	#superclass : 'LcsMagritteFormExamples',
 	#category : 'Lcs-Magritte-Tests-Examples',
 	#package : 'Lcs-Magritte-Tests',
@@ -7,22 +7,22 @@ Class {
 }
 
 { #category : 'configuration' }
-LcsSmalltalkObjectSlotExamples >> installationClass [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> installationClass [
 	^ LxxPerson
 ]
 
 { #category : 'private' }
-LcsSmalltalkObjectSlotExamples >> nilDescriptionSelectors [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> nilDescriptionSelectors [
 	^ #(numberOfDecimalsDescription) 
 ]
 
 { #category : 'private' }
-LcsSmalltalkObjectSlotExamples >> requiredDescriptionSelectors [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> requiredDescriptionSelectors [
 	^ #(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) asOrderedCollection
 ]
 
 { #category : 'scripter - model' }
-LcsSmalltalkObjectSlotExamples >> slotAccessorSlotCreationForm [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> slotAccessorSlotCreationForm [
 	"<gtExample>"
 
 	| form |
@@ -41,27 +41,27 @@ LcsSmalltalkObjectSlotExamples >> slotAccessorSlotCreationForm [
 ]
 
 { #category : 'configuration' }
-LcsSmalltalkObjectSlotExamples >> slotBuilderClass [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> slotBuilderClass [
 	^ (self slotClass name , 'Builder') asClass
 ]
 
 { #category : 'configuration' }
-LcsSmalltalkObjectSlotExamples >> slotClass [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> slotClass [
 	self subclassResponsibility
 ]
 
 { #category : 'configuration' }
-LcsSmalltalkObjectSlotExamples >> slotClassName [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> slotClassName [
 	^ self slotClass name asString
 ]
 
 { #category : 'configuration' }
-LcsSmalltalkObjectSlotExamples >> slotModelBuilderClassName [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> slotModelBuilderClassName [
 	^ self slotBuilderClass name asString
 ]
 
 { #category : 'scripter - model' }
-LcsSmalltalkObjectSlotExamples >> slotSubjectScripter [
+LcsBaseSmalltalkObjectSlotCreationFormExamples >> slotSubjectScripter [
 	"<gtExample>
 	<return: #BlScripter>"
 	| aScripter |
