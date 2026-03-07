@@ -6,7 +6,7 @@ Class {
 	#tag : 'Examples'
 }
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LcsSlotModelExamples >> baseDomainObjectWithEmptySlotModel [
 	<gtExample>
 	| slotModel |
@@ -23,7 +23,7 @@ LcsSlotModelExamples >> baseDomainObjectWithEmptySlotModel [
 	^ slotModel
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LcsSlotModelExamples >> baseDomainObjectWithSlotModelWithParentAccessorSlot [
 	<gtExample>
 	| slot slotModel |
@@ -55,7 +55,7 @@ LcsSlotModelExamples >> baseDomainObjectWithSlotModelWithParentAccessorSlot [
 	^ slotModel
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LcsSlotModelExamples >> domainObjectWithSlotModelAndBaseDomainObjectWithSlotModel [
 	<gtExample>
 	| slotModel localAccessorSlot localVirtualSlot  localFacadeSlot baseSlotModel baseAccessorSlot baseVirtualSlot baseFacadeSlot |
@@ -163,7 +163,7 @@ LcsSlotModelExamples >> newSlotModel [
 	^ slotModel
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LcsSlotModelExamples >> slotModelWithFacadeSlot [
 	<gtExample>
 	| slot slotModel |
@@ -180,7 +180,7 @@ LcsSlotModelExamples >> slotModelWithFacadeSlot [
 	^ slotModel
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LcsSlotModelExamples >> slotModelWithInstanceInLocalCollectionSlot [
 	<gtExample>
 	| slot slotModel |
@@ -199,7 +199,7 @@ LcsSlotModelExamples >> slotModelWithInstanceInLocalCollectionSlot [
 	^ slot
 ]
 
-{ #category : 'tests' }
+{ #category : 'examples' }
 LcsSlotModelExamples >> slotModelWithVirtualSlot [
 	<gtExample>
 	| slot slotModel |

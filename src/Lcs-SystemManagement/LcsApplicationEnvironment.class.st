@@ -196,6 +196,11 @@ LcsApplicationEnvironment class >> isRunning [
 	^ self hasInitializedApplicationEnvironment
 ]
 
+{ #category : 'start-stop' }
+LcsApplicationEnvironment class >> isStopped [
+	^ self hasInitializedApplicationEnvironment not
+]
+
 { #category : 'application environment - system' }
 LcsApplicationEnvironment class >> makeSystemCurrent: aSystem [
 	self applicationEnvironmentDo: [ :env | env makeSystemCurrent: aSystem ]
