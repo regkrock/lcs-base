@@ -10,9 +10,8 @@ Class {
 		'countries',
 		'skills'
 	],
-	#category : 'Lcs-PrototypeSystem-Core',
-	#package : 'Lcs-PrototypeSystem',
-	#tag : 'Core'
+	#category : '_UnpackagedPackage',
+	#package : '_UnpackagedPackage'
 }
 
 { #category : 'slot definitions' }

@@ -130,100 +130,35 @@ LcsValidationCondition >> slotDefinition [
 
 { #category : 'validation' }
 LcsValidationCondition >> validate: aValue [
-	| isError |
-	isError := [ self conditionBlock cull: aValue ]
-			on: Error
-			do: [ :s | 
-				LcsSlotValidationExecutionError
-					signalInvalidValue: aValue
-					forCondition: self
-					inSlot: self slotDefinition
-					context: nil
-					oldValue: nil
-					message: s message ].
-	isError isBoolean
-		ifFalse: [ ^ LcsSlotValidationNonBooleanResultError
-				signalBooleanNotReturnedFor: aValue
-				condition: self
-				inSlot: self slotDefinition
-				context: nil
-				oldValue: nil ].
-
-	isError == true
-		ifTrue: [ ^ LcsSlotValidationError
-				signalInvalidValue: aValue
-				forCondition: self
-				inSlot: self slotDefinition
-				oldValue: nil
-				context: nil ].
-	^ isError
+	^ self validate: aValue context: nil oldValue: nil
 ]
 
 { #category : 'validation' }
 LcsValidationCondition >> validate: aValue context: aDomainObject [
-	| isError oldValue |
-	oldValue := nil.
-	isError := [ self conditionBlock
-			cull: aValue
-			cull: aDomainObject
-			cull: oldValue ]
-			on: Error
-			do: [ :s | 
-				LcsSlotValidationExecutionError
-					signalInvalidValue: aValue
-					forCondition: self
-					inSlot: self slotDefinition
-					context: aDomainObject
-					oldValue: oldValue
-					message: s message asString ].
-	isError isBoolean
-		ifFalse: [ LcsSlotValidationNonBooleanResultError
-				signalBooleanNotReturnedFor: aValue
-				condition: self
-				inSlot: self slotDefinition
-				context: aDomainObject
-				oldValue: oldValue ].
-
-	isError == true
-		ifTrue: [ LcsSlotValidationError
-				signalInvalidValue: aValue
-				forCondition: self
-				inSlot: self slotDefinition
-				oldValue: oldValue
-				context: aDomainObject ].
-	^ isError
+	^ self validate: aValue context: aDomainObject oldValue: nil
 ]
 
 { #category : 'validation' }
 LcsValidationCondition >> validate: aValue context: aDomainObject oldValue: anOldValue [
-	| isError |
-	isError := 
-		[ self conditionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
-			on: Error
-			do: [ :s | 
-				LcsSlotValidationExecutionError
-					signalInvalidValue: aValue
-					forCondition: self
-					inSlot: self slotDefinition
-					context: aDomainObject
-					oldValue: anOldValue
-					message: s message asString ].
-	isError isBoolean
-		ifFalse: [ LcsSlotValidationNonBooleanResultError
-				signalBooleanNotReturnedFor: aValue
-				condition: self
-				inSlot: self slotDefinition
-				context: aDomainObject
-				oldValue: anOldValue ].
+	| result |
+	[ result := self conditionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
+		on: Error
+		do: [ :s | 
+					LcsSlotValidationExecutionError
+						signalInvalidValue: aValue
+						forCondition: self
+						inSlot: self slotDefinition
+						context: aDomainObject
+						oldValue: anOldValue
+						message: s messageText ].
+	result ifTrue: [ ^ result ].
 
-	isError == true
-		ifTrue: [ LcsSlotValidationError
-				signalInvalidValue: aValue
-				forCondition: self
-				inSlot: self slotDefinition
-				oldValue: anOldValue
-				context: aDomainObject ].
-	^ isError
+	^ LcsSlotValidationError
+		signalInvalidValue: aValue
+		forCondition: self
+		inSlot: self slotDefinition
+		oldValue: anOldValue
+		context: aDomainObject
 ]
 
 { #category : 'accessing' }

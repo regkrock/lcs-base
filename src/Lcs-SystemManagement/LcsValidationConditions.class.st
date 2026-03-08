@@ -22,7 +22,7 @@ LcsValidationConditions >> addValidationCondition: aValidationCondition [
 ]
 
 { #category : 'conditions' }
-LcsValidationConditions >> addValidationCondition: aBlock description: aString [
+LcsValidationConditions >> addValidationConditionBlock: aBlock description: aString [
 	^ self addValidationCondition: (
 		LcsValidationCondition new
 			validationDescription: aString;

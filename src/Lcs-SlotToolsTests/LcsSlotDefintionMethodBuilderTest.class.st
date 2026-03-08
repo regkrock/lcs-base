@@ -109,7 +109,7 @@ LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodWithValidationCon
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
-			addValidationCondition: [ false ] description: 'Always fails';
+			addValidationConditionBlock: [ false ] description: 'Always fails';
 			yourself).
 	self assert: builder validationConditions collectionSize = 1.
 	validationCondition := (builder validationConditions validationConditionWithDescription: 'Always fails').

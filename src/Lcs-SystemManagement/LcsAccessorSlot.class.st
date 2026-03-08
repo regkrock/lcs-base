@@ -88,14 +88,14 @@ LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
-{ #category : 'val' }
+{ #category : 'validations' }
 LcsAccessorSlot >> addValidationCondition: aValidationCondition [
-	self validationConditions addValidationCondition: aValidationCondition
+	^ self validationConditions addValidationCondition: aValidationCondition
 ]
 
 { #category : 'validations' }
-LcsAccessorSlot >> addValidationCondition: aBlock description: aString [
-	^ self validationConditions addValidationCondition: aBlock description: aString
+LcsAccessorSlot >> addValidationConditionBlock: aBlock description: aString [
+	^ self validationConditions addValidationConditionBlock: aBlock description: aString
 ]
 
 { #category : 'properties' }

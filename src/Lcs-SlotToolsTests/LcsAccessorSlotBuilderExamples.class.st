@@ -24,7 +24,7 @@ LcsAccessorSlotBuilderExamples >> builderWIthValidationConditionRemovedViaDescri
 	<gtExample>
 	| builder |
 	builder := self newBuilder.
-	builder addValidationCondition: [ :value | ] description: 'Test'.
+	builder addValidationConditionBlock: [ :value | ] description: 'Test'.
 	self assert: builder validationConditions collection size equals: 1.
 	builder removeValidationConditionWithDescription: 'Test'.
 	self assert: builder validationConditions hasNoElements.

@@ -152,7 +152,7 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationError [
 	<gtExample>
 	| slot validationCondition|
 	slot := self accessorSlot.
-	validationCondition := slot addValidationCondition: [ :value | value isInteger not ] description: 'Must be an Integer'.
+	validationCondition := slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Integer'.
 	self assert: slot validationConditions collection size equals: 1.
 	self assert: slot validationConditions collection any identicalTo: validationCondition.
 	self assert: validationCondition validationDescription = 'Must be an Integer'.
@@ -164,9 +164,9 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationErrorInThirdConditio
 	<gtExample>
 	| slot |
 	slot := self accessorSlot.
-	slot addValidationCondition: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
-	slot addValidationCondition: [ :value | value < 2 ] description: 'Must be greater than 1'.
-	slot addValidationCondition: [ :value | value > 10 ] description: 'Must be less than 11'.
+	slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
+	slot addValidationConditionBlock: [ :value | value < 2 ] description: 'Must be greater than 1'.
+	slot addValidationConditionBlock: [ :value | value > 10 ] description: 'Must be less than 11'.
 	^ [ slot validate: 12 ] on: LcsSlotValidationError do: [ :s | s return: s ]
 ]
 
@@ -176,15 +176,15 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationWithValidRangeOf2To1
 	| slot |
 	slot := self accessorSlot.
 
-	slot addValidationCondition: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
+	slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
 	self shouldnt: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self should: [ slot validate: 'text' ] raise: LcsSlotValidationError.
 
-	slot addValidationCondition: [ :value | value < 2 ] description: 'Must be greater than 1'.
+	slot addValidationConditionBlock: [ :value | value < 2 ] description: 'Must be greater than 1'.
 	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self shouldnt: [ slot validate: 2 ] raise: LcsSlotValidationError.
 	
-	slot addValidationCondition: [ :value | value > 10 ] description: 'Must be less than 11'.
+	slot addValidationConditionBlock: [ :value | value > 10 ] description: 'Must be less than 11'.
 	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self shouldnt: [ slot validate: 2 ] raise: LcsSlotValidationError.
 	self should: [ slot validate: 11 ] raise: LcsSlotValidationError.

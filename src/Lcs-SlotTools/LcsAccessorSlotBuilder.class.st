@@ -62,8 +62,8 @@ LcsAccessorSlotBuilder >> addValidationCondition: aValidationCondition [
 ]
 
 { #category : 'slot model' }
-LcsAccessorSlotBuilder >> addValidationCondition: aBlock description: aDescription [
-	^ self validationConditions addValidationCondition: aBlock description: aDescription
+LcsAccessorSlotBuilder >> addValidationConditionBlock: aBlock description: aDescription [
+	^ self validationConditions addValidationConditionBlock: aBlock description: aDescription
 ]
 
 { #category : 'properties' }

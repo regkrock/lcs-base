@@ -25,7 +25,7 @@ LcsCountry class >> commonNameSlotDefinition [
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ]
+		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
 			description: 'Name must be at least 3 characters long';
 		yourself
 ]
@@ -38,7 +38,7 @@ LcsCountry class >> formalNameSlotDefinition [
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size < 3 ]
+		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
 			description: 'Name must be at least 3 characters long';
 		yourself
 ]
@@ -51,7 +51,7 @@ LcsCountry class >> isoCode3SlotDefinition [
 		beRequired;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ]
+		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
 			description: 'Code must be 3 characters long';
 		yourself
 ]
@@ -64,7 +64,7 @@ LcsCountry class >> isoCodeSlotDefinition [
 		beRequired;
 		initialValue: '  ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 2 ]
+		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size = 2 ]
 			description: 'Code must be 2 characters long';
 		yourself
 ]
@@ -76,7 +76,7 @@ LcsCountry class >> isoNumberSlotDefinition [
 		slotName: #isoNumber;
 		initialValue: '   ';
 		allowEmptyIntialValue;
-		addValidationCondition: [ :value :parentDomainObject :oldValue | value size ~= 3 ]
+		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
 			description: 'Code must be 3 characters long';
 		yourself
 ]

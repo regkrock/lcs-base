@@ -88,9 +88,9 @@ LcsDateSlotBuilderExamples >> testDateChangeValidation [
 			slotName: 'date';
 			targetClassName: LxxPerson name;
 			initialValueBlock: [ Date today addDays: 10];
-			addValidationCondition: [ :newDate :parentDomainObject :oldValue |  
+			addValidationConditionBlock: [ :newDate :parentDomainObject :oldValue |  
 				newDate < Date today] description: 'Date must be >= today';
-			addValidationCondition: [ :newDate :parentDomainObject :oldValue |  
+			addValidationConditionBlock: [ :newDate :parentDomainObject :oldValue |  
 				newDate > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
 			yourself).
 	self subject buildJobSteps.
@@ -151,8 +151,8 @@ LcsDateSlotBuilderExamples >> testInstallingSlotWithValidationBlocks [
 			slotName: 'date';
 			targetClassName: LxxPerson name;
 			initialValueBlock: [ Date today addDays: 10 ];
-			addValidationCondition: [ :newDate :parentDomainObject :oldValue | newDate < Date today] description: 'Date must be >= today';
-			addValidationCondition: [ :newDate :parentDomainObject :oldValue | newDate > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
+			addValidationConditionBlock: [ :newDate :parentDomainObject :oldValue | newDate < Date today] description: 'Date must be >= today';
+			addValidationConditionBlock: [ :newDate :parentDomainObject :oldValue | newDate > (Date today addDays: 19)] description: 'Date must be < 20 days in the future';
 			yourself).
 	self subject buildJobSteps.
 	

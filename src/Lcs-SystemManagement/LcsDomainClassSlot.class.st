@@ -30,7 +30,7 @@ LcsDomainClassSlot >> initialize [
 			LcsValidationCondition new
 				validationDescription: 'Input class is not a valid subclass';
 				errorMessage: ['This must be a subclass of <1s>' expandMacrosWith: self superclassClass name ];
-				conditionBlock: [ :value | (value inheritsFrom:  self superclassClass) not ] ;
+				conditionBlock: [ :value | value inheritsFrom:  self superclassClass ] ;
 				yourself)
 ]
 

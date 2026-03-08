@@ -3,7 +3,7 @@ Extension { #name : 'LcsApplicationEnvironmentExamples' }
 { #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentExamples >> _createAndRemoveUnitOfWork [
 	| unistOfWorkManager unitOfWork |
-	self newApplicationEnvironment.
+	self _newApplicationEnvironment.
 	unistOfWorkManager := LcsApplicationEnvironment unitsOfWorkManager.
 	self assert: unistOfWorkManager numberOfUnitsOfWork equals: 0.
 	unitOfWork := unistOfWorkManager createUnitOfWorkForCurrentSystem.
@@ -15,39 +15,19 @@ LcsApplicationEnvironmentExamples >> _createAndRemoveUnitOfWork [
 ]
 
 { #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> createAndRemoveUnitOfWork [
-	<gtExample>
-	^ self inNewEnvironmentDo: [ self _createAndRemoveUnitOfWork ]
+LcsApplicationEnvironmentExamples >> _createUnitOfWorkOnNilSystem [
+	| unitOfWork |
+	LcsApplicationEnvironment initializeApplicationEnvironment.
+	self assert: LcsApplicationEnvironment currentUnitOfWork isNil.
+	unitOfWork := LcsApplicationEnvironment createUnitOfWork.
+	self assert: unitOfWork class identicalTo: LcsUnitOfWork.
+	^ unitOfWork
 ]
 
 { #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> createInstanceOfDomainObject [
-	<gtExample>
-	^ self inNewEnvironmentDo: [ self _createInstanceOfDomainObject ]
-]
-
-{ #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> createNewApplicationEnvironmentWithCurrentSystem [
-	<gtExample>
-	^ self inNewEnvironmentDo: [ self newApplicationEnvironmentWithCurrentSystem ]
-]
-
-{ #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> createSystemsAndSwapThem [
-	<gtExample>
-	^ self inNewEnvironmentDo: [ self swapSystems ]
-]
-
-{ #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> createSystemsDeleteTheCurrentAndMakeOtherCurrent [
-	<gtExample>
-	^ self inNewEnvironmentDo: [ self deleteCurrentSystemAndMakeOtherCurrent ]
-]
-
-{ #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> deleteCurrentSystemAndMakeOtherCurrent [
+LcsApplicationEnvironmentExamples >> _deleteCurrentSystemAndMakeOtherCurrent [
 	| secondSystem firstSystem |
-	self newApplicationEnvironmentWithCurrentSystem.
+	self _newApplicationEnvironmentWithCurrentSystem.
 	firstSystem := LcsApplicationEnvironment currentSystem.
 	secondSystem := LcsApplicationEnvironment createCurrentSystemFor: LxxPrototypeSystem.
 	self assert: LcsApplicationEnvironment currentSystem identicalTo: secondSystem.
@@ -60,8 +40,8 @@ LcsApplicationEnvironmentExamples >> deleteCurrentSystemAndMakeOtherCurrent [
 ]
 
 { #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> newApplicationEnvironmentWithCurrentSystem [
-	self newApplicationEnvironment.
+LcsApplicationEnvironmentExamples >> _newApplicationEnvironmentWithCurrentSystem [
+	self _newApplicationEnvironment.
 	LcsApplicationEnvironment createCurrentSystemFor: LxxPrototypeSystem.
 	self assert: LcsApplicationEnvironment systemsManager numberOfSystems equals: 1.
 	self
@@ -79,9 +59,9 @@ LcsApplicationEnvironmentExamples >> newApplicationEnvironmentWithCurrentSystem 
 ]
 
 { #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> swapSystems [
+LcsApplicationEnvironmentExamples >> _swapSystems [
 	| secondSystem firstSystem |
-	self newApplicationEnvironmentWithCurrentSystem.
+	self _newApplicationEnvironmentWithCurrentSystem.
 	firstSystem := LcsApplicationEnvironment currentSystem.
 	secondSystem := LcsApplicationEnvironment createCurrentSystemFor: LxxPrototypeSystem.
 	self assert: LcsApplicationEnvironment currentSystem identicalTo: secondSystem.
@@ -97,4 +77,46 @@ LcsApplicationEnvironmentExamples >> swapSystems [
 	self assert: firstSystem isInSuspendedStatus.
 	self assert: secondSystem isInActiveStatus.
 
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> addToUnitOfWorkCollections [
+	<gtExample>
+	^ self inNewEnvironmentDo: [ self _addToUnitOfWorkCollections ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> createAndRemoveUnitOfWork [
+	<gtExample>
+	^ self inNewEnvironmentDo: [ self _createAndRemoveUnitOfWork ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> createInstanceOfDomainObject [
+	<gtExample>
+	^ self inNewEnvironmentDo: [ self _createInstanceOfDomainObject ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> createNewApplicationEnvironmentWithCurrentSystem [
+	<gtExample>
+	^ self inNewEnvironmentDo: [ self _newApplicationEnvironmentWithCurrentSystem ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> createSystemsAndSwapThem [
+	<gtExample>
+	^ self inNewEnvironmentDo: [ self _swapSystems ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> createSystemsDeleteTheCurrentAndMakeOtherCurrent [
+	<gtExample>
+	^ self inNewEnvironmentDo: [ self _deleteCurrentSystemAndMakeOtherCurrent ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> removingFromChangedCollections [
+	<gtExample>
+	^ self inNewEnvironmentDo: [ self _removingFromChangedCollections ]
 ]

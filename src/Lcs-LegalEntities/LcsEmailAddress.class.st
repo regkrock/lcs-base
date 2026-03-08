@@ -29,7 +29,7 @@ LcsEmailAddress class >> emailSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'email';
-		addValidationCondition: [ :value "value isInvalidEmailFormat" :parentDomainObject :oldValue | false ]
+		addValidationConditionBlock: [ :value "value isInvalidEmailFormat" :parentDomainObject :oldValue | true ]
 			description: 'Invalid format';
 		yourself
 ]
