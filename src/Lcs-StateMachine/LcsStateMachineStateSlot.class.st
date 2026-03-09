@@ -20,11 +20,9 @@ LcsStateMachineStateSlot >> initialize [
 
 { #category : 'slot model' }
 LcsStateMachineStateSlot >> slotVarPut: anObject in: aDomainObject [
-	<TODO: 'More work required here as the fact that they were swapped needs to be recorded'>
-
-	| originalObject |
-	self deprecated: 'Need to pass the old value as well'.
-	originalObject := self persistedSlotVarIn: aDomainObject.
-	self _slotVarPut: anObject in: aDomainObject.
-	"self currentUnitOfWork deleteObject: originalObject"
+	| existingValue |
+	existingValue := self persistedSlotVarIn: aDomainObject.
+	self slotVarPut: anObject in: aDomainObject oldValue: existingValue.
+	"(existingValue isDomainObject)
+		ifTrue: [ self currentUnitOfWork deleteObject: existingValue ]"
 ]

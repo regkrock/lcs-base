@@ -1,18 +1,15 @@
 Class {
-	#name : 'LcsLibraryCategoryTest',
-	#superclass : 'LcsTestWithTestSystemSetUpForTest',
-	#category : 'Lcs-WarRabbitLibraryTests',
-	#package : 'Lcs-WarRabbitLibraryTests'
+	#name : 'LcsLibraryCategoryExamples',
+	#superclass : 'LcsExamples',
+	#category : 'Lcs-WarRabbitLibraryTests-Examples',
+	#package : 'Lcs-WarRabbitLibraryTests',
+	#tag : 'Examples'
 }
 
-{ #category : 'setUp' }
-LcsLibraryCategoryTest >> setupSunitSystem [
-	LcsWarRabbitLibrary new
-]
-
-{ #category : 'tests' }
-LcsLibraryCategoryTest >> testCreationAndAddingToParentCollection [
+{ #category : 'examples' }
+LcsLibraryCategoryExamples >> newLibraryCategory [
 	| libraryCategory |
+	self ensureCurrentSystemIsWarRabbitLibrarySystem.
 	libraryCategory := LcsLibraryCategory new categoryName: 'Test'.
 	self assert: libraryCategory categoryName equals: 'Test'.
 	self assert: libraryCategory parent notNil.

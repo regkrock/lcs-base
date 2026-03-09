@@ -39,3 +39,9 @@ LcsExamples >> ensureCurrentSystemIsDemoSystemWithLogging [
 	Transcript crShow: '-----'.
 	^ self currentSystem
 ]
+
+{ #category : '*Lcs-DemoSystemTests' }
+LcsExamples >> ensureCurrentSystemIsWarRabbitLibrarySystem [
+	self savedSystem: self currentSystem.
+	^ LcsApplicationEnvironment ensureCurrentSystemIs: #LcsWarRabbitLibrary asClass
+]

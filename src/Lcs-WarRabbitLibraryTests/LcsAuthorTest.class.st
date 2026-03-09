@@ -1,18 +1,15 @@
 Class {
 	#name : 'LcsAuthorTest',
-	#superclass : 'LcsTestWithTestSystemSetUpForTest',
-	#category : 'Lcs-WarRabbitLibraryTests',
-	#package : 'Lcs-WarRabbitLibraryTests'
+	#superclass : 'LcsExamples',
+	#category : 'Lcs-WarRabbitLibraryTests-Examples',
+	#package : 'Lcs-WarRabbitLibraryTests',
+	#tag : 'Examples'
 }
 
-{ #category : 'setUp' }
-LcsAuthorTest >> setupSunitSystem [
-	LcsWarRabbitLibrary new
-]
-
-{ #category : 'tests' }
-LcsAuthorTest >> testCreationAndAddingToParentCollection [
-	"| author person |
+{ #category : 'examples' }
+LcsAuthorTest >> newAuthorWithPersonAssinged [
+	| author person |
+	self ensureCurrentSystemIsWarRabbitLibrarySystem.
 	person := LcsPerson new
 					aFamilyName: 'Freeman';
 					firstName: 'Jack';
@@ -29,6 +26,6 @@ LcsAuthorTest >> testCreationAndAddingToParentCollection [
 	
 	self assert: (self currentSystem authors includes: author).
 	self assert: author parent identicalTo: self currentSystem authors.
-	self assert: author parent parent identicalTo: self currentSystem"
+	self assert: author parent parent identicalTo: self currentSystem
 	
 ]

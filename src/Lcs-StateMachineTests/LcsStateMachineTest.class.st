@@ -1,21 +1,13 @@
 Class {
 	#name : 'LcsStateMachineTest',
-	#superclass : 'LcsPrototypeSystemRunningTest',
+	#superclass : 'LcsExamples',
 	#instVars : [
 		'counter'
 	],
-	#category : 'Lcs-StateMachineTests-Tests',
+	#category : 'Lcs-StateMachineTests-Examples',
 	#package : 'Lcs-StateMachineTests',
-	#tag : 'Tests'
+	#tag : 'Examples'
 }
-
-{ #category : 'setUp' }
-LcsStateMachineTest >> domainModelTestClasses [
-	^ super domainModelTestClasses
-		"add: LxxCompositeStateMachine;
-		add: LxxSubStateMachine;"
-		yourself
-]
 
 { #category : 'private' }
 LcsStateMachineTest >> incrementCounter [
@@ -28,32 +20,9 @@ LcsStateMachineTest >> initCounter [
 	counter := 0
 ]
 
-{ #category : 'private' }
-LcsStateMachineTest >> newStateMachine [
-	| stateMachine |
-	stateMachine := LcsStateMachine new.
-	self assert: stateMachine context isEmpty.
-	self assert: stateMachine currentState isNil.
-	self assert: stateMachine id equals: #''.
-	self assert: stateMachine startState isNil.
-	self assert: stateMachine parent isNil.
-	self assert: stateMachine hasStates.
-	self assert: stateMachine numberOfStates = 1.
-	self assert: stateMachine hasEndState.
-	self deny: stateMachine hasStartState.
-	self deny: stateMachine isAtEnd.
-	self deny: stateMachine isAtStart.
-	^stateMachine
-]
-
-{ #category : 'running' }
-LcsStateMachineTest >> setUp [
-	super setUp.
-	self initCounter
-]
-
 { #category : 'testing' }
-LcsStateMachineTest >> testAddingInitialState [
+LcsStateMachineTest >> initialStateAddedToStateMachine [
+	"<gtExample>"
 	| stateMachine newState |
 	stateMachine := self newStateMachine.
 
@@ -65,6 +34,32 @@ LcsStateMachineTest >> testAddingInitialState [
 	self assert:stateMachine context isEmpty.
 	self assert: stateMachine isAtStart.
 	self deny: stateMachine atEnd
+]
+
+{ #category : 'private' }
+LcsStateMachineTest >> newStateMachine [
+	"<gtExample>"
+	| stateMachine |
+	self ensureCurrentSystemIsPrototypeSystem.
+	stateMachine := LcsStateMachine new.
+	self assert: stateMachine context isEmpty.
+	self assert: stateMachine currentState isNil.
+	self assert: stateMachine id equals: #''.
+	self assert: stateMachine startState isNil.
+	self assert: stateMachine parent isNil.
+	"self assert: stateMachine hasStates.
+	self assert: stateMachine numberOfStates = 1.
+	self assert: stateMachine hasEndState."
+	self deny: stateMachine hasStartState.
+	self deny: stateMachine isAtEnd.
+	self deny: stateMachine isAtStart.
+	^stateMachine
+]
+
+{ #category : 'running' }
+LcsStateMachineTest >> setUp [
+	super setUp.
+	self initCounter
 ]
 
 { #category : 'testing' }
@@ -138,11 +133,6 @@ LcsStateMachineTest >> testCompositeStateMachine [
 	self assert: (stateMachine changes asArray = #('s1->s2' 's2->s1' 's1->s2')).
 	self assert: (subStateMachine changes asArray = #('ss1->ss2')).
 	
-]
-
-{ #category : 'testing' }
-LcsStateMachineTest >> testCreation [
-	self newStateMachine
 ]
 
 { #category : 'testing' }

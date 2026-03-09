@@ -10,7 +10,7 @@ Class {
 		'countries',
 		'skills'
 	],
-	#category : 'Lcs-PrototypeSystem-Core',
+	#category : 'Lcs-PrototypeSystem',
 	#package : 'Lcs-PrototypeSystem'
 }
 
@@ -70,9 +70,7 @@ LxxPrototypeSystem class >> skillsSlotDefinition [
 ]
 
 { #category : 'initialize' }
-LxxPrototypeSystem >> addTempClassesTo: collection [
-	"This is present so starting and stopping the system with temp classes works"
-
+LxxPrototypeSystem >> addClassesInPackage: aString to: collection [
 	| tempClasses |
 	tempClasses := [ 'Lcs-Temp' asPackage classes ]
 			on: NotFound
@@ -80,6 +78,12 @@ LxxPrototypeSystem >> addTempClassesTo: collection [
 	(tempClasses
 		reject: [ :each | each isMeta or: [ (each inheritsFrom: LcsBaseDomainObject) not ] ])
 		do: [ :each | collection add: each ]
+]
+
+{ #category : 'initialize' }
+LxxPrototypeSystem >> addTempClassesTo: collection [
+	"This is present so starting and stopping the system with temp classes works"
+	self addClassesInPackage: 'Lcs-Temp' to: collection
 ]
 
 { #category : 'accessing' }
@@ -167,6 +171,7 @@ LxxPrototypeSystem >> systemDomainClasses [
 		addAll: LxxPrototypeSystem allSubmoduleClasses.
 
 	self addTempClassesTo: collection.
+	self addClassesInPackage: 'Lcs-StateMachine' to: collection.
 
 	^ collection
 ]
