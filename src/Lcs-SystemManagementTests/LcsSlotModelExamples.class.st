@@ -27,6 +27,7 @@ LcsSlotModelExamples >> baseDomainObjectWithEmptySlotModel [
 LcsSlotModelExamples >> baseDomainObjectWithSlotModelWithParentAccessorSlot [
 	<gtExample>
 	| slot slotModel |
+	self ensureNoCurrentSystem.
 	slotModel := self baseDomainObjectWithEmptySlotModel.
 	slot := LcsParentSlot new.
 	self deny: (slotModel hasSlotDefinitionNamed: 'parent').

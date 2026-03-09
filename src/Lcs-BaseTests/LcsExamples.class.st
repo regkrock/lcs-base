@@ -113,9 +113,11 @@ LcsExamples >> ensureCurrentSystemIsSailingClubSystem [
 
 { #category : 'system support' }
 LcsExamples >> ensureNoCurrentSystem [
-	self assert: LcsApplicationEnvironment isInActiveStatus.
+	LcsApplicationEnvironment isStopped
+		ifTrue: [  LcsApplicationEnvironment initializeApplicationEnvironment].
 	self savedSystem: self currentSystem.
-	self currentSystem ifNotNil: [ self currentSystem suspendSystem ]
+	self currentSystem ifNotNil: [ 
+		self currentSystem suspendSystem ]
 ]
 
 { #category : 'system support' }
