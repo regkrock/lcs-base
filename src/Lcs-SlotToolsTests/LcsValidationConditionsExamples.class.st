@@ -35,7 +35,7 @@ LcsValidationConditionsExamples >> validConditionsBlockWithDateCondition [
 	<gtExample>
 	| validationDescription conditionBlock conditions |
 	validationDescription := 'Date must be today or beyond'.
-	conditionBlock := [ :value | Date today < value ].
+	conditionBlock := [ :value | Date today <= value ].
 	conditions := LcsValidationConditions new.
 	conditions addValidationConditionBlock: conditionBlock description: validationDescription.
 	conditions validate: Date today.
