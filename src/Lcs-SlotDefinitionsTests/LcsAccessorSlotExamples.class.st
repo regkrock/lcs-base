@@ -176,15 +176,15 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationWithValidRangeOf2To1
 	| slot |
 	slot := self accessorSlot.
 
-	slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
+	slot addValidationConditionBlock: [ :value | value isInteger ] description: 'Must be an Ingeter'.
 	self shouldnt: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self should: [ slot validate: 'text' ] raise: LcsSlotValidationError.
 
-	slot addValidationConditionBlock: [ :value | value < 2 ] description: 'Must be greater than 1'.
+	slot addValidationConditionBlock: [ :value | value >= 2 ] description: 'Must be greater than 1'.
 	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self shouldnt: [ slot validate: 2 ] raise: LcsSlotValidationError.
 	
-	slot addValidationConditionBlock: [ :value | value > 10 ] description: 'Must be less than 11'.
+	slot addValidationConditionBlock: [ :value | value < 11 ] description: 'Must be less than 11'.
 	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self shouldnt: [ slot validate: 2 ] raise: LcsSlotValidationError.
 	self should: [ slot validate: 11 ] raise: LcsSlotValidationError.
