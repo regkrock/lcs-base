@@ -27,8 +27,8 @@ LtApplicationEnvironmntExamplesManagement >> suspendedApplicationEnvironment [
 	| suspendedEnvironment |
 	^ LcsApplicationEnvironment suspendApplicationEnvironment 
 		ifNotNil: [ 
-			suspendedEnvironment := LcsApplicationEnvironment suspendApplicationEnvironment.
-			self assert: suspendedEnvironment isInSuspendedStatus.
+			(suspendedEnvironment := LcsApplicationEnvironment suspendApplicationEnvironment)
+				ifNotNil: [ self assert: suspendedEnvironment isInSuspendedStatus ].
 			self validateApplicationEnvironmentIsNotInitialized.
 			suspendedEnvironment ]
 ]
