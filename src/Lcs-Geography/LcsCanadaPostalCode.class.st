@@ -12,8 +12,7 @@ LcsCanadaPostalCode class >> codeSlotDefinition [
 	^ super codeSlotDefinition
 		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | 
 				(value
-					matchesRegex: '[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]|[A-Z][0-9][A-Z][0-9][A-Z][0-9]')
-					not ]
+					matchesRegex: '[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]|[A-Z][0-9][A-Z][0-9][A-Z][0-9]') ]
 			description: 'Postalcode format should be A1A 1A1';
 		yourself
 ]
