@@ -76,7 +76,7 @@ LcsAddressExamples >> monroeNjUSAAddress [
 LcsAddressExamples >> newAddress [
 	<gtExample>
 	| address defaultCountry addresses |
-	self ensureCurrentSystemIsDemoSystem.
+	LcsAddress hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem ].
 	defaultCountry := self currentSystem geographyModule countries defaultInstance.
 	addresses := self currentSystem geographyModule addresses.
 

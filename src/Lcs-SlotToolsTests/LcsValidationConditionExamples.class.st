@@ -77,7 +77,7 @@ LcsValidationConditionExamples >> dateValidationCondition [
 	<gtExample>
 	| condition validationDescription conditionBlock |
 	validationDescription :=  'Date must be today or beyond'.
-	conditionBlock := [ :newDate | newDate < Date today ].
+	conditionBlock := [ :newDate | newDate >= Date today ].
 	condition := self newValidationCondition
 					validationDescription: validationDescription;
 					conditionBlock: conditionBlock.
@@ -85,9 +85,9 @@ LcsValidationConditionExamples >> dateValidationCondition [
 	self assert: condition validationDescription == validationDescription.
 	self assert: condition parent isNil.
 
-	self assert: (condition validate: (Date today subtractDays: 1)).
+	self assert: (condition validate: Date today).
 	self should: [ condition validate: 'xxxx' ] raise: LcsSlotValidationExecutionError.
-	self should: [ condition validate: Date today ] raise: LcsSlotValidationError.
+	self should: [ condition validate: (Date today subtractDays: 1) ] raise: LcsSlotValidationError.
 
 	^ condition
 ]

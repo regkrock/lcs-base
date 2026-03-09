@@ -55,7 +55,7 @@ LcsSystemSlotModel >> gtViewSlotModelChildren [
 	children := OrderedCollection new.
 	self slotModels keysAndValuesDo: [ :key :value |
 		children add: (LcsSlotModelViewItem newLabel: key name item: value) ].
-	^ children
+	^ children asSortedCollection: [ :a :b | a label <= b label ]
 ]
 
 { #category : 'testing' }
