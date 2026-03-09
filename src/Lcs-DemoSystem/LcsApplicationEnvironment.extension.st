@@ -6,6 +6,11 @@ LcsApplicationEnvironment class >> createNewDemoSystem [
 ]
 
 { #category : '*Lcs-DemoSystem' }
+LcsApplicationEnvironment class >> ensureCurrentSystemIsBasicSystem [
+	self ensureCurrentSystemIs: LcsBasicSystem
+]
+
+{ #category : '*Lcs-DemoSystem' }
 LcsApplicationEnvironment class >> ensureCurrentSystemIsDemoSystem [
 	self ensureCurrentSystemIs: LcsDemoSystem
 ]

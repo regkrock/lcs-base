@@ -233,7 +233,7 @@ LxxPrototypeSystemExamples >> suspendedCurrentSystem [
 LxxPrototypeSystemExamples >> unitOfWorkWithNewObject [
 	<gtExample>
 	| domainObject |
-	self ensureCurrentSystemIsPrototypeSystem.
+	self ensureCurrentSystemIsBasicSystem.
 	self assert: self currentUnitOfWork hasNoChanges.
 	domainObject := LcsDomainObject new.
 	self assert: self currentUnitOfWork addedObjects size equals: 1.

@@ -38,6 +38,11 @@ LcsObjectChangeRecord >> domainObject: anObject [
 	domainObject := anObject
 ]
 
+{ #category : 'printing' }
+LcsObjectChangeRecord >> gtDisplayOn: stream [
+	self gtPrint: self domainObject printString on: stream
+]
+
 { #category : 'accessing' }
 LcsObjectChangeRecord >> gtUnitOfWorkChildren [
 	^ LcsUnitOfWorkViewItem newLabel: self viewItemLabel item: self domainObject
