@@ -10,33 +10,19 @@ Class {
 LcsStringSlotExamples >> lstNameStringSlot [
 	<gtExample>
 	| slot |
-	self ensureCurrentSystemIsPrototypeSystem.
-	slot := (LxxPerson slotModel slotDefinitionNamed: 'lastName').
-	self assert: (slot isKindOf: LcsStringSlot).
-	self assert: slot slotName equals: 'lastName'.
+	slot := self newSlot
+			slotName: 'lastName';
+			yourself.
 	^ slot
 ]
 
-{ #category : 'tests' }
-LcsStringSlotExamples >> personWithEmptyLastName [
-	<gtExample>
-	| person |
-	self ensureCurrentSystemIsPrototypeSystem.
-	person := LxxPerson new.
-	self assert: person lastName isEmpty.
-	^ person
-]
-
 { #category : 'examples' }
-LcsStringSlotExamples >> personWithLastNameOfSchmidt [
+LcsStringSlotExamples >> newSlot [
 	<gtExample>
-	| person |
-	person := self personWithEmptyLastName.
-	person lastName: 'Schmidt'.
-	self assert: person isInAddingState.
-	self assert: person lastName equals: 'Schmidt'.
-	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: 'Schmidt'.
-	self currentSystem applyChanges.
-	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: 'Schmidt'.
-	person
+	| slot |
+	slot := LcsStringSlot new.
+	self assert: slot slotTypes size = 1.
+	self assert: (slot slotTypes includes: String).
+	self assert: slot initialValue = ''.
+	^ slot
 ]

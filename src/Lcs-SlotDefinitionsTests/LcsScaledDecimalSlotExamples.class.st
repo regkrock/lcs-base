@@ -6,12 +6,34 @@ Class {
 	#tag : 'Examples'
 }
 
-{ #category : 'tests' }
-LcsScaledDecimalSlotExamples >> scaledDecimalSlot [
+{ #category : 'examples' }
+LcsScaledDecimalSlotExamples >> balanceScaledDecimalSlot [
 	<gtExample>
 	| scaledDecimalSlot |
-	scaledDecimalSlot := LcsScaledDecimalSlot new slotName: 'balance'.
+	scaledDecimalSlot := self newSlot slotName: 'balance'.
 	self assert: scaledDecimalSlot slotName equals: 'balance'.
+	^ scaledDecimalSlot
+]
+
+{ #category : 'tests' }
+LcsScaledDecimalSlotExamples >> balanceScaledDecimalSlotWithInitialValueOf100 [
+	<gtExample>
+	| slot |
+	slot := self balanceScaledDecimalSlot.
+	slot initialValue: 100s2.
+	self
+		assert: slot initialValueBlock printString
+		equals: '[ :parentDomainObject :slot | 100.00s2 ]'.
+	self assert: slot initialValue equals: 100.00s2.
+	self assert: slot initialValue printString equals: '100.00s2'.
+	^ slot
+]
+
+{ #category : 'examples' }
+LcsScaledDecimalSlotExamples >> newSlot [
+	<gtExample>
+	| scaledDecimalSlot |
+	scaledDecimalSlot := LcsScaledDecimalSlot new.
 	self assert: scaledDecimalSlot class == LcsScaledDecimalSlot.
 	self assert: scaledDecimalSlot slotTypes size = 1.
 	self assert: (scaledDecimalSlot slotTypes includes: ScaledDecimal).
@@ -22,24 +44,10 @@ LcsScaledDecimalSlotExamples >> scaledDecimalSlot [
 ]
 
 { #category : 'tests' }
-LcsScaledDecimalSlotExamples >> scaledDecimalSlotWithInitialValueOf100 [
-	<gtExample>
-	| slot |
-	slot := self scaledDecimalSlot.
-	slot initialValue: 100s2.
-	self
-		assert: slot initialValueBlock printString
-		equals: '[ :parentDomainObject :slot | 100.00s2 ]'.
-	self assert: slot initialValue equals: 100.00s2.
-	self assert: slot initialValue printString equals: '100.00s2'.
-	^ slot
-]
-
-{ #category : 'tests' }
-LcsScaledDecimalSlotExamples >> scaledDecimalSlotWithModifiedInitialValueBlock [
+LcsScaledDecimalSlotExamples >> slotWithModifiedInitialValueBlock [
 	<gtExample>
 	| slot magritteDescription |
-	slot := self scaledDecimalSlot.
+	slot := self newSlot.
 	magritteDescription := slot initialValueBlockDescription.
 	self assert: magritteDescription notNil.
 	self assert: (magritteDescription read: slot) asString equals: '0 asScaledDecimal: slot numberOfDecimals'.

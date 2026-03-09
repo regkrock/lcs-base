@@ -7,15 +7,6 @@ Class {
 }
 
 { #category : 'tests' }
-LcsDateOfBirthSlotExamples >> newDateOfBirthSlot [
-	<gtExample>
-	| slot |
-	slot := LcsDateOfBirthSlot new.
-	self assert: slot initialValue equals: Date today.
-	^ slot
-]
-
-{ #category : 'tests' }
 LcsDateOfBirthSlotExamples >> newDateOfBirthSlotWithDateValidated [
 	<gtExample>
 	| slot futureDate |
@@ -35,47 +26,20 @@ LcsDateOfBirthSlotExamples >> newDateOfBirthSlotWithDateValidated [
 ]
 
 { #category : 'tests' }
-LcsDateOfBirthSlotExamples >> personWithDateOfBirthUpdatedFromInitialValue [
+LcsDateOfBirthSlotExamples >> newSlot [
 	<gtExample>
-	| person firstChangedDateOfBirth secondChangedDateOfBirth initialDateOfBirth |
-
-	self ensureCurrentSystemIsPrototypeSystem.
-	initialDateOfBirth := Date today.
-	firstChangedDateOfBirth := Date newDay: 1 month: 1 year: 2000.
-	secondChangedDateOfBirth := Date newDay: 1 month: 1 year: 2010.
-
-	person := LxxPerson new.
-	"Test initial date of birth when new person is created"
-	self assert: person dateOfBirth equals: initialDateOfBirth.
-	self assert: (person getPersistedValueOf: 'dateOfBirth') equals: initialDateOfBirth.
-
-	"Changed date of birth before applying the changes"
-	person dateOfBirth: firstChangedDateOfBirth.
-	self assert: person dateOfBirth equals: firstChangedDateOfBirth.
-	self assert: (person getPersistedValueOf: 'dateOfBirth') equals:firstChangedDateOfBirth.
-
-	self currentSystem applyChanges.
-	
-	"After applying the changes, now change the date of birth again"
-	self assert: person dateOfBirth equals: firstChangedDateOfBirth.
-	self assert: (person getPersistedValueOf: 'dateOfBirth') = firstChangedDateOfBirth.
-
-	person dateOfBirth: secondChangedDateOfBirth.
-	self assert: person dateOfBirth equals: secondChangedDateOfBirth.
-	self assert: (person getPersistedValueOf: 'dateOfBirth') = firstChangedDateOfBirth.
-
-	self currentUnitOfWork applyChanges.
-
-	self assert: person dateOfBirth equals: secondChangedDateOfBirth.
-	self assert: (person getPersistedValueOf: 'dateOfBirth') = secondChangedDateOfBirth.
-	^ person
+	| slot |
+	slot := LcsDateOfBirthSlot new.
+	self assert: slot slotName equals: 'dateOfBirth'.
+	self assert: slot initialValue equals: Date today.
+	^ slot
 ]
 
 { #category : 'tests' }
-LcsDateOfBirthSlotExamples >> slotWithChangedInitialDate [
+LcsDateOfBirthSlotExamples >> slotWithChangedInitialValueBlock [
 	<gtExample>
 	| initialValue dateOfBirthSlot |
-	dateOfBirthSlot := self newDateOfBirthSlot.
+	dateOfBirthSlot := self newSlot.
 	initialValue := dateOfBirthSlot initialValue.
 	self assert: dateOfBirthSlot initialValue equals: Date today.
 

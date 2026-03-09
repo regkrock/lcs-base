@@ -7,19 +7,10 @@ Class {
 }
 
 { #category : 'examples' }
-LcsAccessorSlotExamples >> accessorSlot [
-	<gtExample>
-	| slot |
-	slot := LcsAccessorSlot new.
-	self validateAccessorStyleSlot: slot.
-	^ slot
-]
-
-{ #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotIsRequired [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 	self deny: slot isRequired.
 	slot beRequired.
 	self assert: slot isRequired.
@@ -34,7 +25,7 @@ LcsAccessorSlotExamples >> accessorSlotIsRequired [
 LcsAccessorSlotExamples >> accessorSlotNamedTest [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 	slot slotName: 'test'.
 	self assert: slot slotName equals: 'test'.
 	^ slot
@@ -44,7 +35,7 @@ LcsAccessorSlotExamples >> accessorSlotNamedTest [
 LcsAccessorSlotExamples >> accessorSlotWithAddedPostUpdateAction [
 	<gtExample>
 	| accessorSlot |
-	accessorSlot := self accessorSlot.
+	accessorSlot := self newSlot.
 	accessorSlot slotName: 'test'.
 	accessorSlot addPostUpdateAction: self updateSiblingWithCollectionDefaultAction.
 	self assert: accessorSlot postUpdateActions collection size equals: 1.
@@ -55,7 +46,7 @@ LcsAccessorSlotExamples >> accessorSlotWithAddedPostUpdateAction [
 LcsAccessorSlotExamples >> accessorSlotWithDateSlotType [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 	slot slotName: 'test'.
 	self assert: slot slotName equals: 'test'.
 	slot addSlotType: Date.
@@ -75,7 +66,7 @@ LcsAccessorSlotExamples >> accessorSlotWithDateSlotType [
 LcsAccessorSlotExamples >> accessorSlotWithDirectVariableUpdatePolicy [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 	self assert: slot variableUpdatePolicyClass equals: LcsUnitOfWorkVariableUpdatePolicy.
 	slot makeDirectUpdateOfVariable.
 	self assert: slot variableUpdatePolicyClass equals: LcsDirectVariableUpdatePolicy.
@@ -91,7 +82,7 @@ LcsAccessorSlotExamples >> accessorSlotWithDirectVariableUpdatePolicy [
 LcsAccessorSlotExamples >> accessorSlotWithDummyPostUpdateAction [
 	<gtExample>
 	| accessorSlot updateAction |
-	accessorSlot := self accessorSlot.
+	accessorSlot := self newSlot.
 	updateAction := self dummyPostUpdateAction.
 	accessorSlot addPostUpdateAction: updateAction.
 	self assert: accessorSlot postUpdateActions collectionSize equals: 1.
@@ -116,7 +107,7 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyPostUpdateActionRemoved [
 LcsAccessorSlotExamples >> accessorSlotWithDummyValidationAction [
 	<gtExample>
 	| accessorSlot validationCondition |
-	accessorSlot := self accessorSlot.
+	accessorSlot := self newSlot.
 	validationCondition := self dummyValidationCondition.
 	accessorSlot addValidationCondition: validationCondition.
 	self assert: accessorSlot validationConditions collectionSize equals: 1.
@@ -140,7 +131,7 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyValidationActionRemoved [
 LcsAccessorSlotExamples >> accessorSlotWithInitialValueSetToNil [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 	slot initialValue: nil.
 	self assert: slot initialValueBlock printString equals: '[ :parentDomainObject :slot | nil ]'.
 	self assert: (slot initialValueBlock cull: self cull: self) isNil.
@@ -151,7 +142,7 @@ LcsAccessorSlotExamples >> accessorSlotWithInitialValueSetToNil [
 LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationError [
 	<gtExample>
 	| slot validationCondition|
-	slot := self accessorSlot.
+	slot := self newSlot.
 	validationCondition := slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Integer'.
 	self assert: slot validationConditions collection size equals: 1.
 	self assert: slot validationConditions collection any identicalTo: validationCondition.
@@ -163,7 +154,7 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationError [
 LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationErrorInThirdCondition [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 	slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
 	slot addValidationConditionBlock: [ :value | value < 2 ] description: 'Must be greater than 1'.
 	slot addValidationConditionBlock: [ :value | value > 10 ] description: 'Must be less than 11'.
@@ -174,7 +165,7 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationErrorInThirdConditio
 LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationWithValidRangeOf2To10 [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 
 	slot addValidationConditionBlock: [ :value | value isInteger ] description: 'Must be an Ingeter'.
 	self shouldnt: [ slot validate: 1 ] raise: LcsSlotValidationError.
@@ -195,7 +186,7 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationWithValidRangeOf2To1
 LcsAccessorSlotExamples >> accessorSlotWithNilAllowed [
 	<gtExample>
 	| slot |
-	slot := self accessorSlot.
+	slot := self newSlot.
 	slot beAllowNil.
 	self assert: slot isNilAllowed.
 	slot beDisallowNil.
@@ -208,7 +199,7 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowed [
 LcsAccessorSlotExamples >> accessorSlotWithPostUpdateActions [
 	<gtExample>
 	| accessorSlot |
-	accessorSlot := self accessorSlot.
+	accessorSlot := self newSlot.
 	accessorSlot slotName: 'test'.
 	accessorSlot addPostUpdateAction: (
 		LcsUpdateSiblingWithCollectionDefault new 
@@ -224,7 +215,7 @@ LcsAccessorSlotExamples >> accessorSlotWithPostUpdateActions [
 LcsAccessorSlotExamples >> accessorSlotWithSlotTypesSetViaMagritteSlotTypesDescription [
 	<gtExample>
 	| slot magritteSlotTypeDescription|
-	slot := self accessorSlot.
+	slot := self newSlot.
 	slot addSlotType: String.
 	magritteSlotTypeDescription := slot slotTypesDescription.
 	self assert: (magritteSlotTypeDescription read: slot) equals: (OrderedCollection with: #String).
@@ -238,7 +229,7 @@ LcsAccessorSlotExamples >> accessorSlotWithSlotTypesSetViaMagritteSlotTypesDescr
 LcsAccessorSlotExamples >> accessorSlotWithUpdatedInitialValueBlockDoneViaMagritteDescription [
 	<gtExample>
 	| slot magritteDescription|
-	slot := self accessorSlot.
+	slot := self newSlot.
 	slot addSlotType: String.
 	magritteDescription := slot initialValueBlockDescription.
 	self assert: (magritteDescription read: slot) equals: 'self newInstanceOfFirstSlotTypeIn: slot parent: parentDomainObject'.
@@ -251,26 +242,13 @@ LcsAccessorSlotExamples >> accessorSlotWithUpdatedInitialValueBlockDoneViaMagrit
 LcsAccessorSlotExamples >> accessorSlotWithUpdatedPrevalidationTransformBlockDoneViaMagritteDescription [
 	<gtExample>
 	| slot magritteDescription|
-	slot := self accessorSlot.
+	slot := self newSlot.
 	self assert: slot prevalidationTransformBlock asString equals: '[ :value :slot | value ]'.
 	magritteDescription := slot prevalidationTransformBlockDescription.
 	self assert: (magritteDescription read: slot) equals: 'value'.
 	magritteDescription write: '0' to: slot.
 	self assert: (magritteDescription read: slot) equals: '0'.
 	self assert: slot prevalidationTransformBlock asString equals: '[ :value :slot | 0 ]'.
-	^ slot
-]
-
-{ #category : 'examples' }
-LcsAccessorSlotExamples >> dateRangeSlot [
-	<gtExample>
-	| slot |
-	slot := LcsDateRangeSlot new.
-	self validateAccessorStyleSlot: slot.
-	self assert: slot slotTypes size = 1.
-	self assert: slot slotTypes first = LcsDateRange.
-	self assert: slot effectiveDate = (Date newDay: 1 month: 1 year: 1970).
-	self assert: slot expiryDate = (Date newDay: 31 month: 12 year: 2100).
 	^ slot
 ]
 
@@ -298,6 +276,15 @@ LcsAccessorSlotExamples >> dummyValidationCondition [
 	self assert: validationCondition validationDescription equals: 'Test'.
 	self assert: validationCondition conditionBlock printString equals: '[ :value |  ]'.
 	^ validationCondition
+]
+
+{ #category : 'examples' }
+LcsAccessorSlotExamples >> newSlot [
+	<gtExample>
+	| slot |
+	slot := LcsAccessorSlot new.
+	self validateAccessorStyleSlot: slot.
+	^ slot
 ]
 
 { #category : 'examples' }

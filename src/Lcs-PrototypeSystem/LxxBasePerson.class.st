@@ -18,7 +18,7 @@ LxxBasePerson class >> dateOfBirthSlotDefinition [
 	^ LcsDateOfBirthSlot new
 ]
 
-{ #category : 'slot definition' }
+{ #category : 'slot definitions' }
 LxxBasePerson class >> firstNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
@@ -34,7 +34,7 @@ LxxBasePerson class >> lastNameSlotDefinition [
 		yourself
 ]
 
-{ #category : 'slot definition' }
+{ #category : 'slot definitions' }
 LxxBasePerson class >> middleNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new

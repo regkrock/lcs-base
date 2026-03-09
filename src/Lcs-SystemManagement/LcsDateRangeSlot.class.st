@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'defaults' }
-LcsDateRangeSlot >> defaultEffectiveDate [
+LcsDateRangeSlot class >> defaultEffectiveDate [
 	^ Date
 		newDay: 1
 		month: 1
@@ -15,11 +15,21 @@ LcsDateRangeSlot >> defaultEffectiveDate [
 ]
 
 { #category : 'defaults' }
-LcsDateRangeSlot >> defaultExpiryDate [
+LcsDateRangeSlot class >> defaultExpiryDate [
 	^ Date
 		newDay: 31
 		month: 12
 		year: 2100
+]
+
+{ #category : 'defaults' }
+LcsDateRangeSlot >> defaultEffectiveDate [
+	^ self class defaultEffectiveDate
+]
+
+{ #category : 'defaults' }
+LcsDateRangeSlot >> defaultExpiryDate [
+	^ self class defaultExpiryDate
 ]
 
 { #category : 'accessing' }

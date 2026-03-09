@@ -157,7 +157,9 @@ LcsModule class >> immediateSubmodulePragmasOf: aClass [
 { #category : 'slot model' }
 LcsModule class >> immediateSubmodulePragmasWithDuplicatesOf: aClass [
 	^ (Pragma pragmaCache at: 'owningModule:priority:')
-		select: [ :each | (each argumentNamed: #owningModule) = aClass name asString ]
+		select: [ :each | (
+		(each methodClass name findString: 'Obsolete') = 0) and: [
+		(each argumentNamed: #owningModule) = aClass name asString ] ]
 ]
 
 { #category : 'testing' }

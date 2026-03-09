@@ -53,6 +53,13 @@ LcsDomainObjectChangeRecords >> domainObjectHistory [
 	^ self parent domainObjectHistory
 ]
 
+{ #category : 'printing' }
+LcsDomainObjectChangeRecords >> gtPrintCollectionSizeOn: stream [
+	stream
+		print: self collectionSize;
+		nextPutAll: (' item' asPluralBasedOn: self collectionSize).
+]
+
 { #category : 'testing' }
 LcsDomainObjectChangeRecords >> hasElements [
 	^ self isNotEmpty
