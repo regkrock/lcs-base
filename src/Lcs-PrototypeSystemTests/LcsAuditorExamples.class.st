@@ -17,8 +17,6 @@ LcsAuditorExamples >> auditNewPerson [
 	self assert: (auditor errorDescriptions includes: '''parent'' slot("LcsGlobalCollectionReferenceSlot") in LxxPerson is not in its global collection').
 	
 	person initialize.
-	self currentSystem applyChanges.
-	
 	auditor := person auditSlots.
 	self assert: auditor hasNoErrors.
 	^ auditor
@@ -45,7 +43,6 @@ LcsAuditorExamples >> auditOfPersonWithParentSlotWithAnInvalidValue [
 	| auditor person |
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
-	self currentSystem applyChanges.
 	person instVarNamed: 'parent' put: nil.
 	self assert: person parent equals: nil.
 	auditor := person auditSlots.

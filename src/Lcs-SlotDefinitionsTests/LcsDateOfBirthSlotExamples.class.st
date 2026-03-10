@@ -7,6 +7,15 @@ Class {
 }
 
 { #category : 'tests' }
+LcsDateOfBirthSlotExamples >> invalidSlotTypeError [
+	<gtExample>
+	<noTest>
+	| slot |
+	slot := self newSlot.
+	^ (slot verifySlotTypeOf: 'futureDate' for: nil)
+]
+
+{ #category : 'tests' }
 LcsDateOfBirthSlotExamples >> newSlot [
 	<gtExample>
 	| slot |
@@ -44,13 +53,10 @@ LcsDateOfBirthSlotExamples >> verifyValidationConditions: slot [
 		description: 'Nil is not allowed, so should raise an invalid type'.
 	slot beAllowNil.
 	self
-		shouldnt: [ slot validate: nil for: nil oldValue: nil ]
-		raise: LcsInvalidSlotTypeError
+		assert: (slot validate: nil for: nil oldValue: nil)
 		description: 'Nil is not allowed, so should raise an invalid type'.
 	slot beDisallowNil.
-	self 
-		shouldnt: [ slot validate: Date today for: nil oldValue: nil ]
-		raise: Error.
+	self assert: (slot validate: Date today for: nil oldValue: nil ).
 	self
 		should: [ slot validate: futureDate for: nil oldValue: nil ]
 		raise: LcsSlotValidationError.

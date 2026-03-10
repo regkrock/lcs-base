@@ -97,7 +97,7 @@ LcsConditionsValidator >> validate: aValue [
 
 { #category : 'magritte' }
 LcsConditionsValidator >> validationConditionsDescription [
-	<magritteDescription>
+	"<magritteDescription>"
 	^ MAToManyRelationDescription new
 		  accessor: (MAChainAccessor accessors: #(#validationConditions #collection));
 		  label: 'Validation Conditions';

@@ -239,6 +239,11 @@ LcsBaseSlot >> domainClassDescription [
 
 ]
 
+{ #category : 'convenience' }
+LcsBaseSlot >> domainClassName [
+	^ self domainClass ifNil: [ 'nil' ] ifNotNil: [ :class | class name]
+]
+
 { #category : 'properties' }
 LcsBaseSlot >> errorPropertyNotFound: aSelector [ 
 	LcsSlotPropertyError new
@@ -568,6 +573,11 @@ LcsBaseSlot >> slotClassDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		beReadOnly
 
+]
+
+{ #category : 'convenience' }
+LcsBaseSlot >> slotClassName [
+	^ self class name
 ]
 
 { #category : 'asking' }

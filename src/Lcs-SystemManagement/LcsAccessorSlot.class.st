@@ -585,7 +585,7 @@ LcsAccessorSlot >> setterSelector [
 
 { #category : 'slot model' }
 LcsAccessorSlot >> signalInvalidSlotTypeError: anObject for: aDomainObject [ 
-	LcsInvalidSlotTypeError
+	^ LcsInvalidSlotTypeError
 		signalInvalidType: anObject
 		forSlot: self
 		for: aDomainObject
@@ -657,9 +657,9 @@ LcsAccessorSlot >> validate: anObject for: aDomainObject [
 { #category : 'slot model' }
 LcsAccessorSlot >> validate: anObject for: aDomainObject  oldValue: anOldvalue [
 	self verifySlotType: anObject for: aDomainObject.
-	(self isNilAllowed and: [ anObject isNil and: [ anOldvalue isNil ] ]) ifTrue: [ ^self ].
-	(self isNullAllowed and: [ (self isNullObject: anObject)]) ifTrue: [ ^ self ].
-	self validationConditions 
+	(self isNilAllowed and: [ anObject isNil and: [ anOldvalue isNil ] ]) ifTrue: [ ^true ].
+	(self isNullAllowed and: [ (self isNullObject: anObject)]) ifTrue: [ ^ true ].
+	^ self validationConditions 
 		validate: anObject 
 		context: aDomainObject 
 		oldValue: anOldvalue
@@ -757,7 +757,7 @@ LcsAccessorSlot >> variableUpdatePolicyClassName: aClassName [
 
 { #category : 'slot model' }
 LcsAccessorSlot >> verifySlotType: anObject for: aDomainObject [
-	self verifyType: anObject for: aDomainObject
+	^ self verifyType: anObject for: aDomainObject
 	"The below was a hack. Commenting but leaving 
 	 it as an artifact for future work in this area"
 	"[ self verifyType: anObject for: aDomainObject ]
@@ -771,13 +771,14 @@ LcsAccessorSlot >> verifySlotType: anObject for: aDomainObject [
 LcsAccessorSlot >> verifySlotTypeOf: anObject for: aDomainObject [
 	self slotTypes
 		detect: [ :eachClass | anObject isKindOf: eachClass ]
-		ifNone: [ self signalInvalidSlotTypeError: anObject for: aDomainObject  ]
+		ifNone: [ ^ self signalInvalidSlotTypeError: anObject for: aDomainObject  ].
+		^ true
 ]
 
 { #category : 'slot model' }
 LcsAccessorSlot >> verifyType: anObject for: aDomainObject [
 	(self isNilAllowed and: [ anObject isNil ]) ifTrue: [ ^ true ].
-	self verifySlotTypeOf: anObject for: aDomainObject
+	^ self verifySlotTypeOf: anObject for: aDomainObject
 ]
 
 { #category : 'slot model' }

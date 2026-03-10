@@ -13,7 +13,7 @@ Class {
 
 { #category : 'instance  creation' }
 LcsInvalidSlotTypeError class >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
-	self new
+	^ self new
 		signalInvalidType: anObject
 		forSlot: aSlotDefinition
 		for: aDomainObject
@@ -186,6 +186,7 @@ LcsInvalidSlotTypeError >> slotDefinition: aSlotDefinition [
 { #category : 'gt view' }
 LcsInvalidSlotTypeError >> slotDefinitionMethods [
 	| method |
+	self target isNil ifTrue: [ ^#() ].
 	method := self target class class lookupSelector: self slotDefinitionSelector.
 	method ifNil: [ ^ self error: '#' , self slotDefinitionSelector , ' method not found' ].
 	^ Array with: method
