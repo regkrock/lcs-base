@@ -117,7 +117,8 @@ LcsExamples >> ensureNoCurrentSystem [
 		ifTrue: [  LcsApplicationEnvironment initializeApplicationEnvironment].
 	self savedSystem: self currentSystem.
 	self currentSystem ifNotNil: [ 
-		self currentSystem suspendSystem ]
+		self currentSystem suspendSystem ].
+	^ self savedSystem
 ]
 
 { #category : 'system support' }

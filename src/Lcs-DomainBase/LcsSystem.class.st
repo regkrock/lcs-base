@@ -238,6 +238,8 @@ LcsSystem >> gtDisplayOn: aStream [
 	super gtDisplayOn: aStream.
 	aStream
 		nextPutAll: ' (';
+		nextPutAll: ([ self moduleName ] on: Error do: [:s | s return: (self instVarNamed: 'moduleName')]) asString;
+		nextPutAll: '-';
 		nextPutAll: self statusNameString;
 		nextPutAll: ')'
 ]

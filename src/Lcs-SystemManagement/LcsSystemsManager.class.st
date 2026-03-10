@@ -81,14 +81,18 @@ LcsSystemsManager >> currentUnitOfWork [
 
 { #category : 'api' }
 LcsSystemsManager >> ensureCurrentSystemIs: aSystemClass [
-	| suspendedSystem |
+	| suspendedSystem candidateForActivation |
+	
 	self currentSystem class = aSystemClass ifTrue: [ ^ self currentSystem ].
-	(suspendedSystem := self suspendedSystemFor: aSystemClass) 
-		ifNil: [ aSystemClass new ]
-		ifNotNil: [
-			self currentSystem ifNotNil: [ self suspendCurrentSystem ].
-			suspendedSystem restoreSystem ].
-	^ self currentSystem
+
+	suspendedSystem := self suspendCurrentSystem.
+	"All systems are now suspended"
+	candidateForActivation := self suspendedSystemFor: aSystemClass.
+	
+	candidateForActivation isNil ifTrue: [
+		^ self createCurrentSystemFor: aSystemClass].
+
+	^ candidateForActivation restoreSystem
 ]
 
 { #category : 'gt views' }

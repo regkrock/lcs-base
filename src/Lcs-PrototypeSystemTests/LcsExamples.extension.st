@@ -7,8 +7,11 @@ LcsExamples >> createNewPrototypeSystem [
 
 { #category : '*Lcs-PrototypeSystemTests' }
 LcsExamples >> ensureCurrentSystemIsBasicSystem [
+	| system |
 	self savedSystem: self currentSystem.
-	^ LcsApplicationEnvironment ensureCurrentSystemIs: LcsBasicSystem
+	system := LcsApplicationEnvironment ensureCurrentSystemIs: LcsBasicSystem.
+	self currentSystem applyChanges.
+	^ system
 ]
 
 { #category : '*Lcs-PrototypeSystemTests' }

@@ -18,7 +18,6 @@ LcsBasicSystemExamples >> basicSystem [
 { #category : 'exmples' }
 LcsBasicSystemExamples >> createNewBasicSystemWhenCurrentSystemIsNil [
 	<gtExample>
-	| savedSystem |
 	savedSystem := self currentSystem.
 	LcsApplicationEnvironment suspendCurrentSystem.
 	self assert: self currentSystem isNil.
@@ -51,8 +50,31 @@ LcsBasicSystemExamples >> createNewBasicSystemWhenCurrentSystemIsNil [
 { #category : 'exmples' }
 LcsBasicSystemExamples >> newBasicSystem [
 	"The new system becomes the current system"
-	self subject: LcsBasicSystem new.
-	self assertCurrentSystemSetTo: LcsBasicSystem.
-	self assertModuleConfigured: LcsSecurityModule.
-	^ self subject
+	<gtExample>
+	| system |
+	system := self ensureNoCurrentSystem.
+	[ 
+		self assert: self currentSystem isNil.
+		system := LcsBasicSystem new.
+		self assertCurrentSystemSetTo: LcsBasicSystem.
+		self assertModuleConfigured: LcsSecurityModule.
+		]
+			ensure: [
+				self removeCurrentSystemAndActivate: system ].
+	^ system
+]
+
+{ #category : 'exmples' }
+LcsBasicSystemExamples >> unitOfWorkWithNewObject [
+	<gtExample>
+	| domainObject |
+	self ensureCurrentSystemIsBasicSystem.
+	self assert: self currentUnitOfWork hasNoChanges.
+	domainObject := LcsDomainObject new.
+	self assert: self currentUnitOfWork addedObjects size equals: 1.
+	self assert: self currentUnitOfWork deletedObjects isEmpty.
+	self assert: self currentUnitOfWork changedObjects isEmpty.
+	self assert: (self currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
+	self assert: (self currentUnitOfWork addedObjects keys includes:  domainObject).
+	self clearUnitOfWork
 ]
