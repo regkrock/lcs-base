@@ -12,7 +12,8 @@ LcsDateOfBirthSlotExamples >> invalidSlotTypeError [
 	<noTest>
 	| slot |
 	slot := self newSlot.
-	^ (slot verifySlotTypeOf: 'futureDate' for: nil)
+	(slot verifySlotTypeOf: 'futureDate' for: nil).
+	^ slot
 ]
 
 { #category : 'tests' }
@@ -24,6 +25,16 @@ LcsDateOfBirthSlotExamples >> newSlot [
 	self assert: slot initialValue equals: Date today.
 	self assert: slot validationConditions collectionSize = 1.
 	self verifyValidationConditions: slot.
+	^ slot
+]
+
+{ #category : 'tests' }
+LcsDateOfBirthSlotExamples >> slotValidationError [
+	<gtExample>
+	<noTest>
+	| slot |
+	slot := self newSlot.
+	(slot validate: (Date today addDays: 1) for: nil oldValue: nil).
 	^ slot
 ]
 
@@ -46,7 +57,8 @@ LcsDateOfBirthSlotExamples >> verifyValidationConditions: slot [
 	futureDate := Date today addDays: 1.
 	self
 		should: [ slot validate: 'futureDate' for: nil oldValue: nil ]
-		raise: LcsInvalidSlotTypeError.
+		raise: LcsInvalidSlotTypeError
+		description: 'Invalid type - a string, not a date'.
 	self
 		should: [ slot validate: nil for: nil oldValue: nil ]
 		raise: LcsInvalidSlotTypeError
