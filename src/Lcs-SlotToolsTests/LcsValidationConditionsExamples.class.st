@@ -9,14 +9,25 @@ Class {
 }
 
 { #category : 'examples' }
-LcsValidationConditionsExamples >> dateSlotWithValidationCondition [
+LcsValidationConditionsExamples >> dateOnOrAfterTodayConditions [
 	<gtExample>
-	| slot |
-	slot := LcsDateSlot new.
-	slot addValidationCondition: LcsValidationConditionExamples new dateValidationCondition.
-	self assert: (slot validate: Date today) hasNoErrors.
-	self should: [ slot validate: (Date today subtractDays: 1) ] raise: LcsSlotValidationError.
-	^ slot
+	| conditions |
+	conditions := LcsValidationConditions new.
+	conditions addValidationCondition: LcsValidationConditionExamples new dateOnOrAfterTodayValidationCondition.
+	self assert: (conditions validate: Date today).
+	self should: [ conditions validate: (Date today subtractDays: 1) ] raise: LcsSlotValidationError.
+	^ conditions
+]
+
+{ #category : 'examples' }
+LcsValidationConditionsExamples >> dateOnOrBeforeTodayConditions [
+	<gtExample>
+	| conditions |
+	conditions := LcsValidationConditions new.
+	conditions addValidationCondition: LcsValidationConditionExamples new dateOnOrBeforeTodayValidationCondition.
+	self assert: (conditions validate: Date today).
+	self should: [ conditions validate: (Date today addDays: 1) ] raise: LcsSlotValidationError. 
+	^ conditions
 ]
 
 { #category : 'examples' }
@@ -31,14 +42,41 @@ LcsValidationConditionsExamples >> newValidationConditions [
 ]
 
 { #category : 'examples' }
+LcsValidationConditionsExamples >> twoValidationConditions [
+	<gtExample>
+	| conditions |
+	conditions := LcsValidationConditions new.
+	conditions addValidationCondition: LcsValidationConditionExamples new dateOnOrAfterTodayValidationCondition.
+	conditions addValidationCondition: LcsValidationConditionExamples new dateOnOrBeforeTodayValidationCondition.
+	self assert: (conditions validate: Date today).
+	self should: [ conditions validate: (Date today addDays: 1) ] raise: LcsSlotValidationError. 
+	self should: [ conditions validate: (Date today subtractDays: 1) ] raise: LcsSlotValidationError. 
+	^ conditions
+]
+
+{ #category : 'examples' }
 LcsValidationConditionsExamples >> validConditionsBlockWithDateCondition [
 	<gtExample>
-	| validationDescription conditionBlock conditions |
-	validationDescription := 'Date must be today or beyond'.
-	conditionBlock := [ :value | Date today <= value ].
+	| condition conditions |
+	condition := LcsValidationConditionExamples new
+			dateOnOrAfterTodayValidationCondition.
+	conditions := self newValidationConditions.
+	conditions addValidationCondition: condition.
+	self assert: (conditions validate: Date today).
+	self
+		should: [ conditions validate: (Date today subtractDays: 1) ]
+		raise: LcsSlotValidationError.
+	^ conditions
+]
+
+{ #category : 'examples' }
+LcsValidationConditionsExamples >> validateEmptyCollectionOrConditions [
+	<gtExample>
+	| conditions |
 	conditions := LcsValidationConditions new.
-	conditions addValidationConditionBlock: conditionBlock description: validationDescription.
-	conditions validate: Date today.
+	self assert: (conditions validate: Date today).
+	self assert: ( conditions validate: (Date today addDays: 1)). 
+	self assert: (conditions validate: 'xxx').
 	^ conditions
 ]
 
@@ -46,24 +84,9 @@ LcsValidationConditionsExamples >> validConditionsBlockWithDateCondition [
 LcsValidationConditionsExamples >> validationConditionsValidationConditionRemoved [
 	<gtExample>
 	| validationCondition validationConditions |
-	validationConditions := self validationConditionsWithOneCondition.
+	validationConditions := self validConditionsBlockWithDateCondition.
 	validationCondition := validationConditions collection at: 1.
 	validationConditions removeValidationCondition: validationCondition.
 	self assert: validationConditions collection isEmpty.
-	^ validationConditions
-]
-
-{ #category : 'examples' }
-LcsValidationConditionsExamples >> validationConditionsWithOneCondition [
-	<gtExample>
-	| validationDescription validationCondition conditionBlock validationConditions |
-	validationDescription := 'Date must be today or beyond'.
-	conditionBlock := [ :newDate :parentDomainObject :oldValue |  Date today < newDate ].
-	validationConditions := self newValidationConditions.
-	validationConditions addValidationConditionBlock: conditionBlock description: validationDescription.
-	validationCondition := validationConditions validationConditionWithDescription: validationDescription.
-	self assert: validationCondition validationDescription equals: validationDescription.
-	self assert: validationCondition conditionBlock equals: conditionBlock.
-	self assert: validationConditions collection size equals: 1.
 	^ validationConditions
 ]

@@ -757,11 +757,14 @@ LcsAccessorSlot >> variableUpdatePolicyClassName: aClassName [
 
 { #category : 'slot model' }
 LcsAccessorSlot >> verifySlotType: anObject for: aDomainObject [
-	[ self verifyType: anObject for: aDomainObject ]
+	self verifyType: anObject for: aDomainObject
+	"The below was a hack. Commenting but leaving 
+	 it as an artifact for future work in this area"
+	"[ self verifyType: anObject for: aDomainObject ]
 		on: LcsInvalidSlotTypeError
 		do: [ :signal |
 			self currentUnitOfWork removeAddOf: anObject.
-			signal signal ]
+			signal signal ]"
 ]
 
 { #category : 'slot model' }

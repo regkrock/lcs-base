@@ -8,7 +8,6 @@ Class {
 
 { #category : 'slot model' }
 LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
-	self deprecated: 'Need to pass the old value as well'.
 	self validate: anObject for: aDomainObject.
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.
 	self currentUnitOfWork

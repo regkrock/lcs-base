@@ -87,19 +87,20 @@ LcsValidationConditions >> slotPropertiesViewItems [
 
 { #category : 'conditions' }
 LcsValidationConditions >> validate: aValue [
-	self collection do: [ :eachCondition | eachCondition validate: aValue ]
+	self collection do: [ :eachCondition | eachCondition validate: aValue ].
+	^ true
 ]
 
 { #category : 'conditions' }
 LcsValidationConditions >> validate: aValue context: aDomainObject [
-	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject ]
-	
+	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject ].
+	^ true
 ]
 
 { #category : 'conditions' }
 LcsValidationConditions >> validate: aValue context: aDomainObject oldValue: anOldValue [
-	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject oldValue: anOldValue ]
-	
+	self collection do: [ :eachCondition | eachCondition validate: aValue context: aDomainObject oldValue: anOldValue ].
+	^ true
 ]
 
 { #category : 'conditions' }

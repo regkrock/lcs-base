@@ -137,9 +137,11 @@ LcsInvalidSlotTypeError >> invalidAuditMessage [
 
 { #category : 'signal' }
 LcsInvalidSlotTypeError >> invalidSlotTypeMessage [
-	^ 'Attempt to update ' , self slotName printString , '  slot("'
-		, self slotDefinition class name , '") in '
-		, self slotDefinition domainClass name , ' with: ' , self object printString
+	^ 'Attempt to update <1s>  slot("<2s>") in "<3s>" with: <4s>' expandMacrosWithArguments:
+		{ self slotName printString.
+		self slotDefinition slotClassName.
+		self slotDefinition domainClassName.
+		self object printString }
 ]
 
 { #category : 'accessing' }

@@ -13,7 +13,6 @@ LcsValidationConditionExamples >> birthDateValidationCondition [
 	<gtExample>
 	| condition validationDescription conditionBlock |
 	validationDescription :=  'Age must be between 0 and 120 years'.
-	"conditionBlock := [ :newDate | newDate year > (Date today year - 120) or: [ newDate > Date today ] ]."
 	conditionBlock := [ :newDate | ((newDate year) > (Date today year - 120)) and: [ newDate <= Date today ] ].
 	condition := self newValidationCondition
 					validationDescription: validationDescription;
@@ -73,7 +72,7 @@ LcsValidationConditionExamples >> conditionWithMessageNotUnderstoodError [
 ]
 
 { #category : 'tests' }
-LcsValidationConditionExamples >> dateValidationCondition [
+LcsValidationConditionExamples >> dateOnOrAfterTodayValidationCondition [
 	<gtExample>
 	| condition validationDescription conditionBlock |
 	validationDescription :=  'Date must be today or beyond'.
@@ -88,6 +87,26 @@ LcsValidationConditionExamples >> dateValidationCondition [
 	self assert: (condition validate: Date today).
 	self should: [ condition validate: 'xxxx' ] raise: LcsSlotValidationExecutionError.
 	self should: [ condition validate: (Date today subtractDays: 1) ] raise: LcsSlotValidationError.
+
+	^ condition
+]
+
+{ #category : 'tests' }
+LcsValidationConditionExamples >> dateOnOrBeforeTodayValidationCondition [
+	<gtExample>
+	| condition validationDescription conditionBlock |
+	validationDescription :=  'Date must be today or beyond'.
+	conditionBlock := [ :newDate | newDate <= Date today ].
+	condition := self newValidationCondition
+					validationDescription: validationDescription;
+					conditionBlock: conditionBlock.
+	self assert: condition conditionBlock == conditionBlock.
+	self assert: condition validationDescription == validationDescription.
+	self assert: condition parent isNil.
+
+	self assert: (condition validate: Date today).
+	self should: [ condition validate: 'xxxx' ] raise: LcsSlotValidationExecutionError.
+	self should: [ condition validate: (Date today addDays: 1) ] raise: LcsSlotValidationError.
 
 	^ condition
 ]

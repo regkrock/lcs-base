@@ -8,7 +8,6 @@ Class {
 
 { #category : 'slot model' }
 LcsDirectVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
-	self deprecated: 'Need to pass the old value as well'.
 	self validate: anObject for: aDomainObject.
 	aDomainObject instVarNamed: self parent slotName put: anObject
 ]

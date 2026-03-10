@@ -50,9 +50,9 @@ LcsBasicSystemExamples >> createNewBasicSystemWhenCurrentSystemIsNil [
 { #category : 'exmples' }
 LcsBasicSystemExamples >> newBasicSystem [
 	"The new system becomes the current system"
-	"<gtExample>"
-	| system |
-	system := self ensureNoCurrentSystem.
+	<gtExample>
+	| system originalSystem  |
+	originalSystem := self ensureNoCurrentSystem.
 	[ 
 		self assert: self currentSystem isNil.
 		system := LcsBasicSystem new.
@@ -60,7 +60,8 @@ LcsBasicSystemExamples >> newBasicSystem [
 		self assertModuleConfigured: LcsSecurityModule.
 		]
 			ensure: [
-				self removeCurrentSystemAndActivate: system ].
+				self removeCurrentSystemAndActivate: originalSystem ].
+	self assert: self currentSystem identicalTo: originalSystem.
 	^ system
 ]
 
