@@ -50,7 +50,7 @@ LcsBasicSystemExamples >> createNewBasicSystemWhenCurrentSystemIsNil [
 { #category : 'exmples' }
 LcsBasicSystemExamples >> newBasicSystem [
 	"The new system becomes the current system"
-	<gtExample>
+	"<gtExample>"
 	| system |
 	system := self ensureNoCurrentSystem.
 	[ 
