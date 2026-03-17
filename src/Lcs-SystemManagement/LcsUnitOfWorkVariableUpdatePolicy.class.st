@@ -8,7 +8,7 @@ Class {
 
 { #category : 'slot model' }
 LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
-	self validate: anObject for: aDomainObject.
+	self validate: anObject context: aDomainObject.
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.
 	self currentUnitOfWork
 		setValueIn: aDomainObject
@@ -19,7 +19,7 @@ LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
 
 { #category : 'slot model' }
 LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject oldValue: anOldValue [
-	self validate: anObject for: aDomainObject oldValue: anOldValue.
+	self validate: anObject context: aDomainObject oldValue: anOldValue.
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.
 	self currentUnitOfWork
 		setValueIn: aDomainObject

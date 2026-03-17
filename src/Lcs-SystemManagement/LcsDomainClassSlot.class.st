@@ -21,17 +21,22 @@ LcsDomainClassSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | slot slotTypes any ]
 ]
 
+{ #category : 'defaults' }
+LcsDomainClassSlot >> defaultTypeOfSlotRuleClass [
+	^ LcsClassIsMemberSlotTypesRule
+]
+
 { #category : 'initialize' }
 LcsDomainClassSlot >> initialize [
 	super initialize.
 	self 
-		prevalidationTransformBlock: self convertStringToClassBlock;
-		addValidationCondition: (
-			LcsValidationCondition new
-				validationDescription: 'Input class is not a valid subclass';
+		prevalidationTransformBlock: self convertStringToClassBlock
+		"addValidationRule: (
+			LcsValidationRule new
+				description: 'Input class is not a valid subclass';
 				errorMessage: ['This must be a subclass of <1s>' expandMacrosWith: self superclassClass name ];
 				conditionBlock: [ :value | value inheritsFrom:  self superclassClass ] ;
-				yourself)
+				yourself)"
 ]
 
 { #category : 'magritte' }

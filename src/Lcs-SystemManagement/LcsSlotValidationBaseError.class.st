@@ -3,9 +3,9 @@ Class {
 	#superclass : 'LcsSlotModelError',
 	#instVars : [
 		'slotDefinition',
-		'validationCondition',
 		'value',
-		'oldValue'
+		'oldValue',
+		'rule'
 	],
 	#category : 'Lcs-SystemManagement-Error',
 	#package : 'Lcs-SystemManagement',
@@ -29,10 +29,10 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 				{'Old Value'. self oldValue}.
 				{'Domain Object'. self context}.
 				{''. ''}.
-				{'Error Description'. self validationCondition validationDescription}.
-				{'Error Condition'. self validationCondition conditionBlock}.
+				{'Error Description'. self rule description}.
+				{'Error Condition'. self rule conditionBlock}.
 				{''. ''}.
-				{'Validation Conditions'. self validationCondition parent}
+				{'Validation Conditions'. self rule parent}
 			} ];
 		"children: [ :each | each class == LcsValidationCondition ifTrue: [ each conditions collect: [ :e | {''. e} ] ] ifFalse: [ #() ] ]"
 		column: 'Name'
@@ -64,6 +64,16 @@ LcsSlotValidationBaseError >> oldValue: anObject [
 ]
 
 { #category : 'accessing' }
+LcsSlotValidationBaseError >> rule [
+	^ rule 
+]
+
+{ #category : 'accessing' }
+LcsSlotValidationBaseError >> rule: aRule [ 
+	rule := aRule
+]
+
+{ #category : 'accessing' }
 LcsSlotValidationBaseError >> slotDefinition [
 	^ slotDefinition
 ]
@@ -71,16 +81,6 @@ LcsSlotValidationBaseError >> slotDefinition [
 { #category : 'accessing' }
 LcsSlotValidationBaseError >> slotDefinition: anObject [
 	slotDefinition := anObject
-]
-
-{ #category : 'accessing' }
-LcsSlotValidationBaseError >> validationCondition [
-	^ validationCondition 
-]
-
-{ #category : 'accessing' }
-LcsSlotValidationBaseError >> validationCondition: aValidationCondition [ 
-	validationCondition := aValidationCondition
 ]
 
 { #category : 'accessing' }

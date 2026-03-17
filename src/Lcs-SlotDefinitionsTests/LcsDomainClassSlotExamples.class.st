@@ -9,7 +9,16 @@ Class {
 { #category : 'examples' }
 LcsDomainClassSlotExamples >> newSlot [
 	<gtExample>
-	^ LcsDomainClassSlot new
+	| slot |
+	slot := LcsDomainClassSlot new.
+	self assert: slot slotName isNil.
+	self assert: slot slotTypeRules collection size = 1.
+	self assert: slot slotTypeRules any class == LcsClassIsMemberSlotTypesRule.
+	self assert: slot parent isNil.
+	self assert: slot domainClass isNil.
+	self assert: slot superclassClass equals: LcsDomainObject.
+	self assert: slot slotTypes isEmpty.
+	^ slot
 ]
 
 { #category : 'examples' }
@@ -27,16 +36,16 @@ LcsDomainClassSlotExamples >> subdivisionClassSlot [
 	self assert: slot initialValue equals: LcsCanadaSubdivision.
 	self assert: slot superclassClass equals: LcsBaseCountrySubdivision.
 	self
-		assert: slot validationConditions first validationErrorMessage
+		assert: slot validationRules first validationErrorMessage
 		equals: 'This must be a subclass of LcsBaseCountrySubdivision'.
 
-	self should: [ slot validate: LcsBaseCountrySubdivision ] raise: LcsSlotValidationError.
+	self should: [ slot validate: LcsBaseCountrySubdivision ] raise: LcsInvalidSlotTypeError.
 	errorMessage := [ slot validate: LcsBaseCountrySubdivision ]
-			on: LcsSlotValidationError
+			on: LcsInvalidSlotTypeError
 			do: [ :s | s return: s messageText ].
 	self
 		assert: errorMessage
-		equals: 'nil slot: subdivisionClass has validation error: Input class is not a valid subclass'.
+		equals: 'Attempt to update ''subdivisionClass''  slot("LcsDomainClassSlot") in "nil" with: LcsBaseCountrySubdivision'.
 
 		
 	^ slot

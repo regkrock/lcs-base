@@ -12,7 +12,7 @@ LcsDateOfBirthSlotExamples >> invalidSlotTypeError [
 	<noTest>
 	| slot |
 	slot := self newSlot.
-	(slot verifySlotTypeOf: 'futureDate' for: nil).
+	(slot validateSlotType: 'futureDate').
 	^ slot
 ]
 
@@ -23,7 +23,7 @@ LcsDateOfBirthSlotExamples >> newSlot [
 	slot := LcsDateOfBirthSlot new.
 	self assert: slot slotName equals: 'dateOfBirth'.
 	self assert: slot initialValue equals: Date today.
-	self assert: slot validationConditions collectionSize = 1.
+	self assert: slot validationRules collectionSize = 1.
 	self verifyValidationConditions: slot.
 	^ slot
 ]
@@ -34,7 +34,7 @@ LcsDateOfBirthSlotExamples >> slotValidationError [
 	<noTest>
 	| slot |
 	slot := self newSlot.
-	(slot validate: (Date today addDays: 1) for: nil oldValue: nil).
+	(slot validate: (Date today addDays: 1) context: nil oldValue: nil).
 	^ slot
 ]
 
@@ -56,27 +56,27 @@ LcsDateOfBirthSlotExamples >> verifyValidationConditions: slot [
 	| futureDate |
 	futureDate := Date today addDays: 1.
 	self
-		should: [ slot validate: 'futureDate' for: nil oldValue: nil ]
+		should: [ slot validate: 'futureDate' context: nil oldValue: nil ]
 		raise: LcsInvalidSlotTypeError
 		description: 'Invalid type - a string, not a date'.
 	self
-		should: [ slot validate: nil for: nil oldValue: nil ]
+		should: [ slot validateSlotType: nil context: nil oldValue: nil ]
 		raise: LcsInvalidSlotTypeError
 		description: 'Nil is not allowed, so should raise an invalid type'.
 	slot beAllowNil.
 	self
-		assert: (slot validate: nil for: nil oldValue: nil)
-		description: 'Nil is not allowed, so should raise an invalid type'.
+		assert: (slot validateSlotType: nil context: nil oldValue: nil)
+		description: 'Nil is allowed, so shouldnt raise an invalid type'.
 	slot beDisallowNil.
-	self assert: (slot validate: Date today for: nil oldValue: nil ).
+	self assert: (slot validate: Date today context: nil oldValue: nil ).
 	self
-		should: [ slot validate: futureDate for: nil oldValue: nil ]
+		should: [ slot validate: futureDate context: nil oldValue: nil ]
 		raise: LcsSlotValidationError.
 	self
-		should: [ slot validate: futureDate for: nil ]
+		should: [ slot validate: futureDate context: nil ]
 		raise: Error
 		description: 'DomainObject is nil so cannot get oldValue. An error is signalled'.
 	self
-		should: [ slot validate: futureDate for: nil oldValue: nil ]
+		should: [ slot validate: futureDate context: nil oldValue: nil ]
 		raise: LcsSlotValidationError
 ]

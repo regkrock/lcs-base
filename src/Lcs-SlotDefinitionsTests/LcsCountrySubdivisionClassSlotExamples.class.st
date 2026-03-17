@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsPostalCodeClassSlotExamples',
+	#name : 'LcsCountrySubdivisionClassSlotExamples',
 	#superclass : 'LcsExamples',
 	#category : 'Lcs-SlotDefinitionsTests-Examples',
 	#package : 'Lcs-SlotDefinitionsTests',
@@ -7,33 +7,33 @@ Class {
 }
 
 { #category : 'examples' }
-LcsPostalCodeClassSlotExamples >> newSlot [
+LcsCountrySubdivisionClassSlotExamples >> newSlot [
 	<gtExample>
 	| slot |
-	slot := LcsPostalCodeClassSlot new.
-	self assert: slot slotName equals: 'postalCodeClass'.
+	slot := LcsCountrySubdivisionClassSlot new.
+	self assert: slot slotName equals: 'subdivisionClass'.
 	self assert: slot slotTypeRules collection size = 1.
 	self assert: slot slotTypeRules any class == LcsClassIsMemberSlotTypesRule.
 	self assert: slot parent isNil.
 	self assert: slot domainClass isNil.
 	self assert: slot validationRules hasNoElements.
-	self assert: slot initialValue equals: LcsGenericPostalCode.
-	self assert: slot superclassClass equals: LcsBasePostCode.
-	LcsBasePostCode subclassesDo: [ :each |
+	self assert: slot initialValue equals: LcsCountrySubdivision.
+	self assert: slot superclassClass equals: LcsBaseCountrySubdivision.
+	LcsBaseCountrySubdivision subclassesDo: [ :each |
 		self assert: (slot slotTypes includes: each) ].
-	self assert: (slot validate: LcsGenericPostalCode).
-	self assert: (slot validate: LcsCanadaPostalCode).
+	self assert: (slot validate: LcsCountrySubdivision).
+	self assert: (slot validate: LcsCanadaSubdivision).
 	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
 	self should: [ slot validate: LcsBasePostCode ] raise: LcsInvalidSlotTypeError.
 	^ slot
 ]
 
 { #category : 'examples' }
-LcsPostalCodeClassSlotExamples >> slotWithValidationError [
+LcsCountrySubdivisionClassSlotExamples >> slotWithValidationError [
 	<gtExample>
 	<noTest>
 	| slot |
 	slot := self newSlot.
-	slot validate: LcsBasePostCode.
+	slot validate: LcsBaseCountrySubdivision.
 	^ slot
 ]

@@ -7,19 +7,19 @@ Class {
 }
 
 { #category : 'instance creation' }
-LcsSlotValidationNonBooleanResultError class >> signalBooleanNotReturnedFor: aValue condition: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
+LcsSlotValidationNonBooleanResultError class >> signalBooleanNotReturnedFor: aValue rule: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self new
 		signalBooleanNotReturnedFor: aValue
-		condition: anObject
+		rule: anObject
 		inSlot: aSlotDefinition
 		context: aDomainObject
 		oldValue: anOldValue
 ]
 
 { #category : 'instance creation' }
-LcsSlotValidationNonBooleanResultError >> signalBooleanNotReturnedFor: aValue condition: aValidationCondition inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
+LcsSlotValidationNonBooleanResultError >> signalBooleanNotReturnedFor: aValue rule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self value: aValue.
-	self validationCondition: aValidationCondition.
+	self rule: aRule.
 	self slotDefinition: aSlotDefinition.
 	self context: aDomainObject.
 	self oldValue: anOldValue.
@@ -31,5 +31,5 @@ LcsSlotValidationNonBooleanResultError >> validationConditionErrorMessage [
 	^ '<1s> slot: <2s> has validation error: <3s>'
 		expandMacrosWith: self context class name asString
 		with: (self slotDefinition ifNil: [ nil ] ifNotNil: [:slotDef | slotDef slotName ]) asString
-		with: self validationCondition validationDescription asString
+		with: self rule description asString
 ]

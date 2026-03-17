@@ -106,13 +106,13 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyPostUpdateActionRemoved [
 { #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithDummyValidationAction [
 	<gtExample>
-	| accessorSlot validationCondition |
+	| accessorSlot rule |
 	accessorSlot := self newSlot.
-	validationCondition := self dummyValidationCondition.
-	accessorSlot addValidationCondition: validationCondition.
-	self assert: accessorSlot validationConditions collectionSize equals: 1.
-	self assert: validationCondition parent == accessorSlot validationConditions.
-	self assert: accessorSlot validationConditions any == validationCondition.
+	rule := self dummyValidationRule.
+	accessorSlot addValidationRule: rule.
+	self assert: accessorSlot validationRules collectionSize equals: 1.
+	self assert: rule parent == accessorSlot validationRules.
+	self assert: accessorSlot validationRules any == rule.
 	^ accessorSlot
 ]
 
@@ -121,9 +121,9 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyValidationActionRemoved [
 	<gtExample>
 	| slot validationCondition |
 	slot := self accessorSlotWithDummyValidationAction.
-	validationCondition := slot validationConditions any.
-	slot removeValidationConditionWithDescription: 'Test'.
-	self assert: slot validationConditions hasNoElements.
+	validationCondition := slot validationRules any.
+	slot removeValidationRuleWithDescription: 'Test'.
+	self assert: slot validationRules hasNoElements.
 	^ slot
 ]
 
@@ -141,13 +141,13 @@ LcsAccessorSlotExamples >> accessorSlotWithInitialValueSetToNil [
 { #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationError [
 	<gtExample>
-	| slot validationCondition|
+	| slot rule|
 	slot := self newSlot.
-	validationCondition := slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Integer'.
-	self assert: slot validationConditions collection size equals: 1.
-	self assert: slot validationConditions collection any identicalTo: validationCondition.
-	self assert: validationCondition validationDescription = 'Must be an Integer'.
-	^ [ slot validate: 'text' ] on: LcsSlotValidationError do: [ :s | s return: s ]
+	rule := slot addValidationRuleBlock: [ :value | value isInteger not ] description: 'Must be an Integer'.
+	self assert: slot validationRules collection size equals: 1.
+	self assert: slot validationRules collection any identicalTo: rule.
+	self assert: rule description = 'Must be an Integer'.
+	^ [ slot validate: 'text' ] on: LcsInvalidSlotTypeError do: [ :s | s return: s ]
 ]
 
 { #category : 'examples' }
@@ -155,10 +155,10 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationErrorInThirdConditio
 	<gtExample>
 	| slot |
 	slot := self newSlot.
-	slot addValidationConditionBlock: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
-	slot addValidationConditionBlock: [ :value | value < 2 ] description: 'Must be greater than 1'.
-	slot addValidationConditionBlock: [ :value | value > 10 ] description: 'Must be less than 11'.
-	^ [ slot validate: 12 ] on: LcsSlotValidationError do: [ :s | s return: s ]
+	slot addValidationRuleBlock: [ :value | value isInteger not ] description: 'Must be an Ingeter'.
+	slot addValidationRuleBlock: [ :value | value < 2 ] description: 'Must be greater than 1'.
+	slot addValidationRuleBlock: [ :value | value > 10 ] description: 'Must be less than 11'.
+	^ [ slot validate: 12 ] on: LcsInvalidSlotTypeError do: [ :s | s return: s ]
 ]
 
 { #category : 'examples' }
@@ -166,16 +166,17 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationWithValidRangeOf2To1
 	<gtExample>
 	| slot |
 	slot := self newSlot.
+	slot addSlotType: Integer.
+	self should: [ slot validate: 'text' ] raise: LcsInvalidSlotTypeError.
 
-	slot addValidationConditionBlock: [ :value | value isInteger ] description: 'Must be an Ingeter'.
+	slot addValidationRuleBlock: [ :value | value isInteger ] description: 'Must be an Ingeter'.
 	self shouldnt: [ slot validate: 1 ] raise: LcsSlotValidationError.
-	self should: [ slot validate: 'text' ] raise: LcsSlotValidationError.
 
-	slot addValidationConditionBlock: [ :value | value >= 2 ] description: 'Must be greater than 1'.
+	slot addValidationRuleBlock: [ :value | value >= 2 ] description: 'Must be greater than 1'.
 	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self shouldnt: [ slot validate: 2 ] raise: LcsSlotValidationError.
 	
-	slot addValidationConditionBlock: [ :value | value < 11 ] description: 'Must be less than 11'.
+	slot addValidationRuleBlock: [ :value | value < 11 ] description: 'Must be less than 11'.
 	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
 	self shouldnt: [ slot validate: 2 ] raise: LcsSlotValidationError.
 	self should: [ slot validate: 11 ] raise: LcsSlotValidationError.
@@ -192,6 +193,36 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowed [
 	slot beDisallowNil.
 	self deny: slot isNilAllowed.
 	slot beAllowNil.
+	^ slot
+]
+
+{ #category : 'examples' }
+LcsAccessorSlotExamples >> accessorSlotWithNumberType [
+	<gtExample>
+	| slot |
+	slot := self newSlot.
+	slot addSlotType: Number.
+	self deny: slot allowNil.
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+	self should: [ slot validate: nil context: nil ] raise: LcsInvalidSlotTypeError.
+	self assert: (slot validate: 12 context: nil).
+	^ slot
+]
+
+{ #category : 'examples' }
+LcsAccessorSlotExamples >> accessorSlotWithNumberTypeVerifyingNilAllowedAndNotAllowed [
+	<gtExample>
+	| slot |
+	slot := self accessorSlotWithNumberType.
+	slot beAllowNil.
+	self shouldnt: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+	self shouldnt: [ slot validate: nil context: nil ] raise: LcsInvalidSlotTypeError.
+	self assert: (slot validate: nil).
+	self assert: (slot validate: 12 context: nil).
+	slot beDisallowNil.
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+	self should: [ slot validate: nil context: nil ] raise: LcsInvalidSlotTypeError.
+	self assert: (slot validate: 12 context: nil).
 	^ slot
 ]
 
@@ -266,16 +297,16 @@ LcsAccessorSlotExamples >> dummyPostUpdateAction [
 ]
 
 { #category : 'examples' }
-LcsAccessorSlotExamples >> dummyValidationCondition [
+LcsAccessorSlotExamples >> dummyValidationRule [
 	<gtExample>
-	| validationCondition |
-	validationCondition := LcsValidationCondition new
-			validationDescription: 'Test';
+	| rule |
+	rule := LcsValidationRule new
+			description: 'Test';
 			conditionBlock: [ :value |  ];
 			yourself.
-	self assert: validationCondition validationDescription equals: 'Test'.
-	self assert: validationCondition conditionBlock printString equals: '[ :value |  ]'.
-	^ validationCondition
+	self assert: rule description equals: 'Test'.
+	self assert: rule conditionBlock printString equals: '[ :value |  ]'.
+	^ rule
 ]
 
 { #category : 'examples' }
@@ -342,9 +373,12 @@ LcsAccessorSlotExamples >> validateAccessorStyleSlot: slot [
 	self assert: slot slotName isNil.
 	self assert: slot slotTypes class = OrderedCollection.
 	self assert: slot slotTypes isEmpty.
-	self assert: (slot validationConditions isKindOf: LcsValidationConditions).
-	self assert: slot validationConditions parent equals: slot.
-	self assert: slot validationConditions isEmpty.
+	self assert: (slot slotTypeRules isKindOf: LcsSlotTypeRules).
+	self assert: slot slotTypeRules hasElements.
+	self assert: slot slotTypeRules collection size = 1.
+	self assert: (slot validationRules isKindOf: LcsValidationRules).
+	self assert: slot validationRules parent equals: slot.
+	self assert: slot validationRules isEmpty.
 
 	self deny: slot isNilAllowed.
 	self deny: slot allowNull.
@@ -364,5 +398,8 @@ LcsAccessorSlotExamples >> validateAccessorStyleSlot: slot [
 	self assert: slot prevalidationTransformBlock printString = slot defaultPrevalidationTransformBlock printString.
 	self assert: slot pragmaSelector = slot defaultPragmaSelector.
 	self assert: slot comment isEmpty.
-	self shouldnt: [ slot validate: 'abc' ] raise: LcsSlotValidationError description: 'Slot has no validation conditions'
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError description: 'Slot does not allow nil'.
+	self should: [ slot validate: nil context: nil ] raise: LcsInvalidSlotTypeError description: 'Slot does not allow nil'.
+	self should: [ slot validate: 'abc' ] raise: LcsInvalidSlotTypeError description: 'Slot has types defined'.
+	self should: [ slot validate: 'abc' context: nil ] raise: LcsInvalidSlotTypeError description: 'Slot has types defined'
 ]

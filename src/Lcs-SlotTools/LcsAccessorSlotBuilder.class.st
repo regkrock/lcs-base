@@ -43,6 +43,11 @@ LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 		self slotTypes add: item ]
 ]
 
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> addSlotTypeRule: aRule [
+	self slotTypeRules addRule: aRule
+]
+
 { #category : 'gt views' }
 LcsAccessorSlotBuilder >> addTargetClassTo: classesModel [
 	self targetClass
@@ -57,13 +62,13 @@ LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 ]
 
 { #category : 'properties' }
-LcsAccessorSlotBuilder >> addValidationCondition: aValidationCondition [
-	self validationConditions addValidationCondition: aValidationCondition
+LcsAccessorSlotBuilder >> addValidationRule: aRule [
+	self validationRules addRule: aRule
 ]
 
 { #category : 'slot model' }
-LcsAccessorSlotBuilder >> addValidationConditionBlock: aBlock description: aDescription [
-	^ self validationConditions addValidationConditionBlock: aBlock description: aDescription
+LcsAccessorSlotBuilder >> addValidationRuleBlock: aBlock description: aDescription [
+	^ self validationRules addRuleBlock: aBlock description: aDescription
 ]
 
 { #category : 'properties' }
@@ -196,7 +201,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 { #category : 'initialize' }
 LcsAccessorSlotBuilder >> initialize [
 	super initialize.
-	self validationConditions: (LcsValidationConditions newOn: self).
+	self validationRules: (LcsValidationRules newOn: self).
 	self postUpdateActions: (LcsUpdateActions newOn: self)
 ]
 
@@ -289,13 +294,13 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 ]
 
 { #category : 'validations' }
-LcsAccessorSlotBuilder >> removeValidationCondition: aValidationCondition [
-	self validationConditions removeValidationCondition: aValidationCondition
+LcsAccessorSlotBuilder >> removeValidationRule: aRule [
+	self validationRules removeRule: aRule
 ]
 
 { #category : 'validations' }
-LcsAccessorSlotBuilder >> removeValidationConditionWithDescription: aString [
-	self validationConditions removeValidationConditionWithDescription: aString
+LcsAccessorSlotBuilder >> removeValidationRuleWithDescription: aString [
+	self validationRules removeValidationRuleWithDescription: aString
 ]
 
 { #category : 'properties' }
@@ -327,6 +332,11 @@ LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 		yourself
 ]
 
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> slotTypeRules [
+	^ self propertyAt: #slotTypeRules ifAbsentPut: [ LcsSlotTypeRules newOn: self]
+]
+
 { #category : 'verification' }
 LcsAccessorSlotBuilder >> targetSlotDefinition [
 	^ self targetClass perform: self slotDefinitionSelector
@@ -339,26 +349,19 @@ LcsAccessorSlotBuilder >> updateSlotModel [
 ]
 
 { #category : 'properties' }
-LcsAccessorSlotBuilder >> validationConditionItems [
-	^ self propertyAt: #validationConditionItems ifAbsentPut: [ OrderedCollection new]
-]
-
-{ #category : 'properties' }
-LcsAccessorSlotBuilder >> validationConditionItems: aCollection [
-	self propertyAt: #validationConditionItems put: aCollection.
-	self validationConditions removeAll.
-	aCollection do: [:each | self validationConditions addValidationCondition: each ]
+LcsAccessorSlotBuilder >> validationRuleItems [
+	^ self propertyAt: #validationRuleItems ifAbsentPut: [ OrderedCollection new]
 ]
 
 { #category : 'margritte' }
-LcsAccessorSlotBuilder >> validationConditionItemsDescription [
+LcsAccessorSlotBuilder >> validationRuleItemsDescription [
 	"<magritteDescription>"
 	^ MAToManyRelationDescription new
-		  accessor: #validationConditionItems;
+		  accessor: #validationRuleItems;
 		  "accessor: #validationConditions;"
 		  label: 'Validation Conditions';
 "		  default: #( LcsValidationCondition );"
-		  classes: { LcsValidationCondition };
+		  classes: { LcsValidationRule };
 		  priority: 25;
 		  beModifiable;
 		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
@@ -375,29 +378,28 @@ LcsAccessorSlotBuilder >> validationConditionItemsDescription [
 						   left: 0);
 				  padding: (BlInsets all: 5);
 				  background: Color white ];
-		  newItemStencil: [  LcsValidationCondition new ]
+		  newItemStencil: [  LcsValidationRule new ]
 ]
 
 { #category : 'properties' }
-LcsAccessorSlotBuilder >> validationConditions [
-	^ self propertyAt: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self]
+LcsAccessorSlotBuilder >> validationRules [
+	^ self propertyAt: #validationRules ifAbsentPut: [ LcsValidationRules newOn: self]
 ]
 
 { #category : 'properties' }
-LcsAccessorSlotBuilder >> validationConditions: anObject [
-	self propertyAt: #validationConditions put: anObject.
+LcsAccessorSlotBuilder >> validationRules: anObject [
+	self propertyAt: #validationRules put: anObject.
 	"self validationConditionItems: anObject collection copy"
 ]
 
 { #category : 'margritte' }
-LcsAccessorSlotBuilder >> validationConditionsDescription [
+LcsAccessorSlotBuilder >> validationRulesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
-		  accessor: (MAChainAccessor accessors: #(#validationConditions #collection));
-		  "accessor: #validationConditions;"
-		  label: 'Validation Conditions';
+		  accessor: (MAChainAccessor accessors: #(#validationRules #collection));
+		  label: 'Relationship Rules';
 		  default: #(  );
-		  classes: { LcsValidationCondition };
+		  classes: { LcsValidationRule };
 		  priority: 25;
 		  beModifiable;
 		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
@@ -415,7 +417,14 @@ LcsAccessorSlotBuilder >> validationConditionsDescription [
 				  padding: (BlInsets all: 5);
 				  background: Color white ];
 		  "addCondition: [ :aValue | true ] labelled: 'Individual Conditions Are Not Valid';"
-		  newItemStencil: [  LcsValidationCondition new ]
+		  newItemStencil: [  LcsValidationRule new ]
+]
+
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> validationRulesItems: aCollection [
+	self propertyAt: #validationRuleItems put: aCollection.
+	self validationRules removeAll.
+	aCollection do: [:each | self validationRules addRule: each ]
 ]
 
 { #category : 'gt views' }

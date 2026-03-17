@@ -13,7 +13,7 @@ LcsDateSlotExamples >> newSlot [
 	slot := LcsDateSlot new.
 	self assert: slot slotName isNil.
 	self assert: slot initialValue equals: Date today.
-	self assert: slot validationConditions isEmpty.
+	self assert: slot validationRules isEmpty.
 	^ slot
 ]
 

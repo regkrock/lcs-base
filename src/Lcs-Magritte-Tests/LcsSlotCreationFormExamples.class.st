@@ -262,7 +262,7 @@ LcsSlotCreationFormExamples >> virtualSlotAccessorSlotCreationForm [
 	  #slotTypesDescription ) 
 		do: [ :eachDescriptionSelector | (form perform: eachDescriptionSelector) notNil ].
 	#(#allowNilDescription #requiredDescription #prevalidationTransformBlockDescription
-	  #validationConditionsDescription #numberOfDecimalsDescription
+	  #validationsDescription #numberOfDecimalsDescription
 	  #initialValueBlockDescription ) 
 		do: [ :eachDescriptionSelector | self assert: (form perform: eachDescriptionSelector) isNil ].
 	^ form

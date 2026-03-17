@@ -7,10 +7,10 @@ Class {
 }
 
 { #category : 'instance creation' }
-LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forCondition: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
+LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forRule: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
 	self new
 		signalInvalidValue: aValue
-		forCondition: anObject
+		forRule: anObject
 		inSlot: aSlotDefinition
 		context: aDomainObject
 		oldValue: anOldValue
@@ -18,9 +18,9 @@ LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forCondition
 ]
 
 { #category : 'instance creation' }
-LcsSlotValidationExecutionError >> signalInvalidValue: aValue forCondition: aValidationCondition inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
+LcsSlotValidationExecutionError >> signalInvalidValue: aValue forRule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
 	self value: aValue.
-	self validationCondition: aValidationCondition.
+	self rule: aRule.
 	self slotDefinition: aSlotDefinition.
 	self context: aDomainObject.
 	self signal: self validationConditionErrorMessage , ' - Caused by ' , aString.
@@ -32,5 +32,5 @@ LcsSlotValidationExecutionError >> validationConditionErrorMessage [
 	^ '<1s> slot: <2s> has validation error: <3s>'
 		expandMacrosWith: self context class name asString
 		with: (self slotDefinition ifNil: [ nil ] ifNotNil: [:slotDef | slotDef slotName ]) asString
-		with: self validationCondition validationErrorMessage
+		with: self rule validationErrorMessage
 ]

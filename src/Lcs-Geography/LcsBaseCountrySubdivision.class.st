@@ -22,18 +22,20 @@ LcsBaseCountrySubdivision class >> formalNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #formalName;
 		beRequired;
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size > 2 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | 
+				(oldValue isNil and: [ value isEmpty ]) or: [ value size > 2 ] ]
 			description: 'Name must be at least 3 characters long';
 		yourself
 ]
 
-{ #category : 'slot definition\t' }
+{ #category : 'slot definition' }
 LcsBaseCountrySubdivision class >> isoCodeSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #isoCode;
 		beRequired;
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size = 2 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | 
+			(oldValue isNil and: [ value isEmpty ]) or: [ value size = 2 ] ]
 			description: 'Code must be 2 characters long';
 		yourself
 ]
@@ -54,7 +56,8 @@ LcsBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: #subdivisionName;
 		beRequired;
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size > 2 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | 
+				(oldValue isNil and: [ value isEmpty ]) or: [ value size > 2 ] ]
 			description: 'Name must be at least 3 characters long';
 		yourself
 ]

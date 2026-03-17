@@ -10,7 +10,7 @@ Class {
 LxxCanadaPostalCode class >> codeSlotDefinition [
 	"<accessorSlotDefinition>"
 	^ super codeSlotDefinition
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | 
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | 
 				(value
 					matchesRegex: '[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]|[A-Z][0-9][A-Z][0-9][A-Z][0-9]')
 					not ]

@@ -10,7 +10,7 @@ Class {
 LxxZipCode class >> codeSlotDefinition [
 	"<accessorSlotDefinition>"
 	^ super codeSlotDefinition
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value matchesRegex: '[0-9][0-9][0-9][0-9][0-9]' ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value matchesRegex: '[0-9][0-9][0-9][0-9][0-9]' ]
 			description: 'Zipcode format should be 00000';
 		yourself
 ]

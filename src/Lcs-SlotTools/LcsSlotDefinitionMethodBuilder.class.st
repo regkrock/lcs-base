@@ -126,8 +126,8 @@ LcsSlotDefinitionMethodBuilder >> addSlotType: aClassOrClassName [
 ]
 
 { #category : 'code generation' }
-LcsSlotDefinitionMethodBuilder >> addValidationConditionBlock: aStringBlock description: aDescription [
-	^ self validationConditions addValidationConditionBlock: aStringBlock description: aDescription
+LcsSlotDefinitionMethodBuilder >> addValidationRuleBlock: aStringBlock description: aDescription [
+	^ self validationRules addRuleBlock: aStringBlock description: aDescription
 ]
 
 { #category : 'accessing' }
@@ -435,7 +435,7 @@ LcsSlotDefinitionMethodBuilder >> validateProperty: aProperty value: aExpectedOb
 		ifTrue: [ ^ self validateTargetSlotPath: aExpectedObject asOrderedCollection against: actualValue ].
 
 	aProperty = 'validationConditions'
-		ifTrue: [ ^ self validateValidationConditions: aExpectedObject against: actualValue ].
+		ifTrue: [ ^ self validateRules: aExpectedObject against: actualValue ].
 
 	aProperty = 'postUpdateActions'
 		ifTrue: [ ^ self validatePostUpdateActions: aExpectedObject against: actualValue ].
@@ -453,6 +453,18 @@ LcsSlotDefinitionMethodBuilder >> validateProperty: aProperty value: aExpectedOb
 ]
 
 { #category : 'verification' }
+LcsSlotDefinitionMethodBuilder >> validateRules: aRules against: actualRules [
+	self assert: actualRules collectionSize equals: aRules collectionSize.
+	aRules
+		do: [ :eachRule | 
+			| actualRule |
+			actualRule := actualRules ruleWithDescription: eachRule description.
+			self assert: actualRule notNil.
+			self assert: eachRule description equals: actualRule description.
+			self assert: eachRule conditionBlock asString equals: actualRule conditionBlock asString]
+]
+
+{ #category : 'verification' }
 LcsSlotDefinitionMethodBuilder >> validateSlotTypes: anExpectedCollection against: anActualCollection [
 	self
 		validateCollectionMemberTypes: anExpectedCollection
@@ -467,25 +479,13 @@ LcsSlotDefinitionMethodBuilder >> validateTargetSlotPath: anExpectedCollection a
 		equals: anActualCollection
 ]
 
-{ #category : 'verification' }
-LcsSlotDefinitionMethodBuilder >> validateValidationConditions: aValidationConditions against: actualValidationConditions [
-	self assert: actualValidationConditions collectionSize equals: aValidationConditions collectionSize.
-	aValidationConditions
-		do: [ :eachValidationCondition | 
-			| actualValidationCondition |
-			actualValidationCondition := actualValidationConditions validationConditionWithDescription: eachValidationCondition validationDescription.
-			self assert: actualValidationCondition notNil.
-			self assert: eachValidationCondition validationDescription equals: actualValidationCondition validationDescription.
-			self assert: eachValidationCondition conditionBlock asString equals: actualValidationCondition conditionBlock asString]
+{ #category : 'accessing' }
+LcsSlotDefinitionMethodBuilder >> validationRules [
+	^ self properties at: #validationRules ifAbsentPut: [ LcsValidationRules newOn: self ]
 ]
 
 { #category : 'accessing' }
-LcsSlotDefinitionMethodBuilder >> validationConditions [
-	^ self properties at: #validationConditions ifAbsentPut: [ LcsValidationConditions newOn: self ]
-]
-
-{ #category : 'accessing' }
-LcsSlotDefinitionMethodBuilder >> validationConditions: aCollection [
+LcsSlotDefinitionMethodBuilder >> validationRules: aCollection [
 	self properties at: 'validationConditions' put: aCollection
 ]
 

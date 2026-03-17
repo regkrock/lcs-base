@@ -551,15 +551,15 @@ LcsSlotCreationForm >> toolFor: anInstance [
 ]
 
 { #category : 'magritte' }
-LcsSlotCreationForm >> validationConditionItemsDescription [
+LcsSlotCreationForm >> validationRuleItemsDescription [
 	"<magritteDescription>"
-	^ self magritteDescriptionFor: #validationConditionItems
+	^ self magritteDescriptionFor: #validationRuleItems
 ]
 
 { #category : 'magritte' }
-LcsSlotCreationForm >> validationConditionsDescription [
+LcsSlotCreationForm >> validationsDescription [
 	<magritteDescription>
-	^ self magritteDescriptionFor: #validationConditions
+	^ self magritteDescriptionFor: #validationRules
 ]
 
 { #category : 'magritte' }

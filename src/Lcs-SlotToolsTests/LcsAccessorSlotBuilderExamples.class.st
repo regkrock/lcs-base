@@ -24,10 +24,10 @@ LcsAccessorSlotBuilderExamples >> builderWIthValidationConditionRemovedViaDescri
 	<gtExample>
 	| builder |
 	builder := self newBuilder.
-	builder addValidationConditionBlock: [ :value | ] description: 'Test'.
-	self assert: builder validationConditions collection size equals: 1.
-	builder removeValidationConditionWithDescription: 'Test'.
-	self assert: builder validationConditions hasNoElements.
+	builder addValidationRuleBlock: [ :value | ] description: 'Test'.
+	self assert: builder validationRules collection size equals: 1.
+	builder removeValidationRuleWithDescription: 'Test'.
+	self assert: builder validationRules hasNoElements.
 	^ builder
 ]
 
@@ -106,34 +106,34 @@ LcsAccessorSlotBuilderExamples >> builderWithSlotTypesAddViMagriteeDescription [
 ]
 
 { #category : 'examples' }
-LcsAccessorSlotBuilderExamples >> builderWithValidationCondition [
+LcsAccessorSlotBuilderExamples >> builderWithTestValidationRule [
 	<gtExample>
-	| validationCondition builder |
-	validationCondition := LcsValidationCondition new
-							validationDescription: 'Test';
-							conditionBlock: [ :value | ];
-							yourself.
+	| rule builder |
+	rule := LcsValidationRule new
+				description: 'Test';
+				conditionBlock: [ :value | ];
+				yourself.
 	builder := self newBuilder.
-	builder addValidationCondition: validationCondition.
-	self assert: builder validationConditions collectionSize equals: 1.
-	self assert: builder validationConditions collection any parent identicalTo: builder validationConditions.
+	builder addValidationRule: rule.
+	self assert: builder validationRules collectionSize equals: 1.
+	self assert: builder validationRules collection any parent identicalTo: builder validationRules.
 	^ builder
 ]
 
 { #category : 'examples' }
-LcsAccessorSlotBuilderExamples >> builderWithValidationConditionAddedAndThenRemoved [
+LcsAccessorSlotBuilderExamples >> builderWithValidationRuleAddedAndThenRemoved [
 	<gtExample>
-	| builder validationCondition |
-	validationCondition := LcsValidationCondition new
-							validationDescription: 'Test';
-							conditionBlock: [ :value | ];
-							yourself.
+	| builder rule |
+	rule := LcsValidationRule new
+				description: 'Test';
+				conditionBlock: [ :value | ];
+				yourself.
 
 	builder := self newBuilder.
-	builder addValidationCondition: validationCondition.
-	self assert: builder validationConditions collection size equals: 1.
-	builder removeValidationCondition: validationCondition.
-	self assert: builder validationConditions hasNoElements.
+	builder addValidationRule: rule.
+	self assert: builder validationRules collection size equals: 1.
+	builder removeValidationRule: rule.
+	self assert: builder validationRules hasNoElements.
 	^ builder
 ]
 
@@ -142,14 +142,14 @@ LcsAccessorSlotBuilderExamples >> newBuilder [
 	<gtExample>
 	| builder |
 	builder := LcsAccessorSlotBuilder new.
-	self assert: builder validationConditions hasNoElements.
+	self assert: builder validationRules hasNoElements.
 	self assert: builder slotTypes isEmpty.
 	self assert: builder slotClassName asClass equals: LcsAccessorSlotBuilder slotClass.
 	self assert: builder jobSteps hasNoJobSteps.
 	self assert: builder refactorings isEmpty.
 	self assert: builder state equals: 'Initial'.
-	self assert: builder validationConditions class == LcsValidationConditions.
-	self assert: builder validationConditions hasNoElements.	^ builder
+	self assert: builder validationRules class == LcsValidationRules.
+	self assert: builder validationRules hasNoElements.	^ builder
 ]
 
 { #category : 'examples' }

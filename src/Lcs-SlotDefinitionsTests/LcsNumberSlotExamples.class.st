@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'examples' }
-LcsNumberSlotExamples >> numberSlot [
+LcsNumberSlotExamples >> newSlot [
 	<gtExample>
 	| slot |
 	slot := LcsNumberSlot new.
@@ -21,7 +21,7 @@ LcsNumberSlotExamples >> numberSlot [
 LcsNumberSlotExamples >> weightNumberSlot [
 	<gtExample>
 	| slot |
-	slot := self numberSlot
+	slot := self newSlot
 				slotName: 'weight';
 				yourself.
 	^ slot

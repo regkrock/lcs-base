@@ -19,9 +19,19 @@ LcsInvalidSlotTypeError class >> signalInvalidType: anObject forSlot: aSlotDefin
 		for: aDomainObject
 ]
 
+{ #category : 'instance  creation' }
+LcsInvalidSlotTypeError class >> signalNoRulesToValidateType: anObject forSlot: aSlotDefinition for: aDomainObject [
+	^ self new
+		signalNoRulesToValidateInvalidType: anObject
+		forSlot: aSlotDefinition
+		for: aDomainObject
+]
+
 { #category : 'signal' }
 LcsInvalidSlotTypeError >> domainClassName [
-	^ self slotDefinition domainClass name
+	^ self slotDefinition
+		ifNil: [ '<missing domain class>' ]
+		ifNotNil: [ self slotDefinition domainClassName ]
 ]
 
 { #category : 'gt view' }
@@ -138,9 +148,18 @@ LcsInvalidSlotTypeError >> invalidAuditMessage [
 { #category : 'signal' }
 LcsInvalidSlotTypeError >> invalidSlotTypeMessage [
 	^ 'Attempt to update <1s>  slot("<2s>") in "<3s>" with: <4s>' expandMacrosWithArguments:
+		{ self slotName. 
+		self slotClassName.
+		self domainClassName.
+		self object printString }
+]
+
+{ #category : 'signal' }
+LcsInvalidSlotTypeError >> missingSlotTypeRulesMessage [
+	^ 'Attempt to update <1s>  slot("<2s>") in "<3s>" with: <4s> - No Slot Type Rules defined' expandMacrosWithArguments:
 		{ self slotName printString.
-		self slotDefinition slotClassName.
-		self slotDefinition domainClassName.
+		self slotClassName.
+		self domainClassName.
 		self object printString }
 ]
 
@@ -169,8 +188,19 @@ LcsInvalidSlotTypeError >> signalInvalidType: anObject forSlot: aSlotDefinition 
 ]
 
 { #category : 'signal' }
+LcsInvalidSlotTypeError >> signalNoRulesToValidateInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
+	self object: anObject.
+	self slotDefinition: aSlotDefinition.
+	self target: aDomainObject.
+	self messageText: self missingSlotTypeRulesMessage.
+	self signal: self messageText
+]
+
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> slotClassName [
-	^ self slotDefinition class name
+	^ self slotDefinition
+		ifNil: [ '<missing Slot Definition Class Name>' ]
+		ifNotNil: [ self slotDefinition slotClassName ]
 ]
 
 { #category : 'accessing' }
@@ -199,7 +229,9 @@ LcsInvalidSlotTypeError >> slotDefinitionSelector [
 
 { #category : 'signal' }
 LcsInvalidSlotTypeError >> slotName [
-	^ self slotDefinition slotName
+	^ self slotDefinition
+		ifNil: [ '<missing slot name>' ]
+		ifNotNil: [ self slotDefinition slotName ifNil: [ '<missing slot name>' ] ]
 ]
 
 { #category : 'accessing' }

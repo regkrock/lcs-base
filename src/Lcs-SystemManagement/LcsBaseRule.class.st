@@ -1,12 +1,12 @@
 Class {
-	#name : 'LcsValidationCondition',
+	#name : 'LcsBaseRule',
 	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait',
 	#classTraits : 'LtParentTrait classTrait',
 	#instVars : [
 		'conditionBlock',
-		'validationDescription',
-		'errorMessage'
+		'errorMessage',
+		'description'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -14,24 +14,24 @@ Class {
 }
 
 { #category : 'comparing' }
-LcsValidationCondition >> = anObject [
+LcsBaseRule >> = anObject [
 	anObject class name = self class name ifFalse: [ ^ false ].
 	anObject conditionBlock asString = self conditionBlock asString ifFalse: [ ^ false ].
-	^ anObject validationDescription = self validationDescription
+	^ anObject description = self description
 ]
 
 { #category : 'accessing' }
-LcsValidationCondition >> conditionBlock [
+LcsBaseRule >> conditionBlock [
 	^ conditionBlock
 ]
 
 { #category : 'accessing' }
-LcsValidationCondition >> conditionBlock: anObject [
+LcsBaseRule >> conditionBlock: anObject [
 	conditionBlock := anObject
 ]
 
 { #category : 'magritte' }
-LcsValidationCondition >> conditionBlockDescription [
+LcsBaseRule >> conditionBlockDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: ('Condition [:<1s> :<2s> :<3s> | '
@@ -51,49 +51,89 @@ LcsValidationCondition >> conditionBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
+{ #category : 'defaults' }
+LcsBaseRule >> defaultConditionBlock [
+	^ [ :value | true ]
+]
+
+{ #category : 'defaults' }
+LcsBaseRule >> defaultDescription [
+	^ ''
+]
+
+{ #category : 'defaults' }
+LcsBaseRule >> defaultErrorMessage [
+	^ nil
+]
+
 { #category : 'accessing' }
-LcsValidationCondition >> errorMessage [
+LcsBaseRule >> description [
+	^ description
+]
+
+{ #category : 'accessing' }
+LcsBaseRule >> description: anObject [
+	description := anObject
+]
+
+{ #category : 'magritte' }
+LcsBaseRule >> descriptionDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Description';
+		priority: 9;
+		accessor: #description;
+		default: '';
+		addCondition: [:aValue | aValue trimBoth isNotEmpty ] labelled: 'A description is required';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : 'accessing' }
+LcsBaseRule >> errorMessage [
 	^ errorMessage
 ]
 
 { #category : 'accessing' }
-LcsValidationCondition >> errorMessage: aStringOrBlock [
+LcsBaseRule >> errorMessage: aStringOrBlock [
 	errorMessage := aStringOrBlock 
 ]
 
 { #category : 'validation' }
-LcsValidationCondition >> evaluateWith: aValidator [
+LcsBaseRule >> evaluateWith: aValidator [
 	(self conditionBlock value: aValidator domainObject) ifFalse: [
-		aValidator addErrorDescription: self validationDescriptionDescription in: self ]
+		aValidator addErrorDescription: self descriptionDescription in: self ]
 ]
 
 { #category : 'printing' }
-LcsValidationCondition >> gtDisplayOn: aStream [
+LcsBaseRule >> gtDisplayOn: aStream [
 	super gtDisplayOn: aStream.
 	aStream
 		nextPutAll: '(';
-		nextPutAll: (self validationDescription ifNil: ['']);
+		nextPutAll: self description;
 		nextPutAll: ')'
 ]
 
 { #category : 'comparing' }
-LcsValidationCondition >> hash [
-	^ self conditionBlock hash bitXor: self validationDescription hash
+LcsBaseRule >> hash [
+	^ self conditionBlock hash bitXor: self description hash
 ]
 
 { #category : 'initialize' }
-LcsValidationCondition >> initialize [
+LcsBaseRule >> initialize [
 	super initialize.
-	self conditionBlock: [ :value | true ]
+	self conditionBlock: self defaultConditionBlock.
+	self description: self defaultDescription.
+	self errorMessage: self defaultErrorMessage.
 ]
 
 { #category : 'initialize' }
-LcsValidationCondition >> initializeOn: anObject [ 
+LcsBaseRule >> initializeOn: anObject [ 
 	self parent: anObject
 ]
 
 { #category : 'magritte' }
-LcsValidationCondition >> magritteAcceptAction [
+LcsBaseRule >> magritteAcceptAction [
 	<magritteActionDescription>
 	^ MAActionDescription new
 		priority: 10;
@@ -109,7 +149,7 @@ LcsValidationCondition >> magritteAcceptAction [
 ]
 
 { #category : 'magritte' }
-LcsValidationCondition >> magritteInspectAction [
+LcsBaseRule >> magritteInspectAction [
 	<magritteActionDescription>
 	^ MAActionDescription new
 		priority: 30;
@@ -123,30 +163,35 @@ LcsValidationCondition >> magritteInspectAction [
 		beToolbarAction
 ]
 
+{ #category : 'accessing' }
+LcsBaseRule >> rule: anObject [
+	^ self description: anObject
+]
+
 { #category : 'slot model' }
-LcsValidationCondition >> slotDefinition [
+LcsBaseRule >> slotDefinition [
 	^ self parent ifNotNil: [:p | p slotDefinition ]
 ]
 
 { #category : 'validation' }
-LcsValidationCondition >> validate: aValue [
+LcsBaseRule >> validate: aValue [
 	^ self validate: aValue context: nil oldValue: nil
 ]
 
 { #category : 'validation' }
-LcsValidationCondition >> validate: aValue context: aDomainObject [
+LcsBaseRule >> validate: aValue context: aDomainObject [
 	^ self validate: aValue context: aDomainObject oldValue: nil
 ]
 
 { #category : 'validation' }
-LcsValidationCondition >> validate: aValue context: aDomainObject oldValue: anOldValue [
+LcsBaseRule >> validate: aValue context: aDomainObject oldValue: anOldValue [
 	| result |
 	[ result := self conditionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
 		on: Error
 		do: [ :s | 
 					LcsSlotValidationExecutionError
 						signalInvalidValue: aValue
-						forCondition: self
+						forRule: self
 						inSlot: self slotDefinition
 						context: aDomainObject
 						oldValue: anOldValue
@@ -162,31 +207,8 @@ LcsValidationCondition >> validate: aValue context: aDomainObject oldValue: anOl
 ]
 
 { #category : 'accessing' }
-LcsValidationCondition >> validationDescription [
-	^ validationDescription
-]
-
-{ #category : 'accessing' }
-LcsValidationCondition >> validationDescription: anObject [
-	validationDescription := anObject
-]
-
-{ #category : 'magritte' }
-LcsValidationCondition >> validationDescriptionDescription [
-	<magritteDescription>
-	^ MAStringDescription new
-		label: 'Description';
-		priority: 9;
-		accessor: #validationDescription;
-		default: '';
-		addCondition: [:aValue | aValue trimBoth isNotEmpty ] labelled: 'A description is required';
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
-]
-
-{ #category : 'accessing' }
-LcsValidationCondition >> validationErrorMessage [
+LcsBaseRule >> validationErrorMessage [
 	^ self errorMessage 
-		ifNil: [ self validationDescription ifNil: [ '' ] ] 
+		ifNil: [ self description ] 
 		ifNotNil: [ self errorMessage value ]
 ]

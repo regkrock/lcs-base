@@ -18,7 +18,7 @@ LcsBaseSmalltalkObjectSlotCreationFormExamples >> nilDescriptionSelectors [
 
 { #category : 'private' }
 LcsBaseSmalltalkObjectSlotCreationFormExamples >> requiredDescriptionSelectors [
-	^ #(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription validationConditionsDescription slotTypesDescription ) asOrderedCollection
+	^ #(#slotClassDescription #targetClassDescription #slotNameDescription #allowNilDescription #requiredDescription initialValueBlockDescription prevalidationTransformBlockDescription #validationsDescription slotTypesDescription ) asOrderedCollection
 ]
 
 { #category : 'scripter - model' }

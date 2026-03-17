@@ -15,13 +15,13 @@ LcsCountrySubdivisionClassSlotSlot >> newSlot [
 	slot superclassClass subclassesDo: [ :eachClass | self assert: (slot slotTypes includes: eachClass) ].
 	self assert: slot initialValue equals: LcsCountrySubdivision.
 	self assert: slot superclassClass equals: LcsBaseCountrySubdivision.
-	self assert: slot validationConditions first validationErrorMessage equals: 'This must be a subclass of LcsBaseCountrySubdivision'.
-	self should: [ slot validate: LcsBaseCountrySubdivision ] raise: LcsSlotValidationError.
+	self assert: slot validationRules first validationErrorMessage equals: 'This must be a subclass of LcsBaseCountrySubdivision'.
+	self should: [ slot validate: LcsBaseCountrySubdivision ] raise: LcsInvalidSlotTypeError.
 	errorMessage := [ slot validate: LcsBaseCountrySubdivision ]
-			on: LcsSlotValidationError
+			on: LcsInvalidSlotTypeError
 			do: [ :s | s return: s messageText ].
 	self
 		assert: errorMessage
-		equals: 'nil slot: subdivisionClass has validation error: Input class is not a valid subclass'.
+		equals: 'Attempt to update ''subdivisionClass''  slot("LcsCountrySubdivisionClassSlot") in "nil" with: LcsBaseCountrySubdivision'.
 	^ slot
 ]

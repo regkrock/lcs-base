@@ -22,7 +22,7 @@ LxxCountry class >> commonNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'commonName';
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
 			description: 'Must be 3 or more characters';
 		yourself
 ]
@@ -33,7 +33,7 @@ LxxCountry class >> formalNameSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'formalName';
 		beAllowNil;
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
 			description: 'Must be 3 or more characters';
 		yourself
 ]
@@ -43,7 +43,7 @@ LxxCountry class >> isoCode3SlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode3';
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
 			description: 'Must be 3 characters';
 		yourself
 ]
@@ -53,7 +53,7 @@ LxxCountry class >> isoCodeSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode';
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size = 2 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size = 2 ]
 			description: 'Must be 2 characters';
 		yourself
 ]
@@ -63,9 +63,9 @@ LxxCountry class >> isoNumberSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoNumber';
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
 			description: 'Must be 3 characters. Example: "001"';
-		addValidationConditionBlock: [ :value :parentDomainObject :oldValue | value asInteger > 0 and: [ value asInteger < 1000 ] ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value asInteger > 0 and: [ value asInteger < 1000 ] ]
 			description: 'Must be in range 001 to 999';
 		yourself
 ]

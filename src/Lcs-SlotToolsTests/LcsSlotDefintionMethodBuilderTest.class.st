@@ -55,7 +55,7 @@ LcsSlotDefintionMethodBuilderTest >> newBuilder [
 	builder := LcsSlotDefinitionMethodBuilder new.
 	self assert:builder properties class = OrderedDictionary.
 	self assert: builder slotTypes class = OrderedCollection.
-	self assert: builder validationConditions class = LcsValidationConditions.
+	self assert: builder validationRules class = LcsValidationRules.
 	self assert: builder slotTypes isEmpty.
 	self assert: builder allowNil == false.
 	self assert: builder required == false.
@@ -103,24 +103,24 @@ LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodStringWithNoSlotN
 { #category : 'tests' }
 LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodWithValidationConditions [
 	<gtExample>
-	| methodSource validationCondition builder |
+	| methodSource rule builder |
 	builder := (
 		self newBuilder
 			slotName: 'foo';
 			slotClass: LcsStringSlot;
 			targetClassName: #LxxBasePerson;
-			addValidationConditionBlock: [ false ] description: 'Always fails';
+			addValidationRuleBlock: [ false ] description: 'Always fails';
 			yourself).
-	self assert: builder validationConditions collectionSize = 1.
-	validationCondition := (builder validationConditions validationConditionWithDescription: 'Always fails').
-	self assert: validationCondition conditionBlock printString equals: '[ false ]'.
-	self assert: validationCondition validationDescription  equals: 'Always fails'.
+	self assert: builder validationRules collectionSize = 1.
+	rule := (builder validationRules ruleWithDescription: 'Always fails').
+	self assert: rule conditionBlock printString equals: '[ false ]'.
+	self assert: rule description  equals: 'Always fails'.
 	
 	methodSource := builder slotDefinitionSource.
 	self assert: methodSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			addValidationCondition: [ false ] description: ''Always fails'';
+			addValidationRule: [ false ] description: ''Always fails'';
 			slotName: ''foo'';
 			yourself'.
 		

@@ -62,40 +62,36 @@ LcsAccessorSlot >> _initialValueFor: aDomainObject [
 	^ self initialValueBlock cull: aDomainObject cull: self
 ]
 
-{ #category : 'slot model' }
-LcsAccessorSlot >> _slotVarPut: anObject in: aDomainObject [
-	self verifySlotType: anObject for: aDomainObject.
-	self currentUnitOfWork
-		setValueIn: aDomainObject
-		slot: self
-		to: anObject
-]
-
 { #category : 'post update actions' }
 LcsAccessorSlot >> addPostUpdateAction: anUpdateAction [
 	self postUpdateActions addAction: anUpdateAction
 ]
 
-{ #category : 'slot definitions' }
+{ #category : 'slot model' }
+LcsAccessorSlot >> addSlotTypeRule: aRule [
+	^ self slotTypeRules addRule: aRule
+]
+
+{ #category : 'private' }
 LcsAccessorSlot >> addSubclassesOf: aClass [
 	aClass subclassesDo: [ :each | self addSlotType: each ] 
 ]
 
-{ #category : 'validation' }
+{ #category : 'validations' }
 LcsAccessorSlot >> addValidateConfigurationResultTo: aValidator [
 	(self domainClass allInstVarNames includes: self slotName)
 		ifFalse: [ aValidator
 				add: (LcsValidatorIssueMessage newOn: self message: self slotDoesNotExistMessage) ]
 ]
 
-{ #category : 'validations' }
-LcsAccessorSlot >> addValidationCondition: aValidationCondition [
-	^ self validationConditions addValidationCondition: aValidationCondition
+{ #category : 'slot model' }
+LcsAccessorSlot >> addValidationRule: aRule [
+	^ self validationRules addRule: aRule
 ]
 
-{ #category : 'validations' }
-LcsAccessorSlot >> addValidationConditionBlock: aBlock description: aString [
-	^ self validationConditions addValidationConditionBlock: aBlock description: aString
+{ #category : 'slot model' }
+LcsAccessorSlot >> addValidationRuleBlock: aBlock description: aString [
+	^ self validationRules addRuleBlock: aBlock description: aString
 ]
 
 { #category : 'properties' }
@@ -104,8 +100,22 @@ LcsAccessorSlot >> allowNil [
 ]
 
 { #category : 'properties' }
-LcsAccessorSlot >> allowNil: anObject [
-	self propertyAt: 'allowNil' put: anObject
+LcsAccessorSlot >> allowNil: newPropertyValue [
+	| currentPropertyValue |
+	currentPropertyValue := self propertyAt: 'allowNil' ifAbsent: [ nil ].
+	newPropertyValue == true 
+		ifTrue: [
+			currentPropertyValue ~~ true ifTrue: [
+				self slotTypeRules addFirstRule: LcsAllowNilSlotTypeRule new ].
+			self propertyAt: 'allowNil' put: newPropertyValue.
+			^ self ].
+	newPropertyValue == false
+		ifTrue: [ 
+			currentPropertyValue == true ifTrue: [
+				self slotTypeRules removeValidationRuleWithDescription: LcsAllowNilSlotTypeRule new defaultDescription ].
+		self propertyAt: 'allowNil' put: newPropertyValue.
+		^ self ].
+	LcsError signal: 'Attempt to update with a non-Boolean value'
 ]
 
 { #category : 'magritte' }
@@ -148,21 +158,20 @@ LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 		newValue parent: aDomainObject ]
 ]
 
-{ #category : 'validations' }
+{ #category : 'audit' }
 LcsAccessorSlot >> audit: anObject withAuditor: anAuditor [
 	| value |
 	value := self _currentSlotVarIn: anObject.
-	[ self verifyType: value for: anObject ]
+	[ self validateSlotType: value context: anObject oldValue: nil ]
 		on: LcsInvalidSlotTypeError
 		do: [ :signal |
 			anAuditor addErrorDescription: signal invalidAuditMessage.
 			signal return: nil ].
-	self validationConditions do: [ :eachCondition | 
-		[ eachCondition cull: value cull: anObject ]
-			on: LcsInvalidSlotTypeError
-			do: [ :signal |
-				anAuditor addErrorDescription: signal invalidAuditMessage.
-				signal return: nil ] ]
+	[ self validateRules: value context: anObject oldValue: nil ]
+		on: LcsError
+		do: [ :signal |
+			anAuditor addErrorDescription: signal invalidAuditMessage.
+			signal return: nil ]
 ]
 
 { #category : 'configuration' }
@@ -197,13 +206,6 @@ LcsAccessorSlot >> changedSlotRecordFor: aDomainObject [
 		slotNamed: self slotName
 ]
 
-{ #category : 'defaults' }
-LcsAccessorSlot >> createNewInstanceOf: aClass inContext: context [
-	aClass isDomainClass
-		ifTrue: [ aClass newInContext: context ]
-		ifFalse: [ aClass new ]
-]
-
 { #category : 'slot model' }
 LcsAccessorSlot >> currentSlotVarIn: aDomainObject [
 	self hasPermissionToReadSlotOf: aDomainObject.
@@ -215,7 +217,7 @@ LcsAccessorSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | self newInstanceOfFirstSlotTypeIn: slot parent: parentDomainObject ]
 ]
 
-{ #category : 'printing' }
+{ #category : 'defaults' }
 LcsAccessorSlot >> defaultInitialValueBlockSourceCode [
 	^ self defaultInitialValueBlock compiledBlock sourceNode sourceCode
 ]
@@ -228,6 +230,11 @@ LcsAccessorSlot >> defaultPragmaSelector [
 { #category : 'defaults' }
 LcsAccessorSlot >> defaultPrevalidationTransformBlock [
 	^ [ :value :slot | value ]
+]
+
+{ #category : 'defaults' }
+LcsAccessorSlot >> defaultTypeOfSlotRuleClass [
+	^ LcsInstanceIsKindOfSlotTypesRule
 ]
 
 { #category : 'configuration' }
@@ -340,7 +347,9 @@ LcsAccessorSlot >> initialValueFor: aDomainObject [
 LcsAccessorSlot >> initialize [
 	super initialize.
 	self makeUpdateOfVariableViaUnitOfWork.
-	self validationConditions: (LcsValidationConditions newOn: self).
+	self slotTypeRules: (LcsSlotTypeRules newOn: self).
+	self slotTypeRules addRule: self defaultTypeOfSlotRuleClass new.
+	self validationRules: (LcsValidationRules newOn: self).
 	self postUpdateActions: (LcsUpdateActions newOn: self).
 	self initialValueBlock: self defaultInitialValueBlock.
 	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
@@ -357,6 +366,35 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 	initialValue := self initialValueFor: aDomainObject.
 	self slotVarPut: initialValue in: aDomainObject.
 	LcsLogger outdent.
+]
+
+{ #category : 'slot model' }
+LcsAccessorSlot >> initializeSlotVarPut: anObject in: aDomainObject [
+	| transformedObject existingValue |
+	existingValue := aDomainObject perform: self getterSelector.
+	"existingValue ifNotNil: [ self error: 'Attempt to initialize and already intialized slot']."
+	transformedObject := self prevalidationTransformBlock
+			cull: anObject
+			cull: self
+			cull: aDomainObject.
+	self slotTypeRules
+		validate: anObject
+		context: aDomainObject
+		oldValue: existingValue.
+	"Validate type, but not value - this allows for a non-nil value that 
+	does not pass the validation test - ex: slot requires 3 characters but
+	initialize it to an empty string and let the error be caught later.
+	The audit check which is executed before the commit should check this."
+	self hasPermissionToWriteSlotOf: aDomainObject.
+	self currentUnitOfWork
+		setValueIn: aDomainObject
+		slot: self
+		to: anObject.
+	"The post update action may need more work"
+	self postUpdateActions
+		execute: transformedObject
+		context: aDomainObject
+		oldValue: existingValue
 ]
 
 { #category : 'object initialization' }
@@ -524,19 +562,19 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : 'validations' }
+{ #category : 'slot model' }
 LcsAccessorSlot >> removeAction: anUpdateAction [
 	self postUpdateActions remove: anUpdateAction
 ]
 
-{ #category : 'validations' }
-LcsAccessorSlot >> removeValidationCondition: aValidationCondition [
-	self validationConditions removeValidationCondition: aValidationCondition
+{ #category : 'slot model' }
+LcsAccessorSlot >> removeValidationRule: aRule [
+	self validationRules removeRule: aRule
 ]
 
-{ #category : 'validations' }
-LcsAccessorSlot >> removeValidationConditionWithDescription: aString [
-	self validationConditions removeValidationConditionWithDescription: aString
+{ #category : 'slot model' }
+LcsAccessorSlot >> removeValidationRuleWithDescription: aString [
+	self validationRules removeValidationRuleWithDescription: aString
 ]
 
 { #category : 'properties' }
@@ -583,7 +621,7 @@ LcsAccessorSlot >> setterSelector [
 		
 ]
 
-{ #category : 'slot model' }
+{ #category : 'error signalling' }
 LcsAccessorSlot >> signalInvalidSlotTypeError: anObject for: aDomainObject [ 
 	^ LcsInvalidSlotTypeError
 		signalInvalidType: anObject
@@ -591,9 +629,24 @@ LcsAccessorSlot >> signalInvalidSlotTypeError: anObject for: aDomainObject [
 		for: aDomainObject
 ]
 
-{ #category : 'validation' }
+{ #category : 'error signalling' }
 LcsAccessorSlot >> slotDoesNotExistMessage [
 	^ 'Slot name ' , self slotName asString , ' does not exist in ' , self domainClass name
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> slotTypeRules [
+	^ self propertyAt: 'slotTypeRules'
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> slotTypeRules: anObject [
+	self propertyAt: 'slotTypeRules' put: anObject
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> slotTypeValidations [
+	^ self propertyAt: 'slotTypeValidations'
 ]
 
 { #category : 'slot model' }
@@ -636,64 +689,81 @@ LcsAccessorSlot >> updateVariableIn: aDomainObject oldValue: anExistingObject wi
 
 { #category : 'validations' }
 LcsAccessorSlot >> validate: aValue [
-	^ (LcsConditionsValidator newOn: self)
-		validate: aValue;
-		yourself
+	^ self validate: aValue context: nil
 ]
 
 { #category : 'validations' }
 LcsAccessorSlot >> validate: aValue context: aDomainObject [
-	(LcsConditionsValidator newOn: self)
-		validate: aValue context: aDomainObject
+	^ self validate: aValue context: aDomainObject oldValue: nil
 ]
 
-{ #category : 'slot model' }
-LcsAccessorSlot >> validate: anObject for: aDomainObject [
-	| oldValue |
-	oldValue := aDomainObject perform: self getterSelector.
-	self validate: anObject for: aDomainObject  oldValue: oldValue
-]
-
-{ #category : 'slot model' }
-LcsAccessorSlot >> validate: anObject for: aDomainObject  oldValue: anOldvalue [
-	self verifySlotType: anObject for: aDomainObject.
-	(self isNilAllowed and: [ anObject isNil and: [ anOldvalue isNil ] ]) ifTrue: [ ^true ].
-	(self isNullAllowed and: [ (self isNullObject: anObject)]) ifTrue: [ ^ true ].
-	^ self validationConditions 
-		validate: anObject 
-		context: aDomainObject 
+{ #category : 'validations' }
+LcsAccessorSlot >> validate: anObject context: aDomainObject oldValue: anOldvalue [
+	self
+		validateSlotType: anObject
+		context: aDomainObject
+		oldValue: anOldvalue.
+	^ self
+		validateRules: anObject
+		context: aDomainObject
 		oldValue: anOldvalue
 ]
 
 { #category : 'validations' }
 LcsAccessorSlot >> validate: anObject visitor: aValidationVisitor [
 	<TODO: 'this needs work or should be removed'>
-	self validationConditions do: [ :eachCondition | ]
+	self validationRules do: [ :eachCondition | ]
 ]
 
 { #category : 'validations' }
 LcsAccessorSlot >> validate: aValue withValidator: aValidator [
-	self validationConditions validate: aValue withValidator: aValidator
+	self validationRules validate: aValue withValidator: aValidator
+]
+
+{ #category : 'validations' }
+LcsAccessorSlot >> validateRules: anObject context: aDomainObject oldValue: anOldvalue [
+	^ self validationRules
+		validate: anObject
+		context: aDomainObject
+		oldValue: anOldvalue
+]
+
+{ #category : 'validations' }
+LcsAccessorSlot >> validateSlotType: anObject [
+	^ self validateSlotType: anObject context: nil
+]
+
+{ #category : 'validations' }
+LcsAccessorSlot >> validateSlotType: anObject context: aDomainObject [
+	^ self validateSlotType: anObject context: aDomainObject oldValue: nil
+]
+
+{ #category : 'validations' }
+LcsAccessorSlot >> validateSlotType: anObject context: aDomainObject oldValue: anOldvalue [
+	^ self slotTypeRules
+		validate: anObject
+		context: aDomainObject
+		oldValue: anOldvalue
 ]
 
 { #category : 'properties' }
-LcsAccessorSlot >> validationConditions [
-	^ self propertyAt: 'validationConditions'
+LcsAccessorSlot >> validationRules [
+	^ self propertyAt: 'validationRules'
 ]
 
 { #category : 'properties' }
-LcsAccessorSlot >> validationConditions: anObject [
-	self propertyAt: 'validationConditions' put: anObject
+LcsAccessorSlot >> validationRules: anObject [
+	self propertyAt: 'validationRules' put: anObject
 ]
 
 { #category : 'magritte' }
-LcsAccessorSlot >> validationConditionsDescription [
+LcsAccessorSlot >> validationRulesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
-		  accessor: (MAChainAccessor accessors: #(#validationConditions #collection));
-		  label: 'Validation Conditions';
+		  accessor: (MAChainAccessor accessors: #(#validationRules #collection));
+		  label: 'Validation Rules';
 		  default: #(  );
-		  classes: { LcsValidationCondition };
+		  classes: { LcsValidationRule };
 		  priority: 35;
 		  beModifiable;
 		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
@@ -710,14 +780,9 @@ LcsAccessorSlot >> validationConditionsDescription [
 						   left: 0);
 				  padding: (BlInsets all: 5);
 				  background: Color white ];
-		  newItemStencil: [ LcsValidationCondition new
-		  						parent: self validationConditions;
+		  newItemStencil: [ LcsValidationRule new
+		  						parent: self validationRules;
 		  						yourself ]
-]
-
-{ #category : 'validating' }
-LcsAccessorSlot >> validator [
-	^ LcsConditionsValidator new
 ]
 
 { #category : 'configuration' }
@@ -753,35 +818,4 @@ LcsAccessorSlot >> variableUpdatePolicyClassName [
 { #category : 'properties' }
 LcsAccessorSlot >> variableUpdatePolicyClassName: aClassName [
 	self properties at: 'variableUpdatePolicyClassName' put: aClassName
-]
-
-{ #category : 'slot model' }
-LcsAccessorSlot >> verifySlotType: anObject for: aDomainObject [
-	^ self verifyType: anObject for: aDomainObject
-	"The below was a hack. Commenting but leaving 
-	 it as an artifact for future work in this area"
-	"[ self verifyType: anObject for: aDomainObject ]
-		on: LcsInvalidSlotTypeError
-		do: [ :signal |
-			self currentUnitOfWork removeAddOf: anObject.
-			signal signal ]"
-]
-
-{ #category : 'slot model' }
-LcsAccessorSlot >> verifySlotTypeOf: anObject for: aDomainObject [
-	self slotTypes
-		detect: [ :eachClass | anObject isKindOf: eachClass ]
-		ifNone: [ ^ self signalInvalidSlotTypeError: anObject for: aDomainObject  ].
-		^ true
-]
-
-{ #category : 'slot model' }
-LcsAccessorSlot >> verifyType: anObject for: aDomainObject [
-	(self isNilAllowed and: [ anObject isNil ]) ifTrue: [ ^ true ].
-	^ self verifySlotTypeOf: anObject for: aDomainObject
-]
-
-{ #category : 'slot model' }
-LcsAccessorSlot >> verifyTypeBlock: anObject [
-	^ [ :eachClass | anObject isKindOf: eachClass ]
 ]

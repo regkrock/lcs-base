@@ -54,9 +54,12 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 	aPropertyName = 'collectionMemberTypes' ifTrue: [ 
 		^ self addClassTypeKeyword: 'addCollectionMemberType' argument: aValue to: aStream ].
 
-	aPropertyName = 'validationConditions' ifTrue: [ 
-		^ self addValidationConditionsKeyword: aPropertyName argument: aValue to: aStream ].		
+	aPropertyName = 'validationRules' ifTrue: [ 
+		^ self addValidationRuleKeyword: aPropertyName argument: aValue to: aStream ].		
 
+	aPropertyName = 'slotTypeRules' ifTrue: [ 
+		^ self addSlotTypeRuleKeyword: aPropertyName argument: aValue to: aStream ].		
+		
 	aPropertyName = 'postUpdateActions' ifTrue: [ 
 		^ self addPostUpdateActionsKeyword: aPropertyName argument: aValue to: aStream ].		
 
@@ -97,22 +100,35 @@ LcsSlotDefinitionMethodFormatter >> addSlotPathKeyword: aPropertyName argument: 
 ]
 
 { #category : 'format' }
+LcsSlotDefinitionMethodFormatter >> addSlotTypeRuleKeyword: aPropertyName argument: aRules to: aStream [ 
+
+	aRules isNotEmpty ifFalse: [ ^ self ].
+
+	aRules do: [ :each |
+		aStream
+			addKeyword: 'addSlotTypeRule'
+			argument: each conditionBlock printString
+			keyword: 'description'
+			argument: each description printString  ]
+]
+
+{ #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addSlotTypesKeyword: aPropertyName argument: aSlotTypes to: aStream [ 
 	aSlotTypes do: [ :eachClassName | 
 		aStream addKeyword: aPropertyName argument: eachClassName asString ]
 ]
 
 { #category : 'format' }
-LcsSlotDefinitionMethodFormatter >> addValidationConditionsKeyword: aPropertyName argument: aValidationConditions to: aStream [ 
+LcsSlotDefinitionMethodFormatter >> addValidationRuleKeyword: aPropertyName argument: aRules to: aStream [ 
 
-	aValidationConditions isNotEmpty ifFalse: [ ^ self ].
+	aRules isNotEmpty ifFalse: [ ^ self ].
 
-	aValidationConditions do: [ :each |
+	aRules do: [ :each |
 		aStream
-			addKeyword: 'addValidationCondition'
+			addKeyword: 'addValidationRule'
 			argument: each conditionBlock printString
 			keyword: 'description'
-			argument: each validationDescription printString  ]
+			argument: each description printString  ]
 ]
 
 { #category : 'format' }

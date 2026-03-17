@@ -96,13 +96,13 @@ LcsConditionsValidator >> validate: aValue [
 ]
 
 { #category : 'magritte' }
-LcsConditionsValidator >> validationConditionsDescription [
+LcsConditionsValidator >> validationRulesDescription [
 	"<magritteDescription>"
 	^ MAToManyRelationDescription new
-		  accessor: (MAChainAccessor accessors: #(#validationConditions #collection));
-		  label: 'Validation Conditions';
+		  accessor: (MAChainAccessor accessors: #(#validationRules #collection));
+		  label: 'Relationship Rules';
 		  default: #(  );
-		  classes: { LcsValidationCondition };
+		  classes: { LcsValidationRule };
 		  priority: 25;
 		  beModifiable;
 		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
@@ -119,5 +119,32 @@ LcsConditionsValidator >> validationConditionsDescription [
 						   left: 0);
 				  padding: (BlInsets all: 5);
 				  background: Color white ];
-		  newItemStencil: [ LcsValidationCondition new ]
+		  newItemStencil: [ LcsValidationRule new ]
+]
+
+{ #category : 'magritte' }
+LcsConditionsValidator >> validationsDescription [
+	"<magritteDescription>"
+	^ MAToManyRelationDescription new
+		  accessor: (MAChainAccessor accessors: #(#validationRules #collection));
+		  label: 'Validation Rules';
+		  default: #(  );
+		  classes: { LcsValidationRule };
+		  priority: 25;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [ LcsValidationRule new ]
 ]
