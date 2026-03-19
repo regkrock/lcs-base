@@ -78,7 +78,7 @@ LcsSlotCreationForm >> addAccessorToBeginningOfAccessPath: aDescription [
 
 { #category : 'magritte' }
 LcsSlotCreationForm >> allowEmptyIntialValueDescription [
-	<magritteDescription>
+	"<magritteDescription>"
 	^ self magritteDescriptionFor: #allowEmptyIntialValue
 ]
 

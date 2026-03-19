@@ -119,10 +119,10 @@ LcsAccessorSlotExamples >> accessorSlotWithDummyValidationAction [
 { #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithDummyValidationActionRemoved [
 	<gtExample>
-	| slot validationCondition |
+	| slot validationRule |
 	slot := self accessorSlotWithDummyValidationAction.
-	validationCondition := slot validationRules any.
-	slot removeValidationRuleWithDescription: 'Test'.
+	validationRule := slot validationRules any.
+	slot removeValidationRuleWithDescription: validationRule description.
 	self assert: slot validationRules hasNoElements.
 	^ slot
 ]

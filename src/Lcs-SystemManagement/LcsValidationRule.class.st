@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsValidationRule',
-	#superclass : 'LcsBaseRule',
+	#superclass : 'LcsBaseValidationRule',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
@@ -12,13 +12,28 @@ LcsValidationRule >> conditionBlockDescription [
 	^ super conditionBlockDescription
 ]
 
+{ #category : 'defaults' }
+LcsValidationRule >> defaultConditionBlock [
+	^ [ :value | true ]
+]
+
+{ #category : 'defaults' }
+LcsValidationRule >> defaultDescription [
+	^ 'Always Valid Rule'
+]
+
+{ #category : 'defaults' }
+LcsValidationRule >> defaultErrorMessage [
+	^ nil
+]
+
 { #category : 'magritte' }
 LcsValidationRule >> descriptionDescription [
 	<magritteDescription>
 	^ super descriptionDescription
 ]
 
-{ #category : 'validation' }
+{ #category : 'audit' }
 LcsValidationRule >> evaluateWith: aValidator [
 	(self conditionBlock value: aValidator domainObject) ifFalse: [
 		aValidator addErrorDescription: self descriptionDescription in: self ]
@@ -53,4 +68,13 @@ LcsValidationRule >> magritteInspectAction [
 				action: [ :aModel :aButton :aMemento :aDescription | 
 					aButton phlow spawnObject: aMemento ]);
 		beToolbarAction
+]
+
+{ #category : 'validation' }
+LcsValidationRule >> validate: aValue context: aDomainObject oldValue: anOldValue [
+	^ (super validate: aValue context: aDomainObject oldValue: anOldValue) 
+		ifTrue: [ true ]
+		ifFalse: [
+		self signalValidationError: aValue context: aDomainObject oldValue: anOldValue.
+		false ]
 ]

@@ -16,6 +16,7 @@ LxxBaseCountrySubdivision class >> formalNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'formalName';
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
 			description: 'Must be 3 characters';
 		yourself
@@ -26,6 +27,7 @@ LxxBaseCountrySubdivision class >> isoCodeSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode';
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size = 2 ]
 			description: 'Must be 2 characters';
 		yourself
@@ -46,6 +48,7 @@ LxxBaseCountrySubdivision class >> subdivisionNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'subdivisionName';
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size >= 2 ]
 			description: 'Must be at least 2 characters';
 		yourself

@@ -22,6 +22,7 @@ LxxCountry class >> commonNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'commonName';
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
 			description: 'Must be 3 or more characters';
 		yourself
@@ -32,7 +33,7 @@ LxxCountry class >> formalNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'formalName';
-		beAllowNil;
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size >= 3 ]
 			description: 'Must be 3 or more characters';
 		yourself
@@ -43,6 +44,7 @@ LxxCountry class >> isoCode3SlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode3';
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
 			description: 'Must be 3 characters';
 		yourself
@@ -53,6 +55,7 @@ LxxCountry class >> isoCodeSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoCode';
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size = 2 ]
 			description: 'Must be 2 characters';
 		yourself
@@ -63,6 +66,7 @@ LxxCountry class >> isoNumberSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'isoNumber';
+		beAllowInitialNull;
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value size = 3 ]
 			description: 'Must be 3 characters. Example: "001"';
 		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value asInteger > 0 and: [ value asInteger < 1000 ] ]
@@ -112,7 +116,7 @@ LxxCountry class >> subdivisionNameSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: #subdivisionName;
-		allowEmptyIntialValue;
+		"beAllowInitialNull;"
 		yourself
 ]
 

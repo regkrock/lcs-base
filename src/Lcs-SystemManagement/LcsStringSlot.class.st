@@ -6,19 +6,9 @@ Class {
 	#tag : 'Slot'
 }
 
-{ #category : 'properties' }
-LcsStringSlot >> allowEmptyIntialValue [
-	^ self propertyAt: 'allowEmptyIntialValue'
-]
-
-{ #category : 'properties' }
-LcsStringSlot >> allowEmptyIntialValue: aBoolean [
-	^ self propertyAt: 'allowEmptyIntialValue' put: aBoolean
-]
-
 { #category : 'magritte' }
 LcsStringSlot >> allowEmptyIntialValueDescription [
-	<magritteDescription>
+	"<magritteDescription>"
 	^ MABooleanDescription new
 		label: 'Allow Empty';
 		priority: 10;
@@ -26,6 +16,20 @@ LcsStringSlot >> allowEmptyIntialValueDescription [
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
 		beRequired
+]
+
+{ #category : 'configuration' }
+LcsStringSlot >> beAllowInitialNull [
+	self beAllowNull.
+	(self validationRules hasRuleWithDescription: LcsAllowInitialNullRule new description)
+		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
+]
+
+{ #category : 'configuration' }
+LcsStringSlot >> beDisallowInitialNull [
+	self allowNull.
+	(self validationRules hasRulerNamed: LcsAllowInitialNullRule new description)
+		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
 ]
 
 { #category : 'defaults' }
@@ -41,17 +45,6 @@ LcsStringSlot >> defaultInputComponentClassName [
 { #category : 'iniitialize' }
 LcsStringSlot >> initialValue: anObject [
 	super initialValue:anObject printString
-]
-
-{ #category : 'iniitialize' }
-LcsStringSlot >> initialize [
-	super initialize.
-	self allowEmptyIntialValue: true
-]
-
-{ #category : 'testing' }
-LcsStringSlot >> isNullAllowed [
-	^ self allowEmptyIntialValue
 ]
 
 { #category : 'testing' }

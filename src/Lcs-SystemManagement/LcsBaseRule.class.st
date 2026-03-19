@@ -132,6 +132,11 @@ LcsBaseRule >> initializeOn: anObject [
 	self parent: anObject
 ]
 
+{ #category : 'testing' }
+LcsBaseRule >> isNilRule [
+	^ false
+]
+
 { #category : 'magritte' }
 LcsBaseRule >> magritteAcceptAction [
 	<magritteActionDescription>
@@ -168,6 +173,16 @@ LcsBaseRule >> rule: anObject [
 	^ self description: anObject
 ]
 
+{ #category : 'error signalling' }
+LcsBaseRule >> signalValidationError: aValue context: aDomainObject oldValue: anOldValue [
+	^ LcsSlotValidationError
+		signalInvalidValue: aValue
+		forCondition: self
+		inSlot: self slotDefinition
+		oldValue: anOldValue
+		context: aDomainObject
+]
+
 { #category : 'slot model' }
 LcsBaseRule >> slotDefinition [
 	^ self parent ifNotNil: [:p | p slotDefinition ]
@@ -186,7 +201,7 @@ LcsBaseRule >> validate: aValue context: aDomainObject [
 { #category : 'validation' }
 LcsBaseRule >> validate: aValue context: aDomainObject oldValue: anOldValue [
 	| result |
-	[ result := self conditionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
+	[ result := self conditionBlock cull: aValue cull: aDomainObject cull: anOldValue cull: self slotDefinition ]
 		on: Error
 		do: [ :s | 
 					LcsSlotValidationExecutionError
@@ -196,14 +211,9 @@ LcsBaseRule >> validate: aValue context: aDomainObject oldValue: anOldValue [
 						context: aDomainObject
 						oldValue: anOldValue
 						message: s messageText ].
-	result ifTrue: [ ^ result ].
-
-	^ LcsSlotValidationError
-		signalInvalidValue: aValue
-		forCondition: self
-		inSlot: self slotDefinition
-		oldValue: anOldValue
-		context: aDomainObject
+	^ result 
+		ifTrue: [ result ]
+		ifFalse: [ self signalValidationError: aValue context: aDomainObject oldValue: anOldValue ]
 ]
 
 { #category : 'accessing' }

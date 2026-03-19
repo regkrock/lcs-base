@@ -23,6 +23,11 @@ LcsValidationRules >> ruleClass [
 	^ LcsValidationRule
 ]
 
+{ #category : 'slot model' }
+LcsValidationRules >> slotName [
+	^ self parent slotName
+]
+
 { #category : 'magritte' }
 LcsValidationRules >> validationRulesDescriptionClasses [
 	^ { LcsValidationRule }

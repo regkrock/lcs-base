@@ -580,6 +580,12 @@ LcsBaseSlot >> slotClassName [
 	^ self class name
 ]
 
+{ #category : 'gt views' }
+LcsBaseSlot >> slotDefinitionMethodsFilter [
+	^ self slotDefinitionSelector gtImplementors
+		& (self domainClass class gtMethodsInClass includeSuperclass: true)
+]
+
 { #category : 'asking' }
 LcsBaseSlot >> slotDefinitionSelector [
 	^ (self slotName asString , 'SlotDefinition') asSymbol

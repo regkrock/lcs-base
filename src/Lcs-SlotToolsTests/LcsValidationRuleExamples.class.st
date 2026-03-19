@@ -87,7 +87,7 @@ LcsValidationRuleExamples >> newRule [
 	| rule |
 	rule := LcsValidationRule new.
 	self assert: rule conditionBlock displayString equals: '[ :value | true ]'.
-	self assert: rule description isEmpty.
+	self assert: rule description equals: LcsValidationRule new defaultDescription.
 	self assert: rule errorMessage isNil.
 	self assert: rule parent isNil.
 	self assert: (rule validate: true) equals: true.

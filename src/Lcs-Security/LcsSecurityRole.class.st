@@ -26,7 +26,6 @@ LcsSecurityRole class >> roleSlotDefinition [
 	^ LcsStringSlot new
 		slotName: 'role';
 		required: true;
-		allowEmptyIntialValue;
 		yourself
 ]
 

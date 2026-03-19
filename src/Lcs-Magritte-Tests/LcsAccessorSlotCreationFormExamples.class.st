@@ -223,7 +223,7 @@ LcsAccessorSlotCreationFormExamples >> strongSlotFormWithFooSlotName [
 ]
 
 { #category : 'examples' }
-LcsAccessorSlotCreationFormExamples >> virtualSLotCreationForm [
+LcsAccessorSlotCreationFormExamples >> virtualSlotCreationForm [
 	<gtExample>
 	| form |
 	form := self newFormOnLxxPerson.

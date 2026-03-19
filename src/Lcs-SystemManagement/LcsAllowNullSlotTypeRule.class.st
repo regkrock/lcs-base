@@ -8,10 +8,13 @@ Class {
 
 { #category : 'defaults' }
 LcsAllowNullSlotTypeRule >> defaultConditionBlock [
-	^ [ :value :parentDomainObject :oldValue | 
-		(self slotDefinition isNull: value) 
-			ifTrue: [ true ]
-			ifFalse: [ self slotDefinition ifNil: [ false ] ifNotNil: [ :slot | slot allowNull ] ] ]
+	^ [  :value :parentDomainObject :oldValue | 
+		(self isNullObject: value)
+			ifTrue: [ 
+				self isNullAllowed
+					ifTrue: [ true ]
+					ifFalse: [ self signalInvalidSlotTypeError: value for: parentDomainObject ] ]
+			ifFalse: [ false ] ]
 ]
 
 { #category : 'defaults' }
@@ -22,4 +25,14 @@ LcsAllowNullSlotTypeRule >> defaultDescription [
 { #category : 'defaults' }
 LcsAllowNullSlotTypeRule >> defaultErrorMessage [
 	^ 'Null is not allowed in slot'
+]
+
+{ #category : 'testing' }
+LcsAllowNullSlotTypeRule >> isNullAllowed [
+	^ self slotDefinition ifNil: [ false ] ifNotNil: [ :slot | slot allowNull ]
+]
+
+{ #category : 'testing' }
+LcsAllowNullSlotTypeRule >> isNullObject: value [ 
+	^ self slotDefinition ifNil: [ false ] ifNotNil: [ :slot | slot isNullObject: value  ] 
 ]

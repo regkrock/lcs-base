@@ -94,7 +94,6 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 					#facadeSlotDefinition gtPragmas | 
 					#collectionItemSlotDefinition gtPragmas) ];
 		actionUpdateButton
-		
 ]
 
 { #category : 'gt views' }

@@ -30,3 +30,8 @@ LcsAllowNilSlotTypeRule >> defaultErrorMessage [
 LcsAllowNilSlotTypeRule >> isNilAllowed [
 	^ self slotDefinition ifNil: [ false ] ifNotNil: [ :slot | slot allowNil ] 
 ]
+
+{ #category : 'testing' }
+LcsAllowNilSlotTypeRule >> isNilRule [
+	^ true
+]

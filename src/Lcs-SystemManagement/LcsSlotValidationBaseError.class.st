@@ -43,6 +43,18 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 ]
 
 { #category : 'gt view' }
+LcsSlotValidationBaseError >> gtSlotDefinitionMethodFor: aView [
+	<gtView>
+	<gtExceptionView>
+	^ aView explicit
+		title: 'Slot Defn';
+		tooltip: 'Method that defines the slot';
+		priority: 19;
+		stencil: [ self slotDefinition slotDefinitionMethodsFilter ];
+		actionUpdateButton
+]
+
+{ #category : 'gt view' }
 LcsSlotValidationBaseError >> gtSlotPropertiesView: aView [
 	<gtView>
 	<gtExceptionView>

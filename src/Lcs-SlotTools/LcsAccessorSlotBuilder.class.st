@@ -300,7 +300,7 @@ LcsAccessorSlotBuilder >> removeValidationRule: aRule [
 
 { #category : 'validations' }
 LcsAccessorSlotBuilder >> removeValidationRuleWithDescription: aString [
-	self validationRules removeValidationRuleWithDescription: aString
+	self validationRules removeRuleWithDescription: aString
 ]
 
 { #category : 'properties' }

@@ -3,10 +3,25 @@ Class {
 	#superclass : 'LcsApplicationObject',
 	#traits : 'LtParentTrait + LtOrderedCollection',
 	#classTraits : 'LtParentTrait classTrait + LtOrderedCollection classTrait',
+	#instVars : [
+		'evaluationType'
+	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
 }
+
+{ #category : 'instance creation' }
+LcsBaseRules class >> newAndRules [
+	^ self new 
+		beAndEvaluationType;
+		yourself
+]
+
+{ #category : 'instance creation' }
+LcsBaseRules class >> newOrRules [
+	^ self new
+]
 
 { #category : 'comparing' }
 LcsBaseRules >> = aValidations [
@@ -17,6 +32,16 @@ LcsBaseRules >> = aValidations [
 { #category : 'conditions' }
 LcsBaseRules >> addFirstRule: aRule [
 	aRule parent: self.
+	^ self collection addFirst: aRule
+]
+
+{ #category : 'conditions' }
+LcsBaseRules >> addNullRule: aRule [
+	| firstRule |
+	aRule parent: self.
+	self collection isEmpty ifTrue: [ ^ self collection addFirst: aRule ].
+	firstRule := self collection first.
+	firstRule isNilRule ifTrue: [ ^ self collection add: aRule after: firstRule ].
 	^ self collection addFirst: aRule
 ]
 
@@ -33,6 +58,26 @@ LcsBaseRules >> addRuleBlock: aBlock description: aString [
 			description: aString;
 			conditionBlock: aBlock;
 			yourself)
+]
+
+{ #category : 'configuration' }
+LcsBaseRules >> beAndEvaluationType [
+	self evaluationType: 'and'
+]
+
+{ #category : 'configuration' }
+LcsBaseRules >> beOrEvaluationType [
+	self evaluationType: 'or'
+]
+
+{ #category : 'accessing' }
+LcsBaseRules >> evaluationType [
+	^ evaluationType
+]
+
+{ #category : 'accessing' }
+LcsBaseRules >> evaluationType: anObject [
+	evaluationType := anObject
 ]
 
 { #category : 'gt views' }
@@ -57,20 +102,41 @@ LcsBaseRules >> hasNoElements [
 	^ self isEmpty
 ]
 
+{ #category : 'testing' }
+LcsBaseRules >> hasRuleWithDescription: aString [
+	^ (self ruleWithDescription: aString) notNil
+]
+
 { #category : 'comparing' }
 LcsBaseRules >> hash [
 	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]
 ]
 
 { #category : 'initialize' }
-LcsBaseRules >> initialize [ 
+LcsBaseRules >> initialize [
 	super initialize.
-	self collection: OrderedCollection new
+	self collection: OrderedCollection new.
+	self beOrEvaluationType
 ]
 
 { #category : 'initialize' }
 LcsBaseRules >> initializeOn: anObject [ 
 	self parent: anObject
+]
+
+{ #category : 'testing' }
+LcsBaseRules >> isAndEvaluationType [
+	^ self evaluationType = 'and'
+]
+
+{ #category : 'validations' }
+LcsBaseRules >> isOrEvaluation [
+	^ self evaluationType = 'or'
+]
+
+{ #category : 'testing' }
+LcsBaseRules >> isOrEvaluationType [
+	^ self evaluationType = 'or'
 ]
 
 { #category : 'conditions' }
@@ -90,7 +156,7 @@ LcsBaseRules >> ruleClass [
 	^ self subclassResponsibility
 ]
 
-{ #category : 'querying' }
+{ #category : 'testing' }
 LcsBaseRules >> ruleWithDescription: aString [
 	^ self detect: [ :each | each description = aString ] ifNone: [ ]
 ]
@@ -117,7 +183,13 @@ LcsBaseRules >> validate: aValue context: aDomainObject [
 
 { #category : 'validations' }
 LcsBaseRules >> validate: aValue context: aDomainObject oldValue: anOldValue [
-	self collection do: [ :eachValidation | eachValidation validate: aValue context: aDomainObject oldValue: anOldValue ].
+	self isOrEvaluation ifTrue: [
+		self collection do: [ :eachRule | 
+			(eachRule validate: aValue context: aDomainObject oldValue: anOldValue) 
+				ifTrue: [ ^ true ] ] ]
+		ifFalse: [
+			self collection do: [ :eachRule | 
+			(eachRule validate: aValue context: aDomainObject oldValue: anOldValue) ] ].
 	^ true
 ]
 

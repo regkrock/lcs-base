@@ -112,7 +112,7 @@ LcsAccessorSlot >> allowNil: newPropertyValue [
 	newPropertyValue == false
 		ifTrue: [ 
 			currentPropertyValue == true ifTrue: [
-				self slotTypeRules removeValidationRuleWithDescription: LcsAllowNilSlotTypeRule new defaultDescription ].
+				self slotTypeRules removeRuleWithDescription: LcsAllowNilSlotTypeRule new defaultDescription ].
 		self propertyAt: 'allowNil' put: newPropertyValue.
 		^ self ].
 	LcsError signal: 'Attempt to update with a non-Boolean value'
@@ -136,8 +136,22 @@ LcsAccessorSlot >> allowNull [
 ]
 
 { #category : 'properties' }
-LcsAccessorSlot >> allowNull: aBoolean [
-	^ self propertyAt: 'allowNull' ifAbsent: aBoolean
+LcsAccessorSlot >> allowNull: newPropertyValue [
+	| currentPropertyValue |
+	currentPropertyValue := self propertyAt: 'allowNull' ifAbsent: [ nil ].
+	newPropertyValue == true 
+		ifTrue: [
+			currentPropertyValue ~~ true ifTrue: [
+				self slotTypeRules addNullRule: LcsAllowNullSlotTypeRule new ].
+			self propertyAt: 'allowNull' put: newPropertyValue.
+			^ self ].
+	newPropertyValue == false
+		ifTrue: [ 
+			currentPropertyValue == true ifTrue: [
+				self slotTypeRules removeRuleWithDescription: LcsAllowNullSlotTypeRule new defaultDescription ].
+		self propertyAt: 'allowNull' put: newPropertyValue.
+		^ self ].
+	LcsError signal: 'Attempt to update with a non-Boolean value'
 ]
 
 { #category : 'magritte' }
@@ -180,8 +194,18 @@ LcsAccessorSlot >> beAllowNil [
 ]
 
 { #category : 'configuration' }
+LcsAccessorSlot >> beAllowNull [ 
+	self allowNull: true
+]
+
+{ #category : 'configuration' }
 LcsAccessorSlot >> beDisallowNil [ 
 	self allowNil: false
+]
+
+{ #category : 'configuration' }
+LcsAccessorSlot >> beDisallowNull [
+	self allowNull: false
 ]
 
 { #category : 'configuration' }
@@ -574,7 +598,7 @@ LcsAccessorSlot >> removeValidationRule: aRule [
 
 { #category : 'slot model' }
 LcsAccessorSlot >> removeValidationRuleWithDescription: aString [
-	self validationRules removeValidationRuleWithDescription: aString
+	self validationRules removeRuleWithDescription: aString
 ]
 
 { #category : 'properties' }
