@@ -189,6 +189,20 @@ LcsAccessorSlot >> audit: anObject withAuditor: anAuditor [
 ]
 
 { #category : 'configuration' }
+LcsAccessorSlot >> beAllowInitialNil [
+	self beAllowNil.
+	(self validationRules hasRuleWithDescription: LcsAllowInitialNilRule new description)
+		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNilRule new) ]
+]
+
+{ #category : 'configuration' }
+LcsAccessorSlot >> beAllowInitialNull [
+	self beAllowNull.
+	(self validationRules hasRuleWithDescription: LcsAllowInitialNullRule new description)
+		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
+]
+
+{ #category : 'configuration' }
 LcsAccessorSlot >> beAllowNil [ 
 	self allowNil: true
 ]
@@ -196,6 +210,19 @@ LcsAccessorSlot >> beAllowNil [
 { #category : 'configuration' }
 LcsAccessorSlot >> beAllowNull [ 
 	self allowNull: true
+]
+
+{ #category : 'configuration' }
+LcsAccessorSlot >> beDisallowInitialNil [
+	self beDisallowNil.
+	self validationRules removeRuleWithDescription: LcsAllowInitialNilRule new description
+]
+
+{ #category : 'configuration' }
+LcsAccessorSlot >> beDisallowInitialNull [
+	self allowNull.
+	(self validationRules hasRuleWithDescription: LcsAllowInitialNullRule new description)
+		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
 ]
 
 { #category : 'configuration' }

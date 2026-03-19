@@ -188,11 +188,51 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowed [
 	<gtExample>
 	| slot |
 	slot := self newSlot.
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+	
 	slot beAllowNil.
 	self assert: slot isNilAllowed.
+	self assert: slot slotTypeRules collectionSize = 2.
+	self assert: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
+	self assert: slot validationRules collectionSize = 0.
+	self assert: (slot validate: nil).
+
 	slot beDisallowNil.
 	self deny: slot isNilAllowed.
+	self assert: slot slotTypeRules collectionSize = 1.
+	self deny: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
+	self assert: slot validationRules collectionSize = 0.
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+
 	slot beAllowNil.
+	self assert: (slot validate: nil).
+	^ slot
+]
+
+{ #category : 'examples' }
+LcsAccessorSlotExamples >> accessorSlotWithNilAllowedOnlyAtInitialization [
+	<gtExample>
+	| slot |
+	slot := self newSlot.
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+	
+	slot beAllowInitialNil.
+	self assert: slot isNilAllowed.
+	self assert: slot slotTypeRules collectionSize = 2.
+	self assert: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
+	self assert: slot validationRules collectionSize = 1.
+	self assert: (slot validate: nil).
+
+	slot beDisallowInitialNil.
+	self deny: slot isNilAllowed.
+	self assert: slot slotTypeRules collectionSize = 1.
+	self deny: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
+	self assert: slot validationRules collectionSize = 0.
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+
+	slot beAllowInitialNil.
+	self assert: (slot validate: nil context: nil oldValue: nil).
+	self should: [ slot validate: nil context: nil oldValue: 'xx' ] raise: LcsSlotValidationError.
 	^ slot
 ]
 

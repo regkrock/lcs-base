@@ -18,20 +18,6 @@ LcsStringSlot >> allowEmptyIntialValueDescription [
 		beRequired
 ]
 
-{ #category : 'configuration' }
-LcsStringSlot >> beAllowInitialNull [
-	self beAllowNull.
-	(self validationRules hasRuleWithDescription: LcsAllowInitialNullRule new description)
-		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
-]
-
-{ #category : 'configuration' }
-LcsStringSlot >> beDisallowInitialNull [
-	self allowNull.
-	(self validationRules hasRulerNamed: LcsAllowInitialNullRule new description)
-		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
-]
-
 { #category : 'defaults' }
 LcsStringSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | self typeClass new ]
