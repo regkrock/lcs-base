@@ -79,12 +79,12 @@ LcsCountryExamples >> newCountry [
 	| country |
 	LcsCountry hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem ].
 	country := LcsCountry new.
-	self assert: country commonName equals: '   '.
-	self assert: country formalName equals: '   '.
-	self assert: country isoCode equals: '  '.
-	self assert: country isoCode3 equals: '   '.
-	self assert: country isoNumber equals: '   '.
-	self assert: country subdivisionName equals: ''.
+	self assert: country commonName isEmpty.
+	self assert: country formalName isEmpty.
+	self assert: country isoCode isEmpty.
+	self assert: country isoCode3 isEmpty.
+	self assert: country isoNumber isEmpty.
+	self assert: country subdivisionName isEmpty.
 	self assert: country subdivisionClass == LcsCountrySubdivision.
 	self assert: country postalCodeClass == LcsGenericPostalCode.
 	^ country
@@ -137,7 +137,7 @@ LcsCountryExamples >> unknownCountry [
 	isoCode := '  '.
 	isoCode3 := '   '.
 	isoNumber := '   '.
-	subdivisionName := ''.
+	subdivisionName := 'Province'.
 	country := self newCountry
 			commonName: commonName;
 			formalName: formalName;

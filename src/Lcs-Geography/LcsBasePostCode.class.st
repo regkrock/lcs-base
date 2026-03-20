@@ -14,6 +14,7 @@ LcsBasePostCode class >> codeSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'code';
+		beAllowInitialNull;
 		yourself
 ]
 

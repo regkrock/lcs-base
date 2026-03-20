@@ -31,6 +31,7 @@ LcsUnitOfWorkExamples >> historyObjectOfNewDomainObject [
 	<gtExample>
 	| domainObject history |
 	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	domainObject := LcsDomainObject new.
 
 	"Set parent to a 'nonsensical' value so changes can be applied. This is a hack for this test"
@@ -53,6 +54,7 @@ LcsUnitOfWorkExamples >> historyOfAllSlotChanges [
 	<gtExample>
 	| person slotChangeHistory |
 	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
@@ -84,6 +86,7 @@ LcsUnitOfWorkExamples >> historyOfSlotChange [
 	<gtExample>
 	| person slotChangeHistory |
 	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	person := LxxPerson new.
 	
 	self currentSystem applyChanges.
@@ -115,6 +118,7 @@ LcsUnitOfWorkExamples >> lastUpdatedDate [
 	<gtExample>
 	| person creationTimestamp |
 	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	person := LxxPerson new.
 	
 	self currentSystem applyChanges.

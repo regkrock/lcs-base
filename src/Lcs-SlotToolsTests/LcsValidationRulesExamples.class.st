@@ -7,6 +7,20 @@ Class {
 }
 
 { #category : 'examples' }
+LcsValidationRulesExamples >> newAndRules [
+	<gtExample>
+	| rules |
+	rules := LcsValidationRules newAndRules.
+	self assert: rules collection isEmpty.
+	self assert: rules parent isNil.
+	self assert: (rules collection isKindOf: OrderedCollection).
+	self assert: (rules validate: Date today).
+	self assert: ( rules validate: (Date today addDays: 1)). 
+	self assert: (rules validate: 'xxx').
+	^ rules
+]
+
+{ #category : 'examples' }
 LcsValidationRulesExamples >> newRules [
 	<gtExample>
 	| rules |
@@ -60,7 +74,7 @@ LcsValidationRulesExamples >> rulesWithRuleAddedAndThenRemoved [
 LcsValidationRulesExamples >> twoDateRules [
 	<gtExample>
 	| rules |
-	rules := self newRules.
+	rules := self newAndRules.
 	rules addRule: LcsValidationRuleExamples new dateOnOrAfterTodayRule.
 	rules addRule: LcsValidationRuleExamples new dateOnOrBeforeTodayRule.
 	self assert: (rules validate: Date today).

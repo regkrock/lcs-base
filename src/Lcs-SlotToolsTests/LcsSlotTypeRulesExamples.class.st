@@ -117,5 +117,5 @@ LcsSlotTypeRulesExamples >> rulesWithInstanceIsMemberOfSlotTypeRuleButNoSlot_Inv
 	self assert: rules collection size = 1.
 	self assert: (rules collection any isKindOf: LcsInstanceIsKindOfSlotTypesRule).
 	rules validate: 1.
-
+	^ rules
 ]

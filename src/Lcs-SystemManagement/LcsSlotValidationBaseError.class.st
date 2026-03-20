@@ -12,6 +12,11 @@ Class {
 	#tag : 'Error'
 }
 
+{ #category : 'slot model' }
+LcsSlotValidationBaseError >> domainClass [
+	^ self slotDefinition ifNil: [ '<nil>' ] ifNotNil: [ :slot | slot domainClass ]
+]
+
 { #category : 'gt view' }
 LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 	<gtView>
@@ -22,8 +27,8 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 		items: [ 
 			{
 				{'System'. self currentSystem class}.
-				{'Domain Class'. self slotDefinition domainClass}.
-				{'Slot name'. self slotDefinition slotName}.
+				{'Domain Class'. self domainClass}.
+				{'Slot name'. self slotName}.
 				{''. ''}.
 				{'Value'. self value}.
 				{'Old Value'. self oldValue}.
@@ -32,7 +37,7 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 				{'Error Description'. self rule description}.
 				{'Error Condition'. self rule conditionBlock}.
 				{''. ''}.
-				{'Validation Conditions'. self rule parent}
+				{'Validation Conditions'. }
 			} ];
 		"children: [ :each | each class == LcsValidationCondition ifTrue: [ each conditions collect: [ :e | {''. e} ] ] ifFalse: [ #() ] ]"
 		column: 'Name'
@@ -93,6 +98,11 @@ LcsSlotValidationBaseError >> slotDefinition [
 { #category : 'accessing' }
 LcsSlotValidationBaseError >> slotDefinition: anObject [
 	slotDefinition := anObject
+]
+
+{ #category : 'slot model' }
+LcsSlotValidationBaseError >> slotName [
+	^ self slotDefinition ifNil: [ '<nil>' ] ifNotNil: [ :slot | slot slotName ]
 ]
 
 { #category : 'accessing' }

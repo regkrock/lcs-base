@@ -55,7 +55,7 @@ LcsValidationRuleExamples >> dateOnOrAfterTodayRule [
 	self assert: rule parent isNil.
 
 	self assert: (rule validate: Date today).
-	self should: [ rule validate: 'xxxx' ] raise: LcsSlotValidationExecutionError.
+	self should: [ rule validate: 'xxxx' ] raise: Error description: 'Comparison execution error'.
 	self should: [ rule validate: (Date today subtractDays: 1) ] raise: LcsSlotValidationError.
 
 	^ rule
@@ -75,7 +75,7 @@ LcsValidationRuleExamples >> dateOnOrBeforeTodayRule [
 	self assert: rule parent isNil.
 
 	self assert: (rule validate: Date today).
-	self should: [ rule validate: 'xxxx' ] raise: LcsSlotValidationExecutionError.
+	self should: [ rule validate: 'xxxx' ] raise: Error description: 'Comparison execution error'..
 	self should: [ rule validate: (Date today addDays: 1) ] raise: LcsSlotValidationError.
 
 	^ rule
@@ -111,10 +111,11 @@ LcsValidationRuleExamples >> ruleCausingMessageUnderstoodError [
 					conditionBlock: [ :value :parentDomainObject | value + 5 < 10 ].
 	self 
 		should: [ rule validate: true context: 'aString' ]  
-		raise: LcsSlotValidationExecutionError.
+		raise: MessageNotUnderstood.
 	self 
 		shouldnt: [ rule validate: 2 context: 'aString' ] 
-		raise: LcsSlotValidationBaseError
+		raise: MessageNotUnderstood.
+	^ rule
 ]
 
 { #category : 'scripter' }

@@ -91,6 +91,7 @@ LxxPrototypeSystemExamples >> historyCreationWithNewDomainObject [
 	<gtExample>
 	| domainObject |
 	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	domainObject := LcsDomainObject new.
 
 	"Set parent to a 'nonsensical' value so changes can be applied. This is a hack for this test"

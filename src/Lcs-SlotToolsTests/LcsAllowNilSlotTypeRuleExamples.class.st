@@ -12,8 +12,10 @@ LcsAllowNilSlotTypeRuleExamples >> conditionWithNilAllowed [
 	| rule numberSlot|
 	rule := self newRule.
 	numberSlot := LcsNumberSlotExamples new newSlot.
-	numberSlot addValidationRule: rule.
-	self should: [ rule validate: nil ] raise: LcsSlotValidationError.
+	self should: [ rule validate: nil ] raise: LcsInvalidSlotTypeError.
+	numberSlot slotTypeRules addFirstRule: rule.
+	numberSlot  propertyAt: 'allowNil' put: true.
+	self shouldnt: [ rule validate: nil ] raise: LcsInvalidSlotTypeError.
 	^ rule
 ]
 
