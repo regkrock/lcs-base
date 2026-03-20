@@ -33,7 +33,6 @@ LcsSlotTypeRulesExamples >> noRulesError [
 { #category : 'examples' }
 LcsSlotTypeRulesExamples >> numberSlotTypeRules [
 	<gtExample>
-	<noTest>
 	| rules slot |
 	slot := LcsNumberSlotExamples new newSlot.
 	rules := slot slotTypeRules.
@@ -60,7 +59,6 @@ LcsSlotTypeRulesExamples >> numberSlotTypeRulesWithInvalidTypeError [
 { #category : 'examples' }
 LcsSlotTypeRulesExamples >> numberTypeRulesAndNilIsAllowed [
 	<gtExample>
-	<noTest>
 	| rules slot |
 	slot := LcsNumberSlotExamples new newSlot.
 	self should: [ rules validate: nil ] raise: Error.
@@ -76,7 +74,6 @@ LcsSlotTypeRulesExamples >> numberTypeRulesAndNilIsAllowed [
 { #category : 'examples' }
 LcsSlotTypeRulesExamples >> numberTypeRulesAndNilIsNotAllowed [
 	<gtExample>
-	<noTest>
 	| rules slot |
 	slot := LcsNumberSlotExamples new newSlot.
 	self should: [ rules validate: nil ] raise: Error.

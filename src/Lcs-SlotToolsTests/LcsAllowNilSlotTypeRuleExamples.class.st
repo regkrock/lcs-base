@@ -31,7 +31,7 @@ LcsAllowNilSlotTypeRuleExamples >> newRule [
 ]
 
 { #category : 'examples' }
-LcsAllowNilSlotTypeRuleExamples >> nilNotAllowedErrorMessage [
+LcsAllowNilSlotTypeRuleExamples >> nilNotAllowedError [
 	<gtExample>
 	<noTest>
 	| rule numberSlot|
