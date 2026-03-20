@@ -15,7 +15,7 @@ LcsCountrySubdivisionClassSlotSlot >> newSlot [
 	slot superclassClass subclassesDo: [ :eachClass | self assert: (slot slotTypes includes: eachClass) ].
 	self assert: slot initialValue equals: LcsCountrySubdivision.
 	self assert: slot superclassClass equals: LcsBaseCountrySubdivision.
-	self assert: slot slotTypeRules collection first  validationErrorMessage equals: 'a LcsCountrySubdivisionClassSlot (subdivisionClass) is not in the slot types list'.
+	self assert: slot slotTypeRules collection first  errorMessage equals: 'Class is not in slot types'.
 	self should: [ slot validate: LcsBaseCountrySubdivision ] raise: LcsInvalidSlotTypeError.
 	errorMessage := [ slot validate: LcsBaseCountrySubdivision ]
 			on: LcsInvalidSlotTypeError

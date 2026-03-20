@@ -22,7 +22,7 @@ LcsClassIsMemberSlotTypesRule >> defaultDescription [
 
 { #category : 'defaults' }
 LcsClassIsMemberSlotTypesRule >> defaultErrorMessage [
-	^ [ '<1s> is not in the slot types list' expandMacrosWith: self slotDefinition printString ]
+	^ 'Class is not in slot types'
 ]
 
 { #category : 'slot' }
