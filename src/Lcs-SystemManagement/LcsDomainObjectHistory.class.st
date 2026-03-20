@@ -157,7 +157,7 @@ LcsDomainObjectHistory >> recordOriginalSlotValue: aSlotName [
 { #category : 'history' }
 LcsDomainObjectHistory >> recordSlotChanges [
 	self changeRecords hasElements 
-		ifTrue: [ LcsError signal: 'Attempt to record creation when it has already been recorded' ].
+		ifTrue: [ "LcsError signal: 'Attempt to record creation when it has already been recorded'" ^self ].
 	self userUuid: self parent currentUser uuid.
 	self user: self parent currentUser.
 	self newChangeRecord 

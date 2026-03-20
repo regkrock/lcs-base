@@ -79,6 +79,7 @@ LcsSystemBuilderJobExamples >> installAndRemoveClubSystem [
 	<gtExample>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	builderJob := self clubSystemBuilderJob.
 	[ 
 		builderJob installCode.

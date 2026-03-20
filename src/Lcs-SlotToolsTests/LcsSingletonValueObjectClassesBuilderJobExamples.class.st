@@ -42,6 +42,7 @@ LcsSingletonValueObjectClassesBuilderJobExamples >> installAndRemoveGenderSingle
 	<gtExample>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	builderJob :=  self genderSingletonPatternBuilderJob.
 	[
 	  builderJob execute.

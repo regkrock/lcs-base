@@ -25,6 +25,8 @@ LcsMemberOfLocalCollectionSlotBuilderExamples >> localMemberSlotBuilder [
 LcsMemberOfLocalCollectionSlotBuilderExamples >> memberOfLocalCollectionSlotAddedToConnectInvoiceItemWithInvoiceItemsInInvoice [
 	<gtExample>
 	| invoiceBuilderJob invoiceItemBuilderJob builder |
+	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	invoiceBuilderJob := LcsDomainClassAndGlobalCollectionClassBuilderJobExamples new 
 							invoiceAndInvoicesBuilderJob.
 	invoiceItemBuilderJob := LcsDomainClassAndLocalCollectionClassBuilderJobExamples new

@@ -10,6 +10,8 @@ Class {
 LcsModuleBuilderJobExamples >> installAndRemoveModule [
 	<gtExample>
 	| builderJob |
+	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	builderJob := self sailClubModuleBuilderJob.
 	[
 	  builderJob execute.
