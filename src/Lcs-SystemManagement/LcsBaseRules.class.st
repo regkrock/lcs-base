@@ -80,6 +80,23 @@ LcsBaseRules >> evaluationType: anObject [
 	evaluationType := anObject
 ]
 
+{ #category : 'printing' }
+LcsBaseRules >> gtDisplayOn: stream [
+	self printNameOn: stream.
+	stream
+		nextPut: $<;
+		nextPutAll: (self isOrEvaluation ifTrue: 'OR' ifFalse: ['AND']);
+		nextPut: $>;
+		space;
+		nextPut: $[.
+	self gtPrintCollectionSizeOn: stream.
+	stream
+		nextPut: $];
+		space.
+	self collectionSize <= self gtCollectionSizeThreshold
+		ifTrue: [ self printElementsOn: stream ]
+]
+
 { #category : 'gt views' }
 LcsBaseRules >> gtItemsFor: aView [
 	<gtView>

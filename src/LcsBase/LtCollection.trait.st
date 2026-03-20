@@ -68,9 +68,8 @@ LtCollection >> gtCollectionSizeThreshold [
 
 { #category : 'printing' }
 LtCollection >> gtDisplayOn: stream [
-	"super gtDisplayOn: aStream."
 	self printNameOn: stream.
-		stream
+	stream
 		space;
 		nextPut: $[.
 	self gtPrintCollectionSizeOn: stream.
