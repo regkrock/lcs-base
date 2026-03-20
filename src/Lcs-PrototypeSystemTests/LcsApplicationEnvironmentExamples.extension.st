@@ -94,6 +94,7 @@ LcsApplicationEnvironmentExamples >> createAndRemoveUnitOfWork [
 { #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentExamples >> createInstanceOfDomainObject [
 	<gtExample>
+	<noTest>
 	^ self inNewEnvironmentDo: [ 
 		self _createInstanceOfDomainObject ]
 ]
