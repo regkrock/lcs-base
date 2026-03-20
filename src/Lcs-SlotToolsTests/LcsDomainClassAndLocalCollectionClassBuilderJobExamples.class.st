@@ -31,6 +31,8 @@ LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalIn
 LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalInvoiceItemsCreationJobInstallationAndRemoval [
 	<gtExample>
 	| builderJob invoiceBuilderJob|
+	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	invoiceBuilderJob := self invoiceAndInvoicesBuilderJob.
 	builderJob :=  self invoiceItemAndLocalInvoiceItemsCreationJob.
 	[ invoiceBuilderJob execute.

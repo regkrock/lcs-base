@@ -41,6 +41,8 @@ LcsMemberOfGlobalCollectionSlotBuilderExamples >> genderMemberOfGlobalCollection
 LcsMemberOfGlobalCollectionSlotBuilderExamples >> installGlobalMemberOfInPersonPointingToGenders [
 	<gtExample>
 	| genderBuilderJob builder |
+	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	genderBuilderJob := LcsSingletonValueObjectClassesBuilderJobExamples new
 							genderSingletonPatternBuilderJobWithoutInstallationOfGenderSlotInPerson.
 	builder := self genderMemberOfGlobalCollectionSlotBuilder.

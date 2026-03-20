@@ -10,6 +10,8 @@ Class {
 LcsDomainClassAndGlobalCollectionClassBuilderJobExamples >> installAndRemoveInvoiceAndInvoicesBuilderJob [
 	<gtExample>
 	| builderJob |
+	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	builderJob := self invoiceAndInvoicesBuilderJob.
 	[ builderJob execute.
 	  builderJob verifyCodeInstallation ]
@@ -23,6 +25,8 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobExamples >> installAndRemoveInvo
 LcsDomainClassAndGlobalCollectionClassBuilderJobExamples >> installAndRemoveSampleDomainObjectAndGlobalCollectionBuilderJob [
 	<gtExample>
 	| builderJob |
+	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	builderJob := self sampleDomainObjectAndGlobalCollectionBuilderJob.
 	[ builderJob execute.
 	  builderJob verifyCodeInstallation ]
@@ -36,6 +40,8 @@ LcsDomainClassAndGlobalCollectionClassBuilderJobExamples >> installAndRemoveSamp
 LcsDomainClassAndGlobalCollectionClassBuilderJobExamples >> installAndRemoveSampleDomainObjectAndUnknownAndGlobalCollectionBuilderJob [
 	<gtExample>
 	| builderJob |
+	self ensureCurrentSystemIsPrototypeSystem.
+	self currentSystem clearUnitOfWork.
 	builderJob := self sampleDomainObjectAndUnknownAndGlobalCollectionBuilderJob.
 	[ builderJob execute.
 	  builderJob verifyCodeInstallation ]

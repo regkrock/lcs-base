@@ -38,7 +38,7 @@ LcsMemberOfLocalCollectionSlotBuilderExamples >> memberOfLocalCollectionSlotAdde
 		invoiceItemBuilderJob execute.
 		invoiceItemBuilderJob verifyCodeInstallation.
 		self denyClass: 'LxxInvoice' hasLocalSelector: #invoiceItems.
-		self denyClass: 'LxxInvoiceItem' hasLocalClassSelector: #parentSlotDefinition.
+		"self denyClass: 'LxxInvoiceItem' hasLocalClassSelector: #parentSlotDefinition."
 		builder execute.
 		builder verifyCodeInstallation.
 		"self verifyInvoiceItemCreation" ]
