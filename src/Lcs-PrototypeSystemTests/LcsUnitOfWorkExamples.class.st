@@ -27,6 +27,22 @@ LcsUnitOfWorkExamples >> deleteDomainObject [
 ]
 
 { #category : 'examples' }
+LcsUnitOfWorkExamples >> domainObjectCreatedAndAddedToGlobalCollection [
+	<gtExample>
+	| persons person |
+	persons := self personsWithNewPersonInPendingAdds.
+	person := persons pendingAdds last.
+	
+	self currentSystem applyChanges.
+
+	self assert: (self currentSystem persons pendingAdds isEmpty).
+	self assert: (self currentSystem persons includes: person).
+	self assert: person parent == self currentSystem persons.
+	self currentSystem currentUnitOfWork hasNoChanges.
+	^ persons
+]
+
+{ #category : 'examples' }
 LcsUnitOfWorkExamples >> historyObjectOfNewDomainObject [
 	<gtExample>
 	| domainObject history |
@@ -145,4 +161,15 @@ LcsUnitOfWorkExamples >> newUnitOfWork [
 	self assert: unitOfWork deletedObjects isEmpty.
 	self assert: unitOfWork changedObjects isEmpty.
 	^ unitOfWork
+]
+
+{ #category : 'examples' }
+LcsUnitOfWorkExamples >> personsWithNewPersonInPendingAdds [
+	<gtExample>
+	| person |
+	self ensureCurrentSystemIsPrototypeSystem.
+	person := LxxPersonExamples new newPerson.
+	self assert: (self currentSystem persons pendingAdds includes: person).
+	self deny: (self currentSystem persons collection includes: person).
+	^ self currentSystem persons
 ]
