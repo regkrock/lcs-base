@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsChangeRecordTimestampSlot',
-	#superclass : 'LcsTimestampSlot',
+	#superclass : 'LcsDateAndTimeSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'

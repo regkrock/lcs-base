@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'inEffectDateRange'
 	],
-	#category : 'Lcs-Calendar',
-	#package : 'Lcs-Calendar'
+	#category : 'Lcs-Calendar-Core',
+	#package : 'Lcs-Calendar',
+	#tag : 'Core'
 }
 
 { #category : 'slot definitions' }

@@ -12,6 +12,11 @@ LcsSmalltalkConfiguration class >> booleanClass [
 ]
 
 { #category : 'accessing' }
+LcsSmalltalkConfiguration class >> dateAndTime [
+	^ DateAndTime
+]
+
+{ #category : 'accessing' }
 LcsSmalltalkConfiguration class >> dateClass [
 	^ Date
 ]
@@ -47,6 +52,11 @@ LcsSmalltalkConfiguration class >> setClass [
 	^ IdentitySet
 ]
 
+{ #category : 'configuration' }
+LcsSmalltalkConfiguration class >> smallIntegerClass [
+	^ SmallInteger
+]
+
 { #category : 'accessing' }
 LcsSmalltalkConfiguration class >> stringClass [
 	^ String
@@ -66,6 +76,11 @@ LcsSmalltalkConfiguration class >> symbolDictionaryClass [
 { #category : 'accessing' }
 LcsSmalltalkConfiguration class >> systemDictionary [
 	^ SmalltalkImage current globals
+]
+
+{ #category : 'defaults' }
+LcsSmalltalkConfiguration class >> textClass [
+	^ Text
 ]
 
 { #category : 'accessing' }

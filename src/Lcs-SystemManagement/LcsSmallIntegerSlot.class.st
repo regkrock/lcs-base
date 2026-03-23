@@ -8,5 +8,5 @@ Class {
 
 { #category : 'configuration' }
 LcsSmallIntegerSlot >> typeClass [
-	^ SmallInteger
+	^ LcsSmalltalkConfiguration smallIntegerClass 
 ]

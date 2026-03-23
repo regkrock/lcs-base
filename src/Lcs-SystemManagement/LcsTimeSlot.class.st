@@ -19,5 +19,5 @@ LcsTimeSlot >> initialize [
 
 { #category : 'defaults' }
 LcsTimeSlot >> typeClass [
-	^ Time 
+	^ LcsSmalltalkConfiguration timeClass 
 ]

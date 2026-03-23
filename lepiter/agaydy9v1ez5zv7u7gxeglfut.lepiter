@@ -362,7 +362,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-10T12:30:52.892526-04:00"
+						"dateAndTimeString" : "2026-03-23T13:42:45.854775-04:00"
 					}
 				},
 				"uid" : {
@@ -372,7 +372,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:name=LcsTimestampSlot}}"
+				"string" : "{{gtClass:name=LcsDateAndTimeSlot}}"
 			},
 			{
 				"__type" : "textSnippet",
