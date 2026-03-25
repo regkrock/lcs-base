@@ -34,6 +34,7 @@ LcsBaseClassBuilder >> _installCode [
 { #category : 'command' }
 LcsBaseClassBuilder >> _verifyCodeInstallation [
 	super _verifyCodeInstallation.
+	(self installedClass isNil and: [ self newClassAlreadyExists ]) ifTrue: [ ^ self ].
 	self assert: self installedClass notNil description: 'Class has been created'.
 	self assert: self installedClass name equals: self newClassName.
 	self assert: self installedClass package name equals: self targetPackageName

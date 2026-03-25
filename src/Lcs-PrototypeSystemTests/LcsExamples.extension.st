@@ -10,7 +10,7 @@ LcsExamples >> ensureCurrentSystemIsBasicSystem [
 	| system |
 	self savedSystem: self currentSystem.
 	system := LcsApplicationEnvironment ensureCurrentSystemIs: LcsBasicSystem.
-	self currentSystem applyChanges.
+	"self currentSystem applyChanges."
 	^ system
 ]
 

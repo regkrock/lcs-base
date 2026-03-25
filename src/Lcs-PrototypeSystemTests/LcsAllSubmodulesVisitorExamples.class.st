@@ -22,15 +22,16 @@ LcsAllSubmodulesVisitorExamples >> allSubModulesInLxxPrototypeSystem [
 ]
 
 { #category : 'examples' }
-LcsAllSubmodulesVisitorExamples >> cyclicalStructureError [
+LcsAllSubmodulesVisitorExamples >> moduleHierarchyError [
 	<gtExample>
+	<noTest>
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxModule0.
 	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError.
 	
 	visitor := LcsAllSubmodulesVisitor newOn: LxxTestModule1.
 	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError.
-	^ visitor
+	^ visitor allSubmoduleClasses
 ]
 
 { #category : 'examples' }
@@ -47,6 +48,18 @@ LcsAllSubmodulesVisitorExamples >> visitorWhereModuleIsOwnedByItself [
 	<gtExample>
 	| visitor |
 	visitor := LcsAllSubmodulesVisitor newOn: LxxModuleWithOwningModuleBeingItself.
+	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError.
+	^ visitor
+]
+
+{ #category : 'examples' }
+LcsAllSubmodulesVisitorExamples >> visitorWithCyclicalStructure [
+	<gtExample>
+	| visitor |
+	visitor := LcsAllSubmodulesVisitor newOn: LxxModule0.
+	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError.
+	
+	visitor := LcsAllSubmodulesVisitor newOn: LxxTestModule1.
 	self should: [ visitor allSubmoduleClasses ] raise: LcsModuleHierarchyError.
 	^ visitor
 ]

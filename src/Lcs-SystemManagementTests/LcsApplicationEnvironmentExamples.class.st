@@ -11,7 +11,7 @@ Class {
 { #category : 'private' }
 LcsApplicationEnvironmentExamples >> _addToUnitOfWorkCollections [
 	| unitOfWork |
-	unitOfWork := self newUnitOfWork.
+	unitOfWork := LcsUnitOfWorkExamples new newUnitOfWork.
 	unitOfWork addPendingAddOf: 'aaaa' to: 'bbb'.
 	self assert: (unitOfWork changedCollections keys includes: 'bbb').
 	self assert: (unitOfWork _pendingAddsIn: 'bbb') class equals: OrderedCollection.
@@ -38,7 +38,7 @@ LcsApplicationEnvironmentExamples >> _newApplicationEnvironment [
 	self validationInitializedApplicationEnvironment
 ]
 
-{ #category : 'examples' }
+{ #category : 'private' }
 LcsApplicationEnvironmentExamples >> _removeCurrentSystem [
 	LcsApplicationEnvironment initializeApplicationEnvironment.
 	LcsApplicationEnvironment currentSystem: 'example'.
@@ -63,7 +63,7 @@ LcsApplicationEnvironmentExamples >> _removeCurrentUnitOfWork [
 { #category : 'private' }
 LcsApplicationEnvironmentExamples >> _removingFromChangedCollections [
 	| unitOfWork |
-	unitOfWork := self newUnitOfWork.
+	unitOfWork := LcsUnitOfWorkExamples new newUnitOfWork.
 	unitOfWork addPendingDeletionOf: 'aaaa' from: 'bbb'.
 	self assert: (unitOfWork changedCollections keys includes: 'bbb').
 	self assert: (unitOfWork _pendingDeletesIn: 'bbb') class equals: OrderedCollection.
@@ -86,24 +86,6 @@ LcsApplicationEnvironmentExamples >> createNewApplicationEnvironment [
 LcsApplicationEnvironmentExamples >> createUnitOfWorkOnNilSystem [
 	<gtExample>
 	^ self inNewEnvironmentDo: [ self _createUnitOfWorkOnNilSystem ]
-]
-
-{ #category : 'examples' }
-LcsApplicationEnvironmentExamples >> newUnitOfWork [
-	<gtExample>
-	| unitOfWork |
-	unitOfWork := LcsUnitOfWork new.
-	self assert: unitOfWork system isNil.
-	self assert: unitOfWork addedObjects isEmpty.
-	self assert: unitOfWork deletedObjects isEmpty.
-	self assert: unitOfWork changedObjects isEmpty.
-	self assert: unitOfWork changedCollections isEmpty.
-
-	self assert: (unitOfWork pendingAddsIn: 'bbb') isEmpty.
-	self assert: (unitOfWork pendingDeletesIn: 'bbb') isEmpty.
-
-	self assert: unitOfWork changedCollections isEmpty.
-	^ unitOfWork
 ]
 
 { #category : 'examples' }

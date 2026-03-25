@@ -36,3 +36,13 @@ LcsSlotModelError >> gtCurrentSystemViewFor: aView [
 		object: [ self currentSystem ];
 		view: #gtMetaFor:
 ]
+
+{ #category : 'accessing' }
+LcsSlotModelError >> slotName [
+	^ slotName
+]
+
+{ #category : 'accessing' }
+LcsSlotModelError >> slotName: aString [
+	slotName := aString
+]

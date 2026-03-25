@@ -160,6 +160,12 @@ LcsUnitOfWorkExamples >> newUnitOfWork [
 	self assert: unitOfWork addedObjects isEmpty.
 	self assert: unitOfWork deletedObjects isEmpty.
 	self assert: unitOfWork changedObjects isEmpty.
+	self assert: unitOfWork changedCollections isEmpty.
+
+	self assert: (unitOfWork pendingAddsIn: 'bbb') isEmpty.
+	self assert: (unitOfWork pendingDeletesIn: 'bbb') isEmpty.
+
+	self assert: unitOfWork changedCollections isEmpty.
 	^ unitOfWork
 ]
 

@@ -327,7 +327,7 @@ LcsBaseDomainObject class >> new [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> parentSlot [
-	self slotModel isNil ifTrue: [ LcsUndefinedSlotModelError signalClassWithoutSlotModel: self ].
+	self slotModel isNil ifTrue: [ ^ LcsSlotModelNotInitializedError signalWithDomainObjectClass: self ].
 	^ self slotModel slotDefinitionNamed: 'parent'
 ]
 
@@ -418,12 +418,18 @@ LcsBaseDomainObject class >> slotModel: aSlotModel [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> slotModelNotInitializedError [
-	LcsSlotModelNotInitializedError signalWithContext: self
+	LcsSlotModelNotInitializedError signalWithDomainObjectClass: self
 ]
 
 { #category : 'gt views' }
 LcsBaseDomainObject class >> slotNamesExcludedFromCollectionViewSlotDefinitions [
 	^ #('parent')
+]
+
+{ #category : 'slot model' }
+LcsBaseDomainObject class >> superClassSlotModel [
+	^ self superclass slotModel ifNil: [
+		LcsSlotModelNotInitializedError signalWithDomainObjectClass: self superclass ]
 ]
 
 { #category : 'slot model - verification' }
@@ -434,7 +440,7 @@ LcsBaseDomainObject class >> verifyClassHasDomainSlotNamed: aSlotName [
 	self assert: (self class canUnderstand: (aSlotName , 'SlotDefinition') asSymbol)
 ]
 
-{ #category : 'slot model - verification' }
+{ #category : 'slot model' }
 LcsBaseDomainObject class >> verifyClassHasNoDomainSlotNamed: aSlotName [
 	self assert: (self instVarNames includes: aSlotName) not.
 	self assert: (self canUnderstand: aSlotName asSymbol) not.
@@ -463,7 +469,7 @@ LcsBaseDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
 				(self classThatDefinesInstVarNamed: eachSlotDefinition slotName) notNil ifTrue: [
 					slotDefinitions remove: eachSlotDefinition ifAbsent: [] ] ] ].
 	(localInstVarNames notEmpty or: [slotDefinitions notEmpty]) ifTrue: [
-		LcsSlotDefinitionAndInstanceVariableMismatchError signalFrom: self unmatchInstVars: localInstVarNames slotDefinitions: slotDefinitions]
+		^ LcsSlotDefinitionAndInstanceVariableMismatchError signalFrom: self unmatchInstVars: localInstVarNames slotDefinitions: slotDefinitions]
 ]
 
 { #category : 'slot definition - removal' }
@@ -738,7 +744,7 @@ LcsBaseDomainObject >> initializeSlotValues [
 
 { #category : 'initialize' }
 LcsBaseDomainObject >> initializeUninitializedSlotValues [
-	self slotModel ifNil: [ LcsSlotModelNotInitializedError signalWithContext: self ].
+	self slotModel ifNil: [ LcsSlotModelNotInitializedError signalWithDomainObjectClass: self ].
 	self slotModel initializeUnintializedSlotValuesIn: self.
 
 ]
@@ -815,8 +821,8 @@ LcsBaseDomainObject >> slotVarNamed: aSlotName [
 ]
 
 { #category : 'slot access' }
-LcsBaseDomainObject >> slotVarNamed: aSlotName put: onObject [
-	(self slotDefinitionNamed: aSlotName) slotVarPut: onObject in: self
+LcsBaseDomainObject >> slotVarNamed: aSlotName put: anObject [
+	(self slotDefinitionNamed: aSlotName) slotVarPut: anObject in: self
 ]
 
 { #category : 'validation' }

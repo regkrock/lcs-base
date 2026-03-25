@@ -151,7 +151,7 @@ LcsSystemsManager >> hasSystem: aSystem [
 	^ self systems includes: aSystem
 ]
 
-{ #category : 'testing' }
+{ #category : 'api' }
 LcsSystemsManager >> hasSystems [
 	^ self systems isNotEmpty
 ]
@@ -216,6 +216,12 @@ LcsSystemsManager >> removeSystem: aSystem [
 { #category : 'api' }
 LcsSystemsManager >> restoreUnitOfWorkFor: suspendedSystem [
 	^ self unitsOfWorkManager restoreUnitOfWorkFor: suspendedSystem
+]
+
+{ #category : 'api' }
+LcsSystemsManager >> stopAllSystems [
+	self removeCurrentSystem.
+	self systems collection copy do: [ :eachSystem | self removeSystem: eachSystem ]
 ]
 
 { #category : 'api' }

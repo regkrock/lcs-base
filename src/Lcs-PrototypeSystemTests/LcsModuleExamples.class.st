@@ -7,6 +7,16 @@ Class {
 }
 
 { #category : 'tests' }
+LcsModuleExamples >> moduleNotFoundError [
+	<gtExample>
+	<noTest>
+	self ensureCurrentSystemIsPrototypeSystem.
+	self assert: self currentSystem notNil.
+	self should: [ self currentSystem moduleNamed: 'xxxx' ] raise: LcsModuleNotFoundError.
+	^ self currentSystem moduleNamed: 'xxxx'
+]
+
+{ #category : 'tests' }
 LcsModuleExamples >> newDemonstrationModule [
 	<gtExample>
 	| existingNumberOfModules newModule |

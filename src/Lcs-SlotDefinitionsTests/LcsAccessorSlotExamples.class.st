@@ -32,6 +32,16 @@ LcsAccessorSlotExamples >> accessorSlotNamedTest [
 ]
 
 { #category : 'examples' }
+LcsAccessorSlotExamples >> accessorSlotPropertyError [
+	<gtExample>
+	<noTest>
+	| slot |
+	slot := self newSlot.
+	self should: [ slot propertyAt: 'test' ] raise: LcsSlotPropertyError.
+	^ slot propertyAt: 'test'.
+]
+
+{ #category : 'examples' }
 LcsAccessorSlotExamples >> accessorSlotWithAddedPostUpdateAction [
 	<gtExample>
 	| accessorSlot |
@@ -138,16 +148,14 @@ LcsAccessorSlotExamples >> accessorSlotWithInitialValueSetToNil [
 	^ slot
 ]
 
-{ #category : 'examples' }
+{ #category : 'examples - errors' }
 LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationError [
 	<gtExample>
-	| slot rule|
-	slot := self newSlot.
-	rule := slot addValidationRuleBlock: [ :value | value isInteger not ] description: 'Must be an Integer'.
-	self assert: slot validationRules collection size equals: 1.
-	self assert: slot validationRules collection any identicalTo: rule.
-	self assert: rule description = 'Must be an Integer'.
-	^ [ slot validate: 'text' ] on: LcsInvalidSlotTypeError do: [ :s | s return: s ]
+	<noTest>
+	| slot |
+	slot := self accessorSlotWithIntegerValidationRule.
+	self should: [ slot validate: 'text' ] raise: LcsInvalidSlotTypeError .
+	^ slot validate: 'text' 
 ]
 
 { #category : 'examples' }
@@ -159,6 +167,18 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationErrorInThirdConditio
 	slot addValidationRuleBlock: [ :value | value < 2 ] description: 'Must be greater than 1'.
 	slot addValidationRuleBlock: [ :value | value > 10 ] description: 'Must be less than 11'.
 	^ [ slot validate: 12 ] on: LcsInvalidSlotTypeError do: [ :s | s return: s ]
+]
+
+{ #category : 'examples' }
+LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationRule [
+	<gtExample>
+	| slot rule|
+	slot := self newSlot.
+	rule := slot addValidationRuleBlock: [ :value | value isInteger not ] description: 'Must be an Integer'.
+	self assert: slot validationRules collection size equals: 1.
+	self assert: slot validationRules collection any identicalTo: rule.
+	self assert: rule description = 'Must be an Integer'.
+	^ slot
 ]
 
 { #category : 'examples' }

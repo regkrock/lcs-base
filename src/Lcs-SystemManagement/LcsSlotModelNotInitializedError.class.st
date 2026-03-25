@@ -7,10 +7,10 @@ Class {
 }
 
 { #category : 'iniitialize' }
-LcsSlotModelNotInitializedError class >> signalWithContext: anObject [ 
+LcsSlotModelNotInitializedError class >> signalWithDomainObjectClass: aDomainObjectClass [ 
 	self new
-		context: anObject;
-		signal: 'Slot model not initialized for ' , anObject className
+		context: aDomainObjectClass;
+		signal: aDomainObjectClass name , ' slot model not initialized'
 ]
 
 { #category : 'gt view' }

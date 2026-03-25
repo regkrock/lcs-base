@@ -161,7 +161,18 @@ LcsSlotModelExamples >> newSlotModel [
 		ifNotNil: [ LcsBaseDomainObject releaseSlotModel ].
 	self assert: LcsBaseDomainObject slotModel isNil.
 	self assert: LcsDomainObject slotModel isNil.
+	self should: [ slotModel slotDefinitionNamed: 'dummy' ] raise: LcsSlotDoesNotExistInSlotModelError.
 	^ slotModel
+]
+
+{ #category : 'examples' }
+LcsSlotModelExamples >> slotDoesNotExistInSlotModelError [
+	<gtExample>
+	<noTest>
+	| slotModel |
+	slotModel := self newSlotModel.
+	self should: [ slotModel slotDefinitionNamed: 'dummy' ] raise: LcsSlotDoesNotExistInSlotModelError.
+	^ slotModel slotDefinitionNamed: 'dummy'
 ]
 
 { #category : 'examples' }

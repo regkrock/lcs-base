@@ -58,6 +58,17 @@ LcsCalendarEvent class >> locationSlotDefinition [
 ]
 
 { #category : 'slot definitions' }
+LcsCalendarEvent class >> parentSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsGlobalCollectionReferenceSlot new
+			addSlotType: LcsCalendarEvents;
+			slotName: 'parent';
+			collectionSlotName: 'calendarEvents';
+			collectionSlotModuleName: 'Calendar Module';
+			yourself
+]
+
+{ #category : 'slot definitions' }
 LcsCalendarEvent class >> titleSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new

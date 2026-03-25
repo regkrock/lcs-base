@@ -207,7 +207,7 @@ LcsSlotModel >> domainSuperClass [
 LcsSlotModel >> domainSuperClassSlotModel [
 	self domainSuperClass isDomainClass ifFalse: [ ^ nil ].
 	self domainSuperClass hasSlotModel ifTrue: [ ^ self domainSuperClass slotModel ].
-	LcsUndefinedSlotModelError signalSuperclassWithoutSlotModel: self domainSuperClass
+	LcsSlotModelNotInitializedError signalWithDomainObjectClass: self domainSuperClass
 ]
 
 { #category : 'querying - model' }
@@ -414,7 +414,7 @@ LcsSlotModel >> slotDefinitionNamed: aSlotName [
 	self slotDefinitionsSelectors do: [ :eachSelector |
 		(self _slotDefinitionNamed: aSlotName inSlotDefinitionsSelector: eachSelector) ifNotNil: [ :definition | ^ definition ] ].
 	LcsSlotDoesNotExistInSlotModelError
-		signalWithContext: self
+		signalWithSlotModel: self
 		slotName: aSlotName
 ]
 
@@ -433,8 +433,7 @@ LcsSlotModel >> slotDefinitionsSelectors [
 
 { #category : 'model' }
 LcsSlotModel >> superClassSlotModel [
-	^ self domainClass superclass slotModel ifNil: [
-		LcsSlotModelNotInitializedError signalWithContext: self domainClass superclass ]
+	^ self domainClass superClassSlotModel
 ]
 
 { #category : 'validation' }

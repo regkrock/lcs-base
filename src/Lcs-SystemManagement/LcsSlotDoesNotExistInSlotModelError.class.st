@@ -6,17 +6,10 @@ Class {
 	#tag : 'Error'
 }
 
-{ #category : 'instance creation' }
-LcsSlotDoesNotExistInSlotModelError class >> signalWithContext: anObject [ 
-	self new
-		context: anObject;
-		signal: 'Slot model not initialized for ' , anObject className
-]
-
 { #category : 'slots' }
-LcsSlotDoesNotExistInSlotModelError class >> signalWithContext: anObject slotName: aSlotName [ 
+LcsSlotDoesNotExistInSlotModelError class >> signalWithSlotModel: aSlotModel slotName: aSlotName [ 
 	self new
-		signalWithContext: anObject slotName: aSlotName
+		signalWithSlotModel: aSlotModel slotName: aSlotName
 			
 ]
 
@@ -32,18 +25,8 @@ LcsSlotDoesNotExistInSlotModelError >> gtDomainClassViewFor: aView [
 ]
 
 { #category : 'slots' }
-LcsSlotDoesNotExistInSlotModelError >> signalWithContext: anObject slotName: aSlotName [ 
-	self context: anObject.
+LcsSlotDoesNotExistInSlotModelError >> signalWithSlotModel: aSlotModel slotName: aSlotName [ 
+	self context: aSlotModel.
 	self slotName: aSlotName.
 	self signal: ('Slot ' , self slotName printString  , ' not defined in slot model') 
-]
-
-{ #category : 'slots' }
-LcsSlotDoesNotExistInSlotModelError >> slotName [
-	^ slotName
-]
-
-{ #category : 'slots' }
-LcsSlotDoesNotExistInSlotModelError >> slotName: aSlotName [ 
-	slotName := aSlotName
 ]

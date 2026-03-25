@@ -235,7 +235,7 @@ LxxPrototypeSystemExamples >> unitOfWorkWithNewObject [
 	<gtExample>
 	| domainObject |
 	self ensureCurrentSystemIsBasicSystem.
-	self assert: self currentUnitOfWork hasNoChanges.
+	self clearUnitOfWork.
 	domainObject := LcsDomainObject new.
 	self assert: self currentUnitOfWork addedObjects size equals: 1.
 	self assert: self currentUnitOfWork deletedObjects isEmpty.

@@ -118,6 +118,11 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 		column: '' stencil: [ :viewItem :row :column | viewItem startSuspendSystemButton ] width: 70;
 		column: '' stencil: [ :viewItem | viewItem stopButton ] width: 70; 
 		send: #item;
+		actionButtonIcon: BrGlamorousVectorIcons close 
+			tooltip: 'Stop all systems'
+			action: [ :aButton :aTab | 
+				self stopAllSystems.
+				aTab viewContentElement phlow update ];
 		actionButtonIcon: BrGlamorousVectorIcons shutdown 
 			tooltip: 'Start/Stop environment'
 			action: [ :aButton :aTab | 
@@ -263,6 +268,13 @@ LcsApplicationEnvironment class >> singleton [
 { #category : 'accessing' }
 LcsApplicationEnvironment class >> singleton: anApplicationEnvironment [
 	singleton := anApplicationEnvironment
+]
+
+{ #category : 'gt views' }
+LcsApplicationEnvironment class >> stopAllSystems [
+	self isRunning
+		ifTrue: [ self systemsManager stopAllSystems ]
+		ifFalse: [ ]
 ]
 
 { #category : 'application environment' }

@@ -92,14 +92,6 @@ LcsApplicationEnvironmentExamples >> createAndRemoveUnitOfWork [
 ]
 
 { #category : '*Lcs-PrototypeSystemTests' }
-LcsApplicationEnvironmentExamples >> createInstanceOfDomainObject [
-	<gtExample>
-	<noTest>
-	^ self inNewEnvironmentDo: [ 
-		self _createInstanceOfDomainObject ]
-]
-
-{ #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentExamples >> createNewApplicationEnvironmentWithCurrentSystem [
 	<gtExample>
 	^ self inNewEnvironmentDo: [ self _newApplicationEnvironmentWithCurrentSystem ]
@@ -118,7 +110,33 @@ LcsApplicationEnvironmentExamples >> createSystemsDeleteTheCurrentAndMakeOtherCu
 ]
 
 { #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> noInitializedEnvironmentError [
+	<gtExample>
+	<noTest>
+	^ self inNewEnvironmentDo: [ 
+		self 
+			should: [ LcsApplicationEnvironment verifyApplicationEnvironment ] 
+			raise: LcsApplicationEnivronmentNotInitializedError.
+		LcsApplicationEnvironment verifyApplicationEnvironment ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
 LcsApplicationEnvironmentExamples >> removingFromChangedCollections [
 	<gtExample>
 	^ self inNewEnvironmentDo: [ self _removingFromChangedCollections ]
+]
+
+{ #category : '*Lcs-PrototypeSystemTests' }
+LcsApplicationEnvironmentExamples >> slotModelNotInitializedError [
+	<gtExample>
+	<noTest>
+	^ self inNewEnvironmentDo: [ 
+		self assert: LcsApplicationEnvironment currentSystem isNil.
+		self 
+			should: [ LcsDomainObject new ] 
+			raise: LcsSlotModelNotInitializedError.
+		self
+			should: [ LxxPrototypeSystem verifySlotModelInitialized ]
+			raise: LcsSlotModelNotInitializedError.
+		LxxPrototypeSystem verifySlotModelInitialized ]
 ]

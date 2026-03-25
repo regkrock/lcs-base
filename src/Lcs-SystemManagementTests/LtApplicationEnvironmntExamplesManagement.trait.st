@@ -5,16 +5,16 @@ Trait {
 	#tag : 'Traits'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'environment' }
 LtApplicationEnvironmntExamplesManagement >> inNewEnvironmentDo: aBlock [
 	| suspendedEnvironment |
 	suspendedEnvironment := self suspendedApplicationEnvironment.
 	[ aBlock cull: suspendedEnvironment ]
 		ensure: [ self restoreEnvironment: suspendedEnvironment ].
-	^ suspendedEnvironment
+	^ LcsApplicationEnvironment currentApplicationEnvironment
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'environment' }
 LtApplicationEnvironmntExamplesManagement >> restoreEnvironment: aSuspendedEnvironment [
 	LcsApplicationEnvironment restoreToCurrentApplicationEnvironment: aSuspendedEnvironment.
 	aSuspendedEnvironment ifNotNil: [
@@ -22,18 +22,18 @@ LtApplicationEnvironmntExamplesManagement >> restoreEnvironment: aSuspendedEnvir
 	aSuspendedEnvironment
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'environment' }
 LtApplicationEnvironmntExamplesManagement >> suspendedApplicationEnvironment [
 	| suspendedEnvironment |
-	^ LcsApplicationEnvironment suspendApplicationEnvironment 
+	suspendedEnvironment := LcsApplicationEnvironment suspendApplicationEnvironment.
+	suspendedEnvironment
 		ifNotNil: [ 
-			(suspendedEnvironment := LcsApplicationEnvironment suspendApplicationEnvironment)
-				ifNotNil: [ self assert: suspendedEnvironment isInSuspendedStatus ].
-			self validateApplicationEnvironmentIsNotInitialized.
-			suspendedEnvironment ]
+			self assert: suspendedEnvironment isInSuspendedStatus .
+			self validateApplicationEnvironmentIsNotInitialized ].
+	^ suspendedEnvironment
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'validation' }
 LtApplicationEnvironmntExamplesManagement >> validateApplicationEnvironmentIsNotInitialized [
 	self assert: LcsApplicationEnvironment currentApplicationEnvironment isNil.
 	self assert: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment.
@@ -60,7 +60,7 @@ LtApplicationEnvironmntExamplesManagement >> validateApplicationEnvironmentIsNot
 	self assert: LcsApplicationObject new currentUnitOfWork isNil
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'validation' }
 LtApplicationEnvironmntExamplesManagement >> validateInitializedUnitsOfWorkManager: aUnitsOfWorkManager [ 
 	self assert: (aUnitsOfWorkManager isKindOf: LcsUnitsOfWorkManager).
 	self assert: aUnitsOfWorkManager notNil.
@@ -71,7 +71,7 @@ LtApplicationEnvironmntExamplesManagement >> validateInitializedUnitsOfWorkManag
 	self assert: aUnitsOfWorkManager numberOfUnitsOfWork equals: 0
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'valitdation' }
 LtApplicationEnvironmntExamplesManagement >> validationInitializedApplicationEnvironment [
 	| systemsManager |
 	self assert: LcsApplicationEnvironment isRunning.

@@ -210,7 +210,9 @@ LcsInvalidSlotTypeError >> slotDefinition [
 
 { #category : 'accessing' }
 LcsInvalidSlotTypeError >> slotDefinition: aSlotDefinition [ 
-	slotDefinition := aSlotDefinition
+	slotDefinition := aSlotDefinition.
+	aSlotDefinition notNil ifTrue: [
+		self slotName: aSlotDefinition slotName ]
 ]
 
 { #category : 'gt view' }

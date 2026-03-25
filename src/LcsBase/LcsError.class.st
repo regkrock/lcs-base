@@ -6,7 +6,7 @@ Class {
 	#tag : 'Error'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'system' }
 LcsError >> currentSystem [
 	^ #LcsApplicationEnvironment asClass currentSystem
 ]

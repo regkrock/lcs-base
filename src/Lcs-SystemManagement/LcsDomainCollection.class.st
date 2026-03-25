@@ -134,12 +134,6 @@ LcsDomainCollection >> gtPendingAddsView: aView [
 	<gtView>
 	| columnedListView |
 	self pendingAdds ifEmpty: [ ^ aView empty ].
-	"^ aView forward
-		title: 'Pending Adds' translated;
-		priority: 2;
-		object: [ self pendingAdds ];
-		view: #gtItemsFor:;
-		actionUpdateButton"
 	self collection isNil ifTrue: [ ^ aView empty ].
 	columnedListView := 
 		aView columnedList

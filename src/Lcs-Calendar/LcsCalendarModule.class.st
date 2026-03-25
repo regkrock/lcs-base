@@ -1,10 +1,23 @@
 Class {
 	#name : 'LcsCalendarModule',
 	#superclass : 'LcsModule',
+	#instVars : [
+		'calendarEvents'
+	],
 	#category : 'Lcs-Calendar-Core',
 	#package : 'Lcs-Calendar',
 	#tag : 'Core'
 }
+
+{ #category : 'slot definitions' }
+LcsCalendarModule class >> calendarEventsSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsGlobalCollectionSlot new
+			addSlotType: LcsCalendarEvents;
+			addCollectionMemberType: LcsCalendarEvent;
+			slotName: 'calendarEvents';
+			yourself
+]
 
 { #category : 'slot definitions' }
 LcsCalendarModule class >> configurationSlotDefinition [
@@ -26,4 +39,14 @@ LcsCalendarModule class >> moduleConfigurationClass [
 LcsCalendarModule class >> owningModules [
 	<owningModule: 'LcsSailingClubSystem' priority: 15>
 	<owningModule: 'LcsDemoSystem' priority: 15>
+]
+
+{ #category : 'accessing' }
+LcsCalendarModule >> calendarEvents [
+	^ self slotVarNamed: 'calendarEvents'
+]
+
+{ #category : 'accessing' }
+LcsCalendarModule >> calendarEvents: anObject [
+	self slotVarNamed: 'calendarEvents' put: anObject
 ]
