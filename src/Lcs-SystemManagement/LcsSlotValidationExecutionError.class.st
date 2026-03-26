@@ -1,30 +1,44 @@
 Class {
 	#name : 'LcsSlotValidationExecutionError',
 	#superclass : 'LcsSlotValidationBaseError',
+	#instVars : [
+		'smalltalkException'
+	],
 	#category : 'Lcs-SystemManagement-Error',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Error'
 }
 
 { #category : 'instance creation' }
-LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forRule: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
+LcsSlotValidationExecutionError class >> signalInvalidValue: aValue forRule: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue parentException: anException [
 	self new
 		signalInvalidValue: aValue
 		forRule: anObject
 		inSlot: aSlotDefinition
 		context: aDomainObject
 		oldValue: anOldValue
-		message: aString
+		parentException: anException
 ]
 
 { #category : 'instance creation' }
-LcsSlotValidationExecutionError >> signalInvalidValue: aValue forRule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue message: aString [
+LcsSlotValidationExecutionError >> signalInvalidValue: aValue forRule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue parentException: anException [
 	self value: aValue.
 	self rule: aRule.
 	self slotDefinition: aSlotDefinition.
 	self context: aDomainObject.
-	self signal: self validationConditionErrorMessage , ' - Caused by ' , aString.
-	self oldValue: anOldValue
+	self oldValue: anOldValue.
+	self smalltalkException: anException.
+	self signal: self validationConditionErrorMessage , ' - Caused by ' , anException messageText.
+]
+
+{ #category : 'accessing' }
+LcsSlotValidationExecutionError >> smalltalkException [
+	^ smalltalkException
+]
+
+{ #category : 'accessing' }
+LcsSlotValidationExecutionError >> smalltalkException: anObject [
+	smalltalkException := anObject
 ]
 
 { #category : 'instance creation' }

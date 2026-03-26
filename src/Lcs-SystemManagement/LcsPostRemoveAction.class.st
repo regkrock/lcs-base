@@ -18,14 +18,17 @@ LcsPostRemoveAction >> execute: aValue context: aDomainObject [
 
 { #category : 'validation' }
 LcsPostRemoveAction >> execute: aValue context: aDomainObject oldValue: anOldValue [
-	[ self actionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
+	[ self actionBlock
+		cull: aValue
+		cull: aDomainObject
+		cull: anOldValue ]
 		on: Error
 		do: [ :s | 
-				LcsUpdateActionExecutionError
-					signalErrForValue: aValue
-					updateAction: self
-					slot: self slotDefinition
-					context: aDomainObject
-					oldValue: anOldValue
-					message: s message asString ]
+			LcsSlotActionExecutionError
+				signalErrorForValue: self
+				updateAction: aValue
+				slot: self slotDefinition
+				context: aDomainObject
+				oldValue: anOldValue
+				smalltalkException: s ]
 ]

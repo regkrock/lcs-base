@@ -33,6 +33,7 @@ LcsSlotValidationBaseError >> gtExceptionContextView: aView [
 				{'Value'. self value}.
 				{'Old Value'. self oldValue}.
 				{'Domain Object'. self context}.
+				{'Original Exception'. self smalltalkException}.
 				{''. ''}.
 				{'Error Description'. self rule description}.
 				{'Error Condition'. self rule conditionBlock}.

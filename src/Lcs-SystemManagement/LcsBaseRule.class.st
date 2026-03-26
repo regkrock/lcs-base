@@ -203,14 +203,14 @@ LcsBaseRule >> validate: aValue context: aDomainObject oldValue: anOldValue [
 	| result |
 	[ result := self conditionBlock cull: aValue cull: aDomainObject cull: anOldValue cull: self slotDefinition ]
 		on: Error
-		do: [ :s | 
+		do: [ :exception | 
 					LcsSlotValidationExecutionError
 						signalInvalidValue: aValue
 						forRule: self
 						inSlot: self slotDefinition
 						context: aDomainObject
 						oldValue: anOldValue
-						message: s messageText ].
+						parentException: exception ].
 	^ result 
 		ifTrue: [ result ]
 		ifFalse: [ self signalValidationError: aValue context: aDomainObject oldValue: anOldValue ]

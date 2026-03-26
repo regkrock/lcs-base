@@ -45,3 +45,12 @@ LcsVirtualSlotExamples >> newSlot [
 		raise: LcsSlotUpdateNotAllowedError.
 	^ slot
 ]
+
+{ #category : 'examples - errors' }
+LcsVirtualSlotExamples >> slotUpdateNotAllowedError [
+	<gtExample>
+	<noTest>
+	| slot |
+	slot := self newSlot.
+	^ slot slotVarNamed: 'foo' in: String new
+]

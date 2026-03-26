@@ -20,3 +20,14 @@ LcsUpdateActionExamples >> newPostAddAction [
 			description: '''')'.
 	^ updateAction
 ]
+
+{ #category : 'examples - errors' }
+LcsUpdateActionExamples >> slotActionExecutionError [
+	<gtExample>
+	<noTest>
+	| updateAction |
+	updateAction := self newPostAddAction.
+	updateAction actionBlock: [ :value :domainObject :oldValue | domainObject + value ].
+	self should: [updateAction execute: 12 context: 'aDomainObject' oldValue: 'anOldValue' ] raise: LcsSlotActionExecutionError .
+	^ updateAction execute: 12 context: 'aDomainObject' oldValue: 'anOldValue'
+]

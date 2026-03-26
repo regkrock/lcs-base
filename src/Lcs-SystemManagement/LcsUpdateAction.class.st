@@ -21,13 +21,13 @@ LcsUpdateAction >> execute: aValue context: aDomainObject oldValue: anOldValue [
 	[ self actionBlock cull: aValue cull: aDomainObject cull: anOldValue ]
 		on: Error
 		do: [ :s | 
-				LcsUpdateActionExecutionError
-					signalErrForValue: aValue
-					updateAction: self
+				LcsSlotActionExecutionError
+					signalErrorForValue: self
+					updateAction: aValue
 					slot: self slotDefinition
 					context: aDomainObject
 					oldValue: anOldValue
-					message: s messageText asString ]
+					smalltalkException: s ]
 ]
 
 { #category : 'initialize' }
