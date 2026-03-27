@@ -43,6 +43,7 @@ LcsModules >> collection: aCollection [
 { #category : 'modules' }
 LcsModules >> findModuleNamed: aString [
 	| foundModule |
+	aString ifNil: [ ^ nil ].
 	self collection ifNil: [ ^ nil ].
 	foundModule := self collection at: aString ifAbsent: [ nil ].
 	foundModule ifNotNil: [ ^ foundModule ].

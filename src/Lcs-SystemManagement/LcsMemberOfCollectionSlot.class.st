@@ -16,13 +16,6 @@ LcsMemberOfCollectionSlot >> defaultInitialValueBlock [
 	^ [:parentDomainObject :slot | slot defaultInstance ]
 ]
 
-{ #category : 'slot model' }
-LcsMemberOfCollectionSlot >> defaultInstance [
-	^ self targetCollection 
-		ifNil: [ LcsMemberOfSlotSourceCollectionNotInitialized signalWithContext: self ] 
-		ifNotNil: [ :collection | collection defaultInstance ]
-]
-
 { #category : 'defaults' }
 LcsMemberOfCollectionSlot >> initialize [
 	super initialize.
@@ -34,9 +27,4 @@ LcsMemberOfCollectionSlot >> sourceCollectionNotPopulatedMessage [
 	^'Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized' 
 			expandMacrosWith: self collectionSlotModuleName 
 			with: self collectionSlotName
-]
-
-{ #category : 'slot model' }
-LcsMemberOfCollectionSlot >> targetCollection [
-	^ self collectionModule perform: self collectionSlotName asSymbol
 ]

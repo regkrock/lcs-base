@@ -65,8 +65,8 @@ LcsMemberOfSlotSourceCollectionNotInitialized >> signalWithContext: aSlotDefinit
 
 { #category : 'message' }
 LcsMemberOfSlotSourceCollectionNotInitialized >> unintializeSourceCollectionMessage [
-	^'Timing Error - Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized but is needed to initialize <3s> slot' 
-		expandMacrosWith: self context collectionSlotModuleName 
-		with: self context collectionSlotName
+	^'Timing Error - Source collection in module: <1s>, slot: <2s> not initialized but is needed to initialize <3s> slot' 
+		expandMacrosWith: self context collectionSlotModuleName printString
+		with: self context collectionSlotName printString
 		with: self context slotName
 ]

@@ -54,6 +54,13 @@ LcsMemberOfGlobalCollectionSlot >> collectionSlotName: aString [
 	self propertyAt: 'collectionSlotName' put: aString
 ]
 
+{ #category : 'slot model' }
+LcsMemberOfGlobalCollectionSlot >> defaultInstance [
+	^ self targetCollection 
+		ifNil: [ LcsMemberOfSlotSourceCollectionNotInitialized signalWithContext: self ] 
+		ifNotNil: [ :collection | collection defaultInstance ]
+]
+
 { #category : 'gt views' }
 LcsMemberOfGlobalCollectionSlot >> gtUMLFor: aView [
 	<gtView>
