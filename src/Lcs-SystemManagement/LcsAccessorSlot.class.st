@@ -176,15 +176,15 @@ LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 LcsAccessorSlot >> audit: anObject withAuditor: anAuditor [
 	| value |
 	value := self _currentSlotVarIn: anObject.
-	[ self validateSlotType: value context: anObject oldValue: nil ]
+	[ self validateSlotType: value context: anObject oldValue: value ]
 		on: LcsInvalidSlotTypeError
 		do: [ :signal |
-			anAuditor addErrorDescription: signal invalidAuditMessage.
+			anAuditor addErrorDescription: signal auditErrorMessage.
 			signal return: nil ].
-	[ self validateRules: value context: anObject oldValue: nil ]
+	[ self validateRules: value context: anObject oldValue: value ]
 		on: LcsError
 		do: [ :signal |
-			anAuditor addErrorDescription: signal invalidAuditMessage.
+			anAuditor addErrorDescription: signal auditErrorMessage.
 			signal return: nil ]
 ]
 
@@ -713,7 +713,7 @@ LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject [
 ]
 
 { #category : 'slot model' }
-LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject oldValue: anExistingObject [
+LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject oldValue: anOldValue [
 	| transformedObject |
 	transformedObject := self prevalidationTransformBlock
 			cull: anObject
@@ -722,20 +722,20 @@ LcsAccessorSlot >> slotVarPut: anObject in: aDomainObject oldValue: anExistingOb
 	self hasPermissionToWriteSlotOf: aDomainObject.
 	self
 		updateVariableIn: aDomainObject
-		oldValue: anExistingObject
+		oldValue: anOldValue
 		with: transformedObject.
 	self postUpdateActions
 		execute: transformedObject
 		context: aDomainObject
-		oldValue: anExistingObject
+		oldValue: anOldValue
 ]
 
 { #category : 'slot model' }
-LcsAccessorSlot >> updateVariableIn: aDomainObject oldValue: anExistingObject with: transformedObject [
+LcsAccessorSlot >> updateVariableIn: aDomainObject oldValue: anOldValue with: transformedObject [
 	self variableUpdatePolicy
 		slotVarPut: transformedObject
 		in: aDomainObject
-		oldValue: anExistingObject
+		oldValue: anOldValue
 ]
 
 { #category : 'validations' }

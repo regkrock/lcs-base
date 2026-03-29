@@ -27,6 +27,14 @@ LcsSlotValidationError class >> signalInvalidValue: aValue forRule: anObject inS
 ]
 
 { #category : 'instance creation' }
+LcsSlotValidationError >> auditErrorMessage [
+	^ '<1s> slot: <2s> contains unexpected value: <3s>'
+		expandMacrosWith: self targetDomainObject printString
+		with: self slotName asString
+		with: self value asString
+]
+
+{ #category : 'instance creation' }
 LcsSlotValidationError >> signalInvalidValue: aValue forRule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self value: aValue.
 	self rule: aRule.
@@ -37,13 +45,18 @@ LcsSlotValidationError >> signalInvalidValue: aValue forRule: aRule inSlot: aSlo
 ]
 
 { #category : 'instance creation' }
+LcsSlotValidationError >> targetDomainObject [
+	^ self context ifNil: [ '<nil>' ]
+]
+
+{ #category : 'instance creation' }
 LcsSlotValidationError >> validationConditionErrorMessage [
-	^ '<1s> slot: <2s> has validation error: "<3s>"'
+	^ '<1s> slot: <2s> has invalid value: <3s>'
 		expandMacrosWith: (self context
-				ifNil: [ nil ]
-				ifNotNil: [ self context class name  ]) asString
+				ifNil: [ '<nil>' ]
+				ifNotNil: [ self context printString  ])
 		with: (self slotDefinition
-				ifNil: [ nil ]
-				ifNotNil: [ :slotDef | slotDef slotName ]) asString
-		with: self rule validationErrorMessage
+				ifNil: [ '<nil>' ]
+				ifNotNil: [ :slotDef | slotDef slotName ])
+		with: self value printString
 ]

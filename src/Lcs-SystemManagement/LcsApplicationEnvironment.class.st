@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'unitsOfWorkManager',
 		'status',
-		'systemsManager'
+		'systemsManager',
+		'undefinedObject'
 	],
 	#classInstVars : [
 		'singleton'
@@ -303,6 +304,13 @@ LcsApplicationEnvironment class >> toggleStartStop [
 		ifFalse: [ self initializeApplicationEnvironment ]
 ]
 
+{ #category : 'application environment - private' }
+LcsApplicationEnvironment class >> undefinedObject [
+	^ self currentApplicationEnvironment
+		ifNil: [ LcsApplicationEnivronmentNotInitializedError signal ]
+		ifNotNil: [ :env | env undefinedObject ]
+]
+
 { #category : 'application environment - system' }
 LcsApplicationEnvironment class >> unitsOfWorkManager [
 	^ self applicationEnvironmentObject: [ :env | env unitsOfWorkManager ]
@@ -427,7 +435,8 @@ LcsApplicationEnvironment >> initialize [
 	super initialize.
 	self systemsManager: (LcsSystemsManager newOn: self).
 	self unitsOfWorkManager: (LcsUnitsOfWorkManager newOn: self).
-	self status: (LcsApplicationEnvironmentActiveStatus newOn: self)
+	self status: (LcsApplicationEnvironmentActiveStatus newOn: self).
+	self undefinedObject: LcsUndefinedObject new.
 ]
 
 { #category : 'testing' }
@@ -495,6 +504,16 @@ LcsApplicationEnvironment >> systemsManager [
 { #category : 'accessing' }
 LcsApplicationEnvironment >> systemsManager: anObject [
 	systemsManager := anObject
+]
+
+{ #category : 'accessing' }
+LcsApplicationEnvironment >> undefinedObject [
+	^ undefinedObject
+]
+
+{ #category : 'accessing' }
+LcsApplicationEnvironment >> undefinedObject: anObject [
+	undefinedObject := anObject
 ]
 
 { #category : 'accessing' }

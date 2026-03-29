@@ -29,6 +29,11 @@ LcsSecurityRole class >> roleSlotDefinition [
 		yourself
 ]
 
+{ #category : 'printing' }
+LcsSecurityRole >> gtDisplayOn: stream [
+	self gtPrint: self role asString on: stream
+]
+
 { #category : 'accessing' }
 LcsSecurityRole >> role [
 	^ self slotVarNamed: 'role'

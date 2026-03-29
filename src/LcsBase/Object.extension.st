@@ -4,3 +4,8 @@ Extension { #name : 'Object' }
 Object >> isDomainObject [
 	^ false
 ]
+
+{ #category : '*LcsBase' }
+Object >> isLcsUndefinedObject [
+	^ false
+]

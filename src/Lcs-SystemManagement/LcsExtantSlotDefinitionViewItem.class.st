@@ -20,6 +20,11 @@ LcsExtantSlotDefinitionViewItem >> initializeOn: aSlotDefinition [
 			ifFalse: [ '***missing***' ])
 ]
 
+{ #category : 'slot model' }
+LcsExtantSlotDefinitionViewItem >> install [
+	self domainClass installSlotDefinition: (self slotName , 'SlotDefinition') asSymbol
+]
+
 { #category : 'testing' }
 LcsExtantSlotDefinitionViewItem >> isAccessorSlot [
 	^ self slotDefinition isAccessorSlot

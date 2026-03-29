@@ -28,6 +28,14 @@ LcsInvalidSlotTypeError class >> signalNoRulesToValidateType: anObject forSlot: 
 ]
 
 { #category : 'signal' }
+LcsInvalidSlotTypeError >> auditErrorMessage [
+	^ '<1s> slot: <2s> contains unexpected value: <3s>'
+		expandMacrosWith: self target
+		with: self slotName
+		with: self object
+]
+
+{ #category : 'signal' }
 LcsInvalidSlotTypeError >> domainClassName [
 	^ self slotDefinition
 		ifNil: [ '<missing domain class>' ]
@@ -136,13 +144,6 @@ LcsInvalidSlotTypeError >> gtUpdateSlotModelFor: anAction [
 		tooltip: 'Update Slot Model';
 		icon: BrGlamorousVectorIcons play;
 		action: [ :aButton | self reinstallSlotDefinition ]
-]
-
-{ #category : 'signal' }
-LcsInvalidSlotTypeError >> invalidAuditMessage [
-	^ self slotName printString , '  slot("'
-		, self slotDefinition class name , '") in '
-		, self slotDefinition domainClass name , ' contains invalid: ' , self object printString
 ]
 
 { #category : 'signal' }

@@ -115,13 +115,19 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 		column: 'Class' text: [ :each | each domainClass name ] width: 100;
 		column: '' stencil: [ :each | 
 			BrButton new
-				icon: BrGlamorousVectorIcons remove;
+				icon: ( each isInstalled 
+							ifTrue: [ BrGlamorousVectorIcons remove ]
+							ifFalse: [ BrGlamorousVectorIcons add ]) ;
 				aptitude: BrGlamorousButtonWithIconAptitude new;
 				fitContent;
 				beTinySize;
-				label: 'Remove Slot';
+				label: (each isInstalled 
+							ifTrue: [ 'Remove Slot' ] 
+							ifFalse:  [ 'Add To Slot Model' ]);
 				action: [ :aButton | 
-					each remove.
+					each isInstalled 
+						ifTrue: [ each remove ] 
+						ifFalse: [ each install ].
 					aButton phlow fireViewUpdateWish ]] width: 40; 
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
 			tooltip: 'Inspect Slot Model'
@@ -218,21 +224,24 @@ LcsBaseDomainObject class >> initializeSlotModel [
 
 { #category : 'slot model - install' }
 LcsBaseDomainObject class >> installAccessorSlotDefinition: aSlotDefinitionSelector [
-	self currentSystem isNil ifTrue: [ ^ self ].
-	self slotModel isNil ifTrue: [ ^ self ].
-	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
+	self installSlotDefinition: aSlotDefinitionSelector
 ]
 
 { #category : 'slot model - install' }
 LcsBaseDomainObject class >> installCollectionItemSlotDefinition: aSlotDefinitionSelector [
-	self currentSystem isNil ifTrue: [ ^ self ].
-	self slotModel isNil ifTrue: [ ^ self ].
-	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
+	self installSlotDefinition: aSlotDefinitionSelector
 ]
 
 { #category : 'slot model - install' }
 LcsBaseDomainObject class >> installFacadeSlotDefinition: aSlotDefinitionSelector [
 	self currentSystem isNil ifTrue: [ ^ self ].
+	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
+]
+
+{ #category : 'slot model - install' }
+LcsBaseDomainObject class >> installSlotDefinition: aSlotDefinitionSelector [
+	self currentSystem isNil ifTrue: [ ^ self ].
+	self slotModel isNil ifTrue: [ ^ self ].
 	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
 ]
 
@@ -262,8 +271,7 @@ LcsBaseDomainObject class >> installSlotModelIn: aSystem [
 
 { #category : 'slot model - install' }
 LcsBaseDomainObject class >> installVirtualSlotDefinition: aSlotDefinitionSelector [
-	self currentSystem isNil ifTrue: [ ^ self ].
-	self slotModel installSlotDefinition: (self perform: aSlotDefinitionSelector)
+	self installSlotDefinition: aSlotDefinitionSelector
 ]
 
 { #category : 'slot model - install' }

@@ -53,6 +53,11 @@ LcsSlotDefinitionViewItem >> isAccessorSlot [
 ]
 
 { #category : 'testing' }
+LcsSlotDefinitionViewItem >> isInstalled [
+	^ self domainClass slotModel hasSlotDefinitionNamed: self slotName
+]
+
+{ #category : 'testing' }
 LcsSlotDefinitionViewItem >> isSlotDefinitionFor: anInstVarName [
 	^ false
 ]
