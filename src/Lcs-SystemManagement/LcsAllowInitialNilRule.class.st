@@ -26,7 +26,7 @@ LcsAllowInitialNilRule >> defaultErrorMessage [
 LcsAllowInitialNilRule >> isValidValue: value domainObject: parentDomainObject oldValue: oldValue [
 	value isNil ifFalse: [ ^ false ].
 	self slotDefinition isNilAllowed ifFalse: [ self signalValidationError: value context: parentDomainObject oldValue: oldValue  ].
-	oldValue isNil ifFalse: [ self signalValidationError: value context: parentDomainObject oldValue: oldValue  ].
+	oldValue isLcsUndefinedObject ifFalse: [ self signalValidationError: value context: parentDomainObject oldValue: oldValue  ].
 	^ true
 
 ]
