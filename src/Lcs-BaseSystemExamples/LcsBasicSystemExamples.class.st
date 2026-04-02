@@ -68,14 +68,13 @@ LcsBasicSystemExamples >> newBasicSystem [
 { #category : 'exmples' }
 LcsBasicSystemExamples >> unitOfWorkWithNewObject [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| domainObject |
 	self ensureCurrentSystemIsBasicSystem.
-	self clearUnitOfWork.
 	domainObject := LcsDomainObject new.
 	self assert: self currentUnitOfWork addedObjects size equals: 1.
 	self assert: self currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentUnitOfWork changedObjects isEmpty.
 	self assert: (self currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
 	self assert: (self currentUnitOfWork addedObjects keys includes:  domainObject).
-	self clearUnitOfWork
 ]

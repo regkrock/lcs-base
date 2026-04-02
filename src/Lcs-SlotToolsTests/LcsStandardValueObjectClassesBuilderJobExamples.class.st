@@ -11,7 +11,6 @@ LcsStandardValueObjectClassesBuilderJobExamples >> installAndRemoveTitles [
 	<gtExample>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
-	self currentSystem clearUnitOfWork.
 	builderJob := self titlesStandardValueObjectBuilderJob.
 	[
 	  builderJob execute.

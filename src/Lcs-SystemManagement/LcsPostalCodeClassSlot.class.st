@@ -14,3 +14,8 @@ LcsPostalCodeClassSlot >> initialize [
 	self initialValue: LcsGenericPostalCode.
 	self superclassClass subclassesDo: [ :eachClass | self addSlotType: eachClass ]
 ]
+
+{ #category : 'object initialization' }
+LcsPostalCodeClassSlot >> initializeSlotWithValue: aValue in: aDomainObject [
+	self slotVarPut: aValue in: aDomainObject oldValue: nil
+]

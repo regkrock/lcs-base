@@ -186,27 +186,39 @@ LcsAccessorSlotExamples >> accessorSlotWithIntegerValidationWithValidRangeOf2To1
 	<gtExample>
 	| slot |
 	slot := self newSlot.
-	self 
-		should: [ slot validate: 'text' ] 
-		raise: LcsInvalidSlotTypeError 
+	self
+		should: [ slot validate: 'text' ]
+		raise: LcsInvalidSlotTypeError
 		description: 'No slot ype defined'.
-		
-	slot addSlotType: Integer.
-	self assert: (slot validate: 9).
 	self should: [ slot validate: 'text' ] raise: LcsInvalidSlotTypeError.
 
-	slot addValidationRuleBlock: [ :value | value isInteger ] description: 'Must be an Ingeter'.
+	slot addSlotType: Integer.
+	self assert: (slot validate: 1).
+	self assert: (slot validate: 11).
+	self should: [ slot validate: 'text' ] raise: LcsInvalidSlotTypeError.
+
+	slot
+		addValidationRuleBlock: [ :value | value isInteger ]
+		description: 'Must be an Ingeter'.
 	self shouldnt: [ slot validate: 1 ] raise: LcsSlotValidationError.
 
 	slot validationRules beAndEvaluationType.
-	slot addValidationRuleBlock: [ :value | value >= 2 ] description: 'Must be greater than 1'.
-	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
-	self assert: (slot validate: 2).
-	
-	slot addValidationRuleBlock: [ :value | value < 11 ] description: 'Must be less than 11'.
-	self should: [ slot validate: 1 ] raise: LcsSlotValidationError.
-	self assert: (slot validate: 2).
-	self should: [ slot validate: 11 ] raise: LcsSlotValidationError.
+	slot
+		addValidationRuleBlock: [ :value | value >= 2 ]
+		description: 'Must be greater than 1'.
+	slot
+		addValidationRuleBlock: [ :value | value < 11 ]
+		description: 'Must be less than 11'.
+	self assert: (slot validate: 2) description: 'Lower range boundary'.
+	self assert: (slot validate: 10) description: 'Upper range boundary'.
+	self
+		should: [ slot validate: 1 ]
+		raise: LcsSlotValidationError
+		description: 'Outsisde lower range boundary'.
+	self
+		should: [ slot validate: 11 ]
+		raise: LcsSlotValidationError
+		description: 'Outsisde upper range boundary'.
 	^ slot
 ]
 

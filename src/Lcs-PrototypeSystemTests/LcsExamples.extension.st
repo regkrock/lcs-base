@@ -10,7 +10,9 @@ LcsExamples >> ensureCurrentSystemIsBasicSystem [
 	| system |
 	self savedSystem: self currentSystem.
 	system := LcsApplicationEnvironment ensureCurrentSystemIs: LcsBasicSystem.
-	"self currentSystem applyChanges."
+	self assert: (self currentSystem isKindOf: LcsBasicSystem).
+	self assert: (self currentSystem unitOfWork == self currentUnitOfWork).
+	self assert: self currentSystem unitOfWork hasNoChanges.
 	^ system
 ]
 

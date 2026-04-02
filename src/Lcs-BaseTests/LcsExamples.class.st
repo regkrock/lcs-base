@@ -65,10 +65,19 @@ LcsExamples >> beginTransaction [
 	System beginTransaction
 ]
 
-{ #category : 'system support' }
+{ #category : 'tearDown' }
 LcsExamples >> clearUnitOfWork [
-	self currentSystem isNil ifTrue: [ ^ self ].
-	self currentSystem clearUnitOfWork
+	Transcript cr; show: #tearDown.
+	self currentSystem clearUnitOfWork.
+	self assert: (self currentSystem ifNil: [ true  ] ifNotNil: [ self currentSystem unitOfWork hasNoChanges ])
+]
+
+{ #category : 'tearDown' }
+LcsExamples >> clearUnitOfWorkAndRestoreSavedSystem [
+	Transcript cr; show: #tearDown.
+	self currentSystem clearUnitOfWork.
+	self assert: (self currentSystem ifNil: [ true  ] ifNotNil: [ self currentSystem unitOfWork hasNoChanges ]).
+	LcsApplicationEnvironment makeSystemCurrent: self savedSystem
 ]
 
 { #category : 'system support' }

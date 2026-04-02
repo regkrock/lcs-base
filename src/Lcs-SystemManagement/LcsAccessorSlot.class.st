@@ -62,6 +62,11 @@ LcsAccessorSlot >> _initialValueFor: aDomainObject [
 	^ self initialValueBlock cull: aDomainObject cull: self
 ]
 
+{ #category : 'object initialization' }
+LcsAccessorSlot >> _initializeSlotWithValue: aValue in: aDomainObject [
+	self slotVarPut: aValue in: aDomainObject oldValue: LcsApplicationEnvironment undefinedObject
+]
+
 { #category : 'post update actions' }
 LcsAccessorSlot >> addPostUpdateAction: anUpdateAction [
 	self postUpdateActions addAction: anUpdateAction
@@ -415,37 +420,14 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.
 	LcsLogger indent.
 	initialValue := self initialValueFor: aDomainObject.
+	"self _initializeSlotWithValue: initialValue in: aDomainObject."
 	self slotVarPut: initialValue in: aDomainObject.
 	LcsLogger outdent.
 ]
 
-{ #category : 'slot model' }
-LcsAccessorSlot >> initializeSlotVarPut: anObject in: aDomainObject [
-	| transformedObject existingValue |
-	existingValue := aDomainObject perform: self getterSelector.
-	"existingValue ifNotNil: [ self error: 'Attempt to initialize and already intialized slot']."
-	transformedObject := self prevalidationTransformBlock
-			cull: anObject
-			cull: self
-			cull: aDomainObject.
-	self slotTypeRules
-		validate: anObject
-		context: aDomainObject
-		oldValue: existingValue.
-	"Validate type, but not value - this allows for a non-nil value that 
-	does not pass the validation test - ex: slot requires 3 characters but
-	initialize it to an empty string and let the error be caught later.
-	The audit check which is executed before the commit should check this."
-	self hasPermissionToWriteSlotOf: aDomainObject.
-	self currentUnitOfWork
-		setValueIn: aDomainObject
-		slot: self
-		to: anObject.
-	"The post update action may need more work"
-	self postUpdateActions
-		execute: transformedObject
-		context: aDomainObject
-		oldValue: existingValue
+{ #category : 'object initialization' }
+LcsAccessorSlot >> initializeSlotWithValue: aValue in: aDomainObject [
+	self slotVarPut: aValue in: aDomainObject oldValue: LcsApplicationEnvironment undefinedObject
 ]
 
 { #category : 'object initialization' }

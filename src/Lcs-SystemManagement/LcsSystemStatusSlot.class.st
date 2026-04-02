@@ -21,5 +21,13 @@ LcsSystemStatusSlot >> initialize [
 	super initialize.
 	self
 		slotName: 'status';
-		addSlotType: LcsBaseSystemStatus
+		addSlotType: LcsBaseSystemStatus;
+		makeDirectUpdateOfVariable
+]
+
+{ #category : 'slot model' }
+LcsSystemStatusSlot >> slotVarPut: anObject in: aDomainObject [
+	| existingValue |
+	existingValue := self persistedSlotVarIn: aDomainObject.
+	self slotVarPut: anObject in: aDomainObject oldValue: existingValue
 ]

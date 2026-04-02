@@ -140,14 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-12-31T11:44:32.632294-05:00"
+						"dateAndTimeString" : "2026-03-30T13:50:12.86287-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "n3v3l/PoDQC4nSSrBI/n4w=="
 				},
-				"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsTestWithNoApplicationEnvironmentTest; add: LcsPrototypeSystemRunningTest; add: LcsDemoSystemRunningTestCase.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
+				"code" : "| classes |\rclasses := OrderedCollection new.\rclasses add:  TestCase; add: LcsTestCase; add: LcsAbstractDomainTest; add:LcsTestWithNoTestSystemSetupForTest; add: LcsTestWithTestSystemSetUpForTest; add: LcsNoApplicationEnvironmentExamples; add: LcsPrototypeSystemRunningTest; add: LcsDemoSystemRunningTestCase.\rGtMondrianDomainExamples new classHierarchyFor: classes.",
 				"elementHeight" : 260,
 				"codeHeight" : 50,
 				"codeVisible" : false
@@ -177,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T18:25:54.071031-05:00"
+						"dateAndTimeString" : "2026-03-30T13:50:12.491166-04:00"
 					}
 				},
 				"uid" : {
@@ -187,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####Testing Application Environment\n\nThe Application Environment {{gtClass:LcsApplicationEnvironment}} needs to be in place to provide the context for most tests. This is done in the test's setUp methods. \n\nHowever, to test the the Application Environment one does not want the setUp to be creating the Application Environment. In fact, the setUp should ensure that no Application Environment exists.\n\nTo support this  feature, {{gtClass:LcsTestWithNoApplicationEnvironmentTest}} was created. Its {{gtMethod:LcsTestWithNoApplicationEnvironmentTest>>#setUp}} method stashes the current Application Environment and clears the Application Environment's singleton. The {{gtMethod:LcsTestWithNoApplicationEnvironmentTest>>#tearDown}} clears any changes made during the test and the restores the original Application Environment."
+				"string" : "####Testing Application Environment\n\nThe Application Environment {{gtClass:LcsApplicationEnvironment}} needs to be in place to provide the context for most tests. This is done in the test's setUp methods. \n\nHowever, to test the the Application Environment one does not want the setUp to be creating the Application Environment. In fact, the setUp should ensure that no Application Environment exists.\n\nTo support this  feature, {{gtClass:LcsNoApplicationEnvironmentExamples}} was created. Its {{gtMethod:LcsNoApplicationEnvironmentExamples>>#setUp}} method stashes the current Application Environment and clears the Application Environment's singleton. The {{gtMethod:LcsNoApplicationEnvironmentExamples>>#tearDown}} clears any changes made during the test and the restores the original Application Environment."
 			},
 			{
 				"__type" : "textSnippet",

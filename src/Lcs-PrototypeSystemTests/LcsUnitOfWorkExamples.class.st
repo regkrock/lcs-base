@@ -1,6 +1,8 @@
 Class {
 	#name : 'LcsUnitOfWorkExamples',
 	#superclass : 'LcsExamples',
+	#traits : 'LtApplicationEnvironmntExamplesManagement',
+	#classTraits : 'LtApplicationEnvironmntExamplesManagement classTrait',
 	#category : 'Lcs-PrototypeSystemTests-Examples',
 	#package : 'Lcs-PrototypeSystemTests',
 	#tag : 'Examples'
@@ -29,7 +31,10 @@ LcsUnitOfWorkExamples >> deleteDomainObject [
 { #category : 'examples' }
 LcsUnitOfWorkExamples >> domainObjectCreatedAndAddedToGlobalCollection [
 	<gtExample>
+	<after: #clearUnitOfWorkAndRestoreSavedSystem>
 	| persons person |
+	self applicationEnvironmentWithCurrentPrototypeSystem.
+	self assert: self currentUnitOfWork hasNoChanges.
 	persons := self personsWithNewPersonInPendingAdds.
 	person := persons pendingAdds last.
 	
@@ -38,7 +43,6 @@ LcsUnitOfWorkExamples >> domainObjectCreatedAndAddedToGlobalCollection [
 	self assert: (self currentSystem persons pendingAdds isEmpty).
 	self assert: (self currentSystem persons includes: person).
 	self assert: person parent == self currentSystem persons.
-	self currentSystem currentUnitOfWork hasNoChanges.
 	^ persons
 ]
 

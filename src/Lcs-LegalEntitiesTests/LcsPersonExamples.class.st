@@ -174,11 +174,9 @@ LcsPersonExamples >> johnFreemanWorkEmail [
 { #category : 'examples' }
 LcsPersonExamples >> newPerson [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person |
-	"This is done to handle situations where LcsPerson is defined in a different system"
-	LcsPerson hasSlotModel ifFalse: [
-		self ensureCurrentSystemIsDemoSystem].
-	"self currentSystem clearUnitOfWork."
+	LcsPerson hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem ].
 	self saveOriginalStats.
 	person := LcsPerson new.
 	self assert: person title code equals: 'unknown'.
@@ -198,7 +196,6 @@ LcsPersonExamples >> newPerson [
 	self assert: person emailAddresses hasPendingAdds.
 	self assert: person phoneNumbers hasNoElements.
 	self currentSystem legalEntitiesModule persons includes: person.
-
 	^ person
 ]
 

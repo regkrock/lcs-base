@@ -1,40 +1,74 @@
 Trait {
 	#name : 'LtApplicationEnvironmntExamplesManagement',
+	#instVars : [
+		'suspendedEnvironment'
+	],
 	#category : 'Lcs-SystemManagementTests-Traits',
 	#package : 'Lcs-SystemManagementTests',
 	#tag : 'Traits'
 }
 
+{ #category : 'examples' }
+LtApplicationEnvironmntExamplesManagement >> applicationEnvironmentWithCurrentPrototypeSystem [
+	<gtExample>
+	| environment |
+	environment := self newApplicationEnvironmentWithNoSystems.
+	self prototypeSystemClass new.
+	^ environment
+]
+
+{ #category : 'examples' }
+LtApplicationEnvironmntExamplesManagement >> newApplicationEnvironmentWithNoSystems [
+	<gtExample>
+	| environment |
+	self suspendedCurrentApplicationEnvironment.
+	environment := LcsApplicationEnvironment initializeApplicationEnvironment.
+	self validationInitializedApplicationEnvironment.
+	^ environment 
+]
+
+{ #category : 'prvate' }
+LtApplicationEnvironmntExamplesManagement >> prototypeSystemClass [
+	^ 'LxxPrototypeSystem' asClass
+]
+
 { #category : 'environment' }
-LtApplicationEnvironmntExamplesManagement >> inNewEnvironmentDo: aBlock [
-	| suspendedEnvironment |
-	suspendedEnvironment := self suspendedApplicationEnvironment.
-	[ aBlock cull: suspendedEnvironment ]
-		ensure: [ self restoreEnvironment: suspendedEnvironment ].
+LtApplicationEnvironmntExamplesManagement >> restoreSuspendedApplicationEnvironment [
+	LcsApplicationEnvironment
+		restoreToCurrentApplicationEnvironment: self suspendedEnvironment.
+	self suspendedEnvironment ifNotNil: [ 
+		self assert: self suspendedEnvironment isInActiveStatus.
+		self assert: self suspendedEnvironment
+						== LcsApplicationEnvironment currentApplicationEnvironment ].
 	^ LcsApplicationEnvironment currentApplicationEnvironment
 ]
 
 { #category : 'environment' }
-LtApplicationEnvironmntExamplesManagement >> restoreEnvironment: aSuspendedEnvironment [
-	LcsApplicationEnvironment restoreToCurrentApplicationEnvironment: aSuspendedEnvironment.
-	aSuspendedEnvironment ifNotNil: [
-		self assert: aSuspendedEnvironment isInActiveStatus ].
-	aSuspendedEnvironment
+LtApplicationEnvironmntExamplesManagement >> suspendedCurrentApplicationEnvironment [
+	<gtExample>
+	<after: #restoreSuspendedApplicationEnvironment>
+	self suspendedEnvironment: LcsApplicationEnvironment suspendApplicationEnvironment.
+	self suspendedEnvironment
+		ifNotNil: [ 
+			self assert: self suspendedEnvironment isInSuspendedStatus .
+			self validateApplicationEnvironmentIsNotInitialized ].
+	^ self suspendedEnvironment
 ]
 
-{ #category : 'environment' }
-LtApplicationEnvironmntExamplesManagement >> suspendedApplicationEnvironment [
-	| suspendedEnvironment |
-	suspendedEnvironment := LcsApplicationEnvironment suspendApplicationEnvironment.
-	suspendedEnvironment
-		ifNotNil: [ 
-			self assert: suspendedEnvironment isInSuspendedStatus .
-			self validateApplicationEnvironmentIsNotInitialized ].
+{ #category : 'accessing' }
+LtApplicationEnvironmntExamplesManagement >> suspendedEnvironment [
 	^ suspendedEnvironment
+]
+
+{ #category : 'accessing' }
+LtApplicationEnvironmntExamplesManagement >> suspendedEnvironment: anObject [
+	suspendedEnvironment := anObject
 ]
 
 { #category : 'validation' }
 LtApplicationEnvironmntExamplesManagement >> validateApplicationEnvironmentIsNotInitialized [
+	self assert: LcsApplicationEnvironment isStopped.
+	self assert: LcsApplicationEnvironment singleton isNil.
 	self assert: LcsApplicationEnvironment currentApplicationEnvironment isNil.
 	self assert: LcsApplicationEnvironment hasNoninitializedApplicationEnvironment.
 	self deny: LcsApplicationEnvironment hasCurrentSystem.

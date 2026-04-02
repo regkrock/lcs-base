@@ -9,6 +9,7 @@ Class {
 { #category : 'as yet unclassified' }
 LcsAuditorExamples >> auditNewPerson [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| auditor person |
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson basicNew.

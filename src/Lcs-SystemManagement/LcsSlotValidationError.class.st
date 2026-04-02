@@ -57,6 +57,7 @@ LcsSlotValidationError >> validationConditionErrorMessage [
 				ifNotNil: [ self context printString  ])
 		with: (self slotDefinition
 				ifNil: [ '<nil>' ]
-				ifNotNil: [ :slotDef | slotDef slotName ])
+				ifNotNil: [ :slotDef | 
+					slotDef slotName ifNil: [ '<nil>' ] ])
 		with: self value printString
 ]

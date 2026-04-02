@@ -11,6 +11,8 @@ To see the application environment click on: {{gtClass:LcsApplicationEnvironment
 Class {
 	#name : 'LxxPrototypeSystemExamples',
 	#superclass : 'LcsBaseSystemExamples',
+	#traits : 'LtApplicationEnvironmntExamplesManagement',
+	#classTraits : 'LtApplicationEnvironmntExamplesManagement classTrait',
 	#category : 'Lcs-PrototypeSystemTests-Examples',
 	#package : 'Lcs-PrototypeSystemTests',
 	#tag : 'Examples'
@@ -89,9 +91,9 @@ LxxPrototypeSystemExamples >> addSlotComponentsAndThenDeleteTheSlot [
 { #category : 'examples' }
 LxxPrototypeSystemExamples >> historyCreationWithNewDomainObject [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| domainObject |
 	self ensureCurrentSystemIsPrototypeSystem.
-	self currentSystem clearUnitOfWork.
 	domainObject := LcsDomainObject new.
 
 	"Set parent to a 'nonsensical' value so changes can be applied. This is a hack for this test"
@@ -138,7 +140,7 @@ LxxPrototypeSystemExamples >> newPrototypeSystem [
 	self assert: (system moduleNamed: LxxPersonsModule defaultModuleName) numberOfChildModules equals: 0.
 	self assert: (system moduleNamed: LxxPrototype2Module defaultModuleName) numberOfChildModules equals: 1.
 	self assert: (system moduleNamed: LxxPrototype2Submodule defaultModuleName) numberOfChildModules equals: 0.
-	
+	self assert: system unitOfWork hasNoChanges.
 	^ system
 ]
 
@@ -146,23 +148,26 @@ LxxPrototypeSystemExamples >> newPrototypeSystem [
 LxxPrototypeSystemExamples >> newPrototypeSystemWCreatedWhenNoCurrentSystem [
 	<gtExample>
 	| numberOfSystems numberOfUnitsOfWork system |
-	self ensureNoCurrentSystem.
+	self newApplicationEnvironmentWithNoSystems.
 	numberOfSystems := self systemsManager numberOfSystems.
 	numberOfUnitsOfWork := self unitsOfWorkManager numberOfUnitsOfWork.
-
-	system := self newPrototypeSystem.
-
-	self assert: self systemsManager numberOfSystems equals: numberOfSystems + 1.
-	self assert: self unitsOfWorkManager numberOfUnitsOfWork equals: numberOfUnitsOfWork + 1.
-
+	system := LxxPrototypeSystem new.
+	self 
+		assert: self systemsManager numberOfSystems 
+		equals: numberOfSystems + 1.
+	self
+		assert: self unitsOfWorkManager numberOfUnitsOfWork
+		equals: numberOfUnitsOfWork + 1.
 	^ system
 ]
 
 { #category : 'examples' }
 LxxPrototypeSystemExamples >> newSystemAfterItHasBeenSuspendedAndRestoredWhenAnotherSystemAvailableForSwapping [
 	<gtExample>
-	| secondSystem firstSystem |
-	firstSystem := self newPrototypeSystemWCreatedWhenNoCurrentSystem.
+	<after: #restoreSuspendedApplicationEnvironment>
+	| secondSystem firstSystem environment |
+	environment := self newApplicationEnvironmentWithNoSystems.
+	firstSystem := self newPrototypeSystem.
 	secondSystem := self newPrototypeSystem.
 	self assert: firstSystem isInSuspendedStatus.
 	self assert: secondSystem isInActiveStatus.
@@ -197,7 +202,9 @@ LxxPrototypeSystemExamples >> removeDomainSlotNamed: aString [
 { #category : 'examples' }
 LxxPrototypeSystemExamples >> removedSystem [
 	<gtExample>
+	<after: #restoreSuspendedApplicationEnvironment>
 	| system |
+	self newApplicationEnvironmentWithNoSystems.
 	system := self newPrototypeSystem.
 	self assert: system isInActiveStatus.
 	self assert: self currentSystem identicalTo: system.
@@ -209,10 +216,12 @@ LxxPrototypeSystemExamples >> removedSystem [
 ]
 
 { #category : 'examples' }
-LxxPrototypeSystemExamples >> restoredSuspendedSystem [
+LxxPrototypeSystemExamples >> restoreSuspendedSystem [
 	<gtExample>
+	<after: #restoreSuspendedApplicationEnvironment>
 	| system |
 	system := self suspendedCurrentSystem.	
+	self assert: system isInSuspendedStatus.
 	system restoreSystem.
 	self assert: self currentSystem == system.
 	self assert: system isInActiveStatus.
@@ -222,7 +231,9 @@ LxxPrototypeSystemExamples >> restoredSuspendedSystem [
 { #category : 'examples' }
 LxxPrototypeSystemExamples >> suspendedCurrentSystem [
 	<gtExample>
+	<after: #restoreSuspendedApplicationEnvironment>
 	| system |
+	self newApplicationEnvironmentWithNoSystems.
 	system := self newPrototypeSystem.
 	system suspendSystem.
 	self assert: system isInSuspendedStatus.
@@ -233,16 +244,15 @@ LxxPrototypeSystemExamples >> suspendedCurrentSystem [
 { #category : 'examples' }
 LxxPrototypeSystemExamples >> unitOfWorkWithNewObject [
 	<gtExample>
+	<after: #clearUnitOfWorkAndRestoreSavedSystem>
 	| domainObject |
 	self ensureCurrentSystemIsBasicSystem.
-	self clearUnitOfWork.
 	domainObject := LcsDomainObject new.
 	self assert: self currentUnitOfWork addedObjects size equals: 1.
 	self assert: self currentUnitOfWork deletedObjects isEmpty.
 	self assert: self currentUnitOfWork changedObjects isEmpty.
 	self assert: (self currentUnitOfWork addedObjects any isKindOf: LcsAddedObjectRecord).
-	self assert: (self currentUnitOfWork addedObjects keys includes:  domainObject).
-	self clearUnitOfWork
+	self assert: (self currentUnitOfWork addedObjects keys includes:  domainObject)
 ]
 
 { #category : 'private' }

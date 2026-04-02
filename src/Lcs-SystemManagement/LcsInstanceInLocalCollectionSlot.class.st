@@ -107,6 +107,21 @@ LcsInstanceInLocalCollectionSlot >> initialize [
 	self targetItem: ''
 ]
 
+{ #category : 'object initialization' }
+LcsInstanceInLocalCollectionSlot >> initializeSlotValueIn: aDomainObject [
+	| initialValue |
+	LcsLogger logReceiver: thisContext receiver message: thisContext message.
+	LcsLogger indent.
+	initialValue := self initialValueFor: aDomainObject.
+	self slotVarPut: initialValue in: aDomainObject.
+	LcsLogger outdent.
+]
+
+{ #category : 'object initialization' }
+LcsInstanceInLocalCollectionSlot >> initializeSlotWithValue: aValue in: aDomainObject [
+	self slotVarPut: aValue in: aDomainObject oldValue: nil
+]
+
 { #category : 'gt views' }
 LcsInstanceInLocalCollectionSlot >> selectionPath [
 	| targetPathStream |

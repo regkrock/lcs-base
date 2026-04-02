@@ -4,7 +4,7 @@ Subclasses of this class will suspend the current application environment during
 The subclasses of this test then have a 'pristine' environment to test the creation of the application environment and its operation without interfeering with the existing Application Environment
 "
 Class {
-	#name : 'LcsTestWithNoApplicationEnvironmentTest',
+	#name : 'LcsNoApplicationEnvironmentExamples',
 	#superclass : 'LcsTestCase',
 	#instVars : [
 		'currentApplicationEnvironment'
@@ -15,28 +15,26 @@ Class {
 }
 
 { #category : 'accessing' }
-LcsTestWithNoApplicationEnvironmentTest >> currentApplicationEnvironment [
+LcsNoApplicationEnvironmentExamples >> currentApplicationEnvironment [
 	^currentApplicationEnvironment
 ]
 
 { #category : 'accessing' }
-LcsTestWithNoApplicationEnvironmentTest >> currentApplicationEnvironment: anApplicationEnvironment [ 
+LcsNoApplicationEnvironmentExamples >> currentApplicationEnvironment: anApplicationEnvironment [ 
 	currentApplicationEnvironment := anApplicationEnvironment
 ]
 
 { #category : 'running' }
-LcsTestWithNoApplicationEnvironmentTest >> setUp [
+LcsNoApplicationEnvironmentExamples >> setUp [
 	self abortTransaction. 
-	super setUp.
 	self currentApplicationEnvironment: LcsApplicationEnvironment suspendApplicationEnvironment.
 	self deny: LcsApplicationEnvironment hasInitializedApplicationEnvironment.
 	self commitTransaction
 ]
 
 { #category : 'running' }
-LcsTestWithNoApplicationEnvironmentTest >> tearDown [
+LcsNoApplicationEnvironmentExamples >> tearDown [
 	self abortTransaction. 
-	super tearDown.
 	LcsApplicationEnvironment restoreToCurrentApplicationEnvironment: self currentApplicationEnvironment.
 	LcsApplicationEnvironment hasInitializedApplicationEnvironment ifTrue: [
 	self assert: LcsApplicationEnvironment isInActiveStatus].

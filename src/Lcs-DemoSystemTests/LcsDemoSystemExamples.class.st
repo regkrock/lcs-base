@@ -22,7 +22,7 @@ LcsDemoSystemExamples >> assertGeographyModuleIsConfigured [
 ]
 
 { #category : 'tests' }
-LcsDemoSystemExamples >> domoSystemExample [
+LcsDemoSystemExamples >> demoSystemExample [
 	<gtExample>
 	self ensureCurrentSystemIsDemoSystem.
 	self assertCurrentSystemSetTo: LcsDemoSystem.

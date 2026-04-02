@@ -261,7 +261,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2025-01-25T19:31:30.161773-05:00"
+												"dateAndTimeString" : "2026-02-26T19:50:53.275908-05:00"
 											}
 										},
 										"uid" : {
@@ -271,7 +271,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "Similar to testing the Application Environment, the current system needs to be suspended which results in no current system.   Then in the tests in the Test Case can then test the creation of a System. Tests with this behaiour should subclass {{gtClass:LcsTestWithNoTestSystemSetupForTest}}. An example is {{gtClass:LxxPrototypeSystemTest}}"
+										"string" : "Similar to testing the Application Environment, the current system needs to be suspended which results in no current system.   Then in the tests in the Test Case can then test the creation of a System. Tests with this behaiour should subclass {{gtClass:LcsTestWithNoTestSystemSetupForTest}}. An example is {{gtClass:LxxPrototypeSystemExamples}}"
 									}
 								]
 							},

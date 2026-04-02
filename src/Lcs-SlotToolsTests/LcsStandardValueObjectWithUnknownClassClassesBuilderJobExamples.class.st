@@ -9,9 +9,9 @@ Class {
 { #category : 'examples' }
 LcsStandardValueObjectWithUnknownClassClassesBuilderJobExamples >> installAndRemoveTitles [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
-	self currentSystem clearUnitOfWork.
 	builderJob := self titlesWithUnknownTitleClassStandardValueObjectBuilderJob.
 	[
 	  builderJob execute.

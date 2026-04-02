@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsBaseSystemStatus',
-	#superclass : 'LcsDomainObject',
+	#superclass : 'LcsSupportDomainObject',
 	#category : 'Lcs-DomainBase-Core',
 	#package : 'Lcs-DomainBase',
 	#tag : 'Core'

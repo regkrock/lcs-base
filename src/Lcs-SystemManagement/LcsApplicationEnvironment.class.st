@@ -436,7 +436,7 @@ LcsApplicationEnvironment >> initialize [
 	self systemsManager: (LcsSystemsManager newOn: self).
 	self unitsOfWorkManager: (LcsUnitsOfWorkManager newOn: self).
 	self status: (LcsApplicationEnvironmentActiveStatus newOn: self).
-	self undefinedObject: LcsUndefinedObject new.
+	self undefinedObject: LcsUndefinedObject basicNew.
 ]
 
 { #category : 'testing' }

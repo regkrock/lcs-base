@@ -37,6 +37,7 @@ LxxPersonExamples >> lastNameSlotDefinition [
 { #category : 'examples' }
 LxxPersonExamples >> newPerson [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person |
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.

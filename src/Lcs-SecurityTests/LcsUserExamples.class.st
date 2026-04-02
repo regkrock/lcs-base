@@ -9,7 +9,10 @@ Class {
 { #category : 'examples' }
 LcsUserExamples >> newUser [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| user auditer|
+	self ensureCurrentSystemIsBasicSystem.
+	self assert: self currentSystem unitOfWork hasNoChanges.
 	user := LcsUser new.
 	self assert: user userid isEmpty.
 	self assert: user password isEmpty.

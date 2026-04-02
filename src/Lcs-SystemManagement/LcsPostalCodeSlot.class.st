@@ -20,6 +20,11 @@ LcsPostalCodeSlot >> initialize [
 	self required: true
 ]
 
+{ #category : 'object initialization' }
+LcsPostalCodeSlot >> initializeSlotWithValue: aValue in: aDomainObject [
+	super initializeSlotWithValue: aValue in: aDomainObject
+]
+
 { #category : 'slot model' }
 LcsPostalCodeSlot >> slotVarPut: anObject in: aDomainObject [
 	anObject slotVarNamed: 'parent' put: aDomainObject.

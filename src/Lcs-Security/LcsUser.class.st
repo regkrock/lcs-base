@@ -22,12 +22,12 @@ LcsUser class >> passwordSlotDefinition [
 LcsUser class >> personSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsPersonSlot new
-			addSlotType: LcsPerson;
-			addSlotType: LcsUnknownPerson;
-			beAllowInitialNil;
-			initialValueBlock: [ :parentDomainObject :slot | nil ];
-			required: true;
-			yourself
+		addSlotType: LcsPerson;
+		addSlotType: LcsUnknownPerson;
+		beAllowInitialNil;
+		initialValueBlock: [ :parentDomainObject :slot | nil ];
+		required: true;
+		yourself
 ]
 
 { #category : 'slot definitions' }
