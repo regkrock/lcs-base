@@ -420,8 +420,7 @@ LcsAccessorSlot >> initializeSlotValueIn: aDomainObject [
 	LcsLogger logReceiver: thisContext receiver message: thisContext message.
 	LcsLogger indent.
 	initialValue := self initialValueFor: aDomainObject.
-	"self _initializeSlotWithValue: initialValue in: aDomainObject."
-	self slotVarPut: initialValue in: aDomainObject.
+	self _initializeSlotWithValue: initialValue in: aDomainObject.
 	LcsLogger outdent.
 ]
 

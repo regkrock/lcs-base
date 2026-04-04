@@ -13,8 +13,13 @@ Class {
 LcsAddedObjectRecord >> applyChanges [
 	<todo: 'This was put in becaue a member of slot had a value of nil and caused this problem. Fixing this is related to the null object pattern which has not yet been implemented.'>
 	"self domainObject isNil ifTrue: [ ^self ]."
-	self domainObject isNil ifTrue: [ LcsError signal: 'Cannot apply changes because domain object is nil'].
-	self domainObject parent isNil ifTrue: [ LcsError signal: 'Cannot apply changes because domain object''s parent slot is nil'.
+	self domainObject isNil ifTrue: [ 
+		LcsError new
+			signal: 'Cannot apply changes because domain object is nil'].
+	self domainObject parent isNil ifTrue: [ 
+		LcsUnitOfWorkAddObjectError new
+			newObject: self domainObject;
+			signal: 'Cannot apply changes because domain object''s parent slot is nil'.
 		"(self domainObject slotDefinitionNamed: 'parent') persistValue: self domainObject  contextObject: self creationContext "].
 	self domainObject incrementVersionNumber.
 	self domainObject isSupportDomainObject ifFalse: [

@@ -29,7 +29,7 @@ LcsInvalidSlotTypeError class >> signalNoRulesToValidateType: anObject forSlot: 
 
 { #category : 'signal' }
 LcsInvalidSlotTypeError >> auditErrorMessage [
-	^ '<1s> slot: <2s> contains unexpected value: <3s>'
+	^ '<1p> slot: <2s> contains unexpected value: <3p>'
 		expandMacrosWith: self target
 		with: self slotName
 		with: self object

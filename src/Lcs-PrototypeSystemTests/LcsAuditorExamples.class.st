@@ -34,7 +34,7 @@ LcsAuditorExamples >> auditOfPersonWithInvalidValeInBalanceSlot [
 	self assert: person balance equals: 'r'.
 	auditor := person auditSlots.
 	self assert: auditor hasErrors.
-	self assert: auditor errorDescriptions first equals: '''balance''  slot("LcsScaledDecimalSlot") in LxxPerson contains invalid: ''r'''.
+	self assert: auditor errorDescriptions first equals: 'a LxxPerson slot: balance contains unexpected value: ''r'''.
 	^ auditor
 ]
 
@@ -48,6 +48,6 @@ LcsAuditorExamples >> auditOfPersonWithParentSlotWithAnInvalidValue [
 	self assert: person parent equals: nil.
 	auditor := person auditSlots.
 	self assert: auditor hasErrors.
-	self assert: auditor errorDescriptions first equals: '''parent''  slot("LcsGlobalCollectionReferenceSlot") in LxxPerson contains invalid: nil'.
+	self assert: auditor errorDescriptions first equals: 'a LxxPerson slot: parent contains unexpected value: nil'.
 	^ auditor
 ]

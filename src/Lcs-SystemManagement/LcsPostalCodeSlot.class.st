@@ -8,7 +8,10 @@ Class {
 
 { #category : 'initialize' }
 LcsPostalCodeSlot >> defaultInitialValueBlock [
-	^ [ :parentDomainObject :slot | parentDomainObject country postalCodeClass new ]
+	^ [ :parentDomainObject :slot | 
+			parentDomainObject country postalCodeClass new
+				parent: parentDomainObject;
+				yourself ]
 ]
 
 { #category : 'initialize' }
@@ -18,11 +21,6 @@ LcsPostalCodeSlot >> initialize [
 	self addSubclassesOf: LcsBasePostCode.
 	self priority: 18.
 	self required: true
-]
-
-{ #category : 'object initialization' }
-LcsPostalCodeSlot >> initializeSlotWithValue: aValue in: aDomainObject [
-	super initializeSlotWithValue: aValue in: aDomainObject
 ]
 
 { #category : 'slot model' }

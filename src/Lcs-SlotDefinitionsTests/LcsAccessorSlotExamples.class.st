@@ -253,15 +253,31 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowedOnlyAtInitialization [
 	<gtExample>
 	| slot |
 	slot := self newSlot.
-	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
-	
+	self deny: slot isNilAllowed.
+	self 
+		should: [ slot validate: nil ] 
+		raise: LcsInvalidSlotTypeError.
+	self 
+		should: [ slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject ] 
+		raise: LcsInvalidSlotTypeError.
+
+	"Nil is allowed only on object creation"
 	slot beAllowInitialNil.
 	self assert: slot isNilAllowed.
 	self assert: slot slotTypeRules collectionSize = 2.
 	self assert: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
 	self assert: slot validationRules collectionSize = 1.
-	self assert: (slot validate: nil).
+	self  assert: (slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject).
+	self should: [ slot validate: nil ] raise: LcsSlotValidationError.
+	self 
+		shouldnt: [ slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject ] 
+		raise: LcsInvalidSlotTypeError.
+	self 
+		should: [ slot validate: nil context: nil oldValue: nil ] 
+		raise: LcsSlotValidationError.
 
+
+	"Nil is not only allowed on object creation"
 	slot beDisallowInitialNil.
 	self deny: slot isNilAllowed.
 	self assert: slot slotTypeRules collectionSize = 1.
@@ -270,8 +286,13 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowedOnlyAtInitialization [
 	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
 
 	slot beAllowInitialNil.
-	self assert: (slot validate: nil context: nil oldValue: nil).
-	self should: [ slot validate: nil context: nil oldValue: 'xx' ] raise: LcsSlotValidationError.
+	self assert: (slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject).
+	self 
+		shouldnt: [ slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject ]
+		raise: LcsSlotValidationError.
+	self 
+		should: [ slot validate: nil context: nil oldValue: nil ]
+		raise: LcsSlotValidationError.
 	^ slot
 ]
 
