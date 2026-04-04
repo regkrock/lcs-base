@@ -147,6 +147,40 @@
 				"code" : "\"Lcs Examples\"\r| gtExamples |\rLcsApplicationEnvironment ensureActiveApplicationEnvironment.\rgtExamples := OrderedCollection new.\rLcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rGtExampleGroup withAll: gtExamples\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
 			},
 			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-04T10:38:55.692384-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-04T10:39:15.100863-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "fKMs6zYvTiKNd2KxN8OGjg=="
+				},
+				"code" : "LcsApplicationEnvironmentExamples gtExamples"
+			},
+			{
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
