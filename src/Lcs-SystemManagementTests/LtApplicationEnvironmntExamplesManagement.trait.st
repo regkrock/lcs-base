@@ -34,6 +34,7 @@ LtApplicationEnvironmntExamplesManagement >> prototypeSystemClass [
 
 { #category : 'environment' }
 LtApplicationEnvironmntExamplesManagement >> restoreSuspendedApplicationEnvironment [
+	LcsApplicationEnvironment stopAllSystems .
 	LcsApplicationEnvironment
 		restoreToCurrentApplicationEnvironment: self suspendedEnvironment.
 	self suspendedEnvironment ifNotNil: [ 
