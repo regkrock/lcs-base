@@ -31,7 +31,8 @@ LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [
 
 { #category : 'slot model' }
 LcsMemberOfGlobalCollectionSlot >> collectionModule [
-	^ self currentSystem moduleNamed: self collectionSlotModuleName
+	^ (self currentSystem ifNil: [ LcsNoSystemError signal ])
+		moduleNamed: self collectionSlotModuleName
 ]
 
 { #category : 'properties' }
