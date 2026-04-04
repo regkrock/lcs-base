@@ -35,12 +35,14 @@ LtApplicationEnvironmntExamplesManagement >> prototypeSystemClass [
 { #category : 'environment' }
 LtApplicationEnvironmntExamplesManagement >> restoreSuspendedApplicationEnvironment [
 	LcsApplicationEnvironment stopAllSystems .
+	self assert: LcsDomainObject hasSlotModel not.
 	LcsApplicationEnvironment
 		restoreToCurrentApplicationEnvironment: self suspendedEnvironment.
 	self suspendedEnvironment ifNotNil: [ 
 		self assert: self suspendedEnvironment isInActiveStatus.
 		self assert: self suspendedEnvironment
-						== LcsApplicationEnvironment currentApplicationEnvironment ].
+						== LcsApplicationEnvironment currentApplicationEnvironment.
+		LcsApplicationEnvironment hasCurrentSystem ifTrue: [ self assert:  LcsDomainObject hasSlotModel ] ].
 	^ LcsApplicationEnvironment currentApplicationEnvironment
 ]
 
