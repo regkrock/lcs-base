@@ -137,14 +137,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-09-03T09:44:30.215211-04:00"
+						"dateAndTimeString" : "2026-03-05T08:06:53.199768-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "45YREo/4DQCnGFcyA3HkFA=="
 				},
-				"code" : "\"Lcs Examples\"\r| gtExamples |\rLcsApplicationEnvironment ensureActiveApplicationEnvironment.\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rGtExampleGroup withAll: gtExamples\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
+				"code" : "\"Lcs Examples\"\r| gtExamples |\rLcsApplicationEnvironment ensureActiveApplicationEnvironment.\rgtExamples := OrderedCollection new.\rLcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rGtExampleGroup withAll: gtExamples\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
 			},
 			{
 				"__type" : "textSnippet",
@@ -208,14 +208,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-25T11:24:14.993649-04:00"
+						"dateAndTimeString" : "2026-03-05T08:06:53.221526-05:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "oTVuzpP5DQCR6Fe4B+65wQ=="
 				},
-				"code" : "| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsObjectExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rexampleResults := (GtExampleGroup withAll: (gtExamples copyFrom: 1 to: gtExamples size - 1  )) runAll.\rexampleResults."
+				"code" : "| exampleResults gtExamples |\r\rgtExamples := OrderedCollection new.\rLcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rexampleResults := (GtExampleGroup withAll: (gtExamples copyFrom: 1 to: gtExamples size - 1  )) runAll.\rexampleResults."
 			},
 			{
 				"__type" : "pharoSnippet",
