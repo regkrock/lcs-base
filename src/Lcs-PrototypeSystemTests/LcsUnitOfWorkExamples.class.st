@@ -49,6 +49,7 @@ LcsUnitOfWorkExamples >> domainObjectCreatedAndAddedToGlobalCollection [
 { #category : 'examples' }
 LcsUnitOfWorkExamples >> historyObjectOfNewDomainObject [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| domainObject history |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.
@@ -65,7 +66,6 @@ LcsUnitOfWorkExamples >> historyObjectOfNewDomainObject [
 	self assert: domainObject lastUpdatedTimestamp equals: domainObject history creationTimestamp.
 	self assert: domainObject creator equals: self currentSystem currentUser.
 	self assert: (history := domainObject history) userUuid isInteger.
-	self removeCurrentSystemAndActivateSavedSystem.
 	^ history
 ]
 
@@ -104,6 +104,7 @@ LcsUnitOfWorkExamples >> historyOfAllSlotChanges [
 { #category : 'tests' }
 LcsUnitOfWorkExamples >> historyOfSlotChange [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person slotChangeHistory |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.
@@ -129,13 +130,13 @@ LcsUnitOfWorkExamples >> historyOfSlotChange [
 	self currentSystem applyChanges.
 	slotChangeHistory := person historyOfChangesToSlot: 'dateOfBirth'.
 	self assert: slotChangeHistory size = 3.
-	self removeCurrentSystemAndActivateSavedSystem.
 	^ slotChangeHistory
 ]
 
 { #category : 'examples' }
 LcsUnitOfWorkExamples >> lastUpdatedDate [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person creationTimestamp |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.
@@ -151,7 +152,6 @@ LcsUnitOfWorkExamples >> lastUpdatedDate [
 	
 	self assert: person lastUpdatedTimestamp > creationTimestamp.
 	self assert: person lastUpdatedUser equals: self currentSystem currentUser.
-	self removeCurrentSystemAndActivateSavedSystem.
 	^ person lastUpdatedTimestamp
 ]
 
