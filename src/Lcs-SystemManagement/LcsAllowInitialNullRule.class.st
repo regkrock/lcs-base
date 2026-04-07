@@ -9,7 +9,15 @@ Class {
 { #category : 'defaults' }
 LcsAllowInitialNullRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
-		self isValidValue: value domainObject: parentDomainObject oldValue: oldValue ]
+		(self slotDefinition isNullObject: value) 
+			ifTrue: [ 
+				(self slotDefinition isNullNotAllowed or: [ oldValue isNotNil ]) 
+					ifTrue: [
+						^ self 
+							signalValidationError: value 
+							context: parentDomainObject 
+							oldValue: oldValue  ] ].
+		true ].
 ]
 
 { #category : 'defaults' }
@@ -20,13 +28,4 @@ LcsAllowInitialNullRule >> defaultDescription [
 { #category : 'defaults' }
 LcsAllowInitialNullRule >> defaultErrorMessage [
 	^ 'Attempt to initialize slot with null when in a state other than initialization'
-]
-
-{ #category : 'testing' }
-LcsAllowInitialNullRule >> isValidValue: value domainObject: parentDomainObject oldValue: oldValue [
-	(self slotDefinition isNullObject: value) ifFalse: [ ^ false ].
-	self slotDefinition isNullAllowed ifFalse: [ self signalValidationError: value context: parentDomainObject oldValue: oldValue  ].
-	oldValue isNil ifFalse: [ self signalValidationError: value context: parentDomainObject oldValue: oldValue  ].
-	^ true
-
 ]

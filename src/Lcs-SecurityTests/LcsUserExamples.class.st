@@ -10,16 +10,30 @@ Class {
 LcsUserExamples >> newUser [
 	<gtExample>
 	<after: #clearUnitOfWork>
-	| user auditer|
+	| user auditor |
 	self ensureCurrentSystemIsBasicSystem.
 	self assert: self currentSystem unitOfWork hasNoChanges.
 	user := LcsUser new.
+	auditor := LcsConditionsValidator newOn: self.
 	self assert: user userid isEmpty.
+	self 
+		assertAuditOf: user 
+		slot: 'userid' 
+		equals: 'Attempt to initialize slot with null when in a state other than initialization'.
 	self assert: user password isEmpty.
+	self 
+		assertAuditOf: user 
+		slot: 'password' 
+		equals: 'Password is required'.
 	self assert: user person isNil.
+	self 
+		assertAuditOf: user 
+		slot: 'person' 
+		equals: 'Attempt to initialize slot with nil when in a state other than initialization'.
 	self assert: user securityRole notNil.
 	self assert: user securityRole role equals: 'guest'.
-	auditer := user auditSlots.
-	self assert: auditer  errorDescriptions notEmpty.
-	^ auditer
+	auditor := user auditSlots.
+	self assert: auditor  errorDescriptions notEmpty.
+	self assert: auditor errorDescriptions size equals: 3.
+	^ user
 ]

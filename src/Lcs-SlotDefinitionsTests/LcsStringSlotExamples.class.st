@@ -10,18 +10,27 @@ Class {
 LcsStringSlotExamples >> lastNameSlotAllowingInitialNullAndRequiring2To10Characters [
 	<gtExample>
 	| slot subrules |
-	slot := self lastNameSlotAllowingInitialNullAndRequiringAtLeast2CharactersAfterThat.
+	slot := self lastNameSlotAllowingNull.
 	slot beAllowInitialNull.
-	self assert: slot validationRules collectionSize = 2.
-	subrules := slot validationRules collection at: 2.
-	self assert: subrules collectionSize = 1.
+	self assert: slot validationRules collectionSize = 1.
+	slot validationRules beAndEvaluationType.
+	subrules := slot validationRules addRule: (LcsValidationRules newAndRules).
+	self assert: subrules parent equals: slot validationRules.
 	subrules
 		addRuleBlock: [ :value :parentDomainObject :oldValue | value size <= 10 ] 
 		description: 'Maximum 10 characters'.
+	subrules
+		addRuleBlock: [ :value :parentDomainObject :oldValue | value size = 0 or: [ value size >= 2 ] ]
+		description: 'Minmum of 2 characters'.
 	self assert: slot validationRules collectionSize = 2.
 	self assert: subrules collectionSize = 2.
 
 	self assert: (slot validate: 'ab' context: nil oldValue: nil).
+	self assert: (slot validate: '' context: nil oldValue: nil).
+	self 
+		should: [ slot validate: '' context: nil oldValue: 'abc' ] 
+		raise: LcsSlotValidationError 
+		description: 'Can store a null string only if the old value is nil'.
 	self 
 		should: [ slot validate: 'a' context: nil oldValue: nil ] 
 		raise: LcsSlotValidationError 
@@ -36,23 +45,39 @@ LcsStringSlotExamples >> lastNameSlotAllowingInitialNullAndRequiring2To10Charact
 { #category : 'examples' }
 LcsStringSlotExamples >> lastNameSlotAllowingInitialNullAndRequiringAtLeast2CharactersAfterThat [
 	<gtExample>
-	| slot subrules |
+	| slot |
 	slot := self lastNameSlotAllowingNull.
+	self assert: slot validationRules isOrEvaluationType.
+	self assert: slot validationRules collectionSize = 0.
+
+	slot validationRules beAndEvaluationType.
+	self assert: slot validationRules isAndEvaluationType.
+	self assert: slot validationRules collectionSize = 0.
 	slot beAllowInitialNull.
 	self assert: slot validationRules collectionSize = 1.
-	subrules := slot validationRules addRule: (LcsValidationRules newAndRules).
-	subrules 
-		addRuleBlock: [ :value :parentDomainObject :oldValue | value size >= 2 ] 
+	self assert: (slot validate: '' context: nil oldValue: nil ) description: 'any length is allowed'.
+	self assert: (slot validate: 'a' context: nil oldValue: nil ) description: 'any length is allowed'.
+	self assert: (slot validate: 'ab' context: nil oldValue: nil).
+
+	slot validationRules
+		addRuleBlock: [ :value :parentDomainObject :oldValue | value size = 0 or: [ value size >= 2 ] ] 
 		description: 'Minimum 2 characters'.
 	self assert: slot validationRules collectionSize = 2.
-	self assert: subrules collectionSize = 1.
 
-	self assert: (slot validate: 'ab' context: nil oldValue: nil).
+	self 
+		assert: (slot validate: 'ab' context: nil oldValue: nil) 
+		description: 'Two or more characters is allowed'.
+	self 
+		should: [ slot validate: '' context: nil oldValue: 'abc' ] 
+		raise: LcsSlotValidationError 
+		description: 'Null is not allowed if the old value is not nil'.
+	self 
+		assert: (slot validate: '' context: nil oldValue: nil ) 
+		description: 'Null value should be allowed only if existing value is nil'.
 	self 
 		should: [ slot validate: 'a' context: nil oldValue: nil ] 
 		raise: LcsSlotValidationError 
 		description: 'String is too short'.
-	self assert: (slot validate: '' context: nil oldValue: nil ) description: 'Null value should be allowed'.
 	^ slot
 ]
 
@@ -78,7 +103,8 @@ LcsStringSlotExamples >> lastNameSlotAllowingNull [
 	
 	self assert: (slot validate: '' context: nil oldValue: nil).
 	self assert: (slot validate: 'ab' context: nil oldValue: nil).
-	self should: [ slot validate: 123 context: nil oldValue: nil ] raise: LcsInvalidSlotTypeError.	^ slot
+	self should: [ slot validate: 123 context: nil oldValue: nil ] raise: LcsInvalidSlotTypeError.
+	^ slot
 ]
 
 { #category : 'examples' }

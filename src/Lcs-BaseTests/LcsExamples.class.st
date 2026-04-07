@@ -18,6 +18,15 @@ LcsExamples >> abortTransaction [
 ]
 
 { #category : 'asserting' }
+LcsExamples >> assertAuditOf: aDomainObject slot: aSlotName equals: aString [
+	| auditor |
+	auditor := LcsConditionsValidator newOn: aDomainObject.
+	(aDomainObject slotDefinitionNamed: aSlotName) audit: aDomainObject withAuditor: auditor.
+	self assert: auditor errorDescriptions size equals: 1.
+	self assert: auditor errorDescriptions first equals: aString
+]
+
+{ #category : 'asserting' }
 LcsExamples >> assertClass: aClassOrClassName hasClassSelector: aSelector [
 	self assert: ((self classNamed:aClassOrClassName) class allSelectors includes: aSelector asSymbol)
 ]

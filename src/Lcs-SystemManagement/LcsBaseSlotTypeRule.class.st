@@ -10,8 +10,9 @@ Class {
 LcsBaseSlotTypeRule >> signalInvalidSlotTypeError: value for: aDomainObject [ 
 	^ LcsInvalidSlotTypeError
 		signalInvalidType: value
-		forSlot: self slotDefinition
-		for: aDomainObject
+		rule: self
+		inSlot: self slotDefinition
+		context: aDomainObject
 ]
 
 { #category : 'validation' }

@@ -14,7 +14,7 @@ Class {
 
 { #category : 'slot model' }
 LcsSlotValidationBaseError >> domainClass [
-	^ self slotDefinition ifNil: [ '<nil>' ] ifNotNil: [ :slot | slot domainClass ]
+	^ self slotDefinition ifNil: [ '<nil>' ] ifNotNil: [ :slot | slot ifNotNil: [ slot domainClass ] ]
 ]
 
 { #category : 'gt view' }

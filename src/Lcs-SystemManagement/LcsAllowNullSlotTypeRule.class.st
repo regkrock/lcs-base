@@ -8,12 +8,12 @@ Class {
 
 { #category : 'defaults' }
 LcsAllowNullSlotTypeRule >> defaultConditionBlock [
-	^ [  :value :parentDomainObject :oldValue | 
+	^ [ :value :parentDomainObject :oldValue | 	
 		(self isNullObject: value)
 			ifTrue: [ 
 				self isNullAllowed
 					ifTrue: [ true ]
-					ifFalse: [ self signalInvalidSlotTypeError: value for: parentDomainObject ] ]
+					ifFalse: [ ^ self signalInvalidSlotTypeError: value for: parentDomainObject ] ]
 			ifFalse: [ false ] ]
 ]
 

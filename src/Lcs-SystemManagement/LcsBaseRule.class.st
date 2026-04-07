@@ -6,7 +6,8 @@ Class {
 	#instVars : [
 		'conditionBlock',
 		'errorMessage',
-		'description'
+		'description',
+		'auditMessage'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -18,6 +19,25 @@ LcsBaseRule >> = anObject [
 	anObject class name = self class name ifFalse: [ ^ false ].
 	anObject conditionBlock asString = self conditionBlock asString ifFalse: [ ^ false ].
 	^ anObject description = self description
+]
+
+{ #category : 'validation' }
+LcsBaseRule >> audit: aValue context: aDomainObject [ 
+	^ self conditionBlock 
+		cull: aValue 
+		cull: aDomainObject 
+		cull: aValue 
+		cull: self slotDefinition
+]
+
+{ #category : 'accessing' }
+LcsBaseRule >> auditMessage [
+	^ auditMessage
+]
+
+{ #category : 'accessing' }
+LcsBaseRule >> auditMessage: anObject [
+	auditMessage := anObject
 ]
 
 { #category : 'accessing' }
@@ -174,10 +194,20 @@ LcsBaseRule >> rule: anObject [
 ]
 
 { #category : 'error signalling' }
+LcsBaseRule >> signalAuditError: aValue context: aDomainObject [ 
+	^ LcsSlotValidationError
+		signalInvalidAuditValue: aValue
+		rule: self
+		inSlot: self slotDefinition
+		oldValue: aValue
+		context: aDomainObject
+]
+
+{ #category : 'error signalling' }
 LcsBaseRule >> signalValidationError: aValue context: aDomainObject oldValue: anOldValue [
 	^ LcsSlotValidationError
 		signalInvalidValue: aValue
-		forCondition: self
+		rule: self
 		inSlot: self slotDefinition
 		oldValue: anOldValue
 		context: aDomainObject
@@ -214,6 +244,12 @@ LcsBaseRule >> validate: aValue context: aDomainObject oldValue: anOldValue [
 	^ result 
 		ifTrue: [ result ]
 		ifFalse: [ self signalValidationError: aValue context: aDomainObject oldValue: anOldValue ]
+]
+
+{ #category : 'accessing' }
+LcsBaseRule >> validationAuditMessage [
+	^ self auditMessage 
+		ifNil: [ self validationErrorMessage ]
 ]
 
 { #category : 'accessing' }

@@ -6,6 +6,17 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'validation' }
+LcsValidationRule >> audit: aValue context: aDomainObject [ 
+	| result |
+	result := super audit: aValue context: aDomainObject .
+	^result
+		ifTrue: [ true ]
+		ifFalse: [
+			self signalAuditError: aValue context: aDomainObject.
+			false ]
+]
+
 { #category : 'magritte' }
 LcsValidationRule >> conditionBlockDescription [
 	<magritteDescription>

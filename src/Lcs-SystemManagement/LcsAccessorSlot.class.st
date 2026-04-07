@@ -99,6 +99,11 @@ LcsAccessorSlot >> addValidationRuleBlock: aBlock description: aString [
 	^ self validationRules addRuleBlock: aBlock description: aString
 ]
 
+{ #category : 'configuration' }
+LcsAccessorSlot >> allowInitialNullRule [
+	^ LcsAllowInitialNullRule new
+]
+
 { #category : 'properties' }
 LcsAccessorSlot >> allowNil [ 
 	^ self propertyAt: 'allowNil'
@@ -177,20 +182,58 @@ LcsAccessorSlot >> assignParent: aDomainObject to: newValue [
 		newValue parent: aDomainObject ]
 ]
 
+{ #category : 'validations' }
+LcsAccessorSlot >> audit: anObject context: aDomainObject [
+	self
+		validateSlotType: anObject
+		context: aDomainObject
+		oldValue: anObject.
+	^ self
+		validateRules: anObject
+		context: aDomainObject
+		oldValue: anObject
+]
+
+{ #category : 'audit' }
+LcsAccessorSlot >> audit: anAuditor currentValue: value context: anObject [
+	| result |
+	result := [
+		self auditSlotType: value context: anObject.
+		true ]
+			on: LcsInvalidSlotTypeError
+			do: [ :signal |
+				anAuditor addErrorDescription: signal messageText.
+				signal return: false ].
+	result ifFalse: [ ^self ].
+	[ 
+		self auditValidationRules: value context: anObject.
+		^ true ]
+			on: LcsError
+			do: [ :signal |
+				anAuditor addErrorDescription: signal messageText.
+				signal return: false ]
+]
+
 { #category : 'audit' }
 LcsAccessorSlot >> audit: anObject withAuditor: anAuditor [
-	| value |
-	value := self _currentSlotVarIn: anObject.
-	[ self validateSlotType: value context: anObject oldValue: value ]
-		on: LcsInvalidSlotTypeError
-		do: [ :signal |
-			anAuditor addErrorDescription: signal auditErrorMessage.
-			signal return: nil ].
-	[ self validateRules: value context: anObject oldValue: value ]
-		on: LcsError
-		do: [ :signal |
-			anAuditor addErrorDescription: signal auditErrorMessage.
-			signal return: nil ]
+	| currentValue |
+	currentValue := self _currentSlotVarIn: anObject.
+	self audit: anAuditor currentValue: currentValue context: anObject
+]
+
+{ #category : 'validations' }
+LcsAccessorSlot >> auditSlotType: anObject context: aDomainObject [
+	^ self slotTypeRules
+		audit: anObject
+		context: aDomainObject
+]
+
+{ #category : 'validations' }
+LcsAccessorSlot >> auditValidationRules: anObject context: aDomainObject [
+	^ self validationRules
+		audit: anObject
+		context: aDomainObject
+
 ]
 
 { #category : 'configuration' }
@@ -203,8 +246,9 @@ LcsAccessorSlot >> beAllowInitialNil [
 { #category : 'configuration' }
 LcsAccessorSlot >> beAllowInitialNull [
 	self beAllowNull.
-	(self validationRules hasRuleWithDescription: LcsAllowInitialNullRule new description)
-		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
+	(self validationRules
+		hasRuleWithDescription: LcsAllowInitialNullRule new description)
+		ifFalse: [ self validationRules addFirstRule: self allowInitialNullRule ]
 ]
 
 { #category : 'configuration' }
@@ -471,6 +515,11 @@ LcsAccessorSlot >> isNilAllowed [
 ]
 
 { #category : 'testing' }
+LcsAccessorSlot >> isNilNotAllowed [
+	^ self allowNil ~~ true
+]
+
+{ #category : 'testing' }
 LcsAccessorSlot >> isNotRequired [
 	^ self isRequired not
 ]
@@ -478,6 +527,11 @@ LcsAccessorSlot >> isNotRequired [
 { #category : 'testing' }
 LcsAccessorSlot >> isNullAllowed [
 	^ self allowNull == true
+]
+
+{ #category : 'testing' }
+LcsAccessorSlot >> isNullNotAllowed [
+	^ self allowNull ~~ true
 ]
 
 { #category : 'testing' }

@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'object',
 		'slotDefinition',
-		'target'
+		'target',
+		'rule'
 	],
 	#category : 'Lcs-SystemManagement-Error',
 	#package : 'Lcs-SystemManagement',
@@ -19,6 +20,15 @@ LcsInvalidSlotTypeError class >> signalInvalidType: anObject forSlot: aSlotDefin
 		for: aDomainObject
 ]
 
+{ #category : 'instance creation' }
+LcsInvalidSlotTypeError class >> signalInvalidType: aValue rule: aRule inSlot: aSlotDefinition context: aDomainObject [
+	^ self new
+		signalInvalidType: aValue
+		rule: aRule 
+		inSlot: aSlotDefinition 
+		context: aDomainObject
+]
+
 { #category : 'instance  creation' }
 LcsInvalidSlotTypeError class >> signalNoRulesToValidateType: anObject forSlot: aSlotDefinition for: aDomainObject [
 	^ self new
@@ -29,7 +39,7 @@ LcsInvalidSlotTypeError class >> signalNoRulesToValidateType: anObject forSlot: 
 
 { #category : 'signal' }
 LcsInvalidSlotTypeError >> auditErrorMessage [
-	^ '<1p> slot: <2s> contains unexpected value: <3p>'
+	^ '<1p> slot: <2p> contains unexpected value: "<3p>"'
 		expandMacrosWith: self target
 		with: self slotName
 		with: self object
@@ -179,9 +189,29 @@ LcsInvalidSlotTypeError >> reinstallSlotDefinition [
 	^ self target class installAccessorSlotDefinition: self slotDefinitionSelector
 ]
 
+{ #category : 'accessing' }
+LcsInvalidSlotTypeError >> rule [
+	^ rule
+]
+
+{ #category : 'accessing' }
+LcsInvalidSlotTypeError >> rule: anObject [
+	rule := anObject
+]
+
 { #category : 'signal' }
 LcsInvalidSlotTypeError >> signalInvalidType: anObject forSlot: aSlotDefinition for: aDomainObject [
 	self object: anObject.
+	self slotDefinition: aSlotDefinition.
+	self target: aDomainObject.
+	self messageText: self invalidSlotTypeMessage.
+	self signal: self messageText
+]
+
+{ #category : 'instance  creation' }
+LcsInvalidSlotTypeError >> signalInvalidType: aValue rule: aRule inSlot: aSlotDefinition context: aDomainObject [ 
+	self object: aValue.
+	self rule: aRule.
 	self slotDefinition: aSlotDefinition.
 	self target: aDomainObject.
 	self messageText: self invalidSlotTypeMessage.

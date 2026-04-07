@@ -60,6 +60,19 @@ LcsBaseRules >> addRuleBlock: aBlock description: aString [
 			yourself)
 ]
 
+{ #category : 'validations' }
+LcsBaseRules >> audit: aValue context: aDomainObject [
+	self isOrEvaluation ifTrue: [
+		self collection do: [ :eachRule | 
+			(eachRule audit: aValue context: aDomainObject) 
+				ifTrue: [ ^ true ] ] ]
+		ifFalse: [
+			self collection do: [ :eachRule | 
+				(eachRule audit: aValue context: aDomainObject)
+					ifFalse: [ ^ false ] ] ].
+	^ true
+]
+
 { #category : 'configuration' }
 LcsBaseRules >> beAndEvaluationType [
 	self evaluationType: 'and'
@@ -101,11 +114,13 @@ LcsBaseRules >> gtDisplayOn: stream [
 LcsBaseRules >> gtItemsFor: aView [
 	<gtView>
 	self collection isNil ifTrue: [ ^ aView empty ].
-	^ aView forward
+	^ aView tree
 		title: 'Items' translated;
 		priority: 0.5;
-		object: [ self collection ];
-		view: #gtItemsFor:;
+		expandAll;
+		items: [ Array with: self ];
+		children: [ :each | (each isKindOf: LcsBaseRules) ifTrue: [ each collection ] ifFalse: [#()] ];
+		"view: #gtItemsFor:;"
 		actionUpdateButton
 ]
 

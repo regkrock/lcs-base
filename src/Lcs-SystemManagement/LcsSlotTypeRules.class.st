@@ -12,6 +12,17 @@ LcsSlotTypeRules >> = aRules [
 	^ self collection = aRules collection
 ]
 
+{ #category : 'validations' }
+LcsSlotTypeRules >> audit: aValue context: aDomainObject [
+	self collection isEmpty ifTrue: [ 
+		LcsInvalidSlotTypeError 
+			signalNoRulesToValidateType: aValue
+			forSlot: self slotDefinition
+			for: nil ].
+	self collection do: [ :eachRule | (eachRule audit: aValue context: aDomainObject) ifTrue: [ ^ true ] ].
+	^ false
+]
+
 { #category : 'comparing' }
 LcsSlotTypeRules >> hash [
 	^ self collection inject: self identityHash into: [ :each :hash | hash bitXor: each hash ]

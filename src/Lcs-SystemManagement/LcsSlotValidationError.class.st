@@ -7,41 +7,70 @@ Class {
 }
 
 { #category : 'instance creation' }
-LcsSlotValidationError class >> signalInvalidValue: aValue forCondition: anObject inSlot: aSlotDefinition oldValue: anOldValue context: aDomainObject [
+LcsSlotValidationError class >> signalInvalidAuditValue: aValue rule: aRule inSlot: aSlotDefinition context: aDomainObject [
 	self new
-		signalInvalidValue: aValue
-		forRule: anObject
+		signalInvalidAuditValue: aValue
+		rule: aRule
 		inSlot: aSlotDefinition
 		context: aDomainObject
-		oldValue: anOldValue
 ]
 
 { #category : 'instance creation' }
-LcsSlotValidationError class >> signalInvalidValue: aValue forRule: anObject inSlot: aSlotDefinition context: aDomainObject oldValue: anOldvalue [
+LcsSlotValidationError class >> signalInvalidAuditValue: aValue rule: aRule inSlot: aSlotDefinition oldValue: anOldValue context: aDomainObject [
+	self new
+		signalInvalidAuditValue: aValue
+		rule: aRule
+		inSlot: aSlotDefinition
+		context: aDomainObject
+]
+
+{ #category : 'instance creation' }
+LcsSlotValidationError class >> signalInvalidValue: aValue rule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldvalue [
 	self new
 		signalInvalidValue: aValue
-		forRule: anObject
+		rule: aRule
 		inSlot: aSlotDefinition
 		context: aDomainObject
 		oldValue: anOldvalue
 ]
 
 { #category : 'instance creation' }
-LcsSlotValidationError >> auditErrorMessage [
-	^ '<1s> slot: <2s> contains unexpected value: <3s>'
-		expandMacrosWith: self targetDomainObject printString
-		with: self slotName asString
-		with: self value asString
+LcsSlotValidationError class >> signalInvalidValue: aValue rule: aRule inSlot: aSlotDefinition oldValue: anOldValue context: aDomainObject [
+	^ self new
+		signalInvalidValue: aValue
+		rule: aRule
+		inSlot: aSlotDefinition
+		context: aDomainObject
+		oldValue: anOldValue
 ]
 
 { #category : 'instance creation' }
-LcsSlotValidationError >> signalInvalidValue: aValue forRule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
+LcsSlotValidationError >> auditErrorMessage [
+	^ '<1p> slot: <2p> contains unexpected value: <3p>'
+		expandMacrosWith: self targetDomainObject
+		with: self slotName
+		with: self value
+]
+
+{ #category : 'instance creation' }
+LcsSlotValidationError >> signalInvalidAuditValue: aValue rule: aRule inSlot: aSlotDefinition context: aDomainObject [
+	self value: aValue.
+	self rule: aRule.
+	self slotDefinition: aSlotDefinition.
+	self context: aDomainObject.
+	self oldValue: aValue.
+	self signal: aRule validationErrorMessage
+]
+
+{ #category : 'instance creation' }
+LcsSlotValidationError >> signalInvalidValue: aValue rule: aRule inSlot: aSlotDefinition context: aDomainObject oldValue: anOldValue [
 	self value: aValue.
 	self rule: aRule.
 	self slotDefinition: aSlotDefinition.
 	self context: aDomainObject.
 	self oldValue: anOldValue.
-	self signal: self validationConditionErrorMessage
+	self signal: aRule validationErrorMessage.
+	^ self
 ]
 
 { #category : 'instance creation' }

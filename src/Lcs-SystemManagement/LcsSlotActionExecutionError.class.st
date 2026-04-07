@@ -5,8 +5,7 @@ Class {
 		'value',
 		'updateAction',
 		'slotDefinition',
-		'oldValue',
-		'smalltalkException'
+		'oldValue'
 	],
 	#category : 'Lcs-SystemManagement-Error',
 	#package : 'Lcs-SystemManagement',
@@ -53,16 +52,6 @@ LcsSlotActionExecutionError >> slotDefinition [
 { #category : 'accessing' }
 LcsSlotActionExecutionError >> slotDefinition: anObject [
 	slotDefinition := anObject
-]
-
-{ #category : 'accessing' }
-LcsSlotActionExecutionError >> smalltalkException [
-	^ smalltalkException
-]
-
-{ #category : 'accessing' }
-LcsSlotActionExecutionError >> smalltalkException: anObject [
-	smalltalkException := anObject
 ]
 
 { #category : 'accessing' }

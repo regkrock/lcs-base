@@ -6,6 +6,13 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'configuration' }
+LcsPasswordSlot >> allowInitialNullRule [
+	^ super allowInitialNullRule
+		errorMessage: 'Password is required';
+		yourself
+]
+
 { #category : 'initialize' }
 LcsPasswordSlot >> initialize [
 	super initialize.
@@ -15,5 +22,5 @@ LcsPasswordSlot >> initialize [
 	self addValidationRule: (
 			LcsValidationRule new
 				conditionBlock: [ :value :domainObject : oldValue | value notEmpty];
-				description: 'pasword is required')
+				description: 'Password is required')
 ]
