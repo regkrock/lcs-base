@@ -13,11 +13,12 @@ LcsAllowInitialNullRule >> defaultConditionBlock [
 			ifTrue: [ 
 				(self slotDefinition isNullNotAllowed or: [ oldValue isNotNil ]) 
 					ifTrue: [
-						^ self 
+						self 
 							signalValidationError: value 
 							context: parentDomainObject 
-							oldValue: oldValue  ] ].
-		true ].
+							oldValue: oldValue  ]
+					ifFalse: [ true ] ]
+			ifFalse: [ false ] ].
 ]
 
 { #category : 'defaults' }

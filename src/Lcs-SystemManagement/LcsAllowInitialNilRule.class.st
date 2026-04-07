@@ -9,14 +9,16 @@ Class {
 { #category : 'defaults' }
 LcsAllowInitialNilRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
-		value isNil ifTrue: [
-			(self slotDefinition isNilNotAllowed or: [ oldValue isLcsUndefinedObject not ])
-				ifTrue: [ 
-					^ self 
-						signalValidationError: value 
-						context: parentDomainObject 
-						oldValue: oldValue ] ].
-		true ]
+		value isNil 
+			ifTrue: [
+				(self slotDefinition isNilNotAllowed or: [ oldValue isLcsUndefinedObject not ])
+					ifTrue: [ 
+						self 
+							signalValidationError: value 
+							context: parentDomainObject 
+							oldValue: oldValue ] 
+					ifFalse: [ true ] ]
+			ifFalse: [ false ] ]
 ]
 
 { #category : 'defaults' }

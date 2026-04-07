@@ -9,7 +9,15 @@ Class {
 { #category : 'defaults' }
 LcsAllowNullRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
-		self isValidIValue: value domainObject: parentDomainObject oldValue: oldValue ]
+		(self slotDefinition isNullObject: value) 
+			ifTrue: [
+				self slotDefinition isNullAllowed 
+					ifTrue: [ true]
+					ifFalse: [ self 
+								signalValidationError: value 
+								context: parentDomainObject 
+								oldValue: oldValue  ] ]
+			ifFalse: [ false ] ]
 ]
 
 { #category : 'defaults' }
@@ -20,11 +28,4 @@ LcsAllowNullRule >> defaultDescription [
 { #category : 'defaults' }
 LcsAllowNullRule >> defaultErrorMessage [
 	^ 'Attempt to set slot to null when null not allowed'
-]
-
-{ #category : 'testing' }
-LcsAllowNullRule >> isValidValue: value domainObject: parentDomainObject oldValue: oldValue [
-	(self slotDefinition isNullObject: value) ifFalse: [ ^ true ].
-	self slotDefinition isNullAllowed ifFalse: [ self signalValidationError: value context: parentDomainObject oldValue: oldValue  ].
-	^ true
 ]

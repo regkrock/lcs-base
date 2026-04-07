@@ -38,7 +38,7 @@ LcsPasswordSlotExample >> auditorOnSlotWithValidPasssword [
 	auditor := self newAuditor.
 	slot
 		audit: auditor
-		currentValue: 'abc'
+		currentValue: 'abcde#3$A'
 		context: 'xxxx'.
 	self assert: auditor errorDescriptions isEmpty.
 	^ auditor
@@ -127,21 +127,11 @@ LcsPasswordSlotExample >> validateValidationRulesForSlot [
 		raise: LcsSlotValidationError
 		description: 'Empty string is only allowed to replace nil'.
 	self 
-		assert: (rule validate: 'abc' context: 'xxxx' oldValue: '') 
-		description: 'This is the right type'.
+		deny: (rule validate: 'Abcd12efg#' context: 'xxxx' oldValue: '') 
+		description: 'Fails because this rule is for initial value of null string'.
 	self 
-		assert: (rule validate: 'abc' context: 'xxxx' oldValue: '') 
-		description: 'This is the right type'.
-	self 
-		assert: (rule validate: 'abc' context: 'xxxx' oldValue: 'oldValue') 
-		description: 'This is the right type'.
-	self 
-		shouldnt: [ rule validate: 250 context: 'xxxx' oldValue: '' ] 
-		raise: LcsSlotValidationError
-		description: 'This test is for viability of empty string. 
-						It appears non-sensical that this passes
-						but this condition is beyond the scope of the
-						rule. Other rules are needed to handle this'.
+		deny: (rule validate: 250 context: 'xxxx' oldValue: '') 
+		description: 'Fails because this rule is for initial value of null string'.
 
 	self 
 		should: [ rule audit: '' context: 'xxxx' ]
@@ -149,18 +139,15 @@ LcsPasswordSlotExample >> validateValidationRulesForSlot [
 		description: 'From an audit perspective, an empty string is 
 						an invalid value when the object is persisted'.
 	self 
-		assert: ( rule audit: 'xxx' context: 'xxxx' ) 
-		description: 'Valid type for persistence of the domain object'.
-	self 
-		assert: ( rule audit: nil context: 'xxxx' ) 
+		deny: ( rule audit: nil context: 'xxxx' ) 
 		description: 'Invalid type but for this rule it evaluates to true'.
 	
 	rule := slot validationRules ruleWithDescription: 'Password is required'.
 	self assert: (rule isKindOf: LcsValidationRule).
-	self assert: rule validationErrorMessage equals: 'Password is required'.
+	self assert: rule validationErrorMessage equals: 'Password must be least 8 characters long and include at least one number, one special character (+-/\*~<>=@,%|&?!·÷±×) and one uppercase character'.
 
 	self 
-		assert: (rule audit: 'xxx' context: 'xxxx') 
+		assert: (rule audit: 'Abcd12efg#' context: 'xxxx') 
 		description: 'This is the right type'.
 	self 
 		should: [ rule audit: '' context: 'xxxx' ] 

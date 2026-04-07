@@ -12,14 +12,16 @@ LcsBaseValidationRule >> audit: aValue context: aDomainObject [
 			cull: aValue
 			cull: aDomainObject
 			cull: aValue ]
-		on: MessageNotUnderstood
+		on: Error
 		do: [ :signal |
-				^ LcsSlotValidationError
-					signalInvalidAuditValue: aValue 
-					rule: self 
-					inSlot: self slotDefinition 
-					context: aDomainObject
-					]
+				^ LcsSlotValidationError new
+					value: aValue;
+					oldValue: aValue;
+					rule: self;
+					slotDefinition: self slotDefinition;
+					context: aDomainObject;
+					smalltalkException: signal;
+					signal: self validationErrorMessage]
 ]
 
 { #category : 'validation' }

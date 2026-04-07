@@ -9,10 +9,12 @@ Class {
 { #category : 'defaults' }
 LcsClassIsMemberSlotTypesRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
-	self slotTypes
-		detect: [ :eachClass | value = eachClass ]
-		ifNone: [ ^ self signalInvalidSlotTypeError: value for: parentDomainObject ].
-	true ]
+		self slotTypes
+			detect: [ :eachClass | value = eachClass ]
+			ifNone: [ self 
+						signalInvalidSlotTypeError: value 
+						for: parentDomainObject ].
+		true ]
 ]
 
 { #category : 'defaults' }
