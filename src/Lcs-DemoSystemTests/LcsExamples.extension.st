@@ -26,7 +26,7 @@ LcsExamples >> ensureCurrentSystemIsDemoSystemWithLogging [
 			self currentSystem
 				ifNil: [ 
 					Transcript cr; tab; tab; show: '... current system is nil - crete new system'.
-					self createNewPrototypeSystem ]
+					self createNewDemoSystem ]
 				ifNotNil: [ 
 					self currentSystem isDemoSystem
 						ifFalse: [ 

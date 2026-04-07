@@ -7,33 +7,44 @@ Class {
 }
 
 { #category : 'examples' }
-LcsUserExamples >> newUser [
+LcsUserExamples >> auditedNewUser [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| user auditor |
-	self ensureCurrentSystemIsBasicSystem.
-	self assert: self currentSystem unitOfWork hasNoChanges.
-	user := LcsUser new.
+	user := self newUser.
 	auditor := LcsConditionsValidator newOn: self.
-	self assert: user userid isEmpty.
 	self 
 		assertAuditOf: user 
-		slot: 'userid' 
+		slot: 'userId' 
 		equals: 'Attempt to initialize slot with null when in a state other than initialization'.
-	self assert: user password isEmpty.
 	self 
 		assertAuditOf: user 
 		slot: 'password' 
 		equals: 'Password is required'.
-	self assert: user person isNil.
 	self 
 		assertAuditOf: user 
 		slot: 'person' 
 		equals: 'Attempt to initialize slot with nil when in a state other than initialization'.
-	self assert: user securityRole notNil.
-	self assert: user securityRole role equals: 'guest'.
 	auditor := user auditSlots.
 	self assert: auditor  errorDescriptions notEmpty.
 	self assert: auditor errorDescriptions size equals: 3.
+	^ user
+]
+
+{ #category : 'examples' }
+LcsUserExamples >> newUser [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| user |
+	self ensureCurrentSystemIsBasicSystem.
+	self assert: self currentSystem unitOfWork hasNoChanges.
+	user := LcsUser new.
+	self assert: (user slotDefinitionNamed: 'password') class equals: LcsPasswordSlot.
+	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
+	self assert: user userId isEmpty.
+	self assert: user password isEmpty.
+	self assert: user person isNil.
+	self assert: user securityRole notNil.
+	self assert: user securityRole role equals: 'guest'.
 	^ user
 ]

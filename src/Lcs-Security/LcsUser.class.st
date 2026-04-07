@@ -2,7 +2,7 @@ Class {
 	#name : 'LcsUser',
 	#superclass : 'LcsBaseUser',
 	#instVars : [
-		'userid',
+		'userId',
 		'password',
 		'person',
 		'securityRole'
@@ -42,16 +42,9 @@ LcsUser class >> securityRoleSlotDefinition [
 ]
 
 { #category : 'slot definitions' }
-LcsUser class >> useridSlotDefinition [
+LcsUser class >> userIdSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsStringSlot new
-		slotName: 'userid';
-		required: true;
-		beAllowInitialNull;
-		addValidationRule: (LcsValidationRule new
-								conditionBlock: [ :value :domainObject : oldValue | value notEmpty];
-								description: 'userid is required');
-		yourself
+	^ LcsUserIdSlot new
 ]
 
 { #category : 'accessing' }
@@ -85,11 +78,11 @@ LcsUser >> securityRole: anObject [
 ]
 
 { #category : 'accessing' }
-LcsUser >> userid [
-	^ self slotVarNamed: 'userid'
+LcsUser >> userId [
+	^ self slotVarNamed: 'userId'
 ]
 
 { #category : 'accessing' }
-LcsUser >> userid: anObject [
-	self slotVarNamed: 'userid' put: anObject
+LcsUser >> userId: anObject [
+	self slotVarNamed: 'userId' put: anObject
 ]

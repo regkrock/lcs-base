@@ -18,77 +18,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-30T12:06:32.219699-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-30T12:06:50.822796-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "n6y/8i31DQCRqcFzAiRrCA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "\n\n"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-30T12:06:48.188424-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-30T12:46:52.539977-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "SU+z8y31DQCRvRLWAiRrCA=="
-				},
-				"code" : "'M2N 1G5' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\r'm' matchesRegex: '[:apha:]'.\r\r"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2025-06-30T12:12:02.414015-04:00"
 					}
 				},
@@ -137,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-30T12:46:37.528203-04:00"
+						"dateAndTimeString" : "2026-04-07T14:27:21.235797-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "GCpq9C31DQCRy0+vAiRrCA=="
 				},
-				"code" : "'42' matchesRegex: '\\d+'.\r'42' matchesRegex: '\\d\\d'\r\r'A' matchesRegex: '[A-Z]'.\r'K8A6W8' matchesRegex: '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'.\r'K8A6W8' matchesRegex: '[[A-Z][0-9]]+'.\r'K8A 6W8' matchesRegex: '[A-Z][0-9][A-Z]\\s[0-9][A-Z][0-9]'.\r'K8A 6W8' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\r\r' ' matchesRegex: '\\s'.\t\"Search for a space\"\r'B1A 1A1' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\t\"Search for a space\""
+				"code" : "'42' matchesRegex: '\\d+'.\r'42' matchesRegex: '\\d\\d'.\r\r'A' matchesRegex: '[A-Z]'.\r'K8A6W8' matchesRegex: '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'.\r'K8A6W8' matchesRegex: '[[A-Z][0-9]]+'.\r'K8A 6W8' matchesRegex: '[A-Z][0-9][A-Z]\\s[0-9][A-Z][0-9]'.\r'K8A 6W8' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\r\r' ' matchesRegex: '\\s'.\t\"Search for a space\"\r'B1A 1A1' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\t\"Search for a space\"\r\r'Abcdef3@' "
 			},
 			{
 				"__type" : "textSnippet",
