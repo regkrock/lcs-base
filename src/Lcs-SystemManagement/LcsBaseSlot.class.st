@@ -148,12 +148,12 @@ LcsBaseSlot >> clearSlotTypes [
 
 { #category : 'accessing' }
 LcsBaseSlot >> comment [
-	^ comment
+	^ self propertyAt: 'comment' ifAbsent: [ '' ]
 ]
 
 { #category : 'accessing' }
 LcsBaseSlot >> comment: anObject [
-	comment := anObject
+	self propertyAt: 'comment' put: anObject
 ]
 
 { #category : 'magritte' }
@@ -391,6 +391,7 @@ LcsBaseSlot >> initialize [
 	self properties: OrderedDictionary new.
 	self slotName: nil.
 	self initializeSlotTypes.
+	self comment: ''.
 	self priority: self defaultPriority.
 	self comment: self defaultSlotComment.
 	self pragmaSelector: self defaultPragmaSelector

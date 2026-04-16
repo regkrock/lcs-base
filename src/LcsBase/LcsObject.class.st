@@ -37,6 +37,12 @@ LcsObject class >> beginTransaction [
 	System beginTransaction
 ]
 
+{ #category : 'query' }
+LcsObject class >> classNamed: aStringOrClass [
+	aStringOrClass isClass ifTrue: [ ^ aStringOrClass ].
+	^ [ aStringOrClass asClass ] on: NotFound do: [ :s | s return: nil ]
+]
+
 { #category : 'transactions' }
 LcsObject class >> commitTransaction [
 	System commitTransaction
@@ -62,8 +68,7 @@ LcsObject class >> slotDefinitionMethodsNamed: aSelectorName [
 
 { #category : 'query' }
 LcsObject >> classNamed: aStringOrClass [
-	aStringOrClass isClass ifTrue: [ ^ aStringOrClass ].
-	^ [ aStringOrClass asClass ] on: NotFound do: [ :s | s return: nil ]
+	^ self class classNamed: aStringOrClass
 ]
 
 { #category : 'printing' }

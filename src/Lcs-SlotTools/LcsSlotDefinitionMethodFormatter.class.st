@@ -65,6 +65,8 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 
 	aPropertyName = 'valueAccessor' ifTrue: [ 
 		^ aStream addKeyword: aPropertyName symbolArgument: aValue ].		
+	aPropertyName = 'comment' ifTrue: [ 
+		^ aStream addKeyword: aPropertyName argument: aValue printString ].		
 
 	aValue class = Date
 		ifTrue: [ ^ self addDateKeyword: aPropertyName argument: aValue to: aStream ].

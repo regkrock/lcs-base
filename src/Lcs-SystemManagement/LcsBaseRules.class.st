@@ -31,8 +31,12 @@ LcsBaseRules >> = aValidations [
 
 { #category : 'conditions' }
 LcsBaseRules >> addFirstRule: aRule [
-	aRule parent: self.
-	^ self collection addFirst: aRule
+	^ (self ruleWithDescription: aRule description)
+		ifNil: [
+			aRule parent: self.
+			self addFirst: aRule ]
+		ifNotNil: [ :rule | 
+			rule ]
 ]
 
 { #category : 'conditions' }
@@ -47,8 +51,12 @@ LcsBaseRules >> addNullRule: aRule [
 
 { #category : 'conditions' }
 LcsBaseRules >> addRule: aRule [
-	aRule parent: self.
-	^ self add: aRule
+	^ (self ruleWithDescription: aRule description)
+		ifNil: [
+			aRule parent: self.
+			self add: aRule ]
+		ifNotNil: [ :rule | 
+			rule ]
 ]
 
 { #category : 'conditions' }

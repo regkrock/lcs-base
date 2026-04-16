@@ -30,6 +30,13 @@ LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 		reject: [ :each | (each inheritsFrom: LcsBaseDomainObject) not ]
 ]
 
+{ #category : 'gt views' }
+LcsBaseDomainObject class >> allSlotDefinitionMethods [
+	^ (self class gtMethodsInClass includeSuperclass: true)
+		& (#accessorSlotDefinition gtPragmas | #facadeSlotDefinition gtPragmas
+				| #collectionItemSlotDefinition gtPragmas)
+]
+
 { #category : 'slot model' }
 LcsBaseDomainObject class >> allSlotDefinitionPragmas [
 	^ OrderedCollection new
@@ -89,11 +96,8 @@ LcsBaseDomainObject class >> gtSlotDefinitionMethodFor: aView [
 		title: 'Slot Defn Methods';
 		tooltip: 'Methods that define Slot Defintions';
 		priority: 19;
-		stencil: [ (self class gtMethodsInClass includeSuperclass: true)
-				& ( #accessorSlotDefinition gtPragmas | 
-					#facadeSlotDefinition gtPragmas | 
-					#collectionItemSlotDefinition gtPragmas) ];
-		actionUpdateButton
+		stencil: [ self allSlotDefinitionMethods ];
+		actionUpdateButton	"lcsFilteredExplicit"
 ]
 
 { #category : 'gt views' }
@@ -318,6 +322,13 @@ LcsBaseDomainObject class >> isSlotModelPopulated [
 LcsBaseDomainObject class >> isSlotModelReleased [
 	self withAllSubclassesDo: [ :eachClass | eachClass slotModel notNil ifTrue: [ ^ false ] ].
 	^ true
+]
+
+{ #category : 'gt views' }
+LcsBaseDomainObject class >> localSlotDefinitionMethods [
+	^ (self class gtMethodsInClass includeSuperclass: false)
+		& (#accessorSlotDefinition gtPragmas | #facadeSlotDefinition gtPragmas
+				| #collectionItemSlotDefinition gtPragmas)
 ]
 
 { #category : 'slot model' }

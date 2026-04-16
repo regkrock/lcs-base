@@ -11,14 +11,14 @@ LcsAllowNilSlotTypeRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
 	value isNil
 		ifTrue: [ self isNilAllowed
-				ifTrue: [ true ]
-				ifFalse: [ self signalInvalidSlotTypeError: value for: parentDomainObject ] ]
+					ifTrue: [ true ]
+					ifFalse: [ self signalInvalidSlotTypeError: value for: parentDomainObject ] ]
 		ifFalse: [ false ] ]
 ]
 
 { #category : 'defaults' }
 LcsAllowNilSlotTypeRule >> defaultDescription [
-	^ 'Nil validation'
+	^ 'Nil Slot Type Allowed'
 ]
 
 { #category : 'defaults' }
@@ -28,7 +28,7 @@ LcsAllowNilSlotTypeRule >> defaultErrorMessage [
 
 { #category : 'testing' }
 LcsAllowNilSlotTypeRule >> isNilAllowed [
-	^ self slotDefinition ifNil: [ false ] ifNotNil: [ :slot | slot allowNil ] 
+	^ self slotDefinition ifNil: [ false ] ifNotNil: [ :slot | slot allowNil or: [ slot allowInitialNil ] ] 
 ]
 
 { #category : 'testing' }

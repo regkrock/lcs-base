@@ -13,6 +13,16 @@ Class {
 }
 
 { #category : 'slot definitions' }
+LcsUser class >> fullNameSlotDefinition [
+	<virtualSlotDefinition>
+	^ LcsDelegatorSlot new
+			slotName: 'fullName';
+			addSlotType: String;
+			targetSlotPath: #(#person #fullName) asOrderedCollection;
+			yourself
+]
+
+{ #category : 'slot definitions' }
 LcsUser class >> passwordSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsPasswordSlot new
@@ -25,8 +35,17 @@ LcsUser class >> personSlotDefinition [
 		addSlotType: LcsPerson;
 		addSlotType: LcsUnknownPerson;
 		beAllowInitialNil;
-		initialValueBlock: [ :parentDomainObject :slot | nil ];
+		initialValueBlock: [ :parentDomainObject :slot | 
+			| personClass |
+			personClass := LcsObject classNamed: #LcsUnknownPerson.
+			(personClass isNil or: [ personClass hasSlotModel not ]) 
+				ifTrue: [ nil ]
+				ifFalse: [ 
+					LcsUnknownPerson new 
+						parent: parentDomainObject; 
+						yourself ] ];
 		required: true;
+		comment: 'When bootstrapping, the Legal Entitites module is not necessarily loaded. If not loaded or initialized, the person slot is set to nil. Otherwise it set to a new instance of LcsUnknownPerson'
 		yourself
 ]
 
@@ -45,6 +64,16 @@ LcsUser class >> securityRoleSlotDefinition [
 LcsUser class >> userIdSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsUserIdSlot new
+]
+
+{ #category : 'accessing' }
+LcsUser >> fullName [
+	^ self slotVarNamed: 'fullName'
+]
+
+{ #category : 'accessing' }
+LcsUser >> fullName: anObject [
+	self slotVarNamed: 'fullName' put: anObject
 ]
 
 { #category : 'accessing' }

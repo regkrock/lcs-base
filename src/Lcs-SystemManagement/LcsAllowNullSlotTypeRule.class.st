@@ -19,7 +19,7 @@ LcsAllowNullSlotTypeRule >> defaultConditionBlock [
 
 { #category : 'defaults' }
 LcsAllowNullSlotTypeRule >> defaultDescription [
-	^ 'Null validation'
+	^ 'Null Slot Type Allowed'
 ]
 
 { #category : 'defaults' }
@@ -29,7 +29,9 @@ LcsAllowNullSlotTypeRule >> defaultErrorMessage [
 
 { #category : 'testing' }
 LcsAllowNullSlotTypeRule >> isNullAllowed [
-	^ self slotDefinition ifNil: [ false ] ifNotNil: [ :slot | slot allowNull ]
+	^ self slotDefinition
+		ifNil: [ false ]
+		ifNotNil: [ :slot | slot allowNull or: [ slot allowInitialNull ] ]
 ]
 
 { #category : 'testing' }

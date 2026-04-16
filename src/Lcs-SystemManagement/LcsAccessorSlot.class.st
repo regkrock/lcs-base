@@ -99,6 +99,50 @@ LcsAccessorSlot >> addValidationRuleBlock: aBlock description: aString [
 	^ self validationRules addRuleBlock: aBlock description: aString
 ]
 
+{ #category : 'properties' }
+LcsAccessorSlot >> allowInitialNil [ 
+	^ self propertyAt: 'allowInitialNil'
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> allowInitialNil: aBoolean [
+	self propertyAt: 'allowInitialNil' put: aBoolean
+]
+
+{ #category : 'magritte' }
+LcsAccessorSlot >> allowInitialNilDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Allow Initial Nil';
+		priority: 10;
+		accessor: #'allowInitialNil';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> allowInitialNull [ 
+	^ self propertyAt: 'allowInitialNull'
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> allowInitialNull: aBoolean [
+	self propertyAt: 'allowInitialNull' put: aBoolean
+]
+
+{ #category : 'magritte' }
+LcsAccessorSlot >> allowInitialNullDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Allow Initial Null';
+		priority: 10;
+		accessor: #'allowInitialNull';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+
+]
+
 { #category : 'configuration' }
 LcsAccessorSlot >> allowInitialNullRule [
 	^ LcsAllowInitialNullRule new
@@ -238,50 +282,59 @@ LcsAccessorSlot >> auditValidationRules: anObject context: aDomainObject [
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beAllowInitialNil [
-	self beAllowNil.
-	(self validationRules hasRuleWithDescription: LcsAllowInitialNilRule new description)
-		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNilRule new) ]
+	self removeNillAndNullRules.
+	self allowInitialNil: true.
+	self slotTypeRules addFirstRule: LcsAllowNilSlotTypeRule new.
+	self validationRules addFirstRule: LcsAllowInitialNilRule new
 ]
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beAllowInitialNull [
-	self beAllowNull.
-	(self validationRules
-		hasRuleWithDescription: LcsAllowInitialNullRule new description)
-		ifFalse: [ self validationRules addFirstRule: self allowInitialNullRule ]
+	self removeNillAndNullRules.
+	self allowInitialNull: true.
+	self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
+	self validationRules addFirstRule: LcsAllowInitialNullRule new
 ]
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beAllowNil [ 
-	self allowNil: true
+	self removeNillAndNullRules.
+	self allowNil: true.
+	self slotTypeRules addFirstRule: LcsAllowNilSlotTypeRule new.
+	self validationRules addFirstRule: LcsAllowNilRule new
 ]
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beAllowNull [ 
-	self allowNull: true
+	self removeNillAndNullRules.
+	self allowNull: true.
+	self slotTypeRules addFirstRule: LcsAllowNullRule new.
+	self validationRules addFirstRule: LcsAllowNullRule new
 ]
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beDisallowInitialNil [
-	self beDisallowNil.
-	self validationRules removeRuleWithDescription: LcsAllowInitialNilRule new description
+	self allowInitialNil: false.
+	self removeNillAndNullRules.
 ]
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beDisallowInitialNull [
-	self allowNull.
-	(self validationRules hasRuleWithDescription: LcsAllowInitialNullRule new description)
-		ifFalse: [self validationRules addFirstRule: (LcsAllowInitialNullRule new) ]
+	self allowInitialNull: false.
+	self removeNillAndNullRules.
+
 ]
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beDisallowNil [ 
-	self allowNil: false
+	self allowNil: false.
+	self removeNillAndNullRules.
 ]
 
 { #category : 'configuration' }
 LcsAccessorSlot >> beDisallowNull [
-	self allowNull: false
+	self allowNull: false.
+	self removeNillAndNullRules
 ]
 
 { #category : 'configuration' }
@@ -455,6 +508,8 @@ LcsAccessorSlot >> initialize [
 	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
 	self allowNil: false.
 	self allowNull: false.
+	self allowInitialNil: false.
+	self allowInitialNull: false.
 	self required: false.
 ]
 
@@ -497,6 +552,26 @@ LcsAccessorSlot >> isGlobalCollectionRefenceSlotTo: aSlotName [
 { #category : 'testing' }
 LcsAccessorSlot >> isGlobalCollectionSlot [
 	^ false
+]
+
+{ #category : 'testing' }
+LcsAccessorSlot >> isInitialNilAllowed [
+	^ self allowInitialNil == true
+]
+
+{ #category : 'testing' }
+LcsAccessorSlot >> isInitialNilNotAllowed [
+	^ self isInitialNilAllowed not
+]
+
+{ #category : 'testing' }
+LcsAccessorSlot >> isInitialNullAllowed [
+	^ self allowInitialNull == true
+]
+
+{ #category : 'testing' }
+LcsAccessorSlot >> isInitialNullNotAllowed [
+	^ self isInitialNullAllowed not
 ]
 
 { #category : 'testing' }
@@ -651,6 +726,18 @@ LcsAccessorSlot >> prevalidationTransformBlockDescription [
 { #category : 'slot model' }
 LcsAccessorSlot >> removeAction: anUpdateAction [
 	self postUpdateActions remove: anUpdateAction
+]
+
+{ #category : 'configuration' }
+LcsAccessorSlot >> removeNillAndNullRules [
+	{LcsAllowNilSlotTypeRule.
+		LcsAllowNullSlotTypeRule}
+		do: [ :eachClass | self slotTypeRules removeRuleWithDescription: eachClass new description ].
+	{LcsAllowInitialNilRule.
+		LcsAllowNilRule.
+		LcsAllowInitialNullRule.
+		LcsAllowNullRule}
+		do: [ :eachClass | self validationRules removeRuleWithDescription: eachClass new description ]
 ]
 
 { #category : 'slot model' }

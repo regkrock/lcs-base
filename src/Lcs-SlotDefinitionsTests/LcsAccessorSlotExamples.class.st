@@ -31,7 +31,7 @@ LcsAccessorSlotExamples >> accessorSlotNamedTest [
 	^ slot
 ]
 
-{ #category : 'examples' }
+{ #category : 'examples - errors' }
 LcsAccessorSlotExamples >> accessorSlotPropertyError [
 	<gtExample>
 	<noTest>
@@ -228,21 +228,26 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowed [
 	| slot |
 	slot := self newSlot.
 	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
-	
+	self should: [ slot validate: nil context: 'xxx' oldValue: nil ] raise: LcsInvalidSlotTypeError.
+
 	slot beAllowNil.
 	self assert: slot isNilAllowed.
 	self assert: slot slotTypeRules collectionSize = 2.
 	self assert: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
-	self assert: slot validationRules collectionSize = 0.
+	self assert: slot validationRules collectionSize = 1.
 	self assert: (slot validate: nil).
-
+	self assert: (slot validate: nil context: 'xxx' oldValue: nil).
+	self assert: (slot validate: nil context: 'xxx' oldValue: 'xx').
+	
 	slot beDisallowNil.
 	self deny: slot isNilAllowed.
+	self deny: slot isInitialNilAllowed.
 	self assert: slot slotTypeRules collectionSize = 1.
 	self deny: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
 	self assert: slot validationRules collectionSize = 0.
 	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
-
+	self should: [ slot validate: nil context: 'xxx' oldValue: nil ] raise: LcsInvalidSlotTypeError.
+	
 	slot beAllowNil.
 	self assert: (slot validate: nil).
 	^ slot
@@ -253,7 +258,7 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowedOnlyAtInitialization [
 	<gtExample>
 	| slot |
 	slot := self newSlot.
-	self deny: slot isNilAllowed.
+	self assert: slot slotTypes isEmpty.
 	self 
 		should: [ slot validate: nil ] 
 		raise: LcsInvalidSlotTypeError.
@@ -263,7 +268,7 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowedOnlyAtInitialization [
 
 	"Nil is allowed only on object creation"
 	slot beAllowInitialNil.
-	self assert: slot isNilAllowed.
+	self assert: slot isInitialNilAllowed.
 	self assert: slot slotTypeRules collectionSize = 2.
 	self assert: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
 	self assert: slot validationRules collectionSize = 1.
@@ -280,19 +285,48 @@ LcsAccessorSlotExamples >> accessorSlotWithNilAllowedOnlyAtInitialization [
 	"Nil is not only allowed on object creation"
 	slot beDisallowInitialNil.
 	self deny: slot isNilAllowed.
+	self deny: slot isInitialNilAllowed.
 	self assert: slot slotTypeRules collectionSize = 1.
 	self deny: slot slotTypeRules first class equals: LcsAllowNilSlotTypeRule.
 	self assert: slot validationRules collectionSize = 0.
 	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+	^ slot
+]
 
-	slot beAllowInitialNil.
-	self assert: (slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject).
+{ #category : 'examples' }
+LcsAccessorSlotExamples >> accessorSlotWithNullAllowedOnlyAtInitialization [
+	<gtExample>
+	| slot |
+	slot := self newSlot.
+	slot addSlotType: String.
 	self 
-		shouldnt: [ slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject ]
-		raise: LcsSlotValidationError.
+		should: [ slot validate: nil ] 
+		raise: LcsInvalidSlotTypeError.
 	self 
-		should: [ slot validate: nil context: nil oldValue: nil ]
-		raise: LcsSlotValidationError.
+		should: [ slot validate: nil context: nil oldValue: LcsApplicationEnvironment undefinedObject ] 
+		raise: LcsInvalidSlotTypeError.
+
+	"Nil is allowed only on object creation"
+	slot beAllowInitialNull.
+	self assert: slot isInitialNullAllowed.
+	self assert: slot slotTypeRules collectionSize = 2.
+	self assert: slot slotTypeRules first class equals: LcsAllowNullSlotTypeRule.
+	self assert: slot validationRules collectionSize = 1.
+	self  assert: (slot validate: '' context: nil oldValue: LcsApplicationEnvironment undefinedObject).
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
+	self 
+		shouldnt: [ slot validate: '' context: nil oldValue: LcsApplicationEnvironment undefinedObject ] 
+		raise: LcsInvalidSlotTypeError.
+
+
+	"Nil is not only allowed on object creation"
+	slot beDisallowInitialNull.
+	self deny: slot isNullAllowed.
+	self deny: slot isInitialNullAllowed.
+	self assert: slot slotTypeRules collectionSize = 1.
+	self deny: slot slotTypeRules first class equals: LcsAllowNullSlotTypeRule.
+	self assert: slot validationRules collectionSize = 0.
+	self should: [ slot validate: nil ] raise: LcsInvalidSlotTypeError.
 	^ slot
 ]
 
@@ -482,7 +516,10 @@ LcsAccessorSlotExamples >> validateAccessorStyleSlot: slot [
 
 	self deny: slot isNilAllowed.
 	self deny: slot allowNull.
+	self deny: slot isNullAllowed.
+	self deny: slot isInitialNullAllowed.
 	self deny: slot isRequired.
+	self assert: slot slotTypeRules collectionSize = 1.
 
 	self assert: slot variableUpdatePolicyClass equals: LcsUnitOfWorkVariableUpdatePolicy.
 	self assert: (slot variableUpdatePolicy isKindOf: LcsUnitOfWorkVariableUpdatePolicy).

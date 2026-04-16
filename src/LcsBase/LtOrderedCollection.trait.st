@@ -16,6 +16,11 @@ LtOrderedCollection classSide >> collectionClass [
 ]
 
 { #category : 'collection' }
+LtOrderedCollection >> addFirst: anObject [
+	^ self collection addFirst: anObject
+]
+
+{ #category : 'collection' }
 LtOrderedCollection >> removeDuplicates [
 	self collection removeDuplicates
 ]

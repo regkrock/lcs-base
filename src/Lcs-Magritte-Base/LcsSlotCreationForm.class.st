@@ -83,6 +83,18 @@ LcsSlotCreationForm >> allowEmptyIntialValueDescription [
 ]
 
 { #category : 'magritte' }
+LcsSlotCreationForm >> allowInitialNilDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #allowInitialNil
+]
+
+{ #category : 'magritte' }
+LcsSlotCreationForm >> allowInitialNullDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #allowInitialNull
+]
+
+{ #category : 'magritte' }
 LcsSlotCreationForm >> allowNilDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #allowNil

@@ -45,6 +45,25 @@ LcsUserExamples >> newUser [
 	self assert: user password isEmpty.
 	self assert: user person isNil.
 	self assert: user securityRole notNil.
+	self should: [ user fullName ] raise: MessageNotUnderstood.
+	self assert: user securityRole role equals: 'guest'.
+	^ user
+]
+
+{ #category : 'examples' }
+LcsUserExamples >> userWithUnknownPerson [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| user |
+	self ensureCurrentSystemIsDemoSystem.
+	user := LcsUser new.
+	self assert: (user slotDefinitionNamed: 'password') class equals: LcsPasswordSlot.
+	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
+	self assert: user userId isEmpty.
+	self assert: user password isEmpty.
+	self assert: user person class equals: LcsUnknownPerson.
+	self assert: user securityRole notNil.
+	self assert: user fullName equals: 'Unknown Person'.
 	self assert: user securityRole role equals: 'guest'.
 	^ user
 ]
