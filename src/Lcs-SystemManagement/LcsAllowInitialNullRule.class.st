@@ -7,11 +7,16 @@ Class {
 }
 
 { #category : 'defaults' }
+LcsAllowInitialNullRule >> defaultAuditMessage [
+	^ 'Null is not allowed'
+]
+
+{ #category : 'defaults' }
 LcsAllowInitialNullRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
 		(self slotDefinition isNullObject: value) 
 			ifTrue: [ 
-				(self slotDefinition isNullNotAllowed or: [ oldValue isNotNil ]) 
+				(self slotDefinition isInitialNullNotAllowed or: [ oldValue isNotNil ]) 
 					ifTrue: [
 						self 
 							signalValidationError: value 

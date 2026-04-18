@@ -16,15 +16,15 @@ LcsUserExamples >> auditedNewUser [
 	self 
 		assertAuditOf: user 
 		slot: 'userId' 
-		hasError: 'Attempt to initialize slot with null when in a state other than initialization'.
+		hasError: 'Null is not allowed'.
 	self 
 		assertAuditOf: user 
 		slot: 'password' 
-		hasError: 'Password is required'.
+		hasError: 'Null is not allowed'.
 	self 
 		assertAuditOf: user 
 		slot: 'person' 
-		hasError: 'Attempt to initialize slot with nil when in a state other than initialization'.
+		hasError: 'Nil is not allowed'.
 	auditor := user auditSlots.
 	self assert: auditor  errorDescriptions notEmpty.
 	self assert: auditor errorDescriptions size equals: 3.
@@ -47,6 +47,20 @@ LcsUserExamples >> newUser [
 	self assert: user securityRole notNil.
 	self should: [ user fullName ] raise: MessageNotUnderstood.
 	self assert: user securityRole role equals: 'guest'.
+	^ user
+]
+
+{ #category : 'examples' }
+LcsUserExamples >> userWithAuditedPassword [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| user auditor |
+	user := self newUser.
+	auditor := LcsConditionsValidator newOn: self.
+	self 
+		assertAuditOf: user 
+		slot: 'password' 
+		hasError: 'Null is not allowed'.
 	^ user
 ]
 

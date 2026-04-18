@@ -62,8 +62,8 @@ LcsIntegerSlotBuilderExamples >> slotDefinitionMethodSourceCode [
 	self assert: builder refactoringText equals: 'LcsDomainObject class >>fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsIntegerSlot new
-			slotName: ''foo'';
-			yourself'.
+		slotName: ''foo'';
+		yourself'.
 	^ builder refactoringText
 ]
 
@@ -76,7 +76,7 @@ LcsIntegerSlotBuilderExamples >> slotDefinitionMethodSourceWithModifiedInitialVa
 	self assert: (builder jobStep: 2) refactoringText equals:'LcsDomainObject class >>fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsIntegerSlot new
-			slotName: ''foo'';
-			initialValueBlock: [ 1 ];
-			yourself'
+		slotName: ''foo'';
+		initialValueBlock: [ 1 ];
+		yourself'
 ]

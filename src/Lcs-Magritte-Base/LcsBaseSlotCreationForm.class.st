@@ -94,6 +94,16 @@ LcsBaseSlotCreationForm >> gtSlotBuilderMetaFor: aView [
 ]
 
 { #category : 'gt views' }
+LcsBaseSlotCreationForm >> gtSlotBuilderPropertiesFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Slot Builder Properites';
+		priority: 99.7;
+		object: [  self slotModelBuilder ];
+		view: #gtPropertiesFor:
+]
+
+{ #category : 'gt views' }
 LcsBaseSlotCreationForm >> gtUMLFor: aView [
 	<gtView>
 	^ aView forward

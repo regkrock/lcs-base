@@ -75,7 +75,7 @@ LcsStringSlotBuilderExamples >> slotDefinitionMethodSourceCode [
 	self assert: builder refactoringText equals: 'LcsDomainObject class >>fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: ''foo'';
-			yourself'.
+		slotName: ''foo'';
+		yourself'.
 	^ builder refactoringText
 ]

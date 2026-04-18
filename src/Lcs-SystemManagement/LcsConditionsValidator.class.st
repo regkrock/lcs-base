@@ -100,7 +100,7 @@ LcsConditionsValidator >> validationRulesDescription [
 	"<magritteDescription>"
 	^ MAToManyRelationDescription new
 		  accessor: (MAChainAccessor accessors: #(#validationRules #collection));
-		  label: 'Relationship Rules';
+		  label: 'Validation Rules';
 		  default: #(  );
 		  classes: { LcsValidationRule };
 		  priority: 25;

@@ -48,11 +48,11 @@ LcsStringSlotExamples >> lastNameSlotAllowingInitialNullAndRequiringAtLeast2Char
 	| slot |
 	slot := self lastNameSlotAllowingNull.
 	self assert: slot validationRules isOrEvaluationType.
-	self assert: slot validationRules collectionSize = 0.
+	self assert: slot validationRules collectionSize = 1.
 
 	slot validationRules beAndEvaluationType.
 	self assert: slot validationRules isAndEvaluationType.
-	self assert: slot validationRules collectionSize = 0.
+	self assert: slot validationRules collectionSize = 1.
 	slot beAllowInitialNull.
 	self assert: slot validationRules collectionSize = 1.
 	self assert: (slot validate: '' context: nil oldValue: nil ) description: 'any length is allowed'.

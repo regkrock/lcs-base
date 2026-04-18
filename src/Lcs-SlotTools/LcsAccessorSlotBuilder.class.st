@@ -43,7 +43,7 @@ LcsAccessorSlotBuilder >> addSlotType: aClassOrClassName [
 		self slotTypes add: item ]
 ]
 
-{ #category : 'properties' }
+{ #category : 'rules' }
 LcsAccessorSlotBuilder >> addSlotTypeRule: aRule [
 	self slotTypeRules addRule: aRule
 ]
@@ -61,14 +61,56 @@ LcsAccessorSlotBuilder >> addTargetModuleClassTo: classesModel [
 		ifTrue: [ classesModel addClassModelForExisting: self targetModuleClass ]
 ]
 
-{ #category : 'properties' }
+{ #category : 'rules' }
 LcsAccessorSlotBuilder >> addValidationRule: aRule [
 	self validationRules addRule: aRule
 ]
 
-{ #category : 'slot model' }
+{ #category : 'rules' }
 LcsAccessorSlotBuilder >> addValidationRuleBlock: aBlock description: aDescription [
 	^ self validationRules addRuleBlock: aBlock description: aDescription
+]
+
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> allowInitialNil [
+	^ self propertyAt: 'allowInitialNil'
+]
+
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> allowInitialNil: aBoolean [
+	self propertyAt: 'allowInitialNil' put: aBoolean
+]
+
+{ #category : 'margritte' }
+LcsAccessorSlotBuilder >> allowInitialNilDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Allow Initial Nil';
+		priority: 18;
+		accessor: #'allowInitialNil';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> allowInitialNull [
+	^ self propertyAt: 'allowInitialNull'
+]
+
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> allowInitialNull: aBoolean [
+	self propertyAt: 'allowInitialNull' put: aBoolean
+]
+
+{ #category : 'margritte' }
+LcsAccessorSlotBuilder >> allowInitialNullDescription [
+	<magritteDescription>
+	^ MABooleanDescription new
+		label: 'Allow Initial Null';
+		priority: 18;
+		accessor: #'allowInitialNull';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : 'properties' }
@@ -99,7 +141,10 @@ LcsAccessorSlotBuilder >> allowNull [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNull: anObject [ 
-	self propertyAt: 'allowNull' put: anObject
+	self removeNillAndNullRules.
+	self propertyAt: 'allowNull' put: anObject.
+	self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
+	self validationRules addFirstRule: LcsAllowNullRule new
 ]
 
 { #category : 'margritte' }
@@ -113,9 +158,50 @@ LcsAccessorSlotBuilder >> allowNullDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : 'magritte - support' }
-LcsAccessorSlotBuilder >> beAllowNil [
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beAllowInitialNil [
 	self allowNil: true
+]
+
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beAllowInitialNull [
+	self allowNull: true
+]
+
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beAllowNil [
+	self removeNillAndNullRules.
+	self allowNil: true.
+	self slotTypeRules addFirstRule: LcsAllowNilSlotTypeRule new.
+	self validationRules addFirstRule: LcsAllowNilRule new
+]
+
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beAllowNull [
+	self removeNillAndNullRules.
+	self allowNull: true.
+	self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
+	self validationRules addFirstRule: LcsAllowNullRule new
+]
+
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beDisallowInitialNil [
+	self allowInitialNil: false
+]
+
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beDisallowInitialNull [
+	self allowInitialNull: false
+]
+
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beDisallowNil [
+	self allowNil: false
+]
+
+{ #category : 'commands' }
+LcsAccessorSlotBuilder >> beDisallowNull [
+	self allowNull: false
 ]
 
 { #category : 'job steps' }
@@ -131,12 +217,12 @@ LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 		ifTrue: [ self targetClassName: nil ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> comment [
 	^ self properties at: 'comment' ifAbsent: [ '' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'properties' }
 LcsAccessorSlotBuilder >> comment: anObject [
 	^ self properties at: 'comment' put: anObject
 ]
@@ -156,12 +242,12 @@ LcsAccessorSlotBuilder >> commentDescription [
 			labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : 'properties' }
+{ #category : 'defaults' }
 LcsAccessorSlotBuilder >> defaultPrevalidationTransformBlock [
 	^ [  ]
 ]
 
-{ #category : 'initialize' }
+{ #category : 'job steps' }
 LcsAccessorSlotBuilder >> getterAndSetterMethodsBuilder [
 	^ LcsSlotGetterAndSetterBuilder new
 		slotName: self slotName;
@@ -201,6 +287,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 { #category : 'initialize' }
 LcsAccessorSlotBuilder >> initialize [
 	super initialize.
+	self slotTypeRules: (LcsSlotTypeRules newOn: self).
 	self validationRules: (LcsValidationRules newOn: self).
 	self postUpdateActions: (LcsUpdateActions newOn: self)
 ]
@@ -225,7 +312,7 @@ LcsAccessorSlotBuilder >> isNullAllowed [
 	^ self allowNull == true
 ]
 
-{ #category : 'querying' }
+{ #category : 'job steps' }
 LcsAccessorSlotBuilder >> jobStep: anInteger [
 	^ self jobSteps jobStep: anInteger
 ]
@@ -293,12 +380,24 @@ LcsAccessorSlotBuilder >> prevalidationTransformBlockDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : 'validations' }
+{ #category : 'rules' }
+LcsAccessorSlotBuilder >> removeNillAndNullRules [
+	{LcsAllowNilSlotTypeRule.
+		LcsAllowNullSlotTypeRule}
+		do: [ :eachClass | self slotTypeRules removeRuleWithDescription: eachClass new description ].
+	{LcsAllowInitialNilRule.
+		LcsAllowNilRule.
+		LcsAllowInitialNullRule.
+		LcsAllowNullRule}
+		do: [ :eachClass | self validationRules removeRuleWithDescription: eachClass new description ]
+]
+
+{ #category : 'rules' }
 LcsAccessorSlotBuilder >> removeValidationRule: aRule [
 	self validationRules removeRule: aRule
 ]
 
-{ #category : 'validations' }
+{ #category : 'rules' }
 LcsAccessorSlotBuilder >> removeValidationRuleWithDescription: aString [
 	self validationRules removeRuleWithDescription: aString
 ]
@@ -324,7 +423,7 @@ LcsAccessorSlotBuilder >> requiredDescription [
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
-{ #category : 'initialize' }
+{ #category : 'job steps' }
 LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 	^ LcsSlotInstanceVariableBuilder new
 		slotName: self slotName;
@@ -334,7 +433,12 @@ LcsAccessorSlotBuilder >> slotInstanceVariableBuilder [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> slotTypeRules [
-	^ self propertyAt: #slotTypeRules ifAbsentPut: [ LcsSlotTypeRules newOn: self]
+	^ self propertyAt: #slotTypeRules
+]
+
+{ #category : 'properties' }
+LcsAccessorSlotBuilder >> slotTypeRules: aSlotTypeRules [
+	^ self propertyAt: #slotTypeRules put: aSlotTypeRules
 ]
 
 { #category : 'verification' }
@@ -397,7 +501,7 @@ LcsAccessorSlotBuilder >> validationRulesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		  accessor: (MAChainAccessor accessors: #(#validationRules #collection));
-		  label: 'Relationship Rules';
+		  label: 'Validation Rules';
 		  default: #(  );
 		  classes: { LcsValidationRule };
 		  priority: 25;

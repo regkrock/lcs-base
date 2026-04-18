@@ -10,6 +10,14 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'accessing' }
+LcsMethodStream >> addClassCreatonLine: aClass [
+	self newLine
+		nextPutAll: aClass name;
+		nextPutAll: ' new'.
+	self increaseIndentLevel
+]
+
 { #category : 'building' }
 LcsMethodStream >> addKeyword: aKeyword argument: aString [
 	self newLine
@@ -30,6 +38,18 @@ LcsMethodStream >> addKeyword: aKeyword argument: aString keyword: aKeyword2 arg
 		nextPutAll: ': ';
 		nextPutAll: aString2;
 		nextPutAll: ';'
+]
+
+{ #category : 'building' }
+LcsMethodStream >> addKeyword: aKeyword complexArgument: aBlock [
+	self newLine
+		nextPutAll: aKeyword;
+		nextPutAll: ': ('.
+	self indent.
+	aBlock value.
+	self
+		nextPutAll: ')'.
+	self outdent
 ]
 
 { #category : 'building' }
@@ -101,6 +121,31 @@ LcsMethodStream >> contents [
 LcsMethodStream >> decrementIndentLevel [
 	self indentLevel: self indentLevel - 1.
 	self indentLevel < 0 ifTrue: [ self indentLevel: 0]
+]
+
+{ #category : 'query' }
+LcsMethodStream >> endsWith: aString [
+	| currentPosition |
+	currentPosition := stream position.
+	currentPosition >= aString size ifFalse: [ ^ false ].
+	^ (self stream contents
+		copyFrom: currentPosition - aString size + 1
+		to: currentPosition) = aString
+]
+
+{ #category : 'query' }
+LcsMethodStream >> endsWithNew [
+	^ self endsWith: 'new'
+]
+
+{ #category : 'query' }
+LcsMethodStream >> endsWithSemiColon [
+	^ self endsWith: ';'
+]
+
+{ #category : 'query' }
+LcsMethodStream >> includesCr [
+	^ self stream contents includes: Character cr
 ]
 
 { #category : 'accessing' }

@@ -26,7 +26,7 @@ LcsPasswordSlotExample >> auditorOnSlotWithNullPassword [
 	auditor := LcsConditionsValidator newOn: self.
 	slot audit: auditor currentValue: '' context: 'xxxx'.
 	self assert: auditor errorDescriptions size = 1.
-	self assert: auditor errorDescriptions first equals:'Password is required'.
+	self assert: auditor errorDescriptions first equals:'Null is not allowed'.
 	^ auditor
 ]
 
@@ -55,7 +55,7 @@ LcsPasswordSlotExample >> newSlot [
 	| slot |
 	slot := LcsPasswordSlot new.
 	self assert: slot slotName equals: 'password'.
-	self assert: slot allowNull.
+	self assert: slot allowInitialNull.
 	self assert: (slot slotTypes includes: String).
 	self assert: slot slotTypeRules collectionSize = 2.
 	self assert: slot validationRules collectionSize = 2.
@@ -68,7 +68,7 @@ LcsPasswordSlotExample >> validateSlotTypeRulesForSlot [
 	| slot rule |
 	slot := self newSlot.
 
-	rule := slot slotTypeRules ruleWithDescription: 'Null validation'.
+	rule := slot slotTypeRules ruleWithDescription: LcsAllowNullSlotTypeRule new description.
 	self assert: (rule isKindOf: LcsAllowNullSlotTypeRule).
 	self 
 		assert: (rule audit: '' context: 'xxxx') 
@@ -117,10 +117,10 @@ LcsPasswordSlotExample >> validateValidationRulesForSlot [
 	slot := self newSlot.
 	rule := slot validationRules ruleWithDescription: 'Is Null Valid For Initialization Rule'.
 	self assert: (rule isKindOf: LcsAllowInitialNullRule).
-	self assert: rule validationErrorMessage equals: 'Password is required'.
+	self assert: rule validationErrorMessage equals: 'Attempt to initialize slot with null when in a state other than initialization'.
 
 	self 
-		assert: (rule validate: '' context: 'xxxx' oldValue: nil) 
+		assert: (rule validate: '' context: 'xxxx' oldValue: nil "LcsApplicationEnvironment undefinedObject") 
 		description: 'This is the right type'.
 	self 
 		should: [ rule validate: '' context: 'xxxx' oldValue: '' ] 

@@ -20,6 +20,9 @@ LcsValidationRuleExamples >> alwaysFalseRule [
 	self should: [ rule validate: false context: 'aString' ] raise: LcsSlotValidationError.
 	self should: [ rule validate: false context: 'aString' oldValue: 'xxx' ] raise: LcsSlotValidationError.
 	self should: [ rule validate: true context: 'aString' oldValue: 'xxx' ] raise: LcsSlotValidationError.
+	self assert: rule asCreationString equals: 'LcsValidationRule new
+	conditionBlock: [ :value :parentDomainObject | false ];
+	yourself'.	
 	^ rule
 ]
 
@@ -37,6 +40,10 @@ LcsValidationRuleExamples >> birthDateRule [
 	self assert: (rule validate: (Date newDay: 31 month: 12 year: (Date today year - 119))).
 	self should: [ rule validate: (Date newDay: 31 month: 12 year: (Date today year - 120)) ] raise: LcsSlotValidationError.
 	self should: [ rule validate: (Date today addDays: 1) ] raise: LcsSlotValidationError.
+	self assert: rule asCreationString equals: 'LcsValidationRule new
+	description: ''Age must be between 0 and 120 years'';
+	conditionBlock: [ :newDate | ((newDate year) > (Date today year - 120)) and: [ newDate <= Date today ] ];
+	yourself'.	
 
 	^ rule
 ]
@@ -57,7 +64,10 @@ LcsValidationRuleExamples >> dateOnOrAfterTodayRule [
 	self assert: (rule validate: Date today).
 	self should: [ rule validate: 'xxxx' ] raise: Error description: 'Comparison execution error'.
 	self should: [ rule validate: (Date today subtractDays: 1) ] raise: LcsSlotValidationError.
-
+	self assert: rule asCreationString equals: 'LcsValidationRule new
+	description: ''Date must be today or beyond'';
+	conditionBlock: [ :newDate | newDate >= Date today ];
+	yourself'.
 	^ rule
 ]
 
@@ -65,7 +75,7 @@ LcsValidationRuleExamples >> dateOnOrAfterTodayRule [
 LcsValidationRuleExamples >> dateOnOrBeforeTodayRule [
 	<gtExample>
 	| rule description conditionBlock |
-	description :=  'Date must be today or beyond'.
+	description :=  'Date must be on or before today'.
 	conditionBlock := [ :newDate | newDate <= Date today ].
 	rule := self newRule
 					description: description;
@@ -77,6 +87,10 @@ LcsValidationRuleExamples >> dateOnOrBeforeTodayRule [
 	self assert: (rule validate: Date today).
 	self should: [ rule validate: 'xxxx' ] raise: Error description: 'Comparison execution error'..
 	self should: [ rule validate: (Date today addDays: 1) ] raise: LcsSlotValidationError.
+	self assert: rule asCreationString equals: 'LcsValidationRule new
+	description: ''Date must be on or before today'';
+	conditionBlock: [ :newDate | newDate <= Date today ];
+	yourself'.
 
 	^ rule
 ]
@@ -99,6 +113,9 @@ LcsValidationRuleExamples >> newRule [
 	self shouldnt: [ rule validate: false context: 'aString' ] raise: LcsSlotValidationError.
 	self should: [ rule validate: true context: 'aString' oldValue: 'xxx' ] raise: LcsSlotValidationError.
 	self shouldnt: [ rule validate: false context: 'aString' oldValue: 'xxx' ] raise: LcsSlotValidationError.
+	self assert: rule asCreationString equals: 'LcsValidationRule new
+	conditionBlock: [ :value :parentDomainObject | value == false ];
+	yourself'.	
 	^ rule
 ]
 

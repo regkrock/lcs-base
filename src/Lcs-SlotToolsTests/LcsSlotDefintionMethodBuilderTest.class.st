@@ -82,9 +82,9 @@ LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodStringBaseOnLcsSt
 	self assert: builder slotDefinitionSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: ''foo'';
-			required: true;
-			yourself'
+		slotName: ''foo'';
+		required: true;
+		yourself'
 ]
 
 { #category : 'examples' }
@@ -120,9 +120,13 @@ LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodWithValidationCon
 	self assert: methodSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			addValidationRule: [ false ] description: ''Always fails'';
-			slotName: ''foo'';
-			yourself'.
+		addValidationRule: (
+			LcsValidationRule new
+				description: ''Always fails'';
+				conditionBlock: [ false ];
+				yourself)
+		slotName: ''foo'';
+		yourself'.
 		
 	^ builder
 ]

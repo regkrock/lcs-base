@@ -7,6 +7,11 @@ Class {
 }
 
 { #category : 'defaults' }
+LcsAllowInitialNilRule >> defaultAuditMessage [
+	^ 'Nil is not allowed'
+]
+
+{ #category : 'defaults' }
 LcsAllowInitialNilRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
 		value isNil 

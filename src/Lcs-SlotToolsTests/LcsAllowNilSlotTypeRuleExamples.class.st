@@ -45,12 +45,14 @@ LcsAllowNilSlotTypeRuleExamples >> nilNotAllowedError [
 { #category : 'examples' }
 LcsAllowNilSlotTypeRuleExamples >> ruleWithNilNotAllowed [
 	<gtExample>
-	| rule numberSlot|
-	rule := self newRule.
+	| numberSlot|
 	numberSlot := LcsNumberSlotExamples new newSlot.
 	numberSlot beAllowNil.
-	numberSlot addSlotTypeRule: rule.
-	self shouldnt: [ rule validate: nil ] raise: LcsSlotValidationError.
-	self assert: (rule validate: nil).
-	^ rule
+	self assert: numberSlot isNilAllowed.
+	self assert: numberSlot slotTypeRules collection size = 2.
+	self assert: numberSlot validationRules collection size = 1.
+	self assert: (numberSlot validate: nil).
+	self shouldnt: [ numberSlot validate: nil ] raise: LcsSlotValidationError.
+	self assert: (numberSlot validate: nil context: 'aaa' oldValue: 1).
+	^ numberSlot slotTypeRules collection first
 ]

@@ -210,7 +210,7 @@ LcsAccessorSlotBuilderExamples >> slotDefinitionMethodSourceCode [
 	self assert: slotDefinitionBuilder refactoringText equals: 'LcsDomainObject class >>fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsAccessorSlot new
-			slotName: ''foo'';
-			yourself'.
+		slotName: ''foo'';
+		yourself'.
 	^ slotDefinitionBuilder refactoringText
 ]

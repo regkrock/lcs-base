@@ -6,18 +6,6 @@ Class {
 	#tag : 'Slot'
 }
 
-{ #category : 'magritte' }
-LcsStringSlot >> allowEmptyIntialValueDescription [
-	"<magritteDescription>"
-	^ MABooleanDescription new
-		label: 'Allow Empty';
-		priority: 10;
-		accessor: #allowEmptyIntialValue;
-		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
-		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ];
-		beRequired
-]
-
 { #category : 'defaults' }
 LcsStringSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | self typeClass new ]

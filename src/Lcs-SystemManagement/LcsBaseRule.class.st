@@ -21,6 +21,35 @@ LcsBaseRule >> = anObject [
 	^ anObject description = self description
 ]
 
+{ #category : 'converting' }
+LcsBaseRule >> asCreationString [
+	| stream referenceRule|
+	referenceRule := self class new.
+	stream := LcsMethodStream new.
+	self asCreationStringOn: stream.
+	^ stream contents
+]
+
+{ #category : 'converting' }
+LcsBaseRule >> asCreationStringOn: stream [
+	| referenceRule|
+	referenceRule := self class new.
+	stream addClassCreatonLine: self class.
+	referenceRule description = self description ifFalse: [
+		stream addKeyword: #description argument: self description printString ].
+	referenceRule conditionBlock asString = self conditionBlock asString ifFalse: [
+		stream addKeyword: #conditionBlock argument: self conditionBlock printString ].
+	referenceRule errorMessage = self errorMessage ifFalse: [
+		stream addKeyword: #errorMessage argument: self errorMessage printString ].
+	referenceRule auditMessage = self auditMessage ifFalse: [
+		stream addKeyword: #auditMessage argument: self auditMessage printString ].
+	(stream endsWithNew) ifFalse: [ 
+		stream endsWithSemiColon ifFalse: [
+			stream nextPutAll: ';'].
+		stream addYourself ].
+	stream outdent
+]
+
 { #category : 'validation' }
 LcsBaseRule >> audit: aValue context: aDomainObject [ 
 	^ self conditionBlock 
@@ -38,6 +67,18 @@ LcsBaseRule >> auditMessage [
 { #category : 'accessing' }
 LcsBaseRule >> auditMessage: anObject [
 	auditMessage := anObject
+]
+
+{ #category : 'magritte' }
+LcsBaseRule >> auditMessageDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Audit Message';
+		priority: 12;
+		accessor: #auditMessage;
+		default: '';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : 'accessing' }
@@ -69,6 +110,11 @@ LcsBaseRule >> conditionBlockDescription [
 			labelled: 'Enter a new value, this will always evaluate to never show the error message';
 		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
 		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
+{ #category : 'defaults' }
+LcsBaseRule >> defaultAuditMessage [
+	^ nil
 ]
 
 { #category : 'defaults' }
@@ -119,6 +165,18 @@ LcsBaseRule >> errorMessage: aStringOrBlock [
 	errorMessage := aStringOrBlock 
 ]
 
+{ #category : 'magritte' }
+LcsBaseRule >> errorMessageDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Error Message';
+		priority: 11;
+		accessor: #errorMessage;
+		default: '';
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
+]
+
 { #category : 'validation' }
 LcsBaseRule >> evaluateWith: aValidator [
 	(self conditionBlock value: aValidator domainObject) ifFalse: [
@@ -145,6 +203,7 @@ LcsBaseRule >> initialize [
 	self conditionBlock: self defaultConditionBlock.
 	self description: self defaultDescription.
 	self errorMessage: self defaultErrorMessage.
+	self auditMessage: self defaultAuditMessage.
 ]
 
 { #category : 'initialize' }

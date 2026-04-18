@@ -113,10 +113,10 @@ LcsValueObjectsGlobalCollectionSlotBuilderExamples >> slotDefinitionMethodSource
 	self assert: builder refactoringText equals: 'LxxPrototypeSystem class >>fooBarsSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsValueObjectsGlobalCollectionSlot new
-			addSlotType: LxxPerson;
-			addCollectionMemberType: LcsFooBar;
-			slotName: ''fooBars'';
-			loaderClass: ''LcsFooBarLoader'';
-			yourself'.
+		addSlotType: LxxPerson;
+		addCollectionMemberType: LcsFooBar;
+		slotName: ''fooBars'';
+		loaderClass: ''LcsFooBarLoader'';
+		yourself'.
 	^ builder refactoringText
 ]

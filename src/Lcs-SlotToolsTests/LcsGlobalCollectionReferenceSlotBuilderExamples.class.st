@@ -51,9 +51,9 @@ LcsGlobalCollectionReferenceSlotBuilderExamples >> slotDefinitionMethodSourceCod
 'parentSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsGlobalCollectionReferenceSlot new
-			addSlotType: LxxPersons;
-			slotName: ''parent'';
-			collectionSlotModuleName: ''Prototype System'';
-			collectionSlotName: ''persons'';
-			yourself'
+		addSlotType: LxxPersons;
+		slotName: ''parent'';
+		collectionSlotModuleName: ''Prototype System'';
+		collectionSlotName: ''persons'';
+		yourself'
 ]

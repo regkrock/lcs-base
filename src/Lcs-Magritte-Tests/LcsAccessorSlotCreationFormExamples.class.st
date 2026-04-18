@@ -16,22 +16,22 @@ LcsAccessorSlotCreationFormExamples >> formWithOnlyNecessaryPropertiesAreInitial
 	self deny: form slotModelBuilder allowNil.
 
 	form slotModelBuilder slotName: 'foo'.
-	form slotModelBuilder allowNil: false.
+	form slotModelBuilder beDisallowNil.
 
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: ''foo'';
-			yourself'.
+		slotName: ''foo'';
+		yourself'.
 
 	"Test that only the neccessry code is generated"
-	form slotModelBuilder allowNil: true.
+	form slotModelBuilder beAllowNil.
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: ''foo'';
-			allowNil: true;
-			yourself'.
+		slotName: ''foo'';
+		beAllowNill;
+		yourself'.
 	^ form
 
 ]
@@ -214,8 +214,8 @@ LcsAccessorSlotCreationFormExamples >> strongSlotFormWithFooSlotName [
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
-			slotName: ''foo'';
-			yourself'.
+		slotName: ''foo'';
+		yourself'.
 
 	slotInstanceVariableBuilder := form slotModelBuilder jobStep: 1.
 	self assert: slotInstanceVariableBuilder slotName equals: 'foo'.

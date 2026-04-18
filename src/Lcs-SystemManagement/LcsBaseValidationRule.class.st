@@ -21,7 +21,7 @@ LcsBaseValidationRule >> audit: aValue context: aDomainObject [
 					slotDefinition: self slotDefinition;
 					context: aDomainObject;
 					smalltalkException: signal;
-					signal: self validationErrorMessage]
+					signal: self validationAuditMessage]
 ]
 
 { #category : 'validation' }

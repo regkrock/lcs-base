@@ -24,7 +24,6 @@ LcsPasswordSlot >> initialize [
 	self slotName: 'password'.
 	self beAllowInitialNull.
 	self beRequired.
-	"self validationRules beAndEvaluationType."
 	self addValidationRule: self passwordValidationRule
 ]
 

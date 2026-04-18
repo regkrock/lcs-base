@@ -208,7 +208,7 @@ LcsBaseSlotBuilder >> slotClassName: anObject [
 	slotClassName := anObject
 ]
 
-{ #category : 'initialize' }
+{ #category : 'job steps' }
 LcsBaseSlotBuilder >> slotDefinitionMethodBuilder [
 	^ LcsSlotDefinitionMethodBuilder newFrom: self
 ]

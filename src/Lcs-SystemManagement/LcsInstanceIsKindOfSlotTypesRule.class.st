@@ -7,6 +7,11 @@ Class {
 }
 
 { #category : 'defaults' }
+LcsInstanceIsKindOfSlotTypesRule >> defaultAuditMessage [
+	^ 'Invalid slot type'
+]
+
+{ #category : 'defaults' }
 LcsInstanceIsKindOfSlotTypesRule >> defaultConditionBlock [
 	^ [ :value :parentDomainObject :oldValue | 
 	self slotTypes

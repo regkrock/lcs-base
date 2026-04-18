@@ -154,22 +154,8 @@ LcsAccessorSlot >> allowNil [
 ]
 
 { #category : 'properties' }
-LcsAccessorSlot >> allowNil: newPropertyValue [
-	| currentPropertyValue |
-	currentPropertyValue := self propertyAt: 'allowNil' ifAbsent: [ nil ].
-	newPropertyValue == true 
-		ifTrue: [
-			currentPropertyValue ~~ true ifTrue: [
-				self slotTypeRules addFirstRule: LcsAllowNilSlotTypeRule new ].
-			self propertyAt: 'allowNil' put: newPropertyValue.
-			^ self ].
-	newPropertyValue == false
-		ifTrue: [ 
-			currentPropertyValue == true ifTrue: [
-				self slotTypeRules removeRuleWithDescription: LcsAllowNilSlotTypeRule new defaultDescription ].
-		self propertyAt: 'allowNil' put: newPropertyValue.
-		^ self ].
-	LcsError signal: 'Attempt to update with a non-Boolean value'
+LcsAccessorSlot >> allowNil: aBoolean [
+	self propertyAt: 'allowNil' put: aBoolean
 ]
 
 { #category : 'magritte' }
@@ -190,22 +176,8 @@ LcsAccessorSlot >> allowNull [
 ]
 
 { #category : 'properties' }
-LcsAccessorSlot >> allowNull: newPropertyValue [
-	| currentPropertyValue |
-	currentPropertyValue := self propertyAt: 'allowNull' ifAbsent: [ nil ].
-	newPropertyValue == true 
-		ifTrue: [
-			currentPropertyValue ~~ true ifTrue: [
-				self slotTypeRules addNullRule: LcsAllowNullSlotTypeRule new ].
-			self propertyAt: 'allowNull' put: newPropertyValue.
-			^ self ].
-	newPropertyValue == false
-		ifTrue: [ 
-			currentPropertyValue == true ifTrue: [
-				self slotTypeRules removeRuleWithDescription: LcsAllowNullSlotTypeRule new defaultDescription ].
-		self propertyAt: 'allowNull' put: newPropertyValue.
-		^ self ].
-	LcsError signal: 'Attempt to update with a non-Boolean value'
+LcsAccessorSlot >> allowNull: aBoolean [
+	self propertyAt: 'allowNull' put: aBoolean
 ]
 
 { #category : 'magritte' }
@@ -308,7 +280,7 @@ LcsAccessorSlot >> beAllowNil [
 LcsAccessorSlot >> beAllowNull [ 
 	self removeNillAndNullRules.
 	self allowNull: true.
-	self slotTypeRules addFirstRule: LcsAllowNullRule new.
+	self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
 	self validationRules addFirstRule: LcsAllowNullRule new
 ]
 
@@ -506,10 +478,10 @@ LcsAccessorSlot >> initialize [
 	self postUpdateActions: (LcsUpdateActions newOn: self).
 	self initialValueBlock: self defaultInitialValueBlock.
 	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
-	self allowNil: false.
-	self allowNull: false.
-	self allowInitialNil: false.
-	self allowInitialNull: false.
+	self beDisallowNil.
+	self beDisallowNull.
+	self beDisallowInitialNil.
+	self beDisallowInitialNull.
 	self required: false.
 ]
 
@@ -817,9 +789,33 @@ LcsAccessorSlot >> slotTypeRules: anObject [
 	self propertyAt: 'slotTypeRules' put: anObject
 ]
 
-{ #category : 'properties' }
-LcsAccessorSlot >> slotTypeValidations [
-	^ self propertyAt: 'slotTypeValidations'
+{ #category : 'magritte' }
+LcsAccessorSlot >> slotTypeRulesDescription [
+	<magritteDescription>
+	^ MAToManyRelationDescription new
+		  accessor: (MAChainAccessor accessors: #(#slotTypeRules #collection));
+		  label: 'Slot Type Rules';
+		  default: #(  );
+		  classes: { LcsBaseSlotTypeRule };
+		  priority: 35;
+		  beModifiable;
+		  blocItemStencil: [ :anItemViewModel :anItemIndex | 
+			  anItemViewModel asElement
+				  fitContent;
+				  border:
+					  (BlBorder
+						   paint: BrGlamorousColors disabledButtonBorderColor
+						   width: 1);
+				  margin: (BlInsets
+						   top: 0
+						   right: 5
+						   bottom: 5
+						   left: 0);
+				  padding: (BlInsets all: 5);
+				  background: Color white ];
+		  newItemStencil: [ LcsSlotTypeRule new
+		  						parent: self slotTypeRules;
+		  						yourself ]
 ]
 
 { #category : 'slot model' }
@@ -936,7 +932,7 @@ LcsAccessorSlot >> validationRulesDescription [
 		  accessor: (MAChainAccessor accessors: #(#validationRules #collection));
 		  label: 'Validation Rules';
 		  default: #(  );
-		  classes: { LcsValidationRule };
+		  classes: { LcsBaseValidationRule };
 		  priority: 35;
 		  beModifiable;
 		  blocItemStencil: [ :anItemViewModel :anItemIndex | 

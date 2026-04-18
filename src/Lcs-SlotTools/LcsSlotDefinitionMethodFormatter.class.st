@@ -48,6 +48,15 @@ LcsSlotDefinitionMethodFormatter >> addKeyword: aPropertyName argument: aValue t
 	aPropertyName = 'slotTypes' ifTrue: [ 
 		^ self addClassTypeKeyword: 'addSlotType' argument: aValue to: aStream ].
 
+	aPropertyName = 'allowInitialNull' ifTrue: [ 
+		^ aStream addUnaryMessage: 'beAllowInitialNull' ].
+	aPropertyName = 'allowInitialNill' ifTrue: [ 
+		^ aStream addUnaryMessage: 'beAllowInitialNil' ].
+	aPropertyName = 'allowNull' ifTrue: [ 
+		^ aStream addUnaryMessage: 'beAllowNull' ].
+	aPropertyName = 'allowNil' ifTrue: [ 
+		^ aStream addUnaryMessage: 'beAllowNill' ].
+
 	aPropertyName = 'targetSlotPath' ifTrue: [ 
 		^ self addSlotPathKeyword: 'targetSlotPath' argument: aValue to: aStream ].
 		
@@ -91,7 +100,6 @@ LcsSlotDefinitionMethodFormatter >> addPostUpdateActionsKeyword: aPropertyName a
 
 { #category : 'format' }
 LcsSlotDefinitionMethodFormatter >> addProperties: aProperties to: aStream [
-	aStream indent.
 	aProperties keysAndValuesDo: [ :eachPropertyName :eachValue |
 		self addKeyword: eachPropertyName argument: eachValue to: aStream ].
 ]
@@ -109,9 +117,7 @@ LcsSlotDefinitionMethodFormatter >> addSlotTypeRuleKeyword: aPropertyName argume
 	aRules do: [ :each |
 		aStream
 			addKeyword: 'addSlotTypeRule'
-			argument: each conditionBlock printString
-			keyword: 'description'
-			argument: each description printString  ]
+			argument: each asCreationString ]
 ]
 
 { #category : 'format' }
@@ -128,9 +134,7 @@ LcsSlotDefinitionMethodFormatter >> addValidationRuleKeyword: aPropertyName argu
 	aRules do: [ :each |
 		aStream
 			addKeyword: 'addValidationRule'
-			argument: each conditionBlock printString
-			keyword: 'description'
-			argument: each description printString  ]
+			complexArgument: [ each asCreationStringOn: aStream ] ]
 ]
 
 { #category : 'format' }

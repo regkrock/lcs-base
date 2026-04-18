@@ -76,8 +76,8 @@ LcsScaledDecimalSlotBuilderExamples >> slotDefinitionMethodSourceCode [
 	self assert: slotDefinitionBuilder refactoringText equals: 'LcsDomainObject class >>fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsScaledDecimalSlot new
-			slotName: ''foo'';
-			numberOfDecimals: 4;
-			yourself'.
+		slotName: ''foo'';
+		numberOfDecimals: 4;
+		yourself'.
 	^ slotDefinitionBuilder refactoringText
 ]

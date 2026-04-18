@@ -75,8 +75,8 @@ LcsDateSlotBuilderExamples >> slotDefinitionMethodSourceCode [
 	self assert: slotDefinitionBuilder refactoringText equals: 'LcsDomainObject class >>fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsDateSlot new
-			slotName: ''foo'';
-			yourself'.
+		slotName: ''foo'';
+		yourself'.
 	^ slotDefinitionBuilder refactoringText
 ]
 

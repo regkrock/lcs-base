@@ -4,7 +4,8 @@ Class {
 	#traits : 'LtParentTrait + LtOrderedCollection',
 	#classTraits : 'LtParentTrait classTrait + LtOrderedCollection classTrait',
 	#instVars : [
-		'evaluationType'
+		'evaluationType',
+		'description'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -68,6 +69,42 @@ LcsBaseRules >> addRuleBlock: aBlock description: aString [
 			yourself)
 ]
 
+{ #category : 'as yet unclassified' }
+LcsBaseRules >> addRulesTo: stream [
+	self collection
+		do: [ :eachRule | 
+			stream
+				addKeyword: #addRule
+				complexArgument: [ eachRule asCreationStringOn: stream ] ]
+		separatedBy: [ stream nextPutAll: ';' ]
+]
+
+{ #category : 'as yet unclassified' }
+LcsBaseRules >> asCreationString [
+	| stream |
+	stream := LcsMethodStream new.
+	self asCreationStringOn: stream.
+	^ stream contents
+]
+
+{ #category : 'as yet unclassified' }
+LcsBaseRules >> asCreationStringOn: stream [ 
+	| referenceInstance |
+	referenceInstance := self class new.
+	stream addClassCreatonLine: self class.
+	self isAndEvaluationType ifTrue: [
+		stream addUnaryMessage: #beAndEvaluationType ].
+	referenceInstance description = self description ifFalse: [
+		stream addKeyword: #description argument: self description printString ].
+	self collection isNotEmpty ifTrue: [
+		self addRulesTo: stream ].
+	(stream endsWithNew) ifFalse: [ 
+		stream endsWithSemiColon ifFalse: [
+			stream nextPutAll: ';'].
+		stream addYourself ].
+	stream outdent
+]
+
 { #category : 'validations' }
 LcsBaseRules >> audit: aValue context: aDomainObject [
 	self isOrEvaluation ifTrue: [
@@ -89,6 +126,16 @@ LcsBaseRules >> beAndEvaluationType [
 { #category : 'configuration' }
 LcsBaseRules >> beOrEvaluationType [
 	self evaluationType: 'or'
+]
+
+{ #category : 'accessing' }
+LcsBaseRules >> description [
+	^ description
+]
+
+{ #category : 'accessing' }
+LcsBaseRules >> description: anObject [
+	description := anObject
 ]
 
 { #category : 'accessing' }
@@ -156,7 +203,8 @@ LcsBaseRules >> hash [
 LcsBaseRules >> initialize [
 	super initialize.
 	self collection: OrderedCollection new.
-	self beOrEvaluationType
+	self beOrEvaluationType.
+	self description: ''
 ]
 
 { #category : 'initialize' }

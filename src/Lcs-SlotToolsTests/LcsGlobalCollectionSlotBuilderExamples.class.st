@@ -61,8 +61,8 @@ LcsGlobalCollectionSlotBuilderExamples >> slotDefinitionSourceCode [
 		equals: 'foosSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsGlobalCollectionSlot new
-			addSlotType: LxxPersons;
-			addCollectionMemberType: LxxPerson;
-			slotName: ''foos'';
-			yourself'
+		addSlotType: LxxPersons;
+		addCollectionMemberType: LxxPerson;
+		slotName: ''foos'';
+		yourself'
 ]
