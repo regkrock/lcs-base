@@ -1,11 +1,10 @@
 Class {
 	#name : 'LcsBaseRules',
-	#superclass : 'LcsApplicationObject',
-	#traits : 'LtParentTrait + LtOrderedCollection',
-	#classTraits : 'LtParentTrait classTrait + LtOrderedCollection classTrait',
+	#superclass : 'LcsRuleObject',
+	#traits : 'LtOrderedCollection',
+	#classTraits : 'LtOrderedCollection classTrait',
 	#instVars : [
-		'evaluationType',
-		'description'
+		'evaluationType'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -129,16 +128,6 @@ LcsBaseRules >> beOrEvaluationType [
 ]
 
 { #category : 'accessing' }
-LcsBaseRules >> description [
-	^ description
-]
-
-{ #category : 'accessing' }
-LcsBaseRules >> description: anObject [
-	description := anObject
-]
-
-{ #category : 'accessing' }
 LcsBaseRules >> evaluationType [
 	^ evaluationType
 ]
@@ -203,8 +192,7 @@ LcsBaseRules >> hash [
 LcsBaseRules >> initialize [
 	super initialize.
 	self collection: OrderedCollection new.
-	self beOrEvaluationType.
-	self description: ''
+	self beOrEvaluationType
 ]
 
 { #category : 'initialize' }

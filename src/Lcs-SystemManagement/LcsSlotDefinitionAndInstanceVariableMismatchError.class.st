@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSlotDefinitionAndInstanceVariableMismatchError',
-	#superclass : 'LcsError',
+	#superclass : 'LcsApplicationEnvironmentError',
 	#instVars : [
 		'domainClass',
 		'extraInstVars',

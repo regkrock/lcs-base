@@ -563,7 +563,7 @@ LcsSlotCreationForm >> validationRuleItemsDescription [
 ]
 
 { #category : 'magritte' }
-LcsSlotCreationForm >> validationsDescription [
+LcsSlotCreationForm >> validationRulesDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #validationRules
 ]

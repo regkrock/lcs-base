@@ -163,9 +163,12 @@ LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinition: aSlotDefinition 
 ]
 
 { #category : 'initialize' }
-LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinitionMethodBuilder: aSlotDefinitionMethodBuilder [ 
+LcsSlotDefinitionMethodFormatter >> initializeOnSlotDefinitionMethodBuilder: aSlotDefinitionMethodBuilder [
 	self slotTemplate: aSlotDefinitionMethodBuilder slotTemplate.
-	self selector: aSlotDefinitionMethodBuilder slotDefinitionSelector.
+	self selector: (
+		[ aSlotDefinitionMethodBuilder slotDefinitionSelector ]
+			on: LcsSlotBuilderMissingSlotNameError
+			do: [ :s | s return: '<missing slotName>' ]).
 	self slotClass: (aSlotDefinitionMethodBuilder slotClass ifNil: [ '<missing slot class>' ]).
 	self properties: aSlotDefinitionMethodBuilder properties.
 	self pragmaSelector: aSlotDefinitionMethodBuilder pragmaSelector

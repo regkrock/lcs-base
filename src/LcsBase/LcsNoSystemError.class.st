@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsNoSystemError',
-	#superclass : 'LcsError',
+	#superclass : 'LcsSystemError',
 	#category : 'LcsBase-Error',
 	#package : 'LcsBase',
 	#tag : 'Error'

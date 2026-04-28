@@ -54,7 +54,7 @@ LcsSlotDefinitionViewItem >> isAccessorSlot [
 
 { #category : 'testing' }
 LcsSlotDefinitionViewItem >> isInstalled [
-	^ self domainClass slotModel hasSlotDefinitionNamed: self slotName
+	^ (self domainClass slotModel ifNil: [ ^ false ]) hasSlotDefinitionNamed: self slotName
 ]
 
 { #category : 'testing' }

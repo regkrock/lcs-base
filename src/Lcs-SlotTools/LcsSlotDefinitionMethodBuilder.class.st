@@ -326,7 +326,7 @@ LcsSlotDefinitionMethodBuilder >> slotDefinitionClassSlotTypes [
 { #category : 'code generation' }
 LcsSlotDefinitionMethodBuilder >> slotDefinitionSelector [
 	^ self rawDerivedSlotName 
-		ifNil: [ LcsError signal: 'slotName is undefined' ]
+		ifNil: [ LcsSlotBuilderMissingSlotNameError signal: 'slotName is undefined' ]
 		ifNotNil: [:name | (name , 'SlotDefinition') asSymbol ]
 ]
 

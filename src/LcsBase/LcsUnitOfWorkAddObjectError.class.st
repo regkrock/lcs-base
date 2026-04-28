@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsUnitOfWorkAddObjectError',
-	#superclass : 'LcsError',
+	#superclass : 'LcsSystemError',
 	#instVars : [
 		'newObject'
 	],

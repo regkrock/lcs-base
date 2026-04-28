@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsCodeCollectionDefaultInstanceNotDefined',
-	#superclass : 'LcsError',
+	#superclass : 'LcsSystemError',
 	#category : 'Lcs-DomainBase-Error',
 	#package : 'Lcs-DomainBase',
 	#tag : 'Error'

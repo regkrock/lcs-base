@@ -156,32 +156,11 @@ LcsBaseDomainObject class >> gtViewSlotDefinitionFor: aView context: aPhlowConte
 LcsBaseDomainObject class >> gtViewSlotModelFor: aView [
 	<gtView>
 	<gtClassView>
-	self currentSystem
-		ifNil: [ ^ aView list
-				title: 'Slot Model';
-				priority: 10;
-				items: [ Array with: 'System not initialized' ];
-				yourself ].
-
-	self slotModel
-		ifNil: [ ^ aView list
-				title: 'Slot Model';
-				priority: 10;
-				items: [ Array with: 'Slot model not initialized' ];
-				actionButtonIcon: BrGlamorousVectorIcons play
-					tooltip: 'Initialize Slot Model'
-					action: [ :aButton :aTab | 
-						self initializeSlotModel.
-						aButton phlow fireViewUpdateWish ];
-				actionUpdateButton;
-				yourself ].
-				
 	^ aView forward
 		title: 'Slot Model';
 		priority: 10;
-		object: [ self slotModel ];
-		view: #gtViewSlotModelFor:;
-		yourself
+		object: [ self slotModel ifNil: [ LcsSlotModel newOn: self ] ];
+		view: #gtViewSlotModelFor: "]"
 ]
 
 { #category : 'testing' }

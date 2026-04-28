@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsModuleHierarchyError',
-	#superclass : 'LcsError',
+	#superclass : 'LcsSystemError',
 	#instVars : [
 		'moduleClassName'
 	],

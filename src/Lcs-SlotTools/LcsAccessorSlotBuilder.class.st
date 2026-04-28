@@ -99,7 +99,11 @@ LcsAccessorSlotBuilder >> allowInitialNull [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowInitialNull: aBoolean [
-	self propertyAt: 'allowInitialNull' put: aBoolean
+	self removeNillAndNullRules.
+	self propertyAt: 'allowInitialNull' put: aBoolean.
+	aBoolean == true ifTrue: [
+		self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
+		self validationRules addFirstRule: LcsAllowInitialNullRule new ]
 ]
 
 { #category : 'margritte' }
@@ -115,7 +119,7 @@ LcsAccessorSlotBuilder >> allowInitialNullDescription [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNil [
-	^ self propertyAt: 'allowNil' ifAbsent: [ false ]
+	^ self propertyAt: 'allowNil'
 ]
 
 { #category : 'properties' }
@@ -136,15 +140,16 @@ LcsAccessorSlotBuilder >> allowNilDescription [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNull [
-	^ self propertyAt: 'allowNull' ifAbsent: [ false ]
+	^ self propertyAt: 'allowNull'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNull: anObject [ 
 	self removeNillAndNullRules.
 	self propertyAt: 'allowNull' put: anObject.
-	self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
-	self validationRules addFirstRule: LcsAllowNullRule new
+	anObject == true ifTrue: [
+		self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
+		self validationRules addFirstRule: LcsAllowNullRule new ]
 ]
 
 { #category : 'margritte' }

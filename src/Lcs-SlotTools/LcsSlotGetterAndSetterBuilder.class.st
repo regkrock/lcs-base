@@ -45,7 +45,7 @@ LcsSlotGetterAndSetterBuilder >> addGetterAndSetterSourceCodeTo: aStream [
 LcsSlotGetterAndSetterBuilder >> addRefactoringTextDetailsTo: aStream [
 	self slotName isNil
 		ifTrue: [ aStream
-				nextPutAll: '<missing> slot name - no getter and setter will be implemented'.
+				nextPutAll: '<missing slotName> - no getter and setter will be implemented'.
 			^ self ].
 	self targetClass isNil
 		ifTrue: [ 

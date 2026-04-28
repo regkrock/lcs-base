@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSlotPropertyError',
-	#superclass : 'LcsSlotModelError',
+	#superclass : 'LcsSlotDefinitionError',
 	#instVars : [
 		'slotDefinition'
 	],

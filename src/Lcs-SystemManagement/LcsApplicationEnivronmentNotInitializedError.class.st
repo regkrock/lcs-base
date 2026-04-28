@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsApplicationEnivronmentNotInitializedError',
-	#superclass : 'LcsError',
+	#superclass : 'LcsApplicationEnvironmentError',
 	#category : 'Lcs-SystemManagement-Error',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Error'

@@ -1,12 +1,9 @@
 Class {
 	#name : 'LcsBaseRule',
-	#superclass : 'LcsApplicationObject',
-	#traits : 'LtParentTrait',
-	#classTraits : 'LtParentTrait classTrait',
+	#superclass : 'LcsRuleObject',
 	#instVars : [
 		'conditionBlock',
 		'errorMessage',
-		'description',
 		'auditMessage'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
@@ -123,23 +120,8 @@ LcsBaseRule >> defaultConditionBlock [
 ]
 
 { #category : 'defaults' }
-LcsBaseRule >> defaultDescription [
-	^ ''
-]
-
-{ #category : 'defaults' }
 LcsBaseRule >> defaultErrorMessage [
 	^ nil
-]
-
-{ #category : 'accessing' }
-LcsBaseRule >> description [
-	^ description
-]
-
-{ #category : 'accessing' }
-LcsBaseRule >> description: anObject [
-	description := anObject
 ]
 
 { #category : 'magritte' }
@@ -201,7 +183,6 @@ LcsBaseRule >> hash [
 LcsBaseRule >> initialize [
 	super initialize.
 	self conditionBlock: self defaultConditionBlock.
-	self description: self defaultDescription.
 	self errorMessage: self defaultErrorMessage.
 	self auditMessage: self defaultAuditMessage.
 ]

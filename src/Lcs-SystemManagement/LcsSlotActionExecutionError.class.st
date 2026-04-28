@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSlotActionExecutionError',
-	#superclass : 'LcsSlotModelError',
+	#superclass : 'LcsSlotDefinitionError',
 	#instVars : [
 		'value',
 		'updateAction',
