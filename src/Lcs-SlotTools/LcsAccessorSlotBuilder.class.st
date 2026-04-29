@@ -252,6 +252,11 @@ LcsAccessorSlotBuilder >> defaultPrevalidationTransformBlock [
 	^ [  ]
 ]
 
+{ #category : 'defaults' }
+LcsAccessorSlotBuilder >> defaultTypeOfSlotRuleClass [
+	^ LcsInstanceIsKindOfSlotTypesRule
+]
+
 { #category : 'job steps' }
 LcsAccessorSlotBuilder >> getterAndSetterMethodsBuilder [
 	^ LcsSlotGetterAndSetterBuilder new
@@ -293,6 +298,7 @@ LcsAccessorSlotBuilder >> initialValueBlockDescription [
 LcsAccessorSlotBuilder >> initialize [
 	super initialize.
 	self slotTypeRules: (LcsSlotTypeRules newOn: self).
+	self slotTypeRules addRule: self defaultTypeOfSlotRuleClass new.
 	self validationRules: (LcsValidationRules newOn: self).
 	self postUpdateActions: (LcsUpdateActions newOn: self)
 ]
