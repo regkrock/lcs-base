@@ -12,14 +12,16 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'slot definitions' }
+{ #category : 'properties' }
 LcsUser class >> fullNameSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsDelegatorSlot new
-			slotName: 'fullName';
-			addSlotType: String;
-			targetSlotPath: #(#person #fullName) asOrderedCollection;
-			yourself
+		slotName: 'fullName';
+		addSlotType: String;
+		targetSlotPath: #(#person #fullName) asOrderedCollection;
+		errorClass: MessageNotUnderstood;
+		errorReturnObject: '';
+		yourself
 ]
 
 { #category : 'slot definitions' }

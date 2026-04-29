@@ -31,7 +31,7 @@ LcsUserExamples >> auditedNewUser [
 	^ user
 ]
 
-{ #category : 'examples' }
+{ #category : 'properties' }
 LcsUserExamples >> newUser [
 	<gtExample>
 	<after: #clearUnitOfWork>
@@ -41,11 +41,14 @@ LcsUserExamples >> newUser [
 	user := LcsUser new.
 	self assert: (user slotDefinitionNamed: 'password') class equals: LcsPasswordSlot.
 	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
+	self assert: (user slotDefinitionNamed: 'fullName') errorClass equals: MessageNotUnderstood.
+	self assert: (user slotDefinitionNamed: 'fullName') errorReturnObject equals: ''.
 	self assert: user userId isEmpty.
 	self assert: user password isEmpty.
 	self assert: user person isNil.
 	self assert: user securityRole notNil.
-	self should: [ user fullName ] raise: MessageNotUnderstood.
+	self assert: user fullName equals: ''.
+	self shouldnt: [ user fullName ] raise: MessageNotUnderstood.
 	self assert: user securityRole role equals: 'guest'.
 	^ user
 ]

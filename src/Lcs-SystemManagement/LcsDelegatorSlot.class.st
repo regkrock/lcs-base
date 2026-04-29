@@ -23,11 +23,39 @@ LcsDelegatorSlot >> addClassesToUmlModel: umlModel [
 
 { #category : 'slot access' }
 LcsDelegatorSlot >> currentSlotVarIn: aTargetDomainObject [
-	| actualDomainObject |
-	actualDomainObject := aTargetDomainObject.
+	^ [ self extractTheTargetValueFrom: aTargetDomainObject ]
+		on: self errorClass
+		do: [ :s | s return: self errorReturnObject ].
+]
+
+{ #category : 'properties' }
+LcsDelegatorSlot >> errorClass [
+	^ self propertyAt: 'errorClass' ifAbsent: [ LcsDummyError ]
+]
+
+{ #category : 'properties' }
+LcsDelegatorSlot >> errorClass: anErrorClass [ 
+	self propertyAt: 'errorClass' put: anErrorClass
+]
+
+{ #category : 'properties' }
+LcsDelegatorSlot >> errorReturnObject [
+	^ self propertyAt: 'errorReturnObject' ifAbsent: [ nil ]
+]
+
+{ #category : 'properties' }
+LcsDelegatorSlot >> errorReturnObject: anErrorReturnObject [
+	self propertyAt: 'errorReturnObject' put: anErrorReturnObject
+]
+
+{ #category : 'slot access' }
+LcsDelegatorSlot >> extractTheTargetValueFrom: actualDomainObject [ 
+	| currentTarget |
+	currentTarget := actualDomainObject.
 	self targetSlotPath
-		do: [ :each | actualDomainObject := actualDomainObject perform: each asSymbol ].
-	^ actualDomainObject
+		do: [ :each | currentTarget := currentTarget perform: each asSymbol ].
+	^ currentTarget
+
 ]
 
 { #category : 'magritte' }
@@ -39,7 +67,14 @@ LcsDelegatorSlot >> initialValueBlockDescription [
 { #category : 'initialize' }
 LcsDelegatorSlot >> initialize [
 	super initialize.
-	self targetSlotPath: OrderedCollection new
+	self targetSlotPath: OrderedCollection new.
+	self onPathError: LcsDummyError return: nil.
+]
+
+{ #category : 'properties' }
+LcsDelegatorSlot >> onPathError: anErrorClass return: anErrorReturnObject [ 
+	self errorClass: anErrorClass.
+	self errorReturnObject: anErrorReturnObject
 ]
 
 { #category : 'slot access' }
