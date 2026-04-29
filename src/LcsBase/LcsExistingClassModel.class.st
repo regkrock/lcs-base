@@ -12,7 +12,7 @@ Class {
 { #category : 'instance creation' }
 LcsExistingClassModel class >> newOn: aClass [
 	^ self new 
-		initializeOn: aClass;
+		initializeOn: (self classNamed: aClass);
 		yourself
 ]
 

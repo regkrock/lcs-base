@@ -151,6 +151,8 @@ LcsGlobalCollectionSlotBuilder >> module [
 
 { #category : 'gt views' }
 LcsGlobalCollectionSlotBuilder >> parentClassName [
+	self targetModuleClass ifNil: [ ^ 'Undefined Class'].
+	self targetModuleClass isString ifTrue: [ ^ self targetModuleClass].
 	^ self targetModuleClass name asString
 ]
 

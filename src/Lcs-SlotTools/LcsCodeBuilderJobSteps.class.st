@@ -80,7 +80,7 @@ LcsCodeBuilderJobSteps >> builderAtStep: stepNumbers [
 
 { #category : 'asking' }
 LcsCodeBuilderJobSteps >> builderJob [
-	^ self parent builderJob
+	^ self parent
 ]
 
 { #category : 'accessing' }
@@ -156,6 +156,15 @@ LcsCodeBuilderJobSteps >> gtConstructionTreeFor: aView [
 		title: 'Steps Tree';
 		priority: 2;
 		painting: [ :aMondrian | LcsCodeBuilderTreeView newPaintTreeOn: aMondrian context: self ]
+]
+
+{ #category : 'printing' }
+LcsCodeBuilderJobSteps >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream 
+		nextPutAll: '[ ';
+		nextPutAll: self jobSteps size asString;
+		nextPutAll: ' steps]'
 ]
 
 { #category : 'gt views' }

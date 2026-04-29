@@ -12,10 +12,10 @@ LcsAccessorSlotBuilderExamples >> allowNilDescription [
 	| builder magritteDescription |
 	builder := self newBuilder.
 	magritteDescription := builder allowNilDescription.
-	self assert: (magritteDescription read: builder) = false.
+	self assert: (magritteDescription read: builder) = nil.
 	magritteDescription write: true to: builder.
 	self assert: (magritteDescription read: builder) = true.
-	builder isNilAllowed.
+	self assert: builder isNilAllowed.
 	^ magritteDescription
 ]
 
@@ -67,7 +67,7 @@ LcsAccessorSlotBuilderExamples >> builderWithNilAllowed [
 	<gtExample>
 	| builder |
 	builder := self newBuilder.
-	self assert: builder allowNil == false.
+	self assert: builder allowNil == nil.
 	self deny: builder isNilAllowed.
 	builder beAllowNil.
 	self assert: builder allowNil == true.

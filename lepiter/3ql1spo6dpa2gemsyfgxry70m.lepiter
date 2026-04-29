@@ -18,77 +18,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-12T14:22:34.52088-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-28T10:28:39.352103-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "YKFv3JD4DQCAjhHZA3HkFA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "###Sunit Tests "
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-03-19T10:18:21.538338-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-12-08T16:44:10.142094-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "WDwk4mXQDQCH/k4kAKwlPw=="
-				},
-				"code" : "failures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\rtestClasses := OrderedCollection new.\rfuture := [ \r\t(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestClasses add: each.\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed addAll: testResult passed ] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors ] ] ] asAsyncPromiseWithUserBackgroundPriority.\rfuture then: [\r\tresults \r\t\tadd: 'Test Classes Ran: ' , testClasses size printString;\r\t\tadd: 'Passed (' , passed size printString , ' passed tests)';\r\t\tadd: passed;\r\t\tadd: 'Failed (' , failures size printString , ' failed tests)'.\r\tfailures isNotEmpty ifTrue: [ results add: failures ].\r\tresults add: 'Errors (' , errors size printString , ' error tests)'.\r\terrors isNotEmpty ifTrue: [ results add: errors ].\r\tresults ]"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2025-08-12T14:22:06.305037-04:00"
 					}
 				},
@@ -213,6 +142,77 @@
 					"uidString" : "aR22aJxsSFiYF0b10Ex/og=="
 				},
 				"code" : "LcsDomainObject slotModel.\rLxxPrototypeSystem slotModel"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-12T14:22:34.52088-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-28T10:28:39.352103-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "YKFv3JD4DQCAjhHZA3HkFA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Sunit Tests "
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-03-19T10:18:21.538338-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-29T09:41:33.176372-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "WDwk4mXQDQCH/k4kAKwlPw=="
+				},
+				"code" : "failures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\rtestClasses := OrderedCollection new.\rfuture := [ \r\t(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed addAll: testResult passed ] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors ].\r\ttestClasses add: each ] ] asAsyncPromiseWithUserBackgroundPriority.\rfuture then: [\r\tresults \r\t\tadd: 'Test Classes Ran: ' , testClasses size printString;\r\t\tadd: 'Passed (' , passed size printString , ' passed tests)';\r\t\tadd: passed;\r\t\tadd: 'Failed (' , failures size printString , ' failed tests)'.\r\tfailures isNotEmpty ifTrue: [ results add: failures ].\r\tresults add: 'Errors (' , errors size printString , ' error tests)'.\r\terrors isNotEmpty ifTrue: [ results add: errors ].\r\tresults ]"
 			},
 			{
 				"__type" : "textSnippet",

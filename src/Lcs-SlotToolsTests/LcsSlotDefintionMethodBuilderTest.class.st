@@ -96,7 +96,11 @@ LcsSlotDefintionMethodBuilderTest >> slotDefinitionSourceMethodStringWithNoSlotN
 			targetClassName: #LxxBasePerson;
 			required: true;
 			yourself.
-	self should: [ builder slotDefinitionSource ] raise: LcsError.
+	self assert: builder slotDefinitionSource equals: '<missing slotName>
+	<accessorSlotDefinition>
+	^ LcsAccessorSlot new
+		required: true;
+		yourself'.
 	^ builder
 ]
 
