@@ -50,6 +50,11 @@ LcsUserExamples >> newUser [
 	self assert: user fullName equals: ''.
 	self shouldnt: [ user fullName ] raise: MessageNotUnderstood.
 	self assert: user securityRole role equals: 'guest'.
+	(user slotDefinitionNamed: 'fullName') errorClass: LcsDummyError.
+	self assert: (user slotDefinitionNamed: 'fullName') errorClass equals: LcsDummyError.
+	self should: [ user fullName ] raise: Error description: 'Error is not handled'.
+	(user slotDefinitionNamed: 'fullName') errorClass: MessageNotUnderstood.
+	self assert: (user slotDefinitionNamed: 'fullName') errorClass equals: MessageNotUnderstood.
 	^ user
 ]
 
