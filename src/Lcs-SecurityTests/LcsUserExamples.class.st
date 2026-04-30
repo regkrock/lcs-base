@@ -11,7 +11,7 @@ LcsUserExamples >> auditedNewUser [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| user auditor |
-	user := self newUser.
+	user := self newUserInBasicSystem.
 	auditor := LcsConditionsValidator newOn: self.
 	self 
 		assertAuditOf: user 
@@ -32,27 +32,41 @@ LcsUserExamples >> auditedNewUser [
 ]
 
 { #category : 'properties' }
-LcsUserExamples >> newUser [
+LcsUserExamples >> newUserInBasicSystem [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| user |
 	self ensureCurrentSystemIsBasicSystem.
 	self assert: self currentSystem unitOfWork hasNoChanges.
 	user := LcsUser new.
-	self assert: (user slotDefinitionNamed: 'password') class equals: LcsPasswordSlot.
-	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
-	self assert: (user slotDefinitionNamed: 'fullName') errorClass equals: MessageNotUnderstood.
-	self assert: (user slotDefinitionNamed: 'fullName') errorReturnObject equals: ''.
-	self assert: user userId isEmpty.
-	self assert: user password isEmpty.
+	self validateCommonUserProperties: user.
 	self assert: user person isNil.
-	self assert: user securityRole notNil.
 	self assert: user fullName equals: ''.
 	self shouldnt: [ user fullName ] raise: MessageNotUnderstood.
-	self assert: user securityRole role equals: 'guest'.
+	^ user
+]
+
+{ #category : 'validation' }
+LcsUserExamples >> newUserInDemoSystem [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| user |
+	self ensureCurrentSystemIsDemoSystem.
+	user := LcsUser new.
+	self validateCommonUserProperties: user.
+	self assert: user person class equals: LcsUnknownPerson.
+	self assert: user fullName equals: 'Unknown Person'.
+	^ user
+]
+
+{ #category : 'properties' }
+LcsUserExamples >> userInBasicSystemWithNoExceptionOverrideForUserFullName [
+	<gtExample>
+	| user |
+	user := self newUserInBasicSystem.
 	(user slotDefinitionNamed: 'fullName') errorClass: LcsDummyError.
 	self assert: (user slotDefinitionNamed: 'fullName') errorClass equals: LcsDummyError.
-	self should: [ user fullName ] raise: Error description: 'Error is not handled'.
+	self should: [ user fullName ] raise: MessageNotUnderstood description: 'Error is not handled'.
 	(user slotDefinitionNamed: 'fullName') errorClass: MessageNotUnderstood.
 	self assert: (user slotDefinitionNamed: 'fullName') errorClass equals: MessageNotUnderstood.
 	^ user
@@ -63,7 +77,7 @@ LcsUserExamples >> userWithAuditedPassword [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| user auditor |
-	user := self newUser.
+	user := self newUserInBasicSystem.
 	auditor := LcsConditionsValidator newOn: self.
 	self 
 		assertAuditOf: user 
@@ -73,29 +87,11 @@ LcsUserExamples >> userWithAuditedPassword [
 ]
 
 { #category : 'examples' }
-LcsUserExamples >> userWithUnknownPerson [
-	<gtExample>
-	<after: #clearUnitOfWork>
-	| user |
-	self ensureCurrentSystemIsDemoSystem.
-	user := LcsUser new.
-	self assert: (user slotDefinitionNamed: 'password') class equals: LcsPasswordSlot.
-	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
-	self assert: user userId isEmpty.
-	self assert: user password isEmpty.
-	self assert: user person class equals: LcsUnknownPerson.
-	self assert: user securityRole notNil.
-	self assert: user fullName equals: 'Unknown Person'.
-	self assert: user securityRole role equals: 'guest'.
-	^ user
-]
-
-{ #category : 'examples' }
 LcsUserExamples >> userWithValidPassword [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| user pwd|
-	user := self newUser.
+	user := self newUserInBasicSystem.
 
 	pwd := 'Abc'.
 	self  
@@ -135,4 +131,22 @@ LcsUserExamples >> userWithValidPassword [
 	self assert: user password equals: pwd.
 	self assertAuditHasNoErrorOf: user slot: 'password'.
 	^ user
+]
+
+{ #category : 'validation' }
+LcsUserExamples >> validateCommonUserProperties: user [
+	self
+		assert: (user slotDefinitionNamed: 'password') class
+		equals: LcsPasswordSlot.
+	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
+	self
+		assert: (user slotDefinitionNamed: 'fullName') errorClass
+		equals: MessageNotUnderstood.
+	self
+		assert: (user slotDefinitionNamed: 'fullName') errorReturnObject
+		equals: ''.
+	self assert: user userId isEmpty.
+	self assert: user password isEmpty.
+	self assert: user securityRole notNil.
+	self assert: user securityRole role equals: 'guest'
 ]

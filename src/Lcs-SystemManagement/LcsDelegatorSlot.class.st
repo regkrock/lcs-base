@@ -22,8 +22,9 @@ LcsDelegatorSlot >> addClassesToUmlModel: umlModel [
 ]
 
 { #category : 'slot access' }
-LcsDelegatorSlot >> currentSlotVarIn: aTargetDomainObject [
-	^ [ self extractTheTargetValueFrom: aTargetDomainObject ]
+LcsDelegatorSlot >> currentSlotVarIn: aDomainObject [
+	self hasPermissionToReadSlotOf: aDomainObject.
+	^ [ self extractTheTargetValueFrom: aDomainObject ]
 		on: self errorClass
 		do: [ :s | s return: self errorReturnObject ].
 ]

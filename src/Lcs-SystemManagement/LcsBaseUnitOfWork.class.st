@@ -163,11 +163,13 @@ LcsBaseUnitOfWork >> gtUnitOfWorkFor: aView [
 		actionButtonIcon: BrGlamorousVectorIcons save 
 			tooltip: 'Apply Changes'
 			action: [ :aButton :aTab | 
-				self value applyChanges ];
+				self value applyChanges.
+				aTab viewContentElement phlow update ];
 		actionButtonIcon: BrGlamorousVectorIcons remove 
 			tooltip: 'Cancel Changes'
 			action: [ :aButton :aTab | 
-				self value clearUnitOfWork ];
+				self value clearUnitOfWork.
+				aTab viewContentElement phlow update ];
 		send: [ :item | item ];
 		yourself
 ]
