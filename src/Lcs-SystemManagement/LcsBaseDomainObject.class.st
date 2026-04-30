@@ -14,7 +14,7 @@ Class {
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> accessorSlotDefinitionPragmas [
-	^ Pragma allNamed: LcsBaseSlot accessorSlotDefinitionName in: self class
+	^ Pragma allNamed: LcsDomainSlot accessorSlotDefinitionName in: self class
 ]
 
 { #category : 'slot model' }
@@ -66,7 +66,7 @@ LcsBaseDomainObject class >> assertSlotAdded: aSlotName [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> collectionItemSlotDefinitionPragmas [
-	^ Pragma allNamed: LcsBaseSlot collectionItemSlotDefinitionName in: self class
+	^ Pragma allNamed: LcsDomainSlot collectionItemSlotDefinitionName in: self class
 ]
 
 { #category : 'application environment' }
@@ -81,7 +81,7 @@ LcsBaseDomainObject class >> currentUnitOfWork [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> facadeSlotDefinitionPragmas [
-	^ Pragma allNamed: LcsBaseSlot facadeSlotDefinitionName in: self class
+	^ Pragma allNamed: LcsDomainSlot facadeSlotDefinitionName in: self class
 ]
 
 { #category : 'slot access' }
@@ -510,7 +510,7 @@ LcsBaseDomainObject class >> viewItemsFrom: aListOfPragmas [
 
 { #category : 'slot model' }
 LcsBaseDomainObject class >> virtualSlotDefinitionPragmas [
-	^ Pragma allNamed: LcsBaseSlot virtualSlotDefinitionName in: self class
+	^ Pragma allNamed: LcsDomainSlot virtualSlotDefinitionName in: self class
 ]
 
 { #category : 'slot access' }

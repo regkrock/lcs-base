@@ -188,7 +188,7 @@ LcsSlotModelExamples >> slotModelWithFacadeSlot [
 	self assert: (slotModel hasFacadeSlotDefinitionNamed: 'xxx').
 	self assert: (slotModel hasSlotDefinitionNamed: 'xxx').
 	self assert: (slotModel slotDefinitionNamed: 'xxx') == slot.
-	self assert: slot pragmaSelector equals: LcsBaseSlot facadeSlotDefinitionName.
+	self assert: slot pragmaSelector equals: LcsDomainSlot facadeSlotDefinitionName.
 	^ slotModel
 ]
 
@@ -207,7 +207,7 @@ LcsSlotModelExamples >> slotModelWithInstanceInLocalCollectionSlot [
 	self assert: (slotModel slotDefinitionNamed: 'xxx') == slot.
 	self
 		assert: slot pragmaSelector
-		equals: LcsBaseSlot collectionItemSlotDefinitionName.
+		equals: LcsDomainSlot collectionItemSlotDefinitionName.
 	^ slot
 ]
 
@@ -224,7 +224,7 @@ LcsSlotModelExamples >> slotModelWithVirtualSlot [
 	self assert: (slotModel hasVirtualSlotDefinitionNamed: 'xxx').
 	self assert: (slotModel hasSlotDefinitionNamed: 'xxx').
 	self assert: (slotModel slotDefinitionNamed: 'xxx') == slot.
-	self assert: slot pragmaSelector equals: LcsBaseSlot virtualSlotDefinitionName.
+	self assert: slot pragmaSelector equals: LcsDomainSlot virtualSlotDefinitionName.
 	self assert: (slotModel allLocalSlotDefinitions includes: slot).
 	self assert: (slotModel allLocalSlotDefinitions includes: slot).
 	^ slotModel

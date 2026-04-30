@@ -70,7 +70,7 @@ LcsMethodStreamExamples >> methodStreamWithSelectorOnly [
 LcsMethodStreamExamples >> methodStreamWithSlotDefinitionSelectorSourceCode [
 	<gtExample>
 	self subject: self newMethodStream.
-	self subject startSlotDefinitionSource: 'testMethod' pragmaName: LcsBaseSlot accessorSlotDefinitionName.
+	self subject startSlotDefinitionSource: 'testMethod' pragmaName: LcsDomainSlot accessorSlotDefinitionName.
 	self assert: subject indentLevel equals: 1.
 	self
 		assert: self subject contents
@@ -83,7 +83,7 @@ LcsMethodStreamExamples >> methodStreamWithSlotDefinitionSelectorSourceCode [
 LcsMethodStreamExamples >> methodStreamWithSlotDefinitionSelectorSourceCodeWithBuilderClass [
 	<gtExample>
 	self subject: self newMethodStream.
-	self subject startSlotDefinitionSource: 'testMethod' pragmaName: LcsBaseSlot accessorSlotDefinitionName.
+	self subject startSlotDefinitionSource: 'testMethod' pragmaName: LcsDomainSlot accessorSlotDefinitionName.
 	self subject addSlotDefinitionClassCreatonLine: 'LcsStringSlot'.
 	self assert: subject indentLevel equals: 2.
 	self

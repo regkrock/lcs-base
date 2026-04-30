@@ -142,17 +142,17 @@ LcsSlotDefinitionMethodBuilder >> allowNil: aBoolean [
 
 { #category : 'command' }
 LcsSlotDefinitionMethodBuilder >> beCollectionItemSlot [
-	self pragmaSelector: LcsBaseSlot collectionItemSlotDefinitionName
+	self pragmaSelector: LcsDomainSlot collectionItemSlotDefinitionName
 ]
 
 { #category : 'command' }
 LcsSlotDefinitionMethodBuilder >> beFacadeSlot [
-	self pragmaSelector: LcsBaseSlot facadeSlotDefinitionName
+	self pragmaSelector: LcsDomainSlot facadeSlotDefinitionName
 ]
 
 { #category : 'command' }
 LcsSlotDefinitionMethodBuilder >> beVirtualSlot [
-	self pragmaSelector: LcsBaseSlot virtualSlotDefinitionName
+	self pragmaSelector: LcsDomainSlot virtualSlotDefinitionName
 ]
 
 { #category : 'verification' }
@@ -236,7 +236,7 @@ LcsSlotDefinitionMethodBuilder >> hasSlotTypes [
 { #category : 'initialize' }
 LcsSlotDefinitionMethodBuilder >> initialize [
 	super initialize.
-	self pragmaSelector: LcsBaseSlot accessorSlotDefinitionName
+	self pragmaSelector: LcsDomainSlot accessorSlotDefinitionName
 ]
 
 { #category : 'instance  creation' }

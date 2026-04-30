@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-13T12:56:39.03862-04:00"
+						"dateAndTimeString" : "2026-04-30T17:07:10.245107-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "A slot model ({{gtClass:name=LcsSlotModel}}) must exist for {{gtClass:name=LcsDomainObject}} and all of its subclasses that are part of the current system. The class' slot model   {{gtMethod:name=LcsDomainObject class>>slotModel}} .  The slot model contains the slot definitions which model the behaviour surrounding the related instance variable/slot. A virtual (read only) slot definition can also be created for a calculated value."
+				"string" : "A slot model ({{gtClass:name=LcsSlotModel}}) must exist for {{gtClass:name=LcsBaseDomainObject}} and all of its subclasses that are part of the current system.  \n\nThe slot model contains the collection of slot definitions through which the related instance variable is accessed. \n\nThe slot model is created when the system is started.\n\nThe slot model is cached in the class instance variable :   {{gtMethod:name=LcsDomainObject class>>slotModel}} . "
 			},
 			{
 				"__type" : "textSnippet",
@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-13T12:20:39.850365-04:00"
+						"dateAndTimeString" : "2026-04-30T17:02:25.426422-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The slot model present in each domain object subclass is related to the system that is currently active. To manage this, each system has a slot model which contains all of the slot models of all subclasses of domain object. When the current system is suspended, the slot model in the domain ojbect subclasses is set to ni. When the a system is made active, the systems slot model is used to restore the slot model to that of the current system."
+				"string" : "The slot model is created when the system is started.\n\nThe slot model present in each domain object subclass is related to the system that is currently active. The slot model is created when the system is started.\n\nTo manage this, each system has a slot model which contains all of the slot models of all subclasses of domain object. When the current system is suspended, the slot model in the domain ojbect subclasses is set to ni. When the a system is made active, the systems slot model is used to restore the slot model to that of the current system."
 			},
 			{
 				"__type" : "textSnippet",
@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-08T17:11:50.620367-04:00"
+						"dateAndTimeString" : "2026-04-30T16:59:39.15517-04:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This feature is particularly useful for executing unit tests. "
+				"string" : "This feature is particularly useful for executing examples. "
 			},
 			{
 				"__type" : "elementSnippet",
@@ -210,12 +210,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-02T15:51:14.49513-04:00"
+			"dateAndTimeString" : "2026-04-30T16:55:31.049224-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Slot Model"
+		"title" : "Domain Class Slot Model"
 	},
 	"uid" : {
 		"__type" : "uuid",

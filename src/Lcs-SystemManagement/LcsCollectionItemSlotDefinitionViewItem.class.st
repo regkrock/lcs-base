@@ -8,7 +8,7 @@ Class {
 
 { #category : 'private' }
 LcsCollectionItemSlotDefinitionViewItem class >> volunteerFor: aSlotCategory [
-	^ aSlotCategory = LcsBaseSlot collectionItemSlotDefinitionName
+	^ aSlotCategory = LcsDomainSlot collectionItemSlotDefinitionName
 ]
 
 { #category : 'as yet unclassified' }

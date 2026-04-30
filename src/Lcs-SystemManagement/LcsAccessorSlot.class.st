@@ -15,7 +15,7 @@ validator - ?????
 "
 Class {
 	#name : 'LcsAccessorSlot',
-	#superclass : 'LcsBaseSlot',
+	#superclass : 'LcsDomainSlot',
 	#instVars : [
 		'validator',
 		'variableUpdatePolicy'

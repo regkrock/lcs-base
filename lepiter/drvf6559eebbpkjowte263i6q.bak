@@ -18,43 +18,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-13T13:12:12.415625-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-14T19:08:07.459473-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "yWYkubrUDQC1wuyGDKI/4Q=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "The slot definition class and its subclsses define the properties of a slot. These include the following: \n1. The name of the slot (#slotName).\n2. Parent - the parent of the slot definition instance. Its parent  - an instance of {{gtClass:name=LcsSlotModel}}\n3. Domain Class - It knows the domain class that it is associated with. This is done via its parent.\n4. Type - this is the type of object that can be stored in the slot.\n5. Initial value - this is the value that will populate .\n6. Required - Indicates the initial value must be changed before the instance is saved.\n7. Validator - This is the object that is used to validate slot's value.\n8. Access Permission - Used to manage access to a slot - ex: Read, Write, etc.\n9. Slot Dependencies - It knows which other slots are dependent on it.  This is used to propogate changes to dependent slots.\n10. Logging - The slot can have a logger added to log changes/access to a slot."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-05-13T13:27:14.20167-04:00"
 					}
 				},
@@ -66,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-30T10:35:07.500924-04:00"
+						"dateAndTimeString" : "2026-04-30T17:23:19.686798-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The hierarchy below shows the slot classes that have been created. Additional slot definitions can be created by subclassing any existing subclass of   {{gtClass:LcsBaseSlo}} or LcsSlotDefinition itself."
+				"string" : "The hierarchy below shows the slot classes that have been created. Additional slot definitions can be created by subclassing any existing subclass of   {{gtClass:LcsDomainSlot}} .\n\nNew Slot Definition classes can be created by subclassesing any slot class in the LcsDomainSlot hierarchy. Creating subclasses is useful from an encapsulation persepective. It is easier to query the code "
 			},
 			{
 				"__type" : "elementSnippet",

@@ -69,7 +69,7 @@ LcsSlotModelDiagramExamples >> domainObjectSlotModelExplicitPositions [
 { #category : 'example' }
 LcsSlotModelDiagramExamples >> slotClassesHierarchy [
 	<gtExample>
-	^ UmlClassDiagram new classHierarchyFor: LcsBaseSlot withAllSubclasses
+	^ UmlClassDiagram new classHierarchyFor: LcsDomainSlot withAllSubclasses
 ]
 
 { #category : 'example' }

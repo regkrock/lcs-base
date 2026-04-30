@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsVirtualSlot',
-	#superclass : 'LcsBaseSlot',
+	#superclass : 'LcsDomainSlot',
 	#instVars : [
 		'valueAccessBlock',
 		'valueAccessor'

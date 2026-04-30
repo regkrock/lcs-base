@@ -1,5 +1,5 @@
 Class {
-	#name : 'LcsBaseSlot',
+	#name : 'LcsDomainSlot',
 	#superclass : 'LcsApplicationObject',
 	#instVars : [
 		'parent',
@@ -14,62 +14,62 @@ Class {
 }
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> accessorSlotDefinitionName [
+LcsDomainSlot class >> accessorSlotDefinitionName [
 	^ 'accessorSlotDefinition'
 ]
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> accessorSlotDefinitionsSelector [
+LcsDomainSlot class >> accessorSlotDefinitionsSelector [
 	^ (self accessorSlotDefinitionName , 's') asSymbol
 ]
 
 { #category : 'querying' }
-LcsBaseSlot class >> classNamesPrefixTree [
+LcsDomainSlot class >> classNamesPrefixTree [
 	^ GtPrefixTree withAll: (self allSubclasses collect: #name)
 ]
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> collectionItemSlotDefinitionName [
+LcsDomainSlot class >> collectionItemSlotDefinitionName [
 	^ 'collectionItemSlotDefinition'
 ]
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> collectionItemSlotDefinitionsSelector [
+LcsDomainSlot class >> collectionItemSlotDefinitionsSelector [
 	^ (self collectionItemSlotDefinitionName , 's') asSymbol
 ]
 
 { #category : 'defaults' }
-LcsBaseSlot class >> defaultSlotComment [
+LcsDomainSlot class >> defaultSlotComment [
 	^ ''
 ]
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> facadeSlotDefinitionName [
+LcsDomainSlot class >> facadeSlotDefinitionName [
 	^ 'facadeSlotDefinition'
 ]
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> facadeSlotDefinitionsSelector [
+LcsDomainSlot class >> facadeSlotDefinitionsSelector [
 	^ (self facadeSlotDefinitionName , 's') asSymbol
 ]
 
 { #category : 'testing' }
-LcsBaseSlot class >> isAbstract [
-	^ self name = #LcsBaseSlot
+LcsDomainSlot class >> isAbstract [
+	^ self name = #LcsDomainSlot
 ]
 
 { #category : 'testing' }
-LcsBaseSlot class >> isAccessorSlot [
+LcsDomainSlot class >> isAccessorSlot [
 	^ false
 ]
 
 { #category : 'testing' }
-LcsBaseSlot class >> isVirtualSlot [
+LcsDomainSlot class >> isVirtualSlot [
 	^ false
 ]
 
 { #category : 'model' }
-LcsBaseSlot class >> slotDefinitionsSelectors [
+LcsDomainSlot class >> slotDefinitionsSelectors [
 	^ {self accessorSlotDefinitionsSelector.
 		self collectionItemSlotDefinitionsSelector.
 		self facadeSlotDefinitionsSelector.
@@ -77,17 +77,17 @@ LcsBaseSlot class >> slotDefinitionsSelectors [
 ]
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> virtualSlotDefinitionName [
+LcsDomainSlot class >> virtualSlotDefinitionName [
 	^ 'virtualSlotDefinition'
 ]
 
 { #category : 'slot definition types' }
-LcsBaseSlot class >> virtualSlotDefinitionsSelector [
+LcsDomainSlot class >> virtualSlotDefinitionsSelector [
 	^ (self virtualSlotDefinitionName , 's') asSymbol
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> addAssociationsToUmlModel: aUmlModel [
+LcsDomainSlot >> addAssociationsToUmlModel: aUmlModel [
 	self domainClass isNil ifTrue: [ ^ self ].
 	aUmlModel
 		addAssociation: self slotName , 'SlotDefinition'
@@ -96,25 +96,25 @@ LcsBaseSlot >> addAssociationsToUmlModel: aUmlModel [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> addClassesToUmlModel: umlModel [ 
+LcsDomainSlot >> addClassesToUmlModel: umlModel [ 
 	umlModel
 		addClassNamed: self domainClass;
 		addClassNamed: self class.
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> addOtherSlotPropertiesViewItemsTo: collection [
+LcsDomainSlot >> addOtherSlotPropertiesViewItemsTo: collection [
 	"This hook is provided so subclasses can implement as needed"
 ]
 
 { #category : 'code generation' }
-LcsBaseSlot >> addPropertiesTo: aSlotDefinitionMethodBuilder [
+LcsDomainSlot >> addPropertiesTo: aSlotDefinitionMethodBuilder [
 	self properties keysAndValuesDo: [ :key :value | 
 		aSlotDefinitionMethodBuilder addProperty: key value: value ]
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> addRefactoringTextDetailsTo: aStream [
+LcsDomainSlot >> addRefactoringTextDetailsTo: aStream [
 	aStream 
 		nextPutAll: (self domainClass ifNil: ['nil'] ifNotNil: [ self domainClass name ]) ; 
 		nextPutAll:' class >>';
@@ -122,7 +122,7 @@ LcsBaseSlot >> addRefactoringTextDetailsTo: aStream [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> addSlotPropertiesViewItemsTo: collection [
+LcsDomainSlot >> addSlotPropertiesViewItemsTo: collection [
 	collection
 		add: (LcsSlotPropertyViewItem newLabel: '' item: '').
 		"add: '------PROPERTIES------' -> ''."
@@ -131,33 +131,33 @@ LcsBaseSlot >> addSlotPropertiesViewItemsTo: collection [
 ]
 
 { #category : 'configuration' }
-LcsBaseSlot >> addSlotType: aClass [
+LcsDomainSlot >> addSlotType: aClass [
 	self assert: aClass isClass.
 	(self slotTypes includes: aClass) ifFalse: [ self slotTypes add: aClass ]
 ]
 
 { #category : 'converting' }
-LcsBaseSlot >> asViewItem [
+LcsDomainSlot >> asViewItem [
 	^ LcsSlotDefinitionViewItem on: self 
 ]
 
 { #category : 'configuration' }
-LcsBaseSlot >> clearSlotTypes [
+LcsDomainSlot >> clearSlotTypes [
 	self slotTypes removeAll.
 ]
 
 { #category : 'accessing' }
-LcsBaseSlot >> comment [
+LcsDomainSlot >> comment [
 	^ self propertyAt: 'comment' ifAbsent: [ '' ]
 ]
 
 { #category : 'accessing' }
-LcsBaseSlot >> comment: anObject [
+LcsDomainSlot >> comment: anObject [
 	self propertyAt: 'comment' put: anObject
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> commentDescription [
+LcsDomainSlot >> commentDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Comment';
@@ -173,7 +173,7 @@ LcsBaseSlot >> commentDescription [
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
+LcsDomainSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 	| theContextMenu items |
 	theContextMenu := GtFormContextMenuContent new editorElement: anElement.
 	items := OrderedCollection new.
@@ -186,32 +186,32 @@ LcsBaseSlot >> createClassContextMenuContentFor: aClass editor: anElement [
 ]
 
 { #category : 'defaults' }
-LcsBaseSlot >> defaultPragmaSelector [
+LcsDomainSlot >> defaultPragmaSelector [
 	^ self subclassResponsibility
 ]
 
 { #category : 'initialize' }
-LcsBaseSlot >> defaultPriority [
+LcsDomainSlot >> defaultPriority [
 	^ 50
 ]
 
 { #category : 'defaults' }
-LcsBaseSlot >> defaultSlotComment [
+LcsDomainSlot >> defaultSlotComment [
 	^ self class defaultSlotComment
 ]
 
 { #category : 'slot model' }
-LcsBaseSlot >> domainClass [
+LcsDomainSlot >> domainClass [
 	^ domainClass ifNil: [ domainClass := self parent ifNotNil: [ :each | each domainClass ] ]
 ]
 
 { #category : 'slot model' }
-LcsBaseSlot >> domainClass: aDomainClass [
+LcsDomainSlot >> domainClass: aDomainClass [
 	domainClass := aDomainClass
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> domainClassDescription [
+LcsDomainSlot >> domainClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Domain Class';
@@ -240,19 +240,19 @@ LcsBaseSlot >> domainClassDescription [
 ]
 
 { #category : 'convenience' }
-LcsBaseSlot >> domainClassName [
+LcsDomainSlot >> domainClassName [
 	^ self domainClass ifNil: [ 'nil' ] ifNotNil: [ :class | class name]
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> errorPropertyNotFound: aSelector [ 
+LcsDomainSlot >> errorPropertyNotFound: aSelector [ 
 	LcsSlotPropertyError new
 		slotDefinition: self;
 		signal: 'Property ' , aSelector , ' not found.'
 ]
 
 { #category : 'slot model' }
-LcsBaseSlot >> getterSelector [
+LcsDomainSlot >> getterSelector [
 	| substring1 substring2 |
 	substring1 := (self slotName at: 1) asLowercase asString.
 	substring2 := self slotName asCamelCase copyFrom: 2 to: self slotName size.
@@ -261,7 +261,7 @@ LcsBaseSlot >> getterSelector [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtCreateClassAndValueElementFor: aColumn [
+LcsDomainSlot >> gtCreateClassAndValueElementFor: aColumn [
 	^ aColumn
 		cellStencil: [ BrHorizontalPane new
 				hMatchParent;
@@ -287,7 +287,7 @@ LcsBaseSlot >> gtCreateClassAndValueElementFor: aColumn [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtRefactoringChangeOn: aView [
+LcsDomainSlot >> gtRefactoringChangeOn: aView [
 	<gtView>
 	^ aView text
 		title: 'Refactoring';
@@ -297,7 +297,7 @@ LcsBaseSlot >> gtRefactoringChangeOn: aView [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
+LcsDomainSlot >> gtSlotDefinitionMethodViewFor: aView [
 	<gtView>
 
 	self domainClass ifNil: [ ^ aView empty ].
@@ -315,7 +315,7 @@ LcsBaseSlot >> gtSlotDefinitionMethodViewFor: aView [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtSlotPropertiesViewFor: aView [
+LcsDomainSlot >> gtSlotPropertiesViewFor: aView [
 	<gtView>
 	^ aView columnedTree
 		title: 'Properties';
@@ -330,7 +330,7 @@ LcsBaseSlot >> gtSlotPropertiesViewFor: aView [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtSlotPropertiesViewItems [
+LcsDomainSlot >> gtSlotPropertiesViewItems [
 	| collection |
 	collection := OrderedCollection new
 		add: (LcsSlotPropertyViewItem newLabel: 'parent' item: self parent);
@@ -345,7 +345,7 @@ LcsBaseSlot >> gtSlotPropertiesViewItems [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtSlotTypesViewFor: aView [
+LcsDomainSlot >> gtSlotTypesViewFor: aView [
 	"<gtView>"
 	^ aView columnedList
 		title: 'Slot Types';
@@ -374,7 +374,7 @@ LcsBaseSlot >> gtSlotTypesViewFor: aView [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> gtUMLFor: aView [
+LcsDomainSlot >> gtUMLFor: aView [
 	<gtView>
 	^ aView mondrian
 		title: 'UML';
@@ -386,7 +386,7 @@ LcsBaseSlot >> gtUMLFor: aView [
 ]
 
 { #category : 'initialize' }
-LcsBaseSlot >> initialize [
+LcsDomainSlot >> initialize [
 	super initialize.
 	self properties: OrderedDictionary new.
 	self slotName: nil.
@@ -398,17 +398,17 @@ LcsBaseSlot >> initialize [
 ]
 
 { #category : 'initialize' }
-LcsBaseSlot >> initializeSlotTypes [
+LcsDomainSlot >> initializeSlotTypes [
 	self slotTypes: OrderedCollection new
 ]
 
 { #category : 'testing' }
-LcsBaseSlot >> isAccessorSlot [
+LcsDomainSlot >> isAccessorSlot [
 	^ self class isAccessorSlot
 ]
 
 { #category : 'testing' }
-LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
+LcsDomainSlot >> isChangedProperty: aPropertyName value: aValue [
 	| propertyValue prepertyAccessor|
 	prepertyAccessor := aPropertyName asSymbol.
 	(self respondsTo: prepertyAccessor) ifFalse: [ ^ true ].
@@ -423,48 +423,48 @@ LcsBaseSlot >> isChangedProperty: aPropertyName value: aValue [
 ]
 
 { #category : 'testing' }
-LcsBaseSlot >> isVirtualSlot [
+LcsDomainSlot >> isVirtualSlot [
 	^ self class isVirtualSlot
 ]
 
 { #category : 'slot model' }
-LcsBaseSlot >> label [
+LcsDomainSlot >> label [
 	^self labelForSelector: self slotName
 ]
 
 { #category : 'slot model' }
-LcsBaseSlot >> newDomainClassName [
+LcsDomainSlot >> newDomainClassName [
 	^ self domainClass ifNil: [ ^ '<not initialized>']
 ]
 
 { #category : 'accessing' }
-LcsBaseSlot >> parent [
+LcsDomainSlot >> parent [
 	^ parent
 ]
 
 { #category : 'accessing' }
-LcsBaseSlot >> parent: anObject [
+LcsDomainSlot >> parent: anObject [
 	parent := anObject
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> pragmaSelector [
+LcsDomainSlot >> pragmaSelector [
 	^ prgamaSelector ifNil: [ prgamaSelector := self pragmaSelectorBasedOnSlotDefinitionMethod ]
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> pragmaSelector: aString [
+LcsDomainSlot >> pragmaSelector: aString [
 	prgamaSelector := aString
 ]
 
 { #category : 'asking' }
-LcsBaseSlot >> pragmaSelectorBasedOnSlotDefinitionMethod [
+LcsDomainSlot >> pragmaSelectorBasedOnSlotDefinitionMethod [
 	self domainClass ifNil: [ ^ nil ].
 	^ (self domainClass pragmaSelectorOf: self slotDefinitionSelector)
 ]
 
 { #category : 'printing' }
-LcsBaseSlot >> printOn: aStream [
+LcsDomainSlot >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPutAll: ' (';
@@ -473,17 +473,17 @@ LcsBaseSlot >> printOn: aStream [
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> priority [
+LcsDomainSlot >> priority [
 	^ self propertyAt: 'priority'
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> priority: anObject [
+LcsDomainSlot >> priority: anObject [
 	self propertyAt: 'priority' put: anObject
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> priorityDescription [
+LcsDomainSlot >> priorityDescription [
 	<magritteDescription>
 	^ MANumberDescription new
 		label: 'Priority';
@@ -497,34 +497,34 @@ LcsBaseSlot >> priorityDescription [
 ]
 
 { #category : 'accessing' }
-LcsBaseSlot >> properties [
+LcsDomainSlot >> properties [
 	^ properties
 ]
 
 { #category : 'accessing' }
-LcsBaseSlot >> properties: anObject [
+LcsDomainSlot >> properties: anObject [
 	properties := anObject
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> propertyAt: aKey [
+LcsDomainSlot >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
 
 	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> propertyAt: aKey ifAbsent: aBlock [
+LcsDomainSlot >> propertyAt: aKey ifAbsent: aBlock [
 	^ self properties at: aKey ifAbsent: aBlock 
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> propertyAt: aKey put: anObject [
+LcsDomainSlot >> propertyAt: aKey put: anObject [
 	^ self properties at: aKey put: anObject 
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> refactoringText [
+LcsDomainSlot >> refactoringText [
 	| stream |
 	stream := WriteStream on: String new.
 	self addRefactoringTextDetailsTo: stream.
@@ -532,18 +532,18 @@ LcsBaseSlot >> refactoringText [
 ]
 
 { #category : 'configuration' }
-LcsBaseSlot >> removeSlotType: aClass [
+LcsDomainSlot >> removeSlotType: aClass [
 	self assert: aClass isClass.
 	(self slotTypes includes: aClass) ifTrue: [ self slotTypes remove: aClass ]
 ]
 
 { #category : 'defaults' }
-LcsBaseSlot >> slotClass [
+LcsDomainSlot >> slotClass [
 	^ self slotTypes any
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> slotClassDescription [
+LcsDomainSlot >> slotClassDescription [
 	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Slot Definition Class';
@@ -577,46 +577,46 @@ LcsBaseSlot >> slotClassDescription [
 ]
 
 { #category : 'convenience' }
-LcsBaseSlot >> slotClassName [
+LcsDomainSlot >> slotClassName [
 	^ self class name
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> slotDefinitionMethodsFilter [
+LcsDomainSlot >> slotDefinitionMethodsFilter [
 	^ self slotDefinitionSelector gtImplementors
 		& (self domainClass class gtMethodsInClass includeSuperclass: true)
 ]
 
 { #category : 'asking' }
-LcsBaseSlot >> slotDefinitionSelector [
+LcsDomainSlot >> slotDefinitionSelector [
 	^ (self slotName asString , 'SlotDefinition') asSymbol
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> slotDefinitionSource [
+LcsDomainSlot >> slotDefinitionSource [
 	^ (LcsSlotDefinitionMethodFormatter newOnSlotDefinition: self)
 		methodSource 
 ]
 
 { #category : 'defaults' }
-LcsBaseSlot >> slotKind [
+LcsDomainSlot >> slotKind [
 	| string |
 	string := self pragmaSelector asString.
 	^ string copyFrom: 1 to: ((string findString: 'SlotDefinition') - 1)
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> slotName [
+LcsDomainSlot >> slotName [
 	^ self propertyAt: 'slotName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> slotName: anObject [
+LcsDomainSlot >> slotName: anObject [
 	self propertyAt: 'slotName' put: anObject
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> slotNameDescription [
+LcsDomainSlot >> slotNameDescription [
 	<magritteDescription>
 	| existingInstvarNames |
 	existingInstvarNames := self domainClass ifNil: [ #() ] ifNotNil: [ :c | c allInstVarNames ].
@@ -640,7 +640,7 @@ LcsBaseSlot >> slotNameDescription [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> slotTypeClassNames [
+LcsDomainSlot >> slotTypeClassNames [
 	| stream |
 	stream := WriteStream on: String new.
 	self slotTypes do: [ :eachClass |
@@ -652,17 +652,17 @@ LcsBaseSlot >> slotTypeClassNames [
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> slotTypes [
+LcsDomainSlot >> slotTypes [
 	^ self propertyAt: 'slotTypes'
 ]
 
 { #category : 'properties' }
-LcsBaseSlot >> slotTypes: anObject [
+LcsDomainSlot >> slotTypes: anObject [
 	self propertyAt: 'slotTypes' put: anObject
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> slotTypesDescription [
+LcsDomainSlot >> slotTypesDescription [
 	<magritteDescription>
 	^ MAToManyRelationDescription new
 		label: 'Slot Types';
@@ -706,7 +706,7 @@ LcsBaseSlot >> slotTypesDescription [
 ]
 
 { #category : 'printing' }
-LcsBaseSlot >> slotTypesList [
+LcsDomainSlot >> slotTypesList [
 	| stream |
 	stream := WriteStream on: String new.
 	self slotTypes 
@@ -716,12 +716,12 @@ LcsBaseSlot >> slotTypesList [
 ]
 
 { #category : 'slot model' }
-LcsBaseSlot >> slotVarPut: anObject in: aDomainObject [
+LcsDomainSlot >> slotVarPut: anObject in: aDomainObject [
 	^ LcsError signal: 'Attempt to update a read only slot'
 ]
 
 { #category : 'magritte' }
-LcsBaseSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
+LcsDomainSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBlock: aContextMenuBlock [
 	^ [ :aMemento :aDescription :aForm | 
 	| aTagger aTaggerAptitude |
 	aTagger := BrTagger new hFitContentLimited.
@@ -832,7 +832,7 @@ LcsBaseSlot >> taggerStencilWithCompletion: aCompletionStrategy andContextMenuBl
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> umlModel [
+LcsDomainSlot >> umlModel [
 	| umlModel |
 	umlModel := LcsUmlModel new.
 	self addClassesToUmlModel: umlModel.
@@ -843,6 +843,6 @@ LcsBaseSlot >> umlModel [
 ]
 
 { #category : 'gt views' }
-LcsBaseSlot >> umlModelMondrianView [
+LcsDomainSlot >> umlModelMondrianView [
 	^ LcsUml new proposedUmlModelFor: self umlModel
 ]

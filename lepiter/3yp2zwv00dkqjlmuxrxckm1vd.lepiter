@@ -136,12 +136,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-08-10T13:12:54.49733-04:00"
+			"dateAndTimeString" : "2026-04-30T12:57:41.593395-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "What is a Slot"
+		"title" : "What is a Domain Slot"
 	},
 	"uid" : {
 		"__type" : "uuid",

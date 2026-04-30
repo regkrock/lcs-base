@@ -63,7 +63,7 @@ LcsSlotDefintionMethodBuilderTest >> newBuilder [
 	self assert: builder slotName isNil.
 	self assert: builder targetClass isNil.
 	self assert: builder targetClassName isNil.
-	self assert: builder pragmaSelector = LcsBaseSlot accessorSlotDefinitionName.
+	self assert: builder pragmaSelector = LcsDomainSlot accessorSlotDefinitionName.
 	self verifyChangingTargetClassName: builder.
 	^ builder
 ]

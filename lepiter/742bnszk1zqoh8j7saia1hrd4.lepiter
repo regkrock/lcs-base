@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T10:25:26.324722-04:00"
+						"dateAndTimeString" : "2026-04-30T17:13:13.299873-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,20 +29,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T17:10:39.485938-04:00"
+						"dateAndTimeString" : "2026-04-30T17:13:13.299873-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "6cKkAnHSDQCr9vFsByYYXA=="
+					"uidString" : "mfXJuCDeR6u81Q1d0WykVw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "When a system is started, a slot model is created for all domain classes in the system.\n\nThese slot models are cached in an instance of {{gtClass:name=LcsSystemSlotModel}}\n\nTo manage this, each system has a slot model which contains all of the slot models of all subclasses of domain object. When the current system is suspended, the slot model in the domain ojbect subclasses is set to ni. When the a system is made active, the systems slot model is used to restore the slot model to that of the current system."
+				"string" : ""
 			},
 			{
-				"__type" : "elementSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-13T11:38:53.815286-04:00"
+						"dateAndTimeString" : "2026-04-30T17:13:18.650768-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-03-20T16:40:29.097713-04:00"
+						"dateAndTimeString" : "2026-04-30T17:13:18.650768-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "wYNwa7nUDQCKVr9/ATnXCw=="
+					"uidString" : "LZVdiVNwQvSFnwqbDNQ01Q=="
 				},
-				"code" : "LcsSlotModelDiagramExamples new systemSlotModel",
-				"elementHeight" : 458,
-				"codeHeight" : 40,
-				"codeVisible" : true
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The slot definition class and its subclsses define the properties of a slot. These include the following: \n1. The name of the slot (#slotName).\n2. Parent - the parent of the slot definition instance. Its parent  - an instance of {{gtClass:name=LcsSlotModel}}\n3. Domain Class - It knows the domain class that it is associated with. This is done via its parent.\n4. Type - this is the type of object that can be stored in the slot.\n5. Initial value - this is the value that will populate .\n6. Required - Indicates the initial value must be changed before the instance is saved.\n7. Validator - This is the object that is used to validate slot's value.\n8. Access Permission - Used to manage access to a slot - ex: Read, Write, etc.\n9. Slot Dependencies - It knows which other slots are dependent on it.  This is used to propogate changes to dependent slots.\n10. Logging - The slot can have a logger added to log changes/access to a slot."
 			}
 		]
 	},
@@ -88,7 +88,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-14T10:25:14.664081-04:00"
+			"dateAndTimeString" : "2026-04-30T12:56:05.795198-04:00"
 		}
 	},
 	"editEmail" : {
@@ -99,15 +99,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-14T10:25:14.664081-04:00"
+			"dateAndTimeString" : "2026-04-30T15:25:01.052378-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "System Slot Model"
+		"title" : "Domain Slot"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "aac7a302-71d2-0d00-abf5-3d690726185c"
+		"uuid" : "c84d96c6-bd10-4607-8bf6-05ca5b3f2578"
 	}
 }

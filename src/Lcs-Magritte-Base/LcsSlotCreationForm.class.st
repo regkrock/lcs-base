@@ -287,7 +287,7 @@ LcsSlotCreationForm >> isSlotClass: aClassName [
 	| class |
 	class := self classNamed: aClassName.
 	class isNil ifTrue: [ ^ false ].
-	^ class inheritsFrom: LcsBaseSlot
+	^ class inheritsFrom: LcsDomainSlot
 ]
 
 { #category : 'testing' }
@@ -508,13 +508,13 @@ LcsSlotCreationForm >> slotClassName: anObject [
 { #category : 'private' }
 LcsSlotCreationForm >> slotClassWithSuperclasses [
 	^ (self slotClassName asClass withAllSuperclasses) reject: [ :each |
-		LcsBaseSlot inheritsFrom: each ]
+		LcsDomainSlot inheritsFrom: each ]
 ]
 
 { #category : 'magritte - support' }
 LcsSlotCreationForm >> slotClasses [
 	^ GtPrefixTree
-		withAll: ((LcsBaseSlot withAllSubclasses reject: [ :each | each isAbstract ])
+		withAll: ((LcsDomainSlot withAllSubclasses reject: [ :each | each isAbstract ])
 				collect: [ :each | each name ])
 ]
 

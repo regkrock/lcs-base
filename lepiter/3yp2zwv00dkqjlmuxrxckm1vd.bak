@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-10T15:00:34.919598-04:00"
+						"dateAndTimeString" : "2025-08-10T15:01:00.960261-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "##Definition\nA slot has several meanings depending on context:\n1) A *slot* is another word for intance variable. An instance variable takes up a slot of memory.\n2) A slot can also refer to **an object whose responsiblity is to encapsulate the behaviour associated with an instance variable**. This includes accessing the contents of the instance variable.\n\nThe later concept was introduced by Marvin Minksy and colleagues in his work on Frames and Slots at MIT. Basically, a Frame is composed on one to may slots which help describe the Frame. This work was expressed in [LISP](https://en.wikipedia.org/wiki/Lisp_(programming_language))  related languges such as [CLOS](https://en.wikipedia.org/wiki/Common_Lisp_Object_System)."
+				"string" : "##Definition\nA slot has several meanings depending on context:\n1) A *slot* is another word for intance variable. An instance variable takes up a slot of memory.\n2) A slot can also refer to **an object whose responsiblity is to encapsulate the behaviour associated with an instance variable. This includes accessing the contents of the instance variable.**\n\nThe later concept was introduced by Marvin Minksy and colleagues in his work on Frames and Slots at MIT. Basically, a Frame is composed on one to may slots which help describe the Frame. This work was expressed in [LISP](https://en.wikipedia.org/wiki/Lisp_(programming_language))  related languges such as [CLOS](https://en.wikipedia.org/wiki/Common_Lisp_Object_System)."
 			},
 			{
 				"__type" : "textSnippet",

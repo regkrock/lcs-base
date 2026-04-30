@@ -111,17 +111,17 @@ LcsSlotModel >> addValidateConfigurationResultTo: aValidator [
 
 { #category : 'model' }
 LcsSlotModel >> allAccessorSlotDefinitions [
-	^ self allSlotDefinitionsIn: LcsBaseSlot accessorSlotDefinitionsSelector
+	^ self allSlotDefinitionsIn: LcsDomainSlot accessorSlotDefinitionsSelector
 ]
 
 { #category : 'model' }
 LcsSlotModel >> allCollectionItemSlotDefinitions [
-	^ self allSlotDefinitionsIn: LcsBaseSlot collectionItemSlotDefinitionsSelector
+	^ self allSlotDefinitionsIn: LcsDomainSlot collectionItemSlotDefinitionsSelector
 ]
 
 { #category : 'model' }
 LcsSlotModel >> allFacadeSlotDefinitions [
-	^ self allSlotDefinitionsIn: LcsBaseSlot facadeSlotDefinitionsSelector
+	^ self allSlotDefinitionsIn: LcsDomainSlot facadeSlotDefinitionsSelector
 ]
 
 { #category : 'model' }
@@ -150,12 +150,12 @@ LcsSlotModel >> allSlotDefinitionsIn: aSelector [
 
 { #category : 'model' }
 LcsSlotModel >> allVirtualSlotDefinitions [
-	^ self allSlotDefinitionsIn: LcsBaseSlot virtualSlotDefinitionsSelector
+	^ self allSlotDefinitionsIn: LcsDomainSlot virtualSlotDefinitionsSelector
 ]
 
 { #category : 'model' }
 LcsSlotModel >> allVirutalSlotDefinitions [
-	^ self allSlotDefinitionsIn: LcsBaseSlot virtualSlotDefinitionsSelector
+	^ self allSlotDefinitionsIn: LcsDomainSlot virtualSlotDefinitionsSelector
 ]
 
 { #category : 'validation' }
@@ -167,7 +167,7 @@ LcsSlotModel >> audit: anObject withAuditor: anAuditor [
 LcsSlotModel >> collectionItemSlotDefinitionNamed: aSlotName [
 	^ self
 		_slotDefinitionNamed: aSlotName
-		inSlotDefinitionsSelector: LcsBaseSlot collectionItemSlotDefinitionsSelector
+		inSlotDefinitionsSelector: LcsDomainSlot collectionItemSlotDefinitionsSelector
 ]
 
 { #category : 'accessing' }
@@ -214,7 +214,7 @@ LcsSlotModel >> domainSuperClassSlotModel [
 LcsSlotModel >> facadeSlotDefinitionNamed: aSlotName [
 	^ self
 		_slotDefinitionNamed: aSlotName
-		inSlotDefinitionsSelector: LcsBaseSlot facadeSlotDefinitionsSelector
+		inSlotDefinitionsSelector: LcsDomainSlot facadeSlotDefinitionsSelector
 ]
 
 { #category : 'accessing' }
@@ -428,7 +428,7 @@ LcsSlotModel >> slotDefinitionsCollections [
 
 { #category : 'model' }
 LcsSlotModel >> slotDefinitionsSelectors [
-	^ LcsBaseSlot slotDefinitionsSelectors
+	^ LcsDomainSlot slotDefinitionsSelectors
 ]
 
 { #category : 'model' }
@@ -445,7 +445,7 @@ LcsSlotModel >> validate: anObject visitor: aValidationVisitor [
 LcsSlotModel >> virtualSlotDefinitionNamed: aSlotName [
 	^ self
 		_slotDefinitionNamed: aSlotName
-		inSlotDefinitionsSelector: LcsBaseSlot virtualSlotDefinitionsSelector
+		inSlotDefinitionsSelector: LcsDomainSlot virtualSlotDefinitionsSelector
 ]
 
 { #category : 'accessing' }

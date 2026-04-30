@@ -510,14 +510,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-06-27T11:14:57.620007-04:00"
+						"dateAndTimeString" : "2026-04-30T14:50:00.471027-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "MBl1h33xDQCqenq1CP3peg=="
 				},
-				"code" : "\"List all traits being used in LsBaseSlotDefinition and its subclasses\"\rLcsBaseSlot withAllSubclassesDo: [ :each | each traits notEmpty ifTrue: [\r\tTranscript show: each name; tab; nextPutAll: (each traits printString); cr ] ] "
+				"code" : "\"List all traits being used in LsBaseSlotDefinition and its subclasses\"\rLcsDomainSlot withAllSubclassesDo: [ :each | each traits notEmpty ifTrue: [\r\tTranscript show: each name; tab; nextPutAll: (each traits printString); cr ] ] "
 			}
 		]
 	},
