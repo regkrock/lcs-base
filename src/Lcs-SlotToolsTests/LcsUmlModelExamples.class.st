@@ -49,7 +49,7 @@ LcsUmlModelExamples >> umlModelWithOrderedCollectionAndAProposedClass [
 	proposedClassModel := umlModel proposedClassModelFor: 'LxxSample'.
 	self assert: umlModel collection size = 2.
 	self assert: proposedClassModel modelClassname = 'LxxSample'.
-	self assert: proposedClassModel modelClass isNil.
+	self assert: proposedClassModel modelClass name equals: #'LxxSample'.
 	self assert: proposedClassModel modelSuperclassName isNil.
 	self assert: proposedClassModel modelSuperclass isNil.
 	^ umlModel
