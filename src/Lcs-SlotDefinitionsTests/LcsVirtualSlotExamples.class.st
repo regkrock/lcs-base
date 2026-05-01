@@ -32,10 +32,10 @@ LcsVirtualSlotExamples >> newSlot [
 	self assert: slot isVirtualSlot.
 	self
 		assert: slot defaultComputedValueBlock printString
-		equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]'.
+		equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot computedValueAccessor ]'.
 	self
 		assert: slot computedValueBlock printString
-		equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]'.
+		equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot computedValueAccessor ]'.
 	self
 		should: [ slot slotVarPut: 'anObject' in: LcsDateRange new ]
 		raise: Error
