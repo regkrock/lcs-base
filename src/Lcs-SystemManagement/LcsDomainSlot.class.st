@@ -5,7 +5,6 @@ Class {
 		'parent',
 		'domainClass',
 		'properties',
-		'comment',
 		'prgamaSelector'
 	],
 	#category : 'Lcs-SystemManagement-Slot',

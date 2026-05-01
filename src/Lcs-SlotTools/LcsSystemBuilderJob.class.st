@@ -129,8 +129,3 @@ LcsSystemBuilderJob >> targetPackageName [
 LcsSystemBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]
-
-{ #category : 'accessing' }
-LcsSystemBuilderJob >> targetPackageTagName: anObject [
-	targetPackageTagName := anObject
-]

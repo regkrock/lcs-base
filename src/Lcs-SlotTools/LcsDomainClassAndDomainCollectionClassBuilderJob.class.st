@@ -274,11 +274,6 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageName: aString [
 ]
 
 { #category : 'accessing' }
-LcsDomainClassAndDomainCollectionClassBuilderJob >> targetPackageTagName: anObject [
-	targetPackageTagName := anObject
-]
-
-{ #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> unknownClassName [
 	^ nil
 ]

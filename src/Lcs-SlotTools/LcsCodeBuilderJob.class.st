@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'jobSteps',
 		'buildUnknownClass',
-		'umlPositions'
+		'umlPositions',
+		'targetPackageTagName'
 	],
 	#category : 'Lcs-SlotTools-Core',
 	#package : 'Lcs-SlotTools',
@@ -237,6 +238,16 @@ LcsCodeBuilderJob >> removeAllJobSteps [
 { #category : 'asking' }
 LcsCodeBuilderJob >> stepNumber [
 	^ ''
+]
+
+{ #category : 'accessing' }
+LcsCodeBuilderJob >> targetPackageTagName [
+	^ targetPackageTagName
+]
+
+{ #category : 'accessing' }
+LcsCodeBuilderJob >> targetPackageTagName: anObject [
+	targetPackageTagName := anObject
 ]
 
 { #category : 'command' }

@@ -390,16 +390,6 @@ LcsCodeBuilderStep >> targetPackageName: anObject [
 	targetPackageName := anObject
 ]
 
-{ #category : 'accessing' }
-LcsCodeBuilderStep >> targetPackageTagName [
-	^ targetPackageTagName 
-]
-
-{ #category : 'accessing' }
-LcsCodeBuilderStep >> targetPackageTagName: anObject [
-	targetPackageTagName := anObject
-]
-
 { #category : 'trace' }
 LcsCodeBuilderStep >> traceStep: aString [
 	LcsBuilderLogger log: aString , '- ' , self jobStepDescription , '(' , self class name , ')'.

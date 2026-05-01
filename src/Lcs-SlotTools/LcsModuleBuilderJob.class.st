@@ -140,13 +140,3 @@ LcsModuleBuilderJob >> targetPackageName [
 LcsModuleBuilderJob >> targetPackageName: aString [ 
 	targetPackageName := aString
 ]
-
-{ #category : 'accessing' }
-LcsModuleBuilderJob >> targetPackageTagName [
-	^ targetPackageTagName
-]
-
-{ #category : 'accessing' }
-LcsModuleBuilderJob >> targetPackageTagName: anObject [
-	targetPackageTagName := anObject
-]
