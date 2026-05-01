@@ -192,6 +192,12 @@ LcsSlotCreationForm >> commitPackage [
 				ifNotEmpty: [ :aTagName | aPackage addClassTag: aTagName ] ]
 ]
 
+{ #category : 'magritte' }
+LcsSlotCreationForm >> computedValueAccessorDescription [
+	<magritteDescription>
+	^ self magritteDescriptionFor: #computedValueAccessor
+]
+
 { #category : 'private' }
 LcsSlotCreationForm >> contextMenuItemsForSuperclass [
 	^ {'Browse references'
@@ -566,12 +572,6 @@ LcsSlotCreationForm >> validationRuleItemsDescription [
 LcsSlotCreationForm >> validationRulesDescription [
 	<magritteDescription>
 	^ self magritteDescriptionFor: #validationRules
-]
-
-{ #category : 'magritte' }
-LcsSlotCreationForm >> valueAccessorDescription [
-	<magritteDescription>
-	^ self magritteDescriptionFor: #valueAccessor
 ]
 
 { #category : 'magritte - support' }

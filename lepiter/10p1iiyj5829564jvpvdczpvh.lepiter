@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:12.570711-04:00"
+						"dateAndTimeString" : "2026-05-01T10:33:47.262494-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:12.570711-04:00"
+						"dateAndTimeString" : "2026-05-01T10:34:03.805331-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "{{gtClass:name=LcsFacadeSlot}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-01T10:34:16.121005-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-01T10:38:51.716983-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "reJ1d+ifQ4uvjmCm/A8cDw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "This slot allows access, both read and write, to a slot in an domain object which is part of the domain object where this slot is defined.\n\n{{gtMethod:name=LcsUser class>>#fullNameSlotDefinition}}"
 			}
 		]
 	},

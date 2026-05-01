@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:15.287368-04:00"
+						"dateAndTimeString" : "2026-05-01T10:25:53.58589-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,44 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:15.287368-04:00"
+						"dateAndTimeString" : "2026-05-01T10:26:18.454847-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "7rEKej1AT4qWihroLecHzw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsSmalltalkObjectSlot}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-01T10:31:12.174935-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-01T10:33:14.21386-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "These slots are designed to define the acess to  a smalltalk object (vs domain object). \n\nExamples include string, text, number, date, time, class, collectoion, etc. "
 			}
 		]
 	},

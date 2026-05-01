@@ -30,9 +30,34 @@ LcsVirtualSlot >> addClassesToUmlModel: umlModel [
 	umlModel addClassNamed: self slotTypes first
 ]
 
+{ #category : 'defaults' }
+LcsVirtualSlot >> computedValueAccessor [
+	^ self propertyAt: #computedValueAccessor
+]
+
+{ #category : 'defaults' }
+LcsVirtualSlot >> computedValueAccessor: anObject [
+	^ self propertyAt: #computedValueAccessor put: anObject asSymbol
+]
+
+{ #category : 'properties' }
+LcsVirtualSlot >> computedValueBlock [
+	^ self propertyAt: #computedValueBlock
+]
+
+{ #category : 'properties' }
+LcsVirtualSlot >> computedValueBlock: aBlock [
+	^ self properties at: #computedValueBlock put: aBlock
+]
+
 { #category : 'slot model' }
 LcsVirtualSlot >> currentSlotVarIn: aDomainObject [
-	^ self valueAccessBlock cull: aDomainObject cull: self
+	^ self computedValueBlock cull: aDomainObject cull: self
+]
+
+{ #category : 'defaults' }
+LcsVirtualSlot >> defaultComputedValueBlock [
+		^ [ :parentDomainObject :slot | parentDomainObject perform: slot computedValueAccessor ]
 ]
 
 { #category : 'defaults' }
@@ -40,16 +65,11 @@ LcsVirtualSlot >> defaultPragmaSelector [
 	^ self class virtualSlotDefinitionName
 ]
 
-{ #category : 'defaults' }
-LcsVirtualSlot >> defaultValueAccessBlock [
-		^ [ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]
-]
-
 { #category : 'initialize' }
 LcsVirtualSlot >> initialize [
 	super initialize.
-	self valueAccessBlock: self defaultValueAccessBlock.
-	self valueAccessor: ''
+	self computedValueBlock: self defaultComputedValueBlock.
+	self computedValueAccessor: ''
 ]
 
 { #category : 'slot model' }
@@ -61,24 +81,4 @@ LcsVirtualSlot >> slotVarNamed: anObject in: aDomainObject [
 LcsVirtualSlot >> slotVarPut: anObject in: aDomainObject [
 	self deprecated: 'Need to pass the old value as well'.
 	self error: 'This is a read only slot'
-]
-
-{ #category : 'accessing' }
-LcsVirtualSlot >> valueAccessBlock [
-	^ self properties at: 'valueAccessBlock'
-]
-
-{ #category : 'accessing' }
-LcsVirtualSlot >> valueAccessBlock: aBlock [
-	^ self properties at: 'valueAccessBlock' put: aBlock
-]
-
-{ #category : 'accessing' }
-LcsVirtualSlot >> valueAccessor [
-	^ self properties at: 'valueAccessor'
-]
-
-{ #category : 'accessing' }
-LcsVirtualSlot >> valueAccessor: anObject [
-	^ self properties at: 'valueAccessor' put: anObject asSymbol
 ]

@@ -827,9 +827,3 @@ LcsBaseDomainObject >> slotVarNamed: aSlotName put: anObject [
 LcsBaseDomainObject >> verifySlotModelInitialized [
 	self class verifySlotModelInitialized
 ]
-
-{ #category : 'slot access' }
-LcsBaseDomainObject >> virtualSlotVarNamed: aSlotName [
-	"Return the value of the instance variable in me with that name"
-	^ (self slotDefinitionNamed: aSlotName) currentSlotVarIn: self
-]

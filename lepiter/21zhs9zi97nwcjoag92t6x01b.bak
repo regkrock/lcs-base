@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:08.846173-04:00"
+						"dateAndTimeString" : "2026-05-01T10:25:01.560321-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:25.311717-04:00"
+						"dateAndTimeString" : "2026-05-01T10:25:01.560321-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:name=LcsDomainObjectSlot}}"
+				"string" : ""
 			},
 			{
 				"__type" : "textSnippet",

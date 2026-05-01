@@ -13,9 +13,9 @@ LcsVirtualSlotExamples >> isInEffectVirtualSlot [
 	slot := self newSlot.
 	slot slotName: 'isInEffect'.
 	self assert: slot slotName = 'isInEffect'.	
-	slot valueAccessor: '_isInEffect'.
-	self assert: slot valueAccessor equals: #'_isInEffect'.
-	slot valueAccessor: #dummy.
+	slot computedValueAccessor: '_isInEffect'.
+	self assert: slot computedValueAccessor equals: #'_isInEffect'.
+	slot computedValueAccessor: #dummy.
 	self should: [ slot currentSlotVarIn: LcsDateRange new] raise: Error description: 'The #dummy slot does not exist in LcsDateRange'.
 	^ slot
 ]
@@ -28,13 +28,13 @@ LcsVirtualSlotExamples >> newSlot [
 	self assert: slot slotName isNil.
 	self assert: slot slotTypes isEmpty.
 	self assert: slot slotTypes class = OrderedCollection.
-	self assert: slot valueAccessor isEmpty.
+	self assert: slot computedValueAccessor isEmpty.
 	self assert: slot isVirtualSlot.
 	self
-		assert: slot defaultValueAccessBlock printString
+		assert: slot defaultComputedValueBlock printString
 		equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]'.
 	self
-		assert: slot valueAccessBlock printString
+		assert: slot computedValueBlock printString
 		equals: '[ :parentDomainObject :slot | parentDomainObject perform: slot valueAccessor ]'.
 	self
 		should: [ slot slotVarPut: 'anObject' in: LcsDateRange new ]

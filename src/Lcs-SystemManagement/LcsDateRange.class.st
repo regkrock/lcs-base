@@ -42,7 +42,7 @@ LcsDateRange class >> isInEffectSlotDefinition [
 	^ LcsVirtualSlot new
 			slotName: 'isInEffect';
 			addSlotType: Boolean;
-			valueAccessor: #_isInEffect;
+			computedValueAccessor: #_isInEffect;
 			yourself
 ]
 

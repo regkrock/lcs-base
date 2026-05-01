@@ -30,7 +30,7 @@ LcsDomainObject class >> creationDateSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 			slotName: 'creationDate';
-			valueAccessor: #historyCreationDate;
+			computedValueAccessor: #historyCreationDate;
 			addSlotType: Date;
 			yourself
 ]
@@ -40,7 +40,7 @@ LcsDomainObject class >> creationTimestampSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 			slotName: 'creationTimestamp';
-			valueAccessor: #historyCreationTimestamp;
+			computedValueAccessor: #historyCreationTimestamp;
 			addSlotType: DateAndTime;
 			yourself
 ]
@@ -50,7 +50,7 @@ LcsDomainObject class >> creatorSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 			slotName: 'creator';
-			valueAccessor: #historyCreator;
+			computedValueAccessor: #historyCreator;
 			addSlotType: LcsUser;
 			yourself
 ]
@@ -66,7 +66,7 @@ LcsDomainObject class >> lastUpdatedDateSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 			slotName: 'lastUpdatedDate';
-			valueAccessor: #historyLastUpdatedDate;
+			computedValueAccessor: #historyLastUpdatedDate;
 			addSlotType: Date;
 			yourself
 ]
@@ -76,7 +76,7 @@ LcsDomainObject class >> lastUpdatedTimestampSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 			slotName: 'lastUpdatedTimestamp';
-			valueAccessor: #historyLastUpdatedTimestamp;
+			computedValueAccessor: #historyLastUpdatedTimestamp;
 			addSlotType: DateAndTime;
 			yourself
 ]
@@ -86,7 +86,7 @@ LcsDomainObject class >> lastUpdatedUserSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 			slotName: 'lastUpdatedUser';
-			valueAccessor: #historyLastUpdatedUser;
+			computedValueAccessor: #historyLastUpdatedUser;
 			addSlotType: LcsUser;
 			yourself
 ]

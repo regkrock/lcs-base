@@ -509,7 +509,7 @@ LcsDomainSlot >> properties: anObject [
 LcsDomainSlot >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
 
-	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
+	^ self propertyAt: aKey asString ifAbsent: [ self errorPropertyNotFound: aKey ]
 ]
 
 { #category : 'properties' }
@@ -519,7 +519,7 @@ LcsDomainSlot >> propertyAt: aKey ifAbsent: aBlock [
 
 { #category : 'properties' }
 LcsDomainSlot >> propertyAt: aKey put: anObject [
-	^ self properties at: aKey put: anObject 
+	^ self properties at: aKey asString put: anObject 
 ]
 
 { #category : 'gt views' }

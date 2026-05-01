@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:08.846173-04:00"
+						"dateAndTimeString" : "2026-05-01T10:33:47.262494-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:25.311717-04:00"
+						"dateAndTimeString" : "2026-05-01T10:34:03.805331-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "jEuOuc9yS5+X5BERmkP9cg=="
+					"uidString" : "ly1Pu3wcRZSNi+NJIvTDwA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:name=LcsDomainObjectSlot}}"
+				"string" : "{{gtClass:name=LcsFacadeSlot}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:10.926125-04:00"
+						"dateAndTimeString" : "2026-05-01T10:34:16.121005-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:10.926125-04:00"
+						"dateAndTimeString" : "2026-05-01T10:38:20.621956-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "2U4EbXdKTLa4/QheSzb3ZQ=="
+					"uidString" : "reJ1d+ifQ4uvjmCm/A8cDw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "This slot allows access, both read and write, to a slot in an domain object which is part of the domain object where this slot is defined."
 			}
 		]
 	},
@@ -88,7 +88,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2026-04-30T12:56:10.68028-04:00"
+			"dateAndTimeString" : "2026-04-30T12:56:12.334984-04:00"
 		}
 	},
 	"editEmail" : {
@@ -99,15 +99,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2026-04-30T12:56:10.68028-04:00"
+			"dateAndTimeString" : "2026-04-30T12:56:12.334984-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Domain Object Slot"
+		"title" : "Facade Slot"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "6f383cd6-5fbc-4285-aae1-d4195dd6b622"
+		"uuid" : "bd7d498f-9ec7-48bf-ad98-cfe485b33711"
 	}
 }

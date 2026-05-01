@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'defaults' }
-LcsDefaultInstanceSlot >> defaultValueAccessBlock [
+LcsDefaultInstanceSlot >> defaultComputedValueBlock [
 	[ :parentDomainObject | parentDomainObject defaultInstance ]
 ]
 

@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:08.846173-04:00"
+						"dateAndTimeString" : "2026-05-01T10:24:05.548576-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:25.311717-04:00"
+						"dateAndTimeString" : "2026-05-01T10:24:06.500308-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "jEuOuc9yS5+X5BERmkP9cg=="
+					"uidString" : "DwTjAGFoSEWYdQ9NC6VqWA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:name=LcsDomainObjectSlot}}"
+				"string" : "{{gt"
 			},
 			{
 				"__type" : "textSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:10.926125-04:00"
+						"dateAndTimeString" : "2026-05-01T10:18:56.107788-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:10.926125-04:00"
+						"dateAndTimeString" : "2026-05-01T10:18:56.107788-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "2U4EbXdKTLa4/QheSzb3ZQ=="
+					"uidString" : "GrFTS121SuuKxHkQ0F21cA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "5. Initial value - this is the value that will populate .\n6. Required - Indicates the initial value must be changed before the instance is saved.\n7. Validator - This is the object that is used to validate slot's value.\n\n9. Slot Dependencies - It knows which other slots are dependent on it.  This is used to propogate changes to dependent slots."
 			}
 		]
 	},
@@ -88,7 +88,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2026-04-30T12:56:10.68028-04:00"
+			"dateAndTimeString" : "2026-04-30T12:56:09.331078-04:00"
 		}
 	},
 	"editEmail" : {
@@ -99,15 +99,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2026-04-30T12:56:10.68028-04:00"
+			"dateAndTimeString" : "2026-04-30T12:56:09.331078-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Domain Object Slot"
+		"title" : "Accessor Slot"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "6f383cd6-5fbc-4285-aae1-d4195dd6b622"
+		"uuid" : "46c9853a-3d1e-4651-8835-8c004fe166b5"
 	}
 }

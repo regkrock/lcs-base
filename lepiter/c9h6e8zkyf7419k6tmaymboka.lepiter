@@ -1164,7 +1164,7 @@
 																	"__type" : "time",
 																	"time" : {
 																		"__type" : "dateAndTime",
-																		"dateAndTimeString" : "2026-04-30T12:55:47.199249-04:00"
+																		"dateAndTimeString" : "2026-05-01T10:42:44.265309-04:00"
 																	}
 																},
 																"uid" : {
@@ -1174,7 +1174,7 @@
 																"paragraphStyle" : {
 																	"__type" : "textStyle"
 																},
-																"string" : "[[Virtual Slot]]"
+																"string" : "[[Virtual (Computed) Slot]]"
 															}
 														]
 													},
@@ -1197,7 +1197,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2026-04-30T15:25:01.197849-04:00"
+															"dateAndTimeString" : "2026-05-01T10:19:43.332307-04:00"
 														}
 													},
 													"uid" : {

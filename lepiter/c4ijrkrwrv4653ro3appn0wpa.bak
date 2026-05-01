@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:08.846173-04:00"
+						"dateAndTimeString" : "2026-05-01T10:25:53.58589-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-01T10:25:25.311717-04:00"
+						"dateAndTimeString" : "2026-05-01T10:26:18.454847-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "jEuOuc9yS5+X5BERmkP9cg=="
+					"uidString" : "7rEKej1AT4qWihroLecHzw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:name=LcsDomainObjectSlot}}"
+				"string" : "{{gtClass:name=LcsSmalltalkObjectSlot}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:10.926125-04:00"
+						"dateAndTimeString" : "2026-05-01T10:31:12.174935-04:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:10.926125-04:00"
+						"dateAndTimeString" : "2026-05-01T10:32:42.995223-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "2U4EbXdKTLa4/QheSzb3ZQ=="
+					"uidString" : "hq8tA6U2SVKia55erPZ2zA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "These slots are designed to define the acess to  a smalltalk object (vs domain object). \n\nExamples include string, text, number, date "
 			}
 		]
 	},
@@ -88,7 +88,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2026-04-30T12:56:10.68028-04:00"
+			"dateAndTimeString" : "2026-04-30T12:56:15.021411-04:00"
 		}
 	},
 	"editEmail" : {
@@ -99,15 +99,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2026-04-30T12:56:10.68028-04:00"
+			"dateAndTimeString" : "2026-04-30T12:56:15.021411-04:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Domain Object Slot"
+		"title" : "Smalltalk Object Slot"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "6f383cd6-5fbc-4285-aae1-d4195dd6b622"
+		"uuid" : "8e305252-c0b2-4f44-86c5-e82cf41ed0cc"
 	}
 }

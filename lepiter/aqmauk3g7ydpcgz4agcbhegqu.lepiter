@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:09.572092-04:00"
+						"dateAndTimeString" : "2026-05-01T10:24:05.548576-04:00"
 					}
 				},
 				"editEmail" : {
@@ -29,7 +29,44 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-30T12:56:09.572092-04:00"
+						"dateAndTimeString" : "2026-05-01T10:24:17.542526-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DwTjAGFoSEWYdQ9NC6VqWA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsAccessorSlot}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-01T10:18:56.107788-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-01T10:18:56.107788-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "5. Initial value - this is the value that will populate .\n6. Required - Indicates the initial value must be changed before the instance is saved.\n7. Validator - This is the object that is used to validate slot's value.\n\n9. Slot Dependencies - It knows which other slots are dependent on it.  This is used to propogate changes to dependent slots."
 			}
 		]
 	},

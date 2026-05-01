@@ -18,7 +18,7 @@ LcsUser class >> fullNameSlotDefinition [
 	^ LcsDelegatorSlot new
 		slotName: 'fullName';
 		addSlotType: String;
-		targetSlotPath: #(#person #fullName) asOrderedCollection;
+		targetSlotPath: #(#person #entityName);
 		errorClass: MessageNotUnderstood;
 		errorReturnObject: '';
 		yourself

@@ -38,7 +38,7 @@ LcsLegalEntity class >> entityNameSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 			slotName: 'entityName';
-			valueAccessor: #fullName;
+			computedValueAccessor: #fullName;
 			addSlotType: String;
 			yourself
 ]
@@ -103,7 +103,7 @@ LcsLegalEntity >> emailAddresses: anObject [
 
 { #category : 'accessing' }
 LcsLegalEntity >> entityName [
-	^ self virtualSlotVarNamed: 'entityName'
+	^ self slotVarNamed: 'entityName'
 ]
 
 { #category : 'as yet unclassified' }

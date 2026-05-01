@@ -893,7 +893,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-04-14T10:27:18.206593-04:00"
+												"dateAndTimeString" : "2026-04-30T16:55:31.154217-04:00"
 											}
 										},
 										"uid" : {
@@ -903,7 +903,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "[[Slot Model]]"
+										"string" : "[[Domain Class Slot Model]]"
 									},
 									{
 										"__type" : "textSnippet",
@@ -1197,7 +1197,7 @@
 														"__type" : "time",
 														"time" : {
 															"__type" : "dateAndTime",
-															"dateAndTimeString" : "2026-04-30T15:25:01.197849-04:00"
+															"dateAndTimeString" : "2026-05-01T10:19:43.332307-04:00"
 														}
 													},
 													"uid" : {
