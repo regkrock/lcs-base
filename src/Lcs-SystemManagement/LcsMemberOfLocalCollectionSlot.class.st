@@ -8,12 +8,12 @@ Class {
 
 { #category : 'properties' }
 LcsMemberOfLocalCollectionSlot >> collectionSlotName [
-	^ self propertyAt: 'collectionSlotName' ifAbsent: []
+	^ self propertyAt: #'collectionSlotName' ifAbsent: []
 ]
 
 { #category : 'properties' }
 LcsMemberOfLocalCollectionSlot >> collectionSlotName: aString [ 
-	self propertyAt: 'collectionSlotName' put: aString
+	self propertyAt: #'collectionSlotName' put: aString
 ]
 
 { #category : 'properties' }
@@ -52,12 +52,12 @@ LcsMemberOfLocalCollectionSlot >> initialize [
 
 { #category : 'properties' }
 LcsMemberOfLocalCollectionSlot >> targetSlotPath [
-	^ self propertyAt: 'targetSlotPath' ifAbsent: []
+	^ self propertyAt: #'targetSlotPath' ifAbsent: []
 ]
 
 { #category : 'properties' }
 LcsMemberOfLocalCollectionSlot >> targetSlotPath: aString [ 
-	self propertyAt: 'targetSlotPath' put: aString
+	self propertyAt: #'targetSlotPath' put: aString
 ]
 
 { #category : 'gt views' }

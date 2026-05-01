@@ -316,14 +316,24 @@ LcsCodeBuilderStep >> properties: anObject [
 ]
 
 { #category : 'callbacks' }
-LcsCodeBuilderStep >> propertyAt: aName [ 
-	^ self properties at: aName  ifAbsent: [ nil ]
+LcsCodeBuilderStep >> propertyAt: aSymbol [ 
+	^ self properties at: aSymbol  ifAbsent: [ nil ]
 ]
 
 { #category : 'callbacks' }
-LcsCodeBuilderStep >> propertyAt: aName put: anObject [ 
-	self properties at: aName put: anObject.
-	self jobSteps propogateProperty: aName valueChangedTo: anObject
+LcsCodeBuilderStep >> propertyAt: aSymbol ifAbsent: aBlock [
+	^ self properties at: aSymbol  ifAbsent: aBlock
+]
+
+{ #category : 'callbacks' }
+LcsCodeBuilderStep >> propertyAt: aSymbol ifAbsentPut: aBlock [
+	^ self properties at: aSymbol  ifAbsentPut: aBlock
+]
+
+{ #category : 'callbacks' }
+LcsCodeBuilderStep >> propertyAt: aSymbol put: anObject [ 
+	self properties at: aSymbol put: anObject.
+	self jobSteps propogateProperty: aSymbol valueChangedTo: anObject
 ]
 
 { #category : 'callbacks' }

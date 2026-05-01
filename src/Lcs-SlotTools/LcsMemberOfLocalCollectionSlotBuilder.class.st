@@ -39,12 +39,12 @@ LcsMemberOfLocalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCode
 
 { #category : 'accessing' }
 LcsMemberOfLocalCollectionSlotBuilder >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
+	^ self propertyAt: #'collectionSlotName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsMemberOfLocalCollectionSlotBuilder >> collectionSlotName: anObject [
-	self properties at: 'collectionSlotName' put: anObject
+	self propertyAt: #'collectionSlotName' put: anObject
 ]
 
 { #category : 'margritte' }
@@ -86,12 +86,12 @@ LcsMemberOfLocalCollectionSlotBuilder >> sourceCollectionClassName [
 
 { #category : 'properties' }
 LcsMemberOfLocalCollectionSlotBuilder >> targetSlotPath [
-	^ self propertyAt: 'targetSlotPath' ifAbsent: []
+	^ self propertyAt: #'targetSlotPath' ifAbsent: []
 ]
 
 { #category : 'properties' }
 LcsMemberOfLocalCollectionSlotBuilder >> targetSlotPath: aString [ 
-	self propertyAt: 'targetSlotPath' put: aString
+	self propertyAt: #'targetSlotPath' put: aString
 ]
 
 { #category : 'magritte' }

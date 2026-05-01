@@ -16,12 +16,12 @@ LcsBaseModuleClassBuilder >> buildJobSteps [
 
 { #category : 'properties' }
 LcsBaseModuleClassBuilder >> configurationClassName [
-	^ self properties at: 'configurationClassName'
+	^ self propertyAt: #'configurationClassName'
 ]
 
 { #category : 'properties' }
 LcsBaseModuleClassBuilder >> configurationClassName: aString [
-	self propertyAt: 'configurationClassName' put: aString
+	self propertyAt: #'configurationClassName' put: aString
 ]
 
 { #category : 'job steps' }
@@ -51,12 +51,12 @@ LcsBaseModuleClassBuilder >> moduleConfigurationClassMethodBuilder [
 
 { #category : 'properties' }
 LcsBaseModuleClassBuilder >> moduleName [
-	^ self properties at: 'moduleName'
+	^ self propertyAt: #'moduleName'
 ]
 
 { #category : 'properties' }
 LcsBaseModuleClassBuilder >> moduleName: aString [
-	self propertyAt: 'moduleName' put: aString
+	self propertyAt: #'moduleName' put: aString
 ]
 
 { #category : 'builders' }

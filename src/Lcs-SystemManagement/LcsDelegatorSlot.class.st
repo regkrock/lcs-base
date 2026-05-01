@@ -31,22 +31,22 @@ LcsDelegatorSlot >> currentSlotVarIn: aDomainObject [
 
 { #category : 'properties' }
 LcsDelegatorSlot >> errorClass [
-	^ self propertyAt: 'errorClass' ifAbsent: [ LcsDummyError ]
+	^ self propertyAt: #'errorClass' ifAbsent: [ LcsDummyError ]
 ]
 
 { #category : 'properties' }
 LcsDelegatorSlot >> errorClass: anErrorClass [ 
-	self propertyAt: 'errorClass' put: anErrorClass
+	self propertyAt: #'errorClass' put: anErrorClass
 ]
 
 { #category : 'properties' }
 LcsDelegatorSlot >> errorReturnObject [
-	^ self propertyAt: 'errorReturnObject' ifAbsent: [ nil ]
+	^ self propertyAt: #'errorReturnObject' ifAbsent: [ nil ]
 ]
 
 { #category : 'properties' }
 LcsDelegatorSlot >> errorReturnObject: anErrorReturnObject [
-	self propertyAt: 'errorReturnObject' put: anErrorReturnObject
+	self propertyAt: #'errorReturnObject' put: anErrorReturnObject
 ]
 
 { #category : 'slot access' }
@@ -91,12 +91,12 @@ LcsDelegatorSlot >> slotVarPut: anObject in: aTargetDomainObject [
 
 { #category : 'properties' }
 LcsDelegatorSlot >> targetSlotPath [
-	^ self properties at: 'targetSlotPath'
+	^ self propertyAt: #'targetSlotPath'
 ]
 
 { #category : 'properties' }
 LcsDelegatorSlot >> targetSlotPath: aSlotNamesCollection [ 
-	self properties at: 'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
+	self propertyAt: #'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
 ]
 
 { #category : 'magritte' }

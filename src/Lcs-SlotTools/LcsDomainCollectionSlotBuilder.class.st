@@ -79,12 +79,12 @@ LcsDomainCollectionSlotBuilder >> collectionClass: anObject [
 
 { #category : 'accessing' }
 LcsDomainCollectionSlotBuilder >> collectionMemberTypes [
-	^ self properties at: 'collectionMemberTypes' ifAbsent: [ OrderedCollection new ]
+	^ self propertyAt: #'collectionMemberTypes' ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : 'accessing' }
 LcsDomainCollectionSlotBuilder >> collectionMemberTypes: anObject [
-	self properties at: 'collectionMemberTypes' put: anObject
+	self propertyAt: #'collectionMemberTypes' put: anObject
 ]
 
 { #category : 'margritte' }

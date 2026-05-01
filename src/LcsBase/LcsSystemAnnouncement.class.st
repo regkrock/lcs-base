@@ -16,10 +16,10 @@ LcsSystemAnnouncement >> properties [
 ]
 
 { #category : 'properties' }
-LcsSystemAnnouncement >> propertyAt: aString ifAbsent: aBlockClosure [
+LcsSystemAnnouncement >> propertyAt: aSymbol ifAbsent: aBlockClosure [
 
 	properties ifNil: [ ^ nil ].
-	^ properties at: aString ifAbsent: aBlockClosure
+	^ properties at: aSymbol ifAbsent: aBlockClosure
 ]
 
 { #category : 'properties' }
@@ -31,7 +31,6 @@ LcsSystemAnnouncement >> propertyAt: aString ifPresent: aBlockClosure [
 
 { #category : 'properties' }
 LcsSystemAnnouncement >> propertyAt: aKey put: aValue [
-
 	self properties at: aKey put: aValue
 ]
 
@@ -42,5 +41,5 @@ LcsSystemAnnouncement >> systemName [
 
 { #category : 'accessing' }
 LcsSystemAnnouncement >> systemName: aString [
-	self propertyAt: 'name' put: aString
+	self propertyAt: #'name' put: aString
 ]

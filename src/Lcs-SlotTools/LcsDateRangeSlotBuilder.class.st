@@ -39,12 +39,12 @@ LcsDateRangeSlotBuilder >> defaultExpiryDate [
 
 { #category : 'accessing' }
 LcsDateRangeSlotBuilder >> effectiveDate [
-	^ self propertyAt: 'effectiveDate' ifAbsentPut: self defaultEffectiveDate
+	^ self propertyAt: #'effectiveDate' ifAbsentPut: self defaultEffectiveDate
 ]
 
 { #category : 'accessing' }
 LcsDateRangeSlotBuilder >> effectiveDate: anObject [
-	self propertyAt: 'effectiveDate' put: anObject
+	self propertyAt: #'effectiveDate' put: anObject
 ]
 
 { #category : 'margritte' }
@@ -76,12 +76,12 @@ LcsDateRangeSlotBuilder >> effectiveDateFacadeBuilder [
 
 { #category : 'accessing' }
 LcsDateRangeSlotBuilder >> expiryDate [
-	^ self propertyAt: 'expiryDate' ifAbsentPut: self defaultExpiryDate
+	^ self propertyAt: #'expiryDate' ifAbsentPut: self defaultExpiryDate
 ]
 
 { #category : 'accessing' }
 LcsDateRangeSlotBuilder >> expiryDate: anObject [
-	self propertyAt: 'expiryDate' put: anObject
+	self propertyAt: #'expiryDate' put: anObject
 ]
 
 { #category : 'margritte' }

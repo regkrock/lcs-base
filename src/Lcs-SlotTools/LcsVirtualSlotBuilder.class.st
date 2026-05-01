@@ -20,12 +20,12 @@ LcsVirtualSlotBuilder >> buildJobSteps [
 
 { #category : 'accessing' }
 LcsVirtualSlotBuilder >> computedValueAccessor [
-	^ self propertyAt: 'valueAccessor'
+	^ self propertyAt: #'computedValueAccessor'
 ]
 
 { #category : 'accessing' }
 LcsVirtualSlotBuilder >> computedValueAccessor: anObject [
-	self propertyAt: 'valueAccessor' put: anObject
+	self propertyAt: #'computedValueAccessor' put: anObject
 ]
 
 { #category : 'magritte' }

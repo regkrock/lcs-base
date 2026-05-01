@@ -101,12 +101,12 @@ LcsAccessorSlot >> addValidationRuleBlock: aBlock description: aString [
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowInitialNil [ 
-	^ self propertyAt: 'allowInitialNil'
+	^ self propertyAt: #'allowInitialNil'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowInitialNil: aBoolean [
-	self propertyAt: 'allowInitialNil' put: aBoolean
+	self propertyAt: #'allowInitialNil' put: aBoolean
 ]
 
 { #category : 'magritte' }
@@ -123,12 +123,12 @@ LcsAccessorSlot >> allowInitialNilDescription [
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowInitialNull [ 
-	^ self propertyAt: 'allowInitialNull'
+	^ self propertyAt: #'allowInitialNull'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowInitialNull: aBoolean [
-	self propertyAt: 'allowInitialNull' put: aBoolean
+	self propertyAt: #'allowInitialNull' put: aBoolean
 ]
 
 { #category : 'magritte' }
@@ -150,12 +150,12 @@ LcsAccessorSlot >> allowInitialNullRule [
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowNil [ 
-	^ self propertyAt: 'allowNil'
+	^ self propertyAt: #'allowNil'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowNil: aBoolean [
-	self propertyAt: 'allowNil' put: aBoolean
+	self propertyAt: #'allowNil' put: aBoolean
 ]
 
 { #category : 'magritte' }
@@ -172,12 +172,12 @@ LcsAccessorSlot >> allowNilDescription [
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowNull [
-	^ self propertyAt: 'allowNull' ifAbsent: [ false ]
+	^ self propertyAt: #'allowNull' ifAbsent: [ false ]
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> allowNull: aBoolean [
-	self propertyAt: 'allowNull' put: aBoolean
+	self propertyAt: #'allowNull' put: aBoolean
 ]
 
 { #category : 'magritte' }
@@ -437,12 +437,12 @@ LcsAccessorSlot >> initialValue: anObject [
 
 { #category : 'properties' }
 LcsAccessorSlot >> initialValueBlock [
-	^ self propertyAt: 'initialValueBlock'
+	^ self propertyAt: #'initialValueBlock'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> initialValueBlock: aBlock [ 
-	self propertyAt: 'initialValueBlock' put: aBlock
+	self propertyAt: #'initialValueBlock' put: aBlock
 ]
 
 { #category : 'magritte' }
@@ -636,12 +636,12 @@ LcsAccessorSlot >> persistedSlotVarIn: aDomainObject [
 
 { #category : 'accessing' }
 LcsAccessorSlot >> postUpdateActions [
-	^ self properties at: 'postUpdateActions'
+	^ self propertyAt: #'postUpdateActions'
 ]
 
 { #category : 'accessing' }
 LcsAccessorSlot >> postUpdateActions: anObject [
-	self properties at: 'postUpdateActions' put:anObject
+	self propertyAt: #'postUpdateActions' put:anObject
 ]
 
 { #category : 'magritte' }
@@ -673,12 +673,12 @@ LcsAccessorSlot >> postUpdateActionsDescription [
 
 { #category : 'properties' }
 LcsAccessorSlot >> prevalidationTransformBlock [
-	^ self propertyAt: 'prevalidationTransformBlock'
+	^ self propertyAt: #'prevalidationTransformBlock'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> prevalidationTransformBlock: aBlock [
-	self propertyAt: 'prevalidationTransformBlock' put: aBlock
+	self propertyAt: #'prevalidationTransformBlock' put: aBlock
 ]
 
 { #category : 'magritte' }
@@ -724,12 +724,12 @@ LcsAccessorSlot >> removeValidationRuleWithDescription: aString [
 
 { #category : 'properties' }
 LcsAccessorSlot >> required [
-	^ self propertyAt: 'required'
+	^ self propertyAt: #'required'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> required: anObject [
-	self propertyAt: 'required' put: anObject
+	self propertyAt: #'required' put: anObject
 ]
 
 { #category : 'magritte' }
@@ -781,12 +781,12 @@ LcsAccessorSlot >> slotDoesNotExistMessage [
 
 { #category : 'properties' }
 LcsAccessorSlot >> slotTypeRules [
-	^ self propertyAt: 'slotTypeRules'
+	^ self propertyAt: #'slotTypeRules'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> slotTypeRules: anObject [
-	self propertyAt: 'slotTypeRules' put: anObject
+	self propertyAt: #'slotTypeRules' put: anObject
 ]
 
 { #category : 'magritte' }
@@ -917,12 +917,12 @@ LcsAccessorSlot >> validateSlotType: anObject context: aDomainObject oldValue: a
 
 { #category : 'properties' }
 LcsAccessorSlot >> validationRules [
-	^ self propertyAt: 'validationRules'
+	^ self propertyAt: #'validationRules'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> validationRules: anObject [
-	self propertyAt: 'validationRules' put: anObject
+	self propertyAt: #'validationRules' put: anObject
 ]
 
 { #category : 'magritte' }
@@ -981,10 +981,10 @@ LcsAccessorSlot >> variableUpdatePolicyClass [
 
 { #category : 'properties' }
 LcsAccessorSlot >> variableUpdatePolicyClassName [
-	^ self properties at: 'variableUpdatePolicyClassName'
+	^ self propertyAt: #'variableUpdatePolicyClassName'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlot >> variableUpdatePolicyClassName: aClassName [
-	self properties at: 'variableUpdatePolicyClassName' put: aClassName
+	self propertyAt: #'variableUpdatePolicyClassName' put: aClassName
 ]

@@ -8,12 +8,12 @@ Class {
 
 { #category : 'properties - accessing' }
 LcsModuleConfigurationClassMethodBuilder >> configurationClassName [
-	^ self properties at: 'configurationClassName'
+	^ self propertyAt: #'configurationClassName'
 ]
 
 { #category : 'properties - accessing' }
 LcsModuleConfigurationClassMethodBuilder >> configurationClassName: aString [
-	^ self properties at: 'configurationClassName' put: aString
+	^ self propertyAt: #'configurationClassName' put: aString
 ]
 
 { #category : 'initialize' }

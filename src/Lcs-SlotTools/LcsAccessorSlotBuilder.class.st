@@ -73,12 +73,12 @@ LcsAccessorSlotBuilder >> addValidationRuleBlock: aBlock description: aDescripti
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowInitialNil [
-	^ self propertyAt: 'allowInitialNil'
+	^ self propertyAt: #'allowInitialNil'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowInitialNil: aBoolean [
-	self propertyAt: 'allowInitialNil' put: aBoolean
+	self propertyAt: #'allowInitialNil' put: aBoolean
 ]
 
 { #category : 'margritte' }
@@ -94,13 +94,13 @@ LcsAccessorSlotBuilder >> allowInitialNilDescription [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowInitialNull [
-	^ self propertyAt: 'allowInitialNull'
+	^ self propertyAt: #'allowInitialNull'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowInitialNull: aBoolean [
 	self removeNillAndNullRules.
-	self propertyAt: 'allowInitialNull' put: aBoolean.
+	self propertyAt: #'allowInitialNull' put: aBoolean.
 	aBoolean == true ifTrue: [
 		self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
 		self validationRules addFirstRule: LcsAllowInitialNullRule new ]
@@ -119,12 +119,12 @@ LcsAccessorSlotBuilder >> allowInitialNullDescription [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNil [
-	^ self propertyAt: 'allowNil'
+	^ self propertyAt: #'allowNil'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNil: anObject [ 
-	self propertyAt: 'allowNil' put: anObject
+	self propertyAt: #'allowNil' put: anObject
 ]
 
 { #category : 'margritte' }
@@ -140,13 +140,13 @@ LcsAccessorSlotBuilder >> allowNilDescription [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNull [
-	^ self propertyAt: 'allowNull'
+	^ self propertyAt: #'allowNull'
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> allowNull: anObject [ 
 	self removeNillAndNullRules.
-	self propertyAt: 'allowNull' put: anObject.
+	self propertyAt: #'allowNull' put: anObject.
 	anObject == true ifTrue: [
 		self slotTypeRules addFirstRule: LcsAllowNullSlotTypeRule new.
 		self validationRules addFirstRule: LcsAllowNullRule new ]
@@ -224,12 +224,12 @@ LcsAccessorSlotBuilder >> clearTargetClass: aClass [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> comment [
-	^ self properties at: 'comment' ifAbsent: [ '' ]
+	^ self propertyAt: #'comment' ifAbsent: [ '' ]
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> comment: anObject [
-	^ self properties at: 'comment' put: anObject
+	^ self propertyAt: #'comment' put: anObject
 ]
 
 { #category : 'margritte' }
@@ -272,12 +272,12 @@ LcsAccessorSlotBuilder >> getterSelector [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> initialValueBlock [
-	^ self propertyAt: 'initialValueBlock' ifAbsent: [ [ ] ]
+	^ self propertyAt: #'initialValueBlock' ifAbsent: [ [ ] ]
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> initialValueBlock: aString [
-	^ self propertyAt: 'initialValueBlock' put: aString
+	^ self propertyAt: #'initialValueBlock' put: aString
 ]
 
 { #category : 'margritte' }
@@ -369,12 +369,12 @@ LcsAccessorSlotBuilder >> postUpdateActionsDescription [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> prevalidationTransformBlock [
-	^ self propertyAt: 'prevalidationTransformBlock' ifAbsent: [ self defaultPrevalidationTransformBlock ]
+	^ self propertyAt: #'prevalidationTransformBlock' ifAbsent: [ self defaultPrevalidationTransformBlock ]
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> prevalidationTransformBlock: aString [
-	^ self propertyAt: 'prevalidationTransformBlock' put: aString
+	^ self propertyAt: #'prevalidationTransformBlock' put: aString
 ]
 
 { #category : 'margritte' }
@@ -415,12 +415,12 @@ LcsAccessorSlotBuilder >> removeValidationRuleWithDescription: aString [
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> required [
-	^ self propertyAt: 'required' ifAbsent: [ false ]
+	^ self propertyAt: #'required' ifAbsent: [ false ]
 ]
 
 { #category : 'properties' }
 LcsAccessorSlotBuilder >> required: anObject [ 
-	self propertyAt: 'required' put: anObject
+	self propertyAt: #'required' put: anObject
 ]
 
 { #category : 'margritte' }

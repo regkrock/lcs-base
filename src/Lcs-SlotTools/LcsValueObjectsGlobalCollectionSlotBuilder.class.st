@@ -35,12 +35,12 @@ LcsValueObjectsGlobalCollectionSlotBuilder >> laderClass [
 
 { #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName [
-	^ self properties at: 'loaderClass' ifAbsent: [ nil ]
+	^ self propertyAt: #'loaderClass' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsValueObjectsGlobalCollectionSlotBuilder >> loaderClassName: anObject [
-	self properties at: 'loaderClass' put: anObject
+	self propertyAt: #'loaderClass' put: anObject
 ]
 
 { #category : 'accessing' }

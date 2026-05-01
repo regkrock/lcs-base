@@ -47,7 +47,7 @@ LcsVirtualSlot >> computedValueBlock [
 
 { #category : 'properties' }
 LcsVirtualSlot >> computedValueBlock: aBlock [
-	^ self properties at: #computedValueBlock put: aBlock
+	^ self propertyAt: #computedValueBlock put: aBlock
 ]
 
 { #category : 'slot model' }

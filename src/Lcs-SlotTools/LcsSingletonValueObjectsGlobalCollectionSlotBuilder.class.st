@@ -40,10 +40,10 @@ LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclass [
 
 { #category : 'accessing' }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName [
-	^ self properties at: 'valueObjectSuperclassName' ifAbsent: [ nil ]
+	^ self propertyAt: #'valueObjectSuperclassName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsSingletonValueObjectsGlobalCollectionSlotBuilder >> valueObjectSuperclassName: aClassName [
-	self properties at: 'valueObjectSuperclass' put: aClassName
+	self propertyAt: #'valueObjectSuperclass' put: aClassName
 ]

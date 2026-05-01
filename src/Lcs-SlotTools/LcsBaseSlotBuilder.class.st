@@ -183,19 +183,19 @@ LcsBaseSlotBuilder >> printJobStreamDetailsOn: aStream [
 ]
 
 { #category : 'properties' }
-LcsBaseSlotBuilder >> propertyAt: aName ifAbsent: aBlock [
-	^ self properties at: aName ifAbsent: aBlock
+LcsBaseSlotBuilder >> propertyAt: aSymbol ifAbsent: aBlock [
+	^ self properties at: aSymbol ifAbsent: aBlock
 ]
 
 { #category : 'properties' }
-LcsBaseSlotBuilder >> propertyAt: aString ifAbsentPut: aBlock [ 
-	^ self properties at: aString ifAbsentPut: aBlock
+LcsBaseSlotBuilder >> propertyAt: aSymbol ifAbsentPut: aBlock [ 
+	^ self properties at: aSymbol ifAbsentPut: aBlock
 ]
 
 { #category : 'properties' }
-LcsBaseSlotBuilder >> propertyAt: aString put: anObject [ 
-	self properties at: aString put: anObject.
-	self jobSteps propogateProperty: aString valueChangedTo: anObject
+LcsBaseSlotBuilder >> propertyAt: aSymbol put: anObject [ 
+	self properties at: aSymbol put: anObject.
+	self jobSteps propogateProperty: aSymbol valueChangedTo: anObject
 ]
 
 { #category : 'accessing' }
@@ -235,7 +235,7 @@ LcsBaseSlotBuilder >> slotDefinitionTemplate: anObject [
 
 { #category : 'properties' }
 LcsBaseSlotBuilder >> slotName [
-	^ self propertyAt: 'slotName' ifAbsent: [ nil ]
+	^ self propertyAt: #'slotName' ifAbsent: [ nil ]
 ]
 
 { #category : 'properties' }
@@ -246,7 +246,7 @@ LcsBaseSlotBuilder >> slotName: anObject [
 			ifTrue: [ anObject ] 
 			ifFalse: [(anObject first asLowercase asString , 
 						(anObject copyFrom: 2 to: anObject size))].
-	self propertyAt: 'slotName' put: slotName.
+	self propertyAt: #'slotName' put: slotName.
 	slotDefinitionName := 
 		anObject isEmptyOrNil 
 			ifTrue: [ anObject ] 
@@ -276,12 +276,12 @@ LcsBaseSlotBuilder >> slotNameDescription [
 
 { #category : 'properties' }
 LcsBaseSlotBuilder >> slotTypes [
-	^ self propertyAt: 'slotTypes' ifAbsent: [ OrderedCollection new] 
+	^ self propertyAt: #'slotTypes' ifAbsent: [ OrderedCollection new] 
 ]
 
 { #category : 'properties' }
 LcsBaseSlotBuilder >> slotTypes: anObject [
-	self propertyAt: 'slotTypes' put: anObject
+	self propertyAt: #'slotTypes' put: anObject
 ]
 
 { #category : 'margritte' }

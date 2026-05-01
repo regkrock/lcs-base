@@ -78,22 +78,22 @@ LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModule [
 
 { #category : 'accessing' }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName [
-	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ nil ]
+	^ self propertyAt: #'collectionSlotModuleName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotModuleName: aString [
-	self properties at: 'collectionSlotModuleName' put: aString
+	self propertyAt: #'collectionSlotModuleName' put: aString
 ]
 
 { #category : 'accessing' }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
+	^ self propertyAt: #'collectionSlotName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsGlobalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
-	self properties at: 'collectionSlotName' put: aString
+	self propertyAt: #'collectionSlotName' put: aString
 ]
 
 { #category : 'magritte' }

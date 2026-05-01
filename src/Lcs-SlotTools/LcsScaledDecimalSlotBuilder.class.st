@@ -20,12 +20,12 @@ LcsScaledDecimalSlotBuilder >> initialize [
 
 { #category : 'properties' }
 LcsScaledDecimalSlotBuilder >> numberOfDecimals [
-	^ self propertyAt: 'numberOfDecimals'
+	^ self propertyAt: #'numberOfDecimals'
 ]
 
 { #category : 'properties' }
 LcsScaledDecimalSlotBuilder >> numberOfDecimals: anInteger [
-	self propertyAt: 'numberOfDecimals' put: anInteger
+	self propertyAt: #'numberOfDecimals' put: anInteger
 ]
 
 { #category : 'magritte' }

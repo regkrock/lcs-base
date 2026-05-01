@@ -41,12 +41,12 @@ LcsMemberOfGlobalCollectionSlotBuilder >> addSlotDefinitionSourceDetailsTo: aCod
 
 { #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotModuleName [
-	^ self properties at: 'collectionSlotModuleName' ifAbsent: [ nil ]
+	^ self propertyAt: #'collectionSlotModuleName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotModuleName: aString [
-	self properties at: 'collectionSlotModuleName' put: aString
+	self propertyAt: #'collectionSlotModuleName' put: aString
 ]
 
 { #category : 'margritte' }
@@ -63,12 +63,12 @@ LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotModuleNameDescription [
 
 { #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
+	^ self propertyAt: #'collectionSlotName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsMemberOfGlobalCollectionSlotBuilder >> collectionSlotName: anObject [
-	self properties at: 'collectionSlotName' put: anObject
+	self propertyAt: #'collectionSlotName' put: anObject
 ]
 
 { #category : 'margritte' }

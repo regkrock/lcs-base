@@ -8,22 +8,22 @@ Class {
 
 { #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertFromTarget [
-	^ self propertyAt: 'convertFromTarget' ifAbsent: [ ]
+	^ self propertyAt: #'convertFromTarget' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertFromTarget: anObject [
-	self propertyAt: 'convertFromTarget' put: anObject
+	self propertyAt: #'convertFromTarget' put: anObject
 ]
 
 { #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertToTarget [
-	^ self propertyAt: 'convertToTarget' ifAbsent: [ ]
+	^ self propertyAt: #'convertToTarget' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsObjectToIdConversionSlot >> convertToTarget: anObject [
-	self propertyAt: 'convertToTarget' put: anObject
+	self propertyAt: #'convertToTarget' put: anObject
 ]
 
 { #category : 'slot access' }

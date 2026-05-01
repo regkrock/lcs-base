@@ -24,12 +24,12 @@ MagritteFailueExampleObject >> initialize [
 
 { #category : 'properties' }
 MagritteFailueExampleObject >> postAddActions [
-	^ self properties at: 'postAddActions' ifAbsent: []
+	^ self propertyAt: #'postAddActions' ifAbsent: []
 ]
 
 { #category : 'properties' }
 MagritteFailueExampleObject >> postAddActions: aPostAddActions [
-	self properties at: 'postAddActions' put: aPostAddActions
+	self propertyAt: #'postAddActions' put: aPostAddActions
 ]
 
 { #category : 'magritte' }

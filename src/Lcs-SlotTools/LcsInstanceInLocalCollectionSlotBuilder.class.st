@@ -35,12 +35,12 @@ LcsInstanceInLocalCollectionSlotBuilder >> buildJobSteps [
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsentPut: [ '' ]
+	^ self propertyAt: #'collectionSlotName' ifAbsentPut: [ '' ]
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> collectionSlotName: aString [ 
-	self properties at: 'collectionSlotName' put: aString
+	self propertyAt: #'collectionSlotName' put: aString
 ]
 
 { #category : 'magritte' }
@@ -71,12 +71,12 @@ LcsInstanceInLocalCollectionSlotBuilder >> slotDefinitionMethodBuilder [
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> targetItem [
-	^ self properties at: 'targetItem' ifAbsentPut: [ '' ]
+	^ self propertyAt: #'targetItem' ifAbsentPut: [ '' ]
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> targetItem: aString [ 
-	self properties at: 'targetItem' put: aString
+	self propertyAt: #'targetItem' put: aString
 ]
 
 { #category : 'magritte' }
@@ -94,12 +94,12 @@ LcsInstanceInLocalCollectionSlotBuilder >> targetItemDescription [
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> targetSlotPath [
-	^ self properties at: 'targetSlotPath'
+	^ self propertyAt: #'targetSlotPath'
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlotBuilder >> targetSlotPath: aSlotNamesCollection [ 
-	self properties at: 'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
+	self propertyAt: #'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
 ]
 
 { #category : 'magritte' }

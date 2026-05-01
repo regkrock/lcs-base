@@ -37,22 +37,22 @@ LcsMemberOfGlobalCollectionSlot >> collectionModule [
 
 { #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName [
-	^ self propertyAt: 'collectionSlotModuleName' ifAbsent: [ ]
+	^ self propertyAt: #'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName: aString [ 
-	self propertyAt: 'collectionSlotModuleName' put: aString
+	self propertyAt: #'collectionSlotModuleName' put: aString
 ]
 
 { #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotName [
-	^ self propertyAt: 'collectionSlotName' ifAbsent: []
+	^ self propertyAt: #'collectionSlotName' ifAbsent: []
 ]
 
 { #category : 'properties' }
 LcsMemberOfGlobalCollectionSlot >> collectionSlotName: aString [ 
-	self propertyAt: 'collectionSlotName' put: aString
+	self propertyAt: #'collectionSlotName' put: aString
 ]
 
 { #category : 'slot model' }

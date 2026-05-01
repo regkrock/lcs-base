@@ -80,12 +80,12 @@ LcsLocalCollectionReferenceSlotBuilder >> collectionClassName: anObject [
 
 { #category : 'accessing' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName [
-	^ self properties at: 'collectionSlotName' ifAbsent: [ nil ]
+	^ self propertyAt: #'collectionSlotName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsLocalCollectionReferenceSlotBuilder >> collectionSlotName: aString [
-	self properties at: 'collectionSlotName' put: aString
+	self propertyAt: #'collectionSlotName' put: aString
 ]
 
 { #category : 'as yet unclassified' }

@@ -55,12 +55,12 @@ LcsInstanceInLocalCollectionSlot >> allowNullDescription [
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> collectionSlotName [
-	^ self properties at: 'collectionSlotName'
+	^ self propertyAt: #'collectionSlotName'
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> collectionSlotName: aString [ 
-	self properties at: 'collectionSlotName' put: aString
+	self propertyAt: #'collectionSlotName' put: aString
 ]
 
 { #category : 'magritte' }
@@ -90,7 +90,7 @@ LcsInstanceInLocalCollectionSlot >> defaultPragmaSelector [
 { #category : 'querying' }
 LcsInstanceInLocalCollectionSlot >> domainCollectionClass [
 	^ (self domainClass
-		perform: ((self propertyAt: 'collectionSlotName') , 'SlotDefinition') asSymbol)
+		perform: ((self propertyAt: #'collectionSlotName') , 'SlotDefinition') asSymbol)
 		slotTypes first
 ]
 
@@ -127,8 +127,8 @@ LcsInstanceInLocalCollectionSlot >> selectionPath [
 	| targetPathStream |
 	targetPathStream := WriteStream on: String new.
 	targetPathStream nextPutAll: self slotName; cr.
-	(self propertyAt: 'targetSlotPath') do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
-	targetPathStream nextPutAll: ' = '; nextPutAll: (self propertyAt: 'targetItem') printString.
+	self targetSlotPath do: [ :eachSlotName | targetPathStream nextPutAll: eachSlotName ] separatedBy: [ targetPathStream space ].
+	targetPathStream nextPutAll: ' = '; nextPutAll: (self propertyAt: #'targetItem') printString.
 	^ targetPathStream contents
 ]
 
@@ -147,12 +147,12 @@ LcsInstanceInLocalCollectionSlot >> targetCollectionIn: aDomainObject [
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> targetItem [
-	^ self properties at: 'targetItem' ifAbsentPut: [ '' ]
+	^ self propertyAt: #'targetItem' ifAbsentPut: [ '' ]
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> targetItem: aString [ 
-	self properties at: 'targetItem' put: aString
+	self propertyAt: #'targetItem' put: aString
 ]
 
 { #category : 'magritte' }
@@ -170,22 +170,22 @@ LcsInstanceInLocalCollectionSlot >> targetItemDescription [
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> targetSlotName [
-	^ self propertyAt: 'targetSlotName' ifAbsent: [ ]
+	^ self propertyAt: #'targetSlotName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> targetSlotName: anObject [
-	self propertyAt: 'targetSlotName' put: anObject
+	self propertyAt: #'targetSlotName' put: anObject
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> targetSlotPath [
-	^ self properties at: 'targetSlotPath'
+	^ self propertyAt: #'targetSlotPath'
 ]
 
 { #category : 'properties' }
 LcsInstanceInLocalCollectionSlot >> targetSlotPath: aSlotNamesCollection [ 
-	self properties at: 'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
+	self propertyAt: #'targetSlotPath' put: aSlotNamesCollection asOrderedCollection
 ]
 
 { #category : 'magritte' }

@@ -67,12 +67,12 @@ LcsGlobalCollectionSlotBuilder >> collectionClassName [
 
 { #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> collectionMemberTypes [
-	^ self properties at: 'collectionMemberTypes' ifAbsent: [ OrderedCollection new ]
+	^ self propertyAt: #'collectionMemberTypes' ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : 'accessing' }
 LcsGlobalCollectionSlotBuilder >> collectionMemberTypes: anObject [
-	self properties at: 'collectionMemberTypes' put: anObject
+	self propertyAt: #'collectionMemberTypes' put: anObject
 ]
 
 { #category : 'magritte' }

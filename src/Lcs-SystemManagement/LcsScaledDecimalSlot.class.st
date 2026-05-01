@@ -24,12 +24,12 @@ LcsScaledDecimalSlot >> initialize [
 
 { #category : 'properties' }
 LcsScaledDecimalSlot >> numberOfDecimals [
-	^ self propertyAt: 'numberOfDecimals' ifAbsent: [ 2 ]
+	^ self propertyAt: #numberOfDecimals ifAbsent: [ 2 ]
 ]
 
 { #category : 'properties' }
 LcsScaledDecimalSlot >> numberOfDecimals: anObject [
-	self propertyAt: 'numberOfDecimals' put: anObject
+	self propertyAt: #'numberOfDecimals' put: anObject
 ]
 
 { #category : 'magritte\t' }

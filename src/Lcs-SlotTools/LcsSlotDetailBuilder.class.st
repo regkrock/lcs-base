@@ -78,12 +78,12 @@ LcsSlotDetailBuilder >> slotDefinitionSource [
 
 { #category : 'accessing' }
 LcsSlotDetailBuilder >> slotName [
-	^ self properties at: 'slotName' ifAbsent: [ nil ]
+	^ self propertyAt: #'slotName' ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing' }
 LcsSlotDetailBuilder >> slotName: anObject [
-	self properties at: 'slotName' put: anObject
+	self propertyAt: #'slotName' put: anObject
 ]
 
 { #category : 'accessing' }

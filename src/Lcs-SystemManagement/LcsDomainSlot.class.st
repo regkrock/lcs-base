@@ -147,12 +147,12 @@ LcsDomainSlot >> clearSlotTypes [
 
 { #category : 'accessing' }
 LcsDomainSlot >> comment [
-	^ self propertyAt: 'comment' ifAbsent: [ '' ]
+	^ self propertyAt: #'comment' ifAbsent: [ '' ]
 ]
 
 { #category : 'accessing' }
 LcsDomainSlot >> comment: anObject [
-	self propertyAt: 'comment' put: anObject
+	self propertyAt: #'comment' put: anObject
 ]
 
 { #category : 'magritte' }
@@ -473,12 +473,12 @@ LcsDomainSlot >> printOn: aStream [
 
 { #category : 'properties' }
 LcsDomainSlot >> priority [
-	^ self propertyAt: 'priority'
+	^ self propertyAt: #'priority'
 ]
 
 { #category : 'properties' }
 LcsDomainSlot >> priority: anObject [
-	self propertyAt: 'priority' put: anObject
+	self propertyAt: #'priority' put: anObject
 ]
 
 { #category : 'magritte' }
@@ -509,17 +509,22 @@ LcsDomainSlot >> properties: anObject [
 LcsDomainSlot >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
 
-	^ self propertyAt: aKey asString ifAbsent: [ self errorPropertyNotFound: aKey ]
+	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
 ]
 
 { #category : 'properties' }
-LcsDomainSlot >> propertyAt: aKey ifAbsent: aBlock [
-	^ self properties at: aKey ifAbsent: aBlock 
+LcsDomainSlot >> propertyAt: aSymbol ifAbsent: aBlock [
+	^ self properties at: aSymbol ifAbsent: aBlock 
 ]
 
 { #category : 'properties' }
-LcsDomainSlot >> propertyAt: aKey put: anObject [
-	^ self properties at: aKey asString put: anObject 
+LcsDomainSlot >> propertyAt: aSymbol ifAbsentPut: aBlock [ 
+	^ self properties at: aSymbol ifAbsentPut: aBlock
+]
+
+{ #category : 'properties' }
+LcsDomainSlot >> propertyAt: aSymbol put: anObject [
+	^ self properties at: aSymbol put: anObject 
 ]
 
 { #category : 'gt views' }
@@ -606,12 +611,12 @@ LcsDomainSlot >> slotKind [
 
 { #category : 'properties' }
 LcsDomainSlot >> slotName [
-	^ self propertyAt: 'slotName' ifAbsent: [ ]
+	^ self propertyAt: #'slotName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsDomainSlot >> slotName: anObject [
-	self propertyAt: 'slotName' put: anObject
+	self propertyAt: #'slotName' put: anObject
 ]
 
 { #category : 'magritte' }
@@ -652,12 +657,12 @@ LcsDomainSlot >> slotTypeClassNames [
 
 { #category : 'properties' }
 LcsDomainSlot >> slotTypes [
-	^ self propertyAt: 'slotTypes'
+	^ self propertyAt: #'slotTypes'
 ]
 
 { #category : 'properties' }
 LcsDomainSlot >> slotTypes: anObject [
-	self propertyAt: 'slotTypes' put: anObject
+	self propertyAt: #'slotTypes' put: anObject
 ]
 
 { #category : 'magritte' }

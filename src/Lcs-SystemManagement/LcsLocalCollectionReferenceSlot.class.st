@@ -8,12 +8,12 @@ Class {
 
 { #category : 'properties' }
 LcsLocalCollectionReferenceSlot >> accessPath [
-	^ self propertyAt: 'accessPath' ifAbsent: [ ]
+	^ self propertyAt: #'accessPath' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsLocalCollectionReferenceSlot >> accessPath: aCollection [
-	self propertyAt: 'accessPath' put: aCollection
+	self propertyAt: #'accessPath' put: aCollection
 ]
 
 { #category : 'slot model' }
@@ -28,22 +28,22 @@ LcsLocalCollectionReferenceSlot >> collectionSlotModule [
 
 { #category : 'properties' }
 LcsLocalCollectionReferenceSlot >> collectionSlotModuleName [
-	^ self propertyAt: 'collectionSlotModuleName' ifAbsent: [ ]
+	^ self propertyAt: #'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsLocalCollectionReferenceSlot >> collectionSlotModuleName: aString [
-	self propertyAt: 'collectionSlotModuleName' put: aString
+	self propertyAt: #'collectionSlotModuleName' put: aString
 ]
 
 { #category : 'properties' }
 LcsLocalCollectionReferenceSlot >> collectionSlotName [
-	^ self propertyAt: 'collectionSlotName' ifAbsent: [ ]
+	^ self propertyAt: #'collectionSlotName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsLocalCollectionReferenceSlot >> collectionSlotName: anObject [
-	self propertyAt: 'collectionSlotName' put: anObject
+	self propertyAt: #'collectionSlotName' put: anObject
 ]
 
 { #category : 'initialize' }

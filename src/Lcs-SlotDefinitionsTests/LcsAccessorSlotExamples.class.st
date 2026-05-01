@@ -37,8 +37,8 @@ LcsAccessorSlotExamples >> accessorSlotPropertyError [
 	<noTest>
 	| slot |
 	slot := self newSlot.
-	self should: [ slot propertyAt: 'test' ] raise: LcsSlotPropertyError.
-	^ slot propertyAt: 'test'.
+	self should: [ slot propertyAt: #'test' ] raise: LcsSlotPropertyError.
+	^ slot propertyAt: #'test'.
 ]
 
 { #category : 'examples' }

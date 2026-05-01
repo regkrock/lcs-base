@@ -208,9 +208,9 @@ LcsAccessorSlotCreationFormExamples >> strongSlotFormWithFooSlotName [
 
 	slotDefinitionMethodBuilder := form slotModelBuilder jobStep: 2.
 	self assert: slotDefinitionMethodBuilder properties size = 2.
-	self assert: (slotDefinitionMethodBuilder properties keys includes: 'slotName').
-	self assert: (slotDefinitionMethodBuilder properties keys includes: 'postUpdateActions').
-	self assert: (slotDefinitionMethodBuilder properties at: 'slotName') equals: 'foo'.
+	self assert: (slotDefinitionMethodBuilder properties keys includes: #'slotName').
+	self assert: (slotDefinitionMethodBuilder properties keys includes: #'postUpdateActions').
+	self assert: (slotDefinitionMethodBuilder propertyAt: #'slotName') equals: 'foo'.
 	self assert: slotDefinitionMethodBuilder slotDefinitionSource equals: 'fooSlotDefinition
 	<accessorSlotDefinition>
 	^ LcsStringSlot new

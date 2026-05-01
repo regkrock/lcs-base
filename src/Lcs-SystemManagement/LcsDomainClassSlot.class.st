@@ -62,12 +62,12 @@ LcsDomainClassSlot >> postAddActionsDescription [
 
 { #category : 'properties' }
 LcsDomainClassSlot >> superclassClass [
-	^ self properties at: 'superclassClass' ifAbsent: [ LcsDomainObject ]
+	^ self propertyAt: #superclassClass ifAbsent: [ LcsDomainObject ]
 ]
 
 { #category : 'properties' }
 LcsDomainClassSlot >> superclassClass: aClass [
-	self properties at: 'superclassClass' put: aClass
+	self propertyAt: #'superclassClass' put: aClass
 ]
 
 { #category : 'slot model' }

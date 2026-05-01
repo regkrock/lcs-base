@@ -22,10 +22,10 @@ LcsFacadeSlot >> defaultPragmaSelector [
 
 { #category : 'properties' }
 LcsFacadeSlot >> targetSlotName [
-	^ self propertyAt: 'targetSlotName' ifAbsent: [ ]
+	^ self propertyAt: #'targetSlotName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsFacadeSlot >> targetSlotName: anObject [
-	self propertyAt: 'targetSlotName' put: anObject
+	self propertyAt: #'targetSlotName' put: anObject
 ]

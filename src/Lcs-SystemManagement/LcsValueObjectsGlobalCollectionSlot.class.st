@@ -19,12 +19,12 @@ LcsValueObjectsGlobalCollectionSlot >> isGlobalCollectionSlot [
 
 { #category : 'properties' }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass [
-	^ self propertyAt: 'loaderClass' ifAbsent: [ ]
+	^ self propertyAt: #loaderClass ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsValueObjectsGlobalCollectionSlot >> loaderClass: aLoaderClass [
-	self propertyAt: 'loaderClass' put: aLoaderClass
+	self propertyAt: #'loaderClass' put: aLoaderClass
 ]
 
 { #category : 'load' }

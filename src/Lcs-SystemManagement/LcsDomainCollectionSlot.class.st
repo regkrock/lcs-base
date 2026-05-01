@@ -39,22 +39,22 @@ LcsDomainCollectionSlot >> beOrderedCollection [
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> collectionClass [
-	^ self propertyAt: 'collectionClass' ifAbsent: [ ]
+	^ self propertyAt: #'collectionClass' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> collectionClass: anObject [
-	self propertyAt: 'collectionClass' put: anObject
+	self propertyAt: #'collectionClass' put: anObject
 ]
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> collectionMemberTypes [
-	^ self propertyAt: 'collectionMemberTypes' ifAbsent: [ ]
+	^ self propertyAt: #'collectionMemberTypes' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> collectionMemberTypes: anObject [
-	self propertyAt: 'collectionMemberTypes' put: anObject
+	self propertyAt: #'collectionMemberTypes' put: anObject
 ]
 
 { #category : 'gt views' }
@@ -104,13 +104,13 @@ LcsDomainCollectionSlot >> persistValue: anObject in: aModule [
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> postAddActions [
-	^ self propertyAt: 'postAddActions' ifAbsent: [ ]
+	^ self propertyAt: #'postAddActions' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> postAddActions: aPostAddActions [
 	aPostAddActions parent: self.
-	self propertyAt: 'postAddActions' put: aPostAddActions
+	self propertyAt: #'postAddActions' put: aPostAddActions
 ]
 
 { #category : 'magritte' }
@@ -139,13 +139,13 @@ LcsDomainCollectionSlot >> postAddActionsDescription [
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> postRemoveActions [
-	^ self propertyAt: 'postRemoveActions' ifAbsent: [ ]
+	^ self propertyAt: #'postRemoveActions' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsDomainCollectionSlot >> postRemoveActions: aPostRemoveActions [
 	aPostRemoveActions parent: self.
-	self propertyAt: 'postRemoveActions' put: aPostRemoveActions
+	self propertyAt: #'postRemoveActions' put: aPostRemoveActions
 ]
 
 { #category : 'actions' }

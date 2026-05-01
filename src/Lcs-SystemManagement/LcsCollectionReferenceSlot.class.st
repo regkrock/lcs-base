@@ -8,12 +8,12 @@ Class {
 
 { #category : 'properties' }
 LcsCollectionReferenceSlot >> collectionSlotName [
-	^ self propertyAt: 'collectionSlotName' ifAbsent: [ ]
+	^ self propertyAt: #'collectionSlotName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
 LcsCollectionReferenceSlot >> collectionSlotName: anObject [
-	self propertyAt: 'collectionSlotName' put: anObject
+	self propertyAt: #'collectionSlotName' put: anObject
 ]
 
 { #category : 'slot model' }

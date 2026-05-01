@@ -19,12 +19,12 @@ LcsFacadeSlotBuilder >> initialize [
 
 { #category : 'property' }
 LcsFacadeSlotBuilder >> targetSlotPath [
-	^ self propertyAt: 'targetSlotPath'
+	^ self propertyAt: #'targetSlotPath'
 ]
 
 { #category : 'property' }
 LcsFacadeSlotBuilder >> targetSlotPath: aString [
-	^ self propertyAt: 'targetSlotPath' put: aString
+	^ self propertyAt: #'targetSlotPath' put: aString
 ]
 
 { #category : 'magritte' }
