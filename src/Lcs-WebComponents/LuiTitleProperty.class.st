@@ -1,36 +1,38 @@
 Class {
-	#name : #LuiTitleProperty,
-	#superclass : #LuiComponentProperty,
-	#category : #'Lcs-WebComponents-Base'
+	#name : 'LuiTitleProperty',
+	#superclass : 'LuiComponentProperty',
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #constant }
+{ #category : 'constant' }
 LuiTitleProperty class >> propertyName [
 	^ 'title'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiTitleProperty >> initialize [
 	super initialize.
 	self valueBlock: [ nil ]
 ]
 
-{ #category : #property }
+{ #category : 'property' }
 LuiTitleProperty >> title [
 	^ self cachedValue
 ]
 
-{ #category : #property }
+{ #category : 'property' }
 LuiTitleProperty >> title: aString [
 	self valueBlock: [ aString ]
 ]
 
-{ #category : #property }
+{ #category : 'property' }
 LuiTitleProperty >> titleBlock: aBlock [
 	self valueBlock: aBlock
 ]
 
-{ #category : #property }
+{ #category : 'property' }
 LuiTitleProperty >> value: aString [
 	self valueBlock: [ aString ]
 ]

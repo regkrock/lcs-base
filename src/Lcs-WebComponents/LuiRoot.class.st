@@ -1,15 +1,17 @@
 Class {
-	#name : #LuiRoot,
-	#superclass : #LuiComponent,
-	#category : #'Lcs-WebComponents-Base'
+	#name : 'LuiRoot',
+	#superclass : 'LuiComponent',
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #constant }
+{ #category : 'constant' }
 LuiRoot class >> browserTabName [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiRoot >> renderComponentOn: html [
 	html div 
 		addCommonProperties: self;

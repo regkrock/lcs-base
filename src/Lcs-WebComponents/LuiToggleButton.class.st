@@ -1,31 +1,33 @@
 Class {
-	#name : #LuiToggleButton,
-	#superclass : #LuiButton,
-	#category : #'Lcs-WebComponents-Buttons'
+	#name : 'LuiToggleButton',
+	#superclass : 'LuiButton',
+	#category : 'Lcs-WebComponents-Buttons',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Buttons'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LuiToggleButton >> beButtonType [
 	self buttonTypeProperty beButtonType
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LuiToggleButton >> beSubmitType [
 	self buttonTypeProperty beSubmitType
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiToggleButton >> buttonTypeProperty [
 	^ self properties buttonTypeProperty
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiToggleButton >> initialize [
 	super initialize.
 	self beButtonType
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiToggleButton >> renderComponentOn: html [
 	<TODO: 'needs more work'>
 	html button

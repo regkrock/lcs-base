@@ -1,10 +1,12 @@
 Class {
-	#name : #LcsFileLibrary,
-	#superclass : #WAFileLibrary,
-	#category : #'Lcs-WebComponents-Libraries'
+	#name : 'LcsFileLibrary',
+	#superclass : 'WAFileLibrary',
+	#category : 'Lcs-WebComponents-Libraries',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Libraries'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsFileLibrary class >> mainCss2 [
 	| object stream |
 	stream := WriteStream on: String new.
@@ -14,7 +16,7 @@ LcsFileLibrary class >> mainCss2 [
 	
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFileLibrary >> addCssDefinitionsTo: aStream [
 	aStream nextPutAll:
 '
@@ -38,7 +40,7 @@ body {
 	aStream nextPutAll: self mainMenuBarCssClassDefinition"
 ]
 
-{ #category : #'html page' }
+{ #category : 'html page' }
 LcsFileLibrary >> homePageText [
 ^
 '<div class="row">
@@ -104,7 +106,7 @@ LcsFileLibrary >> homePageText [
   </div>'
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFileLibrary >> mainCss [
 	^
 '
@@ -229,7 +231,7 @@ for the transition to work , thus moved it from POS_001 */
  '
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFileLibrary >> mainCss2 [
 	| stream |
 	stream := WriteStream on: String new.
@@ -255,7 +257,7 @@ body {
 	^ stream contents
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFileLibrary >> mainMenuBarContentsCssClassDefinition [
 
 ^'.mainMenuBarContents {
@@ -267,7 +269,7 @@ LcsFileLibrary >> mainMenuBarContentsCssClassDefinition [
     }'
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFileLibrary >> mainMenuBarCssClassDefinition [
 	^'.mainMenuBarContents {
   display: flex;

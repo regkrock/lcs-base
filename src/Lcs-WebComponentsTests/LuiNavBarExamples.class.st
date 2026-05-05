@@ -1,28 +1,14 @@
 Class {
-	#name : #LuiNavBarTest,
-	#superclass : #TestCase,
-	#instVars : [
-		'mainPage',
-		'navBar',
-		'rootComponent'
-	],
-	#category : #'Lcs-WebComponentsTests-Tests'
+	#name : 'LuiNavBarExamples',
+	#superclass : 'LuiSeasideComponentExamples',
+	#category : 'Lcs-WebComponentsTests-Examples',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Examples'
 }
 
-{ #category : #components }
-LuiNavBarTest >> basicRootComponent [
-	rootComponent := LuiRoot new.
-	rootComponent componentName: 'root'.
-	rootComponent componentId: 'root'.
-	
-	self assert: rootComponent componentName = 'root'.
-	self assert: rootComponent componentId = 'root'.
-	self assert: rootComponent hasNoComponents.
-	^ rootComponent
-]
-
-{ #category : #'menu definitions' }
-LuiNavBarTest >> menuBarWithSubSubMenuDefinition [
+{ #category : 'examples' }
+LuiNavBarExamples >> menuBarWithSubSubMenuDefinition [
+	<gtExample>
 	| menuDefinition |
 	menuDefinition := LcsMainMenuDefinition new.
 	menuDefinition
@@ -49,50 +35,37 @@ LuiNavBarTest >> menuBarWithSubSubMenuDefinition [
 	^ menuDefinition
 ]
 
-{ #category : #'menu definitions' }
-LuiNavBarTest >> menuBarWithThreeMenuItems [
+{ #category : 'examples' }
+LuiNavBarExamples >> menuBarWithThreeMenuItems [
+	<gtExample>
 	| menuDefinition |
 	menuDefinition := LcsMainMenuDefinition new.
 	menuDefinition
 		addMenuComponentDefintion: (
 			LcsMenuItemDefinition new 
 				menuItemLabel: 'Home';
-				useAnchorButton;
+				beAnchor;
 				title: 'abc';
 				yourself);
-		addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Contadt');
+		addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'Contact');
 		addMenuComponentDefintion: (LcsMenuItemDefinition new menuItemLabel: 'About').
 	^ menuDefinition
 ]
 
-{ #category : #private }
-LuiNavBarTest >> rootComponentWithMainPageWithHeaderAndEmptyNavBar [
-	self basicRootComponent.
-
-	rootComponent addComponent: (mainPage := LuiMainPage named: 'mainPage' on: rootComponent).
-	mainPage pageTitleComponent domainObject: 'LCS Example'.
-	mainPage := rootComponent componentNamed: 'mainPage'.
-
-	self assert: (mainPage isKindOf: LuiMainPage).
-	self assert: ((navBar := mainPage navigationBar) isKindOf: LuiMainMenu).
-	self assert: navBar hasNoComponents.
-	self assert: (mainPage pageTitleComponent isKindOf: LuiHeading).
-	self assert: mainPage navigationBar componentName = 'navigation'.
-	^ rootComponent
-]
-
-{ #category : #utilities }
-LuiNavBarTest >> testNavBarMenuCreation [
-	<example>
-	| submenu subsubmenu |
-	rootComponent := self rootComponentWithMainPageWithHeaderAndEmptyNavBar.
+{ #category : 'examples' }
+LuiNavBarExamples >> newNavBarWithMenu [
+	<gtExample>
+	| submenu subsubmenu root mainPage navBar |
+	root := self rootComponentWithMainPageWithHeaderAndEmptyNavBar.
+	mainPage := root componentNamed: 'mainPage'.
+	navBar := mainPage navigationBar.
 	navBar buildFrom: self menuBarWithSubSubMenuDefinition.
 
 	self assert: navBar components size = 3.
 	submenu := navBar componentAtIndex: 1.
 	self assert: submenu componentName = 'menu1'.
 	self assert: submenu menuItemLabel = 'Menu 1'.
-	self assert: submenu cssClassesString equals: 'submenuItem'.
+	self assert: submenu cssClassesString equals: 'mainMenuItem'.
 	self assert: submenu components size = 3.
 	self assert: (submenu componentAtIndex: 1) componentName equals: 'menu1Item1'.
 	self
@@ -114,14 +87,50 @@ LuiNavBarTest >> testNavBarMenuCreation [
 	self assert: submenu components size = 3.
 	subsubmenu := submenu componentAtIndex: 2.
 	self assert: subsubmenu componentName = 'menu3Item2'.
-	self assert: subsubmenu menuItemLabel = 'Menu 3 Item 2'
+	self assert: subsubmenu menuItemLabel = 'Menu 3 Item 2'.
+	^ navBar
 ]
 
-{ #category : #tests }
-LuiNavBarTest >> testSimpleNavBar [
-	<example>
-	| menuItem menuItemButton |
-	rootComponent := self rootComponentWithMainPageWithHeaderAndEmptyNavBar.
+{ #category : 'examples' }
+LuiNavBarExamples >> newRoot [
+	<gtExample>
+	| component |
+	component := LuiRoot new.
+	component componentName: 'root'.
+	component componentId: 'root'.
+	
+	self assert: component componentName = 'root'.
+	self assert: component componentId = 'root'.
+	self assert: component hasNoComponents.
+	^ component
+]
+
+{ #category : 'examples' }
+LuiNavBarExamples >> rootComponentWithMainPageWithHeaderAndEmptyNavBar [
+	<gtExample>
+	| root mainPage navBar |
+	root := self newRoot.
+	mainPage := LuiMainPage named: 'mainPage' on: root.
+	root addComponent: mainPage.
+	mainPage pageTitleComponent domainObject: 'LCS Example'.
+	mainPage := root componentNamed: 'mainPage'.
+	navBar := mainPage navigationBar.
+
+	self assert: (mainPage isKindOf: LuiMainPage).
+	self assert: (navBar isKindOf: LuiMainMenu).
+	self assert: navBar hasNoComponents.
+	self assert: (mainPage pageTitleComponent isKindOf: LuiHeading).
+	self assert: mainPage navigationBar componentName = 'navigation'.
+	^ root
+]
+
+{ #category : 'examples' }
+LuiNavBarExamples >> simpleNavBar [
+	<gtExample>
+	| menuItem menuItemButton root navBar mainPage |
+	root := self rootComponentWithMainPageWithHeaderAndEmptyNavBar.
+	mainPage := root componentNamed: 'mainPage'.
+	navBar := mainPage navigationBar.
 	navBar buildFrom: self menuBarWithThreeMenuItems.
 
 	self assert: navBar components size = 3.
@@ -133,4 +142,5 @@ LuiNavBarTest >> testSimpleNavBar [
 	menuItemButton := menuItem components values first.
 	self assert: menuItemButton componentName = 'button'.
 	self assert: menuItemButton label = 'Home'.
+	^ navBar
 ]

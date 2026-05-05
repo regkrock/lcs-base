@@ -1,15 +1,17 @@
 Class {
-	#name : #LcsFunctionalTestFileLibrary,
-	#superclass : #WAFileLibrary,
-	#category : #'Lcs-WebComponentsTests-Libraries'
+	#name : 'LcsFunctionalTestFileLibrary',
+	#superclass : 'WAFileLibrary',
+	#category : 'Lcs-WebComponentsTests-Libraries',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Libraries'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsFunctionalTestFileLibrary class >> mainCss [
 	^ self new mainCss
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> applicationAreaCss [
 	<css>
 ^'.applicationArea {
@@ -19,7 +21,7 @@ LcsFunctionalTestFileLibrary >> applicationAreaCss [
 }'
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> bodyCss [
 	<css>
 ^'body {
@@ -28,7 +30,7 @@ LcsFunctionalTestFileLibrary >> bodyCss [
 }'
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> globalCss [
 	<css>
 	"This forces the padding and margin to be zero. 
@@ -47,7 +49,7 @@ LcsFunctionalTestFileLibrary >> globalCss [
 }'
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> mainCss [
 	| stream |
 	stream := WriteStream on: String new.
@@ -56,7 +58,7 @@ LcsFunctionalTestFileLibrary >> mainCss [
 	^ stream contents
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> mainMenuBarCss [
 	<css>
 ^'.mainMenuBar {
@@ -115,7 +117,7 @@ LcsFunctionalTestFileLibrary >> mainMenuBarCss [
 
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> subSubmenuCss [
 	<css>
 ^
@@ -142,7 +144,7 @@ LcsFunctionalTestFileLibrary >> subSubmenuCss [
 '
 ]
 
-{ #category : #css }
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> submenuCss [
 	<css>
 ^'.submenu {

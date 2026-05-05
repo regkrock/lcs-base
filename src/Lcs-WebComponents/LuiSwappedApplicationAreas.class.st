@@ -1,30 +1,32 @@
 Class {
-	#name : #LuiSwappedApplicationAreas,
-	#superclass : #LuiComponent,
+	#name : 'LuiSwappedApplicationAreas',
+	#superclass : 'LuiComponent',
 	#instVars : [
 		'swappedOutComponents'
 	],
-	#category : #'Lcs-WebComponents-Base'
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiSwappedApplicationAreas >> initialize [ 
 	super initialize.
 	self swappedOutComponents: OrderedCollection new
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LuiSwappedApplicationAreas >> swappedOut: aComponent [
 	(self swappedOutComponents includes: aComponent)
 		ifFalse: [ self swappedOutComponents add: aComponent ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiSwappedApplicationAreas >> swappedOutComponents [
 	^ swappedOutComponents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiSwappedApplicationAreas >> swappedOutComponents: anObject [
 	swappedOutComponents := anObject
 ]

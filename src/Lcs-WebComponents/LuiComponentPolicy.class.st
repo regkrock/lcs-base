@@ -1,62 +1,64 @@
 Class {
-	#name : #LuiComponentPolicy,
-	#superclass : #Object,
+	#name : 'LuiComponentPolicy',
+	#superclass : 'Object',
 	#instVars : [
 		'policyName',
 		'parent',
 		'evaluationBlock'
 	],
-	#category : #'Lcs-WebComponents-Base'
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #'instance  creation' }
+{ #category : 'instance  creation' }
 LuiComponentPolicy class >> on: aComponentPolicies [
 	^ self new 
 		initializeOn: aComponentPolicies;
 		yourself
 ]
 
-{ #category : #component }
+{ #category : 'component' }
 LuiComponentPolicy >> component [
 	^ self parent parent
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LuiComponentPolicy >> defaultBlock [
 	^ [ ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentPolicy >> evaluationBlock [
 	^ evaluationBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentPolicy >> evaluationBlock: anObject [
 	evaluationBlock := anObject
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiComponentPolicy >> initializeOn: aComponentPolicies [ 
 	self parent: aComponentPolicies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentPolicy >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentPolicy >> parent: aComponentPolicies [
 	parent := aComponentPolicies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentPolicy >> policyName [
 	^ policyName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentPolicy >> policyName: anObject [
 	policyName := anObject
 ]

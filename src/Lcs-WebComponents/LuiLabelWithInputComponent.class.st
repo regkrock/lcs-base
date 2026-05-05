@@ -1,26 +1,28 @@
 Class {
-	#name : #LuiLabelWithInputComponent,
-	#superclass : #LuiInputComponent,
-	#category : #'Lcs-WebComponents-Widgets'
+	#name : 'LuiLabelWithInputComponent',
+	#superclass : 'LuiInputComponent',
+	#category : 'Lcs-WebComponents-Widgets',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Widgets'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> hasInputComponent [
 	^ (self componentNamed: 'input') notNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> hasLabelComponent [
 	^ (self componentNamed: 'label') notNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> initialize [
 	super initialize.
 	self addComponent: (LuiModelLabel named: 'label' on: self)
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition on: aComponent [
 	super initializeOnSlot: aSlotDefinition on: aComponent.
 	self labelComponent initializeOnSlot: aSlotDefinition on: aComponent.
@@ -30,17 +32,17 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition on: aComponent [
 			yourself)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> inputComponent [
 	^ self componentNamed: 'input'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> labelComponent [
 	^ self componentNamed: 'label'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> model: aModel [
 	super model: aModel.
 	self valueAccessor model: aModel.
@@ -50,7 +52,7 @@ LuiLabelWithInputComponent >> model: aModel [
 		self inputComponent model: aModel ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiLabelWithInputComponent >> renderComponentOn: html [
 	html div
 		addCommonProperties: self;

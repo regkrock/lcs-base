@@ -1,10 +1,12 @@
 Class {
-	#name : #LuiPage,
-	#superclass : #LuiComponent,
-	#category : #'Lcs-WebComponents-Base'
+	#name : 'LuiPage',
+	#superclass : 'LuiComponent',
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiPage >> renderComponentOn: html [
 	html div
 		addCommonProperties: self;

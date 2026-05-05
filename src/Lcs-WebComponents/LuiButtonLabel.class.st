@@ -1,15 +1,17 @@
 Class {
-	#name : #LuiButtonLabel,
-	#superclass : #LuiLabel,
-	#category : #'Lcs-WebComponents-Widgets'
+	#name : 'LuiButtonLabel',
+	#superclass : 'LuiBaseLabel',
+	#category : 'Lcs-WebComponents-Widgets',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Widgets'
 }
 
-{ #category : #label }
+{ #category : 'label' }
 LuiButtonLabel >> labelString [
 	^ self properties labelPropertyValue
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LuiButtonLabel >> labelString: aString [
 	self properties labelProperty value: aString
 ]

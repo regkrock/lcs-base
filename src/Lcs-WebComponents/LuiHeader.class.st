@@ -1,18 +1,20 @@
 Class {
-	#name : #LuiHeader,
-	#superclass : #LuiComponent,
+	#name : 'LuiHeader',
+	#superclass : 'LuiComponent',
 	#instVars : [
 		'level'
 	],
-	#category : #'Lcs-WebComponents-Base'
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiHeader >> defaultCssClasses [
 	^ OrderedCollection with: 'header'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiHeader >> renderComponentOn: html [
 	html header 
 		addCommonProperties: self;

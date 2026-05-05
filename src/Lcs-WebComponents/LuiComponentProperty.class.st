@@ -1,89 +1,91 @@
 Class {
-	#name : #LuiComponentProperty,
-	#superclass : #Object,
+	#name : 'LuiComponentProperty',
+	#superclass : 'Object',
 	#instVars : [
 		'parent',
 		'valueBlock',
 		'cachedValue'
 	],
-	#category : #'Lcs-WebComponents-Base'
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LuiComponentProperty class >> on: aProperties [
 	^ self new
 		initializeOn: aProperties;
 		yourself
 ]
 
-{ #category : #constant }
+{ #category : 'constant' }
 LuiComponentProperty class >> propertyName [
 	self subclassResponsibility
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LuiComponentProperty >> _propertyValue [
 	^ self valueBlock cull: self component
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentProperty >> cachedValue [
 	^ cachedValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentProperty >> cachedValue: anObject [
 	cachedValue := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentProperty >> clearCache [
 	self cachedValue: nil
 ]
 
-{ #category : #components }
+{ #category : 'components' }
 LuiComponentProperty >> component [
 	^ self parent ifNotNil: [ :properties | properties parentComponent ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiComponentProperty >> initialize [
 	super initialize.
 	self valueBlock: [ ]
 ]
 
-{ #category : #initialze }
+{ #category : 'initialze' }
 LuiComponentProperty >> initializeOn: aProperties [ 
 	self parent: aProperties
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentProperty >> parent [
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentProperty >> parent: anObject [
 	parent := anObject
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LuiComponentProperty >> propertyName [
 	^ self class propertyName
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LuiComponentProperty >> propertyValue [
 	self cachedValue ifNil: [ self cachedValue: self _propertyValue ].
 	^ self cachedValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentProperty >> valueBlock [
 	^ valueBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiComponentProperty >> valueBlock: anObject [
 	self clearCache.
 	valueBlock := anObject

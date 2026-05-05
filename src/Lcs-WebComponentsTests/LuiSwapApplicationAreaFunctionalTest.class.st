@@ -1,20 +1,22 @@
 Class {
-	#name : #LuiSwapApplicationAreaFunctionalTest,
-	#superclass : #LuiFunctionalTest,
-	#category : #'Lcs-WebComponentsTests-Functional'
+	#name : 'LuiSwapApplicationAreaFunctionalTest',
+	#superclass : 'LuiFunctionalTest',
+	#category : 'Lcs-WebComponentsTests-Functional',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Functional'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiSwapApplicationAreaFunctionalTest class >> browserTabName [
 	^ 'Seas Monmouth'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiSwapApplicationAreaFunctionalTest class >> initialize [
 	WAAdmin register: self asApplicationAt: self browserTabName
 ]
 
-{ #category : #menus }
+{ #category : 'menus' }
 LuiSwapApplicationAreaFunctionalTest class >> menuBarDefinition [
 	| menuDefinition |
 	menuDefinition := LcsMainMenuDefinition new.
@@ -35,12 +37,12 @@ LuiSwapApplicationAreaFunctionalTest class >> menuBarDefinition [
 
 ]
 
-{ #category : #setup }
+{ #category : 'setup' }
 LuiSwapApplicationAreaFunctionalTest >> addMainNavigationMenuTo: aMainMenu [
 	aMainMenu buildFrom: self menuDefinition
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiSwapApplicationAreaFunctionalTest >> initialize [
 	| mainPage |
 	super initialize.
@@ -53,12 +55,12 @@ LuiSwapApplicationAreaFunctionalTest >> initialize [
 
 ]
 
-{ #category : #setup }
+{ #category : 'setup' }
 LuiSwapApplicationAreaFunctionalTest >> menuDefinition [
 	^ self class menuBarDefinition
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiSwapApplicationAreaFunctionalTest >> renderComponentOn: html [
 	html div 
 		addCommonProperties: self;
@@ -66,7 +68,7 @@ LuiSwapApplicationAreaFunctionalTest >> renderComponentOn: html [
 			self renderSubcomponentsOn: html ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiSwapApplicationAreaFunctionalTest >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.

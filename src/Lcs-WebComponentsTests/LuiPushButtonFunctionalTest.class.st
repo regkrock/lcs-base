@@ -1,10 +1,12 @@
 Class {
-	#name : #LuiPushButtonFunctionalTest,
-	#superclass : #LuiFunctionalTest,
-	#category : #'Lcs-WebComponentsTests-Functional'
+	#name : 'LuiPushButtonFunctionalTest',
+	#superclass : 'LuiFunctionalTest',
+	#category : 'Lcs-WebComponentsTests-Functional',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Functional'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiPushButtonFunctionalTest >> initialize [
 	| button |
 	super initialize.
@@ -26,12 +28,12 @@ LuiPushButtonFunctionalTest >> initialize [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiPushButtonFunctionalTest >> renderComponentOn: html [
 	super renderComponentOn: html
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiPushButtonFunctionalTest >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.

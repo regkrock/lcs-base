@@ -1,14 +1,16 @@
 Class {
-	#name : #LcsMainMenuDefinition,
-	#superclass : #LcsMenuDefinition,
+	#name : 'LcsMainMenuDefinition',
+	#superclass : 'LcsMenuDefinition',
 	#instVars : [
 		'menuComponentName',
 		'menuComponentDefintions'
 	],
-	#category : #'Lcs-WebComponents-Menus'
+	#category : 'Lcs-WebComponents-Menus',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Menus'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 LcsMainMenuDefinition class >> menuBarWithSubSubMenuDefinition [
 	| menuDefinition |
 	menuDefinition := LcsMainMenuDefinition new.
@@ -36,7 +38,7 @@ LcsMainMenuDefinition class >> menuBarWithSubSubMenuDefinition [
 	^ menuDefinition
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LcsMainMenuDefinition class >> menuBarWithSubmenuExample [
 	<example>
 	| bar |
@@ -60,7 +62,7 @@ LcsMainMenuDefinition class >> menuBarWithSubmenuExample [
 	^ bar
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 LcsMainMenuDefinition class >> simpleMenuBarExample [
 	<example>
 	| bar |
@@ -75,18 +77,18 @@ LcsMainMenuDefinition class >> simpleMenuBarExample [
 	^ bar
 ]
 
-{ #category : #'menu groups' }
+{ #category : 'menu groups' }
 LcsMainMenuDefinition >> addMenuComponentDefintion: aMenuComponentDefintion [
 	aMenuComponentDefintion parent: self.
 	self menuComponentDefintions add: aMenuComponentDefintion
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LcsMainMenuDefinition >> componentName [
 	^ self menuItemLabel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LcsMainMenuDefinition >> gtMenuDefintionStructureViewFor: aView [
 	"<gtView>"
 
@@ -101,28 +103,28 @@ LcsMainMenuDefinition >> gtMenuDefintionStructureViewFor: aView [
 		actionUpdateButton
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LcsMainMenuDefinition >> initialize [
 	super initialize.
 	self menuComponentDefintions: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMainMenuDefinition >> menuComponentDefintions [
 	^ menuComponentDefintions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMainMenuDefinition >> menuComponentDefintions: anObject [
 	menuComponentDefintions := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMainMenuDefinition >> menuComponentName [
 	^ menuComponentName 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LcsMainMenuDefinition >> menuComponentName: anObject [
 	menuComponentName := anObject
 ]

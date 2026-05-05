@@ -1,13 +1,15 @@
 Class {
-	#name : #LuiSubmenu,
-	#superclass : #LuiMenuObject,
+	#name : 'LuiSubmenu',
+	#superclass : 'LuiMenuObject',
 	#instVars : [
 		'menuItemLabel'
 	],
-	#category : #'Lcs-WebComponents-Menus'
+	#category : 'Lcs-WebComponents-Menus',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Menus'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 LuiSubmenu >> buildFrom: aSubmenuDefinition [
 	self menuItemLabel: aSubmenuDefinition menuItemLabel.
 	aSubmenuDefinition menuComponentDefintions do: [ :eachMenuDefinition  | 
@@ -17,40 +19,40 @@ LuiSubmenu >> buildFrom: aSubmenuDefinition [
 		menuComponent buildFrom: eachMenuDefinition]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiSubmenu >> buildSubmenuCssClassName: aString [ 
 	^ (self parentComponent buildSubmenuCssClassName: aString) , 'sub'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiSubmenu >> cssMenuClassName [
 	self parentComponent class = LuiMainMenu ifTrue: [ ^ 'mainMenuItem' ].
 	^ 'submenuItem' 
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LuiSubmenu >> defaultCssClasses [
 	^OrderedCollection with: 'submenu'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiSubmenu >> initializeNamed: aName on: aWebComponent [
 	super initializeNamed: aName on: aWebComponent.
 	self cssClassesProperty
 		replaceExistingCssClassesWithCssClass: self cssMenuClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiSubmenu >> menuItemLabel [
 	^ menuItemLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiSubmenu >> menuItemLabel: anObject [
 	menuItemLabel := anObject
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiSubmenu >> renderComponentOn: html [
 	html listItem
 		addCommonProperties: self;
@@ -62,7 +64,7 @@ LuiSubmenu >> renderComponentOn: html [
 					self components do: [ :eachComponent | html render: eachComponent ] ] ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiSubmenu >> submenuCssClass [
 	^ self buildSubmenuCssClassName: ''
 ]

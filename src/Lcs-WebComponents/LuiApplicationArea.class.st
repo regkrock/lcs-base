@@ -1,21 +1,23 @@
 Class {
-	#name : #LuiApplicationArea,
-	#superclass : #LuiComponent,
-	#category : #'Lcs-WebComponents-Base'
+	#name : 'LuiApplicationArea',
+	#superclass : 'LuiComponent',
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LuiApplicationArea >> defaultCssClasses [
 	^ OrderedCollection with: 'applicationArea'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiApplicationArea >> renderApplicationAreaContentOn: html [
 
 	html paragraph: self class name
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiApplicationArea >> renderComponentOn: html [
 	html div
 		addCommonProperties: self;

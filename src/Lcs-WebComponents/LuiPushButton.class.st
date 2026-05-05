@@ -1,31 +1,33 @@
 Class {
-	#name : #LuiPushButton,
-	#superclass : #LuiButton,
-	#category : #'Lcs-WebComponents-Buttons'
+	#name : 'LuiPushButton',
+	#superclass : 'LuiButton',
+	#category : 'Lcs-WebComponents-Buttons',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Buttons'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiPushButton >> beButtonType [
 	self buttonTypeProperty beButtonType
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiPushButton >> beSubmitType [
 	self buttonTypeProperty beSubmitType
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiPushButton >> buttonTypeProperty [
 	^ self properties buttonTypeProperty
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiPushButton >> initialize [
 	super initialize.
 	self beButtonType
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiPushButton >> renderComponentOn: html [
 	html button
 		addCommonProperties: self;

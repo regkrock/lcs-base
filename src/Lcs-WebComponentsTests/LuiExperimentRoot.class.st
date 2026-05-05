@@ -1,39 +1,41 @@
 Class {
-	#name : #LuiExperimentRoot,
-	#superclass : #LuiRoot,
+	#name : 'LuiExperimentRoot',
+	#superclass : 'LuiRoot',
 	#instVars : [
 		'numtoconvert',
 		'result'
 	],
-	#category : #'Lcs-WebComponentsTests-Experiment'
+	#category : 'Lcs-WebComponentsTests-Experiment',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Experiment'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot class >> browserTabName [
 	^ 'experiment'
 ]
 
-{ #category : #register }
+{ #category : 'register' }
 LuiExperimentRoot class >> initialize [
 	WAAdmin register: self asApplicationAt: self browserTabName
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> basicRenderResultOn [
 	^ result displayString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> basicRenderResultOn: html [
 	html render: result displayString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> convert [
 	result := numtoconvert asNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> otherRenderingIdea [
 
 				"onClick: (
@@ -46,7 +48,7 @@ LuiExperimentRoot >> otherRenderingIdea [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> renderComponentOn: html [
 	html
 		form: [ html label with: 'Text to Convert:  '.
@@ -73,19 +75,19 @@ LuiExperimentRoot >> renderComponentOn: html [
 				with: 'Convert' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> renderResultOn: html [
 	html span
 		id: 'convertResult';
 		with: [ self basicRenderResultOn: html ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> setNumtoconvert: value [ 
 	numtoconvert := value
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiExperimentRoot >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
 	anHtmlRoot title: self class name greaseString

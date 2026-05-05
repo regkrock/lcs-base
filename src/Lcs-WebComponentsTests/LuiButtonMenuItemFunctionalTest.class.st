@@ -1,10 +1,12 @@
 Class {
-	#name : #LuiButtonMenuItemFunctionalTest,
-	#superclass : #LuiFunctionalTest,
-	#category : #'Lcs-WebComponentsTests-Functional'
+	#name : 'LuiButtonMenuItemFunctionalTest',
+	#superclass : 'LuiFunctionalTest',
+	#category : 'Lcs-WebComponentsTests-Functional',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Functional'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiButtonMenuItemFunctionalTest >> initialize [
 	| item |
 	super initialize.
@@ -17,18 +19,18 @@ LuiButtonMenuItemFunctionalTest >> initialize [
 			LcsMenuItemDefinition new 
 				menuItemLabel: 'Home(Button)';
 				"onClick: #showLabelOnTranscript;"
-				usePushButton;
+				bePushButton;
 				title: 'abc';
 				yourself).
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiButtonMenuItemFunctionalTest >> renderComponentOn: html [
 	super renderComponentOn: html
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiButtonMenuItemFunctionalTest >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.

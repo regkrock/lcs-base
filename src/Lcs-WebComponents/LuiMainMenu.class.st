@@ -1,18 +1,20 @@
 Class {
-	#name : #LuiMainMenu,
-	#superclass : #LuiMenuObject,
+	#name : 'LuiMainMenu',
+	#superclass : 'LuiMenuObject',
 	#instVars : [
 		'menuItems'
 	],
-	#category : #'Lcs-WebComponents-Menus'
+	#category : 'Lcs-WebComponents-Menus',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Menus'
 }
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LuiMainMenu >> beAnchor [
 	self addComponent: (LuiAnchor named: 'button' on: self)
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 LuiMainMenu >> buildFrom: aMenuComponentDefinition [
 	aMenuComponentDefinition menuComponentDefintions do: [ :eachComponent | 
 		| menuComponent |
@@ -21,19 +23,19 @@ LuiMainMenu >> buildFrom: aMenuComponentDefinition [
 		menuComponent buildFrom: eachComponent]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiMainMenu >> buildSubmenuCssClassName: aString [
 	^ aString , 'menu'
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 LuiMainMenu >> defaultCssClasses [
 	^super defaultCssClasses 
 		add: 'mainMenuBar';
 		yourself
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiMainMenu >> renderComponentOn: html [
 	html div
 		addCommonProperties: self;

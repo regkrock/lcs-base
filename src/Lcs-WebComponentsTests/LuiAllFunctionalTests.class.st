@@ -1,35 +1,37 @@
 Class {
-	#name : #LuiAllFunctionalTests,
-	#superclass : #WAComponent,
+	#name : 'LuiAllFunctionalTests',
+	#superclass : 'WAComponent',
 	#instVars : [
 		'classes',
 		'current'
 	],
-	#category : #'Lcs-WebComponentsTests-Functional'
+	#category : 'Lcs-WebComponentsTests-Functional',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Functional'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LuiAllFunctionalTests class >> canBeRoot [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiAllFunctionalTests class >> description [
 	^ 'Lcs Seaside Functional Test Suite'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 LuiAllFunctionalTests class >> initialize [
 	(WAAdmin register: self asApplicationAt: 'lcstests/functional')
 		sessionClass: WAExpirySession
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 LuiAllFunctionalTests >> children [
 	^ Array with: current contents
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 LuiAllFunctionalTests >> initialRequest: aRequest [ 
 	super initialRequest: aRequest.
 	self requestContext consumer nextIfPresentDo: [ :className | 
@@ -38,34 +40,34 @@ LuiAllFunctionalTests >> initialRequest: aRequest [
 			each name greaseString = className ifTrue: [ self selected: each ] ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 LuiAllFunctionalTests >> initialize [
 	super initialize.
 	self initializeTests
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 LuiAllFunctionalTests >> initializeTests [
 	classes := (WAPresenter allSubclasses select: [ :each | each isLcsFunctionalTest ])
 				asSortedCollection: [ :a :b | a name < b name ].
 	current := WAValueHolder with: classes first new
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LuiAllFunctionalTests >> next [
 	| nextIndex |
 	nextIndex := self selectionIndex \\ classes size + 1.
 	self selected: (classes at: nextIndex)
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 LuiAllFunctionalTests >> previous [
 	| nextIndex |
 	nextIndex := (self selectionIndex + classes size - 2 \\ classes size) + 1.
 	self selected: (classes at: nextIndex)
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiAllFunctionalTests >> renderContentOn: html [
 	html heading: self class description.
 	html form: [
@@ -88,29 +90,29 @@ LuiAllFunctionalTests >> renderContentOn: html [
 	html render: current contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiAllFunctionalTests >> selected [
 	^ current contents class
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiAllFunctionalTests >> selected: aClass [
 	current contents: aClass new.
 	(current contents respondsTo: #parent:)
 		ifTrue: [ current contents parent: self ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 LuiAllFunctionalTests >> selectionIndex [
 	^ classes indexOf: self selected
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 LuiAllFunctionalTests >> states [
 	^ Array with: current
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiAllFunctionalTests >> updateUrl: aUrl [
 	super updateUrl: aUrl.
 	"class name is a Symbol, using a String makes a big difference for WALotsaLinksFunctionalTest"

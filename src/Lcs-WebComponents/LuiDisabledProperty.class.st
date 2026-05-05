@@ -1,36 +1,38 @@
 Class {
-	#name : #LuiDisabledProperty,
-	#superclass : #LuiComponentProperty,
-	#category : #'Lcs-WebComponents-Base'
+	#name : 'LuiDisabledProperty',
+	#superclass : 'LuiComponentProperty',
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiDisabledProperty class >> propertyName [
 	^ 'dsiabled'
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LuiDisabledProperty >> beDisabled [
 	self valueBlock: [ true ]
 ]
 
-{ #category : #command }
+{ #category : 'command' }
 LuiDisabledProperty >> beEnabled [
 	self valueBlock: [ false ]
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiDisabledProperty >> initialize [
 	super initialize.
 	self valueBlock: [ false ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiDisabledProperty >> isDisabled [
 	^ self propertyValue == true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiDisabledProperty >> isEnabled [
 	^ self isDisabled not
 ]

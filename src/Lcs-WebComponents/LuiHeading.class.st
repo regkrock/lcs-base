@@ -1,29 +1,31 @@
 Class {
-	#name : #LuiHeading,
-	#superclass : #LuiComponent,
+	#name : 'LuiHeading',
+	#superclass : 'LuiComponent',
 	#instVars : [
 		'level'
 	],
-	#category : #'Lcs-WebComponents-Widgets'
+	#category : 'Lcs-WebComponents-Widgets',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Widgets'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiHeading >> initialize [
 	super initialize.
 	self level: 1
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiHeading >> level [
 	^ level
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiHeading >> level: anInteger [
 	level := anInteger
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiHeading >> renderComponentOn: html [
 	html heading 
 		addCommonProperties: self;

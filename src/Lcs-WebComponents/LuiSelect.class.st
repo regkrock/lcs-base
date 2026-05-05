@@ -14,12 +14,14 @@
 </div>
 "
 Class {
-	#name : #LuiSelect,
-	#superclass : #LuiInputComponent,
-	#category : #'Lcs-WebComponents-Widgets'
+	#name : 'LuiSelect',
+	#superclass : 'LuiInputComponent',
+	#category : 'Lcs-WebComponents-Widgets',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Widgets'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiSelect >> renderComponentOn: html [
 	html div
 		with: [

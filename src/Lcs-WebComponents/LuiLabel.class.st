@@ -1,18 +1,17 @@
 Class {
-	#name : #LuiLabel,
-	#superclass : #LuiInputComponent,
-	#category : #'Lcs-WebComponents-Widgets'
+	#name : 'LuiLabel',
+	#superclass : 'LuiBaseLabel',
+	#category : 'Lcs-WebComponents-Widgets',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Widgets'
 }
 
-{ #category : #label }
+{ #category : 'label' }
 LuiLabel >> labelString [
-	self subclassResponsibility
-
+	^ self properties labelPropertyValue
 ]
 
-{ #category : #rendering }
-LuiLabel >> renderComponentOn: html [
-	html label
-		addCommonProperties: self;
-		with: self labelString
+{ #category : 'configuration' }
+LuiLabel >> labelString: aString [
+	self properties labelProperty value: aString
 ]

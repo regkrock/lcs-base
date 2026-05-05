@@ -1,25 +1,27 @@
 Class {
-	#name : #LuiExampleRootComponent,
-	#superclass : #LuiRoot,
-	#category : #'Lcs-WebComponentsTests-Base'
+	#name : 'LuiExampleRootComponent',
+	#superclass : 'LuiRoot',
+	#category : 'Lcs-WebComponentsTests-Base',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Base'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiExampleRootComponent class >> browserTabName [
 	^ 'example'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiExampleRootComponent class >> initialize [
 	WAAdmin register: self asApplicationAt: self browserTabName
 ]
 
-{ #category : #setup }
+{ #category : 'setup' }
 LuiExampleRootComponent >> addMainNavigationMenuTo: aMainMenu [
 	aMainMenu buildFrom: self menuDefinition
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiExampleRootComponent >> initialize [
 	| mainPage |
 	super initialize.
@@ -32,12 +34,12 @@ LuiExampleRootComponent >> initialize [
 
 ]
 
-{ #category : #setup }
+{ #category : 'setup' }
 LuiExampleRootComponent >> menuDefinition [
 	^ LcsMainMenuDefinition menuBarWithSubSubMenuDefinition
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiExampleRootComponent >> renderComponentOn: html [
 	html div 
 		addCommonProperties: self;
@@ -45,7 +47,7 @@ LuiExampleRootComponent >> renderComponentOn: html [
 			self renderSubcomponentsOn: html ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiExampleRootComponent >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.

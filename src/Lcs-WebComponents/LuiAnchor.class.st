@@ -1,30 +1,22 @@
 Class {
-	#name : #LuiAnchor,
-	#superclass : #LuiButton,
-	#category : #'Lcs-WebComponents-Buttons'
+	#name : 'LuiAnchor',
+	#superclass : 'LuiButton',
+	#category : 'Lcs-WebComponents-Buttons',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Buttons'
 }
 
-{ #category : #properties }
+{ #category : 'properties' }
 LuiAnchor >> anchorClicked [
 	Transcript show: 'Clicked ' , self label; cr 
 ]
 
-{ #category : #properties }
-LuiAnchor >> label [
-	^ self properties label
-]
-
-{ #category : #properties }
-LuiAnchor >> label: aString [
-	self properties labelBlock: [ aString ]
-]
-
-{ #category : #properties }
+{ #category : 'properties' }
 LuiAnchor >> labelBlock: aBlock [
 	self properties labelBlock: aBlock
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiAnchor >> renderComponentOn: html [
 	html anchor
 		addCommonProperties: self;

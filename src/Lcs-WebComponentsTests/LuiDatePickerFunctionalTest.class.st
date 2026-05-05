@@ -1,13 +1,15 @@
 Class {
-	#name : #LuiDatePickerFunctionalTest,
-	#superclass : #LuiFunctionalTest,
+	#name : 'LuiDatePickerFunctionalTest',
+	#superclass : 'LuiFunctionalTest',
 	#instVars : [
 		'savedSystem'
 	],
-	#category : #'Lcs-WebComponentsTests-Functional'
+	#category : 'Lcs-WebComponentsTests-Functional',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Functional'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiDatePickerFunctionalTest >> initialize [
 	| item person button label |
 	super initialize.
@@ -36,12 +38,12 @@ LuiDatePickerFunctionalTest >> initialize [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiDatePickerFunctionalTest >> savedSystem: aSystem [ 
 	savedSystem := aSystem
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiDatePickerFunctionalTest >> switchToPrototypeSystem [
 	System abortTransaction.
 	LcsApplicationEnvironment ensureInitialized.
@@ -51,7 +53,7 @@ LuiDatePickerFunctionalTest >> switchToPrototypeSystem [
 	System commitTransaction
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiDatePickerFunctionalTest >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.

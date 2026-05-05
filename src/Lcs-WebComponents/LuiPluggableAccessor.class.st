@@ -1,14 +1,16 @@
 Class {
-	#name : #LuiPluggableAccessor,
-	#superclass : #LuiAccessor,
+	#name : 'LuiPluggableAccessor',
+	#superclass : 'LuiAccessor',
 	#instVars : [
 		'writeBlock',
 		'readBlock'
 	],
-	#category : #'Lcs-WebComponents-Accessor'
+	#category : 'Lcs-WebComponents-Accessor',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Accessor'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LuiPluggableAccessor class >> read: aReadBlock write: aWriteBlock [
 	^ self new
 		readBlock: aReadBlock;
@@ -16,49 +18,49 @@ LuiPluggableAccessor class >> read: aReadBlock write: aWriteBlock [
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LuiPluggableAccessor >> = anObject [
 	^ super = anObject
 		and: [ self readBlock = anObject readBlock
 		and: [ self writeBlock = anObject writeBlock ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LuiPluggableAccessor >> canRead: aModel [
 	^ self readBlock notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LuiPluggableAccessor >> canWrite: aModel [
 	^ self writeBlock notNil
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 LuiPluggableAccessor >> hash [
 	^ super hash bitXor: (self readBlock hash bitXor: self writeBlock hash)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 LuiPluggableAccessor >> isAbstract [
 	^ false
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LuiPluggableAccessor >> read: aModel [
 	^ self readBlock value: aModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiPluggableAccessor >> readBlock [
 	^ readBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiPluggableAccessor >> readBlock: anObject [
 	readBlock := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 LuiPluggableAccessor >> storeOn: aStream [
 	aStream nextPut: $(.
 	self class storeOn: aStream.
@@ -69,17 +71,17 @@ LuiPluggableAccessor >> storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 LuiPluggableAccessor >> write: anObject to: aModel [
 	self writeBlock value: aModel value: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiPluggableAccessor >> writeBlock [
 	^ writeBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiPluggableAccessor >> writeBlock: anObject [
 	writeBlock := anObject
 ]

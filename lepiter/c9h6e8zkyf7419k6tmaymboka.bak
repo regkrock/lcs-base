@@ -565,6 +565,43 @@
 								"__type" : "textStyle"
 							},
 							"string" : "[[Other Design Issues]]"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-05-02T10:36:32.665056-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-05-02T10:36:50.860026-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "WUPyPThbQMW5dH29TXdjMw=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "[[User Stories and Use Cases and Tasks]]"
 						}
 					]
 				},
@@ -1164,7 +1201,7 @@
 																	"__type" : "time",
 																	"time" : {
 																		"__type" : "dateAndTime",
-																		"dateAndTimeString" : "2026-04-30T12:55:47.199249-04:00"
+																		"dateAndTimeString" : "2026-05-01T10:42:44.265309-04:00"
 																	}
 																},
 																"uid" : {
@@ -1174,7 +1211,7 @@
 																"paragraphStyle" : {
 																	"__type" : "textStyle"
 																},
-																"string" : "[[Virtual Slot]]"
+																"string" : "[[Virtual (Computed) Slot]]"
 															}
 														]
 													},

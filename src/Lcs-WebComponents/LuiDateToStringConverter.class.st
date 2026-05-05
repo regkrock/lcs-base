@@ -1,15 +1,17 @@
 Class {
-	#name : #LuiDateToStringConverter,
-	#superclass : #LuiDisplayConverter,
-	#category : #'Lcs-WebComponents-Transformers'
+	#name : 'LuiDateToStringConverter',
+	#superclass : 'LuiDisplayConverter',
+	#category : 'Lcs-WebComponents-Transformers',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Transformers'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 LuiDateToStringConverter >> dateAsString: aDate [
 	^aDate yyyymmdd
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 LuiDateToStringConverter >> value: anObject [
 	(anObject isKindOf: Date) 
 		ifTrue: [ ^ self dateAsString: anObject ].

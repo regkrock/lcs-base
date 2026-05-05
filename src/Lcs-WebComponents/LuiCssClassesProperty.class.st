@@ -1,41 +1,43 @@
 Class {
-	#name : #LuiCssClassesProperty,
-	#superclass : #LuiComponentProperty,
+	#name : 'LuiCssClassesProperty',
+	#superclass : 'LuiComponentProperty',
 	#instVars : [
 		'cssClasses'
 	],
-	#category : #'Lcs-WebComponents-Base'
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #'constant\t' }
+{ #category : 'constant\t' }
 LuiCssClassesProperty class >> propertyName [
 	^ 'cssClasses'
 ]
 
-{ #category : #'css classes' }
+{ #category : 'css classes' }
 LuiCssClassesProperty >> addCssClass: aString [
 	(self cssClasses includes: aString) ifFalse: [
 		self cssClasses add: aString.
 		self clearCache. ]
 ]
 
-{ #category : #'css classes\\' }
+{ #category : 'css classes\\' }
 LuiCssClassesProperty >> addCssClasses: anOrderedCollection [
 	anOrderedCollection do: [ :eachCssClass |
 		self addCssClass: eachCssClass ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiCssClassesProperty >> cssClasses [
 	^ cssClasses
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LuiCssClassesProperty >> cssClasses: anObject [ 
 	cssClasses := anObject
 ]
 
-{ #category : #asking }
+{ #category : 'asking' }
 LuiCssClassesProperty >> cssClassesString [
 	| stream |
 	stream := WriteStream on: String new.
@@ -43,31 +45,31 @@ LuiCssClassesProperty >> cssClassesString [
 	^stream contents
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiCssClassesProperty >> initialize [
 	super initialize.
 	self cssClasses: OrderedCollection new.
 	self valueBlock: [ self cssClassesString]
 ]
 
-{ #category : #'css classes' }
+{ #category : 'css classes' }
 LuiCssClassesProperty >> removeAllCssClasses [
 	self removeCssClasses: self cssClasses copy 
 ]
 
-{ #category : #'css classes' }
+{ #category : 'css classes' }
 LuiCssClassesProperty >> removeCssClass: aString [
 	(self cssClasses includes: aString) ifTrue: [
 		self cssClasses remove: aString ifAbsent: [ ].
 		self clearCache ]
 ]
 
-{ #category : #'css classes' }
+{ #category : 'css classes' }
 LuiCssClassesProperty >> removeCssClasses: aCollection [
 	aCollection do: [ :eachClass | self removeCssClass: eachClass ]
 ]
 
-{ #category : #'css classes\\' }
+{ #category : 'css classes\\' }
 LuiCssClassesProperty >> replaceExistingCssClassesWithCssClass: aString [
 	self removeAllCssClasses.
 	self addCssClass: aString

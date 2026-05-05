@@ -1,11 +1,13 @@
 Class {
-	#name : #LuiCssClassesPropertyTest,
-	#superclass : #TestCase,
-	#category : #'Lcs-WebComponentsTests-Tests'
+	#name : 'LuiCssClassesPropertyExamples',
+	#superclass : 'LuiSeasideComponentExamples',
+	#category : 'Lcs-WebComponentsTests-Examples',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Examples'
 }
 
-{ #category : #tests }
-LuiCssClassesPropertyTest >> testAddingCssClass [
+{ #category : 'tests' }
+LuiCssClassesPropertyExamples >> testAddingCssClass [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
 	cssClassesProperty addCssClass: 'testClass'.
@@ -16,8 +18,8 @@ LuiCssClassesPropertyTest >> testAddingCssClass [
 	self assert: cssClassesProperty cssClassesString = 'testClass testClass2'.
 ]
 
-{ #category : #tests }
-LuiCssClassesPropertyTest >> testAddingDuplicateCssClass [
+{ #category : 'tests' }
+LuiCssClassesPropertyExamples >> testAddingDuplicateCssClass [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
 	cssClassesProperty addCssClass: 'testClass'.
@@ -27,16 +29,16 @@ LuiCssClassesPropertyTest >> testAddingDuplicateCssClass [
 
 ]
 
-{ #category : #tests }
-LuiCssClassesPropertyTest >> testCreation [
+{ #category : 'tests' }
+LuiCssClassesPropertyExamples >> testCreation [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
 	self assert: cssClassesProperty cssClasses isEmpty.
 	self assert: cssClassesProperty cssClassesString isEmpty
 ]
 
-{ #category : #tests }
-LuiCssClassesPropertyTest >> testCssClassString [
+{ #category : 'tests' }
+LuiCssClassesPropertyExamples >> testCssClassString [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
 	self assert: cssClassesProperty cachedValue isNil.
@@ -57,8 +59,8 @@ LuiCssClassesPropertyTest >> testCssClassString [
 
 ]
 
-{ #category : #tests }
-LuiCssClassesPropertyTest >> testRemovingCssClass [
+{ #category : 'tests' }
+LuiCssClassesPropertyExamples >> testRemovingCssClass [
 	| cssClassesProperty |
 	cssClassesProperty := LuiCssClassesProperty new.
 	cssClassesProperty addCssClass: 'testClass'.

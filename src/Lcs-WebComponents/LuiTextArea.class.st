@@ -16,12 +16,14 @@ The id attribute is needed to associate the text area with a label.
 Tip: Always add the ""<"" label "">"" tag for best accessibility practices!
 "
 Class {
-	#name : #LuiTextArea,
-	#superclass : #LuiInputComponent,
-	#category : #'Lcs-WebComponents-Widgets'
+	#name : 'LuiTextArea',
+	#superclass : 'LuiInputComponent',
+	#category : 'Lcs-WebComponents-Widgets',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Widgets'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiTextArea >> renderComponentOn: html [
 	html textArea
 		addCommonProperties: self;

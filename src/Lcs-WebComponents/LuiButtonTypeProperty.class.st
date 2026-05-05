@@ -1,25 +1,27 @@
 Class {
-	#name : #LuiButtonTypeProperty,
-	#superclass : #LuiComponentProperty,
-	#category : #'Lcs-WebComponents-Base'
+	#name : 'LuiButtonTypeProperty',
+	#superclass : 'LuiComponentProperty',
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
-{ #category : #constants }
+{ #category : 'constants' }
 LuiButtonTypeProperty class >> propertyName [
 	^ 'buttonType'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LuiButtonTypeProperty >> beButtonType [
 	self valueBlock: [ 'button' ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 LuiButtonTypeProperty >> beSubmitType [
 	self valueBlock: [ 'submit' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiButtonTypeProperty >> initialize [
 	super initialize.
 	self beButtonType

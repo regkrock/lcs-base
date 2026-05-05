@@ -1,10 +1,12 @@
 Class {
-	#name : #LuiAnchorMenuItemFunctionalTest,
-	#superclass : #LuiFunctionalTest,
-	#category : #'Lcs-WebComponentsTests-Functional'
+	#name : 'LuiAnchorMenuItemFunctionalTest',
+	#superclass : 'LuiFunctionalTest',
+	#category : 'Lcs-WebComponentsTests-Functional',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Functional'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiAnchorMenuItemFunctionalTest >> initialize [
 	| item |
 	super initialize.
@@ -23,12 +25,12 @@ LuiAnchorMenuItemFunctionalTest >> initialize [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LuiAnchorMenuItemFunctionalTest >> renderComponentOn: html [
 	super renderComponentOn: html
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiAnchorMenuItemFunctionalTest >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.

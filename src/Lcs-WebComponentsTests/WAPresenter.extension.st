@@ -1,6 +1,6 @@
-Extension { #name : #WAPresenter }
+Extension { #name : 'WAPresenter' }
 
-{ #category : #'*Lcs-WebComponentsTests' }
+{ #category : '*Lcs-WebComponentsTests' }
 WAPresenter class >> isLcsFunctionalTest [
 	^false
 ]

@@ -1,15 +1,17 @@
 Class {
-	#name : #LuiNavBarWithSubSubMenusFunctionalTest,
-	#superclass : #LuiFunctionalTest,
-	#category : #'Lcs-WebComponentsTests-Functional'
+	#name : 'LuiNavBarWithSubSubMenusFunctionalTest',
+	#superclass : 'LuiFunctionalTest',
+	#category : 'Lcs-WebComponentsTests-Functional',
+	#package : 'Lcs-WebComponentsTests',
+	#tag : 'Functional'
 }
 
-{ #category : #setup }
+{ #category : 'setup' }
 LuiNavBarWithSubSubMenusFunctionalTest >> addMainNavigationMenuTo: aMainMenu [
 	aMainMenu buildFrom: self menuDefinition
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiNavBarWithSubSubMenusFunctionalTest >> initialize [
 	| mainPage |
 	super initialize.
@@ -22,19 +24,19 @@ LuiNavBarWithSubSubMenusFunctionalTest >> initialize [
 	(mainPage componentNamed: 'applicationArea') homeMessage: self latinText
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 LuiNavBarWithSubSubMenusFunctionalTest >> latinText [
 	^ 'Lorem ipsum odor amet, consectetuer adipiscing elit. Porttitor bibendum natoque, faucibus aliquet montes fames nisi nisi. Praesent eget dignissim metus efficitur lobortis aliquet dis montes libero. Pulvinar maximus torquent sapien feugiat sed ac imperdiet dignissim. Ridiculus enim potenti risus; fringilla efficitur inceptos dis. Quis a habitant quam non at posuere. Efficitur aptent iaculis ac blandit luctus finibus placerat primis elementum. Auctor odio per orci mi, conubia nibh. Rutrum gravida nascetur curabitur felis lectus tempor aliquam enim duis.
 
 Urna arcu adipiscing feugiat faucibus nisi mauris. Augue mus suscipit risus integer senectus pharetra. Eget ligula commodo nisi pellentesque integer. Magnis ac mollis risus ullamcorper vulputate erat. Aptent metus integer massa ante mattis non aptent? Dis facilisis venenatis facilisis, imperdiet lobortis orci. Dictum finibus urna convallis arcu ultricies himenaeos. Hac nam suscipit maecenas tincidunt tincidunt eget eu habitasse. Phasellus at blandit dapibus cursus scelerisque et primis imperdiet.'
 ]
 
-{ #category : #setup }
+{ #category : 'setup' }
 LuiNavBarWithSubSubMenusFunctionalTest >> menuDefinition [
 	^ LcsMainMenuDefinition menuBarWithSubSubMenuDefinition
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 LuiNavBarWithSubSubMenusFunctionalTest >> renderComponentOn: html [
 	html div 
 		addCommonProperties: self;
@@ -42,7 +44,7 @@ LuiNavBarWithSubSubMenusFunctionalTest >> renderComponentOn: html [
 			self renderSubcomponentsOn: html ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 LuiNavBarWithSubSubMenusFunctionalTest >> updateRoot: aRoot [
 
 	super updateRoot: aRoot.
