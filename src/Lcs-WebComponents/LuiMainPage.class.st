@@ -3,66 +3,84 @@ Class {
 	#superclass : 'LuiPage',
 	#instVars : [
 		'pageTitle',
-		'currentAreaComponent',
 		'nextApplicationAreaClass',
-		'swappedApplicationAreas'
+		'swappedApplicationAreas',
+		'currentApplicationAreaComponent'
 	],
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
-{ #category : 'rendering' }
+{ #category : 'components' }
 LuiMainPage >> applicationAreaComponent [
-	^ self componentNamed: self applicationAreaName
+	^ self componentNamed: self applicationAreaComponentName
 ]
 
-{ #category : 'building' }
-LuiMainPage >> applicationAreaName [
+{ #category : 'component names' }
+LuiMainPage >> applicationAreaComponentName [
 	^ 'applicationArea'
 ]
 
-{ #category : 'components' }
-LuiMainPage >> currentAreaClass [
-	^ self currentAreaComponent class
+{ #category : 'accessing' }
+LuiMainPage >> currentApplicationAreaComponent [
+	^ currentApplicationAreaComponent
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> currentAreaComponent [
-	^ currentAreaComponent
+LuiMainPage >> currentApplicationAreaComponent: aComponent [
+	currentApplicationAreaComponent := aComponent
 ]
 
-{ #category : 'accessing' }
-LuiMainPage >> currentAreaComponent: aComponent [
-	currentAreaComponent := aComponent
+{ #category : 'component class' }
+LuiMainPage >> currentApplicationAreaComponentClass [
+	^ self currentApplicationAreaComponent class
+]
+
+{ #category : 'component names' }
+LuiMainPage >> currentApplicationAreaComponentName [
+	^ self currentApplicationAreaComponent ifNil: [ nil ] ifNotNil: [ :component | component componentName ]
 ]
 
 { #category : 'components' }
-LuiMainPage >> currentAreaComponentName [
-	^ self currentAreaComponent ifNil: [ nil ] ifNotNil: [ :component | component componentName ]
+LuiMainPage >> headerComponent [
+	^ self componentNamed: self headerComponentName
 ]
 
-{ #category : 'building' }
-LuiMainPage >> homeApplicationAreaClass [
-	^ LuiHomeArea
+{ #category : 'component names' }
+LuiMainPage >> headerComponentName [
+	^ 'header'
 ]
 
 { #category : 'initialize' }
 LuiMainPage >> initialize [
-	| header navigationBar |
 	super initialize.
-	self addComponent: (header := LuiHeader named: 'header' on: self).
-	header addComponent: (LuiHeading named: 'title' on: header).
-	self addComponent: (navigationBar := LuiNavigationBar named: 'navBar' on: self).
-	navigationBar addComponent: (LuiMainMenu named: 'navigation' on: header).
-	"self addComponent:  (LuiButtonBar named: 'actionBar' on: self)."
-	self addComponent: (self homeApplicationAreaClass named: self applicationAreaName on: self).
+	self addComponent: (LuiHeader named: self headerComponentName).
+	self headerComponent addComponent: (LuiHeading named: self titleComponentName).
+	self addComponent: (LuiNavigationBar named: self navBarComponentName).
+	self navBarComponent addComponent: (LuiNavigationMenu named: self navigationComponentName).
+	self addComponent: (LuiHomeArea named: self applicationAreaComponentName).
 	self swappedApplicationAreas: (LuiSwappedApplicationAreas on: self)
 ]
 
 { #category : 'components' }
-LuiMainPage >> navigationBar [
-	^ self componentNamed: 'navBar/navigation'
+LuiMainPage >> navBarComponent [
+	^ self componentNamed: self navBarComponentName
+]
+
+{ #category : 'component names' }
+LuiMainPage >> navBarComponentName [
+	^ 'navBar'
+]
+
+{ #category : 'components' }
+LuiMainPage >> navigationComponent [
+	^ self navBarComponent navigationComponent
+]
+
+{ #category : 'component names' }
+LuiMainPage >> navigationComponentName [
+	^ 'navigation'
 ]
 
 { #category : 'accessing' }
@@ -87,7 +105,7 @@ LuiMainPage >> pageTitle: anObject [
 
 { #category : 'components' }
 LuiMainPage >> pageTitleComponent [
-	^ self componentNamed: 'header/title'
+	^ self headerComponent componentNamed: self titleComponentName
 ]
 
 { #category : 'rendering' }
@@ -101,17 +119,17 @@ LuiMainPage >> renderSubcomponentsOn: html [
 
 { #category : 'rendering' }
 LuiMainPage >> setCurrentApplicatonAreaComponent [
-	self currentAreaComponent isNil
-		ifTrue: [ self currentAreaComponent: self applicationAreaComponent ]
+	self currentApplicationAreaComponent isNil
+		ifTrue: [ self currentApplicationAreaComponent: self applicationAreaComponent ]
 ]
 
 { #category : 'building' }
 LuiMainPage >> swapToNewApplicationAreaComponent [
 	| currentComponent |
-	currentComponent := self removeComponentNamed: self applicationAreaName.
+	currentComponent := self removeComponentNamed: self applicationAreaComponentName.
 	self swappedApplicationAreas swappedOut: currentComponent.
 	self addComponent: (
-		self nextApplicationAreaClass named: self applicationAreaName on: self).
+		self nextApplicationAreaClass named: self applicationAreaComponentName on: self).
 	self nextApplicationAreaClass: nil
 ]
 
@@ -123,4 +141,9 @@ LuiMainPage >> swappedApplicationAreas [
 { #category : 'accessing' }
 LuiMainPage >> swappedApplicationAreas: anObject [
 	swappedApplicationAreas := anObject
+]
+
+{ #category : 'component names' }
+LuiMainPage >> titleComponentName [
+	^ 'title'
 ]

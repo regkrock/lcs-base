@@ -3,7 +3,7 @@ Class {
 	#superclass : 'LcsMenuDefinition',
 	#instVars : [
 		'menuComponentDefintions',
-		'menuItemLabel'
+		'label'
 	],
 	#category : 'Lcs-WebComponents-Menus',
 	#package : 'Lcs-WebComponents',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : 'building' }
-LcsSubmenuDefinition >> addMenuComponentDefintion: aMenuComponentDefintion [
+LcsSubmenuDefinition >> addDefinition: aMenuComponentDefintion [
 	aMenuComponentDefintion parent: self.
 	self menuComponentDefintions add: aMenuComponentDefintion
 ]
@@ -23,7 +23,7 @@ LcsSubmenuDefinition >> componentClass [
 
 { #category : 'asking' }
 LcsSubmenuDefinition >> componentName [
-	^ self selectorNameFrom: self menuItemLabel
+	^ self selectorNameFrom: self label
 ]
 
 { #category : 'initialize' }
@@ -33,21 +33,21 @@ LcsSubmenuDefinition >> initialize [
 ]
 
 { #category : 'accessing' }
+LcsSubmenuDefinition >> label [
+	^ label
+]
+
+{ #category : 'accessing' }
+LcsSubmenuDefinition >> label: anObject [
+	label := anObject
+]
+
+{ #category : 'accessing' }
 LcsSubmenuDefinition >> menuComponentDefintions [
 	^ menuComponentDefintions
 ]
 
-{ #category : 'initialize' }
+{ #category : 'accessing' }
 LcsSubmenuDefinition >> menuComponentDefintions: anObject [ 
 	menuComponentDefintions := anObject
-]
-
-{ #category : 'accessing' }
-LcsSubmenuDefinition >> menuItemLabel [
-	^ menuItemLabel
-]
-
-{ #category : 'accessing' }
-LcsSubmenuDefinition >> menuItemLabel: anObject [
-	menuItemLabel := anObject
 ]

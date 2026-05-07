@@ -36,7 +36,7 @@ LuiExampleRootComponent >> initialize [
 
 { #category : 'setup' }
 LuiExampleRootComponent >> menuDefinition [
-	^ LcsMainMenuDefinition menuBarWithSubSubMenuDefinition
+	^ LuiNavigationMenuDefinitionExamples new navigationMenuWith3Submenus
 ]
 
 { #category : 'rendering' }

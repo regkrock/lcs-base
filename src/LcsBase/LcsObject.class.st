@@ -99,7 +99,7 @@ LcsObject >> removeProtoObjectFrom: classes [
 { #category : 'convenience' }
 LcsObject >> selectorNameFrom: aString [
 	| newString |
-	newString := aString displayString asCamelCase.
+	newString := aString displayString trimBoth asCamelCase.
 	(newString at: 1) isLowercase ifTrue: [ ^ newString ].
 	^ (newString at: 1) asLowercase asString , (newString copyFrom: 2 to: newString size)
 ]

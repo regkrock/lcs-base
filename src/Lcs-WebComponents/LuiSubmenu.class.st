@@ -2,7 +2,7 @@ Class {
 	#name : 'LuiSubmenu',
 	#superclass : 'LuiMenuObject',
 	#instVars : [
-		'menuItemLabel'
+		'label'
 	],
 	#category : 'Lcs-WebComponents-Menus',
 	#package : 'Lcs-WebComponents',
@@ -11,7 +11,7 @@ Class {
 
 { #category : 'building' }
 LuiSubmenu >> buildFrom: aSubmenuDefinition [
-	self menuItemLabel: aSubmenuDefinition menuItemLabel.
+	self label: aSubmenuDefinition label.
 	aSubmenuDefinition menuComponentDefintions do: [ :eachMenuDefinition  | 
 		| menuComponent |
 		menuComponent := eachMenuDefinition componentClass named: eachMenuDefinition componentName on: self.
@@ -26,7 +26,7 @@ LuiSubmenu >> buildSubmenuCssClassName: aString [
 
 { #category : 'initialize' }
 LuiSubmenu >> cssMenuClassName [
-	self parentComponent class = LuiMainMenu ifTrue: [ ^ 'mainMenuItem' ].
+	self parentComponent class = LuiNavigationMenu ifTrue: [ ^ 'mainMenuItem' ].
 	^ 'submenuItem' 
 ]
 
@@ -43,13 +43,13 @@ LuiSubmenu >> initializeNamed: aName on: aWebComponent [
 ]
 
 { #category : 'accessing' }
-LuiSubmenu >> menuItemLabel [
-	^ menuItemLabel
+LuiSubmenu >> label [
+	^ label
 ]
 
 { #category : 'accessing' }
-LuiSubmenu >> menuItemLabel: anObject [
-	menuItemLabel := anObject
+LuiSubmenu >> label: anObject [
+	label := anObject
 ]
 
 { #category : 'rendering' }
@@ -57,7 +57,7 @@ LuiSubmenu >> renderComponentOn: html [
 	html listItem
 		addCommonProperties: self;
 		with: [
-			html text: self menuItemLabel.
+			html text: self label.
 			html unorderedList 
 				class: self submenuCssClass;
 				with: [

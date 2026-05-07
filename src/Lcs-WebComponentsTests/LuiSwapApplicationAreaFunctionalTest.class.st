@@ -19,18 +19,18 @@ LuiSwapApplicationAreaFunctionalTest class >> initialize [
 { #category : 'menus' }
 LuiSwapApplicationAreaFunctionalTest class >> menuBarDefinition [
 	| menuDefinition |
-	menuDefinition := LcsMainMenuDefinition new.
+	menuDefinition := LuiNavigationMenuDefinition new.
 	menuDefinition
-		addMenuComponentDefintion: (LcsMenuItemDefinition new
-			menuItemLabel: 'Home';
+		addDefinition: (LuiMenuItemDefinition new
+			label: 'Home';
 			targetClass: LuiHomeArea;
 			yourself);
-		addMenuComponentDefintion: (LcsMenuItemDefinition new
-			menuItemLabel: 'Members';
+		addDefinition: (LuiMenuItemDefinition new
+			label: 'Members';
 			targetClass: LuiMember;
 			yourself);
-		addMenuComponentDefintion: (LcsMenuItemDefinition new
-			menuItemLabel: 'Skippers';
+		addDefinition: (LuiMenuItemDefinition new
+			label: 'Skippers';
 			targetClass: LuiSkippers;
 			yourself).
 	^menuDefinition

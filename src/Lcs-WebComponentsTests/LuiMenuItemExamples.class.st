@@ -11,7 +11,7 @@ LuiMenuItemExamples >> homeMenuItem [
 	<gtExample>
 	| item anchor |
 	item := self newMenuItem.
-	item buildFrom: LuiMenuItemDefinitionExamples new homeMenuItemDefinition.
+	item buildFrom: LuiMenuItemDefinitionExamples new homeDefinition.
 	self assert: item properties hasTitleProperty.
 	self assert: item title equals: 'abc'.
 	self assert: item isAnchor.

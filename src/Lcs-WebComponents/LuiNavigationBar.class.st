@@ -6,6 +6,20 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'components' }
+LuiNavigationBar >> addNavigationMenuBuiltFrom: aNavigationMenuDefinition [
+	| component |
+	component := LuiNavigationMenu named: 'navigation'.
+	self addComponent: component.
+	self navigationComponent buildFrom: aNavigationMenuDefinition.
+	^ component
+]
+
+{ #category : 'components' }
+LuiNavigationBar >> navigationComponent [
+	^ self componentNamed: 'navigation'
+]
+
 { #category : 'rendering' }
 LuiNavigationBar >> renderComponentOn: html [
 	html navigation 

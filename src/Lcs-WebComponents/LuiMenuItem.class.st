@@ -2,8 +2,8 @@ Class {
 	#name : 'LuiMenuItem',
 	#superclass : 'LuiMenuObject',
 	#instVars : [
-		'menuItemLabel',
-		'targetClass'
+		'targetClass',
+		'label'
 	],
 	#category : 'Lcs-WebComponents-Menus',
 	#package : 'Lcs-WebComponents',
@@ -15,7 +15,7 @@ LuiMenuItem >> addAnchorButton: aMenuItemDefinition [
 	self
 		addComponent: ((LuiAnchor named: 'button' on: self)
 				replaceExistingCssClassesWithCssClass: (aMenuItemDefinition buttonCssClasses ifEmpty: [ 'menuItemButton' ]);
-				label: aMenuItemDefinition menuItemLabel;
+				label: aMenuItemDefinition label;
 				yourself)
 ]
 
@@ -35,7 +35,7 @@ LuiMenuItem >> anchorClicked: aString [
 { #category : 'building' }
 LuiMenuItem >> buildFrom: aMenuItemDefinition [
 	self
-		menuItemLabel: aMenuItemDefinition menuItemLabel;
+		label: aMenuItemDefinition label;
 		targetClass: aMenuItemDefinition targetClass;
 		title: aMenuItemDefinition title.
 	aMenuItemDefinition isAnchor
@@ -60,19 +60,19 @@ LuiMenuItem >> isPushButton [
 	^ true
 ]
 
+{ #category : 'accessing' }
+LuiMenuItem >> label [
+	^ label
+]
+
+{ #category : 'accessing' }
+LuiMenuItem >> label: anObject [
+	label := anObject
+]
+
 { #category : 'rendering' }
 LuiMenuItem >> mainPage [
 	^ self parentComponentNamed: 'mainPage'
-]
-
-{ #category : 'accessing' }
-LuiMenuItem >> menuItemLabel [
-	^ menuItemLabel
-]
-
-{ #category : 'accessing' }
-LuiMenuItem >> menuItemLabel: anObject [
-	menuItemLabel := anObject
 ]
 
 { #category : 'building' }
@@ -80,7 +80,7 @@ LuiMenuItem >> pushButtonFor: aMenuItemDefinition [
 	| button |
 	button := LuiPushButton named: 'button' on: self.
 	button replaceExistingCssClassesWithCssClass: (aMenuItemDefinition buttonCssClasses ifEmpty: [ 'menuItemButton' ]).
-	button label: aMenuItemDefinition menuItemLabel.
+	button label: aMenuItemDefinition label.
 	^ button
 ]
 

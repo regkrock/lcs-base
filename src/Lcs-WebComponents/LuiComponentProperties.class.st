@@ -278,7 +278,7 @@ LuiComponentProperties >> isDisabled [
 	^ self disabledProperty isDisabled
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentProperties >> isEnabled [
 	^ self disabledProperty isEnabled
 ]

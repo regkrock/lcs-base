@@ -16,8 +16,8 @@ LuiButtonMenuItemFunctionalTest >> initialize [
 	item := LuiMenuItem named: 'menuItem' on: self.
 	self addComponent: item.
 	item buildFrom: (
-			LcsMenuItemDefinition new 
-				menuItemLabel: 'Home(Button)';
+			LuiMenuItemDefinition new 
+				label: 'Home(Button)';
 				"onClick: #showLabelOnTranscript;"
 				bePushButton;
 				title: 'abc';

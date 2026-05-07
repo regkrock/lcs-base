@@ -15,6 +15,13 @@ Class {
 }
 
 { #category : 'instance creation' }
+LuiComponent class >> named: aName [
+	^ super new 
+		initializeNamed: aName;
+		yourself
+]
+
+{ #category : 'instance creation' }
 LuiComponent class >> named: aName on: aWebComponent [
 	^ super new 
 		initializeNamed: aName on: aWebComponent;
@@ -43,6 +50,7 @@ LuiComponent >> addClassNameTo: names [
 { #category : 'components' }
 LuiComponent >> addComponent: aComponent [
 	| component |
+	aComponent parentComponent: self.
 	component := self components at: aComponent componentName put: aComponent.
 	component assignId.
 	^component
@@ -226,6 +234,16 @@ LuiComponent >> hasNoComponents [
 	^ self components isEmpty
 ]
 
+{ #category : 'testing' }
+LuiComponent >> hasNoProperties [
+	^ self properties hasNoProperties
+]
+
+{ #category : 'testing' }
+LuiComponent >> hasProperties [
+	^ self properties hasProperties
+]
+
 { #category : 'initialize' }
 LuiComponent >> initialize [
 	super initialize.
@@ -238,6 +256,11 @@ LuiComponent >> initialize [
 LuiComponent >> initializeCssClasses [
 	self defaultCssClasses ifEmpty: [ ^self ].
 	self properties cssClassesProperty addCssClasses: self defaultCssClasses
+]
+
+{ #category : 'initialize' }
+LuiComponent >> initializeNamed: aName [
+	self componentName: aName
 ]
 
 { #category : 'initialize' }

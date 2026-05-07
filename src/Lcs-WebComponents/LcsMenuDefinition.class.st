@@ -25,10 +25,39 @@ LcsMenuDefinition >> cssClasses: aString [
 	cssClasses := aString
 ]
 
+{ #category : 'gt views' }
+LcsMenuDefinition >> gtCompoentsFor: aView [
+	<gtView>
+	
+	^ aView columnedTree
+		title: 'Components';
+		priority: 10;
+		expandUpTo: 4;
+		items: [ { self } ];
+		children: #menuComponentDefintions;
+		column: 'Definition Class' text: [ :aComponent | aComponent class name ];
+		column: 'Component Name' text: [ :aComponent | aComponent componentName displayString ];
+		column: 'Label' text: [ :aComponent | aComponent label displayString ]
+]
+
+{ #category : 'printing' }
+LcsMenuDefinition >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream 
+		nextPutAll: '(';
+		nextPutAll: self componentName asString;
+		nextPutAll: ')'
+]
+
 { #category : 'as yet unclassified' }
 LcsMenuDefinition >> initialize [
 	super initialize.
 	self cssClasses: ''
+]
+
+{ #category : 'accessing' }
+LcsMenuDefinition >> menuComponentDefintions [
+	^ OrderedCollection new
 ]
 
 { #category : 'accessing' }

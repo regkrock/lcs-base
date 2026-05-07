@@ -1,14 +1,14 @@
 Class {
-	#name : 'LcsMenuItemDefinition',
+	#name : 'LuiMenuItemDefinition',
 	#superclass : 'LcsMenuDefinition',
 	#instVars : [
-		'menuItemLabel',
 		'targetClass',
 		'url',
 		'buttonType',
 		'title',
 		'buttonCssClasses',
-		'onClickAction'
+		'onClickAction',
+		'label'
 	],
 	#category : 'Lcs-WebComponents-Menus',
 	#package : 'Lcs-WebComponents',
@@ -16,108 +16,108 @@ Class {
 }
 
 { #category : 'configuration' }
-LcsMenuItemDefinition >> beAnchor [
+LuiMenuItemDefinition >> beAnchor [
 	self buttonType: 'anchor'
 ]
 
 { #category : 'configuration' }
-LcsMenuItemDefinition >> bePushButton [
+LuiMenuItemDefinition >> bePushButton [
 	self buttonType: 'push'
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> buttonCssClasses [
+LuiMenuItemDefinition >> buttonCssClasses [
 	^ buttonCssClasses 
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> buttonCssClasses: aString [
+LuiMenuItemDefinition >> buttonCssClasses: aString [
 	buttonCssClasses  := aString
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> buttonType [
+LuiMenuItemDefinition >> buttonType [
 	^ buttonType
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> buttonType: anObject [
+LuiMenuItemDefinition >> buttonType: anObject [
 	buttonType := anObject
 ]
 
 { #category : 'constant' }
-LcsMenuItemDefinition >> componentClass [
+LuiMenuItemDefinition >> componentClass [
 	^ LuiMenuItem
 ]
 
 { #category : 'asking' }
-LcsMenuItemDefinition >> componentName [
-	^ self selectorNameFrom: self menuItemLabel
+LuiMenuItemDefinition >> componentName [
+	^ self selectorNameFrom: self label
 ]
 
 { #category : 'as yet unclassified' }
-LcsMenuItemDefinition >> initialize [
+LuiMenuItemDefinition >> initialize [
 	super initialize.
 	self buttonCssClasses: ''.
 	self bePushButton
 ]
 
 { #category : 'testing' }
-LcsMenuItemDefinition >> isAnchor [
+LuiMenuItemDefinition >> isAnchor [
 	^ self buttonType = 'anchor'
 ]
 
 { #category : 'testing' }
-LcsMenuItemDefinition >> isPushButton [
+LuiMenuItemDefinition >> isPushButton [
 	^ self buttonType = 'push'
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> menuItemLabel [
-	^ menuItemLabel
+LuiMenuItemDefinition >> label [
+	^ label
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> menuItemLabel: anObject [
-	menuItemLabel := anObject
+LuiMenuItemDefinition >> label: anObject [
+	label := anObject
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> onClickAction [
+LuiMenuItemDefinition >> onClickAction [
 	^ onClickAction
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> onClickAction: anObject [
+LuiMenuItemDefinition >> onClickAction: anObject [
 	onClickAction := anObject
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> targetClass [
+LuiMenuItemDefinition >> targetClass [
 	^ targetClass
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> targetClass: anObject [
+LuiMenuItemDefinition >> targetClass: anObject [
 	targetClass := anObject
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> title [
+LuiMenuItemDefinition >> title [
 	^ title
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> title: anObject [
+LuiMenuItemDefinition >> title: anObject [
 	title := anObject
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> url [
+LuiMenuItemDefinition >> url [
 	^ url
 ]
 
 { #category : 'accessing' }
-LcsMenuItemDefinition >> url: aString [
+LuiMenuItemDefinition >> url: aString [
 	url := aString
 ]

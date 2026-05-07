@@ -16,8 +16,8 @@ LuiAnchorMenuItemFunctionalTest >> initialize [
 	item := LuiMenuItem named: 'menuItem' on: self.
 	self addComponent: item.
 	item buildFrom: (
-			LcsMenuItemDefinition new 
-				menuItemLabel: 'Home(Anchor)';
+			LuiMenuItemDefinition new 
+				label: 'Home(Anchor)';
 				beAnchor;
 				"onClickAction: #showLabelOnTranscript;"
 				title: 'Home hover text';

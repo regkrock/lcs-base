@@ -33,7 +33,7 @@ Urna arcu adipiscing feugiat faucibus nisi mauris. Augue mus suscipit risus inte
 
 { #category : 'setup' }
 LuiNavBarWithSubSubMenusFunctionalTest >> menuDefinition [
-	^ LcsMainMenuDefinition menuBarWithSubSubMenuDefinition
+	^ LuiNavigationMenuDefinitionExamples new navigationMenuWith3Submenus
 ]
 
 { #category : 'rendering' }
