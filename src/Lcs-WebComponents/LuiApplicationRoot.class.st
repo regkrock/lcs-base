@@ -31,5 +31,6 @@ LuiApplicationRoot >> renderBeforeSubcomponentsOn: html [
 LuiApplicationRoot >> updateRoot: aRoot [
 	super updateRoot: aRoot.
 	aRoot title: self applicationTitle.
-	aRoot stylesheet url: WAFileLibrary / #todoCss
+	aRoot stylesheet url: LcsFileLibrary / #mainCss.
+	aRoot link beShortcutIcon url: LcsFileLibrary / #faviconPng
 ]
