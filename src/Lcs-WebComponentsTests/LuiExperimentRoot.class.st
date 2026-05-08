@@ -87,7 +87,7 @@ LuiExperimentRoot >> setNumtoconvert: value [
 	numtoconvert := value
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'updating' }
 LuiExperimentRoot >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
 	anHtmlRoot title: self class name greaseString

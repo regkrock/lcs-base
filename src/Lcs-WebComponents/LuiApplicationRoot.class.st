@@ -17,8 +17,19 @@ LuiApplicationRoot class >> initialize [
 		sessionClass: WAExpirySession
 ]
 
+{ #category : 'constants' }
+LuiApplicationRoot >> applicationTitle [
+	^ 'SEAS Monmouth'
+]
+
 { #category : 'rendering' }
-LuiApplicationRoot >> renderComponentOn: html [
-	super renderComponentOn: html.
-	html text: 'Hello'
+LuiApplicationRoot >> renderBeforeSubcomponentsOn: html [
+	html text: 'Hello World'
+]
+
+{ #category : 'updating' }
+LuiApplicationRoot >> updateRoot: aRoot [
+	super updateRoot: aRoot.
+	aRoot title: self applicationTitle.
+	aRoot stylesheet url: WAFileLibrary / #todoCss
 ]

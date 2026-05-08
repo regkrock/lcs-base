@@ -16,11 +16,3 @@ LuiRoot class >> browserTabName [
 LuiRoot class >> canBeRoot [
 	^ true
 ]
-
-{ #category : 'rendering' }
-LuiRoot >> renderComponentOn: html [
-	html div 
-		addCommonProperties: self;
-		with: [
-			self renderSubcomponentsOn: html ]
-]

@@ -32,7 +32,6 @@ LuiAnchorMenuItemFunctionalTest >> renderComponentOn: html [
 
 { #category : 'updating' }
 LuiAnchorMenuItemFunctionalTest >> updateRoot: aRoot [
-
 	super updateRoot: aRoot.
 	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
 ]

@@ -21,6 +21,18 @@ LuiRootExamples >> newRoot [
 ]
 
 { #category : 'examples' }
+LuiRootExamples >> renderedComponent [
+	<gtExample>
+	| component expectedHtml |
+	expectedHtml := '<div id="root" data-name="root" data-StClass="LuiRoot"></div>'.
+	component := self newRoot.
+	self
+		assert: [ :html | html render: component ]
+		gives: expectedHtml.
+	^ expectedHtml
+]
+
+{ #category : 'examples' }
 LuiRootExamples >> rootWithMainPage [
 	<gtExample>
 	| root mainPageComponent |

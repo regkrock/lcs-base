@@ -372,11 +372,21 @@ LuiComponent >> removeComponentNamed: aName [
 ]
 
 { #category : 'rendering' }
+LuiComponent >> renderAfterSubcomponentsOn: html [ 
+]
+
+{ #category : 'rendering' }
+LuiComponent >> renderBeforeSubcomponentsOn: html [ 
+]
+
+{ #category : 'rendering' }
 LuiComponent >> renderComponentOn: html [
 	html div 
 		addCommonProperties: self;
 		with: [
-			self renderSubcomponentsOn: html ]
+			self renderBeforeSubcomponentsOn: html.
+			self renderSubcomponentsOn: html.
+			self renderAfterSubcomponentsOn: html ]
 ]
 
 { #category : 'rendering' }

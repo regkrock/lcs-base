@@ -49,8 +49,7 @@ LuiExampleRootComponent >> renderComponentOn: html [
 
 { #category : 'updating' }
 LuiExampleRootComponent >> updateRoot: aRoot [
-
 	super updateRoot: aRoot.
 	aRoot title: 'LCS Seaside Example'.
-	aRoot stylesheet url: LcsFileLibrary / #mainCss
+	aRoot stylesheet url: LcsExampleFileLibrary / #mainCss
 ]
