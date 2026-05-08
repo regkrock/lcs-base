@@ -12,14 +12,6 @@ LuiApplicationArea >> defaultCssClasses [
 ]
 
 { #category : 'rendering' }
-LuiApplicationArea >> renderApplicationAreaContentOn: html [
-
+LuiApplicationArea >> renderDetailsOn: html [
 	html paragraph: self class name
-]
-
-{ #category : 'rendering' }
-LuiApplicationArea >> renderComponentOn: html [
-	html div
-		addCommonProperties: self;
-		with: [self renderApplicationAreaContentOn: html ]
 ]

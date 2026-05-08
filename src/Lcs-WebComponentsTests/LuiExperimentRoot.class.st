@@ -49,7 +49,7 @@ LuiExperimentRoot >> otherRenderingIdea [
 ]
 
 { #category : 'as yet unclassified' }
-LuiExperimentRoot >> renderComponentOn: html [
+LuiExperimentRoot >> renderDetailsOn: html [
 	html
 		form: [ html label with: 'Text to Convert:  '.
 			html textInput

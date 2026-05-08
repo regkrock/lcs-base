@@ -29,5 +29,4 @@ LuiTextArea >> renderComponentOn: html [
 		addCommonProperties: self;
 		callback: [ :value | Transcript cr; nextPutAll: ('entered: ' , value greaseString) ];
 		value: self displayValue
-
 ]

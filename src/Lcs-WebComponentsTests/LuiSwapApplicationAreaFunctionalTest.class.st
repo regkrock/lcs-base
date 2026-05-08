@@ -60,14 +60,6 @@ LuiSwapApplicationAreaFunctionalTest >> menuDefinition [
 	^ self class menuBarDefinition
 ]
 
-{ #category : 'rendering' }
-LuiSwapApplicationAreaFunctionalTest >> renderComponentOn: html [
-	html div 
-		addCommonProperties: self;
-		with: [
-			self renderSubcomponentsOn: html ]
-]
-
 { #category : 'updating' }
 LuiSwapApplicationAreaFunctionalTest >> updateRoot: aRoot [
 

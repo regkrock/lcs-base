@@ -42,7 +42,7 @@ LuiHomeArea >> homeMessage: anObject [
 ]
 
 { #category : 'rendering' }
-LuiHomeArea >> renderApplicationAreaContentOn: html [
-	super renderApplicationAreaContentOn: html.
+LuiHomeArea >> renderDetailsOn: html [
+	super renderDetailsOn: html.
 	html paragraph: self homeMessage
 ]

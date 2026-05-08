@@ -114,6 +114,11 @@ LuiComponent >> componentNamed: aString [
 	^ self _componentNamed: targetNames
 ]
 
+{ #category : 'components' }
+LuiComponent >> componentNamed: aString ifNil: aBlock [
+	^ (self componentNamed: aString) ifNil: aBlock value
+]
+
 { #category : 'accessing' }
 LuiComponent >> components [
 	^ components
@@ -381,18 +386,22 @@ LuiComponent >> renderBeforeSubcomponentsOn: html [
 
 { #category : 'rendering' }
 LuiComponent >> renderComponentOn: html [
-	html div 
+	html div
 		addCommonProperties: self;
-		with: [
-			self renderBeforeSubcomponentsOn: html.
-			self renderSubcomponentsOn: html.
-			self renderAfterSubcomponentsOn: html ]
+		with: [ self renderDetailsOn: html ]
 ]
 
 { #category : 'rendering' }
 LuiComponent >> renderContentOn: html [
 	self isNotRenderable ifTrue: [ ^ self ].
 	self renderComponentOn: html
+]
+
+{ #category : 'rendering' }
+LuiComponent >> renderDetailsOn: html [
+	self renderBeforeSubcomponentsOn: html.
+	self renderSubcomponentsOn: html.
+	self renderAfterSubcomponentsOn: html
 ]
 
 { #category : 'rendering' }

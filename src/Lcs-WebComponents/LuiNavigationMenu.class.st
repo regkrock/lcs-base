@@ -36,10 +36,8 @@ LuiNavigationMenu >> defaultCssClasses [
 ]
 
 { #category : 'rendering' }
-LuiNavigationMenu >> renderComponentOn: html [
-	html div
-		addCommonProperties: self;
-		with: [ html unorderedList
-				class: 'mainMenuBarContents';
-				with: [ self renderSubcomponentsOn: html ] ]
+LuiNavigationMenu >> renderDetailsOn: html [
+	html unorderedList
+		class: 'mainMenuBarContents';
+		with: [ self renderSubcomponentsOn: html ]
 ]

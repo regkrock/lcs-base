@@ -25,11 +25,6 @@ LuiAnchorMenuItemFunctionalTest >> initialize [
 	^ self
 ]
 
-{ #category : 'as yet unclassified' }
-LuiAnchorMenuItemFunctionalTest >> renderComponentOn: html [
-	super renderComponentOn: html
-]
-
 { #category : 'updating' }
 LuiAnchorMenuItemFunctionalTest >> updateRoot: aRoot [
 	super updateRoot: aRoot.

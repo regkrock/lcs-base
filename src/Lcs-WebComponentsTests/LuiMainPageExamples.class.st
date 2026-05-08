@@ -16,13 +16,13 @@ LuiMainPageExamples >> mainPage [
 	self assert: mainPageComponent parentComponent isNil.
 
 	headerComponent := mainPageComponent headerComponent.
-	self assert: (mainPageComponent headerComponent isKindOf: LuiHeader).
+	self assert: (mainPageComponent headerComponent isKindOf: LuiPageHeader).
 	self assert: headerComponent parentComponent equals: mainPageComponent.
 		
 	titleComponent := headerComponent componentNamed: 'title'.
 	titleComponent domainObject: 'LCS Example'.
 	self assert: titleComponent domainObject equals: 'LCS Example'.
-	self assert: (titleComponent isKindOf: LuiHeading).
+	self assert: (titleComponent isKindOf: LuiPageTitle).
 	self assert: titleComponent parentComponent equals: headerComponent.
 
 	navBarComponent := mainPageComponent navBarComponent.

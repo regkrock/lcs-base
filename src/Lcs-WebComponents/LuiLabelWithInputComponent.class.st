@@ -51,11 +51,3 @@ LuiLabelWithInputComponent >> model: aModel [
 	self hasInputComponent ifTrue: [
 		self inputComponent model: aModel ]
 ]
-
-{ #category : 'rendering' }
-LuiLabelWithInputComponent >> renderComponentOn: html [
-	"Keeping this here because more logic may be needed"
-	html div
-		addCommonProperties: self;
-		with: [ self renderSubcomponentsOn: html ]
-]

@@ -40,8 +40,8 @@ LuiInputComponent >> model: aModel [
 ]
 
 { #category : 'rendering' }
-LuiInputComponent >> renderComponentOn: html [
-	html div: self class name , ' needs to implement #renderComponentOn:'
+LuiInputComponent >> renderDetailsOn: html [
+	html div: self class name , ' needs to implement #renderDetailsOn:'
 ]
 
 { #category : 'accessing' }

@@ -39,14 +39,6 @@ LuiExampleRootComponent >> menuDefinition [
 	^ LuiNavigationMenuDefinitionExamples new navigationMenuWith3Submenus
 ]
 
-{ #category : 'rendering' }
-LuiExampleRootComponent >> renderComponentOn: html [
-	html div 
-		addCommonProperties: self;
-		with: [
-			self renderSubcomponentsOn: html ]
-]
-
 { #category : 'updating' }
 LuiExampleRootComponent >> updateRoot: aRoot [
 	super updateRoot: aRoot.

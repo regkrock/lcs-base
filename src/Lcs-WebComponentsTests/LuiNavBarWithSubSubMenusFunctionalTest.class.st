@@ -36,14 +36,6 @@ LuiNavBarWithSubSubMenusFunctionalTest >> menuDefinition [
 	^ LuiNavigationMenuDefinitionExamples new navigationMenuWith3Submenus
 ]
 
-{ #category : 'rendering' }
-LuiNavBarWithSubSubMenusFunctionalTest >> renderComponentOn: html [
-	html div 
-		addCommonProperties: self;
-		with: [
-			self renderSubcomponentsOn: html ]
-]
-
 { #category : 'updating' }
 LuiNavBarWithSubSubMenusFunctionalTest >> updateRoot: aRoot [
 

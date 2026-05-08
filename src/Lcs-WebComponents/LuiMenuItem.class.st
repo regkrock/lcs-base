@@ -88,7 +88,7 @@ LuiMenuItem >> pushButtonFor: aMenuItemDefinition [
 LuiMenuItem >> renderComponentOn: html [
 	html listItem
 		addCommonProperties: self;
-		with: [ self renderSubcomponentsOn: html ]
+		with: [ self renderDetailsOn: html ]
 ]
 
 { #category : 'accessing' }

@@ -42,21 +42,11 @@ LuiMainPage >> currentApplicationAreaComponentName [
 	^ self currentApplicationAreaComponent ifNil: [ nil ] ifNotNil: [ :component | component componentName ]
 ]
 
-{ #category : 'components' }
-LuiMainPage >> headerComponent [
-	^ self componentNamed: self headerComponentName
-]
-
-{ #category : 'component names' }
-LuiMainPage >> headerComponentName [
-	^ 'header'
-]
-
 { #category : 'initialize' }
 LuiMainPage >> initialize [
 	super initialize.
-	self addComponent: (LuiHeader named: self headerComponentName).
-	self headerComponent addComponent: (LuiHeading named: self titleComponentName).
+	self addComponent: (LuiPageHeader named: self headerComponentName).
+	self headerComponent addComponent: (LuiPageTitle named: self titleComponentName).
 	self addComponent: (LuiNavigationBar named: self navBarComponentName).
 	self navBarComponent addComponent: (LuiNavigationMenu named: self navigationComponentName).
 	self addComponent: (LuiHomeArea named: self applicationAreaComponentName).
@@ -105,7 +95,7 @@ LuiMainPage >> pageTitle: anObject [
 
 { #category : 'components' }
 LuiMainPage >> pageTitleComponent [
-	^ self headerComponent componentNamed: self titleComponentName
+	^ self headerComponent titleComponent
 ]
 
 { #category : 'rendering' }
