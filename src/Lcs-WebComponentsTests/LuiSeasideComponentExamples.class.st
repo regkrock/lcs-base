@@ -13,5 +13,5 @@ LuiSeasideComponentExamples >> assert: aBlock gives: aString [
 		fullDocument: false;
 		rootBlock: aBlock;
 		render: aBlock.
-	self assert: aString equals: html
+	self assert: html equals: aString
 ]

@@ -28,11 +28,11 @@ LuiSwapApplicationAreaFunctionalTest class >> menuBarDefinition [
 		addDefinition: (LuiMenuItemDefinition new
 			label: 'Members';
 			targetClass: LuiMember;
-			yourself);
-		addDefinition: (LuiMenuItemDefinition new
+			yourself).
+"		addDefinition: (LuiMenuItemDefinition new
 			label: 'Skippers';
 			targetClass: LuiSkippers;
-			yourself).
+			yourself)."
 	^menuDefinition
 
 ]

@@ -17,20 +17,17 @@ LuiPushButtonFunctionalTest >> initialize [
 	self addComponent: button.
 	button
 		label: 'Hello';
-		title: 'Hello'.
+		addCssClass: 'button';
+		title: 'Hello Title'.
 		
 	button := LuiPushButton named: 'submit' on: self.
 	self addComponent: button.
 	button
 		label: 'Submit';
-		title: 'Submit';
+		title: 'Submit Title';
+		addCssClass: 'button';
 		beSubmitType.
 	^ self
-]
-
-{ #category : 'as yet unclassified' }
-LuiPushButtonFunctionalTest >> renderComponentOn: html [
-	super renderComponentOn: html
 ]
 
 { #category : 'updating' }

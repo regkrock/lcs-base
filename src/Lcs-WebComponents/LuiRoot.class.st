@@ -8,10 +8,16 @@ Class {
 
 { #category : 'constant' }
 LuiRoot class >> browserTabName [
-	self subclassResponsibility
+	"Subclasses should implment this"
+	^ self class name , '-RootComponent'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
+LuiRoot class >> canBeRoot [
+	^ true
+]
+
+{ #category : 'rendering' }
 LuiRoot >> renderComponentOn: html [
 	html div 
 		addCommonProperties: self;

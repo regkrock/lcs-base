@@ -373,7 +373,10 @@ LuiComponent >> removeComponentNamed: aName [
 
 { #category : 'rendering' }
 LuiComponent >> renderComponentOn: html [
-	self subclassResponsibility
+	html div 
+		addCommonProperties: self;
+		with: [
+			self renderSubcomponentsOn: html ]
 ]
 
 { #category : 'rendering' }
@@ -387,7 +390,7 @@ LuiComponent >> renderSubcomponentsOn: html [
 	self components do: [ :each | html render: each ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'properties - delegated' }
 LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
 	self cssClassesProperty replaceExistingCssClassesWithCssClass: aString
 ]

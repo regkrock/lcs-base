@@ -25,11 +25,6 @@ LuiButtonMenuItemFunctionalTest >> initialize [
 	^ self
 ]
 
-{ #category : 'as yet unclassified' }
-LuiButtonMenuItemFunctionalTest >> renderComponentOn: html [
-	super renderComponentOn: html
-]
-
 { #category : 'updating' }
 LuiButtonMenuItemFunctionalTest >> updateRoot: aRoot [
 

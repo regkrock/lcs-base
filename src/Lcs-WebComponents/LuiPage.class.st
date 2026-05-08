@@ -5,10 +5,3 @@ Class {
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
-
-{ #category : 'rendering' }
-LuiPage >> renderComponentOn: html [
-	html div
-		addCommonProperties: self;
-		with: [self renderSubcomponentsOn: html]
-]

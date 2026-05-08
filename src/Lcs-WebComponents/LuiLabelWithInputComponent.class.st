@@ -54,7 +54,8 @@ LuiLabelWithInputComponent >> model: aModel [
 
 { #category : 'rendering' }
 LuiLabelWithInputComponent >> renderComponentOn: html [
+	"Keeping this here because more logic may be needed"
 	html div
 		addCommonProperties: self;
-		with: [ self components do: [ :eachComponent | html render: eachComponent ] ]
+		with: [ self renderSubcomponentsOn: html ]
 ]

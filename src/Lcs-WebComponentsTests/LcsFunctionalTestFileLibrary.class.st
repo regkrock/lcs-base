@@ -31,6 +31,19 @@ LcsFunctionalTestFileLibrary >> bodyCss [
 ]
 
 { #category : 'css' }
+LcsFunctionalTestFileLibrary >> buttonCss [
+	<css>
+^'.button {
+  font-size:18px;
+  font-weight:bold;
+/*  position: fixed; */
+  width: 100vw;
+  box-shadow: 0 0 10px #e1e5ee;
+  padding-right: 20px;
+}'
+]
+
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> globalCss [
 	<css>
 	"This forces the padding and margin to be zero. 
@@ -53,7 +66,7 @@ LcsFunctionalTestFileLibrary >> globalCss [
 LcsFunctionalTestFileLibrary >> mainCss [
 	| stream |
 	stream := WriteStream on: String new.
-	#(globalCss bodyCss applicationAreaCss mainMenuBarCss #submenuCss subSubmenuCss) do: [:each |
+	#(globalCss bodyCss applicationAreaCss mainMenuBarCss submenuCss subSubmenuCss buttonCss) do: [:each |
 		stream nextPutAll: (self perform: each asSymbol) ] separatedBy: [ stream cr; cr ].
 	^ stream contents
 ]

@@ -41,7 +41,7 @@ LuiInputComponent >> model: aModel [
 
 { #category : 'rendering' }
 LuiInputComponent >> renderComponentOn: html [
-
+	html div: self class name , ' needs to implement #renderComponentOn:'
 ]
 
 { #category : 'accessing' }

@@ -13,11 +13,3 @@ Class {
 LuiHeader >> defaultCssClasses [
 	^ OrderedCollection with: 'header'
 ]
-
-{ #category : 'rendering' }
-LuiHeader >> renderComponentOn: html [
-	html header 
-		addCommonProperties: self;
-		with: [
-			self renderSubcomponentsOn: html]
-]

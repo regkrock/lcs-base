@@ -39,11 +39,7 @@ LuiNavigationMenu >> defaultCssClasses [
 LuiNavigationMenu >> renderComponentOn: html [
 	html div
 		addCommonProperties: self;
-		with: [
-			html unorderedList
+		with: [ html unorderedList
 				class: 'mainMenuBarContents';
-				with: [
-					self components do: [ :eachComponent | html render: eachComponent ] ] ]
-		
-
+				with: [ self renderSubcomponentsOn: html ] ]
 ]

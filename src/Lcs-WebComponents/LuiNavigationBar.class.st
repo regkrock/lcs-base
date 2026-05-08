@@ -19,11 +19,3 @@ LuiNavigationBar >> addNavigationMenuBuiltFrom: aNavigationMenuDefinition [
 LuiNavigationBar >> navigationComponent [
 	^ self componentNamed: 'navigation'
 ]
-
-{ #category : 'rendering' }
-LuiNavigationBar >> renderComponentOn: html [
-	html navigation 
-		addCommonProperties: self;
-		with: [
-			self renderSubcomponentsOn: html ]
-]

@@ -56,12 +56,10 @@ LuiSubmenu >> label: anObject [
 LuiSubmenu >> renderComponentOn: html [
 	html listItem
 		addCommonProperties: self;
-		with: [
-			html text: self label.
-			html unorderedList 
+		with: [ html text: self label.
+			html unorderedList
 				class: self submenuCssClass;
-				with: [
-					self components do: [ :eachComponent | html render: eachComponent ] ] ]
+				with: [ self renderSubcomponentsOn: html ] ]
 ]
 
 { #category : 'rendering' }

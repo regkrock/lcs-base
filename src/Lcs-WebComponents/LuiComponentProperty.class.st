@@ -48,7 +48,7 @@ LuiComponentProperty >> component [
 	^ self parent ifNotNil: [ :properties | properties parentComponent ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialize' }
 LuiComponentProperty >> initialize [
 	super initialize.
 	self valueBlock: [ ]
