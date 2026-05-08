@@ -22,11 +22,6 @@ LuiApplicationRoot >> applicationTitle [
 	^ 'SEAS Monmouth'
 ]
 
-{ #category : 'initialize' }
-LuiApplicationRoot >> initialize [
-	super initialize
-]
-
 { #category : 'rendering' }
 LuiApplicationRoot >> renderBeforeSubcomponentsOn: html [
 	html text: 'Hello World'
