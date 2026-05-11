@@ -10,7 +10,7 @@ Class {
 LuiLabelWithInputComponentExamples >> htmlForLastNameInputComponent [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<input id="185393756" name="" data-StClass="LuiTextInput" value="Smith" type="text"/>'.
+	expectedHtml := '<input id="185393756" name="input" data-StClass="LuiTextInput" value="Smith" type="text"/>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent inputComponent equals: expectedHtml
 ]
 
