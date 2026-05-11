@@ -59,10 +59,3 @@ LuiSwapApplicationAreaFunctionalTest >> initialize [
 LuiSwapApplicationAreaFunctionalTest >> menuDefinition [
 	^ self class menuBarDefinition
 ]
-
-{ #category : 'updating' }
-LuiSwapApplicationAreaFunctionalTest >> updateRoot: aRoot [
-
-	super updateRoot: aRoot.
-	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
-]

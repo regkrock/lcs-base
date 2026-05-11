@@ -21,8 +21,9 @@ LuiButtonTypeProperty >> beSubmitType [
 	self valueBlock: [ 'submit' ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialize' }
 LuiButtonTypeProperty >> initialize [
 	super initialize.
-	self beButtonType
+	self beButtonType.
+	self tagAttributeSetSelector: #type:
 ]

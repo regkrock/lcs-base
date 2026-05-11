@@ -24,10 +24,3 @@ LuiButtonMenuItemFunctionalTest >> initialize [
 				yourself).
 	^ self
 ]
-
-{ #category : 'updating' }
-LuiButtonMenuItemFunctionalTest >> updateRoot: aRoot [
-
-	super updateRoot: aRoot.
-	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
-]

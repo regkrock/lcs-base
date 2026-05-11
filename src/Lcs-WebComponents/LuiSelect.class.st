@@ -23,11 +23,7 @@ Class {
 
 { #category : 'rendering' }
 LuiSelect >> renderComponentOn: html [
-	html div
-		with: [
-			html select
-				addCommonProperties: self;
-				with: [self renderSubcomponentsOn: html]]
-
-
+	html select
+		addCommonProperties: self;
+		with: [self renderDetailsOn: html]
 ]

@@ -1,9 +1,6 @@
 Class {
 	#name : 'LuiButton',
 	#superclass : 'LuiComponent',
-	#instVars : [
-		'type'
-	],
 	#category : 'Lcs-WebComponents-Buttons',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Buttons'
@@ -17,14 +14,6 @@ LuiButton >> addLabelComponent [
 { #category : 'testing' }
 LuiButton >> hasLabelComponent [
 	^ (self componentNamed: 'label') notNil
-]
-
-{ #category : 'configuration' }
-LuiButton >> icon: anIcon [
-	self addComponent: (
-		(LuiIcon named: 'icon' on: self) 
-			"domainObject: anIcon;"
-			yourself)
 ]
 
 { #category : 'properties' }

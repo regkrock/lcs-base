@@ -1,10 +1,22 @@
 Class {
 	#name : 'LuiLabelWithInputComponent',
-	#superclass : 'LuiInputComponent',
+	#superclass : 'LuiComponent',
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
 }
+
+{ #category : 'instance creation' }
+LuiLabelWithInputComponent class >> onSlot: aSlotDefinition [
+	^ self onSlot: aSlotDefinition on: nil
+]
+
+{ #category : 'instance creation' }
+LuiLabelWithInputComponent class >> onSlot: aSlotDefinition on: aComponent [
+	^ super new 
+		initializeOnSlot: aSlotDefinition on: aComponent;
+		yourself
+]
 
 { #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> hasInputComponent [
@@ -24,7 +36,7 @@ LuiLabelWithInputComponent >> initialize [
 
 { #category : 'initialize' }
 LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition on: aComponent [
-	super initializeOnSlot: aSlotDefinition on: aComponent.
+	self componentName: aSlotDefinition slotName.
 	self labelComponent initializeOnSlot: aSlotDefinition on: aComponent.
 	self addComponent: (
 		(aSlotDefinition inputComponentClass named: 'input' on: self)
@@ -44,8 +56,8 @@ LuiLabelWithInputComponent >> labelComponent [
 
 { #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> model: aModel [
-	super model: aModel.
-	self valueAccessor model: aModel.
+	"super model: aModel.
+	self valueAccessor model: aModel."
 	self hasLabelComponent ifTrue: [
 		self labelComponent model: aModel ].
 	self hasInputComponent ifTrue: [

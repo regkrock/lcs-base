@@ -17,7 +17,7 @@ LuiLabelProperty >> initialize [
 	self valueBlock: [ '<nil>' ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 LuiLabelProperty >> label: aString [
 	self valueBlock: [ aString ]
 ]

@@ -35,13 +35,13 @@ LuiInputComponent >> initializeOnSlot: aSlotDefinition on: aComponent [
 ]
 
 { #category : 'as yet unclassified' }
-LuiInputComponent >> model: aModel [
-	self valueAccessor model: aModel.
+LuiInputComponent >> model [
+	^ self valueAccessor model.
 ]
 
-{ #category : 'rendering' }
-LuiInputComponent >> renderDetailsOn: html [
-	html div: self class name , ' needs to implement #renderDetailsOn:'
+{ #category : 'as yet unclassified' }
+LuiInputComponent >> model: aModel [
+	self valueAccessor model: aModel.
 ]
 
 { #category : 'accessing' }

@@ -15,3 +15,21 @@ LuiSeasideComponentExamples >> assert: aBlock gives: aString [
 		render: aBlock.
 	self assert: html equals: aString
 ]
+
+{ #category : 'asserting' }
+LuiSeasideComponentExamples >> assertRenderNewComponentEquals: aString [
+	^ self assertRendered: self newComponent equals: aString
+]
+
+{ #category : 'asserting' }
+LuiSeasideComponentExamples >> assertRendered: aComponent equals: aString [
+	self
+		assert: [ :html | html render: aComponent ]
+		gives: aString.
+	^ aString
+]
+
+{ #category : 'examples' }
+LuiSeasideComponentExamples >> newComponent [
+	self subclassResponsibility
+]

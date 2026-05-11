@@ -79,7 +79,7 @@ LuiComponentPropertiesExamples >> newComponentProperties [
 	properties := LuiComponentProperties new.
 	self assert: properties properties isEmpty.
 	self deny: (properties hasProperty: 'xxxx').
-	self deny: (properties hasProperty: LuiTitleProperty propertyName).
+	self deny: properties hasTitleProperty.
 	self deny: properties hasCssClassesProperty.
 	self deny: properties hasDisabledProperty.
 	self deny: properties hasVisiblityProperty.

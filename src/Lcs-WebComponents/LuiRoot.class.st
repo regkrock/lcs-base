@@ -16,3 +16,10 @@ LuiRoot class >> browserTabName [
 LuiRoot class >> canBeRoot [
 	^ true
 ]
+
+{ #category : 'initialize' }
+LuiRoot >> initialize [
+	super initialize.
+	self componentName: 'root'.
+	self componentId: 'root'
+]

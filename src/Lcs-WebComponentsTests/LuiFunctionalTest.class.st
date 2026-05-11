@@ -1,10 +1,15 @@
 Class {
 	#name : 'LuiFunctionalTest',
-	#superclass : 'LuiRoot',
+	#superclass : 'LuiComponent',
 	#category : 'Lcs-WebComponentsTests-Functional',
 	#package : 'Lcs-WebComponentsTests',
 	#tag : 'Functional'
 }
+
+{ #category : 'testing' }
+LuiFunctionalTest class >> canBeRoot [
+	^ true
+]
 
 { #category : 'testing' }
 LuiFunctionalTest class >> isLcsFunctionalTest [
@@ -12,7 +17,8 @@ LuiFunctionalTest class >> isLcsFunctionalTest [
 ]
 
 { #category : 'updating' }
-LuiFunctionalTest >> updateRoot: anHtmlRoot [
-	super updateRoot: anHtmlRoot.
-	anHtmlRoot title: self class name greaseString
+LuiFunctionalTest >> updateRoot: aRoot [
+
+	super updateRoot: aRoot.
+	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
 ]

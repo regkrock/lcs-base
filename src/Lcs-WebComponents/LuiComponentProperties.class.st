@@ -36,35 +36,30 @@ LuiComponentProperties >> addCssClasses: aCollection [
 
 { #category : 'rendering' }
 LuiComponentProperties >> addPropertiesToTag: aTag [
-	aTag
+	aTag 
 		id: self parentComponent componentId;
-		class: self cssClassesString;
-		dataName: self parentComponent componentName;
+		attributeAt: 'name' put: self parentComponent componentName;
 		dataStClass: self parentComponent.
-		
-	self hasDisabledProperty ifTrue: [
-		aTag disabled: self isDisabled ].
-		
-	self hasRequiredProperty ifTrue: [
-		aTag required: self isRequired ].
-		
-	self hasStyleProperty ifTrue: [
-		aTag style: self style ].
-		
-	self hasTitleProperty ifTrue: [
-		aTag title: self title ].
+	self properties do: [ :eachProperty | 
+			aTag
+				perform: eachProperty tagAttributeSetSelector
+				with: eachProperty cachedValue ]
+]
 
-	self hasButtonTypeProperty ifTrue: [
-		aTag type: self buttonType ].
-		
-	self hasForNameProperty ifTrue: [
-		aTag for: self forName ].
-		
-	self hasNameProperty ifTrue: [
-		aTag name: self name ]
+{ #category : 'properties - delegated' }
+LuiComponentProperties >> altText [
+	self hasAltTextProperty ifFalse: [ ^ nil ].
+	^ self altTextProperty propertyValue
+]
 
+{ #category : 'properties - delegated' }
+LuiComponentProperties >> altText: aString [
+	^ self altTextProperty text: aString
+]
 
-
+{ #category : 'properties - defined' }
+LuiComponentProperties >> altTextProperty [
+	^ self lazyInitializedProperty: LuiAltTextProperty
 ]
 
 { #category : 'properties - delegated' }
@@ -123,6 +118,11 @@ LuiComponentProperties >> buttonTypeProperty [
 	^ self lazyInitializedProperty: LuiButtonTypeProperty
 ]
 
+{ #category : 'properties - delegated' }
+LuiComponentProperties >> cssClass: aCssClassName [
+	^ self cssClassesProperty cssClass: aCssClassName
+]
+
 { #category : 'properties - defined' }
 LuiComponentProperties >> cssClassesProperty [
 	^ self lazyInitializedProperty: LuiCssClassesProperty
@@ -179,6 +179,11 @@ LuiComponentProperties >> gtViewPropertiesOn: aView [
 		column: 'Block' text: [ :anAssociation | anAssociation value  valueBlock displayString];
 		send: [ :e | e value ];
 		actionUpdateButton
+]
+
+{ #category : 'properties - testing' }
+LuiComponentProperties >> hasAltTextProperty [
+	^ self hasProperty: LuiAltTextProperty propertyName
 ]
 
 { #category : 'properties - testing' }
@@ -246,6 +251,11 @@ LuiComponentProperties >> hasStyleProperty [
 { #category : 'properties - testing' }
 LuiComponentProperties >> hasTitleProperty [
 	^ self hasProperty: LuiTitleProperty propertyName
+]
+
+{ #category : 'properties - testing' }
+LuiComponentProperties >> hasUrlProperty [
+	^ self hasProperty: LuiUrlProperty propertyName
 ]
 
 { #category : 'properties - testing' }
@@ -598,6 +608,22 @@ LuiComponentProperties >> unsubscribe: aSubscriber [
 		ifPresent: [ :anAnnouncer | 
 			anAnnouncer unsubscribe: aSubscriber ]
 		ifAbsent: [  "ignore" ]
+]
+
+{ #category : 'properties - delegated' }
+LuiComponentProperties >> url [
+	self hasUrlProperty ifFalse: [ ^ nil ].
+	^ self urlProperty propertyValue
+]
+
+{ #category : 'properties - delegated' }
+LuiComponentProperties >> url: aString [
+	^ self urlProperty url: aString
+]
+
+{ #category : 'properties - defined' }
+LuiComponentProperties >> urlProperty [
+	^ self lazyInitializedProperty: LuiUrlProperty
 ]
 
 { #category : 'properties - accessing' }

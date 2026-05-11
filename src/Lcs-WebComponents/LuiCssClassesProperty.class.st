@@ -28,6 +28,17 @@ LuiCssClassesProperty >> addCssClasses: anOrderedCollection [
 ]
 
 { #category : 'accessing' }
+LuiCssClassesProperty >> cachedValue [
+	^ cachedValue ifNil: [ cachedValue := self cssClassesString ]
+]
+
+{ #category : 'css classes' }
+LuiCssClassesProperty >> cssClass: aString [
+	self removeAllCssClasses.
+	self addCssClass: aString
+]
+
+{ #category : 'accessing' }
 LuiCssClassesProperty >> cssClasses [
 	^ cssClasses
 ]
@@ -49,7 +60,8 @@ LuiCssClassesProperty >> cssClassesString [
 LuiCssClassesProperty >> initialize [
 	super initialize.
 	self cssClasses: OrderedCollection new.
-	self valueBlock: [ self cssClassesString]
+	self valueBlock: [ self cssClassesString ];
+	tagAttributeSetSelector: #class:
 ]
 
 { #category : 'css classes' }
@@ -66,7 +78,7 @@ LuiCssClassesProperty >> removeCssClass: aString [
 
 { #category : 'css classes' }
 LuiCssClassesProperty >> removeCssClasses: aCollection [
-	aCollection do: [ :eachClass | self removeCssClass: eachClass ]
+	aCollection copy do: [ :eachClass | self removeCssClass: eachClass ]
 ]
 
 { #category : 'css classes\\' }

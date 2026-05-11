@@ -16,9 +16,10 @@ LuiLabelWithDatePickerComponentExamples >> dateOfBirthComponent [
 	person dateOfBirth: date.
 	component := LuiLabelWithInputComponent onSlot: LxxPerson dateOfBirthSlotDefinition.
 	component model: person.
+	self assert: component componentName equals: 'dateOfBirth'.
 	labelComponent := component labelComponent.
 	inputComponent := component inputComponent.
-	self assert: component valueAccessor slotName equals: 'dateOfBirth'.
+	self assert: inputComponent valueAccessor slotName equals: 'dateOfBirth'.
 	self assert: labelComponent labelString equals: 'Date of Birth'.
 	self assert: (labelComponent isKindOf: LuiModelLabel).
 	self assert: inputComponent displayValue equals: date yyyymmdd.
@@ -40,10 +41,7 @@ LuiLabelWithDatePickerComponentExamples >> newLabelWithInputComponent [
 { #category : 'examples' }
 LuiLabelWithDatePickerComponentExamples >> renderedDateOfBirthComponent [
 	<gtExample>
-	<after: #clearUnitOfWork>
-	| component |
-	component := self dateOfBirthComponent.
-	self
-		assert: [ :html | html render: component ]
-		gives: '<div data-StClass="LuiLabelWithInputComponent"><label id="218106578" data-name="label" data-StClass="LuiModelLabel" for="dateOfBirth">Date of Birth</label><input id="44548918" data-name="input" data-StClass="LuiDatePicker" name="1" onchange="this.form.requestSubmit()" value="2000-01-01" type="date"/></div>'
+	| expectedHtml |
+	expectedHtml := '<div name="dateOfBirth" data-StClass="LuiLabelWithInputComponent"><label id="218106578" name="label" data-StClass="LuiModelLabel">Date of Birth</label><input id="26979339" name="1" data-StClass="LuiDatePicker" onchange="this.form.requestSubmit()" value="2000-01-01" type="date"/></div>'.
+	^ self assertRendered: self dateOfBirthComponent equals: expectedHtml
 ]

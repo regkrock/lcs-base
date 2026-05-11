@@ -7,7 +7,8 @@ Class {
 		'parentComponent',
 		'componentId',
 		'componentName',
-		'properties'
+		'properties',
+		'componentKeys'
 	],
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
@@ -49,22 +50,61 @@ LuiComponent >> addClassNameTo: names [
 
 { #category : 'components' }
 LuiComponent >> addComponent: aComponent [
+	self addToComponents: aComponent.
+	self componentKeys add: aComponent componentName.
+	^ aComponent
+]
+
+{ #category : 'components' }
+LuiComponent >> addComponent: aComponent after: anAfterComponent [
+	self addToComponents: aComponent.
+	self componentKeys add: aComponent componentName after: anAfterComponent componentName.
+	^ aComponent
+]
+
+{ #category : 'components' }
+LuiComponent >> addComponent: aComponent before: aBeforeComponent [
+	self addToComponents: aComponent.
+	self componentKeys add: aComponent componentName before: aBeforeComponent componentName.
+	^ aComponent
+]
+
+{ #category : 'private' }
+LuiComponent >> addComponentNameTo: namePath [
+	namePath addFirst: self componentName asString.
+	self parentComponent ifNotNil: [ self parentComponent addComponentNameTo: namePath ]
+]
+
+{ #category : 'initialize' }
+LuiComponent >> addCssClass: aClassName [ 
+	self properties addCssClass: aClassName
+]
+
+{ #category : 'initialize' }
+LuiComponent >> addCssClasses: aCollection [ 
+	self properties addCssClasses: aCollection
+]
+
+{ #category : 'components' }
+LuiComponent >> addFirstComponent: aComponent [
 	| component |
 	aComponent parentComponent: self.
 	component := self components at: aComponent componentName put: aComponent.
 	component assignId.
+	self componentKeys addFirst: aComponent componentName.
 	^component
-]
-
-{ #category : 'private' }
-LuiComponent >> addComponentNameTo: names [
-	names addFirst: self componentName asString.
-	self parentComponent ifNotNil: [ self parentComponent addComponentNameTo: names ]
 ]
 
 { #category : 'properties' }
 LuiComponent >> addLabelComponent [
 	^ self addComponent: (LuiLabel named: 'label' on: self)
+]
+
+{ #category : 'components' }
+LuiComponent >> addToComponents: aComponent [ 
+	aComponent parentComponent: self.
+	self components at: aComponent componentName put: aComponent.
+	aComponent assignId
 ]
 
 { #category : 'components' }
@@ -84,7 +124,7 @@ LuiComponent >> beVisible [
 
 { #category : 'components' }
 LuiComponent >> componentAtIndex: anInteger [
-	^ self components values at: anInteger
+	^ self orderedComponents at: anInteger
 ]
 
 { #category : 'accessing' }
@@ -95,6 +135,16 @@ LuiComponent >> componentId [
 { #category : 'accessing' }
 LuiComponent >> componentId: anObject [
 	componentId := anObject
+]
+
+{ #category : 'accessing' }
+LuiComponent >> componentKeys [
+	^ componentKeys
+]
+
+{ #category : 'accessing' }
+LuiComponent >> componentKeys: anObject [
+	componentKeys := anObject
 ]
 
 { #category : 'accessing' }
@@ -127,6 +177,11 @@ LuiComponent >> components [
 { #category : 'accessing' }
 LuiComponent >> components: anObject [
 	components := anObject
+]
+
+{ #category : 'initialize' }
+LuiComponent >> cssClass: aClassName [ 
+	self properties addCssClass: aClassName
 ]
 
 { #category : 'properties' }
@@ -202,9 +257,9 @@ LuiComponent >> gtCompoentsFor: aView [
 		priority: 10;
 		expandUpTo: 4;
 		items: [ { self } ];
-		children: #components;
+		children: #orderedComponents;
 		column: 'Component Class' text: [ :aComponent | aComponent class name ];
-		column: 'Name' text: [ :aComponent | aComponent componentName displayString ];
+		column: 'Component Name' text: [ :aComponent | aComponent componentName displayString ];
 		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
 ]
 
@@ -227,6 +282,11 @@ LuiComponent >> gtParentCompoentsFor: aView [
 LuiComponent >> gtViewPropertiesOn: aView [
 	<gtView>
 	^ self properties gtViewPropertiesOn: aView
+]
+
+{ #category : 'testing' }
+LuiComponent >> hasComponents [
+	^ self components notEmpty
 ]
 
 { #category : 'properties' }
@@ -252,7 +312,8 @@ LuiComponent >> hasProperties [
 { #category : 'initialize' }
 LuiComponent >> initialize [
 	super initialize.
-	self components: OrderedDictionary new.
+	self components: Dictionary new.
+	self componentKeys: OrderedCollection new.
 	self properties: (LuiComponentProperties on: self).
 	self initializeCssClasses.
 ]
@@ -260,7 +321,7 @@ LuiComponent >> initialize [
 { #category : 'initialize' }
 LuiComponent >> initializeCssClasses [
 	self defaultCssClasses ifEmpty: [ ^self ].
-	self properties cssClassesProperty addCssClasses: self defaultCssClasses
+	self addCssClasses: self defaultCssClasses.
 ]
 
 { #category : 'initialize' }
@@ -333,6 +394,11 @@ LuiComponent >> logRenderingTrace [
 ]
 
 { #category : 'accessing' }
+LuiComponent >> orderedComponents [
+	^ self componentKeys collect: [ :eachKey | self components at: eachKey ]
+]
+
+{ #category : 'accessing' }
 LuiComponent >> parentComponent [
 	^ parentComponent
 ]
@@ -368,6 +434,7 @@ LuiComponent >> properties: anObject [
 
 { #category : 'components' }
 LuiComponent >> removeComponent: aComponent [
+	self componentKeys remove: aComponent componentName ifAbsent: [].
 	^ self components removeKey: aComponent componentName ifAbsent: []
 ]
 
@@ -406,7 +473,7 @@ LuiComponent >> renderDetailsOn: html [
 
 { #category : 'rendering' }
 LuiComponent >> renderSubcomponentsOn: html [
-	self components do: [ :each | html render: each ]
+	self orderedComponents do: [ :eachComponent | html render: eachComponent ]
 ]
 
 { #category : 'properties - delegated' }

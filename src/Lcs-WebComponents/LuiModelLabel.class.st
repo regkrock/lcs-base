@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiModelLabel',
-	#superclass : 'LuiBaseLabel',
+	#superclass : 'LuiInputComponent',
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
@@ -25,4 +25,11 @@ LuiModelLabel >> initializeOnSlot: aSlotDefinition on: aComponent [
 { #category : 'label' }
 LuiModelLabel >> labelString [
 	^ self valueAccessor label
+]
+
+{ #category : 'rendering' }
+LuiModelLabel >> renderComponentOn: html [
+	html label
+		addCommonProperties: self;
+		with: self labelString
 ]

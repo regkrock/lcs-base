@@ -23,3 +23,9 @@ LuiForNameProperty class >> propertyName [
 LuiForNameProperty >> for: aString [
 	self valueBlock: [ aString ]
 ]
+
+{ #category : 'initialize' }
+LuiForNameProperty >> initialize [
+	super initialize.
+	self tagAttributeSetSelector: #'for:'
+]

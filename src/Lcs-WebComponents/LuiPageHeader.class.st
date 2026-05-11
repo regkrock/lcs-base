@@ -23,7 +23,8 @@ LuiPageHeader >> defaultCssClasses [
 
 { #category : 'inititalize' }
 LuiPageHeader >> initialize [
-	super initialize
+	super initialize.
+	self componentName: 'header'
 ]
 
 { #category : 'defaults' }
@@ -42,7 +43,7 @@ LuiPageHeader >> loginButtonBarComponentName [
 LuiPageHeader >> organizationLogoComponent [
 	^ self
 		componentNamed: self organizationLogoComponentName
-		ifNil: [ self addComponent: (LuiAnchor named: self organizationLogoComponentName) ]
+		ifNil: [ self addComponent: (LuiButton named: self organizationLogoComponentName) ]
 ]
 
 { #category : 'defaults' }
@@ -65,4 +66,11 @@ LuiPageHeader >> pageTitleComponent [
 { #category : 'defaults' }
 LuiPageHeader >> pageTitleComponentName [
 	^ 'pageTitle'
+]
+
+{ #category : 'rendering' }
+LuiPageHeader >> renderComponentOn: html [
+	html header
+		addCommonProperties: self;
+		with: [ self renderDetailsOn: html ]
 ]

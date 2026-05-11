@@ -35,10 +35,3 @@ Urna arcu adipiscing feugiat faucibus nisi mauris. Augue mus suscipit risus inte
 LuiNavBarWithSubSubMenusFunctionalTest >> menuDefinition [
 	^ LuiNavigationMenuDefinitionExamples new navigationMenuWith3Submenus
 ]
-
-{ #category : 'updating' }
-LuiNavBarWithSubSubMenusFunctionalTest >> updateRoot: aRoot [
-
-	super updateRoot: aRoot.
-	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
-]

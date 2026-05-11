@@ -15,7 +15,7 @@ Class {
 { #category : 'initialize' }
 LuiTextInput >> initializeOnSlot: aSlotDefinition on: aComponent [ 
 	super initializeOnSlot: aSlotDefinition on: aComponent .
-	self properties name: aSlotDefinition slotName
+	"self properties name: aSlotDefinition slotName"
 ]
 
 { #category : 'as yet unclassified' }

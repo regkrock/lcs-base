@@ -29,10 +29,3 @@ LuiPushButtonFunctionalTest >> initialize [
 		beSubmitType.
 	^ self
 ]
-
-{ #category : 'updating' }
-LuiPushButtonFunctionalTest >> updateRoot: aRoot [
-
-	super updateRoot: aRoot.
-	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
-]

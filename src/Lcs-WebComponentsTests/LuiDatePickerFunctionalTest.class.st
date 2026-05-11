@@ -52,10 +52,3 @@ LuiDatePickerFunctionalTest >> switchToPrototypeSystem [
 		LxxPrototypeSystem new].
 	System commitTransaction
 ]
-
-{ #category : 'updating' }
-LuiDatePickerFunctionalTest >> updateRoot: aRoot [
-
-	super updateRoot: aRoot.
-	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
-]

@@ -6,6 +6,16 @@ Class {
 	#tag : 'Buttons'
 }
 
+{ #category : 'components - adding' }
+LuiPushButton >> addLeadingImageComponent [
+	self addFirstComponent: (LuiImage named: 'leadingImage' on: self)
+]
+
+{ #category : 'components - adding' }
+LuiPushButton >> addTrailingImageComponent [
+	self addComponent: (LuiImage named: 'trailingImage' on: self)
+]
+
 { #category : 'initialize' }
 LuiPushButton >> beButtonType [
 	self buttonTypeProperty beButtonType
@@ -21,16 +31,52 @@ LuiPushButton >> buttonTypeProperty [
 	^ self properties buttonTypeProperty
 ]
 
+{ #category : 'testing' }
+LuiPushButton >> hasLeadingImageComponent [
+	^ (self componentNamed: 'leadingImage') notNil
+]
+
+{ #category : 'testing' }
+LuiPushButton >> hasTrailingImageComponent [
+	^ (self componentNamed: 'trailingImage') notNil
+]
+
 { #category : 'initialize' }
 LuiPushButton >> initialize [
 	super initialize.
 	self beButtonType
 ]
 
+{ #category : 'components' }
+LuiPushButton >> leadingImageComponent [
+	self hasLeadingImageComponent ifFalse: [ self addLeadingImageComponent ].
+	^ self componentNamed: 'leadingImage'
+]
+
+{ #category : 'components' }
+LuiPushButton >> leadingImageUrl: aPath altText: aString [
+	self leadingImageComponent
+		url: aPath;
+		altText: aString
+]
+
 { #category : 'rendering' }
 LuiPushButton >> renderComponentOn: html [
 	html button
 		addCommonProperties: self;
-		onClick: (html jQuery ajax callback: [:v | self halt]);
-		with: [ self components do: [ :eachComponent | html render: eachComponent ] ]
+		"onClick: (html jQuery ajax callback: [:v | self halt]);"
+		with: [ self renderDetailsOn: html ]
+]
+
+{ #category : 'components' }
+LuiPushButton >> trailingImageComponent [
+	self hasTrailingImageComponent ifFalse: [ self addTrailingImageComponent ].
+	^ self componentNamed: 'trailingImage'
+]
+
+{ #category : 'components' }
+LuiPushButton >> trailingImageUrl: aPath altText: aString [
+	self trailingImageComponent
+		url: aPath;
+		altText: aString
 ]
