@@ -26,7 +26,7 @@ LcsMenuDefinition >> cssClasses: aString [
 ]
 
 { #category : 'gt views' }
-LcsMenuDefinition >> gtCompoentsFor: aView [
+LcsMenuDefinition >> gtComponentsFor: aView [
 	<gtView>
 	
 	^ aView columnedTree

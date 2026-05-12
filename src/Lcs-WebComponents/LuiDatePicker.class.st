@@ -46,13 +46,13 @@ LuiDatePicker >> initialize [
 { #category : 'initialize' }
 LuiDatePicker >> initializeOnSlot: aSlotDefinition on: aComponent [ 
 	super initializeOnSlot: aSlotDefinition on: aComponent .
-	self properties name: aSlotDefinition slotName
+	self attributes name: aSlotDefinition slotName
 ]
 
 { #category : 'rendering' }
 LuiDatePicker >> renderComponentOn: html [
 	html dateInput5
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		onChange: (JSStream on: 'this.form.requestSubmit()');
 		"onChange: 'submit()';"
 		"callback: [ :value | self updateContentsFrom: value ];"

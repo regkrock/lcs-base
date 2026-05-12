@@ -7,7 +7,22 @@ Class {
 }
 
 { #category : 'examples' }
-LuiMenuItemDefinitionExamples >> homeDefinition [
+LuiMenuItemDefinitionExamples >> homeMenuItemDefinitionWithButton [
+	<gtExample>
+	| item |
+	item := self newDefinition.
+	item
+		label: 'Home';
+		bePushButton;
+		title: 'abc'.
+	self assert: item title equals: 'abc'.
+	self assert: item label equals: 'Home'.
+	self deny: item isAnchor.
+	^ item
+]
+
+{ #category : 'examples' }
+LuiMenuItemDefinitionExamples >> homeMenuItemDefinitionWithHref [
 	<gtExample>
 	| item |
 	item := self newDefinition.

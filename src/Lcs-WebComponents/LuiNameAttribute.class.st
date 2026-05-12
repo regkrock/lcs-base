@@ -1,17 +1,17 @@
 Class {
-	#name : 'LuiNameProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiNameAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constants' }
-LuiNameProperty class >> propertyName [
+LuiNameAttribute class >> attributeName [
 	^ 'name'
 ]
 
 { #category : 'accessing' }
-LuiNameProperty >> name: aString [
+LuiNameAttribute >> name: aString [
 	self valueBlock: [ aString ]
 ]

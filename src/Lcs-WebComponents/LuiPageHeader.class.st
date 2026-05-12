@@ -71,6 +71,6 @@ LuiPageHeader >> pageTitleComponentName [
 { #category : 'rendering' }
 LuiPageHeader >> renderComponentOn: html [
 	html header
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: [ self renderDetailsOn: html ]
 ]

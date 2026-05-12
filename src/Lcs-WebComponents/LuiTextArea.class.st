@@ -26,7 +26,7 @@ Class {
 { #category : 'rendering' }
 LuiTextArea >> renderComponentOn: html [
 	html textArea
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		callback: [ :value | Transcript cr; nextPutAll: ('entered: ' , value greaseString) ];
 		value: self displayValue
 ]

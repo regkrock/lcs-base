@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiApplicationRoot',
+	#name : 'LuiSEASRoot',
 	#superclass : 'LuiRoot',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
@@ -7,36 +7,29 @@ Class {
 }
 
 { #category : 'constant' }
-LuiApplicationRoot class >> browserTabName [
-	^ 'LCS Application'
+LuiSEASRoot class >> browserTabName [
+	^ 'SEAS'
 ]
 
 { #category : 'initialize' }
-LuiApplicationRoot class >> initialize [
-	(WAAdmin register: self asApplicationAt: 'lcsApplication')
+LuiSEASRoot class >> initialize [
+	(WAAdmin register: self asApplicationAt: 'seas')
 		sessionClass: WAExpirySession
 ]
 
-{ #category : 'instance creation' }
-LuiApplicationRoot class >> newStandardLayout [
-	^ self new
-		initializeStandardLayout;
-		yourself
-]
-
 { #category : 'constants' }
-LuiApplicationRoot >> applicationTitle [
+LuiSEASRoot >> applicationTitle [
 	^ 'SEAS Monmouth'
 ]
 
 { #category : 'initialize' }
-LuiApplicationRoot >> initialize [
+LuiSEASRoot >> initialize [
 	super initialize.
-	"self initializeStandardLayout"
+	self initializeStandardLayout
 ]
 
 { #category : 'instance creation' }
-LuiApplicationRoot >> initializeStandardLayout [
+LuiSEASRoot >> initializeStandardLayout [
 	self addComponent: LuiPageHeader new.
 	(self componentNamed: 'header')
 		addComponent: LuiImage newFavicon.
@@ -47,7 +40,7 @@ LuiApplicationRoot >> initializeStandardLayout [
 ]
 
 { #category : 'updating' }
-LuiApplicationRoot >> updateRoot: aRoot [
+LuiSEASRoot >> updateRoot: aRoot [
 	super updateRoot: aRoot.
 	aRoot beHtml5.
 	aRoot meta

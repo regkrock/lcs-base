@@ -2,7 +2,6 @@ Class {
 	#name : 'LuiButtonLabel',
 	#superclass : 'LuiInputComponent',
 	#instVars : [
-		'text',
 		'valueBlock',
 		'cachedValue'
 	],
@@ -44,8 +43,8 @@ LuiButtonLabel >> labelString: aString [
 
 { #category : 'rendering' }
 LuiButtonLabel >> renderComponentOn: html [
-	html div
-		addCommonProperties: self;
+	html span
+		addCommonAttributes: self;
 		with: [ self renderDetailsOn: html ]
 ]
 
@@ -61,7 +60,7 @@ LuiButtonLabel >> text [
 
 { #category : 'accessing' }
 LuiButtonLabel >> text: aString [
-	valueBlock := [ aString ].
+	self valueBlock: [ aString ].
 	self clearCachedValue
 ]
 

@@ -244,7 +244,7 @@ LcsDomainSlot >> domainClassName [
 ]
 
 { #category : 'properties' }
-LcsDomainSlot >> errorPropertyNotFound: aSelector [ 
+LcsDomainSlot >> errorAttributeNotFound: aSelector [ 
 	LcsSlotPropertyError new
 		slotDefinition: self;
 		signal: 'Property ' , aSelector , ' not found.'
@@ -509,7 +509,7 @@ LcsDomainSlot >> properties: anObject [
 LcsDomainSlot >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
 
-	^ self propertyAt: aKey ifAbsent: [ self errorPropertyNotFound: aKey ]
+	^ self propertyAt: aKey ifAbsent: [ self errorAttributeNotFound: aKey ]
 ]
 
 { #category : 'properties' }

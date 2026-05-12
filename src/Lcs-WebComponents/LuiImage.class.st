@@ -19,27 +19,27 @@ LuiImage class >> newFavicon [
 
 { #category : 'properties' }
 LuiImage >> altText [
-	^ self properties altText
+	^ self attributes altText
 ]
 
 { #category : 'properties' }
 LuiImage >> altText: aString [
-	self properties altText: aString
+	self attributes altText: aString
 ]
 
 { #category : 'rendering' }
 LuiImage >> renderComponentOn: html [
 	html image
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: [ self renderDetailsOn: html ]
 ]
 
 { #category : 'properties' }
 LuiImage >> url [
-	^ self properties url
+	^ self attributes url
 ]
 
 { #category : 'properties' }
 LuiImage >> url: aString [
-	self properties url: aString
+	self attributes url: aString
 ]

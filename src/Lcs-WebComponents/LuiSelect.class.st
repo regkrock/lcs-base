@@ -24,6 +24,6 @@ Class {
 { #category : 'rendering' }
 LuiSelect >> renderComponentOn: html [
 	html select
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: [self renderDetailsOn: html]
 ]

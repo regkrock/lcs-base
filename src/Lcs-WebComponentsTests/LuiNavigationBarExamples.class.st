@@ -72,6 +72,6 @@ LuiNavigationBarExamples >> newNavBar [
 	self assert: component componentName equals: 'navBar'.
 	self assert: component parentComponent isNil.
 	self assert: component domainObject isNil.
-	self assert: component hasNoProperties.
+	self assert: component hasNoAttributes.
 	^ component
 ]

@@ -7,17 +7,18 @@ Class {
 }
 
 { #category : 'examples' }
-LuiMenuItemExamples >> homeMenuItem [
+LuiMenuItemExamples >> homeMenuButtonItem [
 	<gtExample>
 	| item anchor |
 	item := self newMenuItem.
-	item buildFrom: LuiMenuItemDefinitionExamples new homeDefinition.
-	self assert: item properties hasTitleProperty.
+	item buildFrom: LuiMenuItemDefinitionExamples new homeMenuItemDefinitionWithButton.
+	self assert: item attributes hasTitleAttribute.
 	self assert: item title equals: 'abc'.
-	self assert: item isAnchor.
+	self assert: item isPushButton.
 	anchor := item componentNamed: 'button'.
-	self assert: (anchor isKindOf: LuiAnchor).
+	self assert: (anchor isKindOf: LuiPushButton).
 	self assert: anchor label equals: 'Home'.
+	self assertRendered: item equals: '_'.
 	^ item
 ]
 

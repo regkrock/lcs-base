@@ -8,12 +8,12 @@ Class {
 
 { #category : 'initialize' }
 LuiModelLabel >> forName [
-	^ self properties forName
+	^ self attributes forName
 ]
 
 { #category : 'initialize' }
 LuiModelLabel >> forName: aString [
-	self properties forName: aString
+	self attributes forName: aString
 ]
 
 { #category : 'initialize' }
@@ -30,6 +30,6 @@ LuiModelLabel >> labelString [
 { #category : 'rendering' }
 LuiModelLabel >> renderComponentOn: html [
 	html label
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: self labelString
 ]

@@ -36,7 +36,6 @@ LuiNavigationMenuDefinitionExamples >> navigationMenuWithThreeMenuItemDefinition
 		addDefinition: (
 			LuiMenuItemDefinition new 
 				label: 'Home';
-				beAnchor;
 				title: 'Go to Home';
 				yourself);
 		addDefinition: (LuiMenuItemDefinition new label: 'Contact');

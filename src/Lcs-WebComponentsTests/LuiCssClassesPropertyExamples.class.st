@@ -9,7 +9,7 @@ Class {
 { #category : 'tests' }
 LuiCssClassesPropertyExamples >> testAddingCssClass [
 	| cssClassesProperty |
-	cssClassesProperty := LuiCssClassesProperty new.
+	cssClassesProperty := LuiCssClassesAttribute new.
 	cssClassesProperty addCssClass: 'testClass'.
 	self assert: cssClassesProperty cssClasses size = 1.
 	self assert: cssClassesProperty cssClasses first equals: 'testClass'.
@@ -21,7 +21,7 @@ LuiCssClassesPropertyExamples >> testAddingCssClass [
 { #category : 'tests' }
 LuiCssClassesPropertyExamples >> testAddingDuplicateCssClass [
 	| cssClassesProperty |
-	cssClassesProperty := LuiCssClassesProperty new.
+	cssClassesProperty := LuiCssClassesAttribute new.
 	cssClassesProperty addCssClass: 'testClass'.
 	self assert: cssClassesProperty cssClasses size = 1.
 	cssClassesProperty addCssClass: 'testClass'.
@@ -32,7 +32,7 @@ LuiCssClassesPropertyExamples >> testAddingDuplicateCssClass [
 { #category : 'tests' }
 LuiCssClassesPropertyExamples >> testCreation [
 	| cssClassesProperty |
-	cssClassesProperty := LuiCssClassesProperty new.
+	cssClassesProperty := LuiCssClassesAttribute new.
 	self assert: cssClassesProperty cssClasses isEmpty.
 	self assert: cssClassesProperty cssClassesString isEmpty
 ]
@@ -40,29 +40,29 @@ LuiCssClassesPropertyExamples >> testCreation [
 { #category : 'tests' }
 LuiCssClassesPropertyExamples >> testCssClassString [
 	| cssClassesProperty |
-	cssClassesProperty := LuiCssClassesProperty new.
+	cssClassesProperty := LuiCssClassesAttribute new.
 	self assert: cssClassesProperty cachedValue isNil.
 	self assert: cssClassesProperty cssClassesString isEmpty.
-	self assert: cssClassesProperty propertyValue isEmpty.
+	self assert: cssClassesProperty attributeValue isEmpty.
 	
 	cssClassesProperty addCssClass: 'testClass'.
 	self assert: cssClassesProperty cachedValue isNil.
 	self assert: cssClassesProperty cssClassesString equals: 'testClass'.
 	self assert: cssClassesProperty cachedValue isNil.
-	self assert: cssClassesProperty propertyValue equals: 'testClass'.
-	self assert: cssClassesProperty propertyValue equals: cssClassesProperty cachedValue.
+	self assert: cssClassesProperty attributeValue equals: 'testClass'.
+	self assert: cssClassesProperty attributeValue equals: cssClassesProperty cachedValue.
 
 	cssClassesProperty removeCssClass: 'testClass'.
 	self assert: cssClassesProperty cachedValue isNil.
 	self assert: cssClassesProperty cssClassesString isEmpty.
-	self assert: cssClassesProperty propertyValue isEmpty.
+	self assert: cssClassesProperty attributeValue isEmpty.
 
 ]
 
 { #category : 'tests' }
 LuiCssClassesPropertyExamples >> testRemovingCssClass [
 	| cssClassesProperty |
-	cssClassesProperty := LuiCssClassesProperty new.
+	cssClassesProperty := LuiCssClassesAttribute new.
 	cssClassesProperty addCssClass: 'testClass'.
 	self assert: cssClassesProperty cssClasses size = 1.
 	cssClassesProperty removeCssClass: 'testClass'.

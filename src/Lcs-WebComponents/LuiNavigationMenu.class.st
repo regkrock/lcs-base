@@ -9,11 +9,6 @@ Class {
 	#tag : 'Menus'
 }
 
-{ #category : 'configuration' }
-LuiNavigationMenu >> beAnchor [
-	self addComponent: (LuiAnchor named: 'button' on: self)
-]
-
 { #category : 'building' }
 LuiNavigationMenu >> buildFrom: aNavigationMenuDefinition [
 	aNavigationMenuDefinition menuComponentDefintions do: [ :eachComponent | 

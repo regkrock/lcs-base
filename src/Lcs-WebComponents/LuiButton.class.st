@@ -18,12 +18,12 @@ LuiButton >> hasLabelComponent [
 
 { #category : 'properties' }
 LuiButton >> label [
-	^ self properties label
+	^ self attributes label
 ]
 
 { #category : 'properties' }
 LuiButton >> label: aString [
-	self properties labelBlock: [ aString ]
+	self attributes labelBlock: [ aString ]
 ]
 
 { #category : 'components' }
@@ -45,5 +45,5 @@ LuiButton >> labelString: aString [
 
 { #category : 'as yet unclassified' }
 LuiButton >> showLabelOnTranscript [
-	Transcript show: self class name , ':clicked ' , self label; cr
+	Transcript show: self class name , ':clicked ' , self text; cr
 ]

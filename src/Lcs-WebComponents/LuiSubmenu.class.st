@@ -38,7 +38,7 @@ LuiSubmenu >> defaultCssClasses [
 { #category : 'initialize' }
 LuiSubmenu >> initializeNamed: aName on: aWebComponent [
 	super initializeNamed: aName on: aWebComponent.
-	self cssClassesProperty
+	self cssClassesAttribute
 		replaceExistingCssClassesWithCssClass: self cssMenuClassName
 ]
 
@@ -55,7 +55,7 @@ LuiSubmenu >> label: anObject [
 { #category : 'rendering' }
 LuiSubmenu >> renderComponentOn: html [
 	html listItem
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: [ html text: self label.
 			html unorderedList
 				class: self submenuCssClass;

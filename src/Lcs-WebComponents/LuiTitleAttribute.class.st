@@ -1,38 +1,38 @@
 Class {
-	#name : 'LuiUrlProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiTitleAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constant' }
-LuiUrlProperty class >> propertyName [
-	^ 'url'
+LuiTitleAttribute class >> attributeName [
+	^ 'title'
 ]
 
 { #category : 'initialize' }
-LuiUrlProperty >> initialize [
+LuiTitleAttribute >> initialize [
 	super initialize.
 	self valueBlock: [ nil ]
 ]
 
 { #category : 'property' }
-LuiUrlProperty >> url [
+LuiTitleAttribute >> title [
 	^ self cachedValue
 ]
 
 { #category : 'property' }
-LuiUrlProperty >> url: aString [
+LuiTitleAttribute >> title: aString [
 	self valueBlock: [ aString ]
 ]
 
 { #category : 'property' }
-LuiUrlProperty >> urlBlock: aBlock [
+LuiTitleAttribute >> titleBlock: aBlock [
 	self valueBlock: aBlock
 ]
 
 { #category : 'property' }
-LuiUrlProperty >> value: aString [
+LuiTitleAttribute >> value: aString [
 	self valueBlock: [ aString ]
 ]

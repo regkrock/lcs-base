@@ -18,17 +18,17 @@ LuiPushButton >> addTrailingImageComponent [
 
 { #category : 'initialize' }
 LuiPushButton >> beButtonType [
-	self buttonTypeProperty beButtonType
+	self buttonTypeAttribute beButtonType
 ]
 
 { #category : 'initialize' }
 LuiPushButton >> beSubmitType [
-	self buttonTypeProperty beSubmitType
+	self buttonTypeAttribute beSubmitType
 ]
 
 { #category : 'initialize' }
-LuiPushButton >> buttonTypeProperty [
-	^ self properties buttonTypeProperty
+LuiPushButton >> buttonTypeAttribute [
+	^ self attributes buttonTypeAttribute
 ]
 
 { #category : 'testing' }
@@ -63,7 +63,7 @@ LuiPushButton >> leadingImageUrl: aPath altText: aString [
 { #category : 'rendering' }
 LuiPushButton >> renderComponentOn: html [
 	html button
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		"onClick: (html jQuery ajax callback: [:v | self halt]);"
 		with: [ self renderDetailsOn: html ]
 ]

@@ -7,8 +7,8 @@ Class {
 		'parentComponent',
 		'componentId',
 		'componentName',
-		'properties',
-		'componentKeys'
+		'componentKeys',
+		'attributes'
 	],
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
@@ -77,12 +77,12 @@ LuiComponent >> addComponentNameTo: namePath [
 
 { #category : 'initialize' }
 LuiComponent >> addCssClass: aClassName [ 
-	self properties addCssClass: aClassName
+	self attributes addCssClass: aClassName
 ]
 
 { #category : 'initialize' }
 LuiComponent >> addCssClasses: aCollection [ 
-	self properties addCssClasses: aCollection
+	self attributes addCssClasses: aCollection
 ]
 
 { #category : 'components' }
@@ -112,14 +112,24 @@ LuiComponent >> assignId [
 	self componentId: self fullComponentName hash asString
 ]
 
+{ #category : 'accessing' }
+LuiComponent >> attributes [
+	^ attributes
+]
+
+{ #category : 'accessing' }
+LuiComponent >> attributes: anObject [ 
+	attributes := anObject
+]
+
 { #category : 'properties - delegated' }
 LuiComponent >> beHidden [
-	^ self properties beHidden
+	^ self attributes beHidden
 ]
 
 { #category : 'properties - delegated' }
 LuiComponent >> beVisible [
-	^ self properties beVisible
+	^ self attributes beVisible
 ]
 
 { #category : 'components' }
@@ -181,17 +191,17 @@ LuiComponent >> components: anObject [
 
 { #category : 'initialize' }
 LuiComponent >> cssClass: aClassName [ 
-	self properties addCssClass: aClassName
+	self attributes addCssClass: aClassName
 ]
 
 { #category : 'properties' }
-LuiComponent >> cssClassesProperty [
-	^ self properties cssClassesProperty
+LuiComponent >> cssClassesAttribute [
+	^ self attributes cssClassesAttribute
 ]
 
 { #category : 'properties' }
 LuiComponent >> cssClassesString [
-	^ self cssClassesProperty cssClassesString
+	^ self cssClassesAttribute cssClassesString
 ]
 
 { #category : 'defaults' }
@@ -249,7 +259,7 @@ LuiComponent >> fullComponentNameWithId [
 ]
 
 { #category : 'gt - views' }
-LuiComponent >> gtCompoentsFor: aView [
+LuiComponent >> gtComponentsFor: aView [
 	<gtView>
 	
 	^ aView columnedTree
@@ -279,9 +289,9 @@ LuiComponent >> gtParentCompoentsFor: aView [
 ]
 
 { #category : 'gt - views' }
-LuiComponent >> gtViewPropertiesOn: aView [
+LuiComponent >> gtViewAttributesOn: aView [
 	<gtView>
-	^ self properties gtViewPropertiesOn: aView
+	^ self attributes gtViewAttributesOn: aView
 ]
 
 { #category : 'testing' }
@@ -295,18 +305,18 @@ LuiComponent >> hasLabelComponent [
 ]
 
 { #category : 'testing' }
+LuiComponent >> hasNoAttribute [
+	^ self attributes hasNoAttribute
+]
+
+{ #category : 'testing' }
+LuiComponent >> hasNoAttributes [
+	^ self attributes hasNoAttributes
+]
+
+{ #category : 'testing' }
 LuiComponent >> hasNoComponents [
 	^ self components isEmpty
-]
-
-{ #category : 'testing' }
-LuiComponent >> hasNoProperties [
-	^ self properties hasNoProperties
-]
-
-{ #category : 'testing' }
-LuiComponent >> hasProperties [
-	^ self properties hasProperties
 ]
 
 { #category : 'initialize' }
@@ -314,7 +324,7 @@ LuiComponent >> initialize [
 	super initialize.
 	self components: Dictionary new.
 	self componentKeys: OrderedCollection new.
-	self properties: (LuiComponentProperties on: self).
+	self attributes: (LuiComponentAttributes on: self).
 	self initializeCssClasses.
 ]
 
@@ -338,17 +348,17 @@ LuiComponent >> initializeNamed: aName on: aWebComponent [
 
 { #category : 'testing' }
 LuiComponent >> isHidden [
-	^ self properties isHidden
+	^ self attributes isHidden
 ]
 
 { #category : 'testing' }
 LuiComponent >> isNotRenderable [
-	^ self properties isNotRenderable
+	^ self attributes isNotRenderable
 ]
 
 { #category : 'testing' }
 LuiComponent >> isRenderable [
-	^ self properties isRenderable
+	^ self attributes isRenderable
 ]
 
 { #category : 'testing' }
@@ -358,7 +368,7 @@ LuiComponent >> isTraceOn [
 
 { #category : 'testing' }
 LuiComponent >> isVisible [
-	^ self properties isVisible
+	^ self attributes isVisible
 ]
 
 { #category : 'properties' }
@@ -422,16 +432,6 @@ LuiComponent >> parentViewComponents [
 	^Array with: self parentComponent
 ]
 
-{ #category : 'accessing' }
-LuiComponent >> properties [
-	^ properties
-]
-
-{ #category : 'accessing' }
-LuiComponent >> properties: anObject [ 
-	properties := anObject
-]
-
 { #category : 'components' }
 LuiComponent >> removeComponent: aComponent [
 	self componentKeys remove: aComponent componentName ifAbsent: [].
@@ -454,7 +454,7 @@ LuiComponent >> renderBeforeSubcomponentsOn: html [
 { #category : 'rendering' }
 LuiComponent >> renderComponentOn: html [
 	html div
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: [ self renderDetailsOn: html ]
 ]
 
@@ -478,22 +478,22 @@ LuiComponent >> renderSubcomponentsOn: html [
 
 { #category : 'properties - delegated' }
 LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
-	self cssClassesProperty replaceExistingCssClassesWithCssClass: aString
+	self cssClassesAttribute replaceExistingCssClassesWithCssClass: aString
 ]
 
 { #category : 'properties' }
 LuiComponent >> title [
-	^ self properties title
+	^ self attributes title
 ]
 
 { #category : 'properties' }
 LuiComponent >> title: aString [
-	self properties title: aString
+	self attributes title: aString
 ]
 
 { #category : 'properties' }
 LuiComponent >> titleBlock: aBlock [
-	self properties titleBlock: aBlock
+	self attributes titleBlock: aBlock
 ]
 
 { #category : 'logging' }

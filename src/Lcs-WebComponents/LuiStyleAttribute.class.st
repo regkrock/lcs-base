@@ -1,40 +1,40 @@
 Class {
-	#name : 'LuiStyleProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiStyleAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constant' }
-LuiStyleProperty class >> propertyName [
+LuiStyleAttribute class >> attributeName [
 	^ 'style'
 ]
 
 { #category : 'as yet unclassified' }
-LuiStyleProperty >> appendToStyle: aString [
+LuiStyleAttribute >> appendToStyle: aString [
 	| newString |
-	newString := self propertyValue , aString.
+	newString := self attributeValue , aString.
 	self valueBlock: [ newString  ]
 ]
 
 { #category : 'initialize' }
-LuiStyleProperty >> initialize [
+LuiStyleAttribute >> initialize [
 	super initialize.
 	self valueBlock: [ nil ]
 ]
 
 { #category : 'as yet unclassified' }
-LuiStyleProperty >> style: aString [
+LuiStyleAttribute >> style: aString [
 	self valueBlock: [ aString ]
 ]
 
 { #category : 'as yet unclassified' }
-LuiStyleProperty >> styleBlock: aBlock [
+LuiStyleAttribute >> styleBlock: aBlock [
 	self valueBlock: aBlock
 ]
 
 { #category : 'as yet unclassified' }
-LuiStyleProperty >> value: aString [
+LuiStyleAttribute >> value: aString [
 	self valueBlock: [ aString ]
 ]

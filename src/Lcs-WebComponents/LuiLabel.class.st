@@ -8,17 +8,17 @@ Class {
 
 { #category : 'label' }
 LuiLabel >> labelString [
-	^ self properties labelPropertyValue
+	^ self attributes labelAttributeValue
 ]
 
 { #category : 'configuration' }
 LuiLabel >> labelString: aString [
-	self properties labelProperty value: aString
+	self attributes labelAttribute value: aString
 ]
 
 { #category : 'rendering' }
 LuiLabel >> renderComponentOn: html [
 	html div
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: self labelString
 ]

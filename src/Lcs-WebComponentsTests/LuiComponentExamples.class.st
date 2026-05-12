@@ -80,21 +80,20 @@ LuiComponentExamples >> newComponent [
 	self assert: (component class == LuiComponent).
 	self assert: component components isEmpty.
 	self assert: component componentKeys isEmpty.
-	self assert: component properties hasNoProperties.
+	self assert: component hasNoAttributes.
 	self assert: component cssClassesString isEmpty.
-	self assert: component properties hasProperties.
-	self assert: (component properties isKindOf: LuiComponentProperties).
+	self assert: component hasAttributes.
+	self assert: (component attributes isKindOf: LuiComponentAttributes).
 	self assert: component isVisible.
 	self deny: component isHidden.
 	self assert: component componentId isNil.
 	self assert: component parentComponent isNil.
 	self assert: component domainObject isNil.
 	^ component
-	
 ]
 
 { #category : 'examples' }
-LuiComponentExamples >> visibilityPolicy [
+LuiComponentExamples >> visibilityAttribute [
 	<gtExample>
 	| component |
 	component := self newComponent.
@@ -104,26 +103,26 @@ LuiComponentExamples >> visibilityPolicy [
 	component beVisible.
 	self deny: component isHidden.
 	self assert: component isVisible.
-	^ component properties visibilityProperty
+	^ component attributes visibilityAttribute
 ]
 
 { #category : 'examples' }
-LuiComponentExamples >> visibilityPolicyInHiddenState [
+LuiComponentExamples >> visibilityAttributesInHiddenState [
 	<gtExample>
 	| component |
 	component := self newComponent.
 	component beHidden.
 	self assert: component isHidden.
 	self deny: component isVisible.
-	^ component properties visibilityProperty
+	^ component attributes visibilityAttribute
 ]
 
 { #category : 'examples' }
-LuiComponentExamples >> visibilityPolicyInVisibleState [
+LuiComponentExamples >> visibilityAttributesInVisibleState [
 	<gtExample>
 	| component |
 	component := self newComponent.
 	self deny: component isHidden.
 	self assert: component isVisible.
-	^ component properties visibilityProperty
+	^ component attributes visibilityAttribute
 ]

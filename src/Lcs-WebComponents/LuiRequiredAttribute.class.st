@@ -1,38 +1,38 @@
 Class {
-	#name : 'LuiRequiredProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiRequiredAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constant' }
-LuiRequiredProperty class >> propertyName [
+LuiRequiredAttribute class >> attributeName [
 	^ 'required'
 ]
 
 { #category : 'as yet unclassified' }
-LuiRequiredProperty >> beOptional [
+LuiRequiredAttribute >> beOptional [
 	self valueBlock: [ false ]
 ]
 
 { #category : 'api' }
-LuiRequiredProperty >> beRequired [
+LuiRequiredAttribute >> beRequired [
 	self valueBlock: [ true ]
 ]
 
 { #category : 'initialize' }
-LuiRequiredProperty >> initialize [
+LuiRequiredAttribute >> initialize [
 	super initialize.
 	self valueBlock: [ false ]
 ]
 
 { #category : 'testing' }
-LuiRequiredProperty >> isOptional [
+LuiRequiredAttribute >> isOptional [
 	^ self isRequired ~~ true
 ]
 
 { #category : 'testing' }
-LuiRequiredProperty >> isRequired [
-	^ self propertyValue == true
+LuiRequiredAttribute >> isRequired [
+	^ self attributeValue == true
 ]

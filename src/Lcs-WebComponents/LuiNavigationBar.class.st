@@ -11,7 +11,7 @@ LuiNavigationBar >> addNavigationMenuBuiltFrom: aNavigationMenuDefinition [
 	| component |
 	component := LuiNavigationMenu named: 'navigation'.
 	self addComponent: component.
-	self navigationComponent buildFrom: aNavigationMenuDefinition.
+	self navigationComponent buildFrom: (LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions).
 	^ component
 ]
 

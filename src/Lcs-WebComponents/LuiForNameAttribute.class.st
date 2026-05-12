@@ -7,25 +7,25 @@ Ex: The label is identified as being for username
 <label for=""username"">Your name</label> <input type=""text"" id=""username"" />
 "
 Class {
-	#name : 'LuiForNameProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiForNameAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constants' }
-LuiForNameProperty class >> propertyName [
+LuiForNameAttribute class >> attributeName [
 	^ 'forName'
 ]
 
 { #category : 'accessing' }
-LuiForNameProperty >> for: aString [
+LuiForNameAttribute >> for: aString [
 	self valueBlock: [ aString ]
 ]
 
 { #category : 'initialize' }
-LuiForNameProperty >> initialize [
+LuiForNameAttribute >> initialize [
 	super initialize.
 	self tagAttributeSetSelector: #'for:'
 ]

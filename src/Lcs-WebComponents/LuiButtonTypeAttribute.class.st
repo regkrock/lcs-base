@@ -1,28 +1,28 @@
 Class {
-	#name : 'LuiButtonTypeProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiButtonTypeAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constants' }
-LuiButtonTypeProperty class >> propertyName [
+LuiButtonTypeAttribute class >> attributeName [
 	^ 'buttonType'
 ]
 
 { #category : 'configuration' }
-LuiButtonTypeProperty >> beButtonType [
+LuiButtonTypeAttribute >> beButtonType [
 	self valueBlock: [ 'button' ]
 ]
 
 { #category : 'configuration' }
-LuiButtonTypeProperty >> beSubmitType [
+LuiButtonTypeAttribute >> beSubmitType [
 	self valueBlock: [ 'submit' ]
 ]
 
 { #category : 'initialize' }
-LuiButtonTypeProperty >> initialize [
+LuiButtonTypeAttribute >> initialize [
 	super initialize.
 	self beButtonType.
 	self tagAttributeSetSelector: #type:

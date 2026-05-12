@@ -15,8 +15,8 @@ LuiPushButtonExamples >> newButton [
 	self assert: button parentComponent isNil.
 	self deny: button hasLabelComponent.
 	self assert: button labelString isEmpty.
-	self assert: button properties buttonType equals: 'button'.
-	self assert: button buttonTypeProperty propertyValue equals: 'button'.
+	self assert: button attributes buttonType equals: 'button'.
+	self assert: button buttonTypeAttribute attributeValue equals: 'button'.
 	self assertRendered: button equals: '<button name="button" data-StClass="LuiPushButton" type="button"></button>'.
 	^ button
 ]
@@ -55,12 +55,29 @@ LuiPushButtonExamples >> okButtonWithLeadingCheckIcon [
 ]
 
 { #category : 'examples' }
+LuiPushButtonExamples >> okButtonWithTrailingCheckIcon [
+	<gtExample>
+	| button |
+	button := self okButton
+				trailingImageUrl: LcsFileLibrary / #checkSvg altText: 'OK';
+				yourself.
+	self assert: button components size = 2.
+	self assert: button hasLabelComponent.
+	self assert: button labelString equals: 'OK'.
+	self assert: button hasTrailingImageComponent.
+	self assert: button trailingImageComponent url equals: LcsFileLibrary / #checkSvg.
+	self assert: button trailingImageComponent altText equals: 'OK'.
+	self assertRendered: button equals:'<button name="button" data-StClass="LuiPushButton" type="button"><div id="117385855" name="label" data-StClass="LuiButtonLabel">OK</div><img alt="OK" id="41593132" name="trailingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check.svg"/></button>'. 
+	^button
+]
+
+{ #category : 'examples' }
 LuiPushButtonExamples >> okSubmitTypeButton [
 	<gtExample>
 	| button |
 	button := self okButton.
 	button beSubmitType.
-	self assert: button properties buttonType equals: 'submit'.
+	self assert: button attributes buttonType equals: 'submit'.
 	self assertRendered: button equals: '<button name="button" data-StClass="LuiPushButton" type="submit"><div id="117385855" name="label" data-StClass="LuiButtonLabel">OK</div></button>'. 
 	^button
 ]

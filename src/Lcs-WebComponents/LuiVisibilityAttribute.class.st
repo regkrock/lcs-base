@@ -1,38 +1,38 @@
 Class {
-	#name : 'LuiVisibilityProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiVisibilityAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constant' }
-LuiVisibilityProperty class >> propertyName [
+LuiVisibilityAttribute class >> attributeName [
 	^ 'visibility'
 ]
 
 { #category : 'command' }
-LuiVisibilityProperty >> beHidden [
+LuiVisibilityAttribute >> beHidden [
 	self valueBlock: [ 'hidden' ]
 ]
 
 { #category : 'command' }
-LuiVisibilityProperty >> beVisible [
+LuiVisibilityAttribute >> beVisible [
 	self valueBlock: [ 'visible' ]
 ]
 
 { #category : 'initialize' }
-LuiVisibilityProperty >> initialize [
+LuiVisibilityAttribute >> initialize [
 	super initialize.
 	self valueBlock: [ 'visible' ]
 ]
 
 { #category : 'testing' }
-LuiVisibilityProperty >> isHidden [
-	^ self propertyValue = 'hidden'
+LuiVisibilityAttribute >> isHidden [
+	^ self attributeValue = 'hidden'
 ]
 
 { #category : 'testing' }
-LuiVisibilityProperty >> isVisible [
-	^ self propertyValue = 'visible'
+LuiVisibilityAttribute >> isVisible [
+	^ self attributeValue = 'visible'
 ]

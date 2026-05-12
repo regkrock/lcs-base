@@ -21,6 +21,6 @@ LuiTextInput >> initializeOnSlot: aSlotDefinition on: aComponent [
 { #category : 'as yet unclassified' }
 LuiTextInput >> renderComponentOn: html [
 	html textInput
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		value: self displayValue
 ]

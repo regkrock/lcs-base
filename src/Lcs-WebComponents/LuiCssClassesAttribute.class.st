@@ -1,6 +1,6 @@
 Class {
-	#name : 'LuiCssClassesProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiCssClassesAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#instVars : [
 		'cssClasses'
 	],
@@ -10,46 +10,46 @@ Class {
 }
 
 { #category : 'constant\t' }
-LuiCssClassesProperty class >> propertyName [
+LuiCssClassesAttribute class >> attributeName [
 	^ 'cssClasses'
 ]
 
 { #category : 'css classes' }
-LuiCssClassesProperty >> addCssClass: aString [
+LuiCssClassesAttribute >> addCssClass: aString [
 	(self cssClasses includes: aString) ifFalse: [
 		self cssClasses add: aString.
 		self clearCache. ]
 ]
 
 { #category : 'css classes\\' }
-LuiCssClassesProperty >> addCssClasses: anOrderedCollection [
+LuiCssClassesAttribute >> addCssClasses: anOrderedCollection [
 	anOrderedCollection do: [ :eachCssClass |
 		self addCssClass: eachCssClass ]
 ]
 
 { #category : 'accessing' }
-LuiCssClassesProperty >> cachedValue [
+LuiCssClassesAttribute >> cachedValue [
 	^ cachedValue ifNil: [ cachedValue := self cssClassesString ]
 ]
 
 { #category : 'css classes' }
-LuiCssClassesProperty >> cssClass: aString [
+LuiCssClassesAttribute >> cssClass: aString [
 	self removeAllCssClasses.
 	self addCssClass: aString
 ]
 
 { #category : 'accessing' }
-LuiCssClassesProperty >> cssClasses [
+LuiCssClassesAttribute >> cssClasses [
 	^ cssClasses
 ]
 
 { #category : 'accessing' }
-LuiCssClassesProperty >> cssClasses: anObject [ 
+LuiCssClassesAttribute >> cssClasses: anObject [ 
 	cssClasses := anObject
 ]
 
 { #category : 'asking' }
-LuiCssClassesProperty >> cssClassesString [
+LuiCssClassesAttribute >> cssClassesString [
 	| stream |
 	stream := WriteStream on: String new.
 	self cssClasses do: [:each | stream  nextPutAll: each ] separatedBy: [stream space].
@@ -57,7 +57,7 @@ LuiCssClassesProperty >> cssClassesString [
 ]
 
 { #category : 'initialize' }
-LuiCssClassesProperty >> initialize [
+LuiCssClassesAttribute >> initialize [
 	super initialize.
 	self cssClasses: OrderedCollection new.
 	self valueBlock: [ self cssClassesString ];
@@ -65,24 +65,24 @@ LuiCssClassesProperty >> initialize [
 ]
 
 { #category : 'css classes' }
-LuiCssClassesProperty >> removeAllCssClasses [
+LuiCssClassesAttribute >> removeAllCssClasses [
 	self removeCssClasses: self cssClasses copy 
 ]
 
 { #category : 'css classes' }
-LuiCssClassesProperty >> removeCssClass: aString [
+LuiCssClassesAttribute >> removeCssClass: aString [
 	(self cssClasses includes: aString) ifTrue: [
 		self cssClasses remove: aString ifAbsent: [ ].
 		self clearCache ]
 ]
 
 { #category : 'css classes' }
-LuiCssClassesProperty >> removeCssClasses: aCollection [
+LuiCssClassesAttribute >> removeCssClasses: aCollection [
 	aCollection copy do: [ :eachClass | self removeCssClass: eachClass ]
 ]
 
 { #category : 'css classes\\' }
-LuiCssClassesProperty >> replaceExistingCssClassesWithCssClass: aString [
+LuiCssClassesAttribute >> replaceExistingCssClassesWithCssClass: aString [
 	self removeAllCssClasses.
 	self addCssClass: aString
 ]

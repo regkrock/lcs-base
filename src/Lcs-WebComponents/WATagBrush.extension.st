@@ -2,7 +2,7 @@ Extension { #name : 'WATagBrush' }
 
 { #category : '*Lcs-WebComponents' }
 WATagBrush >> addCommonProperties: aComponent [
-	aComponent properties addPropertiesToTag: self
+	aComponent attributes addAttributesToTag: self
 ]
 
 { #category : '*Lcs-WebComponents' }

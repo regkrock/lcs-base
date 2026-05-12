@@ -1,27 +1,27 @@
 Class {
-	#name : 'LuiAltTextProperty',
-	#superclass : 'LuiComponentProperty',
+	#name : 'LuiAltTextAttribute',
+	#superclass : 'LuiComponentAttribute',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
 { #category : 'constants' }
-LuiAltTextProperty class >> propertyName [
+LuiAltTextAttribute class >> attributeName [
 	^ 'altText'
 ]
 
 { #category : 'accessing' }
-LuiAltTextProperty >> text [
+LuiAltTextAttribute >> text [
 	^ self cachedValue
 ]
 
 { #category : 'accessing' }
-LuiAltTextProperty >> text: aString [
+LuiAltTextAttribute >> text: aString [
 	self valueBlock: [ aString ]
 ]
 
 { #category : 'accessing' }
-LuiAltTextProperty >> textBlock: aBlock [
+LuiAltTextAttribute >> textBlock: aBlock [
 	self valueBlock: aBlock
 ]

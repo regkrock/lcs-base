@@ -11,15 +11,6 @@ Class {
 }
 
 { #category : 'building' }
-LuiMenuItem >> addAnchorButton: aMenuItemDefinition [
-	self
-		addComponent: ((LuiAnchor named: 'button' on: self)
-				replaceExistingCssClassesWithCssClass: (aMenuItemDefinition buttonCssClasses ifEmpty: [ 'menuItemButton' ]);
-				label: aMenuItemDefinition label;
-				yourself)
-]
-
-{ #category : 'building' }
 LuiMenuItem >> addPushButton: aMenuItemDefinition [
 	| button |
 	button := self addComponent: (self pushButtonFor: aMenuItemDefinition).
@@ -46,12 +37,6 @@ LuiMenuItem >> buildFrom: aMenuItemDefinition [
 { #category : 'defaults' }
 LuiMenuItem >> defaultCssClasses [
 	^ OrderedCollection with: 'mainMenuItem'
-]
-
-{ #category : 'as yet unclassified' }
-LuiMenuItem >> isAnchor [
-	self components detect: [ :each | each class = LuiAnchor ] ifNone: [ ^ false ].
-	^ true
 ]
 
 { #category : 'as yet unclassified' }
@@ -87,7 +72,7 @@ LuiMenuItem >> pushButtonFor: aMenuItemDefinition [
 { #category : 'rendering' }
 LuiMenuItem >> renderComponentOn: html [
 	html listItem
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		with: [ self renderDetailsOn: html ]
 ]
 

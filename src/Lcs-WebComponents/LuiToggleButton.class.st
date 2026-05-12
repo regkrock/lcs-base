@@ -8,17 +8,17 @@ Class {
 
 { #category : 'configuration' }
 LuiToggleButton >> beButtonType [
-	self buttonTypeProperty beButtonType
+	self buttonTypeAttribute beButtonType
 ]
 
 { #category : 'configuration' }
 LuiToggleButton >> beSubmitType [
-	self buttonTypeProperty beSubmitType
+	self buttonTypeAttribute beSubmitType
 ]
 
 { #category : 'as yet unclassified' }
-LuiToggleButton >> buttonTypeProperty [
-	^ self properties buttonTypeProperty
+LuiToggleButton >> buttonTypeAttribute [
+	^ self attributes buttonTypeAttribute
 ]
 
 { #category : 'as yet unclassified' }
@@ -31,7 +31,7 @@ LuiToggleButton >> initialize [
 LuiToggleButton >> renderComponentOn: html [
 	<TODO: 'needs more work'>
 	html button
-		addCommonProperties: self;
+		addCommonAttributes: self;
 		onClick: (html jQuery ajax callback: [:v | self halt]);
 		with: [ self components do: [ :eachComponent | html render: eachComponent ] ]
 ]
