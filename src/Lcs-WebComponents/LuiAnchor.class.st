@@ -1,9 +1,6 @@
 Class {
 	#name : 'LuiAnchor',
 	#superclass : 'LuiButton',
-	#instVars : [
-		'text'
-	],
 	#category : 'Lcs-WebComponents-Buttons',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Buttons'
@@ -21,7 +18,7 @@ LuiAnchor >> hasNoTextComponent [
 
 { #category : 'testing' }
 LuiAnchor >> hasTextComponent [
-	self textComponent notNil
+	^ self textComponent notNil
 ]
 
 { #category : 'properties' }
@@ -33,7 +30,7 @@ LuiAnchor >> labelBlock: aBlock [
 LuiAnchor >> renderComponentOn: html [
 	html anchor
 		addCommonAttributes: self;
-		callback: [ self showLabelOnTranscript. ];
+		"callback: [ self showLabelOnTranscript ];"
 		with: [ self renderDetailsOn: html ] 
 ]
 
@@ -41,18 +38,6 @@ LuiAnchor >> renderComponentOn: html [
 LuiAnchor >> renderDetailsOn: html [
 	self hasTextComponent ifTrue: [ ^ super renderDetailsOn: html ].
 	html text: self text
-]
-
-{ #category : 'accessing' }
-LuiAnchor >> text [
-	^ self textComponent 
-		ifNil: [ self text ] 
-		ifNotNil: [ self textComponent text ]
-]
-
-{ #category : 'accessing' }
-LuiAnchor >> text: anObject [
-	text := anObject
 ]
 
 { #category : 'testing' }

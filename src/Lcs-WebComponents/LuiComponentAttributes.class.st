@@ -24,9 +24,10 @@ LuiComponentAttributes >> addAttributesToTag: aTag [
 		attributeAt: 'name' put: self parentComponent componentName;
 		dataStClass: self parentComponent.
 	self attributes do: [ :eachaAtributes | 
-			aTag
-				perform: eachaAtributes tagAttributeSetSelector
-				with: eachaAtributes cachedValue ]
+			eachaAtributes cachedValue ifNotNil: [ :object |
+				aTag
+					perform: eachaAtributes tagAttributeSetSelector
+					with: object ] ]
 ]
 
 { #category : 'properties - delegated' }
@@ -60,18 +61,6 @@ LuiComponentAttributes >> altText: aString [
 { #category : 'properties - defined' }
 LuiComponentAttributes >> altTextAttribute [
 	^ self lazyInitializedAttribute: LuiAltTextAttribute
-]
-
-{ #category : 'subscription' }
-LuiComponentAttributes >> anAttributeAnnounceKey: anAttributeKey oldValue: anOldValue newValue: aNewValue [
-	"Announce a property change if there are subscriptions."
-	
-	self attributeAnnouncerDo: [ :anAnnouncer |
-		anOldValue = aNewValue ifFalse: [
-			anAnnouncer announce: (MAPropertyChangedAnnouncement new
-					owner: self;
-					key: anAttributeKey;
-					value: aNewValue) ] ]
 ]
 
 { #category : 'properties - delegated' }
@@ -116,6 +105,13 @@ LuiComponentAttributes >> attributeAt: aKey ifAbsent: aBlock [
 ]
 
 { #category : 'properties - accessing' }
+LuiComponentAttributes >> attributeAt: aKey ifAbsentPut: aBlock [
+	"Lookup the property ==aKey==, if it is present, answer the value of evaluating ==aBlock== block with the value. Otherwise, answer ==nil==."
+
+	^ self attributes at: aKey ifAbsentPut: aBlock
+]
+
+{ #category : 'properties - accessing' }
 LuiComponentAttributes >> attributeAt: aKey ifPresent: aBlock [
 	"Lookup the property ==aKey==, if it is present, answer the value of evaluating ==aBlock== block with the value. Otherwise, answer ==nil==."
 
@@ -150,6 +146,11 @@ LuiComponentAttributes >> attributeAt: aKey put: aValue [
 	self attributeAnnounceKey: aKey oldValue: anOldValue newValue: aNewValue.
 
 	^ aNewValue
+]
+
+{ #category : 'properties - accessing' }
+LuiComponentAttributes >> attributeNamed: aKey [
+	^ self attributeAt: aKey ifAbsent: []
 ]
 
 { #category : 'accessing' }
@@ -248,7 +249,7 @@ LuiComponentAttributes >> disabledAttribute [
 
 { #category : 'private' }
 LuiComponentAttributes >> errorAttributeNotFound: aSelector [ 
-	LuiComponentPropertyNotFound signal: 'Property ' , aSelector , ' not found.'
+	LuiComponentAttributeNotFound signal: 'Attribute ' , aSelector , ' not found.'
 ]
 
 { #category : 'properties - delegated' }
@@ -275,7 +276,7 @@ LuiComponentAttributes >> gtViewAttributesOn: aView [
 	
 	^ aView columnedList
 		title: 'Attributes' translated;
-		priority: 75;
+		priority: 70;
 		items: [ self attributes associations ];
 		column: 'Name' 
 			text: [ :a | a key ]
@@ -297,6 +298,16 @@ LuiComponentAttributes >> hasAltTextAttribute [
 LuiComponentAttributes >> hasAttribute: aaAttributeName [
 	self attributeAt: aaAttributeName ifAbsent: [ ^ false ].
 	^ true
+]
+
+{ #category : 'properties - testing' }
+LuiComponentAttributes >> hasAttributeNamed: aString [
+	^ (self attributeAt:  aString ifAbsent: [ nil ]) notNil
+]
+
+{ #category : 'properties - testing' }
+LuiComponentAttributes >> hasAttributes [
+	^ self attributes notEmpty
 ]
 
 { #category : 'properties - testing' }
@@ -328,6 +339,11 @@ LuiComponentAttributes >> hasLabelAttribute [
 { #category : 'properties - testing' }
 LuiComponentAttributes >> hasNameAttribute [
 	^ self hasAttribute:  LuiNameAttribute attributeName 
+]
+
+{ #category : 'properties - testing' }
+LuiComponentAttributes >> hasNoAttributes [
+	^ self attributes isEmpty
 ]
 
 { #category : 'properties - testing' }
@@ -454,8 +470,8 @@ LuiComponentAttributes >> labelBlock: aBlock [
 ]
 
 { #category : 'properties - accessing' }
-LuiComponentAttributes >> lazyInitializedAttribute: aComponentPropertyClass [
-	^ self attributeAt: aComponentPropertyClass attributeName ifAbsentPut: [ aComponentPropertyClass on: self ]
+LuiComponentAttributes >> lazyInitializedAttribute: aComponentAttributeClassaComponentAttributeClass [
+	^ self attributeAt: aComponentAttributeClassaComponentAttributeClass attributeName ifAbsentPut: [ aComponentAttributeClassaComponentAttributeClass on: self ]
 ]
 
 { #category : 'properties - delegated' }
@@ -585,6 +601,12 @@ LuiComponentAttributes >> url: aString [
 { #category : 'properties - defined' }
 LuiComponentAttributes >> urlAttribute [
 	^ self lazyInitializedAttribute: LuiUrlAttribute
+]
+
+{ #category : 'properties - delegated' }
+LuiComponentAttributes >> valueOfAttribute: anAttributeName [
+	(self hasAttribute: anAttributeName) ifFalse: [ ^ nil ].
+	^ (self attributeAt: anAttributeName) attributeValue
 ]
 
 { #category : 'properties - defined' }

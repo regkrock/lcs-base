@@ -8,7 +8,8 @@ Class {
 		'componentId',
 		'componentName',
 		'componentKeys',
-		'attributes'
+		'attributes',
+		'componentDecorations'
 	],
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
@@ -19,13 +20,6 @@ Class {
 LuiComponent class >> named: aName [
 	^ super new 
 		initializeNamed: aName;
-		yourself
-]
-
-{ #category : 'instance creation' }
-LuiComponent class >> named: aName on: aWebComponent [
-	^ super new 
-		initializeNamed: aName on: aWebComponent;
 		yourself
 ]
 
@@ -97,7 +91,7 @@ LuiComponent >> addFirstComponent: aComponent [
 
 { #category : 'properties' }
 LuiComponent >> addLabelComponent [
-	^ self addComponent: (LuiLabel named: 'label' on: self)
+	^ self addComponent: (LuiLabel named: 'label')
 ]
 
 { #category : 'components' }
@@ -135,6 +129,16 @@ LuiComponent >> beVisible [
 { #category : 'components' }
 LuiComponent >> componentAtIndex: anInteger [
 	^ self orderedComponents at: anInteger
+]
+
+{ #category : 'accessing' }
+LuiComponent >> componentDecorations [
+	^ componentDecorations
+]
+
+{ #category : 'accessing' }
+LuiComponent >> componentDecorations: anObject [
+	componentDecorations := anObject
 ]
 
 { #category : 'accessing' }
@@ -273,15 +277,24 @@ LuiComponent >> gtComponentsFor: aView [
 		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
 ]
 
+{ #category : 'printing' }
+LuiComponent >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream
+		nextPutAll: '(';
+		nextPutAll: self componentName asString;
+		nextPutAll: ')'
+]
+
 { #category : 'gt - views' }
-LuiComponent >> gtParentCompoentsFor: aView [
+LuiComponent >> gtParentComponentsFor: aView [
 	<gtView>
 	
 	^ aView columnedTree
 		title: 'Parents';
 		priority: 15;
 		expandUpTo: 4;
-		items: [ { self } ];
+		items: [ self parentComponent isNil ifTrue: [ {} ] ifFalse: [ { self } ] ];
 		children: #parentViewComponents;
 		column: 'Component Class' text: [ :aComponent | aComponent class name ];
 		column: 'Name' text: [ :aComponent | aComponent componentName displayString ];
@@ -289,9 +302,41 @@ LuiComponent >> gtParentCompoentsFor: aView [
 ]
 
 { #category : 'gt - views' }
+LuiComponent >> gtRenderedFor: aView [
+	<gtView>
+	^ aView textEditor
+		title: 'HTML';
+		priority: 80;
+		text: [ self renderExample: [ :html | html render: self ] ];
+		styler: Gt4XMLStyler new;
+		actionUpdateButton
+]
+
+{ #category : 'gt - views' }
 LuiComponent >> gtViewAttributesOn: aView [
 	<gtView>
 	^ self attributes gtViewAttributesOn: aView
+]
+
+{ #category : 'gt - views' }
+LuiComponent >> gtViewDecorationsOn: aView [
+	<gtView>
+	^ self componentDecorations gtViewDecorationsOn: aView
+]
+
+{ #category : 'testing' }
+LuiComponent >> hasAttributeNamed: aString [
+	^ self attributes hasAttributeNamed: aString
+]
+
+{ #category : 'testing' }
+LuiComponent >> hasAttributes [
+	^ self attributes hasAttributes
+]
+
+{ #category : 'testing' }
+LuiComponent >> hasComponentDecorations [
+	^ self componentDecorations hasDecorations
 ]
 
 { #category : 'testing' }
@@ -305,18 +350,23 @@ LuiComponent >> hasLabelComponent [
 ]
 
 { #category : 'testing' }
-LuiComponent >> hasNoAttribute [
-	^ self attributes hasNoAttribute
-]
-
-{ #category : 'testing' }
 LuiComponent >> hasNoAttributes [
 	^ self attributes hasNoAttributes
 ]
 
 { #category : 'testing' }
+LuiComponent >> hasNoComponentDecorations [
+	^ self componentDecorations hasNoDecorations
+]
+
+{ #category : 'testing' }
 LuiComponent >> hasNoComponents [
 	^ self components isEmpty
+]
+
+{ #category : 'testing' }
+LuiComponent >> hasTextDecoration [
+	^ self componentDecorations hasTextDecoration
 ]
 
 { #category : 'initialize' }
@@ -325,6 +375,7 @@ LuiComponent >> initialize [
 	self components: Dictionary new.
 	self componentKeys: OrderedCollection new.
 	self attributes: (LuiComponentAttributes on: self).
+	self componentDecorations: (LuiComponentDecorations on: self).
 	self initializeCssClasses.
 ]
 
@@ -432,6 +483,15 @@ LuiComponent >> parentViewComponents [
 	^Array with: self parentComponent
 ]
 
+{ #category : 'gt - views' }
+LuiComponent >> prettyPrintedHtml: html [ 
+	| ast visitor |
+	ast := CSSParser parseWithErrors: html.
+	visitor := CSSPrettyPrinterVisitor new.
+	visitor accept: ast.
+	^ visitor contents
+]
+
 { #category : 'components' }
 LuiComponent >> removeComponent: aComponent [
 	self componentKeys remove: aComponent componentName ifAbsent: [].
@@ -471,6 +531,16 @@ LuiComponent >> renderDetailsOn: html [
 	self renderAfterSubcomponentsOn: html
 ]
 
+{ #category : 'gt - views' }
+LuiComponent >> renderExample: aBlock [
+	| html |
+	html := WAHtmlCanvas builder
+		fullDocument: false;
+		rootBlock: aBlock;
+		render: aBlock.
+	^ self prettyPrintedHtml: html
+]
+
 { #category : 'rendering' }
 LuiComponent >> renderSubcomponentsOn: html [
 	self orderedComponents do: [ :eachComponent | html render: eachComponent ]
@@ -479,6 +549,21 @@ LuiComponent >> renderSubcomponentsOn: html [
 { #category : 'properties - delegated' }
 LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
 	self cssClassesAttribute replaceExistingCssClassesWithCssClass: aString
+]
+
+{ #category : 'properties' }
+LuiComponent >> text [
+	^ self componentDecorations text
+]
+
+{ #category : 'properties' }
+LuiComponent >> text: aString [
+	self componentDecorations text: aString
+]
+
+{ #category : 'testing' }
+LuiComponent >> textComponentDecoration [
+	^ self componentDecorations textComponentDecoration
 ]
 
 { #category : 'properties' }

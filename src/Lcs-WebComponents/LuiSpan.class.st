@@ -1,8 +1,6 @@
 Class {
 	#name : 'LuiSpan',
 	#superclass : 'LuiComponent',
-	#traits : 'LtText',
-	#classTraits : 'LtText classTrait',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
@@ -10,14 +8,12 @@ Class {
 
 { #category : 'initialize' }
 LuiSpan >> initialize [
-	super initialize.
-	self valueBlock: [ '' ]
+	super initialize
 ]
 
 { #category : 'rendering' }
 LuiSpan >> renderComponentOn: html [
 	html span
 		addCommonAttributes: self;
-		with: [ html text: self text ]
-		
+		with: [ self hasTextDecoration ifTrue: [ html text: self text ] ]
 ]

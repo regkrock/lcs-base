@@ -16,7 +16,7 @@ LuiSelectExamples >> htmlForNewComponent [
 LuiSelectExamples >> newComponent [
 	<gtExample>
 	| component |
-	component := LuiSelect named: 'selectComponent' on: nil.
+	component := LuiSelect named: 'selectComponent'.
 	self assert: component components isEmpty.
 	self assert: component parentComponent isNil.
 	self assert: component componentName equals: 'selectComponent'.

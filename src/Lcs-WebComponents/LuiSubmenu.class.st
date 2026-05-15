@@ -14,7 +14,7 @@ LuiSubmenu >> buildFrom: aSubmenuDefinition [
 	self label: aSubmenuDefinition label.
 	aSubmenuDefinition menuComponentDefintions do: [ :eachMenuDefinition  | 
 		| menuComponent |
-		menuComponent := eachMenuDefinition componentClass named: eachMenuDefinition componentName on: self.
+		menuComponent := eachMenuDefinition componentClass named: eachMenuDefinition componentName.
 		self addComponent: menuComponent.
 		menuComponent buildFrom: eachMenuDefinition]
 ]

@@ -31,7 +31,7 @@ LuiLabelWithInputComponent >> hasLabelComponent [
 { #category : 'as yet unclassified' }
 LuiLabelWithInputComponent >> initialize [
 	super initialize.
-	self addComponent: (LuiModelLabel named: 'label' on: self)
+	self addComponent: (LuiModelLabel named: 'label')
 ]
 
 { #category : 'initialize' }
@@ -39,7 +39,7 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition on: aComponent [
 	self componentName: aSlotDefinition slotName.
 	self labelComponent initializeOnSlot: aSlotDefinition on: aComponent.
 	self addComponent: (
-		(aSlotDefinition inputComponentClass named: 'input' on: self)
+		(aSlotDefinition inputComponentClass named: 'input')
 			initializeOnSlot: aSlotDefinition on: aComponent;
 			yourself)
 ]

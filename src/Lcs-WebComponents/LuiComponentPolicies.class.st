@@ -82,5 +82,5 @@ LuiComponentPolicies >> policies: anObject [
 { #category : 'as yet unclassified' }
 LuiComponentPolicies >> policyNamed: aString [
 	^ self policies at: aString ifAbsent: [
-		LuiComponentPropertyNotFound signal: ('Policy ' , aString , ' not defined for ' , self fullComponentNameWithId)]
+		LuiComponentAttributeNotFound signal: ('Policy ' , aString , ' not defined for ' , self fullComponentNameWithId)]
 ]

@@ -13,14 +13,14 @@ LuiPushButtonFunctionalTest >> initialize [
 	self componentName: 'root'.
 	self componentId: 'root'.
 	
-	button := LuiPushButton named: 'button' on: self.
+	button := LuiPushButton named: 'button'.
 	self addComponent: button.
 	button
 		label: 'Hello';
 		addCssClass: 'button';
 		title: 'Hello Title'.
 		
-	button := LuiPushButton named: 'submit' on: self.
+	button := LuiPushButton named: 'submit'.
 	self addComponent: button.
 	button
 		label: 'Submit';

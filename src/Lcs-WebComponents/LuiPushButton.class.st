@@ -8,12 +8,12 @@ Class {
 
 { #category : 'components - adding' }
 LuiPushButton >> addLeadingImageComponent [
-	self addFirstComponent: (LuiImage named: 'leadingImage' on: self)
+	self addFirstComponent: (LuiImage named: 'leadingImage')
 ]
 
 { #category : 'components - adding' }
 LuiPushButton >> addTrailingImageComponent [
-	self addComponent: (LuiImage named: 'trailingImage' on: self)
+	self addComponent: (LuiImage named: 'trailingImage')
 ]
 
 { #category : 'initialize' }
@@ -54,6 +54,12 @@ LuiPushButton >> leadingImageComponent [
 ]
 
 { #category : 'components' }
+LuiPushButton >> leadingImageUrl: aPath [
+	self leadingImageComponent
+		url: aPath
+]
+
+{ #category : 'components' }
 LuiPushButton >> leadingImageUrl: aPath altText: aString [
 	self leadingImageComponent
 		url: aPath;
@@ -72,6 +78,12 @@ LuiPushButton >> renderComponentOn: html [
 LuiPushButton >> trailingImageComponent [
 	self hasTrailingImageComponent ifFalse: [ self addTrailingImageComponent ].
 	^ self componentNamed: 'trailingImage'
+]
+
+{ #category : 'components' }
+LuiPushButton >> trailingImageUrl: aPath [
+	self trailingImageComponent
+		url: aPath
 ]
 
 { #category : 'components' }

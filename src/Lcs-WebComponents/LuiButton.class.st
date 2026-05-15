@@ -8,7 +8,7 @@ Class {
 
 { #category : 'components' }
 LuiButton >> addLabelComponent [
-	self addComponent: (LuiButtonLabel named: 'label' on: self)
+	self addComponent: (LuiButtonLabel named: 'label')
 ]
 
 { #category : 'testing' }

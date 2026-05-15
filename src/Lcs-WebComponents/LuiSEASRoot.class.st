@@ -32,11 +32,13 @@ LuiSEASRoot >> initialize [
 LuiSEASRoot >> initializeStandardLayout [
 	self addComponent: LuiPageHeader new.
 	(self componentNamed: 'header')
-		addComponent: LuiImage newFavicon.
-	(self componentNamed: 'header')
+		addComponent: LuiLogoImage newFavicon.
+	"(self componentNamed: 'header')
 		addComponent: (LuiNavigationBar named: 'navbar').
 	((self componentNamed: 'header') componentNamed: 'navbar')
-		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions
+		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions."
+	(self componentNamed: 'header')
+		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new
 ]
 
 { #category : 'updating' }

@@ -32,7 +32,7 @@ LuiLabelWithDatePickerComponentExamples >> dateOfBirthComponent [
 LuiLabelWithDatePickerComponentExamples >> newLabelWithInputComponent [
 	<gtExample>
 	| component |
-	component := LuiLabelWithInputComponent named: 'xxxx' on: nil.
+	component := LuiLabelWithInputComponent named: 'xxxx'.
 	self assert: component hasLabelComponent.
 	self assert: component labelComponent componentName equals: 'label'.
 	^ component

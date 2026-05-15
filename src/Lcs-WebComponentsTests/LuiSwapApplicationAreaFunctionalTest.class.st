@@ -48,7 +48,7 @@ LuiSwapApplicationAreaFunctionalTest >> initialize [
 	super initialize.
 	self componentName: 'root'.
 	self componentId: 'root'.
-	self addComponent: (mainPage := LuiMainPage named: 'mainPage' on: self).
+	self addComponent: (mainPage := LuiMainPage named: 'mainPage').
 
 	self addMainNavigationMenuTo: (mainPage componentNamed: 'navBar/navigation').
 	(mainPage componentNamed: 'header/title') domainObject: 'Swap Application Area'.

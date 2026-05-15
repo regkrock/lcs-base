@@ -13,7 +13,7 @@ LuiButtonMenuItemFunctionalTest >> initialize [
 	self componentName: 'root'.
 	self componentId: 'root'.
 	
-	item := LuiMenuItem named: 'menuItem' on: self.
+	item := LuiMenuItem named: 'menuItem'.
 	self addComponent: item.
 	item buildFrom: (
 			LuiMenuItemDefinition new 

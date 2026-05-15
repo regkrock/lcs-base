@@ -6,17 +6,6 @@ Class {
 	#tag : 'Buttons'
 }
 
-{ #category : 'instance creation' }
-LuiImage class >> newFavicon [
-	^ self new
-		componentName: 'favicon';
-		cssClass: 'logo';
-		title: 'Seas Monmouth';
-		altText: 'Seas logo';
-		url: LcsFileLibrary /#faviconPng;
-		yourself
-]
-
 { #category : 'properties' }
 LuiImage >> altText [
 	^ self attributes altText

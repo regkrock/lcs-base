@@ -36,13 +36,17 @@ LuiComponentAttribute >> attributeName [
 
 { #category : 'asking' }
 LuiComponentAttribute >> attributeValue [
-	self cachedValue ifNil: [ self cachedValue: self _attributeValue ].
 	^ self cachedValue
 ]
 
 { #category : 'accessing' }
-LuiComponentAttribute >> cachedValue [
+LuiComponentAttribute >> basicCachedValue [
 	^ cachedValue
+]
+
+{ #category : 'accessing' }
+LuiComponentAttribute >> cachedValue [
+	^ cachedValue ifNil: [ cachedValue := self _attributeValue ]
 ]
 
 { #category : 'accessing' }
@@ -88,9 +92,9 @@ LuiComponentAttribute >> initialize [
 	self valueBlock: [ ]
 ]
 
-{ #category : 'initialze' }
-LuiComponentAttribute >> initializeOn: aProperties [ 
-	self parent: aProperties
+{ #category : 'initialize' }
+LuiComponentAttribute >> initializeOn: aComponentAttributes [ 
+	self parent: aComponentAttributes
 ]
 
 { #category : 'accessing' }

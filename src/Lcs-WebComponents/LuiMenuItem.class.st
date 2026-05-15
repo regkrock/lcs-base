@@ -10,12 +10,14 @@ Class {
 	#tag : 'Menus'
 }
 
-{ #category : 'building' }
-LuiMenuItem >> addPushButton: aMenuItemDefinition [
-	| button |
-	button := self addComponent: (self pushButtonFor: aMenuItemDefinition).
-	"(button componentNamed: 'label')
-		replaceExistingCssClassesWithCssClass: 'menuItemButtonLabel'"
+{ #category : 'components - adding' }
+LuiMenuItem >> addImageComponent [
+	^ self addFirstComponent: (LuiImage named: 'image')
+]
+
+{ #category : 'components - adding' }
+LuiMenuItem >> addSpanComponent [
+	^ self addComponent: (LuiSpan named: 'span')
 ]
 
 { #category : 'rendering' }
@@ -28,10 +30,7 @@ LuiMenuItem >> buildFrom: aMenuItemDefinition [
 	self
 		label: aMenuItemDefinition label;
 		targetClass: aMenuItemDefinition targetClass;
-		title: aMenuItemDefinition title.
-	aMenuItemDefinition isAnchor
-		ifTrue: [ self addAnchorButton: aMenuItemDefinition ]
-		ifFalse: [ self addPushButton: aMenuItemDefinition ]
+		title: aMenuItemDefinition title
 ]
 
 { #category : 'defaults' }
@@ -39,34 +38,30 @@ LuiMenuItem >> defaultCssClasses [
 	^ OrderedCollection with: 'mainMenuItem'
 ]
 
-{ #category : 'as yet unclassified' }
-LuiMenuItem >> isPushButton [
-	self components detect: [ :each | each class = LuiPushButton ] ifNone: [ ^ false ].
-	^ true
+{ #category : 'testing' }
+LuiMenuItem >> hasImageComponent [
+	^ (self componentNamed: 'image') notNil
 ]
 
-{ #category : 'accessing' }
+{ #category : 'testing' }
+LuiMenuItem >> hasSpanComponent [
+	^ ( self componentNamed: 'span') notNil
+]
+
+{ #category : 'components' }
+LuiMenuItem >> imageComponent [
+	self hasImageComponent ifFalse: [ self addImageComponent ].
+	^ self componentNamed: 'image'
+]
+
+{ #category : 'attributes' }
 LuiMenuItem >> label [
-	^ label
+	^ self spanComponent text
 ]
 
-{ #category : 'accessing' }
-LuiMenuItem >> label: anObject [
-	label := anObject
-]
-
-{ #category : 'rendering' }
-LuiMenuItem >> mainPage [
-	^ self parentComponentNamed: 'mainPage'
-]
-
-{ #category : 'building' }
-LuiMenuItem >> pushButtonFor: aMenuItemDefinition [
-	| button |
-	button := LuiPushButton named: 'button' on: self.
-	button replaceExistingCssClassesWithCssClass: (aMenuItemDefinition buttonCssClasses ifEmpty: [ 'menuItemButton' ]).
-	button label: aMenuItemDefinition label.
-	^ button
+{ #category : 'attributes' }
+LuiMenuItem >> label: aString [
+	self spanComponent text: aString
 ]
 
 { #category : 'rendering' }
@@ -74,6 +69,12 @@ LuiMenuItem >> renderComponentOn: html [
 	html listItem
 		addCommonAttributes: self;
 		with: [ self renderDetailsOn: html ]
+]
+
+{ #category : 'components' }
+LuiMenuItem >> spanComponent [
+	self hasSpanComponent ifFalse: [ self addSpanComponent ].
+	^ self componentNamed: 'span'
 ]
 
 { #category : 'accessing' }

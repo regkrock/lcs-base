@@ -84,6 +84,10 @@ LuiComponentExamples >> newComponent [
 	self assert: component cssClassesString isEmpty.
 	self assert: component hasAttributes.
 	self assert: (component attributes isKindOf: LuiComponentAttributes).
+	self assert: (component componentDecorations isKindOf: LuiComponentDecorations).
+	self assert: (component componentDecorations parentComponent ==  component).
+	self assert: component hasNoComponentDecorations.
+	self deny: component hasComponentDecorations.
 	self assert: component isVisible.
 	self deny: component isHidden.
 	self assert: component componentId isNil.

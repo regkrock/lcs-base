@@ -9,11 +9,16 @@ Class {
 	#tag : 'Menus'
 }
 
+{ #category : 'as yet unclassified' }
+LuiNavigationMenu >> addNavigationMenuBuiltFrom: aMenuDefinition [
+	aMenuDefinition buildNavigationMenuIn: self
+]
+
 { #category : 'building' }
 LuiNavigationMenu >> buildFrom: aNavigationMenuDefinition [
 	aNavigationMenuDefinition menuComponentDefintions do: [ :eachComponent | 
 		| menuComponent |
-		menuComponent := eachComponent componentClass named: eachComponent componentName on: self.
+		menuComponent := eachComponent componentClass named: eachComponent componentName.
 		self addComponent: menuComponent.
 		menuComponent buildFrom: eachComponent]
 ]
@@ -32,7 +37,7 @@ LuiNavigationMenu >> defaultCssClasses [
 
 { #category : 'rendering' }
 LuiNavigationMenu >> renderDetailsOn: html [
-	html unorderedList
+	html navigation
 		class: 'mainMenuBarContents';
 		with: [ self renderSubcomponentsOn: html ]
 ]

@@ -123,6 +123,89 @@ LcsFileLibrary >> homePageText [
 { #category : 'css' }
 LcsFileLibrary >> mainCss [
 	^
+'@font-face{
+	font-family: Roboto;
+	src: url(fonts/Roboto-Regular.ttf)
+	};
+@font-face{
+	font-family: RobotoMedium;
+	src: url(fonts/Roboto-Medium.ttf)
+	};
+@font-face{
+	font-family: RobotoBold;
+	src: url(fonts/Roboto-Bold.ttf)
+	};
+:root {
+	--menu-count: 5
+	}
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #111
+	}
+.pageHeader {
+	width: 100%;
+	padding: 0 60px;
+	height: 60px;
+	background-color: #ffffff;
+	display: flex;
+	justify-content: space-between;
+	pisition: fixed;
+	top: 0;
+	z-index: 100;
+	}
+.mainMenuBar{
+	display: flex;
+	}
+.logo{
+	height: 40px;
+	width: fit-content;
+	align-self: center;
+	cursor: pointer;
+	border: none;
+	}
+.mainMenuBarContents{
+	display: flex;
+	}
+.mainMenuItem{
+	height: 100%;
+	padding-left: 40px;
+	list-style none;
+	display: flex;
+	align-self: center;
+}
+
+ '
+]
+
+{ #category : 'css' }
+LcsFileLibrary >> mainCss2 [
+	| stream |
+	stream := WriteStream on: String new.
+	stream nextPutAll:
+'
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}'.
+
+	#(mainMenuBarContentsCssClassDefinition mainMenuBarCssClassDefinition) 
+		do: [:each | stream nextPutAll: (self perform: each asSymbol) ] separatedBy: [ stream cr; cr ].
+	"stream nextPutAll: self mainMenuBarContentsCssClassDefinition.
+	stream nextPutAll: self mainMenuBarCssClassDefinition."
+	^ stream contents
+]
+
+{ #category : 'css' }
+LcsFileLibrary >> mainCss_Original [
+	^
 '
 *,
 *::before,
@@ -243,32 +326,6 @@ for the transition to work , thus moved it from POS_001 */
 	margin: 2px 2px 2px 2px
 }
  '
-]
-
-{ #category : 'css' }
-LcsFileLibrary >> mainCss2 [
-	| stream |
-	stream := WriteStream on: String new.
-	stream nextPutAll:
-'
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}'.
-
-	#(mainMenuBarContentsCssClassDefinition mainMenuBarCssClassDefinition) 
-		do: [:each | stream nextPutAll: (self perform: each asSymbol) ] separatedBy: [ stream cr; cr ].
-	"stream nextPutAll: self mainMenuBarContentsCssClassDefinition.
-	stream nextPutAll: self mainMenuBarCssClassDefinition."
-	^ stream contents
 ]
 
 { #category : 'css' }

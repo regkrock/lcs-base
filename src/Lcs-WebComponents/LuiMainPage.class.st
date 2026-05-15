@@ -119,7 +119,7 @@ LuiMainPage >> swapToNewApplicationAreaComponent [
 	currentComponent := self removeComponentNamed: self applicationAreaComponentName.
 	self swappedApplicationAreas swappedOut: currentComponent.
 	self addComponent: (
-		self nextApplicationAreaClass named: self applicationAreaComponentName on: self).
+		self nextApplicationAreaClass named: self applicationAreaComponentName).
 	self nextApplicationAreaClass: nil
 ]
 

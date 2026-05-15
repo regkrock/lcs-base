@@ -9,12 +9,12 @@ Class {
 { #category : 'examples' }
 LuiComponentAttributeExamples >> buttonButtonTypeProperty [
 	<gtExample>
-	| attributes |
-	attributes := self newComponentAttributes.
-	self assert: attributes buttonTypeAttribute notNil.	"Lazily initialized"
-	self assert: (attributes valueOfAttribute: LuiButtonTypeAttribute attributeName) equals: 'button'.
-	self assert: attributes buttonType equals: 'button'.
-	^ attributes buttonTypeAttribute
+	| componentAttributes |
+	componentAttributes := self newComponentAttributes.
+	self assert: componentAttributes buttonTypeAttribute notNil.	"Lazily initialized"
+	self assert: (componentAttributes valueOfAttribute: LuiButtonTypeAttribute attributeName) equals: 'button'.
+	self assert: componentAttributes buttonType equals: 'button'.
+	^ componentAttributes buttonTypeAttribute
 ]
 
 { #category : 'examples' }
@@ -42,13 +42,13 @@ LuiComponentAttributeExamples >> disabledPropertyInEnabledState [
 { #category : 'examples' }
 LuiComponentAttributeExamples >> helloTitlePropertyInitializeFromBlock [
 	<gtExample>
-	| properties |
-	properties := self newComponentAttributes.	
-	properties titleBlock: [ 'Hello' ].
-	self assert: (properties valueOfAttribute: LuiTitleAttribute attributeName) equals: 'Hello'.
-	self assert: properties titleAttribute attributeValue equals: 'Hello'.
-	self assert: properties title equals: 'Hello'.
-	^ properties titleAttribute
+	| componentAttributes |
+	componentAttributes := self newComponentAttributes.	
+	componentAttributes titleBlock: [ 'Hello' ].
+	self assert: (componentAttributes valueOfAttribute: LuiTitleAttribute attributeName) equals: 'Hello'.
+	self assert: componentAttributes titleAttribute attributeValue equals: 'Hello'.
+	self assert: componentAttributes title equals: 'Hello'.
+	^ componentAttributes titleAttribute
 ]
 
 { #category : 'examples' }
@@ -138,12 +138,12 @@ LuiComponentAttributeExamples >> requiredPropertySetToTrue [
 { #category : 'examples' }
 LuiComponentAttributeExamples >> submitButtonTypeAttribute [
 	<gtExample>
-	| properties |
-	properties := self newComponentAttributes.
-	properties buttonTypeAttribute beSubmitType.
-	self assert: (properties valueOfAttribute: LuiButtonTypeAttribute attributeName) equals: 'submit'.
-	self assert: properties buttonType equals: 'submit'.
-	^ properties buttonTypeAttribute
+	| componentAttributes |
+	componentAttributes := self newComponentAttributes.
+	componentAttributes buttonTypeAttribute beSubmitType.
+	self assert: (componentAttributes valueOfAttribute: LuiButtonTypeAttribute attributeName) equals: 'submit'.
+	self assert: componentAttributes buttonType equals: 'submit'.
+	^ componentAttributes buttonTypeAttribute
 ]
 
 { #category : 'examples' }
@@ -179,7 +179,7 @@ LuiComponentAttributeExamples >> xxxxLabelProperty [
 	self assert: properties label equals: 'abcdef'.
 	self assert: properties labelAttribute cachedValue equals: 'abcdef'.
 	properties label: 'Xxxx'.
-	self assert: properties labelAttribute cachedValue isNil.
+	self assert: properties labelAttribute basicCachedValue isNil.
 	properties label.
 	self assert: properties labelAttribute cachedValue equals: 'Xxxx'.
 	self assert: properties hasLabelAttribute.
@@ -195,7 +195,7 @@ LuiComponentAttributeExamples >> xxxxTitleProperty [
 	self assert: properties title equals: 'Test'.
 	self assert: properties titleAttribute cachedValue equals: 'Test'.
 	properties title: 'Xxxx'.
-	self assert: properties titleAttribute cachedValue isNil.
+	self assert: properties titleAttribute basicCachedValue isNil.
 	properties title.
 	self assert: properties titleAttribute cachedValue equals: 'Xxxx'.
 	self assert: properties hasTitleAttribute.

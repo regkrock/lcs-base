@@ -83,6 +83,15 @@ LuiNavigationMenuDefinition >> addDefinition: aMenuComponentDefintion [
 	self menuComponentDefintions add: aMenuComponentDefintion
 ]
 
+{ #category : 'components' }
+LuiNavigationMenuDefinition >> buildNavigationMenuIn: aLuiComponent [
+	self menuComponentDefintions do: [ :eachComponent | 
+		| menuComponent |
+		menuComponent := eachComponent componentClass named: eachComponent componentName.
+		aLuiComponent addComponent: menuComponent.
+		menuComponent buildFrom: eachComponent]
+]
+
 { #category : 'accessing' }
 LuiNavigationMenuDefinition >> componentName [
 	^ componentName
