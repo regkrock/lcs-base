@@ -10,19 +10,53 @@ Class {
 	#tag : 'Menus'
 }
 
-{ #category : 'components - adding' }
-LuiMenuItem >> addImageComponent [
-	^ self addFirstComponent: (LuiImage named: 'image')
+{ #category : 'components' }
+LuiMenuItem >> _anchorComponent [
+	^ self componentNamed: 'anchor'
+]
+
+{ #category : 'components' }
+LuiMenuItem >> _buttonComponent [
+	^ self componentNamed: 'button'
 ]
 
 { #category : 'components - adding' }
-LuiMenuItem >> addSpanComponent [
-	^ self addComponent: (LuiSpan named: 'span')
+LuiMenuItem >> addAnchorComponent [
+	^ self addComponent: (LuiAnchor named: 'anchor')
 ]
 
-{ #category : 'rendering' }
-LuiMenuItem >> anchorClicked: aString [
-	Transcript show: 'Clicked ' , aString; cr 
+{ #category : 'components - adding' }
+LuiMenuItem >> addButtonComponent [
+	^ self addComponent: (LuiPushButton named: 'button')
+]
+
+{ #category : 'components' }
+LuiMenuItem >> anchorComponent [
+	self hasAnchorComponent ifFalse: [ self addAnchorComponent ].
+	^ self _anchorComponent
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> anchorCssClass: aString [
+	self anchorComponent cssClass: aString
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> anchorHref [
+	self hasButtonComponent ifTrue: [ ^ nil ].
+	^ self anchorComponent url
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> anchorHref: aString [
+	self ensureNoButtonComponent.
+	self anchorComponent url: aString
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> anchorLabel: aString [
+	self ensureNoButtonComponent.
+	self buttonComponent label: aString
 ]
 
 { #category : 'building' }
@@ -33,35 +67,124 @@ LuiMenuItem >> buildFrom: aMenuItemDefinition [
 		title: aMenuItemDefinition title
 ]
 
+{ #category : 'components' }
+LuiMenuItem >> buttonComponent [
+	self hasButtonComponent ifFalse: [ self addButtonComponent ].
+	^ self _buttonComponent
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> buttonCssClass: aString [
+	self buttonComponent cssClass: aString
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> buttonLabel: aString [
+	self ensureNoAnchorComponent.
+	self buttonComponent label: aString
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> buttonOnClick [
+	self hasAnchorComponent ifTrue: [ ^ nil ].
+	^ self buttonComponent onClick
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> buttonOnClick: aString [
+	self ensureNoAnchorComponent.
+	self buttonComponent onClick: aString
+]
+
+{ #category : 'components' }
+LuiMenuItem >> buttonOrAnchorComponent [
+	self hasButtonComponent ifTrue: [ ^ self buttonComponent ].
+	self hasAnchorComponent ifTrue: [ ^ self anchorComponent ].
+	^ nil
+]
+
 { #category : 'defaults' }
 LuiMenuItem >> defaultCssClasses [
-	^ OrderedCollection with: 'mainMenuItem'
+	^ OrderedCollection with: 'menuItem'
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> ensureNoAnchorComponent [
+	self hasAnchorComponent
+		ifTrue: [ LcsError
+				signal: 'An anchor component already exists. A menu item can only have one or the other' ]
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> ensureNoButtonComponent [
+	self hasButtonComponent
+		ifTrue: [ LcsError
+				signal: 'An button component already exists. A menu item can only have one or the other' ]
+]
+
+{ #category : 'testing' }
+LuiMenuItem >> hasAnchorComponent [
+	^ ( self componentNamed: 'anchor') notNil
+]
+
+{ #category : 'testing' }
+LuiMenuItem >> hasButtonComponent [
+	^ ( self componentNamed: 'button') notNil
 ]
 
 { #category : 'testing' }
 LuiMenuItem >> hasImageComponent [
-	^ (self componentNamed: 'image') notNil
+	^ self buttonOrAnchorComponent hasImageComponent
 ]
 
 { #category : 'testing' }
 LuiMenuItem >> hasSpanComponent [
-	^ ( self componentNamed: 'span') notNil
+	^ self buttonOrAnchorComponent hasSpanComponent
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> href [
+	^ self anchorHref
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> href: aString [
+	self anchorHref: aString
 ]
 
 { #category : 'components' }
 LuiMenuItem >> imageComponent [
-	self hasImageComponent ifFalse: [ self addImageComponent ].
-	^ self componentNamed: 'image'
+	self buttonOrAnchorComponent imageComponent
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> imageCssClass: aString [
+	self buttonOrAnchorComponent imageCssClass: aString
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> imageUrl: aString [
+	self buttonOrAnchorComponent imageUrl: aString
 ]
 
 { #category : 'attributes' }
 LuiMenuItem >> label [
-	^ self spanComponent text
+	^ self buttonOrAnchorComponent spanComponent text
 ]
 
 { #category : 'attributes' }
 LuiMenuItem >> label: aString [
-	self spanComponent text: aString
+	self buttonOrAnchorComponent spanComponent text: aString
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> onClick [
+	^ self buttonOnClick
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> onClick: aString [
+	self buttonOnClick: aString
 ]
 
 { #category : 'rendering' }
@@ -73,8 +196,12 @@ LuiMenuItem >> renderComponentOn: html [
 
 { #category : 'components' }
 LuiMenuItem >> spanComponent [
-	self hasSpanComponent ifFalse: [ self addSpanComponent ].
-	^ self componentNamed: 'span'
+	^ self buttonOrAnchorComponent spanComponent
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> spanCssClass: aString [
+	self spanComponent cssClass: aString
 ]
 
 { #category : 'accessing' }
@@ -85,4 +212,14 @@ LuiMenuItem >> targetClass [
 { #category : 'accessing' }
 LuiMenuItem >> targetClass: anObject [
 	targetClass := anObject
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> text [
+	^ self buttonOrAnchorComponent text
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> text: aString [
+	self buttonOrAnchorComponent text: aString
 ]

@@ -448,7 +448,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2026-05-14T10:16:41.68565-04:00"
+												"dateAndTimeString" : "2026-05-14T10:16:55.373056-04:00"
 											}
 										},
 										"uid" : {
@@ -458,7 +458,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "[["
+										"string" : "[[CSS Details]]"
 									}
 								]
 							},
@@ -715,6 +715,43 @@
 								"__type" : "textStyle"
 							},
 							"string" : "[[Application Environment]]"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-05-21T15:46:36.983893-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-05-21T15:46:37.22522-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "hu8GZjorQHuV8z9bC1lg5A=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "[["
 						},
 						{
 							"__type" : "textSnippet",

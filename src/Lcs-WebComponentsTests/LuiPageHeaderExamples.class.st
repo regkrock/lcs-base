@@ -6,6 +6,18 @@ Class {
 	#tag : 'Examples'
 }
 
+{ #category : 'as yet unclassified' }
+LuiPageHeaderExamples >> exampleHeader [
+	<gtExample>
+	| header |
+	header := self newComponent.
+	header 
+		cssClass: 'topHeader';
+		addComponent: LuiNavigationBarExamples new exampleNavigationBar;
+		addComponent: LuiSearchAndSocialMediaBar newSearchAndLinks.
+	^ header
+]
+
 { #category : 'examples' }
 LuiPageHeaderExamples >> htmlForNewComponent [
 	<gtExample>

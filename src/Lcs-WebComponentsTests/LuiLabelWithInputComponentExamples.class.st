@@ -18,7 +18,7 @@ LuiLabelWithInputComponentExamples >> htmlForLastNameInputComponent [
 LuiLabelWithInputComponentExamples >> htmlForLastNameLabel [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<label id="218106578" name="label" data-StClass="LuiModelLabel" for="lastName">Last Name</label>'.
+	expectedHtml := '<label id="90515960" name="label" data-StClass="LuiModelLabel" for="lastName">Last Name</label>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent labelComponent equals: expectedHtml
 ]
 
@@ -26,7 +26,7 @@ LuiLabelWithInputComponentExamples >> htmlForLastNameLabel [
 LuiLabelWithInputComponentExamples >> htmlForLastNameWithInLabelAndInputComponent [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<div name="lastName" data-StClass="LuiLabelWithInputComponent"><label id="218106578" name="label" data-StClass="LuiModelLabel" for="lastName">Last Name</label><input id="185393756" name="input" data-StClass="LuiTextInput" value="Smith" type="text"/></div>'.
+	expectedHtml := '<div name="lastName" data-StClass="LuiLabelWithInputComponent"><label id="90515960" name="label" data-StClass="LuiModelLabel" for="lastName">Last Name</label><input id="185393756" name="input" data-StClass="LuiTextInput" value="Smith" type="text"/></div>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent equals: expectedHtml
 ]
 

@@ -31,7 +31,7 @@ LuiMainPageExamples >> mainPage [
 	
 	navigationComponent := navBarComponent navigationComponent.
 	self assert: navigationComponent parentComponent equals: navBarComponent.
-	self assert: (navigationComponent isKindOf: LuiNavigationMenu).
+	self assert: (navigationComponent isKindOf: LuiMenu).
 
 	applicationAreaComponent := mainPageComponent applicationAreaComponent.
 	self assert: applicationAreaComponent parentComponent equals: mainPageComponent.

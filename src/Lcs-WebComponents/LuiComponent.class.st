@@ -36,6 +36,11 @@ LuiComponent >> _componentNamed: aTargetNames [
 	^ targetComponent _componentNamed: (aTargetNames copyFrom: 2 to: aTargetNames size)
 ]
 
+{ #category : 'rendering' }
+LuiComponent >> addAttributesToTag: tag [
+	self attributes addAttributesToTag: tag
+]
+
 { #category : 'private' }
 LuiComponent >> addClassNameTo: names [
 	names addFirst: self class name.
@@ -44,9 +49,7 @@ LuiComponent >> addClassNameTo: names [
 
 { #category : 'components' }
 LuiComponent >> addComponent: aComponent [
-	self addToComponents: aComponent.
-	self componentKeys add: aComponent componentName.
-	^ aComponent
+	^ self addToComponents: aComponent
 ]
 
 { #category : 'components' }
@@ -89,7 +92,7 @@ LuiComponent >> addFirstComponent: aComponent [
 	^component
 ]
 
-{ #category : 'properties' }
+{ #category : 'components' }
 LuiComponent >> addLabelComponent [
 	^ self addComponent: (LuiLabel named: 'label')
 ]
@@ -98,12 +101,14 @@ LuiComponent >> addLabelComponent [
 LuiComponent >> addToComponents: aComponent [ 
 	aComponent parentComponent: self.
 	self components at: aComponent componentName put: aComponent.
-	aComponent assignId
+	self componentKeys add: aComponent componentName.
+	self componentsDo: [ :each | each assignId ].
+	^ aComponent
 ]
 
 { #category : 'components' }
 LuiComponent >> assignId [
-	self componentId: self fullComponentName hash asString
+	self componentId: self generatedId
 ]
 
 { #category : 'accessing' }
@@ -129,6 +134,11 @@ LuiComponent >> beVisible [
 { #category : 'components' }
 LuiComponent >> componentAtIndex: anInteger [
 	^ self orderedComponents at: anInteger
+]
+
+{ #category : 'initialize' }
+LuiComponent >> componentAttributesClass [
+	^ LuiComponentAttributes
 ]
 
 { #category : 'accessing' }
@@ -193,9 +203,16 @@ LuiComponent >> components: anObject [
 	components := anObject
 ]
 
+{ #category : 'utilities' }
+LuiComponent >> componentsDo: aBlock [
+	self orderedComponents do: [ :eachComponent | 
+		aBlock value: eachComponent.
+		eachComponent componentsDo: aBlock ]
+]
+
 { #category : 'initialize' }
 LuiComponent >> cssClass: aClassName [ 
-	self attributes addCssClass: aClassName
+	self attributes cssClass: aClassName
 ]
 
 { #category : 'properties' }
@@ -262,6 +279,11 @@ LuiComponent >> fullComponentNameWithId [
 	^ self fullComponentName , '(' , self componentId , ')'
 ]
 
+{ #category : 'components' }
+LuiComponent >> generatedId [
+	^ self fullComponentName hash asString
+]
+
 { #category : 'gt - views' }
 LuiComponent >> gtComponentsFor: aView [
 	<gtView>
@@ -274,7 +296,8 @@ LuiComponent >> gtComponentsFor: aView [
 		children: #orderedComponents;
 		column: 'Component Class' text: [ :aComponent | aComponent class name ];
 		column: 'Component Name' text: [ :aComponent | aComponent componentName displayString ];
-		column: 'ID' text: [ :aComponent | aComponent componentId displayString ]
+		column: 'ID' text: [ :aComponent | aComponent componentId displayString ];
+		column: 'CSS Class(es)' text: [ :aComponent | aComponent cssClassesString displayString ]
 ]
 
 { #category : 'printing' }
@@ -374,9 +397,9 @@ LuiComponent >> initialize [
 	super initialize.
 	self components: Dictionary new.
 	self componentKeys: OrderedCollection new.
-	self attributes: (LuiComponentAttributes on: self).
+	self attributes: (self componentAttributesClass on: self).
 	self componentDecorations: (LuiComponentDecorations on: self).
-	self initializeCssClasses.
+	self initializeCssClasses
 ]
 
 { #category : 'initialize' }
@@ -388,13 +411,6 @@ LuiComponent >> initializeCssClasses [
 { #category : 'initialize' }
 LuiComponent >> initializeNamed: aName [
 	self componentName: aName
-]
-
-{ #category : 'initialize' }
-LuiComponent >> initializeNamed: aName on: aWebComponent [
-	self 
-		componentName: aName;
-		parentComponent: aWebComponent
 ]
 
 { #category : 'testing' }
@@ -492,6 +508,11 @@ LuiComponent >> prettyPrintedHtml: html [
 	^ visitor contents
 ]
 
+{ #category : 'initialize' }
+LuiComponent >> removeAllCssClasses [
+	self attributes removeAllCssClasses
+]
+
 { #category : 'components' }
 LuiComponent >> removeComponent: aComponent [
 	self componentKeys remove: aComponent componentName ifAbsent: [].
@@ -534,11 +555,18 @@ LuiComponent >> renderDetailsOn: html [
 { #category : 'gt - views' }
 LuiComponent >> renderExample: aBlock [
 	| html |
-	html := WAHtmlCanvas builder
+	html := [ WAHtmlCanvas builder
 		fullDocument: false;
 		rootBlock: aBlock;
-		render: aBlock.
+		render: aBlock ] on: Error do: [ :s | s return: 'Cannot render form because of callbacks' ].
 	^ self prettyPrintedHtml: html
+]
+
+{ #category : 'rendering' }
+LuiComponent >> renderOn: html tag: aTag [
+	self addAttributesToTag: aTag.
+	aTag
+		with: [ self renderDetailsOn: html ]
 ]
 
 { #category : 'rendering' }
@@ -551,12 +579,12 @@ LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
 	self cssClassesAttribute replaceExistingCssClassesWithCssClass: aString
 ]
 
-{ #category : 'properties' }
+{ #category : 'decorations' }
 LuiComponent >> text [
 	^ self componentDecorations text
 ]
 
-{ #category : 'properties' }
+{ #category : 'decorations' }
 LuiComponent >> text: aString [
 	self componentDecorations text: aString
 ]
@@ -584,4 +612,9 @@ LuiComponent >> titleBlock: aBlock [
 { #category : 'logging' }
 LuiComponent >> traceRenderMessage [
 	^ 'rendering... ' , self class name asString , '     ' , self componentName asString
+]
+
+{ #category : 'utilities' }
+LuiComponent >> verifyComponentIds [
+	self componentsDo: [ :each | self assert: each componentId equals: each generatedId ]
 ]

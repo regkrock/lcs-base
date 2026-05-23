@@ -17,7 +17,7 @@ Tip: Always add the ""<"" label "">"" tag for best accessibility practices!
 "
 Class {
 	#name : 'LuiTextArea',
-	#superclass : 'LuiInputComponent',
+	#superclass : 'LuiFormInputComponent',
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'

@@ -18,7 +18,7 @@ LcsSubmenuDefinition >> addDefinition: aMenuComponentDefintion [
 
 { #category : 'constant' }
 LcsSubmenuDefinition >> componentClass [
-	^ LuiSubmenu
+	^ LuiMenu
 ]
 
 { #category : 'asking' }

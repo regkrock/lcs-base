@@ -6,27 +6,15 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'constant' }
-LuiApplicationRoot class >> browserTabName [
-	^ 'LCS Application'
-]
-
 { #category : 'initialize' }
 LuiApplicationRoot class >> initialize [
 	(WAAdmin register: self asApplicationAt: 'lcsApplication')
 		sessionClass: WAExpirySession
 ]
 
-{ #category : 'instance creation' }
-LuiApplicationRoot class >> newStandardLayout [
-	^ self new
-		initializeStandardLayout;
-		yourself
-]
-
 { #category : 'constants' }
 LuiApplicationRoot >> applicationTitle [
-	^ 'SEAS Monmouth'
+	^ 'Lcs App'
 ]
 
 { #category : 'initialize' }
@@ -35,11 +23,11 @@ LuiApplicationRoot >> initialize [
 	"self initializeStandardLayout"
 ]
 
-{ #category : 'instance creation' }
+{ #category : 'initialize' }
 LuiApplicationRoot >> initializeStandardLayout [
 	self addComponent: LuiPageHeader new.
 	(self componentNamed: 'header')
-		addComponent: LuiImage newFavicon.
+		addComponent: LuiImage seasMonmouthFavicon.
 	(self componentNamed: 'header')
 		addComponent: (LuiNavigationBar named: 'navbar').
 	((self componentNamed: 'header') componentNamed: 'navbar')
@@ -47,13 +35,7 @@ LuiApplicationRoot >> initializeStandardLayout [
 ]
 
 { #category : 'updating' }
-LuiApplicationRoot >> updateRoot: aRoot [
-	super updateRoot: aRoot.
-	aRoot beHtml5.
-	aRoot meta
-		name: 'viewport';
-		content: 'width=device-width, initial-scale=1.0'.
-	aRoot title: self applicationTitle.
+LuiApplicationRoot >> updateFilesInRoot: aRoot [ 
 	aRoot stylesheet url: LcsFileLibrary / #resetCss.
 	aRoot stylesheet url: LcsFileLibrary / #mainCss.
 	aRoot link beShortcutIcon url: LcsFileLibrary / #faviconPng

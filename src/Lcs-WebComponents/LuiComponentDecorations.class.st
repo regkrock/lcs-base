@@ -166,6 +166,11 @@ LuiComponentDecorations >> hasNoDecorations [
 ]
 
 { #category : 'decoration' }
+LuiComponentDecorations >> hasNoTextDecoration [
+	^ self hasTextDecoration not
+]
+
+{ #category : 'decoration' }
 LuiComponentDecorations >> hasTextDecoration [
 	^ self hasDecorationNamed: LuiTextDecoration decorationName
 ]

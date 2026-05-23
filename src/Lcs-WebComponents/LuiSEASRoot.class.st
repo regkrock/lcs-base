@@ -6,11 +6,6 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'constant' }
-LuiSEASRoot class >> browserTabName [
-	^ 'SEAS'
-]
-
 { #category : 'initialize' }
 LuiSEASRoot class >> initialize [
 	(WAAdmin register: self asApplicationAt: 'seas')
@@ -30,25 +25,58 @@ LuiSEASRoot >> initialize [
 
 { #category : 'instance creation' }
 LuiSEASRoot >> initializeStandardLayout [
-	self addComponent: LuiPageHeader new.
-	(self componentNamed: 'header')
-		addComponent: LuiLogoImage newFavicon.
-	"(self componentNamed: 'header')
-		addComponent: (LuiNavigationBar named: 'navbar').
-	((self componentNamed: 'header') componentNamed: 'navbar')
-		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions."
-	(self componentNamed: 'header')
-		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new
+	| navBar navigationMenu homeMenuItem contactMenuItem aboutMenuItem header submenu contactMenuItemB contactSubMenuSubmenu |
+	header := LuiPageHeader new.
+	self addComponent: header.
+	navBar := LuiNavigationBar named: 'navBar'.
+	header addComponent: navBar.
+	navBar addComponent: LuiImage seasMonmouthFavicon.
+	navigationMenu := LuiMenu newMainMenu.
+	navBar addComponent: navigationMenu.
+	homeMenuItem := (LuiMenuItem named: 'homeMenuItem')
+						label: 'Home';
+						title: 'Home Menu Item';
+						yourself.
+	contactMenuItem := (LuiMenuItem named: 'contactMenuItem')
+						label: 'Contact';
+						title: 'Contact Menu Item';
+						yourself.
+	aboutMenuItem := (LuiMenuItem named: 'aboutMenuItem')
+						label: 'About';
+						title: 'About Menu Item';
+						yourself.
+	navigationMenu
+		addComponent: homeMenuItem;
+		addComponent: contactMenuItem;
+		addComponent: aboutMenuItem.
+	
+	submenu := (LuiMenu newSubmenuNamed: 'contactSubMenu')
+					cssClass: 'submenu';
+					yourself.
+	contactMenuItem addComponent: submenu.
+	submenu
+		addComponent:
+			((LuiMenuItem named: 'contactMenuItemA')
+				label: 'Contact A');
+		addComponent: (
+			contactMenuItemB := (LuiMenuItem named: 'contactMenuItemB')
+				label: 'Contact B');
+		addComponent: (
+			(LuiMenuItem named: 'contactMenuItemC')
+				label: 'Contact C').
+				
+	contactMenuItemB  addComponent: (contactSubMenuSubmenu := LuiMenu newSubmenuNamed: 'contactSubMenuSubmenu').
+	contactSubMenuSubmenu
+		addComponent: ((LuiMenuItem named: 'contactMenuItemA_A')
+				label: 'Contact A Item A');
+		addComponent: (
+			contactMenuItemB := (LuiMenuItem named: 'contactMenuItemB_B')
+				label: 'Contact B Item B')
+
 ]
 
 { #category : 'updating' }
-LuiSEASRoot >> updateRoot: aRoot [
-	super updateRoot: aRoot.
-	aRoot beHtml5.
-	aRoot meta
-		name: 'viewport';
-		content: 'width=device-width, initial-scale=1.0'.
-	aRoot title: self applicationTitle.
+LuiSEASRoot >> updateFilesInRoot: aRoot [ 
 	aRoot stylesheet url: LcsFileLibrary / #resetCss.
 	aRoot stylesheet url: LcsFileLibrary / #mainCss.
 	aRoot link beShortcutIcon url: LcsFileLibrary / #faviconPng

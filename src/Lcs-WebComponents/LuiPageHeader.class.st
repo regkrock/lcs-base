@@ -12,7 +12,7 @@ Class {
 { #category : 'defaults' }
 LuiPageHeader >> addNavigationMenuBuiltFrom: aNavigationMenuDefinition [
 	| component |
-	component := LuiNavigationMenu named: 'navigation'.
+	component := LuiMenu newMainMenuNamed: 'navigation'.
 	self addComponent: component.
 	component addNavigationMenuBuiltFrom: (LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions).
 	^ component

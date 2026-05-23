@@ -5,6 +5,43 @@
 		"__type" : "snippets",
 		"items" : [
 			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-17T19:46:04.167616-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-17T20:15:47.089284-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4JCSDgcbSIydNx+BF49foQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ".header-maim\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t.pageHeader\n\tnav\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t.navBar\n\t\tlogo\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t.logo\n\t\t\timg\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t.logoImage\n\t\t\n\t\tul\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t.mainMenuBar\n\t\t\tli\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\ta\t(span)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t.mainMenuItem"
+			},
+			{
 				"__type" : "pharoSnippet",
 				"children" : {
 					"__type" : "snippets",

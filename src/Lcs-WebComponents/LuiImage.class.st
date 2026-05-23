@@ -6,6 +6,47 @@ Class {
 	#tag : 'Buttons'
 }
 
+{ #category : 'instance creation' }
+LuiImage class >> newFacebookIcon [
+	^ self new
+		componentName: 'favicon';
+		removeAllCssClasses;
+		title: 'Facebook';
+		altText: 'Link to Seas Monmouth Facebook Page';
+		url: LcsFileLibrary /#facebook32Png;
+		yourself
+]
+
+{ #category : 'instance creation' }
+LuiImage class >> newMeetupIcon [
+	^ self new
+		removeAllCssClasses;
+		title: 'Meetup';
+		altText: 'Link to Seas Monmouth Meetup Page';
+		url: LcsFileLibrary /#meetup32Png;
+		yourself
+]
+
+{ #category : 'instance creation' }
+LuiImage class >> newMobileMenuIcon [
+	^ self new
+		componentName: 'hamburger';
+		altText: 'Mobile menu button';
+		url: LcsFileLibrary /#hamburgerMenuSvg;
+		yourself
+]
+
+{ #category : 'instance creation' }
+LuiImage class >> seasMonmouthFavicon [
+	^ self new
+		componentName: 'favicon';
+		cssClass: 'logoImage';
+		title: 'Seas Monmouth';
+		altText: 'Seas logo';
+		url: LcsFileLibrary /#faviconPng;
+		yourself
+]
+
 { #category : 'properties' }
 LuiImage >> altText [
 	^ self attributes altText
@@ -20,7 +61,7 @@ LuiImage >> altText: aString [
 LuiImage >> renderComponentOn: html [
 	html image
 		addCommonAttributes: self;
-		with: [ self renderDetailsOn: html ]
+		with: [ self renderDetailsOn: html]
 ]
 
 { #category : 'properties' }

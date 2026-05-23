@@ -21,7 +21,7 @@ LuiCssClassesAttribute >> addCssClass: aString [
 		self clearCache. ]
 ]
 
-{ #category : 'css classes\\' }
+{ #category : 'css classes' }
 LuiCssClassesAttribute >> addCssClasses: anOrderedCollection [
 	anOrderedCollection do: [ :eachCssClass |
 		self addCssClass: eachCssClass ]
@@ -29,7 +29,7 @@ LuiCssClassesAttribute >> addCssClasses: anOrderedCollection [
 
 { #category : 'accessing' }
 LuiCssClassesAttribute >> cachedValue [
-	^ cachedValue ifNil: [ cachedValue := self cssClassesString ]
+	^ cachedValue ifNil: [ cachedValue := self cssClassesString ifEmpty: [ nil ] ]
 ]
 
 { #category : 'css classes' }
@@ -81,7 +81,7 @@ LuiCssClassesAttribute >> removeCssClasses: aCollection [
 	aCollection copy do: [ :eachClass | self removeCssClass: eachClass ]
 ]
 
-{ #category : 'css classes\\' }
+{ #category : 'css classes' }
 LuiCssClassesAttribute >> replaceExistingCssClassesWithCssClass: aString [
 	self removeAllCssClasses.
 	self addCssClass: aString

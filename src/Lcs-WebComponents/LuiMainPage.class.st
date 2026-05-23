@@ -48,9 +48,9 @@ LuiMainPage >> initialize [
 	self addComponent: (LuiPageHeader named: self headerComponentName).
 	self headerComponent addComponent: (LuiPageTitle named: self titleComponentName).
 	self addComponent: (LuiNavigationBar named: self navBarComponentName).
-	self navBarComponent addComponent: (LuiNavigationMenu named: self navigationComponentName).
+	self navBarComponent addComponent: (LuiMenu newMainMenuNamed: self navigationComponentName).
 	self addComponent: (LuiHomeArea named: self applicationAreaComponentName).
-	self swappedApplicationAreas: (LuiSwappedApplicationAreas on: self)
+	self swappedApplicationAreas: (LuiSwappedApplicationAreas named: 'swapArea')
 ]
 
 { #category : 'components' }

@@ -13,9 +13,22 @@ LuiAnchorExamples >> newComponent [
 	component := LuiAnchor named: 'anchor'.
 	self assert: component components isEmpty.
 	self assert: component parentComponent isNil.
-	self assert: component text isEmpty.
-	self deny: component hasTextComponent.
+	self deny: component hasTextDecoration.
 	self assertRendered: component equals: '<a name="anchor" data-StClass="LuiAnchor"></a>'.
+	^ component
+]
+
+{ #category : 'examples' }
+LuiAnchorExamples >> seasWebsiteImageLink [
+	<gtExample>
+	| component |
+	component := self newComponent.
+	component url: 'https://www.sailseas.com/Monmouth/'.
+	component addComponent: (
+		(LuiImage named: 'image')
+			url: LcsFileLibrary / #favicon;
+			yourself).
+	self assertRendered: component equals: '<a name="anchor" data-StClass="LuiAnchor" href="https://www.sailseas.com/Monmouth/"><img alt="" id="260556177" name="image" data-StClass="LuiImage" src="/files/LcsFileLibrary/favicon"/></a>'.
 	^ component
 ]
 
@@ -25,8 +38,8 @@ LuiAnchorExamples >> seasWebsiteLink [
 	| component |
 	component := self newComponent.
 	component text: 'SEAS'.
+	self assert: component hasTextDecoration.
 	component url: 'https://www.sailseas.com/Monmouth/'.
-	self deny: component hasLabelComponent.
 	self assert: component text equals: 'SEAS'.
 	self assertRendered: component equals: '<a name="anchor" data-StClass="LuiAnchor" href="https://www.sailseas.com/Monmouth/">SEAS</a>'.
 	^ component

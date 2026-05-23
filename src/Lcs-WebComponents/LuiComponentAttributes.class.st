@@ -18,6 +18,19 @@ LuiComponentAttributes class >> on: aComponent [
 ]
 
 { #category : 'rendering' }
+LuiComponentAttributes >> _addAttributesToTag: aTag [
+	aTag 
+		id: self parentComponent componentId;
+		name: self parentComponent componentName;
+		dataStClass: self parentComponent componentName.
+	self attributes do: [ :eachaAtributes | 
+			eachaAtributes cachedValue ifNotNil: [ :object |
+				aTag
+					at: eachaAtributes tagAttributeSetSelector
+					put: object ] ]
+]
+
+{ #category : 'rendering' }
 LuiComponentAttributes >> addAttributesToTag: aTag [
 	aTag 
 		id: self parentComponent componentId;
@@ -347,6 +360,11 @@ LuiComponentAttributes >> hasNoAttributes [
 ]
 
 { #category : 'properties - testing' }
+LuiComponentAttributes >> hasOnClickAttribute [
+	^ self hasAttribute: LuiOnClickAttribute attributeName
+]
+
+{ #category : 'properties - testing' }
 LuiComponentAttributes >> hasRenderingAttribute [
 	^ self hasAttribute: LuiRenderingAttribute attributeName
 ]
@@ -490,6 +508,21 @@ LuiComponentAttributes >> nameAttribute [
 	^ self lazyInitializedAttribute: LuiNameAttribute
 ]
 
+{ #category : 'properties - delegated' }
+LuiComponentAttributes >> onClick [
+	^ self onClickAttribute onClick
+]
+
+{ #category : 'properties - delegated' }
+LuiComponentAttributes >> onClick: aString [
+	^ self onClickAttribute onClick: aString
+]
+
+{ #category : 'properties - delegated' }
+LuiComponentAttributes >> onClickAttribute [
+	^ self lazyInitializedAttribute: LuiOnClickAttribute
+]
+
 { #category : 'accessing' }
 LuiComponentAttributes >> parentComponent [
 	^ parentComponent
@@ -498,6 +531,11 @@ LuiComponentAttributes >> parentComponent [
 { #category : 'accessing' }
 LuiComponentAttributes >> parentComponent: anObject [
 	parentComponent := anObject
+]
+
+{ #category : 'properties - defined' }
+LuiComponentAttributes >> placeholderAttribute [
+	^ self lazyInitializedAttribute: LuiPlaceholderAttribute
 ]
 
 { #category : 'copying' }

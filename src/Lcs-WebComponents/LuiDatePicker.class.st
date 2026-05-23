@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiDatePicker',
-	#superclass : 'LuiInputComponent',
+	#superclass : 'LuiFormInputComponent',
 	#instVars : [
 		'date',
 		'fromStringConverter',

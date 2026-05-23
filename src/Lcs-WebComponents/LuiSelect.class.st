@@ -15,7 +15,7 @@
 "
 Class {
 	#name : 'LuiSelect',
-	#superclass : 'LuiInputComponent',
+	#superclass : 'LuiFormInputComponent',
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'

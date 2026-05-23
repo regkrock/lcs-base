@@ -7,19 +7,31 @@ Class {
 }
 
 { #category : 'examples' }
-LuiNavigationBarExamples >> navBarWithNavigationMenuBuiltFromNavigationMenuDefinition [
+LuiNavigationBarExamples >> exampleNavigationBar [
 	<gtExample>
+	| navBar |
+	navBar := self newNavBar.
+	navBar componentName: 'navBar'.
+	navBar cssClass: 'navBar'.
+	navBar addComponent: LuiAnchor newSeasLogo.
+	navBar addComponent: LuiMenuExamples new exampleNavigationMenu.
+	^ navBar
+]
+
+{ #category : 'examples' }
+LuiNavigationBarExamples >> navBarWithNavigationMenuBuiltFromNavigationMenuDefinition [
+	"<gtExample>
 	| submenu subsubmenu navBar navigationMenu |
 	navBar := self newNavBar.
 	navigationMenu := navBar addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWith3Submenus.
 
 	self assert: navigationMenu components size = 3.
 	submenu := navigationMenu componentAtIndex: 1.
-	self assert: submenu componentName = 'menu1'.
-	self assert: submenu label = 'Menu 1'.
-	self assert: submenu cssClassesString equals: 'mainMenuItem'.
-	self assert: submenu components size = 3.
-	self assert: (submenu componentAtIndex: 1) componentName equals: 'menu1Item1'.
+	self assert: submenu componentName = 'home'.
+	self assert: submenu label = 'Home'.
+	self assert: submenu cssClassesString equals: 'menuItem'.
+	self assert: submenu components size = 1.
+	self assert: (submenu componentAtIndex: 1) componentName equals: 'span'.
 	self
 		assert: (submenu componentAtIndex: 1) label
 		equals: 'Menu 1 Item 1'.
@@ -40,7 +52,7 @@ LuiNavigationBarExamples >> navBarWithNavigationMenuBuiltFromNavigationMenuDefin
 	subsubmenu := submenu componentAtIndex: 2.
 	self assert: subsubmenu componentName = 'menu3Item2'.
 	self assert: subsubmenu label = 'Menu 3 Item 2'.
-	^ navBar
+	^ navBar"
 ]
 
 { #category : 'examples' }
@@ -54,11 +66,11 @@ LuiNavigationBarExamples >> navBarWithSimpleNavigationMenu [
 	menuItem := navigationMenu componentAtIndex: 1.
 	self assert: menuItem componentName = 'home'.
 	self assert: menuItem label = 'Home'.
-	self assert: menuItem cssClassesString = 'mainMenuItem'.
+	self assert: menuItem cssClassesString = 'menuItem'.
 	self assert: menuItem components size = 1.
 	menuItemButton := menuItem components values first.
-	self assert: menuItemButton componentName = 'button'.
-	self assert: menuItemButton label = 'Home'.
+	self assert: menuItemButton componentName = 'span'.
+	self assert: menuItemButton text = 'Home'.
 	^ navigationMenu
 ]
 
@@ -72,6 +84,7 @@ LuiNavigationBarExamples >> newNavBar [
 	self assert: component componentName equals: 'navBar'.
 	self assert: component parentComponent isNil.
 	self assert: component domainObject isNil.
-	self assert: component hasNoAttributes.
+	self assert: component cssClassesString equals: 'navBar'.
+	self assert: component hasAttributes.
 	^ component
 ]
