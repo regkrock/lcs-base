@@ -36,7 +36,7 @@ LuiComponentAttributes >> addAttributesToTag: aTag [
 		id: self parentComponent componentId;
 		dataName: self parentComponent componentName;
 		dataStClass: self parentComponent.
-	(aTag respondsTo: #name:) ifTrue: [
+	((aTag respondsTo: #name:) and: [ (aTag isKindOf: WAAnchorTag) not ]) ifTrue: [
 		aTag name: self parentComponent componentName ].
 	self attributes do: [ :eachaAtributes | 
 			eachaAtributes cachedValue ifNotNil: [ :object |

@@ -74,7 +74,7 @@ LuiMenuExamples >> exampleNavigationMenu [
 						title: 'Contact Menu Item';
 						yourself.
 	aboutMenuItem := (LuiMenuItem named: 'aboutMenuItem')
-						onClick: 'console.log("clicked ")';
+						onClick: 'console.log("clicked About")';
 						callback: [ Transcript cr; show: 'aboutMenuItem clicked' ];
 						buttonLabel: 'About';
 						title: 'About Menu Item';
