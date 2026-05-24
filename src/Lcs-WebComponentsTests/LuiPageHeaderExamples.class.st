@@ -21,7 +21,7 @@ LuiPageHeaderExamples >> exampleHeader [
 { #category : 'examples' }
 LuiPageHeaderExamples >> htmlForNewComponent [
 	<gtExample>
-	^ self assertRenderNewComponentEquals:'<header name="pageHeader" data-StClass="LuiPageHeader" class="pageHeader"></header>'
+	^ self assertRenderNewComponentEquals:'<header data-name="pageHeader" data-StClass="LuiPageHeader" class="pageHeader"></header>'
 ]
 
 { #category : 'as yet unclassified' }

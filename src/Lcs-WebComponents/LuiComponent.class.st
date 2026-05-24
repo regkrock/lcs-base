@@ -131,6 +131,11 @@ LuiComponent >> beVisible [
 	^ self attributes beVisible
 ]
 
+{ #category : 'hooks' }
+LuiComponent >> children [
+	^ self orderedComponents
+]
+
 { #category : 'components' }
 LuiComponent >> componentAtIndex: anInteger [
 	^ self orderedComponents at: anInteger
@@ -577,6 +582,11 @@ LuiComponent >> renderSubcomponentsOn: html [
 { #category : 'properties - delegated' }
 LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
 	self cssClassesAttribute replaceExistingCssClassesWithCssClass: aString
+]
+
+{ #category : 'hooks' }
+LuiComponent >> states [
+	^ self orderedComponents
 ]
 
 { #category : 'decorations' }

@@ -11,7 +11,7 @@ LuiSpanExample >> newComponent [
 	<gtExample>
 	| component |
 	component := LuiSpan named: 'mySpan'.
-	self assertRendered: component equals: '<span name="mySpan" data-StClass="LuiSpan"></span>'.
+	self assertRendered: component equals: '<span data-name="mySpan" data-StClass="LuiSpan"></span>'.
 	self deny: component hasTextDecoration.
 	^ component
 ]
@@ -26,7 +26,7 @@ LuiSpanExample >> newComponentWithCssClass [
 	self assert: component text equals: 'Span text'.
 	component cssClass: 'menuItemTextClass'.
 	self assert: component cssClassesString equals: 'menuItemTextClass'.
-	self assertRendered: component equals: '<span name="mySpan" data-StClass="LuiSpan" class="menuItemTextClass">Span text</span>'.
+	self assertRendered: component equals: '<span data-name="mySpan" data-StClass="LuiSpan" class="menuItemTextClass">Span text</span>'.
 	^ component
 ]
 
@@ -38,6 +38,6 @@ LuiSpanExample >> newComponentWithText [
 	component text: 'Span text'.
 	self assert: component hasTextDecoration.
 	self assert: component text equals: 'Span text'.
-	self assertRendered: component equals: '<span name="mySpan" data-StClass="LuiSpan">Span text</span>'.
+	self assertRendered: component equals: '<span data-name="mySpan" data-StClass="LuiSpan">Span text</span>'.
 	^ component
 ]

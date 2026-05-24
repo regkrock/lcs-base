@@ -13,6 +13,6 @@ LuiButtonLabelExamples >> newComponent [
 	component := LuiButtonLabel named: 'labelComponent'.
 	self assert: component componentName equals: 'labelComponent'.
 	self assert: component labelString isEmpty.
-	self assertRendered: component equals: '<span name="labelComponent" data-StClass="LuiButtonLabel"></span>'.
+	self assertRendered: component equals: '<span data-name="labelComponent" data-StClass="LuiButtonLabel"></span>'.
 	^ component
 ]

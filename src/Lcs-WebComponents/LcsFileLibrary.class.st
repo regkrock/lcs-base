@@ -205,7 +205,7 @@ body{
 	line-height: 60px;
 	position: relative;
 
-	&:hover>ul {
+	& :hover>ul {
 		/* makes the submenu visibile when it is hovered over */
 		visibility: visible;
 		opacity: 1;
@@ -225,7 +225,7 @@ body{
 		cursor: pointer;
 		transition: all ease-in-out 100ms;
 		
-		&:hover {
+		& :hover {
 			background-color: #2a2a2a;
 			color: #fff;
 			}
@@ -269,7 +269,7 @@ body{
 		font-size: 1rem;	
 		font-family: Roboto;
 		
-		&:focus {
+		& :focus {
 			border: 1px solid #111;
 			}
 		}

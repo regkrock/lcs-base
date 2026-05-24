@@ -36,6 +36,16 @@ LuiPushButton >> buttonTypeAttribute [
 	^ self attributes buttonTypeAttribute
 ]
 
+{ #category : 'properties - delegated' }
+LuiPushButton >> callback [
+	^ self attributes callback
+]
+
+{ #category : 'properties - delegated' }
+LuiPushButton >> callback: aBlock [
+	^ self attributes callback: aBlock
+]
+
 { #category : 'testing' }
 LuiPushButton >> hasLeadingImageComponent [
 	^ (self componentNamed: 'leadingImage') notNil

@@ -62,7 +62,7 @@ LuiMenuItem >> anchorLabel: aString [
 { #category : 'building' }
 LuiMenuItem >> buildFrom: aMenuItemDefinition [
 	self
-		label: aMenuItemDefinition label;
+		buttonLabel: aMenuItemDefinition label;
 		targetClass: aMenuItemDefinition targetClass;
 		title: aMenuItemDefinition title
 ]
@@ -101,6 +101,16 @@ LuiMenuItem >> buttonOrAnchorComponent [
 	self hasButtonComponent ifTrue: [ ^ self buttonComponent ].
 	self hasAnchorComponent ifTrue: [ ^ self anchorComponent ].
 	^ nil
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> callback [
+	^ self buttonOrAnchorComponent callback
+]
+
+{ #category : 'attributes' }
+LuiMenuItem >> callback: aBlock [
+	self buttonOrAnchorComponent callback: aBlock
 ]
 
 { #category : 'defaults' }

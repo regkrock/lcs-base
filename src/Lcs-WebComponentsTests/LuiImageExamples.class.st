@@ -16,7 +16,7 @@ LuiImageExamples >> newComponent [
 	self assert: component title isNil.
 	self assert: component altText isNil.
 	self assert: component url isNil.
-	self assertRendered: component equals: '<img alt="" name="exampleImage" data-StClass="LuiImage"/>'.
+	self assertRendered: component equals: '<img alt="" data-name="exampleImage" data-StClass="LuiImage"/>'.
 	^ component
 ]
 
@@ -33,7 +33,7 @@ LuiImageExamples >> seasImageComponent [
 	self assert: component altText equals: 'the Seaside logo'.
 	self assert: component url equals: 'http://www.seaside.st/logo.jpeg'.
 	self assert: component cssClassesString equals: 'logo'.
-	self assertRendered: component equals: '<img alt="the Seaside logo" name="exampleImage" data-StClass="LuiImage" title="Seaside" class="logo" src="http://www.seaside.st/logo.jpeg"/>'.
+	self assertRendered: component equals: '<img alt="the Seaside logo" data-name="exampleImage" data-StClass="LuiImage" title="Seaside" class="logo" src="http://www.seaside.st/logo.jpeg"/>'.
 	^ component
 ]
 
@@ -50,7 +50,7 @@ LuiImageExamples >> seasImageComponentWithoutAltText [
 	self assert: component url equals: 'http://www.seaside.st/logo.jpeg'.
 	self assert: component cssClassesString equals: 'logo'.
 	self assert: (component attributes attributeNamed: 'altText') isNil.
-	self assertRendered: component equals: '<img alt="" name="exampleImage" data-StClass="LuiImage" title="Seaside" class="logo" src="http://www.seaside.st/logo.jpeg"/>'.
+	self assertRendered: component equals: '<img alt="" data-name="exampleImage" data-StClass="LuiImage" title="Seaside" class="logo" src="http://www.seaside.st/logo.jpeg"/>'.
 	^ component
 ]
 
@@ -67,6 +67,6 @@ LuiImageExamples >> seasideImageComponent [
 	self assert: component altText equals: 'The Seas Monmouth logo'.
 	self assert: component url printString equals: '/files/LcsFileLibrary/favicon'.
 	self assert: component cssClassesString equals: 'logo'.
-	self assertRendered: component equals: '<img alt="The Seas Monmouth logo" name="logo" data-StClass="LuiImage" title="Seas Monmouth" class="logo" src="/files/LcsFileLibrary/favicon"/>'.
+	self assertRendered: component equals: '<img alt="The Seas Monmouth logo" data-name="logo" data-StClass="LuiImage" title="Seas Monmouth" class="logo" src="/files/LcsFileLibrary/favicon"/>'.
 	^ component
 ]

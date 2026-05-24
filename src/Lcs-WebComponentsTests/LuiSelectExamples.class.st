@@ -9,7 +9,7 @@ Class {
 { #category : 'examples' }
 LuiSelectExamples >> htmlForNewComponent [
 	<gtExample>
-	^ self assertRenderNewComponentEquals: '<select name="selectComponent" data-StClass="LuiSelect"></select>'
+	^ self assertRenderNewComponentEquals: '<select data-name="selectComponent" data-StClass="LuiSelect" name="selectComponent"></select>'
 ]
 
 { #category : 'examples' }

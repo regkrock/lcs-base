@@ -10,7 +10,7 @@ Class {
 LuiApplicationRootExamples >> htmlForComponent [
 	<gtExample>
 	| expectedHtml |
-	expectedHtml := '<div id="root" name="root" data-StClass="LuiApplicationRoot"></div>'.
+	expectedHtml := '<div id="root" data-name="root" data-StClass="LuiApplicationRoot"></div>'.
 	^ self
 		assertRenderNewComponentEquals: expectedHtml
 ]

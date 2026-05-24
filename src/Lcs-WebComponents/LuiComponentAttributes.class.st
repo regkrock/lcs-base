@@ -34,8 +34,10 @@ LuiComponentAttributes >> _addAttributesToTag: aTag [
 LuiComponentAttributes >> addAttributesToTag: aTag [
 	aTag 
 		id: self parentComponent componentId;
-		attributeAt: 'name' put: self parentComponent componentName;
+		dataName: self parentComponent componentName;
 		dataStClass: self parentComponent.
+	(aTag respondsTo: #name:) ifTrue: [
+		aTag name: self parentComponent componentName ].
 	self attributes do: [ :eachaAtributes | 
 			eachaAtributes cachedValue ifNotNil: [ :object |
 				aTag
@@ -240,6 +242,22 @@ LuiComponentAttributes >> buttonTypeAttribute [
 ]
 
 { #category : 'properties - delegated' }
+LuiComponentAttributes >> callback [
+	self hasCallbackAttribute ifFalse: [ ^ nil ].
+	^ self callbackAttribute attributeValue
+]
+
+{ #category : 'properties - delegated' }
+LuiComponentAttributes >> callback: aBlock [
+	^ self callbackAttribute callback: aBlock
+]
+
+{ #category : 'properties - defined' }
+LuiComponentAttributes >> callbackAttribute [
+	^ self lazyInitializedAttribute: LuiCallbackAttribute
+]
+
+{ #category : 'properties - delegated' }
 LuiComponentAttributes >> cssClass: aCssClassName [
 	^ self cssClassesAttribute cssClass: aCssClassName
 ]
@@ -326,6 +344,11 @@ LuiComponentAttributes >> hasAttributes [
 { #category : 'properties - testing' }
 LuiComponentAttributes >> hasButtonTypeAttribute [
 	^ self hasAttribute: LuiButtonTypeAttribute attributeName
+]
+
+{ #category : 'properties - testing' }
+LuiComponentAttributes >> hasCallbackAttribute [
+	^ self hasAttribute:  LuiCallbackAttribute attributeName 
 ]
 
 { #category : 'properties - testing' }

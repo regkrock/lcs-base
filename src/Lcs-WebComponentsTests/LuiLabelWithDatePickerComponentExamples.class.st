@@ -42,6 +42,6 @@ LuiLabelWithDatePickerComponentExamples >> newLabelWithInputComponent [
 LuiLabelWithDatePickerComponentExamples >> renderedDateOfBirthComponent [
 	<gtExample>
 	| expectedHtml |
-	expectedHtml := '<div name="dateOfBirth" data-StClass="LuiLabelWithInputComponent"><label id="200536999" name="label" data-StClass="LuiModelLabel" for="dateOfBirth">Date of Birth</label><input id="26979339" name="1" data-StClass="LuiDatePicker" onchange="this.form.requestSubmit()" value="2000-01-01" type="date"/></div>'.
+	expectedHtml := '<div data-name="dateOfBirth" data-StClass="LuiLabelWithInputComponent"><label id="200536999" data-name="label" data-StClass="LuiModelLabel" for="dateOfBirth">Date of Birth</label><input id="26979339" data-name="input" data-StClass="LuiDatePicker" name="1" onchange="this.form.requestSubmit()" value="2000-01-01" type="date"/></div>'.
 	^ self assertRendered: self dateOfBirthComponent equals: expectedHtml
 ]

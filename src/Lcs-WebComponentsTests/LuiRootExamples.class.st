@@ -14,7 +14,7 @@ LuiRootExamples >> newComponent [
 	self assert: component componentName = 'root'.
 	self assert: component componentId = 'root'.
 	self assert: component hasNoComponents.
-	self assertRendered: component equals: '<div id="root" name="root" data-StClass="LuiRoot"></div>'.
+	self assertRendered: component equals: '<div id="root" data-name="root" data-StClass="LuiRoot"></div>'.
 	^ component
 ]
 
@@ -27,7 +27,7 @@ LuiRootExamples >> rootWithHeader [
 	root addComponent: headerComponent.
 	
 	self assert: headerComponent parentComponent equals: root.
-	self assertRendered: root equals: '<div id="root" name="root" data-StClass="LuiRoot"><header id="6011064" name="header" data-StClass="LuiPageHeader" class="pageHeader"></header></div>'.
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"></header></div>'.
 	^ root
 ]
 
@@ -38,7 +38,7 @@ LuiRootExamples >> rootWithHeaderWithLogo [
 	root := self rootWithHeader.
 	headerComponent := root componentNamed: 'header'.
 	headerComponent addComponent: (LuiImage named: 'logo').
-	self assertRendered: root equals: '<div id="root" name="root" data-StClass="LuiRoot"><header id="6011064" name="header" data-StClass="LuiPageHeader" class="pageHeader"><img alt="" id="167883604" name="logo" data-StClass="LuiImage"/></header></div>' .
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><img alt="" id="167883604" data-name="logo" data-StClass="LuiImage"/></header></div>' .
 	^ root
 ]
 
@@ -48,7 +48,7 @@ LuiRootExamples >> rootWithHeaderWithMenu [
 	| root |
 	root := self rootWithHeader.
 	(root componentNamed: 'header') addComponent: (LuiMenu newMainMenu).
-	self assertRendered: root equals: '<div id="root" name="root" data-StClass="LuiRoot"><header id="6011064" name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" name="mainMenu" data-StClass="LuiMenu" class="mainMenu"></ul></header></div>'.
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="mainMenu"></ul></header></div>'.
 	^ root
 ]
 
@@ -61,6 +61,6 @@ LuiRootExamples >> rootWithHeaderWithMenuThreeSubMenus [
 	mainMenu addComponent: (LuiMenuItem named: 'Home').
 	mainMenu addComponent: (LuiMenuItem named: 'Contact').
 	mainMenu addComponent: (LuiMenuItem named: 'About').
-	self assertRendered: root equals: '<div id="root" name="root" data-StClass="LuiRoot"><header id="6011064" name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" name="mainMenu" data-StClass="LuiMenu" class="mainMenu"><li id="55653441" name="Home" data-StClass="LuiMenuItem" class="menuItem"></li><li id="31059052" name="Contact" data-StClass="LuiMenuItem" class="menuItem"></li><li id="140848643" name="About" data-StClass="LuiMenuItem" class="menuItem"></li></ul></header></div>'. 
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="mainMenu"><li id="55653441" data-name="Home" data-StClass="LuiMenuItem" class="menuItem"></li><li id="31059052" data-name="Contact" data-StClass="LuiMenuItem" class="menuItem"></li><li id="140848643" data-name="About" data-StClass="LuiMenuItem" class="menuItem"></li></ul></header></div>'. 
 	^ root
 ]

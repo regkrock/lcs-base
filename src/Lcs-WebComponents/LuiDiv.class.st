@@ -9,6 +9,7 @@ Class {
 { #category : 'instance creation' }
 LuiDiv class >> mobileMenuButton [
 	^ self new
+		componentName: 'mobileMenuButton';
 		cssClass: 'mobile-menu-btn';
 		addComponent: LuiImage newMobileMenuIcon;
 		yourself
