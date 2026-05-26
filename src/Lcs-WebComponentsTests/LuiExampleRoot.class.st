@@ -12,26 +12,85 @@ LuiExampleRoot class >> initialize [
 		sessionClass: WAExpirySession
 ]
 
+{ #category : 'instance creation' }
+LuiExampleRoot class >> new [
+	^ self newWithHeaderWithNavBar
+]
+
+{ #category : 'instance creation' }
+LuiExampleRoot class >> newWithAnchorComponent [
+	^ self basicNew intializeWithAnchorComponent
+]
+
+{ #category : 'instance creation' }
+LuiExampleRoot class >> newWithButtonComponent [
+	^ self basicNew intializeWithButtonComponent
+]
+
+{ #category : 'instance creation' }
+LuiExampleRoot class >> newWithHeaderWithNavBar [
+	^ self basicNew initializeWithHeaderWithNavBar
+]
+
+{ #category : 'components' }
+LuiExampleRoot >> anchorExample [
+	^ (LuiAnchor named: 'anchor')
+		text: 'OK Anchor';
+		callback: [ self showCallbackOnTranscript ];
+		yourself
+]
+
 { #category : 'setup' }
 LuiExampleRoot >> applicationTitle [
 	^ 'Lui Example'
 ]
 
-{ #category : 'initialize' }
+{ #category : 'setup' }
 LuiExampleRoot >> generatedId [
 	^ 'root'
 ]
 
 { #category : 'initialize' }
 LuiExampleRoot >> initialize [
-	super initialize.
-	self initializeStandardLayout
+	super initialize
 ]
 
 { #category : 'initialize' }
-LuiExampleRoot >> initializeStandardLayout [
+LuiExampleRoot >> initializeWithHeaderWithNavBar [
+	self initialize.
 	self addComponent: LuiDiv mobileMenuButton.
 	self addComponent: LuiPageHeaderExamples new exampleHeader.
+]
+
+{ #category : 'initialize' }
+LuiExampleRoot >> intializeWithAnchorComponent [
+	self
+		initialize;
+		addComponent: self anchorExample
+]
+
+{ #category : 'initialize' }
+LuiExampleRoot >> intializeWithButtonComponent [
+	self
+		initialize;
+		addComponent: self pushButtonExample
+]
+
+{ #category : 'components' }
+LuiExampleRoot >> pushButtonExample [
+	^ (LuiPushButton named: 'button')
+		text: 'OK Button';
+		style: 'border-style: solid; border-color: red;';
+		callback: [ self showCallbackOnTranscript ];
+		yourself
+]
+
+{ #category : 'callbacks' }
+LuiExampleRoot >> showCallbackOnTranscript [
+	Transcript
+		cr;
+		show: 'ok clicked';
+		cr
 ]
 
 { #category : 'updating' }

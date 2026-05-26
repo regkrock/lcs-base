@@ -13,6 +13,11 @@ LuiForm class >> newWith: aComponent [
 		yourself
 ]
 
+{ #category : 'initialize' }
+LuiForm >> componentAttributesClass [
+	^ LuiFormAttributes
+]
+
 { #category : 'defaults' }
 LuiForm >> defaultComponentName [
 	^ 'form'

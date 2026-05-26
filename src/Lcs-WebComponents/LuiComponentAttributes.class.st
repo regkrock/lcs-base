@@ -373,11 +373,6 @@ LuiComponentAttributes >> hasLabelAttribute [
 ]
 
 { #category : 'properties - testing' }
-LuiComponentAttributes >> hasNameAttribute [
-	^ self hasAttribute:  LuiNameAttribute attributeName 
-]
-
-{ #category : 'properties - testing' }
 LuiComponentAttributes >> hasNoAttributes [
 	^ self attributes isEmpty
 ]
@@ -513,22 +508,6 @@ LuiComponentAttributes >> labelBlock: aBlock [
 { #category : 'properties - accessing' }
 LuiComponentAttributes >> lazyInitializedAttribute: aComponentAttributeClassaComponentAttributeClass [
 	^ self attributeAt: aComponentAttributeClassaComponentAttributeClass attributeName ifAbsentPut: [ aComponentAttributeClassaComponentAttributeClass on: self ]
-]
-
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> name [
-	self hasNameAttribute ifFalse: [ ^ nil ].
-	^ self nameAttribute attributeValue
-]
-
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> name: aString [
-	^ self nameAttribute name: aString
-]
-
-{ #category : 'properties - defined' }
-LuiComponentAttributes >> nameAttribute [
-	^ self lazyInitializedAttribute: LuiNameAttribute
 ]
 
 { #category : 'properties - delegated' }

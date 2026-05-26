@@ -133,18 +133,18 @@ LcsFileLibrary >> homePageText [
 { #category : 'css' }
 LcsFileLibrary >> mainCss [
 	^
-'@font-face{
+'/* @font-face{
 	font-family: Roboto;
-	src: url(fonts/Roboto-Regular.ttf)
+	src: url(Roboto-Regular.ttf);
 	};
 @font-face{
 	font-family: RobotoMedium;
-	src: url(fonts/Roboto-Medium.ttf)
+	url: LcsFileLibrary / #RobotoMediumTtf;
 	};
 @font-face{
 	font-family: RobotoBold;
-	src: url(fonts/Roboto-Bold.ttf)
-	};
+	src: LcsFileLibrary / #RobotoBoldTtf;
+	}; */
 :root {
 	--menu-count: 3;
 	}
@@ -182,7 +182,7 @@ body{
 	align-self: center;
 	cursor: pointer;
 	
-	.logoImage {
+	& .logoImage {
 		height: 100%;
 		}
 	}
@@ -191,7 +191,7 @@ body{
 .mainMenu {
 	height: 100%;
 	padding-left: 40px;
-	list-style none;
+	list-style: none;
 	display: flex;
 	align-self: center;
 	line-height: 60px;
@@ -474,7 +474,7 @@ body{
 		justify-content: center;
 		
 		& a {
-			height: 605;
+			height: 60%;
 			margin: 0 2%;
 			padding: 0;
 			}

@@ -22,6 +22,11 @@ LuiFormInputComponent class >> onSlot: aSlotDefinition on: aComponent [
 ]
 
 { #category : 'initialize' }
+LuiFormInputComponent >> componentAttributesClass [
+	^ LuiFormInputAttributes
+]
+
+{ #category : 'initialize' }
 LuiFormInputComponent >> initializeOnSlot: aSlotDefinition on: aComponent [ 
 	self valueAccessor: (LuiSlotAccessor new).
 	self valueAccessor slotDefinition: aSlotDefinition

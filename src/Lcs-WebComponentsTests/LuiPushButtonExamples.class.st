@@ -88,6 +88,19 @@ LuiPushButtonExamples >> okButtonWithSpan [
 ]
 
 { #category : 'examples' }
+LuiPushButtonExamples >> okButtonWithStyleBorder [
+	<gtExample>
+	| button expectedHtml|
+	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button">OK</button>'.
+	button := self okButton
+				style: 'border-style: solid border-color: red';
+				yourself.
+	self assert: button style equals: 'border-style: solid border-color: red'.
+	"self assertRendered: button equals: expectedHtml."
+	^button
+]
+
+{ #category : 'examples' }
 LuiPushButtonExamples >> okButtonWithTrailingCheckIcon [
 	<gtExample>
 	| button expectedHtml|

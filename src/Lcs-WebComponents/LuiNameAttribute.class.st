@@ -12,6 +12,11 @@ LuiNameAttribute class >> attributeName [
 ]
 
 { #category : 'accessing' }
+LuiNameAttribute >> name [
+	^ self cachedValue
+]
+
+{ #category : 'accessing' }
 LuiNameAttribute >> name: aString [
 	self valueBlock: [ aString ]
 ]

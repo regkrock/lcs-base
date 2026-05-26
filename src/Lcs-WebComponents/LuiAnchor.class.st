@@ -43,6 +43,16 @@ LuiAnchor >> beBlankTarget [
 	self attributes targetAttribute beBlankTarget
 ]
 
+{ #category : 'attributes' }
+LuiAnchor >> callback [
+	^ self attributes callback
+]
+
+{ #category : 'attributes' }
+LuiAnchor >> callback: aBlock [
+	self attributes callback: aBlock
+]
+
 { #category : 'initialize' }
 LuiAnchor >> componentAttributesClass [
 	^ LuiAnchorAttributes

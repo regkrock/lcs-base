@@ -36,14 +36,19 @@ LuiPushButton >> buttonTypeAttribute [
 	^ self attributes buttonTypeAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes' }
 LuiPushButton >> callback [
 	^ self attributes callback
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes' }
 LuiPushButton >> callback: aBlock [
-	^ self attributes callback: aBlock
+	self attributes callback: aBlock
+]
+
+{ #category : 'initialize' }
+LuiPushButton >> componentAttributesClass [
+	^ LuiPushButtonAttributes
 ]
 
 { #category : 'testing' }

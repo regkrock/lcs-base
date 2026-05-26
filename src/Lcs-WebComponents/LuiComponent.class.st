@@ -589,6 +589,21 @@ LuiComponent >> states [
 	^ self orderedComponents
 ]
 
+{ #category : 'properties' }
+LuiComponent >> style [
+	^ self attributes style
+]
+
+{ #category : 'properties' }
+LuiComponent >> style: aString [
+	self attributes style: aString
+]
+
+{ #category : 'properties' }
+LuiComponent >> styleBlock: aBlock [
+	self attributes styleBlock: aBlock
+]
+
 { #category : 'decorations' }
 LuiComponent >> text [
 	^ self componentDecorations text
