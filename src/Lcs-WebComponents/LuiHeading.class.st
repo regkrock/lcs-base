@@ -9,15 +9,30 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'initialize' }
+LuiHeading >> componentAttributesClass [
+	^ LuiHeadingAttributes
+]
+
 { #category : 'defaults' }
 LuiHeading >> defaultCssClasses [
 	^ OrderedCollection with: ''
 ]
 
+{ #category : 'accessing - attribute' }
+LuiHeading >> headingLevel [
+	^ self attributes headingLevel
+]
+
+{ #category : 'accessing - attribute' }
+LuiHeading >> headingLevel: anObject [
+	^ self attributes headingLevel: anObject
+]
+
 { #category : 'initialize' }
 LuiHeading >> initialize [
 	super initialize.
-	"self headingLevel: 1."
+	self headingLevel: 1.
 ]
 
 { #category : 'rendering' }
