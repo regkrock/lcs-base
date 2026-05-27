@@ -18,7 +18,7 @@ LuitNameAttribute >> name [
 
 { #category : 'attributes - accessing' }
 LuitNameAttribute >> name: aString [
-	self nameAttribute value: aString
+	self nameAttribute name: aString
 ]
 
 { #category : 'attributes' }

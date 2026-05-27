@@ -12,16 +12,11 @@ LuiAltTextAttribute class >> attributeName [
 ]
 
 { #category : 'accessing' }
-LuiAltTextAttribute >> text [
+LuiAltTextAttribute >> altText [
 	^ self cachedValue
 ]
 
 { #category : 'accessing' }
-LuiAltTextAttribute >> text: aString [
+LuiAltTextAttribute >> altText: aString [
 	self valueBlock: [ aString ]
-]
-
-{ #category : 'accessing' }
-LuiAltTextAttribute >> textBlock: aBlock [
-	self valueBlock: aBlock
 ]

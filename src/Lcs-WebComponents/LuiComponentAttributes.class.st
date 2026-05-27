@@ -50,22 +50,6 @@ LuiComponentAttributes >> addCssClasses: aCollection [
 ]
 
 { #category : 'properties - delegated' }
-LuiComponentAttributes >> altText [
-	self hasAltTextAttribute ifFalse: [ ^ nil ].
-	^ self altTextAttribute attributeValue
-]
-
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> altText: aString [
-	^ self altTextAttribute text: aString
-]
-
-{ #category : 'properties - defined' }
-LuiComponentAttributes >> altTextAttribute [
-	^ self lazyInitializedAttribute: LuiAltTextAttribute
-]
-
-{ #category : 'properties - delegated' }
 LuiComponentAttributes >> appendToStyle: aString [
 	^ self styleAttribute appendToStyle: aString
 ]
@@ -305,11 +289,6 @@ LuiComponentAttributes >> gtViewAttributesOn: aView [
 		column: 'Block' text: [ :anAssociation | anAssociation value  valueBlock displayString];
 		send: [ :e | e value ];
 		actionUpdateButton
-]
-
-{ #category : 'properties - testing' }
-LuiComponentAttributes >> hasAltTextAttribute [
-	^ self hasAttribute: LuiAltTextAttribute attributeName
 ]
 
 { #category : 'properties - testing' }

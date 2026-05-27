@@ -57,6 +57,11 @@ LuiImage >> altText: aString [
 	self attributes altText: aString
 ]
 
+{ #category : 'initialize' }
+LuiImage >> componentAttributesClass [
+	^ LuiImageAttributes
+]
+
 { #category : 'rendering' }
 LuiImage >> renderComponentOn: html [
 	html image
