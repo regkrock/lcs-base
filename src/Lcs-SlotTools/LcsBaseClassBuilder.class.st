@@ -141,7 +141,7 @@ LcsBaseClassBuilder >> gtRefactoringChangeOn: aView [
 { #category : 'initialize' }
 LcsBaseClassBuilder >> initialize [
 	super initialize.
-	self targetSuperclassName: self class targetSuperclassName
+	self initializeTargetSuperclassName
 ]
 
 { #category : 'initialize' }
@@ -149,11 +149,18 @@ LcsBaseClassBuilder >> initializeOn: aBuilder [
 	self parent: aBuilder
 ]
 
+{ #category : 'initialize' }
+LcsBaseClassBuilder >> initializeTargetSuperclassName [
+	self targetSuperclassName: self class targetSuperclassName
+]
+
 { #category : 'build' }
 LcsBaseClassBuilder >> installClass [
 	self newClassAlreadyExists ifTrue: [ ^ self ].
 	self addRefactoring: (RBAddClassChange definitionString: self classCreationString) execute.
-	self installedClass: self refactorings last changeClass
+	self installedClass: self refactorings last changeClass.
+	(self targetPackageTagName isString and: [ self targetPackageTagName notEmpty ])
+		ifTrue: [ self installClass class  packageTag: self targetPackageTagName ].
 ]
 
 { #category : 'accessing' }

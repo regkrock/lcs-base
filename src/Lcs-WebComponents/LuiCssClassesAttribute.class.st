@@ -61,7 +61,7 @@ LuiCssClassesAttribute >> initialize [
 	super initialize.
 	self cssClasses: OrderedCollection new.
 	self valueBlock: [ self cssClassesString ];
-	tagAttributeSetSelector: #class:
+	tagAttributeSetterSelector: #class:
 ]
 
 { #category : 'css classes' }

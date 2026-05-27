@@ -5,7 +5,7 @@ Class {
 		'parent',
 		'valueBlock',
 		'cachedValue',
-		'tagAttributeSetSelector'
+		'tagAttributeSetterSelector'
 	],
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
@@ -108,13 +108,13 @@ LuiComponentAttribute >> parent: anObject [
 ]
 
 { #category : 'accessing' }
-LuiComponentAttribute >> tagAttributeSetSelector [
-	^ tagAttributeSetSelector ifNil: [ tagAttributeSetSelector := (self attributeName , ':') asSymbol ]
+LuiComponentAttribute >> tagAttributeSetterSelector [
+	^ tagAttributeSetterSelector ifNil: [ tagAttributeSetterSelector := (self attributeName , ':') asSymbol ]
 ]
 
 { #category : 'accessing' }
-LuiComponentAttribute >> tagAttributeSetSelector: aSymbol [
-	tagAttributeSetSelector := aSymbol
+LuiComponentAttribute >> tagAttributeSetterSelector: aSymbol [
+	tagAttributeSetterSelector := aSymbol
 ]
 
 { #category : 'accessing' }

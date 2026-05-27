@@ -27,5 +27,5 @@ LuiForNameAttribute >> for: aString [
 { #category : 'initialize' }
 LuiForNameAttribute >> initialize [
 	super initialize.
-	self tagAttributeSetSelector: #'for:'
+	self tagAttributeSetterSelector: #'for:'
 ]

@@ -91,6 +91,12 @@ LcsMethodBuilder >> initialize [
 	self categoryName: #'generated method'
 ]
 
+{ #category : 'testing' }
+LcsMethodBuilder >> isAlreadyImplementedInSuperclass: aSelector [
+	self targetClass isNil ifTrue: [ ^ false ].
+	^ self targetClass superclass canUnderstand: aSelector
+]
+
 { #category : 'accessing' }
 LcsMethodBuilder >> isClassMethod [
 	^ isClassMethod

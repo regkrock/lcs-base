@@ -1,12 +1,9 @@
 Class {
 	#name : 'LuiPageTitle',
 	#superclass : 'LuiComponent',
-	#instVars : [
-		'level'
-	],
-	#category : 'Lcs-WebComponents-Widgets',
+	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Widgets'
+	#tag : 'Core'
 }
 
 { #category : 'defaults' }
@@ -16,10 +13,5 @@ LuiPageTitle >> defaultCssClasses [
 
 { #category : 'rendering' }
 LuiPageTitle >> renderDetailsOn: html [
-	html text: self domainObject asString
-]
-
-{ #category : 'updating' }
-LuiPageTitle >> text: aString [
-	self domainObject: aString
+	html text: self text
 ]

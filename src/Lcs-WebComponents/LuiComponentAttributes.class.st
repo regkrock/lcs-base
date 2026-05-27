@@ -18,30 +18,17 @@ LuiComponentAttributes class >> on: aComponent [
 ]
 
 { #category : 'rendering' }
-LuiComponentAttributes >> _addAttributesToTag: aTag [
-	aTag 
-		id: self parentComponent componentId;
-		name: self parentComponent componentName;
-		dataStClass: self parentComponent componentName.
-	self attributes do: [ :eachaAtributes | 
-			eachaAtributes cachedValue ifNotNil: [ :object |
-				aTag
-					at: eachaAtributes tagAttributeSetSelector
-					put: object ] ]
-]
-
-{ #category : 'rendering' }
-LuiComponentAttributes >> addAttributesToTag: aTag [
-	aTag 
+LuiComponentAttributes >> addAttributesToTag: aTagBrush [
+	aTagBrush 
 		id: self parentComponent componentId;
 		dataName: self parentComponent componentName;
 		dataStClass: self parentComponent.
-	((aTag respondsTo: #name:) and: [ (aTag isKindOf: WAAnchorTag) not ]) ifTrue: [
-		aTag name: self parentComponent componentName ].
+	((aTagBrush respondsTo: #name:) and: [ (aTagBrush isKindOf: WAAnchorTag) not ]) ifTrue: [
+		aTagBrush name: self parentComponent componentName ].
 	self attributes do: [ :eachaAtributes | 
 			eachaAtributes cachedValue ifNotNil: [ :object |
-				aTag
-					perform: eachaAtributes tagAttributeSetSelector
+				aTagBrush
+					perform: eachaAtributes tagAttributeSetterSelector
 					with: object ] ]
 ]
 

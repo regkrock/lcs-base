@@ -25,5 +25,5 @@ LuiButtonTypeAttribute >> beSubmitType [
 LuiButtonTypeAttribute >> initialize [
 	super initialize.
 	self beButtonType.
-	self tagAttributeSetSelector: #type:
+	self tagAttributeSetterSelector: #type:
 ]

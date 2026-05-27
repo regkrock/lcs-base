@@ -741,7 +741,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-05-21T15:46:37.22522-04:00"
+									"dateAndTimeString" : "2026-05-21T15:47:04.705023-04:00"
 								}
 							},
 							"uid" : {
@@ -751,7 +751,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "[["
+							"string" : "[[Model-View-Presenter]]"
 						},
 						{
 							"__type" : "textSnippet",

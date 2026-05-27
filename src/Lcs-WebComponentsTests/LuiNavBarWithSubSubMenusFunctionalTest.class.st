@@ -20,7 +20,7 @@ LuiNavBarWithSubSubMenusFunctionalTest >> initialize [
 	self addComponent: (mainPage := LuiMainPage named: 'mainPage').
 
 	self addMainNavigationMenuTo: (mainPage componentNamed: 'navBar/navigation').
-	(mainPage componentNamed: 'header/title') domainObject: 'LCS Example'.
+	(mainPage componentNamed: 'header/title') text: 'LCS Example'.
 	(mainPage componentNamed: 'applicationArea') homeMessage: self latinText
 ]
 
