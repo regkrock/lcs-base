@@ -6,19 +6,27 @@ Class {
 	#tag : 'Widgets'
 }
 
-{ #category : 'label' }
-LuiLabel >> labelString [
-	^ self attributes labelAttributeValue
+{ #category : 'iniitialize' }
+LuiLabel >> initializeOnSlot: aSlotDefinition [
+	super initializeOnSlot: aSlotDefinition.
+	self componentName: (aSlotDefinition slotName , 'Label').
+	self text: aSlotDefinition label.
+	self attributes forName: aSlotDefinition slotName
 ]
 
-{ #category : 'configuration' }
+{ #category : 'label' }
+LuiLabel >> labelString [
+	^ self text
+]
+
+{ #category : 'label' }
 LuiLabel >> labelString: aString [
-	self attributes labelAttribute value: aString
+	self text: aString
 ]
 
 { #category : 'rendering' }
 LuiLabel >> renderComponentOn: html [
-	html div
+	html label
 		addCommonAttributes: self;
-		with: self labelString
+		with: [ html text: self text ]
 ]

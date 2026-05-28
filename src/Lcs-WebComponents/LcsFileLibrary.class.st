@@ -303,6 +303,42 @@ body{
 			}
 		}
 	}
+/* FORM WIDGET FORMATTING */
+
+input {
+	max-width: 190px;
+	background-color: #f5f5f5;
+	color: #242424;
+	padding: .15rem .5rem;
+	min-height: 40px;
+	border-radius: 4px;
+	outline: none;
+	border: none;
+	line-height: 1.15;
+	box-shadow: 0px 10px 20px -18px;
+	
+	& :focus {
+		border-bottom: 2px solid #5b5fc7;
+		border-radius: 4px 4px 2px 2px;
+		}
+	& :hover {
+		outline: 1px solid lightgrey;
+		}
+	}
+	
+label {
+	max-width: 190px;
+	background-color: #f5f5f5;
+	color: #242424;
+	padding: .15rem .5rem;
+	min-height: 40px;
+	border-radius: 4px;
+	outline: none;
+	border: none;
+	line-height: 1.15;
+	box-shadow: 0px 10px 20px -18px;
+	}
+	
 	
 /* MEDIA QUERY FOR MOBILE DEVICE (PHONE) */
 

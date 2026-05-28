@@ -471,9 +471,9 @@ LuiComponent >> logRenderingTrace [
 
 { #category : 'components - querying' }
 LuiComponent >> myParentPresenterComponent [
+	self isPresenterComponent ifTrue: [ ^ self ].
 	self parentComponent isNil
 		ifTrue: [ LcsError signal: 'No Presenter Component was found' ].
-	self isPresenterComponent ifTrue: [ ^ self ].
 	^ self parentComponent myParentPresenterComponent
 ]
 

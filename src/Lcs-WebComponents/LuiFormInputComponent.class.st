@@ -34,7 +34,7 @@ LuiFormInputComponent >> model [
 	^ self presenter model
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'model' }
 LuiFormInputComponent >> model: aModel [
 	self valueAccessor model: aModel.
 ]
@@ -54,7 +54,7 @@ LuiFormInputComponent >> placeholderAttribute [
 	^ self attributes placeholderAttribute
 ]
 
-{ #category : 'model' }
+{ #category : 'components' }
 LuiFormInputComponent >> presenter [
 	^ self myParentPresenterComponent
 ]

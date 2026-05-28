@@ -14,7 +14,8 @@ LuiExampleRoot class >> initialize [
 
 { #category : 'instance creation' }
 LuiExampleRoot class >> new [
-	^ self newWithHeaderWithNavBar
+	"^ self newWithHeaderWithNavBar"
+	^ self newWithComponent: (LuiDomainPresenterExamples new presenterWithLabelAndStringInputWidget)
 ]
 
 { #category : 'instance creation' }
@@ -25,6 +26,13 @@ LuiExampleRoot class >> newWithAnchorComponent [
 { #category : 'instance creation' }
 LuiExampleRoot class >> newWithButtonComponent [
 	^ self basicNew intializeWithButtonComponent
+]
+
+{ #category : 'instance creation' }
+LuiExampleRoot class >> newWithComponent: aComponent [
+	^ self basicNew 
+		initializeWithComponent: aComponent;
+		yourself
 ]
 
 { #category : 'instance creation' }
@@ -53,6 +61,12 @@ LuiExampleRoot >> generatedId [
 { #category : 'initialize' }
 LuiExampleRoot >> initialize [
 	super initialize
+]
+
+{ #category : 'initialize' }
+LuiExampleRoot >> initializeWithComponent: aComponent [
+	self initialize.
+	self addComponent: aComponent
 ]
 
 { #category : 'initialize' }

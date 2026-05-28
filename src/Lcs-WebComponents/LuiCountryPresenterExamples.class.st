@@ -10,7 +10,9 @@ Class {
 LuiCountryPresenterExamples >> newPresenter [
 	<gtExample>
 	| presenter |
-	presenter := LuiCountryPresenter named:'countryPresenter'.
+	presenter := LuiCountryPresenter named:'examplePresenter'.
+	self assert: presenter class == LuiCountryPresenter.
+	self assert: presenter componentName equals: 'examplePresenter'.
 	^ presenter
 ]
 
@@ -30,10 +32,14 @@ LuiCountryPresenterExamples >> newPresenterOnExistingCountry [
 { #category : 'examples' }
 LuiCountryPresenterExamples >> renderedSingleColumnCountryLayout [
 	<gtExample>
-	| presenter country|
+	| presenter country textInputWidget|
 	presenter := self newPresenterOnExistingCountry.
 	country := presenter model.
-	presenter addComponent: (LuiTextInput onSlot: (presenter model slotDefinitionNamed: 'commonName') ).
-	self assertRendered: presenter equals:'<section data-name="countryPresenter" data-StClass="LuiCountryPresenter"><input id="133384925" data-name="commonName" data-StClass="LuiTextInput" name="commonName" value="Canada" type="text"/></section>'.
+	textInputWidget := LuiTextInput onSlot: (presenter model slotDefinitionNamed: 'commonName').
+	presenter addComponent: textInputWidget.
+	self assert: textInputWidget myParentPresenterComponent == presenter.
+	
+	self assertRendered: presenter equals:'<section data-name="examplePresenter" data-StClass="LuiDomainPresenter"><input id="136161413" data-name="commonName" data-StClass="LuiTextInput" name="commonName" value="Canada" type="text"/></section>'.
+
 	^ presenter
 ]
