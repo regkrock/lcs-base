@@ -44,8 +44,8 @@ LuiDatePicker >> initialize [
 ]
 
 { #category : 'initialize' }
-LuiDatePicker >> initializeOnSlot: aSlotDefinition on: aComponent [ 
-	super initializeOnSlot: aSlotDefinition on: aComponent .
+LuiDatePicker >> initializeOnSlot: aSlotDefinition [
+	super initializeOnSlot: aSlotDefinition .
 	self attributes name: aSlotDefinition slotName
 ]
 

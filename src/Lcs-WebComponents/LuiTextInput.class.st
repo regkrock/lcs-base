@@ -20,8 +20,8 @@ LuiTextInput >> displayValue [
 ]
 
 { #category : 'initialize' }
-LuiTextInput >> initializeOnSlot: aSlotDefinition on: aComponent [ 
-	super initializeOnSlot: aSlotDefinition on: aComponent .
+LuiTextInput >> initializeOnSlot: aSlotDefinition [
+	super initializeOnSlot: aSlotDefinition .
 	"self properties name: aSlotDefinition slotName"
 ]
 

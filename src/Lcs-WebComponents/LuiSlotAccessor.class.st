@@ -6,7 +6,8 @@ Class {
 		'writeSelector',
 		'model',
 		'slotName',
-		'slotDefinition'
+		'slotDefinition',
+		'parent'
 	],
 	#category : 'Lcs-WebComponents-Accessor',
 	#package : 'Lcs-WebComponents',
@@ -16,6 +17,13 @@ Class {
 { #category : 'testing' }
 LuiSlotAccessor class >> isAbstract [
 	^ false
+]
+
+{ #category : 'instance creation' }
+LuiSlotAccessor class >> newOn: aComponent [
+	^ self new
+		initializeOn: aComponent;
+		yourself
 ]
 
 { #category : 'instance creation' }
@@ -88,6 +96,11 @@ LuiSlotAccessor >> hash [
 	^  super hash bitXor: (self readSelector hash bitXor: self writeSelector hash)
 ]
 
+{ #category : 'initialize' }
+LuiSlotAccessor >> initializeOn: aComponent [ 
+	self parent: aComponent
+]
+
 { #category : 'accessing' }
 LuiSlotAccessor >> label [ 
 	^ self slotDefinition label
@@ -95,7 +108,8 @@ LuiSlotAccessor >> label [
 
 { #category : 'accessing' }
 LuiSlotAccessor >> model [
-	^ model
+	"^ model"
+	^ self parent model
 ]
 
 { #category : 'accessing' }
@@ -106,6 +120,16 @@ LuiSlotAccessor >> model: anObject [
 { #category : 'accessing' }
 LuiSlotAccessor >> name [
 	^ self readSelector
+]
+
+{ #category : 'accessing' }
+LuiSlotAccessor >> parent [
+	^ parent
+]
+
+{ #category : 'accessing' }
+LuiSlotAccessor >> parent: aComponent [ 
+	parent := aComponent
 ]
 
 { #category : 'model' }

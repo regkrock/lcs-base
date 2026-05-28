@@ -3,7 +3,6 @@ Class {
 	#superclass : 'WAComponent',
 	#instVars : [
 		'components',
-		'domainObject',
 		'parentComponent',
 		'componentId',
 		'componentName',
@@ -240,16 +239,6 @@ LuiComponent >> displayValue [
 	^ self valueAccessor displayValue
 ]
 
-{ #category : 'accessing' }
-LuiComponent >> domainObject [
-	^ domainObject
-]
-
-{ #category : 'accessing' }
-LuiComponent >> domainObject: anObject [
-	domainObject := anObject
-]
-
 { #category : 'components' }
 LuiComponent >> firstComponent [
 	^ self componentAtIndex: 1
@@ -429,6 +418,11 @@ LuiComponent >> isNotRenderable [
 ]
 
 { #category : 'testing' }
+LuiComponent >> isPresenterComponent [
+	^ false
+]
+
+{ #category : 'testing' }
 LuiComponent >> isRenderable [
 	^ self attributes isRenderable
 ]
@@ -473,6 +467,14 @@ LuiComponent >> logRenderingTrace [
 		Transcript
 			show: self traceRenderMessage;
 			cr ]
+]
+
+{ #category : 'components - querying' }
+LuiComponent >> myParentPresenterComponent [
+	self parentComponent isNil
+		ifTrue: [ LcsError signal: 'No Presenter Component was found' ].
+	self isPresenterComponent ifTrue: [ ^ self ].
+	^ self parentComponent myParentPresenterComponent
 ]
 
 { #category : 'accessing' }

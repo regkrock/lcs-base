@@ -10,8 +10,3 @@ Class {
 LuiCountryPresenter >> commonNameWidget [
 	^ (self domain slotDefinitionNamed: 'commonName') defaultWidget
 ]
-
-{ #category : 'rendering' }
-LuiCountryPresenter >> renderComponentOn: html [
-	html section
-]

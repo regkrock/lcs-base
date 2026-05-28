@@ -21,6 +21,11 @@ LuiSearchBarPresenter >> initialize [
 			yourself)
 ]
 
+{ #category : 'testing' }
+LuiSearchBarPresenter >> isPresenterComponent [
+	^ false
+]
+
 { #category : 'rendering' }
 LuiSearchBarPresenter >> renderComponentOn: html [
 	self renderDetailsOn: html

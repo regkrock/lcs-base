@@ -8,13 +8,8 @@ Class {
 
 { #category : 'instance creation' }
 LuiLabelWithInputComponent class >> onSlot: aSlotDefinition [
-	^ self onSlot: aSlotDefinition on: nil
-]
-
-{ #category : 'instance creation' }
-LuiLabelWithInputComponent class >> onSlot: aSlotDefinition on: aComponent [
 	^ super new 
-		initializeOnSlot: aSlotDefinition on: aComponent;
+		initializeOnSlot: aSlotDefinition;
 		yourself
 ]
 
@@ -35,12 +30,12 @@ LuiLabelWithInputComponent >> initialize [
 ]
 
 { #category : 'initialize' }
-LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition on: aComponent [
+LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition [
 	self componentName: aSlotDefinition slotName.
-	self labelComponent initializeOnSlot: aSlotDefinition on: aComponent.
+	self labelComponent initializeOnSlot: aSlotDefinition.
 	self addComponent: (
 		(aSlotDefinition inputComponentClass named: 'input')
-			initializeOnSlot: aSlotDefinition on: aComponent;
+			initializeOnSlot: aSlotDefinition;
 			yourself)
 ]
 
