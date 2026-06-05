@@ -1,6 +1,9 @@
 Class {
 	#name : 'LuiLabelWithInputComponent',
 	#superclass : 'LuiComponent',
+	#instVars : [
+		'slotName'
+	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
@@ -13,48 +16,57 @@ LuiLabelWithInputComponent class >> onSlot: aSlotDefinition [
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 LuiLabelWithInputComponent >> hasInputComponent [
-	^ (self componentNamed: 'input') notNil
+	^ (self componentNamed: self slotName) notNil
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 LuiLabelWithInputComponent >> hasLabelComponent [
-	^ (self componentNamed: 'label') notNil
-]
-
-{ #category : 'as yet unclassified' }
-LuiLabelWithInputComponent >> initialize [
-	super initialize.
-	self addComponent: (LuiModelLabel named: 'label')
+	^ (self componentNamed: self slotNameLabel) notNil
 ]
 
 { #category : 'initialize' }
 LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition [
-	self componentName: aSlotDefinition slotName.
-	self labelComponent initializeOnSlot: aSlotDefinition.
+	self slotName: aSlotDefinition slotName.
+	self componentName: self slotName , 'LabelAndInput'.
+	self addComponent: ((LuiModelLabel named: self slotNameLabel) initializeOnSlot: aSlotDefinition;
+	yourself).
 	self addComponent: (
-		(aSlotDefinition inputComponentClass named: 'input')
+		(aSlotDefinition defaultInputComponentClass named: self slotName)
 			initializeOnSlot: aSlotDefinition;
 			yourself)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'components' }
 LuiLabelWithInputComponent >> inputComponent [
-	^ self componentNamed: 'input'
+	^ self componentNamed: self slotName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'components' }
 LuiLabelWithInputComponent >> labelComponent [
-	^ self componentNamed: 'label'
+	^ self componentNamed: self slotNameLabel
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'components' }
 LuiLabelWithInputComponent >> model: aModel [
-	"super model: aModel.
-	self valueAccessor model: aModel."
 	self hasLabelComponent ifTrue: [
-		self labelComponent model: aModel ].
+		self labelComponent valueAccessor model: aModel ].
 	self hasInputComponent ifTrue: [
-		self inputComponent model: aModel ]
+		self inputComponent valueAccessor model: aModel ]
+]
+
+{ #category : 'accessing' }
+LuiLabelWithInputComponent >> slotName [
+	^ slotName
+]
+
+{ #category : 'accessing' }
+LuiLabelWithInputComponent >> slotName: anObject [
+	slotName := anObject
+]
+
+{ #category : 'private' }
+LuiLabelWithInputComponent >> slotNameLabel [
+	^ self slotName , 'Label'
 ]
