@@ -32,7 +32,7 @@ LuiImage class >> newMobileMenuIcon [
 	^ self new
 		componentName: 'hamburger';
 		altText: 'Mobile menu button';
-		url: LcsFileLibrary /#hamburgerMenuSvg;
+		url: LcsFileLibrary /#hamburgerMenu24Svg;
 		yourself
 ]
 

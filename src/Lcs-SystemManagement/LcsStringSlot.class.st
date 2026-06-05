@@ -11,11 +11,6 @@ LcsStringSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | self typeClass new ]
 ]
 
-{ #category : 'iniitialize' }
-LcsStringSlot >> initialValue: anObject [
-	super initialValue:anObject printString
-]
-
 { #category : 'testing' }
 LcsStringSlot >> isNullObject: anObject [ 
 	^ anObject isString and: [ anObject isEmpty ]

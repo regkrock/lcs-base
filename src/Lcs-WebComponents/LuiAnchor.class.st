@@ -58,6 +58,16 @@ LuiAnchor >> componentAttributesClass [
 	^ LuiAnchorAttributes
 ]
 
+{ #category : 'gt views' }
+LuiAnchor >> gtViewOtherInfo [
+	^ self text
+]
+
+{ #category : 'gt views' }
+LuiAnchor >> gtViewTagName [
+	^ '<a>'
+]
+
 { #category : 'testing' }
 LuiAnchor >> hasImageComponent [
 	^ (self componentNamed: 'image') notNil

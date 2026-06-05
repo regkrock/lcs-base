@@ -6,46 +6,13 @@ Class {
 	#tag : 'Libraries'
 }
 
-{ #category : 'css - generation' }
-LcsFileLibrary class >> mainCss2 [
-	| object stream |
-	stream := WriteStream on: String new.
-	object := self new.
-	object addCssDefinitionsTo: stream.
-	^stream contents
-]
-
-{ #category : 'css - generation' }
-LcsFileLibrary >> addCssDefinitionsTo: aStream [
-	aStream nextPutAll:
-'
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}'.
-
-	#(mainMenuBarContentsCssClassDefinition mainMenuBarCssClassDefinition) 
-		do: [:each | aStream nextPutAll: (self perform: each asSymbol) ]
-		separatedBy: [aStream cr; cr ].
-	"aStream nextPutAll: self mainMenuBarContentsCssClassDefinition.
-	aStream nextPutAll: self mainMenuBarCssClassDefinition"
-]
-
 { #category : 'svg' }
-LcsFileLibrary >> cancelSvg [
+LcsFileLibrary >> cancel24Svg [
 	^ '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>'
 ]
 
 { #category : 'svg' }
-LcsFileLibrary >> checkSvg [
+LcsFileLibrary >> check24Svg [
 	^ '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>'
 ]
 
@@ -60,7 +27,7 @@ LcsFileLibrary >> faviconPng [
 ]
 
 { #category : 'svg' }
-LcsFileLibrary >> hamburgerMenuSvg [
+LcsFileLibrary >> hamburgerMenu24Svg [
 	^ '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>'
 ]
 
@@ -205,7 +172,7 @@ body{
 	line-height: 60px;
 	position: relative;
 
-	& :hover>ul {
+	&:hover>ul {
 		/* makes the submenu visibile when it is hovered over */
 		visibility: visible;
 		opacity: 1;
@@ -225,7 +192,7 @@ body{
 		cursor: pointer;
 		transition: all ease-in-out 100ms;
 		
-		& :hover {
+		&:hover {
 			background-color: #2a2a2a;
 			color: #fff;
 			}
@@ -241,9 +208,17 @@ body{
 	top: 100%;
 	left: 80px;
 	transition: all ease-in-out 100ms;
-	}
-.submenuItem span {
-	white-space: nowrap;
+
+	&:hover>ul {
+		/* makes the submenu visibile when it is hovered over */
+		visibility: visible;
+		opacity: 1;
+		display: block;
+		}
+
+	& span {
+		white-space: nowrap;
+		}
 	}
 	
 /* contains the search form and the sm icons container */
@@ -269,7 +244,7 @@ body{
 		font-size: 1rem;	
 		font-family: Roboto;
 		
-		& :focus {
+		&:focus {
 			border: 1px solid #111;
 			}
 		}
@@ -303,42 +278,6 @@ body{
 			}
 		}
 	}
-/* FORM WIDGET FORMATTING */
-
-input {
-	max-width: 190px;
-	background-color: #f5f5f5;
-	color: #242424;
-	padding: .15rem .5rem;
-	min-height: 40px;
-	border-radius: 4px;
-	outline: none;
-	border: none;
-	line-height: 1.15;
-	box-shadow: 0px 10px 20px -18px;
-	
-	& :focus {
-		border-bottom: 2px solid #5b5fc7;
-		border-radius: 4px 4px 2px 2px;
-		}
-	& :hover {
-		outline: 1px solid lightgrey;
-		}
-	}
-	
-label {
-	max-width: 190px;
-	background-color: #f5f5f5;
-	color: #242424;
-	padding: .15rem .5rem;
-	min-height: 40px;
-	border-radius: 4px;
-	outline: none;
-	border: none;
-	line-height: 1.15;
-	box-shadow: 0px 10px 20px -18px;
-	}
-	
 	
 /* MEDIA QUERY FOR MOBILE DEVICE (PHONE) */
 
@@ -400,7 +339,7 @@ label {
 		flex-direction: column;
 		align-content: space-between;
 		
-		& :nth-last-child(1) {
+		&:nth-last-child(1) {
 			border-bottom: 1px solid #ddd
 			}
 		}
@@ -420,14 +359,14 @@ label {
 		justify-content: center;
 		transition: all ease-in-out 100ms;
 
-		& :hover>ul {
+		&:hover>ul {
 			/* makes the submenu visibile when it is hovered over */
 			visibility: visible;
 			opacity: 1;
 			display: flex;
 			}
 
-		& :focus>ul {
+		&:focus>ul {
 			/* makes the submenu visibile when it has focus */
 			visibility: visible;
 			opacity: 1;
@@ -442,7 +381,7 @@ label {
 			text-align: center;
 			font-size: 2.5rem;
 			
-			& :hover {
+			&:hover {
 				/* this is to prevent hover effect */
 				background-color: transparent;
 				color: #111;
@@ -462,12 +401,19 @@ label {
 		height: fit-content;
 		display: block;
 		background-color: #111;
-		
+
+		&:hover>ul {
+			/* makes the submenu visibile when it is hovered over */
+			visibility: visible;
+			opacity: 1;
+			display: flex;
+			}
+
 		& span {
 			background-color: #111;
 			color: #fff;
 			
-			& :hover {
+			&:hover {
 				background-color: #111;
 				color: #fff;
 				}
@@ -519,55 +465,6 @@ label {
 '
 ]
 
-{ #category : 'css - generation' }
-LcsFileLibrary >> mainCss2 [
-	| stream |
-	stream := WriteStream on: String new.
-	stream nextPutAll:
-'
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}'.
-
-	#(mainMenuBarContentsCssClassDefinition mainMenuBarCssClassDefinition) 
-		do: [:each | stream nextPutAll: (self perform: each asSymbol) ] separatedBy: [ stream cr; cr ].
-	"stream nextPutAll: self mainMenuBarContentsCssClassDefinition.
-	stream nextPutAll: self mainMenuBarCssClassDefinition."
-	^ stream contents
-]
-
-{ #category : 'css - definitons' }
-LcsFileLibrary >> mainMenuBarContentsCssClassDefinition [
-
-^'.mainMenuBarContents {
-  display: flex;
-  justify-content: flex-start; /* should be flex-end */
-  align-items: center;
-  gap: 2rem;
-  margin: 0 2rem;
-    }'
-]
-
-{ #category : 'css - definitons' }
-LcsFileLibrary >> mainMenuBarCssClassDefinition [
-	^'.mainMenuBarContents {
-  display: flex;
-  justify-content: flex-start; /* should be flex-end */
-  align-items: center;
-  gap: 2rem;
-  margin: 0 2rem;
-    }'
-]
-
 { #category : 'png' }
 LcsFileLibrary >> meetup32Png [
 	^ #[137 80 78 71 13 10 26 10 0 0 0 13 73 72 68 82 0 0 0 32 0 0 0 32 8 6 0 0 0 115 122 122 244 0 0 0 25 116 69 88 116 83 111 102 116 119 97 114 101 0 65 100 111 98 101 32 73 109 97 103 101 82 101 97 100 121 113 201 101 60 0 0 3 185 73 68 65 84 120 218 196 151 77 76 20 73 20 199 255 221 211 160 192 58 131 184 178 31 168 211 248 65 52 198 12 100 179 123 80 35 28 246 192 101 23 226 105 227 133 225 96 60 120 128 171 23 233 120 241 8 23 15 198 195 140 7 175 11 179 167 141 137 129 196 184 151 61 0 123 48 102 227 178 51 113 49 179 162 204 7 56 36 195 116 151 239 95 218 29 20 137 95 76 251 38 149 234 174 170 174 223 191 223 123 85 93 99 64 236 210 149 171 56 121 227 198 208 174 230 70 103 119 180 201 70 29 173 80 94 203 174 84 170 206 31 231 207 223 188 122 249 18 12 54 254 222 121 56 213 121 220 78 238 63 219 15 203 142 215 147 143 90 54 135 199 153 219 120 248 215 66 186 255 223 135 195 70 102 255 193 161 99 39 14 164 247 253 242 19 84 121 5 222 226 227 186 10 48 59 190 133 17 221 133 220 173 223 240 247 253 71 73 171 101 103 131 211 254 221 81 212 238 63 128 183 244 20 245 54 247 201 18 204 189 95 226 155 31 142 97 113 33 239 88 177 150 6 27 149 10 220 229 18 194 50 247 255 39 48 218 98 32 219 106 136 152 240 150 139 48 60 133 48 141 76 178 69 128 228 225 186 139 112 241 116 3 64 182 229 121 158 200 241 240 57 140 108 203 115 21 60 247 51 9 16 182 229 41 5 37 74 218 82 191 194 108 249 34 28 240 243 85 44 15 159 5 217 166 98 242 137 128 176 224 122 47 32 75 152 100 155 174 167 244 197 167 216 220 220 220 7 63 67 38 217 166 122 21 130 79 177 158 158 30 76 76 76 124 160 0 241 0 67 160 217 91 36 33 223 204 113 28 20 139 197 119 78 248 62 99 94 95 134 158 94 124 47 147 112 195 46 144 78 167 245 100 163 163 163 26 158 201 100 208 218 218 170 239 63 214 56 103 54 155 69 95 95 159 46 218 3 242 35 27 247 186 186 84 254 231 51 202 183 222 222 94 170 81 169 84 74 215 44 3 3 3 186 111 100 100 68 247 23 10 5 93 199 98 49 221 158 72 36 212 216 216 152 122 155 249 243 112 172 63 158 70 38 217 184 123 228 136 202 15 244 110 18 224 151 120 60 174 203 228 228 100 208 70 33 156 140 215 108 167 0 142 33 140 237 179 179 179 186 222 216 71 129 28 31 8 16 38 217 178 12 1 67 246 228 141 38 15 7 215 116 89 46 151 195 212 212 84 208 238 103 61 239 25 46 134 200 182 109 93 74 165 146 110 99 77 155 159 159 199 224 224 160 126 94 196 4 243 146 73 182 233 49 26 166 17 116 112 18 154 120 66 215 201 100 50 128 118 119 119 235 204 245 99 201 73 57 185 127 207 66 81 92 17 132 249 115 249 57 192 58 88 5 194 36 91 175 2 21 49 54 37 225 204 204 76 0 19 215 234 118 190 169 47 136 215 4 189 185 7 248 227 124 168 239 69 255 5 2 1 194 212 43 240 142 125 72 229 207 253 168 234 97 76 86 178 166 167 167 55 245 145 73 182 233 114 41 108 8 193 118 26 61 177 229 30 33 76 87 127 11 168 209 140 212 109 223 31 31 31 15 132 188 46 32 2 178 45 157 132 17 163 110 2 182 218 192 116 14 224 149 7 12 211 12 253 44 64 166 142 190 254 16 242 92 88 46 135 119 16 33 139 76 134 96 93 220 80 147 198 71 167 79 201 191 134 112 78 70 198 206 6 68 190 63 0 178 95 10 48 76 152 209 102 184 75 43 225 28 72 154 119 104 166 22 240 92 33 91 122 182 106 239 181 247 192 205 135 19 6 75 88 75 207 86 65 118 164 63 214 90 172 22 43 131 109 93 95 161 233 235 24 84 85 142 232 53 41 213 26 116 150 108 83 49 44 241 114 123 20 141 137 14 84 90 26 241 224 207 5 148 214 107 163 122 253 93 239 136 167 218 163 77 201 206 68 28 187 69 132 37 155 132 101 108 239 210 172 137 136 154 100 93 33 95 194 63 243 57 60 45 175 165 47 44 230 134 3 202 181 125 241 161 70 5 167 73 190 71 150 136 222 238 173 201 165 8 161 173 1 217 170 1 231 226 127 185 155 108 127 33 192 0 13 223 202 113 67 89 66 101 0 0 0 0 73 69 78 68 174 66 96 130]
@@ -588,6 +485,11 @@ headerMobileBtn.onClick = function() {
 		isMenuOpen = false;
 		}
 }'
+]
+
+{ #category : 'svg' }
+LcsFileLibrary >> moreVert24Svg [
+	^ '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>'
 ]
 
 { #category : 'css' }
@@ -634,6 +536,29 @@ textarea {
 ]
 
 { #category : 'svg' }
-LcsFileLibrary >> searchSvg [
+LcsFileLibrary >> search24Svg [
 	^ '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>'
+]
+
+{ #category : 'html fragments' }
+LcsFileLibrary >> seasMonmouthHomePage [
+^'
+<h1>Seas Monmouth</h1>
+
+<h2>Our Mission<h2>
+
+<p>Welocme to SEAS Monmouth. We are a member of SEAS - The Society for the Education of American Sailors. SEAS was founded to promote and encourage small craft sailing activity as recreation and sport by providing low-cost learn-to-sail programs, and by encouraging relationships among all persons interested in sailing craft and water safety.</p>
+
+<h3>How we accomplish our mission</h3>
+
+<p>The Monmouth Chapter of SEAS is a non-profit organization. Monthly meetings are held at the Keyport Yacht Club in Keyport, NJ (see Locations and Directions for details) on the last Tuesday of each month with entertaining and informative speakers. Weekly sailing activities are scheduled throughout the summer season at our different locations. Our chapter runs a full range of sailing courses from basic through advanced, including cruising. Our fleet consists of six Olympic Class Lasers on the Shrewsbury River, four day sailers ranging in length from 17'' to 18'' in a marina on the Shrewsbury, a Capri 22'' keel-centerboard sloop in Atlantic Highlands, and a Catalina 30'' sloop with an inboard diesel engine and steering wheel in Keyport. This mix of boats allows our members to enjoy a variety of types of sailing and gain experience on different sized boats. Learn more at the local sailing page.</p>
+
+<p>As a member you will receive emails at regular intervals from the organization with the latest news. Our calendars display the activities hosted by the organization. The organization depends on the donation of its members time to maintain the fleet, organize events to support the membership such as parties and other social activities, or serve on a committee, or as an elected board of trustee member. Each member is asked to donate four hours of their time over the year. "Many hands make light work" and it is a great way to meet new friends while completing a task. Many tasks require no skill, or may include learning a new skill from an experienced member. With a fleet this size, it takes many volunteer hours to prepare, maintain, repair, and winterize the boats.</p>
+
+<p>We offer opportunities for members to grow their skills as crew, first mate, or skipper on SEAS boats. In addition we offer members opportunities in cruising. We cruise both near (Newport RI, Chesapeake Bay) and far (Caribbean, San Juan Islands, New Zealand and Tahiti are all destinations we''ve been to).</p>
+
+<p>SEAS Monmouth Commodore</p>
+
+<p>commodore@monmouth.sailseas.com</p>'
+
 ]
