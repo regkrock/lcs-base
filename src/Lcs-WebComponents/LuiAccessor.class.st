@@ -1,6 +1,9 @@
 Class {
 	#name : 'LuiAccessor',
 	#superclass : 'LcsObject',
+	#instVars : [
+		'parent'
+	],
 	#category : 'Lcs-WebComponents-Accessor',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Accessor'
@@ -38,6 +41,16 @@ LuiAccessor >> handlesSelector: aSelector [
 { #category : 'accessing' }
 LuiAccessor >> name [
 	^ nil
+]
+
+{ #category : 'accessing' }
+LuiAccessor >> parent [
+	^ parent
+]
+
+{ #category : 'accessing' }
+LuiAccessor >> parent: aComponent [ 
+	parent := aComponent
 ]
 
 { #category : 'printing' }
