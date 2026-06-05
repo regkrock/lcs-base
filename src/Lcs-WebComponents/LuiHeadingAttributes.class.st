@@ -1,8 +1,9 @@
 Class {
 	#name : 'LuiHeadingAttributes',
 	#superclass : 'LuiComponentAttributes',
-	#category : 'Lcs-WebComponents',
-	#package : 'Lcs-WebComponents'
+	#category : 'Lcs-WebComponents-Core',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Core'
 }
 
 { #category : 'generated method' }
