@@ -8,7 +8,8 @@ Class {
 		'componentName',
 		'componentKeys',
 		'attributes',
-		'componentDecorations'
+		'componentDecorations',
+		'computeComponentId'
 	],
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
@@ -107,7 +108,14 @@ LuiComponent >> addToComponents: aComponent [
 
 { #category : 'components' }
 LuiComponent >> assignId [
-	self componentId: self generatedId
+	self isComponentIdComputed ifTrue: [
+		self componentId: self generatedId ]
+]
+
+{ #category : 'components' }
+LuiComponent >> assignStaticId: aString [
+	self computeComponentId: false.
+	self componentId: aString
 ]
 
 { #category : 'accessing' }
@@ -214,6 +222,16 @@ LuiComponent >> componentsDo: aBlock [
 		eachComponent componentsDo: aBlock ]
 ]
 
+{ #category : 'accessing' }
+LuiComponent >> computeComponentId [
+	^ computeComponentId
+]
+
+{ #category : 'accessing' }
+LuiComponent >> computeComponentId: anObject [
+	computeComponentId := anObject
+]
+
 { #category : 'initialize' }
 LuiComponent >> cssClass: aClassName [ 
 	self attributes cssClass: aClassName
@@ -291,7 +309,10 @@ LuiComponent >> gtComponentsFor: aView [
 		column: 'Component Class' text: [ :aComponent | aComponent class name ];
 		column: 'Component Name' text: [ :aComponent | aComponent componentName displayString ];
 		column: 'ID' text: [ :aComponent | aComponent componentId displayString ];
-		column: 'CSS Class(es)' text: [ :aComponent | aComponent cssClassesString displayString ]
+		column: 'CSS Class(es)' text: [ :aComponent | aComponent cssClassesString displayString ];
+		column: 'Other' text: [ :aComponent | aComponent gtViewOtherInfo displayString ];
+		column: 'HTML Tag' text: [ :aComponent | aComponent gtViewTagName displayString ];
+		actionUpdateButton
 ]
 
 { #category : 'printing' }
@@ -339,6 +360,16 @@ LuiComponent >> gtViewAttributesOn: aView [
 LuiComponent >> gtViewDecorationsOn: aView [
 	<gtView>
 	^ self componentDecorations gtViewDecorationsOn: aView
+]
+
+{ #category : 'gt views' }
+LuiComponent >> gtViewOtherInfo [
+	^ ''
+]
+
+{ #category : 'gt views' }
+LuiComponent >> gtViewTagName [
+	^ ''
 ]
 
 { #category : 'testing' }
@@ -393,6 +424,7 @@ LuiComponent >> initialize [
 	self componentKeys: OrderedCollection new.
 	self attributes: (self componentAttributesClass on: self).
 	self componentDecorations: (LuiComponentDecorations on: self).
+	self computeComponentId: true.
 	self initializeCssClasses
 ]
 
@@ -405,6 +437,11 @@ LuiComponent >> initializeCssClasses [
 { #category : 'initialize' }
 LuiComponent >> initializeNamed: aName [
 	self componentName: aName
+]
+
+{ #category : 'accessing' }
+LuiComponent >> isComponentIdComputed [
+	^ self computeComponentId == true
 ]
 
 { #category : 'testing' }
@@ -472,8 +509,7 @@ LuiComponent >> logRenderingTrace [
 { #category : 'components - querying' }
 LuiComponent >> myParentPresenterComponent [
 	self isPresenterComponent ifTrue: [ ^ self ].
-	self parentComponent isNil
-		ifTrue: [ LcsError signal: 'No Presenter Component was found' ].
+	self parentComponent ifNil: [ ^ nil ].
 	^ self parentComponent myParentPresenterComponent
 ]
 
@@ -562,10 +598,15 @@ LuiComponent >> renderDetailsOn: html [
 { #category : 'gt - views' }
 LuiComponent >> renderExample: aBlock [
 	| html |
-	html := [ WAHtmlCanvas builder
+	"html := [ WAHtmlCanvas builder
 		fullDocument: false;
 		rootBlock: aBlock;
-		render: aBlock ] on: Error do: [ :s | s return: 'Cannot render form because of callbacks' ].
+		render: aBlock ] on: Error do: [ :s | s return: 'Cannot render form because of callbacks' ]."
+	html := WAHtmlCanvas builder
+		fullDocument: false;
+		rootBlock: aBlock;
+		render: aBlock.
+
 	^ self prettyPrintedHtml: html
 ]
 
