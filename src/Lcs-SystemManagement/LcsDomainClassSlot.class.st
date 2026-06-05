@@ -60,6 +60,16 @@ LcsDomainClassSlot >> postAddActionsDescription [
 		  newItemStencil: [ LcsPostAddAction new ]
 ]
 
+{ #category : 'asking' }
+LcsDomainClassSlot >> selectionOptions [
+	^ self siblingClasses
+]
+
+{ #category : 'asking' }
+LcsDomainClassSlot >> siblingClasses [
+	^ self superclassClass subclasses
+]
+
 { #category : 'properties' }
 LcsDomainClassSlot >> superclassClass [
 	^ self propertyAt: #superclassClass ifAbsent: [ LcsDomainObject ]

@@ -12,11 +12,6 @@ LcsDateSlot >> defaultInitialValueBlock [
 ]
 
 { #category : 'defaults' }
-LcsDateSlot >> defaultInputComponentClassName [
-	^ #'LuiDatePicker'
-]
-
-{ #category : 'defaults' }
 LcsDateSlot >> defaultPrevalidationTransformBlock [
 	^ [ :value :slot | 
 		(value isKindOf: Date) 

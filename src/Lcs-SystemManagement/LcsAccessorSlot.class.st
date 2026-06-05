@@ -67,6 +67,14 @@ LcsAccessorSlot >> _initializeSlotWithValue: aValue in: aDomainObject [
 	self slotVarPut: aValue in: aDomainObject oldValue: LcsApplicationEnvironment undefinedObject
 ]
 
+{ #category : 'as yet unclassified' }
+LcsAccessorSlot >> addLabelAndInputTo: aPresenter [
+	| labelAndInputGridComponent |
+	labelAndInputGridComponent := aPresenter addComponent: (LuiDiv named: 'labelAndInputGrid').
+	labelAndInputGridComponent addComponent: (LuiLabel onSlot: self).
+	labelAndInputGridComponent addComponent: (self defaultInputComponentClass onSlot: self).
+]
+
 { #category : 'post update actions' }
 LcsAccessorSlot >> addPostUpdateAction: anUpdateAction [
 	self postUpdateActions addAction: anUpdateAction

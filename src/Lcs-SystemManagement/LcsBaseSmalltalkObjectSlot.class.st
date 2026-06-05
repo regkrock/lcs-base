@@ -44,17 +44,11 @@ LcsBaseSmalltalkObjectSlot >> defaultInitialValueBlock [
 	self subclassResponsibility
 ]
 
-{ #category : 'defaults' }
-LcsBaseSmalltalkObjectSlot >> defaultInputComponentClassName [
-	^ #'NeedsToBeDefined'
-	"self subclassResponsibility"
-]
-
 { #category : 'initialize' }
 LcsBaseSmalltalkObjectSlot >> initialize [
 	super initialize.
 	self addDefaultSlotType.
-	self inputComponentClassName: self defaultInputComponentClassName
+	self inputComponentClassName: self defaultInputComponentClass
 ]
 
 { #category : 'accessing' }

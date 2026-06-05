@@ -11,11 +11,6 @@ LcsStringSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | self typeClass new ]
 ]
 
-{ #category : 'default ui component' }
-LcsStringSlot >> defaultInputComponentClassName [
-	^#LuiTextInput
-]
-
 { #category : 'iniitialize' }
 LcsStringSlot >> initialValue: anObject [
 	super initialValue:anObject printString
