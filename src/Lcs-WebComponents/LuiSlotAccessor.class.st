@@ -6,8 +6,7 @@ Class {
 		'writeSelector',
 		'model',
 		'slotName',
-		'slotDefinition',
-		'parent'
+		'slotDefinition'
 	],
 	#category : 'Lcs-WebComponents-Accessor',
 	#package : 'Lcs-WebComponents',
@@ -48,6 +47,11 @@ LuiSlotAccessor >> = anObject [
 		and: [ self writeSelector = anObject writeSelector ] ]
 ]
 
+{ #category : 'accessing' }
+LuiSlotAccessor >> _model [
+	^ model
+]
+
 { #category : 'testing' }
 LuiSlotAccessor >> canRead: aModel [
 	^ self readSelector notNil and: [ aModel respondsTo: self readSelector ]
@@ -63,12 +67,12 @@ LuiSlotAccessor >> contents [
 	^ self model perform: self readSelector
 ]
 
-{ #category : 'accessing' }
+{ #category : 'magritte-description' }
 LuiSlotAccessor >> defaultLabelFor: aDescription [
 	^ self readSelector asString normalizeCamelCase capitalized
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'magritte - descriptions' }
 LuiSlotAccessor >> descriptionSelector [
 	<magritteDescription>
 	^ MASymbolDescription new
@@ -108,8 +112,7 @@ LuiSlotAccessor >> label [
 
 { #category : 'accessing' }
 LuiSlotAccessor >> model [
-	"^ model"
-	^ self parent model
+	^ model ifNil: [ self parent model ]
 ]
 
 { #category : 'accessing' }
