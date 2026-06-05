@@ -22,6 +22,12 @@ LuiFormInputComponent >> componentAttributesClass [
 ]
 
 { #category : 'initialize' }
+LuiFormInputComponent >> initializeNamed: aName [
+	super initializeNamed: aName.
+	self valueAccessor: (LuiLocalAccessor newOn: self )
+]
+
+{ #category : 'initialize' }
 LuiFormInputComponent >> initializeOnSlot: aSlotDefinition [
 	self valueAccessor: (LuiSlotAccessor newOn: self ).
 	self valueAccessor slotDefinition: aSlotDefinition.
@@ -30,11 +36,11 @@ LuiFormInputComponent >> initializeOnSlot: aSlotDefinition [
 
 { #category : 'model' }
 LuiFormInputComponent >> model [
-	"^ self valueAccessor model."
-	^ self presenter model
+	self valueAccessor _model ifNotNil: [ : model | ^ model ].
+	^ self presenter ifNotNil: [ :presenter | presenter model ]
 ]
 
-{ #category : 'model' }
+{ #category : 'as yet unclassified' }
 LuiFormInputComponent >> model: aModel [
 	self valueAccessor model: aModel.
 ]
@@ -54,7 +60,7 @@ LuiFormInputComponent >> placeholderAttribute [
 	^ self attributes placeholderAttribute
 ]
 
-{ #category : 'components' }
+{ #category : 'model' }
 LuiFormInputComponent >> presenter [
 	^ self myParentPresenterComponent
 ]
