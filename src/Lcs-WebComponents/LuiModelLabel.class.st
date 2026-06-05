@@ -19,6 +19,7 @@ LuiModelLabel >> forName: aString [
 { #category : 'initialize' }
 LuiModelLabel >> initializeOnSlot: aSlotDefinition [
 	super initializeOnSlot: aSlotDefinition.
+	self componentName: aSlotDefinition slotName , 'Label'.
 	self forName: aSlotDefinition slotName
 ]
 

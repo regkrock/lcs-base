@@ -44,6 +44,11 @@ LuiMenu >> buildFrom: aNavigationMenuDefinition [
 		menuComponent buildFrom: eachComponent]
 ]
 
+{ #category : 'gt views' }
+LuiMenu >> gtViewTagName [
+	^ '<ul>'
+]
+
 { #category : 'initialize' }
 LuiMenu >> initialize [
 	super initialize.
@@ -54,7 +59,7 @@ LuiMenu >> initialize [
 { #category : 'initialize' }
 LuiMenu >> initializeMainMenuNamed: aComponentName [
 	self componentName: aComponentName.
-	self cssClass: 'mainMenu'
+	self cssClass: 'menu'
 ]
 
 { #category : 'initialize' }

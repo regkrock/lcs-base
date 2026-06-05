@@ -12,17 +12,26 @@ Class {
 	#tag : 'Widgets'
 }
 
-{ #category : 'rendering' }
+{ #category : 'defaults' }
+LuiTextInput >> defaultCssClasses [
+	^ #( 'inputField' )
+]
+
+{ #category : 'defaults' }
 LuiTextInput >> displayValue [
-	<todo: 'The first line is a hack. A solution is required for widgets which do not have a model associated with them.'>
-	self valueAccessor isNil ifTrue: [ ^ '' ].
-	^self valueAccessor displayValue
+	^ self valueAccessor displayValue
+]
+
+{ #category : 'initialize' }
+LuiTextInput >> initializeNamed: aName [
+	super initializeNamed: aName.
+	self valueAccessor model: ''.
 ]
 
 { #category : 'initialize' }
 LuiTextInput >> initializeOnSlot: aSlotDefinition [
 	super initializeOnSlot: aSlotDefinition .
-	"self properties name: aSlotDefinition slotName"
+	self placeholder: aSlotDefinition label
 ]
 
 { #category : 'as yet unclassified' }

@@ -13,11 +13,6 @@ Class {
 	#tag : 'Accessor'
 }
 
-{ #category : 'testing' }
-LuiSlotAccessor class >> isAbstract [
-	^ false
-]
-
 { #category : 'instance creation' }
 LuiSlotAccessor class >> newOn: aComponent [
 	^ self new

@@ -16,10 +16,90 @@
 Class {
 	#name : 'LuiSelect',
 	#superclass : 'LuiFormInputComponent',
+	#instVars : [
+		'optionPrintBlock',
+		'optionNames',
+		'options'
+	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
 }
+
+{ #category : 'options' }
+LuiSelect >> addOption: aString [
+	self addComponent: (LuiOption new text: aString)
+]
+
+{ #category : 'options' }
+LuiSelect >> addOptionComponents [
+	self optionNames
+		with: self options
+		do: [ :eachOptionName :eachOption | 
+			self
+				addComponent: (LuiOption new
+						componentName: eachOptionName;
+						optionValue: eachOption;
+						text: eachOptionName) ]
+]
+
+{ #category : 'options' }
+LuiSelect >> addOptionsFrom: anOptionsCollection [
+	self options: anOptionsCollection copy.
+	self optionNames: (self options
+				collect: [ :each | self optionNames add: (self optionPrintBlock value: each) ]).
+	self addOptionComponents
+]
+
+{ #category : 'defaults' }
+LuiSelect >> defaultCssClasses [
+	^ #()
+	"^ #( inputField )"
+]
+
+{ #category : 'initialize' }
+LuiSelect >> initialize [
+	super initialize.
+	self options: OrderedCollection new.
+	self optionNames: OrderedCollection new.
+	self optionPrintBlock: [ :eachOption | eachOption asString ]
+]
+
+{ #category : 'initialize' }
+LuiSelect >> initializeOnSlot: aSlotDefinition [
+	super initializeOnSlot: aSlotDefinition.
+	aSlotDefinition populateOptionsIn: self
+]
+
+{ #category : 'accessing' }
+LuiSelect >> optionNames [
+	^ optionNames
+]
+
+{ #category : 'accessing' }
+LuiSelect >> optionNames: anObject [
+	optionNames := anObject
+]
+
+{ #category : 'accessing' }
+LuiSelect >> optionPrintBlock [
+	^ optionPrintBlock
+]
+
+{ #category : 'accessing' }
+LuiSelect >> optionPrintBlock: anObject [
+	optionPrintBlock := anObject
+]
+
+{ #category : 'accessing' }
+LuiSelect >> options [
+	^ options
+]
+
+{ #category : 'accessing' }
+LuiSelect >> options: anObject [
+	options := anObject
+]
 
 { #category : 'rendering' }
 LuiSelect >> renderComponentOn: html [

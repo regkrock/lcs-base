@@ -56,7 +56,7 @@ LuiMenuItem >> anchorHref: aString [
 { #category : 'button - attributes' }
 LuiMenuItem >> anchorLabel: aString [
 	self ensureNoButtonComponent.
-	self buttonComponent label: aString
+	self anchorComponent text: aString
 ]
 
 { #category : 'building' }
@@ -130,6 +130,11 @@ LuiMenuItem >> ensureNoButtonComponent [
 	self hasButtonComponent
 		ifTrue: [ LcsError
 				signal: 'An button component already exists. A menu item can only have one or the other' ]
+]
+
+{ #category : 'gt views' }
+LuiMenuItem >> gtViewTagName [
+	^ '<li>'
 ]
 
 { #category : 'testing' }
