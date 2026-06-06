@@ -19,6 +19,18 @@ LuiCheckboxExamples >> checkedCheckboxWithNoValue [
 ]
 
 { #category : 'examples' }
+LuiCheckboxExamples >> checkedCheckboxWithValue [
+	<gtExample>
+	| component expectedHtml |
+	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" checked value="Label" type="checkbox"/>'.
+	component := self newComponent.
+	component model: true.
+	component text: 'Label'.
+	"self assertRendered: component equals: expectedHtml."
+	^ component
+]
+
+{ #category : 'examples' }
 LuiCheckboxExamples >> newComponent [
 	<gtExample>
 	| component |
@@ -54,6 +66,20 @@ LuiCheckboxExamples >> uncheckedCheckboxWithNoValue [
 	component model: false.
 	self assert: component model equals: false.
 	"self assertRendered: component equals: expectedHtml."
+	^ component
+
+]
+
+{ #category : 'examples' }
+LuiCheckboxExamples >> uncheckedCheckboxWithValue [
+	<gtExample>
+	| component expectedHtml |
+	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" value="Label" type="checkbox"/>'.
+	component := self newComponent.
+	component model: false.
+	self assert: component model equals: false.
+	component text: 'Label'.
+	self assertRendered: component equals: expectedHtml.
 	^ component
 
 ]
