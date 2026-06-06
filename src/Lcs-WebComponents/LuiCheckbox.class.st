@@ -12,8 +12,14 @@ LuiCheckbox >> initialize [
 ]
 
 { #category : 'rendering' }
+LuiCheckbox >> isChecked [
+	^ self model == true
+]
+
+{ #category : 'rendering' }
 LuiCheckbox >> renderComponentOn: html [
 	html checkbox
 		addCommonAttributes: self;
-		text: self text
+		value: self isChecked;
+		lcsText: self text
 ]

@@ -21,9 +21,15 @@ LuiFormInputComponent >> componentAttributesClass [
 	^ LuiFormInputAttributes
 ]
 
+{ #category : 'rendering' }
+LuiFormInputComponent >> displayValue [
+	^ self valueAccessor displayValue
+]
+
 { #category : 'initialize' }
 LuiFormInputComponent >> initializeNamed: aName [
 	super initializeNamed: aName.
+	self name: aName.
 	self valueAccessor: (LuiLocalAccessor newOn: self )
 ]
 
@@ -43,6 +49,16 @@ LuiFormInputComponent >> model [
 { #category : 'as yet unclassified' }
 LuiFormInputComponent >> model: aModel [
 	self valueAccessor model: aModel.
+]
+
+{ #category : 'attributes' }
+LuiFormInputComponent >> name [
+	^ self attributes name
+]
+
+{ #category : 'attributes' }
+LuiFormInputComponent >> name: aName [ 
+	self attributes name: aName
 ]
 
 { #category : 'attributes' }

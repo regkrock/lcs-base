@@ -252,11 +252,6 @@ LuiComponent >> defaultCssClasses [
 	^OrderedCollection new
 ]
 
-{ #category : 'rendering' }
-LuiComponent >> displayValue [
-	^ self valueAccessor displayValue
-]
-
 { #category : 'components' }
 LuiComponent >> firstComponent [
 	^ self componentAtIndex: 1

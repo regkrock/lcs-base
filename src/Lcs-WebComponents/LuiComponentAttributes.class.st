@@ -23,8 +23,8 @@ LuiComponentAttributes >> addAttributesToTag: aTagBrush [
 		id: self parentComponent componentId;
 		dataName: self parentComponent componentName;
 		dataStClass: self parentComponent.
-	((aTagBrush respondsTo: #name:) and: [ (aTagBrush isKindOf: WAAnchorTag) not ]) ifTrue: [
-		aTagBrush name: self parentComponent componentName ].
+	"((aTagBrush respondsTo: #name:) and: [ (aTagBrush isKindOf: WAAnchorTag) not ]) ifTrue: [
+		aTagBrush name: self parentComponent componentName ]."
 	self attributes do: [ :eachaAtributes | 
 			eachaAtributes cachedValue ifNotNil: [ :object |
 				aTagBrush
