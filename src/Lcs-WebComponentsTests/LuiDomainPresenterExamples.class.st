@@ -1,8 +1,8 @@
 Class {
 	#name : 'LuiDomainPresenterExamples',
 	#superclass : 'LuiSeasideComponentExamples',
-	#category : 'Lcs-WebComponents-Core',
-	#package : 'Lcs-WebComponents',
+	#category : 'Lcs-WebComponentsTests-Examples',
+	#package : 'Lcs-WebComponentsTests',
 	#tag : 'Core'
 }
 
