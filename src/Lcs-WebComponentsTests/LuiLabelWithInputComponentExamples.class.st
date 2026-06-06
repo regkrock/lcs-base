@@ -10,7 +10,7 @@ Class {
 LuiLabelWithInputComponentExamples >> htmlForLastNameInputComponent [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<input id="185393756" data-name="input" data-StClass="LuiTextInput" name="input" value="Smith" type="text"/>'.
+	expectedHtml := '<input id="17819216" data-name="lastName" data-StClass="LuiTextInput" name="lastName" placeholder="Last Name" class="inputField" value="Smith" type="text"/>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent inputComponent equals: expectedHtml
 ]
 
@@ -18,7 +18,7 @@ LuiLabelWithInputComponentExamples >> htmlForLastNameInputComponent [
 LuiLabelWithInputComponentExamples >> htmlForLastNameLabel [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<label id="90515960" data-name="label" data-StClass="LuiModelLabel" for="lastName">Last Name</label>'.
+	expectedHtml := '<label id="1052112" data-name="lastNameLabel" data-StClass="LuiModelLabel" for="lastName">Last Name</label>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent labelComponent equals: expectedHtml
 ]
 
@@ -26,7 +26,7 @@ LuiLabelWithInputComponentExamples >> htmlForLastNameLabel [
 LuiLabelWithInputComponentExamples >> htmlForLastNameWithInLabelAndInputComponent [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<div data-name="lastName" data-StClass="LuiLabelWithInputComponent"><label id="90515960" data-name="label" data-StClass="LuiModelLabel" for="lastName">Last Name</label><input id="185393756" data-name="input" data-StClass="LuiTextInput" name="input" value="Smith" type="text"/></div>'.
+	expectedHtml := '<div data-name="lastNameLabelAndInput" data-StClass="LuiLabelWithInputComponent"><label id="1052112" data-name="lastNameLabel" data-StClass="LuiModelLabel" for="lastName">Last Name</label><input id="17819216" data-name="lastName" data-StClass="LuiTextInput" name="lastName" placeholder="Last Name" class="inputField" value="Smith" type="text"/></div>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent equals: expectedHtml
 ]
 
@@ -40,15 +40,18 @@ LuiLabelWithInputComponentExamples >> lastNameLabelWithInputComponent [
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 2000).
 	person lastName: 'Smith'.
 	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
+	self assert: person lastName equals: 'Smith'.
+	
 	component model: person.
-	self assert: component componentName equals: 'lastName'.
+
+	self assert: component componentName equals: 'lastNameLabelAndInput'.
 	inputComponent := component inputComponent.
 	labelComponent := component labelComponent.
-	self assert: inputComponent componentName equals: 'input'.
+	self assert: inputComponent componentName equals: 'lastName'.
 	self assert: inputComponent valueAccessor slotName equals: 'lastName'.
 	self assert: inputComponent displayValue equals: 'Smith'.
 	self assert: inputComponent model equals: person.
-	self assert: labelComponent componentName equals: 'label'.
+	self assert: labelComponent componentName equals: 'lastNameLabel'.
 	self assert: labelComponent labelString equals: 'Last Name'.
 	self assert: labelComponent model equals: person.
 	self assert: labelComponent forName equals: 'lastName'.
@@ -60,7 +63,6 @@ LuiLabelWithInputComponentExamples >> properlyFormedComponent [
 	<gtExample>
 	| component |
 	component := LuiLabelWithInputComponent named: 'xxxx'.
-	self assert: component hasLabelComponent.
-	self assert: component labelComponent componentName equals: 'label'.
+	self assert: component hasNoComponents description: 'Label and Input are only created with the onSlot: method'.
 	^ component
 ]

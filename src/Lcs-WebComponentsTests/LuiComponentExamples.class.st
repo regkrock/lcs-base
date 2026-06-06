@@ -92,7 +92,7 @@ LuiComponentExamples >> newComponent [
 	self deny: component isHidden.
 	self assert: component componentId isNil.
 	self assert: component parentComponent isNil.
-	self assert: component domainObject isNil.
+	self should: [ component domainObject ] raise: Error.
 	^ component
 ]
 

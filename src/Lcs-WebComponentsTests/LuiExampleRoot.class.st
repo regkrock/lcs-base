@@ -14,8 +14,7 @@ LuiExampleRoot class >> initialize [
 
 { #category : 'instance creation' }
 LuiExampleRoot class >> new [
-	"^ self newWithHeaderWithNavBar"
-	^ self newWithComponent: (LuiDomainPresenterExamples new presenterWithLabelAndStringInputWidget)
+	^ self newWithHeaderWithNavBar
 ]
 
 { #category : 'instance creation' }
@@ -37,7 +36,11 @@ LuiExampleRoot class >> newWithComponent: aComponent [
 
 { #category : 'instance creation' }
 LuiExampleRoot class >> newWithHeaderWithNavBar [
-	^ self basicNew initializeWithHeaderWithNavBar
+	^ (self basicNew initializeWithHeaderWithNavBar)
+		addComponent: ((LuiForm newWith: (LuiDomainPresenter named: 'abc'))
+						cssClass: 'mainForm';
+						yourself);
+		yourself
 ]
 
 { #category : 'components' }
@@ -109,8 +112,8 @@ LuiExampleRoot >> showCallbackOnTranscript [
 
 { #category : 'updating' }
 LuiExampleRoot >> updateFilesInRoot: aRoot [
-	aRoot stylesheet url: LcsFileLibrary / #resetCss.
-	aRoot stylesheet url: LcsFileLibrary / #mainCss.
-	aRoot javascript url: LcsFileLibrary / #mobileNavJs.
-	aRoot link beShortcutIcon url: LcsFileLibrary / #faviconPng
+	"aRoot stylesheet url: LcsFileLibrary / #resetCss."
+	aRoot stylesheet url: LcsExampleFileLibrary / #mainCss.
+	"aRoot javascript url: LcsFileLibrary / #mobileNavJs."
+	aRoot link beShortcutIcon url: LcsExampleFileLibrary / #faviconPng
 ]

@@ -48,7 +48,7 @@ LuiRootExamples >> rootWithHeaderWithMenu [
 	| root |
 	root := self rootWithHeader.
 	(root componentNamed: 'header') addComponent: (LuiMenu newMainMenu).
-	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="mainMenu"></ul></header></div>'.
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="menu"></ul></header></div>'.
 	^ root
 ]
 
@@ -61,6 +61,6 @@ LuiRootExamples >> rootWithHeaderWithMenuThreeSubMenus [
 	mainMenu addComponent: (LuiMenuItem named: 'Home').
 	mainMenu addComponent: (LuiMenuItem named: 'Contact').
 	mainMenu addComponent: (LuiMenuItem named: 'About').
-	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="mainMenu"><li id="55653441" data-name="Home" data-StClass="LuiMenuItem" class="menuItem"></li><li id="31059052" data-name="Contact" data-StClass="LuiMenuItem" class="menuItem"></li><li id="140848643" data-name="About" data-StClass="LuiMenuItem" class="menuItem"></li></ul></header></div>'. 
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="menu"><li id="55653441" data-name="Home" data-StClass="LuiMenuItem" class="menuItem"></li><li id="31059052" data-name="Contact" data-StClass="LuiMenuItem" class="menuItem"></li><li id="140848643" data-name="About" data-StClass="LuiMenuItem" class="menuItem"></li></ul></header></div>'. 
 	^ root
 ]

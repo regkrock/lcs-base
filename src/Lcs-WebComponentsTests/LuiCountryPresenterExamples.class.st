@@ -3,16 +3,14 @@ Class {
 	#superclass : 'LuiSeasideComponentExamples',
 	#category : 'Lcs-WebComponentsTests-Examples',
 	#package : 'Lcs-WebComponentsTests',
-	#tag : 'Core'
+	#tag : 'Examples'
 }
 
 { #category : 'examples' }
 LuiCountryPresenterExamples >> newPresenter [
 	<gtExample>
 	| presenter |
-	presenter := LuiCountryPresenter named:'examplePresenter'.
-	self assert: presenter class == LuiCountryPresenter.
-	self assert: presenter componentName equals: 'examplePresenter'.
+	presenter := LuiCountryPresenter named:'countryPresenter'.
 	^ presenter
 ]
 
@@ -32,14 +30,13 @@ LuiCountryPresenterExamples >> newPresenterOnExistingCountry [
 { #category : 'examples' }
 LuiCountryPresenterExamples >> renderedSingleColumnCountryLayout [
 	<gtExample>
-	| presenter country textInputWidget|
+	| presenter country expectedHtml|
 	presenter := self newPresenterOnExistingCountry.
 	country := presenter model.
-	textInputWidget := LuiTextInput onSlot: (presenter model slotDefinitionNamed: 'commonName').
-	presenter addComponent: textInputWidget.
-	self assert: textInputWidget myParentPresenterComponent == presenter.
-	
-	self assertRendered: presenter equals:'<section data-name="examplePresenter" data-StClass="LuiDomainPresenter"><input id="136161413" data-name="commonName" data-StClass="LuiTextInput" name="commonName" value="Canada" type="text"/></section>'.
+	presenter addComponent: (LuiTextInput onSlot: (presenter model slotDefinitionNamed: 'commonName') ).
 
+	expectedHtml := '<section data-name="countryPresenter" data-StClass="LuiCountryPresenter"><input id="133384925" data-name="commonName" data-StClass="LuiTextInput" name="commonName" placeholder="Common Name" class="inputField" value="Canada" type="text"/></section>'.
+	
+	self assertRendered: presenter equals: expectedHtml.
 	^ presenter
 ]

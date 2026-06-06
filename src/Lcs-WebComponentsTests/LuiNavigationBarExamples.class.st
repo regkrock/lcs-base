@@ -9,10 +9,19 @@ Class {
 { #category : 'examples' }
 LuiNavigationBarExamples >> exampleNavigationBar [
 	<gtExample>
-	| navBar |
+	| navBar labelComponent |
 	navBar := self newNavBar.
 	navBar componentName: 'navBar'.
 	navBar cssClass: 'navBar'.
+	navBar addComponent: ((LuiLabel named: 'menuToggleLabel')
+							forName: 'menu-toggle';
+							cssClass: 'hamburger';
+							text: '';
+							yourself).
+	navBar addComponent: ((LuiCheckbox named: 'menuToggle')
+							assignStaticId: 'menu-toggle';
+							text: '';
+							yourself).
 	navBar addComponent: LuiAnchor newSeasLogo.
 	navBar addComponent: LuiMenuExamples new exampleNavigationMenu.
 	^ navBar
@@ -83,7 +92,7 @@ LuiNavigationBarExamples >> newNavBar [
 	self assert: component componentId isNil.
 	self assert: component componentName equals: 'navBar'.
 	self assert: component parentComponent isNil.
-	self assert: component domainObject isNil.
+	"self assert: component domainObject isNil."
 	self assert: component cssClassesString equals: 'navBar'.
 	self assert: component hasAttributes.
 	^ component

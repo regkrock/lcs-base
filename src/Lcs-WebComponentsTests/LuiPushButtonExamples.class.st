@@ -56,15 +56,15 @@ LuiPushButtonExamples >> okButton [
 LuiPushButtonExamples >> okButtonWithLeadingCheckIcon [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button"><img alt="" id="201314498" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check.svg"/><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span></button>'.
+	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button"><img alt="" id="201314498" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span></button>'.
 	button := self okButtonWithSpan
-				leadingImageUrl: LcsFileLibrary / #checkSvg;
+				leadingImageUrl: LcsFileLibrary / #check24Svg;
 				yourself.
 	self assert: button components size = 2.
 	self assert: button hasSpanComponent.
 	self assert: button label equals: 'OK'.
 	self assert: button hasLeadingImageComponent.
-	self assert: button leadingImageComponent url equals: LcsFileLibrary / #checkSvg.
+	self assert: button leadingImageComponent url equals: LcsFileLibrary / #check24Svg.
 	self assert: button leadingImageComponent altText isNil.
 	self assertRendered: button equals: expectedHtml.
 	^button
@@ -104,15 +104,15 @@ LuiPushButtonExamples >> okButtonWithStyleBorder [
 LuiPushButtonExamples >> okButtonWithTrailingCheckIcon [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button"><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span><img alt="" id="41593132" data-name="trailingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check.svg"/></button>'.
+	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button"><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span><img alt="" id="41593132" data-name="trailingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/></button>'.
 	button := self okButtonWithSpan
-				trailingImageUrl: LcsFileLibrary / #checkSvg;
+				trailingImageUrl: LcsFileLibrary / #check24Svg;
 				yourself.
 	self assert: button components size = 2.
 	self assert: button hasSpanComponent.
 	self assert: button label equals: 'OK'.
 	self assert: button hasTrailingImageComponent.
-	self assert: button trailingImageComponent url equals: LcsFileLibrary / #checkSvg.
+	self assert: button trailingImageComponent url equals: LcsFileLibrary / #check24Svg.
 	self assert: button trailingImageComponent altText isNil.
 	self assertRendered: button equals: expectedHtml. 
 	^button
