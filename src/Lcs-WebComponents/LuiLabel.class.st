@@ -6,6 +6,16 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'attributes' }
+LuiLabel >> forName [
+	^ self attributes forName
+]
+
+{ #category : 'attributes' }
+LuiLabel >> forName: anInputName [
+	self attributes forName: anInputName
+]
+
 { #category : 'iniitialize' }
 LuiLabel >> initializeOnSlot: aSlotDefinition [
 	super initializeOnSlot: aSlotDefinition.
