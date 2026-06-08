@@ -340,7 +340,7 @@ LuiComponent >> gtRenderedFor: aView [
 	^ aView textEditor
 		title: 'HTML';
 		priority: 80;
-		text: [ self renderExample: [ :html | html render: self ] ];
+		text: [ self renderExample ];
 		styler: Gt4XMLStyler new;
 		actionUpdateButton
 ]
@@ -588,6 +588,11 @@ LuiComponent >> renderDetailsOn: html [
 	self renderBeforeSubcomponentsOn: html.
 	self renderSubcomponentsOn: html.
 	self renderAfterSubcomponentsOn: html
+]
+
+{ #category : 'gt - views' }
+LuiComponent >> renderExample [
+	^ self renderExample: [ :html | html render: self ]
 ]
 
 { #category : 'gt - views' }

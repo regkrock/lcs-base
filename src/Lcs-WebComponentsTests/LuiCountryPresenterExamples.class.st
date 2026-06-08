@@ -35,7 +35,7 @@ LuiCountryPresenterExamples >> renderedSingleColumnCountryLayout [
 	country := presenter model.
 	presenter addComponent: (LuiTextInput onSlot: (presenter model slotDefinitionNamed: 'commonName') ).
 
-	expectedHtml := '<section data-name="countryPresenter" data-StClass="LuiCountryPresenter"><input id="133384925" data-name="commonName" data-StClass="LuiTextInput" name="commonName" placeholder="Common Name" class="inputField" value="Canada" type="text"/></section>'.
+	expectedHtml := '<div data-name="countryPresenter" data-StClass="LuiCountryPresenter"><input id="133384925" data-name="commonName" data-StClass="LuiTextInput" name="commonName" placeholder="Common Name" class="inputField" value="Canada" type="text"/></div>'.
 	
 	self assertRendered: presenter equals: expectedHtml.
 	^ presenter

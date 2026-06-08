@@ -17,7 +17,7 @@ LuiPushButtonExamples >> buttonWithCallback [
 	self assert: button attributes hasCallbackAttribute.
 	self assert: button callback == callbackBlock.
 	"Note: The callback block id is stored in the name property"
-	self assertRendered: button equals: '<button data-name="button" data-StClass="LuiPushButton" name="1" type="button"></button>'.
+	self assertRendered: button equals: '<button data-name="button" data-StClass="LuiPushButton" type="button" name="1"></button>'.
 	^button
 ]
 
@@ -39,7 +39,7 @@ LuiPushButtonExamples >> newButton [
 LuiPushButtonExamples >> okButton [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button">OK</button>'.
+	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" title="OK Button" type="button">OK</button>'.
 	button := self newButton
 				text: 'OK';
 				title: 'OK Button';
@@ -56,7 +56,7 @@ LuiPushButtonExamples >> okButton [
 LuiPushButtonExamples >> okButtonWithLeadingCheckIcon [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button"><img alt="" id="201314498" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span></button>'.
+	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" title="OK Button" type="button"><img alt="" id="201314498" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span></button>'.
 	button := self okButtonWithSpan
 				leadingImageUrl: LcsFileLibrary / #check24Svg;
 				yourself.
@@ -74,7 +74,7 @@ LuiPushButtonExamples >> okButtonWithLeadingCheckIcon [
 LuiPushButtonExamples >> okButtonWithSpan [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button"><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span></button>'.
+	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" title="OK Button" type="button"><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span></button>'.
 	button := self newButton
 				label: 'OK';
 				title: 'OK Button';
@@ -104,7 +104,7 @@ LuiPushButtonExamples >> okButtonWithStyleBorder [
 LuiPushButtonExamples >> okButtonWithTrailingCheckIcon [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="button"><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span><img alt="" id="41593132" data-name="trailingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/></button>'.
+	expectedHtml := '<button data-name="button" data-StClass="LuiPushButton" title="OK Button" type="button"><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span><img alt="" id="41593132" data-name="trailingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/></button>'.
 	button := self okButtonWithSpan
 				trailingImageUrl: LcsFileLibrary / #check24Svg;
 				yourself.
@@ -125,7 +125,7 @@ LuiPushButtonExamples >> okSubmitTypeButton [
 	button := self okButton.
 	button beSubmitType.
 	self assert: button attributes buttonType equals: 'submit'.
-	self assertRendered: button equals: '<button data-name="button" data-StClass="LuiPushButton" name="button" title="OK Button" type="submit">OK</button>'. 
+	self assertRendered: button equals: '<button data-name="button" data-StClass="LuiPushButton" title="OK Button" type="submit">OK</button>'. 
 	^button
 ]
 
@@ -134,6 +134,6 @@ LuiPushButtonExamples >> renderedNewButton [
 	<gtExample>
 	| button |
 	button := self newButton.
-	self assertRendered: button equals: '<button data-name="button" data-StClass="LuiPushButton" name="button" type="button"></button>'.
+	self assertRendered: button equals: '<button data-name="button" data-StClass="LuiPushButton" type="button"></button>'.
 	^ button
 ]

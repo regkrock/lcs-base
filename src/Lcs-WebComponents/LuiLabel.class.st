@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiLabel',
-	#superclass : 'LuiFormInputComponent',
+	#superclass : 'LuiModelWidget',
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'

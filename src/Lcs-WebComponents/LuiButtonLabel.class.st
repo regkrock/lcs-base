@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiButtonLabel',
-	#superclass : 'LuiFormInputComponent',
+	#superclass : 'LuiModelWidget',
 	#instVars : [
 		'valueBlock',
 		'cachedValue'

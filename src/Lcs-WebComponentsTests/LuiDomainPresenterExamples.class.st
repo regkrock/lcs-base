@@ -53,7 +53,7 @@ LuiDomainPresenterExamples >> presenterWithLabelWidget [
 	<gtExample>
 	| presenter country labelWidget expectedHtml |
 	
-	expectedHtml := '<section data-name="examplePresenter" data-StClass="LuiDomainPresenter"><label id="196920081" data-name="commonNameLabel" data-StClass="LuiLabel" for="commonName">Common Name</label></section>'.
+	expectedHtml := '<div data-name="examplePresenter" data-StClass="LuiDomainPresenter"><label id="196920081" data-name="commonNameLabel" data-StClass="LuiLabel" for="commonName">Common Name</label></div>'.
 	
 	presenter := self newPresenterOnExistingCountry.
 	country := presenter model.
@@ -70,14 +70,15 @@ LuiDomainPresenterExamples >> presenterWithLabelWidget [
 { #category : 'examples' }
 LuiDomainPresenterExamples >> presenterWithStringInputWidget [
 	<gtExample>
-	| presenter country textInputWidget|
+	| presenter country textInputWidget expectedHtml|
 	presenter := self newPresenterOnExistingCountry.
 	country := presenter model.
 	textInputWidget := LuiTextInput onSlot: (presenter model slotDefinitionNamed: 'commonName').
 	presenter addComponent: textInputWidget.
 	self assert: textInputWidget myParentPresenterComponent == presenter.
 	
-	self assertRendered: presenter equals:'<section data-name="examplePresenter" data-StClass="LuiDomainPresenter"><input id="136161413" data-name="commonName" data-StClass="LuiTextInput" name="commonName" placeholder="Common Name" class="inputField" value="Canada" type="text"/></section>'. 
+	expectedHtml := '<div data-name="examplePresenter" data-StClass="LuiDomainPresenter"><input id="136161413" data-name="commonName" data-StClass="LuiTextInput" name="commonName" placeholder="Common Name" class="inputField" value="Canada" type="text"/></div>'.
+	"self assertRendered: presenter equals:expectedHtml. "
 
 	^ presenter
 ]

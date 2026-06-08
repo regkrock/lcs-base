@@ -8,7 +8,7 @@ Class {
 
 { #category : 'rendering' }
 LuiDomainPresenter >> renderComponentOn: html [
-	html section
+	html div
 		addCommonAttributes: self;
 		with: [ self renderDetailsOn: html ]
 ]
