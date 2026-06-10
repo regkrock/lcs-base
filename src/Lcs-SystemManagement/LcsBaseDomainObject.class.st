@@ -303,6 +303,12 @@ LcsBaseDomainObject class >> isSlotModelReleased [
 	^ true
 ]
 
+{ #category : 'slot model - verification' }
+LcsBaseDomainObject class >> localAccessorSlotDefinitionPragmas [
+	^ (self accessorSlotDefinitionPragmas
+		collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection
+]
+
 { #category : 'gt views' }
 LcsBaseDomainObject class >> localSlotDefinitionMethods [
 	^ (self class gtMethodsInClass includeSuperclass: false)
@@ -455,19 +461,23 @@ LcsBaseDomainObject class >> verifyClassHasSlotDefinitionsForInstVars [
 
 { #category : 'slot model - verification' }
 LcsBaseDomainObject class >> verifyNoSlotDefinitionInstanceVariableMismatch [
-	| localInstVarNames slotDefinitions |
+	| localInstVarNames localAccessorSlotDefinitionPragmas allInstVarNames |
 	localInstVarNames := self instVarNames asOrderedCollection.
-	slotDefinitions := (self accessorSlotDefinitionPragmas collect: [ :eachPragma | self perform: eachPragma method selector ]) asOrderedCollection.
-	slotDefinitions copy do: [ :eachSlotDefinition |
-		(localInstVarNames includes: eachSlotDefinition slotName) 
-			ifTrue: [
-				slotDefinitions remove: eachSlotDefinition ifAbsent: [].
-				localInstVarNames remove: eachSlotDefinition slotName]
-			ifFalse: [
-				(self classThatDefinesInstVarNamed: eachSlotDefinition slotName) notNil ifTrue: [
-					slotDefinitions remove: eachSlotDefinition ifAbsent: [] ] ] ].
-	(localInstVarNames notEmpty or: [slotDefinitions notEmpty]) ifTrue: [
-		^ LcsSlotDefinitionAndInstanceVariableMismatchError signalFrom: self unmatchInstVars: localInstVarNames slotDefinitions: slotDefinitions]
+	allInstVarNames := self allInstVarNames asOrderedCollection.
+	localAccessorSlotDefinitionPragmas := self localAccessorSlotDefinitionPragmas.
+	localAccessorSlotDefinitionPragmas copy
+		do: [ :eachSlotDefinition | 
+			(allInstVarNames includes: eachSlotDefinition slotName)
+				ifTrue: [ localAccessorSlotDefinitionPragmas remove: eachSlotDefinition ifAbsent: [  ].
+					localInstVarNames remove: eachSlotDefinition slotName ifAbsent: [ ] ]
+				ifFalse: [ (self classThatDefinesInstVarNamed: eachSlotDefinition slotName)
+						notNil
+						ifTrue: [ localAccessorSlotDefinitionPragmas remove: eachSlotDefinition ifAbsent: [  ] ] ] ].
+	(localInstVarNames notEmpty or: [ localAccessorSlotDefinitionPragmas notEmpty ])
+		ifTrue: [ ^ LcsSlotDefinitionAndInstanceVariableMismatchError
+				signalFrom: self
+				unmatchInstVars: localInstVarNames
+				slotDefinitions: localAccessorSlotDefinitionPragmas ]
 ]
 
 { #category : 'slot definition - removal' }

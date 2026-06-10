@@ -31,7 +31,12 @@ LuiSelect >> addOption: aString [
 	self addComponent: (LuiOption new text: aString)
 ]
 
-{ #category : 'options' }
+{ #category : 'option - slotDefinition' }
+LuiSelect >> addOption: aSlotDefinition basedOn: anItem [
+	^ self addComponent: (LuiOption onSlot: aSlotDefinition model: anItem)
+]
+
+{ #category : 'option - slotDefinition' }
 LuiSelect >> addOptionComponents [
 	self optionNames
 		with: self options
@@ -66,9 +71,13 @@ LuiSelect >> initialize [
 ]
 
 { #category : 'initialize' }
-LuiSelect >> initializeOnSlot: aSlotDefinition [
-	super initializeOnSlot: aSlotDefinition.
-	aSlotDefinition populateOptionsIn: self
+LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel [
+	super initializeOnSlot: aSlotDefinition model: aModel.
+	aSlotDefinition targetCollection
+		sorted: [ :a :b | 
+			(aSlotDefinition displayStringBlock cull: a cull: aSlotDefinition)
+				<= (aSlotDefinition displayStringBlock cull: b cull: aSlotDefinition) ]
+		do: [ :eachItem | self addOption: aSlotDefinition basedOn: eachItem ]
 ]
 
 { #category : 'accessing' }

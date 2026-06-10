@@ -1,13 +1,36 @@
 Class {
 	#name : 'LuiOption',
-	#superclass : 'LuiFormInputComponent',
+	#superclass : 'LuiModelWidget',
 	#instVars : [
-		'optionValue'
+		'optionValue',
+		'item'
 	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
 }
+
+{ #category : 'initialize' }
+LuiOption >> componentNameBaseOn: aSlotDefinition [
+	^ 'option_' , (aSlotDefinition optionValueFor: self model)
+]
+
+{ #category : 'initialize' }
+LuiOption >> initializeOnSlot: aSlotDefinition model: aModel [
+	super initializeOnSlot: aSlotDefinition model: aModel.
+	self optionValue: (aSlotDefinition optionValueFor: aModel).
+	self text: (aSlotDefinition optionDisplayStringFor: aModel).
+]
+
+{ #category : 'accessing' }
+LuiOption >> item [
+	^ item
+]
+
+{ #category : 'accessing' }
+LuiOption >> item: anObject [
+	item := anObject
+]
 
 { #category : 'accessing' }
 LuiOption >> optionValue [
@@ -22,7 +45,8 @@ LuiOption >> optionValue: anObject [
 { #category : 'rendering' }
 LuiOption >> renderComponentOn: html [
 	html option
+		addCommonAttributes: self;
 		selected: false;
 		value: self optionValue;
-		with: [ html text: self text ]
+		label: self text
 ]

@@ -44,8 +44,8 @@ LuiDatePicker >> initialize [
 ]
 
 { #category : 'initialize' }
-LuiDatePicker >> initializeOnSlot: aSlotDefinition [
-	super initializeOnSlot: aSlotDefinition .
+LuiDatePicker >> initializeOnSlot: aSlotDefinition model: aModel [
+	super initializeOnSlot: aSlotDefinition model: aModel.
 	self attributes name: aSlotDefinition slotName
 ]
 

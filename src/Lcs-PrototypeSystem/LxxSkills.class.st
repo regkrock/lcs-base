@@ -17,6 +17,11 @@ LxxSkills class >> unknownInstanceSlotDefinition [
 		yourself
 ]
 
+{ #category : 'queries' }
+LxxSkills >> defaultInstance [
+	^ self unknownInstance
+]
+
 { #category : 'accessing' }
 LxxSkills >> unknownInstance [
 	^ self slotVarNamed: 'unknownInstance'

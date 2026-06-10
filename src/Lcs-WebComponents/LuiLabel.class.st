@@ -6,6 +6,11 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'iniitialize' }
+LuiLabel >> componentNameBaseOn: aSlotDefinition [
+	^ aSlotDefinition slotName , 'Label'
+]
+
 { #category : 'attributes' }
 LuiLabel >> forName [
 	^ self attributes forName
@@ -17,9 +22,8 @@ LuiLabel >> forName: anInputName [
 ]
 
 { #category : 'iniitialize' }
-LuiLabel >> initializeOnSlot: aSlotDefinition [
-	super initializeOnSlot: aSlotDefinition.
-	self componentName: (aSlotDefinition slotName , 'Label').
+LuiLabel >> initializeOnSlot: aSlotDefinition model: aModel [
+	super initializeOnSlot: aSlotDefinition model: aModel.
 	self text: aSlotDefinition label.
 	self attributes forName: aSlotDefinition slotName
 ]

@@ -172,3 +172,8 @@ LtCollection >> removeAll [
 LtCollection >> select: aBlock [
 	^ self collection select: aBlock
 ]
+
+{ #category : 'collection' }
+LtCollection >> sorted: aSortBlock do: aBlock [
+	(self collection sorted: aSortBlock) do: aBlock
+]

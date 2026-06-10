@@ -118,6 +118,7 @@ LxxPrototypeSystem >> isPrototypeSystem [
 LxxPrototypeSystem >> loadData [
 	super loadData.
 	LxxCountriesLoader new loadInto: self countries.
+	LxxSkillsLoader new loadInto: self skills.
 	self applyChanges
 ]
 

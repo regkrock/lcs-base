@@ -23,18 +23,6 @@ YT	Yukon	Territory
 NT	Northwest Territory	Territory'
 ]
 
-{ #category : 'private' }
-LcsCountriesLoader >> collectionSize [
-	| stream numberOfLines|
-	numberOfLines := 0.
-	stream := self data readStream.
-	[ stream atEnd ] whileFalse: [
-		stream nextLine.
-		numberOfLines := numberOfLines + 1 ].
-	^numberOfLines
-	
-]
-
 { #category : 'data' }
 LcsCountriesLoader >> data [
 	^ 'Canada	CA	CAN	124	Canada	LcsCanadaPostalCode	LcsCanadaSubdivision	Province

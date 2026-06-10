@@ -11,8 +11,13 @@ Class {
 
 { #category : 'instance creation' }
 LuiLabelWithInputComponent class >> onSlot: aSlotDefinition [
+	^ self onSlot: aSlotDefinition model: nil
+]
+
+{ #category : 'instance creation' }
+LuiLabelWithInputComponent class >> onSlot: aSlotDefinition model: aModel [
 	^ super new 
-		initializeOnSlot: aSlotDefinition;
+		initializeOnSlot: aSlotDefinition model: aModel;
 		yourself
 ]
 
@@ -27,15 +32,12 @@ LuiLabelWithInputComponent >> hasLabelComponent [
 ]
 
 { #category : 'initialize' }
-LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition [
+LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel [
 	self slotName: aSlotDefinition slotName.
 	self componentName: self slotName , 'LabelAndInput'.
-	self addComponent: ((LuiModelLabel named: self slotNameLabel) initializeOnSlot: aSlotDefinition;
-	yourself).
+	self addComponent: (LuiModelLabel onSlot: aSlotDefinition model: aModel).
 	self addComponent: (
-		(aSlotDefinition defaultInputComponentClass named: self slotName)
-			initializeOnSlot: aSlotDefinition;
-			yourself)
+		aSlotDefinition defaultInputComponentClass onSlot: aSlotDefinition model: aModel)
 ]
 
 { #category : 'components' }

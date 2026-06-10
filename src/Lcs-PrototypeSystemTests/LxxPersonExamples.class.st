@@ -51,7 +51,7 @@ LxxPersonExamples >> newPerson [
 ]
 
 { #category : 'tests' }
-LxxPersonExamples >> personWIthSwappedDatesOfBirth [
+LxxPersonExamples >> personWithSwappedDatesOfBirth [
 	<gtExample>
 	| person firstChangedDateOfBirth secondChangedDateOfBirth initialDateOfBirth |
 

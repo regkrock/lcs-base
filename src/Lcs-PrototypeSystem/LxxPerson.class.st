@@ -3,7 +3,8 @@ Class {
 	#superclass : 'LxxBasePerson',
 	#instVars : [
 		'balance',
-		'weight'
+		'weight',
+		'mainSkill'
 	],
 	#category : 'Lcs-PrototypeSystem-Core',
 	#package : 'Lcs-PrototypeSystem',
@@ -24,6 +25,19 @@ LxxPerson class >> balanceSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsScaledDecimalSlot new
 		slotName: 'balance';
+		yourself
+]
+
+{ #category : 'slot definitions' }
+LxxPerson class >> mainSkillSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsMemberOfGlobalCollectionSlot new
+		slotName: 'mainSkill';
+		addSlotType: LxxSkill;
+		collectionSlotModuleName: 'Prototype System';
+		collectionSlotName: 'skills';
+		optionValueBlock: [ :object :slot | object skillCode ];
+		displayStringBlock:[ :object :slot | object skillName ];
 		yourself
 ]
 
@@ -59,6 +73,16 @@ LxxPerson >> balance [
 { #category : 'accessing' }
 LxxPerson >> balance: anObject [
 	self slotVarNamed: 'balance' put: anObject
+]
+
+{ #category : 'accessing' }
+LxxPerson >> mainSkill [
+	^ self slotVarNamed: 'mainSkill'
+]
+
+{ #category : 'accessing' }
+LxxPerson >> mainSkill: anObject [
+	self slotVarNamed: 'mainSkill' put: anObject
 ]
 
 { #category : 'accessing' }

@@ -39,14 +39,15 @@ LuiLabelWithInputComponentExamples >> lastNameLabelWithInputComponent [
 	person := LxxPerson new.
 	person dateOfBirth: (Date newDay: 1 month: 1 year: 2000).
 	person lastName: 'Smith'.
-	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition.
+	component := LuiLabelWithInputComponent onSlot: LxxPerson lastNameSlotDefinition model: person.
 	self assert: person lastName equals: 'Smith'.
-	
-	component model: person.
-
 	self assert: component componentName equals: 'lastNameLabelAndInput'.
+
 	inputComponent := component inputComponent.
+	self assert: inputComponent notNil.
 	labelComponent := component labelComponent.
+	self assert: labelComponent notNil.
+
 	self assert: inputComponent componentName equals: 'lastName'.
 	self assert: inputComponent valueAccessor slotName equals: 'lastName'.
 	self assert: inputComponent displayValue equals: 'Smith'.

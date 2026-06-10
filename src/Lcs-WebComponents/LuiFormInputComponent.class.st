@@ -18,8 +18,8 @@ LuiFormInputComponent >> initializeNamed: aName [
 ]
 
 { #category : 'initialize' }
-LuiFormInputComponent >> initializeOnSlot: aSlotDefinition [
-	super initializeOnSlot: aSlotDefinition .
+LuiFormInputComponent >> initializeOnSlot: aSlotDefinition model: aModel [
+	super initializeOnSlot: aSlotDefinition model: aModel .
 	self name: aSlotDefinition slotName
 ]
 

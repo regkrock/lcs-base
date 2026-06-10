@@ -7,6 +7,11 @@ Class {
 }
 
 { #category : 'initialize' }
+LuiModelLabel >> componentNameBaseOn: aSlotDefinition [
+	^ aSlotDefinition slotName , 'Label'
+]
+
+{ #category : 'initialize' }
 LuiModelLabel >> forName [
 	^ self attributes forName
 ]
@@ -17,9 +22,8 @@ LuiModelLabel >> forName: aString [
 ]
 
 { #category : 'initialize' }
-LuiModelLabel >> initializeOnSlot: aSlotDefinition [
-	super initializeOnSlot: aSlotDefinition.
-	self componentName: aSlotDefinition slotName , 'Label'.
+LuiModelLabel >> initializeOnSlot: aSlotDefinition model: aModel [
+	super initializeOnSlot: aSlotDefinition model: aModel.
 	self forName: aSlotDefinition slotName
 ]
 

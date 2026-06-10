@@ -6,18 +6,6 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'private' }
-LxxCountrySubdivisionsLoader >> collectionSize [
-	| stream numberOfLines|
-	numberOfLines := 0.
-	stream := self data readStream.
-	[ stream atEnd ] whileFalse: [
-		stream nextLine.
-		numberOfLines := numberOfLines + 1 ].
-	^numberOfLines
-	
-]
-
 { #category : 'loading' }
 LxxCountrySubdivisionsLoader >> load: aDatum for: aTargetClass into: aTargetCollection [
 	self
