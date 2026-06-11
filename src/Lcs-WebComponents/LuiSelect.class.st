@@ -15,7 +15,7 @@
 "
 Class {
 	#name : 'LuiSelect',
-	#superclass : 'LuiFormInputComponent',
+	#superclass : 'LuiModelWidget',
 	#instVars : [
 		'optionPrintBlock',
 		'optionNames',
@@ -56,6 +56,11 @@ LuiSelect >> addOptionsFrom: anOptionsCollection [
 	self addOptionComponents
 ]
 
+{ #category : 'initialize' }
+LuiSelect >> componentAttributesClass [
+	^ LuiSelectAttributes
+]
+
 { #category : 'defaults' }
 LuiSelect >> defaultCssClasses [
 	^ #()
@@ -71,13 +76,30 @@ LuiSelect >> initialize [
 ]
 
 { #category : 'initialize' }
+LuiSelect >> initializeNamed: aName [
+	super initializeNamed: aName.
+	self name: aName
+]
+
+{ #category : 'initialize' }
 LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel [
 	super initializeOnSlot: aSlotDefinition model: aModel.
+	self name: aSlotDefinition slotName.
 	aSlotDefinition targetCollection
 		sorted: [ :a :b | 
 			(aSlotDefinition displayStringBlock cull: a cull: aSlotDefinition)
 				<= (aSlotDefinition displayStringBlock cull: b cull: aSlotDefinition) ]
 		do: [ :eachItem | self addOption: aSlotDefinition basedOn: eachItem ]
+]
+
+{ #category : 'attributes - accessing' }
+LuiSelect >> name [
+	^ self attributes name
+]
+
+{ #category : 'attributes - accessing' }
+LuiSelect >> name: aString [
+	^ self attributes name: aString
 ]
 
 { #category : 'accessing' }

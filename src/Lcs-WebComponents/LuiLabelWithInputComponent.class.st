@@ -16,8 +16,21 @@ LuiLabelWithInputComponent class >> onSlot: aSlotDefinition [
 
 { #category : 'instance creation' }
 LuiLabelWithInputComponent class >> onSlot: aSlotDefinition model: aModel [
-	^ super new 
-		initializeOnSlot: aSlotDefinition model: aModel;
+	^ super new
+		initializeOnSlot: aSlotDefinition
+			model: aModel
+			widgetClass: aSlotDefinition defaultInputComponentClass
+			componentName: aSlotDefinition slotName;
+		yourself
+]
+
+{ #category : 'instance creation' }
+LuiLabelWithInputComponent class >> onSlot: aSlotDefinition model: aModel widgetClass: aWidgetClass componentName: aString [
+	^ super new
+		initializeOnSlot: aSlotDefinition
+			model: aModel
+			widgetClass: aWidgetClass
+			componentName: aString;
 		yourself
 ]
 
@@ -38,6 +51,14 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel [
 	self addComponent: (LuiModelLabel onSlot: aSlotDefinition model: aModel).
 	self addComponent: (
 		aSlotDefinition defaultInputComponentClass onSlot: aSlotDefinition model: aModel)
+]
+
+{ #category : 'initialize' }
+LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel widgetClass: aWidgetClass componentName: aString [
+	self slotName: aSlotDefinition slotName.
+	self componentName: aString , 'LabelAndInput'.
+	self addComponent: (LuiModelLabel onSlot: aSlotDefinition model: aModel).
+	self addComponent: (aWidgetClass onSlot: aSlotDefinition model: aModel)
 ]
 
 { #category : 'components' }

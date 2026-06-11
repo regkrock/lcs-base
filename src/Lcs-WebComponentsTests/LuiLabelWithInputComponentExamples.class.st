@@ -60,6 +60,38 @@ LuiLabelWithInputComponentExamples >> lastNameLabelWithInputComponent [
 ]
 
 { #category : 'examples' }
+LuiLabelWithInputComponentExamples >> mainSkillsAsRadioGroupWithInputComponent [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| component person inputComponent labelComponent|
+	self ensureCurrentSystemIsPrototypeSystem.
+
+	person := LxxPerson new.
+	
+	component := LuiLabelWithInputComponent 
+			onSlot: (person slotDefinitionNamed: 'mainSkill') 
+			model: person
+			widgetClass: LuiRadioButtons
+			componentName: 'mainSkillRadio'.
+	self assert: component componentName equals: 'mainSkillRadioLabelAndInput'.
+
+	inputComponent := component inputComponent.
+	self assert: inputComponent notNil.
+	labelComponent := component labelComponent.
+	self assert: labelComponent notNil.
+
+	"self assert: inputComponent componentName equals: 'lastName'.
+	self assert: inputComponent valueAccessor slotName equals: 'lastName'.
+	self assert: inputComponent displayValue equals: 'Smith'.
+	self assert: inputComponent model equals: person.
+	self assert: labelComponent componentName equals: 'lastNameLabel'.
+	self assert: labelComponent labelString equals: 'Last Name'.
+	self assert: labelComponent model equals: person.
+	self assert: labelComponent forName equals: 'lastName'."
+	^ component
+]
+
+{ #category : 'examples' }
 LuiLabelWithInputComponentExamples >> properlyFormedComponent [
 	<gtExample>
 	| component |

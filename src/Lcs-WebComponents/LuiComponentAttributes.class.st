@@ -517,6 +517,13 @@ LuiComponentAttributes >> removeAllCssClasses [
 	^ self cssClassesAttribute removeAllCssClasses
 ]
 
+{ #category : 'properties - accessing' }
+LuiComponentAttributes >> removeAttributeKey: aKey [
+	"Answer the value of the property ==aKey==, raises an error if the property doesn't exist."
+
+	self attributes removeKey: aKey ifAbsent: [ ]
+]
+
 { #category : 'properties - delegated' }
 LuiComponentAttributes >> removeCssClass: aCssClassName [
 	^ self cssClassesAttribute removeCssClasses: aCssClassName

@@ -294,20 +294,28 @@ LuiComponent >> generatedId [
 { #category : 'gt - views' }
 LuiComponent >> gtComponentsFor: aView [
 	<gtView>
-	
 	^ aView columnedTree
 		title: 'Components';
 		priority: 10;
 		expandUpTo: 4;
-		items: [ { self } ];
+		items: [ self gtComponentsViewComponents ];
 		children: #orderedComponents;
 		column: 'Component Class' text: [ :aComponent | aComponent class name ];
-		column: 'Component Name' text: [ :aComponent | aComponent componentName displayString ];
+		column: 'Component Name'
+			text: [ :aComponent | aComponent componentName displayString ];
 		column: 'ID' text: [ :aComponent | aComponent componentId displayString ];
-		column: 'CSS Class(es)' text: [ :aComponent | aComponent cssClassesString displayString ];
-		column: 'Other' text: [ :aComponent | aComponent gtViewOtherInfo displayString ];
-		column: 'HTML Tag' text: [ :aComponent | aComponent gtViewTagName displayString ];
+		column: 'CSS Class(es)'
+			text: [ :aComponent | aComponent cssClassesString displayString ];
+		column: 'Other'
+			text: [ :aComponent | aComponent gtViewOtherInfo displayString ];
+		column: 'HTML Tag'
+			text: [ :aComponent | aComponent gtViewTagName displayString ];
 		actionUpdateButton
+]
+
+{ #category : 'gt - views' }
+LuiComponent >> gtComponentsViewComponents [
+	^ self orderedComponents asOrderedCollection
 ]
 
 { #category : 'printing' }
@@ -645,6 +653,11 @@ LuiComponent >> style: aString [
 { #category : 'properties' }
 LuiComponent >> styleBlock: aBlock [
 	self attributes styleBlock: aBlock
+]
+
+{ #category : 'accessing' }
+LuiComponent >> subcomponents [
+	^ self orderedComponents
 ]
 
 { #category : 'decorations' }

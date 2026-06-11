@@ -32,6 +32,11 @@ LuiModelLabel >> labelString [
 	^ self valueAccessor label
 ]
 
+{ #category : 'attributes' }
+LuiModelLabel >> removeForName [
+	self attributes removeAttributeKey: LuiForNameAttribute attributeName 
+]
+
 { #category : 'rendering' }
 LuiModelLabel >> renderComponentOn: html [
 	html label

@@ -38,6 +38,11 @@ LuiLabel >> labelString: aString [
 	self text: aString
 ]
 
+{ #category : 'attributes' }
+LuiLabel >> removeForName [
+	self attributes removeAttributeKey: LuiForNameAttribute attributeName 
+]
+
 { #category : 'rendering' }
 LuiLabel >> renderComponentOn: html [
 	html label
