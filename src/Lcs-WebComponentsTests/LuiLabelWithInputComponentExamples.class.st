@@ -7,6 +7,40 @@ Class {
 }
 
 { #category : 'examples' }
+LuiLabelWithInputComponentExamples >> hasRedHairBooleanAsCheckboxWithEmptyLabelComponent [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| component person inputComponent labelComponent|
+	self ensureCurrentSystemIsPrototypeSystem.
+
+	person := LxxPerson new.
+	
+	component := 
+		LuiLabelWithInputComponent 
+			onSlot: (person slotDefinitionNamed: 'hasRedHair') 
+			model: person
+			widgetClass: LuiCheckbox
+			componentName: 'hasRedHair'.
+
+	self assert: component componentName equals: 'hasRedHairLabelAndInput'.
+
+	inputComponent := component inputComponent.
+	self assert: inputComponent notNil.
+	labelComponent := component labelComponent.
+	self assert: labelComponent notNil.
+	self assert: labelComponent text isEmpty.
+	"self assert: inputComponent componentName equals: 'lastName'.
+	self assert: inputComponent valueAccessor slotName equals: 'lastName'.
+	self assert: inputComponent displayValue equals: 'Smith'.
+	self assert: inputComponent model equals: person.
+	self assert: labelComponent componentName equals: 'lastNameLabel'.
+	self assert: labelComponent labelString equals: 'Last Name'.
+	self assert: labelComponent model equals: person.
+	self assert: labelComponent forName equals: 'lastName'."
+	^ component
+]
+
+{ #category : 'examples' }
 LuiLabelWithInputComponentExamples >> htmlForLastNameInputComponent [
 	<gtExample>
 	| expectedHtml|

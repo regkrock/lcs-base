@@ -4,7 +4,9 @@ Class {
 	#instVars : [
 		'balance',
 		'weight',
-		'mainSkill'
+		'mainSkill',
+		'skills',
+		'hasRedHair'
 	],
 	#category : 'Lcs-PrototypeSystem-Core',
 	#package : 'Lcs-PrototypeSystem',
@@ -25,6 +27,14 @@ LxxPerson class >> balanceSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsScaledDecimalSlot new
 		slotName: 'balance';
+		yourself
+]
+
+{ #category : 'slot definitions' }
+LxxPerson class >> hasRedHairSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsBooleanSlot new
+		slotName: 'hasRedHair';
 		yourself
 ]
 
@@ -53,6 +63,20 @@ LxxPerson class >> parentSlotDefinition [
 ]
 
 { #category : 'slot definitions' }
+LxxPerson class >> skillsSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsMembersOfGlobalCollectionSlot new
+		slotName: 'skills';
+		addSlotType: LxxSkills;
+		addCollectionElementsSlotType: LxxSkill;
+		collectionSlotModuleName: 'Prototype System';
+		collectionSlotName: 'skills';
+		optionValueBlock: [ :object :slot | object skillCode ];
+		displayStringBlock:[ :object :slot | object skillName ];
+		yourself
+]
+
+{ #category : 'slot definitions' }
 LxxPerson class >> weightSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsNumberSlot new
@@ -76,6 +100,16 @@ LxxPerson >> balance: anObject [
 ]
 
 { #category : 'accessing' }
+LxxPerson >> hasRedHair [
+	^ self slotVarNamed: 'hasRedHair'
+]
+
+{ #category : 'accessing' }
+LxxPerson >> hasRedHair: anObject [
+	self slotVarNamed: 'hasRedHair' put: anObject
+]
+
+{ #category : 'accessing' }
 LxxPerson >> mainSkill [
 	^ self slotVarNamed: 'mainSkill'
 ]
@@ -83,6 +117,16 @@ LxxPerson >> mainSkill [
 { #category : 'accessing' }
 LxxPerson >> mainSkill: anObject [
 	self slotVarNamed: 'mainSkill' put: anObject
+]
+
+{ #category : 'accessing' }
+LxxPerson >> skills [
+	^ self slotVarNamed: 'skills'
+]
+
+{ #category : 'accessing' }
+LxxPerson >> skills: anObject [
+	self slotVarNamed: 'skills' put: anObject
 ]
 
 { #category : 'accessing' }

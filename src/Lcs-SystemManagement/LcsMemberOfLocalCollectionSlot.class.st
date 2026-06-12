@@ -82,17 +82,6 @@ LcsMemberOfLocalCollectionSlot >> targetSlotPathDescription [
 ]
 
 { #category : 'gt views' }
-LcsMemberOfLocalCollectionSlot >> umlModel [
-	| umlModel |
-	umlModel := LcsUmlModel new.
-	self addClassesToUmlModel: umlModel.
-	umlModel removeDuplicates.
-	self addAssociationsToUmlModel: umlModel.
-	umlModel resolveClassModelNames.
-	^ umlModel
-]
-
-{ #category : 'gt views' }
 LcsMemberOfLocalCollectionSlot >> umlModelMondrianView [
 	^ LcsUml new proposedUmlModelFor: self umlModel
 ]

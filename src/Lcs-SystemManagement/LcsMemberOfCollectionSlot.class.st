@@ -40,7 +40,7 @@ LcsMemberOfCollectionSlot >> displayStringBlock: anObject [
 	displayStringBlock := anObject
 ]
 
-{ #category : 'defaults' }
+{ #category : 'initialize' }
 LcsMemberOfCollectionSlot >> initialize [
 	super initialize.
 	self

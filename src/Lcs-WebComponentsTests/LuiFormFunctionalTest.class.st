@@ -35,5 +35,16 @@ LuiFormFunctionalTest >> initialize [
 			model: person
 			widgetClass: LuiRadioButtons
 			componentName: 'mainSkillRadio').
-	^ self
+	personPresenter addComponent: (
+		LuiLabelWithInputComponent 
+			onSlot: (person slotDefinitionNamed: 'skills') 
+			model: person
+			widgetClass: LuiMultipleSelect
+			componentName: 'skillsSelect').
+	personPresenter addComponent: (
+		LuiLabelWithInputComponent 
+			onSlot: (person slotDefinitionNamed: 'hasRedHair') 
+			model: person
+			widgetClass: LuiCheckbox
+			componentName: 'hasRedHair').
 ]

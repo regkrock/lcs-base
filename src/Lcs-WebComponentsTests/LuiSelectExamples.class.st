@@ -30,7 +30,7 @@ LuiSelectExamples >> selectForMainSkill [
 	person := LxxPersonExamples new johnFreeman.
 	component := LuiSelect onSlot: (person slotDefinitionNamed: 'mainSkill') model: person.
 	expectedHtml := '<select data-name="mainSkill" data-StClass="LuiSelect" name="mainSkill"><option id="99659423" data-name="option_unknown" data-StClass="LuiOption" value="unknown" label=""></option><option id="84194656" data-name="option_1" data-StClass="LuiOption" value="1" label="Skill 1"></option><option id="85859181" data-name="option_2" data-StClass="LuiOption" value="2" label="Skill 2"></option><option id="87523706" data-name="option_3" data-StClass="LuiOption" value="3" label="Skill 3"></option></select>'.
-	"self assertRendered: component equals: expectedHtml."
+	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
 

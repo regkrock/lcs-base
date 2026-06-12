@@ -1,27 +1,18 @@
-"
-This defines a slot where the content of the slot is a member of a collection.
-
-The slot is responsible for:
-1) defining the location of the collection - module and slot name
-2) the defualt instance used to initialize the slot to when it is created.
-
-Note: Currently this is defined to look up a value in a global collection.
-"
 Class {
-	#name : 'LcsMemberOfGlobalCollectionSlot',
-	#superclass : 'LcsMemberOfCollectionSlot',
+	#name : 'LcsMembersOfGlobalCollectionSlot',
+	#superclass : 'LcsMembersOfCollectionSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'
 }
 
 { #category : 'gt views' }
-LcsMemberOfGlobalCollectionSlot >> addAssociationsToUmlModel: umlModel [ 
+LcsMembersOfGlobalCollectionSlot >> addAssociationsToUmlModel: umlModel [ 
 	super addAssociationsToUmlModel: umlModel 
 ]
 
 { #category : 'gt views' }
-LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [ 
+LcsMembersOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [ 
 	super addClassesToUmlModel: aUmlModel .
 	aUmlModel addClass: self class.
 	aUmlModel addClass: self targetCollection class.
@@ -30,40 +21,40 @@ LcsMemberOfGlobalCollectionSlot >> addClassesToUmlModel: aUmlModel [
 ]
 
 { #category : 'slot model' }
-LcsMemberOfGlobalCollectionSlot >> collectionModule [
+LcsMembersOfGlobalCollectionSlot >> collectionModule [
 	^ (self currentSystem ifNil: [ LcsNoSystemError signal ])
 		moduleNamed: self collectionSlotModuleName
 ]
 
 { #category : 'properties' }
-LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName [
+LcsMembersOfGlobalCollectionSlot >> collectionSlotModuleName [
 	^ self propertyAt: #'collectionSlotModuleName' ifAbsent: [ ]
 ]
 
 { #category : 'properties' }
-LcsMemberOfGlobalCollectionSlot >> collectionSlotModuleName: aString [ 
+LcsMembersOfGlobalCollectionSlot >> collectionSlotModuleName: aString [ 
 	self propertyAt: #'collectionSlotModuleName' put: aString
 ]
 
 { #category : 'properties' }
-LcsMemberOfGlobalCollectionSlot >> collectionSlotName [
+LcsMembersOfGlobalCollectionSlot >> collectionSlotName [
 	^ self propertyAt: #'collectionSlotName' ifAbsent: []
 ]
 
 { #category : 'properties' }
-LcsMemberOfGlobalCollectionSlot >> collectionSlotName: aString [ 
+LcsMembersOfGlobalCollectionSlot >> collectionSlotName: aString [ 
 	self propertyAt: #'collectionSlotName' put: aString
 ]
 
 { #category : 'slot model' }
-LcsMemberOfGlobalCollectionSlot >> defaultInstance [
+LcsMembersOfGlobalCollectionSlot >> defaultInstance [
 	^ self targetCollection 
 		ifNil: [ LcsMemberOfSlotSourceCollectionNotInitialized signalWithContext: self ] 
 		ifNotNil: [ :collection | collection defaultInstance ]
 ]
 
 { #category : 'gt views' }
-LcsMemberOfGlobalCollectionSlot >> gtUMLFor: aView [
+LcsMembersOfGlobalCollectionSlot >> gtUMLFor: aView [
 	<gtView>
 	^ aView mondrian
 		title: 'UML';
@@ -75,33 +66,33 @@ LcsMemberOfGlobalCollectionSlot >> gtUMLFor: aView [
 ]
 
 { #category : 'slot model' }
-LcsMemberOfGlobalCollectionSlot >> newInstance [
+LcsMembersOfGlobalCollectionSlot >> newInstance [
 	^ self targetCollectionSlotDefinition collectionMemberTypes first new
 ]
 
 { #category : 'gt views' }
-LcsMemberOfGlobalCollectionSlot >> proposedUmlModelFor: aUmlModel [
+LcsMembersOfGlobalCollectionSlot >> proposedUmlModelFor: aUmlModel [
 	^ LcsUml new proposedUmlModelFor: aUmlModel
 ]
 
 { #category : 'message' }
-LcsMemberOfGlobalCollectionSlot >> sourceCollectionNotPopulatedMessage [
+LcsMembersOfGlobalCollectionSlot >> sourceCollectionNotPopulatedMessage [
 	^'Source collection in module: ''<1s>'', slot: ''<2s>'' not initialized' 
 			expandMacrosWith: self collectionSlotModuleName 
 			with: self collectionSlotName
 ]
 
 { #category : 'slot model' }
-LcsMemberOfGlobalCollectionSlot >> targetCollection [
+LcsMembersOfGlobalCollectionSlot >> targetCollection [
 	^ self collectionModule perform: self collectionSlotName asSymbol
 ]
 
 { #category : 'slot model' }
-LcsMemberOfGlobalCollectionSlot >> targetCollectionSlotDefinition [
+LcsMembersOfGlobalCollectionSlot >> targetCollectionSlotDefinition [
 	^ self collectionModule slotDefinitionNamed: self collectionSlotName asSymbol
 ]
 
 { #category : 'gt views' }
-LcsMemberOfGlobalCollectionSlot >> umlModelMondrianView [
+LcsMembersOfGlobalCollectionSlot >> umlModelMondrianView [
 	^ self proposedUmlModelFor: self umlModel
 ]

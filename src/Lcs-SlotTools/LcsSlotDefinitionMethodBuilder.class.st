@@ -362,11 +362,6 @@ LcsSlotDefinitionMethodBuilder >> slotUmlModel [
 	^ umlModel
 ]
 
-{ #category : 'gt views' }
-LcsSlotDefinitionMethodBuilder >> umlModel [
-	^ super umlModel
-]
-
 { #category : 'verification' }
 LcsSlotDefinitionMethodBuilder >> uninstall [
 	super uninstall.

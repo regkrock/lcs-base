@@ -47,6 +47,8 @@ LxxPersonExamples >> newPerson [
 	self assert: person middleName isEmpty.
 	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: ''.
 	self assert: person weight isZero.
+	self assert: person skills class equals: LxxSkills.
+	self assert: person skills hasNoElements.
 	^ person
 ]
 
@@ -84,6 +86,24 @@ LxxPersonExamples >> personWithSwappedDatesOfBirth [
 
 	self assert: person dateOfBirth equals: secondChangedDateOfBirth.
 	self assert: (person getPersistedValueOf: 'dateOfBirth') = secondChangedDateOfBirth."
+	^ person
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> personWithTwoSkills [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| person |
+	person := self newPerson.
+	self assert: person isInAddingState.
+	self assert: person skills hasNoElements.
+	person skills add: (self currentSystem skills find: [:each | each skillCode = '1']).
+	person skills add: (self currentSystem skills find: [:each | each skillCode = '2']).
+	person skills add: (self currentSystem skills find: [:each | each skillCode = '2']).
+	self assert: person skills pendingAddsSize = 2.
+	"self currentUnitOfWork applyChanges.
+	self assert: person skills pendingAddsSize = 0.
+	self assert: person skills collection size = 2. "
 	^ person
 ]
 
