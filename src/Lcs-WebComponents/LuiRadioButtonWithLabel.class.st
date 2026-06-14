@@ -12,13 +12,26 @@ LuiRadioButtonWithLabel >> componentNameBaseOn: aSlotDefinition [
 ]
 
 { #category : 'initialize' }
-LuiRadioButtonWithLabel >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
-	self addComponent: (LuiRadioButton onSlot: aSlotDefinition model: aModel).
-	self addComponent: (
-		(LuiLabel onSlot: aSlotDefinition model: aModel)
-			componentName: 'label';
-			removeForName;
-			text: (aSlotDefinition optionDisplayStringFor: aModel);
-			yourself)
+LuiRadioButtonWithLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super
+		initializeOnSlot: aSlotDefinition
+		model: aModel
+		componentName: aString.
+	self
+		componentName: (aSlotDefinition optionValueFor: aModel) , '_RadioButtonAndLabel'.
+	self
+		addComponent: (
+			LuiRadioButton
+				onSlot: aSlotDefinition
+				model: aModel).
+	self
+		addComponent: (
+			(LuiLabel
+					onSlot: aSlotDefinition
+					model: aModel
+					componentName: (aSlotDefinition optionValueFor: aModel)
+							, '_RadioButtonLabel')
+				removeForNameAttribute;
+				text: (aSlotDefinition optionDisplayStringFor: aModel);
+				yourself)
 ]

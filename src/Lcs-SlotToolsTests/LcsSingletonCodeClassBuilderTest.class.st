@@ -9,6 +9,7 @@ Class {
 { #category : 'examples' }
 LcsSingletonCodeClassBuilderTest >> installAndRemoveClass [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	builder := self singletonValueObjectClassBuilder.

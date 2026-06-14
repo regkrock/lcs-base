@@ -77,6 +77,7 @@ LcsSystemBuilderJobExamples >> defaultModuleNameMethodCreationBuilder [
 { #category : 'examples' }
 LcsSystemBuilderJobExamples >> installAndRemoveClubSystem [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.

@@ -9,6 +9,7 @@ Class {
 { #category : 'examples' }
 LcsStandardValueObjectClassesBuilderJobExamples >> installAndRemoveTitles [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
 	builderJob := self titlesStandardValueObjectBuilderJob.
@@ -24,6 +25,7 @@ LcsStandardValueObjectClassesBuilderJobExamples >> installAndRemoveTitles [
 { #category : 'examples' }
 LcsStandardValueObjectClassesBuilderJobExamples >> newBuilderJob [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
 	builderJob := LcsStandardValueObjectClassesBuilderJob new.

@@ -131,6 +131,7 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknow
 { #category : 'examples  - form' }
 LcsMultislotPatternFormExamples >> mainForm [
 	"<gtExample>
+	<after: #clearUnitOfWork>
 	<return: #LcsGlobalCollectionPatternForm>"
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.
@@ -149,6 +150,7 @@ LcsMultislotPatternFormExamples >> mainForm [
 { #category : 'examples - scripter' }
 LcsMultislotPatternFormExamples >> mainFormScripter [
 	"<gtExample>
+	<after: #clearUnitOfWork>
 	<return: #BlScripter>"
 	| builder |
 	self ensureCurrentSystemIsPrototypeSystem.

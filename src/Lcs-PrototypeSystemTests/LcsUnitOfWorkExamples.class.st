@@ -72,6 +72,7 @@ LcsUnitOfWorkExamples >> historyObjectOfNewDomainObject [
 { #category : 'examples' }
 LcsUnitOfWorkExamples >> historyOfAllSlotChanges [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person slotChangeHistory |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.
@@ -176,6 +177,7 @@ LcsUnitOfWorkExamples >> newUnitOfWork [
 { #category : 'examples' }
 LcsUnitOfWorkExamples >> personsWithNewPersonInPendingAdds [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person |
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPersonExamples new newPerson.

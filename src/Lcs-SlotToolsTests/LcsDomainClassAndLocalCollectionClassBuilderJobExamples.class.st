@@ -30,6 +30,7 @@ LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalIn
 { #category : 'examples' }
 LcsDomainClassAndLocalCollectionClassBuilderJobExamples >> invoiceItemAndLocalInvoiceItemsCreationJobInstallationAndRemoval [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob invoiceBuilderJob|
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.

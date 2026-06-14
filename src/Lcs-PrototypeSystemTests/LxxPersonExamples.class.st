@@ -26,6 +26,7 @@ LxxPersonExamples >> johnFreeman [
 { #category : 'examples' }
 LxxPersonExamples >> lastNameSlotDefinition [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| slot |
 	self ensureCurrentSystemIsPrototypeSystem.
 	slot := (LxxPerson slotModel slotDefinitionNamed: 'lastName').
@@ -55,6 +56,7 @@ LxxPersonExamples >> newPerson [
 { #category : 'tests' }
 LxxPersonExamples >> personWithSwappedDatesOfBirth [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person firstChangedDateOfBirth secondChangedDateOfBirth initialDateOfBirth |
 
 	self ensureCurrentSystemIsPrototypeSystem.
@@ -125,6 +127,7 @@ LxxPersonExamples >> personWithWeightChangedTo100_5 [
 { #category : 'tests' }
 LxxPersonExamples >> slotDefintiionViewItems [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| allSlotDefinitionViewItems|
 	self ensureCurrentSystemIsPrototypeSystem.
 	allSlotDefinitionViewItems := LxxPerson slotDefinitionViewItems.

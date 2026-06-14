@@ -67,7 +67,6 @@ LuiAccessor >> read: aModel [
 
 { #category : 'printing' }
 LuiAccessor >> storeOn: aStream [
-	self halt.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' new'
 ]

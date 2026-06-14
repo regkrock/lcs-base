@@ -82,8 +82,8 @@ LuiSelect >> initializeNamed: aName [
 ]
 
 { #category : 'initialize' }
-LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
+LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self name: aSlotDefinition slotName.
 	aSlotDefinition targetCollection
 		sorted: [ :a :b | 

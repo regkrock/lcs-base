@@ -26,6 +26,7 @@ LcsAuditorExamples >> auditNewPerson [
 { #category : 'as yet unclassified' }
 LcsAuditorExamples >> auditOfPersonWithInvalidValeInBalanceSlot [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| auditor person |
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
@@ -43,6 +44,7 @@ LcsAuditorExamples >> auditOfPersonWithInvalidValeInBalanceSlot [
 { #category : 'as yet unclassified' }
 LcsAuditorExamples >> auditOfPersonWithParentSlotWithAnInvalidValue [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| auditor person |
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.

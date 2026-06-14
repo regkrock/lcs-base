@@ -9,6 +9,7 @@ Class {
 { #category : 'tests' }
 LcsGlobalCollectionSlotBuilderExamples >> installAndRemoveSlot [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	builder := self personsGlobalCollectionSlotBuilder.

@@ -24,6 +24,7 @@ LcsMemberOfLocalCollectionSlotBuilderExamples >> localMemberSlotBuilder [
 { #category : 'tests' }
 LcsMemberOfLocalCollectionSlotBuilderExamples >> memberOfLocalCollectionSlotAddedToConnectInvoiceItemWithInvoiceItemsInInvoice [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| invoiceBuilderJob invoiceItemBuilderJob builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.

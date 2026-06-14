@@ -23,7 +23,7 @@ LuiDatePicker >> contentsFromString: aString [
 
 { #category : 'rendering' }
 LuiDatePicker >> displayValue [
-	^ self valueAccessor displayValue yyyymmdd
+	^ self valueAccessor contents yyyymmdd
 ]
 
 { #category : 'accessing' }
@@ -44,8 +44,8 @@ LuiDatePicker >> initialize [
 ]
 
 { #category : 'initialize' }
-LuiDatePicker >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
+LuiDatePicker >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self attributes name: aSlotDefinition slotName
 ]
 

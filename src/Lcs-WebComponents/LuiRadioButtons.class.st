@@ -12,7 +12,7 @@ LuiRadioButtons >> addRadioButton: aSlotDefinition basedOn: anItem [
 	self addComponent: (
 		(LuiLabel onSlot: aSlotDefinition model: anItem)
 			componentName: 'label';
-			removeForName;
+			removeForNameAttribute;
 			text: (aSlotDefinition optionDisplayStringFor: anItem);
 			yourself)
 ]
@@ -23,8 +23,8 @@ LuiRadioButtons >> addRadioButtonWithLabel: aSlotDefinition basedOn: anItem [
 ]
 
 { #category : 'initialize' }
-LuiRadioButtons >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
+LuiRadioButtons >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: (aString , 'RadioButtons').
 	aSlotDefinition targetCollection
 		sorted: [ :a :b | 
 			(aSlotDefinition displayStringBlock cull: a cull: aSlotDefinition)

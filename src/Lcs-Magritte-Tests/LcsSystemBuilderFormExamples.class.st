@@ -14,6 +14,7 @@ LcsSystemBuilderFormExamples >> formClass [
 { #category : 'examples - form' }
 LcsSystemBuilderFormExamples >> mainForm [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.
 	form := self formClass newOn: self targetClass.

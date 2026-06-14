@@ -40,6 +40,7 @@ LcsSingletonValueObjectClassesBuilderJobExamples >> genderSingletonPatternBuilde
 { #category : 'examples' }
 LcsSingletonValueObjectClassesBuilderJobExamples >> installAndRemoveGenderSingletonPatternClasses [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.
@@ -72,6 +73,7 @@ LcsSingletonValueObjectClassesBuilderJobExamples >> installGenderSingletonPatter
 
 { #category : 'examples' }
 LcsSingletonValueObjectClassesBuilderJobExamples >> newBuilderJob [
+	<after: #clearUnitOfWork>
 	<gtExample>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.

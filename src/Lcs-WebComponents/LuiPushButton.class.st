@@ -1,9 +1,9 @@
 Class {
 	#name : 'LuiPushButton',
 	#superclass : 'LuiComponent',
-	#category : 'Lcs-WebComponents-Buttons',
+	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Buttons'
+	#tag : 'Widgets'
 }
 
 { #category : 'components - adding' }

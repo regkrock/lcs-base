@@ -9,6 +9,7 @@ Class {
 { #category : 'examples' }
 LcsDomainCollectionClassBuilderTest >> builderInstallAndRemoveClass [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	[

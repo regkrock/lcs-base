@@ -19,7 +19,7 @@ LuiDatePickerFunctionalTest >> initialize [
 	person lastName: 'Freeman'.
 	self componentName: 'root'.
 	self componentId: 'root'.
-	label := (LuiModelLabel named: 'dateOfBirthLabel').
+	label := (LuiLabel named: 'dateOfBirthLabel').
 	label valueAccessor
 		model: person;
 		slotName: 'dateOfBirth'.

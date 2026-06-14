@@ -14,7 +14,7 @@ LuiTextInputExamples >> newComponent [
 	self assert: component hasNoComponents.
 	self assert: component componentName equals: 'xxxx'.
 	self assert: component cssClassesString equals: 'inputField'.
-	self assert: component valueAccessor class name equals: LuiLocalAccessor name.
+	self assert: component valueAccessor class name equals: LuiSmalltalkObjectAccessor name.
 	self assert: component valueAccessor parent equals: component.
 	self assert: component valueAccessor model equals: ''.
 	self assert: component displayValue equals: ''.

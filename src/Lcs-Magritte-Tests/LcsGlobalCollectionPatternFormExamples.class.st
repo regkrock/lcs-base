@@ -9,6 +9,7 @@ Class {
 { #category : 'examples - form' }
 LcsGlobalCollectionPatternFormExamples >> addFoosGlobalCollectionWithPersonHavingAFooInstanceForm [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	<return: #LcsGlobalCollectionPatternForm>
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.

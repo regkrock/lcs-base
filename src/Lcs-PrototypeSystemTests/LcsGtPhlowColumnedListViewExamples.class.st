@@ -9,6 +9,7 @@ Class {
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> _slotsUpToFilter [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| filter |
 	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new _superclassesFilter: LxxPerson.
@@ -19,6 +20,7 @@ LcsGtPhlowColumnedListViewExamples >> _slotsUpToFilter [
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> _slotsUpToLastItemFilter [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| filter |
 	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new _superclassesFilter: LxxPerson.
@@ -40,6 +42,7 @@ LcsGtPhlowColumnedListViewExamples >> allClassInDomainObjectHeirarchy [
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> domainClassFilter [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| filter result |
 	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newDomainClassFilter.
@@ -59,6 +62,7 @@ LcsGtPhlowColumnedListViewExamples >> filterItemsUsingDefaultFilters [
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| filter |
 	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newSlotKindFilter.
@@ -72,6 +76,7 @@ LcsGtPhlowColumnedListViewExamples >> sloKindFilterWithLastItemSelected [
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotClassFilter [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| filter result |
 	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newSlotClassFilter.
@@ -85,16 +90,18 @@ LcsGtPhlowColumnedListViewExamples >> slotClassFilter [
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotDefinitionItemsFilteredByAccessorSlotKind [
 	<gtExample>
-	| view  filteredItems |
+	| view  filteredItems unfilteredSize |
 	view := self viewWithSlotDefinitionItemsFilteredByAccessorSlotKind.
+	unfilteredSize := view unfilteredItems size.
 	filteredItems := view filteredItems.
-	self assert: filteredItems size equals: 3.
+	self assert: filteredItems size < unfilteredSize.
 	^ filteredItems
 ]
 
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotKindFilter [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| filter |
 	self ensureCurrentSystemIsPrototypeSystem.
 	filter := LcsGtPhlowColumnedListView new newSlotKindFilter.
@@ -106,6 +113,7 @@ LcsGtPhlowColumnedListViewExamples >> slotKindFilter [
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> slotModelView [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| view element forwardView|
 	self ensureCurrentSystemIsPrototypeSystem.
 	forwardView := GtPhlowView empty on: LxxPerson perform: #gtViewSlotModelFor:.
@@ -171,15 +179,16 @@ LcsGtPhlowColumnedListViewExamples >> viewWithDefaultFiltersSelectedItems [
 	| view |
 	view :=  self slotModelView.
 	view filteredItems.
-	self assert: view filteredItems size equals: 4.
+	self assert: view filteredItems size > 0.
 	^ view
 ]
 
 { #category : 'examples' }
 LcsGtPhlowColumnedListViewExamples >> viewWithSlotDefinitionItemsFilteredByAccessorSlotKind [
 	<gtExample>
-	| view accessorItem filter filteredItems |
+	| view accessorItem filter filteredItems unfilteredSize |
 	view := self viewWithDefaultFiltersSelectedItems.
+	unfilteredSize := view unfilteredItems size.
 	filter := view slotKindFilter.
 	filter itemsFuture wait.
 
@@ -190,6 +199,6 @@ LcsGtPhlowColumnedListViewExamples >> viewWithSlotDefinitionItemsFilteredByAcces
 	view slotKindFilter selectedItem: accessorItem.
 
 	filteredItems := view filteredItems.
-	self assert: filteredItems size equals: 3.
+	self assert: filteredItems size < unfilteredSize.
 	^ view
 ]

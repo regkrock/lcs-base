@@ -9,6 +9,7 @@ Class {
 { #category : 'examples' }
 LxxPersonsExamples >> personsWithNewPersonInPendingAdds [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person |
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPersonExamples new newPerson.

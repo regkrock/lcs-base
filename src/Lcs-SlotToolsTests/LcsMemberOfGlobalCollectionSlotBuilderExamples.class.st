@@ -40,6 +40,7 @@ LcsMemberOfGlobalCollectionSlotBuilderExamples >> genderMemberOfGlobalCollection
 { #category : 'tests' }
 LcsMemberOfGlobalCollectionSlotBuilderExamples >> installGlobalMemberOfInPersonPointingToGenders [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| genderBuilderJob builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.

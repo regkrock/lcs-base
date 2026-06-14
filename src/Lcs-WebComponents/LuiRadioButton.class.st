@@ -23,9 +23,10 @@ LuiRadioButton >> componentNameBaseOn: aSlotDefinition [
 ]
 
 { #category : 'initialize' }
-LuiRadioButton >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
-	self optionValue: (aSlotDefinition optionValueFor: aModel)
+LuiRadioButton >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
+	self optionValue: (aSlotDefinition optionValueFor: aModel).
+	self componentName: self optionValue asString , '_RadioButton'
 ]
 
 { #category : 'accessing' }

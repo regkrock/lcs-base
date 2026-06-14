@@ -29,8 +29,8 @@ LuiTextInput >> initializeNamed: aName [
 ]
 
 { #category : 'initialize' }
-LuiTextInput >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
+LuiTextInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self placeholder: aSlotDefinition label
 ]
 

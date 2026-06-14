@@ -27,7 +27,7 @@ LuiOptionExamples >> skill_1_Option [
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
 	model := self currentSystem skills find: [ :each | each skillCode = '1' ].
-	component := LuiOption onSlot: LxxPerson mainSkillSlotDefinition model: model.
+	component := LuiOption onSlot: (LxxPerson slotDefinitionNamed: 'mainSkill') model: model.
 	self assert: component model equals: model.
 	expectedHtml := '<option data-name="option_1" data-StClass="LuiOption" value="1" label="Skill 1"></option>'.
 	self assertRendered: component equals: expectedHtml.

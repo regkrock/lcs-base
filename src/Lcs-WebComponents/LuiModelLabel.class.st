@@ -22,8 +22,8 @@ LuiModelLabel >> forName: aString [
 ]
 
 { #category : 'initialize' }
-LuiModelLabel >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
+LuiModelLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self forName: aSlotDefinition slotName
 ]
 
@@ -33,7 +33,7 @@ LuiModelLabel >> labelString [
 ]
 
 { #category : 'attributes' }
-LuiModelLabel >> removeForName [
+LuiModelLabel >> removeForNameAttribute [
 	self attributes removeAttributeKey: LuiForNameAttribute attributeName 
 ]
 

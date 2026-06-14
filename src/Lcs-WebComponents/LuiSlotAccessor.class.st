@@ -21,7 +21,15 @@ LuiSlotAccessor class >> newOn: aComponent [
 ]
 
 { #category : 'instance creation' }
+LuiSlotAccessor class >> newOn: aComponent slotDefinition: aSlotDefinition model: aModel [
+	^ self new
+		initializeOn: aComponent slotDefinition: aSlotDefinition model: aModel;
+		yourself
+]
+
+{ #category : 'instance creation' }
 LuiSlotAccessor class >> read: aReadSelector write: aWriteSelector [
+	<deprecated: 'This appears not to be used'>
 	^ self new
 		readSelector: aReadSelector;
 		writeSelector: aWriteSelector;
@@ -30,6 +38,7 @@ LuiSlotAccessor class >> read: aReadSelector write: aWriteSelector [
 
 { #category : 'instance creation' }
 LuiSlotAccessor class >> selector: aSelector [
+	<deprecated: 'This appears not to be used'>
 	^ self new
 		selector: aSelector;
 		yourself
@@ -40,11 +49,6 @@ LuiSlotAccessor >> = anObject [
 	^ super = anObject
 		and: [ self readSelector = anObject readSelector
 		and: [ self writeSelector = anObject writeSelector ] ]
-]
-
-{ #category : 'accessing' }
-LuiSlotAccessor >> _model [
-	^ model
 ]
 
 { #category : 'testing' }
@@ -59,7 +63,12 @@ LuiSlotAccessor >> canWrite: aModel [
 
 { #category : 'model' }
 LuiSlotAccessor >> contents [
-	^ self model perform: self readSelector
+	^ self read
+]
+
+{ #category : 'accessing' }
+LuiSlotAccessor >> defactoModel [
+	^ model ifNil: [ self parent model ]
 ]
 
 { #category : 'magritte-description' }
@@ -77,7 +86,7 @@ LuiSlotAccessor >> descriptionSelector [
 
 { #category : 'model' }
 LuiSlotAccessor >> displayValue [
-	^ self model perform: self readSelector
+	^ self contents asString
 ]
 
 { #category : 'testing' }
@@ -100,6 +109,14 @@ LuiSlotAccessor >> initializeOn: aComponent [
 	self parent: aComponent
 ]
 
+{ #category : 'initialize' }
+LuiSlotAccessor >> initializeOn: aComponent slotDefinition: aSlotDefinition model: aModel [ 
+	self 
+		parent: aComponent;
+		slotDefinition: aSlotDefinition;
+		model: aModel
+]
+
 { #category : 'accessing' }
 LuiSlotAccessor >> label [ 
 	^ self slotDefinition label
@@ -107,7 +124,7 @@ LuiSlotAccessor >> label [
 
 { #category : 'accessing' }
 LuiSlotAccessor >> model [
-	^ model ifNil: [ self parent model ]
+	^ model
 ]
 
 { #category : 'accessing' }
@@ -132,7 +149,7 @@ LuiSlotAccessor >> parent: aComponent [
 
 { #category : 'model' }
 LuiSlotAccessor >> read [
-	^ self model perform: self readSelector
+	^ self defactoModel perform: self readSelector
 ]
 
 { #category : 'model' }
@@ -199,6 +216,11 @@ LuiSlotAccessor >> storeOn: aStream [
 		nextPutAll: ' write: ';
 		store: self writeSelector;
 		nextPut: $)
+]
+
+{ #category : 'model' }
+LuiSlotAccessor >> write: anObject [
+	^ self defactoModel perform: self writeSelector with: anObject
 ]
 
 { #category : 'model' }

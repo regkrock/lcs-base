@@ -9,6 +9,7 @@ Class {
 { #category : 'as yet unclassified' }
 LcsDomainClassBuilderExamples >> builderInstallAndRemoveClass [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	[

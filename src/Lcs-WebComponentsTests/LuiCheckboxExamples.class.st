@@ -7,26 +7,51 @@ Class {
 }
 
 { #category : 'examples' }
+LuiCheckboxExamples >> checkboxOnBooleanSlot [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| component expectedHtml person |
+	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
+	person := LxxPersonExamples new johnFreeman.
+	expectedHtml := ''.
+	component := LuiCheckbox onSlotNamed: 'hasRedHair' model: person.
+	^ component
+
+]
+
+{ #category : 'examples' }
+LuiCheckboxExamples >> checkboxOnBooleanSlotWhereBooleanIsTrue [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| component expectedHtml person |
+	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
+	person := LxxPersonExamples new johnFreeman.
+	person hasRedHair: true.
+	self assert: person hasRedHair.
+	expectedHtml := ''.
+	component := LuiCheckbox onSlotNamed: 'hasRedHair' model: person.
+	^ component
+
+]
+
+{ #category : 'examples' }
 LuiCheckboxExamples >> checkedCheckboxWithNoValue [
 	<gtExample>
 	| component expectedHtml |
 	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" checked type="checkbox"/>'.
-	component := self newComponent.
-	component model: true.
+	component := LuiCheckbox named: 'xxxx' model: true.
 	self assertRendered: component equals: expectedHtml.
 	^ component
-
 ]
 
 { #category : 'examples' }
 LuiCheckboxExamples >> checkedCheckboxWithValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" checked value="Label" type="checkbox"/>'.
-	component := self newComponent.
+	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" checked type="checkbox"/>'.
+	component := LuiCheckbox named: 'xxxx' model: true.
 	component model: true.
-	component text: 'Label'.
-	"self assertRendered: component equals: expectedHtml."
+	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
 
@@ -38,9 +63,10 @@ LuiCheckboxExamples >> newComponent [
 	self assert: component hasNoComponents.
 	self assert: component componentName equals: 'xxxx'.
 	"self assert: component cssClassesString equals: 'inputField'."
-	self assert: component valueAccessor class name equals: LuiLocalAccessor name.
+	self assert: component valueAccessor class name equals: LuiSmalltalkObjectAccessor name.
 	self assert: component valueAccessor parent equals: component.
 	self assert: component valueAccessor model equals: nil.
+	self assert: component valueAccessor contents equals: nil.
 	self assert: component displayValue equals: 'nil'.
 	self assert: component componentDecorations hasNoDecorations.
 	self assert: component text isNil.
@@ -74,7 +100,7 @@ LuiCheckboxExamples >> uncheckedCheckboxWithNoValue [
 LuiCheckboxExamples >> uncheckedCheckboxWithValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" value="Label" type="checkbox"/>'.
+	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" type="checkbox"/>'.
 	component := self newComponent.
 	component model: false.
 	self assert: component model equals: false.

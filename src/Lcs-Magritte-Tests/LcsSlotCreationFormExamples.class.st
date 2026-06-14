@@ -25,6 +25,7 @@ LcsSlotCreationFormExamples >> fieldIdFor: aDescriptionSymbol [
 { #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	<return: #BlScripter>
 	| anAcceptId anCancelId fieldId slotClassDescription margritteAcceptAction |
 	self ensureCurrentSystemIsPrototypeSystem.
@@ -98,6 +99,7 @@ LcsSlotCreationFormExamples >> formClickOnAcceptAfterEnteringASlotClassName [
 { #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formScripter [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	<return: #BlScripter>
 	self ensureCurrentSystemIsPrototypeSystem.
 	self
@@ -117,6 +119,7 @@ LcsSlotCreationFormExamples >> formScripter [
 { #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	<return: #BlScripter>
 	| aSlotClassDescriptionId anAcceptId anCancelId |
 	self ensureCurrentSystemIsPrototypeSystem.
@@ -143,6 +146,7 @@ LcsSlotCreationFormExamples >> formWithInvalidSlotClassNameEntry [
 { #category : 'examples - scripter' }
 LcsSlotCreationFormExamples >> formWithValidSlotClassNameEntry [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	<return: #BlScripter>
 	| aSlotClassDescriptionId |
 	self ensureCurrentSystemIsPrototypeSystem.
@@ -219,6 +223,7 @@ LcsSlotCreationFormExamples >> originalCacheValueOf: slotClassDescription [
 { #category : 'examples - form' }
 LcsSlotCreationFormExamples >> slotCreationForm [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.
 	form := LcsSlotCreationForm new targetClass: LxxPerson.
@@ -252,6 +257,7 @@ LcsSlotCreationFormExamples >> slotCreationFormOnLxxPerson [
 { #category : 'example - form' }
 LcsSlotCreationFormExamples >> virtualSlotAccessorSlotCreationForm [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.
 	form := self slotCreationFormOnLxxPerson

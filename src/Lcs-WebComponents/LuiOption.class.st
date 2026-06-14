@@ -16,10 +16,11 @@ LuiOption >> componentNameBaseOn: aSlotDefinition [
 ]
 
 { #category : 'initialize' }
-LuiOption >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
+LuiOption >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self optionValue: (aSlotDefinition optionValueFor: aModel).
 	self text: (aSlotDefinition optionDisplayStringFor: aModel).
+	self componentName: 'option_' , self optionValue asString
 ]
 
 { #category : 'accessing' }

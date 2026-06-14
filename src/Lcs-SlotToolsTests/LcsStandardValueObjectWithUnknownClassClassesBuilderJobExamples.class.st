@@ -25,6 +25,7 @@ LcsStandardValueObjectWithUnknownClassClassesBuilderJobExamples >> installAndRem
 { #category : 'examples' }
 LcsStandardValueObjectWithUnknownClassClassesBuilderJobExamples >> newBuilderJob [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
 	builderJob := LcsStandardValueObjectWithUnknownClassClassesBuilderJob new.

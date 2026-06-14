@@ -6,6 +6,15 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'instance creation' }
+LuiLabel class >> onSlot: aSlotDefinition model: aModel [
+	^ self
+		onSlot: aSlotDefinition
+		model: aModel
+		componentName: aSlotDefinition slotName , 'Label'
+	
+]
+
 { #category : 'iniitialize' }
 LuiLabel >> componentNameBaseOn: aSlotDefinition [
 	^ aSlotDefinition slotName , 'Label'
@@ -22,8 +31,8 @@ LuiLabel >> forName: anInputName [
 ]
 
 { #category : 'iniitialize' }
-LuiLabel >> initializeOnSlot: aSlotDefinition model: aModel [
-	super initializeOnSlot: aSlotDefinition model: aModel.
+LuiLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self text: aSlotDefinition label.
 	self attributes forName: aSlotDefinition slotName
 ]
@@ -39,7 +48,7 @@ LuiLabel >> labelString: aString [
 ]
 
 { #category : 'attributes' }
-LuiLabel >> removeForName [
+LuiLabel >> removeForNameAttribute [
 	self attributes removeAttributeKey: LuiForNameAttribute attributeName 
 ]
 

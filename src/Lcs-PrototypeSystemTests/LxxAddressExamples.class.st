@@ -9,6 +9,7 @@ Class {
 { #category : 'as yet unclassified' }
 LxxAddressExamples >> newAddress [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| address |
 	self ensureCurrentSystemIsPrototypeSystem.
 	address := LxxAddress new.

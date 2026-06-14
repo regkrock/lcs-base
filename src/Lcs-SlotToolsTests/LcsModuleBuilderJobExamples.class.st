@@ -9,6 +9,7 @@ Class {
 { #category : 'examples' }
 LcsModuleBuilderJobExamples >> installAndRemoveModule [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
 	self currentSystem clearUnitOfWork.
@@ -25,6 +26,7 @@ LcsModuleBuilderJobExamples >> installAndRemoveModule [
 { #category : 'examples' }
 LcsModuleBuilderJobExamples >> newBuilderJob [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builderJob |
 	self ensureCurrentSystemIsPrototypeSystem.
 	builderJob := LcsModuleBuilderJob new.

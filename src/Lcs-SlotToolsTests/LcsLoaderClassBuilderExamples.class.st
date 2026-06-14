@@ -37,6 +37,7 @@ LcsLoaderClassBuilderExamples >> builderWithLxxGenderLoaderCreationString [
 { #category : 'examples' }
 LcsLoaderClassBuilderExamples >> installAndRemoveClass [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| builder |
 	self ensureCurrentSystemIsPrototypeSystem.
 	builder := self builderToCreateLxxGenderLoaderClass.

@@ -1,9 +1,9 @@
 Class {
 	#name : 'LuiToggleButton',
 	#superclass : 'LuiButton',
-	#category : 'Lcs-WebComponents-Buttons',
+	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Buttons'
+	#tag : 'Widgets'
 }
 
 { #category : 'configuration' }
