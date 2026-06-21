@@ -14,7 +14,7 @@ LuiNavigationBarExamples >> exampleNavigationBar [
 	navBar componentName: 'navBar'.
 	navBar cssClass: 'navBar'.
 	navBar addComponent: ((LuiLabel named: 'menuToggleLabel')
-							forName: 'menu-toggle';
+							for: 'menu-toggle';
 							cssClass: 'hamburger';
 							text: '';
 							yourself).

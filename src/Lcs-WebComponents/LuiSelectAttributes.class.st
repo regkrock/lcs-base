@@ -1,9 +1,9 @@
 Class {
 	#name : 'LuiSelectAttributes',
-	#superclass : 'LuiComponentAttributes',
+	#superclass : 'LuiModelWidgetAttributes',
 	#traits : 'LuitNameAttribute',
 	#classTraits : 'LuitNameAttribute classTrait',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }

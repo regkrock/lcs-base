@@ -126,6 +126,77 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-27T13:13:25.957795-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-27T13:13:33.74258-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "/TaFMm+xTI6hiPKPvdbiTA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "2) After verifying, then  install the new class"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-27T13:13:40.697313-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-05-27T13:13:48.943106-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "5eO+vjTNTO+v9S70stSItA=="
+				},
+				"code" : "builder installCode"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2026-05-27T13:12:11.314657-04:00"
 					}
 				},
@@ -211,14 +282,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-05-27T12:39:15.809117-04:00"
+						"dateAndTimeString" : "2026-06-20T17:01:32.959533-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "2l/SgUimT22JMzox4+iLzA=="
 				},
-				"code" : "\tbuilderJob := LcsCompenentAttributeBuilderJob new.\r\tbuilderJob\r\t\tclassPrefix: 'Lui';\r\t\tcreateForRootName: 'HeadingLevel';\r\t\t\"attributeName: 'level';\"\r\t\ttagAttributeSetterSelector: #level:; \r\t\tinstallNewClassesInPackageNamed: 'Lcs-WebComponents' tag: 'Core';\r\t\t\" componentAttributesClassName: LuiComponentAttributes name; \"\r\t\tcomponentAttributesClassName: 'LuiHeadingAttributes';\r\t\tcomponentClassName: LuiHeading name. \r\tbuilderJob buildJobSteps.\r\t^ builderJob"
+				"code" : "\tbuilderJob := LcsCompenentAttributeBuilderJob new.\r\tbuilderJob\r\t\tclassPrefix: 'Lui';\r\t\tcreateForRootName: 'ReadOnly';\r\t\t\"attributeName: 'level';\"\r\t\ttagAttributeSetterSelector: #readOnly:; \r\t\tinstallNewClassesInPackageNamed: 'Lcs-WebComponents' tag: 'Attributes';\r\t\t\" componentAttributesClassName: LuiComponentAttributes name; \"\r\t\tcomponentAttributesClassName: 'LuiModalWidgetAttributes';\r\t\tcomponentClassName: LuiModalWidgetAttributes name. \r\tbuilderJob buildJobSteps.\r\t^ builderJob"
 			},
 			{
 				"__type" : "textSnippet",

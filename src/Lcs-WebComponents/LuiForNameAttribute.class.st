@@ -9,9 +9,9 @@ Ex: The label is identified as being for username
 Class {
 	#name : 'LuiForNameAttribute',
 	#superclass : 'LuiComponentAttribute',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
 { #category : 'constants' }

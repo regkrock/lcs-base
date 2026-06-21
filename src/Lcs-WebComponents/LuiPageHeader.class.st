@@ -52,7 +52,7 @@ LuiPageHeader >> loginButtonBarComponentName [
 LuiPageHeader >> organizationLogoComponent [
 	^ self
 		componentNamed: self organizationLogoComponentName
-		ifNil: [ self addComponent: (LuiButton named: self organizationLogoComponentName) ]
+		ifNil: [ self addComponent: (LuiObsoleteButton named: self organizationLogoComponentName) ]
 ]
 
 { #category : 'defaults' }

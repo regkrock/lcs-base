@@ -14,7 +14,7 @@ LuiSearchBarPresenter >> initialize [
 			placeholder: 'Search...';
 			yourself).
 	self addComponent: (
-		(LuiPushButton named: 'searchButton')
+		(LuiButton named: 'searchButton')
 			beSubmitType;
 			leadingImageUrl: LcsFileLibrary / #search24Svg;
 			leadingImageAltText: 'search button';

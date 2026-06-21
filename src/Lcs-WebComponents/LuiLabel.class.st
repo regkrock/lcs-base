@@ -15,40 +15,30 @@ LuiLabel class >> onSlot: aSlotDefinition model: aModel [
 	
 ]
 
-{ #category : 'iniitialize' }
-LuiLabel >> componentNameBaseOn: aSlotDefinition [
-	^ aSlotDefinition slotName , 'Label'
+{ #category : 'attributes' }
+LuiLabel >> for [
+	^ self attributes for
 ]
 
 { #category : 'attributes' }
-LuiLabel >> forName [
-	^ self attributes forName
+LuiLabel >> for: anInputName [
+	self attributes for: anInputName
 ]
 
-{ #category : 'attributes' }
-LuiLabel >> forName: anInputName [
-	self attributes forName: anInputName
+{ #category : 'gt views' }
+LuiLabel >> gtViewTagName [
+	^'label'
 ]
 
 { #category : 'iniitialize' }
 LuiLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self text: aSlotDefinition label.
-	self attributes forName: aSlotDefinition slotName
-]
-
-{ #category : 'label' }
-LuiLabel >> labelString [
-	^ self text
-]
-
-{ #category : 'label' }
-LuiLabel >> labelString: aString [
-	self text: aString
+	self attributes for: aSlotDefinition slotName
 ]
 
 { #category : 'attributes' }
-LuiLabel >> removeForNameAttribute [
+LuiLabel >> removeForAttribute [
 	self attributes removeAttributeKey: LuiForNameAttribute attributeName 
 ]
 

@@ -27,7 +27,7 @@ LuiMenuItem >> addAnchorComponent [
 
 { #category : 'components - adding' }
 LuiMenuItem >> addButtonComponent [
-	^ self addComponent: (LuiPushButton named: 'button')
+	^ self addComponent: (LuiButton named: 'button')
 ]
 
 { #category : 'components' }

@@ -39,6 +39,11 @@ LxxSkill class >> skillNameSlotDefinition [
 		yourself
 ]
 
+{ #category : 'as yet unclassified' }
+LxxSkill >> gtDisplayOn: stream [
+	self gtPrint: self skillCode asString on: stream
+]
+
 { #category : 'accessing' }
 LxxSkill >> skillCode [
 	^ self slotVarNamed: 'skillCode'

@@ -22,6 +22,16 @@ LuiRadioButton >> componentNameBaseOn: aSlotDefinition [
 	^ 'radio_' , (aSlotDefinition optionValueFor: self model)
 ]
 
+{ #category : 'gt views' }
+LuiRadioButton >> gtViewTagName [
+	^ super gtViewTagName ,  ' type=''radio'''
+]
+
+{ #category : 'callbacks' }
+LuiRadioButton >> handleCallbackValue: value [ 
+	self valueAccessor write: value
+]
+
 { #category : 'initialize' }
 LuiRadioButton >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
@@ -51,8 +61,13 @@ LuiRadioButton >> optionValue: anObject [
 
 { #category : 'rendering' }
 LuiRadioButton >> renderComponentOn: html [
-	html radioButton
+	"This is here for consistency. There should be a group?"
+	self renderComponentOn: html group: nil
+]
+
+{ #category : 'rendering' }
+LuiRadioButton >> renderComponentOn: html group: aGroup [
+	(html radioButton)
 		addCommonAttributes: self;
-		selected: false;
-		with: [ self renderDetailsOn: html ]
+		value: self optionValue
 ]

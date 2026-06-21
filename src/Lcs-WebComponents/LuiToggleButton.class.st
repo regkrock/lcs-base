@@ -6,32 +6,13 @@ Class {
 	#tag : 'Widgets'
 }
 
-{ #category : 'configuration' }
-LuiToggleButton >> beButtonType [
-	self buttonTypeAttribute beButtonType
-]
-
-{ #category : 'configuration' }
-LuiToggleButton >> beSubmitType [
-	self buttonTypeAttribute beSubmitType
-]
-
-{ #category : 'as yet unclassified' }
-LuiToggleButton >> buttonTypeAttribute [
-	^ self attributes buttonTypeAttribute
-]
-
-{ #category : 'as yet unclassified' }
+{ #category : 'initialize' }
 LuiToggleButton >> initialize [
-	super initialize.
-	self beButtonType
+	super initialize
 ]
 
 { #category : 'rendering' }
-LuiToggleButton >> renderComponentOn: html [
-	<TODO: 'needs more work'>
-	html button
-		addCommonAttributes: self;
-		onClick: (html jQuery ajax callback: [:v | self halt]);
-		with: [ self components do: [ :eachComponent | html render: eachComponent ] ]
+LuiToggleButton >> onClick: html [
+	"This needs work - this is just a placeholder"
+	self onClick: (html jQuery ajax callback: [:v | self halt])
 ]

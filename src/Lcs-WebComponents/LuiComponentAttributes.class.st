@@ -5,9 +5,9 @@ Class {
 		'parentComponent',
 		'attributes'
 	],
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
 { #category : 'instance creation' }
@@ -23,35 +23,33 @@ LuiComponentAttributes >> addAttributesToTag: aTagBrush [
 		id: self parentComponent componentId;
 		dataName: self parentComponent componentName;
 		dataStClass: self parentComponent.
-	"((aTagBrush respondsTo: #name:) and: [ (aTagBrush isKindOf: WAAnchorTag) not ]) ifTrue: [
-		aTagBrush name: self parentComponent componentName ]."
-	self attributes do: [ :eachaAtributes | 
-			eachaAtributes cachedValue ifNotNil: [ :object |
+	self attributes do: [ :eachaAtribute | 
+			eachaAtribute cachedValue ifNotNil: [ :object |
 				aTagBrush
-					perform: eachaAtributes tagAttributeSetterSelector
+					perform: eachaAtribute tagAttributeSetterSelector
 					with: object ] ]
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> addCssClass: aCssClassName [
 	^ self cssClassesAttribute addCssClass: aCssClassName
 ]
 
-{ #category : 'adding - removing properties' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> addCssClassAttribute [
 	| property |
 	property := self cssClassesAttribute.
 	property addCssClasses: self parentComponent defaultCssClasses
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> addCssClasses: aCollection [
 	^ self cssClassesAttribute addCssClasses: aCollection
 ]
 
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> appendToStyle: aString [
-	^ self styleAttribute appendToStyle: aString
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> appendToStyleString: aString [
+	^ self styleStringAttribute appendToStyleString: aString
 ]
 
 { #category : 'subscription' }
@@ -161,90 +159,110 @@ LuiComponentAttributes >> attributesSearchOn: aSearch [
 		send: [ :anObject | anObject value ]
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beDisabled [
 	^ self disabledAttribute beDisabled
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beEnabled [
 	^ self disabledAttribute beEnabled
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beHidden [
 	^ self visibilityAttribute beHidden
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beNotRenderable [
 	^ self renderingAttribute beNotRenderable
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beOptional [
 	^ self requiredAttribute beOptional
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beRenderable [
 	^ self renderingAttribute beRenderable
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beRequired [
 	^ self requiredAttribute beRequired
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - commands' }
 LuiComponentAttributes >> beVisible [
 	^ self visibilityAttribute beVisible
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> buttonType [
 	self hasButtonTypeAttribute ifFalse: [ ^ nil ].
 	^ self buttonTypeAttribute attributeValue
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> buttonType: aString [
+	self buttonTypeAttribute buttonType: aString
+]
+
+{ #category : 'attributes' }
 LuiComponentAttributes >> buttonTypeAttribute [
 	^ self lazyInitializedAttribute: LuiButtonTypeAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> callback [
 	self hasCallbackAttribute ifFalse: [ ^ nil ].
 	^ self callbackAttribute attributeValue
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> callback: aBlock [
 	^ self callbackAttribute callback: aBlock
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> callbackAttribute [
 	^ self lazyInitializedAttribute: LuiCallbackAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> cssClass: aCssClassName [
 	^ self cssClassesAttribute cssClass: aCssClassName
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> cssClassesAttribute [
 	^ self lazyInitializedAttribute: LuiCssClassesAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> cssClassesString [
 	self hasCssClassesAttribute ifFalse: [ ^ nil ].
 	^ self cssClassesAttribute attributeValue
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> disable [
+	^ self disabledAttribute disable
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> disabled [
+	^ self disabledAttribute disabled
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> disabled: aBoolean [
+	^ self disabledAttribute disabled: aBoolean
+]
+
+{ #category : 'attributes' }
 LuiComponentAttributes >> disabledAttribute [
 	^ self lazyInitializedAttribute: LuiDisabledAttribute
 ]
@@ -254,18 +272,18 @@ LuiComponentAttributes >> errorAttributeNotFound: aSelector [
 	LuiComponentAttributeNotFound signal: 'Attribute ' , aSelector , ' not found.'
 ]
 
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> forName [
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> for [
 	self hasForNameAttribute ifFalse: [ ^ nil ].
 	^ self forNameAttribute attributeValue
 ]
 
-{ #category : 'properties - defined' }
-LuiComponentAttributes >> forName: aString [
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> for: aString [
 	^ self forNameAttribute for: aString
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> forNameAttribute [
 	^ self lazyInitializedAttribute: LuiForNameAttribute
 ]
@@ -312,70 +330,90 @@ LuiComponentAttributes >> hasButtonTypeAttribute [
 	^ self hasAttribute: LuiButtonTypeAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasCallbackAttribute [
 	^ self hasAttribute:  LuiCallbackAttribute attributeName 
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasCssClassesAttribute [
 	self attributeAt: LuiCssClassesAttribute attributeName ifAbsent: [ ^ false ].
 	^ true
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasDisabledAttribute [
 	^ self hasAttribute:  LuiDisabledAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasForNameAttribute [
 	^ self hasAttribute: LuiForNameAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
+LuiComponentAttributes >> hasHiddenAttribute [
+	^ self hasAttribute:  LuiVisibilityAttribute attributeName 
+]
+
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasLabelAttribute [
 	^ self hasAttribute:  LuiLabelAttribute attributeName 
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasNoAttributes [
 	^ self attributes isEmpty
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasOnClickAttribute [
 	^ self hasAttribute: LuiOnClickAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasRenderingAttribute [
 	^ self hasAttribute: LuiRenderingAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasRequiredAttribute [
 	^ self hasAttribute: LuiRequiredAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
-LuiComponentAttributes >> hasStyleAttribute [
-	^ self hasAttribute: LuiStyleAttribute attributeName
+{ #category : 'attributes - testing' }
+LuiComponentAttributes >> hasStyleStringAttribute [
+	^ self hasAttribute: LuiStyleStringAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasTitleAttribute [
 	^ self hasAttribute: LuiTitleAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasUrlAttribute [
 	^ self hasAttribute: LuiUrlAttribute attributeName
 ]
 
-{ #category : 'properties - testing' }
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasVisiblityAttribute [
 	^ self hasAttribute: LuiVisibilityAttribute attributeName 
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> hidden [
+	^ self hiddenAttribute hidden
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> hidden: aBoolean [
+	^ self hiddenAttribute for: aBoolean
+]
+
+{ #category : 'attributes' }
+LuiComponentAttributes >> hiddenAttribute [
+	^ self lazyInitializedAttribute: LuiVisibilityAttribute
 ]
 
 { #category : 'initialize' }
@@ -397,9 +435,8 @@ LuiComponentAttributes >> initializeOn: aComponent [
 	self initializeCssClassesAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentAttributes >> isDisabled [
-	self hasDisabledAttribute ifFalse: [ ^''].
 	^ self disabledAttribute isDisabled
 ]
 
@@ -408,65 +445,65 @@ LuiComponentAttributes >> isEnabled [
 	^ self disabledAttribute isEnabled
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentAttributes >> isHidden [
-	^ self visibilityAttribute isHidden
+	^ self hiddenAttribute isHidden
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentAttributes >> isNotRenderable [
 	self hasRenderingAttribute ifFalse: [ ^ false ].
 	^ self renderingAttribute isNotRenderable 
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentAttributes >> isOptional [
 	^ self requiredAttribute isOptional
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentAttributes >> isRenderable [
 	self hasRenderingAttribute ifFalse: [ ^true ].
 	^ self renderingAttribute isRenderable
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentAttributes >> isRequired [
 	self hasRequiredAttribute ifFalse: [ ^ false ].
 	^ self requiredAttribute isRequired
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'testing' }
 LuiComponentAttributes >> isVisible [
 	^ self hasVisiblityAttribute 
 		ifTrue: [ self visibilityAttribute isVisible ]
 		ifFalse: [ true ]
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> label [
 	self hasLabelAttribute ifFalse: [ ^ nil ].
 	^ self labelAttribute attributeValue
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> label: aString [
 	^ self labelAttribute value: aString
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> labelAttribute [
 	^ self lazyInitializedAttribute: LuiLabelAttribute
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> labelAttributeValue [
 	^ self hasLabelAttribute 
 		ifTrue: [ self labelAttribute attributeValue ]
 		ifFalse: [ ^ '' ]
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> labelBlock: aBlock [
 	^ self labelAttribute valueBlock: aBlock
 ]
@@ -476,17 +513,17 @@ LuiComponentAttributes >> lazyInitializedAttribute: aComponentAttributeClassaCom
 	^ self attributeAt: aComponentAttributeClassaComponentAttributeClass attributeName ifAbsentPut: [ aComponentAttributeClassaComponentAttributeClass on: self ]
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> onClick [
 	^ self onClickAttribute onClick
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> onClick: aString [
 	^ self onClickAttribute onClick: aString
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> onClickAttribute [
 	^ self lazyInitializedAttribute: LuiOnClickAttribute
 ]
@@ -501,18 +538,13 @@ LuiComponentAttributes >> parentComponent: anObject [
 	parentComponent := anObject
 ]
 
-{ #category : 'properties - defined' }
-LuiComponentAttributes >> placeholderAttribute [
-	^ self lazyInitializedAttribute: LuiPlaceholderAttribute
-]
-
 { #category : 'copying' }
 LuiComponentAttributes >> postCopyProperties [
 	"Call after super postCopy"
 	attributes := attributes copy
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> removeAllCssClasses [
 	^ self cssClassesAttribute removeAllCssClasses
 ]
@@ -524,69 +556,69 @@ LuiComponentAttributes >> removeAttributeKey: aKey [
 	self attributes removeKey: aKey ifAbsent: [ ]
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> removeCssClass: aCssClassName [
 	^ self cssClassesAttribute removeCssClasses: aCssClassName
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> renderingAttribute [
 	^ self lazyInitializedAttribute: LuiRenderingAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> replaceExistingCssClassesWithCssClass: aString [
 	^ self cssClassesAttribute replaceExistingCssClassesWithCssClass: aString
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> requiredAttribute [
 	^ self lazyInitializedAttribute: LuiRequiredAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> rmoveCssClasses: aCollection [
 	^ self cssClassesAttribute removeCssClasses: aCollection
 ]
 
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> style [
-	self hasStyleAttribute ifFalse: [ ^ '' ].
-	^ self styleAttribute attributeValue
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> styleString [
+	self hasStyleStringAttribute ifFalse: [ ^ '' ].
+	^ self styleStringAttribute attributeValue
 ]
 
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> style: aString [
-	^ self styleAttribute style: aString
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> styleString: aString [
+	^ self styleStringAttribute styleString: aString
 ]
 
-{ #category : 'properties - defined' }
-LuiComponentAttributes >> styleAttribute [
-	^ self lazyInitializedAttribute: LuiStyleAttribute
+{ #category : 'attributes' }
+LuiComponentAttributes >> styleStringAttribute [
+	^ self lazyInitializedAttribute: LuiStyleStringAttribute
 ]
 
-{ #category : 'properties - delegated' }
-LuiComponentAttributes >> styleBlock: aBlock [
-	^ self styleAttribute valueBlock: aBlock
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> styleStringBlock: aBlock [
+	^ self styleStringAttribute valueBlock: aBlock
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> title [
 	self hasTitleAttribute ifFalse: [ ^ nil ].
 	^ self titleAttribute attributeValue
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> title: aString [
 	^ self titleAttribute title: aString
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> titleAttribute [
 	^ self lazyInitializedAttribute: LuiTitleAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> titleBlock: aBlock [
 	^ self titleAttribute valueBlock: aBlock
 ]
@@ -600,29 +632,29 @@ LuiComponentAttributes >> unsubscribe: aSubscriber [
 		ifAbsent: [  "ignore" ]
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> url [
 	self hasUrlAttribute ifFalse: [ ^ nil ].
 	^ self urlAttribute attributeValue
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'attributes - accessing' }
 LuiComponentAttributes >> url: aString [
 	^ self urlAttribute url: aString
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> urlAttribute [
 	^ self lazyInitializedAttribute: LuiUrlAttribute
 ]
 
-{ #category : 'properties - delegated' }
+{ #category : 'properties - accessing' }
 LuiComponentAttributes >> valueOfAttribute: anAttributeName [
 	(self hasAttribute: anAttributeName) ifFalse: [ ^ nil ].
 	^ (self attributeAt: anAttributeName) attributeValue
 ]
 
-{ #category : 'properties - defined' }
+{ #category : 'attributes' }
 LuiComponentAttributes >> visibilityAttribute [
 	^ self lazyInitializedAttribute:  LuiVisibilityAttribute 
 ]

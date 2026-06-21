@@ -9,6 +9,11 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'testing' }
+LuiModelWidget class >> isAbstract [ 
+	^ self == LuiModelWidget
+]
+
 { #category : 'instance creation' }
 LuiModelWidget class >> named: aComponentName model: aModel [
 	^ self new
@@ -56,6 +61,21 @@ LuiModelWidget class >> onSlotNamed: aSlotName model: aModel componentName: aStr
 		componentName: aString
 ]
 
+{ #category : 'attributes - accessing' }
+LuiModelWidget >> callback [
+	^ self attributes callback
+]
+
+{ #category : 'attributes - accessing' }
+LuiModelWidget >> callback: aBlock [
+	self attributes callback: aBlock 
+]
+
+{ #category : 'initialize' }
+LuiModelWidget >> componentAttributesClass [
+	^ LuiModelWidgetAttributes
+]
+
 { #category : 'instance creation' }
 LuiModelWidget >> componentNameBaseOn: aSlotDefinition [
 	^ aSlotDefinition slotName
@@ -64,6 +84,11 @@ LuiModelWidget >> componentNameBaseOn: aSlotDefinition [
 { #category : 'rendering' }
 LuiModelWidget >> displayValue [
 	^ self valueAccessor displayValue
+]
+
+{ #category : 'callbacks' }
+LuiModelWidget >> handleCallbackValue: value [ 
+	self valueAccessor write: value
 ]
 
 { #category : 'initialize' }
@@ -95,6 +120,7 @@ LuiModelWidget >> initializeOnSlot: aSlotDefinition model: aModel componentName:
 			newOn: self
 			slotDefinition: aSlotDefinition
 			model: aModel).
+	aSlotDefinition isVirtualSlot ifTrue: [ self disabled: true ].
 	self componentName: aString
 ]
 
@@ -112,6 +138,16 @@ LuiModelWidget >> model: aModel [
 { #category : 'model' }
 LuiModelWidget >> presenter [
 	^ self myParentPresenterComponent
+]
+
+{ #category : 'attributes - accessing' }
+LuiModelWidget >> readOnly [
+	^ self attributes readOnly
+]
+
+{ #category : 'attributes - accessing' }
+LuiModelWidget >> readOnly: aBoolean [
+	self attributes readOnly: aBoolean 
 ]
 
 { #category : 'accessing' }

@@ -220,7 +220,8 @@ LuiSlotAccessor >> storeOn: aStream [
 
 { #category : 'model' }
 LuiSlotAccessor >> write: anObject [
-	^ self defactoModel perform: self writeSelector with: anObject
+	self slotDefinition isVirtualSlot ifTrue: [ ^ self ].
+	self defactoModel perform: self writeSelector with: anObject 
 ]
 
 { #category : 'model' }

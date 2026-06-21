@@ -10,6 +10,16 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'components - updating' }
+LuiCheckboxAndLabel >> assignInputIdToLabelForId [
+	self labelComponent for: self inputComponent componentId
+]
+
+{ #category : 'defaults' }
+LuiCheckboxAndLabel >> defaultCssClasses [
+	^ OrderedCollection with: 'radioButtonAndLabel'
+]
+
 { #category : 'initialize' }
 LuiCheckboxAndLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
@@ -17,7 +27,7 @@ LuiCheckboxAndLabel >> initializeOnSlot: aSlotDefinition model: aModel component
 	self labelComponentName: aSlotDefinition slotName , 'Label'.
 	self addComponent: (LuiCheckbox onSlot: aSlotDefinition model: aModel componentName: self inputComponentName).
 	self addComponent: ((LuiLabel onSlot:  aSlotDefinition model: aModel componentName: self labelComponentName)
-							forName: aSlotDefinition slotName;
+							for: aSlotDefinition slotName;
 							yourself)
 ]
 

@@ -1,9 +1,9 @@
 Class {
 	#name : 'LuiTextDecoration',
 	#superclass : 'LuiComponentDecoration',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Decorations',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Decorations'
 }
 
 { #category : 'constants' }

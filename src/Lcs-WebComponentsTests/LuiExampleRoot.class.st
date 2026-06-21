@@ -95,9 +95,9 @@ LuiExampleRoot >> intializeWithButtonComponent [
 
 { #category : 'components' }
 LuiExampleRoot >> pushButtonExample [
-	^ (LuiPushButton named: 'button')
+	^ (LuiButton named: 'button')
 		text: 'OK Button';
-		style: 'border-style: solid; border-color: red;';
+		styleString: 'border-style: solid; border-color: red;';
 		callback: [ self showCallbackOnTranscript ];
 		yourself
 ]

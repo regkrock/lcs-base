@@ -1,9 +1,9 @@
 Class {
 	#name : 'LcsComponentAttributeClassBuilder',
 	#superclass : 'LcsBaseClassBuilder',
-	#category : 'Lcs-SlotTools-Core',
+	#category : 'Lcs-SlotTools-Attributes',
 	#package : 'Lcs-SlotTools',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
 { #category : 'accessing' }

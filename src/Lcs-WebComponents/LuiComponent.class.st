@@ -72,12 +72,12 @@ LuiComponent >> addComponentNameTo: namePath [
 	self parentComponent ifNotNil: [ self parentComponent addComponentNameTo: namePath ]
 ]
 
-{ #category : 'initialize' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> addCssClass: aClassName [ 
 	self attributes addCssClass: aClassName
 ]
 
-{ #category : 'initialize' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> addCssClasses: aCollection [ 
 	self attributes addCssClasses: aCollection
 ]
@@ -97,19 +97,25 @@ LuiComponent >> addLabelComponent [
 	^ self addComponent: (LuiLabel named: 'label')
 ]
 
-{ #category : 'components' }
+{ #category : 'components - updating' }
 LuiComponent >> addToComponents: aComponent [ 
 	aComponent parentComponent: self.
 	self components at: aComponent componentName put: aComponent.
 	self componentKeys add: aComponent componentName.
 	self componentsDo: [ :each | each assignId ].
+	self componentsDo: [ :each | each assignInputIdToLabelForId ].
 	^ aComponent
 ]
 
 { #category : 'components' }
 LuiComponent >> assignId [
+	"Transcript show: ((self componentName ifNil: [ 'nil' ]) , ' ' , self class name); cr."
 	self isComponentIdComputed ifTrue: [
 		self componentId: self generatedId ]
+]
+
+{ #category : 'components - updating' }
+LuiComponent >> assignInputIdToLabelForId [
 ]
 
 { #category : 'components' }
@@ -232,17 +238,17 @@ LuiComponent >> computeComponentId: anObject [
 	computeComponentId := anObject
 ]
 
-{ #category : 'initialize' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> cssClass: aClassName [ 
 	self attributes cssClass: aClassName
 ]
 
-{ #category : 'properties' }
+{ #category : 'attributes' }
 LuiComponent >> cssClassesAttribute [
 	^ self attributes cssClassesAttribute
 ]
 
-{ #category : 'properties' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> cssClassesString [
 	^ self cssClassesAttribute cssClassesString
 ]
@@ -250,6 +256,16 @@ LuiComponent >> cssClassesString [
 { #category : 'defaults' }
 LuiComponent >> defaultCssClasses [
 	^OrderedCollection new
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponent >> disabled [
+	^ self attributes disabled
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponent >> disabled: aBoolean [
+	self attributes disabled: aBoolean
 ]
 
 { #category : 'components' }
@@ -298,7 +314,7 @@ LuiComponent >> gtComponentsFor: aView [
 		title: 'Components';
 		priority: 10;
 		expandUpTo: 4;
-		items: [ self gtComponentsViewComponents ];
+		items: [ {self} "gtComponentsViewComponents" ];
 		children: #orderedComponents;
 		column: 'Component Class' text: [ :aComponent | aComponent class name ];
 		column: 'Component Name'
@@ -316,15 +332,6 @@ LuiComponent >> gtComponentsFor: aView [
 { #category : 'gt - views' }
 LuiComponent >> gtComponentsViewComponents [
 	^ self orderedComponents asOrderedCollection
-]
-
-{ #category : 'printing' }
-LuiComponent >> gtDisplayOn: stream [
-	super gtDisplayOn: stream.
-	stream
-		nextPutAll: '(';
-		nextPutAll: self componentName asString;
-		nextPutAll: ')'
 ]
 
 { #category : 'gt - views' }
@@ -365,12 +372,12 @@ LuiComponent >> gtViewDecorationsOn: aView [
 	^ self componentDecorations gtViewDecorationsOn: aView
 ]
 
-{ #category : 'gt views' }
+{ #category : 'gt - views' }
 LuiComponent >> gtViewOtherInfo [
 	^ ''
 ]
 
-{ #category : 'gt views' }
+{ #category : 'gt - views' }
 LuiComponent >> gtViewTagName [
 	^ ''
 ]
@@ -395,7 +402,7 @@ LuiComponent >> hasComponents [
 	^ self components notEmpty
 ]
 
-{ #category : 'properties' }
+{ #category : 'testing' }
 LuiComponent >> hasLabelComponent [
 	^ (self componentNamed: 'label') notNil
 ]
@@ -477,23 +484,11 @@ LuiComponent >> isVisible [
 	^ self attributes isVisible
 ]
 
-{ #category : 'properties' }
-LuiComponent >> labelComponent [
-	^ self hasLabelComponent 
-		ifTrue: [ self componentNamed: 'label' ] 
-		ifFalse: [ self addLabelComponent ]
-]
-
-{ #category : 'properties' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> labelString [
 	^ self hasLabelComponent
-		ifTrue: [ self labelComponent labelString ]
+		ifTrue: [ self labelComponent text ]
 		ifFalse: [ '' ]
-]
-
-{ #category : 'properties' }
-LuiComponent >> labelString: aString [
-	self labelComponent labelString: aString
 ]
 
 { #category : 'components' }
@@ -554,7 +549,7 @@ LuiComponent >> prettyPrintedHtml: html [
 	^ visitor contents
 ]
 
-{ #category : 'initialize' }
+{ #category : 'attributes' }
 LuiComponent >> removeAllCssClasses [
 	self attributes removeAllCssClasses
 ]
@@ -640,19 +635,19 @@ LuiComponent >> states [
 	^ self orderedComponents
 ]
 
-{ #category : 'properties' }
-LuiComponent >> style [
-	^ self attributes style
+{ #category : 'attributes - accessing' }
+LuiComponent >> styleString [
+	^ self attributes styleString
 ]
 
-{ #category : 'properties' }
-LuiComponent >> style: aString [
-	self attributes style: aString
+{ #category : 'attributes - accessing' }
+LuiComponent >> styleString: aString [
+	self attributes styleString: aString
 ]
 
-{ #category : 'properties' }
-LuiComponent >> styleBlock: aBlock [
-	self attributes styleBlock: aBlock
+{ #category : 'attributes - accessing' }
+LuiComponent >> styleStringBlock: aBlock [
+	self attributes styleStringBlock: aBlock
 ]
 
 { #category : 'accessing' }
@@ -675,17 +670,17 @@ LuiComponent >> textComponentDecoration [
 	^ self componentDecorations textComponentDecoration
 ]
 
-{ #category : 'properties' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> title [
 	^ self attributes title
 ]
 
-{ #category : 'properties' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> title: aString [
 	self attributes title: aString
 ]
 
-{ #category : 'properties' }
+{ #category : 'attributes - accessing' }
 LuiComponent >> titleBlock: aBlock [
 	self attributes titleBlock: aBlock
 ]

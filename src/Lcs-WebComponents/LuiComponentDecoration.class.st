@@ -7,9 +7,9 @@ Class {
 		'cachedValue',
 		'tagDecorationSetSelector'
 	],
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Decorations',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Decorations'
 }
 
 { #category : 'constant' }

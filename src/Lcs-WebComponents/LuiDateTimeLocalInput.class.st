@@ -1,6 +1,6 @@
 Class {
-	#name : 'LuiDatePicker',
-	#superclass : 'LuiFormInputComponent',
+	#name : 'LuiDateTimeLocalInput',
+	#superclass : 'LuiSteppedInputComponent',
 	#instVars : [
 		'date',
 		'fromStringConverter',
@@ -12,67 +12,77 @@ Class {
 }
 
 { #category : 'converting' }
-LuiDatePicker >> contentsAsString [
+LuiDateTimeLocalInput >> contentsAsString [
 	^ self toStringConverter value: self valueAccessor contents
 ]
 
 { #category : 'converting' }
-LuiDatePicker >> contentsFromString: aString [
+LuiDateTimeLocalInput >> contentsFromString: aString [
 	^ self fromStringConverter value: aString
 ]
 
 { #category : 'rendering' }
-LuiDatePicker >> displayValue [
+LuiDateTimeLocalInput >> displayValue [
 	^ self valueAccessor contents yyyymmdd
 ]
 
 { #category : 'accessing' }
-LuiDatePicker >> fromStringConverter [
+LuiDateTimeLocalInput >> fromStringConverter [
 	^ fromStringConverter
 ]
 
 { #category : 'accessing' }
-LuiDatePicker >> fromStringConverter: anObject [
+LuiDateTimeLocalInput >> fromStringConverter: anObject [
 	fromStringConverter := anObject
 ]
 
+{ #category : 'gt views' }
+LuiDateTimeLocalInput >> gtViewTagName [
+	^ super gtViewTagName , ' type=''datetime-local'''
+]
+
+{ #category : 'callbacks' }
+LuiDateTimeLocalInput >> handleCallbackValue: value [ 
+	self valueAccessor write: (Date readFrom: value pattern: 'y-m-d')
+]
+
 { #category : 'initialize' }
-LuiDatePicker >> initialize [
+LuiDateTimeLocalInput >> initialize [
 	super initialize.
 	self toStringConverter: LuiDateToStringConverter new.
 	self fromStringConverter: LuiStringToDateConverter new.
 ]
 
 { #category : 'initialize' }
-LuiDatePicker >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+LuiDateTimeLocalInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self attributes name: aSlotDefinition slotName
 ]
 
 { #category : 'rendering' }
-LuiDatePicker >> renderComponentOn: html [
-	html dateInput5
+LuiDateTimeLocalInput >> renderComponentOn: html [
+	html dateTimeInput
 		addCommonAttributes: self;
-		onChange: (JSStream on: 'this.form.requestSubmit()');
+		"onChange: (JSStream on: 'this.form.requestSubmit()');"
 		"onChange: 'submit()';"
 		"callback: [ :value | self updateContentsFrom: value ];"
-		callback: (GRDelayedSend 
+		"callback: (GRDelayedSend 
 					receiver: self
-					selector: #updateContentsFrom:);
+					selector: #updateContentsFrom:);"
 		value: self contentsAsString
 ]
 
 { #category : 'accessing' }
-LuiDatePicker >> toStringConverter [
+LuiDateTimeLocalInput >> toStringConverter [
 	^ toStringConverter
 ]
 
 { #category : 'accessing' }
-LuiDatePicker >> toStringConverter: anObject [
+LuiDateTimeLocalInput >> toStringConverter: anObject [
 	toStringConverter := anObject
 ]
 
 { #category : 'model' }
-LuiDatePicker >> updateContentsFrom: value [
+LuiDateTimeLocalInput >> updateContentsFrom: value [
 	^ self valueAccessor write: (self contentsFromString: value)
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiButtonLabelExamples',
+	#name : 'LuiLabelExamples',
 	#superclass : 'LuiSeasideComponentExamples',
 	#category : 'Lcs-WebComponentsTests-Examples',
 	#package : 'Lcs-WebComponentsTests',
@@ -7,12 +7,12 @@ Class {
 }
 
 { #category : 'examples' }
-LuiButtonLabelExamples >> newComponent [
+LuiLabelExamples >> newComponent [
 	<gtExample>
 	| component |
-	component := LuiButtonLabel named: 'labelComponent'.
+	component := LuiLabel named: 'labelComponent'.
 	self assert: component componentName equals: 'labelComponent'.
 	self assert: component labelString isEmpty.
-	self assertRendered: component equals: '<span data-name="labelComponent" data-StClass="LuiButtonLabel"></span>'.
+	self assertRendered: component equals: '<label data-name="labelComponent" data-StClass="LuiLabel"></label>'.
 	^ component
 ]

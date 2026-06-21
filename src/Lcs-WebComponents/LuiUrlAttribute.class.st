@@ -1,9 +1,9 @@
 Class {
 	#name : 'LuiUrlAttribute',
 	#superclass : 'LuiComponentAttribute',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
 { #category : 'constant' }

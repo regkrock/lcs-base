@@ -6,6 +6,16 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'gt views' }
+LuiCheckbox >> gtViewTagName [
+	^ super gtViewTagName , ' type=''checkbox'''
+]
+
+{ #category : 'callbacks' }
+LuiCheckbox >> handleCallbackValue: value [ 
+	self valueAccessor write: value
+]
+
 { #category : 'initialize' }
 LuiCheckbox >> initialize [
 	super initialize.

@@ -1,6 +1,9 @@
 Class {
 	#name : 'LuiFormFunctionalTest',
 	#superclass : 'LuiFunctionalTest',
+	#instVars : [
+		'person'
+	],
 	#category : 'Lcs-WebComponentsTests-Functional',
 	#package : 'Lcs-WebComponentsTests',
 	#tag : 'Functional'
@@ -8,43 +11,64 @@ Class {
 
 { #category : 'initialize' }
 LuiFormFunctionalTest >> initialize [
-	| personPresenter person |
+	| personPresenter form |
 	super initialize.
-
 	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
-
-	person := LxxPersonExamples new johnFreeman.
-	person dateOfBirth: (Date newDay: 2 month: 8 year: 1955).
-
+	self person ifNil: [ 
+		self person: LxxPersonExamples new johnFreeman.
+		self person
+			dateOfBirth: (Date
+					newDay: 2
+					month: 8
+					year: 1955) ].
 	self componentName: 'root'.
 	self componentId: 'root'.
-	self addComponent: (
-		LuiForm newWith: (
-			(LuiDomainPresenter named: 'personPresenter')
-				cssClass: 'mainForm';
-				model: person;
-				yourself)).
-	personPresenter := self componentNamed: 'form/personPresenter'.
-
-	personPresenter addComponent: (LuiLabelWithInputComponent onSlot: (person slotDefinitionNamed: 'firstName') model: person).
-	personPresenter addComponent: (LuiLabelWithInputComponent onSlot: (person slotDefinitionNamed: 'lastName') model: person).
-	personPresenter addComponent: (LuiLabelWithInputComponent onSlot: (person slotDefinitionNamed: 'mainSkill') model: person).
-	personPresenter addComponent: (
+	personPresenter := (LuiDomainPresenter named: 'personPresenter')
+			cssClass: 'twoColumnsBySixRows';
+			model: self person;
+			yourself.
+	form := LuiMainForm newWith: personPresenter.
+	self addComponent: form.
+	form addComponent: LuiSaveAndCancelButtonBar new.
+	personPresenter
+		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'firstName' model: self person).
+	personPresenter
+		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'lastName' model: self person).
+	"personPresenter
+		addComponent: (LuiLabelWithInputComponent
+				onSlotNamed: 'mainSkill'
+				model: self person
+				widgetClass: LuiRadioButtons
+				componentNamePrefix: 'mainSkillRadio')."
+	personPresenter addComponent: (LuiLabelWithInputComponent onSlotNamed: 'mainSkill' model: self person).
+	personPresenter addComponent: (LuiLabelWithInputComponent onSlotNamed: 'age' model: self person widgetClass: LuiNumberInput).
+	"personPresenter addComponent: (
 		LuiLabelWithInputComponent 
-			onSlot: (person slotDefinitionNamed: 'mainSkill') 
-			model: person
-			widgetClass: LuiRadioButtons
-			componentNamePrefix: 'mainSkillRadio').
-	personPresenter addComponent: (
-		LuiLabelWithInputComponent 
-			onSlot: (person slotDefinitionNamed: 'skills') 
-			model: person
+			onSlotNamed: 'skills'
+			model: self person
 			widgetClass: LuiMultipleSelect
-			componentNamePrefix: 'skillsSelect').
-	personPresenter addComponent: (
-		LuiLabelWithInputComponent 
-			onSlot: (person slotDefinitionNamed: 'hasRedHair') 
-			model: person
-			widgetClass: LuiCheckbox
-			componentNamePrefix: 'hasRedHair').
+			componentNamePrefix: 'skillsSelect')."
+	personPresenter
+		addComponent: (LuiLabelWithInputComponent
+				onSlotNamed: 'hasRedHair'
+				model: self person
+				widgetClass: LuiCheckboxAndLabel
+				componentNamePrefix: 'hasRedHair').
+	personPresenter
+		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'dateOfBirth' model: self person)
+]
+
+{ #category : 'accessing' }
+LuiFormFunctionalTest >> person [
+	^ person
+]
+
+{ #category : 'accessing' }
+LuiFormFunctionalTest >> person: anObject [
+	person := anObject
+]
+
+{ #category : 'rendering' }
+LuiFormFunctionalTest >> renderComponentOn: html [
+	super renderComponentOn: html
 ]

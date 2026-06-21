@@ -20,7 +20,8 @@ LuiOption >> initializeOnSlot: aSlotDefinition model: aModel componentName: aStr
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self optionValue: (aSlotDefinition optionValueFor: aModel).
 	self text: (aSlotDefinition optionDisplayStringFor: aModel).
-	self componentName: 'option_' , self optionValue asString
+	self componentName: 'option_' , self optionValue asString.
+	self callback: [ :value | self handleCallbackValue: value ]
 ]
 
 { #category : 'accessing' }

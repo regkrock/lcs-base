@@ -17,11 +17,21 @@ Tip: Always add the ""<"" label "">"" tag for best accessibility practices!
 "
 Class {
 	#name : 'LuiTextArea',
-	#superclass : 'LuiFormInputComponent',
+	#superclass : 'LuiAbstractTextAreaComponent',
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
 }
+
+{ #category : 'gt views' }
+LuiTextArea >> gtViewTagName [
+	^ 'textArea'
+]
+
+{ #category : 'callbacks' }
+LuiTextArea >> handleCallbackValue: value [ 
+	self valueAccessor write: value
+]
 
 { #category : 'rendering' }
 LuiTextArea >> renderComponentOn: html [

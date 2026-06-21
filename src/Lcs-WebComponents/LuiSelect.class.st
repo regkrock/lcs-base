@@ -33,7 +33,9 @@ LuiSelect >> addOption: aString [
 
 { #category : 'option - slotDefinition' }
 LuiSelect >> addOption: aSlotDefinition basedOn: anItem [
-	^ self addComponent: (LuiOption onSlot: aSlotDefinition model: anItem)
+	^ self addComponent: ((LuiOption onSlot: aSlotDefinition model: anItem)
+								callback: [ :value | self handleCallbackValue: value ];
+								yourself)
 ]
 
 { #category : 'option - slotDefinition' }
@@ -72,7 +74,8 @@ LuiSelect >> initialize [
 	super initialize.
 	self options: OrderedCollection new.
 	self optionNames: OrderedCollection new.
-	self optionPrintBlock: [ :eachOption | eachOption asString ]
+	self optionPrintBlock: [ :eachOption | eachOption asString ].
+	self callback: []
 ]
 
 { #category : 'initialize' }
@@ -84,7 +87,7 @@ LuiSelect >> initializeNamed: aName [
 { #category : 'initialize' }
 LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-	self name: aSlotDefinition slotName.
+	self callback: [:value | self handleCallbackValue: value].
 	aSlotDefinition targetCollection
 		sorted: [ :a :b | 
 			(aSlotDefinition displayStringBlock cull: a cull: aSlotDefinition)

@@ -18,6 +18,7 @@ LxxPerson class >> ageSlotDefinition [
 	<virtualSlotDefinition>
 	^ LcsVirtualSlot new
 		slotName: 'age';
+		computedValueAccessor: #'_age';
 		addSlotType: Integer;
 		yourself
 ]
@@ -67,7 +68,7 @@ LxxPerson class >> skillsSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsMembersOfGlobalCollectionSlot new
 		slotName: 'skills';
-		addSlotType: LxxSkills;
+		addSlotType: LxxSubsetSkills;
 		addCollectionElementsSlotType: LxxSkill;
 		collectionSlotModuleName: 'Prototype System';
 		collectionSlotName: 'skills';

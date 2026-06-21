@@ -3,7 +3,7 @@ Class {
 	#superclass : 'LuiComponentAttributes',
 	#traits : 'LuitNameAttribute',
 	#classTraits : 'LuitNameAttribute classTrait',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }

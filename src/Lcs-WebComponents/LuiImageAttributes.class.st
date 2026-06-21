@@ -1,9 +1,9 @@
 Class {
 	#name : 'LuiImageAttributes',
 	#superclass : 'LuiComponentAttributes',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
 { #category : 'properties - delegated' }

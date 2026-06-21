@@ -4,9 +4,9 @@ This determines if a component will be rendered. If the component is hidden, it 
 Class {
 	#name : 'LuiRenderingAttribute',
 	#superclass : 'LuiComponentAttribute',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
 { #category : 'constant' }

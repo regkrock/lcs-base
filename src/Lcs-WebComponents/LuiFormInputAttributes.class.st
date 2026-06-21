@@ -1,25 +1,30 @@
 Class {
 	#name : 'LuiFormInputAttributes',
-	#superclass : 'LuiComponentAttributes',
+	#superclass : 'LuiModelWidgetAttributes',
 	#traits : 'LuitNameAttribute',
 	#classTraits : 'LuitNameAttribute classTrait',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
-{ #category : 'testing' }
-LuiFormInputAttributes >> hasPlaceholderAttribute [
-	^ self hasAttribute: LuiPlaceholderAttribute attributeName
+{ #category : 'generated method' }
+LuiFormInputAttributes >> hasReadOnlyAttribute [
+	^ self hasAttribute: LuiReadOnlyAttribute attributeName
 ]
 
-{ #category : 'attributes - accessing' }
-LuiFormInputAttributes >> placeholder [
-	self hasPlaceholderAttribute ifFalse: [ ^ nil ].
-	^ self placeholderAttribute placeholder
+{ #category : 'generated method' }
+LuiFormInputAttributes >> readOnly [
+	self hasReadOnlyAttribute ifFalse: [ ^ nil ].
+	^ self readOnlyAttribute attributeValue
 ]
 
-{ #category : 'attributes' }
-LuiFormInputAttributes >> placeholderAttribute [
-	^ self lazyInitializedAttribute: LuiPlaceholderAttribute
+{ #category : 'generated method' }
+LuiFormInputAttributes >> readOnly: anObject [
+	self readOnlyAttribute readOnly: anObject
+]
+
+{ #category : 'generated method' }
+LuiFormInputAttributes >> readOnlyAttribute [
+	^ self lazyInitializedAttribute: LuiReadOnlyAttribute
 ]

@@ -30,7 +30,7 @@ LuiRadioButtonExamples >> skill_1_Option [
 	component := LuiRadioButton onSlot: LxxPerson mainSkillSlotDefinition model: model.
 	self assert: component model equals: model.
 	
-	expectedHtml := '<input data-name="1_RadioButton" data-StClass="LuiRadioButton" name="mainSkill" value="1" type="radio"/>'.
+	expectedHtml := '<input data-name="1_RadioButton" data-StClass="LuiRadioButton" value="1" type="radio"/>'.
 	self assertRendered: component equals: expectedHtml.
 	
 	^ component

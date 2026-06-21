@@ -66,14 +66,85 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-03-05T08:06:53.199768-05:00"
+						"dateAndTimeString" : "2026-06-20T22:13:25.159262-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "45YREo/4DQCnGFcyA3HkFA=="
 				},
-				"code" : "\"Lcs Examples\"\r| gtExamples |\rLcsApplicationEnvironment ensureActiveApplicationEnvironment.\rgtExamples := OrderedCollection new.\rLcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rGtExampleGroup withAll: gtExamples\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
+				"code" : "\"Lcs Examples\"\r| gtExamples |\rLcsApplicationEnvironment ensureActiveApplicationEnvironment.\rgtExamples := OrderedCollection new.\rLcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rGtExampleGroup withAll: gtExamples"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:13:01.151403-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:13:08.378592-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "CwAZISnuSFuYPI5DXOEGnQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Open a Slot Creation Form"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:12:21.647516-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:12:32.258266-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DzQ+tIxPTDewgKrTEVGc/A=="
+				},
+				"code" : "(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue"
 			},
 			{
 				"__type" : "pharoSnippet",

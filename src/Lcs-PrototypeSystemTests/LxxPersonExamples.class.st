@@ -48,7 +48,7 @@ LxxPersonExamples >> newPerson [
 	self assert: person middleName isEmpty.
 	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: ''.
 	self assert: person weight isZero.
-	self assert: person skills class equals: LxxSkills.
+	self assert: person skills class equals: LxxSubsetSkills.
 	self assert: person skills hasNoElements.
 	^ person
 ]

@@ -66,14 +66,85 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-03-05T08:06:53.199768-05:00"
+						"dateAndTimeString" : "2026-06-20T22:12:17.501892-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "45YREo/4DQCnGFcyA3HkFA=="
 				},
-				"code" : "\"Lcs Examples\"\r| gtExamples |\rLcsApplicationEnvironment ensureActiveApplicationEnvironment.\rgtExamples := OrderedCollection new.\rLcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rGtExampleGroup withAll: gtExamples\r\r\"(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue\""
+				"code" : "\"Lcs Examples\"\r| gtExamples |\rLcsApplicationEnvironment ensureActiveApplicationEnvironment.\rgtExamples := OrderedCollection new.\rLcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].\rGtExampleGroup withAll: gtExamples\r\r"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:13:01.151403-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:13:08.378592-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "CwAZISnuSFuYPI5DXOEGnQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Open a Slot Creation Form"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:12:21.647516-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-20T22:12:32.258266-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DzQ+tIxPTDewgKrTEVGc/A=="
+				},
+				"code" : "(LcsSlotCreationFormExamples>>#formWithValidSlotClassNameEntry) gtExample run returnValue"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -108,6 +179,40 @@
 					"uidString" : "fKMs6zYvTiKNd2KxN8OGjg=="
 				},
 				"code" : "GtExampleGroup withAll:LcsApplicationEnvironmentExamples gtExamples "
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-04T11:04:05.874818-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-04-04T11:05:56.97007-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "aR22aJxsSFiYF0b10Ex/og=="
+				},
+				"code" : "LcsDomainObject slotModel.\rLxxPrototypeSystem slotModel"
 			},
 			{
 				"__type" : "textSnippet",
@@ -179,40 +284,6 @@
 					"uidString" : "WDwk4mXQDQCH/k4kAKwlPw=="
 				},
 				"code" : "failures := OrderedCollection new.\rerrors := OrderedCollection new.\rpassed := OrderedCollection new.\rresults := OrderedCollection new.\rtestClasses := OrderedCollection new.\rfuture := [ \r\t(LcsTestCase withAllSubclasses select: [ :each | each isAbstract not]) do: [:each |\r\ttestResult := each suite run.\r\ttestResult hasPassed\r\t\tifTrue: [\r\t\t\tpassed addAll: testResult passed ] \r\t\tifFalse: [\r\t\t\tfailures addAll: testResult failures.\r\t\t\terrors addAll: testResult errors ].\r\ttestClasses add: each ] ] asAsyncPromiseWithUserBackgroundPriority.\rfuture then: [\r\tresults \r\t\tadd: 'Test Classes Ran: ' , testClasses size printString;\r\t\tadd: 'Passed (' , passed size printString , ' passed tests)';\r\t\tadd: passed;\r\t\tadd: 'Failed (' , failures size printString , ' failed tests)'.\r\tfailures isNotEmpty ifTrue: [ results add: failures ].\r\tresults add: 'Errors (' , errors size printString , ' error tests)'.\r\terrors isNotEmpty ifTrue: [ results add: errors ].\r\tresults ]"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-04T11:04:05.874818-04:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-04T11:05:56.97007-04:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "aR22aJxsSFiYF0b10Ex/og=="
-				},
-				"code" : "LcsDomainObject slotModel.\rLxxPrototypeSystem slotModel"
 			},
 			{
 				"__type" : "textSnippet",

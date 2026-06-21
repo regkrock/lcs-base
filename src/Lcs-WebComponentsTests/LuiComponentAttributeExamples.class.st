@@ -84,7 +84,7 @@ LuiComponentAttributeExamples >> newComponentAttributes [
 	self deny: componentAttributes hasDisabledAttribute.
 	self deny: componentAttributes hasVisiblityAttribute.
 	self deny: componentAttributes hasRequiredAttribute.
-	self deny: componentAttributes hasStyleAttribute.
+	self deny: componentAttributes hasStyleStringAttribute.
 	self deny: componentAttributes hasTitleAttribute.
 	self deny: componentAttributes hasButtonTypeAttribute.
 	self assert: (componentAttributes valueOfAttribute: LuiButtonTypeAttribute attributeName) isNil.
@@ -207,14 +207,14 @@ LuiComponentAttributeExamples >> xxxxYyyyStyleProperty [
 	<gtExample>
 	| properties |
 	properties := self newComponentAttributes.	
-	self deny: properties hasStyleAttribute.
-	self assert: properties style isEmpty.
-	properties style: 'Test'.
-	self assert: properties hasStyleAttribute.
-	self assert: properties style equals: 'Test'.
-	properties style: 'Xxxx'.
-	self assert: properties style equals: 'Xxxx'.
-	properties appendToStyle: 'Yyyy'.
-	self assert: properties style equals: 'XxxxYyyy'.
-	^ properties style
+	self deny: properties hasStyleStringAttribute.
+	self assert: properties styleString isEmpty.
+	properties styleString: 'Test'.
+	self assert: properties hasStyleStringAttribute.
+	self assert: properties styleString equals: 'Test'.
+	properties styleString: 'Xxxx'.
+	self assert: properties styleString equals: 'Xxxx'.
+	properties appendToStyleString: 'Yyyy'.
+	self assert: properties styleString equals: 'XxxxYyyy'.
+	^ properties styleString
 ]

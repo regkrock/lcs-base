@@ -1,6 +1,6 @@
 Class {
 	#name : 'LxxSkills',
-	#superclass : 'LcsDomainCollection',
+	#superclass : 'LxxSubsetSkills',
 	#instVars : [
 		'unknownInstance'
 	],

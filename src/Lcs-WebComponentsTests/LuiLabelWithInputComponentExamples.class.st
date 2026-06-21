@@ -8,7 +8,7 @@ Class {
 
 { #category : 'private' }
 LuiLabelWithInputComponentExamples >> expectedMainSkillsAsRadioGroupHtml [
-	^'<div data-name="mainSkillRadioLabelAndInput" data-StClass="LuiLabelWithInputComponent"><label id="44892641" data-name="mainSkillLabel" data-StClass="LuiLabel" for="mainSkill">Main Skill</label><div id="6714643" data-name="mainSkillRadioButtons" data-StClass="LuiRadioButtons"><div id="2264579" data-name="unknown_RadioButtonAndLabel" data-StClass="LuiRadioButtonWithLabel"><input id="220995112" data-name="unknown_RadioButton" data-StClass="LuiRadioButton" name="mainSkill" value="unknown" type="radio"/><label id="57874248" data-name="unknown_RadioButtonLabel" data-StClass="LuiLabel"></label></div><div id="22809164" data-name="1_RadioButtonAndLabel" data-StClass="LuiRadioButtonWithLabel"><input id="37212082" data-name="1_RadioButton" data-StClass="LuiRadioButton" name="mainSkill" value="1" type="radio"/><label id="77981290" data-name="1_RadioButtonLabel" data-StClass="LuiLabel">Skill 1</label></div><div id="38215145" data-name="2_RadioButtonAndLabel" data-StClass="LuiRadioButtonWithLabel"><input id="33927364" data-name="2_RadioButton" data-StClass="LuiRadioButton" name="mainSkill" value="2" type="radio"/><label id="235682292" data-name="2_RadioButtonLabel" data-StClass="LuiLabel">Skill 2</label></div><div id="53621126" data-name="3_RadioButtonAndLabel" data-StClass="LuiRadioButtonWithLabel"><input id="30642646" data-name="3_RadioButton" data-StClass="LuiRadioButton" name="mainSkill" value="3" type="radio"/><label id="124947838" data-name="3_RadioButtonLabel" data-StClass="LuiLabel">Skill 3</label></div></div></div>'
+	^'<div data-name="mainSkillRadioLabelAndInput" data-StClass="LuiLabelWithInputComponent" class="labelAndInputRow"><label id="44892641" data-name="mainSkillLabel" data-StClass="LuiLabel" for="mainSkill">Main Skill</label><div id="6714643" data-name="mainSkillRadioButtons" data-StClass="LuiRadioButtons" class="radioButtons"><input id="220995112" data-name="unknown_RadioButton" data-StClass="LuiRadioButton" value="unknown" type="radio"/><label id="57874248" data-name="unknown_RadioButtonLabel" data-StClass="LuiLabel" for="220995112"></label><input id="37212082" data-name="1_RadioButton" data-StClass="LuiRadioButton" value="1" type="radio"/><label id="77981290" data-name="1_RadioButtonLabel" data-StClass="LuiLabel" for="37212082">Skill 1</label><input id="33927364" data-name="2_RadioButton" data-StClass="LuiRadioButton" value="2" type="radio"/><label id="235682292" data-name="2_RadioButtonLabel" data-StClass="LuiLabel" for="33927364">Skill 2</label><input id="30642646" data-name="3_RadioButton" data-StClass="LuiRadioButton" value="3" type="radio"/><label id="124947838" data-name="3_RadioButtonLabel" data-StClass="LuiLabel" for="30642646">Skill 3</label></div></div>'
 ]
 
 { #category : 'examples' }
@@ -49,14 +49,14 @@ LuiLabelWithInputComponentExamples >> hasRedHairBooleanAsCheckboxWithEmptyLabelC
 
 { #category : 'private' }
 LuiLabelWithInputComponentExamples >> hasRedHairBooleanExpectedHtml [
-	^'<div data-name="hasRedHairLabelAndInput" data-StClass="LuiLabelWithInputComponent"><label id="47040735" data-name="hasRedHairLabelAndInputLabel" data-StClass="LuiLabel"></label><div id="141918531" data-name="hasRedHairLabelAndInputInput" data-StClass="LuiCheckboxAndLabel"><input id="121675685" data-name="hasRedHair" data-StClass="LuiCheckbox" name="hasRedHair" type="checkbox"/><label id="223971761" data-name="hasRedHairLabel" data-StClass="LuiLabel" for="hasRedHair">Has Red Hair</label></div></div>'
+	^'<div data-name="hasRedHairLabelAndInput" data-StClass="LuiLabelWithInputComponent" class="labelAndInputRow"><label id="47040735" data-name="hasRedHairLabelAndInputLabel" data-StClass="LuiLabel"></label><div id="141918531" data-name="hasRedHairLabelAndInputInput" data-StClass="LuiCheckboxAndLabel" class="radioButtonAndLabel"><input id="121675685" data-name="hasRedHair" data-StClass="LuiCheckbox" name="1" type="checkbox"/><input name="2" type="hidden"/><label id="223971761" data-name="hasRedHairLabel" data-StClass="LuiLabel" for="121675685">Has Red Hair</label></div></div>'
 ]
 
 { #category : 'examples' }
 LuiLabelWithInputComponentExamples >> htmlForLastNameInputComponent [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<input id="17819216" data-name="lastName" data-StClass="LuiTextInput" name="lastName" placeholder="Last Name" class="inputField" value="Smith" type="text"/>'.
+	expectedHtml := '<input id="17819216" data-name="lastName" data-StClass="LuiTextInput" placeholder="Last Name" class="inputField" name="1" value="Smith" type="text"/>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent inputComponent equals: expectedHtml
 ]
 
@@ -72,7 +72,7 @@ LuiLabelWithInputComponentExamples >> htmlForLastNameLabel [
 LuiLabelWithInputComponentExamples >> htmlForLastNameWithInLabelAndInputComponent [
 	<gtExample>
 	| expectedHtml|
-	expectedHtml := '<div data-name="lastNameLabelAndInput" data-StClass="LuiLabelWithInputComponent"><label id="1052112" data-name="lastNameLabel" data-StClass="LuiLabel" for="lastName">Last Name</label><input id="17819216" data-name="lastName" data-StClass="LuiTextInput" name="lastName" placeholder="Last Name" class="inputField" value="Smith" type="text"/></div>'.
+	expectedHtml := '<div data-name="lastNameLabelAndInput" data-StClass="LuiLabelWithInputComponent" class="labelAndInputRow"><label id="1052112" data-name="lastNameLabel" data-StClass="LuiLabel" for="lastName">Last Name</label><input id="17819216" data-name="lastName" data-StClass="LuiTextInput" placeholder="Last Name" class="inputField" name="1" value="Smith" type="text"/></div>'.
 	^ self assertRendered: self lastNameLabelWithInputComponent equals: expectedHtml
 ]
 
@@ -99,9 +99,9 @@ LuiLabelWithInputComponentExamples >> lastNameLabelWithInputComponent [
 	self assert: inputComponent displayValue equals: 'Smith'.
 	self assert: inputComponent model equals: person.
 	self assert: labelComponent componentName equals: 'lastNameLabel'.
-	self assert: labelComponent labelString equals: 'Last Name'.
+	self assert: labelComponent text equals: 'Last Name'.
 	self assert: labelComponent model equals: person.
-	self assert: labelComponent forName equals: 'lastName'.
+	self assert: labelComponent for equals: 'lastName'.
 	^ component
 ]
 

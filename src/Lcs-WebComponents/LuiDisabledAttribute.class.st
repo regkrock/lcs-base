@@ -1,14 +1,14 @@
 Class {
 	#name : 'LuiDisabledAttribute',
 	#superclass : 'LuiComponentAttribute',
-	#category : 'Lcs-WebComponents-Core',
+	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
-	#tag : 'Core'
+	#tag : 'Attributes'
 }
 
 { #category : 'as yet unclassified' }
 LuiDisabledAttribute class >> attributeName [
-	^ 'dsiabled'
+	^ 'disabled'
 ]
 
 { #category : 'command' }
@@ -19,6 +19,16 @@ LuiDisabledAttribute >> beDisabled [
 { #category : 'command' }
 LuiDisabledAttribute >> beEnabled [
 	self valueBlock: [ false ]
+]
+
+{ #category : 'accessing' }
+LuiDisabledAttribute >> disabled [
+	^ self cachedValue
+]
+
+{ #category : 'accessing' }
+LuiDisabledAttribute >> disabled: aBoolean [
+	self valueBlock: [ aBoolean ] 
 ]
 
 { #category : 'initialize' }
