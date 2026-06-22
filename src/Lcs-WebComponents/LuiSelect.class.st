@@ -19,44 +19,13 @@ Class {
 	#instVars : [
 		'optionPrintBlock',
 		'optionNames',
-		'options'
+		'options',
+		'elements'
 	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
 }
-
-{ #category : 'options' }
-LuiSelect >> addOption: aString [
-	self addComponent: (LuiOption new text: aString)
-]
-
-{ #category : 'option - slotDefinition' }
-LuiSelect >> addOption: aSlotDefinition basedOn: anItem [
-	^ self addComponent: ((LuiOption onSlot: aSlotDefinition model: anItem)
-								callback: [ :value | self handleCallbackValue: value ];
-								yourself)
-]
-
-{ #category : 'option - slotDefinition' }
-LuiSelect >> addOptionComponents [
-	self optionNames
-		with: self options
-		do: [ :eachOptionName :eachOption | 
-			self
-				addComponent: (LuiOption new
-						componentName: eachOptionName;
-						optionValue: eachOption;
-						text: eachOptionName) ]
-]
-
-{ #category : 'options' }
-LuiSelect >> addOptionsFrom: anOptionsCollection [
-	self options: anOptionsCollection copy.
-	self optionNames: (self options
-				collect: [ :each | self optionNames add: (self optionPrintBlock value: each) ]).
-	self addOptionComponents
-]
 
 { #category : 'initialize' }
 LuiSelect >> componentAttributesClass [
@@ -70,49 +39,51 @@ LuiSelect >> defaultCssClasses [
 ]
 
 { #category : 'initialize' }
+LuiSelect >> displayLabelFor: anObject [
+	^ self valueAccessor class == LuiSlotAccessor
+		ifTrue: [ self slotDefinition displayStringBlock
+				cull: anObject
+				cull: self slotDefinition ]
+		ifFalse: [ anObject asString ]
+]
+
+{ #category : 'accessing' }
+LuiSelect >> elements [
+	^ elements
+]
+
+{ #category : 'accessing' }
+LuiSelect >> elements: anObject [
+	elements := anObject
+]
+
+{ #category : 'callbacks' }
+LuiSelect >> handleCallbackValue: aValue element: anElement [
+	self valueAccessor write: anElement
+]
+
+{ #category : 'initialize' }
 LuiSelect >> initialize [
 	super initialize.
-	self options: OrderedCollection new.
-	self optionNames: OrderedCollection new.
 	self optionPrintBlock: [ :eachOption | eachOption asString ].
-	self callback: []
+	self callback: [].
+	self elements: OrderedCollection new.
 ]
 
 { #category : 'initialize' }
 LuiSelect >> initializeNamed: aName [
-	super initializeNamed: aName.
-	self name: aName
+	super initializeNamed: aName
 ]
 
 { #category : 'initialize' }
 LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
-	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-	self callback: [:value | self handleCallbackValue: value].
-	aSlotDefinition targetCollection
-		sorted: [ :a :b | 
-			(aSlotDefinition displayStringBlock cull: a cull: aSlotDefinition)
-				<= (aSlotDefinition displayStringBlock cull: b cull: aSlotDefinition) ]
-		do: [ :eachItem | self addOption: aSlotDefinition basedOn: eachItem ]
-]
-
-{ #category : 'attributes - accessing' }
-LuiSelect >> name [
-	^ self attributes name
-]
-
-{ #category : 'attributes - accessing' }
-LuiSelect >> name: aString [
-	^ self attributes name: aString
-]
-
-{ #category : 'accessing' }
-LuiSelect >> optionNames [
-	^ optionNames
-]
-
-{ #category : 'accessing' }
-LuiSelect >> optionNames: anObject [
-	optionNames := anObject
+	super
+		initializeOnSlot: aSlotDefinition
+		model: aModel
+		componentName: aString.
+	self elements: (
+		self slotDefinition targetCollection
+			sorted: [ :a :b | (self displayLabelFor: a) <= (self displayLabelFor: b) ])
 ]
 
 { #category : 'accessing' }
@@ -125,19 +96,45 @@ LuiSelect >> optionPrintBlock: anObject [
 	optionPrintBlock := anObject
 ]
 
-{ #category : 'accessing' }
-LuiSelect >> options [
-	^ options
-]
-
-{ #category : 'accessing' }
-LuiSelect >> options: anObject [
-	options := anObject
+{ #category : 'initialize' }
+LuiSelect >> optionValueFor: anObject [
+	^ self valueAccessor class == LuiSlotAccessor
+		ifTrue: [ self slotDefinition optionValueBlock cull: anObject cull: self slotDefinition ]
+		ifFalse: [ anObject asString ]
 ]
 
 { #category : 'rendering' }
 LuiSelect >> renderComponentOn: html [
 	html select
-		addCommonAttributes: self;
-		with: [self renderDetailsOn: html]
+		id: self componentId asString;
+		dataName: self componentName;
+		dataStClass: self;
+		dispatchCallback;
+		with: [ self renderElementComponentsOn: html ]
+]
+
+{ #category : 'rendering' }
+LuiSelect >> renderElementComponentsOn: html [
+	^ self elements
+		doWithIndex: [ :each :index | 
+			| optionComponentName |
+			optionComponentName := self componentName , '_' , index asString.
+			html option
+				id: (self fullComponentName , '/' , optionComponentName) hash asString;
+				dataName: optionComponentName;
+				dataStClass: self;
+				label: (self displayLabelFor: each);
+				callback: [ :value | self handleCallbackValue: value element: each ];
+				selected: self valueAccessor read = each;
+				with: (self optionValueFor: each) ]
+]
+
+{ #category : 'query' }
+LuiSelect >> selection [
+	^ self valueAccessor read
+]
+
+{ #category : 'model' }
+LuiSelect >> slotDefinition [
+	^ self valueAccessor slotDefinition 
 ]

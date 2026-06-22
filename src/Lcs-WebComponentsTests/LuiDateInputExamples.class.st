@@ -26,10 +26,11 @@ LuiDateInputExamples >> birthdayOfPerson [
 { #category : 'examples' }
 LuiDateInputExamples >> newComponent [
 	<gtExample>
-	| component expectedHtml |
+	| component expectedHtml today |
+	today := Date today yyyymmdd.
 	component := LuiDateInput named: 'datePicker' model: Date today.
 	
-	expectedHtml := '<input data-name="datePicker" data-StClass="LuiDateInput" name="datePicker" value="2026-06-20" type="date"/>'.
+	expectedHtml := '<input data-name="datePicker" data-StClass="LuiDateInput" name="datePicker" value="' , today , '" type="date"/>'.
 	self assertRendered: component equals: expectedHtml.
 
 	^ component

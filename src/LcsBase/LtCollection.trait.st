@@ -54,6 +54,11 @@ LtCollection >> do: aBlock [
 ]
 
 { #category : 'collection' }
+LtCollection >> doWithIndex: aBlock [
+	^ self collection doWithIndex: aBlock
+]
+
+{ #category : 'collection' }
 LtCollection >> first [
 	^ self collection first
 ]
@@ -171,6 +176,11 @@ LtCollection >> removeAll [
 { #category : 'collection' }
 LtCollection >> select: aBlock [
 	^ self collection select: aBlock
+]
+
+{ #category : 'collection' }
+LtCollection >> sorted: aSortBlock [
+	(self collection asSortedCollection: aSortBlock)
 ]
 
 { #category : 'collection' }

@@ -21,7 +21,12 @@ LuiOption >> initializeOnSlot: aSlotDefinition model: aModel componentName: aStr
 	self optionValue: (aSlotDefinition optionValueFor: aModel).
 	self text: (aSlotDefinition optionDisplayStringFor: aModel).
 	self componentName: 'option_' , self optionValue asString.
-	self callback: [ :value | self handleCallbackValue: value ]
+	self callback: [ :value | self halt handleCallbackValue: value ]
+]
+
+{ #category : 'testing' }
+LuiOption >> isSelected [
+	^ self parentComponent selection = self optionModel
 ]
 
 { #category : 'accessing' }
@@ -32,6 +37,11 @@ LuiOption >> item [
 { #category : 'accessing' }
 LuiOption >> item: anObject [
 	item := anObject
+]
+
+{ #category : 'model' }
+LuiOption >> optionModel [
+	^ self valueAccessor model
 ]
 
 { #category : 'accessing' }
@@ -48,7 +58,15 @@ LuiOption >> optionValue: anObject [
 LuiOption >> renderComponentOn: html [
 	html option
 		addCommonAttributes: self;
-		selected: false;
+		callback: [ :value | 
+			self halt.
+			self parentComponent handleCallbackValue: value element: self optionModel ];
+		selected: self isSelected;
 		value: self optionValue;
 		label: self text
+]
+
+{ #category : 'components' }
+LuiOption >> selectComponent [
+	^ self parentComponent
 ]

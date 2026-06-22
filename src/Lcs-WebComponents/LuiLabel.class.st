@@ -37,6 +37,11 @@ LuiLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aStri
 	self attributes for: aSlotDefinition slotName
 ]
 
+{ #category : 'as yet unclassified' }
+LuiLabel >> labelString: aString [ 
+	self shouldBeImplemented.
+]
+
 { #category : 'attributes' }
 LuiLabel >> removeForAttribute [
 	self attributes removeAttributeKey: LuiForNameAttribute attributeName 

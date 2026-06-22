@@ -135,6 +135,11 @@ LuiModelWidget >> model: aModel [
 	self valueAccessor model: aModel.
 ]
 
+{ #category : 'callbacks' }
+LuiModelWidget >> optionModel [
+	^ self valueAccessor model
+]
+
 { #category : 'model' }
 LuiModelWidget >> presenter [
 	^ self myParentPresenterComponent

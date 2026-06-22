@@ -26,18 +26,18 @@ LuiPushButtonFunctionalTest >> initialize [
 		label: 'Submit';
 		title: 'Submit Title';
 		addCssClass: 'button';
-		callback: [ myLabel labelString: '---submit recieved---' ];
+		callback: [ myLabel text: '---submit recieved---' ];
 		beSubmitType.
 		
 	button := LuiSaveButton named: 'saveButton'.
-	button callback: [ myLabel labelString: '---save with icon pushed ---' ].
+	button callback: [ myLabel text: '---save with icon pushed ---' ].
 	form addComponent: button.
 	button := LuiCancelButton named: 'cancelButton'.
-	button callback: [ myLabel labelString: '---cancel with icon pushed ---' ].
+	button callback: [ myLabel text: '---cancel with icon pushed ---' ].
 	form addComponent: button.
 		
 	myLabel := LuiLabel named: 'myLabel'.
-	myLabel labelString: '---waiting----'.
+	myLabel text: '---waiting----'.
 	form addComponent: myLabel.
 	^ self
 ]

@@ -10,7 +10,7 @@ Class {
 LuiSelectExamples >> newComponent [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<select data-name="selectComponent" data-StClass="LuiSelect" name="1"></select>'.
+	expectedHtml := '<select id="nil" data-name="selectComponent" data-StClass="LuiSelect" name="1"></select>'.
 	component := LuiSelect named: 'selectComponent'.
 	self assert: component components isEmpty.
 	self assert: component parentComponent isNil.
@@ -38,10 +38,9 @@ LuiSelectExamples >> selectForMainSkill [
 LuiSelectExamples >> selectWithFourOptions [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<select data-name="selectComponent" data-StClass="LuiSelect" name="1"><option id="190903348" data-name="volvo" data-StClass="LuiOption" value="volvo" label="volvo"></option><option id="11021779" data-name="volkswagen" data-StClass="LuiOption" value="volkswagen" label="volkswagen"></option><option id="180091302" data-name="mercedes" data-StClass="LuiOption" value="mercedes" label="mercedes"></option><option id="79099965" data-name="audi" data-StClass="LuiOption" value="audi" label="audi"></option></select>'.
+	expectedHtml := '<select id="nil" data-name="selectComponent" data-StClass="LuiSelect" name="1"><option id="258131601" data-name="selectComponent_1" data-StClass="LuiSelect" label="volvo" value="2">volvo</option><option id="259796126" data-name="selectComponent_2" data-StClass="LuiSelect" label="volkswagen" value="3">volkswagen</option><option id="261460651" data-name="selectComponent_3" data-StClass="LuiSelect" label="mercedes" value="4">mercedes</option><option id="263125176" data-name="selectComponent_4" data-StClass="LuiSelect" label="audi" value="5">audi</option></select>'.
 	component := LuiSelect named: 'selectComponent'.
 	component addOptionsFrom: #(volvo volkswagen mercedes audi).
-	self assert: component components size equals: 4.
 	self assert: component parentComponent isNil.
 	self assert: component componentName equals: 'selectComponent'.
 	self assert: component componentId equals: nil.
