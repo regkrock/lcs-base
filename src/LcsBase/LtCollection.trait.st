@@ -19,6 +19,11 @@ LtCollection >> any [
 ]
 
 { #category : 'collection' }
+LtCollection >> asSortedCollection: aSortBlock [
+	^ self sorted: aSortBlock
+]
+
+{ #category : 'collection' }
 LtCollection >> collect: aBlock [
 	^ self collection collect: aBlock
 ]
@@ -50,12 +55,12 @@ LtCollection >> detect: aBlock ifNone: anIfNoneBlock [
 
 { #category : 'collection' }
 LtCollection >> do: aBlock [
-	^ self collection do: aBlock
+	self collection do: aBlock
 ]
 
 { #category : 'collection' }
 LtCollection >> doWithIndex: aBlock [
-	^ self collection doWithIndex: aBlock
+	self collection doWithIndex: aBlock
 ]
 
 { #category : 'collection' }
@@ -180,10 +185,10 @@ LtCollection >> select: aBlock [
 
 { #category : 'collection' }
 LtCollection >> sorted: aSortBlock [
-	(self collection asSortedCollection: aSortBlock)
+	^ (self collection asSortedCollection: aSortBlock)
 ]
 
 { #category : 'collection' }
 LtCollection >> sorted: aSortBlock do: aBlock [
-	(self collection sorted: aSortBlock) do: aBlock
+	(self sorted: aSortBlock) do: aBlock
 ]

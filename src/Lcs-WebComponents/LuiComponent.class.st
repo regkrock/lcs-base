@@ -1,6 +1,8 @@
 Class {
 	#name : 'LuiComponent',
 	#superclass : 'WAComponent',
+	#traits : 'LtApplicationEnvironment',
+	#classTraits : 'LtApplicationEnvironment classTrait',
 	#instVars : [
 		'components',
 		'parentComponent',

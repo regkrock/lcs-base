@@ -94,6 +94,7 @@ LcsDomainObject class >> lastUpdatedUserSlotDefinition [
 { #category : 'instance creation' }
 LcsDomainObject class >> new [
 	| newObject |
+	self == LcsDomainCollection ifTrue: [ self halt ].
 	newObject := self basicNew.
 	self addToUnitOfWork: newObject.
 	LcsLogger 

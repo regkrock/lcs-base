@@ -34,20 +34,20 @@ LuiFormFunctionalTest >> initialize [
 		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'firstName' model: self person).
 	personPresenter
 		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'lastName' model: self person).
-	"personPresenter
+	personPresenter
 		addComponent: (LuiLabelWithInputComponent
 				onSlotNamed: 'mainSkill'
 				model: self person
 				widgetClass: LuiRadioButtons
-				componentNamePrefix: 'mainSkillRadio')."
-	personPresenter addComponent: (LuiLabelWithInputComponent onSlotNamed: 'mainSkill' model: self person).
+				componentNamePrefix: 'mainSkillRadio').
+	"personPresenter addComponent: (LuiLabelWithInputComponent onSlotNamed: 'mainSkill' model: self person)."
 	personPresenter addComponent: (LuiLabelWithInputComponent onSlotNamed: 'age' model: self person widgetClass: LuiNumberInput).
-	"personPresenter addComponent: (
+	personPresenter addComponent: (
 		LuiLabelWithInputComponent 
 			onSlotNamed: 'skills'
 			model: self person
 			widgetClass: LuiMultipleSelect
-			componentNamePrefix: 'skillsSelect')."
+			componentNamePrefix: 'skillsSelect').
 	personPresenter
 		addComponent: (LuiLabelWithInputComponent
 				onSlotNamed: 'hasRedHair'

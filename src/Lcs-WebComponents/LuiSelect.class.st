@@ -82,8 +82,8 @@ LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel componentName: aStr
 		model: aModel
 		componentName: aString.
 	self elements: (
-		self slotDefinition targetCollection
-			sorted: [ :a :b | (self displayLabelFor: a) <= (self displayLabelFor: b) ])
+		self slotDefinition targetCollection 
+			asSortedCollection: [ :a :b | (self displayLabelFor: a) <= (self displayLabelFor: b) ])
 ]
 
 { #category : 'accessing' }
