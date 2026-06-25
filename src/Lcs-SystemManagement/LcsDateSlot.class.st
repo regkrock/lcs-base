@@ -1,6 +1,8 @@
 Class {
 	#name : 'LcsDateSlot',
 	#superclass : 'LcsBaseSmalltalkObjectSlot',
+	#traits : 'LtRangeRule',
+	#classTraits : 'LtRangeRule classTrait',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'

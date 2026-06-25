@@ -48,7 +48,7 @@ LuiButton >> callback: aBlock [
 
 { #category : 'initialize' }
 LuiButton >> componentAttributesClass [
-	^ LuiPushButtonAttributes
+	^ LuiButtonAttributes
 ]
 
 { #category : 'defaults' }

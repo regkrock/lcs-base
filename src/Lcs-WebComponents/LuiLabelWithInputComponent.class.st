@@ -35,12 +35,12 @@ LuiLabelWithInputComponent class >> onSlot: aSlotDefinition model: aModel widget
 ]
 
 { #category : 'instance creation' }
-LuiLabelWithInputComponent class >> onSlot: aSlotDefinition model: aModel widgetClass: aWidgetClass componentNamePrefix: aString [
+LuiLabelWithInputComponent class >> onSlot: aSlotDefinition model: aModel widgetClass: aWidgetClass inputComponentName: aString [
 	^ super new
 		initializeOnSlot: aSlotDefinition
 			model: aModel
 			widgetClass: aWidgetClass
-			componentNamePrefix: aString;
+			inputComponentName: aString;
 		yourself
 ]
 
@@ -61,32 +61,13 @@ LuiLabelWithInputComponent class >> onSlotNamed: aName model: aModel widgetClass
 ]
 
 { #category : 'instance creation' }
-LuiLabelWithInputComponent class >> onSlotNamed: aName model: aModel widgetClass: aWidgetClass componentNamePrefix: aString [
+LuiLabelWithInputComponent class >> onSlotNamed: aName model: aModel widgetClass: aWidgetClass inputComponentName: aString [
 	^ super new
 		initializeOnSlotName: aName
 			model: aModel
 			widgetClass: aWidgetClass
-			componentNamePrefix: aString;
+			inputComponentName: aString;
 		yourself
-]
-
-{ #category : 'instance creation' }
-LuiLabelWithInputComponent class >> onSlotNamed: aName model: aModel widgetClass: aWidgetClass componentPrefix: aString [
-	^ super new
-		initializeOnSlotName: aName
-			model: aModel
-			widgetClass: aWidgetClass
-			componentPrefix: aString;
-		yourself
-]
-
-{ #category : 'defualtos' }
-LuiLabelWithInputComponent >> addCompoundInputComponent [
-	self addComponent: (
-		self widgetClass
-			onSlot: self slotDefinition
-			model: self model
-			componentName: self inputComponentName)
 ]
 
 { #category : 'components' }
@@ -96,10 +77,8 @@ LuiLabelWithInputComponent >> addEmptyLabel [
 
 { #category : 'components' }
 LuiLabelWithInputComponent >> addEmptyLabelAndCompoundInputComponents [
-	self labelComponentName: self componentNameLabelName. 
-	self inputComponentName: self componentNameInputName.
 	self addEmptyLabel.
-	self addCompoundInputComponent
+	self addComponent: self newInputComponent
 ]
 
 { #category : 'components' }
@@ -112,20 +91,13 @@ LuiLabelWithInputComponent >> addLabelAndInputComponent [
 
 { #category : 'components' }
 LuiLabelWithInputComponent >> addLabelAndInputComponents [
-	| inputComponent |
-	self labelComponentName: self slotNameLabel.
-	self inputComponentName: self slotName.
-	self
-		addComponent: (LuiLabel
-				onSlot: self slotDefinition
-				model: self model
-				componentName: self labelComponentName).
-	inputComponent := self widgetClass
+	| labelComponent |
+	labelComponent := LuiLabel
 			onSlot: self slotDefinition
 			model: self model
-			componentName: self inputComponentName.
-	self inputComponentName: inputComponent componentName.
-	self addComponent: inputComponent
+			componentName: self labelComponentName.
+	self addComponent: labelComponent.
+	self addComponent: self newInputComponent
 ]
 
 { #category : 'components - updating' }
@@ -182,14 +154,15 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel wi
 		initializeOnSlot: aSlotDefinition
 		model: aModel
 		widgetClass: aWidgetClass
-		componentNamePrefix: aSlotDefinition slotName
+		inputComponentName: aSlotDefinition slotName
 ]
 
 { #category : 'initialize' }
-LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel widgetClass: aWidgetClass componentNamePrefix: aString [
+LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel widgetClass: aWidgetClass inputComponentName: aString [
 	self slotName: aSlotDefinition slotName.
-	self componentNamePrefix: aString.
-	self componentName: self componentNamePrefix , 'LabelAndInput'.
+	self inputComponentName: aString.
+	self componentName: self inputComponentName , 'LabelAndInput'.
+	self labelComponentName: self inputComponentName , 'Label'.
 	self widgetClass: aWidgetClass.
 
 	self initializeOnSlot: aSlotDefinition model: aModel componentName: self componentName.
@@ -212,16 +185,16 @@ LuiLabelWithInputComponent >> initializeOnSlotName: aSlotName model: aModel widg
 		initializeOnSlot: (aModel slotDefinitionNamed: aSlotName)
 		model: aModel
 		widgetClass: aWidgetClass
-		componentNamePrefix: aSlotName
+		inputComponentName: aSlotName
 ]
 
 { #category : 'initializae' }
-LuiLabelWithInputComponent >> initializeOnSlotName: aSlotName model: aModel widgetClass: aWidgetClass componentNamePrefix: aString [
+LuiLabelWithInputComponent >> initializeOnSlotName: aSlotName model: aModel widgetClass: aWidgetClass inputComponentName: aString [
 	self
 		initializeOnSlot: (aModel slotDefinitionNamed: aSlotName)
 		model: aModel
 		widgetClass: aWidgetClass
-		componentNamePrefix: aString
+		inputComponentName: aString
 ]
 
 { #category : 'components' }
@@ -252,6 +225,14 @@ LuiLabelWithInputComponent >> labelComponentName [
 { #category : 'accessing' }
 LuiLabelWithInputComponent >> labelComponentName: anObject [
 	labelComponentName := anObject
+]
+
+{ #category : 'components' }
+LuiLabelWithInputComponent >> newInputComponent [
+	^ self widgetClass
+		onSlot: self slotDefinition
+		model: self model
+		componentName: self inputComponentName
 ]
 
 { #category : 'accessing' }

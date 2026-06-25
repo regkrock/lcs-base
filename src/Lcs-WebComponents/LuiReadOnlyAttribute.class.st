@@ -1,8 +1,9 @@
 Class {
 	#name : 'LuiReadOnlyAttribute',
 	#superclass : 'LuiComponentAttribute',
-	#category : 'Lcs-WebComponents',
-	#package : 'Lcs-WebComponents'
+	#category : 'Lcs-WebComponents-Attributes',
+	#package : 'Lcs-WebComponents',
+	#tag : 'Attributes'
 }
 
 { #category : 'generated method' }

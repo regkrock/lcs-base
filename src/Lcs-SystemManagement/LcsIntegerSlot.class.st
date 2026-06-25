@@ -6,6 +6,11 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'defaults' }
+LcsIntegerSlot >> defaultStepValue [
+	^ 1
+]
+
 { #category : 'testing' }
 LcsIntegerSlot >> isNullObject: anObject [ 
 	^ anObject isZero

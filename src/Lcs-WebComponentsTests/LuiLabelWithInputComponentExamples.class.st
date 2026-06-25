@@ -118,7 +118,7 @@ LuiLabelWithInputComponentExamples >> mainSkillsAsRadioGroupWithInputComponent [
 			onSlot: (person slotDefinitionNamed: 'mainSkill') 
 			model: person
 			widgetClass: LuiRadioButtons
-			componentNamePrefix: 'mainSkillRadio'.
+			inputComponentName: 'mainSkillRadio'.
 	self assert: component componentName equals: 'mainSkillRadioLabelAndInput'.
 
 	inputComponent := component inputComponent.

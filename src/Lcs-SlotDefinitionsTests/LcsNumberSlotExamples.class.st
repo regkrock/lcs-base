@@ -14,6 +14,7 @@ LcsNumberSlotExamples >> newSlot [
 	self
 		assert: slot initialValueBlock printString
 		equals: '[ :parentDomainObject :slot | 0 ]'.
+	self assert: slot stepValue isNil.
 	^ slot
 ]
 
@@ -23,7 +24,10 @@ LcsNumberSlotExamples >> weightNumberSlot [
 	| slot |
 	slot := self newSlot
 				slotName: 'weight';
+				stepValue: 0.01;
 				yourself.
+	self assert: slot stepValue equals: 0.01.
+	self assert: slot stepValue asString equals: '0.01'.
 	^ slot
 ]
 

@@ -48,6 +48,10 @@ LxxPersonExamples >> newPerson [
 	self assert: person middleName isEmpty.
 	self assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person) equals: ''.
 	self assert: person weight isZero.
+	self should: [ person weight: -1 ] raise: Error.
+	self should: [ person weight: 50000000 ] raise: Error.
+	self shouldnt: [ person weight: 180 ] raise: Error.
+	self assert: person weight equals: 180.
 	self assert: person skills class equals: LxxSubsetSkills.
 	self assert: person skills hasNoElements.
 	^ person

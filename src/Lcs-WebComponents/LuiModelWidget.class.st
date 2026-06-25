@@ -83,6 +83,7 @@ LuiModelWidget >> componentNameBaseOn: aSlotDefinition [
 
 { #category : 'rendering' }
 LuiModelWidget >> displayValue [
+	self valueAccessor ifNil: [ ^ 'nil' ].
 	^ self valueAccessor displayValue
 ]
 

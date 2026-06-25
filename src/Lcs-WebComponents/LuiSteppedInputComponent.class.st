@@ -16,6 +16,26 @@ LuiSteppedInputComponent >> componentAttributesClass [
 	^ LuiSteppedInputAttributes
 ]
 
+{ #category : 'attributes - accessing' }
+LuiSteppedInputComponent >> max [
+	^ self attributes max
+]
+
+{ #category : 'attributes - accessing' }
+LuiSteppedInputComponent >> max: anInteger [
+	self attributes max: anInteger
+]
+
+{ #category : 'attributes - accessing' }
+LuiSteppedInputComponent >> min [
+	^ self attributes min
+]
+
+{ #category : 'attributes - accessing' }
+LuiSteppedInputComponent >> min: anInteger [
+	self attributes min: anInteger
+]
+
 { #category : 'attributes   - accessing' }
 LuiSteppedInputComponent >> step [
 	^ self attributes step

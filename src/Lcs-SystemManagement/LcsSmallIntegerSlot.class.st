@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSmallIntegerSlot',
-	#superclass : 'LcsNumberSlot',
+	#superclass : 'LcsIntegerSlot',
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Slot'

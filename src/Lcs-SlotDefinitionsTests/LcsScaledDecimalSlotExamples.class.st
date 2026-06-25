@@ -40,6 +40,7 @@ LcsScaledDecimalSlotExamples >> newSlot [
 	self assert: scaledDecimalSlot initialValue equals: 0.
 	self assert: scaledDecimalSlot initialValue printString equals: '0.00s2'.
 	self assert: scaledDecimalSlot numberOfDecimals equals: 2.
+	self assert: scaledDecimalSlot stepValue equals: 0.01s2.
 	^ scaledDecimalSlot
 ]
 

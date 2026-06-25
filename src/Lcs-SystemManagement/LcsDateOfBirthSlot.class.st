@@ -7,11 +7,21 @@ Class {
 }
 
 { #category : 'initialize' }
+LcsDateOfBirthSlot >> earliestBirthdate [
+	| today day |
+	today := Date today.
+	day := (today month = 2 and: [ today dayOfMonth = 29]) ifTrue: [ 28 ] ifFalse: [ today dayOfMonth ].
+	^ Date
+		newDay: day
+		month: today monthIndex
+		year: (today year - 120)
+]
+
+{ #category : 'initialize' }
 LcsDateOfBirthSlot >> initialize [
 	super initialize.
 	self slotName: 'dateOfBirth'.
-	self 
-		addValidationRuleBlock: [ :newDate :parentDomainObject :oldValue |  
-			((newDate year) > (Date today year - 120)) and: [ newDate <= Date today ] ] 
-		description: 'Age must be between 0 and 120 years'
+	self minimum: self earliestBirthdate.
+	self maximum: Date today.
+	self rangeRuleErrorMessage: 'Age must be between 0 and 120 years'
 ]

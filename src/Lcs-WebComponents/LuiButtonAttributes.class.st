@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiPushButtonAttributes',
+	#name : 'LuiButtonAttributes',
 	#superclass : 'LuiComponentAttributes',
 	#traits : 'LuitCallbackAttribute',
 	#classTraits : 'LuitCallbackAttribute classTrait',

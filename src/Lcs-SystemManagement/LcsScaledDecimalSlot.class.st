@@ -29,7 +29,8 @@ LcsScaledDecimalSlot >> numberOfDecimals [
 
 { #category : 'properties' }
 LcsScaledDecimalSlot >> numberOfDecimals: anObject [
-	self propertyAt: #'numberOfDecimals' put: anObject
+	self propertyAt: #'numberOfDecimals' put: anObject.
+	self stepValue: (1 / 10 ** self numberOfDecimals asScaledDecimal: self numberOfDecimals)
 ]
 
 { #category : 'magritte\t' }

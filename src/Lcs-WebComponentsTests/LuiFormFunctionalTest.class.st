@@ -30,32 +30,18 @@ LuiFormFunctionalTest >> initialize [
 	form := LuiMainForm newWith: personPresenter.
 	self addComponent: form.
 	form addComponent: LuiSaveAndCancelButtonBar new.
-	personPresenter
-		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'firstName' model: self person).
-	personPresenter
-		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'lastName' model: self person).
-	personPresenter
-		addComponent: (LuiLabelWithInputComponent
-				onSlotNamed: 'mainSkill'
-				model: self person
-				widgetClass: LuiRadioButtons
-				componentNamePrefix: 'mainSkillRadio').
-	"personPresenter addComponent: (LuiLabelWithInputComponent onSlotNamed: 'mainSkill' model: self person)."
-	personPresenter addComponent: (LuiLabelWithInputComponent onSlotNamed: 'age' model: self person widgetClass: LuiNumberInput).
-	personPresenter addComponent: (
-		LuiLabelWithInputComponent 
-			onSlotNamed: 'skills'
-			model: self person
-			widgetClass: LuiMultipleSelect
-			componentNamePrefix: 'skillsSelect').
-	personPresenter
-		addComponent: (LuiLabelWithInputComponent
-				onSlotNamed: 'hasRedHair'
-				model: self person
-				widgetClass: LuiCheckboxAndLabel
-				componentNamePrefix: 'hasRedHair').
-	personPresenter
-		addComponent: (LuiLabelWithInputComponent onSlotNamed: 'dateOfBirth' model: self person)
+
+	personPresenter 
+		addLabelAndWidgetComponentFor: 'firstName';
+		addLabelAndWidgetComponentFor: 'lastName';
+		addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;
+		addLabelAndWidgetComponentFor: 'mainSkill';
+		addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtons inputComponentName: 'mainSkillRadioButtons';
+		addLabelAndWidgetComponentFor: 'balance';
+		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
+		addLabelAndWidgetComponentFor: 'hasRedHair' widgetClass: LuiCheckboxAndLabel;
+		addLabelAndWidgetComponentFor: 'dateOfBirth';
+		addLabelAndWidgetComponentFor: 'weight'.
 ]
 
 { #category : 'accessing' }

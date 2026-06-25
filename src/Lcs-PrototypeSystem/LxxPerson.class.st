@@ -28,6 +28,8 @@ LxxPerson class >> balanceSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsScaledDecimalSlot new
 		slotName: 'balance';
+		minimum: -100;
+		maximum: 100;
 		yourself
 ]
 
@@ -82,6 +84,8 @@ LxxPerson class >> weightSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsNumberSlot new
 		slotName: 'weight';
+		minimum: 0;
+		maximum: 500;
 		yourself
 ]
 

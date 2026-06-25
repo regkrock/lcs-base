@@ -10,14 +10,29 @@ Class {
 LuiDateInputExamples >> birthdayOfPerson [
 	<gtExample>
 	<after: #clearUnitOfWork>
-	| component expectedHtml person |
+	| component expectedHtml person minimumDate maximumDate birthDate dateOfBirthSlot |
 	self ensureCurrentSystemIsPrototypeSystem.
+	dateOfBirthSlot := LxxPerson slotDefinitionNamed: 'dateOfBirth'.
+	birthDate := Date
+			newDay: 1
+			month: 1
+			year: 2026.
+	maximumDate := Date today.
+	minimumDate := Date
+			newDay: maximumDate dayOfMonth
+			month: maximumDate monthIndex
+			year: maximumDate year - 120.
 	person := LxxPerson new.
-	person dateOfBirth: (Date newDay: 1 month: 1 year: 2026).
+	person dateOfBirth: birthDate.
 	component := LuiDateInput onSlotNamed: 'dateOfBirth' model: person.
-	
-	expectedHtml := '<input data-name="dateOfBirth" data-StClass="LuiDateInput" name="1" value="2026-01-01" type="date"/>'.
-	
+	self assert: dateOfBirthSlot minimum equals: minimumDate.
+	self assert: dateOfBirthSlot maximum equals: maximumDate.
+
+
+	expectedHtml := '<input data-name="dateOfBirth" data-StClass="LuiDateInput" name="dateOfBirth" min="'
+			, minimumDate yyyymmdd , '" max="' , maximumDate yyyymmdd , '" value="'
+			, birthDate yyyymmdd , '" type="date"/>'.
+
 	self assertRendered: component equals: expectedHtml.
 
 	^ component

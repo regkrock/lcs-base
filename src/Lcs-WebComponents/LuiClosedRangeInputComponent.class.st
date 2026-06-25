@@ -15,24 +15,3 @@ LuiClosedRangeInputComponent class >> isAbstract [
 LuiClosedRangeInputComponent >> componentAttributesClass [
 	^ LuiClosedRangeInputAttributes
 ]
-
-{ #category : 'attributes - accessing' }
-LuiClosedRangeInputComponent >> max [
-	^ self attributes max
-]
-
-{ #category : 'attributes - accessing' }
-LuiClosedRangeInputComponent >> max: anInteger [
-	self attributes max: anInteger
-]
-
-{ #category : 'attributes - accessing' }
-LuiClosedRangeInputComponent >> min [
-	^ self attributes min
-]
-
-{ #category : 'attributes - accessing' }
-LuiClosedRangeInputComponent >> min: anInteger [
-	self attributes min: anInteger
-	"attributeAt: 'min' put: anInteger"
-]
