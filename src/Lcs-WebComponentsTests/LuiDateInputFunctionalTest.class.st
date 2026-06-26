@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiDatePickerFunctionalTest',
+	#name : 'LuiDateInputFunctionalTest',
 	#superclass : 'LuiFunctionalTest',
 	#instVars : [
 		'savedSystem'
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : 'initialize' }
-LuiDatePickerFunctionalTest >> initialize [
+LuiDateInputFunctionalTest >> initialize [
 	| item person button label |
 	super initialize.
 	self switchToPrototypeSystem.
@@ -39,12 +39,12 @@ LuiDatePickerFunctionalTest >> initialize [
 ]
 
 { #category : 'accessing' }
-LuiDatePickerFunctionalTest >> savedSystem: aSystem [ 
+LuiDateInputFunctionalTest >> savedSystem: aSystem [ 
 	savedSystem := aSystem
 ]
 
 { #category : 'initialize' }
-LuiDatePickerFunctionalTest >> switchToPrototypeSystem [
+LuiDateInputFunctionalTest >> switchToPrototypeSystem [
 	System abortTransaction.
 	LcsApplicationEnvironment ensureInitialized.
 	LcsApplicationEnvironment currentSystem isPrototypeSystem ifFalse: [

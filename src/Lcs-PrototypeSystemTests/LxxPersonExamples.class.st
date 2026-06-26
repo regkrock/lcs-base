@@ -116,15 +116,15 @@ LxxPersonExamples >> personWithTwoSkills [
 { #category : 'examples' }
 LxxPersonExamples >> personWithWeightChangedTo100_5 [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person |
+	self ensureCurrentSystemIsPrototypeSystem.
 	person := self newPerson.
-	self assert: person weight isZero.
+	self assert: person weight = 180.
 	person weight: 100.5.
 	self assert: person isInAddingState.
 	self assert: person weight equals: 100.5.
 	self assert: ((person slotDefinitionNamed: 'weight') persistedSlotVarIn: person) equals: 100.5.
-	"self currentSystem applyChanges.
-	self assert: ((person slotDefinitionNamed: 'weight') persistedSlotVarIn: person) equals: 100.5."
 	^ person
 ]
 

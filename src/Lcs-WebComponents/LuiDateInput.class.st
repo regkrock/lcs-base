@@ -53,12 +53,6 @@ LuiDateInput >> initialize [
 	self fromStringConverter: LuiStringToDateConverter new.
 ]
 
-{ #category : 'initialize' }
-LuiDateInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
-	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-	self attributes name: aSlotDefinition slotName
-]
-
 { #category : 'rendering' }
 LuiDateInput >> renderComponentOn: html [
 	html dateInput5

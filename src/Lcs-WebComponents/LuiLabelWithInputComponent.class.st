@@ -169,7 +169,8 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel wi
 
 	({LuiCheckboxAndLabel. LuiCheckboxAndLabel} includes: self widgetClass)
 		ifTrue: [ self addEmptyLabelAndCompoundInputComponents ]
-		ifFalse: [ self addLabelAndInputComponents ]
+		ifFalse: [ self addLabelAndInputComponents ].
+	self assignInputIdToLabelForId.
 ]
 
 { #category : 'initialize' }

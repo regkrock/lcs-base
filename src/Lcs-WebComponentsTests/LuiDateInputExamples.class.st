@@ -29,7 +29,7 @@ LuiDateInputExamples >> birthdayOfPerson [
 	self assert: dateOfBirthSlot maximum equals: maximumDate.
 
 
-	expectedHtml := '<input data-name="dateOfBirth" data-StClass="LuiDateInput" name="dateOfBirth" min="'
+	expectedHtml := '<input data-name="dateOfBirth" data-StClass="LuiDateInput" name="1" min="'
 			, minimumDate yyyymmdd , '" max="' , maximumDate yyyymmdd , '" value="'
 			, birthDate yyyymmdd , '" type="date"/>'.
 

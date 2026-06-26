@@ -40,7 +40,7 @@ LuiSelectExamples >> selectWithFourOptions [
 	| component expectedHtml |
 	expectedHtml := '<select id="nil" data-name="selectComponent" data-StClass="LuiSelect" name="1"><option id="258131601" data-name="selectComponent_1" data-StClass="LuiSelect" label="volvo" value="2">volvo</option><option id="259796126" data-name="selectComponent_2" data-StClass="LuiSelect" label="volkswagen" value="3">volkswagen</option><option id="261460651" data-name="selectComponent_3" data-StClass="LuiSelect" label="mercedes" value="4">mercedes</option><option id="263125176" data-name="selectComponent_4" data-StClass="LuiSelect" label="audi" value="5">audi</option></select>'.
 	component := LuiSelect named: 'selectComponent'.
-	component addOptionsFrom: #(volvo volkswagen mercedes audi).
+	component elements: #(volvo volkswagen mercedes audi).
 	self assert: component parentComponent isNil.
 	self assert: component componentName equals: 'selectComponent'.
 	self assert: component componentId equals: nil.
