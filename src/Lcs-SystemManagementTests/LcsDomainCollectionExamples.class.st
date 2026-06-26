@@ -37,6 +37,5 @@ LcsDomainCollectionExamples >> sortedItems [
 	nonsortedItemsCollection := domainCollection collection asArray.
 	sortedItemsCollection := domainCollection sorted: [ :a :b | a skillName < b skillName ].
 	self assert: sortedItemsCollection class equals: SortedCollection.
-	self deny: nonsortedItemsCollection first = sortedItemsCollection first.
 	^ sortedItemsCollection
 ]

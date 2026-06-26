@@ -51,9 +51,12 @@ LcsBaseRules >> addNullRule: aRule [
 
 { #category : 'conditions' }
 LcsBaseRules >> addRule: aRule [
-	(self hasRuleWithDescription: aRule description) ifTrue: [ ^ self ].
-	aRule parent: self.
-	self add: aRule
+	^ (self ruleWithDescription: aRule description)
+		ifNil: [
+			aRule parent: self.
+			self add: aRule ]
+		ifNotNil: [ :rule | 
+			rule ]
 ]
 
 { #category : 'conditions' }
