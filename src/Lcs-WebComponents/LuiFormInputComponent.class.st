@@ -32,14 +32,14 @@ LuiFormInputComponent >> gtViewTagName [
 ]
 
 { #category : 'callbacks' }
-LuiFormInputComponent >> handleCallbackValue: value [ 
-	self valueAccessor write: value
+LuiFormInputComponent >> handleCallbackValue: value [
+	self valueAccessor write: (self convertFromString: value)
 ]
 
 { #category : 'initialize' }
 LuiFormInputComponent >> initializeNamed: aName [
 	super initializeNamed: aName.
-	self name: aName.
+	self callback: [ :value | self handleCallbackValue: value ]
 ]
 
 { #category : 'initialize' }

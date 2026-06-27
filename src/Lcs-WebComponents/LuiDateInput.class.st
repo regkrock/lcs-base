@@ -1,10 +1,8 @@
 Class {
 	#name : 'LuiDateInput',
-	#superclass : 'LuiSteppedInputComponent',
+	#superclass : 'LuiClosedRangeInputComponent',
 	#instVars : [
-		'date',
-		'fromStringConverter',
-		'toStringConverter'
+		'date'
 	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
@@ -13,27 +11,12 @@ Class {
 
 { #category : 'converting' }
 LuiDateInput >> contentsAsString [
-	^ self toStringConverter value: self valueAccessor contents
-]
-
-{ #category : 'converting' }
-LuiDateInput >> contentsFromString: aString [
-	^ self fromStringConverter value: aString
+	^ self toStringConverter convertToString: self valueAccessor contents
 ]
 
 { #category : 'rendering' }
 LuiDateInput >> displayValue [
 	^ self valueAccessor contents yyyymmdd
-]
-
-{ #category : 'accessing' }
-LuiDateInput >> fromStringConverter [
-	^ fromStringConverter
-]
-
-{ #category : 'accessing' }
-LuiDateInput >> fromStringConverter: anObject [
-	fromStringConverter := anObject
 ]
 
 { #category : 'gt views' }
@@ -64,19 +47,4 @@ LuiDateInput >> renderComponentOn: html [
 					receiver: self
 					selector: #updateContentsFrom:);"
 		value: self contentsAsString
-]
-
-{ #category : 'accessing' }
-LuiDateInput >> toStringConverter [
-	^ toStringConverter
-]
-
-{ #category : 'accessing' }
-LuiDateInput >> toStringConverter: anObject [
-	toStringConverter := anObject
-]
-
-{ #category : 'model' }
-LuiDateInput >> updateContentsFrom: value [
-	^ self valueAccessor write: (self contentsFromString: value)
 ]

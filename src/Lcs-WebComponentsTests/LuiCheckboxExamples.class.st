@@ -38,7 +38,7 @@ LuiCheckboxExamples >> checkboxOnBooleanSlotWhereBooleanIsTrue [
 LuiCheckboxExamples >> checkedCheckboxWithNoValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" checked type="checkbox"/>'.
+	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" checked type="checkbox"/><input name="2" type="hidden"/>'.
 	component := LuiCheckbox named: 'xxxx' model: true.
 	self assertRendered: component equals: expectedHtml.
 	^ component
@@ -48,7 +48,7 @@ LuiCheckboxExamples >> checkedCheckboxWithNoValue [
 LuiCheckboxExamples >> checkedCheckboxWithValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" checked type="checkbox"/>'.
+	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" checked type="checkbox"/><input name="2" type="hidden"/>'.
 	component := LuiCheckbox named: 'xxxx' model: true.
 	component model: true.
 	self assertRendered: component equals: expectedHtml.
@@ -78,7 +78,7 @@ LuiCheckboxExamples >> newComponentHtml [
 	<gtExample>
 	| component |
 	component := self newComponent.
-	self assertRendered: component equals: '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" type="checkbox"/>'.
+	self assertRendered: component equals: '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" type="checkbox"/><input name="2" type="hidden"/>'.
 	^ component
 
 ]
@@ -100,7 +100,7 @@ LuiCheckboxExamples >> uncheckedCheckboxWithNoValue [
 LuiCheckboxExamples >> uncheckedCheckboxWithValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="xxxx" type="checkbox"/>'.
+	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" type="checkbox"/><input name="2" type="hidden"/>'.
 	component := self newComponent.
 	component model: false.
 	self assert: component model equals: false.

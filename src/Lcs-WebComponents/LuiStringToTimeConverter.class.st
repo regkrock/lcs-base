@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiStringToDateConverter',
+	#name : 'LuiStringToTimeConverter',
 	#superclass : 'LuiDisplayConverter',
 	#category : 'Lcs-WebComponents-Transformers',
 	#package : 'Lcs-WebComponents',
@@ -7,6 +7,6 @@ Class {
 }
 
 { #category : 'converting' }
-LuiStringToDateConverter >> convertFromString: aString [
-	^ [ Date fromString: aString ] on: Error do: [ :s | s return: nil ]
+LuiStringToTimeConverter >> convertFromString: aString [
+	^ [ Time fromString: aString ] on: Error do: [ :s | s return: nil ]
 ]

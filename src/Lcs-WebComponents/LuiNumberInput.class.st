@@ -1,28 +1,15 @@
 Class {
 	#name : 'LuiNumberInput',
 	#superclass : 'LuiClosedRangeInputComponent',
-	#instVars : [
-		'converter'
-	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Widgets'
 }
 
-{ #category : 'accessing' }
-LuiNumberInput >> converter [
-	^ converter
-]
-
-{ #category : 'accessing' }
-LuiNumberInput >> converter: anObject [
-	converter := anObject
-]
-
 { #category : 'rendering' }
 LuiNumberInput >> displayValue [
 	self valueAccessor ifNil: [ ^ '' ].
-	^ self converter convertToString: valueAccessor read
+	^ self toStringConverter convertToString: valueAccessor read
 ]
 
 { #category : 'gt views' }
@@ -32,15 +19,16 @@ LuiNumberInput >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiNumberInput >> handleCallbackValue: aValue [ 
-	| number |
-	number := self converter convertFromString: aValue.
-	super handleCallbackValue: number 
+	"| number |
+	number := self fromStringConverter convertFromString: aValue."
+	super handleCallbackValue: aValue 
 ]
 
 { #category : 'initialize' }
 LuiNumberInput >> initialize [
 	super initialize.
-	self converter: LuiNumberStringConverter new.
+	self fromStringConverter: LuiNumberStringConverter new.
+	self toStringConverter: LuiNumberStringConverter new.
 ]
 
 { #category : 'rendering' }

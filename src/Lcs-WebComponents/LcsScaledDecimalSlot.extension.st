@@ -4,5 +4,6 @@ Extension { #name : 'LcsScaledDecimalSlot' }
 LcsScaledDecimalSlot >> configureWidgetComponent: aWidgetComponent [
 	super configureWidgetComponent: aWidgetComponent.
 	aWidgetComponent 
-		converter: (LuiScaledDecimalStringConverter newWithDecimals: self numberOfDecimals).
+		toStringConverter: (LuiScaledDecimalStringConverter newWithDecimals: self numberOfDecimals);
+		fromStringConverter: (LuiScaledDecimalStringConverter newWithDecimals: self numberOfDecimals).
 ]

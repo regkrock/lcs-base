@@ -6,7 +6,8 @@ Class {
 		'weight',
 		'mainSkill',
 		'skills',
-		'hasRedHair'
+		'hasRedHair',
+		'time'
 	],
 	#category : 'Lcs-PrototypeSystem-Core',
 	#package : 'Lcs-PrototypeSystem',
@@ -80,6 +81,16 @@ LxxPerson class >> skillsSlotDefinition [
 ]
 
 { #category : 'slot definitions' }
+LxxPerson class >> timeSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsTimeSlot new
+		initialValueBlock: [ :parentDomainObject :slot | slot typeClass midnight ];
+		minimum: Time midnight ;
+		maximum: Time noon;
+		yourself
+]
+
+{ #category : 'slot definitions' }
 LxxPerson class >> weightSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsNumberSlot new
@@ -132,6 +143,16 @@ LxxPerson >> skills [
 { #category : 'accessing' }
 LxxPerson >> skills: anObject [
 	self slotVarNamed: 'skills' put: anObject
+]
+
+{ #category : 'accessing' }
+LxxPerson >> time [
+	^ self slotVarNamed: 'time'
+]
+
+{ #category : 'accessing' }
+LxxPerson >> time: anObject [
+	self slotVarNamed: 'time' put: anObject
 ]
 
 { #category : 'accessing' }

@@ -12,7 +12,7 @@ LuiObjectToDateAndTimeExamples >> dateAndTimeStringToDateAndTime [
 	| result timestampString|
 	timestampString := DateAndTime now printString.
 	result := (LuiStringToDateAndTimeConverter new
-		value: timestampString).
+		convertFromString: timestampString).
 	self assert: result printString equals: timestampString.
 	result
 ]
@@ -23,7 +23,7 @@ LuiObjectToDateAndTimeExamples >> emptyStringToDateAndTime [
 	| result timestampString|
 	timestampString := ''.
 	result := (LuiStringToDateAndTimeConverter new
-		value: timestampString).
+		convertFromString: timestampString).
 	self assert: result equals: nil.
 	result
 ]
@@ -34,7 +34,7 @@ LuiObjectToDateAndTimeExamples >> nilToDateAndTime [
 	| result timestampString|
 	timestampString := nil.
 	result := (LuiStringToDateAndTimeConverter new
-		value: timestampString).
+		convertFromString: timestampString).
 	self assert: result equals: nil.
 	result
 ]
@@ -45,7 +45,7 @@ LuiObjectToDateAndTimeExamples >> numberToDateAndTime [
 	| result timestampString|
 	timestampString := 12.
 	result := (LuiStringToDateAndTimeConverter new
-		value: timestampString).
+		convertFromString: timestampString).
 	self assert: result equals: nil.
 	result
 ]

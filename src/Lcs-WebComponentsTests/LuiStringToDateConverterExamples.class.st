@@ -11,11 +11,11 @@ LuiStringToDateConverterExamples >> invalidDateStringConvertedToNil [
 	<gtExample>
 	| result |
 	result := (LuiStringToDateConverter new
-		value: 'abc').
+		convertFromString: 'abc').
 	self assert: result equals: nil.
 	
 	result := (LuiStringToDateConverter new
-		value: nil).
+		convertFromString: nil).
 	self assert: result equals: nil.
 	^ result
 ]
@@ -25,7 +25,7 @@ LuiStringToDateConverterExamples >> validDateStringConvertedToDate [
 	<gtExample>
 	| result |
 	result := (LuiStringToDateConverter new
-		value: '1955-08-02').
+		convertFromString: '1955-08-02').
 	self assert: result equals: (Date newDay: 2 month: 8 year: 1955).
 	^ result
 ]

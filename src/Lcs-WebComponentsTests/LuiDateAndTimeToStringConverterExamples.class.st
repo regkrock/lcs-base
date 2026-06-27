@@ -12,7 +12,7 @@ LuiDateAndTimeToStringConverterExamples >> dateAndTimeAsString [
 	| result timestamp|
 	timestamp := DateAndTime now.
 	result := (LuiDateAndTimeToStringConverter new
-		value: timestamp).
+		convertToString: timestamp).
 	self assert: result equals: timestamp printString.
 	result
 ]
@@ -22,7 +22,7 @@ LuiDateAndTimeToStringConverterExamples >> emptyStringToString [
 	<gtExample>
 	| result |
 	result := (LuiDateAndTimeToStringConverter new
-		value: String new).
+		convertToString: String new).
 	self assert: result equals: ''.
 	^ result
 ]
@@ -32,7 +32,7 @@ LuiDateAndTimeToStringConverterExamples >> nilConvertedToString [
 	<gtExample>
 	| result |
 	result := (LuiDateAndTimeToStringConverter new
-		value: nil).
+		convertToString: nil).
 	self assert: result equals: ''.
 	^ result
 ]

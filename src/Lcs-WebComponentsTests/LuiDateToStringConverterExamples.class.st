@@ -11,7 +11,7 @@ LuiDateToStringConverterExamples >> dateConvertedToString [
 	<gtExample>
 	| result |
 	result := (LuiDateToStringConverter new
-		value: Date today).
+		convertToString: Date today).
 	self assert: result equals: Date today yyyymmdd.
 	^ result
 ]
@@ -21,7 +21,7 @@ LuiDateToStringConverterExamples >> emptyStringToString [
 	<gtExample>
 	| result |
 	result := (LuiDateToStringConverter new
-		value: String new).
+		convertToString: String new).
 	self assert: result equals: ''.
 	^ result
 ]
@@ -31,7 +31,7 @@ LuiDateToStringConverterExamples >> nilConvertedToString [
 	<gtExample>
 	| result |
 	result := (LuiDateToStringConverter new
-		value: nil).
+		convertToString: nil).
 	self assert: result equals: ''.
 	^ result
 ]

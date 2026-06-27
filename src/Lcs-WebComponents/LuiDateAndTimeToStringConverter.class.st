@@ -7,15 +7,15 @@ Class {
 }
 
 { #category : 'converting' }
-LuiDateAndTimeToStringConverter >> dateAndTimeAsString: aDateAndTime [
-	^ aDateAndTime printString
-]
-
-{ #category : 'converting' }
-LuiDateAndTimeToStringConverter >> value: anObject [
+LuiDateAndTimeToStringConverter >> convertToString: anObject [
 	(anObject isKindOf: Date) 
 		ifTrue: [ ^ self dateAndTimeAsString: anObject ].
 	(anObject isKindOf: DateAndTime) 
 		ifTrue: [ ^self dateAndTimeAsString:anObject ].
 	^''
+]
+
+{ #category : 'converting' }
+LuiDateAndTimeToStringConverter >> dateAndTimeAsString: aDateAndTime [
+	^ aDateAndTime printString
 ]

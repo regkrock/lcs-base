@@ -45,7 +45,7 @@ LuiDateInputExamples >> newComponent [
 	today := Date today yyyymmdd.
 	component := LuiDateInput named: 'datePicker' model: Date today.
 	
-	expectedHtml := '<input data-name="datePicker" data-StClass="LuiDateInput" name="datePicker" value="' , today , '" type="date"/>'.
+	expectedHtml := '<input data-name="datePicker" data-StClass="LuiDateInput" name="1" value="' , today , '" type="date"/>'.
 	self assertRendered: component equals: expectedHtml.
 
 	^ component

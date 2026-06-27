@@ -1,10 +1,8 @@
 Class {
 	#name : 'LuiDateTimeInput',
-	#superclass : 'LuiSteppedInputComponent',
+	#superclass : 'LuiClosedRangeInputComponent',
 	#instVars : [
-		'date',
-		'fromStringConverter',
-		'toStringConverter'
+		'date'
 	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
@@ -13,27 +11,12 @@ Class {
 
 { #category : 'converting' }
 LuiDateTimeInput >> contentsAsString [
-	^ self toStringConverter value: self valueAccessor contents
-]
-
-{ #category : 'converting' }
-LuiDateTimeInput >> contentsFromString: aString [
-	^ self fromStringConverter value: aString
+	^ self toStringConverter convertToString:  self valueAccessor contents
 ]
 
 { #category : 'rendering' }
 LuiDateTimeInput >> displayValue [
 	^ self valueAccessor contents yyyymmdd
-]
-
-{ #category : 'accessing' }
-LuiDateTimeInput >> fromStringConverter [
-	^ fromStringConverter
-]
-
-{ #category : 'accessing' }
-LuiDateTimeInput >> fromStringConverter: anObject [
-	fromStringConverter := anObject
 ]
 
 { #category : 'gt views' }
@@ -43,20 +26,14 @@ LuiDateTimeInput >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiDateTimeInput >> handleCallbackValue: value [ 
-	self valueAccessor write: (Date readFrom: value pattern: 'y-m-d')
+	self valueAccessor write: (self fromStringConverter convertFromString: value)
 ]
 
 { #category : 'initialize' }
 LuiDateTimeInput >> initialize [
 	super initialize.
-	self toStringConverter: LuiDateToStringConverter new.
-	self fromStringConverter: LuiStringToDateConverter new.
-]
-
-{ #category : 'initialize' }
-LuiDateTimeInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
-	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-	self attributes name: aSlotDefinition slotName
+	self toStringConverter: LuiDateAndTimeToStringConverter new.
+	self fromStringConverter: LuiStringToDateAndTimeConverter new.
 ]
 
 { #category : 'rendering' }
@@ -70,19 +47,4 @@ LuiDateTimeInput >> renderComponentOn: html [
 					receiver: self
 					selector: #updateContentsFrom:);"
 		value: self contentsAsString
-]
-
-{ #category : 'accessing' }
-LuiDateTimeInput >> toStringConverter [
-	^ toStringConverter
-]
-
-{ #category : 'accessing' }
-LuiDateTimeInput >> toStringConverter: anObject [
-	toStringConverter := anObject
-]
-
-{ #category : 'model' }
-LuiDateTimeInput >> updateContentsFrom: value [
-	^ self valueAccessor write: (self contentsFromString: value)
 ]

@@ -11,9 +11,17 @@ LuiTimeInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''time'''
 ]
 
+{ #category : 'initialize' }
+LuiTimeInput >> initialize [
+	super initialize.
+	self toStringConverter: LuiTimeToStringConverter  new.
+	self fromStringConverter: LuiStringToTimeConverter new
+	
+]
+
 { #category : 'rendering' }
 LuiTimeInput >> renderComponentOn: html [
-	html timeInput
+	html timeInput5
 		addCommonAttributes: self;
 		value: self displayValue
 ]

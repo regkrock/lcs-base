@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiDateToStringConverter',
+	#name : 'LuiTimeToStringConverter',
 	#superclass : 'LuiDisplayConverter',
 	#category : 'Lcs-WebComponents-Transformers',
 	#package : 'Lcs-WebComponents',
@@ -7,15 +7,15 @@ Class {
 }
 
 { #category : 'converting' }
-LuiDateToStringConverter >> convertToString: anObject [
+LuiTimeToStringConverter >> convertToString: anObject [
+	^ anObject greaseString
+]
+
+{ #category : 'converting' }
+LuiTimeToStringConverter >> value: anObject [
 	(anObject isKindOf: Date) 
 		ifTrue: [ ^ self dateAsString: anObject ].
 	(anObject isKindOf: DateAndTime) 
 		ifTrue: [ ^self dateAsString:anObject asDate ].
 	^''
-]
-
-{ #category : 'converting' }
-LuiDateToStringConverter >> dateAsString: aDate [
-	^aDate yyyymmdd
 ]

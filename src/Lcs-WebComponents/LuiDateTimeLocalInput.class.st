@@ -1,10 +1,8 @@
 Class {
 	#name : 'LuiDateTimeLocalInput',
-	#superclass : 'LuiSteppedInputComponent',
+	#superclass : 'LuiClosedRangeInputComponent',
 	#instVars : [
-		'date',
-		'fromStringConverter',
-		'toStringConverter'
+		'date'
 	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
@@ -13,27 +11,12 @@ Class {
 
 { #category : 'converting' }
 LuiDateTimeLocalInput >> contentsAsString [
-	^ self toStringConverter value: self valueAccessor contents
-]
-
-{ #category : 'converting' }
-LuiDateTimeLocalInput >> contentsFromString: aString [
-	^ self fromStringConverter value: aString
+	^ self toStringConverter convertToString: self valueAccessor contents
 ]
 
 { #category : 'rendering' }
 LuiDateTimeLocalInput >> displayValue [
 	^ self valueAccessor contents yyyymmdd
-]
-
-{ #category : 'accessing' }
-LuiDateTimeLocalInput >> fromStringConverter [
-	^ fromStringConverter
-]
-
-{ #category : 'accessing' }
-LuiDateTimeLocalInput >> fromStringConverter: anObject [
-	fromStringConverter := anObject
 ]
 
 { #category : 'gt views' }
@@ -43,25 +26,19 @@ LuiDateTimeLocalInput >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiDateTimeLocalInput >> handleCallbackValue: value [ 
-	self valueAccessor write: (Date readFrom: value pattern: 'y-m-d')
+	self valueAccessor write: (self fromStringConverter convertFromString: value)
 ]
 
 { #category : 'initialize' }
 LuiDateTimeLocalInput >> initialize [
 	super initialize.
-	self toStringConverter: LuiDateToStringConverter new.
-	self fromStringConverter: LuiStringToDateConverter new.
-]
-
-{ #category : 'initialize' }
-LuiDateTimeLocalInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
-	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-	self attributes name: aSlotDefinition slotName
+	self toStringConverter: LuiDateAndTimeToStringConverter new.
+	self fromStringConverter: LuiStringToDateAndTimeConverter new.
 ]
 
 { #category : 'rendering' }
 LuiDateTimeLocalInput >> renderComponentOn: html [
-	html dateTimeInput
+	html dateTimeLocalInput
 		addCommonAttributes: self;
 		"onChange: (JSStream on: 'this.form.requestSubmit()');"
 		"onChange: 'submit()';"
@@ -70,19 +47,4 @@ LuiDateTimeLocalInput >> renderComponentOn: html [
 					receiver: self
 					selector: #updateContentsFrom:);"
 		value: self contentsAsString
-]
-
-{ #category : 'accessing' }
-LuiDateTimeLocalInput >> toStringConverter [
-	^ toStringConverter
-]
-
-{ #category : 'accessing' }
-LuiDateTimeLocalInput >> toStringConverter: anObject [
-	toStringConverter := anObject
-]
-
-{ #category : 'model' }
-LuiDateTimeLocalInput >> updateContentsFrom: value [
-	^ self valueAccessor write: (self contentsFromString: value)
 ]

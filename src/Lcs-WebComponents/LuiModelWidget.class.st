@@ -89,7 +89,7 @@ LuiModelWidget >> displayValue [
 
 { #category : 'callbacks' }
 LuiModelWidget >> handleCallbackValue: value [ 
-	self valueAccessor write: value
+	self valueAccessor convertFromString: value
 ]
 
 { #category : 'initialize' }

@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'converting' }
-LuiStringToDateAndTimeConverter >> value: aString [
+LuiStringToDateAndTimeConverter >> convertFromString: aString [
 	aString isString ifFalse: [ ^ nil ].
-	^ [ aString asDateAndTime ] on: Error do: [ :s | s return: nil ]
+	^ [ DateAndTime fromString:aString ] on: Error do: [ :s | s return: nil ]
 ]

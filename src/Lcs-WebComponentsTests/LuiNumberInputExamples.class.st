@@ -22,7 +22,7 @@ LuiNumberInputExamples >> newNamedComponent [
 	| component expectedHtml |
 	component := LuiNumberInput named: 'xxx'.
 	self assert: component displayValue equals: ''.
-	expectedHtml := '<input data-name="xxx" data-StClass="LuiNumberInput" name="xxx" value="" type="number"/>'.
+	expectedHtml := '<input data-name="xxx" data-StClass="LuiNumberInput" name="1" value="" type="number"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -48,7 +48,8 @@ LuiNumberInputExamples >> scaledDecimalWith2DecimalPlacesNumberInputComponent [
 	person := LxxPersonExamples new johnFreeman.
 	component := LuiNumberInput onSlotNamed: 'balance' model: person.
 	self assert: component step equals: 0.01s2.
-	self assert: component converter class equals: LuiScaledDecimalStringConverter.
+	self assert: component toStringConverter class equals: LuiScaledDecimalStringConverter.
+	self assert: component fromStringConverter class equals: LuiScaledDecimalStringConverter.
 	self assert: component displayValue equals: '0.00'.
 	self assertRendered: component equals: '<input data-name="balance" data-StClass="LuiNumberInput" max="100" name="1" min="-100" step="0.01" value="0.00" type="number"/>'.
 	^ component
