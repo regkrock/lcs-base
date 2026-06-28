@@ -7,7 +7,8 @@ Class {
 		'mainSkill',
 		'skills',
 		'hasRedHair',
-		'time'
+		'time',
+		'comment'
 	],
 	#category : 'Lcs-PrototypeSystem-Core',
 	#package : 'Lcs-PrototypeSystem',
@@ -31,6 +32,14 @@ LxxPerson class >> balanceSlotDefinition [
 		slotName: 'balance';
 		minimum: -100;
 		maximum: 100;
+		yourself
+]
+
+{ #category : 'slot definitions' }
+LxxPerson class >> commentSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsTextSlot new
+		slotName: 'comment';
 		yourself
 ]
 
@@ -113,6 +122,16 @@ LxxPerson >> balance [
 { #category : 'accessing' }
 LxxPerson >> balance: anObject [
 	self slotVarNamed: 'balance' put: anObject
+]
+
+{ #category : 'accessing' }
+LxxPerson >> comment [
+	^ self slotVarNamed: 'comment'
+]
+
+{ #category : 'accessing' }
+LxxPerson >> comment: anObject [
+	self slotVarNamed: 'comment' put: anObject
 ]
 
 { #category : 'accessing' }

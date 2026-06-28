@@ -32,6 +32,8 @@ LuiTimeInputExamples >> timeInputForSlotWithMinimumAndMaximum [
 	component := LuiTimeInput onSlotNamed: 'time' model: person.
 	self assert: slot minimum equals: Time midnight.
 	self assert: slot maximum equals: Time noon.
+	self assert: slot validationRules collection size = 1 .
+	self assert: slot validationRules collection any class == LcsRangeRule.
 
 	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" name="1" min="12:00 am" max="12:00 pm" value="' , Time midnight asString , '" type="time"/>'.
 	self assertRendered: component equals: expectedHtml.
@@ -42,11 +44,27 @@ LuiTimeInputExamples >> timeInputForSlotWithMinimumAndMaximum [
 LuiTimeInputExamples >> updateTime [
 	<gtExample>
 	<after: #clearUnitOfWork>
-	| component expectedHtml newTime |
+	| component newTime expectedHtml |
 	self ensureCurrentSystemIsPrototypeSystem.
 	newTime := (Time midnight addSeconds: 3).
 	component := self timeInputForSlotWithMinimumAndMaximum.
 	component handleCallbackValue: newTime asString.
 	self assert: component model time equals: newTime.
+	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" name="1" min="12:00 am" max="12:00 pm" value="12:00:03 am" type="time"/>'.
+	self assertRendered: component equals: expectedHtml.
+	^ component
+]
+
+{ #category : 'examples' }
+LuiTimeInputExamples >> updateTimeWithInvalidValue [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| component newTime |
+	self ensureCurrentSystemIsPrototypeSystem.
+	newTime := (Time noon addSeconds: 3).
+	component := self timeInputForSlotWithMinimumAndMaximum.
+	self assert: component model time equals: Time midnight.
+	self should: [ component handleCallbackValue: newTime asString ] raise: LcsSlotValidationError.
+	self assert: component model time equals: Time midnight.
 	^ component
 ]

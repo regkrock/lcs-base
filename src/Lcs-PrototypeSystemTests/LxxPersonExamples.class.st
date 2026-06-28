@@ -138,3 +138,17 @@ LxxPersonExamples >> slotDefintiionViewItems [
 	self assert: allSlotDefinitionViewItems notEmpty.
 	^ allSlotDefinitionViewItems
 ]
+
+{ #category : 'examples' }
+LxxPersonExamples >> timeSlotDefinition [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| slot |
+	self ensureCurrentSystemIsPrototypeSystem.
+	slot := (LxxPerson slotModel slotDefinitionNamed: 'time').
+	self assert: (slot isKindOf: LcsTimeSlot).
+	self assert: slot slotName equals: 'time'.
+	self assert: slot minimum equals: Time midnight.
+	self assert: slot maximum equals: Time noon.
+	^ slot
+]

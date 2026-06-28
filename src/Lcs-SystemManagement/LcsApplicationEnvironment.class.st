@@ -119,6 +119,17 @@ LcsApplicationEnvironment class >> gtApplicationEnvironmentFor: aView [
 		column: '' stencil: [ :viewItem :row :column | viewItem startSuspendSystemButton ] width: 70;
 		column: '' stencil: [ :viewItem | viewItem stopButton ] width: 70; 
 		send: #item;
+		"actionButtonIcon: BrGlamorousVectorIcons playinspect 
+			tooltip: 'Browse All Examples'
+			action: [ :aButton :aTab | 
+				aButton phlow
+					spawnTool: (GtPhlowExplicitTool new
+						name: self class name;
+						stencil: [  | gtExamples |
+LcsApplicationEnvironment ensureActiveApplicationEnvironment.
+gtExamples := OrderedCollection new.
+LcsExamples withAllSubclassesDo: [:each |  gtExamples addAll: each gtExamples ].
+GtExampleGroup withAll: gtExamples ]) ];"
 		actionButtonIcon: BrGlamorousVectorIcons close 
 			tooltip: 'Stop all systems'
 			action: [ :aButton :aTab | 

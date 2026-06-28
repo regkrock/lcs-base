@@ -21,7 +21,7 @@ LcsDateOfBirthSlot >> earliestBirthdate [
 LcsDateOfBirthSlot >> initialize [
 	super initialize.
 	self slotName: 'dateOfBirth'.
-	self minimum: self earliestBirthdate.
-	self maximum: Date today.
+	self minimumBlock: [ self earliestBirthdate ].
+	self maximumBlock: [ Date today ].
 	self rangeRuleErrorMessage: 'Age must be between 0 and 120 years'
 ]

@@ -23,6 +23,8 @@ LcsDateOfBirthSlotExamples >> newSlot [
 	slot := LcsDateOfBirthSlot new.
 	self assert: slot slotName equals: 'dateOfBirth'.
 	self assert: slot initialValue equals: Date today.
+	self assert: slot maximum equals: Date today.
+	self assert: slot minimum equals: slot earliestBirthdate.
 	self assert: slot validationRules collectionSize = 1.
 	self verifyValidationConditions: slot.
 	^ slot

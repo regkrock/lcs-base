@@ -41,7 +41,8 @@ LuiFormFunctionalTest >> initialize [
 		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
 		addLabelAndWidgetComponentFor: 'hasRedHair' widgetClass: LuiCheckboxAndLabel;
 		addLabelAndWidgetComponentFor: 'dateOfBirth';
-		addLabelAndWidgetComponentFor: 'weight'.
+		addLabelAndWidgetComponentFor: 'weight';
+		addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange'.
 ]
 
 { #category : 'accessing' }

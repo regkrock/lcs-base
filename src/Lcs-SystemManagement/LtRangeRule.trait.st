@@ -1,8 +1,5 @@
 Trait {
 	#name : 'LtRangeRule',
-	#instVars : [
-		''
-	],
 	#category : 'Lcs-SystemManagement-Traits',
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Traits'
@@ -10,25 +7,46 @@ Trait {
 
 { #category : 'properties' }
 LtRangeRule >> maximum [
-	^ self propertyAt: #maximum ifAbsent: [ nil ]
+	^ self maximumBlock value
 ]
 
 { #category : 'properties' }
 LtRangeRule >> maximum: aMagnitude [
-	self propertyAt: #maximum put: aMagnitude.
-	aMagnitude notNil ifTrue: [ self validationRules addRule: LcsRangeRule new ]
+	self propertyAt: #maximumBlock put: [ aMagnitude ].
+	self validationRules addRule: LcsRangeRule new 
+]
+
+{ #category : 'properties' }
+LtRangeRule >> maximumBlock [
+	^ self propertyAt: #maximumBlock ifAbsent: [ nil ]
+]
+
+{ #category : 'properties' }
+LtRangeRule >> maximumBlock: aBlock [
+	self propertyAt: #maximumBlock put: aBlock.
+	self validationRules addRule: LcsRangeRule new
 ]
 
 { #category : 'properties' }
 LtRangeRule >> minimum [
-	^ self propertyAt: #minimum ifAbsent: [ nil ]
+	^ self minimumBlock value
 ]
 
 { #category : 'properties' }
 LtRangeRule >> minimum: aMagnitude [
-	self propertyAt: #minimum put: aMagnitude.
-	aMagnitude notNil ifTrue: [
-		self validationRules addRule: LcsRangeRule new ]
+	self propertyAt: #minimumBlock put: [ aMagnitude ].
+	self validationRules addRule: LcsRangeRule new 
+]
+
+{ #category : 'properties' }
+LtRangeRule >> minimumBlock [
+	^ self propertyAt: #minimumBlock ifAbsent: [ nil ]
+]
+
+{ #category : 'properties' }
+LtRangeRule >> minimumBlock: aBlock [
+	self propertyAt: #minimumBlock put: aBlock.
+	self validationRules addRule: LcsRangeRule new
 ]
 
 { #category : 'validation rule' }
