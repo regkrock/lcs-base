@@ -2,30 +2,35 @@ Class {
 	#name : 'LuiFormFunctionalTest',
 	#superclass : 'LuiFunctionalTest',
 	#instVars : [
-		'person'
+		'model'
 	],
 	#category : 'Lcs-WebComponentsTests-Functional',
 	#package : 'Lcs-WebComponentsTests',
 	#tag : 'Functional'
 }
 
+{ #category : 'testing' }
+LuiFormFunctionalTest class >> isLcsFunctionalTest [
+	"^ self name asString ~= 'LuiFormFunctionalTest'"
+	^ true
+]
+
+{ #category : 'presenter' }
+LuiFormFunctionalTest >> functionTestPresenter [
+	self subclassResponsibility
+]
+
 { #category : 'initialize' }
 LuiFormFunctionalTest >> initialize [
 	| personPresenter form |
 	super initialize.
 	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
-	self person ifNil: [ 
-		self person: LxxPersonExamples new johnFreeman.
-		self person
-			dateOfBirth: (Date
-					newDay: 2
-					month: 8
-					year: 1955) ].
+	self model: LxxPersonExamples new johnFreeman.
 	self componentName: 'root'.
 	self componentId: 'root'.
 	personPresenter := (LuiDomainPresenter named: 'personPresenter')
 			cssClass: 'twoColumnsBySixRows';
-			model: self person;
+			model: self model;
 			yourself.
 	form := LuiMainForm newWith: personPresenter.
 	self addComponent: form.
@@ -47,14 +52,26 @@ LuiFormFunctionalTest >> initialize [
 		
 ]
 
-{ #category : 'accessing' }
-LuiFormFunctionalTest >> person [
-	^ person
+{ #category : 'initialize' }
+LuiFormFunctionalTest >> initializeNew [
+	| form |
+	super initialize.
+	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
+	self componentName: 'root'.
+	self componentId: 'root'.
+	form := self addComponent: LuiMainForm new.
+	form addComponent: self functionTestPresenter.
+	form addComponent: LuiSaveAndCancelButtonBar new
 ]
 
 { #category : 'accessing' }
-LuiFormFunctionalTest >> person: anObject [
-	person := anObject
+LuiFormFunctionalTest >> model [
+	^ model
+]
+
+{ #category : 'accessing' }
+LuiFormFunctionalTest >> model: anObject [
+	model := anObject
 ]
 
 { #category : 'rendering' }

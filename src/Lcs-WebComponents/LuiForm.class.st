@@ -8,7 +8,7 @@ Class {
 
 { #category : 'instance creation' }
 LuiForm class >> newWith: aComponent [
-	^ super new
+	^ self new
 		addComponent: aComponent;
 		yourself
 ]

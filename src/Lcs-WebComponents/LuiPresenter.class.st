@@ -9,6 +9,14 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'instance creation' }
+LuiPresenter class >> named: aComponentName model: aModel [
+	^ self new
+		componentName: aComponentName;
+		model: aModel;
+		yourself
+]
+
 { #category : 'testing' }
 LuiPresenter >> isPresenterComponent [
 	^ true

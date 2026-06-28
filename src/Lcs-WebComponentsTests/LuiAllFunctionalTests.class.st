@@ -48,7 +48,7 @@ LuiAllFunctionalTests >> initialize [
 
 { #category : 'initialization' }
 LuiAllFunctionalTests >> initializeTests [
-	classes := (WAPresenter allSubclasses select: [ :each | each isLcsFunctionalTest ])
+	classes := (LuiFunctionalTest allSubclasses select: [ :each | each isLcsFunctionalTest ])
 				asSortedCollection: [ :a :b | a name < b name ].
 	current := WAValueHolder with: classes first new
 ]

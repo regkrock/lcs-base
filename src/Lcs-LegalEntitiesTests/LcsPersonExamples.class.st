@@ -41,22 +41,7 @@ LcsPersonExamples >> globalPostalAddressesPendingAddsSize [
 ]
 
 { #category : 'examples' }
-LcsPersonExamples >> johnDoe [
-	<gtExample>
-	| person |
-	person := self newPerson
-			firstName: 'John';
-			familyName: 'Doe'.	"Because person is automatically added to a global collection, no need to explicitly add the parent"
-	self currentSystem legalEntitiesModule persons includes: person.
-	self
-		assert: (self currentSystem legalEntitiesModule
-				hasContactWithFirstName: person firstName
-				familyName: person familyName).
-	^ person
-]
-
-{ #category : 'examples' }
-LcsPersonExamples >> johnFreeman [
+LcsPersonExamples >> jackFreeman [
 	<gtExample>
 	| person |
 	person := self newPerson
@@ -86,7 +71,7 @@ LcsPersonExamples >> johnFreeman [
 ]
 
 { #category : 'examples' }
-LcsPersonExamples >> johnFreemanHomeEmail [
+LcsPersonExamples >> jackFreemanHomeEmail [
 	<gtExample>
 	^ LcsEmailAddress new
 		emailAddressType: 'home';
@@ -95,10 +80,10 @@ LcsPersonExamples >> johnFreemanHomeEmail [
 ]
 
 { #category : 'examples' }
-LcsPersonExamples >> johnFreemanWithAddress [
+LcsPersonExamples >> jackFreemanWithAddress [
 	<gtExample>
 	| person newHomeAddress |
-	person := self johnFreeman.
+	person := self jackFreeman.
 	self saveOriginalStats.
 	newHomeAddress := LcsAddress new addressType: 'home'.
 	person homeAddress: newHomeAddress.
@@ -137,15 +122,15 @@ LcsPersonExamples >> johnFreemanWithAddress [
 ]
 
 { #category : 'examples' }
-LcsPersonExamples >> johnFreemanWithEmailAddresses [
+LcsPersonExamples >> jackFreemanWithEmailAddresses [
 	<gtExample>
 	| person homeEmail workEmail |
-	person := self johnFreeman.
+	person := self jackFreeman.
 	self
 		assert: person homeEmailAddress
 		equals: person emailAddresses unknownInstance.
 
-	homeEmail := self johnFreemanHomeEmail.
+	homeEmail := self jackFreemanHomeEmail.
 	person homeEmailAddress: homeEmail.
 	self assert: person homeEmailAddress equals: homeEmail.
 	"self assert: person emailAddresses pendingAdds size equals: 2."
@@ -153,7 +138,7 @@ LcsPersonExamples >> johnFreemanWithEmailAddresses [
 		assert: self globalEmailAddressesPendingAddsSize
 		equals: originalEmailAddressesPendingAddSize + 1."
 
-	workEmail := self johnFreemanWorkEmail.
+	workEmail := self jackFreemanWorkEmail.
 	person workEmailAddress: workEmail.
 	self assert: person workEmailAddress equals: workEmail.
 	"self assert: person emailAddresses pendingAdds size equals: 2."
@@ -163,12 +148,27 @@ LcsPersonExamples >> johnFreemanWithEmailAddresses [
 ]
 
 { #category : 'examples' }
-LcsPersonExamples >> johnFreemanWorkEmail [
+LcsPersonExamples >> jackFreemanWorkEmail [
 	<gtExample>
 	^ LcsEmailAddress new
 		emailAddressType: 'work';
 		email: 'johnfreemanWork@gmail.com';
 		yourself
+]
+
+{ #category : 'examples' }
+LcsPersonExamples >> johnDoe [
+	<gtExample>
+	| person |
+	person := self newPerson
+			firstName: 'John';
+			familyName: 'Doe'.	"Because person is automatically added to a global collection, no need to explicitly add the parent"
+	self currentSystem legalEntitiesModule persons includes: person.
+	self
+		assert: (self currentSystem legalEntitiesModule
+				hasContactWithFirstName: person firstName
+				familyName: person familyName).
+	^ person
 ]
 
 { #category : 'examples' }

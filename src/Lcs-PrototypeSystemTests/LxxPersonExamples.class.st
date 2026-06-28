@@ -14,6 +14,7 @@ LxxPersonExamples >> johnFreeman [
 			firstName: 'John';
 			middleName: 'Edgar';
 			lastName: 'Freeman'.
+	person dateOfBirth: (Date newDay: 2 month: 8 year: 1955) .
 	self assert: person firstName equals: 'John'.
 	self assert: person lastName equals: 'Freeman'.
 	self assert: person middleName equals: 'Edgar'.
