@@ -11,8 +11,7 @@ Class {
 
 { #category : 'testing' }
 LuiFormFunctionalTest class >> isLcsFunctionalTest [
-	"^ self name asString ~= 'LuiFormFunctionalTest'"
-	^ true
+	^ self name asString ~= 'LuiFormFunctionalTest'
 ]
 
 { #category : 'presenter' }
@@ -22,38 +21,6 @@ LuiFormFunctionalTest >> functionTestPresenter [
 
 { #category : 'initialize' }
 LuiFormFunctionalTest >> initialize [
-	| personPresenter form |
-	super initialize.
-	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
-	self model: LxxPersonExamples new johnFreeman.
-	self componentName: 'root'.
-	self componentId: 'root'.
-	personPresenter := (LuiDomainPresenter named: 'personPresenter')
-			cssClass: 'twoColumnsBySixRows';
-			model: self model;
-			yourself.
-	form := LuiMainForm newWith: personPresenter.
-	self addComponent: form.
-	form addComponent: LuiSaveAndCancelButtonBar new.
-
-	personPresenter 
-		addLabelAndWidgetComponentFor: 'firstName';
-		addLabelAndWidgetComponentFor: 'lastName';
-		addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;
-		addLabelAndWidgetComponentFor: 'mainSkill';
-		addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtons inputComponentName: 'mainSkillRadioButtons';
-		addLabelAndWidgetComponentFor: 'balance';
-		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
-		addLabelAndWidgetComponentFor: 'hasRedHair' widgetClass: LuiCheckboxAndLabel;
-		addLabelAndWidgetComponentFor: 'dateOfBirth';
-		addLabelAndWidgetComponentFor: 'weight';
-		addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange';
-		addLabelAndWidgetComponentFor: 'comment'.
-		
-]
-
-{ #category : 'initialize' }
-LuiFormFunctionalTest >> initializeNew [
 	| form |
 	super initialize.
 	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
