@@ -3,7 +3,8 @@ Class {
 	#superclass : 'WAComponent',
 	#instVars : [
 		'classes',
-		'current'
+		'current',
+		'activeFunctionalTests'
 	],
 	#category : 'Lcs-WebComponentsTests-Functional',
 	#package : 'Lcs-WebComponentsTests',
@@ -26,9 +27,28 @@ LuiAllFunctionalTests class >> initialize [
 		sessionClass: WAExpirySession
 ]
 
+{ #category : 'accessing' }
+LuiAllFunctionalTests >> activeFunctionalTests [
+	^ activeFunctionalTests
+]
+
+{ #category : 'accessing' }
+LuiAllFunctionalTests >> activeFunctionalTests: anObject [
+	activeFunctionalTests := anObject
+]
+
 { #category : 'hooks' }
 LuiAllFunctionalTests >> children [
 	^ Array with: current contents
+]
+
+{ #category : 'accessing' }
+LuiAllFunctionalTests >> functionalTestContextFor: aClass [ 
+	| functionalTest context|
+	functionalTest := aClass new.
+	context := LuiFunctionalTestContext newTest: functionalTest unitOfWork: LcsApplicationEnvironment currentUnitOfWork.
+	^ context
+	
 ]
 
 { #category : 'hooks' }
@@ -43,6 +63,7 @@ LuiAllFunctionalTests >> initialRequest: aRequest [
 { #category : 'initialization' }
 LuiAllFunctionalTests >> initialize [
 	super initialize.
+	self activeFunctionalTests: Dictionary new.
 	self initializeTests
 ]
 
@@ -84,10 +105,27 @@ LuiAllFunctionalTests >> renderContentOn: html [
 			html anchor
 				callback: [ self next ];
 				with: [ html html: '&rarr;' ].
-			html text: ' '; submitButton: 'Restart' ] ].
+			html text: ' '.
+			html submitButton 
+				callback: [ self restart ];
+				with: 'Restart' ] ].
 	html horizontalRule
 			style: 'height: 10px; margin-top: 5px;'.
 	html render: current contents
+]
+
+{ #category : 'rendering' }
+LuiAllFunctionalTests >> restart [
+	"Restart is only available for the current form. So it is okay to clear the unit of
+	work as the system and unit of work are not changing for the new instance of the form.
+	
+	If there was a separate unit of work for each form in the same system, then a separate unit
+	of work needs to be implemented for each form."
+	| newFunctionalTest |
+	self activeFunctionalTests at: self selected ifPresent: [ :context | context clearUnitOfWork ].
+	newFunctionalTest := self functionalTestContextFor: self selected.
+	self activeFunctionalTests at: self selected put: newFunctionalTest.
+	self setCurrentContents: newFunctionalTest
 ]
 
 { #category : 'accessing' }
@@ -97,14 +135,25 @@ LuiAllFunctionalTests >> selected [
 
 { #category : 'accessing' }
 LuiAllFunctionalTests >> selected: aClass [
-	current contents: aClass new.
-	(current contents respondsTo: #parent:)
-		ifTrue: [ current contents parent: self ]
+	| functionalTestContext |
+	functionalTestContext := self activeFunctionalTests
+			at: aClass
+			ifAbsentPut: [ self functionalTestContextFor: aClass ].
+	self setCurrentContents: functionalTestContext
 ]
 
 { #category : 'private' }
 LuiAllFunctionalTests >> selectionIndex [
 	^ classes indexOf: self selected
+]
+
+{ #category : 'accessing' }
+LuiAllFunctionalTests >> setCurrentContents: aFunctionalTestContext [
+	LcsApplicationEnvironment makeSystemCurrent: aFunctionalTestContext system.
+	self assert: aFunctionalTestContext system isInActiveStatus.
+	current contents: aFunctionalTestContext functionalTest.
+	(current contents respondsTo: #parent:)
+		ifTrue: [ current contents parent: self ]
 ]
 
 { #category : 'hooks' }

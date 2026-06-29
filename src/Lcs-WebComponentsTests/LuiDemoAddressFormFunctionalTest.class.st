@@ -6,20 +6,15 @@ Class {
 	#tag : 'Functional'
 }
 
-{ #category : 'testing' }
-LuiDemoAddressFormFunctionalTest class >> isLcsFunctionalTest [
-	^ false
-]
-
 { #category : 'presenter' }
 LuiDemoAddressFormFunctionalTest >> functionTestPresenter [
-	"LcsApplicationEnvironment ensureCurrentSystemIsDemoSystem."
-	"self model: LxxAddress new.
+	LcsApplicationEnvironment ensureCurrentSystemIsDemoSystem.
+	self model: LcsAddress new.
 	^ (LuiDomainPresenter named: 'addressPresenter' model: self model)
-		addLabelAndWidgetComponentFor: 'addressType'
+		addLabelAndWidgetComponentFor: 'addressType';
 		addLabelAndWidgetComponentFor: 'streetName';
 		addLabelAndWidgetComponentFor: 'streetNumber';
 		addLabelAndWidgetComponentFor: 'unit';
-		yourself"
+		yourself
 
 ]

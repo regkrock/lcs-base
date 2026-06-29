@@ -169,6 +169,7 @@ LcsSystemsManager >> makeSystemCurrent: aSystem [
 		ifNil: [  self releaseSlotModel ]
 		ifNotNil: [ self currentSystem restoreSystem ]"
 	aSystem isNil ifTrue: [ ^ self ].
+	self currentSystem == aSystem ifTrue: [ ^ self ].
 	aSystem restoreSystem
 ]
 

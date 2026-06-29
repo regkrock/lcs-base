@@ -6,11 +6,6 @@ Class {
 	#tag : 'Functional'
 }
 
-{ #category : 'testing' }
-LuiPersonFormFunctionalTest class >> isLcsFunctionalTest [
-	^ self name asString ~= 'LuiFormFunctionalTest'
-]
-
 { #category : 'presenter' }
 LuiPersonFormFunctionalTest >> functionTestPresenter [
 	self model: LxxPersonExamples new johnFreeman.
