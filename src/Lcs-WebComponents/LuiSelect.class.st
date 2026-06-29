@@ -20,7 +20,8 @@ Class {
 		'optionPrintBlock',
 		'optionNames',
 		'options',
-		'elements'
+		'elements',
+		'selectableItemsBlock'
 	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
@@ -67,6 +68,7 @@ LuiSelect >> initialize [
 	super initialize.
 	self optionPrintBlock: [ :eachOption | eachOption asString ].
 	self callback: [].
+	self selectableItemsBlock: [ :model | self slotDefinition targetCollection ]. 
 	self elements: OrderedCollection new.
 ]
 
@@ -82,7 +84,7 @@ LuiSelect >> initializeOnSlot: aSlotDefinition model: aModel componentName: aStr
 		model: aModel
 		componentName: aString.
 	self elements: (
-		self slotDefinition targetCollection 
+		(self selectableItemsBlock cull: aModel)
 			asSortedCollection: [ :a :b | (self displayLabelFor: a) <= (self displayLabelFor: b) ])
 ]
 
@@ -127,6 +129,16 @@ LuiSelect >> renderElementComponentsOn: html [
 				callback: [ :value | self handleCallbackValue: value element: each ];
 				selected: self valueAccessor read = each;
 				with: (self optionValueFor: each) ]
+]
+
+{ #category : 'accessing' }
+LuiSelect >> selectableItemsBlock [
+	^ selectableItemsBlock
+]
+
+{ #category : 'accessing' }
+LuiSelect >> selectableItemsBlock: anObject [
+	selectableItemsBlock := anObject
 ]
 
 { #category : 'query' }

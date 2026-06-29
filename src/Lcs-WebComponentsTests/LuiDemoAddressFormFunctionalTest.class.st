@@ -11,10 +11,16 @@ LuiDemoAddressFormFunctionalTest >> functionTestPresenter [
 	LcsApplicationEnvironment ensureCurrentSystemIsDemoSystem.
 	self model: LcsAddress new.
 	^ (LuiDomainPresenter named: 'addressPresenter' model: self model)
-		addLabelAndWidgetComponentFor: 'addressType';
+		"addLabelAndWidgetComponentFor: 'addressType';"
 		addLabelAndWidgetComponentFor: 'streetName';
 		addLabelAndWidgetComponentFor: 'streetNumber';
 		addLabelAndWidgetComponentFor: 'unit';
+		addLabelAndWidgetComponentFor: 'postBox';
+		addLabelAndWidgetComponentFor: 'additionalDeliveryInformation';
+		addLabelAndWidgetComponentFor: 'city';
+		addLabelAndWidgetComponentFor: 'province' widgetClass:  LuiSelect;
+		addLabelAndWidgetComponentFor: 'country';
+		"addLabelAndWidgetComponentFor: 'postalCode';"
 		yourself
 
 ]

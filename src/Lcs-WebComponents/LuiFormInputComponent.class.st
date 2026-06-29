@@ -45,7 +45,6 @@ LuiFormInputComponent >> initializeNamed: aName [
 { #category : 'initialize' }
 LuiFormInputComponent >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-	aSlotDefinition configureWidgetComponent: self.
 	self callback: [ :value | self handleCallbackValue: value ]
 ]
 

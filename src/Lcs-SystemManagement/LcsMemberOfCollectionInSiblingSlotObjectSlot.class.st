@@ -6,6 +6,12 @@ Class {
 	#tag : 'Slot'
 }
 
+{ #category : 'widget configuration' }
+LcsMemberOfCollectionInSiblingSlotObjectSlot >> configureWidgetComponent: aWidgetComponent [
+	(aWidgetComponent respondsTo: #selectableItemsBlock:) ifTrue: [
+		aWidgetComponent selectableItemsBlock: [ :model | self targetCollectionIn: model ] ]
+]
+
 { #category : 'defaults' }
 LcsMemberOfCollectionInSiblingSlotObjectSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | (slot targetCollectionIn: parentDomainObject) defaultInstance ]
