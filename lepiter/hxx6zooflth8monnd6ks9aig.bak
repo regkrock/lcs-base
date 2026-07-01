@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-04-07T14:27:21.235797-04:00"
+						"dateAndTimeString" : "2026-06-30T12:43:59.45057-04:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "GCpq9C31DQCRy0+vAiRrCA=="
 				},
-				"code" : "'42' matchesRegex: '\\d+'.\r'42' matchesRegex: '\\d\\d'.\r\r'A' matchesRegex: '[A-Z]'.\r'K8A6W8' matchesRegex: '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'.\r'K8A6W8' matchesRegex: '[[A-Z][0-9]]+'.\r'K8A 6W8' matchesRegex: '[A-Z][0-9][A-Z]\\s[0-9][A-Z][0-9]'.\r'K8A 6W8' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\r\r' ' matchesRegex: '\\s'.\t\"Search for a space\"\r'B1A 1A1' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\t\"Search for a space\"\r\r'Abcdef3@' "
+				"code" : "('4' matchesRegex: '\\d+') = true.\r('42' matchesRegex: '\\d+') = true.\r('423' matchesRegex: '\\d+') = true.\r('42' matchesRegex: '\\d\\d') = true.\r('423' matchesRegex: '\\d\\d') = false.\r\r'A' matchesRegex: '[A-Z]'.\r'K8A6W8' matchesRegex: '[A-Z][0-9][A-Z][0-9][A-Z][0-9]'.\r'K8A6W8' matchesRegex: '[[A-Z][0-9]]+'.\r'K8A 6W8' matchesRegex: '[A-Z][0-9][A-Z]\\s[0-9][A-Z][0-9]'.\r'K8A 6W8' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\r\r' ' matchesRegex: '\\s'.\t\"Search for a space\"\r'-' matchesRegex: '\\s'.\t\"Search for a space\"\r'B1A 1A1' matchesRegex: '\\A\\d\\A\\s\\d\\A\\d'.\t\"Search for a space\""
 			},
 			{
 				"__type" : "textSnippet",

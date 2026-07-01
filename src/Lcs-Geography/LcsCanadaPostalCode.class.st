@@ -10,9 +10,21 @@ Class {
 LcsCanadaPostalCode class >> codeSlotDefinition [
 	<accessorSlotDefinition>
 	^ super codeSlotDefinition
-		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | 
-				(value
-					matchesRegex: '[A-Z][0-9][A-Z]\s[0-9][A-Z][0-9]|[A-Z][0-9][A-Z][0-9][A-Z][0-9]') ]
-			description: 'Postalcode format should be A1A 1A1';
+		prevalidationTransformBlock: [ :value :slot | value isString ifTrue: [ value asUppercase ] ifFalse: [ value ] ];
 		yourself
+]
+
+{ #category : 'defaults' }
+LcsCanadaPostalCode class >> localePostalCodeName [
+	^'Postal Code'
+]
+
+{ #category : 'defaults' }
+LcsCanadaPostalCode class >> postalCodeRegex [
+	^'[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d'
+]
+
+{ #category : 'defaults' }
+LcsCanadaPostalCode class >> postalCodeTooltip [
+	^'A1A 1A1'
 ]

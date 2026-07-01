@@ -66,6 +66,26 @@ LcsBaseSmalltalkObjectSlot >> inputComponentClassName: anObject [
 	inputComponentClassName := anObject
 ]
 
+{ #category : 'properties' }
+LcsBaseSmalltalkObjectSlot >> title [
+	^ self propertyAt: 'title' ifAbsent: [ nil ]
+]
+
+{ #category : 'properties' }
+LcsBaseSmalltalkObjectSlot >> title: aString [ 
+	self propertyAt: 'title' put: aString
+]
+
+{ #category : 'properties' }
+LcsBaseSmalltalkObjectSlot >> tooltip [
+	^ self title
+]
+
+{ #category : 'properties' }
+LcsBaseSmalltalkObjectSlot >> tooltip: aString [
+	self title: aString
+]
+
 { #category : 'configuration' }
 LcsBaseSmalltalkObjectSlot >> typeClass [
 	self subclassResponsibility

@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'widget configuration' }
-LcsMemberOfCollectionInSiblingSlotObjectSlot >> configureWidgetComponent: aWidgetComponent [
+LcsMemberOfCollectionInSiblingSlotObjectSlot >> configureWidgetComponent: aWidgetComponent model: aModel [
 	(aWidgetComponent respondsTo: #selectableItemsBlock:) ifTrue: [
 		aWidgetComponent selectableItemsBlock: [ :model | self targetCollectionIn: model ] ]
 ]

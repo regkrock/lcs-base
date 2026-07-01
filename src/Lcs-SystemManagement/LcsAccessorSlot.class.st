@@ -107,6 +107,11 @@ LcsAccessorSlot >> addValidationRuleBlock: aBlock description: aString [
 	^ self validationRules addRuleBlock: aBlock description: aString
 ]
 
+{ #category : 'slot model' }
+LcsAccessorSlot >> addValidationRuleBlock: aBlock description: aString errorMessage: aStringOrBlock [
+	^ self validationRules addRuleBlock: aBlock description: aString errorMessage: aStringOrBlock
+]
+
 { #category : 'properties' }
 LcsAccessorSlot >> allowInitialNil [ 
 	^ self propertyAt: #'allowInitialNil'

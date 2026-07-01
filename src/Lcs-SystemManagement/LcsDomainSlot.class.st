@@ -523,6 +523,11 @@ LcsDomainSlot >> propertyAt: aSymbol ifAbsentPut: aBlock [
 ]
 
 { #category : 'properties' }
+LcsDomainSlot >> propertyAt: aSymbol ifPresent: aBlock [
+	^ self properties at: aSymbol ifPresent: aBlock 
+]
+
+{ #category : 'properties' }
 LcsDomainSlot >> propertyAt: aSymbol put: anObject [
 	^ self properties at: aSymbol put: anObject 
 ]

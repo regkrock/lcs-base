@@ -12,6 +12,11 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'initialize' }
+LuiTextInput >> componentAttributesClass [
+	^ LuiTextInputAttributes
+]
+
 { #category : 'defaults' }
 LuiTextInput >> defaultCssClasses [
 	^ #( 'inputField' )
@@ -42,6 +47,12 @@ LuiTextInput >> initializeNamed: aName [
 LuiTextInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self placeholder: aSlotDefinition label
+]
+
+{ #category : 'visiting' }
+LuiTextInput >> populateFromStringSlot: aStringSlot [
+	aStringSlot propertyAt: 'title' ifPresent: [ :property | self title: property ]. 
+	aStringSlot propertyAt: 'pattern' ifPresent: [ :property | self pattern: property ]. 
 ]
 
 { #category : 'rendering' }

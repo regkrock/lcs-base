@@ -68,6 +68,16 @@ LcsBaseRules >> addRuleBlock: aBlock description: aString [
 			yourself)
 ]
 
+{ #category : 'conditions' }
+LcsBaseRules >> addRuleBlock: aBlock description: aString errorMessage: aStringOrBlock [
+	^ self addRule: (
+		self ruleClass new
+			description: aString;
+			conditionBlock: aBlock;
+			errorMessage: aStringOrBlock;
+			yourself)
+]
+
 { #category : 'as yet unclassified' }
 LcsBaseRules >> addRulesTo: stream [
 	self collection

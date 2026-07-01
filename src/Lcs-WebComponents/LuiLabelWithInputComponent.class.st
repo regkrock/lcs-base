@@ -145,7 +145,7 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel [
 	self
 		initializeOnSlot: aSlotDefinition
 		model: aModel
-		widgetClass: aSlotDefinition defaultInputComponentClass
+		widgetClass: (aSlotDefinition defaultInputComponentClassFor: aModel)
 ]
 
 { #category : 'initialize' }

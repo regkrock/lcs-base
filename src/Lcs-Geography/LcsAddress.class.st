@@ -59,6 +59,7 @@ LcsAddress class >> countrySlotDefinition [
 	^ LcsMemberOfGlobalCollectionSlot new
 		slotName: 'country';
 		slotTypes: (OrderedCollection with: LcsCountry);
+		initialValueBlock: [ :parentDomainObject :slot | parentDomainObject defaultCountry];
 		prevalidationTransformBlock: [ :value :slot | slot targetCollection findItemMatchingCodeOrName: value ifNone: [ value ] ];
 		collectionSlotName: 'countries';
 		collectionSlotModuleName: LcsGeographyModule defaultModuleName;
@@ -198,6 +199,11 @@ LcsAddress >> country [
 { #category : 'accessing' }
 LcsAddress >> country: anObject [
 	self slotVarNamed: 'country' put: anObject
+]
+
+{ #category : 'defaults' }
+LcsAddress >> defaultCountry [
+	^ self currentSystem geographyModule defaultCountry
 ]
 
 { #category : 'testing' }

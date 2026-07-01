@@ -542,6 +542,11 @@ LuiComponent >> parentViewComponents [
 	^Array with: self parentComponent
 ]
 
+{ #category : 'attributes - accessing' }
+LuiComponent >> pattern: aString [
+	self attributes pattern: aString
+]
+
 { #category : 'gt - views' }
 LuiComponent >> prettyPrintedHtml: html [ 
 	| ast visitor |

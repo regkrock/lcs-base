@@ -12,10 +12,41 @@ Class {
 { #category : 'slot definitions' }
 LcsBasePostCode class >> codeSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsStringSlot new
+	| slotDefinition |
+	slotDefinition := LcsStringSlot new.
+	slotDefinition
 		slotName: 'code';
-		beAllowInitialNull;
-		yourself
+		beAllowInitialNull.
+	self postalCodeRegex ifNotNil: [ 
+		slotDefinition
+			pattern: self postalCodeRegex;
+			tooltip: self postalCodeTooltip;
+			beRequired;
+			addValidationRuleBlock: [ :value :parentDomainObject :oldValue | 
+					value matchesRegex: slotDefinition pattern ]
+				description: 'Postal Code Verification'
+				errorMessage: self postalCodeErrorMessage ].
+	^ slotDefinition
+]
+
+{ #category : 'defaults' }
+LcsBasePostCode class >> localePostalCodeName [
+	self subclassResponsibility
+]
+
+{ #category : 'defaults' }
+LcsBasePostCode class >> postalCodeErrorMessage [
+	^ self localePostalCodeName , ' must be of form ' , self postalCodeTooltip
+]
+
+{ #category : 'defaults' }
+LcsBasePostCode class >> postalCodeRegex [
+	^ nil
+]
+
+{ #category : 'defaults' }
+LcsBasePostCode class >> postalCodeTooltip [
+	^ self subclassResponsibility
 ]
 
 { #category : 'accessing' }

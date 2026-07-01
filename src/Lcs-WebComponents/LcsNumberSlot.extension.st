@@ -1,7 +1,7 @@
 Extension { #name : 'LcsNumberSlot' }
 
 { #category : '*Lcs-WebComponents' }
-LcsNumberSlot >> configureWidgetComponent: aWidgetComponent [
+LcsNumberSlot >> configureWidgetComponent: aWidgetComponent model: aModel [
 	aWidgetComponent 
 		step: self stepValue;
 		min: self minimum;

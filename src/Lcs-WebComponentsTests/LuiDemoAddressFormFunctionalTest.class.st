@@ -20,7 +20,7 @@ LuiDemoAddressFormFunctionalTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'city';
 		addLabelAndWidgetComponentFor: 'province' widgetClass:  LuiSelect;
 		addLabelAndWidgetComponentFor: 'country';
-		"addLabelAndWidgetComponentFor: 'postalCode';"
+		addLabelAndWidgetComponentFor: 'postCode';
 		yourself
 
 ]

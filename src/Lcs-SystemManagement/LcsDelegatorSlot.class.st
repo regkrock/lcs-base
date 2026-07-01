@@ -29,6 +29,11 @@ LcsDelegatorSlot >> currentSlotVarIn: aDomainObject [
 		do: [ :s | s return: self errorReturnObject ].
 ]
 
+{ #category : 'defaults' }
+LcsDelegatorSlot >> defaultInputComponentClassFor: aModel [
+	^ (self sourceSlotFor: aModel) defaultInputComponentClass
+]
+
 { #category : 'properties' }
 LcsDelegatorSlot >> errorClass [
 	^ self propertyAt: #'errorClass' ifAbsent: [ LcsDummyError ]
@@ -87,6 +92,12 @@ LcsDelegatorSlot >> slotVarPut: anObject in: aTargetDomainObject [
 	actualDomainObject
 		slotVarNamed: self targetSlotPath last
 		put: anObject
+]
+
+{ #category : 'defaults' }
+LcsDelegatorSlot >> sourceSlotFor: aModel [
+	^ (aModel perform: self targetSlotPath first asSymbol)
+		slotDefinitionNamed: (self targetSlotPath at: 2)
 ]
 
 { #category : 'properties' }

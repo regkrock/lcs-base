@@ -100,3 +100,14 @@ LcsGeographyModule >> countries [
 LcsGeographyModule >> countries: anObject [
 	self slotVarNamed: 'countries' put: anObject
 ]
+
+{ #category : 'defaults' }
+LcsGeographyModule >> defaultCountry [
+	^ self configuration defaultCountry ifNil: [ self countries unknownInstance ]
+]
+
+{ #category : 'laoding' }
+LcsGeographyModule >> loadData [
+	super loadData.
+	self configuration defaultCountry: (self countries findItemMatchingCode: 'CA')
+]

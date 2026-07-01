@@ -14,6 +14,11 @@ LcsPostalCodeSlot >> defaultInitialValueBlock [
 				yourself ]
 ]
 
+{ #category : 'defaults' }
+LcsPostalCodeSlot >> defaultInputComponentClass [
+	^ LuiTextInput
+]
+
 { #category : 'initialize' }
 LcsPostalCodeSlot >> initialize [
 	super initialize.

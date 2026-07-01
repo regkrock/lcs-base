@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'configuration' }
-LcsTimeSlot >> configureWidgetComponent: aWidgetComponent [
+LcsTimeSlot >> configureWidgetComponent: aWidgetComponent model: aModel [
 	aWidgetComponent 
 		"step: self stepValue;"
 		min: (self minimum ifNotNil: [ :time | time asString ]) ;

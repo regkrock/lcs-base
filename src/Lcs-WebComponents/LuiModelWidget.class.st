@@ -116,14 +116,14 @@ LuiModelWidget >> initializeNamed: aName selector: aGetter model: aModel [
 
 { #category : 'instance creation' }
 LuiModelWidget >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
-	self valueAccessor: (
-		LuiSlotAccessor
-			newOn: self
-			slotDefinition: aSlotDefinition
-			model: aModel).
+	self
+		valueAccessor: (LuiSlotAccessor
+				newOn: self
+				slotDefinition: aSlotDefinition
+				model: aModel).
 	aSlotDefinition isVirtualSlot ifTrue: [ self disabled: true ].
 	self componentName: aString.
-	aSlotDefinition configureWidgetComponent: self.
+	aSlotDefinition configureWidgetComponent: self model: aModel
 ]
 
 { #category : 'model' }
@@ -140,6 +140,10 @@ LuiModelWidget >> model: aModel [
 { #category : 'callbacks' }
 LuiModelWidget >> optionModel [
 	^ self valueAccessor model
+]
+
+{ #category : 'visiting' }
+LuiModelWidget >> populateFromStringSlot: aStringSlot [
 ]
 
 { #category : 'model' }

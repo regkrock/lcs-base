@@ -26,7 +26,7 @@ NT	Northwest Territory	Territory'
 { #category : 'data' }
 LcsCountriesLoader >> data [
 	^ 'Canada	CA	CAN	124	Canada	LcsCanadaPostalCode	LcsCanadaSubdivision	Province
-United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom	LcsGenericPostalCode	LcsCountrySubdivision	 
+United Kingdom of Great Britain and Northern Ireland (the)	GB	GBR	826	United Kingdom	LcsGreatBritainPostalCode	LcsCountrySubdivision	 
 United States of America (the)	US	USA	840	United States	LcsZipCode	LcsUnitedStatesSubdivision	State'
 ]
 
