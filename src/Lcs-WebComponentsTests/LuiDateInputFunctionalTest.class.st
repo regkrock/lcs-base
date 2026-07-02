@@ -32,7 +32,7 @@ LuiDateInputFunctionalTest >> initialize [
 	button := 
 		(LuiButton named: 'button') 
 			beButtonType; 
-			labelString: 'OK'; 
+			text: 'OK'; 
 			yourself.
 	self addComponent: button.
 	^ self

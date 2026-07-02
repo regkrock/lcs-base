@@ -149,6 +149,14 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel [
 ]
 
 { #category : 'initialize' }
+LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	self
+		_initializeOnSlot: aSlotDefinition
+		model: aModel
+		componentName: aString.
+]
+
+{ #category : 'initialize' }
 LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel widgetClass: aWidgetClass [
 	self
 		initializeOnSlot: aSlotDefinition
@@ -165,7 +173,7 @@ LuiLabelWithInputComponent >> initializeOnSlot: aSlotDefinition model: aModel wi
 	self labelComponentName: self inputComponentName , 'Label'.
 	self widgetClass: aWidgetClass.
 
-	self initializeOnSlot: aSlotDefinition model: aModel componentName: self componentName.
+	self _initializeOnSlot: aSlotDefinition model: aModel componentName: self componentName.
 
 	({LuiCheckboxAndLabel. LuiCheckboxAndLabel} includes: self widgetClass)
 		ifTrue: [ self addEmptyLabelAndCompoundInputComponents ]

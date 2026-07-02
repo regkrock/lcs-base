@@ -43,6 +43,7 @@ LcsPersonExamples >> globalPostalAddressesPendingAddsSize [
 { #category : 'examples' }
 LcsPersonExamples >> jackFreeman [
 	<gtExample>
+	<after: #clearUntOfWork>
 	| person |
 	person := self newPerson
 			familyName: 'Freeman';
@@ -73,6 +74,8 @@ LcsPersonExamples >> jackFreeman [
 { #category : 'examples' }
 LcsPersonExamples >> jackFreemanHomeEmail [
 	<gtExample>
+	<after: #clearUntOfWork>
+	self ensureCurrentSystemIsDemoSystem.
 	^ LcsEmailAddress new
 		emailAddressType: 'home';
 		email: 'johnfreeman@gmail.com';
@@ -82,6 +85,7 @@ LcsPersonExamples >> jackFreemanHomeEmail [
 { #category : 'examples' }
 LcsPersonExamples >> jackFreemanWithAddress [
 	<gtExample>
+	<after: #clearUntOfWork>
 	| person newHomeAddress |
 	person := self jackFreeman.
 	self saveOriginalStats.
@@ -150,6 +154,8 @@ LcsPersonExamples >> jackFreemanWithEmailAddresses [
 { #category : 'examples' }
 LcsPersonExamples >> jackFreemanWorkEmail [
 	<gtExample>
+	<after: #clearUntOfWork>
+	self ensureCurrentSystemIsDemoSystem.
 	^ LcsEmailAddress new
 		emailAddressType: 'work';
 		email: 'johnfreemanWork@gmail.com';
@@ -159,7 +165,9 @@ LcsPersonExamples >> jackFreemanWorkEmail [
 { #category : 'examples' }
 LcsPersonExamples >> johnDoe [
 	<gtExample>
+	<after: #clearUntOfWork>
 	| person |
+	self ensureCurrentSystemIsDemoSystem.
 	person := self newPerson
 			firstName: 'John';
 			familyName: 'Doe'.	"Because person is automatically added to a global collection, no need to explicitly add the parent"
@@ -176,6 +184,7 @@ LcsPersonExamples >> newPerson [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| person |
+	self ensureCurrentSystemIsDemoSystem.
 	LcsPerson hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem ].
 	self saveOriginalStats.
 	person := LcsPerson new.

@@ -35,7 +35,7 @@ LuiTimeInputExamples >> timeInputForSlotWithMinimumAndMaximum [
 	self assert: slot validationRules collection size = 1 .
 	self assert: slot validationRules collection any class == LcsRangeRule.
 
-	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" name="1" min="12:00 am" max="12:00 pm" value="' , Time midnight asString , '" type="time"/>'.
+	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" max="12:00 pm" min="12:00 am" name="1" value="' , Time midnight asString , '" type="time"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -50,7 +50,7 @@ LuiTimeInputExamples >> updateTime [
 	component := self timeInputForSlotWithMinimumAndMaximum.
 	component handleCallbackValue: newTime asString.
 	self assert: component model time equals: newTime.
-	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" name="1" min="12:00 am" max="12:00 pm" value="12:00:03 am" type="time"/>'.
+	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" max="12:00 pm" min="12:00 am" name="1" value="12:00:03 am" type="time"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]

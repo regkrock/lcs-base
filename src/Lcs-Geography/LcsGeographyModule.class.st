@@ -103,6 +103,7 @@ LcsGeographyModule >> countries: anObject [
 
 { #category : 'defaults' }
 LcsGeographyModule >> defaultCountry [
+	self configuration ifNil: [  ^ self countries unknownInstance ].
 	^ self configuration defaultCountry ifNil: [ self countries unknownInstance ]
 ]
 

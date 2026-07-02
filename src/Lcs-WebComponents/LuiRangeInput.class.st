@@ -18,6 +18,15 @@ LuiRangeInput >> initialize [
 	self toStringConverter: LuiNumberStringConverter new
 ]
 
+{ #category : 'initialize' }
+LuiRangeInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
+	self 
+		step: aSlotDefinition stepValue;
+		min: aSlotDefinition minimum;
+		max: aSlotDefinition maximum
+]
+
 { #category : 'rendering' }
 LuiRangeInput >> renderComponentOn: html [
 	html rangeInput

@@ -32,14 +32,9 @@ LuiLabel >> gtViewTagName [
 
 { #category : 'iniitialize' }
 LuiLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
-	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
+	self _initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
 	self text: aSlotDefinition label.
 	self attributes for: aSlotDefinition slotName
-]
-
-{ #category : 'as yet unclassified' }
-LuiLabel >> labelString: aString [ 
-	self shouldBeImplemented.
 ]
 
 { #category : 'attributes' }

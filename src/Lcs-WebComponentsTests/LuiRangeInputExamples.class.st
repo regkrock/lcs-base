@@ -30,7 +30,7 @@ LuiRangeInputExamples >> weightRange [
 	person := LxxPerson new.
 	component := LuiRangeInput onSlotNamed: 'weight' model: person.
 
-	expectedHtml := '<input data-name="weight" data-StClass="LuiRangeInput" max="500" name="1" min="0" value="0" type="range"/>'.
+	expectedHtml := '<input data-name="weight" data-StClass="LuiRangeInput" step="1" max="500" min="0" name="1" value="0" type="range"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]

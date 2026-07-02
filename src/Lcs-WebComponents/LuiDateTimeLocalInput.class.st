@@ -36,6 +36,19 @@ LuiDateTimeLocalInput >> initialize [
 	self fromStringConverter: LuiStringToDateAndTimeConverter new.
 ]
 
+{ #category : 'initialize' }
+LuiDateTimeLocalInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super
+		initializeOnSlot: aSlotDefinition
+		model: aModel
+		componentName: aString.
+	aSlotDefinition isVirtualSlot ifTrue: [ ^ self ].
+	self
+		step: aSlotDefinition stepValue;
+		min: (aSlotDefinition minimum ifNotNil: [ :minDateAndTime | minDateAndTime asString ]);
+		max: (aSlotDefinition maximum ifNotNil: [ :maxDateAmdTime | maxDateAmdTime asString ])
+]
+
 { #category : 'rendering' }
 LuiDateTimeLocalInput >> renderComponentOn: html [
 	html dateTimeLocalInput

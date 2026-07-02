@@ -77,7 +77,7 @@ LcsAddressExamples >> newAddress [
 	<gtExample>
 	| address defaultCountry addresses |
 	LcsAddress hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem ].
-	defaultCountry := self currentSystem geographyModule countries defaultInstance.
+	defaultCountry := self currentSystem geographyModule defaultCountry.
 	addresses := self currentSystem geographyModule addresses.
 
 	address := LcsAddress new.
@@ -91,7 +91,7 @@ LcsAddressExamples >> newAddress [
 	self assert: address postBox equals: ''.
 	self assert: address city equals: ''.
 	self assert: address postCode equals: ''.
-	self assert: address postalCode class = LcsGenericPostalCode.
+	self assert: address postalCode class = LcsCanadaPostalCode.
 	self assert: address postalCode class equals: defaultCountry postalCodeClass.
 	self assert: address country equals: defaultCountry.
 	self assert: address dateRange effectiveDate year equals: 1970.

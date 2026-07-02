@@ -104,6 +104,7 @@ LxxPerson class >> weightSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsNumberSlot new
 		slotName: 'weight';
+		stepValue: 1;
 		minimum: 0;
 		maximum: 500;
 		yourself

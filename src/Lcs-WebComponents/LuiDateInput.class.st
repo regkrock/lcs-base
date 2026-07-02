@@ -36,6 +36,18 @@ LuiDateInput >> initialize [
 	self fromStringConverter: LuiStringToDateConverter new.
 ]
 
+{ #category : 'initialize' }
+LuiDateInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super
+		initializeOnSlot: aSlotDefinition
+		model: aModel
+		componentName: aString.
+	self
+		step: aSlotDefinition stepValue;
+		min: (aSlotDefinition minimum ifNotNil: [ :minDate | minDate yyyymmdd ]);
+		max: (aSlotDefinition maximum ifNotNil: [ :maxDate | maxDate yyyymmdd ])
+]
+
 { #category : 'rendering' }
 LuiDateInput >> renderComponentOn: html [
 	html dateInput5

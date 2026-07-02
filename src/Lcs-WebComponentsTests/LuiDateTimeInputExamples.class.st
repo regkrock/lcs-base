@@ -7,6 +7,20 @@ Class {
 }
 
 { #category : 'examples' }
+LuiDateTimeInputExamples >> componentWithMinMaxAndDefaultStep [
+	<gtExample>
+	| component  begin end expectedHtml|
+	begin := DateAndTime fromString: '2026-06-27T00:00'.
+	end := DateAndTime fromString: '2026-06-28T23:59'.
+	component := self newComponent.
+	component min: begin.
+	component max: end.
+	expectedHtml := '<input data-name="dateTimePicker" data-StClass="LuiDateTimeInput" max="2026-06-28T23:59:00-04:00" min="2026-06-27T00:00:00-04:00" name="1" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
+	self assertRendered: component equals: expectedHtml.
+	^ component
+]
+
+{ #category : 'examples' }
 LuiDateTimeInputExamples >> componentWithMinMaxAndStep [
 	<gtExample>
 	| component  begin end expectedHtml|
@@ -16,8 +30,8 @@ LuiDateTimeInputExamples >> componentWithMinMaxAndStep [
 	component min: begin.
 	component max: end.
 	component step: 1.
-	expectedHtml := '<input data-name="dateTimePicker" data-StClass="LuiDateTimeInput" step="1" name="1" max="2026-06-28T23:59:00-04:00" min="2026-06-27T00:00:00-04:00" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
-	"self assertRendered: component equals: expectedHtml."
+	expectedHtml := '<input data-name="dateTimePicker" data-StClass="LuiDateTimeInput" max="2026-06-28T23:59:00-04:00" step="1" min="2026-06-27T00:00:00-04:00" name="1" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
+	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
 
@@ -42,6 +56,7 @@ LuiDateTimeInputExamples >> personCreatedTimestampInputComponent [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| component person |
+	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
 	component := LuiDateTimeInput onSlotNamed: 'creationTimestamp' model: person.
 	^ component

@@ -31,6 +31,15 @@ LuiNumberInput >> initialize [
 	self toStringConverter: LuiNumberStringConverter new.
 ]
 
+{ #category : 'initialize' }
+LuiNumberInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
+	self 
+		step: aSlotDefinition stepValue;
+		min: aSlotDefinition minimum;
+		max: aSlotDefinition maximum
+]
+
 { #category : 'rendering' }
 LuiNumberInput >> renderComponentOn: html [
 	html numberInput

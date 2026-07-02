@@ -15,7 +15,8 @@ LcsAddressesExamples >> newAddressesCollection [
 	self assert: domainCollection hasNoElements.
 	self assert: domainCollection hasNoPendingAdds.
 	self assert: domainCollection hasNoPendingDeletes.
-	self assert: domainCollection unknownInstance class == LcsUnknownAddress.
+	"self assert: domainCollection unknownInstance class == LcsUnknownAddress."
+	self assert: (domainCollection unknownInstance isKindOf:LcsUnknownAddress).
 	^ domainCollection
 ]
 

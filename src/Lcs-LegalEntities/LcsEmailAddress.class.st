@@ -29,13 +29,14 @@ LcsEmailAddress class >> emailRegexPattern [
 	"This pattern is from https://regex-snippets.com/email. Raw string is in next comment.
 	"
 	"^(?!\.)(?!.*\.\.)(?!.*\.@)[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(?!-)[a-zA-Z0-9-]+(?<!-)(?:\.[a-zA-Z0-9-]+(?<!-))*\.[a-zA-Z]{2,}$"
-	| stream |
+	"| stream |
 	stream := WriteStream on: String new.
 	^ stream 
 		nextPutAll: '(?!\.)(?!.*\.\.)(?!.*\.@)[a-zA-Z0-9.!#$%&';
 		nextPut: $';
 		nextPutAll: '*+/=?^_`{|}~-]+@(?!-)[a-zA-Z0-9-]+(?<!-)(?:\.[a-zA-Z0-9-]+(?<!-))*\.[a-zA-Z]{2,}';
-		contents
+		contents"
+	^ '[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}\.[a-zA-Z0-9]{1,}'
 ]
 
 { #category : 'slot definitions' }
@@ -44,7 +45,7 @@ LcsEmailAddress class >> emailSlotDefinition [
 	| slot |
 	slot := LcsStringSlot new
 		slotName: 'email';
-		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value matchesRegex: slot pattern ]
+		addValidationRuleBlock: [ :value :parentDomainObject :oldValue | value isEmpty or: [value matchesRegex: slot pattern ]]
 			description: 'Invalid email'
 			errorMessage: 'Malformed email address';
 		pattern: self emailRegexPattern;

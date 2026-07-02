@@ -19,6 +19,15 @@ LuiTimeInput >> initialize [
 	
 ]
 
+{ #category : 'initialize' }
+LuiTimeInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
+	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
+	self 
+		"step: aSlotDefinition stepValue;"
+		min: aSlotDefinition minimum;
+		max: aSlotDefinition maximum
+]
+
 { #category : 'rendering' }
 LuiTimeInput >> renderComponentOn: html [
 	html timeInput5

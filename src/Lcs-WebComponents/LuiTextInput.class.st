@@ -46,13 +46,9 @@ LuiTextInput >> initializeNamed: aName [
 { #category : 'initialize' }
 LuiTextInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
+	aSlotDefinition propertyAt: 'title' ifPresent: [ :property | self title: property ]. 
+	aSlotDefinition propertyAt: 'pattern' ifPresent: [ :property | self pattern: property ]. 
 	self placeholder: aSlotDefinition label
-]
-
-{ #category : 'visiting' }
-LuiTextInput >> populateFromStringSlot: aStringSlot [
-	aStringSlot propertyAt: 'title' ifPresent: [ :property | self title: property ]. 
-	aStringSlot propertyAt: 'pattern' ifPresent: [ :property | self pattern: property ]. 
 ]
 
 { #category : 'rendering' }

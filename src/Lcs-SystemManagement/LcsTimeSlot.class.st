@@ -8,14 +8,6 @@ Class {
 	#tag : 'Slot'
 }
 
-{ #category : 'configuration' }
-LcsTimeSlot >> configureWidgetComponent: aWidgetComponent model: aModel [
-	aWidgetComponent 
-		"step: self stepValue;"
-		min: (self minimum ifNotNil: [ :time | time asString ]) ;
-		max: (self maximum ifNotNil: [ :time | time asString ]) 
-]
-
 { #category : 'defaults' }
 LcsTimeSlot >> defaultInitialValueBlock [
 	^ [ :parentDomainObject :slot | slot typeClass now ]
