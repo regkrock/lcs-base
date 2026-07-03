@@ -42,8 +42,9 @@ LcsPersonExamples >> globalPostalAddressesPendingAddsSize [
 
 { #category : 'examples' }
 LcsPersonExamples >> jackFreeman [
+	"self new jackFreeman"
 	<gtExample>
-	<after: #clearUntOfWork>
+	<after: #clearUnitOfWork>
 	| person |
 	person := self newPerson
 			familyName: 'Freeman';
@@ -74,7 +75,7 @@ LcsPersonExamples >> jackFreeman [
 { #category : 'examples' }
 LcsPersonExamples >> jackFreemanHomeEmail [
 	<gtExample>
-	<after: #clearUntOfWork>
+	<after: #clearUnitOfWork>
 	self ensureCurrentSystemIsDemoSystem.
 	^ LcsEmailAddress new
 		emailAddressType: 'home';
@@ -85,7 +86,7 @@ LcsPersonExamples >> jackFreemanHomeEmail [
 { #category : 'examples' }
 LcsPersonExamples >> jackFreemanWithAddress [
 	<gtExample>
-	<after: #clearUntOfWork>
+	<after: #clearUnitOfWork>
 	| person newHomeAddress |
 	person := self jackFreeman.
 	self saveOriginalStats.
@@ -154,7 +155,7 @@ LcsPersonExamples >> jackFreemanWithEmailAddresses [
 { #category : 'examples' }
 LcsPersonExamples >> jackFreemanWorkEmail [
 	<gtExample>
-	<after: #clearUntOfWork>
+	<after: #clearUnitOfWork>
 	self ensureCurrentSystemIsDemoSystem.
 	^ LcsEmailAddress new
 		emailAddressType: 'work';
@@ -165,7 +166,7 @@ LcsPersonExamples >> jackFreemanWorkEmail [
 { #category : 'examples' }
 LcsPersonExamples >> johnDoe [
 	<gtExample>
-	<after: #clearUntOfWork>
+	<after: #clearUnitOfWork>
 	| person |
 	self ensureCurrentSystemIsDemoSystem.
 	person := self newPerson
@@ -222,6 +223,7 @@ LcsPersonExamples >> newPersonWithFirstName: aFirstName familyName: aFamilyName 
 { #category : 'examples' }
 LcsPersonExamples >> oldDateOfBirthValidationError [
 	<gtExample>
+	<after: #clearUnitOfWork>
 	| person error |
 	person := self johnDoe.
 	error := [ person dateOfBirth: '01-01-1000' ] 

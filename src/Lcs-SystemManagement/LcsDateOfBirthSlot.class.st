@@ -25,3 +25,13 @@ LcsDateOfBirthSlot >> initialize [
 	self maximumBlock: [ Date today ].
 	self rangeRuleErrorMessage: 'Age must be between 0 and 120 years'
 ]
+
+{ #category : 'properties' }
+LcsDateOfBirthSlot >> stepValue [
+	^ self propertyAt: #stepValue ifAbsent: [ nil ]
+]
+
+{ #category : 'properties' }
+LcsDateOfBirthSlot >> stepValue: anInteger [
+	^ self propertyAt: #stepValue put: anInteger
+]

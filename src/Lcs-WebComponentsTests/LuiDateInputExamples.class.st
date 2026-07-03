@@ -29,8 +29,9 @@ LuiDateInputExamples >> birthdayOfPerson [
 	self assert: dateOfBirthSlot maximum equals: maximumDate.
 
 
-	expectedHtml := '<input data-name="dateOfBirth" data-StClass="LuiDateInput" name="1" min="'
-			, minimumDate yyyymmdd , '" max="' , maximumDate yyyymmdd , '" value="'
+	expectedHtml := 
+	'<input data-name="dateOfBirth" data-StClass="LuiDateInput" max="' , maximumDate yyyymmdd , '" min="'
+			, minimumDate yyyymmdd , '" name="1" value="'
 			, birthDate yyyymmdd , '" type="date"/>'.
 
 	self assertRendered: component equals: expectedHtml.
