@@ -185,7 +185,6 @@ LcsPersonExamples >> newPerson [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| person |
-	self ensureCurrentSystemIsDemoSystem.
 	LcsPerson hasSlotModel ifFalse: [ self ensureCurrentSystemIsDemoSystem ].
 	self saveOriginalStats.
 	person := LcsPerson new.
