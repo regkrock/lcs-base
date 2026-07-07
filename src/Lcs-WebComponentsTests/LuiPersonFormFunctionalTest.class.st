@@ -12,16 +12,16 @@ LuiPersonFormFunctionalTest >> functionTestPresenter [
 	^ (LuiDomainPresenter named: 'personPresenter' model: self model)
 		cssClass: 'twoColumnsBySixRows';
 		addLabelAndWidgetComponentFor: 'firstName';
-			addLabelAndWidgetComponentFor: 'lastName';
-			addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;
-			addLabelAndWidgetComponentFor: 'mainSkill';
-			addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtons inputComponentName: 'mainSkillRadioButtons';
-			addLabelAndWidgetComponentFor: 'balance';
-			addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
+		addLabelAndWidgetComponentFor: 'lastName';
+		"addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;"
+		addLabelAndWidgetComponentFor: 'mainSkill';
+		addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtons inputComponentName: 'mainSkillRadioButtons';
+		addLabelAndWidgetComponentFor: 'balance';
+		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
 		addLabelAndWidgetComponentFor: 'hasRedHair' widgetClass: LuiCheckboxAndLabel;
 		addLabelAndWidgetComponentFor: 'dateOfBirth';
-			addLabelAndWidgetComponentFor: 'weight';
-			addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange';
+		addLabelAndWidgetComponentFor: 'weight';
+		addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange';
 		addLabelAndWidgetComponentFor: 'comment'
 
 ]
