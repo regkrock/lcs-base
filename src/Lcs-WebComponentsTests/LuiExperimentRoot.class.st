@@ -12,7 +12,7 @@ Class {
 
 { #category : 'register' }
 LuiExperimentRoot class >> initialize [
-	WAAdmin register: self asApplicationAt: 'experiment'
+	self registerApplication: 'experiment'
 ]
 
 { #category : 'updating' }

@@ -26,8 +26,7 @@ LuiAllFunctionalTests class >> initialize [
 	| application |
 	application := (WAAdmin register: self asApplicationAt: 'lcstests/functional')
 			sessionClass: WAExpirySession.
-	application preferenceAt: #scriptGeneratorClass put: JQScriptGenerator.
-	application addLibrary: JQDeploymentLibrary
+	application preferenceAt: #scriptGeneratorClass put: JQScriptGenerator
 ]
 
 { #category : 'accessing' }
@@ -162,6 +161,14 @@ LuiAllFunctionalTests >> setCurrentContents: aFunctionalTestContext [
 { #category : 'hooks' }
 LuiAllFunctionalTests >> states [
 	^ Array with: current
+]
+
+{ #category : 'updating' }
+LuiAllFunctionalTests >> updateRoot: anHtmlRoot [
+	super updateRoot: anHtmlRoot.
+	anHtmlRoot javascript url: JQDeploymentLibrary.
+	"class name is a Symbol, using a String makes a big difference for WALotsaLinksFunctionalTest"
+	"aUrl addToPath: self selected name greaseString"
 ]
 
 { #category : 'updating' }

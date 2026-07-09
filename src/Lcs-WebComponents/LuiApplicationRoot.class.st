@@ -8,8 +8,7 @@ Class {
 
 { #category : 'initialize' }
 LuiApplicationRoot class >> initialize [
-	(WAAdmin register: self asApplicationAt: 'lcsApplication')
-		sessionClass: WAExpirySession
+	self registerApplication: 'lcsApplication'
 ]
 
 { #category : 'constants' }
@@ -35,8 +34,9 @@ LuiApplicationRoot >> initializeStandardLayout [
 ]
 
 { #category : 'updating' }
-LuiApplicationRoot >> updateFilesInRoot: aRoot [ 
-	aRoot stylesheet url: LcsFileLibrary / #resetCss.
-	aRoot stylesheet url: LcsFileLibrary / #mainCss.
-	aRoot link beShortcutIcon url: LcsFileLibrary / #faviconPng
+LuiApplicationRoot >> updateFilesInRoot: anHtmlRoot [ 
+	super updateFilesInRoot: anHtmlRoot.
+	anHtmlRoot stylesheet url: LcsFileLibrary / #resetCss.
+	anHtmlRoot stylesheet url: LcsFileLibrary / #mainCss.
+	anHtmlRoot link beShortcutIcon url: LcsFileLibrary / #faviconPng
 ]

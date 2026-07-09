@@ -17,6 +17,14 @@ LuiRoot class >> canBeRoot [
 	^ true
 ]
 
+{ #category : 'register' }
+LuiRoot class >> registerApplication: aString [
+	^ (WAAdmin register: self asApplicationAt: aString)
+		sessionClass: WAExpirySession;
+		preferenceAt: #scriptGeneratorClass put: JQScriptGenerator;
+		yourself
+]
+
 { #category : 'updating' }
 LuiRoot >> applicationTitle [
 ]
@@ -29,7 +37,8 @@ LuiRoot >> initialize [
 ]
 
 { #category : 'updating' }
-LuiRoot >> updateFilesInRoot: aRoot [ 
+LuiRoot >> updateFilesInRoot: anHtmlRoot [ 
+	anHtmlRoot javascript url: JQDeploymentLibrary
 ]
 
 { #category : 'updating' }

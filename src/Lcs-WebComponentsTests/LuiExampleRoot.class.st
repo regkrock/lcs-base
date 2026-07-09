@@ -8,8 +8,7 @@ Class {
 
 { #category : 'initialize' }
 LuiExampleRoot class >> initialize [
-	(WAAdmin register: self asApplicationAt: 'luiExample')
-		sessionClass: WAExpirySession
+	self registerApplication: 'luiExample'
 ]
 
 { #category : 'instance creation' }
@@ -111,9 +110,10 @@ LuiExampleRoot >> showCallbackOnTranscript [
 ]
 
 { #category : 'updating' }
-LuiExampleRoot >> updateFilesInRoot: aRoot [
-	"aRoot stylesheet url: LcsFileLibrary / #resetCss."
-	aRoot stylesheet url: LcsExampleFileLibrary / #mainCss.
-	aRoot javascript url: LcsFileLibrary / #mobileNavJs.
-	aRoot link beShortcutIcon url: LcsExampleFileLibrary / #faviconPng
+LuiExampleRoot >> updateFilesInRoot: anHtmlRoot [
+	super updateFilesInRoot: anHtmlRoot.
+	"anHtmlRoot stylesheet url: LcsFileLibrary / #resetCss."
+	anHtmlRoot stylesheet url: LcsExampleFileLibrary / #mainCss.
+	"anHtmlRoot javascript url: LcsFileLibrary / #mobileNavJs."
+	anHtmlRoot link beShortcutIcon url: LcsExampleFileLibrary / #faviconPng
 ]
