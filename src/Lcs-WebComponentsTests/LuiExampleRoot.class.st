@@ -114,6 +114,6 @@ LuiExampleRoot >> showCallbackOnTranscript [
 LuiExampleRoot >> updateFilesInRoot: aRoot [
 	"aRoot stylesheet url: LcsFileLibrary / #resetCss."
 	aRoot stylesheet url: LcsExampleFileLibrary / #mainCss.
-	"aRoot javascript url: LcsFileLibrary / #mobileNavJs."
+	aRoot javascript url: LcsFileLibrary / #mobileNavJs.
 	aRoot link beShortcutIcon url: LcsExampleFileLibrary / #faviconPng
 ]

@@ -13,7 +13,12 @@ Class {
 { #category : 'initialize' }
 ToDoListView class >> initialize [
 	"self initialize"
-	WAAdmin register: self asApplicationAt: 'todo'
+	| application |
+	application := WAAdmin register: self asApplicationAt: 'todo'.
+	application preferenceAt: #scriptGeneratorClass put: JQScriptGenerator.
+	application 
+		addLibrary: JQDeploymentLibrary";
+		addLibrary: JQAllFunctionalTestsLibrary".
 ]
 
 { #category : 'rendering' }
@@ -40,7 +45,7 @@ ToDoListView >> edit: anItem [
 { #category : 'initialize' }
 ToDoListView >> initialize [
 	super initialize.
-	visible := true.
+	visible := false.
 ]
 
 { #category : 'model' }
@@ -72,11 +77,7 @@ ToDoListView >> renderHeadingOn: html [
 	helpId := html nextId.
 	html heading
 		class: 'helplink';
-		onClick: ((html jQuery id: helpId) hide);
-		"onClick: (
-			(html jQuery ajax) 
-				id: helpId; 
-				callback: [ visible := visible not ]);"
+		onClick: ((html jQuery id: helpId) slideToggle: 1 seconds callback: [ visible := visible not ]);
 		with: self model title.
 	html div
 		id: helpId;

@@ -18,7 +18,6 @@ LuiFunctionalTest class >> isLcsFunctionalTest [
 
 { #category : 'updating' }
 LuiFunctionalTest >> updateRoot: aRoot [
-
 	super updateRoot: aRoot.
 	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
 ]

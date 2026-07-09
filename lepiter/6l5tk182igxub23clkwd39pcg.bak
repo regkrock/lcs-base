@@ -879,6 +879,43 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-07-09T10:06:41.484735-04:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2026-07-09T13:16:47.490228-04:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "R5F7dZWcRyOCZ3EdUJnl+g=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "**HTML Page**\nAn HTML page is represented by one or more subclasses of WAComponent.  The instances of these classes are rendered to produce the DOM which is sent to the browser to be displayed to the user. An example of this is \n\nIn this application, the component {{gtClass:name=LuiComponent}} has been created as the Lcs UI top level seaside component. Normally all application related components should inherit from this class."
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
 									"dateAndTimeString" : "2024-09-24T17:39:00.183512-04:00"
 								}
 							},
@@ -890,7 +927,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-09-24T17:39:39.283188-04:00"
+									"dateAndTimeString" : "2026-07-09T10:26:53.141927-04:00"
 								}
 							},
 							"uid" : {
@@ -900,7 +937,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "##Create the application and register it (Done via a class)"
+							"string" : "##Create a LUI application and register it (Done via a class)\n- All LUI applications (HTML Pages) should use the class {{gtClass:name=LuiRoot}} , which is a subclass of {{gtClass:name=LuiComponent}} as its superclass.  \n- All subclasses of LuiRoot will automatically be registered as a root component with Seaside."
 						},
 						{
 							"__type" : "textSnippet",
@@ -927,7 +964,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-09-24T17:39:53.358906-04:00"
+									"dateAndTimeString" : "2026-07-09T10:17:09.568558-04:00"
 								}
 							},
 							"uid" : {
@@ -937,7 +974,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "- Create class as a subclass of **WAComponent **\n- Add a class initialize method to initialize the capp\n- See the class LcsHelloWorld for working code"
+							"string" : "\n- Create class as a subclass of **WAComponent **\n- Add a class initialize method to initialize the app and register it as an endpoint.\n- See the class {{gtClass:name=ToDoListView}}  for working code.\n- An example of how to register: {{gtMethod:ToDoListView class>>initialize}}"
 						},
 						{
 							"__type" : "textSnippet",
@@ -969,7 +1006,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-09-24T17:10:52.443602-04:00"
+												"dateAndTimeString" : "2026-07-09T09:54:44.502644-04:00"
 											}
 										},
 										"uid" : {
@@ -1032,6 +1069,43 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-07-09T09:55:46.723363-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-07-09T09:56:15.686498-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "Uj2lEHBPStW7qFgmDffPqA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "Example: {{gtMethod:ToDoListView>>renderContentOn:}}"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
 												"dateAndTimeString" : "2024-09-24T17:33:33.213028-04:00"
 											}
 										},
@@ -1043,7 +1117,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-09-24T17:34:26.373656-04:00"
+												"dateAndTimeString" : "2026-07-09T09:51:09.389019-04:00"
 											}
 										},
 										"uid" : {
@@ -1053,7 +1127,7 @@
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "Never change state, add components, add or remove decorations while rendering"
+										"string" : "**Never change state, add components, add or remove decorations while rendering**."
 									}
 								]
 							},
@@ -1076,7 +1150,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-09-24T17:14:31.830729-04:00"
+									"dateAndTimeString" : "2026-07-09T10:14:34.30225-04:00"
 								}
 							},
 							"uid" : {
@@ -1086,7 +1160,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "- renderContento: html"
+							"string" : "- **renderContentOn: html**"
 						}
 					]
 				},
@@ -1183,7 +1257,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-26T21:35:53.079668-04:00"
+						"dateAndTimeString" : "2024-09-26T21:35:58.116926-04:00"
 					}
 				},
 				"uid" : {
@@ -1193,7 +1267,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "[ex:https://www.youtube.com/watch?v=N506q2PAh7c"
+				"string" : "[ex: 1](https://www.youtube.com/watch?v=N506q2PAh7c)"
 			}
 		]
 	},
