@@ -13,12 +13,9 @@ Class {
 { #category : 'initialize' }
 ToDoListView class >> initialize [
 	"self initialize"
-	| application |
-	application := WAAdmin register: self asApplicationAt: 'todo'.
-	application preferenceAt: #scriptGeneratorClass put: JQScriptGenerator.
-	application 
-		addLibrary: JQDeploymentLibrary";
-		addLibrary: JQAllFunctionalTestsLibrary".
+	(WAAdmin register: self asApplicationAt: 'todo')
+		scriptGeneratorClass: JQScriptGenerator;
+		addLibrary: JQDeploymentLibrary
 ]
 
 { #category : 'rendering' }

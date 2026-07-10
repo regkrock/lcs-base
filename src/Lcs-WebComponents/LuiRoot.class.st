@@ -21,7 +21,7 @@ LuiRoot class >> canBeRoot [
 LuiRoot class >> registerApplication: aString [
 	^ (WAAdmin register: self asApplicationAt: aString)
 		sessionClass: WAExpirySession;
-		preferenceAt: #scriptGeneratorClass put: JQScriptGenerator;
+		scriptGeneratorClass: JQScriptGenerator;
 		addLibrary: JQDeploymentLibrary;
 		yourself
 ]

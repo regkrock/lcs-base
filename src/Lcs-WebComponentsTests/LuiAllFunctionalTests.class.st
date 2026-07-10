@@ -23,10 +23,10 @@ LuiAllFunctionalTests class >> description [
 
 { #category : 'initialization' }
 LuiAllFunctionalTests class >> initialize [
-	| application |
-	application := (WAAdmin register: self asApplicationAt: 'lcstests/functional')
-			sessionClass: WAExpirySession.
-	application preferenceAt: #scriptGeneratorClass put: JQScriptGenerator
+	(WAAdmin register: self asApplicationAt: 'lcstests/functional')
+		sessionClass: WAExpirySession;
+		scriptGeneratorClass: JQScriptGenerator;
+		addLibrary: JQDeploymentLibrary
 ]
 
 { #category : 'accessing' }
