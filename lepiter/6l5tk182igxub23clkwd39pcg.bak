@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-09-24T16:49:49.583651-04:00"
+						"dateAndTimeString" : "2026-07-09T22:03:50.482929-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "#References/Resources\n[Seaside Book - Dynamic Web Development](https://book.seaside.st/book)\n[Seaside Tutorial](http://www.hpi.uni-potsdam.de/hirschfeld/seaside/tutorial/)\n[Seaside on GitHub](https://github.com/SeasideSt/Seaside)\n[Seaside Wiki on GitHub](https://github.com/SeasideSt/Seaside/wiki)"
+				"string" : "#References/Resources\n[Seaside Book - Dynamic Web Development](https://book.seaside.st/book)\n[Seaside Tutorial](http://www.hpi.uni-potsdam.de/hirschfeld/seaside/tutorial/)\n[Seaside on GitHub](https://github.com/SeasideSt/Seaside)\n[Seaside Wiki on GitHub](https://github.com/SeasideSt/Seaside/wiki)\n[Gemstone Tutorial](https://https://seaside.gemtalksystems.com/tutorial.html)"
 			},
 			{
 				"__type" : "textSnippet",
@@ -890,7 +890,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-07-09T13:16:47.490228-04:00"
+									"dateAndTimeString" : "2026-07-09T13:17:11.35023-04:00"
 								}
 							},
 							"uid" : {
@@ -900,7 +900,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "**HTML Page**\nAn HTML page is represented by one or more subclasses of WAComponent.  The instances of these classes are rendered to produce the DOM which is sent to the browser to be displayed to the user. An example of this is \n\nIn this application, the component {{gtClass:name=LuiComponent}} has been created as the Lcs UI top level seaside component. Normally all application related components should inherit from this class."
+							"string" : "**HTML Page**\nAn HTML page is represented by one or more subclasses of WAComponent.  The instances of these classes are rendered to produce the DOM which is sent to the browser to be displayed to the user. An example of this is {{gtClass:ToDoItemView}}\n\nIn this application, the component {{gtClass:name=LuiComponent}} has been created as the Lcs UI top level seaside component. Normally all application related components should inherit from this class."
 						},
 						{
 							"__type" : "textSnippet",

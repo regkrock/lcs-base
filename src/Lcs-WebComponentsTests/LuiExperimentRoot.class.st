@@ -10,11 +10,6 @@ Class {
 	#tag : 'Experiment'
 }
 
-{ #category : 'register' }
-LuiExperimentRoot class >> initialize [
-	self registerApplication: 'experiment'
-]
-
 { #category : 'updating' }
 LuiExperimentRoot >> applicationTitle [
 	^ self class name greaseString

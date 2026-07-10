@@ -22,6 +22,7 @@ LuiRoot class >> registerApplication: aString [
 	^ (WAAdmin register: self asApplicationAt: aString)
 		sessionClass: WAExpirySession;
 		preferenceAt: #scriptGeneratorClass put: JQScriptGenerator;
+		addLibrary: JQDeploymentLibrary;
 		yourself
 ]
 
@@ -38,7 +39,7 @@ LuiRoot >> initialize [
 
 { #category : 'updating' }
 LuiRoot >> updateFilesInRoot: anHtmlRoot [ 
-	anHtmlRoot javascript url: JQDeploymentLibrary
+	"anHtmlRoot javascript url: JQDeploymentLibrary"
 ]
 
 { #category : 'updating' }

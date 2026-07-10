@@ -8,8 +8,7 @@ Class {
 
 { #category : 'initialize' }
 LuiSEASRoot class >> initialize [
-	(WAAdmin register: self asApplicationAt: 'seas')
-		sessionClass: WAExpirySession
+	self registerApplication: 'seas'
 ]
 
 { #category : 'constants' }

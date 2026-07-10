@@ -55,5 +55,6 @@ LuiTextInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: a
 LuiTextInput >> renderComponentOn: html [
 	html textInput
 		addCommonAttributes: self;
+		onChange: ((html jQuery id: self componentId) load html: [ :h | h render: self displayValue ]);
 		value: self displayValue
 ]
