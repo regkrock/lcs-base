@@ -19,7 +19,8 @@ LuiRoot class >> canBeRoot [
 
 { #category : 'register' }
 LuiRoot class >> registerApplication: aString [
-	^ (WAAdmin register: self asApplicationAt: aString)
+	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance.
+	(WAAdmin register: self asApplicationAt: aString)
 		sessionClass: WAExpirySession;
 		scriptGeneratorClass: JQScriptGenerator;
 		addLibrary: JQDeploymentLibrary;

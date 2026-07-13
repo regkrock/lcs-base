@@ -13,6 +13,7 @@ Class {
 { #category : 'initialize' }
 ToDoListView class >> initialize [
 	"self initialize"
+	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance.
 	(WAAdmin register: self asApplicationAt: 'todo')
 		scriptGeneratorClass: JQScriptGenerator;
 		addLibrary: JQDeploymentLibrary

@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-07-09T22:04:05.201465-04:00"
+						"dateAndTimeString" : "2026-07-10T15:11:03.995785-04:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "#References/Resources\n[Seaside Book - Dynamic Web Development](https://book.seaside.st/book)\n[Seaside Tutorial](http://www.hpi.uni-potsdam.de/hirschfeld/seaside/tutorial/)\n[Seaside on GitHub](https://github.com/SeasideSt/Seaside)\n[Seaside Wiki on GitHub](https://github.com/SeasideSt/Seaside/wiki)\n[Gemstone Tutorial](https://seaside.gemtalksystems.com/tutorial.html)"
+				"string" : "#References/Resources\n[Seaside Book - Dynamic Web Development PDF](/Users/regkrock/Documents/LCS/software development/Smalltak/Books/DynamicWebDev-wip.pdf)\n[Seaside Tutorial](http://www.hpi.uni-potsdam.de/hirschfeld/seaside/tutorial/)\n[Seaside on GitHub](https://github.com/SeasideSt/Seaside)\n[Seaside Wiki on GitHub](https://github.com/SeasideSt/Seaside/wiki)\n[Gemstone Tutorial](https://seaside.gemtalksystems.com/tutorial.html)"
 			},
 			{
 				"__type" : "textSnippet",

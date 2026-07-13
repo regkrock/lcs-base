@@ -599,8 +599,12 @@ LcsBaseDomainObject >> currentUser [
 
 { #category : 'gt views' }
 LcsBaseDomainObject >> domainObjectAllAccessorSlotViewItems [
-	^ self allAccessorSlotDefinitions collect: [ :each | 
-		LcsDomainObjectSlotViewItem newLabel: each slotName item: (self perform: each slotName asSymbol) ]
+	^ self allAccessorSlotDefinitions
+		collect: [ :each | 
+			LcsDomainObjectSlotViewItem
+				newLabel: each slotName
+				item: ((self slotDefinitionNamed: each slotName) persistedSlotVarIn: self)
+				domainObject: self ]
 ]
 
 { #category : 'slot access' }
@@ -622,7 +626,8 @@ LcsBaseDomainObject >> gtLiveFor: aView [
 		items: [ self domainObjectAllAccessorSlotViewItems ];
 		children: [ :each | each children ] ;
 		column: 'Slot' text: [ :each | each label ] width: 150;
-		column: 'Value' text: [ :each | each item gtDisplayString ];
+		column: 'Original Value' text: [ :each | each originalValue gtDisplayString ];
+		column: 'New Value' text: [ :each | each newValue gtDisplayString ];
 		send: #item;
 		actionUpdateButton;
 		yourself

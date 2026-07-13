@@ -45,6 +45,15 @@ LcsViewItem >> defaultChildrenSelector [
 	^ self class defaultChildrenSelector
 ]
 
+{ #category : 'printing' }
+LcsViewItem >> gtDisplayOn: aStream [
+	super gtDisplayOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: self label asString;
+		nextPutAll: ')'
+]
+
 { #category : 'initialize' }
 LcsViewItem >> initialize [
 	super initialize.

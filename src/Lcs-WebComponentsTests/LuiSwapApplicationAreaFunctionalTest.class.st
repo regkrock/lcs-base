@@ -13,7 +13,8 @@ LuiSwapApplicationAreaFunctionalTest class >> browserTabName [
 
 { #category : 'initialize' }
 LuiSwapApplicationAreaFunctionalTest class >> initialize [
-	WAAdmin register: self asApplicationAt: self browserTabName
+	WAAdmin register: self asApplicationAt: self browserTabName.
+	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance
 ]
 
 { #category : 'menus' }

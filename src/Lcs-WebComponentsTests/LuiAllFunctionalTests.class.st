@@ -23,6 +23,7 @@ LuiAllFunctionalTests class >> description [
 
 { #category : 'initialization' }
 LuiAllFunctionalTests class >> initialize [
+	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance.
 	(WAAdmin register: self asApplicationAt: 'lcstests/functional')
 		sessionClass: WAExpirySession;
 		scriptGeneratorClass: JQScriptGenerator;

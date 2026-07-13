@@ -55,3 +55,8 @@ LuiLxxPersonFormTest >> model [
 LuiLxxPersonFormTest >> model: anObject [ 
 	model := anObject
 ]
+
+{ #category : 'rendering' }
+LuiLxxPersonFormTest >> renderComponentOn: html [
+	super renderComponentOn: html		
+]
