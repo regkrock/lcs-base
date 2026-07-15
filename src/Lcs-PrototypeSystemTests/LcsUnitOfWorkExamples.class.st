@@ -9,6 +9,32 @@ Class {
 }
 
 { #category : 'examples' }
+LcsUnitOfWorkExamples >> addNewJohnFreemanAsJackFreemanToPersonsGlobalCollection [
+	<gtExample>
+	<after: #clearUnitOfWorkAndRestoreSavedSystem>
+	| newPerson persons |
+	self applicationEnvironmentWithCurrentPrototypeSystem.
+	self assert: self currentUnitOfWork hasNoChanges.
+	persons := self currentSystem persons.
+	self assert: persons isEmpty.
+	self assert: persons pendingAdds isEmpty.
+	newPerson := LxxPersonExamples new johnFreeman.
+	self assert: newPerson firstName equals: 'John'.
+	self assert: (persons pendingAdds includes: newPerson).
+	
+	newPerson firstName: 'Jack'.
+	self assert: newPerson firstName equals: 'Jack'.
+	
+	self currentSystem applyChanges.
+
+	self assert: (self currentSystem persons pendingAdds isEmpty).
+	self assert: (self currentSystem persons includes: newPerson).
+	self assert: newPerson parent == self currentSystem persons.
+	self assert: persons any firstName equals: 'Jack'.
+	^ newPerson
+]
+
+{ #category : 'examples' }
 LcsUnitOfWorkExamples >> deleteDomainObject [
 	"<gtExample>
 	| domainObject |

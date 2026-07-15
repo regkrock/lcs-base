@@ -7,6 +7,11 @@ Class {
 }
 
 { #category : 'button action' }
+LuiCancelButton >> applyButtonAction [
+	self cancelChanges
+]
+
+{ #category : 'button action' }
 LuiCancelButton >> cancelChanges [
 	^ LcsApplicationEnvironment currentSystem clearUnitOfWork
 ]
@@ -17,5 +22,5 @@ LuiCancelButton >> initialize [
 	self componentName: 'cancelButton'.
 	self imageUrl: LcsFileLibrary / #cancel24Svg.
 	self spanComponent text: 'Cancel'.
-	self callback: [ self cancelChanges ]
+	"self callback: [ self cancelChanges ]"
 ]

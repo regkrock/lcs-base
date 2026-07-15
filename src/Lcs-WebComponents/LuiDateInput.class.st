@@ -52,11 +52,6 @@ LuiDateInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: a
 LuiDateInput >> renderComponentOn: html [
 	html dateInput5
 		addCommonAttributes: self;
-		"onChange: (JSStream on: 'this.form.requestSubmit()');"
-		"onChange: 'submit()';"
-		"callback: [ :value | self updateContentsFrom: value ];"
-		"callback: (GRDelayedSend 
-					receiver: self
-					selector: #updateContentsFrom:);"
+		onBlur: (self handleCallbackAndRenderDependents: html);
 		value: self contentsAsString
 ]

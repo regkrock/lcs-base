@@ -15,5 +15,6 @@ LuEmailInput >> gtViewTagName [
 LuEmailInput >> renderComponentOn: html [
 	html emailInput 
 		addCommonAttributes: self;
+		onBlur: (self handleCallbackAndRenderDependents: html);
 		value: self displayValue
 ]

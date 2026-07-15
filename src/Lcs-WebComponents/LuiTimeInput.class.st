@@ -32,5 +32,6 @@ LuiTimeInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: a
 LuiTimeInput >> renderComponentOn: html [
 	html timeInput5
 		addCommonAttributes: self;
+		onBlur: (self handleCallbackAndRenderDependents: html);
 		value: self displayValue
 ]

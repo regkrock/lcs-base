@@ -44,5 +44,6 @@ LuiNumberInput >> initializeOnSlot: aSlotDefinition model: aModel componentName:
 LuiNumberInput >> renderComponentOn: html [
 	html numberInput
 		addCommonAttributes: self;
+		onChange: (self handleCallbackAndRenderDependents: html);
 		value: self displayValue
 ]

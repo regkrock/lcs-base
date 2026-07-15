@@ -17,6 +17,11 @@ LuiComponentDecorations class >> on: aComponent [
 		yourself
 ]
 
+{ #category : 'decorations' }
+LuiComponentDecorations >> addDependentComponent: aLuiComponent [
+	self dependentComponentsDecoration addDependentComponent: aLuiComponent
+]
+
 { #category : 'accessing' }
 LuiComponentDecorations >> collection [
 	^ collection
@@ -124,6 +129,16 @@ LuiComponentDecorations >> decorationSearchOn: aSearch [
 		send: [ :anObject | anObject value ]
 ]
 
+{ #category : 'properties - testing' }
+LuiComponentDecorations >> dependentComponents [
+	^ self dependentComponentsDecoration dependentComponents
+]
+
+{ #category : 'decoration' }
+LuiComponentDecorations >> dependentComponentsDecoration [
+	^ self lazyInitializedDecoration: LuiDependentComponentsDecoration
+]
+
 { #category : 'private' }
 LuiComponentDecorations >> errorDecorationNotFound: aSelector [ 
 	LuiComponentAttributeNotFound signal: 'Decoration ' , aSelector , ' not found.'
@@ -158,6 +173,16 @@ LuiComponentDecorations >> hasDecorationNamed: aString [
 { #category : 'properties - testing' }
 LuiComponentDecorations >> hasDecorations [
 	^ self collection notEmpty
+]
+
+{ #category : 'decoration' }
+LuiComponentDecorations >> hasDependentComponents [
+	^ self hasDependentComponentsDecoration and: [ self dependentComponents notEmpty ]
+]
+
+{ #category : 'decoration' }
+LuiComponentDecorations >> hasDependentComponentsDecoration [
+	^ self hasDecorationNamed: LuiDependentComponentsDecoration decorationName
 ]
 
 { #category : 'properties - testing' }
@@ -211,6 +236,11 @@ LuiComponentDecorations >> parentComponent: anObject [
 LuiComponentDecorations >> postCopyProperties [
 	"Call after super postCopy"
 	collection := collection copy
+]
+
+{ #category : 'decorations' }
+LuiComponentDecorations >> removeDependentComponent: aLuiComponent [
+	self dependentComponentsDecoration removeDependentComponent: aLuiComponent
 ]
 
 { #category : 'properties - testing' }

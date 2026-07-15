@@ -72,6 +72,16 @@ LuiModelWidget >> _initializeOnSlot: aSlotDefinition model: aModel componentName
 	self componentName: aString
 ]
 
+{ #category : 'component   decorations' }
+LuiModelWidget >> addDependentComponent: aLuiComponent [
+	^ self componentDecorations addDependentComponent: aLuiComponent
+]
+
+{ #category : 'rendering' }
+LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
+	aScript << (aScript jQuery id: aComponent componentId) replaceWith: [ :h | h render: aComponent]
+]
+
 { #category : 'attributes - accessing' }
 LuiModelWidget >> callback [
 	^ self attributes callback
@@ -92,15 +102,39 @@ LuiModelWidget >> componentNameBaseOn: aSlotDefinition [
 	^ aSlotDefinition slotName
 ]
 
+{ #category : 'component   decorations' }
+LuiModelWidget >> dependentComponents [
+	^ self componentDecorations dependentComponents
+]
+
 { #category : 'rendering' }
 LuiModelWidget >> displayValue [
 	self valueAccessor ifNil: [ ^ 'nil' ].
 	^ self valueAccessor displayValue
 ]
 
+{ #category : 'rendering' }
+LuiModelWidget >> handleCallbackAndRenderDependents: html [
+	^ html jQuery ajax
+		callback: [ :value | self handleCallbackValue: value ]
+			value: (html jQuery id: self componentId) value;
+		onSuccess: (self renderDependentComponentsOn: html)
+]
+
 { #category : 'callbacks' }
 LuiModelWidget >> handleCallbackValue: value [ 
 	self valueAccessor convertFromString: value
+]
+
+{ #category : 'testing' }
+LuiModelWidget >> hasDependentComponents [
+	^ self componentDecorations hasDependentComponents
+]
+
+{ #category : 'initialize' }
+LuiModelWidget >> initialize [
+	super initialize.
+	self addDependentComponent: self
 ]
 
 { #category : 'initialize' }
@@ -167,6 +201,23 @@ LuiModelWidget >> readOnly [
 { #category : 'attributes - accessing' }
 LuiModelWidget >> readOnly: aBoolean [
 	self attributes readOnly: aBoolean 
+]
+
+{ #category : 'component   decorations' }
+LuiModelWidget >> removeDependentComponent: aLuiComponent [
+	^ self componentDecorations removeDependentComponent: aLuiComponent
+]
+
+{ #category : 'rendering' }
+LuiModelWidget >> renderDependentComponentsOn: html [
+	self hasDependentComponents ifFalse: [ ^ nil ].
+	^ html jQuery
+		script: [  :script | 
+			self dependentComponents
+				do: [ :eachComponent | self addRenderingOfComponent: eachComponent to: script ] ]
+				
+"^ (html jQuery id: (self componentIdOf: 'weightRangeLabelAndInput')) load html: [ :h | 
+		h render: (self myParentPresenterComponent componentNamed: 'weightRangeLabelAndInput')]"
 ]
 
 { #category : 'accessing' }

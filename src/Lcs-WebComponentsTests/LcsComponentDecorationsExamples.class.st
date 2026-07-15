@@ -7,6 +7,21 @@ Class {
 }
 
 { #category : 'examples' }
+LcsComponentDecorationsExamples >> componentDecorationsWithDependentComponentsDecoration [
+	<gtExample>
+	| componentDecorations |
+	componentDecorations := self newComponentDecorations.
+	self deny: componentDecorations hasDependentComponentsDecoration.
+	componentDecorations addDependentComponent: 'abc'.
+	self assert: componentDecorations hasDependentComponentsDecoration.
+	self assert: componentDecorations dependentComponents size = 1.
+	self assert: (componentDecorations dependentComponents includes: 'abc').
+	componentDecorations removeDependentComponent: 'abc'.
+	self assert: componentDecorations dependentComponents isEmpty.
+	^ componentDecorations
+]
+
+{ #category : 'examples' }
 LcsComponentDecorationsExamples >> componentDecorationsWithTextDecoration [
 	<gtExample>
 	| componentDecorations textDecoration|

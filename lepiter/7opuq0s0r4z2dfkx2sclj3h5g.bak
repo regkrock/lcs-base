@@ -18,6 +18,43 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-07-15T08:45:08.02953-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-07-15T08:48:31.639759-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ENfYVn5MQVGMcRRj9bvGxQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In Progress Issues:\n1) {{gtMethod:name=LuiCheckbox>>renderComponentOn:}} this is not working with JQuery <--- Issue is related to 'on' string being returned.\n2) {{gtClass:name=LuiSubmitButton}} Work is in  progress switching \n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2025-06-26T18:56:50.840502-04:00"
 					}
 				},
@@ -140,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-03-27T14:41:12.547807-04:00"
+						"dateAndTimeString" : "2026-03-27T14:41:37.507961-04:00"
 					}
 				},
 				"uid" : {
@@ -150,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Not Used Errors\nLcsSlotValidationNonBooleanResultError\nLcsNoReferenceCollectionError"
+				"string" : "Not Used Errors\n=============\nLcsSlotValidationNonBooleanResultError\nLcsNoReferenceCollectionError"
 			}
 		]
 	},

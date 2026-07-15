@@ -15,5 +15,6 @@ LuiTelephoneInput >> gtViewTagName [
 LuiTelephoneInput >> renderComponentOn: html [
 	html telephoneInput
 		addCommonAttributes: self;
+		onBlur: (self handleCallbackAndRenderDependents: html);
 		value: self displayValue
 ]

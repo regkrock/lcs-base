@@ -53,11 +53,6 @@ LuiDateTimeLocalInput >> initializeOnSlot: aSlotDefinition model: aModel compone
 LuiDateTimeLocalInput >> renderComponentOn: html [
 	html dateTimeLocalInput
 		addCommonAttributes: self;
-		"onChange: (JSStream on: 'this.form.requestSubmit()');"
-		"onChange: 'submit()';"
-		"callback: [ :value | self updateContentsFrom: value ];"
-		"callback: (GRDelayedSend 
-					receiver: self
-					selector: #updateContentsFrom:);"
+		onBlur: (self handleCallbackAndRenderDependents: html);
 		value: self contentsAsString
 ]

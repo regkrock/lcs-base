@@ -31,5 +31,6 @@ LuiRangeInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: 
 LuiRangeInput >> renderComponentOn: html [
 	html rangeInput
 		addCommonAttributes: self;
+		onChange: (self handleCallbackAndRenderDependents: html);
 		value: self displayValue
 ]

@@ -37,5 +37,6 @@ LuiTextArea >> handleCallbackValue: value [
 LuiTextArea >> renderComponentOn: html [
 	html textArea
 		addCommonAttributes: self;
+		onChange: (self handleCallbackAndRenderDependents: html);
 		value: self displayValue
 ]

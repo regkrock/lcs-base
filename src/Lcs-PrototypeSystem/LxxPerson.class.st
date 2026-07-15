@@ -135,6 +135,21 @@ LxxPerson >> comment: anObject [
 	self slotVarNamed: 'comment' put: anObject
 ]
 
+{ #category : 'as yet unclassified' }
+LxxPerson >> fullName [
+	^ (self firstName ifNil: [ 'unknown' ] asString) , ' ' , (self lastName ifNil: [ 'unknown' ]) asString
+]
+
+{ #category : 'printing' }
+LxxPerson >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream 
+		nextPutAll: '(';
+		nextPutAll: self fullName asString;
+		nextPutAll:')'
+	
+]
+
 { #category : 'accessing' }
 LxxPerson >> hasRedHair [
 	^ self slotVarNamed: 'hasRedHair'

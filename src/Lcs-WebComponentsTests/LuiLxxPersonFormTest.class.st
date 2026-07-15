@@ -34,7 +34,7 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialize' }
 LuiLxxPersonFormTest >> initialize [
 	| form |
 	super initialize.
@@ -43,7 +43,11 @@ LuiLxxPersonFormTest >> initialize [
 	self componentId: 'root'.
 	form := self addComponent: LuiMainForm new.
 	form addComponent: self functionTestPresenter.
-	form addComponent: LuiSaveAndCancelButtonBar new
+	form addComponent: LuiSaveAndCancelButtonBar new.
+	(form componentNamed: 'personPresenter/weightLabelAndInput/weight')
+		addDependentComponent: (form componentNamed: 'personPresenter/weightRangeLabelAndInput').
+	(form componentNamed: 'personPresenter/weightRangeLabelAndInput/weightRange')
+		addDependentComponent: (form componentNamed: 'personPresenter/weightLabelAndInput')
 ]
 
 { #category : 'accessing' }

@@ -148,7 +148,17 @@ LcsBasePerson >> firstName: anObject [
 
 { #category : 'accessing' }
 LcsBasePerson >> fullName [
-	^ self firstName , ' ' , self middleNames , ' ' , self familyName
+	| stream |
+	stream := WriteStream on: String new.
+	stream 
+		nextPutAll: self firstName asString;
+		space.
+	self middleNames isNotEmpty ifTrue: [
+		stream 
+			nextPutAll: self middleNames; 
+			space ].
+	stream nextPutAll: self familyName asString.
+	^ stream contents
 ]
 
 { #category : 'accessing' }
@@ -159,6 +169,15 @@ LcsBasePerson >> gender [
 { #category : 'accessing' }
 LcsBasePerson >> gender: anObject [
 	self slotVarNamed: 'gender' put: anObject
+]
+
+{ #category : 'printing' }
+LcsBasePerson >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream 
+		nextPutAll: ')';
+		nextPutAll: self fullName;
+		nextPutAll: ')'
 ]
 
 { #category : 'testing' }
