@@ -16,8 +16,9 @@ LuiLxxPersonFormTest class >> initialize [
 
 { #category : 'presenter' }
 LuiLxxPersonFormTest >> functionTestPresenter [
+	| presenter |
 	self model: LxxPersonExamples new johnFreeman.
-	^ (LuiDomainPresenter named: 'personPresenter' model: self model)
+	presenter := (LuiDomainPresenter named: 'personPresenter' model: self model)
 		cssClass: 'twoColumnsBySixRows';
 		addLabelAndWidgetComponentFor: 'firstName';
 		addLabelAndWidgetComponentFor: 'lastName';
@@ -30,7 +31,12 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'dateOfBirth';
 		addLabelAndWidgetComponentFor: 'weight';
 		addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange';
-		addLabelAndWidgetComponentFor: 'comment'
+		addLabelAndWidgetComponentFor: 'comment'.
+	"(presenter componentNamed: 'weightLabelAndInput/weight')
+		addDependentComponent: (presenter componentNamed: 'weightRangeLabelAndInput/weightRange').
+	(presenter componentNamed: 'personPresenter/weightRangeLabelAndInput/weightRange')
+		addDependentComponent: (presenter componentNamed: 'weightLabelAndInput/weight')."
+	^ presenter
 
 ]
 
@@ -43,11 +49,7 @@ LuiLxxPersonFormTest >> initialize [
 	self componentId: 'root'.
 	form := self addComponent: LuiMainForm new.
 	form addComponent: self functionTestPresenter.
-	form addComponent: LuiSaveAndCancelButtonBar new.
-	(form componentNamed: 'personPresenter/weightLabelAndInput/weight')
-		addDependentComponent: (form componentNamed: 'personPresenter/weightRangeLabelAndInput').
-	(form componentNamed: 'personPresenter/weightRangeLabelAndInput/weightRange')
-		addDependentComponent: (form componentNamed: 'personPresenter/weightLabelAndInput')
+	form addComponent: LuiSaveAndCancelButtonBar new
 ]
 
 { #category : 'accessing' }

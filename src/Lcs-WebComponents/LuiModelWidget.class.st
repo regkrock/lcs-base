@@ -79,7 +79,12 @@ LuiModelWidget >> addDependentComponent: aLuiComponent [
 
 { #category : 'rendering' }
 LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
-	aScript << (aScript jQuery id: aComponent componentId) replaceWith: [ :h | h render: aComponent]
+	aScript << (aScript jQuery id: aComponent componentId) load html: [ :h | h render: aComponent]
+]
+
+{ #category : 'initialize' }
+LuiModelWidget >> beRerendered [
+	self addDependentComponent: self
 ]
 
 { #category : 'attributes - accessing' }
@@ -134,7 +139,7 @@ LuiModelWidget >> hasDependentComponents [
 { #category : 'initialize' }
 LuiModelWidget >> initialize [
 	super initialize.
-	self addDependentComponent: self
+	"self beRerendered"
 ]
 
 { #category : 'initialize' }
