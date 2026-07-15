@@ -53,8 +53,6 @@ LuiTextInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: a
 
 { #category : 'rendering' }
 LuiTextInput >> renderComponentOn: html [
-	| jQueryInstance |
-	jQueryInstance := html jQuery this.
 	html textInput
 		addCommonAttributes: self;
 		onChange: (self handleCallbackAndRenderDependents: html);

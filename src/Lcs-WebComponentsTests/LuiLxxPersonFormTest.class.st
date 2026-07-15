@@ -32,10 +32,10 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'weight';
 		addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange';
 		addLabelAndWidgetComponentFor: 'comment'.
-	"(presenter componentNamed: 'weightLabelAndInput/weight')
+	(presenter componentNamed: 'weightLabelAndInput/weight')
 		addDependentComponent: (presenter componentNamed: 'weightRangeLabelAndInput/weightRange').
-	(presenter componentNamed: 'personPresenter/weightRangeLabelAndInput/weightRange')
-		addDependentComponent: (presenter componentNamed: 'weightLabelAndInput/weight')."
+	(presenter componentNamed: 'weightRangeLabelAndInput/weightRange')
+		addDependentComponent: (presenter componentNamed: 'weightLabelAndInput/weight').
 	^ presenter
 
 ]
