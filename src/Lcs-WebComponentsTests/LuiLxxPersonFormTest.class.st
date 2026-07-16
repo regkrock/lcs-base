@@ -49,7 +49,8 @@ LuiLxxPersonFormTest >> initialize [
 	self componentId: 'root'.
 	form := self addComponent: LuiMainForm new.
 	form addComponent: self functionTestPresenter.
-	form addComponent: LuiSaveAndCancelButtonBar new
+	form addComponent: LuiSaveAndCancelButtonBar new.
+	^ self
 ]
 
 { #category : 'accessing' }

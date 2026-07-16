@@ -79,7 +79,7 @@ LuiModelWidget >> addDependentComponent: aLuiComponent [
 
 { #category : 'rendering' }
 LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
-	aScript << (aScript jQuery id: aComponent componentId) load html: [ :h | h render: aComponent]
+	aScript << (aScript jQuery id: aComponent componentId) replaceWith: [ :h | h render: aComponent]
 ]
 
 { #category : 'initialize' }
@@ -123,7 +123,7 @@ LuiModelWidget >> handleCallbackAndRenderDependents: html [
 	^ html jQuery ajax
 		callback: [ :value | self handleCallbackValue: value ]
 			value: (html jQuery id: self componentId) value;
-		onSuccess: (self renderDependentComponentsOn: html)
+		lcsOnSuccess: (self renderDependentComponentsOn: html)
 ]
 
 { #category : 'callbacks' }
