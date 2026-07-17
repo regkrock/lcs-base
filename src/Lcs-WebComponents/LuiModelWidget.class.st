@@ -80,7 +80,7 @@ LuiModelWidget >> addDependentComponent: aLuiComponent [
 { #category : 'rendering' }
 LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
 	"aScript << (aScript jQuery id: aComponent componentId) load html: [ :h | h render: aComponent]"
-	aScript << (aScript jQuery id: aComponent componentId) replaceWith: [ :h | h render: aComponent]
+	aScript << (aScript script: ((aScript jQuery id: aComponent componentId) replaceWith: [ :h | h render: aComponent]))
 	"aScript << (
 		((aScript jQuery this	
 			parents: 'div';
@@ -227,7 +227,8 @@ LuiModelWidget >> renderDependentComponentsOn: html [
 	self hasDependentComponents ifFalse: [ ^ nil ].
 	^ html jQuery script: [  :script | 
 		self dependentComponents do: [ :eachComponent | 
-			self addRenderingOfComponent: eachComponent to: script ] ]
+			"self addRenderingOfComponent: eachComponent to: script"
+			script << ((html jQuery id: eachComponent componentId) replaceWith: [ :h | h render: eachComponent ]) ] ]
 ]
 
 { #category : 'accessing' }
