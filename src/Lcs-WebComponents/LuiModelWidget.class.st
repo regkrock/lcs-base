@@ -79,7 +79,16 @@ LuiModelWidget >> addDependentComponent: aLuiComponent [
 
 { #category : 'rendering' }
 LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
+	"aScript << (aScript jQuery id: aComponent componentId) load html: [ :h | h render: aComponent]"
 	aScript << (aScript jQuery id: aComponent componentId) replaceWith: [ :h | h render: aComponent]
+	"aScript << (
+		((aScript jQuery this	
+			parents: 'div';
+			find: ':input') load
+					serialize: (
+						aScript jQuery this		
+						parents: 'div';
+						find: 'input')) html: [ :h | h render: aComponent displayValue ])"
 ]
 
 { #category : 'initialize' }
@@ -216,13 +225,9 @@ LuiModelWidget >> removeDependentComponent: aLuiComponent [
 { #category : 'rendering' }
 LuiModelWidget >> renderDependentComponentsOn: html [
 	self hasDependentComponents ifFalse: [ ^ nil ].
-	^ html jQuery
-		script: [  :script | 
-			self dependentComponents
-				do: [ :eachComponent | self addRenderingOfComponent: eachComponent to: script ] ]
-				
-"^ (html jQuery id: (self componentIdOf: 'weightRangeLabelAndInput')) load html: [ :h | 
-		h render: (self myParentPresenterComponent componentNamed: 'weightRangeLabelAndInput')]"
+	^ html jQuery script: [  :script | 
+		self dependentComponents do: [ :eachComponent | 
+			self addRenderingOfComponent: eachComponent to: script ] ]
 ]
 
 { #category : 'accessing' }

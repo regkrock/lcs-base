@@ -3,7 +3,8 @@ Class {
 	#superclass : 'WAComponent',
 	#instVars : [
 		'editor',
-		'visible'
+		'visible',
+		'listId'
 	],
 	#category : 'Lcs-WebComponentsTests-ToDoList',
 	#package : 'Lcs-WebComponentsTests',
@@ -60,12 +61,26 @@ ToDoListView >> remove: anItem [
 { #category : 'rendering' }
 ToDoListView >> renderContentOn: html [
 	self renderHeadingOn: html.
-	html
-		form: [ html unorderedList: [ self renderItemsOn: html ].
-			html submitButton text: 'Save'.
-			html submitButton
-				callback: [ self add ];
-				text: 'Add' ].
+	html form: [ 
+		html unorderedList
+			id: (listId := html nextId);
+			script: (
+				(html jQuery new sortable)
+					onStop: (
+						html jQuery ajax
+							callback: [ :items | self model items: items ]
+								passengers: (html jQuery this find: 'li'));
+					axis: 'y');
+			with: [ self renderItemsOn: html ].
+		html button 
+			id: html nextId;
+			onClick: (html jQuery ajax serializeForm);
+			text: 'Save'.
+		html button
+			id: html nextId;
+			onClick: ((html jQuery ajax serializeForm)
+				callback: [ self add ]);
+			text: 'Add' ].
 	html render: editor
 ]
 
@@ -75,7 +90,9 @@ ToDoListView >> renderHeadingOn: html [
 	helpId := html nextId.
 	html heading
 		class: 'helplink';
-		onClick: ((html jQuery id: helpId) slideToggle: 1 seconds callback: [ visible := visible not ]);
+		onClick: ((html jQuery id: helpId) 
+					slideToggle: 1 seconds 
+					callback: [ visible := visible not ]);
 		with: self model title.
 	html div
 		id: helpId;
@@ -88,15 +105,21 @@ ToDoListView >> renderHeadingOn: html [
 ToDoListView >> renderItem: anItem on: html [ 
 	html listItem
 		passenger: anItem;
-		class: 'done' if: anItem isDone;
 		class: 'overdue' if: anItem isOverdue;
+		class: 'done' if: anItem isDone;
 		with: [ 
-			html checkbox
+			(html checkbox)
+				onChange: (
+					((html jQuery id: listId) load)
+						serializeForm;
+						html: [ :ajaxHtml | self renderItemsOn: ajaxHtml ]);
 				value: anItem done;
 				callback: [ :value | anItem done: value ].
-			html text: anItem title.
+			(html span)
+				"script: ((html jQuery inPlaceEditor)"
+				with: anItem title.				
 			html space.
-			html anchor 
+			(html anchor)
 				callback: [ self edit: anItem ];
 				with: 'edit'.
 			html space.
