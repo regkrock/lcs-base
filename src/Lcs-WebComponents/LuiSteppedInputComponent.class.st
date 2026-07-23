@@ -17,8 +17,8 @@ LuiSteppedInputComponent >> componentAttributesClass [
 ]
 
 { #category : 'callbacks' }
-LuiSteppedInputComponent >> convertFromString: value [
-	^ self fromStringConverter convertFromString: value
+LuiSteppedInputComponent >> decode: value [
+	^ self codec decode: value
 ]
 
 { #category : 'attributes - accessing' }

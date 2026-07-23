@@ -79,16 +79,7 @@ LuiModelWidget >> addDependentComponent: aLuiComponent [
 
 { #category : 'rendering' }
 LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
-	"aScript << (aScript jQuery id: aComponent componentId) load html: [ :h | h render: aComponent]"
-	aScript << (aScript script: ((aScript jQuery id: aComponent componentId) replaceWith: [ :h | h render: aComponent]))
-	"aScript << (
-		((aScript jQuery this	
-			parents: 'div';
-			find: ':input') load
-					serialize: (
-						aScript jQuery this		
-						parents: 'div';
-						find: 'input')) html: [ :h | h render: aComponent displayValue ])"
+	aScript << (aScript jQuery id: aComponent parentComponent componentId) load html: [ :ajaxHtml | aComponent parentComponent renderDetailsOn: ajaxHtml ]
 ]
 
 { #category : 'initialize' }
@@ -137,7 +128,7 @@ LuiModelWidget >> handleCallbackAndRenderDependents: html [
 
 { #category : 'callbacks' }
 LuiModelWidget >> handleCallbackValue: value [ 
-	self valueAccessor convertFromString: value
+	self valueAccessor codec decode: value
 ]
 
 { #category : 'testing' }
@@ -227,8 +218,7 @@ LuiModelWidget >> renderDependentComponentsOn: html [
 	self hasDependentComponents ifFalse: [ ^ nil ].
 	^ html jQuery script: [  :script | 
 		self dependentComponents do: [ :eachComponent | 
-			"self addRenderingOfComponent: eachComponent to: script"
-			script << ((html jQuery id: eachComponent componentId) replaceWith: [ :h | h render: eachComponent ]) ] ]
+			self addRenderingOfComponent: eachComponent to: script ] ]
 ]
 
 { #category : 'accessing' }

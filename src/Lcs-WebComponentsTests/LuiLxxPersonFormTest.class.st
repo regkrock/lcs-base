@@ -23,7 +23,7 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'firstName';
 		addLabelAndWidgetComponentFor: 'lastName';
 		"addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;"
-		addLabelAndWidgetComponentFor: 'mainSkill';
+		"addLabelAndWidgetComponentFor: 'mainSkill';"
 		addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtons inputComponentName: 'mainSkillRadioButtons';
 		addLabelAndWidgetComponentFor: 'balance';
 		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
@@ -72,4 +72,10 @@ LuiLxxPersonFormTest >> model: anObject [
 { #category : 'rendering' }
 LuiLxxPersonFormTest >> renderComponentOn: html [
 	super renderComponentOn: html		
+]
+
+{ #category : 'as yet unclassified' }
+LuiLxxPersonFormTest >> updateRoot: aRoot [
+	super updateRoot: aRoot.
+	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss
 ]

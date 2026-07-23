@@ -8,7 +8,7 @@ Class {
 
 { #category : 'rendering' }
 LuiCheckbox >> contentsAsString [
-	^ self toStringConverter convertToString: self valueAccessor contents
+	^ self codec encode: self valueAccessor contents
 ]
 
 { #category : 'gt views' }
@@ -18,14 +18,13 @@ LuiCheckbox >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiCheckbox >> handleCallbackValue: value [ 
-	self valueAccessor write: (self fromStringConverter convertFromString: value)
+	self valueAccessor write: (self codec decode: value)
 ]
 
 { #category : 'initialize' }
 LuiCheckbox >> initialize [
 	super initialize.
-	self toStringConverter: LuiBooleanToStringConverter new.
-	self fromStringConverter: LuiStringToBooleanConverter new.
+	self codec: LuiBooleanCodec new.
 ]
 
 { #category : 'rendering' }

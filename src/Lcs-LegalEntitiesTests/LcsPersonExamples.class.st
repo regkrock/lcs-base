@@ -194,8 +194,8 @@ LcsPersonExamples >> newPerson [
 	self assert: person middleNames isEmpty.
 	self assert: person dateOfBirth asString equals: Date today asString.
 	self assert: person gender code = 'unknownGender'.
-	self assert: person fullName = '  '.
-	self assert: person entityName = '  '.
+	self assert: person fullName equals: ''.
+	self assert: person entityName equals: ''.
 	self assert: (person postalAddresses isKindOf: LcsAddresses).
 	self assert: (person emailAddresses isKindOf: LcsEmailAddresses).
 	self assert: (person phoneNumbers isKindOf: LcsPhoneNumbers).

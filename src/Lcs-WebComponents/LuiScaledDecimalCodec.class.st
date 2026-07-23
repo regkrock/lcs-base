@@ -1,6 +1,6 @@
 Class {
-	#name : 'LuiScaledDecimalStringConverter',
-	#superclass : 'LuiDisplayConverter',
+	#name : 'LuiScaledDecimalCodec',
+	#superclass : 'LuiCodec',
 	#instVars : [
 		'numberOfDecimals'
 	],
@@ -10,33 +10,38 @@ Class {
 }
 
 { #category : 'instance creation' }
-LuiScaledDecimalStringConverter class >> newWithDecimals: aPositiveInteger [
+LuiScaledDecimalCodec class >> newWithDecimals: aPositiveInteger [
 	^ self new
 		numberOfDecimals: aPositiveInteger;
 		yourself 
 ]
 
+{ #category : 'testing' }
+LuiScaledDecimalCodec >> canCreate: anObject [
+	^ anObject isKindOf: ScaledDecimal
+]
+
 { #category : 'converting' }
-LuiScaledDecimalStringConverter >> convertFromString: aString [
+LuiScaledDecimalCodec >> decode: aString [
 	| number |
-	number := (ScaledDecimal readFrom: aString)
-			asScaledDecimal: self numberOfDecimals.
+	number := (ScaledDecimal readFrom: aString) 
+				asScaledDecimal: self numberOfDecimals.
 	"(number isZero not and: [ (number = aString) not ])
 		ifTrue: [ self error: 'Invalid number' ]."
 	^ number
 ]
 
 { #category : 'converting' }
-LuiScaledDecimalStringConverter >> convertToString: aScaledDecimal [
+LuiScaledDecimalCodec >> encode: aScaledDecimal [
 	^ (aScaledDecimal asScaledDecimal: self numberOfDecimals) greaseString
 ]
 
 { #category : 'accessing' }
-LuiScaledDecimalStringConverter >> numberOfDecimals [
+LuiScaledDecimalCodec >> numberOfDecimals [
 	^ numberOfDecimals
 ]
 
 { #category : 'accessing' }
-LuiScaledDecimalStringConverter >> numberOfDecimals: anObject [
+LuiScaledDecimalCodec >> numberOfDecimals: anObject [
 	numberOfDecimals := anObject
 ]

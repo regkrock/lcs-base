@@ -9,7 +9,7 @@ Class {
 { #category : 'rendering' }
 LuiNumberInput >> displayValue [
 	self valueAccessor ifNil: [ ^ '' ].
-	^ self toStringConverter convertToString: valueAccessor read
+	^ self codec encode: valueAccessor read
 ]
 
 { #category : 'gt views' }
@@ -27,8 +27,7 @@ LuiNumberInput >> handleCallbackValue: aValue [
 { #category : 'initialize' }
 LuiNumberInput >> initialize [
 	super initialize.
-	self fromStringConverter: LuiNumberStringConverter new.
-	self toStringConverter: LuiNumberStringConverter new.
+	self codec: LuiNumberCodec new
 ]
 
 { #category : 'initialize' }

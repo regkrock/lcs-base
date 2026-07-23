@@ -14,8 +14,7 @@ LuiRangeInput >> gtViewTagName [
 { #category : 'as yet unclassified' }
 LuiRangeInput >> initialize [
 	super initialize.
-	self fromStringConverter: LuiNumberStringConverter new.
-	self toStringConverter: LuiNumberStringConverter new
+	self codec: LuiNumberCodec new
 ]
 
 { #category : 'initialize' }

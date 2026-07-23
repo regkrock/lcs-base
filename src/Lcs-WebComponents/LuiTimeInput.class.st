@@ -14,9 +14,7 @@ LuiTimeInput >> gtViewTagName [
 { #category : 'initialize' }
 LuiTimeInput >> initialize [
 	super initialize.
-	self toStringConverter: LuiTimeToStringConverter  new.
-	self fromStringConverter: LuiStringToTimeConverter new
-	
+	self codec: LuiTimeCodec new
 ]
 
 { #category : 'initialize' }

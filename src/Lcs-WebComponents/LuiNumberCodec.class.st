@@ -1,6 +1,6 @@
 Class {
-	#name : 'LuiNumberStringConverter',
-	#superclass : 'LuiDisplayConverter',
+	#name : 'LuiNumberCodec',
+	#superclass : 'LuiCodec',
 	#instVars : [
 		'numberOfDecimals'
 	],
@@ -9,8 +9,13 @@ Class {
 	#tag : 'Transformers'
 }
 
+{ #category : 'testing' }
+LuiNumberCodec >> canCreate: anObject [
+	^ anObject isNumber
+]
+
 { #category : 'converting' }
-LuiNumberStringConverter >> convertFromString: aString [
+LuiNumberCodec >> decode: aString [
 	" (self new convertFromString: '10.020304') = 10.020304 "
 	| number |
 	number := Number readFrom: aString.
@@ -19,7 +24,7 @@ LuiNumberStringConverter >> convertFromString: aString [
 ]
 
 { #category : 'converting' }
-LuiNumberStringConverter >> convertToString: aNumber [
+LuiNumberCodec >> encode: aNumber [
 	aNumber ifNil: [ ^ '' ].
 	^ aNumber greaseString
 ]

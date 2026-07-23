@@ -11,7 +11,7 @@ Class {
 
 { #category : 'converting' }
 LuiDateInput >> contentsAsString [
-	^ self toStringConverter convertToString: self valueAccessor contents
+	^ self codec encode: self valueAccessor contents
 ]
 
 { #category : 'rendering' }
@@ -32,8 +32,7 @@ LuiDateInput >> handleCallbackValue: value [
 { #category : 'initialize' }
 LuiDateInput >> initialize [
 	super initialize.
-	self toStringConverter: LuiDateToStringConverter new.
-	self fromStringConverter: LuiStringToDateConverter new.
+	self codec: LuiDateCodec new.
 ]
 
 { #category : 'initialize' }

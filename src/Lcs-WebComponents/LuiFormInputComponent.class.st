@@ -2,8 +2,7 @@ Class {
 	#name : 'LuiFormInputComponent',
 	#superclass : 'LuiModelWidget',
 	#instVars : [
-		'fromStringConverter',
-		'toStringConverter'
+		'codec'
 	],
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
@@ -25,6 +24,16 @@ LuiFormInputComponent >> callback: aBlock [
 	self attributes callback: aBlock 
 ]
 
+{ #category : 'accessing' }
+LuiFormInputComponent >> codec [
+	^ codec
+]
+
+{ #category : 'accessing' }
+LuiFormInputComponent >> codec: anObject [
+	codec := anObject
+]
+
 { #category : 'initialize' }
 LuiFormInputComponent >> componentAttributesClass [
 	^ LuiFormInputAttributes
@@ -35,16 +44,6 @@ LuiFormInputComponent >> componentIdOf: aComponentName [
 	^ (self myParentPresenterComponent componentNamed: aComponentName) componentId
 ]
 
-{ #category : 'accessing' }
-LuiFormInputComponent >> fromStringConverter [
-	^ fromStringConverter
-]
-
-{ #category : 'accessing' }
-LuiFormInputComponent >> fromStringConverter: anObject [
-	fromStringConverter := anObject
-]
-
 { #category : 'gt views' }
 LuiFormInputComponent >> gtViewTagName [
 	^'input'
@@ -52,7 +51,14 @@ LuiFormInputComponent >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiFormInputComponent >> handleCallbackValue: value [
-	self valueAccessor write: (self convertFromString: value)
+	self valueAccessor write: (self codec decode: value)
+]
+
+{ #category : 'initialize' }
+LuiFormInputComponent >> initialize [
+	super initialize.
+	self codec: LuiNullCodec new;
+	beRerendered
 ]
 
 { #category : 'initialize' }
@@ -80,14 +86,4 @@ LuiFormInputComponent >> name: aName [
 { #category : 'attributes' }
 LuiFormInputComponent >> placeholderAttribute [
 	^ self attributes placeholderAttribute
-]
-
-{ #category : 'accessing' }
-LuiFormInputComponent >> toStringConverter [
-	^ toStringConverter
-]
-
-{ #category : 'accessing' }
-LuiFormInputComponent >> toStringConverter: anObject [
-	toStringConverter := anObject
 ]

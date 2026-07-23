@@ -29,6 +29,11 @@ LuiForm >> initialize [
 	self componentName: self defaultComponentName
 ]
 
+{ #category : 'testing' }
+LuiForm >> isFormComponent [
+	^ true
+]
+
 { #category : 'rendering' }
 LuiForm >> renderComponentOn: html [
 	html form

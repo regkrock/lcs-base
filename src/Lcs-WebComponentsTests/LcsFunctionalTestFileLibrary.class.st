@@ -68,6 +68,16 @@ LcsFunctionalTestFileLibrary >> cssPragmas [
 	^ pragmas asSortedCollection: [ :a :b | a arguments last < b arguments last ]
 ]
 
+{ #category : 'css' }
+LcsFunctionalTestFileLibrary >> divError [
+	<css: 1302>
+^'.divError {
+  border-color: red;
+  border-width: 2px;
+  border-style: solid;
+}'
+]
+
 { #category : 'css - generate' }
 LcsFunctionalTestFileLibrary >> generateMainCss [
 	| stream |
@@ -110,6 +120,14 @@ LcsFunctionalTestFileLibrary >> globalCss [
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}'
+]
+
+{ #category : 'css' }
+LcsFunctionalTestFileLibrary >> inputFieldError [
+	<css: 1301>
+^'.inputFieldError {
+  border-color: red;
 }'
 ]
 

@@ -48,8 +48,7 @@ LuiScaledDecimalInputExamples >> scaledDecimalWith2DecimalPlacesNumberInputCompo
 	person := LxxPersonExamples new johnFreeman.
 	component := LuiScaledDecimalInput onSlotNamed: 'balance' model: person.
 	self assert: component step equals: 0.01s2.
-	self assert: component toStringConverter class equals: LuiScaledDecimalStringConverter.
-	self assert: component fromStringConverter class equals: LuiScaledDecimalStringConverter.
+	self assert: component codec class equals: LuiScaledDecimalCodec.
 	self assert: component displayValue equals: '0.00'.
 	self assertRendered: component equals: '<input data-name="balance" data-StClass="LuiScaledDecimalInput" step="0.01" max="100" min="-100" name="1" value="0.00" type="number"/>'.
 	^ component

@@ -150,9 +150,10 @@ LcsBasePerson >> firstName: anObject [
 LcsBasePerson >> fullName [
 	| stream |
 	stream := WriteStream on: String new.
-	stream 
-		nextPutAll: self firstName asString;
-		space.
+	self firstName isEmpty ifFalse: [
+		stream 
+			nextPutAll: self firstName asString;
+			space].
 	self middleNames isNotEmpty ifTrue: [
 		stream 
 			nextPutAll: self middleNames; 

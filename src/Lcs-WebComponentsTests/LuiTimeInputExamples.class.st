@@ -12,8 +12,8 @@ LuiTimeInputExamples >> newComponent [
 	| component expectedHtml timeNow |
 	timeNow := Time now.
 	component := LuiTimeInput named: 'timePicker' model: timeNow.
-	self assert: component fromStringConverter class equals: LuiStringToTimeConverter.
-	self assert: component toStringConverter class equals: LuiTimeToStringConverter.
+	self assert: component codec class equals: LuiTimeCodec.
+	self assert: component codec class equals: LuiTimeCodec.
 
 	expectedHtml := '<input data-name="timePicker" data-StClass="LuiTimeInput" name="1" value="' , timeNow asString , '" type="time"/>'.
 	self assertRendered: component equals: expectedHtml.

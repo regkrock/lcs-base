@@ -11,7 +11,7 @@ Class {
 
 { #category : 'converting' }
 LuiDateTimeInput >> contentsAsString [
-	^ self toStringConverter convertToString:  self valueAccessor contents
+	^ self codec encode:  self valueAccessor contents
 ]
 
 { #category : 'rendering' }
@@ -26,14 +26,13 @@ LuiDateTimeInput >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiDateTimeInput >> handleCallbackValue: value [ 
-	self valueAccessor write: (self fromStringConverter convertFromString: value)
+	self valueAccessor write: (self codec decode: value)
 ]
 
 { #category : 'initialize' }
 LuiDateTimeInput >> initialize [
 	super initialize.
-	self toStringConverter: LuiDateAndTimeToStringConverter new.
-	self fromStringConverter: LuiStringToDateAndTimeConverter new.
+	self codec: LuiDateAndTimeCodec new.
 ]
 
 { #category : 'initialize' }

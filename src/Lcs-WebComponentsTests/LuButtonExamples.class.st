@@ -30,8 +30,8 @@ LuButtonExamples >> cancelButton [
 	self assert: button parentComponent isNil.
 	self deny: button hasLabelComponent.
 	self assert: button labelString isEmpty.
-	self assert: button attributes buttonType equals: 'submit'.
-	self assert: button buttonTypeAttribute attributeValue equals: 'submit'.
+	self assert: button attributes buttonType equals: 'button'.
+	self assert: button buttonTypeAttribute attributeValue equals: 'button'.
 	self assert: button leadingImageComponent notNil.
 	self assert: button spanComponent text = 'Cancel'.
 	expectedHtml := '<button data-name="cancelButton" data-StClass="LuiCancelButton" type="submit" class="pushButton" name="1"><img alt="" id="36695256" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/cancel24.svg"/><span id="151812643" data-name="span" data-StClass="LuiSpan">Cancel</span></button>'.
@@ -165,8 +165,8 @@ LuButtonExamples >> saveButton [
 	self assert: button parentComponent isNil.
 	self deny: button hasLabelComponent.
 	self assert: button labelString isEmpty.
-	self assert: button attributes buttonType equals: 'submit'.
-	self assert: button buttonTypeAttribute attributeValue equals: 'submit'.
+	self assert: button attributes buttonType equals: 'button'.
+	self assert: button buttonTypeAttribute attributeValue equals: 'button'.
 	self assert: button leadingImageComponent notNil.
 	self assert: button spanComponent text = 'Save'.
 	expectedHtml := '<button data-name="saveButton" data-StClass="LuiSaveButton" type="submit" class="pushButton" name="1"><img alt="" id="154651757" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="144653080" data-name="span" data-StClass="LuiSpan">Save</span></button>'.

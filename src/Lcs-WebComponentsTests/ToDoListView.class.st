@@ -78,8 +78,9 @@ ToDoListView >> renderContentOn: html [
 			text: 'Save'.
 		html button
 			id: html nextId;
-			onClick: ((html jQuery ajax serializeForm)
-				callback: [ self add ]);
+			onClick: ((html jQuery ajax) 
+						serializeForm;
+						callback: [ self add ]);
 			text: 'Add' ].
 	html render: editor
 ]
@@ -90,9 +91,9 @@ ToDoListView >> renderHeadingOn: html [
 	helpId := html nextId.
 	html heading
 		class: 'helplink';
-		onClick: ((html jQuery id: helpId) 
+		"onClick: ((html jQuery id: helpId) 
 					slideToggle: 1 seconds 
-					callback: [ visible := visible not ]);
+					callback: [ visible := visible not ]);"
 		with: self model title.
 	html div
 		id: helpId;

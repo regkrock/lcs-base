@@ -23,10 +23,9 @@ LuiSubmitButton >> renderComponentOn: html [
 		addCommonAttributes: self;
 		onClick: (
 			html jQuery ajax
-				serializeForm;
+				serializeForm
 				callback: [ self applyButtonAction];
-				onSuccess: ((html jQuery: #root)
-					append: [ :h | h render: (html jQuery: #root) ]));
-			"script: [ :s | self loggerOn: s ]);"
+				onSuccess: ((html jQuery id: self rootComponent componentId)
+					load html: [ :h | (self formComponent) renderDetailsOn: h ]) );
 		with: [ self renderDetailsOn: html ]
 ]

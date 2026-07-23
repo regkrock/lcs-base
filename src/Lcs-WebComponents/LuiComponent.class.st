@@ -275,6 +275,13 @@ LuiComponent >> firstComponent [
 	^ self componentAtIndex: 1
 ]
 
+{ #category : 'querying' }
+LuiComponent >> formComponent [
+	^ self parentComponent isFormComponent
+		ifTrue: [ self parentComponent ]
+		ifFalse: [ self parentComponent formComponent ]
+]
+
 { #category : 'asking' }
 LuiComponent >> fullClassesName [
 	| names fullNameStream |
@@ -334,6 +341,15 @@ LuiComponent >> gtComponentsFor: aView [
 { #category : 'gt - views' }
 LuiComponent >> gtComponentsViewComponents [
 	^ self orderedComponents asOrderedCollection
+]
+
+{ #category : 'printing' }
+LuiComponent >> gtDisplayOn: aStream [
+	super gtDisplayOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: self componentName asString;
+		nextPutAll: ')'
 ]
 
 { #category : 'gt - views' }
@@ -457,6 +473,11 @@ LuiComponent >> isComponentIdComputed [
 ]
 
 { #category : 'testing' }
+LuiComponent >> isFormComponent [
+	^ false
+]
+
+{ #category : 'testing' }
 LuiComponent >> isHidden [
 	^ self attributes isHidden
 ]
@@ -474,6 +495,11 @@ LuiComponent >> isPresenterComponent [
 { #category : 'testing' }
 LuiComponent >> isRenderable [
 	^ self attributes isRenderable
+]
+
+{ #category : 'testing' }
+LuiComponent >> isRootComponent [
+	^ self componentName = 'root'
 ]
 
 { #category : 'testing' }
@@ -635,6 +661,13 @@ LuiComponent >> renderSubcomponentsOn: html [
 { #category : 'properties - delegated' }
 LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
 	self cssClassesAttribute replaceExistingCssClassesWithCssClass: aString
+]
+
+{ #category : 'querying' }
+LuiComponent >> rootComponent [
+	^ self parentComponent isRootComponent
+		ifTrue: [ self parentComponent ]
+		ifFalse: [ self parentComponent rootComponent ]
 ]
 
 { #category : 'hooks' }

@@ -9,9 +9,7 @@ Class {
 { #category : 'initialize' }
 LuiScaledDecimalInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-
-	self toStringConverter: (LuiScaledDecimalStringConverter newWithDecimals: aSlotDefinition numberOfDecimals).
-	self fromStringConverter: (LuiScaledDecimalStringConverter newWithDecimals: aSlotDefinition numberOfDecimals).
+	self codec: (LuiScaledDecimalCodec newWithDecimals: aSlotDefinition numberOfDecimals).
 
 	self 
 		step: aSlotDefinition stepValue;
