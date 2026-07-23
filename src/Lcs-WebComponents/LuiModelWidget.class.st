@@ -83,6 +83,11 @@ LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [
 ]
 
 { #category : 'initialize' }
+LuiModelWidget >> beNotRerendered [
+	self removeDependentComponent: self
+]
+
+{ #category : 'initialize' }
 LuiModelWidget >> beRerendered [
 	self addDependentComponent: self
 ]

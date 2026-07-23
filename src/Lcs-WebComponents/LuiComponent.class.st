@@ -598,6 +598,11 @@ LuiComponent >> removeComponentNamed: aName [
 	^ self removeComponent: (self componentNamed: aName)
 ]
 
+{ #category : 'attributes - accessing' }
+LuiComponent >> removeCssClass: aClassName [ 
+	self attributes removeCssClass: aClassName
+]
+
 { #category : 'rendering' }
 LuiComponent >> renderAfterSubcomponentsOn: html [ 
 ]

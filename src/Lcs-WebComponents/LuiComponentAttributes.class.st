@@ -558,7 +558,12 @@ LuiComponentAttributes >> removeAttributeKey: aKey [
 
 { #category : 'attributes - accessing' }
 LuiComponentAttributes >> removeCssClass: aCssClassName [
-	^ self cssClassesAttribute removeCssClasses: aCssClassName
+	^ self cssClassesAttribute removeCssClass: aCssClassName
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> removeCssClasses: aCollection [
+	^ self cssClassesAttribute removeCssClasses: aCollection
 ]
 
 { #category : 'attributes' }

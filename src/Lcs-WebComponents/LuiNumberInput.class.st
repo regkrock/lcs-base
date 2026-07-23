@@ -17,13 +17,6 @@ LuiNumberInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''number'''
 ]
 
-{ #category : 'callbacks' }
-LuiNumberInput >> handleCallbackValue: aValue [ 
-	"| number |
-	number := self fromStringConverter convertFromString: aValue."
-	super handleCallbackValue: aValue 
-]
-
 { #category : 'initialize' }
 LuiNumberInput >> initialize [
 	super initialize.

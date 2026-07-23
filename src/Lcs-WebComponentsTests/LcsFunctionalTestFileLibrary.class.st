@@ -144,7 +144,7 @@ LcsFunctionalTestFileLibrary >> labelAndInputRowCss [
 
 { #category : 'css' }
 LcsFunctionalTestFileLibrary >> mainCss [
-	"Generated: 2026-06-18T12:45:13.732463-04:00"
+	"Generated: 2026-07-23T09:00:05.39476-04:00"
 	^ '/*	Source: #globalCss	*/
 
 *,
@@ -267,13 +267,6 @@ body {
 	border: none;
 }
 
-/*	Source: #radioButtonsCss	*/
-.radioButtons {
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  gap: 2px;
-  }
-
 /*	Source: #submenuCss	*/
 .submenu {
   display: block;
@@ -356,6 +349,18 @@ body {
   width: 100vw;
   box-shadow: 0 0 10px #e1e5ee;
   padding-right: 20px;
+}
+
+/*	Source: #inputFieldError	*/
+.inputFieldError {
+  border-color: red;
+}
+
+/*	Source: #divError	*/
+.divError {
+  border-color: red;
+  border-width: 2px;
+  border-style: solid;
 }'
 ]
 
