@@ -236,6 +236,11 @@ LuiComponentAttributes >> cssClass: aCssClassName [
 	^ self cssClassesAttribute cssClass: aCssClassName
 ]
 
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> cssClasses [
+	^ self cssClassesAttribute cssClasses
+]
+
 { #category : 'attributes' }
 LuiComponentAttributes >> cssClassesAttribute [
 	^ self lazyInitializedAttribute: LuiCssClassesAttribute

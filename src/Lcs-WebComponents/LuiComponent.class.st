@@ -246,6 +246,11 @@ LuiComponent >> cssClass: aClassName [
 ]
 
 { #category : 'attributes' }
+LuiComponent >> cssClasses [
+	^ self attributes cssClasses
+]
+
+{ #category : 'attributes' }
 LuiComponent >> cssClassesAttribute [
 	^ self attributes cssClassesAttribute
 ]

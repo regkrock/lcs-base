@@ -6,7 +6,8 @@ Class {
 		'writeSelector',
 		'model',
 		'slotName',
-		'slotDefinition'
+		'slotDefinition',
+		'candidateValue'
 	],
 	#category : 'Lcs-WebComponents-Accessor',
 	#package : 'Lcs-WebComponents',
@@ -59,6 +60,16 @@ LuiSlotAccessor >> canRead: aModel [
 { #category : 'testing' }
 LuiSlotAccessor >> canWrite: aModel [
 	^ self writeSelector notNil and: [ aModel respondsTo: self writeSelector ]
+]
+
+{ #category : 'accessing' }
+LuiSlotAccessor >> candidateValue [
+	^ candidateValue
+]
+
+{ #category : 'accessing' }
+LuiSlotAccessor >> candidateValue: anObject [
+	candidateValue := anObject
 ]
 
 { #category : 'model' }

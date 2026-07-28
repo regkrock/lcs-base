@@ -51,7 +51,15 @@ LuiFormInputComponent >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiFormInputComponent >> handleCallbackValue: value [
-	self valueAccessor write: (self codec decode: value)
+	self removeCssClass: 'inputFieldError'.
+	[ 
+	self valueAccessor candidateValue: value.
+	self valueAccessor write: (self codec decode: value).
+	self valueAccessor candidateValue: '' ]
+		on: LcsSlotDefinitionError 
+		do: [ :s |
+			self addCssClass: 'inputFieldError'.
+			s return: self ]
 ]
 
 { #category : 'initialize' }

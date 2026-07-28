@@ -9,7 +9,9 @@ Class {
 { #category : 'rendering' }
 LuiNumberInput >> displayValue [
 	self valueAccessor ifNil: [ ^ '' ].
-	^ self codec encode: valueAccessor read
+	^ (self cssClasses includes: 'inputFieldError')
+		ifTrue: [ self valueAccessor candidateValue ]
+		ifFalse: [ self codec encode: valueAccessor read ]
 ]
 
 { #category : 'gt views' }
@@ -20,7 +22,8 @@ LuiNumberInput >> gtViewTagName [
 { #category : 'initialize' }
 LuiNumberInput >> initialize [
 	super initialize.
-	self codec: LuiNumberCodec new
+	self codec: LuiNumberCodec new.
+	"self beNotRerendered"
 ]
 
 { #category : 'initialize' }
