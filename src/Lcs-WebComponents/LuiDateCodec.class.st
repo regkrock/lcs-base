@@ -19,7 +19,7 @@ LuiDateCodec >> dateAsString: aDate [
 
 { #category : 'converting' }
 LuiDateCodec >> decode: aString [
-	^ [ Date fromString: aString ] on: Error do: [ :s | s return: nil ]
+	^ [ Date readFrom: aString pattern: 'y-m-d' ] on: Error do: [ :s | s return: nil ]
 ]
 
 { #category : 'converting' }

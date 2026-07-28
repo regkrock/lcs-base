@@ -14,11 +14,6 @@ LuiDateInput >> contentsAsString [
 	^ self codec encode: self valueAccessor contents
 ]
 
-{ #category : 'rendering' }
-LuiDateInput >> displayValue [
-	^ self valueAccessor contents yyyymmdd
-]
-
 { #category : 'gt views' }
 LuiDateInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''date'''
@@ -47,5 +42,5 @@ LuiDateInput >> renderComponentOn: html [
 	html dateInput5
 		addCommonAttributes: self;
 		onBlur: (self handleCallbackAndRenderDependents: html);
-		value: self contentsAsString
+		value: self displayValue
 ]

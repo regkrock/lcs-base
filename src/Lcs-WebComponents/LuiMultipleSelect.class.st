@@ -7,8 +7,10 @@ Class {
 }
 
 { #category : 'callbacks' }
-LuiMultipleSelect >> handleCallbackValue: selectedItems [
-	| domainCollection intersectingItems |
+LuiMultipleSelect >> handleCallbackValue: selectedItemsString [
+	| domainCollection intersectingItems selectedItemIndices selectedItems |
+	selectedItemIndices := (selectedItemsString substrings: #($,)) collect: [ :each | each asNumber ].  
+	selectedItems := selectedItemIndices collect: [ :index | self elements at: index  ].
 	domainCollection := self valueAccessor read.
 	intersectingItems := domainCollection collection & selectedItems.
 	domainCollection
@@ -26,5 +28,6 @@ LuiMultipleSelect >> renderComponentOn: html [
 		labels: [ :each | self displayLabelFor: each ];
 		size: self elements size;
 		selected: (self valueAccessor read);
-		callback: [ :value | self handleCallbackValue: value ]
+		onBlur: (self handleCallbackAndRenderDependents: html)";
+		callback: [ :value | self handleCallbackValue: value ]"
 ]

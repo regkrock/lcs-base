@@ -14,11 +14,6 @@ LuiDateTimeInput >> contentsAsString [
 	^ self codec encode:  self valueAccessor contents
 ]
 
-{ #category : 'rendering' }
-LuiDateTimeInput >> displayValue [
-	^ self valueAccessor contents yyyymmdd
-]
-
 { #category : 'gt views' }
 LuiDateTimeInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''datetime'''

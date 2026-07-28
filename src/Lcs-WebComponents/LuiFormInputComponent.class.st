@@ -44,6 +44,16 @@ LuiFormInputComponent >> componentIdOf: aComponentName [
 	^ (self myParentPresenterComponent componentNamed: aComponentName) componentId
 ]
 
+{ #category : 'rendering' }
+LuiFormInputComponent >> displayValue [
+	| string |
+	self valueAccessor ifNil: [ ^ '' ].
+	(self cssClasses includes: 'inputFieldError')
+		ifTrue: [ string := self valueAccessor candidateValue ]
+		ifFalse: [ string := self codec encode: valueAccessor read ].
+	^ string
+]
+
 { #category : 'gt views' }
 LuiFormInputComponent >> gtViewTagName [
 	^'input'

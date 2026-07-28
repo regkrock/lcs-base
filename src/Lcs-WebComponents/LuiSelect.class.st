@@ -48,6 +48,11 @@ LuiSelect >> displayLabelFor: anObject [
 		ifFalse: [ anObject asString ]
 ]
 
+{ #category : 'callbacks' }
+LuiSelect >> elementWithOption: aValue [
+	^ self elements detect: [ :each | (self optionValueFor: each) = aValue ]
+]
+
 { #category : 'accessing' }
 LuiSelect >> elements [
 	^ elements
@@ -56,6 +61,19 @@ LuiSelect >> elements [
 { #category : 'accessing' }
 LuiSelect >> elements: anObject [
 	elements := anObject
+]
+
+{ #category : 'rendering' }
+LuiSelect >> handleCallbackAndRenderDependents: html [
+	^ html jQuery ajax
+		callback: [ :value | self handleCallbackValue: value ]
+			value: (html jQuery id: self componentId) value;
+		lcsOnSuccess: (self renderDependentComponentsOn: html)
+]
+
+{ #category : 'callbacks' }
+LuiSelect >> handleCallbackValue: aValue [
+	self valueAccessor write: (self elementWithOption: aValue)
 ]
 
 { #category : 'callbacks' }
@@ -111,7 +129,8 @@ LuiSelect >> renderComponentOn: html [
 		id: self componentId asString;
 		dataName: self componentName;
 		dataStClass: self;
-		dispatchCallback;
+		"dispatchCallback;"
+		onBlur: (self handleCallbackAndRenderDependents: html);
 		with: [ self renderElementComponentsOn: html ]
 ]
 
@@ -126,7 +145,7 @@ LuiSelect >> renderElementComponentsOn: html [
 				dataName: optionComponentName;
 				dataStClass: self;
 				label: (self displayLabelFor: each);
-				callback: [ :value | self handleCallbackValue: value element: each ];
+				"callback: [ :value | self handleCallbackValue: value element: each ];"
 				selected: self valueAccessor read = each;
 				with: (self optionValueFor: each) ]
 ]

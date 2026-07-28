@@ -22,11 +22,6 @@ LuiTextInput >> defaultCssClasses [
 	^ #( 'inputField' )
 ]
 
-{ #category : 'defaults' }
-LuiTextInput >> displayValue [
-	^ self valueAccessor displayValue
-]
-
 { #category : 'gt views' }
 LuiTextInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''text'''

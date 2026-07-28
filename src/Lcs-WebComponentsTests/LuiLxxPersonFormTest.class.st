@@ -23,7 +23,7 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'firstName';
 		addLabelAndWidgetComponentFor: 'lastName';
 		"addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;"
-		"addLabelAndWidgetComponentFor: 'mainSkill';"
+		addLabelAndWidgetComponentFor: 'mainSkill';
 		addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtons inputComponentName: 'mainSkillRadioButtons';
 		addLabelAndWidgetComponentFor: 'balance';
 		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
@@ -32,15 +32,13 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'weight';
 		addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange';
 		addLabelAndWidgetComponentFor: 'comment'.
-	"(presenter componentNamed: 'weightLabelAndInput/weight')
-		addDependentComponent: (presenter componentNamed: 'weightRange')."
+	(presenter componentNamed: 'mainSkillLabelAndInput/mainSkill')
+		addDependentComponent: (presenter componentNamed: 'mainSkillRadioButtonsLabelAndInput/mainSkillRadioButtons').
+	(presenter componentNamed: 'mainSkillRadioButtonsLabelAndInput/mainSkillRadioButtons')
+		addDependentComponent: (presenter componentNamed: 'mainSkillLabelAndInput/mainSkill').
 	(presenter componentNamed: 'weightLabelAndInput/weight')
-		"addDependentComponent: (presenter componentNamed: 'weightRangeLabelAndInput/weightRangeLabel');"
 		addDependentComponent: (presenter componentNamed: 'weightRangeLabelAndInput/weightRange').
-	"(presenter componentNamed: 'weightRangeLabelAndInput/weightRange')
-		addDependentComponent: (presenter componentNamed: 'weight')."
 	(presenter componentNamed: 'weightRangeLabelAndInput/weightRange')
-		"addDependentComponent: (presenter componentNamed: 'weightLabelAndInput/weightLabel');"
 		addDependentComponent: (presenter componentNamed: 'weightLabelAndInput/weight').
 	^ presenter
 
@@ -51,6 +49,7 @@ LuiLxxPersonFormTest >> initialize [
 	| form |
 	super initialize.
 	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
+	self currentUnitOfWork clearUnitOfWork.
 	self componentName: 'root'.
 	self componentId: 'root'.
 	form := self addComponent: LuiMainForm new.

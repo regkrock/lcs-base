@@ -6,14 +6,6 @@ Class {
 	#tag : 'Widgets'
 }
 
-{ #category : 'rendering' }
-LuiNumberInput >> displayValue [
-	self valueAccessor ifNil: [ ^ '' ].
-	^ (self cssClasses includes: 'inputFieldError')
-		ifTrue: [ self valueAccessor candidateValue ]
-		ifFalse: [ self codec encode: valueAccessor read ]
-]
-
 { #category : 'gt views' }
 LuiNumberInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''number'''
