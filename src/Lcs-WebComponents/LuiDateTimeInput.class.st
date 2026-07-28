@@ -24,11 +24,6 @@ LuiDateTimeInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''datetime'''
 ]
 
-{ #category : 'callbacks' }
-LuiDateTimeInput >> handleCallbackValue: value [ 
-	self valueAccessor write: (self codec decode: value)
-]
-
 { #category : 'initialize' }
 LuiDateTimeInput >> initialize [
 	super initialize.

@@ -32,11 +32,6 @@ LuiTextInput >> gtViewTagName [
 	^ super gtViewTagName , ' type=''text'''
 ]
 
-{ #category : 'callbacks' }
-LuiTextInput >> handleCallbackValue: value [ 
-	self valueAccessor write: value
-]
-
 { #category : 'initialize' }
 LuiTextInput >> initializeNamed: aName [
 	super initializeNamed: aName.

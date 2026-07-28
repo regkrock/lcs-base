@@ -609,14 +609,6 @@ LuiComponent >> removeCssClass: aClassName [
 ]
 
 { #category : 'rendering' }
-LuiComponent >> renderAfterSubcomponentsOn: html [ 
-]
-
-{ #category : 'rendering' }
-LuiComponent >> renderBeforeSubcomponentsOn: html [ 
-]
-
-{ #category : 'rendering' }
 LuiComponent >> renderComponentOn: html [
 	html div
 		addCommonAttributes: self;
@@ -631,9 +623,7 @@ LuiComponent >> renderContentOn: html [
 
 { #category : 'rendering' }
 LuiComponent >> renderDetailsOn: html [
-	self renderBeforeSubcomponentsOn: html.
-	self renderSubcomponentsOn: html.
-	self renderAfterSubcomponentsOn: html
+	self renderSubcomponentsOn: html
 ]
 
 { #category : 'gt - views' }

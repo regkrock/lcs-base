@@ -28,11 +28,6 @@ LuiTextArea >> gtViewTagName [
 	^ 'textArea'
 ]
 
-{ #category : 'callbacks' }
-LuiTextArea >> handleCallbackValue: value [ 
-	self valueAccessor write: value
-]
-
 { #category : 'rendering' }
 LuiTextArea >> renderComponentOn: html [
 	html textArea
