@@ -129,7 +129,7 @@ LcsFunctionalTestFileLibrary >> inputFieldCss [
 	^'.inputField {
   box-sizing: border-box;
   height: 25px;
-  }'
+}'
 ]
 
 { #category : 'css' }
@@ -153,7 +153,7 @@ LcsFunctionalTestFileLibrary >> labelAndInputRowCss [
 
 { #category : 'css' }
 LcsFunctionalTestFileLibrary >> mainCss [
-	"Generated: 2026-07-30T18:44:24.479876-04:00"
+	"Generated: 2026-07-30T19:16:03.134687-04:00"
 	^ '/*	Source: #globalCss	*/
 
 *,
@@ -215,12 +215,6 @@ body {
   min-width: 5rem;
 }
 
-/*	Source: #inputFieldCss	*/
-.inputField {
-  box-sizing: border-box;
-  height: 25px;
-  }
-
 /*	Source: #radioButtonsCss	*/
 .radioButtons {
   display: grid;
@@ -232,7 +226,13 @@ body {
 .inputField {
   box-sizing: border-box;
   height: 25px;
-  }
+}
+
+/*	Source: #inputFieldCss	*/
+.inputField {
+  box-sizing: border-box;
+  height: 25px;
+}
 
 /*	Source: #mainMenuBarCss	*/
 .mainMenuBar {
