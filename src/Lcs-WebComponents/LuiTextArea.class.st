@@ -23,6 +23,11 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'defaults' }
+LuiTextArea >> defaultCssClasses [
+	^OrderedCollection new
+]
+
 { #category : 'gt views' }
 LuiTextArea >> gtViewTagName [
 	^ 'textArea'

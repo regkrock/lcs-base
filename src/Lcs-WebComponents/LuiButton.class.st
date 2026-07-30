@@ -53,7 +53,7 @@ LuiButton >> componentAttributesClass [
 
 { #category : 'defaults' }
 LuiButton >> defaultCssClasses [
-	^ OrderedCollection with: 'pushButton'
+	^ OrderedCollection with: LuiCssClassesMap | #pushButton
 ]
 
 { #category : 'testing' }

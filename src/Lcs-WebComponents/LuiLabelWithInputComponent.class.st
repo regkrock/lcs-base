@@ -127,7 +127,7 @@ LuiLabelWithInputComponent >> componentNamePrefix: anObject [
 
 { #category : 'defualtos' }
 LuiLabelWithInputComponent >> defaultCssClasses [
-	^ OrderedCollection with: 'labelAndInputRow'
+	^ OrderedCollection with: LuiCssClassesMap | #labelAndInputRow
 ]
 
 { #category : 'testing' }

@@ -17,7 +17,7 @@ LuiNavigationBar >> addNavigationMenuBuiltFrom: aNavigationMenuDefinition [
 
 { #category : 'components' }
 LuiNavigationBar >> defaultCssClasses [
-	^ #('navBar')
+	^ OrderedCollection with: LuiCssClassesMap | #navBar
 ]
 
 { #category : 'rendering' }

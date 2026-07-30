@@ -8,7 +8,7 @@ Class {
 
 { #category : 'defaults' }
 LuiPageTitle >> defaultCssClasses [
-	^ OrderedCollection with: 'pageTitle'
+	^ OrderedCollection with: LuiCssClassesMap | #pageTitle
 ]
 
 { #category : 'rendering' }

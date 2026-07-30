@@ -32,15 +32,14 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'weight';
 		addLabelAndWidgetComponentFor: 'weight' widgetClass: LuiRangeInput inputComponentName: 'weightRange';
 		addLabelAndWidgetComponentFor: 'comment'.
-	(presenter componentNamed: 'mainSkillLabelAndInput/mainSkill')
-		addDependentComponent: (presenter componentNamed: 'mainSkillRadioButtonsLabelAndInput/mainSkillRadioButtons').
-	(presenter componentNamed: 'mainSkillRadioButtonsLabelAndInput/mainSkillRadioButtons')
-		addDependentComponent: (presenter componentNamed: 'mainSkillLabelAndInput/mainSkill').
-	(presenter componentNamed: 'weightLabelAndInput/weight')
-		addDependentComponent: (presenter componentNamed: 'weightRangeLabelAndInput/weightRange').
-	(presenter componentNamed: 'weightRangeLabelAndInput/weightRange')
-		addDependentComponent: (presenter componentNamed: 'weightLabelAndInput/weight').
-	"self assert: (presenter componentNamed: 'mainSkillLabelAndInput/mainSkill') dependentComponents size equals: 2."
+
+	presenter 
+		makeComponentNamed: 'mainSkillLabelAndInput/mainSkill' 
+		mututallyDependentOnComponentNamed: 'mainSkillRadioButtonsLabelAndInput/mainSkillRadioButtons'.
+
+	presenter 
+		makeComponentNamed: 'weightRangeLabelAndInput/weightRange' 
+		mututallyDependentOnComponentNamed: 'weightLabelAndInput/weight'.
 	^ presenter
 
 ]

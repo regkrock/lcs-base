@@ -8,7 +8,7 @@ Class {
 
 { #category : 'defaults' }
 LuiApplicationArea >> defaultCssClasses [
-	^ OrderedCollection with: 'applicationArea'
+	^ OrderedCollection with: LuiCssClassesMap | #applicationArea
 ]
 
 { #category : 'rendering' }

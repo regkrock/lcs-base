@@ -13,11 +13,17 @@ LuiRadioButton >> componentAttributesClass [
 
 { #category : 'callbacks' }
 LuiRadioButton >> handleCallbackValue: value [ 
-	self parentComponent valueAccessor write: self valueAccessor model
+	self parentComponent valueAccessor write: self model
+]
+
+{ #category : 'rendering' }
+LuiRadioButton >> isSelected [
+	^ self parentComponent valueAccessor read = self model
 ]
 
 { #category : 'attributes' }
 LuiRadioButton >> name: aString [
+	"Radio Buttons are grouped based on the name"
 	self attributes name: aString
 ]
 
@@ -37,6 +43,6 @@ LuiRadioButton >> renderComponentOn: html [
 	html radioButton
 		addCommonAttributes: self;
 		onChange: (self handleCallbackAndRenderDependents: html);
-		checked: (self parentComponent valueAccessor read = self valueAccessor read);
+		checked: self isSelected;
 		value: self text
 ]

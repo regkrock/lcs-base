@@ -35,8 +35,7 @@ LuiSelect >> componentAttributesClass [
 
 { #category : 'defaults' }
 LuiSelect >> defaultCssClasses [
-	^ #()
-	"^ #( inputField )"
+	^ OrderedCollection new
 ]
 
 { #category : 'initialize' }

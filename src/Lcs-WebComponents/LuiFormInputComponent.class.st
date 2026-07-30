@@ -44,6 +44,11 @@ LuiFormInputComponent >> componentIdOf: aComponentName [
 	^ (self myParentPresenterComponent componentNamed: aComponentName) componentId
 ]
 
+{ #category : 'defaults' }
+LuiFormInputComponent >> defaultCssClasses [
+	^OrderedCollection with: LuiCssClassesMap | #inputField
+]
+
 { #category : 'rendering' }
 LuiFormInputComponent >> displayValue [
 	| string |

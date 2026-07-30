@@ -27,7 +27,7 @@ LuiPageHeader >> beStandardPageHeader [
 
 { #category : 'defaults' }
 LuiPageHeader >> defaultCssClasses [
-	^ OrderedCollection with: 'pageHeader'
+	^ OrderedCollection with: LuiCssClassesMap | #pageHeader
 ]
 
 { #category : 'inititalize' }

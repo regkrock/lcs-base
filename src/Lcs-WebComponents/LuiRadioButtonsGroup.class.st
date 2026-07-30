@@ -11,6 +11,14 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'component decorations' }
+LuiRadioButtonsGroup >> addDependentComponent: aLuiComponent [
+	super addDependentComponent: aLuiComponent.
+	1 to: self orderedComponents size by: 2 do: [ :index | | eachRadioButton |
+		eachRadioButton := self orderedComponents at: index.
+		eachRadioButton addDependentComponent: aLuiComponent ]
+]
+
 { #category : 'components updating' }
 LuiRadioButtonsGroup >> assignInputIdToLabelForId [
 	(Interval from: 1 to: self orderedComponents size by: 2) do: [ :index | 
@@ -22,7 +30,7 @@ LuiRadioButtonsGroup >> assignInputIdToLabelForId [
 
 { #category : 'defaults' }
 LuiRadioButtonsGroup >> defaultCssClasses [
-	^ OrderedCollection with: 'radioButtons'
+	^ OrderedCollection with: LuiCssClassesMap | #radioButtons
 ]
 
 { #category : 'initialize' }

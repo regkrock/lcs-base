@@ -538,6 +538,23 @@ LuiComponent >> logRenderingTrace [
 			cr ]
 ]
 
+{ #category : 'component - dependents' }
+LuiComponent >> makeComponentNamed: aDependentComponentName dependentOnComponentNamed: aManagingComponentName [
+	| dependentComponent owningComponent |
+	dependentComponent := self componentNamed: aDependentComponentName.
+	owningComponent := self componentNamed:aManagingComponentName.
+	owningComponent addDependentComponent: dependentComponent
+]
+
+{ #category : 'component - dependents' }
+LuiComponent >> makeComponentNamed: aDependentComponentName mututallyDependentOnComponentNamed: aManagingComponentName [
+	| dependentComponent owningComponent |
+	dependentComponent := self componentNamed: aDependentComponentName.
+	owningComponent := self componentNamed:aManagingComponentName.
+	owningComponent addDependentComponent: dependentComponent.
+	dependentComponent addDependentComponent: owningComponent.
+]
+
 { #category : 'components - querying' }
 LuiComponent >> myParentPresenterComponent [
 	self isPresenterComponent ifTrue: [ ^ self ].

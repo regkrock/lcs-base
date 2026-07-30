@@ -6,6 +6,11 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'defaults' }
+LuiMultipleSelect >> defaultCssClasses [
+	^OrderedCollection new
+]
+
 { #category : 'callbacks' }
 LuiMultipleSelect >> handleCallbackValue: selectedItemsString [
 	| domainCollection intersectingItems selectedItemIndices selectedItems |

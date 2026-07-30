@@ -15,7 +15,7 @@ LuiRadioButtonsExamples >> expectedHtmlForMainSkills [
 LuiRadioButtonsExamples >> mainSkillsRadioGroup [
 	<gtExample>
 	<after: #clearUnitOfWork>
-	| component person callbackBlock expectedHtml |
+	| component person |
 	
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.

@@ -8,7 +8,7 @@ Class {
 
 { #category : 'initialize' }
 LuiSaveAndCancelButtonBar >> defaultCssClasses [
-	^ OrderedCollection with: 'buttonBar'
+	^ OrderedCollection with: LuiCssClassesMap | #buttonBar
 ]
 
 { #category : 'initialize' }

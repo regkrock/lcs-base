@@ -13,5 +13,5 @@ LuiMainForm >> defaultComponentName [
 
 { #category : 'defaults' }
 LuiMainForm >> defaultCssClasses [
-	^ OrderedCollection with: 'applicationArea'
+	^ OrderedCollection with: LuiCssClassesMap | #applicationArea
 ]
