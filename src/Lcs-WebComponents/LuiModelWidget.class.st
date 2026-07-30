@@ -74,7 +74,7 @@ LuiModelWidget >> _initializeOnSlot: aSlotDefinition model: aModel componentName
 
 { #category : 'component   decorations' }
 LuiModelWidget >> addDependentComponent: aLuiComponent [
-	^ self componentDecorations addDependentComponent: aLuiComponent
+	self componentDecorations addDependentComponent: aLuiComponent
 ]
 
 { #category : 'rendering' }

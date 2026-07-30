@@ -84,6 +84,7 @@ LuiSelect >> handleCallbackValue: aValue element: anElement [
 { #category : 'initialize' }
 LuiSelect >> initialize [
 	super initialize.
+	self beRerendered.
 	self optionPrintBlock: [ :eachOption | eachOption asString ].
 	self callback: [].
 	self selectableItemsBlock: [ :model | self slotDefinition targetCollection ]. 
@@ -130,7 +131,7 @@ LuiSelect >> renderComponentOn: html [
 		dataName: self componentName;
 		dataStClass: self;
 		"dispatchCallback;"
-		onBlur: (self handleCallbackAndRenderDependents: html);
+		onChange: (self handleCallbackAndRenderDependents: html);
 		with: [ self renderElementComponentsOn: html ]
 ]
 

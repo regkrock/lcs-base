@@ -20,6 +20,16 @@ LuiCheckboxAndLabel >> defaultCssClasses [
 	^ OrderedCollection with: 'radioButtonAndLabel'
 ]
 
+{ #category : 'rendering' }
+LuiCheckboxAndLabel >> displayValue [
+	| string |
+	self valueAccessor ifNil: [ ^ '' ].
+	(self cssClasses includes: 'inputFieldError')
+		ifTrue: [ string := self valueAccessor candidateValue ]
+		ifFalse: [ string := self codec encode: valueAccessor read ].
+	^ string
+]
+
 { #category : 'initialize' }
 LuiCheckboxAndLabel >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.

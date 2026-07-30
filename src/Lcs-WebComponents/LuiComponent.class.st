@@ -102,6 +102,7 @@ LuiComponent >> addLabelComponent [
 { #category : 'components - updating' }
 LuiComponent >> addToComponents: aComponent [ 
 	aComponent parentComponent: self.
+	aComponent postAddToParent.
 	self components at: aComponent componentName put: aComponent.
 	self componentKeys add: aComponent componentName.
 	self componentsDo: [ :each | each assignId ].
@@ -576,6 +577,11 @@ LuiComponent >> parentViewComponents [
 { #category : 'attributes - accessing' }
 LuiComponent >> pattern: aString [
 	self attributes pattern: aString
+]
+
+{ #category : 'components' }
+LuiComponent >> postAddToParent [
+	"This is a hook to execute behavior after the component has been hooked up to its parent"
 ]
 
 { #category : 'gt - views' }

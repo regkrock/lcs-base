@@ -46,14 +46,6 @@ LuiRadioButtons >> gtViewTagName [
 	^'div'
 ]
 
-{ #category : 'rendering' }
-LuiRadioButtons >> handleCallbackAndRenderDependents: html [
-	^ html jQuery ajax
-		callback: [ :value | self handleCallbackValue: value ]
-			value: (html jQuery id: self componentId) value;
-		lcsOnSuccess: (self renderDependentComponentsOn: html)
-]
-
 { #category : 'callbacks' }
 LuiRadioButtons >> handleCallbackValue: value [
 	self selected: value

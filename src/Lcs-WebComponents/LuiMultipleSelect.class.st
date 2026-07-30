@@ -12,11 +12,14 @@ LuiMultipleSelect >> handleCallbackValue: selectedItemsString [
 	selectedItemIndices := (selectedItemsString substrings: #($,)) collect: [ :each | each asNumber ].  
 	selectedItems := selectedItemIndices collect: [ :index | self elements at: index  ].
 	domainCollection := self valueAccessor read.
-	intersectingItems := domainCollection collection & selectedItems.
-	domainCollection
-		do: [ :each | (intersectingItems includes: each) ifFalse: [ domainCollection remove: each ] ].
+	intersectingItems := domainCollection actualCollection & selectedItems.
+	domainCollection collection
+		do: [ :each | (intersectingItems includes: each) ifFalse: [ domainCollection collection remove: each ifAbsent: [ ] ] ].
+	domainCollection pendingAdds
+		do: [ :each | (intersectingItems includes: each) ifFalse: [ domainCollection pendingAdds remove: each ifAbsent: [ ] ] ].
 	selectedItems
-		do: [ :each | (domainCollection includes: each) ifFalse: [ domainCollection add: each ] ]
+		do: [ :each | (domainCollection includes: each) ifFalse: [ domainCollection add: each ] ].
+	domainCollection
 ]
 
 { #category : 'rendering' }
