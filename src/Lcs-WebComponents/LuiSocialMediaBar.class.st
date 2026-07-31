@@ -15,7 +15,7 @@ LuiSocialMediaBar class >> newSeasSocialMediaBar [
 
 { #category : 'defaults' }
 LuiSocialMediaBar >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap | #socialMedia
+	^ OrderedCollection with: LuiCssClassesMap / #socialMedia
 ]
 
 { #category : 'instance creation' }

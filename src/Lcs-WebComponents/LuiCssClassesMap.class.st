@@ -13,6 +13,11 @@ Class {
 }
 
 { #category : 'accessing' }
+LuiCssClassesMap class >> / aSymbol [
+	^ self singleton cssClassFor: aSymbol
+]
+
+{ #category : 'accessing' }
 LuiCssClassesMap class >> singleton [
 	^ Singleton ifNil: [ Singleton := self basicNew initialize ]
 ]
@@ -20,11 +25,6 @@ LuiCssClassesMap class >> singleton [
 { #category : 'accessing' }
 LuiCssClassesMap class >> singleton: anObject [
 	Singleton := anObject
-]
-
-{ #category : 'accessing' }
-LuiCssClassesMap class >> | aSymbol [
-	^ self singleton cssClassFor: aSymbol
 ]
 
 { #category : 'as yet unclassified' }

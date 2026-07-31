@@ -82,20 +82,13 @@ LuiLabelWithInputComponent >> addEmptyLabelAndCompoundInputComponents [
 ]
 
 { #category : 'components' }
-LuiLabelWithInputComponent >> addLabelAndInputComponent [
-	self labelComponentName: self componentNameLabelName. 
-	self inputComponentName: self slotDefinition slotName.
-	self addComponent: (LuiLabel onSlot: self slotDefinition model: self model).
-	self addComponent: (self widgetClass onSlot: self slotDefinition model: self model)
-]
-
-{ #category : 'components' }
 LuiLabelWithInputComponent >> addLabelAndInputComponents [
 	| labelComponent |
 	labelComponent := LuiLabel
 			onSlot: self slotDefinition
 			model: self model
 			componentName: self labelComponentName.
+	labelComponent addCssClass: LuiCssClassesMap / #inputFieldLabel.
 	self addComponent: labelComponent.
 	self addComponent: self newInputComponent
 ]
@@ -127,7 +120,7 @@ LuiLabelWithInputComponent >> componentNamePrefix: anObject [
 
 { #category : 'defualtos' }
 LuiLabelWithInputComponent >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap | #labelAndInputRow
+	^ OrderedCollection with: LuiCssClassesMap / #labelAndInputRow
 ]
 
 { #category : 'testing' }

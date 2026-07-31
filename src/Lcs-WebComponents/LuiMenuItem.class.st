@@ -115,7 +115,7 @@ LuiMenuItem >> callback: aBlock [
 
 { #category : 'defaults' }
 LuiMenuItem >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap | #menuItem
+	^ OrderedCollection with: LuiCssClassesMap / #menuItem
 ]
 
 { #category : 'button - attributes' }

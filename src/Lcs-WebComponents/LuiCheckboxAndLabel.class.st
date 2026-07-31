@@ -17,7 +17,7 @@ LuiCheckboxAndLabel >> assignInputIdToLabelForId [
 
 { #category : 'defaults' }
 LuiCheckboxAndLabel >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap | #radioButtonAndLabel
+	^ OrderedCollection with: LuiCssClassesMap / #radioButtonAndLabel
 ]
 
 { #category : 'rendering' }

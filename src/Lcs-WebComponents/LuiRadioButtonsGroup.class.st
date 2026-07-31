@@ -30,7 +30,7 @@ LuiRadioButtonsGroup >> assignInputIdToLabelForId [
 
 { #category : 'defaults' }
 LuiRadioButtonsGroup >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap | #radioButtons
+	^ OrderedCollection with: LuiCssClassesMap/ #radioButtons
 ]
 
 { #category : 'initialize' }

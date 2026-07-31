@@ -19,7 +19,7 @@ LuiTextInput >> componentAttributesClass [
 
 { #category : 'defaults' }
 LuiTextInput >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap | #inputField 
+	^ OrderedCollection with: LuiCssClassesMap / #inputField 
 ]
 
 { #category : 'gt views' }

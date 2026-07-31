@@ -23,7 +23,7 @@ LuiRadioButtons >> callbackBlock: anObject [
 
 { #category : 'defaults' }
 LuiRadioButtons >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap | #radioButtons
+	^ OrderedCollection with: LuiCssClassesMap/ #radioButtons
 ]
 
 { #category : 'initialize' }

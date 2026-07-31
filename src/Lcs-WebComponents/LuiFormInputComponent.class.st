@@ -46,7 +46,7 @@ LuiFormInputComponent >> componentIdOf: aComponentName [
 
 { #category : 'defaults' }
 LuiFormInputComponent >> defaultCssClasses [
-	^OrderedCollection with: LuiCssClassesMap | #inputField
+	^OrderedCollection with: LuiCssClassesMap / #inputField
 ]
 
 { #category : 'rendering' }
@@ -66,14 +66,14 @@ LuiFormInputComponent >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiFormInputComponent >> handleCallbackValue: value [
-	self removeCssClass: 'inputFieldError'.
+	self removeCssClass: LuiCssClassesMap /#inputFieldError.
 	[ 
 		self valueAccessor candidateValue: value.
 		self valueAccessor write: (self codec decode: value).
 		self valueAccessor candidateValue: '' ]
 			on: LcsSlotDefinitionError 
 			do: [ :s |
-				self addCssClass: 'inputFieldError'.
+				self addCssClass: LuiCssClassesMap /#inputFieldError.
 				s return: self ]
 ]
 

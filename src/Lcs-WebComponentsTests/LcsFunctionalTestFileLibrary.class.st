@@ -141,6 +141,16 @@ LcsFunctionalTestFileLibrary >> inputFieldError [
 ]
 
 { #category : 'css' }
+LcsFunctionalTestFileLibrary >> inputFieldLabelCss [
+	<css: 900>
+	^'.inputFieldLabel {
+  box-sizing: border-box;
+  height: 25px;
+  align-content: center;
+}'
+]
+
+{ #category : 'css' }
 LcsFunctionalTestFileLibrary >> labelAndInputRowCss [
 	<css: 500>
 ^'.labelAndInputRow {
@@ -153,7 +163,7 @@ LcsFunctionalTestFileLibrary >> labelAndInputRowCss [
 
 { #category : 'css' }
 LcsFunctionalTestFileLibrary >> mainCss [
-	"Generated: 2026-07-30T19:16:03.134687-04:00"
+	"Generated: 2026-07-30T20:25:20.157887-04:00"
 	^ '/*	Source: #globalCss	*/
 
 *,
@@ -215,6 +225,18 @@ body {
   min-width: 5rem;
 }
 
+/*	Source: #inputFieldCss	*/
+.inputField {
+  box-sizing: border-box;
+  height: 25px;
+}
+
+/*	Source: #inputFieldCss	*/
+.inputField {
+  box-sizing: border-box;
+  height: 25px;
+}
+
 /*	Source: #radioButtonsCss	*/
 .radioButtons {
   display: grid;
@@ -228,10 +250,18 @@ body {
   height: 25px;
 }
 
-/*	Source: #inputFieldCss	*/
-.inputField {
+/*	Source: #inputFieldLavelCss	*/
+.inputFieldLabel {
   box-sizing: border-box;
   height: 25px;
+  align-content: center;
+}
+
+/*	Source: #inputFieldLabelCss	*/
+.inputFieldLabel {
+  box-sizing: border-box;
+  height: 25px;
+  align-content: center;
 }
 
 /*	Source: #mainMenuBarCss	*/
