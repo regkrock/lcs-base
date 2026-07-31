@@ -597,5 +597,7 @@ LcsFunctionalTestFileLibrary >> twoColumnsBySixRowsCss [
   grid-auto-flow: column;
   grid-row-gap: 0.2rem;
   grid-column-gap: 0.5rem;
+  margin: 3px;
+  box-sizing: border-box;
 }'
 ]

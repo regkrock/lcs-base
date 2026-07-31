@@ -18,7 +18,13 @@ LuiCheckbox >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiCheckbox >> handleCallbackValue: value [ 
-	self valueAccessor write: (self codec decode: value)
+	"It appears treating  this as a togggle is the way to do it.
+	 The value being returned is always 'on'. 
+	 
+	 self valueAccessor write: (self codec decode: value)"
+	 
+	self valueAccessor write: (self valueAccessor read) not 
+
 ]
 
 { #category : 'initialize' }
