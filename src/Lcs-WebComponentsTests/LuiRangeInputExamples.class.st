@@ -29,8 +29,8 @@ LuiRangeInputExamples >> weightRange [
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPerson new.
 	component := LuiRangeInput onSlotNamed: 'weight' model: person.
-
-	expectedHtml := '<input data-name="weight" data-StClass="LuiRangeInput" step="1" max="500" min="0" name="1" value="0" type="range"/>'.
+	self wrapComponent: component.
+	expectedHtml := '<input id="166924512" data-name="weight" data-StClass="LuiRangeInput" min="0" max="500" class="inputField" step="1" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#166924512&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="0" type="range"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]

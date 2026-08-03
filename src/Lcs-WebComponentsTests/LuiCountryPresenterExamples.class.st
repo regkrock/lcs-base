@@ -35,7 +35,7 @@ LuiCountryPresenterExamples >> renderedSingleColumnCountryLayout [
 	country := presenter model.
 	presenter addComponent: (LuiTextInput onSlot: (presenter model slotDefinitionNamed: 'commonName') ).
 
-	expectedHtml := '<div data-name="countryPresenter" data-StClass="LuiCountryPresenter"><input id="133384925" data-name="commonName" data-StClass="LuiTextInput" placeholder="Common Name" class="inputField" name="1" value="Canada" type="text"/></div>'.
+	expectedHtml := '<div data-name="countryPresenter" data-StClass="LuiCountryPresenter"><input id="133384925" data-name="commonName" data-StClass="LuiTextInput" placeholder="Common Name" class="inputField" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#133384925&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="Canada" type="text"/></div>'.
 	
 	self assertRendered: presenter equals: expectedHtml.
 	^ presenter

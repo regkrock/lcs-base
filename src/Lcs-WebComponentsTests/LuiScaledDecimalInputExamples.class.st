@@ -11,7 +11,8 @@ LuiScaledDecimalInputExamples >> newComponent [
 	<gtExample>
 	| component expectedHtml |
 	component := LuiScaledDecimalInput new.
-	expectedHtml := '<input data-StClass="LuiScaledDecimalInput" value="" type="number"/>'.
+	self wrapComponent: component.
+	expectedHtml := '<input id="57293099" data-StClass="LuiScaledDecimalInput" class="inputField" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#57293099&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="" type="number"/>'.
 	self assertRendered: component equals: expectedHtml. 
 	^ component
 ]
@@ -21,8 +22,9 @@ LuiScaledDecimalInputExamples >> newNamedComponent [
 	<gtExample>
 	| component expectedHtml |
 	component := LuiScaledDecimalInput named: 'xxx'.
+	self wrapComponent: component.
 	self assert: component displayValue equals: ''.
-	expectedHtml := '<input data-name="xxx" data-StClass="LuiScaledDecimalInput" name="1" value="" type="number"/>'.
+	expectedHtml := '<input id="163764608" data-name="xxx" data-StClass="LuiScaledDecimalInput" class="inputField" name="1" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#163764608&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="" type="number"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -47,10 +49,11 @@ LuiScaledDecimalInputExamples >> scaledDecimalWith2DecimalPlacesNumberInputCompo
 	self ensureCurrentSystemIsPrototypeSystem.
 	person := LxxPersonExamples new johnFreeman.
 	component := LuiScaledDecimalInput onSlotNamed: 'balance' model: person.
+	self wrapComponent: component.
 	self assert: component step equals: 0.01s2.
 	self assert: component codec class equals: LuiScaledDecimalCodec.
 	self assert: component displayValue equals: '0.00'.
-	self assertRendered: component equals: '<input data-name="balance" data-StClass="LuiScaledDecimalInput" step="0.01" max="100" min="-100" name="1" value="0.00" type="number"/>'.
+	self assertRendered: component equals: '<input id="117598794" data-name="balance" data-StClass="LuiScaledDecimalInput" min="-100" max="100" class="inputField" step="0.01" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#117598794&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="0.00" type="number"/>'.
 	^ component
 ]
 

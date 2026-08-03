@@ -14,11 +14,12 @@ LuiCodec >> canCreate: anObject [
 
 { #category : 'converting' }
 LuiCodec >> decode: aString [
-
+	"Converts a aString to an anObject"
 	^ self subclassResponsibility
 ]
 
 { #category : 'converting' }
-LuiCodec >> encode: aString [
+LuiCodec >> encode: anObject [
+	"Converts an anObject to a string"
 	^ self subclassResponsibility
 ]

@@ -25,14 +25,13 @@ LuiDateInputExamples >> birthdayOfPerson [
 	person := LxxPerson new.
 	person dateOfBirth: birthDate.
 	component := LuiDateInput onSlotNamed: 'dateOfBirth' model: person.
+	self wrapComponent: component.
 	self assert: dateOfBirthSlot minimum equals: minimumDate.
 	self assert: dateOfBirthSlot maximum equals: maximumDate.
 
 
-	expectedHtml := 
-	'<input data-name="dateOfBirth" data-StClass="LuiDateInput" max="' , maximumDate yyyymmdd , '" min="'
-			, minimumDate yyyymmdd , '" name="1" value="'
-			, birthDate yyyymmdd , '" type="date"/>'.
+	expectedHtml := '%<input id="15574312" data-name="dateOfBirth" data-StClass="LuiDateInput" min="<2s>" max="<1s>" class="inputField" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#15574312&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="<3s>" type="date"/>'
+	expandMacrosWith: maximumDate yyyymmdd with: minimumDate yyyymmdd with: birthDate yyyymmdd.
 
 	self assertRendered: component equals: expectedHtml.
 
@@ -45,8 +44,8 @@ LuiDateInputExamples >> newComponent [
 	| component expectedHtml today |
 	today := Date today yyyymmdd.
 	component := LuiDateInput named: 'datePicker' model: Date today.
-	
-	expectedHtml := '<input data-name="datePicker" data-StClass="LuiDateInput" name="1" value="' , today , '" type="date"/>'.
+	self wrapComponent: component.
+	expectedHtml := '%<input id="52549980" data-name="datePicker" data-StClass="LuiDateInput" class="inputField" name="1" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#52549980&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="<1s>" type="date"/>'  expandMacrosWith: today.
 	self assertRendered: component equals: expectedHtml.
 
 	^ component

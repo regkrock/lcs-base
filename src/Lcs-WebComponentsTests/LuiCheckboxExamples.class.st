@@ -38,8 +38,9 @@ LuiCheckboxExamples >> checkboxOnBooleanSlotWhereBooleanIsTrue [
 LuiCheckboxExamples >> checkedCheckboxWithNoValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" checked type="checkbox"/><input name="2" type="hidden"/>'.
+	expectedHtml := '<input id="183886232" data-name="xxxx" data-StClass="LuiCheckbox" class="inputField" name="1" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#183886232&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" checked type="checkbox"/><input name="5" type="hidden"/>'.
 	component := LuiCheckbox named: 'xxxx' model: true.
+	self wrapComponent: component.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -48,8 +49,9 @@ LuiCheckboxExamples >> checkedCheckboxWithNoValue [
 LuiCheckboxExamples >> checkedCheckboxWithValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" checked type="checkbox"/><input name="2" type="hidden"/>'.
+	expectedHtml := '<input id="183886232" data-name="xxxx" data-StClass="LuiCheckbox" class="inputField" name="1" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#183886232&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" checked type="checkbox"/><input name="5" type="hidden"/>'.
 	component := LuiCheckbox named: 'xxxx' model: true.
+	self wrapComponent: component.
 	component model: true.
 	self assertRendered: component equals: expectedHtml.
 	^ component
@@ -67,8 +69,8 @@ LuiCheckboxExamples >> newComponent [
 	self assert: component valueAccessor parent equals: component.
 	self assert: component valueAccessor model equals: nil.
 	self assert: component valueAccessor contents equals: nil.
-	self assert: component displayValue equals: 'nil'.
-	self assert: component componentDecorations hasNoDecorations.
+	self assert: component displayValue equals: 'off'.
+	self assert: (component componentDecorations dependentComponents includes: component).
 	self assert: component text isNil.
 	^ component
 ]
@@ -76,9 +78,11 @@ LuiCheckboxExamples >> newComponent [
 { #category : 'examples' }
 LuiCheckboxExamples >> newComponentHtml [
 	<gtExample>
-	| component |
+	| component expectedHtml |
 	component := self newComponent.
-	self assertRendered: component equals: '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" type="checkbox"/><input name="2" type="hidden"/>'.
+	self wrapComponent: component.
+	expectedHtml := '<input id="183886232" data-name="xxxx" data-StClass="LuiCheckbox" class="inputField" name="1" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#183886232&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" type="checkbox"/><input name="5" type="hidden"/>'.
+	self assertRendered: component equals: expectedHtml.
 	^ component
 
 ]
@@ -100,8 +104,9 @@ LuiCheckboxExamples >> uncheckedCheckboxWithNoValue [
 LuiCheckboxExamples >> uncheckedCheckboxWithValue [
 	<gtExample>
 	| component expectedHtml |
-	expectedHtml := '<input data-name="xxxx" data-StClass="LuiCheckbox" name="1" type="checkbox"/><input name="2" type="hidden"/>'.
+	expectedHtml := '<input id="183886232" data-name="xxxx" data-StClass="LuiCheckbox" class="inputField" name="1" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#183886232&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" type="checkbox"/><input name="5" type="hidden"/>'.
 	component := self newComponent.
+	self wrapComponent: component.
 	component model: false.
 	self assert: component model equals: false.
 	component text: 'Label'.

@@ -26,15 +26,15 @@ LuButtonExamples >> cancelButton [
 	<gtExample>
 	| button expectedHtml |
 	button := LuiCancelButton new.
+	self wrapInRootComponent: button.
 	self assert: button components contents size = 2.
-	self assert: button parentComponent isNil.
 	self deny: button hasLabelComponent.
 	self assert: button labelString isEmpty.
 	self assert: button attributes buttonType equals: 'button'.
 	self assert: button buttonTypeAttribute attributeValue equals: 'button'.
 	self assert: button leadingImageComponent notNil.
 	self assert: button spanComponent text = 'Cancel'.
-	expectedHtml := '<button data-name="cancelButton" data-StClass="LuiCancelButton" type="submit" class="pushButton" name="1"><img alt="" id="36695256" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/cancel24.svg"/><span id="151812643" data-name="span" data-StClass="LuiSpan">Cancel</span></button>'.
+	expectedHtml := '<button id="31171873" data-name="cancelButton" data-StClass="LuiCancelButton" type="button" class="pushButton" onclick="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,$(this).closest(&quot;form&quot;).find(&quot;:input&quot;).serialize()].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;2&quot;)}})"><img alt="" id="31111575" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/cancel24.svg"/><span id="128592642" data-name="span" data-StClass="LuiSpan">Cancel</span></button>'.
 	self assertRendered: button equals: expectedHtml.
 	^ button 
 ]
@@ -161,15 +161,15 @@ LuButtonExamples >> saveButton [
 	<gtExample>
 	| button expectedHtml |
 	button := LuiSaveButton new.
+	self wrapInRootComponent: button.
 	self assert: button components contents size = 2.
-	self assert: button parentComponent isNil.
 	self deny: button hasLabelComponent.
 	self assert: button labelString isEmpty.
 	self assert: button attributes buttonType equals: 'button'.
 	self assert: button buttonTypeAttribute attributeValue equals: 'button'.
 	self assert: button leadingImageComponent notNil.
 	self assert: button spanComponent text = 'Save'.
-	expectedHtml := '<button data-name="saveButton" data-StClass="LuiSaveButton" type="submit" class="pushButton" name="1"><img alt="" id="154651757" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="144653080" data-name="span" data-StClass="LuiSpan">Save</span></button>'.
+	expectedHtml := '<button id="202634018" data-name="saveButton" data-StClass="LuiSaveButton" type="button" class="pushButton" onclick="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,$(this).closest(&quot;form&quot;).find(&quot;:input&quot;).serialize()].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;2&quot;)}})"><img alt="" id="73229204" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="137103711" data-name="span" data-StClass="LuiSpan">Save</span></button>'.
 	self assertRendered: button equals: expectedHtml.
 	^ button 
 ]

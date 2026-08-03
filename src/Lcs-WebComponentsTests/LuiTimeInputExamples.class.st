@@ -14,8 +14,9 @@ LuiTimeInputExamples >> newComponent [
 	component := LuiTimeInput named: 'timePicker' model: timeNow.
 	self assert: component codec class equals: LuiTimeCodec.
 	self assert: component codec class equals: LuiTimeCodec.
+	self wrapComponent: component.
 
-	expectedHtml := '<input data-name="timePicker" data-StClass="LuiTimeInput" name="1" value="' , timeNow asString , '" type="time"/>'.
+	expectedHtml := '%<input id="109785709" data-name="timePicker" data-StClass="LuiTimeInput" class="inputField" name="1" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#109785709&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="<1s>" type="time"/>' expandMacrosWith: timeNow asString.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -34,8 +35,9 @@ LuiTimeInputExamples >> timeInputForSlotWithMinimumAndMaximum [
 	self assert: slot maximum equals: Time noon.
 	self assert: slot validationRules collection size = 1 .
 	self assert: slot validationRules collection any class == LcsRangeRule.
+	self wrapComponent: component.
 
-	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" max="12:00 pm" min="12:00 am" name="1" value="' , Time midnight asString , '" type="time"/>'.
+	expectedHtml := '%<input id="242751071" data-name="time" data-StClass="LuiTimeInput" max="12:00 pm" class="inputField" min="12:00 am" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#242751071&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="<1s>" type="time"/>' expandMacrosWith: Time midnight asString.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -50,7 +52,7 @@ LuiTimeInputExamples >> updateTime [
 	component := self timeInputForSlotWithMinimumAndMaximum.
 	component handleCallbackValue: newTime asString.
 	self assert: component model time equals: newTime.
-	expectedHtml := '<input data-name="time" data-StClass="LuiTimeInput" max="12:00 pm" min="12:00 am" name="1" value="12:00:03 am" type="time"/>'.
+	expectedHtml := '%<input id="242751071" data-name="time" data-StClass="LuiTimeInput" max="12:00 pm" class="inputField" min="12:00 am" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#242751071&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="<1s>" type="time"/>' expandMacrosWith: newTime asString.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -59,12 +61,16 @@ LuiTimeInputExamples >> updateTime [
 LuiTimeInputExamples >> updateTimeWithInvalidValue [
 	<gtExample>
 	<after: #clearUnitOfWork>
-	| component newTime |
+	| component newTimeString |
 	self ensureCurrentSystemIsPrototypeSystem.
-	newTime := (Time noon addSeconds: 3).
+	newTimeString := (Time noon addSeconds: 120) asString.
 	component := self timeInputForSlotWithMinimumAndMaximum.
 	self assert: component model time equals: Time midnight.
-	self should: [ component handleCallbackValue: newTime asString ] raise: LcsSlotValidationError.
+	self deny: (component cssClasses includes: (LuiCssClassesMap / #inputFieldError)).
+	self should: [ component applyCallbackValue: newTimeString ] raise: LcsSlotValidationError.
 	self assert: component model time equals: Time midnight.
+
+	component handleCallbackValue: newTimeString.
+	self assert: (component cssClasses includes: (LuiCssClassesMap / #inputFieldError)).
 	^ component
 ]

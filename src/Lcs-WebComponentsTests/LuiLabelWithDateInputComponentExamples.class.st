@@ -46,6 +46,8 @@ LuiLabelWithDateInputComponentExamples >> renderedDateOfBirthComponent [
 	| expectedHtml minDate maxDate |
 	maxDate := Date today.
 	minDate := Date newDay: maxDate dayOfMonth month: maxDate monthIndex year: (maxDate year - 120).
-	expectedHtml := '%<div data-name="dateOfBirthLabelAndInput" data-StClass="LuiLabelWithInputComponent" class="labelAndInputRow">%<label id="202059686" data-name="dateOfBirthLabel" data-StClass="LuiLabel" for="100825630">Date of Birth%</label>%<input id="100825630" data-name="dateOfBirth" data-StClass="LuiDateInput" max="<1s>" min="<2s>" name="1" value="2000-01-01" type="date"/>%</div>' expandMacrosWith: maxDate yyyymmdd with: minDate yyyymmdd.
+	expectedHtml := 
+	'%<div data-name="dateOfBirthLabelAndInput" data-StClass="LuiLabelWithInputComponent" class="labelAndInputRow">%<label id="202059686" data-name="dateOfBirthLabel" data-StClass="LuiLabel" for="100825630" class="inputFieldLabel">Date of Birth%</label>%<input id="100825630" data-name="dateOfBirth" data-StClass="LuiDateInput" min="<2s>" max="<1s>" class="inputField" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#100825630&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="2000-01-01" type="date"/>%</div>'
+	expandMacrosWith: maxDate yyyymmdd with: minDate yyyymmdd.
 	^ self assertRendered: self dateOfBirthComponent equals: expectedHtml
 ]

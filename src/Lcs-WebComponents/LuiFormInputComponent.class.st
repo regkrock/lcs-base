@@ -14,6 +14,11 @@ LuiFormInputComponent class >> isAbstract [
 	^ self == LuiFormInputComponent
 ]
 
+{ #category : 'callbacks' }
+LuiFormInputComponent >> applyCallbackValue: value [
+	self valueAccessor write: (self codec decode: value)
+]
+
 { #category : 'attributes - accessing' }
 LuiFormInputComponent >> callback [
 	^ self attributes callback 
@@ -66,15 +71,14 @@ LuiFormInputComponent >> gtViewTagName [
 
 { #category : 'callbacks' }
 LuiFormInputComponent >> handleCallbackValue: value [
-	self removeCssClass: LuiCssClassesMap /#inputFieldError.
-	[ 
-		self valueAccessor candidateValue: value.
-		self valueAccessor write: (self codec decode: value).
-		self valueAccessor candidateValue: '' ]
-			on: LcsSlotDefinitionError 
-			do: [ :s |
-				self addCssClass: LuiCssClassesMap /#inputFieldError.
-				s return: self ]
+	self removeCssClass: LuiCssClassesMap / #inputFieldError.
+	[ self valueAccessor candidateValue: value.
+	self applyCallbackValue: value.
+	self valueAccessor candidateValue: '' ]
+		on: LcsSlotDefinitionError
+		do: [ :s | 
+			self addCssClass: LuiCssClassesMap / #inputFieldError.
+			s return: self ]
 ]
 
 { #category : 'initialize' }

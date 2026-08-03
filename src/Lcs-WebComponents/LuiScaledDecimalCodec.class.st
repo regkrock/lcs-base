@@ -23,17 +23,12 @@ LuiScaledDecimalCodec >> canCreate: anObject [
 
 { #category : 'converting' }
 LuiScaledDecimalCodec >> decode: aString [
-	| number |
-	number := (ScaledDecimal readFrom: aString) 
-				asScaledDecimal: self numberOfDecimals.
-	"(number isZero not and: [ (number = aString) not ])
-		ifTrue: [ self error: 'Invalid number' ]."
-	^ number
+	^ ((ScaledDecimal readFromString: aString) asScaledDecimal: self numberOfDecimals)
 ]
 
 { #category : 'converting' }
 LuiScaledDecimalCodec >> encode: aScaledDecimal [
-	^ (aScaledDecimal asScaledDecimal: self numberOfDecimals) greaseString
+	^ aScaledDecimal greaseString
 ]
 
 { #category : 'accessing' }

@@ -13,7 +13,7 @@ LuiTimeCodec >> canCreate: anObject [
 
 { #category : 'converting' }
 LuiTimeCodec >> decode: aString [
-	^ [ Time fromString: aString ] on: Error do: [ :s | s return: nil ]
+	^ [ Time fromString: aString ] on: Error do: [ :s | s return: '' ]
 ]
 
 { #category : 'converting' }

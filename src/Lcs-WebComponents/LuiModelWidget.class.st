@@ -132,8 +132,8 @@ LuiModelWidget >> handleCallbackAndRenderDependents: html [
 ]
 
 { #category : 'callbacks' }
-LuiModelWidget >> handleCallbackValue: value [ 
-	self valueAccessor codec decode: value
+LuiModelWidget >> handleCallbackValue: aString [ 
+	self valueAccessor codec decode: aString
 ]
 
 { #category : 'testing' }

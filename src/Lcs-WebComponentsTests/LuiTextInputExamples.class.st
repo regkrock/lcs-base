@@ -18,7 +18,7 @@ LuiTextInputExamples >> newComponent [
 	self assert: component valueAccessor parent equals: component.
 	self assert: component valueAccessor model equals: ''.
 	self assert: component displayValue equals: ''.
-	self assert: component componentDecorations hasNoDecorations.
+	self assert: (component componentDecorations hasOnlyDependentComponent: component).
 	^ component
 ]
 
@@ -47,7 +47,7 @@ LuiTextInputExamples >> newComponentOnSlot [
 	self assert: component hasNoComponents.
 	self assert: component componentName equals: 'lastName'.
 	self assert: component cssClassesString equals: 'inputField'.
-	self assert: component componentDecorations hasNoDecorations.
+	self assert: (component componentDecorations hasDependentComponent: component).
 
 	self assert: component valueAccessor class name equals: LuiSlotAccessor name.
 	self assert: component valueAccessor parent equals: component.

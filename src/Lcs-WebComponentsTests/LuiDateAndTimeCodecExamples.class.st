@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiDateAndTimeCodecExamples',
-	#superclass : 'LuiSeasideComponentExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-WebComponentsTests-Examples',
 	#package : 'Lcs-WebComponentsTests',
 	#tag : 'Examples'
@@ -11,7 +11,7 @@ LuiDateAndTimeCodecExamples >> dateAndTimeAsString [
 	<gtExample>
 	| result timestamp|
 	timestamp := DateAndTime now.
-	result := (LuiDateAndTimeCodec new encode: timestamp).
+	result := (LuiDateAndTimeCodec new decode: timestamp).
 	self assert: result equals: timestamp printString.
 	^ result
 ]
@@ -19,10 +19,10 @@ LuiDateAndTimeCodecExamples >> dateAndTimeAsString [
 { #category : 'examples' }
 LuiDateAndTimeCodecExamples >> dateAndTimeStringToDateAndTime [
 	<gtExample>
-	| result timestampString|
-	timestampString := DateAndTime now printString.
-	result := (LuiDateAndTimeCodec new decode: timestampString).
-	self assert: result printString equals: timestampString.
+	| result timestamp |
+	timestamp := DateAndTime now.
+	result := (LuiDateAndTimeCodec new decode: timestamp).
+	self assert: result equals: timestamp asString.
 	result
 ]
 
@@ -31,8 +31,8 @@ LuiDateAndTimeCodecExamples >> emptyStringToDateAndTime [
 	<gtExample>
 	| result timestampString|
 	timestampString := ''.
-	result := (LuiDateAndTimeCodec new decode: timestampString).
-	self assert: result equals: nil.
+	result := (LuiDateAndTimeCodec new encode: timestampString).
+	self assert: result equals: ''.
 	result
 ]
 
@@ -59,8 +59,8 @@ LuiDateAndTimeCodecExamples >> nilToDateAndTime [
 	<gtExample>
 	| result timestampString|
 	timestampString := nil.
-	result := (LuiDateAndTimeCodec new decode: timestampString).
-	self assert: result equals: nil.
+	result := (LuiDateAndTimeCodec new encode: timestampString).
+	self assert: result equals: ''.
 	result
 ]
 
@@ -69,7 +69,7 @@ LuiDateAndTimeCodecExamples >> numberToDateAndTime [
 	<gtExample>
 	| result timestampString|
 	timestampString := 12.
-	result := (LuiDateAndTimeCodec new decode: timestampString).
-	self assert: result equals: nil.
+	result := (LuiDateAndTimeCodec new encode: timestampString).
+	self assert: result equals: ''.
 	result
 ]

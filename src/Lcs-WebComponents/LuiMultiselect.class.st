@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiMultipleSelect',
+	#name : 'LuiMultiselect',
 	#superclass : 'LuiSelect',
 	#category : 'Lcs-WebComponents-Widgets',
 	#package : 'Lcs-WebComponents',
@@ -7,15 +7,15 @@ Class {
 }
 
 { #category : 'defaults' }
-LuiMultipleSelect >> defaultCssClasses [
+LuiMultiselect >> defaultCssClasses [
 	^OrderedCollection new
 ]
 
 { #category : 'callbacks' }
-LuiMultipleSelect >> handleCallbackValue: selectedItemsString [
-	| domainCollection intersectingItems selectedItemIndices selectedItems |
-	selectedItemIndices := (selectedItemsString substrings: #($,)) collect: [ :each | each asNumber ].  
-	selectedItems := selectedItemIndices collect: [ :index | self elements at: index  ].
+LuiMultiselect >> handleCallbackValue: selectedItemsString [
+	| domainCollection intersectingItems selectedTagValues selectedItems |
+	selectedTagValues := (selectedItemsString substrings: #($,)).
+	selectedItems := selectedTagValues collect: [ :eachTagValue | (self orderedComponents detect: [ :each | each  htmlTagValue = eachTagValue ]) model ].
 	domainCollection := self valueAccessor read.
 	intersectingItems := domainCollection actualCollection & selectedItems.
 	domainCollection collection
@@ -28,14 +28,14 @@ LuiMultipleSelect >> handleCallbackValue: selectedItemsString [
 ]
 
 { #category : 'rendering' }
-LuiMultipleSelect >> renderComponentOn: html [
+LuiMultiselect >> renderComponentOn: html [
 	html multiSelect
 		addCommonAttributes: self;
-		list: self elements;
+		"list: self elements;
 		titles: [ :each | self optionValueFor: each ];
 		labels: [ :each | self displayLabelFor: each ];
 		size: self elements size;
-		selected: (self valueAccessor read);
-		onBlur: (self handleCallbackAndRenderDependents: html)";
-		callback: [ :value | self handleCallbackValue: value ]"
+		selected: (self valueAccessor read);"
+		onBlur: (self handleCallbackAndRenderDependents: html);
+		with: [ self renderDetailsOn: html ]
 ]

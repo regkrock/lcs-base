@@ -1,3 +1,6 @@
+"
+Use this class for radio buttons where JQuery is not used.
+"
 Class {
 	#name : 'LuiRadioButtons',
 	#superclass : 'LuiModelWidget',
@@ -74,7 +77,6 @@ LuiRadioButtons >> renderComponentOn: html [
 		with: [
 			html radioGroup
 				callback: [ :value | self handleCallbackValue: value ];
-				"onChange: (self handleCallbackAndRenderDependents: html);"
 				selected: self valueAccessor read;
 				with: [ :group | 
 					self renderElementComponentsIn: group on: html ] ]

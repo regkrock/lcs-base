@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiDateCodecExamples',
-	#superclass : 'LuiSeasideComponentExamples',
+	#superclass : 'LcsExamples',
 	#category : 'Lcs-WebComponentsTests-Examples',
 	#package : 'Lcs-WebComponentsTests',
 	#tag : 'Examples'

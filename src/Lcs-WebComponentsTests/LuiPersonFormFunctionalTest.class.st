@@ -17,7 +17,7 @@ LuiPersonFormFunctionalTest >> functionTestPresenter [
 		addLabelAndWidgetComponentFor: 'mainSkill';
 		addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtons inputComponentName: 'mainSkillRadioButtons';
 		addLabelAndWidgetComponentFor: 'balance';
-		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultipleSelect;
+		addLabelAndWidgetComponentFor: 'skills' widgetClass: LuiMultiselect;
 		addLabelAndWidgetComponentFor: 'hasRedHair' widgetClass: LuiCheckboxAndLabel;
 		addLabelAndWidgetComponentFor: 'dateOfBirth';
 		addLabelAndWidgetComponentFor: 'weight';

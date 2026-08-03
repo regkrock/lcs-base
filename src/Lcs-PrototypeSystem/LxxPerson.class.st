@@ -60,7 +60,7 @@ LxxPerson class >> mainSkillSlotDefinition [
 		collectionSlotModuleName: 'Prototype System';
 		collectionSlotName: 'skills';
 		optionValueBlock: [ :object :slot | object skillCode ];
-		displayStringBlock:[ :object :slot | object skillName ];
+		displayStringBlock:[ :object :slot | object skillName ifEmpty: [ object skillCode ] ];
 		yourself
 ]
 

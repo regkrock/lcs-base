@@ -33,3 +33,15 @@ LuiSeasideComponentExamples >> assertRendered: aComponent equals: aString [
 LuiSeasideComponentExamples >> newComponent [
 	self subclassResponsibility
 ]
+
+{ #category : 'private' }
+LuiSeasideComponentExamples >> wrapComponent: aComponent [
+	"This is needed so when a component references its parent in a callback no walkback occurs"
+	(LuiComponent named: 'wrapper') addComponent: aComponent
+]
+
+{ #category : 'private' }
+LuiSeasideComponentExamples >> wrapInRootComponent: aComponent [
+	"This is needed so when a component references its parent in a callback no walkback occurs"
+	(LuiComponent named: 'root') addComponent: aComponent
+]

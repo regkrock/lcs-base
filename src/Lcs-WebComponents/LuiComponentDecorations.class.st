@@ -175,6 +175,12 @@ LuiComponentDecorations >> hasDecorations [
 	^ self collection notEmpty
 ]
 
+{ #category : 'as yet unclassified' }
+LuiComponentDecorations >> hasDependentComponent: aComponent [
+	self hasDependentComponents ifFalse: [ ^ false ].
+	^ self dependentComponents includes: aComponent
+]
+
 { #category : 'decoration' }
 LuiComponentDecorations >> hasDependentComponents [
 	^ self hasDependentComponentsDecoration and: [ self dependentComponents notEmpty ]
@@ -193,6 +199,12 @@ LuiComponentDecorations >> hasNoDecorations [
 { #category : 'decoration' }
 LuiComponentDecorations >> hasNoTextDecoration [
 	^ self hasTextDecoration not
+]
+
+{ #category : 'as yet unclassified' }
+LuiComponentDecorations >> hasOnlyDependentComponent: aComponent [
+	^ (self hasDependentComponent: aComponent) and: [
+		self dependentComponents size = 1 ]
 ]
 
 { #category : 'decoration' }

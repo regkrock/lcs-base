@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'model',
 		'readSelector',
-		'writeSelector'
+		'writeSelector',
+		'candidateValue'
 	],
 	#category : 'Lcs-WebComponents-Accessor',
 	#package : 'Lcs-WebComponents',
@@ -41,6 +42,16 @@ LuiSmalltalkObjectAccessor >> canRead: aModel [
 LuiSmalltalkObjectAccessor >> canWrite: aModel [
 	"Test if ==aModel== can be written."
 	^ true
+]
+
+{ #category : 'accessing' }
+LuiSmalltalkObjectAccessor >> candidateValue [
+	^ candidateValue
+]
+
+{ #category : 'accessing' }
+LuiSmalltalkObjectAccessor >> candidateValue: anObject [
+	candidateValue := anObject
 ]
 
 { #category : 'model' }

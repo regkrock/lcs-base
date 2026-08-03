@@ -15,7 +15,7 @@ LuiDateTimeInputExamples >> componentWithMinMaxAndDefaultStep [
 	component := self newComponent.
 	component min: begin.
 	component max: end.
-	expectedHtml := '<input data-name="dateTimePicker" data-StClass="LuiDateTimeInput" max="2026-06-28T23:59:00-04:00" min="2026-06-27T00:00:00-04:00" name="1" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
+	expectedHtml := '<input id="115465867" data-name="dateTimePicker" data-StClass="LuiDateTimeInput" min="2026-06-27T00:00:00-04:00" max="2026-06-28T23:59:00-04:00" class="inputField" name="1" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#115465867&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -30,7 +30,7 @@ LuiDateTimeInputExamples >> componentWithMinMaxAndStep [
 	component min: begin.
 	component max: end.
 	component step: 1.
-	expectedHtml := '<input data-name="dateTimePicker" data-StClass="LuiDateTimeInput" max="2026-06-28T23:59:00-04:00" step="1" min="2026-06-27T00:00:00-04:00" name="1" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
+	expectedHtml := '<input id="115465867" data-name="dateTimePicker" data-StClass="LuiDateTimeInput" step="1" class="inputField" name="1" max="2026-06-28T23:59:00-04:00" min="2026-06-27T00:00:00-04:00" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#115465867&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
@@ -41,11 +41,12 @@ LuiDateTimeInputExamples >> newComponent [
 	| component expectedHtml timestamp |
 	timestamp := DateAndTime fromString: '2026-06-27T12:00'.
 	component := LuiDateTimeInput named: 'dateTimePicker' model: timestamp.
+	self wrapComponent: component.
 	self assert: component min isNil.
 	self assert: component max isNil.
 	self assert: component step isNil.
 
-	expectedHtml := '<input data-name="dateTimePicker" data-StClass="LuiDateTimeInput" name="1" value="' , timestamp asString , '" type="datetime"/>'.
+	expectedHtml := '%<input id="115465867" data-name="dateTimePicker" data-StClass="LuiDateTimeInput" class="inputField" name="1" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#115465867&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="<1s>" type="datetime"/>' expandMacrosWith: timestamp asString.
 	self assertRendered: component equals: expectedHtml.
 
 	^ component

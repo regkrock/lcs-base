@@ -12,12 +12,6 @@ LuiDateCodec >> canCreate: anObject [
 ]
 
 { #category : 'converting' }
-LuiDateCodec >> dateAsString: aDate [
-	"Returns a string like: '2026-07-18'"
-	^aDate yyyymmdd
-]
-
-{ #category : 'converting' }
 LuiDateCodec >> decode: aString [
 	^ [ Date readFrom: aString pattern: 'y-m-d' ] on: Error do: [ :s | s return: nil ]
 ]
@@ -25,6 +19,6 @@ LuiDateCodec >> decode: aString [
 { #category : 'converting' }
 LuiDateCodec >> encode: aDate [
 	(aDate isKindOf: Date) 
-		ifTrue: [ ^ self dateAsString: aDate ].
-	^''
+		ifTrue: [ ^ aDate yyyymmdd ].
+	^'' 
 ]

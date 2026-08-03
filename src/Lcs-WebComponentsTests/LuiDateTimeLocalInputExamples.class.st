@@ -16,8 +16,8 @@ LuiDateTimeLocalInputExamples >> componentWithMinMaxAndStep [
 	component min: begin.
 	component max: end.
 	component step: 1.
-	expectedHtml := '<input data-name="dateTimePicker" data-StClass="LuiDateTimeLocalInput" step="1" name="1" max="2026-06-28T23:59:00-04:00" min="2026-06-27T00:00:00-04:00" value="2026-06-27T12:00:00-04:00" type="datetime"/>'.
-	"self assertRendered: component equals: expectedHtml."
+	expectedHtml := '<input id="184130110" data-name="dateTimeLocalPicker" data-StClass="LuiDateTimeLocalInput" step="1" class="inputField" name="1" max="2026-06-28T23:59:00-04:00" min="2026-06-27T00:00:00-04:00" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#184130110&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="2026-06-27T12:00:00-04:00" type="datetime-local"/>'.
+	self assertRendered: component equals: expectedHtml.
 	^ component
 ]
 
@@ -27,8 +27,8 @@ LuiDateTimeLocalInputExamples >> newComponent [
 	| component expectedHtml timestamp |
 	timestamp := DateAndTime fromString: '2026-06-27T12:00'.
 	component := LuiDateTimeLocalInput named: 'dateTimeLocalPicker' model: timestamp.
-	
-	expectedHtml := '<input data-name="dateTimeLocalPicker" data-StClass="LuiDateTimeLocalInput" name="1" value="' , timestamp asString , '" type="datetime-local"/>'.
+	self wrapComponent: component.
+	expectedHtml := '%<input id="184130110" data-name="dateTimeLocalPicker" data-StClass="LuiDateTimeLocalInput" class="inputField" name="1" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#184130110&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="<1s>" type="datetime-local"/>' expandMacrosWith: timestamp asString.
 	self assertRendered: component equals: expectedHtml.
 
 	^ component
