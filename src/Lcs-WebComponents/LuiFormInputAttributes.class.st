@@ -8,6 +8,11 @@ Class {
 	#tag : 'Attributes'
 }
 
+{ #category : 'commands' }
+LuiFormInputAttributes >> beReadOnly [
+	self readOnly: true
+]
+
 { #category : 'generated method' }
 LuiFormInputAttributes >> hasReadOnlyAttribute [
 	^ self hasAttribute: LuiReadOnlyAttribute attributeName

@@ -69,7 +69,8 @@ LuiModelWidget >> _initializeOnSlot: aSlotDefinition model: aModel componentName
 				slotDefinition: aSlotDefinition
 				model: aModel).
 	aSlotDefinition isVirtualSlot ifTrue: [ self disabled: true ].
-	self componentName: aString
+	self componentName: aString.
+	aSlotDefinition isVirtualSlot ifTrue: [	self attributes beDisabled ] 
 ]
 
 { #category : 'component   decorations' }

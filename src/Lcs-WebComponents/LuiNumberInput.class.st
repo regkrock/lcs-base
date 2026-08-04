@@ -21,10 +21,11 @@ LuiNumberInput >> initialize [
 { #category : 'initialize' }
 LuiNumberInput >> initializeOnSlot: aSlotDefinition model: aModel componentName: aString [
 	super initializeOnSlot: aSlotDefinition model: aModel componentName: aString.
-	self 
-		step: aSlotDefinition stepValue;
-		min: aSlotDefinition minimum;
-		max: aSlotDefinition maximum
+	self attributes isDisabled ifFalse: [
+		self 
+			step: aSlotDefinition stepValue;
+			min: aSlotDefinition minimum;
+			max: aSlotDefinition maximum]
 ]
 
 { #category : 'rendering' }

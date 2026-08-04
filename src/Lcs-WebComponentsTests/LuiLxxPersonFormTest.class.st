@@ -22,7 +22,7 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 		cssClass: 'twoColumnsBySixRows';
 		addLabelAndWidgetComponentFor: 'firstName';
 		addLabelAndWidgetComponentFor: 'lastName';
-		"addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;"
+		addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;
 		addLabelAndWidgetComponentFor: 'mainSkill';
 		addLabelAndWidgetComponentFor: 'mainSkill' widgetClass: LuiRadioButtonsGroup inputComponentName: 'mainSkillRadioButtons';
 		addLabelAndWidgetComponentFor: 'balance';
