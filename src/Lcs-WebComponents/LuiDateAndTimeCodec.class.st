@@ -12,15 +12,13 @@ LuiDateAndTimeCodec >> canCreate:  anObject [
 ]
 
 { #category : 'converting' }
-LuiDateAndTimeCodec >> decode: aDateAndTime [
+LuiDateAndTimeCodec >> decode: aString [
 	"Return string of format: '2026-07-18T07:06:25.315818-04:00'"
-	^ aDateAndTime greaseString
+	^ DateAndTime fromString: aString
 ]
 
 { #category : 'converting' }
-LuiDateAndTimeCodec >> encode: aString [
-	aString isString ifFalse: [ ^ '' ].
-	^ [ DateAndTime readFromString: aString ]
-		on: DateError
-		do: [ :s | s return: '' ]
+LuiDateAndTimeCodec >> encode: aDateAndTime [
+	aDateAndTime class = DateAndTime ifFalse: [ ^ '' ].
+	^ aDateAndTime greaseString
 ]

@@ -11,7 +11,7 @@ LuiDateAndTimeCodecExamples >> dateAndTimeAsString [
 	<gtExample>
 	| result timestamp|
 	timestamp := DateAndTime now.
-	result := (LuiDateAndTimeCodec new decode: timestamp).
+	result := (LuiDateAndTimeCodec new encode: timestamp).
 	self assert: result equals: timestamp printString.
 	^ result
 ]
@@ -21,7 +21,7 @@ LuiDateAndTimeCodecExamples >> dateAndTimeStringToDateAndTime [
 	<gtExample>
 	| result timestamp |
 	timestamp := DateAndTime now.
-	result := (LuiDateAndTimeCodec new decode: timestamp).
+	result := (LuiDateAndTimeCodec new encode: timestamp).
 	self assert: result equals: timestamp asString.
 	result
 ]

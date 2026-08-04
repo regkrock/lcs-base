@@ -11,7 +11,7 @@ Class {
 
 { #category : 'converting' }
 LuiDateTimeInput >> contentsAsString [
-	^ self codec decode:  self valueAccessor contents
+	^ self codec encode:  self valueAccessor contents
 ]
 
 { #category : 'gt views' }
