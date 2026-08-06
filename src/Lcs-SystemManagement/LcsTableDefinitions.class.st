@@ -1,6 +1,7 @@
 Class {
 	#name : 'LcsTableDefinitions',
 	#superclass : 'LcsDomainCollection',
-	#category : 'Lcs-SystemManagement',
-	#package : 'Lcs-SystemManagement'
+	#category : 'Lcs-SystemManagement-Domain',
+	#package : 'Lcs-SystemManagement',
+	#tag : 'Domain'
 }
