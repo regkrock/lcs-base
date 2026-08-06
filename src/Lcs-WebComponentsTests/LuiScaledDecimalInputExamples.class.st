@@ -53,7 +53,7 @@ LuiScaledDecimalInputExamples >> scaledDecimalWith2DecimalPlacesNumberInputCompo
 	self assert: component step equals: 0.01s2.
 	self assert: component codec class equals: LuiScaledDecimalCodec.
 	self assert: component displayValue equals: '0.00'.
-	self assertRendered: component equals: '<input id="117598794" data-name="balance" data-StClass="LuiScaledDecimalInput" min="-100" max="100" class="inputField" step="0.01" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#117598794&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="0.00" type="number"/>'.
+	self assertRendered: component equals: '<input id="117598794" data-name="balance" data-StClass="LuiScaledDecimalInput" step="0.01" class="inputField" max="100" min="-100" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#117598794&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;3&quot;)}})" value="0.00" type="number"/>'.
 	^ component
 ]
 

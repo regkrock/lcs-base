@@ -8,9 +8,9 @@ Class {
 		'targetPackageName',
 		'moduleName'
 	],
-	#category : 'Lcs-SlotTools-Core',
+	#category : 'Lcs-SlotTools-Job',
 	#package : 'Lcs-SlotTools',
-	#tag : 'Core'
+	#tag : 'Job'
 }
 
 { #category : 'builder job' }

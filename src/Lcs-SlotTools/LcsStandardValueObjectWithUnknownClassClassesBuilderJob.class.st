@@ -1,9 +1,9 @@
 Class {
 	#name : 'LcsStandardValueObjectWithUnknownClassClassesBuilderJob',
 	#superclass : 'LcsValueObjectClassesBuilderJob',
-	#category : 'Lcs-SlotTools-Core',
+	#category : 'Lcs-SlotTools-Job',
 	#package : 'Lcs-SlotTools',
-	#tag : 'Core'
+	#tag : 'Job'
 }
 
 { #category : 'configuration' }

@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-01T15:45:02.027786-04:00"
+						"dateAndTimeString" : "2026-08-06T12:19:28.203575-04:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,41 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "####This is an example does the following:\n1) Creates LxxPhoneNumber class\n2) Creates LxxPhoneNumbers class\n3) Creates LxxPhoneNumbersLodaer class\n4) Adds a parent to LxxPhonenUmber which points to The #phoneNumbers slot in LxxPerson.\n5) Adds #phoneNumbers slot to LxxPerson\n\nSee [[Slot Model Generation]] page for description of the Tabs that are   in the Global Colleection Pattern Form."
+				"string" : "####This is an example does the following:\n1) Creates LxxPhoneNumber class\n2) Creates LxxPhoneNumbers class\n3) Creates LxxPhoneNumbersLodaer class\n4) Adds a parent to LxxPhonenUmber which points to The #phoneNumbers slot in LxxPerson.\n5) Adds #phoneNumbers slot to LxxPerson\n\nSee [[Slot Model Generation]] page for description of the Tabs that are   in the Global Collection Pattern Form.\n"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-06T12:03:00.335527-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-06T14:24:33.409565-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lvOQckLLR2SZPwA5bDNRzw=="
+				},
+				"code" : "\"Execute and inspect this code snippet to open the form\"\rslotInstalledInClass := LcsBaseDomainCollection.\rLcsLocalCollectionPatternForm newOn: slotInstalledInClass"
 			},
 			{
 				"__type" : "exampleSnippet",

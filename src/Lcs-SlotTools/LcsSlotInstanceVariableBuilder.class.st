@@ -28,7 +28,7 @@ LcsSlotInstanceVariableBuilder >> addClassesToUmlModel: umlModel [
 
 { #category : 'gt views' }
 LcsSlotInstanceVariableBuilder >> addRefactoringTextDetailsTo: aStream [
-	aStream nextPutAll: self targetClassName.
+	aStream nextPutAll: self targetClassName asString.
 	([ self isInstanceVariableAlreadyCreated ] on: Error do: [ :s | false ])
 		ifTrue: [ aStream nextPutAll: ' - using existing instanceVariable: ' , self slotName ]
 		ifFalse: [ 

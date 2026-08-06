@@ -130,9 +130,8 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknow
 
 { #category : 'examples  - form' }
 LcsMultislotPatternFormExamples >> mainForm [
-	"<gtExample>
-	<after: #clearUnitOfWork>
-	<return: #LcsGlobalCollectionPatternForm>"
+	<gtExample>
+	"<after: #clearUnitOfWork>"
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.
 	form := self formClass newOn: self targetClass.
@@ -221,8 +220,7 @@ LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixAndRootNameEnteredS
 
 { #category : 'examples - form' }
 LcsMultislotPatternFormExamples >> slotCreationFormWithPrefixEntered [
-	"<gtExample>
-	<return: #LcsGlobalCollectionPatternForm>"
+	"<gtExample>"
 	| form |
 	form := self mainForm.
 	self assert: form slotModelBuilder jobSteps isEmpty.

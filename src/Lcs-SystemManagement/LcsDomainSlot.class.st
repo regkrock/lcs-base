@@ -285,6 +285,17 @@ LcsDomainSlot >> gtCreateClassAndValueElementFor: aColumn [
 							vFitContent) ]
 ]
 
+{ #category : 'printing' }
+LcsDomainSlot >> gtDisplayOn: aStream [
+	super gtDisplayOn: aStream.
+	aStream 
+		nextPutAll: ' (';
+		nextPutAll: self domainClass name;
+		nextPutAll: '-';
+		nextPutAll: self slotName displayString; 
+		nextPutAll: ')'
+]
+
 { #category : 'gt views' }
 LcsDomainSlot >> gtRefactoringChangeOn: aView [
 	<gtView>
@@ -460,15 +471,6 @@ LcsDomainSlot >> pragmaSelector: aString [
 LcsDomainSlot >> pragmaSelectorBasedOnSlotDefinitionMethod [
 	self domainClass ifNil: [ ^ nil ].
 	^ (self domainClass pragmaSelectorOf: self slotDefinitionSelector)
-]
-
-{ #category : 'printing' }
-LcsDomainSlot >> printOn: aStream [
-	super printOn: aStream.
-	aStream 
-		nextPutAll: ' (';
-		nextPutAll: self slotName displayString; 
-		nextPutAll: ')'
 ]
 
 { #category : 'properties' }

@@ -65,7 +65,7 @@ LcsLocalCollectionPatternFormExamples >> organizationCommitteeExampleUmlPosition
 { #category : 'examples - form' }
 LcsLocalCollectionPatternFormExamples >> phoneNumbersAddedToPersonExample [
 	<gtExample>
-	<return: #LcsGlobalCollectionPatternForm>
+	<return: #LcsLocalCollectionPatternForm>
 	| form |
 	form := self slotCreationFormWithPrefixEntered.
 	form slotModelBuilder

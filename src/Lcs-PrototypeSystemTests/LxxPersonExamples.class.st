@@ -7,17 +7,78 @@ Class {
 }
 
 { #category : 'examples' }
+LxxPersonExamples >> allSlotDefinitions [
+	<gtExample>
+	| slotDefinitions slot |
+	self ensureCurrentSystemIsPrototypeSystem.
+	slotDefinitions := LxxPerson allSlotDefinitions.
+	self assert: (slot := slotDefinitions detect: [ :each | each slotName = 'version'] ifNone: [ ]) notNil.
+	self assert: slot domainClass equals: LcsDomainObject.
+	self assert: (slot := slotDefinitions detect: [ :each | each slotName = 'weight'] ifNone: [ ]) notNil.
+	self assert: slot domainClass equals: LxxPerson.
+	^ slotDefinitions
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> allSlotDefinitionsBelowLcsDomainObject [
+	<gtExample>
+	| slotDefinitions slot |
+	self ensureCurrentSystemIsPrototypeSystem.
+	slotDefinitions := LxxPerson allSlotDefinitionsBelowLcsDomainObject.
+	self assert: (slot := slotDefinitions detect: [ :each | each slotName = 'version'] ifNone: [ ]) isNil.
+	self assert: (slot := slotDefinitions detect: [ :each | each slotName = 'weight'] ifNone: [ ]) notNil.
+	self assert: slot domainClass equals: LxxPerson.
+	^ slotDefinitions
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> allSlotDefinitionsUpToLxxBasePerson [
+	<gtExample>
+	| slotDefinitions slot |
+	self ensureCurrentSystemIsPrototypeSystem.
+	slotDefinitions := LxxPerson allSlotDefinitionsUpTo: LxxBasePerson.
+	self assert: (slot := slotDefinitions detect: [ :each | each slotName = 'version'] ifNone: [ ]) isNil.
+	self assert: (slot := slotDefinitions detect: [ :each | each slotName = 'weight'] ifNone: [ ]) notNil.
+	self assert: slot domainClass equals: LxxPerson.
+	^ slotDefinitions
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> ethelFreeman [
+	<gtExample>
+	| person |
+	person := self newPerson
+			firstName: 'Ethel';
+			middleName: '';
+			lastName: 'Freeman'.
+	person dateOfBirth: (Date newDay: 21 month: 10 year: 1921) .
+	^ person
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> jesseeFreeman [
+	<gtExample>
+	| person |
+	person := self newPerson
+			firstName: 'Jessee';
+			middleName: '';
+			lastName: 'Freeman'.
+	person dateOfBirth: (Date newDay: 2 month: 8 year: 1910) .
+	^ person
+]
+
+{ #category : 'examples' }
 LxxPersonExamples >> johnFreeman [
 	<gtExample>
 	| person |
 	person := self newPerson
 			firstName: 'John';
-			middleName: 'Edgar';
+			middleName: '';
 			lastName: 'Freeman'.
 	person dateOfBirth: (Date newDay: 2 month: 8 year: 1955) .
 	self assert: person firstName equals: 'John'.
 	self assert: person lastName equals: 'Freeman'.
-	self assert: person middleName equals: 'Edgar'.
+	self assert: person middleName equals: ''.
 	self
 		assert: ((person slotDefinitionNamed: 'lastName') persistedSlotVarIn: person)
 		equals: 'Freeman'.
@@ -34,6 +95,30 @@ LxxPersonExamples >> lastNameSlotDefinition [
 	self assert: (slot isKindOf: LcsStringSlot).
 	self assert: slot slotName equals: 'lastName'.
 	^ slot
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> margaretFreeman [
+	<gtExample>
+	| person |
+	person := self newPerson
+			firstName: 'Margaret';
+			middleName: '';
+			lastName: 'Freeman'.
+	person dateOfBirth: (Date newDay: 06 month: 06 year: 1926) .
+	^ person
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> mildredFreeman [
+	<gtExample>
+	| person |
+	person := self newPerson
+			firstName: 'Mildred';
+			middleName: '';
+			lastName: 'Freeman'.
+	person dateOfBirth: (Date newDay: 2 month: 8 year: 1919) .
+	^ person
 ]
 
 { #category : 'examples' }
@@ -55,6 +140,18 @@ LxxPersonExamples >> newPerson [
 	self assert: person weight equals: 180.
 	self assert: person skills class equals: LxxSubsetSkills.
 	self assert: person skills hasNoElements.
+	^ person
+]
+
+{ #category : 'examples' }
+LxxPersonExamples >> paulineFreeman [
+	<gtExample>
+	| person |
+	person := self newPerson
+			firstName: 'Pauline';
+			middleName: '';
+			lastName: 'Freeman'.
+	person dateOfBirth: (Date newDay: 23 month: 10 year: 1923) .
 	^ person
 ]
 

@@ -459,6 +459,43 @@
 											"__type" : "textStyle"
 										},
 										"string" : "[[CSS Details]]"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-08-04T09:37:11.558154-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-08-04T09:37:35.610872-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "LEYyrZq0RPSZ/nivbbPiEw=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "[[CSS Tables]]"
 									}
 								]
 							},

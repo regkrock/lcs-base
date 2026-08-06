@@ -68,9 +68,8 @@ LuiModelWidget >> _initializeOnSlot: aSlotDefinition model: aModel componentName
 				newOn: self
 				slotDefinition: aSlotDefinition
 				model: aModel).
-	aSlotDefinition isVirtualSlot ifTrue: [ self disabled: true ].
 	self componentName: aString.
-	aSlotDefinition isVirtualSlot ifTrue: [	self attributes beDisabled ] 
+	aSlotDefinition isVirtualSlot ifTrue: [ self beDisabled ]
 ]
 
 { #category : 'component   decorations' }
@@ -81,6 +80,16 @@ LuiModelWidget >> addDependentComponent: aLuiComponent [
 { #category : 'rendering' }
 LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
 	aScript << (aScript jQuery id: aComponent parentComponent componentId) load html: [ :ajaxHtml | aComponent parentComponent renderDetailsOn: ajaxHtml ]
+]
+
+{ #category : 'instance creation' }
+LuiModelWidget >> beDisabled [
+	self attributes beDisabled
+]
+
+{ #category : 'instance creation' }
+LuiModelWidget >> beEnabled [
+	self attributes beEnabled
 ]
 
 { #category : 'initialize' }
@@ -188,11 +197,6 @@ LuiModelWidget >> model [
 { #category : 'model' }
 LuiModelWidget >> model: aModel [
 	self valueAccessor model: aModel.
-]
-
-{ #category : 'callbacks' }
-LuiModelWidget >> optionModel [
-	^ self valueAccessor model
 ]
 
 { #category : 'visiting' }

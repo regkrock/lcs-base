@@ -17,9 +17,9 @@ Class {
 		'newDomainClassSuperclass',
 		'collectionSlotInstallationTargetClassName'
 	],
-	#category : 'Lcs-SlotTools-Core',
+	#category : 'Lcs-SlotTools-Job',
 	#package : 'Lcs-SlotTools',
-	#tag : 'Core'
+	#tag : 'Job'
 }
 
 { #category : 'builders' }
@@ -99,7 +99,7 @@ LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTa
 
 { #category : 'accessing' }
 LcsDomainClassAndDomainCollectionClassBuilderJob >> collectionSlotInstallationTargetClassName [
-	^ collectionSlotInstallationTargetClassName
+	^ collectionSlotInstallationTargetClassName ifNil: [ collectionSlotInstallationTargetClassName := self collectionSlotInstallationTargetClass ifNil: [ nil ] ifNotNil: [ :e | e name ] ]
 ]
 
 { #category : 'accessing' }

@@ -13,8 +13,10 @@ LcsDomainClassBuilder class >> defaultTargetSuperclassName [
 
 { #category : 'accessing' }
 LcsDomainClassBuilder >> _verifyCodeInstallation [
+	| classForVerification |
 	super _verifyCodeInstallation.
-	self assert: self installedClass superclass name equals: self targetSuperclassName
+	classForVerification := self installedClass ifNil: [ self newClassName asClass ].
+	self assert: classForVerification superclass name equals: self targetSuperclassName
 ]
 
 { #category : 'accessing' }

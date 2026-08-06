@@ -47,6 +47,21 @@ LcsBaseDomainObject class >> allSlotDefinitionPragmas [
 		yourself
 ]
 
+{ #category : 'as yet unclassified' }
+LcsBaseDomainObject class >> allSlotDefinitions [
+	^ self slotModel allSlotDefinitions
+]
+
+{ #category : 'as yet unclassified' }
+LcsBaseDomainObject class >> allSlotDefinitionsBelowLcsDomainObject [
+	^ self slotModel allSlotDefinitionsBelowLcsDomainObject
+]
+
+{ #category : 'as yet unclassified' }
+LcsBaseDomainObject class >> allSlotDefinitionsUpTo: aClass [
+	^ self slotModel allSlotDefinitionsUpTo: aClass
+]
+
 { #category : 'slot model - verification' }
 LcsBaseDomainObject class >> assertDomainSlotRemoved: aSlotName [
 	self assert: (self hasAccessorSlotDefinitionNamed: aSlotName) not.

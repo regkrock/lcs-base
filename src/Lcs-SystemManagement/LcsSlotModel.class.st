@@ -71,11 +71,29 @@ LcsSlotModel >> addAllLocalSlotDefinitionsTo: aCollection [
 ]
 
 { #category : 'querying - model' }
+LcsSlotModel >> addAllSlotDefinitionsBelow: aClass to: aCollection [
+	self addAllLocalSlotDefinitionsTo: aCollection.
+	self domainClass isNil ifTrue: [ ^ aCollection ].
+	self domainClass isRootDomainClass ifTrue: [ ^ self ].
+	self domainClass superclass == aClass ifTrue: [ ^self ].
+	self superClassSlotModel addAllSlotDefinitionsBelow: aClass to: aCollection
+]
+
+{ #category : 'querying - model' }
 LcsSlotModel >> addAllSlotDefinitionsTo: aCollection [
 	self addAllLocalSlotDefinitionsTo: aCollection.
 	self domainClass isNil ifTrue: [ ^ aCollection ].
 	self domainClass isRootDomainClass
 		ifFalse: [ self superClassSlotModel addAllSlotDefinitionsTo: aCollection ]
+]
+
+{ #category : 'querying - model' }
+LcsSlotModel >> addAllSlotDefinitionsUpTo: aClass to: aCollection [
+	self addAllLocalSlotDefinitionsTo: aCollection.
+	self domainClass isNil ifTrue: [ ^ aCollection ].
+	self domainClass isRootDomainClass ifTrue: [ ^ self ].
+	self domainClass == aClass ifTrue: [ ^self ].
+	self superClassSlotModel addAllSlotDefinitionsUpTo: aClass to: aCollection
 ]
 
 { #category : 'model - view' }
@@ -141,10 +159,31 @@ LcsSlotModel >> allSlotDefinitions [
 ]
 
 { #category : 'model' }
+LcsSlotModel >> allSlotDefinitionsBelow: aClass [
+	| allSlotDefinitions |
+	allSlotDefinitions := OrderedCollection new.
+	self addAllSlotDefinitionsBelow: aClass  to:allSlotDefinitions.
+	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
+]
+
+{ #category : 'model' }
+LcsSlotModel >> allSlotDefinitionsBelowLcsDomainObject [
+	^ self allSlotDefinitionsBelow: LcsDomainObject
+]
+
+{ #category : 'model' }
 LcsSlotModel >> allSlotDefinitionsIn: aSelector [
 	| allSlotDefinitions |
 	allSlotDefinitions := OrderedCollection new.
 	self _addSlotDefinitionsIn: aSelector to: allSlotDefinitions.
+	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
+]
+
+{ #category : 'model' }
+LcsSlotModel >> allSlotDefinitionsUpTo: aClass [
+	| allSlotDefinitions |
+	allSlotDefinitions := OrderedCollection new.
+	self addAllSlotDefinitionsUpTo: aClass to:allSlotDefinitions.
 	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 

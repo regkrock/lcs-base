@@ -40,6 +40,11 @@ LuiLxxPersonFormTest >> functionTestPresenter [
 	presenter 
 		makeComponentNamed: 'weightRangeLabelAndInput/weightRange' 
 		mututallyDependentOnComponentNamed: 'weightLabelAndInput/weight'.
+
+	presenter 
+		makeComponentNamed: 'ageLabelAndInput/age' 
+		dependentOnComponentNamed: 'dateOfBirthLabelAndInput/dateOfBirth'.
+
 	^ presenter
 
 ]
@@ -73,7 +78,7 @@ LuiLxxPersonFormTest >> renderComponentOn: html [
 	super renderComponentOn: html		
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialize' }
 LuiLxxPersonFormTest >> updateRoot: aRoot [
 	super updateRoot: aRoot.
 	aRoot stylesheet url: LcsFunctionalTestFileLibrary / #mainCss

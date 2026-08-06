@@ -41,6 +41,6 @@ LuiNumberInputExamples >> numberInputForInteger_PersonWeight [
 	component dependentComponents removeAll.
 	self assert: component step equals: 1.
 	self assert: component displayValue equals: '180'.
-	self assertRendered: component equals: '<input id="166924512" data-name="weight" data-StClass="LuiNumberInput" min="0" max="500" class="inputField" step="1" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#166924512&quot;).val())].join(&quot;&amp;&quot;)})" value="180" type="number"/>'.
+	self assertRendered: component equals: '<input id="166924512" data-name="weight" data-StClass="LuiNumberInput" step="1" class="inputField" max="500" min="0" onchange="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,&quot;2=&quot;+encodeURIComponent($(&quot;#166924512&quot;).val())].join(&quot;&amp;&quot;)})" value="180" type="number"/>'.
 	^ component
 ]
