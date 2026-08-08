@@ -73,9 +73,12 @@ LtDomainCollection >> gtItemsFor: aView [
 
 { #category : 'printing' }
 LtDomainCollection >> gtPrintCollectionSizeOn: stream [
-	stream
-		print: self collectionSize;
-		nextPutAll: (' item' asPluralBasedOn: self collectionSize).
+	self collection isNil 
+		ifTrue: [ stream nextPutAll: 'collection slot is nil'] 
+		ifFalse: [
+			stream
+				print: self collectionSize;
+				nextPutAll: (' item' asPluralBasedOn: self collectionSize)].
 	self pendingAdds notEmpty ifTrue: [
 		stream
 			print: ', Pending Adds: ';

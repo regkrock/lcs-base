@@ -179,6 +179,18 @@ LcsSlotModel >> allSlotDefinitionsIn: aSelector [
 	^ (allSlotDefinitions asSortedCollection: [ :a :b | a priority <= b priority ]) asOrderedCollection
 ]
 
+{ #category : 'gt-views' }
+LcsSlotModel >> allSlotDefinitionsList [
+	| stream |
+	stream := WriteStream on: String new.
+	self allSlotDefinitions do: [ :each |
+		stream nextPutAll: each gtDisplayString; 
+			nextPutAll: ' - ';
+			nextPutAll: each priority asString;
+			cr ].
+	^ stream contents
+]
+
 { #category : 'model' }
 LcsSlotModel >> allSlotDefinitionsUpTo: aClass [
 	| allSlotDefinitions |
@@ -308,6 +320,10 @@ LcsSlotModel >> gtViewSlotModelFor: aView [
 				action: [ :aButton | 
 					each domainClass installAccessorSlotDefinition: each slotDefinitionSelector.
 					aButton phlow fireViewUpdateWish ]] width: 40; 
+		actionButtonIcon: BrGlamorousVectorIcons clipboard 
+			tooltip: 'Copy to clipboard'
+			action: [ :aButton :aTab | 
+				Clipboard clipboardText: (self allSlotDefinitionsList) ];
 		actionButtonIcon: BrGlamorousVectorIcons inspect 
 			tooltip: 'Inspect Slot Model'
 			action: [ :aButton :aTab | 

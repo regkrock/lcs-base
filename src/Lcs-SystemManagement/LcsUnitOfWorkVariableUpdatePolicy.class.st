@@ -20,7 +20,7 @@ LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
 { #category : 'slot model' }
 LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject oldValue: anOldValue [
 	self validate: anObject context: aDomainObject oldValue: anOldValue.
-	LcsLogger logReceiver: thisContext receiver message: thisContext message.
+	LcsLogger logReceiver: thisContext receiver message: thisContext message inSlotNamed: self parent slotName.
 	self currentUnitOfWork
 		setValueIn: aDomainObject
 		slot: self parent

@@ -48,7 +48,7 @@ LcsDomainObjectSlotViewItem >> itemChildrenForNonresponders [
 
 { #category : 'printing' }
 LcsDomainObjectSlotViewItem >> newValue [
-	self domainObject isInAddingState ifTrue: [ ^ self item ].
+	(self domainObject ifNil: [ ^ nil]) isInAddingState ifTrue: [ ^ self item ].
 	^ ((self currentUnitOfWork
 		changedSlotRecordFor: self domainObject
 		slotNamed: self label) ifNil: [ ^ '' ]) newValue

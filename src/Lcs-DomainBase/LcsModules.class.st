@@ -11,6 +11,7 @@ LcsModules class >> collectionSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsDictionarySlot new
 		slotName: 'collection';
+		priority: 1;
 		makeDirectUpdateOfVariable;
 		yourself
 ]
@@ -56,7 +57,7 @@ LcsModules >> findModuleNamed: aString [
 { #category : 'gt views' }
 LcsModules >> gtApplicationModulesFor: aView [
 	<gtView>
-	self hasNoElements ifTrue: [ ^ aView empty ].
+	"self hasNoElements ifTrue: [ ^ aView empty ]."
 	^ aView columnedTree
 		title: 'Modules';
 		priority: 10;
@@ -87,6 +88,7 @@ LcsModules >> moduleNamed: aString ifAbsent: aBlock [
 
 { #category : 'gt views' }
 LcsModules >> moduleViewChildren [
+	self collection isNil ifTrue: [ ^ OrderedCollection new ].
 	^ ((self collect: [ :each | LcsModuleViewItem newLabel: each moduleName item: each ])
 			asSortedCollection: [ :a :b | a item loadPriority <= b item loadPriority]) asOrderedCollection
 ]

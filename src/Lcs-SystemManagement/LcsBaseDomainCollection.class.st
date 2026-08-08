@@ -28,9 +28,9 @@ LcsBaseDomainCollection class >> defaultCollectionCaption [
 LcsBaseDomainCollection class >> tableDefinitionsSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsLocalCollectionSlot new
+		slotName: 'tableDefinitions';
 		addSlotType: LcsTableDefinitions;
 		addCollectionMemberType: LcsTableDefinition;
-		slotName: 'tableDefinitions';
 		yourself
 ]
 

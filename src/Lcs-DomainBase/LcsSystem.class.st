@@ -297,6 +297,8 @@ LcsSystem >> hasValidConfiguration [
 
 { #category : 'initialize' }
 LcsSystem >> initialize [
+	"LcsLogger reset .
+	LcsLogger soleInstance transcriptLoggingOn."
 	self makeCurrentSystem.
 	self inititalizeSlotModel.
 	super initialize.
@@ -311,7 +313,7 @@ LcsSystem >> initializeBasicSystem [
 	(self slotDefinitionNamed: 'uuidGenerator') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'status') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'systemSlotModel') initializeSlotValueIn: self.
-	(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self.
+	"(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self."
 	(self slotDefinitionNamed: 'moduleName') initializeSlotValueIn: self.
 	(self slotDefinitionNamed: 'uuid') initializeSlotValueIn: self.
 	self systemBootstrapDomainClasses
@@ -329,6 +331,11 @@ LcsSystem >> initializeModel [
 ]
 
 { #category : 'initialize' }
+LcsSystem >> initializeModulesSlot [
+	(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self
+]
+
+{ #category : 'initialize' }
 LcsSystem >> initializeModulesVariable [
 	self modulesSlot initializeSlotValueIn: self
 ]
@@ -342,7 +349,8 @@ LcsSystem >> initializeSystemSlotModelVariable [
 LcsSystem >> inititalizeSlotModel [
 	self initializeBasicSystem.
 	self addToSlotModel: self slotModel.
-	self inititalizeSlotModelFor: self systemDomainClasses
+	self inititalizeSlotModelFor: self systemDomainClasses.
+	self initializeModulesSlot
 ]
 
 { #category : 'initialize' }

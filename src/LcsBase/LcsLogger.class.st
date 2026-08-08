@@ -59,6 +59,11 @@ LcsLogger class >> logReceiver: aReceiver message: aMessage [
 ]
 
 { #category : 'logging - api' }
+LcsLogger class >> logReceiver: aReceiver message: aMessage inSlotNamed: aSlotName [
+	self soleInstance logReceiver: aReceiver message: aMessage inSlotNamed: aSlotName
+]
+
+{ #category : 'logging - api' }
 LcsLogger class >> logReceiver: aReceiver slector: aSelector arguments: aCollection [
 	self soleInstance logReceiver: aReceiver slector: aSelector arguments: aCollection
 ]
@@ -178,6 +183,17 @@ LcsLogger >> logReceiver: aReceiver message: aMessage [
 ]
 
 { #category : 'logging - api' }
+LcsLogger >> logReceiver: aReceiver message: aMessage inSlotNamed: aString [
+	self 
+		writeTabs;
+		nextPutAll: '(Slot: "';
+		nextPutAll: aString;
+		nextPutAll: '") ';
+		nextPutAll:aReceiver printString , '>>' , aMessage printString;
+		cr 
+]
+
+{ #category : 'logging - api' }
 LcsLogger >> logReceiver: aReceiver slector: aSelector arguments: aCollection [
 	self 
 		writeTabs;
@@ -221,7 +237,7 @@ LcsLogger >> outdent [
 LcsLogger >> reset [
 	self stream isStream
 		ifTrue: [self stream reset]
-		ifFalse: [ [ self stream clear ] on: BlTextOutOfBoundsError do: [ :s | s return: self ] ].
+		ifFalse: [ [ (self stream  instVarNamed: 'text') isEmpty ifFalse: [ self stream clear ] ] on: BlTextOutOfBoundsError do: [ :s | s return: self ] ].
 	self tabLevel: 0.
 ]
 

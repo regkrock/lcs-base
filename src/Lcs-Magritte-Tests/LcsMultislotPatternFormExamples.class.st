@@ -130,7 +130,7 @@ LcsMultislotPatternFormExamples >> formScripterWithRootNameEnteredAndBuildUnknow
 
 { #category : 'examples  - form' }
 LcsMultislotPatternFormExamples >> mainForm [
-	<gtExample>
+	"<gtExample>"
 	"<after: #clearUnitOfWork>"
 	| form |
 	self ensureCurrentSystemIsPrototypeSystem.

@@ -86,7 +86,7 @@ LtCollection >> gtDisplayOn: stream [
 	stream
 		nextPut: $];
 		space.
-	self collectionSize <= self gtCollectionSizeThreshold
+	(self collection notNil and: [self collectionSize <= self gtCollectionSizeThreshold])
 		ifTrue: [ self printElementsOn: stream ]
 ]
 
@@ -147,10 +147,10 @@ LtCollection >> printElementsOn: aStream [
 
 	"Note: The original code used #skip:, but some streams do not support that,
 	 and we don't really need it."
-
-	aStream nextPut: $(.
-	self collection do: [:element | aStream print: element] separatedBy: [aStream space].
-	aStream nextPut: $)
+	self collection notNil ifTrue: [
+		aStream nextPut: $(.
+		self collection do: [:element | aStream print: element] separatedBy: [aStream space].
+		aStream nextPut: $) ]
 ]
 
 { #category : 'printing' }
