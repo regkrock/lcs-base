@@ -3,7 +3,9 @@ Class {
 	#superclass : 'LcsTableDefinitionObject',
 	#instVars : [
 		'caption',
-		'columnDefinitions'
+		'columnDefinitions',
+		'collectionSelector',
+		'collectionFilter'
 	],
 	#category : 'Lcs-SystemManagement-Domain',
 	#package : 'Lcs-SystemManagement',
@@ -15,6 +17,25 @@ LcsTableDefinition class >> captionSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsStringSlot new
 		slotName: 'caption';
+		yourself
+]
+
+{ #category : 'slot definitions' }
+LcsTableDefinition class >> collectionFilterSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsDomainObjectSlot new
+		slotName: 'collectionFilter';
+		addSlotType: LcsTableCollectionFilter;
+		yourself
+]
+
+{ #category : 'slot definitions' }
+LcsTableDefinition class >> collectionSelectorSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsSymbolSlot new
+		slotName: 'collectionSelector';
+		initialValueBlock: [ :parentDomainObject :slot | #collection ];
+		required: true;
 		yourself
 ]
 
@@ -47,6 +68,26 @@ LcsTableDefinition >> caption [
 { #category : 'accessing' }
 LcsTableDefinition >> caption: anObject [
 	self slotVarNamed: 'caption' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsTableDefinition >> collectionFilter [
+	^ self slotVarNamed: 'collectionFilter'
+]
+
+{ #category : 'accessing' }
+LcsTableDefinition >> collectionFilter: anObject [
+	self slotVarNamed: 'collectionFilter' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsTableDefinition >> collectionSelector [
+	^ self slotVarNamed: 'collectionSelector'
+]
+
+{ #category : 'accessing' }
+LcsTableDefinition >> collectionSelector: anObject [
+	self slotVarNamed: 'collectionSelector' put: anObject
 ]
 
 { #category : 'accessing' }

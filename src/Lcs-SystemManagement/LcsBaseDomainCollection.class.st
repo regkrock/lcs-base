@@ -35,6 +35,11 @@ LcsBaseDomainCollection class >> tableDefinitionsSlotDefinition [
 ]
 
 { #category : 'accessing' }
+LcsBaseDomainCollection >> actualCollection [
+	self collection
+]
+
+{ #category : 'accessing' }
 LcsBaseDomainCollection >> caption [
 	^ self slotVarNamed: 'caption'
 ]
@@ -42,6 +47,11 @@ LcsBaseDomainCollection >> caption [
 { #category : 'accessing' }
 LcsBaseDomainCollection >> caption: anObject [
 	self slotVarNamed: 'caption' put: anObject
+]
+
+{ #category : 'accessing' }
+LcsBaseDomainCollection >> collection [
+	self subclassResponsibility
 ]
 
 { #category : 'querrying' }

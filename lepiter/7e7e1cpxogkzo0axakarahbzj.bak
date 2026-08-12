@@ -1,0 +1,261 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-12T08:22:33.364756-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-12T08:22:50.689581-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "C03jdRQRSVW60Gg1lKzXQg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**Design**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-12T08:23:13.107832-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-12T10:30:27.662676-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "op7Mg8WGTFeNG3j1og3rgg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtClass:name=LcsTableDefinition}} \n- {{gtMethod:name=LcsTableDefinition>>caption}}  - optional\n\t- a caption/title for the table\t\n\t- location is a presentation issue - use 'caption-side: top or bottom' in the css to define location.\n\t- top is the default\n- LcsTableDefinition>>#parent - The domain collection that the table is design to present.\n\t- The parent must be a subclass of {{gtClass:name=LcsBaseDomainCollection}}\n\t\t- table items source: \n\t\t\tsource collections:\n\t\t\t\t- #collection - Default - all objects contained in the domain collection's **collection** method.\n\t\t\t\t- #actualCollection - collection with changes current transaction additions and deletions.\n\t\t\tfilter - filters can be applied to the collections\n\t\t\t\t- #tableCollection - source collection with the f \n\n\t\t- {{gtMethod:name=LcsDomainCollection>>collection}}\n\t\t- this is the items in the collection at the beginning of the transaction.\nwith data which is to be displayed by the table. By default this will return the domain collection's collection. This collection is the contents at the beginning of the unit of work. Use \n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-12T08:22:20.554946-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-12T08:22:23.106618-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "GzQgL+G6TnaK5t0MlWlx0Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**Formatting**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-11T16:08:40.933404-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-11T16:17:20.6577-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "HxpDgJycRwqh3xkM30AxRA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The cellsFormat property determines how numeric, date, and time values are presented in libraries like Smart HTML Elements and jQWidgets.The string format consists of a letter defining the style type, optionally followed by a number specifying the decimal places. \n\nFor example, 'c2' specifies a currency format (c) with exactly 2 decimal places (2).\n\nNumber Formatting OptionsFor numeric values, you can swap 'c2' with any of the following letters:\n\nc\t(Currency): Formats the value with a currency symbol and thousand separators based on the\n\t\t system locale (e.g., 'c0' → $1,235, 'c3' → $1,234.568)\n\nFormats standard integer numbers.\nf\t(Floating-point): Displays fixed-point notation (e.g., 'f4' → 1234.5678)\nn\t(Integer / Number): Displays numbers with a thousand separator (e.g., 'n2' → 1,234.57)\np\t(Percentage): Multiplies the value by 100 and appends a percent symbol (e.g., 'p1' → 75.5%).\n\nDate and Time Formatting Options\nIf your column data consists of Date objects or ISO timestamp strings, you can use these standard case-sensitive letters:\nd \t(Short Date): Standard regional format (e.g., M/d/yyyy → 8/11/2026).\nD \t(Long Date): Full text day and month (e.g., dddd, MMMM dd, yyyy → Tuesday, August 11, 2026).\nt\t  (Short Time): Hours and minutes (e.g., h:mm tt → 4:06 PM).\nT \t(Long Time): Includes seconds (e.g., h:mm:ss tt → 4:06:15 PM).\nf \t(Long Date, Short Time): Combines day, month, and time without seconds.\nF \t(Long Date, Long Time): Full day, month, and precise timestamp.\nM\t(Month/Day): Displays only month and day (e.g., August 11).\nY \t(Month/Year): Displays only month and year (e.g., 2026 August).\nS \t(Sortable ISO): A culture-invariant string (yyyy-MM-ddTHH:mm:ss).\n\nWould you like to see how to change the regional currency symbol (e.g., switching from USD to EUR) or do you need help setting up a custom custom-date pattern format?"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-11T16:20:18.406865-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-11T16:21:09.12963-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "WBvri/rhRmGhM7+0lG1ZHw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Other Issues:\n1) Currency symbol before or after\n2) 1000's separator - '.' or','\n3) Decimal symbol '.' or ','"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-11T16:23:39.227145-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-08-11T16:23:51.50275-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "iNosdQhQTqWrOwK6VaKk8Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Updated Columns Configuration:Add the summary array containing 'sum' to the numeric fields (quantity and total):\n\navascriptcolumns: [\n    // ... existing columns\n    { label: 'Quantity', dataField: 'quantity', summary: ['sum'] }, //\n    { label: 'Total', dataField: 'total', summary: ['sum'] } //\n]"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-08-11T16:08:34.164964-04:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-08-12T08:22:11.523124-04:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Data Table "
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "ef8cfdad-489e-4312-9a0e-77a8704de77c"
+	}
+}

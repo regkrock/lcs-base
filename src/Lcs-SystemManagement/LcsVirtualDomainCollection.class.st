@@ -11,12 +11,6 @@ LcsVirtualDomainCollection class >> collectionType [
 	^'virtual'
 ]
 
-{ #category : 'accessing - virtual slot' }
-LcsVirtualDomainCollection >> collection [
-	self subclassResponsibility
-	"More work needs to be done on this"
-]
-
 { #category : 'gt views' }
 LcsVirtualDomainCollection >> gtItemsFor: aView [
 	<gtView>
