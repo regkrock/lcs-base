@@ -9,7 +9,7 @@ Class {
 { #category : 'slot definitions' }
 LcsTableDefinitions class >> tableDefinitionsSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsNullSlot new
+	^ LcsDeprecatedSlot new
 		slotName: 'tableDefinitions';
 		yourself
 ]

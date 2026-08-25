@@ -238,6 +238,20 @@ LxxPersonExamples >> slotDefintiionViewItems [
 ]
 
 { #category : 'examples' }
+LxxPersonExamples >> superclassImmediatelyBelowLcsDomainObject [
+	<gtExample>
+	| class |
+	self ensureCurrentSystemIsPrototypeSystem.
+	class := LxxPerson immediateSubclassOfDomainObject.
+	self assert: class equals: LxxBasePerson.
+	
+	class := LxxBasePerson immediateSubclassOfDomainObject.
+	self assert: class equals: LxxBasePerson.
+	
+	^ class
+]
+
+{ #category : 'examples' }
 LxxPersonExamples >> timeSlotDefinition [
 	<gtExample>
 	<after: #clearUnitOfWork>

@@ -44,9 +44,29 @@ LcsTableDefinition class >> columnDefinitionsSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsDomainCollectionSlot new
 		slotName: 'columnDefinitions';
-		addSlotType: LcsTableColumnDefinition;
+		addSlotType: LcsTableColumnDefinitions;
 		comment: 'This  defines the coumns that will be part of the report';
 		collectionClass: OrderedCollection;
+		addCollectionMemberType: LcsTableColumnDefinition;
+		yourself
+]
+
+{ #category : 'instance creation' }
+LcsTableDefinition class >> newDefaultOn: aSlotDefinitionsCollection [
+	^ self new
+		initializeDefaultOn: aSlotDefinitionsCollection;
+		yourself
+]
+
+{ #category : 'initialize' }
+LcsTableDefinition class >> newDefaultOnClass: aDomainObjectClass [
+	^ self newDefaultOn: (aDomainObjectClass allSlotDefinitionsUpTo: aDomainObjectClass)
+]
+
+{ #category : 'instance creation' }
+LcsTableDefinition class >> newForCollectionSlot: aDomainCollectionSlot [
+	^ self new
+		initializeForCollectionSlot: aDomainCollectionSlot;
 		yourself
 ]
 
@@ -58,6 +78,14 @@ LcsTableDefinition class >> parentSlotDefinition [
 		slotName: 'parent';
 		collectionSlotName: 'tableDefinitions';
 		yourself
+]
+
+{ #category : 'column definitions' }
+LcsTableDefinition >> addColumnDefinitionFor: aSlotDefinition [
+	| newColumn |
+	newColumn := LcsTableColumnDefinition newOn: aSlotDefinition.
+	newColumn parent: self.
+	self columnDefinitions add: newColumn
 ]
 
 { #category : 'accessing' }
@@ -98,4 +126,31 @@ LcsTableDefinition >> columnDefinitions [
 { #category : 'accessing' }
 LcsTableDefinition >> columnDefinitions: anObject [
 	self slotVarNamed: 'columnDefinitions' put: anObject
+]
+
+{ #category : 'elements' }
+LcsTableDefinition >> elements [
+	^ self collectionFilter evaluateOn: (self parent parent perform: self collectionSelector)
+]
+
+{ #category : 'initialize' }
+LcsTableDefinition >> initializeDefaultOn: aSlotDefinitionsCollection [ 
+]
+
+{ #category : 'initialize' }
+LcsTableDefinition >> initializeFor: aDomainObjectClass  caption: aString [
+	self caption: aString.
+	aDomainObjectClass superclass == LcsDomainObject 
+	ifTrue: [ aDomainObjectClass allSlotDefinitionsUpTo: aDomainObjectClass ]
+	ifFalse: [ ]
+]
+
+{ #category : 'initialize' }
+LcsTableDefinition >> initializeForCollectionSlot: aCollectionSlot [
+	| domainObjectClass slotDefinitions|
+	domainObjectClass := aCollectionSlot collectionMemberTypes first.
+	self caption: aCollectionSlot slotTypes first defaultCollectionCaption.
+	slotDefinitions := domainObjectClass allSlotDefinitionsUpTo: ( domainObjectClass immediateSubclassOfDomainObject).
+	(slotDefinitions reject: [ :each | each slotName = 'parent']) do: [ :each | 
+		self addColumnDefinitionFor: each ].
 ]

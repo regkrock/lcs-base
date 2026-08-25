@@ -31,6 +31,10 @@ LcsBaseDomainCollection class >> tableDefinitionsSlotDefinition [
 		slotName: 'tableDefinitions';
 		addSlotType: LcsTableDefinitions;
 		addCollectionMemberType: LcsTableDefinition;
+		"initialValueBlock: [ :parentDomainObject :slot | 
+					(LcsTableDefinition new 
+						parent: parentDomainObject;
+						yourself) ];"
 		yourself
 ]
 

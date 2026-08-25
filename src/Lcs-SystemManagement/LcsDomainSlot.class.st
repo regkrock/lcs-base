@@ -290,7 +290,7 @@ LcsDomainSlot >> gtDisplayOn: aStream [
 	super gtDisplayOn: aStream.
 	aStream 
 		nextPutAll: ' (';
-		nextPutAll: self domainClass name;
+		nextPutAll: (self domainClass ifNil: ['<nil>'] ifNotNil: [ :e | e name]);
 		nextPutAll: '-';
 		nextPutAll: self slotName displayString; 
 		nextPutAll: ')'

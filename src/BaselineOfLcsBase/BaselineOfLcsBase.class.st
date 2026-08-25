@@ -33,7 +33,7 @@ BaselineOfLcsBase >> baseline: spec [
 			spec package: 'Lcs-DomainBase' with: [ spec requires: #('Lcs-SlotTools') ].
 			spec package: 'Lcs-StateMachine' with: [ spec requires: #('Lcs-DomainBase') ].
 			spec package: 'Lcs-Security' with: [ spec requires: #('Lcs-DomainBase') ].
-
+			spec package: 'Lcs-SystemSupport' with: [ spec requires: #('Lcs-DomainBase') ].
 			spec package: 'Lcs-BasicSystem' with: [ spec requires: #('Lcs-DomainBase' 'Lcs-Security') ].
 			
 			spec package: 'Lcs-Geography' with: [ spec requires: #('Lcs-DomainBase' ) ].

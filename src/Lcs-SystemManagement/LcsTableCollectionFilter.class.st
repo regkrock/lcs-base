@@ -14,7 +14,13 @@ LcsTableCollectionFilter class >> filterBlockSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsBlockSlot new
 		slotName: 'filterBlock';
+		initialValueBlock: [:collection | collection ];
 		yourself
+]
+
+{ #category : 'execution' }
+LcsTableCollectionFilter >> evaluateOn: aCollection [
+	^ self filterBlock value: aCollection
 ]
 
 { #category : 'accessing' }

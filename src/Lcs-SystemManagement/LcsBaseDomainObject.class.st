@@ -30,6 +30,11 @@ LcsBaseDomainObject class >> allClassBetweenMyselfAndLcsDomainObject [
 		reject: [ :each | (each inheritsFrom: LcsBaseDomainObject) not ]
 ]
 
+{ #category : 'slot mdoel' }
+LcsBaseDomainObject class >> allLocalSlotDefinitions [
+	^ self slotModel allLocalSlotDefinitions
+]
+
 { #category : 'gt views' }
 LcsBaseDomainObject class >> allSlotDefinitionMethods [
 	^ (self class gtMethodsInClass includeSuperclass: true)
@@ -47,7 +52,7 @@ LcsBaseDomainObject class >> allSlotDefinitionPragmas [
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'slot mdoel' }
 LcsBaseDomainObject class >> allSlotDefinitions [
 	^ self slotModel allSlotDefinitions
 ]
@@ -564,6 +569,11 @@ LcsBaseDomainObject >> allAccessorSlotDefinitions [
 ]
 
 { #category : 'slot model' }
+LcsBaseDomainObject >> allLocalSlotDefinitions [
+	^ self slotModel allLocalSlotDefinitions
+]
+
+{ #category : 'slot model' }
 LcsBaseDomainObject >> allSlotDefinitions [
 	^ self slotModel allSlotDefinitions
 ]
@@ -614,8 +624,9 @@ LcsBaseDomainObject >> currentUser [
 
 { #category : 'gt views' }
 LcsBaseDomainObject >> domainObjectAllAccessorSlotViewItems [
-	^ self allAccessorSlotDefinitions
+	^ (self allAccessorSlotDefinitions reject: [ :each | each class = LcsDeprecatedSlot ])
 		collect: [ :each | 
+			each slotName = 'pendingAdds' ifTrue: [ each ].
 			LcsDomainObjectSlotViewItem
 				newLabel: each slotName
 				item: ((self slotDefinitionNamed: each slotName) persistedSlotVarIn: self)

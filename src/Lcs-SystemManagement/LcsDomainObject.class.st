@@ -61,6 +61,13 @@ LcsDomainObject class >> historySlotDefinition [
 	^ LcsDomainObjectHistorySlot new
 ]
 
+{ #category : 'meta' }
+LcsDomainObject class >> immediateSubclassOfDomainObject [
+	self superclass = LcsDomainObject ifTrue: [ ^ self ].
+	self allSuperclasses do: [ :immediateSuperclass | immediateSuperclass superclass = LcsDomainObject ifTrue: [ ^ immediateSuperclass ] ].
+	self error: 'LcsDomainObject is not in the class hierarchy of ' , self name
+]
+
 { #category : 'slot definitions' }
 LcsDomainObject class >> lastUpdatedDateSlotDefinition [
 	<virtualSlotDefinition>

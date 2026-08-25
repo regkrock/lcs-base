@@ -332,7 +332,8 @@ LcsSystem >> initializeModel [
 
 { #category : 'initialize' }
 LcsSystem >> initializeModulesSlot [
-	(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self
+	(self slotDefinitionNamed: 'modules') initializeSlotValueIn: self.
+	"self modules addTableDefinition: (LcsTableDefinition newForCollectionSlot: (self slotDefinitionNamed: 'modules'))"
 ]
 
 { #category : 'initialize' }
