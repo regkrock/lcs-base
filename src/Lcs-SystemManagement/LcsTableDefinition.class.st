@@ -6,7 +6,8 @@ Class {
 		'columnDefinitions',
 		'collectionSelector',
 		'collectionFilter',
-		'domainCollectionSelector'
+		'domainCollectionSelector',
+		'tableDefinitionName'
 	],
 	#category : 'Lcs-SystemManagement-Domain',
 	#package : 'Lcs-SystemManagement',
@@ -51,6 +52,12 @@ LcsTableDefinition class >> domainCollectionSelectorSlotDefinition [
 	<accessorSlotDefinition>
 	^ LcsSymbolSlot new
 		slotName: 'domainCollectionSelector';
+		addPostUpdateAction: (
+				LcsUpdateAction new
+					description: 'If table definition name is empty, make this the domain collection accessor the default name';
+					actionBlock: [ :value :parentDomainObject :oldValue | 
+						parentDomainObject updateTableDefinitionName: value ];
+					yourself);
 		yourself
 ]
 
@@ -61,7 +68,7 @@ LcsTableDefinition class >> newDefaultOn: aSlotDefinitionsCollection [
 		yourself
 ]
 
-{ #category : 'initialize' }
+{ #category : 'instance creation' }
 LcsTableDefinition class >> newDefaultOnClass: aDomainObjectClass [
 	^ self newDefaultOn: (aDomainObjectClass allSlotDefinitionsUpTo: aDomainObjectClass)
 ]
@@ -80,6 +87,15 @@ LcsTableDefinition class >> parentSlotDefinition [
 		addSlotType: LcsTableDefinitions;
 		slotName: 'parent';
 		collectionSlotName: 'tableDefinitions';
+		yourself
+]
+
+{ #category : 'slot definitions' }
+LcsTableDefinition class >> tableDefinitionNameSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsStringSlot new
+		slotName: 'tableDefinitionName';
+		required: true;
 		yourself
 ]
 
@@ -167,4 +183,21 @@ LcsTableDefinition >> initializeForCollectionSlot: aCollectionSlot [
 	(slotDefinitions reject: [ :each | each slotName = 'parent']) do: [ :each | 
 		self addColumnDefinitionFor: each ].
 	self domainCollectionSelector: aCollectionSlot slotName asSymbol
+]
+
+{ #category : 'accessing' }
+LcsTableDefinition >> tableDefinitionName [
+	^ self slotVarNamed: 'tableDefinitionName'
+]
+
+{ #category : 'accessing' }
+LcsTableDefinition >> tableDefinitionName: anObject [
+	self slotVarNamed: 'tableDefinitionName' put: anObject
+]
+
+{ #category : 'updating' }
+LcsTableDefinition >> updateTableDefinitionName: aString [
+	aString isEmpty ifTrue: [ ^ self ].
+	self tableDefinitionName notEmpty ifTrue: [ ^ self ].
+	self tableDefinitionName: aString
 ]

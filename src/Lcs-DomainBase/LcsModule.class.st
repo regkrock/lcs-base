@@ -496,6 +496,12 @@ LcsModule >> parentModuleClassName [
 	^ self parent parent class name asString
 ]
 
+{ #category : 'querying' }
+LcsModule >> tableDefinitionNamed: aString [
+	^ self tableDefinitions find: [ :each |
+		each tableDefinitionName = aString asSymbol ]
+]
+
 { #category : 'accessing' }
 LcsModule >> tableDefinitions [
 	^ self _slotVarNamed: 'tableDefinitions'

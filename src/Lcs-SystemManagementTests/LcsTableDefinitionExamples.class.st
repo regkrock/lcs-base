@@ -76,7 +76,24 @@ LcsTableDefinitionExamples >> personsTableDefinition [
 	self assert: self currentSystem tableDefinitions pendingDeletes includes: tableDefinition.
 	self assert: self currentSystem tableDefinitions pendingDeletesSize equals: 1.
 	self currentSystem applyChanges.
+	self assert: tableDefinition tableDefinitionName equals: 'persons'.
+	self assert: tableDefinition tableDefinitionName equals: #'persons'.
 	"self assert: self currentSystem tableDefinitions collectionSize equals: 0."
+	^ tableDefinition
+]
+
+{ #category : 'examples' }
+LcsTableDefinitionExamples >> personsTableDefinitionWithNondefaultName [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| tableDefinition  |
+	tableDefinition := self personsTableDefinition.
+	self assert: tableDefinition tableDefinitionName equals: 'persons'.
+	self assert: tableDefinition tableDefinitionName equals: #'persons'.
+	tableDefinition domainCollectionSelector: #'personsUniqueName'.
+	self assert: tableDefinition domainCollectionSelector equals: #'personsUniqueName'.
+	self assert: tableDefinition tableDefinitionName equals: #'persons'.
+
 	^ tableDefinition
 ]
 
