@@ -2,8 +2,7 @@ Class {
 	#name : 'LcsBaseDomainCollection',
 	#superclass : 'LcsDomainObject',
 	#instVars : [
-		'caption',
-		'tableDefinitions'
+		'caption'
 	],
 	#category : 'Lcs-SystemManagement-Domain',
 	#package : 'Lcs-SystemManagement',
@@ -22,20 +21,6 @@ LcsBaseDomainCollection class >> captionSlotDefinition [
 { #category : 'defaults' }
 LcsBaseDomainCollection class >> defaultCollectionCaption [
 	^ (self name copyFrom: 4 to: self name size) asCapitalizedPhrase
-]
-
-{ #category : 'slot definitions' }
-LcsBaseDomainCollection class >> tableDefinitionsSlotDefinition [
-	<accessorSlotDefinition>
-	^ LcsLocalCollectionSlot new
-		slotName: 'tableDefinitions';
-		addSlotType: LcsTableDefinitions;
-		addCollectionMemberType: LcsTableDefinition;
-		"initialValueBlock: [ :parentDomainObject :slot | 
-					(LcsTableDefinition new 
-						parent: parentDomainObject;
-						yourself) ];"
-		yourself
 ]
 
 { #category : 'accessing' }
@@ -76,14 +61,4 @@ LcsBaseDomainCollection >> find: aBlock [
 { #category : 'querying' }
 LcsBaseDomainCollection >> findWithKey: anObject [
 	^ self findWithKey: anObject ifNone: [ ]
-]
-
-{ #category : 'accessing' }
-LcsBaseDomainCollection >> tableDefinitions [
-	^ self slotVarNamed: 'tableDefinitions'
-]
-
-{ #category : 'accessing' }
-LcsBaseDomainCollection >> tableDefinitions: anObject [
-	self slotVarNamed: 'tableDefinitions' put: anObject
 ]

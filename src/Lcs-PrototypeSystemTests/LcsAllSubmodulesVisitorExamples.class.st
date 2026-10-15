@@ -17,7 +17,7 @@ LcsAllSubmodulesVisitorExamples >> allSubModulesInLxxPrototypeSystem [
 	visitor := LcsAllSubmodulesVisitor newOn: LxxPrototypeSystem.
 	modules := visitor allSubmoduleClasses.
 	self assert: modules notEmpty.
-	self assert: modules size equals: 4.
+	self assert: modules size equals: 5.
 	^ visitor
 ]
 

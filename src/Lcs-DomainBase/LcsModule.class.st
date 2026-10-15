@@ -8,7 +8,8 @@ Class {
 		'modules',
 		'domainCollections',
 		'configuration',
-		'moduleName'
+		'moduleName',
+		'tableDefinitions'
 	],
 	#category : 'Lcs-DomainBase-Core',
 	#package : 'Lcs-DomainBase',
@@ -156,7 +157,7 @@ LcsModule class >> immediateSubmodulePragmasOf: aClass [
 
 { #category : 'slot model' }
 LcsModule class >> immediateSubmodulePragmasWithDuplicatesOf: aClass [
-	^ (Pragma pragmaCache at: 'owningModule:priority:')
+	^ (Pragma allNamed: 'owningModule:priority:')
 		select: [ :each | (
 		(each methodClass name findString: 'Obsolete') = 0) and: [
 		(each argumentNamed: #owningModule) = aClass name asString ] ]
@@ -217,11 +218,30 @@ LcsModule class >> systemModelDependentPackages [
 	^ OrderedCollection new
 ]
 
+{ #category : 'slot definitions' }
+LcsModule class >> tableDefinitionsSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsLocalCollectionSlot new
+		slotName: 'tableDefinitions';
+		addSlotType: LcsTableDefinitions;
+		addCollectionMemberType: LcsTableDefinition;
+		"initialValueBlock: [ :parentDomainObject :slot | 
+					(LcsTableDefinition new 
+						parent: parentDomainObject;
+						yourself) ];"
+		yourself
+]
+
 { #category : 'modules' }
 LcsModule >> _moduleNamed: aString [
 	self moduleName = aString ifTrue: [ ^ self ].
 	self modules ifNil: [ ^ nil ].
 	^ self modules findModuleNamed: aString
+]
+
+{ #category : 'table definitions' }
+LcsModule >> addTableDefinition: aTableDefinition [
+	self tableDefinitions add: aTableDefinition
 ]
 
 { #category : 'modules' }
@@ -474,4 +494,14 @@ LcsModule >> owningModule [
 { #category : 'asking' }
 LcsModule >> parentModuleClassName [
 	^ self parent parent class name asString
+]
+
+{ #category : 'accessing' }
+LcsModule >> tableDefinitions [
+	^ self _slotVarNamed: 'tableDefinitions'
+]
+
+{ #category : 'accessing' }
+LcsModule >> tableDefinitions: anObject [
+	self slotVarNamed: 'tableDefinitions' put: anObject
 ]

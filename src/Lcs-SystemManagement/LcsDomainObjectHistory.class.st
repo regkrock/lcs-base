@@ -20,13 +20,7 @@ Class {
 { #category : 'slot definitions' }
 LcsDomainObjectHistory class >> changeRecordsSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsLocalCollectionSlot new
-		slotName: 'changeRecords';
-		addSlotType: LcsDomainObjectChangeRecords;
-		addCollectionMemberType: LcsDomainObjectChangeRecord;
-		beRequired;
-		makeDirectUpdateOfVariable;
-		yourself	"beReadOnly;"
+	^ LcsChangeRecordsSLotDefinition new
 ]
 
 { #category : 'slot definitions' }

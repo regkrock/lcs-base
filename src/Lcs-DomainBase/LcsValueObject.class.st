@@ -64,8 +64,12 @@ LcsValueObject >> description: anObject [
 ]
 
 { #category : 'printing' }
-LcsValueObject >> displayString [
-	^ self code asString
+LcsValueObject >> gtDisplayOn: stream [
+	super gtDisplayOn: stream.
+	stream 
+		nextPutAll: '(';
+		nextPutAll: self code asString;
+		nextPutAll: ')'.
 ]
 
 { #category : 'accessing' }

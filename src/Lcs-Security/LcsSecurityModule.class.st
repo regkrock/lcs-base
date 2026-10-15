@@ -1,6 +1,6 @@
 Class {
 	#name : 'LcsSecurityModule',
-	#superclass : 'LcsModule',
+	#superclass : 'LcsBaseSecurityModule',
 	#instVars : [
 		'users',
 		'currentUser',

@@ -276,6 +276,14 @@ LcsSystem >> gtUnitOfWorkFor: aView [
 ]
 
 { #category : 'testing' }
+LcsSystem >> hasModuleNamed: aString [
+	^ [ self moduleNamed: aString.
+		true ]
+		on: LcsModuleNotFoundError
+		do: [ :s | s return: false ]
+]
+
+{ #category : 'testing' }
 LcsSystem >> hasSlotModel [
 	^ self class hasSlotModel
 ]

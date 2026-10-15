@@ -21,11 +21,6 @@ LcsDomainCollection class >> collectionType [
 	^'concrete'
 ]
 
-{ #category : 'table definitions' }
-LcsDomainCollection >> addTableDefinition: aTableDefinition [
-	self tableDefinitions add: aTableDefinition
-]
-
 { #category : 'domain collection' }
 LcsDomainCollection >> currentSize [
 	^ self pendingAddsSize + self persistedSize - self pendingDeletesSize 

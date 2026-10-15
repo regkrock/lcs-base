@@ -18,6 +18,14 @@ LcsExamples >> abortTransaction [
 ]
 
 { #category : 'asserting' }
+LcsExamples >> assert: aCollection includes: anElement [
+	^ self
+		assert: (aCollection includes: anElement)
+		description: [
+		aCollection printString , ' does not include: ' , anElement printString]
+]
+
+{ #category : 'asserting' }
 LcsExamples >> assertAuditHasNoErrorOf: aDomainObject slot: aSlotName [
 	| auditor |
 	auditor := LcsConditionsValidator newOn: aDomainObject.

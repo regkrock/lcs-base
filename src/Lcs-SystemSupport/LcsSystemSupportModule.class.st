@@ -38,11 +38,11 @@ LcsSystemSupportModule class >> moduleConfigurationClass [
 
 { #category : 'configuration' }
 LcsSystemSupportModule class >> owningModules [
-	<owningModule: 'LcsDemoSystem' priority: 0.5>
-	<owningModule: 'LcsWarRabbitLibrary' priority: 0.5>
-	<owningModule: 'LxxPrototypeSystem' priority: 0.5>
-	<owningModule: 'LcsSailingClubSystem' priority: 0.5>
-	<owningModule: 'LcsBasicSystem' priority: 0.5>
+	<owningModule: 'LcsDemoSystem' priority: 2>
+	<owningModule: 'LcsWarRabbitLibrary' priority: 2>
+	<owningModule: 'LxxPrototypeSystem' priority: 2>
+	<owningModule: 'LcsSailingClubSystem' priority: 2>
+	<owningModule: 'LcsBasicSystem' priority: 2>
 ]
 
 { #category : 'accessing' }

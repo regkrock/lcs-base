@@ -5,7 +5,8 @@ Class {
 		'caption',
 		'columnDefinitions',
 		'collectionSelector',
-		'collectionFilter'
+		'collectionFilter',
+		'domainCollectionSelector'
 	],
 	#category : 'Lcs-SystemManagement-Domain',
 	#package : 'Lcs-SystemManagement',
@@ -42,12 +43,14 @@ LcsTableDefinition class >> collectionSelectorSlotDefinition [
 { #category : 'slot definitions' }
 LcsTableDefinition class >> columnDefinitionsSlotDefinition [
 	<accessorSlotDefinition>
-	^ LcsDomainCollectionSlot new
-		slotName: 'columnDefinitions';
-		addSlotType: LcsTableColumnDefinitions;
-		comment: 'This  defines the coumns that will be part of the report';
-		collectionClass: OrderedCollection;
-		addCollectionMemberType: LcsTableColumnDefinition;
+	^ LcsTableColumnDefinitionsSlotDefinition new
+]
+
+{ #category : 'slot definitions' }
+LcsTableDefinition class >> domainCollectionSelectorSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsSymbolSlot new
+		slotName: 'domainCollectionSelector';
 		yourself
 ]
 
@@ -128,9 +131,19 @@ LcsTableDefinition >> columnDefinitions: anObject [
 	self slotVarNamed: 'columnDefinitions' put: anObject
 ]
 
+{ #category : 'accessing' }
+LcsTableDefinition >> domainCollectionSelector [
+	^ self slotVarNamed: 'domainCollectionSelector'
+]
+
+{ #category : 'accessing' }
+LcsTableDefinition >> domainCollectionSelector: anObject [
+	self slotVarNamed: 'domainCollectionSelector' put: anObject
+]
+
 { #category : 'elements' }
 LcsTableDefinition >> elements [
-	^ self collectionFilter evaluateOn: (self parent parent perform: self collectionSelector)
+	^ self collectionFilter evaluateOn: ((self parent parent perform: self domainCollectionSelector) perform: self collectionSelector)
 ]
 
 { #category : 'initialize' }
@@ -153,4 +166,5 @@ LcsTableDefinition >> initializeForCollectionSlot: aCollectionSlot [
 	slotDefinitions := domainObjectClass allSlotDefinitionsUpTo: ( domainObjectClass immediateSubclassOfDomainObject).
 	(slotDefinitions reject: [ :each | each slotName = 'parent']) do: [ :each | 
 		self addColumnDefinitionFor: each ].
+	self domainCollectionSelector: aCollectionSlot slotName asSymbol
 ]

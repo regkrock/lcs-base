@@ -136,10 +136,12 @@ LxxPrototypeSystemExamples >> newPrototypeSystem [
 	self assert: self currentSystem identicalTo: system.
 	self assert: (system moduleNamed: LxxPersonsModule defaultModuleName) class name equals: #LxxPersonsModule.
 	self assert: (system moduleNamed: LxxPrototype2Module defaultModuleName) class equals: LxxPrototype2Module.
-	self assert: system numberOfChildModules equals: 3. 
+	self assert: system numberOfChildModules equals: 4. 
 	self assert: (system moduleNamed: LxxPersonsModule defaultModuleName) numberOfChildModules equals: 0.
 	self assert: (system moduleNamed: LxxPrototype2Module defaultModuleName) numberOfChildModules equals: 1.
 	self assert: (system moduleNamed: LxxPrototype2Submodule defaultModuleName) numberOfChildModules equals: 0.
+	self assert: system tableDefinitions hasNoElements.
+	self assert: system tableDefinitions class identicalTo: LcsTableDefinitions.
 	self assert: system unitOfWork hasNoChanges.
 	^ system
 ]

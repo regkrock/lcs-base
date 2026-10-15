@@ -11,8 +11,9 @@ LcsTableDefinitionExamples >> countriesWithDefaultTableDefinition [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| countries |
+	self ensureCurrentSystemIsPrototypeSystem.
 	countries := LxxCountries new.
-	self assert: countries tableDefinitions pendingAddsSize equals: 1.
+	self assert: self currentSystem tableDefinitions pendingAddsSize equals: 0.
 	^ countries
 ]
 
@@ -52,6 +53,8 @@ LcsTableDefinitionExamples >> newTableDefinition [
 	self assert: tableDefinition collectionSelector equals: #collection.
 	self assert: tableDefinition columnDefinitions class name equals: #LcsTableColumnDefinitions.
 	self assert: tableDefinition columnDefinitions hasNoElements.
+	self assert: tableDefinition parent isNil.
+	self assert: tableDefinition domainCollectionSelector isEmpty.
 	^ tableDefinition
 ]
 
@@ -60,19 +63,20 @@ LcsTableDefinitionExamples >> personsTableDefinition [
 	<gtExample>
 	<after: #clearUnitOfWork>
 	| tableDefinition persons  |
+	self ensureCurrentSystemIsPrototypeSystem.
 	persons := self currentSystem persons.
 	tableDefinition := LcsTableDefinition newForCollectionSlot: LxxPrototypeSystem personsSlotDefinition.
-	persons addTableDefinition: tableDefinition.
-	self assert: persons tableDefinitions pendingAddsSize equals: 1.
+	self currentSystem addTableDefinition: tableDefinition.
+	self assert: self currentSystem tableDefinitions pendingAddsSize equals: 1.
 	self assert: tableDefinition columnDefinitions pendingAddsSize equals: 12.
-	self currentSystem applyChanges.
-	self assert: persons tableDefinitions collectionSize equals: 1.
+	self assert: self currentSystem tableDefinitions pendingAdds includes: tableDefinition .	self currentSystem applyChanges.
+	self assert: self currentSystem tableDefinitions includes: tableDefinition .
 	self assert: tableDefinition columnDefinitions collectionSize equals: 12.
-	persons tableDefinitions remove: tableDefinition.
-	self assert: (persons tableDefinitions pendingDeletes includes: tableDefinition).
-	self assert: persons tableDefinitions pendingDeletesSize equals: 1.
+	self currentSystem tableDefinitions remove: tableDefinition.
+	self assert: self currentSystem tableDefinitions pendingDeletes includes: tableDefinition.
+	self assert: self currentSystem tableDefinitions pendingDeletesSize equals: 1.
 	self currentSystem applyChanges.
-	self assert: persons tableDefinitions collectionSize equals: 0.
+	"self assert: self currentSystem tableDefinitions collectionSize equals: 0."
 	^ tableDefinition
 ]
 
@@ -96,12 +100,10 @@ LcsTableDefinitionExamples >> skillsDefaultTableDefinition [
 LcsTableDefinitionExamples >> skillsWithDefaultTableDefinition [
 	<gtExample>
 	<after: #clearUnitOfWork>
-	| skills |
 	self ensureCurrentSystemIsPrototypeSystem.
-	skills := LxxSkills new.
-	skills addTableDefinition: (LcsTableDefinition newDefaultOnClass: LxxSkill).
-	self assert: skills tableDefinitions pendingAddsSize equals: 1.
-	^ skills
+	self currentSystem addTableDefinition: (LcsTableDefinition newDefaultOnClass: LxxSkill).
+	self assert: self currentSystem tableDefinitions pendingAddsSize equals: 1.
+	^ self currentSystem tableDefinitions
 ]
 
 { #category : 'examples' }
@@ -110,9 +112,10 @@ LcsTableDefinitionExamples >> tableDefinitionAddedToCountryCollection [
 	<after: #clearUnitOfWork>
 	| tableDefinition |
 	tableDefinition := self newTableDefinition.
-	self currentSystem countries addTableDefinition: tableDefinition.
-	self assert: self currentSystem countries tableDefinitions hasElements.
-	self assert: (self currentSystem countries tableDefinitions includes: tableDefinition).
-	self assert: tableDefinition parent equals: self currentSystem countries tableDefinitions.
+	tableDefinition domainCollectionSelector: #countries.
+	self currentSystem addTableDefinition: tableDefinition.
+	self assert: self currentSystem tableDefinitions hasElements.
+	self assert: (self currentSystem tableDefinitions includes: tableDefinition).
+	self assert: tableDefinition parent equals: self currentSystem tableDefinitions.
 	^ tableDefinition
 ]

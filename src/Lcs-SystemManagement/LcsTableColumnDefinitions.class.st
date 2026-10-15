@@ -5,12 +5,3 @@ Class {
 	#package : 'Lcs-SystemManagement',
 	#tag : 'Domain'
 }
-
-{ #category : 'slot definitions' }
-LcsTableColumnDefinitions class >> tableDefinitionsSlotDefinition [
-	<accessorSlotDefinition>
-	"^ LcsDeprecatedSlot new
-		slotName: 'tableDefinitions';
-		yourself"
-	^ super tableDefinitionsSlotDefinition
-]
