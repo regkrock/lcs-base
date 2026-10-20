@@ -26,6 +26,13 @@ LuiMenuItem >> addAnchorComponent [
 ]
 
 { #category : 'components - adding' }
+LuiMenuItem >> addArrowToAnchorSpanComponent [
+	^ self anchorSpanComponent 
+		cssClass: 'arrow';
+		text: 'x' "'▼'"
+]
+
+{ #category : 'components - adding' }
 LuiMenuItem >> addButtonComponent [
 	^ self addComponent: (LuiButton named: 'button')
 ]
@@ -57,6 +64,12 @@ LuiMenuItem >> anchorHref: aString [
 LuiMenuItem >> anchorLabel: aString [
 	self ensureNoButtonComponent.
 	self anchorComponent text: aString
+]
+
+{ #category : 'components' }
+LuiMenuItem >> anchorSpanComponent [
+	self hasAnchorComponent ifFalse: [ self addAnchorComponent ].
+	^ self _anchorComponent spanComponent
 ]
 
 { #category : 'building' }

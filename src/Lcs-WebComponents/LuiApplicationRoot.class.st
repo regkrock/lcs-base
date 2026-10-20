@@ -35,8 +35,10 @@ LuiApplicationRoot >> initializeStandardLayout [
 
 { #category : 'updating' }
 LuiApplicationRoot >> updateFilesInRoot: anHtmlRoot [ 
+	| fileClass |
+	fileClass := LcsFileLibrary.
 	super updateFilesInRoot: anHtmlRoot.
-	anHtmlRoot stylesheet url: LcsFileLibrary / #resetCss.
-	anHtmlRoot stylesheet url: LcsFileLibrary / #mainCss.
-	anHtmlRoot link beShortcutIcon url: LcsFileLibrary / #faviconPng
+	anHtmlRoot stylesheet url: fileClass / #resetCss.
+	anHtmlRoot stylesheet url: fileClass / #mainCss.
+	anHtmlRoot link beShortcutIcon url: fileClass / #faviconPng
 ]

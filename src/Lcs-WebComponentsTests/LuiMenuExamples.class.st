@@ -69,9 +69,9 @@ LuiMenuExamples >> addSubmenuTo: contactMenuItem [
 LuiMenuExamples >> exampleNavigationMenu [
 	<gtExample>
 	| menu homeMenuItem contactMenuItem aboutMenuItem |
-	menu := LuiMenu newMainMenu.
+	menu := LuiMainMenu newMainMenu.
 	self assert: menu componentName equals: 'mainMenu'.
-	self assert: menu cssClassesString equals: 'menu'.
+	self assert: menu cssClassesString equals: 'mainMenu'.
 	homeMenuItem := (LuiMenuItem named: 'homeMenuItem')
 						anchorLabel: 'Home';
 						removeAllCssClasses;

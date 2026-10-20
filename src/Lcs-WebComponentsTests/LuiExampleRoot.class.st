@@ -111,9 +111,9 @@ LuiExampleRoot >> showCallbackOnTranscript [
 
 { #category : 'updating' }
 LuiExampleRoot >> updateFilesInRoot: anHtmlRoot [
+	| fileClass |
+	fileClass := LcsExampleFileLibrary.
 	super updateFilesInRoot: anHtmlRoot.
-	"anHtmlRoot stylesheet url: LcsFileLibrary / #resetCss."
-	anHtmlRoot stylesheet url: LcsExampleFileLibrary / #mainCss.
-	"anHtmlRoot javascript url: LcsFileLibrary / #mobileNavJs."
-	anHtmlRoot link beShortcutIcon url: LcsExampleFileLibrary / #faviconPng
+	anHtmlRoot stylesheet url: fileClass / #mainCss.
+	anHtmlRoot link beShortcutIcon url: fileClass / #faviconPng
 ]
