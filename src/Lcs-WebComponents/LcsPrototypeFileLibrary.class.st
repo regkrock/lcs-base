@@ -323,7 +323,7 @@ LcsPrototypeFileLibrary >> navigationMenuCss [
     top: 100%;
     left: 0;
     width: 100%;
-    /* background-color: #1a1a2e; */
+    background-color: #aaaaaa;
     flex-direction: column;
     max-height: 80vh;
     overflow-y: auto;
@@ -350,13 +350,13 @@ LcsPrototypeFileLibrary >> navigationMenuCss [
     position: static;
     width: 100%;
     box-shadow: none;
-    /* background-color: #162447;*/
+    background-color: #aaaaaa;
     padding-left: 15px; /* Indent submenus */
   }
 
   /* Change arrows to point down for mobile expansion layout */
   .has-submenu a .arrow {
-    transform: rotate(90deg);
+    transform: rotate(270deg);
   }
 }
 '
@@ -828,6 +828,7 @@ LcsPrototypeFileLibrary >> socialMediaCss [
 	border-radius: 20px 100px 100px 20px;
 	width: fit-content;
 	align-self: center;
+	background: #ffffff;
 	
 	& input {
 		height: 100%;
@@ -863,6 +864,7 @@ LcsPrototypeFileLibrary >> socialMediaCss [
 	& a {
 		display: flex;
 		height: 30px;
+		width: 30px;
 		padding: 2px;
 		/* margin-left: 10px; */
 		cursor: pointer;
@@ -872,5 +874,11 @@ LcsPrototypeFileLibrary >> socialMediaCss [
 			height: auto;
 			}
 		}
-	}'
+	}
+@media (max-width: 768px) {
+.topHeader .sm {
+	padding-left: 15px;
+	align-self: flex-start;
+	}
+}'
 ]
