@@ -46,5 +46,11 @@ LuiLabel >> removeForAttribute [
 LuiLabel >> renderComponentOn: html [
 	html label
 		addCommonAttributes: self;
-		with: [ html text: self text ]
+		with: [ self renderDetailsOn: html ]
+]
+
+{ #category : 'rendering' }
+LuiLabel >> renderDetailsOn: html [ 
+	html text: self text.
+	super renderDetailsOn: html
 ]

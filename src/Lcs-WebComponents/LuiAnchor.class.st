@@ -80,7 +80,7 @@ LuiAnchor >> hasNoImageComponent [
 
 { #category : 'testing' }
 LuiAnchor >> hasNoSpanComponent [
-	(self componentNamed: 'span') isNil
+	^ (self componentNamed: 'span') isNil
 ]
 
 { #category : 'testing' }
@@ -120,9 +120,8 @@ LuiAnchor >> renderComponentOn: html [
 { #category : 'rendering' }
 LuiAnchor >> renderDetailsOn: html [
 	self hasTextDecoration ifTrue: [
-		html text: self text .
-		^ self ].
- 	super renderDetailsOn: html 
+		html text: self text ].
+	super renderDetailsOn: html
 ]
 
 { #category : 'components' }

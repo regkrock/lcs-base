@@ -11,6 +11,7 @@ LuiSearchBarPresenter >> initialize [
 	super initialize.
 	self addComponent: (
 		(LuiTextInput named: 'search')
+			cssClass: 'borderlessTextInput';
 			placeholder: 'Search...';
 			yourself).
 	self addComponent: (

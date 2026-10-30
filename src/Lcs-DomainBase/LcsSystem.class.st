@@ -29,6 +29,11 @@ LcsSystem class >> defaultModuleName [
 	^ 'System'
 ]
 
+{ #category : 'configuration' }
+LcsSystem class >> fileLibraryClass [
+	^ self subclassResponsibility
+]
+
 { #category : 'slot definitions' }
 LcsSystem class >> globalCollectionsSlotDefinition [
 	<accessorSlotDefinition>
@@ -195,6 +200,11 @@ LcsSystem >> currentUnitOfWork [
 { #category : 'security' }
 LcsSystem >> currentUser [
 	^ self securityModule currentUser
+]
+
+{ #category : 'configuration' }
+LcsSystem >> fileLibraryClass [
+	^ self class fileLibraryClass
 ]
 
 { #category : 'accessing' }

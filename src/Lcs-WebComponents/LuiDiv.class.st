@@ -14,3 +14,10 @@ LuiDiv class >> mobileMenuButton [
 		addComponent: LuiImage newMobileMenuIcon;
 		yourself
 ]
+
+{ #category : 'rendering' }
+LuiDiv >> renderDetailsOn: html [
+	self hasTextDecoration ifTrue: [
+		html text: self text ].
+	self renderSubcomponentsOn: html
+]

@@ -36,9 +36,14 @@ LuiExampleRoot class >> newWithComponent: aComponent [
 { #category : 'instance creation' }
 LuiExampleRoot class >> newWithHeaderWithNavBar [
 	^ (self basicNew initializeWithHeaderWithNavBar)
-		addComponent: ((LuiForm newWith: (LuiDomainPresenter named: 'abc'))
+		addComponent: (((LuiForm newWith: (LuiDomainPresenter named: 'abc'))
 						cssClass: 'mainForm';
-						yourself);
+						yourself)
+							addComponent: (
+								(LuiDiv named: 'text') 
+									text: 'Hello';
+									styleString: 'border: solid';
+									yourself));
 		yourself
 ]
 

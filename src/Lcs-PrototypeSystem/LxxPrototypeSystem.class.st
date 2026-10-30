@@ -36,6 +36,11 @@ LxxPrototypeSystem class >> defaultModuleName [
 ]
 
 { #category : 'configuration' }
+LxxPrototypeSystem class >> fileLibraryClass [
+	^ LcsPrototypeFileLibrary
+]
+
+{ #category : 'configuration' }
 LxxPrototypeSystem class >> moduleConfigurationClass [
 	^ LxxPrototypeSystemConfiguration
 ]

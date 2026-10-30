@@ -88,6 +88,23 @@ LuiCheckboxExamples >> newComponentHtml [
 ]
 
 { #category : 'examples' }
+LuiCheckboxExamples >> newResponsiveNavigationMenuCheckboxComponent [
+	<gtExample>
+	| component |
+	component := LuiResponsiveNavigationMenuCheckbox named: 'xxxx'.
+	self assert: component hasNoComponents.
+	self assert: component componentName equals: 'xxxx'.
+	self assert: component valueAccessor class name equals: LuiSmalltalkObjectAccessor name.
+	self assert: component valueAccessor parent equals: component.
+	self assert: component valueAccessor model equals: nil.
+	self assert: component valueAccessor contents equals: nil.
+	self assert: component displayValue equals: 'off'.
+	self assert: (component componentDecorations dependentComponents includes: component).
+	self assert: component text isNil.
+	^ component
+]
+
+{ #category : 'examples' }
 LuiCheckboxExamples >> uncheckedCheckboxWithNoValue [
 	<gtExample>
 	| component expectedHtml |
@@ -95,7 +112,6 @@ LuiCheckboxExamples >> uncheckedCheckboxWithNoValue [
 	component := self newComponent.
 	component model: false.
 	self assert: component model equals: false.
-	"self assertRendered: component equals: expectedHtml."
 	^ component
 
 ]
@@ -110,6 +126,20 @@ LuiCheckboxExamples >> uncheckedCheckboxWithValue [
 	component model: false.
 	self assert: component model equals: false.
 	component text: 'Label'.
+	self assertRendered: component equals: expectedHtml.
+	^ component
+
+]
+
+{ #category : 'examples' }
+LuiCheckboxExamples >> uncheckedResponsiveNavigationMenuCheckbox [
+	<gtExample>
+	| component expectedHtml |
+	expectedHtml := '<input id="183886232" data-name="xxxx" data-StClass="LuiResponsiveNavigationMenuCheckbox" class="inputField" name="1" type="checkbox"/><input name="2" type="hidden"/>'.
+	component := self newResponsiveNavigationMenuCheckboxComponent.
+	component model: false.
+	self assert: component model equals: false.
+	self wrapComponent: component.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 

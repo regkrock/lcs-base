@@ -26,15 +26,22 @@ LuiMenuItem >> addAnchorComponent [
 ]
 
 { #category : 'components - adding' }
-LuiMenuItem >> addArrowToAnchorSpanComponent [
-	^ self anchorSpanComponent 
-		cssClass: 'arrow';
-		text: 'x' "'▼'"
+LuiMenuItem >> addButtonComponent [
+	^ self addComponent: (LuiButton named: 'button')
 ]
 
 { #category : 'components - adding' }
-LuiMenuItem >> addButtonComponent [
-	^ self addComponent: (LuiButton named: 'button')
+LuiMenuItem >> addDownArrowToAnchorSpanComponent [
+	^ self anchorSpanComponent 
+		cssClass: 'arrow';
+		text: '▼'
+]
+
+{ #category : 'components - adding' }
+LuiMenuItem >> addRightArrowToAnchorSpanComponent [
+	^ self anchorSpanComponent 
+		cssClass: 'arrow';
+		text: '►'
 ]
 
 { #category : 'components' }

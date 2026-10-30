@@ -48,7 +48,9 @@ LuiPrototypeSystemRoot >> aboutMenuItem [
 { #category : 'menus' }
 LuiPrototypeSystemRoot >> addSubMenuItems: aMenuItems to: aMenuItem [
 	| subSubMenu |
-	aMenuItem cssClass: 'has-submenu'.
+	aMenuItem 
+		cssClass: 'has-submenu';
+		addRightArrowToAnchorSpanComponent.
 	subSubMenu := (LuiMenu newSubmenuNamed: 'contactSubMenuSubmenu').
 	aMenuItem addComponent: subSubMenu.
 	aMenuItems do: [ :each |subSubMenu addComponent: each ]
@@ -58,7 +60,7 @@ LuiPrototypeSystemRoot >> addSubMenuItems: aMenuItems to: aMenuItem [
 LuiPrototypeSystemRoot >> addSubmenuTo: aMenuItem [
 	| submenu contactMenuItemB contactMenuItemA |
 	aMenuItem cssClass: 'has-submenu'.
-	aMenuItem addArrowToAnchorSpanComponent.
+	aMenuItem addDownArrowToAnchorSpanComponent.
 	aMenuItem addComponent: (submenu := self contactSubMenu).
 	submenu
 		addComponent: (contactMenuItemA := self contactMenuItemA);
@@ -71,6 +73,19 @@ LuiPrototypeSystemRoot >> addSubmenuTo: aMenuItem [
 { #category : 'setup' }
 LuiPrototypeSystemRoot >> applicationTitle [
 	^ 'Prototype System'
+]
+
+{ #category : 'menus' }
+LuiPrototypeSystemRoot >> brandComponent [
+	| brandComponent  contactMenuItem |
+	brandComponent := LuiDiv named: 'brand'. 
+	brandComponent
+		cssClass: 'brand';
+		addComponent: LuiAnchor newSeasLogo;
+		addComponent: ((LuiLabel named: 'brandName')
+						text: 'SEAS Monmouth';
+						yourself).
+	^ brandComponent
 ]
 
 { #category : 'menu item' }
@@ -164,18 +179,22 @@ LuiPrototypeSystemRoot >> generatedId [
 
 { #category : 'components' }
 LuiPrototypeSystemRoot >> hamburgerMenuComponent [
+	"The spans are here to ensure there is space to display the hamburger"
 	^ (LuiLabel named: 'menuToggleLabel')
-		for: 'menuToggle';
+		for: 'menu-toggle';
 		cssClass: 'hamburger';
 		text: '';
+		addComponent: (LuiSpan named: 'span1');
+		addComponent: (LuiSpan named: 'span2');
+		addComponent: (LuiSpan named: 'span3');
 		yourself
 ]
 
 { #category : 'components' }
 LuiPrototypeSystemRoot >> hiddenCheckboxComponent [
-	^ (LuiCheckbox named: 'menuToggle')
+	^ (LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
 		cssClass: 'menu-toggle-checkbox';
-		assignStaticId: 'menuToggle';
+		assignStaticId: 'menu-toggle';
 		text: '';
 		yourself
 ]
@@ -218,7 +237,8 @@ LuiPrototypeSystemRoot >> mainNavigationMenu [
 		cssClass: 'nav-menu';
 		addComponent: self homeMenuItem;
 		addComponent: (contactMenuItem := self contactMenuItem);
-		addComponent: self aboutMenuItem.
+		addComponent: self aboutMenuItem;
+		addComponent: self socialMediaBar.
 	self addSubmenuTo: contactMenuItem.
 	^ mainMenu
 ]
@@ -237,11 +257,10 @@ LuiPrototypeSystemRoot >> navigationBar [
 	navBar := LuiNavigationBar named: 'navbar'.
 	navContainer := navBar addComponent: self navContainerDiv.
 	navContainer
-		addComponent: LuiAnchor newSeasLogo;
+		addComponent: self brandComponent;
 		addComponent: self hiddenCheckboxComponent;
 		addComponent: self hamburgerMenuComponent;
 		addComponent: self mainNavigationMenu.
-		"addComponent: self socialMediaBar."
 	^ navBar
 ]
 
@@ -251,9 +270,7 @@ LuiPrototypeSystemRoot >> prototypeHeader [
 	header := LuiPageHeader named: 'pageHeader'.
 	header
 		cssClass: 'topHeader';
-		"addComponent: LuiDiv mobileMenuButton;"
-		addComponent: self navigationBar";
-		addComponent: self socialMediaBar".
+		addComponent: self navigationBar.
 	^ header
 ]
 
@@ -277,7 +294,7 @@ LuiPrototypeSystemRoot >> updateFilesInRoot: anHtmlRoot [
 	super updateFilesInRoot: anHtmlRoot.
 	anHtmlRoot stylesheet url: fileClass / #resetCss.
 	anHtmlRoot stylesheet url: fileClass / #mainCss.
-	anHtmlRoot stylesheet url: fileClass / #navigationMenuCss.
-	"anHtmlRoot javascript url: fileClass / #mobileNavJs."
+	"anHtmlRoot stylesheet url: fileClass / #navigationMenuCss.
+	anHtmlRoot stylesheet url: fileClass / #socialMediaCss."
 	anHtmlRoot link beShortcutIcon url: fileClass / #faviconPng
 ]

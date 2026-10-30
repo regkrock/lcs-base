@@ -13,7 +13,8 @@ LuiImage class >> newFacebookIcon [
 		removeAllCssClasses;
 		title: 'Facebook';
 		altText: 'Link to Seas Monmouth Facebook Page';
-		url: LcsFileLibrary /#facebook32Png;
+		"url: self currentSystem fileLibraryClass / #facebook48vg; "
+		url: LcsPrototypeFileLibrary / #facebook32Png;
 		yourself
 ]
 
@@ -23,7 +24,8 @@ LuiImage class >> newMeetupIcon [
 		removeAllCssClasses;
 		title: 'Meetup';
 		altText: 'Link to Seas Monmouth Meetup Page';
-		url: LcsFileLibrary /#meetup32Png;
+		"url: self currentSystem fileLibraryClass / #meetup48svg; "
+		url: LcsPrototypeFileLibrary / #meetup32Png;
 		yourself
 ]
 
@@ -32,7 +34,7 @@ LuiImage class >> newMobileMenuIcon [
 	^ self new
 		componentName: 'hamburger';
 		altText: 'Mobile menu button';
-		url: LcsFileLibrary /#hamburgerMenu24Svg;
+		url: self currentSystem fileLibraryClass /#hamburgerMenu24Svg;
 		yourself
 ]
 
@@ -43,7 +45,7 @@ LuiImage class >> seasMonmouthFavicon [
 		cssClass: 'logoImage';
 		title: 'Seas Monmouth';
 		altText: 'Seas logo';
-		url: LcsFileLibrary /#faviconPng;
+		url: self currentSystem fileLibraryClass /#faviconPng;
 		yourself
 ]
 

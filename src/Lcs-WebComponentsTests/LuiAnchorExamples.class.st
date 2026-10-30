@@ -76,3 +76,20 @@ LuiAnchorExamples >> seasWebsiteLink [
 	self assertRendered: component equals: '<a data-name="anchor" data-StClass="LuiAnchor" href="https://www.sailseas.com/Monmouth/">SEAS</a>'.
 	^ component
 ]
+
+{ #category : 'examples' }
+LuiAnchorExamples >> textWithSpan [
+	<gtExample>
+	| anchor span |
+	anchor := self seasWebsiteLink.
+	self assert: anchor hasNoSpanComponent.
+	self deny: anchor hasSpanComponent.
+	span := anchor addSpanComponent.
+	self deny: anchor hasNoSpanComponent.
+	self assert: anchor hasSpanComponent.
+	self assert: anchor spanComponent identicalTo: span.
+	anchor spanComponent text: 'span text'.
+	self assert: anchor spanComponent text equals: 'span text'.
+	self assertRendered: anchor equals: '<a data-name="anchor" data-StClass="LuiAnchor" href="https://www.sailseas.com/Monmouth/">SEAS<span id="160749044" data-name="span" data-StClass="LuiSpan">span text</span></a>'.
+	^ anchor
+]
