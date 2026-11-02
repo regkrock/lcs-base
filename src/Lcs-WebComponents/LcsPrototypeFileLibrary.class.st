@@ -137,22 +137,19 @@ LcsPrototypeFileLibrary >> mainCss_base [
 :root {
 	--menu-count: 3;
 	}
-body{
+.root {
 	font-family: Arial, Helvetica, sans-serif;
-	background-color: #777
+	background-color: #777;
+	width: 100%;
+	}
+body{
 	}
 .mobile-menu-btn {
 	display: none;
 	}
 /* pageHeader  */
 .topHeader {
-	width: 100%;
-	/* padding: 0 1rem; */
 	height: 60px;
-	/* background-color: #ffffff; */
-	/* display: flex; */
-	/* justify-content: space-between; */
-	/* position: fixed; */
 	top: 0;
 	z-index: 100; /*forces header to always be on top*/
 	}
@@ -733,6 +730,11 @@ LcsPrototypeFileLibrary >> resetCss [
 }
 
 /* Preferred box-sizing value */
+* {
+  margin: 0;
+  padding: 0;
+}
+
 *,
 *::before,
 *::after {

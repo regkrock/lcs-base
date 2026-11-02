@@ -35,7 +35,8 @@ LuiRoot >> applicationTitle [
 LuiRoot >> initialize [
 	super initialize.
 	self componentName: 'root'.
-	self componentId: 'root'
+	self componentId: 'root'.
+	self cssClass: 'root'
 ]
 
 { #category : 'updating' }
