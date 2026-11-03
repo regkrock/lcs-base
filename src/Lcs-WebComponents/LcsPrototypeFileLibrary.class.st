@@ -240,7 +240,7 @@ LcsPrototypeFileLibrary >> navigationMenuCss [
   list-style: none;
 }
 
-.nav-menu li {
+.nav-item {
   position: relative;
 }
 

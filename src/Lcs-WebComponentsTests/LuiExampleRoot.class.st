@@ -37,7 +37,7 @@ LuiExampleRoot class >> newWithComponent: aComponent [
 LuiExampleRoot class >> newWithHeaderWithNavBar [
 	^ (self basicNew initializeWithHeaderWithNavBar)
 		addComponent: (((LuiForm newWith: (LuiDomainPresenter named: 'abc'))
-						cssClass: 'mainForm';
+						cssClass: LuiCssClassesMap / #'mainForm';
 						yourself)
 							addComponent: (
 								(LuiDiv named: 'text') 

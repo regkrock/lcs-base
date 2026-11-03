@@ -25,7 +25,7 @@ LuiImageExamples >> seasImageComponent [
 	<gtExample>
 	| component |
 	component := (LuiImage named: 'exampleImage')
-					cssClass: 'logo';
+					cssClass: LuiCssClassesMap / #'logo';
 					title: 'Seaside';
 					altText: 'the Seaside logo';
 					url: 'http://www.seaside.st/logo.jpeg'.	
@@ -42,7 +42,7 @@ LuiImageExamples >> seasImageComponentWithoutAltText [
 	<gtExample>
 	| component |
 	component := (LuiImage named: 'exampleImage')
-					cssClass: 'logo';
+					cssClass: LuiCssClassesMap / #'logo';
 					title: 'Seaside';
 					url: 'http://www.seaside.st/logo.jpeg'.	
 	self assert: component title equals: 'Seaside'.
@@ -59,7 +59,7 @@ LuiImageExamples >> seasideImageComponent [
 	<gtExample>
 	| component |
 	component := (LuiImage named: 'logo')
-					cssClass: 'logo';
+					cssClass: LuiCssClassesMap / #'logo';
 					title: 'Seas Monmouth';
 					altText: 'The Seas Monmouth logo';
 					url: LcsFileLibrary / #favicon.	

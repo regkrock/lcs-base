@@ -11,19 +11,17 @@ LuiMenuExamples >> addSubSubMenuTo: submenu [
 	| subSubMenu |
 	subSubMenu := ((LuiMenu newSubmenuNamed: 'contactSubMenuSubmenu')
 					removeAllCssClasses;
-					cssClass: 'submenu-right';
+					cssClass: LuiCssClassesMap / #'submenu-right';
 					yourself).
 	submenu  addComponent: subSubMenu.
 	subSubMenu
 		addComponent: (
 			(LuiMenuItem named: 'contactMenuItemA_A')
-				removeAllCssClasses;
 				anchorLabel: 'Contact B Item A';
 				callback: [ Transcript cr; show: 'clicked Contact B Item A' ];
 				yourself);
 		addComponent: (
 			(LuiMenuItem named: 'contactMenuItemB_B')
-				removeAllCssClasses;
 				anchorLabel: 'Contact B Item B';
 				callback: [ Transcript cr; show: 'clicked Contact B Item B' ];
 				yourself).
@@ -35,7 +33,7 @@ LuiMenuExamples >> addSubmenuTo: contactMenuItem [
 
 	submenu := (LuiMenu newSubmenuNamed: 'contactSubMenu')
 				removeAllCssClasses;
-				cssClass: 'submenu';
+				cssClass: LuiCssClassesMap / #'submenu';
 				yourself.
 	self assert: submenu componentName equals: 'contactSubMenu'.
 	"self assert: submenu cssClassesString equals: 'submenu'."

@@ -10,7 +10,7 @@ Class {
 LuiDiv class >> mobileMenuButton [
 	^ self new
 		componentName: 'mobileMenuButton';
-		cssClass: 'mobile-menu-btn';
+		cssClass: LuiCssClassesMap / #'mobile-menu-btn';
 		addComponent: LuiImage newMobileMenuIcon;
 		yourself
 ]

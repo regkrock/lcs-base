@@ -50,7 +50,7 @@ LuiSEASRoot >> initializeStandardLayout [
 		addComponent: aboutMenuItem.
 	
 	submenu := (LuiMenu newSubmenuNamed: 'contactSubMenu')
-					cssClass: 'submenu';
+					cssClass: LuiCssClassesMap / #'submenu';
 					yourself.
 	contactMenuItem addComponent: submenu.
 	submenu

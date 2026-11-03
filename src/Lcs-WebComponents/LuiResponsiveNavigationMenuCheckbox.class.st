@@ -9,6 +9,17 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'defaults' }
+LuiResponsiveNavigationMenuCheckbox >> defaultCssClasses [
+	^ OrderedCollection with: LuiCssClassesMap / #'menu-toggle-checkbox'
+]
+
+{ #category : 'as yet unclassified' }
+LuiResponsiveNavigationMenuCheckbox >> initialize [
+	super initialize.
+	self text: ''
+]
+
 { #category : 'rendering' }
 LuiResponsiveNavigationMenuCheckbox >> renderComponentOn: html [
 	html checkbox

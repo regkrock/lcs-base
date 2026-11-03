@@ -12,7 +12,7 @@ LuiPageHeaderExamples >> exampleHeader [
 	| header |
 	header := self newComponent.
 	header 
-		cssClass: 'topHeader';
+		cssClass: LuiCssClassesMap / #'topHeader';
 		addComponent: LuiNavigationBarExamples new exampleNavigationBar;
 		addComponent: LuiSearchAndSocialMediaBar newSearchAndLinks.
 	^ header

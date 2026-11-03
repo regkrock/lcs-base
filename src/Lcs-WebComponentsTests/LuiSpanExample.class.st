@@ -24,7 +24,7 @@ LuiSpanExample >> newComponentWithCssClass [
 	component text: 'Span text'.
 	self assert: component hasTextDecoration.
 	self assert: component text equals: 'Span text'.
-	component cssClass: 'menuItemTextClass'.
+	component cssClass: LuiCssClassesMap / #'menuItemTextClass'.
 	self assert: component cssClassesString equals: 'menuItemTextClass'.
 	self assertRendered: component equals: '<span data-name="mySpan" data-StClass="LuiSpan" class="menuItemTextClass">Span text</span>'.
 	^ component

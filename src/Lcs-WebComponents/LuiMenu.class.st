@@ -57,7 +57,7 @@ LuiMenu >> gtViewTagName [
 { #category : 'initialize' }
 LuiMenu >> initialize [
 	super initialize.
-	self componentName: 'menu'.
+	self componentName: LuiCssClassesMap / #'menu'.
 	self cssClass: self cssClass
 ]
 
@@ -70,7 +70,7 @@ LuiMenu >> initializeMainMenuNamed: aComponentName [
 { #category : 'initialize' }
 LuiMenu >> initializeSubmenuNamed: aComponentName [
 	self componentName: aComponentName.
-	self cssClass: 'submenu'
+	self cssClass: LuiCssClassesMap / #'submenu'
 ]
 
 { #category : 'rendering' }

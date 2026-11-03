@@ -25,18 +25,20 @@ LuiPrototypeSystemRoot class >> newWithComponent: aComponent [
 
 { #category : 'instance creation' }
 LuiPrototypeSystemRoot class >> newWithHeaderWithNavBar [
-	^ (self basicNew initializeWithHeaderWithNavBar)
+	| root |
+	root := (self basicNew initializeWithHeaderWithNavBar)
 		addComponent: ((LuiForm newWith: (LuiDomainPresenter named: 'abc'))
-						cssClass: 'mainForm';
+						cssClass: LuiCssClassesMap / #'mainForm';
 						yourself);
-		yourself
+		yourself.
+	^ root
 ]
 
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> aboutMenuItem [
 	^ (LuiMenuItem named: 'aboutMenuItem')
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'About';
-		removeAllCssClasses;
 		callback: [ Transcript
 				cr;
 				show: 'aboutMenuItem clicked' ];
@@ -49,7 +51,7 @@ LuiPrototypeSystemRoot >> aboutMenuItem [
 LuiPrototypeSystemRoot >> addSubMenuItems: aMenuItems to: aMenuItem [
 	| subSubMenu |
 	aMenuItem 
-		cssClass: 'has-submenu';
+		addCssClass: LuiCssClassesMap / #'has-submenu';
 		addRightArrowToAnchorSpanComponent.
 	subSubMenu := (LuiMenu newSubmenuNamed: 'contactSubMenuSubmenu').
 	aMenuItem addComponent: subSubMenu.
@@ -59,7 +61,7 @@ LuiPrototypeSystemRoot >> addSubMenuItems: aMenuItems to: aMenuItem [
 { #category : 'menus' }
 LuiPrototypeSystemRoot >> addSubmenuTo: aMenuItem [
 	| submenu contactMenuItemB contactMenuItemA |
-	aMenuItem cssClass: 'has-submenu'.
+	aMenuItem addCssClass: LuiCssClassesMap / #'has-submenu'.
 	aMenuItem addDownArrowToAnchorSpanComponent.
 	aMenuItem addComponent: (submenu := self contactSubMenu).
 	submenu
@@ -77,10 +79,10 @@ LuiPrototypeSystemRoot >> applicationTitle [
 
 { #category : 'menus' }
 LuiPrototypeSystemRoot >> brandComponent [
-	| brandComponent  contactMenuItem |
+	| brandComponent  |
 	brandComponent := LuiDiv named: 'brand'. 
 	brandComponent
-		cssClass: 'brand';
+		cssClass: LuiCssClassesMap / #'brand';
 		addComponent: LuiAnchor newSeasLogo;
 		addComponent: ((LuiLabel named: 'brandName')
 						text: 'SEAS Monmouth';
@@ -91,10 +93,12 @@ LuiPrototypeSystemRoot >> brandComponent [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactMenuItem [
 	^ (LuiMenuItem named: 'contactMenuItem')
-		anchorLabel: 'Contact';
-		callback: [ Transcript
+		cssClass: LuiCssClassesMap / #'nav-item';
+		hiddenCheckbox: 'sub1';
+		buttonLabel: 'Contact';
+		"callback: [ Transcript
 				cr;
-				show: 'contactMenuItem clicked' ];
+				show: 'contactMenuItem clicked' ];"
 		title: 'Contact Menu Item';
 		yourself
 ]
@@ -102,7 +106,7 @@ LuiPrototypeSystemRoot >> contactMenuItem [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactMenuItemA [
 	^ (LuiMenuItem named: 'contactMenuItemA')
-		removeAllCssClasses;
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Contact A';
 		callback: [ Transcript
 				cr;
@@ -113,7 +117,7 @@ LuiPrototypeSystemRoot >> contactMenuItemA [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactMenuItemA_A [
 	^ (LuiMenuItem named: 'contactMenuItemA_A')
-		removeAllCssClasses;
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Contact A Item A';
 		callback: [ Transcript
 				cr;
@@ -124,7 +128,7 @@ LuiPrototypeSystemRoot >> contactMenuItemA_A [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactMenuItemA_B [
 	^ (LuiMenuItem named: 'contactMenuItemA_B')
-		removeAllCssClasses;
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Contact A Item B';
 		callback: [ Transcript
 				cr;
@@ -135,7 +139,7 @@ LuiPrototypeSystemRoot >> contactMenuItemA_B [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactMenuItemB [
 	^ (LuiMenuItem named: 'contactMenuItemB')
-		removeAllCssClasses;
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Contact B';
 		callback: [ Transcript
 				cr;
@@ -146,7 +150,7 @@ LuiPrototypeSystemRoot >> contactMenuItemB [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactMenuItemB_A [
 	^ (LuiMenuItem named: 'contactMenuItemB_A')
-		removeAllCssClasses;
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Contact B Item A';
 		callback: [ Transcript
 				cr;
@@ -157,7 +161,7 @@ LuiPrototypeSystemRoot >> contactMenuItemB_A [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactMenuItemC [
 	^ (LuiMenuItem named: 'contactMenuItemC')
-		removeAllCssClasses;
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Contact C';
 		callback: [ Transcript
 				cr;
@@ -168,7 +172,7 @@ LuiPrototypeSystemRoot >> contactMenuItemC [
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> contactSubMenu [
 	^ (LuiMenu newSubmenuNamed: 'contactSubMenu')
-		cssClass: 'submenu';
+		cssClass: LuiCssClassesMap / #'submenu';
 		yourself
 ]
 
@@ -182,7 +186,7 @@ LuiPrototypeSystemRoot >> hamburgerMenuComponent [
 	"The spans are here to ensure there is space to display the hamburger"
 	^ (LuiLabel named: 'menuToggleLabel')
 		for: 'menu-toggle';
-		cssClass: 'hamburger';
+		cssClass: LuiCssClassesMap / #'hamburger';
 		text: '';
 		addComponent: (LuiSpan named: 'span1');
 		addComponent: (LuiSpan named: 'span2');
@@ -193,17 +197,15 @@ LuiPrototypeSystemRoot >> hamburgerMenuComponent [
 { #category : 'components' }
 LuiPrototypeSystemRoot >> hiddenCheckboxComponent [
 	^ (LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
-		cssClass: 'menu-toggle-checkbox';
 		assignStaticId: 'menu-toggle';
-		text: '';
 		yourself
 ]
 
 { #category : 'menu item' }
 LuiPrototypeSystemRoot >> homeMenuItem [
 	^ (LuiMenuItem named: 'homeMenuItem')
+		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Home';
-		removeAllCssClasses;
 		callback: [ Transcript
 				cr;
 				show: 'homeMenuItem clicked' ];
@@ -234,7 +236,7 @@ LuiPrototypeSystemRoot >> mainNavigationMenu [
 	| mainMenu  contactMenuItem |
 	mainMenu := LuiMainMenu newMainMenu. 
 	mainMenu
-		cssClass: 'nav-menu';
+		cssClass: LuiCssClassesMap / #'nav-menu';
 		addComponent: self homeMenuItem;
 		addComponent: (contactMenuItem := self contactMenuItem);
 		addComponent: self aboutMenuItem;
@@ -247,7 +249,7 @@ LuiPrototypeSystemRoot >> mainNavigationMenu [
 LuiPrototypeSystemRoot >> navContainerDiv [
 	^ LuiDiv new
 		componentName: 'navContainer';
-		cssClass: 'nav-container';
+		cssClass: LuiCssClassesMap / #'nav-container';
 		yourself
 ]
 
@@ -269,7 +271,7 @@ LuiPrototypeSystemRoot >> prototypeHeader [
 	| header |
 	header := LuiPageHeader named: 'pageHeader'.
 	header
-		cssClass: 'topHeader';
+		cssClass: LuiCssClassesMap / #'topHeader';
 		addComponent: self navigationBar.
 	^ header
 ]

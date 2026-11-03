@@ -21,7 +21,7 @@ LuiSocialMediaBar >> defaultCssClasses [
 { #category : 'instance creation' }
 LuiSocialMediaBar >> initializeSeasSocialMediaBar [
 	self componentName: 'socialMedia'.
-	self cssClass: 'sm-links'.
+	self cssClass: LuiCssClassesMap / #'sm-links'.
 	self addComponent: (
 		(LuiAnchor named: 'facebookLink') 
 			beBlankTarget;

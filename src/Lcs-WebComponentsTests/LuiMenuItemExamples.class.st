@@ -38,7 +38,7 @@ LuiMenuItemExamples >> homeMenuItemWithimage [
 	item := self newMenuItem.
 	item title: 'Home'.
 	item buttonComponent leadingImageComponent
-		cssClass: 'logo';
+		cssClass: LuiCssClassesMap / #'logo';
 		url: LcsFileLibrary / #check24Svg.	
 	self assert: item attributes hasTitleAttribute.
 	self assert: item hasButtonComponent.

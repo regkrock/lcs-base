@@ -94,6 +94,21 @@ LuiComponent >> addFirstComponent: aComponent [
 	^component
 ]
 
+{ #category : 'transcript' }
+LuiComponent >> addHtmlStructureAtLevel: anIndentNumaber toStream: aStream [
+	anIndentNumaber > 0
+		ifTrue: [ anIndentNumaber timesRepeat: [ aStream nextPutAll: ' ' ] ].
+	aStream
+		nextPutAll: self class name;
+		tab;
+		nextPutAll: self componentName displayString;
+		tab;
+		nextPutAll: self cssClassesString displayString;
+		cr.
+	self orderedComponents
+		do: [ :each | each addHtmlStructureAtLevel: anIndentNumaber + 2 toStream: aStream ]
+]
+
 { #category : 'components' }
 LuiComponent >> addLabelComponent [
 	^ self addComponent: (LuiLabel named: 'label')
@@ -451,6 +466,21 @@ LuiComponent >> hasTextDecoration [
 	^ self componentDecorations hasTextDecoration
 ]
 
+{ #category : 'transcript' }
+LuiComponent >> htmlStructureStream [
+	| stream |
+	stream := WriteStream on: String new.
+	stream 
+		nextPutAll: 'LUI CLASS';
+		tab;
+		nextPutAll: 'COMPONENT NAME';
+		tab;
+		nextPutAll: 'CSS CLASS(ES)';
+		cr.
+	self addHtmlStructureAtLevel: 0 toStream: stream.
+	^ stream
+]
+
 { #category : 'initialize' }
 LuiComponent >> initialize [
 	super initialize.
@@ -528,6 +558,15 @@ LuiComponent >> labelString [
 { #category : 'components' }
 LuiComponent >> lastComponent [
 	^ self components values last
+]
+
+{ #category : 'transcript' }
+LuiComponent >> listHtmlStructureOnTranscript [
+	| stream |
+	stream := self htmlStructureStream.
+	Transcript
+		clear;
+		nextPutAll: stream contents
 ]
 
 { #category : 'logging' }

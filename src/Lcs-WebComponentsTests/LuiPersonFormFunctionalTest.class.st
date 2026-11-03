@@ -10,7 +10,7 @@ Class {
 LuiPersonFormFunctionalTest >> functionTestPresenter [
 	self model: LxxPersonExamples new johnFreeman.
 	^ (LuiDomainPresenter named: 'personPresenter' model: self model)
-		cssClass: 'twoColumnsBySixRows';
+		cssClass: LuiCssClassesMap / #'twoColumnsBySixRows';
 		addLabelAndWidgetComponentFor: 'firstName';
 		addLabelAndWidgetComponentFor: 'lastName';
 		"addLabelAndWidgetComponentFor: 'age' widgetClass: LuiNumberInput;"

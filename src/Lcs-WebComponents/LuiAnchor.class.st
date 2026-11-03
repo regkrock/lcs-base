@@ -9,7 +9,7 @@ Class {
 { #category : 'as yet unclassified' }
 LuiAnchor class >> newSeasLogo [
 	^ (self named: 'logo')
-		cssClass: 'logo';
+		cssClass: LuiCssClassesMap / #'logo';
 		beBlankTarget;
 		url: 'https://www.sailseas.com/Monmouth/';
 		addImageComponent: LuiImage seasMonmouthFavicon;

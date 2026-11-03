@@ -42,7 +42,7 @@ LuiImage class >> newMobileMenuIcon [
 LuiImage class >> seasMonmouthFavicon [
 	^ self new
 		componentName: 'favicon';
-		cssClass: 'logoImage';
+		cssClass: LuiCssClassesMap / #'logoImage';
 		title: 'Seas Monmouth';
 		altText: 'Seas logo';
 		url: self currentSystem fileLibraryClass /#faviconPng;
