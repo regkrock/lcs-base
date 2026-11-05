@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'gt views' }
-LuiTimeInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''time'''
+LuiTimeInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''time'''
 ]
 
 { #category : 'initialize' }

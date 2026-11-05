@@ -15,8 +15,8 @@ LuiDateTimeLocalInput >> contentsAsString [
 ]
 
 { #category : 'gt views' }
-LuiDateTimeLocalInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''datetime-local'''
+LuiDateTimeLocalInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''datetime-local'''
 ]
 
 { #category : 'initialize' }

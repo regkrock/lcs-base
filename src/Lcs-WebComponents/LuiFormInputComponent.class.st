@@ -65,8 +65,13 @@ LuiFormInputComponent >> displayValue [
 ]
 
 { #category : 'gt views' }
+LuiFormInputComponent >> gtViewBaseTagName [
+	^ 'input'
+]
+
+{ #category : 'gt views' }
 LuiFormInputComponent >> gtViewTagName [
-	^'input'
+	^ '<' , self gtViewBaseTagName , '>'
 ]
 
 { #category : 'callbacks' }

@@ -1,0 +1,107 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-11-04T23:55:49.863516-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-11-04T23:55:52.469608-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "c5yTlnFAS4ivUP/NXOQuAg=="
+				},
+				"code" : "Metacello new\n  baseline: 'XMLParserHTML';\n  repository: 'github://pharo-contributions/XML-XMLParserHTML/src';\n  load."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-11-04T23:57:37.686454-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-11-04T23:59:01.874305-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "GI4egIl0Tuu+5Xf4UhwgKg=="
+				},
+				"code" : "| htmlString doc writer |\nhtmlString := '<nav data-name=\"navbar\" data-StClass=\"LuiNavigationBar\" class=\"navbar\"><div id=\"245827528\" data-name=\"brand\" data-StClass=\"LuiBrand\" class=\"brand\"><a id=\"170781732\" data-name=\"logo\" data-StClass=\"LuiAnchor\" class=\"logo\" target=\"_blank\" href=\"https://www.sailseas.com/Monmouth/\"><img alt=\"Seas logo\" id=\"250079858\" data-name=\"image\" data-StClass=\"LuiImage\" title=\"Seas Monmouth\" class=\"logoImage\" src=\"/files/LcsPrototypeFileLibrary/favicon.png\"/></a><label id=\"107234731\" data-name=\"brandName\" data-StClass=\"LuiLabel\">SEAS Monmouth</label></div><input id=\"menu-toggle\" data-name=\"menuToggle\" data-StClass=\"LuiResponsiveNavigationMenuCheckbox\" class=\"menu-toggle-checkbox\" name=\"1\" type=\"checkbox\"/><input name=\"2\" type=\"hidden\"/><label id=\"142682364\" data-name=\"menuToggleLabel\" data-StClass=\"LuiLabel\" for=\"menu-toggle\" class=\"menu-btn\">&amp;#9776;</label><ul id=\"210860599\" data-name=\"mainMenu\" data-StClass=\"LuiMainMenu\" class=\"nav-links\"><li id=\"228853671\" data-name=\"home\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"36019753\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Home</a></li><li id=\"126648334\" data-name=\"servicesMenuItem\" data-StClass=\"LuiDropDownMenuItem\" class=\"nav-item\"><input id=\"238341756\" data-name=\"servicesMenuItemCheckbox\" data-StClass=\"LuiResponsiveNavigationMenuCheckbox\" class=\"submenu-toggle\" name=\"3\" type=\"checkbox\"/><input name=\"4\" type=\"hidden\"/><label id=\"42211829\" data-name=\"servicesMenuItemLabel\" data-StClass=\"LuiLabel\" class=\"arrow-label\" for=\"238341756\">Services</label><ul id=\"41371128\" data-name=\"servicesMenuItemSubmenu\" data-StClass=\"LuiSubmenu\" class=\"submenu\"><li id=\"253859683\" data-name=\"webDesign\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"96554837\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Web Design</a></li><li id=\"8917214\" data-name=\"developmentMenuItem\" data-StClass=\"LuiDropDownMenuItem\" class=\"nav-item\"><input id=\"258596807\" data-name=\"developmentMenuItemCheckbox\" data-StClass=\"LuiResponsiveNavigationMenuCheckbox\" class=\"submenu-toggle\" name=\"5\" type=\"checkbox\"/><input name=\"6\" type=\"hidden\"/><label id=\"244362836\" data-name=\"developmentMenuItemLabel\" data-StClass=\"LuiLabel\" class=\"arrow-label\" for=\"258596807\">Development</label><ul id=\"165633199\" data-name=\"developmentMenuItemSubmenu\" data-StClass=\"LuiSubmenu\" class=\"submenu\"><li id=\"149873634\" data-name=\"frontEnd\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"2919536\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Frontend Code</a></li><li id=\"108052846\" data-name=\"backend\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"122929324\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Backend Logic</a></li><li id=\"55040442\" data-name=\"mobile\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"201974440\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Mobile Apps</a></li></ul></li><li id=\"1333072\" data-name=\"seoMarketing\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"196519126\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">SEO Marketing</a></li></ul></li><li id=\"159786533\" data-name=\"companyMenuItem\" data-StClass=\"LuiDropDownMenuItem\" class=\"nav-item\"><input id=\"154391190\" data-name=\"companyMenuItemCheckbox\" data-StClass=\"LuiResponsiveNavigationMenuCheckbox\" class=\"submenu-toggle\" name=\"7\" type=\"checkbox\"/><input name=\"8\" type=\"hidden\"/><label id=\"182026535\" data-name=\"companyMenuItemLabel\" data-StClass=\"LuiLabel\" class=\"arrow-label\" for=\"154391190\">Company</label><ul id=\"81681914\" data-name=\"companyMenuItemSubmenu\" data-StClass=\"LuiSubmenu\" class=\"submenu\"><li id=\"32338544\" data-name=\"aboutUs\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"240613494\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">About Us</a></li><li id=\"126309882\" data-name=\"ourTeam\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"82716648\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Our Team</a></li><li id=\"247078223\" data-name=\"carrers\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"19616113\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Carrers</a></li></ul></li><li id=\"40301258\" data-name=\"contact\" data-StClass=\"LuiMenuItem\" class=\"nav-item\"><a id=\"182375928\" data-name=\"anchor\" data-StClass=\"LuiAnchor\" href=\"#\">Contact</a></li></ul></nav>'.\n\n\"Parse HTML into an XML DOM tree\"\ndoc := XMLHTMLParser parse: htmlString.\n\n\"Serialize with pretty printing / indentation\"\nwriter := XMLWriter new.\nwriter enablePrettyPrinting.\ndoc printOn: writer.\nwriter contents."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-11-04T23:56:32.673606-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-11-04T23:56:32.673606-05:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "unnamedPage",
+		"defaultTitle" : "Page"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "80945c25-3b93-420b-b8f3-4cd5c05bdbdf"
+	}
+}

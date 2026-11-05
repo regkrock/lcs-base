@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiSEASRoot',
-	#superclass : 'LuiRoot',
+	#superclass : 'LuiApplicationRoot',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'

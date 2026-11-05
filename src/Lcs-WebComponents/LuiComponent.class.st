@@ -535,7 +535,7 @@ LuiComponent >> isRenderable [
 
 { #category : 'testing' }
 LuiComponent >> isRootComponent [
-	^ self componentName = 'root'
+	^ self componentName = self rootComponentName
 ]
 
 { #category : 'testing' }
@@ -730,6 +730,21 @@ LuiComponent >> rootComponent [
 	^ self parentComponent isRootComponent
 		ifTrue: [ self parentComponent ]
 		ifFalse: [ self parentComponent rootComponent ]
+]
+
+{ #category : 'defaults' }
+LuiComponent >> rootComponentCssClassName [
+	^ LuiCssClassesMap / #applicationRoot
+]
+
+{ #category : 'defaults' }
+LuiComponent >> rootComponentId [
+	^ 'root'
+]
+
+{ #category : 'testing' }
+LuiComponent >> rootComponentName [
+	^ 'root'
 ]
 
 { #category : 'hooks' }

@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'gt views' }
-LuiNumberInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''number'''
+LuiNumberInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''number'''
 ]
 
 { #category : 'initialize' }

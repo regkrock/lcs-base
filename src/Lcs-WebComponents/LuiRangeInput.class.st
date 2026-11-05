@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'gt views' }
-LuiRangeInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''range'''
+LuiRangeInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''range'''
 ]
 
 { #category : 'as yet unclassified' }

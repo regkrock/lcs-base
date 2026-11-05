@@ -8,6 +8,5 @@ Class {
 
 { #category : 'defaults' }
 LuiMainMenu >> cssClass [
-	self.
 	^ 'mainMenu'
 ]

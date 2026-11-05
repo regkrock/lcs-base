@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiLxxPersonsFormTest',
-	#superclass : 'LuiRoot',
+	#superclass : 'LuiApplicationRoot',
 	#instVars : [
 		'model'
 	],

@@ -16,7 +16,7 @@ LuiDateTimeLocalInputExamples >> componentWithMinMaxAndStep [
 	component min: begin.
 	component max: end.
 	component step: 1.
-	expectedHtml := '<input id="184130110" data-name="dateTimeLocalPicker" data-StClass="LuiDateTimeLocalInput" step="1" class="inputField" name="1" max="2026-06-28T23:59:00-04:00" min="2026-06-27T00:00:00-04:00" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#184130110&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="2026-06-27T12:00:00-04:00" type="datetime-local"/>'.
+	expectedHtml := '%<input id="184130110" data-name="dateTimeLocalPicker" data-StClass="LuiDateTimeLocalInput" step="1" class="inputField" name="1" max="<1s>" min="<2s>" onblur="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;2&quot;,&quot;3=&quot;+encodeURIComponent($(&quot;#184130110&quot;).val())].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;4&quot;)}})" value="<3s>" type="datetime-local"/>' expandMacrosWith: end printString with: begin printString with: component model printString.
 	self assertRendered: component equals: expectedHtml.
 	^ component
 ]

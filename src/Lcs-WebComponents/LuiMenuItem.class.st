@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiMenuItem',
-	#superclass : 'LuiMenuObject',
+	#superclass : 'LuiBaseMenuItem',
 	#instVars : [
 		'targetClass',
 		'label'
@@ -20,11 +20,6 @@ LuiMenuItem >> _buttonComponent [
 	^ self componentNamed: 'button'
 ]
 
-{ #category : 'components' }
-LuiMenuItem >> _hiddenCheckboxComponent [
-	^ self componentNamed: 'hiddenCheckbox'
-]
-
 { #category : 'components - adding' }
 LuiMenuItem >> addAnchorComponent [
 	^ self addComponent: (LuiAnchor named: 'anchor')
@@ -33,25 +28,6 @@ LuiMenuItem >> addAnchorComponent [
 { #category : 'components - adding' }
 LuiMenuItem >> addButtonComponent [
 	^ self addComponent: (LuiButton named: 'button')
-]
-
-{ #category : 'components - adding' }
-LuiMenuItem >> addDownArrowToAnchorSpanComponent [
-	^ self anchorSpanComponent 
-		cssClass: LuiCssClassesMap / #'arrow';
-		text: '▼'
-]
-
-{ #category : 'components - adding' }
-LuiMenuItem >> addHiddenCheckboxComponent [
-	^ self addComponent: (LuiCheckbox named: 'hiddenCheckbox')
-]
-
-{ #category : 'components - adding' }
-LuiMenuItem >> addRightArrowToAnchorSpanComponent [
-	^ self anchorSpanComponent 
-		cssClass: LuiCssClassesMap / #'arrow';
-		text: '►'
 ]
 
 { #category : 'components' }
@@ -143,11 +119,6 @@ LuiMenuItem >> callback: aBlock [
 	self buttonOrAnchorComponent callback: aBlock
 ]
 
-{ #category : 'defaults' }
-LuiMenuItem >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap / #menuItem
-]
-
 { #category : 'button - attributes' }
 LuiMenuItem >> ensureNoAnchorComponent [
 	self hasAnchorComponent
@@ -162,18 +133,6 @@ LuiMenuItem >> ensureNoButtonComponent [
 				signal: 'An button component already exists. A menu item can only have one or the other' ]
 ]
 
-{ #category : 'button - attributes' }
-LuiMenuItem >> ensureNoHiddenCheckboxComponent [
-	self hasHiddenCheckboxComponent
-		ifTrue: [ LcsError
-				signal: 'An hidden checkbox component already exists. A menu item can only have one or the other' ]
-]
-
-{ #category : 'gt views' }
-LuiMenuItem >> gtViewTagName [
-	^ '<li>'
-]
-
 { #category : 'testing' }
 LuiMenuItem >> hasAnchorComponent [
 	^ ( self componentNamed: 'anchor') notNil
@@ -185,11 +144,6 @@ LuiMenuItem >> hasButtonComponent [
 ]
 
 { #category : 'testing' }
-LuiMenuItem >> hasHiddenCheckboxComponent [
-	^ ( self componentNamed: 'hiddenCheckbox') notNil
-]
-
-{ #category : 'testing' }
 LuiMenuItem >> hasImageComponent [
 	^ self buttonOrAnchorComponent hasImageComponent
 ]
@@ -197,18 +151,6 @@ LuiMenuItem >> hasImageComponent [
 { #category : 'testing' }
 LuiMenuItem >> hasSpanComponent [
 	^ self buttonOrAnchorComponent hasSpanComponent
-]
-
-{ #category : 'button - attributes' }
-LuiMenuItem >> hiddenCheckbox: aString [
-	self ensureNoHiddenCheckboxComponent.
-	self hiddenCheckboxComponent named: aString
-]
-
-{ #category : 'components' }
-LuiMenuItem >> hiddenCheckboxComponent [
-	self hasHiddenCheckboxComponent ifFalse: [ self hiddenCheckboxComponent ].
-	^ self _hiddenCheckboxComponent
 ]
 
 { #category : 'button - attributes' }
@@ -254,13 +196,6 @@ LuiMenuItem >> onClick [
 { #category : 'button - attributes' }
 LuiMenuItem >> onClick: aString [
 	self buttonOnClick: aString
-]
-
-{ #category : 'rendering' }
-LuiMenuItem >> renderComponentOn: html [
-	html listItem
-		addCommonAttributes: self;
-		with: [ self renderDetailsOn: html ]
 ]
 
 { #category : 'components' }

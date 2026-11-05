@@ -64,6 +64,29 @@ LuiMenuExamples >> addSubmenuTo: contactMenuItem [
 ]
 
 { #category : 'examples' }
+LuiMenuExamples >> contactsDropdownMenuItem [
+	<gtExample>
+	| menuItem checkboxComponent labelComponent submenuComponent |
+	menuItem :=  LuiDropDownMenuItem named: 'contacts' label: 'Contacts'.
+	self assert: menuItem class identicalTo: LuiDropDownMenuItem.
+	self assert: menuItem components size equals: 3.
+	checkboxComponent := menuItem checkboxComponent.
+	labelComponent := menuItem labelComponent.
+	submenuComponent := menuItem submenuComponent.
+	self assert: checkboxComponent class identicalTo: LuiResponsiveNavigationMenuCheckbox.
+	self assert: checkboxComponent componentName equals: 'contactsMenuItemCheckbox'.
+	self assert: checkboxComponent cssClassesString equals: 'submenu-toggle'.
+	self assert: labelComponent class identicalTo: LuiLabel.
+	self assert: labelComponent componentName equals: 'contactsMenuItemLabel'.
+	self assert: labelComponent cssClassesString equals: 'arrow-label'.
+	self assert: labelComponent for equals: nil.
+	self assert: submenuComponent class identicalTo: LuiSubmenu.
+	self assert: submenuComponent componentName equals: 'contactsMenuItemSubmenu'.
+	self assert: submenuComponent cssClassesString equals: 'submenu'.
+	^ menuItem
+]
+
+{ #category : 'examples' }
 LuiMenuExamples >> exampleNavigationMenu [
 	<gtExample>
 	| menu homeMenuItem contactMenuItem aboutMenuItem |
@@ -105,60 +128,83 @@ LuiMenuExamples >> expectedHomeMenuHtml [
 
 { #category : 'private' }
 LuiMenuExamples >> expectedHomeMenuItemHtml [
-	^ '<li id="260104948" data-name="home" data-StClass="LuiMenuItem" title="Go to Home" class="menuItem"><button id="90512695" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="165968640" data-name="span" data-StClass="LuiSpan">Home</span></button><ul id="35201931" data-name="homeSubmenu" data-StClass="LuiMenu" class="submenu"><li id="201092461" data-name="homeSubmenu_itemA" data-StClass="LuiMenuItem" class="menuItem"><button id="31074292" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="101108137" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="202756986" data-name="homeSubmenu_itemB" data-StClass="LuiMenuItem" class="menuItem"><button id="207824917" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="1727910" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="204421511" data-name="homeSubmenu_itemC" data-StClass="LuiMenuItem" class="menuItem"><button id="116140086" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="170783139" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li></ul></li>'
+	^ '<li id="183941010" data-name="home" data-StClass="LuiMenuItem" title="Go to Home" class="menuItem"><button id="134987149" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="106457662" data-name="span" data-StClass="LuiSpan">Home</span></button><ul id="244126409" data-name="homeSubmenu" data-StClass="LuiMenu" class="submenu"><li id="66672859" data-name="homeSubmenu_itemA" data-StClass="LuiMenuItem" class="menuItem"><button id="241080410" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="141020855" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="68337384" data-name="homeSubmenu_itemB" data-StClass="LuiMenuItem" class="menuItem"><button id="149395579" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="41640628" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="70001909" data-name="homeSubmenu_itemC" data-StClass="LuiMenuItem" class="menuItem"><button id="57710748" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="210695857" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li></ul></li>'
 ]
 
 { #category : 'private' }
 LuiMenuExamples >> expectedNavigationWithSubmenuWithSubmenuHtml [
-	^ '<ul data-name="navigation" data-StClass="LuiMenu" class="menu"><li id="260104948" data-name="home" data-StClass="LuiMenuItem" title="Go to Home" class="menuItem"><button id="90512695" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="165968640" data-name="span" data-StClass="LuiSpan">Home</span></button><ul id="35201931" data-name="homeSubmenu" data-StClass="LuiMenu" class="submenu"><li id="201092461" data-name="homeSubmenu_itemA" data-StClass="LuiMenuItem" class="menuItem"><button id="31074292" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="101108137" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="202756986" data-name="homeSubmenu_itemB" data-StClass="LuiMenuItem" class="menuItem"><button id="207824917" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="1727910" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button><ul id="9792251" data-name="homeSubmenu_itemB_submenu" data-StClass="LuiMenu" class="submenu"><li id="201876382" data-name="homeSubmenu_itemB_a" data-StClass="LuiMenuItem" class="menuItem"><button id="219540041" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="169511562" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="203540907" data-name="homeSubmenu_itemB_b" data-StClass="LuiMenuItem" class="menuItem"><button id="127855210" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="70131335" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="205205432" data-name="homeSubmenu_itemB_c" data-StClass="LuiMenuItem" class="menuItem"><button id="36170379" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="239186564" data-name="span" data-StClass="LuiSpan">Ccccc</span></button></li></ul></li><li id="204421511" data-name="homeSubmenu_itemC" data-StClass="LuiMenuItem" class="menuItem"><button id="116140086" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="170783139" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li></ul></li><li id="75012251" data-name="contact" data-StClass="LuiMenuItem" class="menuItem"><button id="95846170" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="162308727" data-name="span" data-StClass="LuiSpan">Contact</span></button></li><li id="99049242" data-name="about" data-StClass="LuiMenuItem" class="menuItem"><button id="162586165" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="263620422" data-name="span" data-StClass="LuiSpan">About</span></button></li></ul>'
+	^ '<ul data-name="mainMenu" data-StClass="LuiMenu" class="menu"><li id="101329548" data-name="contactsMenuItem" data-StClass="LuiDropDownMenuItem" class="nav-item"><input id="83079045" data-name="contactsMenuItemCheckbox" data-StClass="LuiResponsiveNavigationMenuCheckbox" class="submenu-toggle" name="1" type="checkbox"/><input name="2" type="hidden"/><label id="157167002" data-name="contactsMenuItemLabel" data-StClass="LuiLabel" class="arrow-label" for="83079045">Contacts</label><ul id="110463461" data-name="contactsMenuItemSubmenu" data-StClass="LuiSubmenu" class="submenu"><li id="163414275" data-name="contact_itemA" data-StClass="LuiMenuItem" class="nav-item"><a id="107223925" data-name="anchor" data-StClass="LuiAnchor" href="#"><span id="94226310" data-name="span" data-StClass="LuiSpan">Aaaaa</span></a></li><li id="165078800" data-name="contact_itemB" data-StClass="LuiMenuItem" class="nav-item"><button id="46471235" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="24972892" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="166743325" data-name="contact_itemC" data-StClass="LuiMenuItem" class="nav-item"><button id="223221860" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="194028121" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li><li id="135765301" data-name="subsubmenuMenuItem" data-StClass="LuiDropDownMenuItem" class="nav-item"><input id="3346952" data-name="subsubmenuMenuItemCheckbox" data-StClass="LuiResponsiveNavigationMenuCheckbox" class="submenu-toggle" name="3" type="checkbox"/><input name="4" type="hidden"/><label id="96548945" data-name="subsubmenuMenuItemLabel" data-StClass="LuiLabel" class="arrow-label" for="3346952">Subsubmenu</label><ul id="81354932" data-name="subsubmenuMenuItemSubmenu" data-StClass="LuiSubmenu" class="submenu"><li id="80598695" data-name="homeSubmenu_itemB_a" data-StClass="LuiMenuItem" class="nav-item"><button id="64701910" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="266908867" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="82263220" data-name="homeSubmenu_itemB_b" data-StClass="LuiMenuItem" class="nav-item"><button id="241452535" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="167528640" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="83927745" data-name="homeSubmenu_itemB_c" data-StClass="LuiMenuItem" class="nav-item"><button id="149767704" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="68148413" data-name="span" data-StClass="LuiSpan">Ccccc</span></button></li></ul></li></ul></li></ul>'
 ]
 
 { #category : 'private' }
 LuiMenuExamples >> expectedSubmenuHtml [
-	^ '<ul id="35201931" data-name="homeSubmenu" data-StClass="LuiMenu" class="submenu"><li id="201092461" data-name="homeSubmenu_itemA" data-StClass="LuiMenuItem" class="menuItem"><button id="31074292" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="101108137" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="202756986" data-name="homeSubmenu_itemB" data-StClass="LuiMenuItem" class="menuItem"><button id="207824917" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="1727910" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="204421511" data-name="homeSubmenu_itemC" data-StClass="LuiMenuItem" class="menuItem"><button id="116140086" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="170783139" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li></ul>'
+	^ '<ul id="244126409" data-name="homeSubmenu" data-StClass="LuiMenu" class="submenu"><li id="66672859" data-name="homeSubmenu_itemA" data-StClass="LuiMenuItem" class="menuItem"><button id="241080410" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="141020855" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="68337384" data-name="homeSubmenu_itemB" data-StClass="LuiMenuItem" class="menuItem"><button id="149395579" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="41640628" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="70001909" data-name="homeSubmenu_itemC" data-StClass="LuiMenuItem" class="menuItem"><button id="57710748" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="210695857" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li></ul>'
+]
+
+{ #category : 'examples' }
+LuiMenuExamples >> hamburgerCodePointString [
+	^ String with: (Character codePoint: 16r2630)
+]
+
+{ #category : 'examples' }
+LuiMenuExamples >> navigationMenuWithEmptySubmenu [
+	<gtExample>
+	| navigationMenu dropDownMenuItem |
+	navigationMenu := self newNavigationMenuComponent.
+	dropDownMenuItem := self contactsDropdownMenuItem.
+	self 
+		assert: dropDownMenuItem labelComponent for 
+		equals: nil.
+	navigationMenu addComponent: dropDownMenuItem.
+	self assert: navigationMenu components includes: dropDownMenuItem.
+	self 
+		assert: dropDownMenuItem labelComponent for 
+		equals: dropDownMenuItem checkboxComponent componentId.
+	^ navigationMenu
 ]
 
 { #category : 'examples' }
 LuiMenuExamples >> navigationWithSubmenu [
 	<gtExample>
-	| navigationMenu homeMenuItem homeSubmenu |
-	navigationMenu := self simpleNavigationMenu.
-	homeMenuItem := navigationMenu componentNamed: 'home'.
-	homeSubmenu := LuiMenu newSubmenuNamed: 'homeSubmenu'.
-	homeMenuItem addComponent: homeSubmenu.
-	self assert: homeSubmenu componentName equals: 'homeSubmenu'.
-	self assert: homeSubmenu cssClassesString equals: 'submenu'.
-	homeSubmenu 
-		addComponent: ((LuiMenuItem named: 'homeSubmenu_itemA') buttonLabel: 'Aaaaa');
-		addComponent: ((LuiMenuItem named: 'homeSubmenu_itemB') buttonLabel: 'Bbbbb');
-		addComponent: ((LuiMenuItem named: 'homeSubmenu_itemC') buttonLabel: 'Caaa').
-	self assertRendered: homeSubmenu equals: self expectedSubmenuHtml.
-	self assertRendered: homeMenuItem equals: self expectedHomeMenuItemHtml.
+	| navigationMenu contactsMenuItem contactsMenuItemSubmenu |
+	navigationMenu := self navigationMenuWithEmptySubmenu.
+	contactsMenuItem := navigationMenu componentNamed: 'contactsMenuItem'.
+	contactsMenuItem 
+		addMenuItem: ((LuiMenuItem named: 'contact_itemA') 
+						href: '#';
+						label: 'Aaaaa';
+						yourself);
+		addMenuItem: ((LuiMenuItem named: 'contact_itemB') buttonLabel: 'Bbbbb');
+		addMenuItem: ((LuiMenuItem named: 'contact_itemC') buttonLabel: 'Caaa').
+	contactsMenuItemSubmenu := contactsMenuItem submenuComponent.
+	self assert: contactsMenuItemSubmenu components size equals: 3.
+	"self assertRendered: homeSubmenu equals: self expectedSubmenuHtml.
+	self assertRendered: homeMenuItem equals: self expectedHomeMenuItemHtml."
 	^ navigationMenu
 ]
 
 { #category : 'examples' }
 LuiMenuExamples >> navigationWithSubmenuWithSubmenu [
 	<gtExample>
-	| navigationMenu homeSubmenuB homeSubmenuBsubmenu |
+	| navigationMenu submenu subsubmenuItem |
 	navigationMenu := self navigationWithSubmenu.
-	homeSubmenuB := navigationMenu componentNamed: 'home/homeSubmenu/homeSubmenu_itemB'.
-	homeSubmenuBsubmenu := LuiMenu newSubmenuNamed: 'homeSubmenu_itemB_submenu'.
-	homeSubmenuB addComponent: homeSubmenuBsubmenu.
-	homeSubmenuBsubmenu 
-		addComponent: ((LuiMenuItem named: 'homeSubmenu_itemB_a') buttonLabel: 'Aaaaa');
-		addComponent: ((LuiMenuItem named: 'homeSubmenu_itemB_b') buttonLabel: 'Bbbbb');
-		addComponent: ((LuiMenuItem named: 'homeSubmenu_itemB_c') buttonLabel: 'Ccccc').
+	submenu := navigationMenu componentNamed: 'contactsMenuItem/contactsMenuItemSubmenu'.
+	subsubmenuItem := LuiDropDownMenuItem named: 'subsubmenu'  label: 'Subsubmenu'.
+	submenu addComponent: subsubmenuItem.
+	subsubmenuItem 
+		addMenuItem: ((LuiMenuItem named: 'homeSubmenu_itemB_a') buttonLabel: 'Aaaaa');
+		addMenuItem: ((LuiMenuItem named: 'homeSubmenu_itemB_b') buttonLabel: 'Bbbbb');
+		addMenuItem: ((LuiMenuItem named: 'homeSubmenu_itemB_c') buttonLabel: 'Ccccc').
 	self assertRendered: navigationMenu equals: self expectedNavigationWithSubmenuWithSubmenuHtml.
 	^ navigationMenu
 ]
 
 { #category : 'examples' }
-LuiMenuExamples >> newComponent [
+LuiMenuExamples >> newNavigationMenuComponent [
 	<gtExample>
 	| navigationMenu |
-	navigationMenu := LuiMenu newMainMenuNamed: 'navigation'.
-	self assertRendered: navigationMenu equals: '<ul data-name="navigation" data-StClass="LuiMenu" class="menu"></ul>'.
+	navigationMenu := LuiMenu newMainMenuNamed: 'mainMenu'.
+	self assertRendered: navigationMenu equals: '<ul data-name="mainMenu" data-StClass="LuiMenu" class="menu"></ul>'.
 	^ navigationMenu
 ]
 
@@ -166,19 +212,104 @@ LuiMenuExamples >> newComponent [
 LuiMenuExamples >> simpleNavigationMenu [
 	<gtExample>
 	| menuItem menuItemButton navigationMenu |
-	navigationMenu := LuiMenu newMainMenuNamed: 'navigation'.
-	self assert: navigationMenu componentName equals: 'navigation'.
-	self assert: navigationMenu cssClassesString equals: 'menu'.
+	navigationMenu := self newNavigationMenuComponent.
 	navigationMenu buildFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions .
 
 	self assert: navigationMenu components size = 3.
 	menuItem := navigationMenu componentAtIndex: 1.
+	self assert: menuItem class identicalTo: LuiMenuItem.
 	self assert: menuItem componentName = 'home'.
 	self assert: menuItem label = 'Home'.
-	self assert: menuItem cssClassesString = 'menuItem'.
+	self assert: menuItem cssClassesString equals: 'nav-item'.
 	self assert: menuItem components size = 1.
 	menuItemButton := menuItem componentAtIndex: 1.
-	"self assert: menuItemButton componentName = 'button'."
-	"self assert: menuItemButton label = 'Home'."
+	self assert: menuItemButton componentName = 'button'.
+	self assert: menuItemButton label = 'Home'.	
+	
+	menuItem := navigationMenu componentAtIndex: 2.
+	self assert: menuItem class identicalTo: LuiMenuItem.
+	self assert: menuItem componentName = 'contact'.
+	self assert: menuItem label = 'Contact'.
+	self assert: menuItem cssClassesString equals: 'nav-item'.
+	self assert: menuItem components size = 1.
+	menuItemButton := menuItem componentAtIndex: 1.
+	self assert: menuItemButton componentName = 'button'.
+	self assert: menuItemButton label = 'Contact'.	
+
+	menuItem := navigationMenu componentAtIndex: 3.
+	self assert: menuItem class identicalTo: LuiMenuItem.
+	self assert: menuItem componentName = 'about'.
+	self assert: menuItem label = 'About'.
+	self assert: menuItem cssClassesString equals: 'nav-item'.
+	self assert: menuItem components size = 1.
+	menuItemButton := menuItem componentAtIndex: 1.
+	self assert: menuItemButton componentName = 'button'.
+	self assert: menuItemButton label = 'About'.	
+
 	^ navigationMenu
+]
+
+{ #category : 'examples' }
+LuiMenuExamples >> softwareCompanyNavbar [
+	<gtExample>
+	| navbar |
+	navbar := LuiNavigationBar named: 'navbar'.
+	navbar addComponent: LuiBrand newSeasBrand.
+	navbar
+		addComponent: ((LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
+				assignStaticId: 'menu-toggle';
+				yourself).
+	navbar
+		addComponent: ((LuiLabel named: 'menuToggleLabel')
+				for: 'menu-toggle';
+				cssClass: 'menu-btn';
+				text: self hamburgerCodePointString;
+				yourself).
+	navbar
+		addComponent: (((LuiMainMenu named: 'mainMenu')
+				cssClass: #'nav-links';
+				yourself)
+				addComponent: ((LuiMenuItem named: 'home')
+						anchorHref: '#';
+						anchorLabel: 'Home';
+						yourself);
+				addComponent: ((LuiDropDownMenuItem named: 'services' label: 'Services')
+						addMenuItem: ((LuiMenuItem named: 'webDesign')
+								anchorHref: '#';
+								anchorLabel: 'Web Design');
+						addMenuItem: ((LuiDropDownMenuItem named: 'development' label: 'Development')
+								addMenuItem: ((LuiMenuItem named: 'frontEnd')
+										anchorHref: '#';
+										anchorLabel: 'Frontend Code';
+										yourself);
+								addMenuItem: ((LuiMenuItem named: 'backend')
+										anchorHref: '#';
+										anchorLabel: 'Backend Logic';
+										yourself);
+								addMenuItem: ((LuiMenuItem named: 'mobile')
+										anchorHref: '#';
+										anchorLabel: 'Mobile Apps';
+										yourself));
+						addMenuItem: ((LuiMenuItem named: 'seoMarketing')
+								anchorHref: '#';
+								anchorLabel: 'SEO Marketing');
+						yourself);
+				addComponent: ((LuiDropDownMenuItem named: 'company' label: 'Company')
+						addMenuItem: ((LuiMenuItem named: 'aboutUs')
+								anchorHref: '#';
+								anchorLabel: 'About Us');
+						addMenuItem: ((LuiMenuItem named: 'ourTeam')
+								anchorHref: '#';
+								anchorLabel: 'Our Team');
+						addMenuItem: ((LuiMenuItem named: 'carrers')
+								anchorHref: '#';
+								anchorLabel: 'Carrers');
+						yourself);
+				addComponent: ((LuiMenuItem named: 'contact')
+						anchorHref: '#';
+						anchorLabel: 'Contact';
+						yourself);
+				yourself).
+
+	^ navbar
 ]

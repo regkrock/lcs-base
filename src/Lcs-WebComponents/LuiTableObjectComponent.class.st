@@ -50,8 +50,8 @@ LuiTableObjectComponent >> initializeOnSlot: aSlotDefinition model: aModel compo
 ]
 
 { #category : 'components' }
-LuiTableObjectComponent >> tableRoot [
-	^ self parentComponent tableRoot
+LuiTableObjectComponent >> topTableComponent [
+	^ self parentComponent topTableComponent
 ]
 
 { #category : 'accessing' }

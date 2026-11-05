@@ -23,8 +23,8 @@ LuiTextInput >> defaultCssClasses [
 ]
 
 { #category : 'gt views' }
-LuiTextInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''text'''
+LuiTextInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''text'''
 ]
 
 { #category : 'initialize' }

@@ -12,8 +12,8 @@ LuiCheckbox >> contentsAsString [
 ]
 
 { #category : 'gt views' }
-LuiCheckbox >> gtViewTagName [
-	^ super gtViewTagName , ' type=''checkbox'''
+LuiCheckbox >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''checkbox'''
 ]
 
 { #category : 'callbacks' }

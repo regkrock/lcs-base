@@ -25,9 +25,14 @@ LuiLabel >> for: anInputName [
 	self attributes for: anInputName
 ]
 
+{ #category : 'gt' }
+LuiLabel >> gtViewOtherInfo [
+	^ self text
+]
+
 { #category : 'gt views' }
 LuiLabel >> gtViewTagName [
-	^'label'
+	^'<label>'
 ]
 
 { #category : 'iniitialize' }

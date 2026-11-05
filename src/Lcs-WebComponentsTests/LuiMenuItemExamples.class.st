@@ -25,7 +25,7 @@ LuiMenuItemExamples >> homeMenuItemWithButtonWithLabelAndImage [
 	self assert: item title equals: 'Home Menu Item'.
 	self assert: item spanComponent text equals: 'Home'.
 	
-	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home Menu Item" class="menuItem"><button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton"><img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg" class="logo"/><span id="207767249" data-name="span" data-StClass="LuiSpan">Home</span></button></li>'.
+	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home Menu Item" class="nav-item"><button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton"><img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg" class="logo"/><span id="207767249" data-name="span" data-StClass="LuiSpan">Home</span></button></li>'.
 	
 	self assertRendered: item equals: expectedHtml.
 	^ item
@@ -46,7 +46,7 @@ LuiMenuItemExamples >> homeMenuItemWithimage [
 
 	self assert: item title equals: 'Home'.
 
-	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home" class="menuItem"><button id="7186236" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" class="logo" src="/files/LcsFileLibrary/check24.svg"/></button></li>'.
+	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home" class="nav-item"><button id="7186236" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" class="logo" src="/files/LcsFileLibrary/check24.svg"/></button></li>'.
 
 	self assertRendered: item equals: expectedHtml .
 	^ item
@@ -64,7 +64,7 @@ LuiMenuItemExamples >> menuItemWithAnchor [
 	self assert: item buttonOrAnchorComponent equals: item anchorComponent.
 	self assert: item text equals: 'Hello'.
 
-	expectedHtml := '<li name="menuItem1" data-StClass="LuiMenuItem" class="menuItem"><a id="244689551" name="anchor" data-StClass="LuiAnchor" href="a url path">Hello</a></li>'.
+	expectedHtml := '<li name="menuItem1" data-StClass="LuiMenuItem" class="nav-item"><a id="244689551" name="anchor" data-StClass="LuiAnchor" href="a url path">Hello</a></li>'.
 
 	"self assertRendered: item equals: expectedHtml ."
 	^ item
@@ -82,7 +82,7 @@ LuiMenuItemExamples >> menuItemWithAnchorAndSpanLabel [
 	self assert: item buttonOrAnchorComponent equals: item anchorComponent.
 	self assert: item label equals: 'Hello'.
 
-	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="menuItem"><a id="244689551" data-name="anchor" data-StClass="LuiAnchor" href="a url path"><span id="177640440" data-name="span" data-StClass="LuiSpan">Hello</span></a></li>'.
+	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="nav-item"><a id="244689551" data-name="anchor" data-StClass="LuiAnchor" href="a url path"><span id="177640440" data-name="span" data-StClass="LuiSpan">Hello</span></a></li>'.
 
 	self assertRendered: item equals: expectedHtml .
 	^ item
@@ -100,7 +100,7 @@ LuiMenuItemExamples >> menuItemWithButton [
 	self assert: item buttonOrAnchorComponent equals: item buttonComponent.
 	self assert: item text equals: 'Hello'.
 
-	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="menuItem"><button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton">Hello</button></li>'.
+	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="nav-item"><button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton">Hello</button></li>'.
 
 	self assertRendered: item equals: expectedHtml .
 	^ item
@@ -118,7 +118,7 @@ LuiMenuItemExamples >> menuItemWithButtonAndSpanLabel [
 	self assert: item buttonOrAnchorComponent equals: item buttonComponent.
 	self assert: item label equals: 'Hello'.
 
-	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="menuItem"><button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton"><span id="207767249" data-name="span" data-StClass="LuiSpan">Hello</span></button></li>'.
+	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="nav-item"><button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton"><span id="207767249" data-name="span" data-StClass="LuiSpan">Hello</span></button></li>'.
 
 	self assertRendered: item equals: expectedHtml .
 	^ item
@@ -136,6 +136,6 @@ LuiMenuItemExamples >> newMenuItem [
 	self assert: item componentName equals: 'menuItem1'.
 	self
 		assertRendered: item
-		equals: '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="menuItem"></li>'.
+		equals: '<li data-name="menuItem1" data-StClass="LuiMenuItem" class="nav-item"></li>'.
 	^ item
 ]

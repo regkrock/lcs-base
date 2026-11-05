@@ -11,10 +11,10 @@ Class {
 
 { #category : 'defaults' }
 LuiResponsiveNavigationMenuCheckbox >> defaultCssClasses [
-	^ OrderedCollection with: LuiCssClassesMap / #'menu-toggle-checkbox'
+	^ OrderedCollection with: LuiCssClassesMap / #'menu-toggle'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialize' }
 LuiResponsiveNavigationMenuCheckbox >> initialize [
 	super initialize.
 	self text: ''

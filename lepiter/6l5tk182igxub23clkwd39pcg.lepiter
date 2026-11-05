@@ -927,7 +927,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-07-09T10:26:53.141927-04:00"
+									"dateAndTimeString" : "2026-11-05T10:24:39.709676-05:00"
 								}
 							},
 							"uid" : {
@@ -937,7 +937,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "##Create a LUI application and register it (Done via a class)\n- All LUI applications (HTML Pages) should use the class {{gtClass:name=LuiRoot}} , which is a subclass of {{gtClass:name=LuiComponent}} as its superclass.  \n- All subclasses of LuiRoot will automatically be registered as a root component with Seaside."
+							"string" : "##Create a LUI application and register it (Done via a class)\n- All LUI applications (HTML Pages) should use the class {{gtClass:name=LuiApplicationRoot}} , which is a subclass of {{gtClass:name=LuiComponent}} as its superclass.  \n- All subclasses of LuiRoot will automatically be registered as a root component with Seaside."
 						},
 						{
 							"__type" : "textSnippet",

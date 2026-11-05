@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'gt views' }
-LuiUrlInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''url'''
+LuiUrlInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''url'''
 ]
 
 { #category : 'rendering' }

@@ -1,6 +1,6 @@
 Class {
 	#name : 'LuiExampleRoot',
-	#superclass : 'LuiRoot',
+	#superclass : 'LuiApplicationRoot',
 	#category : 'Lcs-WebComponentsTests-Base',
 	#package : 'Lcs-WebComponentsTests',
 	#tag : 'Base'

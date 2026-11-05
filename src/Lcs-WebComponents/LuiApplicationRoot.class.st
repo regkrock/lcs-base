@@ -1,44 +1,55 @@
 Class {
 	#name : 'LuiApplicationRoot',
-	#superclass : 'LuiRoot',
+	#superclass : 'LuiComponent',
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Core'
 }
 
-{ #category : 'initialize' }
-LuiApplicationRoot class >> initialize [
-	self registerApplication: 'lcsApplication'
+{ #category : 'constant' }
+LuiApplicationRoot class >> browserTabName [
+	"Subclasses should implment this"
+	^ self class name , '-RootComponent'
 ]
 
-{ #category : 'constants' }
+{ #category : 'testing' }
+LuiApplicationRoot class >> canBeRoot [
+	"This can be the top component"
+	^ true
+]
+
+{ #category : 'register' }
+LuiApplicationRoot class >> registerApplication: aString [
+	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance.
+	(WAAdmin register: self asApplicationAt: aString)
+		sessionClass: WAExpirySession;
+		scriptGeneratorClass: JQScriptGenerator;
+		addLibrary: JQDeploymentLibrary
+]
+
+{ #category : 'updating' }
 LuiApplicationRoot >> applicationTitle [
-	^ 'Lcs App'
 ]
 
-{ #category : 'initialize' }
+{ #category : 'updating' }
 LuiApplicationRoot >> initialize [
 	super initialize.
-	"self initializeStandardLayout"
-]
-
-{ #category : 'initialize' }
-LuiApplicationRoot >> initializeStandardLayout [
-	self addComponent: LuiPageHeader new.
-	(self componentNamed: 'header')
-		addComponent: LuiImage seasMonmouthFavicon.
-	(self componentNamed: 'header')
-		addComponent: (LuiNavigationBar named: 'navbar').
-	((self componentNamed: 'header') componentNamed: 'navbar')
-		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions
+	self componentName: self rootComponentName.
+	self componentId: self rootComponentId.
+	self cssClass: self rootComponentCssClassName
 ]
 
 { #category : 'updating' }
 LuiApplicationRoot >> updateFilesInRoot: anHtmlRoot [ 
-	| fileClass |
-	fileClass := LcsFileLibrary.
-	super updateFilesInRoot: anHtmlRoot.
-	anHtmlRoot stylesheet url: fileClass / #resetCss.
-	anHtmlRoot stylesheet url: fileClass / #mainCss.
-	anHtmlRoot link beShortcutIcon url: fileClass / #faviconPng
+	"anHtmlRoot javascript url: JQDeploymentLibrary"
+]
+
+{ #category : 'updating' }
+LuiApplicationRoot >> updateRoot: aRoot [
+	super updateRoot: aRoot.
+	aRoot title: self applicationTitle.
+	aRoot meta
+		name: 'viewport';
+		content: 'width=device-width, initial-scale=1.0'.
+	self updateFilesInRoot: aRoot
 ]

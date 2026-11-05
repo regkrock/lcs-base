@@ -30,7 +30,7 @@ LuiTextArea >> defaultCssClasses [
 
 { #category : 'gt views' }
 LuiTextArea >> gtViewTagName [
-	^ 'textArea'
+	^ '<textArea>'
 ]
 
 { #category : 'rendering' }

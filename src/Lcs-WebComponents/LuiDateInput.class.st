@@ -15,8 +15,8 @@ LuiDateInput >> contentsAsString [
 ]
 
 { #category : 'gt views' }
-LuiDateInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''date'''
+LuiDateInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''date'''
 ]
 
 { #category : 'initialize' }

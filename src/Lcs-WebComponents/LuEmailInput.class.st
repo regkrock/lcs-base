@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'gt views' }
-LuEmailInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''email'''
+LuEmailInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''email'''
 ]
 
 { #category : 'rendering' }

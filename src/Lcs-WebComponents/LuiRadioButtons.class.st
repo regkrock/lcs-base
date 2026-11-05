@@ -46,7 +46,7 @@ LuiRadioButtons >> elements: anObject [
 
 { #category : 'gt views' }
 LuiRadioButtons >> gtViewTagName [
-	^'div'
+	^'<div>'
 ]
 
 { #category : 'callbacks' }

@@ -6,6 +6,11 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'gtview' }
+LuiSpan >> gtViewOtherInfo [
+	^ self text
+]
+
 { #category : 'initialize' }
 LuiSpan >> initialize [
 	super initialize

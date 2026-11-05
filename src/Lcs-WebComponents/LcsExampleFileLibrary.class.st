@@ -55,7 +55,7 @@ LcsExampleFileLibrary >> check24Svg [
 LcsExampleFileLibrary >> cssDefinitionSelectors [
 	^ #( 
 		resetCssDefinition
-		rootDefinition
+		cssRootDefinition
 		bodyDefinition
 		topHeaderDefinition
 		navBarCssClassDefinition
@@ -66,6 +66,56 @@ LcsExampleFileLibrary >> cssDefinitionSelectors [
 		mainFormDefinition
 		formWidgetsCssDefinition
 		)
+]
+
+{ #category : 'css - definitons' }
+LcsExampleFileLibrary >> cssRootDefinition [
+	<cssDefinition>
+	^':root {
+	--menu-count: 3;
+	--primary-color: #5b5fc7;
+	--primary-color-light: #5b5fc7;
+	--primary-color-dark: #5b5fc7;
+	--primary-color-contrast: #fff;
+	--secondary-color: #2a2a2a;
+	--secondary-color-light: #2a2a2a;
+	--secondary-color-dark: #2a2a2a;
+	--secondary-color-contrast: #fff;
+	--tertiary-color: #aeaeae;
+	--tertiary-color-light: #aeaeae;
+	--tertiary-color-dark: #aeaeae;
+	--tertiary-color-contrast: #fff;
+	--secondary-background-color: #f5f5f5;
+	--secondary-background-color-light: #f5f5f5;
+	--secondary-background-color-dark: #f5f5f5;
+	--secondary-background-color-contrast: #000;
+	--secondary-background-color-contrast-light: #000;
+	--secondary-background-color-contrast-dark: #000;
+	--tertiary-background-color: #fff;
+	--tertiary-background-color-light: #fff;
+	--tertiary-background-color-dark: #fff;
+	--tertiary-background-color-contrast: #000;
+	--error-color: #ff0000;
+	--error-color-light: #ff0000;
+	--error-color-dark: #ff0000;
+	--error-color-contrast: #fff;
+	--text-color: #073dd9;
+	--text-color-light: #242424;
+	--text-color-dark: #242424;
+	--text-color-contrast: #fff;
+	--text-color-contrast-light: #fff;
+	--text-color-contrast-dark: #fff;	
+	--neutral-color: #ccc;
+	--neutral-color-light: #eee;
+	--neutral-color-dark: #777;
+	--neutral-color-contrast: #fff;
+	--neutral-color-contrast-light: #fff;
+	--neutral-color-contrast-dark: #fff;	
+	
+	--menu-color-hover: #fff;
+	--menu-bg-color: #2971f654;
+	--menu-bg-color-hover: #2971f6;
+	}'
 ]
 
 { #category : 'png' }
@@ -477,56 +527,6 @@ LcsExampleFileLibrary >> resetCssDefinition [
   padding: 0;
   border: none;
 }'
-]
-
-{ #category : 'css - definitons' }
-LcsExampleFileLibrary >> rootDefinition [
-	<cssDefinition>
-	^':root {
-	--menu-count: 3;
-	--primary-color: #5b5fc7;
-	--primary-color-light: #5b5fc7;
-	--primary-color-dark: #5b5fc7;
-	--primary-color-contrast: #fff;
-	--secondary-color: #2a2a2a;
-	--secondary-color-light: #2a2a2a;
-	--secondary-color-dark: #2a2a2a;
-	--secondary-color-contrast: #fff;
-	--tertiary-color: #aeaeae;
-	--tertiary-color-light: #aeaeae;
-	--tertiary-color-dark: #aeaeae;
-	--tertiary-color-contrast: #fff;
-	--secondary-background-color: #f5f5f5;
-	--secondary-background-color-light: #f5f5f5;
-	--secondary-background-color-dark: #f5f5f5;
-	--secondary-background-color-contrast: #000;
-	--secondary-background-color-contrast-light: #000;
-	--secondary-background-color-contrast-dark: #000;
-	--tertiary-background-color: #fff;
-	--tertiary-background-color-light: #fff;
-	--tertiary-background-color-dark: #fff;
-	--tertiary-background-color-contrast: #000;
-	--error-color: #ff0000;
-	--error-color-light: #ff0000;
-	--error-color-dark: #ff0000;
-	--error-color-contrast: #fff;
-	--text-color: #073dd9;
-	--text-color-light: #242424;
-	--text-color-dark: #242424;
-	--text-color-contrast: #fff;
-	--text-color-contrast-light: #fff;
-	--text-color-contrast-dark: #fff;	
-	--neutral-color: #ccc;
-	--neutral-color-light: #eee;
-	--neutral-color-dark: #777;
-	--neutral-color-contrast: #fff;
-	--neutral-color-contrast-light: #fff;
-	--neutral-color-contrast-dark: #fff;	
-	
-	--menu-color-hover: #fff;
-	--menu-bg-color: #2971f654;
-	--menu-bg-color-hover: #2971f6;
-	}'
 ]
 
 { #category : 'svg' }

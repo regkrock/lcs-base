@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'gt views' }
-LuiPasswordInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''password'''
+LuiPasswordInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''password'''
 ]
 
 { #category : 'rendering' }

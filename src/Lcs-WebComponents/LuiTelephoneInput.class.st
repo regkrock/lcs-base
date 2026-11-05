@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'gt views' }
-LuiTelephoneInput >> gtViewTagName [
-	^ super gtViewTagName , ' type=''tel'''
+LuiTelephoneInput >> gtViewBaseTagName [
+	^ super gtViewBaseTagName , ' type=''tel'''
 ]
 
 { #category : 'rendering' }

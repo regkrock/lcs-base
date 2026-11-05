@@ -29,6 +29,6 @@ LuiTable >> renderComponentOn: html [
 ]
 
 { #category : 'components' }
-LuiTable >> tableRoot [
+LuiTable >> topTableComponent [
 	^ self
 ]
