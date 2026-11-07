@@ -54,3 +54,46 @@ LuiNavigationMenuDefinitionExamples >> newDefinition [
 	self assert: menuDefinition parent isNil.
 	^ menuDefinition
 ]
+
+{ #category : 'examples' }
+LuiNavigationMenuDefinitionExamples >> softwareCompanyNavbarMainMenu [
+	<gtExample>
+	| menuDefinition menu menuItem submenu developmentSubmenu|
+	menuDefinition := self softwareCompanyNavbarMainMenuDefinition.
+	menu := menuDefinition asMenuComponent.
+	self assert: (menu hasComponentNamed: 'homeMenuItem').
+	self assert: (menuItem := menu componentNamed: 'servicesMenuItem') notNil.
+	self assert: menuItem class identicalTo: LuiDropDownMenuItem.
+	self assert: (submenu := menuItem componentNamed: 'servicesMenuItemSubmenu') notNil.
+	self assert: (developmentSubmenu := submenu componentNamed: 'developmentMenuItem') notNil.
+	self assert: (menuItem := menu componentNamed: 'companyMenuItem') notNil.
+	self assert: menuItem class identicalTo: LuiDropDownMenuItem.
+	self assert: (menuItem := menu componentNamed: 'contactMenuItem') notNil.
+	^ menu
+]
+
+{ #category : 'examples' }
+LuiNavigationMenuDefinitionExamples >> softwareCompanyNavbarMainMenuDefinition [
+	<gtExample>
+	| menuDefinition |
+	menuDefinition := self navigationMenuDefinition.
+	menuDefinition addDefinition: (LuiMenuItemDefinition new label: 'Home'; url: '#').
+	menuDefinition addDefinition: (
+		(LcsSubmenuDefinition new label: 'Services')
+			addDefinition: (LuiMenuItemDefinition new label: 'Web Design'; url: '#');
+			addDefinition: ((LcsSubmenuDefinition new label: 'Development')
+								addDefinition: (LuiMenuItemDefinition new label: 'Frontend Code'; url: '#');
+								addDefinition: (LuiMenuItemDefinition new label: 'Backend Logic'; url: '#');
+								addDefinition: (LuiMenuItemDefinition new label: 'Mobile Apps'; url: '#');
+								yourself);
+			addDefinition: (LuiMenuItemDefinition new label: 'SEO Marketing'; url: '#');
+			yourself).
+	menuDefinition addDefinition: (
+		(LcsSubmenuDefinition new label: 'Company')
+			addDefinition: (LuiMenuItemDefinition new label: 'About Us'; url: '#');
+			addDefinition: (LuiMenuItemDefinition new label: 'Our Team'; url: '#');
+			addDefinition: (LuiMenuItemDefinition new label: 'Carrers'; url: '#');
+			yourself).
+	menuDefinition addDefinition: (LuiMenuItemDefinition new label: 'Contact'; url: '#').
+	^ menuDefinition
+]

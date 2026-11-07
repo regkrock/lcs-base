@@ -16,6 +16,15 @@ LcsSubmenuDefinition >> addDefinition: aMenuComponentDefintion [
 	self menuComponentDefintions add: aMenuComponentDefintion
 ]
 
+{ #category : 'conversion' }
+LcsSubmenuDefinition >> asMenuComponent [
+	| menu |
+	menu := LuiDropDownMenuItem named: self componentName label: self label.
+	self menuComponentDefintions do: [ :each |
+		menu submenuComponent addComponent: each asMenuComponent ].
+	^ menu
+]
+
 { #category : 'constant' }
 LcsSubmenuDefinition >> componentClass [
 	^ LuiMenu
@@ -23,7 +32,8 @@ LcsSubmenuDefinition >> componentClass [
 
 { #category : 'asking' }
 LcsSubmenuDefinition >> componentName [
-	^ self selectorNameFrom: self label
+	^ componentName
+		ifNil: [ componentName := self selectorNameFrom: self label , 'MenuItem' ]
 ]
 
 { #category : 'initialize' }

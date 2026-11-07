@@ -40,7 +40,7 @@ LuiDropDownMenuItem >> gtViewTagName [
 
 { #category : 'initialize' }
 LuiDropDownMenuItem >> initializeNamed: aComponentName label: aString [
-	self initializeNamed: aComponentName , 'MenuItem'.
+	self initializeNamed: aComponentName.
 	self
 		addComponent: ((LuiResponsiveNavigationMenuCheckbox named: self checkboxComponentName)
 				cssClass: LuiCssClassesMap / #'submenu-toggle';

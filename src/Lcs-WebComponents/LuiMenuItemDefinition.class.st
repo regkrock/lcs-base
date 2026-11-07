@@ -15,6 +15,16 @@ Class {
 	#tag : 'Menus'
 }
 
+{ #category : 'conversion' }
+LuiMenuItemDefinition >> asMenuComponent [
+	| menu |
+	menu := LuiMenuItem named: self componentName.
+	self isAnchor ifTrue: [
+		menu anchorLabel: self label.
+		menu anchorHref: self url].
+	^ menu
+]
+
 { #category : 'configuration' }
 LuiMenuItemDefinition >> beAnchor [
 	self buttonType: 'anchor'
@@ -52,10 +62,11 @@ LuiMenuItemDefinition >> componentClass [
 
 { #category : 'asking' }
 LuiMenuItemDefinition >> componentName [
-	^ self selectorNameFrom: self label
+	^ componentName
+		ifNil: [ componentName := self selectorNameFrom: self label , 'MenuItem']
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialize' }
 LuiMenuItemDefinition >> initialize [
 	super initialize.
 	self buttonCssClasses: ''.
@@ -119,5 +130,6 @@ LuiMenuItemDefinition >> url [
 
 { #category : 'accessing' }
 LuiMenuItemDefinition >> url: aString [
+	self beAnchor.
 	url := aString
 ]

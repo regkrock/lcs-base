@@ -2,8 +2,7 @@ Class {
 	#name : 'LuiNavigationMenuDefinition',
 	#superclass : 'LcsMenuDefinition',
 	#instVars : [
-		'menuComponentDefintions',
-		'componentName'
+		'menuComponentDefintions'
 	],
 	#category : 'Lcs-WebComponents-Menus',
 	#package : 'Lcs-WebComponents',
@@ -83,6 +82,15 @@ LuiNavigationMenuDefinition >> addDefinition: aMenuComponentDefintion [
 	self menuComponentDefintions add: aMenuComponentDefintion
 ]
 
+{ #category : 'conversion' }
+LuiNavigationMenuDefinition >> asMenuComponent [
+	| menu |
+	menu := LuiMainMenu named: 'mainMenu'.
+	self menuComponentDefintions do: [ :each |
+		menu addComponent: each asMenuComponent ].
+	^ menu
+]
+
 { #category : 'components' }
 LuiNavigationMenuDefinition >> buildNavigationMenuIn: aLuiComponent [
 	self menuComponentDefintions do: [ :eachComponent | 
@@ -90,16 +98,6 @@ LuiNavigationMenuDefinition >> buildNavigationMenuIn: aLuiComponent [
 		menuComponent := eachComponent componentClass named: eachComponent componentName.
 		aLuiComponent addComponent: menuComponent.
 		menuComponent buildFrom: eachComponent]
-]
-
-{ #category : 'accessing' }
-LuiNavigationMenuDefinition >> componentName [
-	^ componentName
-]
-
-{ #category : 'accessing' }
-LuiNavigationMenuDefinition >> componentName: aString [
-	componentName := aString
 ]
 
 { #category : 'as yet unclassified' }

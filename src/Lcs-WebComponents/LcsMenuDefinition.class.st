@@ -3,16 +3,27 @@ Class {
 	#superclass : 'LcsObject',
 	#instVars : [
 		'parent',
-		'cssClasses'
+		'cssClasses',
+		'componentName'
 	],
 	#category : 'Lcs-WebComponents-Menus',
 	#package : 'Lcs-WebComponents',
 	#tag : 'Menus'
 }
 
+{ #category : 'conversion' }
+LcsMenuDefinition >> asMenuComponent [
+	self subclassResponsibility
+]
+
 { #category : 'asking' }
 LcsMenuDefinition >> componentName [
-	self subclassResponsibility
+	^ componentName
+]
+
+{ #category : 'accessing' }
+LcsMenuDefinition >> componentName: aString [
+	componentName := aString
 ]
 
 { #category : 'accessing' }
@@ -37,7 +48,7 @@ LcsMenuDefinition >> gtComponentsFor: aView [
 		children: #menuComponentDefintions;
 		column: 'Definition Class' text: [ :aComponent | aComponent class name ];
 		column: 'Component Name' text: [ :aComponent | aComponent componentName displayString ];
-		column: 'Label' text: [ :aComponent | aComponent label displayString ]
+		column: 'Label' text: [ :aComponent | (aComponent respondsTo: #label) ifTrue: [ aComponent label displayString ] ifFalse: [''] ]
 ]
 
 { #category : 'printing' }

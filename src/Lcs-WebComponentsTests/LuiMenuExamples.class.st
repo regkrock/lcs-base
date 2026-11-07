@@ -250,66 +250,70 @@ LuiMenuExamples >> simpleNavigationMenu [
 ]
 
 { #category : 'examples' }
+LuiMenuExamples >> softwareCompanyMainMenu [
+	^ ((LuiMainMenu named: 'mainMenu')
+		cssClass: #'nav-links';
+		yourself)
+		addComponent: ((LuiMenuItem named: 'home')
+				anchorHref: '#';
+				anchorLabel: 'Home';
+				yourself);
+		addComponent: ((LuiDropDownMenuItem named: 'services' label: 'Services')
+				addMenuItem: ((LuiMenuItem named: 'webDesign')
+						anchorHref: '#';
+						anchorLabel: 'Web Design');
+				addMenuItem: ((LuiDropDownMenuItem named: 'development' label: 'Development')
+						addMenuItem: ((LuiMenuItem named: 'frontEnd')
+								anchorHref: '#';
+								anchorLabel: 'Frontend Code';
+								yourself);
+						addMenuItem: ((LuiMenuItem named: 'backend')
+								anchorHref: '#';
+								anchorLabel: 'Backend Logic';
+								yourself);
+						addMenuItem: ((LuiMenuItem named: 'mobile')
+								anchorHref: '#';
+								anchorLabel: 'Mobile Apps';
+								yourself));
+				addMenuItem: ((LuiMenuItem named: 'seoMarketing')
+						anchorHref: '#';
+						anchorLabel: 'SEO Marketing');
+				yourself);
+		addComponent: ((LuiDropDownMenuItem named: 'company' label: 'Company')
+				addMenuItem: ((LuiMenuItem named: 'aboutUs')
+						anchorHref: '#';
+						anchorLabel: 'About Us');
+				addMenuItem: ((LuiMenuItem named: 'ourTeam')
+						anchorHref: '#';
+						anchorLabel: 'Our Team');
+				addMenuItem: ((LuiMenuItem named: 'carrers')
+						anchorHref: '#';
+						anchorLabel: 'Carrers');
+				yourself);
+		addComponent: ((LuiMenuItem named: 'contact')
+				anchorHref: '#';
+				anchorLabel: 'Contact';
+				yourself);
+		yourself
+]
+
+{ #category : 'examples' }
 LuiMenuExamples >> softwareCompanyNavbar [
 	<gtExample>
 	| navbar |
 	navbar := LuiNavigationBar named: 'navbar'.
 	navbar addComponent: LuiBrand newSeasBrand.
-	navbar
-		addComponent: ((LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
+	navbar addComponent: (
+			(LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
 				assignStaticId: 'menu-toggle';
 				yourself).
-	navbar
-		addComponent: ((LuiLabel named: 'menuToggleLabel')
+	navbar addComponent: (
+			(LuiLabel named: 'menuToggleLabel')
 				for: 'menu-toggle';
 				cssClass: 'menu-btn';
 				text: self hamburgerCodePointString;
 				yourself).
-	navbar
-		addComponent: (((LuiMainMenu named: 'mainMenu')
-				cssClass: #'nav-links';
-				yourself)
-				addComponent: ((LuiMenuItem named: 'home')
-						anchorHref: '#';
-						anchorLabel: 'Home';
-						yourself);
-				addComponent: ((LuiDropDownMenuItem named: 'services' label: 'Services')
-						addMenuItem: ((LuiMenuItem named: 'webDesign')
-								anchorHref: '#';
-								anchorLabel: 'Web Design');
-						addMenuItem: ((LuiDropDownMenuItem named: 'development' label: 'Development')
-								addMenuItem: ((LuiMenuItem named: 'frontEnd')
-										anchorHref: '#';
-										anchorLabel: 'Frontend Code';
-										yourself);
-								addMenuItem: ((LuiMenuItem named: 'backend')
-										anchorHref: '#';
-										anchorLabel: 'Backend Logic';
-										yourself);
-								addMenuItem: ((LuiMenuItem named: 'mobile')
-										anchorHref: '#';
-										anchorLabel: 'Mobile Apps';
-										yourself));
-						addMenuItem: ((LuiMenuItem named: 'seoMarketing')
-								anchorHref: '#';
-								anchorLabel: 'SEO Marketing');
-						yourself);
-				addComponent: ((LuiDropDownMenuItem named: 'company' label: 'Company')
-						addMenuItem: ((LuiMenuItem named: 'aboutUs')
-								anchorHref: '#';
-								anchorLabel: 'About Us');
-						addMenuItem: ((LuiMenuItem named: 'ourTeam')
-								anchorHref: '#';
-								anchorLabel: 'Our Team');
-						addMenuItem: ((LuiMenuItem named: 'carrers')
-								anchorHref: '#';
-								anchorLabel: 'Carrers');
-						yourself);
-				addComponent: ((LuiMenuItem named: 'contact')
-						anchorHref: '#';
-						anchorLabel: 'Contact';
-						yourself);
-				yourself).
+	navbar addComponent: self softwareCompanyMainMenu.
 
 	^ navbar
 ]

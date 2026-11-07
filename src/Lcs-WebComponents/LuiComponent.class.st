@@ -437,6 +437,11 @@ LuiComponent >> hasComponentDecorations [
 ]
 
 { #category : 'testing' }
+LuiComponent >> hasComponentNamed: aString [
+	^ (self componentNamed: aString) notNil
+]
+
+{ #category : 'testing' }
 LuiComponent >> hasComponents [
 	^ self components notEmpty
 ]
