@@ -14,7 +14,7 @@ LuiSubmenuDefinitionExamples >> menu1Definition [
 	menuDefinition label: 'Menu 1'.
 	self assert: menuDefinition menuComponentDefintions isEmpty.
 	self assert: menuDefinition label equals: 'Menu 1'.
-	self assert: menuDefinition componentName equals: 'menu1'.
+	self assert: menuDefinition componentName equals: 'menu1MenuItem'.
 	^ menuDefinition
 ]
 
@@ -27,9 +27,9 @@ LuiSubmenuDefinitionExamples >> menu1DefinitionWith3Submenus [
 	menuDefinition addDefinition: (LuiMenuItemDefinitionExamples new newDefinitionWithLabel: 'Menu 1 Item 2').
 	menuDefinition addDefinition: (LuiMenuItemDefinitionExamples new newDefinitionWithLabel: 'Menu 1 Item 3').
 	self assert: menuDefinition menuComponentDefintions size = 3.
-	self assert: (menuDefinition menuComponentDefintions at: 1) componentName equals: 'menu1Item1'.
-	self assert: (menuDefinition menuComponentDefintions at: 2) componentName equals: 'menu1Item2'.
-	self assert: (menuDefinition menuComponentDefintions at: 3) componentName equals: 'menu1Item3'.
+	self assert: (menuDefinition menuComponentDefintions at: 1) componentName equals: 'menu1Item1MenuItem'.
+	self assert: (menuDefinition menuComponentDefintions at: 2) componentName equals: 'menu1Item2MenuItem'.
+	self assert: (menuDefinition menuComponentDefintions at: 3) componentName equals: 'menu1Item3MenuItem'.
 	^ menuDefinition
 ]
 
@@ -41,7 +41,7 @@ LuiSubmenuDefinitionExamples >> menu2Definition [
 	menuDefinition label: 'Menu 2'.
 	self assert: menuDefinition menuComponentDefintions isEmpty.
 	self assert: menuDefinition label equals: 'Menu 2'.
-	self assert: menuDefinition componentName equals: 'menu2'.
+	self assert: menuDefinition componentName equals: 'menu2MenuItem'.
 	^ menuDefinition
 ]
 
@@ -53,8 +53,8 @@ LuiSubmenuDefinitionExamples >> menu2DefinitionWith2Submenus [
 	menuDefinition addDefinition: (LuiMenuItemDefinitionExamples new newDefinitionWithLabel: 'Menu 2 Item 1').
 	menuDefinition addDefinition: (LuiMenuItemDefinitionExamples new newDefinitionWithLabel: 'Menu 2 Item 2').
 	self assert: menuDefinition menuComponentDefintions size = 2.
-	self assert: (menuDefinition menuComponentDefintions at: 1) componentName equals: 'menu2Item1'.
-	self assert: (menuDefinition menuComponentDefintions at: 2) componentName equals: 'menu2Item2'.
+	self assert: (menuDefinition menuComponentDefintions at: 1) componentName equals: 'menu2Item1MenuItem'.
+	self assert: (menuDefinition menuComponentDefintions at: 2) componentName equals: 'menu2Item2MenuItem'.
 	^ menuDefinition
 ]
 
@@ -64,7 +64,9 @@ LuiSubmenuDefinitionExamples >> menu3Definition [
 	| menuDefinition |
 	menuDefinition := self newDefinition.
 	menuDefinition label: 'Menu 3'.
-	self assert: menuDefinition componentName equals: 'menu3'.
+	self assert: menuDefinition componentName equals: 'menu3MenuItem'.
+	menuDefinition componentName: 'menu3MenuItem'.
+	self assert: menuDefinition componentName equals: 'menu3MenuItem'.
 	self assert: menuDefinition menuComponentDefintions isEmpty.
 	self assert: menuDefinition label equals: 'Menu 3'.
 	^ menuDefinition
@@ -90,7 +92,8 @@ LuiSubmenuDefinitionExamples >> newDefinition [
 	self assert: menuDefinition menuComponentDefintions isEmpty.
 	self assert: menuDefinition label isNil.
 	self assert: menuDefinition parent isNil.
-	self assert: menuDefinition componentName equals: 'nil'.
+	self assert: menuDefinition _componentName isNil.
+	self assert: menuDefinition componentName equals: 'nilMenuItem'.
 	^ menuDefinition
 ]
 

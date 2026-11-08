@@ -11,6 +11,16 @@ Class {
 	#tag : 'Menus'
 }
 
+{ #category : 'asking' }
+LcsMenuDefinition >> _componentName [
+	^ componentName
+]
+
+{ #category : 'accessing' }
+LcsMenuDefinition >> _componentName: aString [
+	componentName := aString
+]
+
 { #category : 'conversion' }
 LcsMenuDefinition >> asMenuComponent [
 	self subclassResponsibility
@@ -18,12 +28,12 @@ LcsMenuDefinition >> asMenuComponent [
 
 { #category : 'asking' }
 LcsMenuDefinition >> componentName [
-	^ componentName
+	^ self _componentName
 ]
 
 { #category : 'accessing' }
 LcsMenuDefinition >> componentName: aString [
-	componentName := aString
+	self _componentName: aString
 ]
 
 { #category : 'accessing' }

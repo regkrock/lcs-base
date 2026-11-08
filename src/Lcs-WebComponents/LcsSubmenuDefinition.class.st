@@ -32,8 +32,8 @@ LcsSubmenuDefinition >> componentClass [
 
 { #category : 'asking' }
 LcsSubmenuDefinition >> componentName [
-	^ componentName
-		ifNil: [ componentName := self selectorNameFrom: self label , 'MenuItem' ]
+	^ self _componentName
+		ifNil: [ (self selectorNameFrom: self label) , 'MenuItem' ]
 ]
 
 { #category : 'initialize' }

@@ -73,7 +73,7 @@ LuiNavigationBarExamples >> navBarWithSimpleNavigationMenu [
 
 	self assert: navigationMenu components size = 3.
 	menuItem := navigationMenu componentAtIndex: 1.
-	self assert: menuItem componentName = 'home'.
+	self assert: menuItem componentName = 'homeMenuItem'.
 	self assert: menuItem label = 'Home'.
 	self assert: menuItem cssClassesString = 'nav-item'.
 	self assert: menuItem components size = 1.
