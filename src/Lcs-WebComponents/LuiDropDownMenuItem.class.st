@@ -33,9 +33,14 @@ LuiDropDownMenuItem >> checkboxComponentName [
 	^ self componentName , 'Checkbox'
 ]
 
+{ #category : 'defaults' }
+LuiDropDownMenuItem >> defaultCssClasses [
+	^ OrderedCollection with: LuiCssClassesMap / #'submenu'
+]
+
 { #category : 'gt - views' }
 LuiDropDownMenuItem >> gtViewTagName [
-	^ ''
+	^ '<ul>'
 ]
 
 { #category : 'initialize' }

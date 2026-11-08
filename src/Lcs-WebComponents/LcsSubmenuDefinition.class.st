@@ -20,6 +20,9 @@ LcsSubmenuDefinition >> addDefinition: aMenuComponentDefintion [
 LcsSubmenuDefinition >> asMenuComponent [
 	| menu |
 	menu := LuiDropDownMenuItem named: self componentName label: self label.
+	self parent isNavigationMenuDefinition 
+		ifTrue: [ menu cssClass: LuiCssClassesMap / #'nav-item']
+		ifFalse: [ menu cssClass: LuiCssClassesMap / #'submenu-item'].
 	self menuComponentDefintions do: [ :each |
 		menu submenuComponent addComponent: each asMenuComponent ].
 	^ menu

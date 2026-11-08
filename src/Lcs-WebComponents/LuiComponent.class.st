@@ -102,7 +102,15 @@ LuiComponent >> addHtmlStructureAtLevel: anIndentNumaber toStream: aStream [
 		nextPutAll: self class name;
 		tab;
 		nextPutAll: self componentName displayString;
-		tab;
+		tab.
+	anIndentNumaber > 0
+		ifTrue: [ anIndentNumaber timesRepeat: [ aStream nextPutAll: ' ' ] ].
+	aStream
+		nextPutAll: self gtViewTagName displayString;
+		tab.
+	anIndentNumaber > 0
+		ifTrue: [ anIndentNumaber timesRepeat: [ aStream nextPutAll: ' ' ] ].
+	aStream
 		nextPutAll: self cssClassesString displayString;
 		cr.
 	self orderedComponents
@@ -479,6 +487,8 @@ LuiComponent >> htmlStructureStream [
 		nextPutAll: 'LUI CLASS';
 		tab;
 		nextPutAll: 'COMPONENT NAME';
+		tab;
+		nextPutAll: 'TAG';
 		tab;
 		nextPutAll: 'CSS CLASS(ES)';
 		cr.

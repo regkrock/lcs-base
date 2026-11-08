@@ -7,6 +7,6 @@ Class {
 }
 
 { #category : 'defaults' }
-LuiSubmenu >> cssClass [
-	^ 'submenu'
+LuiSubmenu >> defaultCssClasses [
+	^ OrderedCollection with: LuiCssClassesMap / #'submenu'
 ]

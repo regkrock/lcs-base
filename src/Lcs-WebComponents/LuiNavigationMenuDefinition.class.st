@@ -121,6 +121,11 @@ LuiNavigationMenuDefinition >> initialize [
 	self menuComponentDefintions: OrderedCollection new
 ]
 
+{ #category : 'testing' }
+LuiNavigationMenuDefinition >> isNavigationMenuDefinition [
+	^true
+]
+
 { #category : 'accessing' }
 LuiNavigationMenuDefinition >> menuComponentDefintions [
 	^ menuComponentDefintions

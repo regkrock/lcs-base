@@ -92,7 +92,7 @@ LuiMenuExamples >> exampleNavigationMenu [
 	| menu homeMenuItem contactMenuItem aboutMenuItem |
 	menu := LuiMainMenu newMainMenu.
 	self assert: menu componentName equals: 'mainMenu'.
-	self assert: menu cssClassesString equals: 'mainMenu'.
+	self assert: menu cssClassesString equals: 'nav-links'.
 	homeMenuItem := (LuiMenuItem named: 'homeMenuItem')
 						anchorLabel: 'Home';
 						removeAllCssClasses;
@@ -133,7 +133,7 @@ LuiMenuExamples >> expectedHomeMenuItemHtml [
 
 { #category : 'private' }
 LuiMenuExamples >> expectedNavigationWithSubmenuWithSubmenuHtml [
-	^ '<ul data-name="mainMenu" data-StClass="LuiMenu" class="menu"><li id="101329548" data-name="contactsMenuItem" data-StClass="LuiDropDownMenuItem" class="nav-item"><input id="83079045" data-name="contactsMenuItemCheckbox" data-StClass="LuiResponsiveNavigationMenuCheckbox" class="submenu-toggle" name="1" type="checkbox"/><input name="2" type="hidden"/><label id="157167002" data-name="contactsMenuItemLabel" data-StClass="LuiLabel" class="arrow-label" for="83079045">Contacts</label><ul id="110463461" data-name="contactsMenuItemSubmenu" data-StClass="LuiSubmenu" class="submenu"><li id="163414275" data-name="contact_itemA" data-StClass="LuiMenuItem" class="nav-item"><a id="107223925" data-name="anchor" data-StClass="LuiAnchor" href="#"><span id="94226310" data-name="span" data-StClass="LuiSpan">Aaaaa</span></a></li><li id="165078800" data-name="contact_itemB" data-StClass="LuiMenuItem" class="nav-item"><button id="46471235" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="24972892" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="166743325" data-name="contact_itemC" data-StClass="LuiMenuItem" class="nav-item"><button id="223221860" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="194028121" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li><li id="99850941" data-name="subsubmenu" data-StClass="LuiDropDownMenuItem" class="nav-item"><input id="172562616" data-name="subsubmenuCheckbox" data-StClass="LuiResponsiveNavigationMenuCheckbox" class="submenu-toggle" name="3" type="checkbox"/><input name="4" type="hidden"/><label id="64038977" data-name="subsubmenuLabel" data-StClass="LuiLabel" class="arrow-label" for="172562616">Subsubmenu</label><ul id="68748836" data-name="subsubmenuSubmenu" data-StClass="LuiSubmenu" class="submenu"><li id="137721623" data-name="homeSubmenu_itemB_a" data-StClass="LuiMenuItem" class="nav-item"><button id="983558" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="69046835" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="139386148" data-name="homeSubmenu_itemB_b" data-StClass="LuiMenuItem" class="nav-item"><button id="177734183" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="238102064" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="141050673" data-name="homeSubmenu_itemB_c" data-StClass="LuiMenuItem" class="nav-item"><button id="86049352" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="138721837" data-name="span" data-StClass="LuiSpan">Ccccc</span></button></li></ul></li></ul></li></ul>'
+	^ '<ul data-name="mainMenu" data-StClass="LuiMenu" class="menu"><li id="101329548" data-name="contactsMenuItem" data-StClass="LuiDropDownMenuItem" class="submenu"><input id="83079045" data-name="contactsMenuItemCheckbox" data-StClass="LuiResponsiveNavigationMenuCheckbox" class="submenu-toggle" name="1" type="checkbox"/><input name="2" type="hidden"/><label id="157167002" data-name="contactsMenuItemLabel" data-StClass="LuiLabel" class="arrow-label" for="83079045">Contacts</label><ul id="110463461" data-name="contactsMenuItemSubmenu" data-StClass="LuiSubmenu" class="submenu"><li id="163414275" data-name="contact_itemA" data-StClass="LuiMenuItem" class="nav-item"><a id="107223925" data-name="anchor" data-StClass="LuiAnchor" href="#"><span id="94226310" data-name="span" data-StClass="LuiSpan">Aaaaa</span></a></li><li id="165078800" data-name="contact_itemB" data-StClass="LuiMenuItem" class="nav-item"><button id="46471235" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="24972892" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="166743325" data-name="contact_itemC" data-StClass="LuiMenuItem" class="nav-item"><button id="223221860" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="194028121" data-name="span" data-StClass="LuiSpan">Caaa</span></button></li><li id="99850941" data-name="subsubmenu" data-StClass="LuiDropDownMenuItem" class="submenu"><input id="172562616" data-name="subsubmenuCheckbox" data-StClass="LuiResponsiveNavigationMenuCheckbox" class="submenu-toggle" name="3" type="checkbox"/><input name="4" type="hidden"/><label id="64038977" data-name="subsubmenuLabel" data-StClass="LuiLabel" class="arrow-label" for="172562616">Subsubmenu</label><ul id="68748836" data-name="subsubmenuSubmenu" data-StClass="LuiSubmenu" class="submenu"><li id="137721623" data-name="homeSubmenu_itemB_a" data-StClass="LuiMenuItem" class="nav-item"><button id="983558" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="69046835" data-name="span" data-StClass="LuiSpan">Aaaaa</span></button></li><li id="139386148" data-name="homeSubmenu_itemB_b" data-StClass="LuiMenuItem" class="nav-item"><button id="177734183" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="238102064" data-name="span" data-StClass="LuiSpan">Bbbbb</span></button></li><li id="141050673" data-name="homeSubmenu_itemB_c" data-StClass="LuiMenuItem" class="nav-item"><button id="86049352" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><span id="138721837" data-name="span" data-StClass="LuiSpan">Ccccc</span></button></li></ul></li></ul></li></ul>'
 ]
 
 { #category : 'private' }
@@ -251,50 +251,15 @@ LuiMenuExamples >> simpleNavigationMenu [
 
 { #category : 'examples' }
 LuiMenuExamples >> softwareCompanyMainMenu [
-	^ ((LuiMainMenu named: 'mainMenu')
-		cssClass: #'nav-links';
-		yourself)
-		addComponent: ((LuiMenuItem named: 'home')
-				anchorHref: '#';
-				anchorLabel: 'Home';
-				yourself);
-		addComponent: ((LuiDropDownMenuItem named: 'services' label: 'Services')
-				addMenuItem: ((LuiMenuItem named: 'webDesign')
-						anchorHref: '#';
-						anchorLabel: 'Web Design');
-				addMenuItem: ((LuiDropDownMenuItem named: 'development' label: 'Development')
-						addMenuItem: ((LuiMenuItem named: 'frontEnd')
-								anchorHref: '#';
-								anchorLabel: 'Frontend Code';
-								yourself);
-						addMenuItem: ((LuiMenuItem named: 'backend')
-								anchorHref: '#';
-								anchorLabel: 'Backend Logic';
-								yourself);
-						addMenuItem: ((LuiMenuItem named: 'mobile')
-								anchorHref: '#';
-								anchorLabel: 'Mobile Apps';
-								yourself));
-				addMenuItem: ((LuiMenuItem named: 'seoMarketing')
-						anchorHref: '#';
-						anchorLabel: 'SEO Marketing');
-				yourself);
-		addComponent: ((LuiDropDownMenuItem named: 'company' label: 'Company')
-				addMenuItem: ((LuiMenuItem named: 'aboutUs')
-						anchorHref: '#';
-						anchorLabel: 'About Us');
-				addMenuItem: ((LuiMenuItem named: 'ourTeam')
-						anchorHref: '#';
-						anchorLabel: 'Our Team');
-				addMenuItem: ((LuiMenuItem named: 'carrers')
-						anchorHref: '#';
-						anchorLabel: 'Carrers');
-				yourself);
-		addComponent: ((LuiMenuItem named: 'contact')
-				anchorHref: '#';
-				anchorLabel: 'Contact';
-				yourself);
-		yourself
+	<gtExample>
+	| menu |
+	"menu := LuiNavigationMenuDefinitionExamples new 
+		softwareCompanyNavbarMainMenuFromHandCodedStructure."
+		
+	menu :=  LuiNavigationMenuDefinitionExamples new 
+	 	softwareCompanyNavbarMainMenuFromMenuDefinition.
+	^ menu
+
 ]
 
 { #category : 'examples' }

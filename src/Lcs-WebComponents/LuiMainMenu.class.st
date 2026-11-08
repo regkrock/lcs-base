@@ -7,6 +7,6 @@ Class {
 }
 
 { #category : 'defaults' }
-LuiMainMenu >> cssClass [
-	^ 'mainMenu'
+LuiMainMenu >> defaultCssClasses [
+	^ OrderedCollection with: LuiCssClassesMap / #'nav-links'
 ]

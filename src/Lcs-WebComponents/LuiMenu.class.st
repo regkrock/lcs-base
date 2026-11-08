@@ -45,8 +45,8 @@ LuiMenu >> buildFrom: aNavigationMenuDefinition [
 ]
 
 { #category : 'defaults' }
-LuiMenu >> cssClass [
-	^ 'menu'
+LuiMenu >> defaultCssClasses [
+	^ OrderedCollection with: LuiCssClassesMap / #'menu'
 ]
 
 { #category : 'gt views' }
@@ -57,14 +57,12 @@ LuiMenu >> gtViewTagName [
 { #category : 'initialize' }
 LuiMenu >> initialize [
 	super initialize.
-	self componentName: LuiCssClassesMap / #'menu'.
-	self cssClass: self cssClass
+	self componentName: 'menu'
 ]
 
 { #category : 'initialize' }
 LuiMenu >> initializeMainMenuNamed: aComponentName [
-	self componentName: aComponentName.
-	self cssClass: self cssClass
+	self componentName: aComponentName
 ]
 
 { #category : 'initialize' }

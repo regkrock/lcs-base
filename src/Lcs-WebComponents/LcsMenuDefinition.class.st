@@ -76,6 +76,11 @@ LcsMenuDefinition >> initialize [
 	self cssClasses: ''
 ]
 
+{ #category : 'testing' }
+LcsMenuDefinition >> isNavigationMenuDefinition [
+	^false
+]
+
 { #category : 'accessing' }
 LcsMenuDefinition >> menuComponentDefintions [
 	^ OrderedCollection new

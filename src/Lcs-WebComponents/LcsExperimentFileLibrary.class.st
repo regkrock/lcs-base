@@ -9,7 +9,7 @@ Class {
 { #category : 'css' }
 LcsExperimentFileLibrary >> mainCss [
 	"This is the css used for the multi-level menu system with checkboxes"
-	^'   body {
+	^'body {
       font-family: sans-serif;
       background-color: #f4f4f4;
     }
@@ -30,7 +30,7 @@ LcsExperimentFileLibrary >> mainCss [
 		align-items: center;
 		display: flex;
 		font-size: 1.5em;
-		font-weight: 700;
+		font-weight: bold;
 		white-space: nowrap;
 		gap: 0.1em;
 	}
@@ -101,6 +101,7 @@ LcsExperimentFileLibrary >> mainCss [
         content: ''▼'';
         font-size: 0.55rem;
         transition: transform 0.2s ease;
+        padding-left: 2px;
       }
       /* Level 2+ Desktop Layout (nested sidebar dropdowns) */
       .submenu .arrow-label {
@@ -166,8 +167,110 @@ LcsExperimentFileLibrary >> mainCss [
       /* Mobile Layout: Automatically fill space, driving text left and arrow right */
       .arrow-label {
         display: flex;
+        gap: 1px;
         justify-content: space-between; 
         align-items: center;
+      }
+      .arrow-label::after {
+        content: ''▼'';
+        font-size: 0.65rem;
+        padding-right: 20px;
+        transition: transform 0.3s ease;
+        transform: rotate(-90deg); /* Points right when closed */
+      }
+
+      /* Rotate Arrow down when matching checkbox is checked */
+      .submenu-toggle:checked + .arrow-label::after {
+        transform: rotate(0deg); /* Points down when opened */
+      }
+
+      /* Mobile Dropdown Visibility Toggle */
+      .submenu-toggle:checked ~ .submenu {
+        display: block;
+      }
+    }
+
+    /* Hidden Utility Checkboxes for state management */
+    .menu-toggle, .submenu-toggle {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+      width: 0;
+      height: 0;
+    }''▼'';
+        font-size: 0.55rem;
+        transition: transform 0.2s ease;
+        padding-left: 0.2rem;
+      }
+      /* Level 2+ Desktop Layout (nested sidebar dropdowns) */
+      .submenu .arrow-label {
+        display: flex;
+        justify-content: space-between; 
+        min-width: 100%;
+        padding-left: 1px;
+      }
+      .submenu .arrow-label::after {
+        content: ''▶'';
+        padding-left: 0.2rem;
+      }
+    }
+
+    /* Mobile Responsive Layout (< 768px) */
+    @media (max-width: 768px) {
+      /* Hamburger Menu Icon */
+      .menu-btn {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 10px;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+      }
+      
+      .menu-toggle:checked ~ .nav-links {
+        display: flex;
+      }
+      .nav-item {
+        width: 100%;
+      }
+
+      /* Mobile Accordion Stack Setup */
+      .submenu, .submenu .submenu {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+
+      /* Multi-level Mobile Indentation via CSS Variables */
+      .nav-links a, .nav-links label {
+        --depth-padding: 20px;
+        padding-left: var(--depth-padding);
+      }
+      .submenu a, .submenu label {
+        --depth-padding: 40px;
+      }
+      .submenu .submenu a, .submenu .submenu label {
+        --depth-padding: 60px;
+      }
+
+      /* Mobile Layout: Automatically fill space, driving text left and arrow right */
+      .arrow-label {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        padding-left: 1px;
       }
       .arrow-label::after {
         content: ''▼'';

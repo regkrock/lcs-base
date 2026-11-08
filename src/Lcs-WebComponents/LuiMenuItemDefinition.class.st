@@ -19,6 +19,10 @@ Class {
 LuiMenuItemDefinition >> asMenuComponent [
 	| menu |
 	menu := LuiMenuItem named: self componentName.
+	menu cssClass: (
+		self parent isNavigationMenuDefinition 
+			ifTrue: [ LuiCssClassesMap / #'nav-item']
+			ifFalse: [ LuiCssClassesMap / #'submenu-item' ]).
 	self isAnchor ifTrue: [
 		menu anchorLabel: self label.
 		menu anchorHref: self url].
