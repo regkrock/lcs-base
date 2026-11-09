@@ -17,6 +17,9 @@ LuiSearchAndSocialMediaBar class >> newSearchAndLinks [
 LuiSearchAndSocialMediaBar >> initializeSearchAndLinks [
 	self componentName: 'searchAndSocial'.
 	self cssClass: 'sm'.
-	self addComponent: (LuiForm newWith: (LuiSearchBarPresenter named: 'searchBarPresenter')).
-	self addComponent: LuiSocialMediaBar newSeasSocialMediaBar
+	self addComponent: (
+		LuiForm new
+			addComponent: (LuiSearchBarPresenter named: 'searchBarPresenter');
+			addComponent: LuiSocialMediaBar newSeasSocialMediaBar;
+			yourself)
 ]

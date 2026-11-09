@@ -6,13 +6,6 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'instance creation' }
-LuiForm class >> newWith: aComponent [
-	^ self new
-		addComponent: aComponent;
-		yourself
-]
-
 { #category : 'initialize' }
 LuiForm >> componentAttributesClass [
 	^ LuiFormAttributes

@@ -21,15 +21,40 @@ LuiExperimentRoot >> applicationTitle [
 ]
 
 { #category : 'components' }
-LuiExperimentRoot >> experimentalComponent [
-	"Re-implment this method with desired components"
-	^ LuiMenuExamples new softwareCompanyNavbar
+LuiExperimentRoot >> currentFrom [
+	^ self mainForm currentForm
 ]
 
 { #category : 'initialize' }
 LuiExperimentRoot >> initialize [
 	super initialize.
-	self addComponent: self experimentalComponent.
+	"Re-implment this method with desired components"
+	self addComponent: self pageHeaderComponentDefinition.
+	self addComponent: self mainFormComponentDefinition.
+]
+
+{ #category : 'components' }
+LuiExperimentRoot >> mainForm [
+	^ self componentNamed: 'mainForm'
+]
+
+{ #category : 'initialize' }
+LuiExperimentRoot >> mainFormComponentDefinition [
+	^ LuiMainForm new
+		switchToForm: (LuiHomePresenter named: 'homePresenter');
+		yourself
+]
+
+{ #category : 'components' }
+LuiExperimentRoot >> pageHeader [
+	^ self componentNamed: 'pageHeader'
+]
+
+{ #category : 'components' }
+LuiExperimentRoot >> pageHeaderComponentDefinition [
+	^ (LuiPageHeader named: 'pageHeader')
+		addComponent: LuiMenuExamples new softwareCompanyNavbar;
+		yourself
 ]
 
 { #category : 'updating' }

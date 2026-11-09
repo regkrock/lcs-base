@@ -13,7 +13,15 @@ LuiPrototypeSystemRoot class >> initialize [
 
 { #category : 'instance creation' }
 LuiPrototypeSystemRoot class >> new [
-	^ self newWithHeaderWithNavBar
+	| systemApplicationRoot |
+	systemApplicationRoot := self new.
+	systemApplicationRoot 
+		addComponent: systemApplicationRoot prototypeHeader;
+		addComponent: (
+			LuiMainForm new
+				addFormComponent: (LuiDomainPresenter named: 'emptyForm');
+			yourself).
+	^ systemApplicationRoot
 ]
 
 { #category : 'instance creation' }
@@ -21,17 +29,6 @@ LuiPrototypeSystemRoot class >> newWithComponent: aComponent [
 	^ self basicNew 
 		initializeWithComponent: aComponent;
 		yourself
-]
-
-{ #category : 'instance creation' }
-LuiPrototypeSystemRoot class >> newWithHeaderWithNavBar [
-	| root |
-	root := (self basicNew initializeWithHeaderWithNavBar)
-		addComponent: ((LuiForm newWith: (LuiDomainPresenter named: 'abc'))
-						cssClass: LuiCssClassesMap / #'mainForm';
-						yourself);
-		yourself.
-	^ root
 ]
 
 { #category : 'menu item' }

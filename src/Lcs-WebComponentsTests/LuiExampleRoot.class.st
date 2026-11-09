@@ -11,42 +11,6 @@ LuiExampleRoot class >> initialize [
 	self registerApplication: 'luiExample'
 ]
 
-{ #category : 'instance creation' }
-LuiExampleRoot class >> new [
-	^ self newWithHeaderWithNavBar
-]
-
-{ #category : 'instance creation' }
-LuiExampleRoot class >> newWithAnchorComponent [
-	^ self basicNew intializeWithAnchorComponent
-]
-
-{ #category : 'instance creation' }
-LuiExampleRoot class >> newWithButtonComponent [
-	^ self basicNew intializeWithButtonComponent
-]
-
-{ #category : 'instance creation' }
-LuiExampleRoot class >> newWithComponent: aComponent [
-	^ self basicNew 
-		initializeWithComponent: aComponent;
-		yourself
-]
-
-{ #category : 'instance creation' }
-LuiExampleRoot class >> newWithHeaderWithNavBar [
-	^ (self basicNew initializeWithHeaderWithNavBar)
-		addComponent: (((LuiForm newWith: (LuiDomainPresenter named: 'abc'))
-						cssClass: LuiCssClassesMap / #'mainForm';
-						yourself)
-							addComponent: (
-								(LuiDiv named: 'text') 
-									text: 'Hello';
-									styleString: 'border: solid';
-									yourself));
-		yourself
-]
-
 { #category : 'components' }
 LuiExampleRoot >> anchorExample [
 	^ (LuiAnchor named: 'anchor')
@@ -67,7 +31,18 @@ LuiExampleRoot >> generatedId [
 
 { #category : 'initialize' }
 LuiExampleRoot >> initialize [
-	super initialize
+	super initialize.
+	self initializeWithHeaderWithNavBar
+		addComponent: (
+			LuiMainForm new
+				addComponent: (
+					(LuiDomainPresenter named: 'abc')
+						addComponent: (
+							(LuiDiv named: 'text') 
+								text: 'Hello';
+								styleString: 'border: solid';
+								yourself));
+				yourself)
 ]
 
 { #category : 'initialize' }
