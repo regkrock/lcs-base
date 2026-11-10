@@ -95,12 +95,14 @@ LuiComponent >> addCssClasses: aCollection [
 
 { #category : 'components - adding' }
 LuiComponent >> addFirstComponent: aComponent [
-	| component |
-	aComponent parentComponent: self.
-	component := self components at: aComponent componentName put: aComponent.
-	component assignId.
-	self componentKeys addFirst: aComponent componentName.
-	^component
+	self components isEmpty
+		ifTrue: [ 
+			self addComponent: aComponent ]
+		ifFalse: [ 
+			self
+				addComponent: aComponent
+				before: (self components at: self componentKeys first) ].
+	^ aComponent
 ]
 
 { #category : 'transcript' }
