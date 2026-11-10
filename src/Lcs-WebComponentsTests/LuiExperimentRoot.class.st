@@ -22,7 +22,7 @@ LuiExperimentRoot >> applicationTitle [
 
 { #category : 'components' }
 LuiExperimentRoot >> currentFrom [
-	^ self mainForm currentForm
+	^ self mainForm currentSwitchableComponent
 ]
 
 { #category : 'initialize' }
@@ -41,7 +41,7 @@ LuiExperimentRoot >> mainForm [
 { #category : 'initialize' }
 LuiExperimentRoot >> mainFormComponentDefinition [
 	^ LuiMainForm new
-		switchToForm: (LuiHomePresenter named: 'homePresenter');
+		switchToComponent: (LuiHomePresenter named: 'homePresenter');
 		yourself
 ]
 

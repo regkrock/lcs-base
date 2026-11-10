@@ -30,7 +30,7 @@ LuiComponent class >> on: aWebComponent [
 	^ self named: nil on: aWebComponent
 ]
 
-{ #category : 'components' }
+{ #category : 'components - querying' }
 LuiComponent >> _componentNamed: aTargetNames [
 	| targetComponent |
 	targetComponent := self components at: aTargetNames first ifAbsent: [ ^ nil].
@@ -49,22 +49,31 @@ LuiComponent >> addClassNameTo: names [
 	self parentComponent ifNil: [ self parentComponent addClassNameTo: names ]
 ]
 
-{ #category : 'components' }
+{ #category : 'components - adding' }
 LuiComponent >> addComponent: aComponent [
-	^ self addToComponents: aComponent
-]
-
-{ #category : 'components' }
-LuiComponent >> addComponent: aComponent after: anAfterComponent [
-	self addToComponents: aComponent.
-	self componentKeys add: aComponent componentName after: anAfterComponent componentName.
+	self
+		wireToParent: aComponent
+		position: [ self componentKeys add: aComponent componentName ].
 	^ aComponent
 ]
 
-{ #category : 'components' }
+{ #category : 'components - adding' }
+LuiComponent >> addComponent: aComponent after: anAfterComponent [
+	self
+		wireToParent: aComponent
+		position: [ self componentKeys
+				add: aComponent componentName
+				after: anAfterComponent componentName ].
+	^ aComponent
+]
+
+{ #category : 'components - adding' }
 LuiComponent >> addComponent: aComponent before: aBeforeComponent [
-	self addToComponents: aComponent.
-	self componentKeys add: aComponent componentName before: aBeforeComponent componentName.
+	self
+		wireToParent: aComponent
+		position: [ self componentKeys
+				add: aComponent componentName
+				before: aBeforeComponent componentName ].
 	^ aComponent
 ]
 
@@ -84,7 +93,7 @@ LuiComponent >> addCssClasses: aCollection [
 	self attributes addCssClasses: aCollection
 ]
 
-{ #category : 'components' }
+{ #category : 'components - adding' }
 LuiComponent >> addFirstComponent: aComponent [
 	| component |
 	aComponent parentComponent: self.
@@ -117,34 +126,23 @@ LuiComponent >> addHtmlStructureAtLevel: anIndentNumaber toStream: aStream [
 		do: [ :each | each addHtmlStructureAtLevel: anIndentNumaber + 2 toStream: aStream ]
 ]
 
-{ #category : 'components' }
-LuiComponent >> addLabelComponent [
-	^ self addComponent: (LuiLabel named: 'label')
-]
-
-{ #category : 'components - updating' }
-LuiComponent >> addToComponents: aComponent [ 
-	aComponent parentComponent: self.
-	aComponent postAddToParent.
-	self components at: aComponent componentName put: aComponent.
-	self componentKeys add: aComponent componentName.
+{ #category : 'components - adding' }
+LuiComponent >> assignComponentIds [
 	self componentsDo: [ :each | each assignId ].
-	self componentsDo: [ :each | each assignInputIdToLabelForId ].
-	^ aComponent
+	self componentsDo: [ :each | each assignInputIdToLabelForId ]
 ]
 
-{ #category : 'components' }
+{ #category : 'components - adding' }
 LuiComponent >> assignId [
-	"Transcript show: ((self componentName ifNil: [ 'nil' ]) , ' ' , self class name); cr."
 	self isComponentIdComputed ifTrue: [
 		self componentId: self generatedId ]
 ]
 
-{ #category : 'components - updating' }
+{ #category : 'components - adding' }
 LuiComponent >> assignInputIdToLabelForId [
 ]
 
-{ #category : 'components' }
+{ #category : 'components - adding' }
 LuiComponent >> assignStaticId: aString [
 	self computeComponentId: false.
 	self componentId: aString
@@ -175,7 +173,7 @@ LuiComponent >> children [
 	^ self orderedComponents
 ]
 
-{ #category : 'components' }
+{ #category : 'components - querying' }
 LuiComponent >> componentAtIndex: anInteger [
 	^ self orderedComponents at: anInteger
 ]
@@ -225,14 +223,14 @@ LuiComponent >> componentName: anObject [
 	componentName := anObject
 ]
 
-{ #category : 'components' }
+{ #category : 'components - querying' }
 LuiComponent >> componentNamed: aString [
 	| targetNames |
 	targetNames := aString substrings: { $/ }.
 	^ self _componentNamed: targetNames
 ]
 
-{ #category : 'components' }
+{ #category : 'components - querying' }
 LuiComponent >> componentNamed: aString ifNil: aBlock [
 	^ (self componentNamed: aString) ifNil: aBlock value
 ]
@@ -247,7 +245,7 @@ LuiComponent >> components: anObject [
 	components := anObject
 ]
 
-{ #category : 'utilities' }
+{ #category : 'components - utilities' }
 LuiComponent >> componentsDo: aBlock [
 	self orderedComponents do: [ :eachComponent | 
 		aBlock value: eachComponent.
@@ -299,16 +297,9 @@ LuiComponent >> disabled: aBoolean [
 	self attributes disabled: aBoolean
 ]
 
-{ #category : 'components' }
+{ #category : 'components - querying' }
 LuiComponent >> firstComponent [
 	^ self componentAtIndex: 1
-]
-
-{ #category : 'querying' }
-LuiComponent >> formComponent [
-	^ self parentComponent isFormComponent
-		ifTrue: [ self parentComponent ]
-		ifFalse: [ self parentComponent formComponent ]
 ]
 
 { #category : 'asking' }
@@ -323,7 +314,7 @@ LuiComponent >> fullClassesName [
 	^ fullNameStream contents
 ]
 
-{ #category : 'asking' }
+{ #category : 'components - querying' }
 LuiComponent >> fullComponentName [
 	| names fullNameStream |
 	names := OrderedCollection new.
@@ -335,12 +326,12 @@ LuiComponent >> fullComponentName [
 	^ fullNameStream contents
 ]
 
-{ #category : 'asking' }
+{ #category : 'components - querying' }
 LuiComponent >> fullComponentNameWithId [
 	^ self fullComponentName , '(' , self componentId , ')'
 ]
 
-{ #category : 'components' }
+{ #category : 'components - adding' }
 LuiComponent >> generatedId [
 	^ self fullComponentName hash asString
 ]
@@ -518,7 +509,7 @@ LuiComponent >> initializeNamed: aName [
 	self componentName: aName
 ]
 
-{ #category : 'accessing' }
+{ #category : 'testing' }
 LuiComponent >> isComponentIdComputed [
 	^ self computeComponentId == true
 ]
@@ -570,7 +561,7 @@ LuiComponent >> labelString [
 		ifFalse: [ '' ]
 ]
 
-{ #category : 'components' }
+{ #category : 'components - querying' }
 LuiComponent >> lastComponent [
 	^ self components values last
 ]
@@ -592,7 +583,7 @@ LuiComponent >> logRenderingTrace [
 			cr ]
 ]
 
-{ #category : 'component - dependents' }
+{ #category : 'components - dependents' }
 LuiComponent >> makeComponentNamed: aDependentComponentName dependentOnComponentNamed: aManagingComponentName [
 	| dependentComponent owningComponent |
 	dependentComponent := self componentNamed: aDependentComponentName.
@@ -600,7 +591,7 @@ LuiComponent >> makeComponentNamed: aDependentComponentName dependentOnComponent
 	owningComponent addDependentComponent: dependentComponent
 ]
 
-{ #category : 'component - dependents' }
+{ #category : 'components - dependents' }
 LuiComponent >> makeComponentNamed: aDependentComponentName mututallyDependentOnComponentNamed: aManagingComponentName [
 	| dependentComponent owningComponent |
 	dependentComponent := self componentNamed: aDependentComponentName.
@@ -616,7 +607,7 @@ LuiComponent >> myParentPresenterComponent [
 	^ self parentComponent myParentPresenterComponent
 ]
 
-{ #category : 'accessing' }
+{ #category : 'components - querying' }
 LuiComponent >> orderedComponents [
 	^ self componentKeys collect: [ :eachKey | self components at: eachKey ]
 ]
@@ -631,12 +622,19 @@ LuiComponent >> parentComponent: anObject [
 	parentComponent := anObject
 ]
 
-{ #category : 'components' }
+{ #category : 'components - querying' }
 LuiComponent >> parentComponentNamed: aString [
 	self componentName = aString ifTrue: [ ^ self ].
 	^ self parentComponent
 		ifNil: [ nil ]
 		ifNotNil: [ :parent |  parent parentComponentNamed: aString ]
+]
+
+{ #category : 'components - querying' }
+LuiComponent >> parentFormComponent [
+	^ self parentComponent isFormComponent
+		ifTrue: [ self parentComponent ]
+		ifFalse: [ self parentComponent parentFormComponent ]
 ]
 
 { #category : 'gt - views' }
@@ -650,7 +648,7 @@ LuiComponent >> pattern: aString [
 	self attributes pattern: aString
 ]
 
-{ #category : 'components' }
+{ #category : 'components - adding' }
 LuiComponent >> postAddToParent [
 	"This is a hook to execute behavior after the component has been hooked up to its parent"
 ]
@@ -669,13 +667,13 @@ LuiComponent >> removeAllCssClasses [
 	self attributes removeAllCssClasses
 ]
 
-{ #category : 'components' }
+{ #category : 'components - removing' }
 LuiComponent >> removeComponent: aComponent [
 	self componentKeys remove: aComponent componentName ifAbsent: [].
 	^ self components removeKey: aComponent componentName ifAbsent: []
 ]
 
-{ #category : 'components' }
+{ #category : 'components - removing' }
 LuiComponent >> removeComponentNamed: aName [
 	^ self removeComponent: (self componentNamed: aName)
 ]
@@ -740,7 +738,7 @@ LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
 	self cssClassesAttribute replaceExistingCssClassesWithCssClass: aString
 ]
 
-{ #category : 'querying' }
+{ #category : 'components - querying' }
 LuiComponent >> rootComponent [
 	^ self parentComponent isRootComponent
 		ifTrue: [ self parentComponent ]
@@ -782,7 +780,7 @@ LuiComponent >> styleStringBlock: aBlock [
 	self attributes styleStringBlock: aBlock
 ]
 
-{ #category : 'accessing' }
+{ #category : 'components - querying' }
 LuiComponent >> subcomponents [
 	^ self orderedComponents
 ]
@@ -822,7 +820,17 @@ LuiComponent >> traceRenderMessage [
 	^ 'rendering... ' , self class name asString , '     ' , self componentName asString
 ]
 
-{ #category : 'utilities' }
+{ #category : 'components - validation' }
 LuiComponent >> verifyComponentIds [
 	self componentsDo: [ :each | self assert: each componentId equals: each generatedId ]
+]
+
+{ #category : 'components - adding' }
+LuiComponent >> wireToParent: aComponent position: aBlock [
+	aComponent parentComponent: self.
+	aComponent postAddToParent.
+	self components at: aComponent componentName put: aComponent.
+	aBlock value.
+	self componentsDo: [ :each | each assignId ].
+	self componentsDo: [ :each | each assignInputIdToLabelForId ]
 ]

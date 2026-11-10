@@ -11,14 +11,14 @@ LuiExperimentRootExamples >> addSecondFormToRootWithStandardLayout [
 	| experimentUI mainForm |
 	<gtExample>
 	experimentUI :=  self rootWithStandardLayout.
-	experimentUI mainForm switchToForm: (LuiHomePresenter named: 'contactsPresenter').
+	experimentUI mainForm switchToComponent: (LuiHomePresenter named: 'contactsPresenter').
 	mainForm := experimentUI mainForm.
-	self assert:  mainForm currentForm componentName equals: 'contactsPresenter'.
-	self assert: mainForm activeForms size equals: 2.
-	self assert: (mainForm activeFormNamed: 'xxxx') isNil.
-	self assert: (mainForm activeFormNamed: 'contactsPresenter') notNil.
-	self assert: (mainForm activeFormNamed: 'contactsPresenter') identicalTo: mainForm currentForm.
-	self assert: (mainForm activeFormNamed: 'homePresenter') notNil.
+	self assert:  mainForm currentSwitchableComponent componentName equals: 'contactsPresenter'.
+	self assert: mainForm switchableComponents size equals: 2.
+	self assert: (mainForm switchableComponentNamed: 'xxxx') isNil.
+	self assert: (mainForm switchableComponentNamed: 'contactsPresenter') notNil.
+	self assert: (mainForm switchableComponentNamed: 'contactsPresenter') identicalTo: mainForm currentSwitchableComponent.
+	self assert: (mainForm switchableComponentNamed: 'homePresenter') notNil.
 	^ experimentUI
 ]
 
@@ -30,14 +30,13 @@ LuiExperimentRootExamples >> rootWithStandardLayout [
 	self assert: experimentUI pageHeader notNil.
 	self assert: experimentUI mainForm notNil.
 	mainForm := experimentUI mainForm.
-	self assert: mainForm currentForm notNil.
-	self assert: mainForm currentForm componentName equals: 'homePresenter'.
-	self assert: mainForm activeForms size equals: 1.
-	self assert: (mainForm activeFormNamed: 'xxxx') isNil.
-	self assert: (mainForm activeFormNamed: 'homePresenter') notNil.
+	self assert: mainForm currentSwitchableComponent notNil.
+	self assert: mainForm currentSwitchableComponent componentName equals: 'homePresenter'.
+	self assert: mainForm switchableComponents size equals: 1.
+	self assert: (mainForm switchableComponentNamed: 'xxxx') isNil.
+	self assert: (mainForm switchableComponentNamed: 'homePresenter') notNil.
 	self assert: mainForm children size equals: 1.
-	self assert: mainForm children includes: mainForm currentFormComponent.
-	self assert: mainForm currentFormComponent children includes: mainForm currentForm.
+	self assert: mainForm children includes: mainForm currentSwitchableComponent.
 	^ experimentUI
 ]
 
@@ -47,11 +46,12 @@ LuiExperimentRootExamples >> switchBackToFirstForm [
 	<gtExample>
 	experimentUI :=  self addSecondFormToRootWithStandardLayout.
 	mainForm := experimentUI mainForm.
-	mainForm switchToForm: (mainForm activeFormNamed: 'homePresenter').
+	self assert:  mainForm currentSwitchableComponent componentName equals: 'contactsPresenter'.
+	mainForm switchToComponent: (mainForm switchableComponentNamed: 'homePresenter').
 	mainForm := experimentUI mainForm.
-	self assert:  mainForm currentForm componentName equals: 'homePresenter'.
-	self assert: mainForm activeForms size equals: 2.
-	self assert: (mainForm activeFormNamed: 'homePresenter') identicalTo: mainForm currentForm.
-	self assert: (mainForm activeFormNamed: 'homePresenter') notNil.
+	self assert:  mainForm currentSwitchableComponent componentName equals: 'homePresenter'.
+	self assert: mainForm switchableComponents size equals: 2.
+	self assert: (mainForm switchableComponentNamed: 'homePresenter') identicalTo: mainForm currentSwitchableComponent.
+	self assert: (mainForm switchableComponentNamed: 'homePresenter') notNil.
 	^ experimentUI
 ]

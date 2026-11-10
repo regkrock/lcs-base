@@ -9,26 +9,30 @@ Class {
 { #category : 'examples' }
 LuiComponentExamples >> componentAddedAfterComponentA [
 	<gtExample>
-	| component mewComponent |
+	| component newComponent |
 	component := self componentWithThirdSubcomponentAddedLast.
-	component addComponent: (mewComponent := LuiComponent named: 'c') after: (component componentNamed: 'a').
+	newComponent := LuiComponent named: 'c'.
+	component addComponent: newComponent after: (component componentNamed: 'a').
 	self assert: (component componentKeys first = '0').
 	self assert: ((component componentKeys at: 2) = 'a').
 	self assert: ((component componentKeys at: 3) = 'c').
-	self assert: (component components at: mewComponent componentName) equals: mewComponent.
+	self assert: (component components at: newComponent componentName) equals: newComponent.
 	^ component
 ]
 
 { #category : 'examples' }
 LuiComponentExamples >> componentAddedBeforeComponentA [
 	<gtExample>
-	| component mewComponent |
+	| component newComponent |
 	component := self componentWithThirdSubcomponentAddedLast.
-	component addComponent: (mewComponent := LuiComponent named: 'c') before: (component componentNamed: 'a').
+	newComponent := LuiComponent named: 'c'.
+	component 
+		addComponent: newComponent 
+		before: (component componentNamed: 'a').
 	self assert: (component componentKeys first = '0').
 	self assert: ((component componentKeys at: 2) = 'c').
 	self assert: ((component componentKeys at: 3) = 'a').
-	self assert: (component components at: mewComponent componentName) equals: mewComponent.
+	self assert: (component components at: newComponent componentName) equals: newComponent.
 	^ component
 ]
 

@@ -2,8 +2,8 @@ Class {
 	#name : 'LuiMainForm',
 	#superclass : 'LuiForm',
 	#instVars : [
-		'activeForms',
-		'currentFormName'
+		'switchableComponents',
+		'currentSwitchableComponentName'
 	],
 	#category : 'Lcs-WebComponents-Core',
 	#package : 'Lcs-WebComponents',
@@ -11,53 +11,20 @@ Class {
 }
 
 { #category : 'components' }
-LuiMainForm >> activeFormNamed: aFormName [
-	^ self activeForms detect: [ :each | each componentName = aFormName ] ifNone: [ nil ]
-]
-
-{ #category : 'accessing' }
-LuiMainForm >> activeForms [
-	^ activeForms
-]
-
-{ #category : 'accessing' }
-LuiMainForm >> activeForms: anObject [
-	activeForms := anObject
+LuiMainForm >> currentSwitchableComponent [
+	^ self components at: self switchableComponentName ifAbsent: [ nil ]
 ]
 
 { #category : 'components' }
-LuiMainForm >> addForm: aComponent [ 
-	aComponent parentComponent: self.
-	aComponent postAddToParent.
-	self activeForms add: aComponent.
-	self componentsDo: [ :each | each assignId ].
-	self componentsDo: [ :each | each assignInputIdToLabelForId ]
+LuiMainForm >> currentSwitchableComponent: aComponent [
+	self components at: self switchableComponentName put: aComponent.
+	(self componentKeys includes: self switchableComponentName)
+		ifFalse: [ self componentKeys add: self switchableComponentName ]
 ]
 
 { #category : 'components' }
-LuiMainForm >> currentForm [
-	^ self currentFormComponent currentForm
-]
-
-{ #category : 'components' }
-LuiMainForm >> currentForm: aComponent [
-	self currentFormComponent currentForm: aComponent.
-	self currentFormName: aComponent componentName
-]
-
-{ #category : 'components' }
-LuiMainForm >> currentFormComponent [
-	^ self componentNamed: 'currentForm'
-]
-
-{ #category : 'accessing' }
-LuiMainForm >> currentFormName [
-	^ currentFormName
-]
-
-{ #category : 'accessing' }
-LuiMainForm >> currentFormName: anObject [
-	currentFormName := anObject
+LuiMainForm >> currentSwitchableComponentName [
+	^ (self currentSwitchableComponent ifNil: [ ^ nil ]) componentName
 ]
 
 { #category : 'defaults' }
@@ -73,18 +40,36 @@ LuiMainForm >> defaultCssClasses [
 { #category : 'initialize' }
 LuiMainForm >> initialize [
 	super initialize.
-	self activeForms: IdentitySet new.
-	self addComponent: (LuiCurrentFormComponent named: 'currentForm')
-]
-
-{ #category : 'rendering' }
-LuiMainForm >> renderContentOn: html [
-	super renderContentOn: html
+	self switchableComponents: IdentitySet new
 ]
 
 { #category : 'components' }
-LuiMainForm >> switchToForm: aComponent [
+LuiMainForm >> switchToComponent: aComponent [
 	aComponent parentComponent ifNil: [
-		self addForm: aComponent ].
-	self currentForm: aComponent
+		self
+			wireToParent: aComponent
+			position: [ 
+				self currentSwitchableComponent: aComponent.
+				self switchableComponents add: aComponent ] ].
+	self currentSwitchableComponent: aComponent	
+]
+
+{ #category : 'components' }
+LuiMainForm >> switchableComponentName [
+	^ 'currentSwitchableComponent'
+]
+
+{ #category : 'components' }
+LuiMainForm >> switchableComponentNamed: acurrentSwitchableComponentName [
+	^ self switchableComponents detect: [ :each | each componentName = acurrentSwitchableComponentName ] ifNone: [ nil ]
+]
+
+{ #category : 'accessing' }
+LuiMainForm >> switchableComponents [
+	^ switchableComponents
+]
+
+{ #category : 'accessing' }
+LuiMainForm >> switchableComponents: anObject [
+	switchableComponents := anObject
 ]

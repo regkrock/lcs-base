@@ -26,6 +26,6 @@ LuiSubmitButton >> renderComponentOn: html [
 				serializeForm
 				callback: [ self applyButtonAction];
 				onSuccess: ((html jQuery id: self rootComponent componentId)
-					load html: [ :h | (self formComponent) renderDetailsOn: h ]) );
+					load html: [ :h | (self parentFormComponent) renderDetailsOn: h ]) );
 		with: [ self renderDetailsOn: html ]
 ]
