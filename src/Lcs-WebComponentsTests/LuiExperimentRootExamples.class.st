@@ -35,6 +35,9 @@ LuiExperimentRootExamples >> rootWithStandardLayout [
 	self assert: mainForm activeForms size equals: 1.
 	self assert: (mainForm activeFormNamed: 'xxxx') isNil.
 	self assert: (mainForm activeFormNamed: 'homePresenter') notNil.
+	self assert: mainForm children size equals: 1.
+	self assert: mainForm children includes: mainForm currentFormComponent.
+	self assert: mainForm currentFormComponent children includes: mainForm currentForm.
 	^ experimentUI
 ]
 

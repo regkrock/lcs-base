@@ -6,6 +6,11 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'hooks' }
+LuiCurrentFormComponent >> children [
+	^ OrderedCollection with: self currentForm
+]
+
 { #category : 'components' }
 LuiCurrentFormComponent >> currentForm [
 	^ self components at: 'currentForm' ifAbsent: [ nil ]
