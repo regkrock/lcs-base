@@ -61,7 +61,9 @@ LuiMainForm >> switchableComponentName [
 
 { #category : 'components' }
 LuiMainForm >> switchableComponentNamed: acurrentSwitchableComponentName [
-	^ self switchableComponents detect: [ :each | each componentName = acurrentSwitchableComponentName ] ifNone: [ nil ]
+	^ self switchableComponents
+		detect: [ :each | each componentName = acurrentSwitchableComponentName ]
+		ifNone: [ nil ]
 ]
 
 { #category : 'accessing' }
