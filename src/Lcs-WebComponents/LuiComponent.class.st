@@ -18,6 +18,11 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'code points' }
+LuiComponent class >> hamburgerCodePointString [
+	^ String with: (Character codePoint: 16r2630)
+]
+
 { #category : 'instance creation' }
 LuiComponent class >> named: aName [
 	^ super new 
@@ -724,7 +729,7 @@ LuiComponent >> renderExample: aBlock [
 ]
 
 { #category : 'rendering' }
-LuiComponent >> renderOn: html tag: aTag [
+LuiComponent >> renderOn: html withinTag: aTag [
 	self addAttributesToTag: aTag.
 	aTag
 		with: [ self renderDetailsOn: html ]
@@ -742,8 +747,8 @@ LuiComponent >> replaceExistingCssClassesWithCssClass: aString [
 
 { #category : 'components - querying' }
 LuiComponent >> rootComponent [
-	^ self parentComponent isRootComponent
-		ifTrue: [ self parentComponent ]
+	^ self isRootComponent
+		ifTrue: [ self ]
 		ifFalse: [ self parentComponent rootComponent ]
 ]
 

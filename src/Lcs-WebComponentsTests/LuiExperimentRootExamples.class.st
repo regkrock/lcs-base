@@ -26,6 +26,7 @@ LuiExperimentRootExamples >> addSecondFormToRootWithStandardLayout [
 LuiExperimentRootExamples >> rootWithStandardLayout [
 	| experimentUI mainForm |
 	<gtExample>
+	self ensureCurrentSystemIsPrototypeSystem.
 	experimentUI :=  LuiExperimentRoot new.
 	self assert: experimentUI pageHeader notNil.
 	self assert: experimentUI mainForm notNil.

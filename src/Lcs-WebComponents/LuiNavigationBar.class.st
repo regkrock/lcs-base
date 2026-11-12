@@ -20,6 +20,12 @@ LuiNavigationBar >> defaultCssClasses [
 	^ OrderedCollection with: LuiCssClassesMap / #navbar
 ]
 
+{ #category : 'initialize' }
+LuiNavigationBar >> initialize [
+	super initialize.
+	self componentName: 'nvabar'
+]
+
 { #category : 'rendering' }
 LuiNavigationBar >> navigationComponent [
 	^ self componentNamed: 'navigation'
@@ -27,5 +33,5 @@ LuiNavigationBar >> navigationComponent [
 
 { #category : 'rendering' }
 LuiNavigationBar >> renderComponentOn: html [
-	self renderOn: html tag: html navigation
+	self renderOn: html withinTag: html navigation
 ]

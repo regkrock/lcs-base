@@ -73,5 +73,5 @@ LuiMenu >> initializeSubmenuNamed: aComponentName [
 
 { #category : 'rendering' }
 LuiMenu >> renderComponentOn: html [
-	self renderOn: html tag: html unorderedList
+	self renderOn: html withinTag: html unorderedList
 ]

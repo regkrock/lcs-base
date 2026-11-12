@@ -85,7 +85,7 @@ LuiNavigationMenuDefinition >> addDefinition: aMenuComponentDefintion [
 { #category : 'conversion' }
 LuiNavigationMenuDefinition >> asMenuComponent [
 	| menu |
-	menu := LuiMainMenu named: 'mainMenu'.
+	menu := LuiMainMenu new.
 	self menuComponentDefintions do: [ :each |
 		menu addComponent: each asMenuComponent ].
 	^ menu

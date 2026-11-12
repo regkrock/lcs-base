@@ -33,7 +33,7 @@ LuiPageHeader >> defaultCssClasses [
 { #category : 'inititalize' }
 LuiPageHeader >> initialize [
 	super initialize.
-	self componentName: 'header'
+	self componentName: 'pageHeader'
 ]
 
 { #category : 'defaults' }

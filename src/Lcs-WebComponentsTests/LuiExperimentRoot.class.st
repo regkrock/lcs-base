@@ -27,10 +27,15 @@ LuiExperimentRoot >> currentFrom [
 
 { #category : 'initialize' }
 LuiExperimentRoot >> initialize [
-	super initialize.
 	"Re-implment this method with desired components"
+	super initialize.
+	self initializeStandardPageLayout
+]
+
+{ #category : 'initialize' }
+LuiExperimentRoot >> initializeStandardPageLayout [
 	self addComponent: self pageHeaderComponentDefinition.
-	self addComponent: self mainFormComponentDefinition.
+	self addComponent: self mainFormComponentDefinition
 ]
 
 { #category : 'components' }
@@ -41,7 +46,7 @@ LuiExperimentRoot >> mainForm [
 { #category : 'initialize' }
 LuiExperimentRoot >> mainFormComponentDefinition [
 	^ LuiMainForm new
-		switchToComponent: (LuiHomePresenter named: 'homePresenter');
+		switchToComponent: LuiHomePresenter new;
 		yourself
 ]
 
@@ -52,7 +57,7 @@ LuiExperimentRoot >> pageHeader [
 
 { #category : 'components' }
 LuiExperimentRoot >> pageHeaderComponentDefinition [
-	^ (LuiPageHeader named: 'pageHeader')
+	^ (LuiPageHeader new)
 		addComponent: LuiMenuExamples new softwareCompanyNavbar;
 		yourself
 ]

@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'css' }
-LcsExperimentFileLibrary >> mainCss [
+LcsExperimentFileLibrary >> mainCss_obsolete [
 	"This is the css used for the multi-level menu system with checkboxes"
 	^'body {
       font-family: sans-serif;

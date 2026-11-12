@@ -14,187 +14,93 @@ LuiPrototypeSystemRoot class >> initialize [
 { #category : 'instance creation' }
 LuiPrototypeSystemRoot class >> new [
 	| systemApplicationRoot |
-	systemApplicationRoot := self new.
-	systemApplicationRoot 
-		addComponent: systemApplicationRoot prototypeHeader;
-		addComponent: (
-			LuiMainForm new
-				addFormComponent: (LuiDomainPresenter named: 'emptyForm');
-			yourself).
+	systemApplicationRoot := super new.
 	^ systemApplicationRoot
 ]
 
-{ #category : 'instance creation' }
-LuiPrototypeSystemRoot class >> newWithComponent: aComponent [
-	^ self basicNew 
-		initializeWithComponent: aComponent;
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> aboutContactItemDefinition [
+	^ (LuiMenuItem named: 'contactMenuItem')
+		cssClass: LuiCssClassesMap / #'nav-item';
+		anchorLabel: 'Contact';
+		callback: [ 
+			Transcript cr; show: 'contactMenuItem clicked'.
+			self rootComponent mainForm switchToComponent: (
+				LuiMessagePresenter new
+					componentName: 'contactPresenter';
+						message: 'Contact';
+						yourself) ];
+		title: 'Contact Menu Item';
 		yourself
 ]
 
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> aboutMenuItem [
-	^ (LuiMenuItem named: 'aboutMenuItem')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'About';
-		callback: [ Transcript
-				cr;
-				show: 'aboutMenuItem clicked' ];
-		"onClick: 'console.log(clicked About)';"
-		title: 'About Menu Item';
-		yourself	
-]
-
-{ #category : 'menus' }
-LuiPrototypeSystemRoot >> addSubMenuItems: aMenuItems to: aMenuItem [
-	| subSubMenu |
-	aMenuItem 
-		addCssClass: LuiCssClassesMap / #'has-submenu'";
-		addRightArrowToAnchorSpanComponent".
-	subSubMenu := (LuiMenu newSubmenuNamed: 'contactSubMenuSubmenu').
-	aMenuItem addComponent: subSubMenu.
-	aMenuItems do: [ :each |subSubMenu addComponent: each ]
-]
-
-{ #category : 'menus' }
-LuiPrototypeSystemRoot >> addSubmenuTo: aMenuItem [
-	| submenu contactMenuItemB contactMenuItemA |
-	aMenuItem addCssClass: LuiCssClassesMap / #'has-submenu'.
-	"aMenuItem addDownArrowToAnchorSpanComponent."
-	aMenuItem addComponent: (submenu := self contactSubMenu).
-	submenu
-		addComponent: (contactMenuItemA := self contactMenuItemA);
-		addComponent: (contactMenuItemB := self contactMenuItemB);
-		addComponent: self contactMenuItemC.
-	self addSubMenuItems: {self contactMenuItemA_A. self contactMenuItemA_B} to: contactMenuItemA.
-	self addSubMenuItems: {self contactMenuItemB_A} to: contactMenuItemB
-]
-
-{ #category : 'setup' }
+{ #category : 'defaults' }
 LuiPrototypeSystemRoot >> applicationTitle [
 	^ 'Prototype System'
 ]
 
-{ #category : 'menus' }
-LuiPrototypeSystemRoot >> brandComponent [
-	^ LuiBrand newSeasBrand
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactMenuItem [
-	"^ (LuiMenuItem named: 'contactMenuItem')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		menuToggleComponent: 'sub1';
-		menuTogglelabel: 'Contact';
-		""callback: [ Transcript
-				cr;
-				show: 'contactMenuItem clicked' ];""
-		title: 'Contact Menu Item';
-		yourself"
-		
-	^ (LuiDropDownMenuItem named: 'contact' label: 'Contact')
-		title: 'Contact Menu Item';
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> contactSubenuComponentDefinition [
+	^((LuiDropDownMenuItem named: 'company' label: 'Company')
+				cssClass: 'nav-item';
+				yourself)
+		addMenuItem: (
+			(LuiMenuItem named: 'aboutUs')
+				anchorLabel: 'About Us';
+				cssClass: LuiCssClassesMap / #'submenu-item';
+				callback: [ Transcript
+					cr;
+					show: 'aboutUs clicked'.
+					self rootComponent mainForm switchToComponent: (
+							LuiMessagePresenter new 
+								componentName: 'aboutUsPresenter';
+								message: 'Company ... About Us';
+								yourself) ];
+				yourself);
+		addMenuItem: (
+			(LuiMenuItem named: 'careers')
+				anchorLabel: 'Careers';
+				cssClass: LuiCssClassesMap / #'submenu-item';
+				callback: [ Transcript
+					cr;
+					show: 'careers clicked'.
+					self rootComponent mainForm switchToComponent: (
+							LuiMessagePresenter new 
+								componentName: 'careersPresenter';
+								message: 'Company ... Careers';
+								yourself) ];
+				yourself);
+		addMenuItem: (
+			(LuiMenuItem named: 'ourTeam')
+				anchorLabel: 'Our Team';
+				cssClass: LuiCssClassesMap / #'submenu-item';
+				callback: [ Transcript
+					cr;
+					show: 'our team clicked'.
+					self rootComponent mainForm switchToComponent: (
+							LuiMessagePresenter new 
+								componentName: 'ourteamPresenter';
+								message: 'Company ... Our Team';
+								yourself) ];
+				yourself);
 		yourself
 ]
 
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactMenuItemA [
-	^ (LuiMenuItem named: 'contactMenuItemA')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Contact A';
-		callback: [ Transcript
-				cr;
-				show: 'clicked Contact A' ];
-		yourself
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactMenuItemA_A [
-	^ (LuiMenuItem named: 'contactMenuItemA_A')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Contact A Item A';
-		callback: [ Transcript
-				cr;
-				show: 'clicked Contact A Item A' ];
-		yourself
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactMenuItemA_B [
-	^ (LuiMenuItem named: 'contactMenuItemA_B')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Contact A Item B';
-		callback: [ Transcript
-				cr;
-				show: 'clicked Contact A Item B' ];
-		yourself
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactMenuItemB [
-	^ (LuiMenuItem named: 'contactMenuItemB')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Contact B';
-		callback: [ Transcript
-				cr;
-				show: 'clicked Contact B' ];
-		yourself
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactMenuItemB_A [
-	^ (LuiMenuItem named: 'contactMenuItemB_A')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Contact B Item A';
-		callback: [ Transcript
-				cr;
-				show: 'clicked Contact B Item A' ];
-		yourself
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactMenuItemC [
-	^ (LuiMenuItem named: 'contactMenuItemC')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Contact C';
-		callback: [ Transcript
-				cr;
-				show: 'clicked Contact C' ];
-		yourself
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> contactSubMenu [
-	^ (LuiMenu newSubmenuNamed: 'contactSubMenu')
-		cssClass: LuiCssClassesMap / #'submenu';
-		yourself
-]
-
-{ #category : 'setup' }
+{ #category : 'defaults' }
 LuiPrototypeSystemRoot >> generatedId [
 	^ 'root'
 ]
 
-{ #category : 'components' }
-LuiPrototypeSystemRoot >> hamburgerMenuComponent [
-	"The spans are here to ensure there is space to display the hamburger"
-	^ (LuiLabel named: 'menuToggleLabel')
-		for: 'menu-toggle';
-		cssClass: LuiCssClassesMap / #'hamburger';
-		text: '';
-		addComponent: (LuiSpan named: 'span1');
-		addComponent: (LuiSpan named: 'span2');
-		addComponent: (LuiSpan named: 'span3');
-		yourself
-]
-
-{ #category : 'menu item' }
-LuiPrototypeSystemRoot >> homeMenuItem [
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> homeMenuItemComponentDefinition [
 	^ (LuiMenuItem named: 'homeMenuItem')
 		cssClass: LuiCssClassesMap / #'nav-item';
 		anchorLabel: 'Home';
-		callback: [ Transcript
+		callback: [ 
+			Transcript
 				cr;
-				show: 'homeMenuItem clicked' ];
+				show: 'homeMenuItem clicked'.
+				self rootComponent mainForm switchToComponent: (LuiHomePresenter new) ];
 		title: 'Home Menu Item';
 		yourself
 ]
@@ -202,83 +108,66 @@ LuiPrototypeSystemRoot >> homeMenuItem [
 { #category : 'initialize' }
 LuiPrototypeSystemRoot >> initialize [
 	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
-	super initialize
+	super initialize.
+	self initializeStandardPageLayout
 ]
 
 { #category : 'initialize' }
-LuiPrototypeSystemRoot >> initializeWithComponent: aComponent [
-	self initialize.
-	self addComponent: aComponent
+LuiPrototypeSystemRoot >> initializeStandardPageLayout [
+	self addComponent: self pageHeaderComponentDefinition.
+	self addComponent: self mainFormComponentDefinition
 ]
 
-{ #category : 'initialize' }
-LuiPrototypeSystemRoot >> initializeWithHeaderWithNavBar [
-	self initialize.
-	self addComponent: self prototypeHeader.
+{ #category : 'components - querying' }
+LuiPrototypeSystemRoot >> mainForm [
+	^ self componentNamed: 'mainForm'
 ]
 
-{ #category : 'menus' }
-LuiPrototypeSystemRoot >> mainNavigationMenu [
-	| mainMenu  contactMenuItem |
-	mainMenu := LuiMainMenu newMainMenu. 
-	mainMenu
-		cssClass: LuiCssClassesMap / #'nav-menu';
-		addComponent: self homeMenuItem;
-		addComponent: (contactMenuItem := self contactMenuItem);
-		addComponent: self aboutMenuItem;
-		addComponent: self socialMediaBar.
-	self addSubmenuTo: contactMenuItem.
-	^ mainMenu
-]
-
-{ #category : 'components' }
-LuiPrototypeSystemRoot >> menuToggleComponent [
-	^ (LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
-		assignStaticId: 'menu-toggle';
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> mainFormComponentDefinition [
+	^ LuiMainForm new
+		switchToComponent: LuiHomePresenter new;
 		yourself
 ]
 
-{ #category : 'menus' }
-LuiPrototypeSystemRoot >> navContainerDiv [
-	^ LuiDiv new
-		componentName: 'navContainer';
-		cssClass: LuiCssClassesMap / #'nav-container';
-		yourself
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> navBarComponentDefinition [
+	| navbar |
+	navbar := LuiNavigationBar new.
+	navbar
+		addComponent: LuiBrand newSeasBrand;
+		addComponent: ((LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
+				assignStaticId: 'menu-toggle';
+				yourself);
+		addComponent: ((LuiLabel named: 'menuToggleLabel')
+				for: 'menu-toggle';
+				cssClass: 'menu-btn';
+				text: self class hamburgerCodePointString;
+				yourself);
+		addComponent: (LuiMainMenu new
+				addComponent: self homeMenuItemComponentDefinition;
+				addComponent: self contactSubenuComponentDefinition;
+				addComponent: self aboutContactItemDefinition;
+				addComponent: self socialMediaBarComponentDefinition;
+				yourself).
+	^ navbar
 ]
 
-{ #category : 'menus' }
-LuiPrototypeSystemRoot >> navigationBar [
-	| navBar navContainer |
-	navBar := LuiNavigationBar named: 'navbar'.
-	navContainer := navBar addComponent: self navContainerDiv.
-	navContainer
-		addComponent: self brandComponent;
-		addComponent: self menuToggleComponent;
-		addComponent: self hamburgerMenuComponent;
-		addComponent: self mainNavigationMenu.
-	^ navBar
+{ #category : 'components - querying' }
+LuiPrototypeSystemRoot >> pageHeader [
+	^ self componentNamed: 'pageHeader'
 ]
 
-{ #category : 'components' }
-LuiPrototypeSystemRoot >> prototypeHeader [
-	| header |
-	header := LuiPageHeader named: 'pageHeader'.
-	header
-		cssClass: LuiCssClassesMap / #'topHeader';
-		addComponent: self navigationBar.
-	^ header
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> pageHeaderComponentDefinition [
+	| pageHeader |
+	pageHeader := LuiPageHeader new.
+	pageHeader addComponent: self navBarComponentDefinition.
+	^ pageHeader
 ]
 
-{ #category : 'callbacks' }
-LuiPrototypeSystemRoot >> showCallbackOnTranscript [
-	Transcript
-		cr;
-		show: 'ok clicked';
-		cr
-]
-
-{ #category : 'components' }
-LuiPrototypeSystemRoot >> socialMediaBar [
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> socialMediaBarComponentDefinition [
 	^ LuiSearchAndSocialMediaBar newSearchAndLinks
 ]
 

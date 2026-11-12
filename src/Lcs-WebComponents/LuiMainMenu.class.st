@@ -10,3 +10,9 @@ Class {
 LuiMainMenu >> defaultCssClasses [
 	^ OrderedCollection with: LuiCssClassesMap / #'nav-links'
 ]
+
+{ #category : 'inititalize' }
+LuiMainMenu >> initialize [
+	super initialize.
+	self componentName: 'mainMenu'
+]

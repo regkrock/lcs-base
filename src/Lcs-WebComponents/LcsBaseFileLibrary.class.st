@@ -40,6 +40,370 @@ LcsBaseFileLibrary >> hamburgerMenu24Svg [
 	^ '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>'
 ]
 
+{ #category : 'css' }
+LcsBaseFileLibrary >> mainCss [
+	"This is the css used for the multi-level menu system with checkboxes"
+	^'body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar Container */
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      position: relative;
+      height: 60px;
+      z-index: 100;
+    }
+    .brand {
+		align-items: center;
+		display: flex;
+		font-size: 1.5em;
+		font-weight: bold;
+		white-space: nowrap;
+		gap: 0.1em;
+	}
+    .logo {
+		height: 40px;
+		width: fit-content;
+		align-self: center;
+		cursor: pointer;
+		min-width: 50px;
+	
+		& .logoImage {
+			height: 100%;
+			}
+		}
+
+    /* Navigation Links & Lists */
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-item a, .nav-item label {
+      display: block;
+      padding: 20px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-item a:hover, .nav-item label:hover {
+      background-color: #444;
+    }
+
+    /* Dropdown Logic (Desktop) */
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #444;
+      list-style: none;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .submenu .submenu {
+      top: 0;
+      left: 100%;
+      background-color: #555;
+    }
+    
+    /* Desktop Hover Toggle & Layout Rules */
+    @media (min-width: 769px) {
+      .nav-item:hover > .submenu,
+      .submenu-item:hover > .submenu {
+        display: block;
+      }
+      .menu-toggle, .menu-btn, .submenu-toggle {
+        display: none;
+      }
+      /* Desktop Layout: Flexible gap separates the arrow from the text label */
+      .arrow-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px; 
+      }
+      .arrow-label::after {
+        content: ''▼'';
+        font-size: 0.55rem;
+        transition: transform 0.2s ease;
+        padding-left: 2px;
+      }
+      /* Level 2+ Desktop Layout (nested sidebar dropdowns) */
+      .submenu .arrow-label {
+        display: flex;
+        justify-content: space-between; 
+        min-width: 100%;
+      }
+      .submenu .arrow-label::after {
+        content: ''▶'';
+      }
+    }
+
+    /* Mobile Responsive Layout (< 768px) */
+    @media (max-width: 768px) {
+      /* Hamburger Menu Icon */
+      .menu-btn {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 10px;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+      }
+      
+      .menu-toggle:checked ~ .nav-links {
+        display: flex;
+      }
+      .nav-item {
+        width: 100%;
+      }
+
+      /* Mobile Accordion Stack Setup */
+      .submenu, .submenu .submenu {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+
+      /* Multi-level Mobile Indentation via CSS Variables */
+      .nav-links a, .nav-links label {
+        --depth-padding: 20px;
+        padding-left: var(--depth-padding);
+      }
+      .submenu a, .submenu label {
+        --depth-padding: 40px;
+      }
+      .submenu .submenu a, .submenu .submenu label {
+        --depth-padding: 60px;
+      }
+
+      /* Mobile Layout: Automatically fill space, driving text left and arrow right */
+      .arrow-label {
+        display: flex;
+        gap: 1px;
+        justify-content: space-between; 
+        align-items: center;
+      }
+      .arrow-label::after {
+        content: ''▼'';
+        font-size: 0.65rem;
+        padding-right: 20px;
+        transition: transform 0.3s ease;
+        transform: rotate(-90deg); /* Points right when closed */
+      }
+
+      /* Rotate Arrow down when matching checkbox is checked */
+      .submenu-toggle:checked + .arrow-label::after {
+        transform: rotate(0deg); /* Points down when opened */
+      }
+
+      /* Mobile Dropdown Visibility Toggle */
+      .submenu-toggle:checked ~ .submenu {
+        display: block;
+      }
+    }
+
+    /* Hidden Utility Checkboxes for state management */
+    .menu-toggle, .submenu-toggle {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+      width: 0;
+      height: 0;
+    }''▼'';
+        font-size: 0.55rem;
+        transition: transform 0.2s ease;
+        padding-left: 0.2rem;
+      }
+      /* Level 2+ Desktop Layout (nested sidebar dropdowns) */
+      .submenu .arrow-label {
+        display: flex;
+        justify-content: space-between; 
+        min-width: 100%;
+        padding-left: 1px;
+      }
+      .submenu .arrow-label::after {
+        content: ''▶'';
+        padding-left: 0.2rem;
+      }
+    }
+
+    /* Mobile Responsive Layout (< 768px) */
+    @media (max-width: 768px) {
+      /* Hamburger Menu Icon */
+      .menu-btn {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 10px;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+      }
+      
+      .menu-toggle:checked ~ .nav-links {
+        display: flex;
+      }
+      .nav-item {
+        width: 100%;
+      }
+
+      /* Mobile Accordion Stack Setup */
+      .submenu, .submenu .submenu {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+
+      /* Multi-level Mobile Indentation via CSS Variables */
+      .nav-links a, .nav-links label {
+        --depth-padding: 20px;
+        padding-left: var(--depth-padding);
+      }
+      .submenu a, .submenu label {
+        --depth-padding: 40px;
+      }
+      .submenu .submenu a, .submenu .submenu label {
+        --depth-padding: 60px;
+      }
+
+      /* Mobile Layout: Automatically fill space, driving text left and arrow right */
+      .arrow-label {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        padding-left: 1px;
+      }
+      .arrow-label::after {
+        content: ''▼'';
+        font-size: 0.65rem;
+        padding-right: 20px;
+        transition: transform 0.3s ease;
+        transform: rotate(-90deg); /* Points right when closed */
+      }
+
+      /* Rotate Arrow down when matching checkbox is checked */
+      .submenu-toggle:checked + .arrow-label::after {
+        transform: rotate(0deg); /* Points down when opened */
+      }
+
+      /* Mobile Dropdown Visibility Toggle */
+      .submenu-toggle:checked ~ .submenu {
+        display: block;
+      }
+    }
+
+/* Hidden Utility Checkboxes for state management */
+.menu-toggle, .submenu-toggle {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+	width: 0;
+	height: 0;
+}
+ 
+ /* contains the search form and the sm icons container */
+.pageHeader .sm {
+	align-self: center;
+	display: flex;
+	}
+/* search form */
+.pageHeader form {
+	height: 40px;
+	padding-right: 5px;
+	display: flex;
+	border: 1px solid #aeaeae;
+	border-radius: 20px 100px 100px 20px;
+	width: fit-content;
+	align-self: center;
+	background: #ffffff;
+	
+	& input {
+		height: 100%;
+		width: 300px;
+		padding: 0 10px 0 20px;
+		border-radius: 5px;
+		font-size: 1rem;	
+		font-family: Roboto;
+		
+		&:focus {
+			border: 1px solid #111;
+			}
+		}
+	& button {
+		width: fit-content;
+		padding: 5px 5px 0 10px;
+		
+		& img {
+			height: 24px;
+			padding-top: 15%;
+			cursor: pointer;
+			}
+		}
+	}
+
+/* contains the sm icons with their links to the social media */
+.pageHeader .sm-links {
+	/* height: 60px; */
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	
+	& a {
+		display: flex;
+		height: 30px;
+		width: 30px;
+		padding: 2px;
+		/* margin-left: 10px; */
+		cursor: pointer;
+		align-items: center;
+		
+		& img {
+			height: auto;
+			}
+		}
+	}
+@media (max-width: 768px) {
+.pageHeader .sm {
+	padding-left: 15px;
+	align-self: flex-start;
+	}
+}'
+
+]
+
 { #category : 'png' }
 LcsBaseFileLibrary >> meetup32Png [
 	^ #[137 80 78 71 13 10 26 10 0 0 0 13 73 72 68 82 0 0 0 32 0 0 0 32 8 6 0 0 0 115 122 122 244 0 0 0 25 116 69 88 116 83 111 102 116 119 97 114 101 0 65 100 111 98 101 32 73 109 97 103 101 82 101 97 100 121 113 201 101 60 0 0 3 185 73 68 65 84 120 218 196 151 77 76 20 73 20 199 255 221 211 160 192 58 131 184 178 31 168 211 248 65 52 198 12 100 179 123 80 35 28 246 192 101 23 226 105 227 133 225 96 60 120 128 171 23 233 120 241 8 23 15 198 195 140 7 175 11 179 167 141 137 129 196 184 151 61 0 123 48 102 227 178 51 113 49 179 162 204 7 56 36 195 116 151 239 95 218 29 20 137 95 76 251 38 149 234 174 170 174 223 191 223 123 85 93 99 64 236 210 149 171 56 121 227 198 208 174 230 70 103 119 180 201 70 29 173 80 94 203 174 84 170 206 31 231 207 223 188 122 249 18 12 54 254 222 121 56 213 121 220 78 238 63 219 15 203 142 215 147 143 90 54 135 199 153 219 120 248 215 66 186 255 223 135 195 70 102 255 193 161 99 39 14 164 247 253 242 19 84 121 5 222 226 227 186 10 48 59 190 133 17 221 133 220 173 223 240 247 253 71 73 171 101 103 131 211 254 221 81 212 238 63 128 183 244 20 245 54 247 201 18 204 189 95 226 155 31 142 97 113 33 239 88 177 150 6 27 149 10 220 229 18 194 50 247 255 39 48 218 98 32 219 106 136 152 240 150 139 48 60 133 48 141 76 178 69 128 228 225 186 139 112 241 116 3 64 182 229 121 158 200 241 240 57 140 108 203 115 21 60 247 51 9 16 182 229 41 5 37 74 218 82 191 194 108 249 34 28 240 243 85 44 15 159 5 217 166 98 242 137 128 176 224 122 47 32 75 152 100 155 174 167 244 197 167 216 220 220 220 7 63 67 38 217 166 122 21 130 79 177 158 158 30 76 76 76 124 160 0 241 0 67 160 217 91 36 33 223 204 113 28 20 139 197 119 78 248 62 99 94 95 134 158 94 124 47 147 112 195 46 144 78 167 245 100 163 163 163 26 158 201 100 208 218 218 170 239 63 214 56 103 54 155 69 95 95 159 46 218 3 242 35 27 247 186 186 84 254 231 51 202 183 222 222 94 170 81 169 84 74 215 44 3 3 3 186 111 100 100 68 247 23 10 5 93 199 98 49 221 158 72 36 212 216 216 152 122 155 249 243 112 172 63 158 70 38 217 184 123 228 136 202 15 244 110 18 224 151 120 60 174 203 228 228 100 208 70 33 156 140 215 108 167 0 142 33 140 237 179 179 179 186 222 216 71 129 28 31 8 16 38 217 178 12 1 67 246 228 141 38 15 7 215 116 89 46 151 195 212 212 84 208 238 103 61 239 25 46 134 200 182 109 93 74 165 146 110 99 77 155 159 159 199 224 224 160 126 94 196 4 243 146 73 182 233 49 26 166 17 116 112 18 154 120 66 215 201 100 50 128 118 119 119 235 204 245 99 201 73 57 185 127 207 66 81 92 17 132 249 115 249 57 192 58 88 5 194 36 91 175 2 21 49 54 37 225 204 204 76 0 19 215 234 118 190 169 47 136 215 4 189 185 7 248 227 124 168 239 69 255 5 2 1 194 212 43 240 142 125 72 229 207 253 168 234 97 76 86 178 166 167 167 55 245 145 73 182 233 114 41 108 8 193 118 26 61 177 229 30 33 76 87 127 11 168 209 140 212 109 223 31 31 31 15 132 188 46 32 2 178 45 157 132 17 163 110 2 182 218 192 116 14 224 149 7 12 211 12 253 44 64 166 142 190 254 16 242 92 88 46 135 119 16 33 139 76 134 96 93 220 80 147 198 71 167 79 201 191 134 112 78 70 198 206 6 68 190 63 0 178 95 10 48 76 152 209 102 184 75 43 225 28 72 154 119 104 166 22 240 92 33 91 122 182 106 239 181 247 192 205 135 19 6 75 88 75 207 86 65 118 164 63 214 90 172 22 43 131 109 93 95 161 233 235 24 84 85 142 232 53 41 213 26 116 150 108 83 49 44 241 114 123 20 141 137 14 84 90 26 241 224 207 5 148 214 107 163 122 253 93 239 136 167 218 163 77 201 206 68 28 187 69 132 37 155 132 101 108 239 210 172 137 136 154 100 93 33 95 194 63 243 57 60 45 175 165 47 44 230 134 3 202 181 125 241 161 70 5 167 73 190 71 150 136 222 238 173 201 165 8 161 173 1 217 170 1 231 226 127 185 155 108 127 33 192 0 13 223 202 113 67 89 66 101 0 0 0 0 73 69 78 68 174 66 96 130]

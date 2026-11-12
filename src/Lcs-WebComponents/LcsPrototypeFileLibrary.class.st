@@ -73,19 +73,6 @@ LcsPrototypeFileLibrary >> homePageText [
 ]
 
 { #category : 'css' }
-LcsPrototypeFileLibrary >> mainCss [
-	"LcsPrototypeFileLibrary new mainCss"
-	| stream |
-	stream := WriteStream on: String new.
-	"stream nextPutAll: self resetCss."
-	stream nextPutAll: self mainCss_base.
-	stream nextPutAll: self navigationMenuCss.
-	stream nextPutAll: self socialMediaCss.
-	^ stream contents
-
-]
-
-{ #category : 'css' }
 LcsPrototypeFileLibrary >> mainCss_base [
 	^
 '/* @font-face{
@@ -120,6 +107,19 @@ body{
 	z-index: 100; /*forces header to always be on top*/
 	}
 '
+]
+
+{ #category : 'css' }
+LcsPrototypeFileLibrary >> mainCss_composed [
+	"LcsPrototypeFileLibrary new mainCss"
+	| stream |
+	stream := WriteStream on: String new.
+	stream nextPutAll: self resetCss.
+	stream nextPutAll: self mainCss_base.
+	stream nextPutAll: self navigationMenuCss.
+	stream nextPutAll: self socialMediaCss.
+	^ stream contents
+
 ]
 
 { #category : 'javascript' }
@@ -692,12 +692,12 @@ LcsPrototypeFileLibrary >> seasMonmouthHomePage [
 { #category : 'css' }
 LcsPrototypeFileLibrary >> socialMediaCss [
 ^'/* contains the search form and the sm icons container */
-.topHeader .sm {
+.pageHeader .sm {
 	align-self: center;
 	display: flex;
 	}
 /* search form */
-.topHeader form {
+.pageHeader form {
 	height: 40px;
 	padding-right: 5px;
 	display: flex;
@@ -732,7 +732,7 @@ LcsPrototypeFileLibrary >> socialMediaCss [
 	}
 
 /* contains the sm icons with their links to the social media */
-.topHeader .sm-links {
+.pageHeader .sm-links {
 	height: 60px;
 	width: fit-content;
 	display: flex;
@@ -753,7 +753,7 @@ LcsPrototypeFileLibrary >> socialMediaCss [
 		}
 	}
 @media (max-width: 768px) {
-.topHeader .sm {
+.pageHeader .sm {
 	padding-left: 15px;
 	align-self: flex-start;
 	}
