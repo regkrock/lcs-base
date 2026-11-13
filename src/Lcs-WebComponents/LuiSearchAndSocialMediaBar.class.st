@@ -15,11 +15,17 @@ LuiSearchAndSocialMediaBar class >> newSearchAndLinks [
 
 { #category : 'initialize' }
 LuiSearchAndSocialMediaBar >> initializeSearchAndLinks [
-	self componentName: 'searchAndSocial'.
-	self cssClass: 'sm'.
-	self addComponent: (
-		LuiForm new
-			addComponent: (LuiSearchBarPresenter named: 'searchBarPresenter');
-			addComponent: LuiSocialMediaBar newSeasSocialMediaBar;
-			yourself)
+	self 
+		componentName: 'searchAndSocial';
+		cssClass: 'sm';
+		addComponent: self searchFromComponentDefinition;
+		addComponent: LuiSocialMediaBar newSeasSocialMediaBar
+]
+
+{ #category : 'initialize' }
+LuiSearchAndSocialMediaBar >> searchFromComponentDefinition [
+	^ LuiForm new
+		addComponent: (LuiSearchBarPresenter named: 'searchBarPresenter');
+		yourself
+
 ]
