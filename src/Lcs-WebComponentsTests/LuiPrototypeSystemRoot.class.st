@@ -22,15 +22,22 @@ LuiPrototypeSystemRoot class >> new [
 LuiPrototypeSystemRoot >> aboutContactItemDefinition [
 	^ (LuiMenuItem named: 'contactMenuItem')
 		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Contact';
-		callback: [ 
-			Transcript cr; show: 'contactMenuItem clicked'.
-			self rootComponent mainForm switchToComponent: (
-				LuiMessagePresenter new
-					componentName: 'contactPresenter';
-						message: 'Contact';
-						yourself) ];
+        beButtonType;
+		buttonLabel: 'About';
+		buttonOnClickScriptBlock:  [ :s | self switchMainComponentTo: self aboutPresenterDefinition.
+                 s << ((s jQuery: self mainForm componentIdSelector) html: [ :r |
+                       r render: self mainForm currentSwitchableComponent ] );
+                    <<  ((s jQuery: self pageHeader  componentIdSelector)
+						html: [ :r | r render: self navbar ]) ];
 		title: 'Contact Menu Item';
+		yourself
+]
+
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> aboutPresenterDefinition [
+	^ LuiMessagePresenter new
+		componentName: 'aboutPresenter';
+		message: 'About';
 		yourself
 ]
 
@@ -86,6 +93,11 @@ LuiPrototypeSystemRoot >> contactSubenuComponentDefinition [
 		yourself
 ]
 
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> currentSwitchableComponent [
+	^ self rootComponent mainForm currentSwitchableComponent
+]
+
 { #category : 'defaults' }
 LuiPrototypeSystemRoot >> generatedId [
 	^ 'root'
@@ -95,13 +107,29 @@ LuiPrototypeSystemRoot >> generatedId [
 LuiPrototypeSystemRoot >> homeMenuItemComponentDefinition [
 	^ (LuiMenuItem named: 'homeMenuItem')
 		cssClass: LuiCssClassesMap / #'nav-item';
-		anchorLabel: 'Home';
+		beButtonType;
+		buttonLabel: 'Home';
+		buttonOnClickScriptBlock: [ :s | 
+			self switchMainComponentTo: self homePresenterDefinition.
+			s
+				<< ((s jQuery: self mainForm componentIdSelector)
+						html: [ :r | r render: self currentSwitchableComponent ]);
+				<<  ((s jQuery: self pageHeader  componentIdSelector)
+						html: [ :r | r render: self navbar ])];
+		title: 'Home Menu Item';
+		yourself	"anchorLabel: 'Home';
 		callback: [ 
 			Transcript
 				cr;
 				show: 'homeMenuItem clicked'.
-				self rootComponent mainForm switchToComponent: (LuiHomePresenter new) ];
-		title: 'Home Menu Item';
+				self rootComponent mainForm switchToComponent: (LuiHomePresenter new) ];"
+]
+
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> homePresenterDefinition [
+	^ LuiMessagePresenter new
+		componentName: 'homePresenter';
+		message: 'Home';
 		yourself
 ]
 
@@ -154,6 +182,11 @@ LuiPrototypeSystemRoot >> navBarComponentDefinition [
 ]
 
 { #category : 'components - querying' }
+LuiPrototypeSystemRoot >> navbar [
+	^ self componentNamed: 'pageHeader/navbar'
+]
+
+{ #category : 'components - querying' }
 LuiPrototypeSystemRoot >> pageHeader [
 	^ self componentNamed: 'pageHeader'
 ]
@@ -169,6 +202,11 @@ LuiPrototypeSystemRoot >> pageHeaderComponentDefinition [
 { #category : 'components - definition' }
 LuiPrototypeSystemRoot >> socialMediaBarComponentDefinition [
 	^ LuiSearchAndSocialMediaBar newSearchAndLinks
+]
+
+{ #category : 'components - definition' }
+LuiPrototypeSystemRoot >> switchMainComponentTo: aComponent [
+	self mainForm switchToComponent: aComponent
 ]
 
 { #category : 'updating' }

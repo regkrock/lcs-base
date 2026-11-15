@@ -53,6 +53,23 @@ LuiMenuItemExamples >> homeMenuItemWithimage [
 ]
 
 { #category : 'examples' }
+LuiMenuItemExamples >> menuItemButtonWithAjaxOnClick [
+	<gtExample>
+	| item block |
+	block := [ self ].
+	item := self newMenuItem.
+	item buttonLabel: 'Hello'.
+	item beButtonType.
+	self assert: item buttonType equals: 'button'.
+	item buttonOnClickScriptBlock: block.
+	self assert: item hasButtonComponent.
+	self assert: item buttonOnClickScriptBlock equals: block.
+	self assert: item buttonOrAnchorComponent equals: item buttonComponent.
+	self assert: item buttonLabel equals: 'Hello'.
+	^ item
+]
+
+{ #category : 'examples' }
 LuiMenuItemExamples >> menuItemWithAnchor [
 	<gtExample>
 	| item expectedHtml|

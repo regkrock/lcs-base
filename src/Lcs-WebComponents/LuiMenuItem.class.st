@@ -65,6 +65,11 @@ LuiMenuItem >> anchorSpanComponent [
 	^ self _anchorComponent spanComponent
 ]
 
+{ #category : 'button - attributes' }
+LuiMenuItem >> beButtonType [
+	self buttonComponent beButtonType
+]
+
 { #category : 'building' }
 LuiMenuItem >> buildFrom: aMenuItemDefinition [
 	self
@@ -85,6 +90,12 @@ LuiMenuItem >> buttonCssClass: aString [
 ]
 
 { #category : 'button - attributes' }
+LuiMenuItem >> buttonLabel [
+	self ensureNoAnchorComponent.
+	^ self buttonComponent label
+]
+
+{ #category : 'button - attributes' }
 LuiMenuItem >> buttonLabel: aString [
 	self ensureNoAnchorComponent.
 	self buttonComponent label: aString
@@ -102,11 +113,27 @@ LuiMenuItem >> buttonOnClick: aString [
 	self buttonComponent onClick: aString
 ]
 
+{ #category : 'button - attributes' }
+LuiMenuItem >> buttonOnClickScriptBlock [
+	^ self buttonComponent onClickScriptBlock
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> buttonOnClickScriptBlock: aBlock [ 
+	self buttonComponent onClickScriptBlock: aBlock
+]
+
 { #category : 'components' }
 LuiMenuItem >> buttonOrAnchorComponent [
 	self hasButtonComponent ifTrue: [ ^ self buttonComponent ].
 	self hasAnchorComponent ifTrue: [ ^ self anchorComponent ].
 	^ nil
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> buttonType [
+	self ensureNoAnchorComponent.
+	^ self buttonComponent buttonType
 ]
 
 { #category : 'attributes' }
@@ -196,6 +223,11 @@ LuiMenuItem >> onClick [
 { #category : 'button - attributes' }
 LuiMenuItem >> onClick: aString [
 	self buttonOnClick: aString
+]
+
+{ #category : 'rendering' }
+LuiMenuItem >> renderComponentOn: html [
+	super renderComponentOn: html
 ]
 
 { #category : 'components' }

@@ -32,6 +32,11 @@ LuiButton >> beSubmitType [
 ]
 
 { #category : 'attributes' }
+LuiButton >> buttonType [
+	^ self attributes buttonType
+]
+
+{ #category : 'attributes' }
 LuiButton >> buttonTypeAttribute [
 	^ self attributes buttonTypeAttribute
 ]
@@ -135,6 +140,16 @@ LuiButton >> onClick [
 { #category : 'attributes' }
 LuiButton >> onClick: aString [
 	self attributes onClick: aString
+]
+
+{ #category : 'attributes' }
+LuiButton >> onClickScriptBlock [
+	^ self attributes onClickScriptBlock
+]
+
+{ #category : 'attributes' }
+LuiButton >> onClickScriptBlock: aBlock [
+	self attributes onClickScriptBlock: aBlock
 ]
 
 { #category : 'rendering' }

@@ -25,9 +25,10 @@ LuiComponentAttributes >> addAttributesToTag: aTagBrush [
 		dataStClass: self parentComponent.
 	self attributes do: [ :eachaAtribute | 
 			eachaAtribute cachedValue ifNotNil: [ :object |
-				aTagBrush
+				eachaAtribute addTo: aTagBrush
+				"aTagBrush
 					perform: eachaAtribute tagAttributeSetterSelector
-					with: object ] ]
+					with: object" ] ]
 ]
 
 { #category : 'attributes - accessing' }
@@ -377,6 +378,11 @@ LuiComponentAttributes >> hasOnClickAttribute [
 ]
 
 { #category : 'attributes - testing' }
+LuiComponentAttributes >> hasOnClickScriptBlockAttribute [
+	^ self hasAttribute: LuiOnClickScriptBlockAttribute attributeName
+]
+
+{ #category : 'attributes - testing' }
 LuiComponentAttributes >> hasRenderingAttribute [
 	^ self hasAttribute: LuiRenderingAttribute attributeName
 ]
@@ -531,6 +537,21 @@ LuiComponentAttributes >> onClick: aString [
 { #category : 'attributes' }
 LuiComponentAttributes >> onClickAttribute [
 	^ self lazyInitializedAttribute: LuiOnClickAttribute
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> onClickScriptBlock [
+	^ self onClickScriptBlockAttribute onClickScriptBlock
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> onClickScriptBlock: aBlock [
+	^ self onClickScriptBlockAttribute onClickScriptBlock: aBlock
+]
+
+{ #category : 'attributes - accessing' }
+LuiComponentAttributes >> onClickScriptBlockAttribute [
+	^ self lazyInitializedAttribute: LuiOnClickScriptBlockAttribute
 ]
 
 { #category : 'accessing' }

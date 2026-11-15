@@ -87,15 +87,16 @@ LcsBaseFileLibrary >> mainCss [
     }
     .nav-item {
       position: relative;
+      display: flex;
     }
-    .nav-item a, .nav-item label {
+    .nav-item a, .nav-item label, .nav-item button {
       display: block;
       padding: 20px;
       color: #fff;
       text-decoration: none;
       cursor: pointer;
     }
-    .nav-item a:hover, .nav-item label:hover {
+    .nav-item a:hover, .nav-item label:hover, .nav-item button: hover {
       background-color: #444;
     }
 

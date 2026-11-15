@@ -23,7 +23,7 @@ LuiNavigationBar >> defaultCssClasses [
 { #category : 'initialize' }
 LuiNavigationBar >> initialize [
 	super initialize.
-	self componentName: 'nvabar'
+	self componentName: 'navbar'
 ]
 
 { #category : 'rendering' }

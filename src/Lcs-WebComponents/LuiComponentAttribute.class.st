@@ -29,9 +29,21 @@ LuiComponentAttribute >> _attributeValue [
 	^ self valueBlock cull: self component
 ]
 
+{ #category : 'rendering' }
+LuiComponentAttribute >> addTo: aTagBrush [
+	aTagBrush
+		perform: self tagAttributeSetterSelector
+		with: (self attributeObjectForTag: aTagBrush)
+]
+
 { #category : 'asking' }
 LuiComponentAttribute >> attributeName [
 	^ self class attributeName
+]
+
+{ #category : 'rendering' }
+LuiComponentAttribute >> attributeObjectForTag: aTagBrush [ 
+	^ self cachedValue
 ]
 
 { #category : 'asking' }

@@ -39,7 +39,7 @@ LuiComponent class >> on: aWebComponent [
 LuiComponent >> _componentNamed: aTargetNames [
 	| targetComponent |
 	targetComponent := self components at: aTargetNames first ifAbsent: [ ^ nil].
-	aTargetNames size = 1 ifTrue: [ ^targetComponent ].
+	aTargetNames size = 1 ifTrue: [ ^ targetComponent ].
 	^ targetComponent _componentNamed: (aTargetNames copyFrom: 2 to: aTargetNames size)
 ]
 
@@ -208,6 +208,11 @@ LuiComponent >> componentId [
 { #category : 'accessing' }
 LuiComponent >> componentId: anObject [
 	componentId := anObject
+]
+
+{ #category : 'accessing' }
+LuiComponent >> componentIdSelector [
+	^ '#' ,self componentId
 ]
 
 { #category : 'accessing' }
