@@ -7,18 +7,6 @@ Class {
 }
 
 { #category : 'instance creastaion' }
-LuiMenu class >> newMainMenu [
-	^ self newMainMenuNamed: 'mainMenu'
-]
-
-{ #category : 'instance creastaion' }
-LuiMenu class >> newMainMenuNamed: aComponentName [
-	^ super new
-		initializeMainMenuNamed: aComponentName;
-		yourself
-]
-
-{ #category : 'instance creastaion' }
 LuiMenu class >> newSubmenu [
 	^ self newSubmenuNamed: 'submenu'
 ]
@@ -58,11 +46,6 @@ LuiMenu >> gtViewTagName [
 LuiMenu >> initialize [
 	super initialize.
 	self componentName: 'menu'
-]
-
-{ #category : 'initialize' }
-LuiMenu >> initializeMainMenuNamed: aComponentName [
-	self componentName: aComponentName
 ]
 
 { #category : 'initialize' }

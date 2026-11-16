@@ -6,16 +6,16 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'components' }
+{ #category : 'components - utilities' }
 LuiNavigationBar >> addNavigationMenuBuiltFrom: aNavigationMenuDefinition [
 	| component |
-	component := LuiMenu newMainMenuNamed: 'navigation'.
+	component := LuiNavigationMenu new.
 	self addComponent: component.
-	self navigationComponent buildFrom: (LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions).
+	self navigationMenu buildFrom: (LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions).
 	^ component
 ]
 
-{ #category : 'components' }
+{ #category : 'defaults' }
 LuiNavigationBar >> defaultCssClasses [
 	^ OrderedCollection with: LuiCssClassesMap / #navbar
 ]
@@ -26,9 +26,9 @@ LuiNavigationBar >> initialize [
 	self componentName: 'navbar'
 ]
 
-{ #category : 'rendering' }
-LuiNavigationBar >> navigationComponent [
-	^ self componentNamed: 'navigation'
+{ #category : 'components - querying' }
+LuiNavigationBar >> navigationMenu [
+	^ self componentNamed: 'navMenu'
 ]
 
 { #category : 'rendering' }

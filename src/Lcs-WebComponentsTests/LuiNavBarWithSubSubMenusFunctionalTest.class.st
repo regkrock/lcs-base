@@ -7,8 +7,8 @@ Class {
 }
 
 { #category : 'setup' }
-LuiNavBarWithSubSubMenusFunctionalTest >> addMainNavigationMenuTo: aMainMenu [
-	aMainMenu buildFrom: self menuDefinition
+LuiNavBarWithSubSubMenusFunctionalTest >> addNavigationMenuTo: aNavigationMenu [
+	aNavigationMenu buildFrom: self menuDefinition
 ]
 
 { #category : 'initialize' }
@@ -17,9 +17,9 @@ LuiNavBarWithSubSubMenusFunctionalTest >> initialize [
 	super initialize.
 	self componentName: 'root'.
 	self componentId: 'root'.
-	self addComponent: (mainPage := LuiMainPage named: 'mainPage').
+	self addComponent: (mainPage := LuiFunctionalTestsMainPage new).
 
-	self addMainNavigationMenuTo: (mainPage componentNamed: 'navBar/navigation').
+	self addNavigationMenuTo: mainPage navigationBar navigationMenu.
 	(mainPage componentNamed: 'header/title') text: 'LCS Example'.
 	(mainPage componentNamed: 'applicationArea') homeMessage: self latinText
 ]

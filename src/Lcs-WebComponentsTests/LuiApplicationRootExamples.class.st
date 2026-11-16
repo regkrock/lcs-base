@@ -31,13 +31,13 @@ LuiApplicationRootExamples >> newComponent [
 { #category : 'examples' }
 LuiApplicationRootExamples >> rootWithHeader [
 	<gtExample>
-	| root headerComponent |
+	| root pageHeader |
 	root := self newComponent.
-	headerComponent := LuiPageHeader named: 'header'.
-	root addComponent: headerComponent.
+	pageHeader := LuiPageHeader new.
+	root addComponent: pageHeader.
 	
-	self assert: headerComponent parentComponent equals: root.
-	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"></header></div>'.
+	self assert: pageHeader parentComponent equals: root.
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="69637861" data-name="pageHeader" data-StClass="LuiPageHeader" class="pageHeader"></header></div>'.
 	^ root
 ]
 
@@ -46,9 +46,9 @@ LuiApplicationRootExamples >> rootWithHeaderWithLogo [
 	<gtExample>
 	| root headerComponent |
 	root := self rootWithHeader.
-	headerComponent := root componentNamed: 'header'.
+	headerComponent := root pageHeader.
 	headerComponent addComponent: (LuiImage named: 'logo').
-	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><img alt="" id="167883604" data-name="logo" data-StClass="LuiImage"/></header></div>' .
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="69637861" data-name="pageHeader" data-StClass="LuiPageHeader" class="pageHeader"><img alt="" id="72700333" data-name="logo" data-StClass="LuiImage"/></header></div>' .
 	^ root
 ]
 
@@ -57,20 +57,20 @@ LuiApplicationRootExamples >> rootWithHeaderWithMenu [
 	<gtExample>
 	| root |
 	root := self rootWithHeader.
-	(root componentNamed: 'header') addComponent: (LuiMenu newMainMenu).
-	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="menu"></ul></header></div>'.
+	root pageHeader addComponent: (LuiNavigationMenu new).
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="69637861" data-name="pageHeader" data-StClass="LuiPageHeader" class="pageHeader"><ul id="130176486" data-name="navMenu" data-StClass="LuiNavigationMenu" class="nav-links"></ul></header></div>'.
 	^ root
 ]
 
 { #category : 'examples' }
 LuiApplicationRootExamples >> rootWithHeaderWithMenuThreeSubMenus [
 	<gtExample>
-	| root mainMenu |
+	| root navigationMenu |
 	root := self rootWithHeaderWithMenu.
-	mainMenu := root componentNamed: 'header/mainMenu'.
-	mainMenu addComponent: (LuiMenuItem named: 'Home').
-	mainMenu addComponent: (LuiMenuItem named: 'Contact').
-	mainMenu addComponent: (LuiMenuItem named: 'About').
-	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="6011064" data-name="header" data-StClass="LuiPageHeader" class="pageHeader"><ul id="129228857" data-name="mainMenu" data-StClass="LuiMenu" class="menu"><li id="55653441" data-name="Home" data-StClass="LuiMenuItem" class="nav-item"></li><li id="31059052" data-name="Contact" data-StClass="LuiMenuItem" class="nav-item"></li><li id="140848643" data-name="About" data-StClass="LuiMenuItem" class="nav-item"></li></ul></header></div>'. 
+	navigationMenu := root componentNamed: 'pageHeader/navMenu'.
+	navigationMenu addComponent: (LuiMenuItem named: 'Home').
+	navigationMenu addComponent: (LuiMenuItem named: 'Contact').
+	navigationMenu addComponent: (LuiMenuItem named: 'About').
+	self assertRendered: root equals: '<div id="root" data-name="root" data-StClass="LuiApplicationRoot" class="applicationRoot"><header id="69637861" data-name="pageHeader" data-StClass="LuiPageHeader" class="pageHeader"><ul id="130176486" data-name="navMenu" data-StClass="LuiNavigationMenu" class="nav-links"><li id="70179866" data-name="Home" data-StClass="LuiMenuItem" class="nav-item"></li><li id="256645049" data-name="Contact" data-StClass="LuiMenuItem" class="nav-item"></li><li id="146287112" data-name="About" data-StClass="LuiMenuItem" class="nav-item"></li></ul></header></div>'. 
 	^ root
 ]

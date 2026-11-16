@@ -342,7 +342,7 @@ LcsBaseFileLibrary >> mainCss [
 	}
 /* search form */
 .pageHeader form {
-	height: 40px;
+	/* height: 40px; */
 	padding-right: 5px;
 	display: flex;
 	border: 1px solid #aeaeae;
@@ -352,8 +352,9 @@ LcsBaseFileLibrary >> mainCss [
 	background: #ffffff;
 	
 	& input {
-		height: 100%;
-		width: 300px;
+		/* height: 100%; */
+		/* width: 300px; */
+		color: black;
 		padding: 0 10px 0 20px;
 		border-radius: 5px;
 		font-size: 1rem;	

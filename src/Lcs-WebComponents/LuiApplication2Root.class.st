@@ -25,12 +25,16 @@ LuiApplication2Root >> initialize [
 { #category : 'initialize' }
 LuiApplication2Root >> initializeStandardLayout [
 	self addComponent: LuiPageHeader new.
-	(self componentNamed: 'header')
-		addComponent: LuiImage seasMonmouthFavicon.
-	(self componentNamed: 'header')
-		addComponent: (LuiNavigationBar named: 'navbar').
-	((self componentNamed: 'header') componentNamed: 'navbar')
-		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions
+	self pageHeader addComponent: LuiImage seasMonmouthFavicon.
+	self pageHeader addComponent: LuiNavigationBar new.
+	self pageHeader navigationBar
+		addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new
+				navigationMenuWithThreeMenuItemDefinitions
+]
+
+{ #category : 'initialize' }
+LuiApplication2Root >> pageHeader [
+	^ self componentNamed: 'header'
 ]
 
 { #category : 'updating' }

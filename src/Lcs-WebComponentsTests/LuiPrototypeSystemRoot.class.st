@@ -24,11 +24,9 @@ LuiPrototypeSystemRoot >> aboutContactItemDefinition [
 		cssClass: LuiCssClassesMap / #'nav-item';
         beButtonType;
 		buttonLabel: 'About';
-		buttonOnClickScriptBlock:  [ :s | self switchMainComponentTo: self aboutPresenterDefinition.
-                 s << ((s jQuery: self mainForm componentIdSelector) html: [ :r |
-                       r render: self mainForm currentSwitchableComponent ] );
-                    <<  ((s jQuery: self pageHeader  componentIdSelector)
-						html: [ :r | r render: self navbar ]) ];
+		buttonOnClickExecute: [self switchMainComponentTo: self aboutPresenterDefinition]
+			update: [ self currentSwitchableComponent ]
+			update: [ self navigationBar ];
 		title: 'Contact Menu Item';
 		yourself
 ]
@@ -109,20 +107,11 @@ LuiPrototypeSystemRoot >> homeMenuItemComponentDefinition [
 		cssClass: LuiCssClassesMap / #'nav-item';
 		beButtonType;
 		buttonLabel: 'Home';
-		buttonOnClickScriptBlock: [ :s | 
-			self switchMainComponentTo: self homePresenterDefinition.
-			s
-				<< ((s jQuery: self mainForm componentIdSelector)
-						html: [ :r | r render: self currentSwitchableComponent ]);
-				<<  ((s jQuery: self pageHeader  componentIdSelector)
-						html: [ :r | r render: self navbar ])];
+		buttonOnClickExecute: [self switchMainComponentTo: self homePresenterDefinition]
+			update: [ self currentSwitchableComponent ]
+			update: [ self navigationBar ];
 		title: 'Home Menu Item';
-		yourself	"anchorLabel: 'Home';
-		callback: [ 
-			Transcript
-				cr;
-				show: 'homeMenuItem clicked'.
-				self rootComponent mainForm switchToComponent: (LuiHomePresenter new) ];"
+		yourself
 ]
 
 { #category : 'components - definition' }
@@ -158,11 +147,16 @@ LuiPrototypeSystemRoot >> mainFormComponentDefinition [
 		yourself
 ]
 
+{ #category : 'components - querying' }
+LuiPrototypeSystemRoot >> navigationBar [
+	^ self pageHeader navigationBar
+]
+
 { #category : 'components - definition' }
-LuiPrototypeSystemRoot >> navBarComponentDefinition [
-	| navbar |
-	navbar := LuiNavigationBar new.
-	navbar
+LuiPrototypeSystemRoot >> navigationBarComponentDefinition [
+	| navigationBar |
+	navigationBar := LuiNavigationBar new.
+	navigationBar
 		addComponent: LuiBrand newSeasBrand;
 		addComponent: ((LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
 				assignStaticId: 'menu-toggle';
@@ -172,18 +166,13 @@ LuiPrototypeSystemRoot >> navBarComponentDefinition [
 				cssClass: 'menu-btn';
 				text: self class hamburgerCodePointString;
 				yourself);
-		addComponent: (LuiMainMenu new
+		addComponent: (LuiNavigationMenu new
 				addComponent: self homeMenuItemComponentDefinition;
 				addComponent: self contactSubenuComponentDefinition;
 				addComponent: self aboutContactItemDefinition;
 				addComponent: self socialMediaBarComponentDefinition;
 				yourself).
-	^ navbar
-]
-
-{ #category : 'components - querying' }
-LuiPrototypeSystemRoot >> navbar [
-	^ self componentNamed: 'pageHeader/navbar'
+	^ navigationBar
 ]
 
 { #category : 'components - querying' }
@@ -195,7 +184,7 @@ LuiPrototypeSystemRoot >> pageHeader [
 LuiPrototypeSystemRoot >> pageHeaderComponentDefinition [
 	| pageHeader |
 	pageHeader := LuiPageHeader new.
-	pageHeader addComponent: self navBarComponentDefinition.
+	pageHeader addComponent: self navigationBarComponentDefinition.
 	^ pageHeader
 ]
 

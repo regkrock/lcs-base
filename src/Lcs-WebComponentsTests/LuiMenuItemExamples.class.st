@@ -60,6 +60,7 @@ LuiMenuItemExamples >> menuItemButtonWithAjaxOnClick [
 	item := self newMenuItem.
 	item buttonLabel: 'Hello'.
 	item beButtonType.
+	self assert: (item buttonComponent onClickScriptBlockAttribute isKindOf: LuiOnClickScriptBlockAttribute).
 	self assert: item buttonType equals: 'button'.
 	item buttonOnClickScriptBlock: block.
 	self assert: item hasButtonComponent.

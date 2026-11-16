@@ -9,67 +9,29 @@ Class {
 { #category : 'examples' }
 LuiNavigationBarExamples >> exampleNavigationBar [
 	<gtExample>
-	| navBar labelComponent |
-	navBar := self newNavBar.
-	navBar componentName: 'navBar'.
-	navBar cssClass: LuiCssClassesMap / #'navBar'.
-	navBar addComponent: ((LuiLabel named: 'menuToggleLabel')
+	| navigationBar |
+	navigationBar := self newNavigationBar.
+	navigationBar cssClass: LuiCssClassesMap / #'navbar'.
+	navigationBar addComponent: ((LuiLabel named: 'menuToggleLabel')
 							for: 'menu-toggle';
 							cssClass: 'hamburger';
 							text: '';
 							yourself).
-	navBar addComponent: ((LuiCheckbox named: 'menuToggle')
+	navigationBar addComponent: ((LuiCheckbox named: 'menuToggle')
 							assignStaticId: 'menu-toggle';
 							text: '';
 							yourself).
-	navBar addComponent: LuiAnchor newSeasLogo.
-	navBar addComponent: LuiMenuExamples new exampleNavigationMenu.
-	^ navBar
+	navigationBar addComponent: LuiAnchor newSeasLogo.
+	navigationBar addComponent: LuiMenuExamples new exampleNavigationMenu.
+	^ navigationBar
 ]
 
 { #category : 'examples' }
-LuiNavigationBarExamples >> navBarWithNavigationMenuBuiltFromNavigationMenuDefinition [
-	"<gtExample>
-	| submenu subsubmenu navBar navigationMenu |
-	navBar := self newNavBar.
-	navigationMenu := navBar addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWith3Submenus.
-
-	self assert: navigationMenu components size = 3.
-	submenu := navigationMenu componentAtIndex: 1.
-	self assert: submenu componentName = 'home'.
-	self assert: submenu label = 'Home'.
-	self assert: submenu cssClassesString equals: 'menuItem'.
-	self assert: submenu components size = 1.
-	self assert: (submenu componentAtIndex: 1) componentName equals: 'span'.
-	self
-		assert: (submenu componentAtIndex: 1) label
-		equals: 'Menu 1 Item 1'.
-	self assert: (submenu componentAtIndex: 2) componentName equals: 'menu1Item2'.
-	self
-		assert: (submenu componentAtIndex: 2) label
-		equals: 'Menu 1 Item 2'.
-	self assert: (submenu componentAtIndex: 3) componentName equals: 'menu1Item3'.
-	self
-		assert: (submenu componentAtIndex: 3) label
-		equals: 'Menu 1 Item 3'.
-	submenu := navigationMenu componentAtIndex: 2.
-	self assert: submenu componentName = 'menu2'.
-	self assert: submenu components size = 2.
-	submenu := navigationMenu componentAtIndex: 3.
-	self assert: submenu componentName = 'menu3'.
-	self assert: submenu components size = 3.
-	subsubmenu := submenu componentAtIndex: 2.
-	self assert: subsubmenu componentName = 'menu3Item2'.
-	self assert: subsubmenu label = 'Menu 3 Item 2'.
-	^ navBar"
-]
-
-{ #category : 'examples' }
-LuiNavigationBarExamples >> navBarWithSimpleNavigationMenu [
+LuiNavigationBarExamples >> navigationBarWithSimpleNavigationMenu [
 	<gtExample>
-	| menuItem menuItemButton navigationMenu navBar |
-	navBar := self newNavBar.
-	navigationMenu := navBar addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions .
+	| menuItem menuItemButton navigationMenu navigationBar |
+	navigationBar := self newNavigationBar.
+	navigationMenu := navigationBar addNavigationMenuBuiltFrom: LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions .
 
 	self assert: navigationMenu components size = 3.
 	menuItem := navigationMenu componentAtIndex: 1.
@@ -84,13 +46,13 @@ LuiNavigationBarExamples >> navBarWithSimpleNavigationMenu [
 ]
 
 { #category : 'examples' }
-LuiNavigationBarExamples >> newNavBar [
+LuiNavigationBarExamples >> newNavigationBar [
 	<gtExample>
 	| component |
-	component := LuiNavigationBar named: 'navBar'.
+	component := LuiNavigationBar new.
 	self assert: component components isEmpty.
 	self assert: component componentId isNil.
-	self assert: component componentName equals: 'navBar'.
+	self assert: component componentName equals: 'navbar'.
 	self assert: component parentComponent isNil.
 	"self assert: component domainObject isNil."
 	self assert: component cssClassesString equals: LuiCssClassesMap / #navbar.

@@ -39,6 +39,11 @@ LuiApplicationRoot >> initialize [
 	self cssClass: self rootComponentCssClassName
 ]
 
+{ #category : 'components - querying' }
+LuiApplicationRoot >> pageHeader [
+	^ self componentNamed: 'pageHeader'
+]
+
 { #category : 'updating' }
 LuiApplicationRoot >> updateFilesInRoot: anHtmlRoot [ 
 	"anHtmlRoot javascript url: JQDeploymentLibrary"

@@ -1,6 +1,6 @@
 Class {
-	#name : 'LuiMainPage',
-	#superclass : 'LuiPage',
+	#name : 'LuiFunctionalTestsMainPage',
+	#superclass : 'LuiComponent',
 	#instVars : [
 		'pageTitle',
 		'nextApplicationAreaClass',
@@ -13,93 +13,101 @@ Class {
 }
 
 { #category : 'components' }
-LuiMainPage >> applicationAreaComponent [
+LuiFunctionalTestsMainPage >> applicationAreaComponent [
 	^ self componentNamed: self applicationAreaComponentName
 ]
 
 { #category : 'component names' }
-LuiMainPage >> applicationAreaComponentName [
+LuiFunctionalTestsMainPage >> applicationAreaComponentName [
 	^ 'applicationArea'
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> currentApplicationAreaComponent [
+LuiFunctionalTestsMainPage >> currentApplicationAreaComponent [
 	^ currentApplicationAreaComponent
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> currentApplicationAreaComponent: aComponent [
+LuiFunctionalTestsMainPage >> currentApplicationAreaComponent: aComponent [
 	currentApplicationAreaComponent := aComponent
 ]
 
 { #category : 'component class' }
-LuiMainPage >> currentApplicationAreaComponentClass [
+LuiFunctionalTestsMainPage >> currentApplicationAreaComponentClass [
 	^ self currentApplicationAreaComponent class
 ]
 
 { #category : 'component names' }
-LuiMainPage >> currentApplicationAreaComponentName [
+LuiFunctionalTestsMainPage >> currentApplicationAreaComponentName [
 	^ self currentApplicationAreaComponent ifNil: [ nil ] ifNotNil: [ :component | component componentName ]
 ]
 
+{ #category : 'component names' }
+LuiFunctionalTestsMainPage >> headerComponentName [
+	^ 'pageHeader'
+]
+
 { #category : 'initialize' }
-LuiMainPage >> initialize [
+LuiFunctionalTestsMainPage >> initialize [
 	super initialize.
-	self addComponent: (LuiPageHeader named: self headerComponentName).
-	self headerComponent addComponent: (LuiPageTitle named: self titleComponentName).
-	self addComponent: (LuiNavigationBar named: self navBarComponentName).
-	self navBarComponent addComponent: (LuiMainMenu newMainMenuNamed: self navigationComponentName).
+	self componentName: 'mainPage'.
+	self addComponent: LuiPageHeader new.
+	self pageHeader addComponent: (LuiPageTitle named: self titleComponentName).
+	self addComponent: LuiNavigationBar new.
+	self navigationBar addComponent: LuiNavigationMenu new.
 	self addComponent: (LuiHomeArea named: self applicationAreaComponentName).
 	self swappedApplicationAreas: (LuiSwappedApplicationAreas named: 'swapArea')
 ]
 
 { #category : 'components' }
-LuiMainPage >> navBarComponent [
-	^ self componentNamed: self navBarComponentName
+LuiFunctionalTestsMainPage >> navigationBar [
+	^ self componentNamed: self navigationBarComponentName
 ]
 
 { #category : 'component names' }
-LuiMainPage >> navBarComponentName [
-	^ 'navBar'
+LuiFunctionalTestsMainPage >> navigationBarComponentName [
+	^ 'navbar'
 ]
 
 { #category : 'components' }
-LuiMainPage >> navigationComponent [
-	^ self navBarComponent navigationComponent
-]
-
-{ #category : 'component names' }
-LuiMainPage >> navigationComponentName [
-	^ 'navigation'
+LuiFunctionalTestsMainPage >> navigationMenu [
+	^ self navigationBar navigationMenu
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> nextApplicationAreaClass [
+LuiFunctionalTestsMainPage >> nextApplicationAreaClass [
 	^ nextApplicationAreaClass
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> nextApplicationAreaClass: anObject [
+LuiFunctionalTestsMainPage >> nextApplicationAreaClass: anObject [
 	nextApplicationAreaClass := anObject
 ]
 
+{ #category : 'components' }
+LuiFunctionalTestsMainPage >> pageHeader [
+	^ self
+		componentNamed: self headerComponentName
+		ifNil: [ self addComponent: (LuiPageHeader named: self headerComponentName) ]
+]
+
 { #category : 'accessing' }
-LuiMainPage >> pageTitle [
+LuiFunctionalTestsMainPage >> pageTitle [
 	^ pageTitle
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> pageTitle: anObject [
+LuiFunctionalTestsMainPage >> pageTitle: anObject [
 	pageTitle := anObject
 ]
 
 { #category : 'components' }
-LuiMainPage >> pageTitleComponent [
-	^ self headerComponent titleComponent
+LuiFunctionalTestsMainPage >> pageTitleComponent [
+	^ self pageHeader pageTitleComponent
 ]
 
 { #category : 'rendering' }
-LuiMainPage >> renderSubcomponentsOn: html [
+LuiFunctionalTestsMainPage >> renderSubcomponentsOn: html [
 	self setCurrentApplicatonAreaComponent.
 	self nextApplicationAreaClass notNil
 		ifTrue: [ self swapToNewApplicationAreaComponent ].
@@ -108,13 +116,13 @@ LuiMainPage >> renderSubcomponentsOn: html [
 ]
 
 { #category : 'rendering' }
-LuiMainPage >> setCurrentApplicatonAreaComponent [
+LuiFunctionalTestsMainPage >> setCurrentApplicatonAreaComponent [
 	self currentApplicationAreaComponent isNil
 		ifTrue: [ self currentApplicationAreaComponent: self applicationAreaComponent ]
 ]
 
 { #category : 'building' }
-LuiMainPage >> swapToNewApplicationAreaComponent [
+LuiFunctionalTestsMainPage >> swapToNewApplicationAreaComponent [
 	| currentComponent |
 	currentComponent := self removeComponentNamed: self applicationAreaComponentName.
 	self swappedApplicationAreas swappedOut: currentComponent.
@@ -124,16 +132,16 @@ LuiMainPage >> swapToNewApplicationAreaComponent [
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> swappedApplicationAreas [
+LuiFunctionalTestsMainPage >> swappedApplicationAreas [
 	^ swappedApplicationAreas
 ]
 
 { #category : 'accessing' }
-LuiMainPage >> swappedApplicationAreas: anObject [
+LuiFunctionalTestsMainPage >> swappedApplicationAreas: anObject [
 	swappedApplicationAreas := anObject
 ]
 
 { #category : 'component names' }
-LuiMainPage >> titleComponentName [
+LuiFunctionalTestsMainPage >> titleComponentName [
 	^ 'title'
 ]

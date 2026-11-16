@@ -56,36 +56,10 @@ LuiNavigationMenuDefinitionExamples >> newDefinition [
 ]
 
 { #category : 'examples' }
-LuiNavigationMenuDefinitionExamples >> softwareCompanyNavbarMainMenuDefinition [
+LuiNavigationMenuDefinitionExamples >> softwareCompanyNavigatioMenuFromHandCodedStructure [
+	"This is a manually created menu which should be the same as #softwareCompanyNavigationMenu that uses the definition to generate the menu"
 	<gtExample>
-	| menuDefinition |
-	menuDefinition := self navigationMenuDefinition.
-	menuDefinition addDefinition: (LuiMenuItemDefinition new label: 'Home'; url: '#').
-	menuDefinition addDefinition: (
-		(LcsSubmenuDefinition new label: 'Services')
-			addDefinition: (LuiMenuItemDefinition new label: 'Web Design'; url: '#');
-			addDefinition: ((LcsSubmenuDefinition new label: 'Development')
-								addDefinition: (LuiMenuItemDefinition new label: 'Frontend Code'; url: '#');
-								addDefinition: (LuiMenuItemDefinition new label: 'Backend Logic'; url: '#');
-								addDefinition: (LuiMenuItemDefinition new label: 'Mobile Apps'; url: '#');
-								yourself);
-			addDefinition: (LuiMenuItemDefinition new label: 'SEO Marketing'; url: '#');
-			yourself).
-	menuDefinition addDefinition: (
-		(LcsSubmenuDefinition new label: 'Company')
-			addDefinition: (LuiMenuItemDefinition new label: 'About Us'; url: '#');
-			addDefinition: (LuiMenuItemDefinition new label: 'Our Team'; url: '#');
-			addDefinition: (LuiMenuItemDefinition new label: 'Carrers'; url: '#');
-			yourself).
-	menuDefinition addDefinition: (LuiMenuItemDefinition new label: 'Contact'; url: '#').
-	^ menuDefinition
-]
-
-{ #category : 'examples' }
-LuiNavigationMenuDefinitionExamples >> softwareCompanyNavbarMainMenuFromHandCodedStructure [
-	"This is a manually created menu which should be the same as #softwareCompanyNavbarMainMenu that uses the definition to generate the menu"
-	<gtExample>
-	^ (LuiMainMenu named: 'mainMenu')
+	^ (LuiNavigationMenu new)
 		addComponent: ((LuiMenuItem named: 'home')
 				anchorHref: '#';
 				anchorLabel: 'Home';
@@ -144,10 +118,36 @@ LuiNavigationMenuDefinitionExamples >> softwareCompanyNavbarMainMenuFromHandCode
 ]
 
 { #category : 'examples' }
-LuiNavigationMenuDefinitionExamples >> softwareCompanyNavbarMainMenuFromMenuDefinition [
+LuiNavigationMenuDefinitionExamples >> softwareCompanyNavigationMenuDefinition [
+	<gtExample>
+	| menuDefinition |
+	menuDefinition := self navigationMenuDefinition.
+	menuDefinition addDefinition: (LuiMenuItemDefinition new label: 'Home'; url: '#').
+	menuDefinition addDefinition: (
+		(LcsSubmenuDefinition new label: 'Services')
+			addDefinition: (LuiMenuItemDefinition new label: 'Web Design'; url: '#');
+			addDefinition: ((LcsSubmenuDefinition new label: 'Development')
+								addDefinition: (LuiMenuItemDefinition new label: 'Frontend Code'; url: '#');
+								addDefinition: (LuiMenuItemDefinition new label: 'Backend Logic'; url: '#');
+								addDefinition: (LuiMenuItemDefinition new label: 'Mobile Apps'; url: '#');
+								yourself);
+			addDefinition: (LuiMenuItemDefinition new label: 'SEO Marketing'; url: '#');
+			yourself).
+	menuDefinition addDefinition: (
+		(LcsSubmenuDefinition new label: 'Company')
+			addDefinition: (LuiMenuItemDefinition new label: 'About Us'; url: '#');
+			addDefinition: (LuiMenuItemDefinition new label: 'Our Team'; url: '#');
+			addDefinition: (LuiMenuItemDefinition new label: 'Carrers'; url: '#');
+			yourself).
+	menuDefinition addDefinition: (LuiMenuItemDefinition new label: 'Contact'; url: '#').
+	^ menuDefinition
+]
+
+{ #category : 'examples' }
+LuiNavigationMenuDefinitionExamples >> softwareCompanyNavigationMenuFromMenuDefinition [
 	<gtExample>
 	| menuDefinition menu menuItem submenu developmentSubmenu|
-	menuDefinition := self softwareCompanyNavbarMainMenuDefinition.
+	menuDefinition := self softwareCompanyNavigationMenuDefinition.
 	menu := menuDefinition asMenuComponent.
 	self assert: (menu hasComponentNamed: 'homeMenuItem').
 	self assert: (menuItem := menu componentNamed: 'servicesMenuItem') notNil.

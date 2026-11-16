@@ -32,7 +32,7 @@ LuiExampleRoot >> generatedId [
 { #category : 'initialize' }
 LuiExampleRoot >> initialize [
 	super initialize.
-	self initializeWithHeaderWithNavBar
+	self initializeWithHeaderWithNavigationBar
 		addComponent: (
 			LuiMainForm new
 				addComponent: (
@@ -52,8 +52,8 @@ LuiExampleRoot >> initializeWithComponent: aComponent [
 ]
 
 { #category : 'initialize' }
-LuiExampleRoot >> initializeWithHeaderWithNavBar [
-	self initialize.
+LuiExampleRoot >> initializeWithHeaderWithNavigationBar [
+	"self initialize."
 	self addComponent: LuiDiv mobileMenuButton.
 	self addComponent: LuiPageHeaderExamples new exampleHeader.
 ]

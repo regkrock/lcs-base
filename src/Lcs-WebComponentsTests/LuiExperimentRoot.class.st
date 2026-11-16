@@ -58,7 +58,7 @@ LuiExperimentRoot >> pageHeader [
 { #category : 'components' }
 LuiExperimentRoot >> pageHeaderComponentDefinition [
 	^ (LuiPageHeader new)
-		addComponent: LuiMenuExamples new softwareCompanyNavbar;
+		addComponent: LuiMenuExamples new softwareCompanyNavigationBar;
 		yourself
 ]
 

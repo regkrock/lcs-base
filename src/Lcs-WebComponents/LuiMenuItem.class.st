@@ -114,6 +114,21 @@ LuiMenuItem >> buttonOnClick: aString [
 ]
 
 { #category : 'button - attributes' }
+LuiMenuItem >> buttonOnClickExecute: anActionBlock update: aComponentBlock [
+	self buttonComponent onClickScriptBlockAttribute
+		execute: anActionBlock
+		update: aComponentBlock
+]
+
+{ #category : 'button - attributes' }
+LuiMenuItem >> buttonOnClickExecute: anActionBlock update: aComponentBlock update: aComponenetBlock2 [ 
+	self buttonComponent onClickScriptBlockAttribute
+		execute: anActionBlock
+		update: aComponentBlock 
+		update: aComponenetBlock2
+]
+
+{ #category : 'button - attributes' }
 LuiMenuItem >> buttonOnClickScriptBlock [
 	^ self buttonComponent onClickScriptBlock
 ]

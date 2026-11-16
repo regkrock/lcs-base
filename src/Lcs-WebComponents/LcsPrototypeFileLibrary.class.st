@@ -140,173 +140,9 @@ headerMobileBtn.onClick = function() {
 ]
 
 { #category : 'css' }
-LcsPrototypeFileLibrary >> navigationMenuCss [
-^'/* --- Navbar Styling --- */
-.navbar {
-  /*background-color: #1a1a2e;*/
-  /*color: #ffffff;*/
-  position: relative;
-  z-index: 1000;
-}
-
-.nav-container {
-  /* max-width: 1200px; */
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  height: 60px;
-}
-.topHeader .brand {
-	align-items: center;
-	display: flex;
-	font-size: 1.5em;
-	font-weight: 700;
-	white-space: nowrap;
-	gap: 0.1em;
-	}
-.logo {
-	height: 40px;
-	width: fit-content;
-	align-self: center;
-	cursor: pointer;
-	min-width: 50px;
-	
-	& .logoImage {
-		height: 100%;
-		}
-	}
-
-/* --- Navigation Base --- */
-.nav-menu {
-  display: flex;
-  list-style: none;
-}
-
-.nav-item {
-  position: relative;
-}
-
-.nav-menu a {
-  display: block;
-  /* --- color: #ffffff; --- */
-  white-space: nowrap;
-  text-decoration: none;
-  padding: 20px;
-  transition: background 0.3s;
-}
-
-.nav-menu a:hover {
-  background-color: #999999;
-}
-
-.arrow {
-  font-size: 10px;
-  margin-left: 5px;
-  display: inline-block;
-}
-
-/* --- Submenu Setup (Desktop Layout) --- */
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #777777;
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  list-style: none;
-}
-
-/* Nested submenus shift to the right */
-.submenu .submenu {
-  top: 0;
-  left: 100%;
-  background-color: #777777;
-}
-
-/* Hover triggers to reveal deep submenus */
-.nav-menu li:hover > .submenu {
-  display: block;
-}
-
-/* --- Mobile Toggle Implementation --- */
-.menu-toggle-checkbox {
-  display: none;
-}
-
-.hamburger {
-  display: none;
-  cursor: pointer;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.hamburger span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  transition: 0.3s;
-}
-
-/* --- Responsive Media Query (Max-Width: 768px) --- */
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-
-  /* Transform top menu into an accordion panel drawer */
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #aaaaaa;
-    flex-direction: column;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  /* Checkbox hack to reveal mobile navbar drawer */
-  .menu-toggle-checkbox:checked ~ .nav-menu {
-    display: flex;
-  }
-
-  /* Animate hamburger to an ''X'' shape when active */
-  .menu-toggle-checkbox:checked ~ .hamburger span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .menu-toggle-checkbox:checked ~ .hamburger span:nth-child(2) {
-    opacity: 0;
-  }
-  .menu-toggle-checkbox:checked ~ .hamburger span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  /* Make submenus stack inline vertically on mobile */
-  .submenu, .submenu .submenu {
-    position: static;
-    width: 100%;
-    box-shadow: none;
-    background-color: #aaaaaa;
-    padding-left: 15px; /* Indent submenus */
-  }
-
-  /* Change arrows to point down for mobile expansion layout */
-  .has-submenu a .arrow {
-    transform: rotate(270deg);
-  }
-}
-'
-]
-
-{ #category : 'css' }
-LcsPrototypeFileLibrary >> navigationMenuCss_2 [
+LcsPrototypeFileLibrary >> navigationBarMenuCss_2 [
 ^'/* <nav> tag which is like an <ul> */
-.navBar {
+.navbar {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -662,6 +498,170 @@ LcsPrototypeFileLibrary >> navigationMenuCss_2 [
 ]
 
 { #category : 'css' }
+LcsPrototypeFileLibrary >> navigationMenuCss [
+^'/* --- Navbar Styling --- */
+.navbar {
+  /*background-color: #1a1a2e;*/
+  /*color: #ffffff;*/
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-container {
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+}
+.topHeader .brand {
+	align-items: center;
+	display: flex;
+	font-size: 1.5em;
+	font-weight: 700;
+	white-space: nowrap;
+	gap: 0.1em;
+	}
+.logo {
+	height: 40px;
+	width: fit-content;
+	align-self: center;
+	cursor: pointer;
+	min-width: 50px;
+	
+	& .logoImage {
+		height: 100%;
+		}
+	}
+
+/* --- Navigation Base --- */
+.nav-menu {
+  display: flex;
+  list-style: none;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-menu a {
+  display: block;
+  /* --- color: #ffffff; --- */
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 20px;
+  transition: background 0.3s;
+}
+
+.nav-menu a:hover {
+  background-color: #999999;
+}
+
+.arrow {
+  font-size: 10px;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+/* --- Submenu Setup (Desktop Layout) --- */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #777777;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  list-style: none;
+}
+
+/* Nested submenus shift to the right */
+.submenu .submenu {
+  top: 0;
+  left: 100%;
+  background-color: #777777;
+}
+
+/* Hover triggers to reveal deep submenus */
+.nav-menu li:hover > .submenu {
+  display: block;
+}
+
+/* --- Mobile Toggle Implementation --- */
+.menu-toggle-checkbox {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+/* --- Responsive Media Query (Max-Width: 768px) --- */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  /* Transform top menu into an accordion panel drawer */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #aaaaaa;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  /* Checkbox hack to reveal mobile navbar drawer */
+  .menu-toggle-checkbox:checked ~ .nav-menu {
+    display: flex;
+  }
+
+  /* Animate hamburger to an ''X'' shape when active */
+  .menu-toggle-checkbox:checked ~ .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle-checkbox:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle-checkbox:checked ~ .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Make submenus stack inline vertically on mobile */
+  .submenu, .submenu .submenu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    background-color: #aaaaaa;
+    padding-left: 15px; /* Indent submenus */
+  }
+
+  /* Change arrows to point down for mobile expansion layout */
+  .has-submenu a .arrow {
+    transform: rotate(270deg);
+  }
+}
+'
+]
+
+{ #category : 'css' }
 LcsPrototypeFileLibrary >> sampleCss [
 	<css: 2>
 ]
@@ -708,8 +708,9 @@ LcsPrototypeFileLibrary >> socialMediaCss [
 	background: #ffffff;
 	
 	& input {
-		height: 100%;
-		width: 300px;
+		color: black;
+		/* height: 100%; */
+		/* width: 300px; */
 		padding: 0 10px 0 20px;
 		border-radius: 5px;
 		font-size: 1rem;	

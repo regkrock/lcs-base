@@ -9,14 +9,14 @@ Class {
 { #category : 'examples' }
 LuiMainPageExamples >> mainPage [
 	<gtExample>
-	| mainPageComponent headerComponent titleComponent navBarComponent navigationComponent applicationAreaComponent |
-	mainPageComponent := LuiMainPage named: 'mainPage'.
+	| mainPageComponent headerComponent titleComponent navigationBar navigationMenu applicationAreaComponent |
+	mainPageComponent := LuiFunctionalTestsMainPage new.
 	
-	self assert: (mainPageComponent isKindOf: LuiMainPage).
+	self assert: (mainPageComponent isKindOf: LuiFunctionalTestsMainPage).
 	self assert: mainPageComponent parentComponent isNil.
 
-	headerComponent := mainPageComponent headerComponent.
-	self assert: (mainPageComponent headerComponent isKindOf: LuiPageHeader).
+	headerComponent := mainPageComponent pageHeader.
+	self assert: (mainPageComponent pageHeader isKindOf: LuiPageHeader).
 	self assert: headerComponent parentComponent equals: mainPageComponent.
 		
 	titleComponent := headerComponent pageTitleComponent.
@@ -25,13 +25,13 @@ LuiMainPageExamples >> mainPage [
 	self assert: (titleComponent isKindOf: LuiPageTitle).
 	self assert: titleComponent parentComponent equals: headerComponent.
 
-	navBarComponent := mainPageComponent navBarComponent.
-	self assert: (navBarComponent isKindOf: LuiNavigationBar).
-	self assert: navBarComponent parentComponent equals: mainPageComponent.
+	navigationBar := mainPageComponent navigationBar.
+	self assert: (navigationBar isKindOf: LuiNavigationBar).
+	self assert: navigationBar parentComponent equals: mainPageComponent.
 	
-	navigationComponent := navBarComponent navigationComponent.
-	self assert: navigationComponent parentComponent equals: navBarComponent.
-	self assert: (navigationComponent isKindOf: LuiMenu).
+	navigationMenu := navigationBar navigationMenu.
+	self assert: navigationMenu parentComponent equals: navigationBar.
+	self assert: (navigationMenu isKindOf: LuiMenu).
 
 	applicationAreaComponent := mainPageComponent applicationAreaComponent.
 	self assert: applicationAreaComponent parentComponent equals: mainPageComponent.

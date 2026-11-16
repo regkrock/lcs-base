@@ -12,7 +12,7 @@ Class {
 { #category : 'defaults' }
 LuiPageHeader >> addNavigationMenuBuiltFrom: aNavigationMenuDefinition [
 	| component |
-	component := LuiMenu newMainMenuNamed: 'navigation'.
+	component := LuiNavigationMenu new.
 	self addComponent: component.
 	component addNavigationMenuBuiltFrom: (LuiNavigationMenuDefinitionExamples new navigationMenuWithThreeMenuItemDefinitions).
 	^ component
@@ -48,6 +48,11 @@ LuiPageHeader >> loginButtonBarComponentName [
 	^ 'loginButtonBar'
 ]
 
+{ #category : 'components - querying' }
+LuiPageHeader >> navigationBar [
+	^ self componentNamed: 'navbar'
+]
+
 { #category : 'defaults' }
 LuiPageHeader >> organizationLogoComponent [
 	^ self
@@ -58,6 +63,11 @@ LuiPageHeader >> organizationLogoComponent [
 { #category : 'defaults' }
 LuiPageHeader >> organizationLogoComponentName [
 	^ 'organizationLogo'
+]
+
+{ #category : 'components - querying' }
+LuiPageHeader >> pageHeader [
+	^ self componentNamed: 'header'
 ]
 
 { #category : 'updating' }

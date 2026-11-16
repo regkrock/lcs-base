@@ -135,7 +135,7 @@ body{
 	z-index: 100; /*forces header to always be on top*/
 	}
 /* <nav> tag which is like an <ul> */
-.navBar {
+.navbar {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

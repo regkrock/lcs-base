@@ -39,8 +39,8 @@ LuiSwapApplicationAreaFunctionalTest class >> menuBarDefinition [
 ]
 
 { #category : 'setup' }
-LuiSwapApplicationAreaFunctionalTest >> addMainNavigationMenuTo: aMainMenu [
-	aMainMenu buildFrom: self menuDefinition
+LuiSwapApplicationAreaFunctionalTest >> addNavigationMenuTo: aNavigationMenu [
+	aNavigationMenu buildFrom: self menuDefinition
 ]
 
 { #category : 'initialize' }
@@ -49,10 +49,10 @@ LuiSwapApplicationAreaFunctionalTest >> initialize [
 	super initialize.
 	self componentName: 'root'.
 	self componentId: 'root'.
-	self addComponent: (mainPage := LuiMainPage named: 'mainPage').
+	self addComponent: (mainPage := LuiFunctionalTestsMainPage new).
 
-	self addMainNavigationMenuTo: (mainPage componentNamed: 'navBar/navigation').
-	(mainPage componentNamed: 'header/title') text: 'Swap Application Area'.
+	self addNavigationMenuTo: mainPage navigationBar navigationMenu.
+	mainPage pageTitleComponent text: 'Swap Application Area'.
 
 ]
 

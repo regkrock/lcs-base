@@ -1,5 +1,5 @@
 Class {
-	#name : 'LuiMainMenu',
+	#name : 'LuiNavigationMenu',
 	#superclass : 'LuiMenu',
 	#category : 'Lcs-WebComponents-Menus',
 	#package : 'Lcs-WebComponents',
@@ -7,12 +7,12 @@ Class {
 }
 
 { #category : 'defaults' }
-LuiMainMenu >> defaultCssClasses [
+LuiNavigationMenu >> defaultCssClasses [
 	^ OrderedCollection with: LuiCssClassesMap / #'nav-links'
 ]
 
 { #category : 'inititalize' }
-LuiMainMenu >> initialize [
+LuiNavigationMenu >> initialize [
 	super initialize.
-	self componentName: 'mainMenu'
+	self componentName: 'navMenu'
 ]

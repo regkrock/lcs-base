@@ -58,7 +58,7 @@ LcsExampleFileLibrary >> cssDefinitionSelectors [
 		cssRootDefinition
 		bodyDefinition
 		topHeaderDefinition
-		navBarCssClassDefinition
+		#navbarCssClassDefinition
 		logoDefinition
 		menuBarDefinition_codingArtist
 		"menuBarDefinition"
@@ -503,9 +503,9 @@ LcsExampleFileLibrary >> moreVert24Svg [
 ]
 
 { #category : 'css - definitons' }
-LcsExampleFileLibrary >> navBarCssClassDefinition [
+LcsExampleFileLibrary >> navbarCssClassDefinition [
 	<cssDefinition>
-^'.navBar {
+^'.navbar {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

@@ -152,6 +152,11 @@ LuiButton >> onClickScriptBlock: aBlock [
 	self attributes onClickScriptBlock: aBlock
 ]
 
+{ #category : 'attributes' }
+LuiButton >> onClickScriptBlockAttribute [
+	^ self attributes onClickScriptBlockAttribute
+]
+
 { #category : 'rendering' }
 LuiButton >> renderComponentOn: html [
 	html button

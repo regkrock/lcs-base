@@ -24,24 +24,24 @@ LuiSEASRoot >> initialize [
 
 { #category : 'instance creation' }
 LuiSEASRoot >> initializeStandardLayout [
-	| navBar navigationMenu homeMenuItem contactMenuItem aboutMenuItem header submenu contactMenuItemB contactSubMenuSubmenu |
+	| navigationBar navigationMenu homeMenuItem contactMenuItem aboutMenuItem header submenu contactMenuItemB contactSubMenuSubmenu |
 	header := LuiPageHeader new.
 	self addComponent: header.
-	navBar := LuiNavigationBar named: 'navBar'.
-	header addComponent: navBar.
-	navBar addComponent: LuiImage seasMonmouthFavicon.
-	navigationMenu := LuiMenu newMainMenu.
-	navBar addComponent: navigationMenu.
+	navigationBar := LuiNavigationBar new.
+	header addComponent: navigationBar.
+	navigationBar addComponent: LuiImage seasMonmouthFavicon.
+	navigationMenu := LuiNavigationMenu new.
+	navigationBar addComponent: navigationMenu.
 	homeMenuItem := (LuiMenuItem named: 'homeMenuItem')
-						label: 'Home';
+						buttonLabel: 'Home';
 						title: 'Home Menu Item';
 						yourself.
 	contactMenuItem := (LuiMenuItem named: 'contactMenuItem')
-						label: 'Contact';
+						buttonLabel: 'Contact';
 						title: 'Contact Menu Item';
 						yourself.
 	aboutMenuItem := (LuiMenuItem named: 'aboutMenuItem')
-						label: 'About';
+						buttonLabel: 'About';
 						title: 'About Menu Item';
 						yourself.
 	navigationMenu
@@ -56,21 +56,21 @@ LuiSEASRoot >> initializeStandardLayout [
 	submenu
 		addComponent:
 			((LuiMenuItem named: 'contactMenuItemA')
-				label: 'Contact A');
+				buttonLabel: 'Contact A');
 		addComponent: (
 			contactMenuItemB := (LuiMenuItem named: 'contactMenuItemB')
-				label: 'Contact B');
+				buttonLabel: 'Contact B');
 		addComponent: (
 			(LuiMenuItem named: 'contactMenuItemC')
-				label: 'Contact C').
+				buttonLabel: 'Contact C').
 				
 	contactMenuItemB  addComponent: (contactSubMenuSubmenu := LuiMenu newSubmenuNamed: 'contactSubMenuSubmenu').
 	contactSubMenuSubmenu
 		addComponent: ((LuiMenuItem named: 'contactMenuItemA_A')
-				label: 'Contact A Item A');
+				buttonLabel: 'Contact A Item A');
 		addComponent: (
 			contactMenuItemB := (LuiMenuItem named: 'contactMenuItemB_B')
-				label: 'Contact B Item B')
+				buttonLabel: 'Contact B Item B')
 
 ]
 
