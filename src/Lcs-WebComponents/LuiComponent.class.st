@@ -635,6 +635,11 @@ LuiComponent >> parentComponent: anObject [
 ]
 
 { #category : 'components - querying' }
+LuiComponent >> parentComponentId [
+	^ self parentComponent componentId
+]
+
+{ #category : 'components - querying' }
 LuiComponent >> parentComponentNamed: aString [
 	self componentName = aString ifTrue: [ ^ self ].
 	^ self parentComponent

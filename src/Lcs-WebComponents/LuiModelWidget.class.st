@@ -79,7 +79,7 @@ LuiModelWidget >> addDependentComponent: aLuiComponent [
 
 { #category : 'rendering' }
 LuiModelWidget >> addRenderingOfComponent: aComponent to: aScript [ 
-	aScript << (aScript jQuery id: aComponent parentComponent componentId) load html: [ :ajaxHtml | aComponent parentComponent renderDetailsOn: ajaxHtml ]
+	aScript << (aScript jQuery id: aComponent parentComponentId) load html: [ :ajaxHtml | aComponent parentComponent renderDetailsOn: ajaxHtml ]
 ]
 
 { #category : 'instance creation' }

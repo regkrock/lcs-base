@@ -20,8 +20,8 @@ LuiApplication2RootExamples >> newComponent [
 	<gtExample>
 	| component |
 	component := LuiApplication2Root new.
-	self assert: component componentName = LuiComponent new rootComponentName.
-	self assert: component componentId = LuiComponent new rootComponentId.
+	self assert: component componentName equals: LuiComponent new rootComponentName.
+	self assert: component componentId equals: LuiComponent new rootComponentId.
 	self assert: component hasNoComponents.
 	^ component
 ]

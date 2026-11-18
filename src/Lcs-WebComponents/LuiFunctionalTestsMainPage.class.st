@@ -86,9 +86,7 @@ LuiFunctionalTestsMainPage >> nextApplicationAreaClass: anObject [
 
 { #category : 'components' }
 LuiFunctionalTestsMainPage >> pageHeader [
-	^ self
-		componentNamed: self headerComponentName
-		ifNil: [ self addComponent: (LuiPageHeader named: self headerComponentName) ]
+	^ self componentNamed: self headerComponentName
 ]
 
 { #category : 'accessing' }

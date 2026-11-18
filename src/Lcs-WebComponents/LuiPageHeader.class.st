@@ -67,7 +67,7 @@ LuiPageHeader >> organizationLogoComponentName [
 
 { #category : 'components - querying' }
 LuiPageHeader >> pageHeader [
-	^ self componentNamed: 'header'
+	^ self
 ]
 
 { #category : 'updating' }

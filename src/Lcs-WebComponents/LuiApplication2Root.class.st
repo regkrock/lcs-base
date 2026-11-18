@@ -34,7 +34,7 @@ LuiApplication2Root >> initializeStandardLayout [
 
 { #category : 'initialize' }
 LuiApplication2Root >> pageHeader [
-	^ self componentNamed: 'header'
+	^ self componentNamed: 'pageHeader'
 ]
 
 { #category : 'updating' }
