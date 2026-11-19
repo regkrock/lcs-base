@@ -34,7 +34,7 @@ LuButtonExamples >> cancelButton [
 	self assert: button buttonTypeAttribute attributeValue equals: 'button'.
 	self assert: button leadingImageComponent notNil.
 	self assert: button spanComponent text = 'Cancel'.
-	expectedHtml := '<button id="31171873" data-name="cancelButton" data-StClass="LuiCancelButton" type="button" class="pushButton" onclick="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,$(this).closest(&quot;form&quot;).find(&quot;:input&quot;).serialize()].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;2&quot;)}})"><img alt="" id="31111575" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/cancel24.svg"/><span id="128592642" data-name="span" data-StClass="LuiSpan">Cancel</span></button>'.
+	expectedHtml := '%<button id="31171873" data-name="cancelButton" data-StClass="LuiCancelButton" type="button" class="pushButton" onclick="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,$(this).closest(&quot;form&quot;).find(&quot;:input&quot;).serialize()].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;2&quot;)}})">%<img alt="" id="31111575" data-name="leadingImage" data-StClass="LuiImage" src="/files/<1s>/cancel24.svg"/>%<span id="128592642" data-name="span" data-StClass="LuiSpan">Cancel%</span>%</button>' expandMacrosWith: self currentSystem fileLibraryClass name.
 	self assertRendered: button equals: expectedHtml.
 	^ button 
 ]
@@ -74,15 +74,15 @@ LuButtonExamples >> okButton [
 LuButtonExamples >> okButtonWithLeadingCheckIcon [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiButton" title="OK Button" type="button" class="pushButton"><img alt="" id="201314498" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span></button>'.
+	expectedHtml := '%<button data-name="button" data-StClass="LuiButton" title="OK Button" type="button" class="pushButton">%<img alt="" id="201314498" data-name="leadingImage" data-StClass="LuiImage" src="/files/<1s>/check24.svg"/>%<span id="190875853" data-name="span" data-StClass="LuiSpan">OK%</span>%</button>' expandMacrosWith: self currentSystem fileLibraryClass name.
 	button := self okButtonWithSpan
-				leadingImageUrl: LcsFileLibrary / #check24Svg;
+				leadingImageUrl: self currentSystem fileLibraryClass / #check24Svg;
 				yourself.
 	self assert: button components size = 2.
 	self assert: button hasSpanComponent.
 	self assert: button label equals: 'OK'.
 	self assert: button hasLeadingImageComponent.
-	self assert: button leadingImageComponent url equals: LcsFileLibrary / #check24Svg.
+	self assert: button leadingImageComponent url equals: self currentSystem fileLibraryClass / #check24Svg.
 	self assert: button leadingImageComponent altText isNil.
 	self assertRendered: button equals: expectedHtml.
 	^button
@@ -122,15 +122,15 @@ LuButtonExamples >> okButtonWithStyleBorder [
 LuButtonExamples >> okButtonWithTrailingCheckIcon [
 	<gtExample>
 	| button expectedHtml|
-	expectedHtml := '<button data-name="button" data-StClass="LuiButton" title="OK Button" type="button" class="pushButton"><span id="190875853" data-name="span" data-StClass="LuiSpan">OK</span><img alt="" id="41593132" data-name="trailingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/></button>'.
+	expectedHtml := '%<button data-name="button" data-StClass="LuiButton" title="OK Button" type="button" class="pushButton">%<span id="190875853" data-name="span" data-StClass="LuiSpan">OK%</span>%<img alt="" id="41593132" data-name="trailingImage" data-StClass="LuiImage" src="/files/<1s>/check24.svg"/>%</button>' expandMacrosWith: self currentSystem fileLibraryClass name.
 	button := self okButtonWithSpan
-				trailingImageUrl: LcsFileLibrary / #check24Svg;
+				trailingImageUrl: self currentSystem fileLibraryClass / #check24Svg;
 				yourself.
 	self assert: button components size = 2.
 	self assert: button hasSpanComponent.
 	self assert: button label equals: 'OK'.
 	self assert: button hasTrailingImageComponent.
-	self assert: button trailingImageComponent url equals: LcsFileLibrary / #check24Svg.
+	self assert: button trailingImageComponent url equals: self currentSystem fileLibraryClass / #check24Svg.
 	self assert: button trailingImageComponent altText isNil.
 	self assertRendered: button equals: expectedHtml. 
 	^button
@@ -169,7 +169,7 @@ LuButtonExamples >> saveButton [
 	self assert: button buttonTypeAttribute attributeValue equals: 'button'.
 	self assert: button leadingImageComponent notNil.
 	self assert: button spanComponent text = 'Save'.
-	expectedHtml := '<button id="202634018" data-name="saveButton" data-StClass="LuiSaveButton" type="button" class="pushButton" onclick="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,$(this).closest(&quot;form&quot;).find(&quot;:input&quot;).serialize()].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;2&quot;)}})"><img alt="" id="73229204" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg"/><span id="137103711" data-name="span" data-StClass="LuiSpan">Save</span></button>'.
+	expectedHtml := '%<button id="202634018" data-name="saveButton" data-StClass="LuiSaveButton" type="button" class="pushButton" onclick="$.ajax({&quot;url&quot;:&quot;/&quot;,&quot;data&quot;:[&quot;1&quot;,$(this).closest(&quot;form&quot;).find(&quot;:input&quot;).serialize()].join(&quot;&amp;&quot;),&quot;success&quot;:function(){$(&quot;#nil&quot;).load(&quot;/&quot;,&quot;2&quot;)}})">%<img alt="" id="73229204" data-name="leadingImage" data-StClass="LuiImage" src="/files/<1s>/check24.svg"/>%<span id="137103711" data-name="span" data-StClass="LuiSpan">Save%</span>%</button>' expandMacrosWith: self currentSystem fileLibraryClass name.
 	self assertRendered: button equals: expectedHtml.
 	^ button 
 ]

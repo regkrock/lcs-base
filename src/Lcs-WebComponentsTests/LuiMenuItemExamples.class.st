@@ -15,7 +15,7 @@ LuiMenuItemExamples >> homeMenuItemWithButtonWithLabelAndImage [
 		title: 'Home Menu Item';
 		buttonOnClick: 'console.log("clicked")';
 		label: 'Home';
-		imageUrl: LcsFileLibrary / #check24Svg;
+		imageUrl: self currentSystem fileLibraryClass / #check24Svg;
 		imageCssClass: 'logo'.
 	self assert: item attributes hasTitleAttribute.
 	self assert: item hasButtonComponent.
@@ -25,7 +25,7 @@ LuiMenuItemExamples >> homeMenuItemWithButtonWithLabelAndImage [
 	self assert: item title equals: 'Home Menu Item'.
 	self assert: item spanComponent text equals: 'Home'.
 	
-	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home Menu Item" class="nav-item"><button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton"><img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" src="/files/LcsFileLibrary/check24.svg" class="logo"/><span id="207767249" data-name="span" data-StClass="LuiSpan">Home</span></button></li>'.
+	expectedHtml := '%<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home Menu Item" class="nav-item">%<button id="7186236" data-name="button" data-StClass="LuiButton" onclick="console.log(&quot;clicked&quot;)" type="button" class="pushButton">%<img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" src="/files/<1s>/check24.svg" class="logo"/>%<span id="207767249" data-name="span" data-StClass="LuiSpan">Home%</span>%</button>%</li>'  expandMacrosWith: self currentSystem fileLibraryClass name.
 	
 	self assertRendered: item equals: expectedHtml.
 	^ item
@@ -39,14 +39,14 @@ LuiMenuItemExamples >> homeMenuItemWithimage [
 	item title: 'Home'.
 	item buttonComponent leadingImageComponent
 		cssClass: LuiCssClassesMap / #'logo';
-		url: LcsFileLibrary / #check24Svg.	
+		url: self currentSystem fileLibraryClass / #check24Svg.	
 	self assert: item attributes hasTitleAttribute.
 	self assert: item hasButtonComponent.
 	self assert: item buttonComponent hasLeadingImageComponent.
 
 	self assert: item title equals: 'Home'.
 
-	expectedHtml := '<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home" class="nav-item"><button id="7186236" data-name="button" data-StClass="LuiButton" type="button" class="pushButton"><img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" class="logo" src="/files/LcsFileLibrary/check24.svg"/></button></li>'.
+	expectedHtml := '%<li data-name="menuItem1" data-StClass="LuiMenuItem" title="Home" class="nav-item">%<button id="7186236" data-name="button" data-StClass="LuiButton" type="button" class="pushButton">%<img alt="" id="90001222" data-name="leadingImage" data-StClass="LuiImage" class="logo" src="/files/<1s>/check24.svg"/>%</button>%</li>' expandMacrosWith: self currentSystem fileLibraryClass name.
 
 	self assertRendered: item equals: expectedHtml .
 	^ item

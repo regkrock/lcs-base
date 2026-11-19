@@ -43,11 +43,6 @@ LuiComponent >> _componentNamed: aTargetNames [
 	^ targetComponent _componentNamed: (aTargetNames copyFrom: 2 to: aTargetNames size)
 ]
 
-{ #category : 'rendering' }
-LuiComponent >> addAttributesToTag: tag [
-	self attributes addAttributesToTag: tag
-]
-
 { #category : 'private' }
 LuiComponent >> addClassNameTo: names [
 	names addFirst: self class name.
@@ -701,6 +696,11 @@ LuiComponent >> removeCssClass: aClassName [
 ]
 
 { #category : 'rendering' }
+LuiComponent >> renderAttributesOnTag: tag [
+	self attributes renderAttributesOnTag: tag
+]
+
+{ #category : 'rendering' }
 LuiComponent >> renderComponentOn: html [
 	html div
 		addCommonAttributes: self;
@@ -740,7 +740,7 @@ LuiComponent >> renderExample: aBlock [
 
 { #category : 'rendering' }
 LuiComponent >> renderOn: html withinTag: aTag [
-	self addAttributesToTag: aTag.
+	self renderAttributesOnTag: aTag.
 	aTag
 		with: [ self renderDetailsOn: html ]
 ]

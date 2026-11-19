@@ -113,7 +113,6 @@ LuiAnchor >> labelBlock: aBlock [
 LuiAnchor >> renderComponentOn: html [
 	html anchor
 		addCommonAttributes: self;
-		"callback: [ self showLabelOnTranscript ];"
 		with: [ self renderDetailsOn: html ] 
 ]
 

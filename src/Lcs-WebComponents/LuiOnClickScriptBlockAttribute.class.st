@@ -3,7 +3,8 @@ Class {
 	#superclass : 'LuiJavascriptAttribute',
 	#instVars : [
 		'actionBlock',
-		'updateBlocks'
+		'updateBlocks',
+		'serializeForm'
 	],
 	#category : 'Lcs-WebComponents-Attributes',
 	#package : 'Lcs-WebComponents',
@@ -32,7 +33,17 @@ LuiOnClickScriptBlockAttribute >> actionBlock: anObject [
 
 { #category : 'rendering' }
 LuiOnClickScriptBlockAttribute >> attributeObjectForTag: aTagBrush [ 
-	^ aTagBrush canvas jQuery ajax script: self cachedValue
+	| jsObject |
+	jsObject := aTagBrush canvas jQuery ajax.
+	self serializeForm == true ifTrue: [
+		jsObject serializeForm ].
+	jsObject script: self cachedValue.
+	^ jsObject
+]
+
+{ #category : 'updating' }
+LuiOnClickScriptBlockAttribute >> clearDependentComponents [
+	self updateBlocks: OrderedCollection new
 ]
 
 { #category : 'updating' }
@@ -49,6 +60,7 @@ LuiOnClickScriptBlockAttribute >> execute: anActionBlock update: aComponentBlock
 
 { #category : 'updating' }
 LuiOnClickScriptBlockAttribute >> execute: anActionBlock updating: aComponents [
+	self clearDependentComponents.
 	self actionBlock: anActionBlock.
 	self updateBlocks addAll: aComponents.
 	self valueBlock: [ :s |
@@ -74,6 +86,16 @@ LuiOnClickScriptBlockAttribute >> onClickScriptBlock [
 { #category : 'accessing' }
 LuiOnClickScriptBlockAttribute >> onClickScriptBlock: aBlock [
 	self valueBlock: aBlock
+]
+
+{ #category : 'accessing' }
+LuiOnClickScriptBlockAttribute >> serializeForm [
+	^ serializeForm
+]
+
+{ #category : 'accessing' }
+LuiOnClickScriptBlockAttribute >> serializeForm: anObject [
+	serializeForm := anObject
 ]
 
 { #category : 'accessing' }

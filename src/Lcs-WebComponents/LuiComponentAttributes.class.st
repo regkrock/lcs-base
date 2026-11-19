@@ -17,20 +17,6 @@ LuiComponentAttributes class >> on: aComponent [
 		yourself
 ]
 
-{ #category : 'rendering' }
-LuiComponentAttributes >> addAttributesToTag: aTagBrush [
-	aTagBrush 
-		id: self parentComponent componentId;
-		dataName: self parentComponent componentName;
-		dataStClass: self parentComponent.
-	self attributes do: [ :eachaAtribute | 
-			eachaAtribute cachedValue ifNotNil: [ :object |
-				eachaAtribute addTo: aTagBrush
-				"aTagBrush
-					perform: eachaAtribute tagAttributeSetterSelector
-					with: object" ] ]
-]
-
 { #category : 'attributes - accessing' }
 LuiComponentAttributes >> addCssClass: aCssClassName [
 	^ self cssClassesAttribute addCssClass: aCssClassName
@@ -590,6 +576,20 @@ LuiComponentAttributes >> removeCssClass: aCssClassName [
 { #category : 'attributes - accessing' }
 LuiComponentAttributes >> removeCssClasses: aCollection [
 	^ self cssClassesAttribute removeCssClasses: aCollection
+]
+
+{ #category : 'rendering' }
+LuiComponentAttributes >> renderAttributesOnTag: aTagBrush [
+	aTagBrush 
+		id: self parentComponent componentId;
+		dataName: self parentComponent componentName;
+		dataStClass: self parentComponent.
+	self attributes do: [ :eachaAtribute | 
+			eachaAtribute cachedValue ifNotNil: [ :object |
+				eachaAtribute renderOnTag: aTagBrush
+				"aTagBrush
+					perform: eachaAtribute tagAttributeSetterSelector
+					with: object" ] ]
 ]
 
 { #category : 'attributes' }

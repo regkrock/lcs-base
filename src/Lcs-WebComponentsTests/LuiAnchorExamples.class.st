@@ -58,9 +58,9 @@ LuiAnchorExamples >> seasWebsiteImageLink [
 	component url: 'https://www.sailseas.com/Monmouth/'.
 	component addComponent: (
 		(LuiImage named: 'image')
-			url: LcsFileLibrary / #favicon;
+			url: self currentSystem fileLibraryClass / #favicon;
 			yourself).
-	self assertRendered: component equals: '<a data-name="anchor" data-StClass="LuiAnchor" target="_blank" href="https://www.sailseas.com/Monmouth/"><img alt="" id="260556177" data-name="image" data-StClass="LuiImage" src="/files/LcsFileLibrary/favicon"/></a>'.
+	self assertRendered: component equals: ('%<a data-name="anchor" data-StClass="LuiAnchor" target="_blank" href="https://www.sailseas.com/Monmouth/">%<img alt="" id="260556177" data-name="image" data-StClass="LuiImage" src="/files/<1s>/favicon"/>%</a>' expandMacrosWith: self currentSystem fileLibraryClass name).
 	^ component
 ]
 

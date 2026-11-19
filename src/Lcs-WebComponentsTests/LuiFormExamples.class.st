@@ -18,7 +18,7 @@ LuiFormExamples >> formWithSearchImageAndInputField [
 	form addComponent: (
 		(LuiButton named: 'searchButton')
 			beSubmitType;
-			leadingImageUrl: LcsFileLibrary / #search24Svg;
+			leadingImageUrl: LcsSEASFileLibrary / #search24Svg;
 			leadingImageAltText: 'search button';
 			yourself).
 	self assert: (form componentNamed: 'search') notNil.

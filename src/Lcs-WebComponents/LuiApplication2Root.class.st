@@ -40,7 +40,7 @@ LuiApplication2Root >> pageHeader [
 { #category : 'updating' }
 LuiApplication2Root >> updateFilesInRoot: anHtmlRoot [ 
 	| fileClass |
-	fileClass := LcsFileLibrary.
+	fileClass := LcsSEASFileLibrary.
 	super updateFilesInRoot: anHtmlRoot.
 	anHtmlRoot stylesheet url: fileClass / #resetCss.
 	anHtmlRoot stylesheet url: fileClass / #mainCss.

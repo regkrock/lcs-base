@@ -12,7 +12,7 @@ Class {
 { #category : 'instance creation' }
 LuiCssGenerator class >> generateMainCssFile [
 	^ self new
-		generateMainCssFileIn: LcsFileLibrary
+		generateMainCssFileIn: LcsSEASFileLibrary
 ]
 
 { #category : 'instance creation' }

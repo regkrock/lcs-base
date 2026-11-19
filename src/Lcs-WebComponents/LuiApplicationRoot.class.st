@@ -40,6 +40,16 @@ LuiApplicationRoot >> initialize [
 ]
 
 { #category : 'components - querying' }
+LuiApplicationRoot >> navigationBar [
+	^ self pageHeader navigationBar
+]
+
+{ #category : 'components - querying' }
+LuiApplicationRoot >> navigationMenu [
+	^ self navigationBar navigationMenu
+]
+
+{ #category : 'components - querying' }
 LuiApplicationRoot >> pageHeader [
 	^ self componentNamed: 'pageHeader'
 ]

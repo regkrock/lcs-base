@@ -29,13 +29,6 @@ LuiComponentAttribute >> _attributeValue [
 	^ self valueBlock cull: self component
 ]
 
-{ #category : 'rendering' }
-LuiComponentAttribute >> addTo: aTagBrush [
-	aTagBrush
-		perform: self tagAttributeSetterSelector
-		with: (self attributeObjectForTag: aTagBrush)
-]
-
 { #category : 'asking' }
 LuiComponentAttribute >> attributeName [
 	^ self class attributeName
@@ -117,6 +110,13 @@ LuiComponentAttribute >> parent [
 { #category : 'accessing' }
 LuiComponentAttribute >> parent: anObject [
 	parent := anObject
+]
+
+{ #category : 'rendering' }
+LuiComponentAttribute >> renderOnTag: aTagBrush [
+	aTagBrush
+		perform: self tagAttributeSetterSelector
+		with: (self attributeObjectForTag: aTagBrush)
 ]
 
 { #category : 'accessing' }

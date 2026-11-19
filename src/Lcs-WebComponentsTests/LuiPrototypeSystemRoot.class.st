@@ -18,82 +18,14 @@ LuiPrototypeSystemRoot class >> new [
 	^ systemApplicationRoot
 ]
 
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> aboutContactItemDefinition [
-	^ (LuiMenuItem named: 'contactMenuItem')
-		cssClass: LuiCssClassesMap / #'nav-item';
-        beButtonType;
-		buttonLabel: 'About';
-		buttonOnClickExecute: [self switchMainComponentTo: self aboutPresenterDefinition]
-			update: [ self currentSwitchableComponent ]
-			update: [ self navigationBar ];
-		title: 'Contact Menu Item';
-		yourself
-]
-
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> aboutPresenterDefinition [
-	^ LuiMessagePresenter new
-		componentName: 'aboutPresenter';
-		message: 'About';
-		yourself
-]
-
 { #category : 'defaults' }
 LuiPrototypeSystemRoot >> applicationTitle [
 	^ 'Prototype System'
 ]
 
 { #category : 'components - definition' }
-LuiPrototypeSystemRoot >> contactSubenuComponentDefinition [
-	^((LuiDropDownMenuItem named: 'company' label: 'Company')
-				cssClass: 'nav-item';
-				yourself)
-		addMenuItem: (
-			(LuiMenuItem named: 'aboutUs')
-				anchorLabel: 'About Us';
-				cssClass: LuiCssClassesMap / #'submenu-item';
-				callback: [ Transcript
-					cr;
-					show: 'aboutUs clicked'.
-					self rootComponent mainForm switchToComponent: (
-							LuiMessagePresenter new 
-								componentName: 'aboutUsPresenter';
-								message: 'Company ... About Us';
-								yourself) ];
-				yourself);
-		addMenuItem: (
-			(LuiMenuItem named: 'careers')
-				anchorLabel: 'Careers';
-				cssClass: LuiCssClassesMap / #'submenu-item';
-				callback: [ Transcript
-					cr;
-					show: 'careers clicked'.
-					self rootComponent mainForm switchToComponent: (
-							LuiMessagePresenter new 
-								componentName: 'careersPresenter';
-								message: 'Company ... Careers';
-								yourself) ];
-				yourself);
-		addMenuItem: (
-			(LuiMenuItem named: 'ourTeam')
-				anchorLabel: 'Our Team';
-				cssClass: LuiCssClassesMap / #'submenu-item';
-				callback: [ Transcript
-					cr;
-					show: 'our team clicked'.
-					self rootComponent mainForm switchToComponent: (
-							LuiMessagePresenter new 
-								componentName: 'ourteamPresenter';
-								message: 'Company ... Our Team';
-								yourself) ];
-				yourself);
-		yourself
-]
-
-{ #category : 'components - definition' }
 LuiPrototypeSystemRoot >> currentSwitchableComponent [
-	^ self rootComponent mainForm currentSwitchableComponent
+	^ self mainForm currentSwitchableComponent
 ]
 
 { #category : 'defaults' }
@@ -101,38 +33,11 @@ LuiPrototypeSystemRoot >> generatedId [
 	^ 'root'
 ]
 
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> homeMenuItemComponentDefinition [
-	^ (LuiMenuItem named: 'homeMenuItem')
-		cssClass: LuiCssClassesMap / #'nav-item';
-		beButtonType;
-		buttonLabel: 'Home';
-		buttonOnClickExecute: [self switchMainComponentTo: self homePresenterDefinition]
-			update: [ self currentSwitchableComponent ]
-			update: [ self navigationBar ];
-		title: 'Home Menu Item';
-		yourself
-]
-
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> homePresenterDefinition [
-	^ LuiMessagePresenter new
-		componentName: 'homePresenter';
-		message: 'Home';
-		yourself
-]
-
 { #category : 'initialize' }
 LuiPrototypeSystemRoot >> initialize [
 	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
 	super initialize.
-	self initializeStandardPageLayout
-]
-
-{ #category : 'initialize' }
-LuiPrototypeSystemRoot >> initializeStandardPageLayout [
-	self addComponent: self pageHeaderComponentDefinition.
-	self addComponent: self mainFormComponentDefinition
+	LuiPrototypeStandardPageLayoutTemplate new buildLayoutFor: self
 ]
 
 { #category : 'components - querying' }
@@ -140,57 +45,14 @@ LuiPrototypeSystemRoot >> mainForm [
 	^ self componentNamed: 'mainForm'
 ]
 
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> mainFormComponentDefinition [
-	^ LuiMainForm new
-		switchToComponent: LuiHomePresenter new;
-		yourself
-]
-
 { #category : 'components - querying' }
 LuiPrototypeSystemRoot >> navigationBar [
 	^ self pageHeader navigationBar
 ]
 
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> navigationBarComponentDefinition [
-	| navigationBar |
-	navigationBar := LuiNavigationBar new.
-	navigationBar
-		addComponent: LuiBrand newSeasBrand;
-		addComponent: ((LuiResponsiveNavigationMenuCheckbox named: 'menuToggle')
-				assignStaticId: 'menu-toggle';
-				yourself);
-		addComponent: ((LuiLabel named: 'menuToggleLabel')
-				for: 'menu-toggle';
-				cssClass: 'menu-btn';
-				text: self class hamburgerCodePointString;
-				yourself);
-		addComponent: (LuiNavigationMenu new
-				addComponent: self homeMenuItemComponentDefinition;
-				addComponent: self contactSubenuComponentDefinition;
-				addComponent: self aboutContactItemDefinition;
-				addComponent: self socialMediaBarComponentDefinition;
-				yourself).
-	^ navigationBar
-]
-
 { #category : 'components - querying' }
 LuiPrototypeSystemRoot >> pageHeader [
 	^ self componentNamed: 'pageHeader'
-]
-
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> pageHeaderComponentDefinition [
-	| pageHeader |
-	pageHeader := LuiPageHeader new.
-	pageHeader addComponent: self navigationBarComponentDefinition.
-	^ pageHeader
-]
-
-{ #category : 'components - definition' }
-LuiPrototypeSystemRoot >> socialMediaBarComponentDefinition [
-	^ LuiSearchAndSocialMediaBar newSearchAndLinks
 ]
 
 { #category : 'components - definition' }

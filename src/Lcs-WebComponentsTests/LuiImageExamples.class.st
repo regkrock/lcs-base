@@ -62,11 +62,11 @@ LuiImageExamples >> seasideImageComponent [
 					cssClass: LuiCssClassesMap / #'logo';
 					title: 'Seas Monmouth';
 					altText: 'The Seas Monmouth logo';
-					url: LcsFileLibrary / #favicon.	
+					url: self currentSystem fileLibraryClass / #favicon.	
 	self assert: component title equals: 'Seas Monmouth'.
 	self assert: component altText equals: 'The Seas Monmouth logo'.
-	self assert: component url printString equals: '/files/LcsFileLibrary/favicon'.
+	self assert: component url printString equals: ('/files/<1s>/favicon' expandMacrosWith: self currentSystem fileLibraryClass name).
 	self assert: component cssClassesString equals: 'logo'.
-	self assertRendered: component equals: '<img alt="The Seas Monmouth logo" data-name="logo" data-StClass="LuiImage" title="Seas Monmouth" class="logo" src="/files/LcsFileLibrary/favicon"/>'.
+	self assertRendered: component equals: ('%<img alt="The Seas Monmouth logo" data-name="logo" data-StClass="LuiImage" title="Seas Monmouth" class="logo" src="/files/<1s>/favicon"/>'  expandMacrosWith: self currentSystem fileLibraryClass name).
 	^ component
 ]

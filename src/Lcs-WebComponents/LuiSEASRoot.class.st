@@ -77,7 +77,7 @@ LuiSEASRoot >> initializeStandardLayout [
 { #category : 'updating' }
 LuiSEASRoot >> updateFilesInRoot: aRoot [ 
 	| fileClass |
-	fileClass := LcsFileLibrary.
+	fileClass := LcsSEASFileLibrary.
 	super updateFilesInRoot: aRoot.
 	aRoot stylesheet url: fileClass / #resetCss.
 	aRoot stylesheet url: fileClass / #mainCss.

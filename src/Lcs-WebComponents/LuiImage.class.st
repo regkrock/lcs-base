@@ -44,7 +44,7 @@ LuiImage class >> seasMonmouthFavicon [
 		componentName: 'favicon';
 		cssClass: LuiCssClassesMap / #'logoImage';
 		title: 'Seas Monmouth';
-		altText: 'Seas logo';
+		altText: 'organization logo';
 		url: self currentSystem fileLibraryClass /#faviconPng;
 		yourself
 ]

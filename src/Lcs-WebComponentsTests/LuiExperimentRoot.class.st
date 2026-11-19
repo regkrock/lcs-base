@@ -25,29 +25,21 @@ LuiExperimentRoot >> currentFrom [
 	^ self mainForm currentSwitchableComponent
 ]
 
+{ #category : 'components - updating' }
+LuiExperimentRoot >> currentSwitchableComponent [
+	^ self mainForm currentSwitchableComponent
+]
+
 { #category : 'initialize' }
 LuiExperimentRoot >> initialize [
 	"Re-implment this method with desired components"
 	super initialize.
-	self initializeStandardPageLayout
-]
-
-{ #category : 'initialize' }
-LuiExperimentRoot >> initializeStandardPageLayout [
-	self addComponent: self pageHeaderComponentDefinition.
-	self addComponent: self mainFormComponentDefinition
+	LuiExampleCompanyPageLayoutTemplate new buildLayoutFor: self
 ]
 
 { #category : 'components' }
 LuiExperimentRoot >> mainForm [
 	^ self componentNamed: 'mainForm'
-]
-
-{ #category : 'initialize' }
-LuiExperimentRoot >> mainFormComponentDefinition [
-	^ LuiMainForm new
-		switchToComponent: LuiHomePresenter new;
-		yourself
 ]
 
 { #category : 'components' }
@@ -60,6 +52,11 @@ LuiExperimentRoot >> pageHeaderComponentDefinition [
 	^ (LuiPageHeader new)
 		addComponent: LuiMenuExamples new softwareCompanyNavigationBar;
 		yourself
+]
+
+{ #category : 'components - updating' }
+LuiExperimentRoot >> switchMainComponentTo: aComponent [
+	self mainForm switchToComponent: aComponent
 ]
 
 { #category : 'updating' }

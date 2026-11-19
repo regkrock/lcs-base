@@ -20,7 +20,7 @@ LuiCancelButton >> cancelChanges [
 LuiCancelButton >> initialize [
 	super initialize.
 	self componentName: 'cancelButton'.
-	self imageUrl: LcsFileLibrary / #cancel24Svg.
+	self imageUrl: self currentSystem fileLibraryClass / #cancel24Svg.
 	self spanComponent text: 'Cancel'.
 	"self callback: [ self cancelChanges ]"
 ]
