@@ -12,9 +12,22 @@ Class {
 { #category : 'instance creation' }
 LuiPresenter class >> named: aComponentName model: aModel [
 	^ self new
-		componentName: aComponentName;
-		model: aModel;
+		initializeComponentName: aComponentName model: aModel;
 		yourself
+]
+
+{ #category : 'buiilding' }
+LuiPresenter >> buildComponents [
+	"this should be overwritten to add subcomponents to the presenter"
+]
+
+{ #category : 'initialize' }
+LuiPresenter >> initializeComponentName: aComponentName model: aModel [
+	self
+		componentName: aComponentName;
+		model: aModel.
+	self buildComponents
+
 ]
 
 { #category : 'testing' }

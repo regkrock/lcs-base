@@ -17,6 +17,11 @@ LuiLabelWithInputComponentExamples >> expectedMainSkillsAsRadioGroupHtml [
 ]
 
 { #category : 'examples' }
+LuiLabelWithInputComponentExamples >> expectedPasswordGroupHtml [
+	^ '<div data-name="passwordLabelAndInput" data-StClass="LuiLabelWithInputComponent" class="labelAndInputRow"><label id="72440380" data-name="passwordLabel" data-StClass="LuiLabel" for="306604" class="inputFieldLabel">Password</label><input id="306604" data-name="password" data-StClass="LuiPasswordInput" placeholder="Password" class="inputField" value="" type="password"/></div>'
+]
+
+{ #category : 'examples' }
 LuiLabelWithInputComponentExamples >> hasRedHairBooleanAsCheckboxWithEmptyLabelComponent [
 	<gtExample>
 	<after: #clearUnitOfWork>
@@ -157,6 +162,33 @@ LuiLabelWithInputComponentExamples >> mainSkillsAsRadioGroupWithInputComponent [
 	labelComponent := component labelComponent.
 	self assert: labelComponent notNil.
 	self assertRendered: component equals: self expectedMainSkillsAsRadioGroupHtml.
+	^ component
+]
+
+{ #category : 'examples' }
+LuiLabelWithInputComponentExamples >> passwordLabelWithInputComponent [
+	<gtExample>
+	<after: #clearUnitOfWork>
+	| component model inputComponent labelComponent|
+	self ensureCurrentSystemIsPrototypeSystem.
+	model := LcsLoginProcess new.
+	component := LuiLabelWithInputComponent onSlot: LcsLoginProcess passwordSlotDefinition model: model.
+	self assert: component componentName equals: 'passwordLabelAndInput'.
+
+	inputComponent := component inputComponent.
+	self assert: inputComponent notNil.
+	labelComponent := component labelComponent.
+	self assert: labelComponent notNil.
+
+	self assert: inputComponent componentName equals: 'password'.
+	self assert: inputComponent valueAccessor slotName equals: 'password'.
+	self assert: inputComponent displayValue equals: ''.
+	self assert: inputComponent model equals: model.
+	self assert: labelComponent componentName equals: 'passwordLabel'.
+	self assert: labelComponent text equals: 'Password'.
+	self assert: labelComponent model equals: model.
+	self assert: labelComponent for equals: inputComponent componentId.
+	self assertRendered: component equals: self expectedPasswordGroupHtml.
 	^ component
 ]
 

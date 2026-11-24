@@ -6,6 +6,16 @@ Class {
 	#tag : 'Widgets'
 }
 
+{ #category : 'commands' }
+LuiPasswordInput >> beCurrentPasswordAutocomplete [
+	self autocomplete: 'current-' , self componentName
+]
+
+{ #category : 'commands' }
+LuiPasswordInput >> beNewPasswordAutocomplete [
+	self autocomplete: 'new-' , self componentName
+]
+
 { #category : 'gt views' }
 LuiPasswordInput >> gtViewBaseTagName [
 	^ super gtViewBaseTagName , ' type=''password'''

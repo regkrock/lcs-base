@@ -6,6 +6,27 @@ Class {
 	#tag : 'Attributes'
 }
 
+{ #category : 'attributes - accessing' }
+LuiAbstractTextAreaAttributes >> autocomplete [
+	self hasAutocompleteAttribute ifFalse: [ ^ nil ].
+	^ self autocompleteAttribute autocomplete
+]
+
+{ #category : 'attributes - accessing' }
+LuiAbstractTextAreaAttributes >> autocomplete: aString [
+	^ self autocompleteAttribute autocomplete: aString
+]
+
+{ #category : 'attributes' }
+LuiAbstractTextAreaAttributes >> autocompleteAttribute [
+	^ self lazyInitializedAttribute: LuiAutocompleteAttribute
+]
+
+{ #category : 'testing' }
+LuiAbstractTextAreaAttributes >> hasAutocompleteAttribute [
+	^ self hasAttribute: LuiAutocompleteAttribute attributeName
+]
+
 { #category : 'testing' }
 LuiAbstractTextAreaAttributes >> hasPlaceholderAttribute [
 	^ self hasAttribute: LuiPlaceholderAttribute attributeName

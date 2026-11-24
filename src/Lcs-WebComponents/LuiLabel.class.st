@@ -15,6 +15,11 @@ LuiLabel class >> onSlot: aSlotDefinition model: aModel [
 	
 ]
 
+{ #category : 'css classes' }
+LuiLabel >> beVerticalDisplay [
+	self addCssClass: LuiCssClassesMap / #verticalInputLabel
+]
+
 { #category : 'attributes' }
 LuiLabel >> for [
 	^ self attributes for

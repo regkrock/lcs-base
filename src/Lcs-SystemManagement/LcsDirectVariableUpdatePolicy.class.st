@@ -14,6 +14,11 @@ LcsDirectVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
 
 { #category : 'slot model' }
 LcsDirectVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject oldValue: existingValue [
+	| transformedObject |
 	self validate: anObject context: aDomainObject  oldValue: existingValue.
+	transformedObject := self parent presaveTransformBlock
+			cull: anObject
+			cull: self
+			cull: aDomainObject.
 	aDomainObject instVarNamed: self parent slotName put: anObject
 ]

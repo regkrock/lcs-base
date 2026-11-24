@@ -28,3 +28,8 @@ LuiPageLayoutTemplate >> mainFormComponentDefinition [
 		switchToComponent: self homePresenter;
 		yourself
 ]
+
+{ #category : 'components - definition' }
+LuiPageLayoutTemplate >> pageHeaderComponentDefinition [
+	^ LuiPageHeader new
+]

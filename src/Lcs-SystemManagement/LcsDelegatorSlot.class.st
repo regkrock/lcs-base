@@ -31,7 +31,7 @@ LcsDelegatorSlot >> currentSlotVarIn: aDomainObject [
 
 { #category : 'defaults' }
 LcsDelegatorSlot >> defaultInputComponentClassFor: aModel [
-	^ (self sourceSlotFor: aModel) defaultInputComponentClass
+	^ (self sourceSlotFor: aModel) inputComponentClass
 ]
 
 { #category : 'properties' }

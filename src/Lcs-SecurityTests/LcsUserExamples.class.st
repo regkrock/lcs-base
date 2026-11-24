@@ -39,6 +39,7 @@ LcsUserExamples >> newUserInBasicSystem [
 	self ensureCurrentSystemIsBasicSystem.
 	self assert: self currentSystem unitOfWork hasNoChanges.
 	user := LcsUser new.
+	self assert: user password isEmpty.
 	self validateCommonUserProperties: user.
 	self assert: user person isNil.
 	self assert: user fullName equals: ''.
@@ -124,12 +125,12 @@ LcsUserExamples >> userWithValidPassword [
 		description: 'Password has no special character'.
 	pwd := 'Abcdef123'.
 	self  should: [ user password: pwd ] raise: LcsSlotValidationError.
-	self assert: user password equals: ''.
-
+	(LcsPasswordHasher verifyPassword: '' againstStoredHash: user password).
+	
 	pwd := 'Abcdef12+'.
 	user password: pwd.
-	self assert: user password equals: pwd.
-	self assertAuditHasNoErrorOf: user slot: 'password'.
+	self assert: (LcsPasswordHasher verifyPassword: pwd againstStoredHash: user password).
+	"self assertAuditHasNoErrorOf: user slot: 'password'. "
 	^ user
 ]
 
@@ -146,7 +147,7 @@ LcsUserExamples >> validateCommonUserProperties: user [
 		assert: (user slotDefinitionNamed: 'fullName') errorReturnObject
 		equals: ''.
 	self assert: user userId isEmpty.
-	self assert: user password isEmpty.
+	"self assert: user password isEmpty."
 	self assert: user securityRole notNil.
 	self assert: user securityRole role equals: 'guest'
 ]

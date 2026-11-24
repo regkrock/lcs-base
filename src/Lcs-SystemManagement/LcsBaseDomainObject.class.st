@@ -794,6 +794,12 @@ LcsBaseDomainObject >> isDomainObject [
 ]
 
 { #category : 'testing' }
+LcsBaseDomainObject >> isInAddingState [
+	"Not concerned about adding state for non- domain models. This can be overriden as needed"
+	^ false
+]
+
+{ #category : 'testing' }
 LcsBaseDomainObject >> isIncludedInSystemDomainClasses [
 	^ self currentSystem isIncludedInSystemDomainClasses: self
 ]

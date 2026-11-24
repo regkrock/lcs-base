@@ -109,6 +109,14 @@ LuiAnchor >> labelBlock: aBlock [
 	self attributes labelBlock: aBlock
 ]
 
+{ #category : 'attributes - events' }
+LuiAnchor >> onClickExecute: anActionBlock update: aComponentBlock update: aComponentBlock2 [
+	self onClickScriptBlockAttribute
+		execute: anActionBlock
+		update: aComponentBlock 
+		update: aComponentBlock2
+]
+
 { #category : 'rendering' }
 LuiAnchor >> renderComponentOn: html [
 	html anchor

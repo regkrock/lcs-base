@@ -66,6 +66,7 @@ LuiPrototypeSystemRoot >> updateFilesInRoot: anHtmlRoot [
 	fileClass := LcsPrototypeFileLibrary.
 	super updateFilesInRoot: anHtmlRoot.
 	anHtmlRoot stylesheet url: fileClass / #resetCss.
+	LcsBaseFileLibrary addAllFilesIn: (FileSystem disk / 'Users/regkrock/SEAS/files').
 	anHtmlRoot stylesheet url: fileClass / #mainCss.
 	"anHtmlRoot stylesheet url: fileClass / #navigationMenuCss.
 	anHtmlRoot stylesheet url: fileClass / #socialMediaCss."

@@ -614,6 +614,21 @@ LuiComponent >> myParentPresenterComponent [
 	^ self parentComponent myParentPresenterComponent
 ]
 
+{ #category : 'attributes' }
+LuiComponent >> onClickScriptBlock [
+	^ self attributes onClickScriptBlock
+]
+
+{ #category : 'attributes' }
+LuiComponent >> onClickScriptBlock: aBlock [
+	self attributes onClickScriptBlock: aBlock
+]
+
+{ #category : 'attributes' }
+LuiComponent >> onClickScriptBlockAttribute [
+	^ self attributes onClickScriptBlockAttribute
+]
+
 { #category : 'components - querying' }
 LuiComponent >> orderedComponents [
 	^ self componentKeys collect: [ :eachKey | self components at: eachKey ]

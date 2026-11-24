@@ -19,6 +19,11 @@ LuiFormInputComponent >> applyCallbackValue: value [
 	self valueAccessor write: (self codec decode: value)
 ]
 
+{ #category : 'css classes' }
+LuiFormInputComponent >> beVerticalDisplay [
+	self addCssClass: LuiCssClassesMap / #verticalInputField
+]
+
 { #category : 'attributes - accessing' }
 LuiFormInputComponent >> callback [
 	^ self attributes callback 

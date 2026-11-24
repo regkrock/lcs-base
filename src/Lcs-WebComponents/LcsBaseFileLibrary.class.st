@@ -40,18 +40,75 @@ LcsBaseFileLibrary >> hamburgerMenu24Svg [
 	^ '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>'
 ]
 
-{ #category : 'css' }
+{ #category : 'uploaded' }
 LcsBaseFileLibrary >> mainCss [
-	"This is the css used for the multi-level menu system with checkboxes"
-	^'body {
-      font-family: sans-serif;
-      background-color: #f4f4f4;
-    }
+	^ ':root {
+  /* Coolors: Ocean Blue Serenity Scale (Deepest to Lightest) */
+  --ocean-900: #03045e; /* Deep Twilight */
+  --ocean-800: #023e8a; /* French Blue */
+  --ocean-700: #0077b6; /* Bright Teal */
+  --ocean-600: #0096c7; /* Blue Green */
+  --ocean-500: #00b4d8; /* Turquoise Surf */
+  --ocean-400: #48cae4; /* Sky Aqua */
+  --ocean-300: #90e0ef; /* Frosted Blue */
+  --ocean-200: #ade8f4; /* Electric Aqua */
+  --ocean-100: #cafafc16; /* Light Cyan #caf0f8; */
+  --ocean-white: #ffffff;
 
-    /* Navbar Container */
+  /* Default (Light Theme) */
+  --bg-page: var(--ocean-100);
+  --bg-surface: var(--ocean-200);
+  --bg-elevated: var(--ocean-white);
+  --text-primary: var(--ocean-900);
+  --text-secondary: var(--ocean-800);
+  --text-inverse: var(--ocean-white);
+  --accent-primary: var(--ocean-800);
+  --accent-hover: var(--ocean-700);
+  --accent-highlight: var(--ocean-500);
+  --border-subtle: var(--ocean-400);
+  --focus-ring: var(--ocean-400);
+}
+
+/* Dark Theme (Supports explicit toggle or OS preference) */
+[data-theme="dark"] {
+  --bg-page: var(--ocean-900);
+  --bg-surface: var(--ocean-800);
+  --bg-elevated: var(--ocean-700);
+  --text-primary: var(--ocean-100);
+  --text-secondary: var(--ocean-200);
+  --text-inverse: var(--ocean-900);
+  --accent-primary: var(--ocean-500);
+  --accent-hover: var(--ocean-400);
+  --accent-highlight: var(--ocean-300);
+  --border-subtle: var(--ocean-700);
+  --focus-ring: var(--ocean-400);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-page: var(--ocean-900);
+    --bg-surface: var(--ocean-800);
+    --bg-elevated: var(--ocean-700);
+    --text-primary: var(--ocean-100);
+    --text-secondary: var(--ocean-200);
+    --text-inverse: var(--ocean-900);
+    --accent-primary: var(--ocean-500);
+    --accent-hover: var(--ocean-400);
+    --accent-highlight: var(--ocean-300);
+    --border-subtle: var(--ocean-700);
+    --focus-ring: var(--ocean-400);
+  }
+}
+body {
+	font-family: sans-serif;
+	background-color: var(--bg-page);
+	color: var(--text-primary);
+	}
+
+  /* Navbar Container */
     .navbar {
-      background-color: #333;
-      color: #fff;
+      background-color: var(--primary-header);
+      color: var(--text-secondary);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -92,7 +149,6 @@ LcsBaseFileLibrary >> mainCss [
     .nav-item a, .nav-item label, .nav-item button {
       display: block;
       padding: 20px;
-      color: #fff;
       text-decoration: none;
       cursor: pointer;
     }
@@ -116,7 +172,92 @@ LcsBaseFileLibrary >> mainCss [
       left: 100%;
       background-color: #555;
     }
-    
+    .signinText {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--text-secondary);
+      padding: 10px 20px;
+    }   
+.applicationArea{
+	/* background: #cccccc; */
+	}
+.verticalInputGroup {
+	display: grid;
+	grid-columns-template: 1fr;
+	}
+.verticalInputLabel {
+	font-size: 0.8rem;
+	}
+.inputField {
+  font-size: 1rem; /* At least 16px prevents auto-zoom on mobile iOS */
+  height: 1.5rem;
+  color: var(--text-primary);
+  border: solid var(--border-subtle) 0.005rem;
+ 	}
+input::placeholder {
+  	opacity: 0.5;
+		}
+.inputFieldLabel {
+	color: #888888;
+	}
+.verticalInputField {
+	}
+.loginWrapper {
+	display: flex;
+	align-items: center;
+	min-height: 100vh;
+	justify-content: center;	
+	}
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+.login-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 380px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+.loginForm {
+	width: 500px;
+	padding: 2rem;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	display: grid;
+	gap: 1rem;
+	}
+.loginButton {
+	background-color: green;
+	padding-left: 10px;
+	height: 60px;
+	font-size: 1.25rem;
+	font-weight: 700;
+	align-content: center;
+	text-align: center;
+	display: block;
+	color: white;
+	border-radius: 1rem;
+	}
+.newToSeasMessageGroup {
+	display: flex;
+	gap: .1rem;
+	align-content: center;
+	justify-content: center;
+	}
+	
     /* Desktop Hover Toggle & Layout Rules */
     @media (min-width: 769px) {
       .nav-item:hover > .submenu,
@@ -133,7 +274,7 @@ LcsBaseFileLibrary >> mainCss [
         gap: 12px; 
       }
       .arrow-label::after {
-        content: ''▼'';
+        content: ''''▼'''';
         font-size: 0.55rem;
         transition: transform 0.2s ease;
         padding-left: 2px;
@@ -145,7 +286,7 @@ LcsBaseFileLibrary >> mainCss [
         min-width: 100%;
       }
       .submenu .arrow-label::after {
-        content: ''▶'';
+        content: ''''▶'''';
       }
     }
 
@@ -207,7 +348,7 @@ LcsBaseFileLibrary >> mainCss [
         align-items: center;
       }
       .arrow-label::after {
-        content: ''▼'';
+        content: ''''▼'''';
         font-size: 0.65rem;
         padding-right: 20px;
         transition: transform 0.3s ease;
@@ -232,7 +373,7 @@ LcsBaseFileLibrary >> mainCss [
       z-index: -1;
       width: 0;
       height: 0;
-    }''▼'';
+    }''''▼'''';
         font-size: 0.55rem;
         transition: transform 0.2s ease;
         padding-left: 0.2rem;
@@ -245,7 +386,7 @@ LcsBaseFileLibrary >> mainCss [
         padding-left: 1px;
       }
       .submenu .arrow-label::after {
-        content: ''▶'';
+        content: ''''▶'''';
         padding-left: 0.2rem;
       }
     }
@@ -308,7 +449,7 @@ LcsBaseFileLibrary >> mainCss [
         padding-left: 1px;
       }
       .arrow-label::after {
-        content: ''▼'';
+        content: ''''▼'''';
         font-size: 0.65rem;
         padding-right: 20px;
         transition: transform 0.3s ease;
@@ -402,8 +543,8 @@ LcsBaseFileLibrary >> mainCss [
 	padding-left: 15px;
 	align-self: flex-start;
 	}
-}'
-
+}
+'
 ]
 
 { #category : 'png' }

@@ -365,6 +365,11 @@ LcsAccessorSlot >> defaultPragmaSelector [
 	^ self class accessorSlotDefinitionName
 ]
 
+{ #category : 'initialize' }
+LcsAccessorSlot >> defaultPresaveTransformBlock [
+	^ [ :value :domainObject :oldValue | value ]
+]
+
 { #category : 'defaults' }
 LcsAccessorSlot >> defaultPrevalidationTransformBlock [
 	^ [ :value :slot | value ]
@@ -491,6 +496,7 @@ LcsAccessorSlot >> initialize [
 	self postUpdateActions: (LcsUpdateActions newOn: self).
 	self initialValueBlock: self defaultInitialValueBlock.
 	self prevalidationTransformBlock: self defaultPrevalidationTransformBlock.
+	self presaveTransformBlock: self defaultPresaveTransformBlock.
 	self beDisallowNil.
 	self beDisallowNull.
 	self beDisallowInitialNil.
@@ -682,6 +688,30 @@ LcsAccessorSlot >> postUpdateActionsDescription [
 				  padding: (BlInsets all: 5);
 				  background: Color white ];
 		  newItemStencil: [ LcsUpdateAction new ]
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> presaveTransformBlock [
+	^ self propertyAt: #'presaveTransformBlock'
+]
+
+{ #category : 'properties' }
+LcsAccessorSlot >> presaveTransformBlock: aBlock [
+	self propertyAt: #'presaveTransformBlock' put: aBlock
+]
+
+{ #category : 'magritte' }
+LcsAccessorSlot >> presaveTransformBlockDescription [
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Presave Transform Block [ :value :slot | ';
+		priority: 12;
+		default: '';
+		accessor: (LcsMABlockPluggableAccessor 
+						accessors: #(#presaveTransformBlockDescription )
+						arguments: LcsAccessorSlot valueSlotBlockArguments);
+		editorAptitude: [ BrGlamorousRegularEditorAptitude new glamorousFormEditorCodeFontAndSize ];
+		labelAptitude: [ BrGlamorousLabelAptitude new glamorousFormLabelStyle ]
 ]
 
 { #category : 'properties' }

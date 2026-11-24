@@ -98,6 +98,23 @@ LuiLabelWithInputComponent >> assignInputIdToLabelForId [
 	self labelComponent for: self inputComponent componentId
 ]
 
+{ #category : 'attributes - commands' }
+LuiLabelWithInputComponent >> autocomplete: aString [
+	self inputComponent autocomplete:  aString
+]
+
+{ #category : 'attributes - commands' }
+LuiLabelWithInputComponent >> beCurrentPasswordAutocomplete [
+	self inputComponent beCurrentPasswordAutocomplete
+]
+
+{ #category : 'css classes' }
+LuiLabelWithInputComponent >> beVerticalDisplay [
+	self addCssClass: LuiCssClassesMap / #verticalInputGroup.
+	self labelComponent beVerticalDisplay.
+	self inputComponent beVerticalDisplay 
+]
+
 { #category : 'private' }
 LuiLabelWithInputComponent >> componentNameInputName [
 	^ self componentName , 'Input'
@@ -235,6 +252,11 @@ LuiLabelWithInputComponent >> newInputComponent [
 		onSlot: self slotDefinition
 		model: self model
 		componentName: self inputComponentName
+]
+
+{ #category : 'as yet unclassified' }
+LuiLabelWithInputComponent >> renderComponentOn: html [
+	super renderComponentOn: html
 ]
 
 { #category : 'accessing' }

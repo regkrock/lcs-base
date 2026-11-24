@@ -37,10 +37,9 @@ LuiStandardPageLayoutTemplate >> navigationMenuDefinition [
 
 { #category : 'components - definition' }
 LuiStandardPageLayoutTemplate >> pageHeaderComponentDefinition [
-	| pageHeader |
-	pageHeader := LuiPageHeader new.
-	pageHeader addComponent: self navigationBarComponentDefinition.
-	^ pageHeader
+	^ super pageHeaderComponentDefinition
+		addComponent: self navigationBarComponentDefinition;
+		yourself
 ]
 
 { #category : 'components - definition' }

@@ -19,11 +19,16 @@ LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject [
 
 { #category : 'slot model' }
 LcsUnitOfWorkVariableUpdatePolicy >> slotVarPut: anObject in: aDomainObject oldValue: anOldValue [
+	| transformedObject |
 	self validate: anObject context: aDomainObject oldValue: anOldValue.
 	LcsLogger logReceiver: thisContext receiver message: thisContext message inSlotNamed: self parent slotName.
+	transformedObject := self parent presaveTransformBlock
+			cull: anObject
+			cull: aDomainObject
+			cull: anOldValue.
 	self currentUnitOfWork
 		setValueIn: aDomainObject
 		slot: self parent
-		to: anObject
+		to: transformedObject
 	
 ]

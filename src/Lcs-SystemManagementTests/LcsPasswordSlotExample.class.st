@@ -52,14 +52,23 @@ LcsPasswordSlotExample >> newAuditor [
 { #category : 'examples' }
 LcsPasswordSlotExample >> newSlot [
 	<gtExample>
-	| slot |
-	slot := LcsPasswordSlot new.
-	self assert: slot slotName equals: 'password'.
-	self assert: slot allowInitialNull.
-	self assert: (slot slotTypes includes: String).
-	self assert: slot slotTypeRules collectionSize = 2.
-	self assert: slot validationRules collectionSize = 2.
-	^ slot
+	| aSlot blockString |
+	blockString := [ :value :domainObject :oldValue | 
+			(oldValue isNil and: [ domainObject isInAddingState and: [ value isEmpty ] ])
+				ifTrue: [ value ]
+				ifFalse: [ LcsPasswordHasher hashPassword: value ] ] printString.
+	aSlot := LcsPasswordSlot new.
+	self assert: aSlot slotName equals: 'password'.
+	self assert: aSlot allowInitialNull.
+	self assert: (aSlot slotTypes includes: String).
+	self assert: aSlot slotTypeRules collectionSize = 2.
+	self assert: aSlot validationRules collectionSize = 2.
+	self
+		assert: aSlot presaveTransformBlock printString
+		equals: blockString.
+	self assert: aSlot inputComponentClass equals: LuiPasswordInput.
+	aSlot inputComponentClass.
+	^ aSlot
 ]
 
 { #category : 'examples' }

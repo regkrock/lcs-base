@@ -2,7 +2,7 @@ Class {
 	#name : 'LcsBaseSmalltalkObjectSlot',
 	#superclass : 'LcsAccessorSlot',
 	#instVars : [
-		'inputComponentClassName'
+		'inputComponentClass'
 	],
 	#category : 'Lcs-SystemManagement-Slot',
 	#package : 'Lcs-SystemManagement',
@@ -48,22 +48,17 @@ LcsBaseSmalltalkObjectSlot >> defaultInitialValueBlock [
 LcsBaseSmalltalkObjectSlot >> initialize [
 	super initialize.
 	self addDefaultSlotType.
-	self inputComponentClassName: self defaultInputComponentClass
+	self inputComponentClass: self defaultInputComponentClass
 ]
 
 { #category : 'accessing' }
 LcsBaseSmalltalkObjectSlot >> inputComponentClass [
-	^ self inputComponentClassName asClass
+	^ inputComponentClass
 ]
 
 { #category : 'accessing' }
-LcsBaseSmalltalkObjectSlot >> inputComponentClassName [
-	^ inputComponentClassName
-]
-
-{ #category : 'accessing' }
-LcsBaseSmalltalkObjectSlot >> inputComponentClassName: anObject [
-	inputComponentClassName := anObject
+LcsBaseSmalltalkObjectSlot >> inputComponentClass: anObject [
+	inputComponentClass := anObject
 ]
 
 { #category : 'properties' }

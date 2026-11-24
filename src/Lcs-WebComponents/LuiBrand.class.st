@@ -22,6 +22,11 @@ LuiBrand class >> newSeasBrand [
 		text: 'SEAS Monmouth'
 ]
 
+{ #category : 'components - updating' }
+LuiBrand >> brandName: aString [
+	(self componentNamed: 'brandName') text: aString
+]
+
 { #category : 'initialize' }
 LuiBrand >> initializeNamed: aName logoComponent: aLogoComponent text: aBrandName [ 
 	self initializeNamed: aName. 

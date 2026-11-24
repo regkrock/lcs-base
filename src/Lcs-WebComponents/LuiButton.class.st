@@ -61,6 +61,11 @@ LuiButton >> defaultCssClasses [
 	^ OrderedCollection with: LuiCssClassesMap / #pushButton
 ]
 
+{ #category : 'attributes' }
+LuiButton >> execute: aBlock updating: aComponentsBlocks [
+	^ self onClickScriptBlockAttribute execute: aBlock updating: aComponentsBlocks
+]
+
 { #category : 'testing' }
 LuiButton >> hasLeadingImageComponent [
 	^ (self componentNamed: 'leadingImage') notNil
@@ -142,21 +147,6 @@ LuiButton >> onClick: aString [
 	self attributes onClick: aString
 ]
 
-{ #category : 'attributes' }
-LuiButton >> onClickScriptBlock [
-	^ self attributes onClickScriptBlock
-]
-
-{ #category : 'attributes' }
-LuiButton >> onClickScriptBlock: aBlock [
-	self attributes onClickScriptBlock: aBlock
-]
-
-{ #category : 'attributes' }
-LuiButton >> onClickScriptBlockAttribute [
-	^ self attributes onClickScriptBlockAttribute
-]
-
 { #category : 'rendering' }
 LuiButton >> renderComponentOn: html [
 	html button
@@ -169,6 +159,11 @@ LuiButton >> renderDetailsOn: html [
 	self hasTextDecoration 
 		ifTrue: [ html text: self text ]
 		ifFalse: [ super renderDetailsOn: html ]
+]
+
+{ #category : 'attributes' }
+LuiButton >> serializeForm [
+	^ self onClickScriptBlockAttribute serializeForm
 ]
 
 { #category : 'components' }
