@@ -21,6 +21,11 @@ LtApplicationEnvironment classSide >> currentUser [
 ]
 
 { #category : 'application environment' }
+LtApplicationEnvironment classSide >> currentUser: aUser [
+	^ self currentSystem ifNotNil: [:system | system currentUser: aUser ]
+]
+
+{ #category : 'application environment' }
 LtApplicationEnvironment classSide >> securityModule [
 	^ self currentSystem ifNotNil: [:system | system securityModule ]
 ]
@@ -38,6 +43,11 @@ LtApplicationEnvironment >> currentUnitOfWork [
 { #category : 'application environment' }
 LtApplicationEnvironment >> currentUser [
 	^ self class currentUser
+]
+
+{ #category : 'application environment' }
+LtApplicationEnvironment >> currentUser: aUser [
+	self class currentUser: aUser
 ]
 
 { #category : 'application environment' }

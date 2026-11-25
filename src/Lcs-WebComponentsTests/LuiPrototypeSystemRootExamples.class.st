@@ -16,5 +16,6 @@ LuiPrototypeSystemRootExamples >> rootWithStandardLayout [
 	self assert: root mainForm notNil.
 	mainForm := root mainForm.
 	menuItem := root pageHeader navigationBar.
+	self assert: root currentUser equals: root currentSystem guestuser.
 	^ root
 ]

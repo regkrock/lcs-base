@@ -16,19 +16,24 @@ LcsPasswordHasher class >> generateSalt [
 LcsPasswordHasher class >> hashPassword: aPasswordString [
 	"Returns a self-contained string: iterations:saltHex:hashHex"
 
-	| iterations salt derivedKey |
-	iterations := 10000"0".
+	| salt derivedKey |
 	salt := self generateSalt.
 	derivedKey := self 
 		pbkdf2HmacSha256Password: aPasswordString 
 		salt: salt 
-		iterations: iterations.
+		iterations: self iterations.
 	
 	^ String streamContents: [ :s |
 		s 
-			print: iterations; nextPut: $:;
+			print: self iterations; nextPut: $:;
 			nextPutAll: salt hex; nextPut: $:;
 			nextPutAll: derivedKey hex ]
+]
+
+{ #category : 'as yet unclassified' }
+LcsPasswordHasher class >> iterations [
+	"This is set to run fast. In production this should be changed"
+	^ 1 "100000"
 ]
 
 { #category : 'as yet unclassified' }

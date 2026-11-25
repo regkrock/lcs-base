@@ -37,7 +37,9 @@ LuiPrototypeSystemRoot >> generatedId [
 LuiPrototypeSystemRoot >> initialize [
 	LcsApplicationEnvironment ensureCurrentSystemIsPrototypeSystem.
 	super initialize.
-	LuiPrototypeStandardPageLayoutTemplate new buildLayoutFor: self
+	LuiPrototypeStandardPageLayoutTemplate new buildLayoutFor: self.
+	self currentSystem currentUser: self currentSystem guestuser.
+	self assert: self currentUser equals: self currentSystem guestuser.
 ]
 
 { #category : 'components - querying' }

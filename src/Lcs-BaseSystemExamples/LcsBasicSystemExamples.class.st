@@ -59,8 +59,8 @@ LcsBasicSystemExamples >> newBasicSystem [
 		self assertCurrentSystemSetTo: LcsBasicSystem.
 		self assertModuleConfigured: LcsSecurityModule.
 		self assert: system securityModule users collection size = 2.
-		self assert: system securityModule superuser class equals: LcsSuperUser.
-		self assert: system securityModule guestuser class equals: LcsGuestUser.
+		self assert: system superuser class equals: LcsSuperUser.
+		self assert: system guestuser class equals: LcsGuestUser.
 		]
 			ensure: [
 				self removeCurrentSystemAndActivate: originalSystem ].

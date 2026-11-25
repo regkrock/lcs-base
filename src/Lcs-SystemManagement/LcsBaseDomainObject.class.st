@@ -622,6 +622,11 @@ LcsBaseDomainObject >> currentUser [
 	^ self currentSystem currentUser
 ]
 
+{ #category : 'application environment' }
+LcsBaseDomainObject >> currentUser: aUser [
+	^ self currentSystem currentUser: aUser
+]
+
 { #category : 'gt views' }
 LcsBaseDomainObject >> domainObjectAllAccessorSlotViewItems [
 	^ (self allAccessorSlotDefinitions reject: [ :each | each class = LcsDeprecatedSlot ])

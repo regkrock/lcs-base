@@ -229,10 +229,3 @@ LcsSlotModelExamples >> slotModelWithVirtualSlot [
 	self assert: (slotModel allLocalSlotDefinitions includes: slot).
 	^ slotModel
 ]
-
-{ #category : 'setUp-tearDown' }
-LcsSlotModelExamples >> tearDown [
-	LcsBaseDomainObject releaseSlotModel.
-	self assert: LcsBaseDomainObject slotModel isNil.
-	super tearDown.
-]

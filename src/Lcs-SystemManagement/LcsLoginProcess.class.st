@@ -39,10 +39,10 @@ LcsLoginProcess >> email: anObject [
 { #category : 'events' }
 LcsLoginProcess >> loginUser [
 	| user |
-	user := (self currentSystem securityModule userWithId: self email) ifNil: [ ^self ].
-	(user passwordMatches: self password) ifFalse: [ ^ self ].
-	self currentSystem securityModule currentUser: user
-		
+	user := (self currentSystem securityModule userWithId: self email) ifNil: [ ^ false ].
+	(user verifyPassword: self password) ifFalse: [ ^ false ].
+	self currentSystem currentUser: user.
+	^ true
 ]
 
 { #category : 'accessing' }

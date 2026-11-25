@@ -202,6 +202,11 @@ LcsSystem >> currentUser [
 	^ self securityModule currentUser
 ]
 
+{ #category : 'security' }
+LcsSystem >> currentUser: aUser [
+	^ self securityModule currentUser: aUser
+]
+
 { #category : 'configuration' }
 LcsSystem >> fileLibraryClass [
 	^ self class fileLibraryClass
@@ -283,6 +288,11 @@ LcsSystem >> gtUnitOfWorkFor: aView [
 		object: [ self relatedUnitOfWork ];
 		view: #gtUnitOfWorkFor:;
 		yourself
+]
+
+{ #category : 'security' }
+LcsSystem >> guestuser [
+	^ self securityModule guestuser
 ]
 
 { #category : 'testing' }
@@ -529,6 +539,11 @@ LcsSystem >> statusNameString [
 	^ ([ self status ] on: Error do: [ :s | s return: nil ]) 
 		ifNil: [ 'no status' ] 
 		ifNotNil: [ self status statusName ]
+]
+
+{ #category : 'security' }
+LcsSystem >> superuser [
+	^ self securityModule superuser
 ]
 
 { #category : 'suspend' }

@@ -20,7 +20,7 @@ LcsUsers >> superuser [
 	^ self find: [ :each | each class = LcsSuperUser ] ifNone: [ 
 		LcsSuperUser new
 			userId: 'superuser';
-			password: 'R0binhood$';
+			password: 'R0binHood$';
 			yourself ] 
 ]
 
