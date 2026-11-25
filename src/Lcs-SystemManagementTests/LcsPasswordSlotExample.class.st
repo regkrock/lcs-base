@@ -53,10 +53,7 @@ LcsPasswordSlotExample >> newAuditor [
 LcsPasswordSlotExample >> newSlot [
 	<gtExample>
 	| aSlot blockString |
-	blockString := [ :value :domainObject :oldValue | 
-			(oldValue isNil and: [ domainObject isInAddingState and: [ value isEmpty ] ])
-				ifTrue: [ value ]
-				ifFalse: [ LcsPasswordHasher hashPassword: value ] ] printString.
+	blockString := [ :value :domainObject :oldValue | LcsPasswordHasher hashPassword: value ] printString.
 	aSlot := LcsPasswordSlot new.
 	self assert: aSlot slotName equals: 'password'.
 	self assert: aSlot allowInitialNull.

@@ -24,7 +24,7 @@ LcsNullSecurityModule class >> currentUserSlotDefinition [
 		slotName: 'currentUser';
 		collectionSlotName: 'users';
 		collectionSlotModuleName: self defaultModuleName;
-		initialValueBlock: [ :securityModule | securityModule users superUser ];
+		initialValueBlock: [ :securityModule | securityModule users superuser ];
 		addSlotType: LcsBaseUser;
 		priority: 60;
 		yourself

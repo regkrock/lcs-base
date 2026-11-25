@@ -25,11 +25,12 @@ LcsPasswordSlot >> initialize [
 	self beAllowInitialNull.
 	self beRequired.
 	self addValidationRule: self passwordValidationRule.
-	self
-		presaveTransformBlock: [ :value :domainObject :oldValue | 
-			(oldValue isNil and: [ domainObject isInAddingState and: [ value isEmpty ] ])
-				ifTrue: [ value ]
-				ifFalse: [ LcsPasswordHasher hashPassword: value ] ]
+	self presaveTransformBlock: self passwordHashingBlock
+]
+
+{ #category : 'initialize' }
+LcsPasswordSlot >> passwordHashingBlock [
+	^ [ :value :domainObject :oldValue | LcsPasswordHasher hashPassword: value ]
 ]
 
 { #category : 'initialize' }

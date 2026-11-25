@@ -12,6 +12,9 @@ LcsUserExamples >> auditedNewUser [
 	<after: #clearUnitOfWork>
 	| user auditor |
 	user := self newUserInBasicSystem.
+	self assert: (user verifyPassword: '').
+	self assert: user userId equals: ''.
+	self assert: user person isNil.
 	auditor := LcsConditionsValidator newOn: self.
 	self 
 		assertAuditOf: user 
@@ -20,14 +23,35 @@ LcsUserExamples >> auditedNewUser [
 	self 
 		assertAuditOf: user 
 		slot: 'password' 
-		hasError: 'Null is not allowed'.
+		hasError: 'Password must be least 8 characters long and include at least one number, one special character (+-/\*~<>=@,%|&?!·÷±×) and one uppercase character'.
 	self 
 		assertAuditOf: user 
 		slot: 'person' 
 		hasError: 'Nil is not allowed'.
 	auditor := user auditSlots.
 	self assert: auditor  errorDescriptions notEmpty.
-	self assert: auditor errorDescriptions size equals: 3.
+	self assert: auditor errorDescriptions size equals: 1.
+	^ user
+]
+
+{ #category : 'validation' }
+LcsUserExamples >> newUser [
+	| user |
+	user := LcsUser new.
+	self
+		assert: (user slotDefinitionNamed: 'password') class
+		equals: LcsPasswordSlot.
+	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
+	self
+		assert: (user slotDefinitionNamed: 'fullName') errorClass
+		equals: MessageNotUnderstood.
+	self
+		assert: (user slotDefinitionNamed: 'fullName') errorReturnObject
+		equals: ''.
+	self assert: user userId isEmpty.
+	self assert: (user verifyPassword: '').
+	self assert: user securityRole notNil.
+	self assert: user securityRole role equals: 'guest'.
 	^ user
 ]
 
@@ -38,9 +62,9 @@ LcsUserExamples >> newUserInBasicSystem [
 	| user |
 	self ensureCurrentSystemIsBasicSystem.
 	self assert: self currentSystem unitOfWork hasNoChanges.
-	user := LcsUser new.
-	self assert: user password isEmpty.
-	self validateCommonUserProperties: user.
+	self assert: LcsUnknownPerson hasSlotModel not.
+	user := self newUser.
+	self assert: (user verifyPassword: '').
 	self assert: user person isNil.
 	self assert: user fullName equals: ''.
 	self shouldnt: [ user fullName ] raise: MessageNotUnderstood.
@@ -53,8 +77,8 @@ LcsUserExamples >> newUserInDemoSystem [
 	<after: #clearUnitOfWork>
 	| user |
 	self ensureCurrentSystemIsDemoSystem.
-	user := LcsUser new.
-	self validateCommonUserProperties: user.
+	self assert: LcsUnknownPerson hasSlotModel.
+	user := self newUser.
 	self assert: user person class equals: LcsUnknownPerson.
 	self assert: user fullName equals: 'Unknown Person'.
 	^ user
@@ -83,7 +107,7 @@ LcsUserExamples >> userWithAuditedPassword [
 	self 
 		assertAuditOf: user 
 		slot: 'password' 
-		hasError: 'Null is not allowed'.
+		hasError: 'Password must be least 8 characters long and include at least one number, one special character (+-/\*~<>=@,%|&?!·÷±×) and one uppercase character'.
 	^ user
 ]
 
@@ -132,22 +156,4 @@ LcsUserExamples >> userWithValidPassword [
 	self assert: (LcsPasswordHasher verifyPassword: pwd againstStoredHash: user password).
 	"self assertAuditHasNoErrorOf: user slot: 'password'. "
 	^ user
-]
-
-{ #category : 'validation' }
-LcsUserExamples >> validateCommonUserProperties: user [
-	self
-		assert: (user slotDefinitionNamed: 'password') class
-		equals: LcsPasswordSlot.
-	self assert: (user slotDefinitionNamed: 'userId') class equals: LcsUserIdSlot.
-	self
-		assert: (user slotDefinitionNamed: 'fullName') errorClass
-		equals: MessageNotUnderstood.
-	self
-		assert: (user slotDefinitionNamed: 'fullName') errorReturnObject
-		equals: ''.
-	self assert: user userId isEmpty.
-	"self assert: user password isEmpty."
-	self assert: user securityRole notNil.
-	self assert: user securityRole role equals: 'guest'
 ]

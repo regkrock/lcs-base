@@ -24,7 +24,7 @@ LcsSecurityModule class >> currentUserSlotDefinition [
 		slotName: 'currentUser';
 		collectionSlotName: 'users';
 		collectionSlotModuleName: self defaultModuleName;
-		initialValueBlock: [ :securityModule | securityModule users superUser ];
+		initialValueBlock: [ :securityModule | securityModule users superuser ];
 		addSlotType: LcsBaseUser;
 		priority: 60;
 		yourself
@@ -80,6 +80,11 @@ LcsSecurityModule >> currentUser: anObject [
 	self slotVarNamed: 'currentUser' put: anObject 
 ]
 
+{ #category : 'asking' }
+LcsSecurityModule >> guestuser [
+	^ self users guestuser
+]
+
 { #category : 'security' }
 LcsSecurityModule >> hasPermissionToAddToSlot: aSlotDefinition in: aDomainObject [ 
 	^ true
@@ -95,6 +100,13 @@ LcsSecurityModule >> hasPermissionToWriteSlot: aSlotDefinition in: aDomainObject
 	^ true
 ]
 
+{ #category : 'loading' }
+LcsSecurityModule >> loadData [
+	super loadData.
+	self users superuser.
+	self users guestuser
+]
+
 { #category : 'accessing' }
 LcsSecurityModule >> securityRoles [
 	^ self slotVarNamed: 'securityRoles' 
@@ -103,6 +115,16 @@ LcsSecurityModule >> securityRoles [
 { #category : 'accessing' }
 LcsSecurityModule >> securityRoles: anObject [
 	self slotVarNamed: 'securityRoles' put: anObject 
+]
+
+{ #category : 'asking' }
+LcsSecurityModule >> superuser [
+	^ self users superuser
+]
+
+{ #category : 'acceesing' }
+LcsSecurityModule >> userWithId: aString [
+	^ self users userWithId: aString
 ]
 
 { #category : 'security' }

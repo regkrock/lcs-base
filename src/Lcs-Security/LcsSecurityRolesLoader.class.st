@@ -9,11 +9,11 @@ Class {
 { #category : 'data' }
 LcsSecurityRolesLoader >> data [
 	^ 'admin
-visitor
 guest
 student
 member
-boardMember'
+boardMember
+superuser'
 ]
 
 { #category : 'loading' }

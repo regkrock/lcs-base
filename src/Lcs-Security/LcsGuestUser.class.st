@@ -5,3 +5,9 @@ Class {
 	#package : 'Lcs-Security',
 	#tag : 'Core'
 }
+
+{ #category : 'slot definitions' }
+LcsGuestUser class >> passwordSlotDefinition [
+	<accessorSlotDefinition>
+	^ LcsGuestPasswordSlot new
+]
