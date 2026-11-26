@@ -15,9 +15,9 @@ LuiLoginPresenter >> buildComponents [
 			cssClass: LuiCssClassesMap / #signinText;
 			text: 'Sign in to SEAS';
 			yourself);
-		addComponent: ((LuiLabelWithInputComponent onSlotNamed: 'email' model: self model)
+		addComponent: ((LuiLabelWithInputComponent onSlotNamed: 'userId' model: self model)
 				beVerticalDisplay;
-				autocomplete: 'email';
+				autocomplete: 'userId';
 				yourself);
 		addComponent: ((LuiLabelWithInputComponent onSlotNamed: 'password' model: self model)
 				beVerticalDisplay;
